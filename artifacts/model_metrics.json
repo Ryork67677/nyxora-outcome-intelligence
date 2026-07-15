@@ -1,0 +1,66 @@
+{
+  "generated_at": "2026-07-15T03:46:26.737555+00:00",
+  "as_of_date": "2026-07-14",
+  "prediction_point": "24 hours after lead creation",
+  "outcome": "consultation booked within 14 days",
+  "split_strategy": "chronological 70% train / 15% validation / 15% test",
+  "rows": {
+    "total_matured": 9587,
+    "train": 6710,
+    "validation": 1438,
+    "test": 1439,
+    "deployment_train": 8148
+  },
+  "candidate_validation_metrics": {
+    "logistic_regression": {
+      "roc_auc": 0.686501,
+      "average_precision": 0.645865,
+      "brier_score": 0.219758,
+      "accuracy": 0.562587,
+      "precision": 0.51498,
+      "recall": 0.954955,
+      "f1": 0.669122,
+      "positive_rate": 0.463143,
+      "predicted_positive_rate": 0.858832
+    },
+    "hist_gradient_boosting": {
+      "roc_auc": 0.684675,
+      "average_precision": 0.638815,
+      "brier_score": 0.222095,
+      "accuracy": 0.575104,
+      "precision": 0.523605,
+      "recall": 0.915916,
+      "f1": 0.666303,
+      "positive_rate": 0.463143,
+      "predicted_positive_rate": 0.810153
+    }
+  },
+  "selected_model": "logistic_regression",
+  "decision_threshold": 0.3,
+  "selected_test_metrics": {
+    "roc_auc": 0.68631,
+    "average_precision": 0.666741,
+    "brier_score": 0.220788,
+    "accuracy": 0.565671,
+    "precision": 0.526779,
+    "recall": 0.952312,
+    "f1": 0.678332,
+    "positive_rate": 0.48089,
+    "predicted_positive_rate": 0.869354
+  },
+  "naive_test_metrics": {
+    "roc_auc": 0.5,
+    "average_precision": 0.48089,
+    "brier_score": 0.250252,
+    "accuracy": 0.51911,
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "positive_rate": 0.48089,
+    "predicted_positive_rate": 0.0
+  },
+  "test_date_range": {
+    "start": "2026-05-10T02:41:59+00:00",
+    "end": "2026-06-30T23:14:59+00:00"
+  }
+}

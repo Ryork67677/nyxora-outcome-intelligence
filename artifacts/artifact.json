@@ -1,0 +1,1374 @@
+{
+  "surface": "dashboard",
+  "manifest": {
+    "version": 1,
+    "surface": "dashboard",
+    "title": "Nyxora Outcome Intelligence",
+    "description": "Synthetic lead funnel, booking propensity, and model monitoring dashboard.",
+    "generatedAt": "2026-07-15T03:46:26.982499+00:00",
+    "sources": [
+      {
+        "id": "source_summary",
+        "label": "Synthetic portfolio overview and model summary",
+        "query": {
+          "sql": "SELECT\n            COUNT(*)::INTEGER AS matured_leads,\n            SUM(booked)::INTEGER AS booked_leads,\n            ROUND(AVG(booked), 6) AS booking_rate,\n            ROUND(MEDIAN(response_minutes), 2) AS median_response_minutes,\n            (SELECT test_roc_auc FROM mart_model_summary) AS test_roc_auc,\n            (SELECT COUNT(*)::INTEGER FROM mart_scored_candidates) AS open_candidates,\n            (SELECT MAX(psi) FROM mart_feature_drift) AS maximum_psi\n        FROM fct_lead_outcomes\n        WHERE is_matured",
+          "description": "Synthetic portfolio overview and model summary",
+          "engine": "DuckDB",
+          "language": "sql",
+          "executed_at": "2026-07-15T03:46:26.982499+00:00",
+          "tables_used": [
+            "fct_lead_outcomes",
+            "mart_model_summary",
+            "mart_scored_candidates",
+            "mart_feature_drift"
+          ],
+          "filters": [
+            "is_matured = true"
+          ],
+          "metric_definitions": [
+            "Matured leads: leads created at least 14 days before the synthetic as-of timestamp.",
+            "Booking rate: matured leads with a consultation_booked event divided by matured leads.",
+            "Median response: median minutes to first contact inside the 24-hour observation window; 1,440 represents no contact.",
+            "Test ROC AUC: discrimination on the newest chronological 15% holdout set.",
+            "Open candidates: unbooked leads created in the latest 14 days with a completed 24-hour observation window."
+          ]
+        }
+      },
+      {
+        "id": "source_monthly",
+        "label": "Monthly matured-lead funnel",
+        "query": {
+          "sql": "SELECT * FROM mart_monthly_funnel ORDER BY month",
+          "description": "Monthly matured-lead funnel",
+          "engine": "DuckDB",
+          "language": "sql",
+          "executed_at": "2026-07-15T03:46:26.982499+00:00",
+          "tables_used": [
+            "mart_monthly_funnel"
+          ],
+          "filters": [],
+          "metric_definitions": [
+            "Monthly booking rate: booked matured leads divided by matured leads created in the month.",
+            "Only fully observed leads are included; timestamps use UTC."
+          ]
+        }
+      },
+      {
+        "id": "source_channels",
+        "label": "Acquisition channel performance",
+        "query": {
+          "sql": "SELECT * FROM mart_channel_performance ORDER BY booking_rate DESC",
+          "description": "Acquisition channel performance",
+          "engine": "DuckDB",
+          "language": "sql",
+          "executed_at": "2026-07-15T03:46:26.982499+00:00",
+          "tables_used": [
+            "mart_channel_performance"
+          ],
+          "filters": [],
+          "metric_definitions": [
+            "Channel booking rate: booked matured leads divided by matured leads for the acquisition channel.",
+            "Pipeline value: sum of synthetic estimated lead value, not realized revenue."
+          ]
+        }
+      },
+      {
+        "id": "source_campaigns",
+        "label": "Campaign performance",
+        "query": {
+          "sql": "SELECT * FROM mart_campaign_performance ORDER BY booking_rate DESC LIMIT 10",
+          "description": "Campaign performance",
+          "engine": "DuckDB",
+          "language": "sql",
+          "executed_at": "2026-07-15T03:46:26.982499+00:00",
+          "tables_used": [
+            "mart_campaign_performance"
+          ],
+          "filters": [
+            "minimum 50 matured leads",
+            "top 10 by booking rate"
+          ],
+          "metric_definitions": [
+            "Channel booking rate: booked matured leads divided by matured leads for the acquisition channel.",
+            "Pipeline value: sum of synthetic estimated lead value, not realized revenue."
+          ]
+        }
+      },
+      {
+        "id": "source_calibration",
+        "label": "Chronological holdout calibration",
+        "query": {
+          "sql": "SELECT * FROM mart_model_calibration ORDER BY decile",
+          "description": "Chronological holdout calibration",
+          "engine": "DuckDB",
+          "language": "sql",
+          "executed_at": "2026-07-15T03:46:26.982499+00:00",
+          "tables_used": [
+            "mart_model_calibration"
+          ],
+          "filters": [],
+          "metric_definitions": [
+            "Predictions are grouped into equal-frequency deciles on the chronological holdout set.",
+            "Observed booking rate is the booked share within each decile."
+          ]
+        }
+      },
+      {
+        "id": "source_importance",
+        "label": "Holdout permutation importance",
+        "query": {
+          "sql": "SELECT * FROM mart_feature_importance ORDER BY importance_mean DESC LIMIT 8",
+          "description": "Holdout permutation importance",
+          "engine": "DuckDB",
+          "language": "sql",
+          "executed_at": "2026-07-15T03:46:26.982499+00:00",
+          "tables_used": [
+            "mart_feature_importance"
+          ],
+          "filters": [
+            "top 8 features by mean importance"
+          ],
+          "metric_definitions": [
+            "Permutation importance: mean change in holdout ROC AUC after shuffling one input feature.",
+            "Importance describes predictive association, not causality."
+          ]
+        }
+      },
+      {
+        "id": "source_drift",
+        "label": "Feature distribution monitoring",
+        "query": {
+          "sql": "SELECT * FROM mart_feature_drift ORDER BY psi DESC",
+          "description": "Feature distribution monitoring",
+          "engine": "DuckDB",
+          "language": "sql",
+          "executed_at": "2026-07-15T03:46:26.982499+00:00",
+          "tables_used": [
+            "mart_feature_drift"
+          ],
+          "filters": [],
+          "metric_definitions": [
+            "Population Stability Index compares the oldest 70% reference period with the newest 30% comparison period.",
+            "PSI below 0.10 is stable, 0.10-0.20 is watch, and 0.20 or above requires review."
+          ]
+        }
+      },
+      {
+        "id": "source_candidates",
+        "label": "Highest-priority open synthetic leads",
+        "query": {
+          "sql": "SELECT\n            lead_id,\n            channel,\n            service_type,\n            ROUND(booking_probability, 4) AS booking_probability,\n            ROUND(priority_score, 2) AS priority_score,\n            recommended_action,\n            ROUND(response_minutes, 1) AS response_minutes,\n            ROUND(estimated_value, 2) AS estimated_value\n        FROM mart_scored_candidates\n        ORDER BY priority_score DESC\n        LIMIT 12",
+          "description": "Highest-priority open synthetic leads",
+          "engine": "DuckDB",
+          "language": "sql",
+          "executed_at": "2026-07-15T03:46:26.982499+00:00",
+          "tables_used": [
+            "mart_scored_candidates"
+          ],
+          "filters": [
+            "top 12 by priority score"
+          ],
+          "metric_definitions": [
+            "Priority score: predicted booking probability \u00d7 estimated value \u00d7 a 1.2 delayed-response multiplier when response is at least 120 minutes.",
+            "Candidates exclude already-booked leads and leads without a completed 24-hour observation window."
+          ]
+        }
+      }
+    ],
+    "cards": [
+      {
+        "id": "card_leads",
+        "dataset": "summary",
+        "sourceId": "source_summary",
+        "description": "Leads with the complete 14-day booking window.",
+        "metrics": [
+          {
+            "label": "Matured leads",
+            "field": "matured_leads",
+            "format": "compact"
+          }
+        ]
+      },
+      {
+        "id": "card_booking",
+        "dataset": "summary",
+        "sourceId": "source_summary",
+        "description": "Booked consultations divided by matured leads.",
+        "metrics": [
+          {
+            "label": "Booking rate",
+            "field": "booking_rate",
+            "format": "percent"
+          }
+        ]
+      },
+      {
+        "id": "card_response",
+        "dataset": "summary",
+        "sourceId": "source_summary",
+        "description": "Median first-response minutes; 1,440 means no response in 24 hours.",
+        "metrics": [
+          {
+            "label": "Median response",
+            "field": "median_response_minutes",
+            "format": "number"
+          }
+        ]
+      },
+      {
+        "id": "card_auc",
+        "dataset": "summary",
+        "sourceId": "source_summary",
+        "description": "ROC AUC on the newest chronological holdout period.",
+        "metrics": [
+          {
+            "label": "Holdout ROC AUC",
+            "field": "test_roc_auc",
+            "format": "number"
+          }
+        ]
+      },
+      {
+        "id": "card_candidates",
+        "dataset": "summary",
+        "sourceId": "source_summary",
+        "description": "Recent unbooked leads ready for human review.",
+        "metrics": [
+          {
+            "label": "Open candidates",
+            "field": "open_candidates",
+            "format": "compact"
+          }
+        ]
+      }
+    ],
+    "charts": [
+      {
+        "id": "chart_monthly",
+        "title": "Monthly booking rate",
+        "type": "line",
+        "intent": "trend",
+        "question": "How does matured-lead booking rate move over time?",
+        "rationale": "A chronological line makes direction and stability visible without mixing differently scaled funnel counts.",
+        "dataset": "monthly",
+        "sourceId": "source_monthly",
+        "encodings": {
+          "x": {
+            "field": "month",
+            "type": "temporal",
+            "label": "Month"
+          },
+          "y": {
+            "field": "booking_rate",
+            "type": "quantitative",
+            "format": "percent",
+            "label": "Booking rate"
+          }
+        },
+        "valueFormat": "percent",
+        "layout": "full"
+      },
+      {
+        "id": "chart_channels",
+        "title": "Booking rate by acquisition channel",
+        "type": "horizontalBar",
+        "intent": "comparison",
+        "question": "Which acquisition channels have the highest matured-lead booking rates?",
+        "rationale": "Sorted horizontal bars support accurate category comparison while preserving readable channel labels.",
+        "dataset": "channels",
+        "sourceId": "source_channels",
+        "encodings": {
+          "x": {
+            "field": "channel",
+            "type": "nominal",
+            "label": "Channel"
+          },
+          "y": {
+            "field": "booking_rate",
+            "type": "quantitative",
+            "format": "percent",
+            "label": "Booking rate"
+          }
+        },
+        "valueFormat": "percent",
+        "layout": "half"
+      },
+      {
+        "id": "chart_calibration",
+        "title": "Predicted versus observed booking rate",
+        "type": "scatter",
+        "intent": "relationship",
+        "question": "Do holdout probabilities align with observed booking rates across prediction deciles?",
+        "rationale": "A scatter plot directly compares average predicted and observed probability on the same rate scale.",
+        "dataset": "calibration",
+        "sourceId": "source_calibration",
+        "encodings": {
+          "x": {
+            "field": "predicted_probability",
+            "type": "quantitative",
+            "format": "percent",
+            "label": "Predicted probability"
+          },
+          "y": {
+            "field": "observed_booking_rate",
+            "type": "quantitative",
+            "format": "percent",
+            "label": "Observed booking rate"
+          },
+          "size": {
+            "field": "leads",
+            "type": "quantitative",
+            "label": "Leads"
+          },
+          "label": {
+            "field": "decile",
+            "type": "ordinal",
+            "label": "Decile"
+          }
+        },
+        "valueFormat": "percent",
+        "layout": "half"
+      },
+      {
+        "id": "chart_importance",
+        "title": "Predictive feature importance",
+        "type": "horizontalBar",
+        "intent": "comparison",
+        "question": "Which inputs contribute most to holdout discrimination?",
+        "rationale": "A sorted bar chart makes model-agnostic permutation importance easy to compare across inputs.",
+        "dataset": "importance",
+        "sourceId": "source_importance",
+        "encodings": {
+          "x": {
+            "field": "feature",
+            "type": "nominal",
+            "label": "Feature"
+          },
+          "y": {
+            "field": "importance_mean",
+            "type": "quantitative",
+            "format": "number",
+            "label": "ROC AUC decrease"
+          }
+        },
+        "valueFormat": "number",
+        "layout": "half"
+      },
+      {
+        "id": "chart_drift",
+        "title": "Population Stability Index by feature",
+        "type": "horizontalBar",
+        "intent": "comparison",
+        "question": "Which model inputs changed most between the reference and comparison periods?",
+        "rationale": "Sorted bars expose the largest distribution shifts and make the 0.10 watch threshold interpretable.",
+        "dataset": "drift",
+        "sourceId": "source_drift",
+        "encodings": {
+          "x": {
+            "field": "feature",
+            "type": "nominal",
+            "label": "Feature"
+          },
+          "y": {
+            "field": "psi",
+            "type": "quantitative",
+            "format": "number",
+            "label": "PSI"
+          }
+        },
+        "referenceLines": [
+          {
+            "axis": "y",
+            "value": 0.1,
+            "label": "Watch",
+            "color": "orange",
+            "lineStyle": "dashed"
+          },
+          {
+            "axis": "y",
+            "value": 0.2,
+            "label": "Review",
+            "color": "red",
+            "lineStyle": "dashed"
+          }
+        ],
+        "valueFormat": "number",
+        "layout": "half"
+      }
+    ],
+    "tables": [
+      {
+        "id": "table_channels",
+        "title": "Channel operating metrics",
+        "dataset": "channels",
+        "sourceId": "source_channels",
+        "defaultSort": {
+          "field": "booking_rate",
+          "direction": "desc"
+        },
+        "density": "dense",
+        "layout": "full",
+        "columns": [
+          {
+            "field": "channel",
+            "label": "Channel",
+            "type": "text"
+          },
+          {
+            "field": "leads",
+            "label": "Matured leads",
+            "format": "compact"
+          },
+          {
+            "field": "booking_rate",
+            "label": "Booking rate",
+            "format": "percent"
+          },
+          {
+            "field": "attendance_rate",
+            "label": "Attendance rate",
+            "format": "percent"
+          },
+          {
+            "field": "median_response_minutes",
+            "label": "Median response",
+            "format": "number"
+          },
+          {
+            "field": "pipeline_value",
+            "label": "Pipeline value",
+            "format": "currency"
+          }
+        ]
+      },
+      {
+        "id": "table_candidates",
+        "title": "Highest-priority synthetic leads",
+        "subtitle": "For human review; no outreach is automated.",
+        "dataset": "candidates",
+        "sourceId": "source_candidates",
+        "defaultSort": {
+          "field": "priority_score",
+          "direction": "desc"
+        },
+        "density": "dense",
+        "layout": "full",
+        "columns": [
+          {
+            "field": "lead_id",
+            "label": "Lead",
+            "type": "text"
+          },
+          {
+            "field": "channel",
+            "label": "Channel",
+            "type": "text"
+          },
+          {
+            "field": "service_type",
+            "label": "Service",
+            "type": "text"
+          },
+          {
+            "field": "booking_probability",
+            "label": "Booking probability",
+            "format": "percent"
+          },
+          {
+            "field": "priority_score",
+            "label": "Priority score",
+            "format": "currency"
+          },
+          {
+            "field": "recommended_action",
+            "label": "Action",
+            "type": "text"
+          },
+          {
+            "field": "response_minutes",
+            "label": "Response min",
+            "format": "number"
+          }
+        ]
+      }
+    ],
+    "blocks": [
+      {
+        "id": "block_metrics",
+        "type": "metric-strip",
+        "cardIds": [
+          "card_leads",
+          "card_booking",
+          "card_response",
+          "card_auc",
+          "card_candidates"
+        ]
+      },
+      {
+        "id": "block_monthly",
+        "type": "chart",
+        "chartId": "chart_monthly",
+        "layout": "full"
+      },
+      {
+        "id": "block_channels_chart",
+        "type": "chart",
+        "chartId": "chart_channels",
+        "layout": "half"
+      },
+      {
+        "id": "block_calibration",
+        "type": "chart",
+        "chartId": "chart_calibration",
+        "layout": "half"
+      },
+      {
+        "id": "block_channel_table",
+        "type": "table",
+        "tableId": "table_channels",
+        "layout": "full"
+      },
+      {
+        "id": "block_importance",
+        "type": "chart",
+        "chartId": "chart_importance",
+        "layout": "half"
+      },
+      {
+        "id": "block_drift",
+        "type": "chart",
+        "chartId": "chart_drift",
+        "layout": "half"
+      },
+      {
+        "id": "block_candidates",
+        "type": "table",
+        "tableId": "table_candidates",
+        "layout": "full"
+      },
+      {
+        "id": "block_caveats",
+        "type": "markdown",
+        "body": "## Scope and interpretation\n\nAll records are synthetic and reproducible. Model scores are decision-support signals, not causal estimates or evidence of real clinic performance. The newest leads without a complete observation window are excluded, and no outreach action is automated.",
+        "layout": "full"
+      }
+    ]
+  },
+  "snapshot": {
+    "version": 1,
+    "generatedAt": "2026-07-15T03:46:26.982499+00:00",
+    "status": "ready",
+    "datasets": {
+      "summary": [
+        {
+          "matured_leads": 9587,
+          "booked_leads": 4418,
+          "booking_rate": 0.460832,
+          "median_response_minutes": 36.78,
+          "test_roc_auc": 0.68631,
+          "open_candidates": 217,
+          "maximum_psi": 0.007095
+        }
+      ],
+      "monthly": [
+        {
+          "month": "2025-07",
+          "leads": 461,
+          "consented": 419,
+          "contacted": 418,
+          "qualified": 292,
+          "booked": 210,
+          "attended": 185,
+          "won": 120,
+          "booking_rate": 0.455531,
+          "attendance_rate": 0.401302,
+          "win_rate": 0.260304,
+          "average_response_minutes": 196.88,
+          "median_response_minutes": 41.37
+        },
+        {
+          "month": "2025-08",
+          "leads": 871,
+          "consented": 799,
+          "contacted": 799,
+          "qualified": 514,
+          "booked": 385,
+          "attended": 339,
+          "won": 192,
+          "booking_rate": 0.442021,
+          "attendance_rate": 0.389208,
+          "win_rate": 0.220436,
+          "average_response_minutes": 181.92,
+          "median_response_minutes": 37.07
+        },
+        {
+          "month": "2025-09",
+          "leads": 791,
+          "consented": 724,
+          "contacted": 723,
+          "qualified": 510,
+          "booked": 377,
+          "attended": 314,
+          "won": 203,
+          "booking_rate": 0.476612,
+          "attendance_rate": 0.396966,
+          "win_rate": 0.256637,
+          "average_response_minutes": 187.94,
+          "median_response_minutes": 38.86
+        },
+        {
+          "month": "2025-10",
+          "leads": 887,
+          "consented": 818,
+          "contacted": 817,
+          "qualified": 523,
+          "booked": 397,
+          "attended": 335,
+          "won": 211,
+          "booking_rate": 0.447576,
+          "attendance_rate": 0.377678,
+          "win_rate": 0.23788,
+          "average_response_minutes": 178.56,
+          "median_response_minutes": 37.49
+        },
+        {
+          "month": "2025-11",
+          "leads": 824,
+          "consented": 746,
+          "contacted": 745,
+          "qualified": 502,
+          "booked": 363,
+          "attended": 325,
+          "won": 194,
+          "booking_rate": 0.440534,
+          "attendance_rate": 0.394417,
+          "win_rate": 0.235437,
+          "average_response_minutes": 195.64,
+          "median_response_minutes": 34.46
+        },
+        {
+          "month": "2025-12",
+          "leads": 833,
+          "consented": 780,
+          "contacted": 779,
+          "qualified": 525,
+          "booked": 376,
+          "attended": 324,
+          "won": 201,
+          "booking_rate": 0.451381,
+          "attendance_rate": 0.388956,
+          "win_rate": 0.241297,
+          "average_response_minutes": 163.66,
+          "median_response_minutes": 40.73
+        },
+        {
+          "month": "2026-01",
+          "leads": 822,
+          "consented": 752,
+          "contacted": 751,
+          "qualified": 526,
+          "booked": 394,
+          "attended": 351,
+          "won": 216,
+          "booking_rate": 0.479319,
+          "attendance_rate": 0.427007,
+          "win_rate": 0.262774,
+          "average_response_minutes": 194.57,
+          "median_response_minutes": 35.94
+        },
+        {
+          "month": "2026-02",
+          "leads": 759,
+          "consented": 686,
+          "contacted": 685,
+          "qualified": 447,
+          "booked": 347,
+          "attended": 297,
+          "won": 183,
+          "booking_rate": 0.457181,
+          "attendance_rate": 0.391304,
+          "win_rate": 0.241107,
+          "average_response_minutes": 210.06,
+          "median_response_minutes": 34.9
+        },
+        {
+          "month": "2026-03",
+          "leads": 855,
+          "consented": 785,
+          "contacted": 780,
+          "qualified": 550,
+          "booked": 380,
+          "attended": 327,
+          "won": 194,
+          "booking_rate": 0.444444,
+          "attendance_rate": 0.382456,
+          "win_rate": 0.226901,
+          "average_response_minutes": 194.23,
+          "median_response_minutes": 38.38
+        },
+        {
+          "month": "2026-04",
+          "leads": 785,
+          "consented": 727,
+          "contacted": 727,
+          "qualified": 488,
+          "booked": 382,
+          "attended": 332,
+          "won": 204,
+          "booking_rate": 0.486624,
+          "attendance_rate": 0.42293,
+          "win_rate": 0.259873,
+          "average_response_minutes": 167.54,
+          "median_response_minutes": 35.56
+        },
+        {
+          "month": "2026-05",
+          "leads": 833,
+          "consented": 766,
+          "contacted": 765,
+          "qualified": 507,
+          "booked": 396,
+          "attended": 331,
+          "won": 195,
+          "booking_rate": 0.47539,
+          "attendance_rate": 0.397359,
+          "win_rate": 0.234094,
+          "average_response_minutes": 180.66,
+          "median_response_minutes": 37.8
+        },
+        {
+          "month": "2026-06",
+          "leads": 866,
+          "consented": 809,
+          "contacted": 808,
+          "qualified": 571,
+          "booked": 411,
+          "attended": 340,
+          "won": 187,
+          "booking_rate": 0.474596,
+          "attendance_rate": 0.39261,
+          "win_rate": 0.215935,
+          "average_response_minutes": 158.59,
+          "median_response_minutes": 32.62
+        }
+      ],
+      "channels": [
+        {
+          "channel": "referral",
+          "leads": 1489,
+          "booked": 964,
+          "booking_rate": 0.647414,
+          "attendance_rate": 0.56548,
+          "win_rate": 0.350571,
+          "median_response_minutes": 26.61,
+          "average_follow_ups": 1.41,
+          "pipeline_value": 1247111.74
+        },
+        {
+          "channel": "reactivation",
+          "leads": 1023,
+          "booked": 589,
+          "booking_rate": 0.575758,
+          "attendance_rate": 0.524927,
+          "win_rate": 0.322581,
+          "median_response_minutes": 42.07,
+          "average_follow_ups": 1.46,
+          "pipeline_value": 840551.81
+        },
+        {
+          "channel": "organic_search",
+          "leads": 2067,
+          "booked": 949,
+          "booking_rate": 0.459119,
+          "attendance_rate": 0.393324,
+          "win_rate": 0.232221,
+          "median_response_minutes": 43.21,
+          "average_follow_ups": 1.54,
+          "pipeline_value": 1668208.03
+        },
+        {
+          "channel": "website_direct",
+          "leads": 1424,
+          "booked": 645,
+          "booking_rate": 0.452949,
+          "attendance_rate": 0.378511,
+          "win_rate": 0.219803,
+          "median_response_minutes": 31.66,
+          "average_follow_ups": 1.5,
+          "pipeline_value": 1153527.0
+        },
+        {
+          "channel": "instagram",
+          "leads": 1671,
+          "booked": 603,
+          "booking_rate": 0.360862,
+          "attendance_rate": 0.305206,
+          "win_rate": 0.192699,
+          "median_response_minutes": 41.1,
+          "average_follow_ups": 1.5,
+          "pipeline_value": 1371448.84
+        },
+        {
+          "channel": "paid_search",
+          "leads": 1913,
+          "booked": 668,
+          "booking_rate": 0.34919,
+          "attendance_rate": 0.292211,
+          "win_rate": 0.174072,
+          "median_response_minutes": 35.42,
+          "average_follow_ups": 1.45,
+          "pipeline_value": 1553465.41
+        }
+      ],
+      "campaigns": [
+        {
+          "campaign": "referral_circle",
+          "channel": "referral",
+          "leads": 1489,
+          "booked": 964,
+          "booking_rate": 0.647414,
+          "median_response_minutes": 26.61,
+          "pipeline_value": 1247111.74
+        },
+        {
+          "campaign": "winback_q2",
+          "channel": "reactivation",
+          "leads": 1023,
+          "booked": 589,
+          "booking_rate": 0.575758,
+          "median_response_minutes": 42.07,
+          "pipeline_value": 840551.81
+        },
+        {
+          "campaign": "consultation_guide",
+          "channel": "organic_search",
+          "leads": 1057,
+          "booked": 487,
+          "booking_rate": 0.460738,
+          "median_response_minutes": 45.04,
+          "pipeline_value": 842055.89
+        },
+        {
+          "campaign": "local_search",
+          "channel": "organic_search",
+          "leads": 1010,
+          "booked": 462,
+          "booking_rate": 0.457426,
+          "median_response_minutes": 42.03,
+          "pipeline_value": 826152.14
+        },
+        {
+          "campaign": "consultation_guide",
+          "channel": "website_direct",
+          "leads": 725,
+          "booked": 329,
+          "booking_rate": 0.453793,
+          "median_response_minutes": 30.77,
+          "pipeline_value": 590711.3
+        },
+        {
+          "campaign": "direct_visit",
+          "channel": "website_direct",
+          "leads": 699,
+          "booked": 316,
+          "booking_rate": 0.452074,
+          "median_response_minutes": 32.35,
+          "pipeline_value": 562815.7
+        },
+        {
+          "campaign": "before_after_education",
+          "channel": "instagram",
+          "leads": 787,
+          "booked": 300,
+          "booking_rate": 0.381194,
+          "median_response_minutes": 37.8,
+          "pipeline_value": 638911.77
+        },
+        {
+          "campaign": "always_on_search",
+          "channel": "paid_search",
+          "leads": 942,
+          "booked": 329,
+          "booking_rate": 0.349257,
+          "median_response_minutes": 35.56,
+          "pipeline_value": 762761.36
+        },
+        {
+          "campaign": "summer_glow",
+          "channel": "paid_search",
+          "leads": 971,
+          "booked": 339,
+          "booking_rate": 0.349125,
+          "median_response_minutes": 35.37,
+          "pipeline_value": 790704.05
+        },
+        {
+          "campaign": "summer_glow",
+          "channel": "instagram",
+          "leads": 884,
+          "booked": 303,
+          "booking_rate": 0.34276,
+          "median_response_minutes": 43.78,
+          "pipeline_value": 732537.07
+        }
+      ],
+      "calibration": [
+        {
+          "decile": 1,
+          "predicted_probability": 0.066925,
+          "observed_booking_rate": 0.097222,
+          "leads": 144
+        },
+        {
+          "decile": 2,
+          "predicted_probability": 0.309896,
+          "observed_booking_rate": 0.361111,
+          "leads": 144
+        },
+        {
+          "decile": 3,
+          "predicted_probability": 0.368111,
+          "observed_booking_rate": 0.395833,
+          "leads": 144
+        },
+        {
+          "decile": 4,
+          "predicted_probability": 0.409076,
+          "observed_booking_rate": 0.472222,
+          "leads": 144
+        },
+        {
+          "decile": 5,
+          "predicted_probability": 0.45211,
+          "observed_booking_rate": 0.4375,
+          "leads": 144
+        },
+        {
+          "decile": 6,
+          "predicted_probability": 0.486705,
+          "observed_booking_rate": 0.538462,
+          "leads": 143
+        },
+        {
+          "decile": 7,
+          "predicted_probability": 0.521514,
+          "observed_booking_rate": 0.472222,
+          "leads": 144
+        },
+        {
+          "decile": 8,
+          "predicted_probability": 0.5785,
+          "observed_booking_rate": 0.618056,
+          "leads": 144
+        },
+        {
+          "decile": 9,
+          "predicted_probability": 0.662094,
+          "observed_booking_rate": 0.631944,
+          "leads": 144
+        },
+        {
+          "decile": 10,
+          "predicted_probability": 0.748399,
+          "observed_booking_rate": 0.784722,
+          "leads": 144
+        }
+      ],
+      "importance": [
+        {
+          "feature": "response_minutes",
+          "importance_mean": 0.103071,
+          "importance_std": 0.010424
+        },
+        {
+          "feature": "is_returning",
+          "importance_mean": 0.016691,
+          "importance_std": 0.004194
+        },
+        {
+          "feature": "channel",
+          "importance_mean": 0.011144,
+          "importance_std": 0.007726
+        },
+        {
+          "feature": "campaign",
+          "importance_mean": 0.007324,
+          "importance_std": 0.004845
+        },
+        {
+          "feature": "created_weekday",
+          "importance_mean": 0.004334,
+          "importance_std": 0.003126
+        },
+        {
+          "feature": "service_type",
+          "importance_mean": 0.002296,
+          "importance_std": 0.00175
+        },
+        {
+          "feature": "consent_to_contact",
+          "importance_mean": 0.00089,
+          "importance_std": 0.001209
+        },
+        {
+          "feature": "created_hour",
+          "importance_mean": 0.000359,
+          "importance_std": 0.000798
+        }
+      ],
+      "drift": [
+        {
+          "feature": "response_minutes",
+          "feature_type": "numeric",
+          "psi": 0.007095,
+          "status": "stable"
+        },
+        {
+          "feature": "estimated_value",
+          "feature_type": "numeric",
+          "psi": 0.006316,
+          "status": "stable"
+        },
+        {
+          "feature": "created_hour",
+          "feature_type": "numeric",
+          "psi": 0.006044,
+          "status": "stable"
+        },
+        {
+          "feature": "campaign",
+          "feature_type": "categorical",
+          "psi": 0.005197,
+          "status": "stable"
+        },
+        {
+          "feature": "follow_up_count",
+          "feature_type": "numeric",
+          "psi": 0.004659,
+          "status": "stable"
+        },
+        {
+          "feature": "channel",
+          "feature_type": "categorical",
+          "psi": 0.003193,
+          "status": "stable"
+        },
+        {
+          "feature": "region",
+          "feature_type": "categorical",
+          "psi": 0.003,
+          "status": "stable"
+        },
+        {
+          "feature": "service_type",
+          "feature_type": "categorical",
+          "psi": 0.002466,
+          "status": "stable"
+        },
+        {
+          "feature": "created_weekday",
+          "feature_type": "categorical",
+          "psi": 0.001848,
+          "status": "stable"
+        }
+      ],
+      "candidates": [
+        {
+          "lead_id": "lead_009955",
+          "channel": "reactivation",
+          "service_type": "body_contouring",
+          "booking_probability": 0.6421,
+          "priority_score": 1532.27,
+          "recommended_action": "human_follow_up",
+          "response_minutes": 55.0,
+          "estimated_value": 2386.32
+        },
+        {
+          "lead_id": "lead_009669",
+          "channel": "reactivation",
+          "service_type": "body_contouring",
+          "booking_probability": 0.6253,
+          "priority_score": 1495.12,
+          "recommended_action": "human_follow_up",
+          "response_minutes": 43.1,
+          "estimated_value": 2391.03
+        },
+        {
+          "lead_id": "lead_009739",
+          "channel": "organic_search",
+          "service_type": "body_contouring",
+          "booking_probability": 0.583,
+          "priority_score": 1391.38,
+          "recommended_action": "human_follow_up",
+          "response_minutes": 40.7,
+          "estimated_value": 2386.54
+        },
+        {
+          "lead_id": "lead_009636",
+          "channel": "website_direct",
+          "service_type": "body_contouring",
+          "booking_probability": 0.517,
+          "priority_score": 1299.22,
+          "recommended_action": "human_follow_up",
+          "response_minutes": 8.4,
+          "estimated_value": 2512.91
+        },
+        {
+          "lead_id": "lead_009871",
+          "channel": "website_direct",
+          "service_type": "body_contouring",
+          "booking_probability": 0.4923,
+          "priority_score": 1155.81,
+          "recommended_action": "human_follow_up",
+          "response_minutes": 1.0,
+          "estimated_value": 2347.6
+        },
+        {
+          "lead_id": "lead_009872",
+          "channel": "referral",
+          "service_type": "body_contouring",
+          "booking_probability": 0.6483,
+          "priority_score": 1096.18,
+          "recommended_action": "human_follow_up",
+          "response_minutes": 50.5,
+          "estimated_value": 1690.89
+        },
+        {
+          "lead_id": "lead_009813",
+          "channel": "reactivation",
+          "service_type": "body_contouring",
+          "booking_probability": 0.6748,
+          "priority_score": 1092.87,
+          "recommended_action": "human_follow_up",
+          "response_minutes": 9.9,
+          "estimated_value": 1619.57
+        },
+        {
+          "lead_id": "lead_009665",
+          "channel": "website_direct",
+          "service_type": "body_contouring",
+          "booking_probability": 0.487,
+          "priority_score": 1060.58,
+          "recommended_action": "human_follow_up",
+          "response_minutes": 7.3,
+          "estimated_value": 2177.93
+        },
+        {
+          "lead_id": "lead_009649",
+          "channel": "organic_search",
+          "service_type": "body_contouring",
+          "booking_probability": 0.5238,
+          "priority_score": 1053.36,
+          "recommended_action": "human_follow_up",
+          "response_minutes": 15.8,
+          "estimated_value": 2010.92
+        },
+        {
+          "lead_id": "lead_009700",
+          "channel": "website_direct",
+          "service_type": "body_contouring",
+          "booking_probability": 0.4047,
+          "priority_score": 1024.25,
+          "recommended_action": "human_follow_up",
+          "response_minutes": 40.5,
+          "estimated_value": 2530.73
+        },
+        {
+          "lead_id": "lead_009599",
+          "channel": "website_direct",
+          "service_type": "body_contouring",
+          "booking_probability": 0.4616,
+          "priority_score": 1006.79,
+          "recommended_action": "human_follow_up",
+          "response_minutes": 52.5,
+          "estimated_value": 2181.28
+        },
+        {
+          "lead_id": "lead_009588",
+          "channel": "organic_search",
+          "service_type": "body_contouring",
+          "booking_probability": 0.4874,
+          "priority_score": 867.72,
+          "recommended_action": "human_follow_up",
+          "response_minutes": 78.6,
+          "estimated_value": 1780.43
+        }
+      ]
+    },
+    "accessIssues": []
+  },
+  "sources": [
+    {
+      "id": "source_summary",
+      "label": "Synthetic portfolio overview and model summary",
+      "query": {
+        "sql": "SELECT\n            COUNT(*)::INTEGER AS matured_leads,\n            SUM(booked)::INTEGER AS booked_leads,\n            ROUND(AVG(booked), 6) AS booking_rate,\n            ROUND(MEDIAN(response_minutes), 2) AS median_response_minutes,\n            (SELECT test_roc_auc FROM mart_model_summary) AS test_roc_auc,\n            (SELECT COUNT(*)::INTEGER FROM mart_scored_candidates) AS open_candidates,\n            (SELECT MAX(psi) FROM mart_feature_drift) AS maximum_psi\n        FROM fct_lead_outcomes\n        WHERE is_matured",
+        "description": "Synthetic portfolio overview and model summary",
+        "engine": "DuckDB",
+        "language": "sql",
+        "executed_at": "2026-07-15T03:46:26.982499+00:00",
+        "tables_used": [
+          "fct_lead_outcomes",
+          "mart_model_summary",
+          "mart_scored_candidates",
+          "mart_feature_drift"
+        ],
+        "filters": [
+          "is_matured = true"
+        ],
+        "metric_definitions": [
+          "Matured leads: leads created at least 14 days before the synthetic as-of timestamp.",
+          "Booking rate: matured leads with a consultation_booked event divided by matured leads.",
+          "Median response: median minutes to first contact inside the 24-hour observation window; 1,440 represents no contact.",
+          "Test ROC AUC: discrimination on the newest chronological 15% holdout set.",
+          "Open candidates: unbooked leads created in the latest 14 days with a completed 24-hour observation window."
+        ]
+      }
+    },
+    {
+      "id": "source_monthly",
+      "label": "Monthly matured-lead funnel",
+      "query": {
+        "sql": "SELECT * FROM mart_monthly_funnel ORDER BY month",
+        "description": "Monthly matured-lead funnel",
+        "engine": "DuckDB",
+        "language": "sql",
+        "executed_at": "2026-07-15T03:46:26.982499+00:00",
+        "tables_used": [
+          "mart_monthly_funnel"
+        ],
+        "filters": [],
+        "metric_definitions": [
+          "Monthly booking rate: booked matured leads divided by matured leads created in the month.",
+          "Only fully observed leads are included; timestamps use UTC."
+        ]
+      }
+    },
+    {
+      "id": "source_channels",
+      "label": "Acquisition channel performance",
+      "query": {
+        "sql": "SELECT * FROM mart_channel_performance ORDER BY booking_rate DESC",
+        "description": "Acquisition channel performance",
+        "engine": "DuckDB",
+        "language": "sql",
+        "executed_at": "2026-07-15T03:46:26.982499+00:00",
+        "tables_used": [
+          "mart_channel_performance"
+        ],
+        "filters": [],
+        "metric_definitions": [
+          "Channel booking rate: booked matured leads divided by matured leads for the acquisition channel.",
+          "Pipeline value: sum of synthetic estimated lead value, not realized revenue."
+        ]
+      }
+    },
+    {
+      "id": "source_campaigns",
+      "label": "Campaign performance",
+      "query": {
+        "sql": "SELECT * FROM mart_campaign_performance ORDER BY booking_rate DESC LIMIT 10",
+        "description": "Campaign performance",
+        "engine": "DuckDB",
+        "language": "sql",
+        "executed_at": "2026-07-15T03:46:26.982499+00:00",
+        "tables_used": [
+          "mart_campaign_performance"
+        ],
+        "filters": [
+          "minimum 50 matured leads",
+          "top 10 by booking rate"
+        ],
+        "metric_definitions": [
+          "Channel booking rate: booked matured leads divided by matured leads for the acquisition channel.",
+          "Pipeline value: sum of synthetic estimated lead value, not realized revenue."
+        ]
+      }
+    },
+    {
+      "id": "source_calibration",
+      "label": "Chronological holdout calibration",
+      "query": {
+        "sql": "SELECT * FROM mart_model_calibration ORDER BY decile",
+        "description": "Chronological holdout calibration",
+        "engine": "DuckDB",
+        "language": "sql",
+        "executed_at": "2026-07-15T03:46:26.982499+00:00",
+        "tables_used": [
+          "mart_model_calibration"
+        ],
+        "filters": [],
+        "metric_definitions": [
+          "Predictions are grouped into equal-frequency deciles on the chronological holdout set.",
+          "Observed booking rate is the booked share within each decile."
+        ]
+      }
+    },
+    {
+      "id": "source_importance",
+      "label": "Holdout permutation importance",
+      "query": {
+        "sql": "SELECT * FROM mart_feature_importance ORDER BY importance_mean DESC LIMIT 8",
+        "description": "Holdout permutation importance",
+        "engine": "DuckDB",
+        "language": "sql",
+        "executed_at": "2026-07-15T03:46:26.982499+00:00",
+        "tables_used": [
+          "mart_feature_importance"
+        ],
+        "filters": [
+          "top 8 features by mean importance"
+        ],
+        "metric_definitions": [
+          "Permutation importance: mean change in holdout ROC AUC after shuffling one input feature.",
+          "Importance describes predictive association, not causality."
+        ]
+      }
+    },
+    {
+      "id": "source_drift",
+      "label": "Feature distribution monitoring",
+      "query": {
+        "sql": "SELECT * FROM mart_feature_drift ORDER BY psi DESC",
+        "description": "Feature distribution monitoring",
+        "engine": "DuckDB",
+        "language": "sql",
+        "executed_at": "2026-07-15T03:46:26.982499+00:00",
+        "tables_used": [
+          "mart_feature_drift"
+        ],
+        "filters": [],
+        "metric_definitions": [
+          "Population Stability Index compares the oldest 70% reference period with the newest 30% comparison period.",
+          "PSI below 0.10 is stable, 0.10-0.20 is watch, and 0.20 or above requires review."
+        ]
+      }
+    },
+    {
+      "id": "source_candidates",
+      "label": "Highest-priority open synthetic leads",
+      "query": {
+        "sql": "SELECT\n            lead_id,\n            channel,\n            service_type,\n            ROUND(booking_probability, 4) AS booking_probability,\n            ROUND(priority_score, 2) AS priority_score,\n            recommended_action,\n            ROUND(response_minutes, 1) AS response_minutes,\n            ROUND(estimated_value, 2) AS estimated_value\n        FROM mart_scored_candidates\n        ORDER BY priority_score DESC\n        LIMIT 12",
+        "description": "Highest-priority open synthetic leads",
+        "engine": "DuckDB",
+        "language": "sql",
+        "executed_at": "2026-07-15T03:46:26.982499+00:00",
+        "tables_used": [
+          "mart_scored_candidates"
+        ],
+        "filters": [
+          "top 12 by priority score"
+        ],
+        "metric_definitions": [
+          "Priority score: predicted booking probability \u00d7 estimated value \u00d7 a 1.2 delayed-response multiplier when response is at least 120 minutes.",
+          "Candidates exclude already-booked leads and leads without a completed 24-hour observation window."
+        ]
+      }
+    }
+  ],
+  "package_info": {
+    "name": "nyxora-outcome-intelligence",
+    "snapshot_as_of": "2026-07-14",
+    "synthetic": true
+  }
+}

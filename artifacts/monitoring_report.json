@@ -1,0 +1,120 @@
+{
+  "generated_at": "2026-07-15T03:46:26.947863+00:00",
+  "reference_period": {
+    "start": "2025-07-15T00:50:59+00:00",
+    "end": "2026-03-18T01:32:59+00:00",
+    "rows": 6710
+  },
+  "comparison_period": {
+    "start": "2026-03-18T01:52:59+00:00",
+    "end": "2026-06-30T23:14:59+00:00",
+    "rows": 2877
+  },
+  "drift_thresholds": {
+    "watch": 0.1,
+    "review": 0.2
+  },
+  "maximum_psi": 0.007095,
+  "features_requiring_review": 0,
+  "drift": [
+    {
+      "feature": "response_minutes",
+      "feature_type": "numeric",
+      "psi": 0.007095,
+      "status": "stable"
+    },
+    {
+      "feature": "estimated_value",
+      "feature_type": "numeric",
+      "psi": 0.006316,
+      "status": "stable"
+    },
+    {
+      "feature": "created_hour",
+      "feature_type": "numeric",
+      "psi": 0.006044,
+      "status": "stable"
+    },
+    {
+      "feature": "campaign",
+      "feature_type": "categorical",
+      "psi": 0.005197,
+      "status": "stable"
+    },
+    {
+      "feature": "follow_up_count",
+      "feature_type": "numeric",
+      "psi": 0.004659,
+      "status": "stable"
+    },
+    {
+      "feature": "channel",
+      "feature_type": "categorical",
+      "psi": 0.003193,
+      "status": "stable"
+    },
+    {
+      "feature": "region",
+      "feature_type": "categorical",
+      "psi": 0.003,
+      "status": "stable"
+    },
+    {
+      "feature": "service_type",
+      "feature_type": "categorical",
+      "psi": 0.002466,
+      "status": "stable"
+    },
+    {
+      "feature": "created_weekday",
+      "feature_type": "categorical",
+      "psi": 0.001848,
+      "status": "stable"
+    }
+  ],
+  "performance_by_channel": [
+    {
+      "channel": "instagram",
+      "leads": 473,
+      "observed_booking_rate": 0.376321,
+      "average_prediction": 0.372013,
+      "calibration_gap": -0.004308
+    },
+    {
+      "channel": "organic_search",
+      "leads": 648,
+      "observed_booking_rate": 0.459877,
+      "average_prediction": 0.464335,
+      "calibration_gap": 0.004458
+    },
+    {
+      "channel": "paid_search",
+      "leads": 587,
+      "observed_booking_rate": 0.403748,
+      "average_prediction": 0.348321,
+      "calibration_gap": -0.055427
+    },
+    {
+      "channel": "reactivation",
+      "leads": 302,
+      "observed_booking_rate": 0.572848,
+      "average_prediction": 0.583585,
+      "calibration_gap": 0.010737
+    },
+    {
+      "channel": "referral",
+      "leads": 427,
+      "observed_booking_rate": 0.625293,
+      "average_prediction": 0.634807,
+      "calibration_gap": 0.009514
+    },
+    {
+      "channel": "website_direct",
+      "leads": 440,
+      "observed_booking_rate": 0.465909,
+      "average_prediction": 0.437279,
+      "calibration_gap": -0.02863
+    }
+  ],
+  "caveat": "PSI indicates distribution movement, not model failure or causal change."
+}

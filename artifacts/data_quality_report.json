@@ -1,0 +1,77 @@
+{
+  "generated_at": "2026-07-15T03:46:24.006508+00:00",
+  "status": "passed",
+  "summary": {
+    "leads": 10000,
+    "booked": 4587.0,
+    "observed_booking_rate": 0.4587,
+    "matured_leads": 9587.0,
+    "first_created_at": "2025-07-15T00:50:59+00:00",
+    "last_created_at": "2026-07-14T23:51:59+00:00"
+  },
+  "checks": [
+    {
+      "name": "unique lead ids",
+      "expected": 0,
+      "actual": 0,
+      "passed": true,
+      "blocking": true
+    },
+    {
+      "name": "unique event ids",
+      "expected": 0,
+      "actual": 0,
+      "passed": true,
+      "blocking": true
+    },
+    {
+      "name": "events reference a known lead",
+      "expected": 0,
+      "actual": 0,
+      "passed": true,
+      "blocking": true
+    },
+    {
+      "name": "required lead fields are present",
+      "expected": 0,
+      "actual": 0,
+      "passed": true,
+      "blocking": true
+    },
+    {
+      "name": "response minutes stay inside the 24-hour observation window",
+      "expected": 0,
+      "actual": 0,
+      "passed": true,
+      "blocking": true
+    },
+    {
+      "name": "follow-up count is bounded",
+      "expected": 0,
+      "actual": 0,
+      "passed": true,
+      "blocking": true
+    },
+    {
+      "name": "non-consented leads receive no follow-up",
+      "expected": 0,
+      "actual": 0,
+      "passed": true,
+      "blocking": true
+    },
+    {
+      "name": "events never precede lead creation",
+      "expected": 0,
+      "actual": 0,
+      "passed": true,
+      "blocking": true
+    },
+    {
+      "name": "outcome flags preserve funnel order",
+      "expected": 0,
+      "actual": 0,
+      "passed": true,
+      "blocking": true
+    }
+  ]
+}
