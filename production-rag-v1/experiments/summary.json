@@ -1,0 +1,546 @@
+{
+  "experiments": {
+    "EXP-000 lexical (BM25)": {
+      "cases": 20,
+      "macro_span_recall": 0.475,
+      "cases_fully_recalled": 9,
+      "cases_fully_recalled_pct": 0.45,
+      "spans_found": 10,
+      "spans_expected": 22,
+      "span_recall": 0.4545,
+      "missed_spans": 12,
+      "missed_spans_with_correct_document_retrieved": 8,
+      "document_level_recall": 0.8182,
+      "macro_recall_by_category": {
+        "ambiguous": 0.0,
+        "exact_lookup": 0.5385,
+        "multi_hop": 0.25,
+        "normal": 0.5,
+        "version_conflict": 0.5
+      },
+      "per_case_recall": {
+        "AN-001": 0.0,
+        "AN-002": 0.0,
+        "AN-003": 0.0,
+        "AN-004": 0.0,
+        "AN-005": 1.0,
+        "AN-006": 0.0,
+        "AN-007": 0.0,
+        "AN-008": 0.0,
+        "AN-009": 1.0,
+        "AN-010": 0.0,
+        "AN-011": 0.0,
+        "AN-012": 0.0,
+        "OA-001": 1.0,
+        "OA-002": 1.0,
+        "OA-003": 1.0,
+        "OA-004": 1.0,
+        "OA-005": 1.0,
+        "OA-006": 0.5,
+        "OA-007": 1.0,
+        "OA-008": 1.0
+      }
+    },
+    "EXP-000 lexical (websearch AND, failed)": {
+      "cases": 20,
+      "macro_span_recall": 0.0,
+      "cases_fully_recalled": 0,
+      "cases_fully_recalled_pct": 0.0,
+      "spans_found": 0,
+      "spans_expected": 22,
+      "span_recall": 0.0,
+      "missed_spans": 22,
+      "missed_spans_with_correct_document_retrieved": 0,
+      "document_level_recall": 0.0,
+      "macro_recall_by_category": {
+        "ambiguous": 0.0,
+        "exact_lookup": 0.0,
+        "multi_hop": 0.0,
+        "normal": 0.0,
+        "version_conflict": 0.0
+      },
+      "per_case_recall": {
+        "AN-001": 0.0,
+        "AN-002": 0.0,
+        "AN-003": 0.0,
+        "AN-004": 0.0,
+        "AN-005": 0.0,
+        "AN-006": 0.0,
+        "AN-007": 0.0,
+        "AN-008": 0.0,
+        "AN-009": 0.0,
+        "AN-010": 0.0,
+        "AN-011": 0.0,
+        "AN-012": 0.0,
+        "OA-001": 0.0,
+        "OA-002": 0.0,
+        "OA-003": 0.0,
+        "OA-004": 0.0,
+        "OA-005": 0.0,
+        "OA-006": 0.0,
+        "OA-007": 0.0,
+        "OA-008": 0.0
+      }
+    },
+    "EXP-001 dense (LSA)": {
+      "cases": 20,
+      "macro_span_recall": 0.3,
+      "cases_fully_recalled": 5,
+      "cases_fully_recalled_pct": 0.25,
+      "spans_found": 7,
+      "spans_expected": 22,
+      "span_recall": 0.3182,
+      "missed_spans": 15,
+      "missed_spans_with_correct_document_retrieved": 10,
+      "document_level_recall": 0.7727,
+      "macro_recall_by_category": {
+        "ambiguous": 1.0,
+        "exact_lookup": 0.1538,
+        "multi_hop": 0.5,
+        "normal": 0.5,
+        "version_conflict": 0.5
+      },
+      "per_case_recall": {
+        "AN-001": 0.0,
+        "AN-002": 0.0,
+        "AN-003": 0.0,
+        "AN-004": 0.0,
+        "AN-005": 0.0,
+        "AN-006": 0.0,
+        "AN-007": 0.0,
+        "AN-008": 0.0,
+        "AN-009": 1.0,
+        "AN-010": 0.0,
+        "AN-011": 1.0,
+        "AN-012": 0.5,
+        "OA-001": 0.0,
+        "OA-002": 0.0,
+        "OA-003": 0.0,
+        "OA-004": 0.0,
+        "OA-005": 1.0,
+        "OA-006": 0.5,
+        "OA-007": 1.0,
+        "OA-008": 1.0
+      }
+    },
+    "EXP-002 hybrid interleave": {
+      "cases": 20,
+      "macro_span_recall": 0.45,
+      "cases_fully_recalled": 8,
+      "cases_fully_recalled_pct": 0.4,
+      "spans_found": 10,
+      "spans_expected": 22,
+      "span_recall": 0.4545,
+      "missed_spans": 12,
+      "missed_spans_with_correct_document_retrieved": 8,
+      "document_level_recall": 0.8182,
+      "macro_recall_by_category": {
+        "ambiguous": 0.0,
+        "exact_lookup": 0.4615,
+        "multi_hop": 0.5,
+        "normal": 0.5,
+        "version_conflict": 0.5
+      },
+      "per_case_recall": {
+        "AN-001": 0.0,
+        "AN-002": 0.0,
+        "AN-003": 0.0,
+        "AN-004": 0.0,
+        "AN-005": 1.0,
+        "AN-006": 0.0,
+        "AN-007": 0.0,
+        "AN-008": 0.0,
+        "AN-009": 1.0,
+        "AN-010": 0.0,
+        "AN-011": 0.0,
+        "AN-012": 0.5,
+        "OA-001": 1.0,
+        "OA-002": 1.0,
+        "OA-003": 0.0,
+        "OA-004": 1.0,
+        "OA-005": 1.0,
+        "OA-006": 0.5,
+        "OA-007": 1.0,
+        "OA-008": 1.0
+      }
+    },
+    "EXP-003 RRF rrf_k=10": {
+      "cases": 20,
+      "macro_span_recall": 0.5,
+      "cases_fully_recalled": 9,
+      "cases_fully_recalled_pct": 0.45,
+      "spans_found": 11,
+      "spans_expected": 22,
+      "span_recall": 0.5,
+      "missed_spans": 11,
+      "missed_spans_with_correct_document_retrieved": 7,
+      "document_level_recall": 0.8182,
+      "macro_recall_by_category": {
+        "ambiguous": 0.0,
+        "exact_lookup": 0.5385,
+        "multi_hop": 0.5,
+        "normal": 0.5,
+        "version_conflict": 0.5
+      },
+      "per_case_recall": {
+        "AN-001": 0.0,
+        "AN-002": 0.0,
+        "AN-003": 0.0,
+        "AN-004": 1.0,
+        "AN-005": 1.0,
+        "AN-006": 0.0,
+        "AN-007": 0.0,
+        "AN-008": 0.0,
+        "AN-009": 1.0,
+        "AN-010": 0.0,
+        "AN-011": 0.0,
+        "AN-012": 0.5,
+        "OA-001": 1.0,
+        "OA-002": 1.0,
+        "OA-003": 1.0,
+        "OA-004": 0.0,
+        "OA-005": 1.0,
+        "OA-006": 0.5,
+        "OA-007": 1.0,
+        "OA-008": 1.0
+      }
+    },
+    "EXP-003 RRF rrf_k=20": {
+      "cases": 20,
+      "macro_span_recall": 0.5,
+      "cases_fully_recalled": 9,
+      "cases_fully_recalled_pct": 0.45,
+      "spans_found": 11,
+      "spans_expected": 22,
+      "span_recall": 0.5,
+      "missed_spans": 11,
+      "missed_spans_with_correct_document_retrieved": 7,
+      "document_level_recall": 0.8182,
+      "macro_recall_by_category": {
+        "ambiguous": 0.0,
+        "exact_lookup": 0.5385,
+        "multi_hop": 0.5,
+        "normal": 0.5,
+        "version_conflict": 0.5
+      },
+      "per_case_recall": {
+        "AN-001": 0.0,
+        "AN-002": 0.0,
+        "AN-003": 0.0,
+        "AN-004": 1.0,
+        "AN-005": 1.0,
+        "AN-006": 0.0,
+        "AN-007": 0.0,
+        "AN-008": 0.0,
+        "AN-009": 1.0,
+        "AN-010": 0.0,
+        "AN-011": 0.0,
+        "AN-012": 0.5,
+        "OA-001": 1.0,
+        "OA-002": 1.0,
+        "OA-003": 1.0,
+        "OA-004": 0.0,
+        "OA-005": 1.0,
+        "OA-006": 0.5,
+        "OA-007": 1.0,
+        "OA-008": 1.0
+      }
+    },
+    "EXP-003 RRF rrf_k=60": {
+      "cases": 20,
+      "macro_span_recall": 0.5,
+      "cases_fully_recalled": 9,
+      "cases_fully_recalled_pct": 0.45,
+      "spans_found": 11,
+      "spans_expected": 22,
+      "span_recall": 0.5,
+      "missed_spans": 11,
+      "missed_spans_with_correct_document_retrieved": 7,
+      "document_level_recall": 0.8182,
+      "macro_recall_by_category": {
+        "ambiguous": 0.0,
+        "exact_lookup": 0.5385,
+        "multi_hop": 0.5,
+        "normal": 0.5,
+        "version_conflict": 0.5
+      },
+      "per_case_recall": {
+        "AN-001": 0.0,
+        "AN-002": 0.0,
+        "AN-003": 0.0,
+        "AN-004": 1.0,
+        "AN-005": 1.0,
+        "AN-006": 0.0,
+        "AN-007": 0.0,
+        "AN-008": 0.0,
+        "AN-009": 1.0,
+        "AN-010": 0.0,
+        "AN-011": 0.0,
+        "AN-012": 0.5,
+        "OA-001": 1.0,
+        "OA-002": 1.0,
+        "OA-003": 1.0,
+        "OA-004": 0.0,
+        "OA-005": 1.0,
+        "OA-006": 0.5,
+        "OA-007": 1.0,
+        "OA-008": 1.0
+      }
+    }
+  },
+  "paired_comparisons": [
+    {
+      "from": "EXP-000 lexical",
+      "to": "EXP-001 dense",
+      "shared_cases": 20,
+      "rescued": [
+        "AN-011"
+      ],
+      "regressed": [
+        "AN-005",
+        "OA-001",
+        "OA-002",
+        "OA-003",
+        "OA-004"
+      ],
+      "unchanged_good": [
+        "AN-009",
+        "OA-005",
+        "OA-007",
+        "OA-008"
+      ],
+      "unchanged_bad": [
+        "AN-001",
+        "AN-002",
+        "AN-003",
+        "AN-004",
+        "AN-006",
+        "AN-007",
+        "AN-008",
+        "AN-010",
+        "AN-012",
+        "OA-006"
+      ],
+      "net_rescued": -4
+    },
+    {
+      "from": "EXP-000 lexical",
+      "to": "EXP-002 hybrid",
+      "shared_cases": 20,
+      "rescued": [],
+      "regressed": [
+        "OA-003"
+      ],
+      "unchanged_good": [
+        "AN-005",
+        "AN-009",
+        "OA-001",
+        "OA-002",
+        "OA-004",
+        "OA-005",
+        "OA-007",
+        "OA-008"
+      ],
+      "unchanged_bad": [
+        "AN-001",
+        "AN-002",
+        "AN-003",
+        "AN-004",
+        "AN-006",
+        "AN-007",
+        "AN-008",
+        "AN-010",
+        "AN-011",
+        "AN-012",
+        "OA-006"
+      ],
+      "net_rescued": -1
+    },
+    {
+      "from": "EXP-001 dense",
+      "to": "EXP-002 hybrid",
+      "shared_cases": 20,
+      "rescued": [
+        "AN-005",
+        "OA-001",
+        "OA-002",
+        "OA-004"
+      ],
+      "regressed": [
+        "AN-011"
+      ],
+      "unchanged_good": [
+        "AN-009",
+        "OA-005",
+        "OA-007",
+        "OA-008"
+      ],
+      "unchanged_bad": [
+        "AN-001",
+        "AN-002",
+        "AN-003",
+        "AN-004",
+        "AN-006",
+        "AN-007",
+        "AN-008",
+        "AN-010",
+        "AN-012",
+        "OA-003",
+        "OA-006"
+      ],
+      "net_rescued": 3
+    },
+    {
+      "from": "EXP-002 hybrid",
+      "to": "EXP-003 RRF k=60",
+      "shared_cases": 20,
+      "rescued": [
+        "AN-004",
+        "OA-003"
+      ],
+      "regressed": [
+        "OA-004"
+      ],
+      "unchanged_good": [
+        "AN-005",
+        "AN-009",
+        "OA-001",
+        "OA-002",
+        "OA-005",
+        "OA-007",
+        "OA-008"
+      ],
+      "unchanged_bad": [
+        "AN-001",
+        "AN-002",
+        "AN-003",
+        "AN-006",
+        "AN-007",
+        "AN-008",
+        "AN-010",
+        "AN-011",
+        "AN-012",
+        "OA-006"
+      ],
+      "net_rescued": 1
+    },
+    {
+      "from": "EXP-000 lexical",
+      "to": "EXP-003 RRF k=60",
+      "shared_cases": 20,
+      "rescued": [
+        "AN-004"
+      ],
+      "regressed": [
+        "OA-004"
+      ],
+      "unchanged_good": [
+        "AN-005",
+        "AN-009",
+        "OA-001",
+        "OA-002",
+        "OA-003",
+        "OA-005",
+        "OA-007",
+        "OA-008"
+      ],
+      "unchanged_bad": [
+        "AN-001",
+        "AN-002",
+        "AN-003",
+        "AN-006",
+        "AN-007",
+        "AN-008",
+        "AN-010",
+        "AN-011",
+        "AN-012",
+        "OA-006"
+      ],
+      "net_rescued": 0
+    },
+    {
+      "from": "EXP-000 lexical",
+      "to": "EXP-003 RRF k=60 pool=100",
+      "shared_cases": 20,
+      "rescued": [
+        "AN-004",
+        "AN-006",
+        "AN-008"
+      ],
+      "regressed": [
+        "OA-004"
+      ],
+      "unchanged_good": [
+        "AN-005",
+        "AN-009",
+        "OA-001",
+        "OA-002",
+        "OA-003",
+        "OA-005",
+        "OA-007",
+        "OA-008"
+      ],
+      "unchanged_bad": [
+        "AN-001",
+        "AN-002",
+        "AN-003",
+        "AN-007",
+        "AN-010",
+        "AN-011",
+        "AN-012",
+        "OA-006"
+      ],
+      "net_rescued": 2
+    }
+  ],
+  "exp003_sweep": {
+    "pool10-rrfk10": {
+      "macro_span_recall": 0.45,
+      "cases_fully_recalled": 8
+    },
+    "pool10-rrfk20": {
+      "macro_span_recall": 0.45,
+      "cases_fully_recalled": 8
+    },
+    "pool10-rrfk60": {
+      "macro_span_recall": 0.45,
+      "cases_fully_recalled": 8
+    },
+    "pool100-rrfk10": {
+      "macro_span_recall": 0.45,
+      "cases_fully_recalled": 8
+    },
+    "pool100-rrfk20": {
+      "macro_span_recall": 0.55,
+      "cases_fully_recalled": 10
+    },
+    "pool100-rrfk60": {
+      "macro_span_recall": 0.6,
+      "cases_fully_recalled": 11
+    },
+    "pool20-rrfk10": {
+      "macro_span_recall": 0.5,
+      "cases_fully_recalled": 9
+    },
+    "pool20-rrfk20": {
+      "macro_span_recall": 0.5,
+      "cases_fully_recalled": 9
+    },
+    "pool20-rrfk60": {
+      "macro_span_recall": 0.5,
+      "cases_fully_recalled": 9
+    },
+    "pool50-rrfk10": {
+      "macro_span_recall": 0.5,
+      "cases_fully_recalled": 9
+    },
+    "pool50-rrfk20": {
+      "macro_span_recall": 0.55,
+      "cases_fully_recalled": 10
+    },
+    "pool50-rrfk60": {
+      "macro_span_recall": 0.6,
+      "cases_fully_recalled": 11
+    }
+  }
+}

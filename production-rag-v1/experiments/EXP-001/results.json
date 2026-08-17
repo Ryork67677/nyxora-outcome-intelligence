@@ -1,0 +1,3639 @@
+{
+  "mode": "dense",
+  "snapshot_id": "snap_689e336380a054d8039dc35b2c09cd0a",
+  "k": 10,
+  "model_id": "emb_205f51a2d4db0273e121527cb5c6ff83",
+  "lexical_k": null,
+  "dense_k": 30,
+  "rrf_k": null,
+  "macro_recall": 0.3,
+  "cases_fully_recalled": 5,
+  "cases_total": 20,
+  "hit_text_redacted": true,
+  "cases": [
+    {
+      "case_id": "AN-001",
+      "category": "exact_lookup",
+      "k": 10,
+      "expected_evidence_count": 1,
+      "evidence_found_count": 0,
+      "recall": 0.0,
+      "found": [],
+      "missed": [
+        {
+          "version_id": "ver_db8326d3bafce3a535c3e3bfc3de7519",
+          "section_path": [
+            "Preamble"
+          ],
+          "char_start": 116,
+          "char_end": 227
+        }
+      ],
+      "hits": [
+        {
+          "chunk_id": "chk_6df0defafc628f8fb21334e814a697322cbe219b",
+          "version_id": "ver_d81ee605bd8bbb880deea432e51462ac",
+          "section_path": [
+            "Trigger a routine"
+          ],
+          "char_start": 4475,
+          "char_end": 4900,
+          "score": 0.41888601836222483,
+          "rank": 1,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "2ff40c9b09b012ff0fe278f50bc975a7569ef6825526562ef2435272481e4523",
+          "text_len": 425
+        },
+        {
+          "chunk_id": "chk_999930d88301a940f1d0e4bc870c1524f51e0dde",
+          "version_id": "ver_fa78e1feb6289d6bcb22305e61bbbfc3",
+          "section_path": [
+            "Server-side fallback",
+            "Naming your own fallback models"
+          ],
+          "char_start": 25333,
+          "char_end": 26540,
+          "score": 0.4048594953077883,
+          "rank": 2,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "02878d7d081297a77dae2a1197dfc42bdceb69086eee23adb4bf610eb7d58b83",
+          "text_len": 1207
+        },
+        {
+          "chunk_id": "chk_e25cfa7d3779d911803ad541c5071e1709edc534",
+          "version_id": "ver_7746dc094c7490eb180bfd60c936a345",
+          "section_path": [
+            "Reference"
+          ],
+          "char_start": 25871,
+          "char_end": 29336,
+          "score": 0.40288059702871615,
+          "rank": 3,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "3145d48e32697e1f1ee59cffb41c13794a64e9584c9fbbc84012acf77a23ba3c",
+          "text_len": 3465
+        },
+        {
+          "chunk_id": "chk_0f634db8123d7df79cb50e96c0c031639a295bd8",
+          "version_id": "ver_0774ca0093ff4a846753577c9a4a39d5",
+          "section_path": [
+            "Request ID"
+          ],
+          "char_start": 6333,
+          "char_end": 7901,
+          "score": 0.39874825466408637,
+          "rank": 4,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "df157022cbe92fd4059db0ab1959d4ddb12cd511c0a3fef0f01adfec18033aaa",
+          "text_len": 1568
+        },
+        {
+          "chunk_id": "chk_ea1e85768c4471105636dcd6e4f76545dbc09799",
+          "version_id": "ver_d140e6b5c8ed9e1ecf8b0e94d3ae27a6",
+          "section_path": [
+            "How the budget countdown works",
+            "Worked example: budget counting across turns"
+          ],
+          "char_start": 9348,
+          "char_end": 9845,
+          "score": 0.3891713735214286,
+          "rank": 5,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "2ea1365e2a03417a6330e7c04124366f48e83971bb60ce110233cc36a25b4c93",
+          "text_len": 497
+        },
+        {
+          "chunk_id": "chk_5ed822e77a960c4abecb3bb5964a1ab34f60a851",
+          "version_id": "ver_7947433dfde6b3b8eccd0faa597c3c9a",
+          "section_path": [
+            "Request 2 caches its request content (not the response)"
+          ],
+          "char_start": 44789,
+          "char_end": 44846,
+          "score": 0.38256486550360114,
+          "rank": 6,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "ad8d53227cfd348c3e64ef49138ed926417cb4a7bce840e95e272d77b1465924",
+          "text_len": 57
+        },
+        {
+          "chunk_id": "chk_32dc0b4b6e9e3e20443fa094804f0bf14e9cf72e",
+          "version_id": "ver_7e0826c6c11d52cd63fb0e5100924c4e",
+          "section_path": [
+            "Migrating to HTTPX2",
+            "Request mocking and tests"
+          ],
+          "char_start": 6692,
+          "char_end": 6800,
+          "score": 0.3621716905287413,
+          "rank": 7,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "7ac7d9a794aa00d1268663218cec45f6ccc4f79877b108ec85b50d3ae716704f",
+          "text_len": 108
+        },
+        {
+          "chunk_id": "chk_942d62c455593d7f7f59a673a3f0b3e7396f430b",
+          "version_id": "ver_e8a7b17b5af64679cadea33cd8f6d250",
+          "section_path": [
+            "Migration guide",
+            "Breaking changes",
+            "Removed request options overloads"
+          ],
+          "char_start": 5932,
+          "char_end": 6177,
+          "score": 0.360262778973931,
+          "rank": 8,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "93aa40f020e7ee2eea4d8c18ad0eed89a65ee1b610f6837d553f70a3836e37c6",
+          "text_len": 245
+        },
+        {
+          "chunk_id": "chk_4738cd83167c41e92aa893205ce288ac21630f21",
+          "version_id": "ver_90de89ac7da393e4d9056cf12204d046",
+          "section_path": [
+            "[Analysis Title]",
+            "Advanced: Skills with executable code",
+            "Solve, don't defer"
+          ],
+          "char_start": 30728,
+          "char_end": 30761,
+          "score": 0.3561229918076392,
+          "rank": 9,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "babeb181e49ebf8d25c661be9adc06a9bbf5e4271f563868c9a6d23a207861b3",
+          "text_len": 33
+        },
+        {
+          "chunk_id": "chk_fc1a057d0eb40bacfa40378bc069504d3e58ac69",
+          "version_id": "ver_d81ee605bd8bbb880deea432e51462ac",
+          "section_path": [
+            "SDK support"
+          ],
+          "char_start": 13380,
+          "char_end": 13577,
+          "score": 0.35511886015180316,
+          "rank": 10,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "bb81efd3f5909fa0f5b0eab7642b278884b13d32aa48307291c9e98aaf7acb86",
+          "text_len": 197
+        }
+      ]
+    },
+    {
+      "case_id": "AN-002",
+      "category": "exact_lookup",
+      "k": 10,
+      "expected_evidence_count": 1,
+      "evidence_found_count": 0,
+      "recall": 0.0,
+      "found": [],
+      "missed": [
+        {
+          "version_id": "ver_0774ca0093ff4a846753577c9a4a39d5",
+          "section_path": [
+            "HTTP errors"
+          ],
+          "char_start": 1636,
+          "char_end": 1721
+        }
+      ],
+      "hits": [
+        {
+          "chunk_id": "chk_3dc730b00afefa27069177446f046c3826f450bc",
+          "version_id": "ver_0774ca0093ff4a846753577c9a4a39d5",
+          "section_path": [
+            "Preamble"
+          ],
+          "char_start": 0,
+          "char_end": 244,
+          "score": 0.46038293838500977,
+          "rank": 1,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "99a00ecbcba550f128d9c148534d4c7bd48de42f35ed5ea5a142e0da56dab92b",
+          "text_len": 244
+        },
+        {
+          "chunk_id": "chk_6eb2303d70a60b5dadfb72206087ecc73166f372",
+          "version_id": "ver_9247e3ce4df6f79d9cadc44e1a3bbd0c",
+          "section_path": [
+            "Remove `await` for non-async usage.",
+            "Handling errors"
+          ],
+          "char_start": 18125,
+          "char_end": 18603,
+          "score": 0.42528839186693423,
+          "rank": 2,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "40e600b3981c1a15b07de8c133444e00f0d2c575e1eb5bc3269a8380a02cf8c5",
+          "text_len": 478
+        },
+        {
+          "chunk_id": "chk_5469246bff175d10813fa62e4001657bbe6076a6",
+          "version_id": "ver_f30a6447e4df2ab76e4c1475f353109c",
+          "section_path": [
+            "OpenAI TypeScript and JavaScript API Library",
+            "Handling errors"
+          ],
+          "char_start": 11331,
+          "char_end": 11809,
+          "score": 0.42528839186693423,
+          "rank": 3,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "40e600b3981c1a15b07de8c133444e00f0d2c575e1eb5bc3269a8380a02cf8c5",
+          "text_len": 478
+        },
+        {
+          "chunk_id": "chk_d9b80733a92e47a44329465b69709969d1bdee09",
+          "version_id": "ver_901356d3ffce0f0478ba2d33aefdf98a",
+          "section_path": [
+            "Response",
+            "Errors"
+          ],
+          "char_start": 22091,
+          "char_end": 22310,
+          "score": 0.4237464368343353,
+          "rank": 4,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "947573becd4285e6bacfb1ce51b4bb0629f8aa864112054f6feaa6b347639041",
+          "text_len": 219
+        },
+        {
+          "chunk_id": "chk_43e105c73e52ba52fa2fa2b7197cb9063bfb52f6",
+          "version_id": "ver_c299b58fe1f5a4d3a081b550334a7df6",
+          "section_path": [
+            "External Keys",
+            "Validate External Key",
+            "Example",
+            "Response"
+          ],
+          "char_start": 132578,
+          "char_end": 132669,
+          "score": 0.42009881138801575,
+          "rank": 5,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "b66ac275fa14a29103e1607564a5cbc0ee982743bcd6bd246255756eda993dde",
+          "text_len": 91
+        },
+        {
+          "chunk_id": "chk_61b51e3fcd5f313b841a3c4e3d4bd57544e9b5db",
+          "version_id": "ver_96d1698a3864f79451e8576f87a07004",
+          "section_path": [
+            "Tool commands",
+            "rename",
+            "Error handling"
+          ],
+          "char_start": 32855,
+          "char_end": 33073,
+          "score": 0.4163734068647984,
+          "rank": 6,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "e151a097ff3392c083820a35a94becfafe75f97f377fcfd16e211f055deb2eac",
+          "text_len": 218
+        },
+        {
+          "chunk_id": "chk_5e9b4be17b78c8bc8718f602d92a41a9d6037045",
+          "version_id": "ver_ae909bf8b4bbbe1d1a11119447f7ac94",
+          "section_path": [
+            "Models",
+            "Troubleshooting non-OpenAI providers",
+            "Structured outputs support"
+          ],
+          "char_start": 41412,
+          "char_end": 41602,
+          "score": 0.40705270683137385,
+          "rank": 7,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "bedb215a4f9ed0b555719f3163e844dbbf0698ca6d0255c189ac66bc12c5672c",
+          "text_len": 190
+        },
+        {
+          "chunk_id": "chk_822e5f96323bd027ad5b9dc3af5d30954f9616fb",
+          "version_id": "ver_d81ee605bd8bbb880deea432e51462ac",
+          "section_path": [
+            "Trigger a routine",
+            "Errors"
+          ],
+          "char_start": 9848,
+          "char_end": 12097,
+          "score": 0.39428791403770447,
+          "rank": 8,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "699ffae2c05f82424bf3f861084dbc893a774667bbb4a97a8ee4939faa99e05d",
+          "text_len": 2249
+        },
+        {
+          "chunk_id": "chk_026bfa33d3b3cb7ec7de8bf483a2841df90e20eb",
+          "version_id": "ver_4d14aec24504f4b8f6f28938b84587dc",
+          "section_path": [
+            "Stop reasons vs. errors",
+            "Errors (failed requests)"
+          ],
+          "char_start": 88475,
+          "char_end": 88621,
+          "score": 0.38812146080626353,
+          "rank": 9,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "7378b34ba49764de30e6a7199be28d5e33ae64894ca87c109e2f7c4d9bddc538",
+          "text_len": 146
+        },
+        {
+          "chunk_id": "chk_aa3172d6aa22ca8f5994faccf3d87c14bce73400",
+          "version_id": "ver_7cd600e1124f25cfedc3f1f6d5c297e5",
+          "section_path": [
+            "Process results programmatically",
+            "Error handling",
+            "Common errors"
+          ],
+          "char_start": 47057,
+          "char_end": 48427,
+          "score": 0.3867673738917585,
+          "rank": 10,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "f102c02ccb078f71bd24caffec939dfe5f154802aee249b21910f50e624e4243",
+          "text_len": 1370
+        }
+      ]
+    },
+    {
+      "case_id": "AN-003",
+      "category": "exact_lookup",
+      "k": 10,
+      "expected_evidence_count": 1,
+      "evidence_found_count": 0,
+      "recall": 0.0,
+      "found": [],
+      "missed": [
+        {
+          "version_id": "ver_ef5f9dacc17f99c298faf449e756ae90",
+          "section_path": [
+            "Batches",
+            "Create a Message Batch",
+            "Body Parameters"
+          ],
+          "char_start": 4554,
+          "char_end": 4611
+        }
+      ],
+      "hits": [
+        {
+          "chunk_id": "chk_83b7df7d8a5e8cf5d0d1fba3aa55aa0ad63734e3",
+          "version_id": "ver_a51a411655bc0cd2ac78d3a5820245a3",
+          "section_path": [
+            "Create a Message Batch"
+          ],
+          "char_start": 108,
+          "char_end": 544,
+          "score": 0.599392074328425,
+          "rank": 1,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "59eb90e14b5d28b9a5b89edc1126064292930238a90d064fa72c7d81df7b1806",
+          "text_len": 436
+        },
+        {
+          "chunk_id": "chk_9f57fea8ff13b8906ba6413bda770d0ba538780e",
+          "version_id": "ver_de7f74230c8f10d30aea5d037a3bd0a5",
+          "section_path": [
+            "Batches",
+            "Create a Message Batch"
+          ],
+          "char_start": 935839,
+          "char_end": 936275,
+          "score": 0.599392074328425,
+          "rank": 2,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "59eb90e14b5d28b9a5b89edc1126064292930238a90d064fa72c7d81df7b1806",
+          "text_len": 436
+        },
+        {
+          "chunk_id": "chk_44daea2e5fb36b8cfc5d59175ae40e44c4b9544c",
+          "version_id": "ver_ef5f9dacc17f99c298faf449e756ae90",
+          "section_path": [
+            "Batches",
+            "Create a Message Batch"
+          ],
+          "char_start": 97,
+          "char_end": 533,
+          "score": 0.599392074328425,
+          "rank": 3,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "59eb90e14b5d28b9a5b89edc1126064292930238a90d064fa72c7d81df7b1806",
+          "text_len": 436
+        },
+        {
+          "chunk_id": "chk_2ea1a67abe465ee6a010e6dfe114da337a13e381",
+          "version_id": "ver_18c692f4d28bd01c0a5cac553fcf01a7",
+          "section_path": [
+            "Batches",
+            "Create a Message Batch"
+          ],
+          "char_start": 585493,
+          "char_end": 585929,
+          "score": 0.599392074328425,
+          "rank": 4,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "59eb90e14b5d28b9a5b89edc1126064292930238a90d064fa72c7d81df7b1806",
+          "text_len": 436
+        },
+        {
+          "chunk_id": "chk_efa9ae1ffd12516ab5b4c555349a68f4e797c9ff",
+          "version_id": "ver_cec813c3bb15b76dcf16e7a0c2231ef1",
+          "section_path": [
+            "Message Batches API",
+            "How to use the Message Batches API"
+          ],
+          "char_start": 9794,
+          "char_end": 9831,
+          "score": 0.5782548785209656,
+          "rank": 5,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "f115d754cd58e5c129ed4bc1f8c5b986de4e95006c79cce0703d27f8377088f4",
+          "text_len": 37
+        },
+        {
+          "chunk_id": "chk_9a47be71980d8dc4a33b53a7f111174ed4dc0936",
+          "version_id": "ver_cec813c3bb15b76dcf16e7a0c2231ef1",
+          "section_path": [
+            "Message Batches API"
+          ],
+          "char_start": 997,
+          "char_end": 1519,
+          "score": 0.5378549098968506,
+          "rank": 6,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "3255d332d7ef061def471c1c9ec42ee27640a35380c674bddab985ecf9bb8e70",
+          "text_len": 522
+        },
+        {
+          "chunk_id": "chk_2f0c46f1b53f3c30b97750e9d96acf92eea08530",
+          "version_id": "ver_18c692f4d28bd01c0a5cac553fcf01a7",
+          "section_path": [
+            "Batches"
+          ],
+          "char_start": 585482,
+          "char_end": 585491,
+          "score": 0.5278507471084595,
+          "rank": 7,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "0688b107c32469ec8d532e7e56d249a4f49a82e85f6bb96b7ebe6c91912efc2a",
+          "text_len": 9
+        },
+        {
+          "chunk_id": "chk_ab2fa0b01a7d6dbf2f5391bd9a1ead605744251d",
+          "version_id": "ver_ef5f9dacc17f99c298faf449e756ae90",
+          "section_path": [
+            "Batches"
+          ],
+          "char_start": 86,
+          "char_end": 95,
+          "score": 0.5278507471084595,
+          "rank": 8,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "0688b107c32469ec8d532e7e56d249a4f49a82e85f6bb96b7ebe6c91912efc2a",
+          "text_len": 9
+        },
+        {
+          "chunk_id": "chk_75b942df3f14136b031eca57863b192cb9f2d6cf",
+          "version_id": "ver_de7f74230c8f10d30aea5d037a3bd0a5",
+          "section_path": [
+            "Batches"
+          ],
+          "char_start": 935828,
+          "char_end": 935837,
+          "score": 0.5278507471084595,
+          "rank": 9,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "0688b107c32469ec8d532e7e56d249a4f49a82e85f6bb96b7ebe6c91912efc2a",
+          "text_len": 9
+        },
+        {
+          "chunk_id": "chk_dd6fb0629f6a82a7d79b28859d42349c46423764",
+          "version_id": "ver_862379c0c5b4f96abbbebcf81989ef2f",
+          "section_path": [
+            "List Message Batches"
+          ],
+          "char_start": 104,
+          "char_end": 389,
+          "score": 0.5128897718852904,
+          "rank": 10,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "93f6783cfe5f1a76ff50bf6b19afbc97df57101273fa5db8bfee0ec7fd66a929",
+          "text_len": 285
+        }
+      ]
+    },
+    {
+      "case_id": "AN-004",
+      "category": "exact_lookup",
+      "k": 10,
+      "expected_evidence_count": 1,
+      "evidence_found_count": 0,
+      "recall": 0.0,
+      "found": [],
+      "missed": [
+        {
+          "version_id": "ver_7947433dfde6b3b8eccd0faa597c3c9a",
+          "section_path": [
+            "Explicit cache breakpoints",
+            "Structuring your prompt",
+            "How automatic prefix checking works"
+          ],
+          "char_start": 25537,
+          "char_end": 25690
+        }
+      ],
+      "hits": [
+        {
+          "chunk_id": "chk_09898a13eb3aa68560d1f4da36541797ed1d09d6",
+          "version_id": "ver_0e1e2173035af0ad0c98640a78504513",
+          "section_path": [
+            "Mechanics"
+          ],
+          "char_start": 7762,
+          "char_end": 7894,
+          "score": 0.5271123929552807,
+          "rank": 1,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "1e582f3c18db057ee22311438a0da03ef67395d0c2152a863195d4eb084f263a",
+          "text_len": 132
+        },
+        {
+          "chunk_id": "chk_9458cfce3f9532422f70b72469344b6f21ca9929",
+          "version_id": "ver_c60f7418b69b6610bd20e974b92cdd8c",
+          "section_path": [
+            "Working with compaction blocks",
+            "Prompt caching"
+          ],
+          "char_start": 63247,
+          "char_end": 63476,
+          "score": 0.4905582374001609,
+          "rank": 2,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "3a845e5f240ca2f7c0c979dd8db8171baea804942f4f54412905ac406abe0b7b",
+          "text_len": 229
+        },
+        {
+          "chunk_id": "chk_fe13384292d320931e643076f7937a6ea68e9a3e",
+          "version_id": "ver_b42814c2d273210095c8e5844612933e",
+          "section_path": [
+            "Context awareness",
+            "How it works"
+          ],
+          "char_start": 11383,
+          "char_end": 11486,
+          "score": 0.48595088971539413,
+          "rank": 3,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "fef5cfcaa482b1b321dc238b3d1d5d2a172d4188fe825f7bbff1d9f33a4ca898",
+          "text_len": 103
+        },
+        {
+          "chunk_id": "chk_d3cfef84b6e1dc9326c19ac3e6735d2ccc87ed91",
+          "version_id": "ver_a0184f8cded1db1ff228531d8624afbe",
+          "section_path": [
+            "Preamble"
+          ],
+          "char_start": 0,
+          "char_end": 518,
+          "score": 0.4678220152854953,
+          "rank": 4,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "c33727565756257085239126751df62a4b3724a609e85e0384e80e262eabed02",
+          "text_len": 518
+        },
+        {
+          "chunk_id": "chk_0a1d717e5f24ff70c2a44918788ab5beb777ae1f",
+          "version_id": "ver_b8b18cda9b875d51a2ce979a1bf4e909",
+          "section_path": [
+            "Advisor prompt caching"
+          ],
+          "char_start": 58388,
+          "char_end": 58456,
+          "score": 0.464967163505128,
+          "rank": 5,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "00d5cbc43a4a79bbf3877f168dab7d7fa052cce10974fc91b4b335613cff522f",
+          "text_len": 68
+        },
+        {
+          "chunk_id": "chk_a6d67e662b8b88a22db9175e673faf0d13958af0",
+          "version_id": "ver_b7ea8359f97ca269418988f78e80b870",
+          "section_path": [
+            "Prompt caching"
+          ],
+          "char_start": 30512,
+          "char_end": 30849,
+          "score": 0.45370054520961456,
+          "rank": 6,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "5cd163913e44a0434f2fd31de1e3fbba1b8548317a81190e62eb4171d9002a2d",
+          "text_len": 337
+        },
+        {
+          "chunk_id": "chk_515563c340b3b0566e273e98030941505df0b8fb",
+          "version_id": "ver_7947433dfde6b3b8eccd0faa597c3c9a",
+          "section_path": [
+            "Automatic caching",
+            "Combining with block-level caching"
+          ],
+          "char_start": 21700,
+          "char_end": 22159,
+          "score": 0.4472037287233046,
+          "rank": 7,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "de494560ef0f03d06340666bfdf746f6f2b6f854519f438d8b4eda668a88382e",
+          "text_len": 459
+        },
+        {
+          "chunk_id": "chk_621faf6720b4e302a18740769a958a38e471a156",
+          "version_id": "ver_7947433dfde6b3b8eccd0faa597c3c9a",
+          "section_path": [
+            "On earlier Opus/Sonnet and all Haiku models, non-tool-result user block causes prior thinking blocks to be stripped; on Opus 4.5+/Sonnet 4.6+ they are kept",
+            "FAQ"
+          ],
+          "char_start": 148489,
+          "char_end": 151854,
+          "score": 0.4456038274281342,
+          "rank": 8,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "ef6c9ff96c529cde9b494bb976c3fe457291dc04b099e63d140e82d785172d2a",
+          "text_len": 3365
+        },
+        {
+          "chunk_id": "chk_36f5a1497661650565b6a5a26c43129c5f73df34",
+          "version_id": "ver_7947433dfde6b3b8eccd0faa597c3c9a",
+          "section_path": [
+            "Automatic caching"
+          ],
+          "char_start": 13529,
+          "char_end": 13849,
+          "score": 0.434634331784587,
+          "rank": 9,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "eec004614807669a98525aa1035338dcec6463f50c5dadd126f5fc3d2541794d",
+          "text_len": 320
+        },
+        {
+          "chunk_id": "chk_b245f8637c040582bf60553245d06f60d7b6a4d7",
+          "version_id": "ver_7947433dfde6b3b8eccd0faa597c3c9a",
+          "section_path": [
+            "Automatic caching",
+            "What stays the same"
+          ],
+          "char_start": 22491,
+          "char_end": 22730,
+          "score": 0.43346016307294055,
+          "rank": 10,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "05c2db0ccd3eeca983071125fcc7ec7f34fc0144595fdb3f8e8965c96c693c96",
+          "text_len": 239
+        }
+      ]
+    },
+    {
+      "case_id": "AN-005",
+      "category": "exact_lookup",
+      "k": 10,
+      "expected_evidence_count": 1,
+      "evidence_found_count": 0,
+      "recall": 0.0,
+      "found": [],
+      "missed": [
+        {
+          "version_id": "ver_1c53b961e1f5da8124a1e7e8eb92c941",
+          "section_path": [
+            "Server-side strategies"
+          ],
+          "char_start": 4055,
+          "char_end": 4106
+        }
+      ],
+      "hits": [
+        {
+          "chunk_id": "chk_6a68b278a55fa60ba288bf91bc296c75f29ef4d7",
+          "version_id": "ver_1c53b961e1f5da8124a1e7e8eb92c941",
+          "section_path": [
+            "Token counting"
+          ],
+          "char_start": 58201,
+          "char_end": 59192,
+          "score": 0.42819494009017944,
+          "rank": 1,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "ff258baa5433fc3a5f8dbeb619571c1e387694a3c30cd3954bea4884df7e0cc5",
+          "text_len": 991
+        },
+        {
+          "chunk_id": "chk_b9fabebf4c56e99042e0db1ff4ba8a7070e300e4",
+          "version_id": "ver_1c53b961e1f5da8124a1e7e8eb92c941",
+          "section_path": [
+            "Thinking block clearing usage",
+            "Configuration options for thinking block clearing"
+          ],
+          "char_start": 32988,
+          "char_end": 33749,
+          "score": 0.39141804627072607,
+          "rank": 2,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "385309e5437334aa6e11773e04e177e70c4f3c63f528af1f04681f9470b9587c",
+          "text_len": 761
+        },
+        {
+          "chunk_id": "chk_59779279876350678ff609766a844161fa93157f",
+          "version_id": "ver_1c53b961e1f5da8124a1e7e8eb92c941",
+          "section_path": [
+            "Thinking block clearing usage"
+          ],
+          "char_start": 25906,
+          "char_end": 26667,
+          "score": 0.38909942572716383,
+          "rank": 3,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "d87b7ca95ee958d333be5ea40ea7911f1c407dfb64019ab23e33f0ed79183d5c",
+          "text_len": 761
+        },
+        {
+          "chunk_id": "chk_48ba5c9fdfa15fd366fde41563394e1759d58650",
+          "version_id": "ver_96d1698a3864f79451e8576f87a07004",
+          "section_path": [
+            "Context editing integration"
+          ],
+          "char_start": 36460,
+          "char_end": 36679,
+          "score": 0.38387228202439205,
+          "rank": 4,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "7ed94b27d5a561acc760bc2ffd97f2a9a47f2e677b2c62930a7dcdad34dd4118",
+          "text_len": 219
+        },
+        {
+          "chunk_id": "chk_5e2260a0ad123beb00370fb0fe53a3ce14320baf",
+          "version_id": "ver_6bafcf704c4110f57f26afd11a018716",
+          "section_path": [
+            "Error handling"
+          ],
+          "char_start": 6551,
+          "char_end": 6878,
+          "score": 0.37791182863186834,
+          "rank": 5,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "2b810499a67c2c4718fc1ee1ecbac381e6c33a86d82be365c4241971df39fa28",
+          "text_len": 327
+        },
+        {
+          "chunk_id": "chk_72ccfd066c7217a2282b5a1bc74da8ed178ffbe4",
+          "version_id": "ver_1c53b961e1f5da8124a1e7e8eb92c941",
+          "section_path": [
+            "Tool result clearing usage",
+            "Advanced configuration"
+          ],
+          "char_start": 13890,
+          "char_end": 15507,
+          "score": 0.36745251320160977,
+          "rank": 6,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "f2970233a2938f1b2a1ba5674856e518decb9d0b9a5bf00278fbbd69ba44ada8",
+          "text_len": 1617
+        },
+        {
+          "chunk_id": "chk_2849c906332575db6835fa1ba71b2bbc631edcad",
+          "version_id": "ver_1d58a563501b073d898977de6bc2a823",
+          "section_path": [
+            "Projects",
+            "Get project details",
+            "Header Parameters"
+          ],
+          "char_start": 4677126,
+          "char_end": 4677181,
+          "score": 0.36694854497909546,
+          "rank": 7,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "bd0167472d167fce5e50fe8c36c4c0784981ddd40bc076292c168f807cb9c216",
+          "text_len": 55
+        },
+        {
+          "chunk_id": "chk_c4272a29cb8069aa50ac1e843ec587a13c8b572e",
+          "version_id": "ver_1d58a563501b073d898977de6bc2a823",
+          "section_path": [
+            "Local",
+            "Retrieve a local session",
+            "Header Parameters"
+          ],
+          "char_start": 4711077,
+          "char_end": 4711132,
+          "score": 0.36694854497909546,
+          "rank": 8,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "bd0167472d167fce5e50fe8c36c4c0784981ddd40bc076292c168f807cb9c216",
+          "text_len": 55
+        },
+        {
+          "chunk_id": "chk_80dcc8d18f77d439c586ce0ec1668d658bb9cfd8",
+          "version_id": "ver_1d58a563501b073d898977de6bc2a823",
+          "section_path": [
+            "Files",
+            "Download file content",
+            "Header Parameters"
+          ],
+          "char_start": 4667630,
+          "char_end": 4667685,
+          "score": 0.36694854497909546,
+          "rank": 9,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "bd0167472d167fce5e50fe8c36c4c0784981ddd40bc076292c168f807cb9c216",
+          "text_len": 55
+        },
+        {
+          "chunk_id": "chk_a2597711ea395bace198e9e49d678a7baab091a8",
+          "version_id": "ver_1d58a563501b073d898977de6bc2a823",
+          "section_path": [
+            "Groups",
+            "List Compliance Groups",
+            "Header Parameters"
+          ],
+          "char_start": 4632674,
+          "char_end": 4632729,
+          "score": 0.36694854497909546,
+          "rank": 10,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "bd0167472d167fce5e50fe8c36c4c0784981ddd40bc076292c168f807cb9c216",
+          "text_len": 55
+        }
+      ]
+    },
+    {
+      "case_id": "AN-006",
+      "category": "exact_lookup",
+      "k": 10,
+      "expected_evidence_count": 1,
+      "evidence_found_count": 0,
+      "recall": 0.0,
+      "found": [],
+      "missed": [
+        {
+          "version_id": "ver_f65938c74d40ac1e288f169d3d0435b7",
+          "section_path": [
+            "Upgrade to latest tool version",
+            "What's changed"
+          ],
+          "char_start": 58361,
+          "char_end": 58388
+        }
+      ],
+      "hits": [
+        {
+          "chunk_id": "chk_867f8c3d34caacf3c9cc6cbceced7aabaae00479",
+          "version_id": "ver_f65938c74d40ac1e288f169d3d0435b7",
+          "section_path": [
+            "Tool definition"
+          ],
+          "char_start": 35150,
+          "char_end": 35228,
+          "score": 0.5179697562474167,
+          "rank": 1,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "1556bca7297fea044087b230005e54bad6ac5e310c7bfeeb0a0d6f40008a3e6c",
+          "text_len": 78
+        },
+        {
+          "chunk_id": "chk_0a95aa29bb053a75baeb6a6e3bca0a1755795c9e",
+          "version_id": "ver_7cd600e1124f25cfedc3f1f6d5c297e5",
+          "section_path": [
+            "Process results programmatically",
+            "Response format",
+            "Code execution completion"
+          ],
+          "char_start": 46658,
+          "char_end": 46742,
+          "score": 0.49114422420956905,
+          "rank": 2,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "91cf372eab8066583cd81827a17d9ad28dc3aea72b32b4f902d4da119a623f04",
+          "text_len": 84
+        },
+        {
+          "chunk_id": "chk_5f731bf905406c123e27cc0a2c868c1255fd4e73",
+          "version_id": "ver_7cd600e1124f25cfedc3f1f6d5c297e5",
+          "section_path": [
+            "Process results programmatically",
+            "Response format",
+            "Programmatic tool call"
+          ],
+          "char_start": 46020,
+          "char_end": 46081,
+          "score": 0.4886631965637207,
+          "rank": 3,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "f921543cfdafe67fd0f68dd5cb85906bffb7d830d72f0531e846198e72793444",
+          "text_len": 61
+        },
+        {
+          "chunk_id": "chk_e0766e6b7217167df670a765735fe80f9fec1c27",
+          "version_id": "ver_1d58a563501b073d898977de6bc2a823",
+          "section_path": [
+            "Code"
+          ],
+          "char_start": 4757529,
+          "char_end": 4757535,
+          "score": 0.48195764314875944,
+          "rank": 4,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "1d63934865e62e46245c3b2d43eda5e2e16abcbcfc489d63e4442d81d03a7d0f",
+          "text_len": 6
+        },
+        {
+          "chunk_id": "chk_23fa3f2609584d36e8e85d2c1b207cc0a55dfa68",
+          "version_id": "ver_02c06cea4a4bbffd4d01ee202f124a75",
+          "section_path": [
+            "Code within the code,"
+          ],
+          "char_start": 3958,
+          "char_end": 3981,
+          "score": 0.4639185965061188,
+          "rank": 5,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "996d27623c18473b5dc2c55074ab952cbb7adfce6d67bbc3f7a4c1e1ba926fed",
+          "text_len": 23
+        },
+        {
+          "chunk_id": "chk_e9452680b72ecb01e08082f223e8e6c4b30544b6",
+          "version_id": "ver_53c7279f0b26dd8d4b011e04d4bac3dc",
+          "section_path": [
+            "Step 2: Create a presentation"
+          ],
+          "char_start": 11259,
+          "char_end": 12832,
+          "score": 0.4544818157575383,
+          "rank": 6,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "cb7cc523c3b6f54cf9a72d84b28fde89ed38f8dde9186e0d0c02214a90f5da26",
+          "text_len": 1573
+        },
+        {
+          "chunk_id": "chk_36dabe9c7bdcf3c503a74edc51a63f0cbb098ff6",
+          "version_id": "ver_f65938c74d40ac1e288f169d3d0435b7",
+          "section_path": [
+            "Containers"
+          ],
+          "char_start": 41157,
+          "char_end": 41312,
+          "score": 0.44964370131492615,
+          "rank": 7,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "1b550fa208e4df555123c3d00ac014db6b5e9acef14d6a0a998f40d5c6b3b95e",
+          "text_len": 155
+        },
+        {
+          "chunk_id": "chk_41257ca965cecb8ded33942c3e1f60b013f9b627",
+          "version_id": "ver_d9ba3ab0d872dd86047c7ed6dc783235",
+          "section_path": [
+            "Quick start"
+          ],
+          "char_start": 12142,
+          "char_end": 12377,
+          "score": 0.43331295251846313,
+          "rank": 8,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "9d6a78acaff799b15198a79ebb31d647207bf72fd86557c0ea2084a8815b0195",
+          "text_len": 235
+        },
+        {
+          "chunk_id": "chk_d5939987a15fc7a0d1b50c3a8da0a1eb75590e8a",
+          "version_id": "ver_57805e97d90d51eb36730ed275cbfb72",
+          "section_path": [
+            "Beta"
+          ],
+          "char_start": 23582,
+          "char_end": 23588,
+          "score": 0.4074561706237618,
+          "rank": 9,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "dc9135c25606bae7b1d50c0759948e41d818c1b4dab3254a6976aac46fff714f",
+          "text_len": 6
+        },
+        {
+          "chunk_id": "chk_7569468ab570148a15e1c9155e69994c9220f22b",
+          "version_id": "ver_0dbd0d6268fcabfcfce88bb80a126181",
+          "section_path": [
+            "Beta"
+          ],
+          "char_start": 25159,
+          "char_end": 25165,
+          "score": 0.4074561706237618,
+          "rank": 10,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "dc9135c25606bae7b1d50c0759948e41d818c1b4dab3254a6976aac46fff714f",
+          "text_len": 6
+        }
+      ]
+    },
+    {
+      "case_id": "AN-007",
+      "category": "exact_lookup",
+      "k": 10,
+      "expected_evidence_count": 1,
+      "evidence_found_count": 0,
+      "recall": 0.0,
+      "found": [],
+      "missed": [
+        {
+          "version_id": "ver_0774ca0093ff4a846753577c9a4a39d5",
+          "section_path": [
+            "HTTP errors"
+          ],
+          "char_start": 2459,
+          "char_end": 2533
+        }
+      ],
+      "hits": [
+        {
+          "chunk_id": "chk_3dc730b00afefa27069177446f046c3826f450bc",
+          "version_id": "ver_0774ca0093ff4a846753577c9a4a39d5",
+          "section_path": [
+            "Preamble"
+          ],
+          "char_start": 0,
+          "char_end": 244,
+          "score": 0.476726950602118,
+          "rank": 1,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "99a00ecbcba550f128d9c148534d4c7bd48de42f35ed5ea5a142e0da56dab92b",
+          "text_len": 244
+        },
+        {
+          "chunk_id": "chk_61b51e3fcd5f313b841a3c4e3d4bd57544e9b5db",
+          "version_id": "ver_96d1698a3864f79451e8576f87a07004",
+          "section_path": [
+            "Tool commands",
+            "rename",
+            "Error handling"
+          ],
+          "char_start": 32855,
+          "char_end": 33073,
+          "score": 0.4481965365175562,
+          "rank": 2,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "e151a097ff3392c083820a35a94becfafe75f97f377fcfd16e211f055deb2eac",
+          "text_len": 218
+        },
+        {
+          "chunk_id": "chk_d9b80733a92e47a44329465b69709969d1bdee09",
+          "version_id": "ver_901356d3ffce0f0478ba2d33aefdf98a",
+          "section_path": [
+            "Response",
+            "Errors"
+          ],
+          "char_start": 22091,
+          "char_end": 22310,
+          "score": 0.4319951574805292,
+          "rank": 3,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "947573becd4285e6bacfb1ce51b4bb0629f8aa864112054f6feaa6b347639041",
+          "text_len": 219
+        },
+        {
+          "chunk_id": "chk_43e105c73e52ba52fa2fa2b7197cb9063bfb52f6",
+          "version_id": "ver_c299b58fe1f5a4d3a081b550334a7df6",
+          "section_path": [
+            "External Keys",
+            "Validate External Key",
+            "Example",
+            "Response"
+          ],
+          "char_start": 132578,
+          "char_end": 132669,
+          "score": 0.42045572874213955,
+          "rank": 4,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "b66ac275fa14a29103e1607564a5cbc0ee982743bcd6bd246255756eda993dde",
+          "text_len": 91
+        },
+        {
+          "chunk_id": "chk_822e5f96323bd027ad5b9dc3af5d30954f9616fb",
+          "version_id": "ver_d81ee605bd8bbb880deea432e51462ac",
+          "section_path": [
+            "Trigger a routine",
+            "Errors"
+          ],
+          "char_start": 9848,
+          "char_end": 12097,
+          "score": 0.4122728161649225,
+          "rank": 5,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "699ffae2c05f82424bf3f861084dbc893a774667bbb4a97a8ee4939faa99e05d",
+          "text_len": 2249
+        },
+        {
+          "chunk_id": "chk_026bfa33d3b3cb7ec7de8bf483a2841df90e20eb",
+          "version_id": "ver_4d14aec24504f4b8f6f28938b84587dc",
+          "section_path": [
+            "Stop reasons vs. errors",
+            "Errors (failed requests)"
+          ],
+          "char_start": 88475,
+          "char_end": 88621,
+          "score": 0.40512837186838757,
+          "rank": 6,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "7378b34ba49764de30e6a7199be28d5e33ae64894ca87c109e2f7c4d9bddc538",
+          "text_len": 146
+        },
+        {
+          "chunk_id": "chk_b0dfa25b3bf1067a9978d8def52abb2ffb4fac4a",
+          "version_id": "ver_c299b58fe1f5a4d3a081b550334a7df6",
+          "section_path": [
+            "External Keys",
+            "Domain Types",
+            "External Key Validate Response"
+          ],
+          "char_start": 144052,
+          "char_end": 144664,
+          "score": 0.3936863902994169,
+          "rank": 7,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "053f8583631c0ad7f13db46f6e38bdbeccbf0827eb8c9977b93580070d377633",
+          "text_len": 612
+        },
+        {
+          "chunk_id": "chk_0c46f543fcc16c5737be1a46dd827bef3b424ffa",
+          "version_id": "ver_1261879c16f641270789647ac9c63c96",
+          "section_path": [
+            "Error recovery"
+          ],
+          "char_start": 47035,
+          "char_end": 47052,
+          "score": 0.3873090878356591,
+          "rank": 8,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "e82d575b9cc4c4de1227421c9951d77f34be5d13865322c99dcc60209123501b",
+          "text_len": 17
+        },
+        {
+          "chunk_id": "chk_4fe67855c1a0ee6c5a03318863eb43b53ea600fe",
+          "version_id": "ver_6c0983aad96f198367a0de369b3bb86c",
+          "section_path": [
+            "Cybersecurity safeguards"
+          ],
+          "char_start": 7032,
+          "char_end": 7462,
+          "score": 0.37655937671661643,
+          "rank": 9,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "96e70662cbb0e66b42f380d4ff7cf741ecd10b00483f2665591e2699d032a3d4",
+          "text_len": 430
+        },
+        {
+          "chunk_id": "chk_f83252f297b56dfa950164379be9ef6fef1b8d11",
+          "version_id": "ver_7cd600e1124f25cfedc3f1f6d5c297e5",
+          "section_path": [
+            "Process results programmatically",
+            "Error handling"
+          ],
+          "char_start": 47038,
+          "char_end": 47055,
+          "score": 0.3724983930587795,
+          "rank": 10,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "f7d541700dfd9c4faf0340a36f2815df67a77b5a76f881bf12c60df22862babe",
+          "text_len": 17
+        }
+      ]
+    },
+    {
+      "case_id": "AN-008",
+      "category": "normal",
+      "k": 10,
+      "expected_evidence_count": 1,
+      "evidence_found_count": 0,
+      "recall": 0.0,
+      "found": [],
+      "missed": [
+        {
+          "version_id": "ver_db8326d3bafce3a535c3e3bfc3de7519",
+          "section_path": [
+            "Preamble"
+          ],
+          "char_start": 361,
+          "char_end": 496
+        }
+      ],
+      "hits": [
+        {
+          "chunk_id": "chk_2f047ca56b853b2c849f0cd4acb6b1e3ad517ef3",
+          "version_id": "ver_de67d790db9792b2f6c5c7418a507764",
+          "section_path": [
+            "This is an absolute host path outside the SDK process base_dir.",
+            "0.3.0"
+          ],
+          "char_start": 20790,
+          "char_end": 20909,
+          "score": 0.4377470742984737,
+          "rank": 1,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "9281228c80a921c125aa23ea17c42e02656604f5d7137557937b131b28ca9fac",
+          "text_len": 119
+        },
+        {
+          "chunk_id": "chk_6ac0a77a8d46c2d2c8527ab0cbcacc90d7847338",
+          "version_id": "ver_1f49b1ad8b70725119b878c73a3cf8e9",
+          "section_path": [
+            "Dateless IDs are pinned snapshots"
+          ],
+          "char_start": 2383,
+          "char_end": 3299,
+          "score": 0.41653531789779663,
+          "rank": 2,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "77b69707f5d717728ec1d2726b427b8d5a3376b1bdadbffa9583f6c1d82c2951",
+          "text_len": 916
+        },
+        {
+          "chunk_id": "chk_6b9f765a7ed7a547ea79f8d569315266971a5203",
+          "version_id": "ver_de7f74230c8f10d30aea5d037a3bd0a5",
+          "section_path": [
+            "Messages",
+            "Domain Types",
+            "Beta Skill Params"
+          ],
+          "char_start": 765801,
+          "char_end": 766231,
+          "score": 0.40694986006468137,
+          "rank": 3,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "6f3de5a8d86bb1f22fdd7fad3c9957d0956b8b32585d2f075a02ceda2711318e",
+          "text_len": 430
+        },
+        {
+          "chunk_id": "chk_b03f161afc2cac716b24b3c9c5297e2f950ebbee",
+          "version_id": "ver_5a15a8f543d432ef91eb6e2997f51225",
+          "section_path": [
+            "Using Skills in Messages",
+            "Container parameter"
+          ],
+          "char_start": 4779,
+          "char_end": 5112,
+          "score": 0.3958393695450212,
+          "rank": 4,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "78bbeffbc3fcc2d03d1d31678f2bc6a535ce24d636ee002986a10a751f5c25ee",
+          "text_len": 333
+        },
+        {
+          "chunk_id": "chk_c8d65da0db1e7a9ac5681c089a17bdda42b9bb9d",
+          "version_id": "ver_de7f74230c8f10d30aea5d037a3bd0a5",
+          "section_path": [
+            "Messages",
+            "Domain Types",
+            "Beta Skill"
+          ],
+          "char_start": 765405,
+          "char_end": 765799,
+          "score": 0.3901215195655823,
+          "rank": 5,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "41a2d18cec69d4c124bdea9d08eb88fb0a711437d25ea61d64ba766f56d59de8",
+          "text_len": 394
+        },
+        {
+          "chunk_id": "chk_570019d7fdce8371816636d9ee04a57d29dea0e5",
+          "version_id": "ver_de7f74230c8f10d30aea5d037a3bd0a5",
+          "section_path": [
+            "Agents",
+            "Domain Types",
+            "Beta Managed Agents Anthropic Skill Params"
+          ],
+          "char_start": 1398874,
+          "char_end": 1399246,
+          "score": 0.38019828436395386,
+          "rank": 6,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "f92b5a426cc93a77f1d8d601619a470b00034c312e368e8ad40921470d1b4e5c",
+          "text_len": 372
+        },
+        {
+          "chunk_id": "chk_7ea0fba9f463c34c01bcb298787aa8d560d1368b",
+          "version_id": "ver_de7f74230c8f10d30aea5d037a3bd0a5",
+          "section_path": [
+            "Agents",
+            "Domain Types",
+            "Beta Managed Agents Skill Params"
+          ],
+          "char_start": 1429382,
+          "char_end": 1430255,
+          "score": 0.367929334629977,
+          "rank": 7,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "0c23ac67812b469da64702cbebc2d91fcf5d3b4527894f3a00a010145eb11907",
+          "text_len": 873
+        },
+        {
+          "chunk_id": "chk_5b8737f23dd707c1ab1bdddf6fac3faffe02af99",
+          "version_id": "ver_90de89ac7da393e4d9056cf12204d046",
+          "section_path": [
+            "API Reference",
+            "Current method"
+          ],
+          "char_start": 18347,
+          "char_end": 18420,
+          "score": 0.3468477634696825,
+          "rank": 8,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "a34a88bef2bdb99328a463f1fcefdc265d600d5b1937bf868067f17a8eacea2a",
+          "text_len": 73
+        },
+        {
+          "chunk_id": "chk_bc9a01ce2bd86254bee2306a5472c29789a7f9db",
+          "version_id": "ver_1f49b1ad8b70725119b878c73a3cf8e9",
+          "section_path": [
+            "Model ID format",
+            "Before the 4.6 generation"
+          ],
+          "char_start": 2178,
+          "char_end": 2381,
+          "score": 0.33964366676547186,
+          "rank": 9,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "9b98dcc36de91d219c05e6db715681aa6c91408a140687320f58057fbd05cf60",
+          "text_len": 203
+        },
+        {
+          "chunk_id": "chk_b58426c370cba532bd2587d763db4b0651b63242",
+          "version_id": "ver_18c692f4d28bd01c0a5cac553fcf01a7",
+          "section_path": [
+            "Messages"
+          ],
+          "char_start": 79,
+          "char_end": 89,
+          "score": 0.3393451965245493,
+          "rank": 10,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "57ee58a82223a62be22eb3b30d22ca56dd07a02b32227ec9483a81d18c914c65",
+          "text_len": 10
+        }
+      ]
+    },
+    {
+      "case_id": "AN-009",
+      "category": "version_conflict",
+      "k": 10,
+      "expected_evidence_count": 1,
+      "evidence_found_count": 1,
+      "recall": 1.0,
+      "found": [
+        {
+          "version_id": "ver_795b67a3865ed717b915a2c9c9e5746c",
+          "section_path": [
+            "Preamble"
+          ],
+          "char_start": 246,
+          "char_end": 318
+        }
+      ],
+      "missed": [],
+      "hits": [
+        {
+          "chunk_id": "chk_3ca2ff24b047321f3f33112db03f5633835d78cd",
+          "version_id": "ver_795b67a3865ed717b915a2c9c9e5746c",
+          "section_path": [
+            "Preamble"
+          ],
+          "char_start": 0,
+          "char_end": 897,
+          "score": 0.5406554937362671,
+          "rank": 1,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "c10036f9f860e816a7e07c853560b6bfa1e6c518030558a090e91d8c0cbaf81c",
+          "text_len": 897
+        },
+        {
+          "chunk_id": "chk_28a3a25b468312fa2770dfaf235378def9e36c75",
+          "version_id": "ver_795b67a3865ed717b915a2c9c9e5746c",
+          "section_path": [
+            "Using service tiers"
+          ],
+          "char_start": 7408,
+          "char_end": 7610,
+          "score": 0.48909786343574524,
+          "rank": 2,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "b178c13cd9e9c65d44f99d22722bce596f0c0dddef5ba8f5e18960f5b8251ed6",
+          "text_len": 202
+        },
+        {
+          "chunk_id": "chk_dec07ad060a32faa677d40db5365f5e4cf4567f3",
+          "version_id": "ver_795b67a3865ed717b915a2c9c9e5746c",
+          "section_path": [
+            "Existing Priority Tier commitments"
+          ],
+          "char_start": 8071,
+          "char_end": 8462,
+          "score": 0.4885858310954807,
+          "rank": 3,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "70b19611f6e408eb9993b459ecacb2e456d5045e46a6d77ee4c3dfedc4e07043",
+          "text_len": 391
+        },
+        {
+          "chunk_id": "chk_60b203d13a46cb5cbaeeea0bac85c548ba191dde",
+          "version_id": "ver_795b67a3865ed717b915a2c9c9e5746c",
+          "section_path": [
+            "Standard Tier"
+          ],
+          "char_start": 899,
+          "char_end": 1079,
+          "score": 0.47845977544784546,
+          "rank": 4,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "cf13ec50909a30a4138010dbdd63570851abd4cf9d1cd89e160a1bd34f7509f8",
+          "text_len": 180
+        },
+        {
+          "chunk_id": "chk_a0a8ae4e100d3feae719844c14be8f98af71a79d",
+          "version_id": "ver_795b67a3865ed717b915a2c9c9e5746c",
+          "section_path": [
+            "Using service tiers"
+          ],
+          "char_start": 6833,
+          "char_end": 7218,
+          "score": 0.46268530078784553,
+          "rank": 5,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "51951b6931f8c99a3bd25bb73c05727b7394b0ae06ceda4fc8949231ef75abd9",
+          "text_len": 385
+        },
+        {
+          "chunk_id": "chk_f511fad2260e966198a7a24bd63328a2e6315536",
+          "version_id": "ver_795b67a3865ed717b915a2c9c9e5746c",
+          "section_path": [
+            "Priority Tier"
+          ],
+          "char_start": 1081,
+          "char_end": 1469,
+          "score": 0.4565264310523023,
+          "rank": 6,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "a456e860b8020864817ea9b9597df18d509b6b499622f983afdd770ae47f7430",
+          "text_len": 388
+        },
+        {
+          "chunk_id": "chk_79059eadc2995d0b914552581bb7a62c4f06cb8b",
+          "version_id": "ver_c8b2c7130cb18508fed4f864d4c3d7a3",
+          "section_path": [
+            "About rate limits"
+          ],
+          "char_start": 1545,
+          "char_end": 3299,
+          "score": 0.4088147282600403,
+          "rank": 7,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "04ba0de7c22497750f48d4ea2a62b443921241ba78b49bf08b9d91593e3d0a23",
+          "text_len": 1754
+        },
+        {
+          "chunk_id": "chk_fb49bda79e52393194226a66884fb1c2a964efc3",
+          "version_id": "ver_795b67a3865ed717b915a2c9c9e5746c",
+          "section_path": [
+            "Using service tiers"
+          ],
+          "char_start": 7939,
+          "char_end": 8069,
+          "score": 0.4071734602943988,
+          "rank": 8,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "3d4ccd3b682f55f09cc0917253064338e6419b4c36d7e84cb8a282b47a742e98",
+          "text_len": 130
+        },
+        {
+          "chunk_id": "chk_bdabd11944675c386107ac0b369ccc3f46ed7bdc",
+          "version_id": "ver_795b67a3865ed717b915a2c9c9e5746c",
+          "section_path": [
+            "Using service tiers"
+          ],
+          "char_start": 3942,
+          "char_end": 4291,
+          "score": 0.3931764725937569,
+          "rank": 9,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "f8f33ab3bb7279f7f9ca61e6952117e206464bb39a06174f2769ef6875f69565",
+          "text_len": 349
+        },
+        {
+          "chunk_id": "chk_d86957e295d97cd6c9cc769a7f57736b0414d06a",
+          "version_id": "ver_795b67a3865ed717b915a2c9c9e5746c",
+          "section_path": [
+            "How requests get assigned tiers"
+          ],
+          "char_start": 1471,
+          "char_end": 3121,
+          "score": 0.38091757893562317,
+          "rank": 10,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "1f253ac8025587dbdc6124a1d380bad7793cf304b624da53d0d2039189d61ec8",
+          "text_len": 1650
+        }
+      ]
+    },
+    {
+      "case_id": "AN-010",
+      "category": "version_conflict",
+      "k": 10,
+      "expected_evidence_count": 1,
+      "evidence_found_count": 0,
+      "recall": 0.0,
+      "found": [],
+      "missed": [
+        {
+          "version_id": "ver_b57691291ac216e12d311d60db579b43",
+          "section_path": [
+            "Model status"
+          ],
+          "char_start": 5671,
+          "char_end": 5769
+        }
+      ],
+      "hits": [
+        {
+          "chunk_id": "chk_f426538641512568e897d54b1f900d8dc69bec91",
+          "version_id": "ver_a183af1cb18fd2f8c9d16398cc617af6",
+          "section_path": [
+            "Tools",
+            "functions"
+          ],
+          "char_start": 19457,
+          "char_end": 20149,
+          "score": 0.36899943259357126,
+          "rank": 1,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "95acc476d7ead852c6940569fd33ad441a6cbb500d33a2ae01efb2bce47dbe5b",
+          "text_len": 692
+        },
+        {
+          "chunk_id": "chk_91a2f23dc703cfbeaad1d48bd3c3d6348430f473",
+          "version_id": "ver_7102d3e3621c153ddba38db4eb52ad9f",
+          "section_path": [
+            "Disable parallel tool use",
+            "At most one tool call"
+          ],
+          "char_start": 30667,
+          "char_end": 31597,
+          "score": 0.3643016219139126,
+          "rank": 2,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "e057ba95d3c734a5eacd0b9a8e96265ffbc2054ec448c3ed8fcfbcdf0adbfe71",
+          "text_len": 930
+        },
+        {
+          "chunk_id": "chk_99701df6442cc80b5cacca449b8670ef3d348b3f",
+          "version_id": "ver_dceff361b3d8dbf0010506c5d33695f2",
+          "section_path": [
+            "How to work with large language models",
+            "How to control a large language model"
+          ],
+          "char_start": 1062,
+          "char_end": 1660,
+          "score": 0.3639211735772394,
+          "rank": 3,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "1168b95fbf57a3a02b3acc0f17ff7d47a386bb893a1c6e9d004f6cd2b02050c2",
+          "text_len": 598
+        },
+        {
+          "chunk_id": "chk_62a3dc6f8eb617cdfcf647009446c1087062c85e",
+          "version_id": "ver_7102d3e3621c153ddba38db4eb52ad9f",
+          "section_path": [
+            "Disable parallel tool use",
+            "Exactly one tool call"
+          ],
+          "char_start": 38913,
+          "char_end": 39842,
+          "score": 0.36215511222081187,
+          "rank": 4,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "fc0b4ff454bf34e438685b1b5eff1f5945eb30181f5d9e9e52b6a4e1419a538d",
+          "text_len": 929
+        },
+        {
+          "chunk_id": "chk_e3359df5628cbad4fe8be7004c32954d4a803805",
+          "version_id": "ver_76c80d3d80b12ae7870092b39f1832f1",
+          "section_path": [
+            "How to count message tokens",
+            "Count tokens in messages with tools"
+          ],
+          "char_start": 7264,
+          "char_end": 8048,
+          "score": 0.36116302840930126,
+          "rank": 5,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "2e4524d65a8762bf70ea4cc472dad2ea6088ba4e0a98b17b4be17702bbe95493",
+          "text_len": 784
+        },
+        {
+          "chunk_id": "chk_9e0418bb715c2fcd74696457c6e1e1f815672221",
+          "version_id": "ver_c3bc78079e1e9859817a52f73ce2c1bd",
+          "section_path": [
+            "Controlling Claude's output",
+            "Model responses with tools"
+          ],
+          "char_start": 33280,
+          "char_end": 33566,
+          "score": 0.35871911048889416,
+          "rank": 6,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "0d8de742d26c2da4665ee8a0b8e90ed32772bc6012aad924272eba82c31193b4",
+          "text_len": 286
+        },
+        {
+          "chunk_id": "chk_6753df2fcba4297026daa80118c9bb81820a76e2",
+          "version_id": "ver_fef74b4dda29e84a533c3e83f753effd",
+          "section_path": [
+            "Context management",
+            "Local context",
+            "What `RunContextWrapper` exposes"
+          ],
+          "char_start": 2105,
+          "char_end": 3674,
+          "score": 0.3560561325516628,
+          "rank": 7,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "0826bcd7bc076fb45da4792f67924b6b0a814dd4a4b8e20f018064ffcac0c8bb",
+          "text_len": 1569
+        },
+        {
+          "chunk_id": "chk_941f05ad9ff7e848cbcc0e9cdc90d294dc5b8dc6",
+          "version_id": "ver_7102d3e3621c153ddba38db4eb52ad9f",
+          "section_path": [
+            "Disable parallel tool use",
+            "At most one tool call"
+          ],
+          "char_start": 36487,
+          "char_end": 37233,
+          "score": 0.35230495306194387,
+          "rank": 8,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "89ac68f21257e2b9b4be9769ae8a8d3892724fdd84e48dd0755036a0d1b14ed8",
+          "text_len": 746
+        },
+        {
+          "chunk_id": "chk_cf7050a7b59371a69dd9847b7694df899cd99528",
+          "version_id": "ver_7102d3e3621c153ddba38db4eb52ad9f",
+          "section_path": [
+            "Disable parallel tool use",
+            "At most one tool call"
+          ],
+          "char_start": 35576,
+          "char_end": 36483,
+          "score": 0.35126583561112457,
+          "rank": 9,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "a0c6bc5f21ab92b09f16e4fd725522a11b544be5cfdcc980ad7bf78ea9c9db63",
+          "text_len": 907
+        },
+        {
+          "chunk_id": "chk_590b6bfb8ae6826de6565f2799282fdd6b23cf72",
+          "version_id": "ver_76c80d3d80b12ae7870092b39f1832f1",
+          "section_path": [
+            "How to count message tokens",
+            "Count tokens in messages with tools"
+          ],
+          "char_start": 12844,
+          "char_end": 13490,
+          "score": 0.35083103179931885,
+          "rank": 10,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "154a6dd4daacfad136f65445f735894015e31b8a73b8b8bfcc8450551a3b8eba",
+          "text_len": 646
+        }
+      ]
+    },
+    {
+      "case_id": "AN-011",
+      "category": "ambiguous",
+      "k": 10,
+      "expected_evidence_count": 1,
+      "evidence_found_count": 1,
+      "recall": 1.0,
+      "found": [
+        {
+          "version_id": "ver_c8b2c7130cb18508fed4f864d4c3d7a3",
+          "section_path": [
+            "About rate limits"
+          ],
+          "char_start": 1672,
+          "char_end": 1849
+        }
+      ],
+      "missed": [],
+      "hits": [
+        {
+          "chunk_id": "chk_7d59d19c83f7a8bc25f7c3e7eee3d6eb8ef5eb64",
+          "version_id": "ver_c8b2c7130cb18508fed4f864d4c3d7a3",
+          "section_path": [
+            "Requesting higher limits"
+          ],
+          "char_start": 21676,
+          "char_end": 22598,
+          "score": 0.5092986822128296,
+          "rank": 1,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "702ba3b5b4090784cf01380dc83a3066b5b4977e768301aa394600801f098b4b",
+          "text_len": 922
+        },
+        {
+          "chunk_id": "chk_185dd90241acf9dcc9d973b916ea6775b6cdf35f",
+          "version_id": "ver_6cbca1c2343b84b7d5cf99029456cfa2",
+          "section_path": [
+            "Rate limits and availability",
+            "Rate limits"
+          ],
+          "char_start": 17865,
+          "char_end": 18757,
+          "score": 0.5058467086644951,
+          "rank": 2,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "3d707a2ebda859954682159c0111a6bcc5fbbf8c0d586846ee6b37eccec1033c",
+          "text_len": 892
+        },
+        {
+          "chunk_id": "chk_9b166f11685f518143d6c95cd62174c866558beb",
+          "version_id": "ver_c8b2c7130cb18508fed4f864d4c3d7a3",
+          "section_path": [
+            "Preamble"
+          ],
+          "char_start": 0,
+          "char_end": 1543,
+          "score": 0.49893865001933335,
+          "rank": 3,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "d294c4a4120550c7e42fdba87cc29977c7470efc2c8fe3cb95f83220aa952eb4",
+          "text_len": 1543
+        },
+        {
+          "chunk_id": "chk_c700a8a89f9239fc8433b3cdad23e6c3575f8a17",
+          "version_id": "ver_5ebdc722f9bedb1e2e8cbd3f29ff6805",
+          "section_path": [
+            "Rate limits and quotas"
+          ],
+          "char_start": 58021,
+          "char_end": 59441,
+          "score": 0.4673255999490269,
+          "rank": 4,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "4d48667b3ef8ebe1d6ff8538c5dacebd7e97ddaafd1c26c1a469d1a8903bd248",
+          "text_len": 1420
+        },
+        {
+          "chunk_id": "chk_e66d2a03134f5849066e3d04561e7106c7998bf6",
+          "version_id": "ver_c299b58fe1f5a4d3a081b550334a7df6",
+          "section_path": [
+            "Spend Limits"
+          ],
+          "char_start": 387624,
+          "char_end": 387638,
+          "score": 0.45705512166023254,
+          "rank": 5,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "65b8b784b7522f0e323f5d928360518e563aa304cbcdfc48a189ed4abe387555",
+          "text_len": 14
+        },
+        {
+          "chunk_id": "chk_79059eadc2995d0b914552581bb7a62c4f06cb8b",
+          "version_id": "ver_c8b2c7130cb18508fed4f864d4c3d7a3",
+          "section_path": [
+            "About rate limits"
+          ],
+          "char_start": 1545,
+          "char_end": 3299,
+          "score": 0.4527354836463928,
+          "rank": 6,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "04ba0de7c22497750f48d4ea2a62b443921241ba78b49bf08b9d91593e3d0a23",
+          "text_len": 1754
+        },
+        {
+          "chunk_id": "chk_5d219e838ef59b963c4396c0a3a818dc0b23883d",
+          "version_id": "ver_5ebdc722f9bedb1e2e8cbd3f29ff6805",
+          "section_path": [
+            "Billing",
+            "Spend limits"
+          ],
+          "char_start": 59958,
+          "char_end": 61093,
+          "score": 0.439487099647522,
+          "rank": 7,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "9006b6e4e846de1c57a7f36a7598d71f0de291be07d2a375c0d463147c0e070d",
+          "text_len": 1135
+        },
+        {
+          "chunk_id": "chk_e042ed62a9beaf0f6fbd22a46a8abc233b23091c",
+          "version_id": "ver_c8b2c7130cb18508fed4f864d4c3d7a3",
+          "section_path": [
+            "Rate limits",
+            "Monitoring your rate limits in the Console"
+          ],
+          "char_start": 20684,
+          "char_end": 21674,
+          "score": 0.4378953539070706,
+          "rank": 8,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "a26261dd1522fe94c679c1e7fb635ad99a561d676ffa19d44f6df71698ab5872",
+          "text_len": 990
+        },
+        {
+          "chunk_id": "chk_dbfad14b2ef6bffa86d194293cda475c36034f68",
+          "version_id": "ver_c8b2c7130cb18508fed4f864d4c3d7a3",
+          "section_path": [
+            "Spend limits"
+          ],
+          "char_start": 3301,
+          "char_end": 4946,
+          "score": 0.4370364621834235,
+          "rank": 9,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "e36da1c4ee951fb0d7d0aa34ab85d74f506ad1c6c1fdf94315450f533a2b1305",
+          "text_len": 1645
+        },
+        {
+          "chunk_id": "chk_f4c89f18cd6422509656c5cae228d772d4564a00",
+          "version_id": "ver_76c80d3d80b12ae7870092b39f1832f1",
+          "section_path": [
+            "Pricing and rate limits"
+          ],
+          "char_start": 40448,
+          "char_end": 41163,
+          "score": 0.4368990659713745,
+          "rank": 10,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "ac138661d50c0a9b2c06a26bea01d4e58be56a5868373691bf3c2851302f2d26",
+          "text_len": 715
+        }
+      ]
+    },
+    {
+      "case_id": "AN-012",
+      "category": "multi_hop",
+      "k": 10,
+      "expected_evidence_count": 2,
+      "evidence_found_count": 1,
+      "recall": 0.5,
+      "found": [
+        {
+          "version_id": "ver_0774ca0093ff4a846753577c9a4a39d5",
+          "section_path": [
+            "HTTP errors"
+          ],
+          "char_start": 1840,
+          "char_end": 1904
+        }
+      ],
+      "missed": [
+        {
+          "version_id": "ver_c8b2c7130cb18508fed4f864d4c3d7a3",
+          "section_path": [
+            "About rate limits"
+          ],
+          "char_start": 1672,
+          "char_end": 1849
+        }
+      ],
+      "hits": [
+        {
+          "chunk_id": "chk_3637047ad8c3ad86e828fa96409053976e78b196",
+          "version_id": "ver_8d4259b6f07a26872a702810f0dbaf89",
+          "section_path": [
+            "Handling errors with is\\_error"
+          ],
+          "char_start": 9129,
+          "char_end": 10207,
+          "score": 0.4566491518407563,
+          "rank": 1,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "87c499ff98f2347545d48379d268c5719ac1394aaa5655b23cdbd758cb485b7c",
+          "text_len": 1078
+        },
+        {
+          "chunk_id": "chk_3dc730b00afefa27069177446f046c3826f450bc",
+          "version_id": "ver_0774ca0093ff4a846753577c9a4a39d5",
+          "section_path": [
+            "Preamble"
+          ],
+          "char_start": 0,
+          "char_end": 244,
+          "score": 0.43748557194981486,
+          "rank": 2,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "99a00ecbcba550f128d9c148534d4c7bd48de42f35ed5ea5a142e0da56dab92b",
+          "text_len": 244
+        },
+        {
+          "chunk_id": "chk_9c1a85ba86944f8423b261d6bd59f678727cf20f",
+          "version_id": "ver_b8b18cda9b875d51a2ce979a1bf4e909",
+          "section_path": [
+            "Model compatibility"
+          ],
+          "char_start": 92785,
+          "char_end": 92898,
+          "score": 0.41784992324411485,
+          "rank": 3,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "1591ea4b2fc1d87d21cf20cfcad5388e059bdec54fe54ec1da99c644eb6a2a44",
+          "text_len": 113
+        },
+        {
+          "chunk_id": "chk_c489a281149ad3f3dd30936ed094099a8e17999b",
+          "version_id": "ver_0774ca0093ff4a846753577c9a4a39d5",
+          "section_path": [
+            "HTTP errors"
+          ],
+          "char_start": 246,
+          "char_end": 3573,
+          "score": 0.4128706351364416,
+          "rank": 4,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "bec61efde1ff92ba46b4515e111d433da3d889426fc6cca60d308d88bb9d0202",
+          "text_len": 3327
+        },
+        {
+          "chunk_id": "chk_822e5f96323bd027ad5b9dc3af5d30954f9616fb",
+          "version_id": "ver_d81ee605bd8bbb880deea432e51462ac",
+          "section_path": [
+            "Trigger a routine",
+            "Errors"
+          ],
+          "char_start": 9848,
+          "char_end": 12097,
+          "score": 0.411829972972273,
+          "rank": 5,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "699ffae2c05f82424bf3f861084dbc893a774667bbb4a97a8ee4939faa99e05d",
+          "text_len": 2249
+        },
+        {
+          "chunk_id": "chk_2c9de8648cd4e980a44ae6e47f52063f6f860dfe",
+          "version_id": "ver_b5502ab213189f01390571b2f5ef5f85",
+          "section_path": [
+            "Task scope and over-verification"
+          ],
+          "char_start": 7626,
+          "char_end": 8091,
+          "score": 0.3983548521014967,
+          "rank": 6,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "2ec2f4e98d09a01e6425e81c8967364fade71bb1dd774e60b2c9ed02f38b84e2",
+          "text_len": 465
+        },
+        {
+          "chunk_id": "chk_07bf8a2ae8c75a58dde3285af1aededf4ed05610",
+          "version_id": "ver_9b41707e7208a7dc8becc81b25df27b6",
+          "section_path": [
+            "A 400 error says thinking blocks cannot be modified"
+          ],
+          "char_start": 7167,
+          "char_end": 7323,
+          "score": 0.39207842302789897,
+          "rank": 7,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "3c0bb127f7228e5f23e72f7b4ca03385e869f0f07a057e4d04b4d0a5efb8ad77",
+          "text_len": 156
+        },
+        {
+          "chunk_id": "chk_07e4e3465af5cc54fba080777e22de3b2815b98c",
+          "version_id": "ver_a1558a5b96585b57f0f8865f48e33073",
+          "section_path": [
+            "User guide for gpt-oss-safeguard",
+            "Introduction & Overview",
+            "Using gpt-oss-safeguards with HuggingFace Transformers"
+          ],
+          "char_start": 4565,
+          "char_end": 4610,
+          "score": 0.39169809867751637,
+          "rank": 8,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "028252b6049501fcd595fc9b91ffe20bb5a688793940304ff94eec929551ffe5",
+          "text_len": 45
+        },
+        {
+          "chunk_id": "chk_1691f04487401bc13388c13c0b9cb286a006de84",
+          "version_id": "ver_6b3ff8e63de5417e301da5fa5adf415e",
+          "section_path": [
+            "How to run gpt-oss with Hugging Face Transformers",
+            "Create an Open AI Responses / Chat Completions endpoint"
+          ],
+          "char_start": 2445,
+          "char_end": 2490,
+          "score": 0.39169809867751637,
+          "rank": 9,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "028252b6049501fcd595fc9b91ffe20bb5a688793940304ff94eec929551ffe5",
+          "text_len": 45
+        },
+        {
+          "chunk_id": "chk_3e644cb1a16d172dc0b21b2a8fe08d1ec958abdd",
+          "version_id": "ver_9b41707e7208a7dc8becc81b25df27b6",
+          "section_path": [
+            "A 400 error says `\"thinking.type.disabled\"` is not supported"
+          ],
+          "char_start": 5365,
+          "char_end": 5485,
+          "score": 0.3912505144626216,
+          "rank": 10,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "8f84f63ab7c03e1ef0659ac080f516af5c57245c049003fe6f65999aed229c4e",
+          "text_len": 120
+        }
+      ]
+    },
+    {
+      "case_id": "OA-001",
+      "category": "exact_lookup",
+      "k": 10,
+      "expected_evidence_count": 1,
+      "evidence_found_count": 0,
+      "recall": 0.0,
+      "found": [],
+      "missed": [
+        {
+          "version_id": "ver_6b90217721b841b1329f51ec1caab139",
+          "section_path": [
+            "Tracing"
+          ],
+          "char_start": 512,
+          "char_end": 553
+        }
+      ],
+      "hits": [
+        {
+          "chunk_id": "chk_2753d95cafe4c30008abb9446b826ed49433fcbd",
+          "version_id": "ver_f15e1a531d680bb98179238f80355058",
+          "section_path": [
+            "Configuration",
+            "OpenAI provider defaults"
+          ],
+          "char_start": 6229,
+          "char_end": 6518,
+          "score": 0.6282766614290083,
+          "rank": 1,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "6c4f540cad53435ddfd130fc273351206616cfaaa7e5de8fcc8af39befc6109b",
+          "text_len": 289
+        },
+        {
+          "chunk_id": "chk_4641f2adc4d01c0dc38577b4d4427167ca8de77e",
+          "version_id": "ver_6b90217721b841b1329f51ec1caab139",
+          "section_path": [
+            "Tracing",
+            "Ecosystem integrations"
+          ],
+          "char_start": 10397,
+          "char_end": 10529,
+          "score": 0.620981450764669,
+          "rank": 2,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "50d230385cbe105c4951db2913f6e82086f7350cb0142b3dc1a0b9229a7994c8",
+          "text_len": 132
+        },
+        {
+          "chunk_id": "chk_92fa440a7d4555008d2fd5c2ca71f2679d4cc9af",
+          "version_id": "ver_f15e1a531d680bb98179238f80355058",
+          "section_path": [
+            "Configuration",
+            "API keys and clients"
+          ],
+          "char_start": 1864,
+          "char_end": 2308,
+          "score": 0.5644065646296671,
+          "rank": 3,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "0f993ee7e385e7e6d7c7859eede0491654d1a147cbb656da976f44341568b761",
+          "text_len": 444
+        },
+        {
+          "chunk_id": "chk_1f664f82d4c6fb60f0979355c43b2138c760bbae",
+          "version_id": "ver_7c087a260ac830f2b4fa1396300b3fcc",
+          "section_path": [
+            "Quickstart",
+            "Prerequisites"
+          ],
+          "char_start": 464,
+          "char_end": 575,
+          "score": 0.5567227073577303,
+          "rank": 4,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "d87745c0826b02fc80ebf4ea010783afb17f409f8536b65b30990f49f045b4e9",
+          "text_len": 111
+        },
+        {
+          "chunk_id": "chk_d968677d8b907799740ef81bea9a8c005b2b2e7d",
+          "version_id": "ver_02c06cea4a4bbffd4d01ee202f124a75",
+          "section_path": [
+            "OpenAI Agents SDK"
+          ],
+          "char_start": 0,
+          "char_end": 1001,
+          "score": 0.5366147044254597,
+          "rank": 5,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "9c9dd590f306fa41d96e0139387cc1fc8d64b8252b26a91c57c42aead014b504",
+          "text_len": 1001
+        },
+        {
+          "chunk_id": "chk_f40474e83f00a695a7dd53ac8807dca7c06973ed",
+          "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+          "section_path": [
+            "Running agents",
+            "Durable execution integrations and human-in-the-loop",
+            "Dapr"
+          ],
+          "char_start": 31381,
+          "char_end": 31786,
+          "score": 0.5326491753056459,
+          "rank": 6,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "c6402152cf711f73e195deafdc6c315bb7eb2071d3f5d806ffa297c28ca584b0",
+          "text_len": 405
+        },
+        {
+          "chunk_id": "chk_482e30a20183db65acb5c05eac23b53f46db98c5",
+          "version_id": "ver_4c8080ebe566273e171b49c803949f77",
+          "section_path": [
+            "For 120B",
+            "Agents SDK Integration"
+          ],
+          "char_start": 4250,
+          "char_end": 4630,
+          "score": 0.5111070732272055,
+          "rank": 7,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "4e24e5b0c430ad74ee29886e2c9d70248717bbb45201f923930fa9a0bc96af02",
+          "text_len": 380
+        },
+        {
+          "chunk_id": "chk_e8bf4e75926f69496a38984e80fe83421c78b276",
+          "version_id": "ver_b175ceb412d40bc9910f6b5c1ce4ebf1",
+          "section_path": [
+            "Quickstart",
+            "Prerequisites"
+          ],
+          "char_start": 14,
+          "char_end": 224,
+          "score": 0.48978836864864794,
+          "rank": 8,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "7c971e433d833039f93fd90f3fcbe85cd99ddceedf82a6cb3a30a90e738b708b",
+          "text_len": 210
+        },
+        {
+          "chunk_id": "chk_3acba94ce61625e55c0363d82594b78d6866a023",
+          "version_id": "ver_f15e1a531d680bb98179238f80355058",
+          "section_path": [
+            "Configuration",
+            "API keys and clients"
+          ],
+          "char_start": 2401,
+          "char_end": 2707,
+          "score": 0.4897236075915036,
+          "rank": 9,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "2c0594a114452604fae85e59dbf2da194f7133ca1a87f64c7e2ddb809fd099b9",
+          "text_len": 306
+        },
+        {
+          "chunk_id": "chk_a29fbc4bee72c24a0592267be288b83f094e9aba",
+          "version_id": "ver_f30a6447e4df2ab76e4c1475f353109c",
+          "section_path": [
+            "OpenAI TypeScript and JavaScript API Library",
+            "Advanced Usage",
+            "Logging",
+            "Log levels"
+          ],
+          "char_start": 19756,
+          "char_end": 19945,
+          "score": 0.46653525232093984,
+          "rank": 10,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "6e2f8d9b9b162e6b33cd2e44a8100b1cc47a7bd16ec3ea20a2c8d66599872cf7",
+          "text_len": 189
+        }
+      ]
+    },
+    {
+      "case_id": "OA-002",
+      "category": "exact_lookup",
+      "k": 10,
+      "expected_evidence_count": 1,
+      "evidence_found_count": 0,
+      "recall": 0.0,
+      "found": [],
+      "missed": [
+        {
+          "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+          "section_path": [
+            "Running agents",
+            "Exceptions"
+          ],
+          "char_start": 33598,
+          "char_end": 33793
+        }
+      ],
+      "hits": [
+        {
+          "chunk_id": "chk_f40474e83f00a695a7dd53ac8807dca7c06973ed",
+          "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+          "section_path": [
+            "Running agents",
+            "Durable execution integrations and human-in-the-loop",
+            "Dapr"
+          ],
+          "char_start": 31381,
+          "char_end": 31786,
+          "score": 0.6151162615349148,
+          "rank": 1,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "c6402152cf711f73e195deafdc6c315bb7eb2071d3f5d806ffa297c28ca584b0",
+          "text_len": 405
+        },
+        {
+          "chunk_id": "chk_4641f2adc4d01c0dc38577b4d4427167ca8de77e",
+          "version_id": "ver_6b90217721b841b1329f51ec1caab139",
+          "section_path": [
+            "Tracing",
+            "Ecosystem integrations"
+          ],
+          "char_start": 10397,
+          "char_end": 10529,
+          "score": 0.5360260605812073,
+          "rank": 2,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "50d230385cbe105c4951db2913f6e82086f7350cb0142b3dc1a0b9229a7994c8",
+          "text_len": 132
+        },
+        {
+          "chunk_id": "chk_482e30a20183db65acb5c05eac23b53f46db98c5",
+          "version_id": "ver_4c8080ebe566273e171b49c803949f77",
+          "section_path": [
+            "For 120B",
+            "Agents SDK Integration"
+          ],
+          "char_start": 4250,
+          "char_end": 4630,
+          "score": 0.5007442831993103,
+          "rank": 3,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "4e24e5b0c430ad74ee29886e2c9d70248717bbb45201f923930fa9a0bc96af02",
+          "text_len": 380
+        },
+        {
+          "chunk_id": "chk_1f664f82d4c6fb60f0979355c43b2138c760bbae",
+          "version_id": "ver_7c087a260ac830f2b4fa1396300b3fcc",
+          "section_path": [
+            "Quickstart",
+            "Prerequisites"
+          ],
+          "char_start": 464,
+          "char_end": 575,
+          "score": 0.4958206860965697,
+          "rank": 4,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "d87745c0826b02fc80ebf4ea010783afb17f409f8536b65b30990f49f045b4e9",
+          "text_len": 111
+        },
+        {
+          "chunk_id": "chk_d968677d8b907799740ef81bea9a8c005b2b2e7d",
+          "version_id": "ver_02c06cea4a4bbffd4d01ee202f124a75",
+          "section_path": [
+            "OpenAI Agents SDK"
+          ],
+          "char_start": 0,
+          "char_end": 1001,
+          "score": 0.4866570234298706,
+          "rank": 5,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "9c9dd590f306fa41d96e0139387cc1fc8d64b8252b26a91c57c42aead014b504",
+          "text_len": 1001
+        },
+        {
+          "chunk_id": "chk_1b6e57d40bd8afb510c9d68b583a7ae56c4d2300",
+          "version_id": "ver_7c087a260ac830f2b4fa1396300b3fcc",
+          "section_path": [
+            "Quickstart",
+            "Installation"
+          ],
+          "char_start": 577,
+          "char_end": 648,
+          "score": 0.47453738521373934,
+          "rank": 6,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "9a2362f39cfe7532b4dc4744896f6e93f71367f7a5f80454be23c3c261345c8c",
+          "text_len": 71
+        },
+        {
+          "chunk_id": "chk_6e36635a81e1ad458eff8a585dba675fe37df699",
+          "version_id": "ver_feedbba6f99f53753d196209fa7b16b5",
+          "section_path": [
+            "Quickstart",
+            "Create a project and virtual environment",
+            "Install the Agents SDK"
+          ],
+          "char_start": 358,
+          "char_end": 384,
+          "score": 0.44108396768569946,
+          "rank": 7,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "995b922a8558936487c26615b97a0ac41b62166c67b7b1644895ff234d7b8e5a",
+          "text_len": 26
+        },
+        {
+          "chunk_id": "chk_c0b83d38ba1157bdaf55dd107e1a8e1cf8d81a12",
+          "version_id": "ver_2c65efe0ba3d6dfd202b049a8b6fcb27",
+          "section_path": [
+            "For 120B",
+            "Agents SDK integration"
+          ],
+          "char_start": 4190,
+          "char_end": 4881,
+          "score": 0.4374040495575683,
+          "rank": 8,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "ee148561683626b116de5f689a3c79bf74d2f83faf84e4f6d46751bbb9ade8aa",
+          "text_len": 691
+        },
+        {
+          "chunk_id": "chk_c24c1a9df2502d944a1be63f49b7fa265f343d11",
+          "version_id": "ver_cbeb36b7cf9a5e241940a011629b6f1b",
+          "section_path": [
+            "Tools"
+          ],
+          "char_start": 0,
+          "char_end": 621,
+          "score": 0.4235800332897913,
+          "rank": 9,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "abbf56a52c2fcf16ae74710956f40cdad03ee1072562a833848340f4ff740891",
+          "text_len": 621
+        },
+        {
+          "chunk_id": "chk_8153c08e3eff1aa547678fda9fe5340bf4c1b698",
+          "version_id": "ver_ae909bf8b4bbbe1d1a11119447f7ac94",
+          "section_path": [
+            "Models",
+            "OpenAI models",
+            "Responses WebSocket transport",
+            "Provider or run-level setup"
+          ],
+          "char_start": 9728,
+          "char_end": 9961,
+          "score": 0.4227213607596547,
+          "rank": 10,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "f3859d268a18b8dc9610e2726edf757e01952d7a327b7540a415cab51419a567",
+          "text_len": 233
+        }
+      ]
+    },
+    {
+      "case_id": "OA-003",
+      "category": "exact_lookup",
+      "k": 10,
+      "expected_evidence_count": 1,
+      "evidence_found_count": 0,
+      "recall": 0.0,
+      "found": [],
+      "missed": [
+        {
+          "version_id": "ver_f22fbd5c504fa28a4e70440337e4a495",
+          "section_path": [
+            "Guardrails",
+            "Tripwires"
+          ],
+          "char_start": 7225,
+          "char_end": 7381
+        }
+      ],
+      "hits": [
+        {
+          "chunk_id": "chk_c8d7af77f22c0a8f5d0beeed37261b3af30fb5ee",
+          "version_id": "ver_14a2187cf2216b9d56c213b520a28479",
+          "section_path": [
+            "Realtime agents guide",
+            "Agent and session configuration",
+            "Input transcription settings"
+          ],
+          "char_start": 5149,
+          "char_end": 5719,
+          "score": 0.5716577768325806,
+          "rank": 1,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "68f66c71c247547151bc141b8e76bcf32fc0a17f8f1209225eec415e1bbba91d",
+          "text_len": 570
+        },
+        {
+          "chunk_id": "chk_4641f2adc4d01c0dc38577b4d4427167ca8de77e",
+          "version_id": "ver_6b90217721b841b1329f51ec1caab139",
+          "section_path": [
+            "Tracing",
+            "Ecosystem integrations"
+          ],
+          "char_start": 10397,
+          "char_end": 10529,
+          "score": 0.5374569296836853,
+          "rank": 2,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "50d230385cbe105c4951db2913f6e82086f7350cb0142b3dc1a0b9229a7994c8",
+          "text_len": 132
+        },
+        {
+          "chunk_id": "chk_f40474e83f00a695a7dd53ac8807dca7c06973ed",
+          "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+          "section_path": [
+            "Running agents",
+            "Durable execution integrations and human-in-the-loop",
+            "Dapr"
+          ],
+          "char_start": 31381,
+          "char_end": 31786,
+          "score": 0.5045208630251379,
+          "rank": 3,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "c6402152cf711f73e195deafdc6c315bb7eb2071d3f5d806ffa297c28ca584b0",
+          "text_len": 405
+        },
+        {
+          "chunk_id": "chk_1f664f82d4c6fb60f0979355c43b2138c760bbae",
+          "version_id": "ver_7c087a260ac830f2b4fa1396300b3fcc",
+          "section_path": [
+            "Quickstart",
+            "Prerequisites"
+          ],
+          "char_start": 464,
+          "char_end": 575,
+          "score": 0.46232174224620315,
+          "rank": 4,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "d87745c0826b02fc80ebf4ea010783afb17f409f8536b65b30990f49f045b4e9",
+          "text_len": 111
+        },
+        {
+          "chunk_id": "chk_482e30a20183db65acb5c05eac23b53f46db98c5",
+          "version_id": "ver_4c8080ebe566273e171b49c803949f77",
+          "section_path": [
+            "For 120B",
+            "Agents SDK Integration"
+          ],
+          "char_start": 4250,
+          "char_end": 4630,
+          "score": 0.45499187707901,
+          "rank": 5,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "4e24e5b0c430ad74ee29886e2c9d70248717bbb45201f923930fa9a0bc96af02",
+          "text_len": 380
+        },
+        {
+          "chunk_id": "chk_d968677d8b907799740ef81bea9a8c005b2b2e7d",
+          "version_id": "ver_02c06cea4a4bbffd4d01ee202f124a75",
+          "section_path": [
+            "OpenAI Agents SDK"
+          ],
+          "char_start": 0,
+          "char_end": 1001,
+          "score": 0.4435845613479614,
+          "rank": 6,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "9c9dd590f306fa41d96e0139387cc1fc8d64b8252b26a91c57c42aead014b504",
+          "text_len": 1001
+        },
+        {
+          "chunk_id": "chk_1b6e57d40bd8afb510c9d68b583a7ae56c4d2300",
+          "version_id": "ver_7c087a260ac830f2b4fa1396300b3fcc",
+          "section_path": [
+            "Quickstart",
+            "Installation"
+          ],
+          "char_start": 577,
+          "char_end": 648,
+          "score": 0.44310102848121957,
+          "rank": 7,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "9a2362f39cfe7532b4dc4744896f6e93f71367f7a5f80454be23c3c261345c8c",
+          "text_len": 71
+        },
+        {
+          "chunk_id": "chk_6f99cddf2cfd27ef72fb633d4c642cc232ef0104",
+          "version_id": "ver_b275f1db2ff0a82e2654391774f8e398",
+          "section_path": [
+            "Ask a corrected question",
+            "Built-in session implementations",
+            "OpenAI Conversations API sessions"
+          ],
+          "char_start": 9110,
+          "char_end": 9353,
+          "score": 0.43682351331851044,
+          "rank": 8,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "bbfcceaa168e1e1269377119baf95af56eb52438ebf0d712c35ec85f79ca8d26",
+          "text_len": 243
+        },
+        {
+          "chunk_id": "chk_6e36635a81e1ad458eff8a585dba675fe37df699",
+          "version_id": "ver_feedbba6f99f53753d196209fa7b16b5",
+          "section_path": [
+            "Quickstart",
+            "Create a project and virtual environment",
+            "Install the Agents SDK"
+          ],
+          "char_start": 358,
+          "char_end": 384,
+          "score": 0.4273627698421478,
+          "rank": 9,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "995b922a8558936487c26615b97a0ac41b62166c67b7b1644895ff234d7b8e5a",
+          "text_len": 26
+        },
+        {
+          "chunk_id": "chk_a14c154d51c1a7712cf80870af1109fb9be95ee9",
+          "version_id": "ver_ae909bf8b4bbbe1d1a11119447f7ac94",
+          "section_path": [
+            "Models",
+            "OpenAI models",
+            "Hosted multi-agent (experimental)",
+            "Relationship to SDK orchestration"
+          ],
+          "char_start": 18674,
+          "char_end": 19303,
+          "score": 0.425933624859669,
+          "rank": 10,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "8a785939ec6e03f4928d82b7674d656bb409cb2d10defff133156d5576aee88a",
+          "text_len": 629
+        }
+      ]
+    },
+    {
+      "case_id": "OA-004",
+      "category": "exact_lookup",
+      "k": 10,
+      "expected_evidence_count": 1,
+      "evidence_found_count": 0,
+      "recall": 0.0,
+      "found": [],
+      "missed": [
+        {
+          "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+          "section_path": [
+            "Running agents",
+            "Runner lifecycle and configuration",
+            "The agent loop"
+          ],
+          "char_start": 2052,
+          "char_end": 2101
+        }
+      ],
+      "hits": [
+        {
+          "chunk_id": "chk_f40474e83f00a695a7dd53ac8807dca7c06973ed",
+          "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+          "section_path": [
+            "Running agents",
+            "Durable execution integrations and human-in-the-loop",
+            "Dapr"
+          ],
+          "char_start": 31381,
+          "char_end": 31786,
+          "score": 0.501919060602357,
+          "rank": 1,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "c6402152cf711f73e195deafdc6c315bb7eb2071d3f5d806ffa297c28ca584b0",
+          "text_len": 405
+        },
+        {
+          "chunk_id": "chk_482e30a20183db65acb5c05eac23b53f46db98c5",
+          "version_id": "ver_4c8080ebe566273e171b49c803949f77",
+          "section_path": [
+            "For 120B",
+            "Agents SDK Integration"
+          ],
+          "char_start": 4250,
+          "char_end": 4630,
+          "score": 0.4859102385151137,
+          "rank": 2,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "4e24e5b0c430ad74ee29886e2c9d70248717bbb45201f923930fa9a0bc96af02",
+          "text_len": 380
+        },
+        {
+          "chunk_id": "chk_c8d7af77f22c0a8f5d0beeed37261b3af30fb5ee",
+          "version_id": "ver_14a2187cf2216b9d56c213b520a28479",
+          "section_path": [
+            "Realtime agents guide",
+            "Agent and session configuration",
+            "Input transcription settings"
+          ],
+          "char_start": 5149,
+          "char_end": 5719,
+          "score": 0.485579850008509,
+          "rank": 3,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "68f66c71c247547151bc141b8e76bcf32fc0a17f8f1209225eec415e1bbba91d",
+          "text_len": 570
+        },
+        {
+          "chunk_id": "chk_d968677d8b907799740ef81bea9a8c005b2b2e7d",
+          "version_id": "ver_02c06cea4a4bbffd4d01ee202f124a75",
+          "section_path": [
+            "OpenAI Agents SDK"
+          ],
+          "char_start": 0,
+          "char_end": 1001,
+          "score": 0.4854553955250541,
+          "rank": 4,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "9c9dd590f306fa41d96e0139387cc1fc8d64b8252b26a91c57c42aead014b504",
+          "text_len": 1001
+        },
+        {
+          "chunk_id": "chk_1b6e57d40bd8afb510c9d68b583a7ae56c4d2300",
+          "version_id": "ver_7c087a260ac830f2b4fa1396300b3fcc",
+          "section_path": [
+            "Quickstart",
+            "Installation"
+          ],
+          "char_start": 577,
+          "char_end": 648,
+          "score": 0.4810235058956398,
+          "rank": 5,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "9a2362f39cfe7532b4dc4744896f6e93f71367f7a5f80454be23c3c261345c8c",
+          "text_len": 71
+        },
+        {
+          "chunk_id": "chk_a6db41b7735ec84267de12130610c1a77e13249d",
+          "version_id": "ver_35cac5e98c151a17f941a6142d74709f",
+          "section_path": [
+            "Agents"
+          ],
+          "char_start": 0,
+          "char_end": 875,
+          "score": 0.47852069395534214,
+          "rank": 6,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "2d655c8083d94d729fc2d1369cc793cc0cecda7f4e9decf2b029da3dde645811",
+          "text_len": 875
+        },
+        {
+          "chunk_id": "chk_6f99cddf2cfd27ef72fb633d4c642cc232ef0104",
+          "version_id": "ver_b275f1db2ff0a82e2654391774f8e398",
+          "section_path": [
+            "Ask a corrected question",
+            "Built-in session implementations",
+            "OpenAI Conversations API sessions"
+          ],
+          "char_start": 9110,
+          "char_end": 9353,
+          "score": 0.47639256856486556,
+          "rank": 7,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "bbfcceaa168e1e1269377119baf95af56eb52438ebf0d712c35ec85f79ca8d26",
+          "text_len": 243
+        },
+        {
+          "chunk_id": "chk_529e84d069b2c2dbc24380ff8ac4cbf4294b46eb",
+          "version_id": "ver_feedbba6f99f53753d196209fa7b16b5",
+          "section_path": [
+            "Quickstart",
+            "Run your first agent"
+          ],
+          "char_start": 1680,
+          "char_end": 2644,
+          "score": 0.47502810060643286,
+          "rank": 8,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "340f5cc79bb815bfd49379d7f459b2a334cf020493f89b8e9bd48103b11f8ced",
+          "text_len": 964
+        },
+        {
+          "chunk_id": "chk_1f664f82d4c6fb60f0979355c43b2138c760bbae",
+          "version_id": "ver_7c087a260ac830f2b4fa1396300b3fcc",
+          "section_path": [
+            "Quickstart",
+            "Prerequisites"
+          ],
+          "char_start": 464,
+          "char_end": 575,
+          "score": 0.4357440380086913,
+          "rank": 9,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "d87745c0826b02fc80ebf4ea010783afb17f409f8536b65b30990f49f045b4e9",
+          "text_len": 111
+        },
+        {
+          "chunk_id": "chk_4641f2adc4d01c0dc38577b4d4427167ca8de77e",
+          "version_id": "ver_6b90217721b841b1329f51ec1caab139",
+          "section_path": [
+            "Tracing",
+            "Ecosystem integrations"
+          ],
+          "char_start": 10397,
+          "char_end": 10529,
+          "score": 0.42998585939576217,
+          "rank": 10,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "50d230385cbe105c4951db2913f6e82086f7350cb0142b3dc1a0b9229a7994c8",
+          "text_len": 132
+        }
+      ]
+    },
+    {
+      "case_id": "OA-005",
+      "category": "exact_lookup",
+      "k": 10,
+      "expected_evidence_count": 1,
+      "evidence_found_count": 1,
+      "recall": 1.0,
+      "found": [
+        {
+          "version_id": "ver_f15e1a531d680bb98179238f80355058",
+          "section_path": [
+            "Configuration",
+            "API keys and clients"
+          ],
+          "char_start": 2227,
+          "char_end": 2308
+        }
+      ],
+      "missed": [],
+      "hits": [
+        {
+          "chunk_id": "chk_3acba94ce61625e55c0363d82594b78d6866a023",
+          "version_id": "ver_f15e1a531d680bb98179238f80355058",
+          "section_path": [
+            "Configuration",
+            "API keys and clients"
+          ],
+          "char_start": 2401,
+          "char_end": 2707,
+          "score": 0.6638247571095981,
+          "rank": 1,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "2c0594a114452604fae85e59dbf2da194f7133ca1a87f64c7e2ddb809fd099b9",
+          "text_len": 306
+        },
+        {
+          "chunk_id": "chk_1f664f82d4c6fb60f0979355c43b2138c760bbae",
+          "version_id": "ver_7c087a260ac830f2b4fa1396300b3fcc",
+          "section_path": [
+            "Quickstart",
+            "Prerequisites"
+          ],
+          "char_start": 464,
+          "char_end": 575,
+          "score": 0.6369986723959054,
+          "rank": 2,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "d87745c0826b02fc80ebf4ea010783afb17f409f8536b65b30990f49f045b4e9",
+          "text_len": 111
+        },
+        {
+          "chunk_id": "chk_92fa440a7d4555008d2fd5c2ca71f2679d4cc9af",
+          "version_id": "ver_f15e1a531d680bb98179238f80355058",
+          "section_path": [
+            "Configuration",
+            "API keys and clients"
+          ],
+          "char_start": 1864,
+          "char_end": 2308,
+          "score": 0.5975470542907715,
+          "rank": 3,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "0f993ee7e385e7e6d7c7859eede0491654d1a147cbb656da976f44341568b761",
+          "text_len": 444
+        },
+        {
+          "chunk_id": "chk_515f584bbf5c21756ae24aebf0c3e894184a73f1",
+          "version_id": "ver_f15e1a531d680bb98179238f80355058",
+          "section_path": [
+            "Configuration",
+            "Tracing"
+          ],
+          "char_start": 6520,
+          "char_end": 6858,
+          "score": 0.5741556882858276,
+          "rank": 4,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "fb99351b8ad08df4bd531281964c91275698445fc3c369e1fc797bbdb7ab2839",
+          "text_len": 338
+        },
+        {
+          "chunk_id": "chk_4641f2adc4d01c0dc38577b4d4427167ca8de77e",
+          "version_id": "ver_6b90217721b841b1329f51ec1caab139",
+          "section_path": [
+            "Tracing",
+            "Ecosystem integrations"
+          ],
+          "char_start": 10397,
+          "char_end": 10529,
+          "score": 0.5724256038665771,
+          "rank": 5,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "50d230385cbe105c4951db2913f6e82086f7350cb0142b3dc1a0b9229a7994c8",
+          "text_len": 132
+        },
+        {
+          "chunk_id": "chk_2753d95cafe4c30008abb9446b826ed49433fcbd",
+          "version_id": "ver_f15e1a531d680bb98179238f80355058",
+          "section_path": [
+            "Configuration",
+            "OpenAI provider defaults"
+          ],
+          "char_start": 6229,
+          "char_end": 6518,
+          "score": 0.5545899437245713,
+          "rank": 6,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "6c4f540cad53435ddfd130fc273351206616cfaaa7e5de8fcc8af39befc6109b",
+          "text_len": 289
+        },
+        {
+          "chunk_id": "chk_31fcdcad994f58ed748d8a99424f016e830fa529",
+          "version_id": "ver_9247e3ce4df6f79d9cadc44e1a3bbd0c",
+          "section_path": [
+            "gets the API Key from environment variable AZURE_OPENAI_API_KEY"
+          ],
+          "char_start": 30871,
+          "char_end": 32117,
+          "score": 0.5401719808578491,
+          "rank": 7,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "8c7cb47eaf02e1ebcf3fa789a93322339ab1e4ad0c0c420c9fbf527d04f869a8",
+          "text_len": 1246
+        },
+        {
+          "chunk_id": "chk_8708d1351213bdda3c24a67cc887db0a875c26fc",
+          "version_id": "ver_54975a889fa22717d135c4a291d9609a",
+          "section_path": [
+            "Use your API key"
+          ],
+          "char_start": 1428,
+          "char_end": 1488,
+          "score": 0.5071909427642822,
+          "rank": 8,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "94efc51ab15ba0c70fb408960ba398a85003ea47c94ae6d6bf82f185b5ac354a",
+          "text_len": 60
+        },
+        {
+          "chunk_id": "chk_77bbd6a4ed63fe168b830a638a728a87c53fa936",
+          "version_id": "ver_ae909bf8b4bbbe1d1a11119447f7ac94",
+          "section_path": [
+            "Models"
+          ],
+          "char_start": 0,
+          "char_end": 526,
+          "score": 0.48527048484297075,
+          "rank": 9,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "f98b4052a67bd2f18b6adf1423533e5c70c3639511b2efcf4f55afaf4ad78a2b",
+          "text_len": 526
+        },
+        {
+          "chunk_id": "chk_f40474e83f00a695a7dd53ac8807dca7c06973ed",
+          "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+          "section_path": [
+            "Running agents",
+            "Durable execution integrations and human-in-the-loop",
+            "Dapr"
+          ],
+          "char_start": 31381,
+          "char_end": 31786,
+          "score": 0.46396693802077027,
+          "rank": 10,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "c6402152cf711f73e195deafdc6c315bb7eb2071d3f5d806ffa297c28ca584b0",
+          "text_len": 405
+        }
+      ]
+    },
+    {
+      "case_id": "OA-006",
+      "category": "multi_hop",
+      "k": 10,
+      "expected_evidence_count": 2,
+      "evidence_found_count": 1,
+      "recall": 0.5,
+      "found": [
+        {
+          "version_id": "ver_6b90217721b841b1329f51ec1caab139",
+          "section_path": [
+            "Tracing"
+          ],
+          "char_start": 512,
+          "char_end": 553
+        }
+      ],
+      "missed": [
+        {
+          "version_id": "ver_f15e1a531d680bb98179238f80355058",
+          "section_path": [
+            "Configuration",
+            "Tracing"
+          ],
+          "char_start": 8126,
+          "char_end": 8242
+        }
+      ],
+      "hits": [
+        {
+          "chunk_id": "chk_4641f2adc4d01c0dc38577b4d4427167ca8de77e",
+          "version_id": "ver_6b90217721b841b1329f51ec1caab139",
+          "section_path": [
+            "Tracing",
+            "Ecosystem integrations"
+          ],
+          "char_start": 10397,
+          "char_end": 10529,
+          "score": 0.5555875466939079,
+          "rank": 1,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "50d230385cbe105c4951db2913f6e82086f7350cb0142b3dc1a0b9229a7994c8",
+          "text_len": 132
+        },
+        {
+          "chunk_id": "chk_2753d95cafe4c30008abb9446b826ed49433fcbd",
+          "version_id": "ver_f15e1a531d680bb98179238f80355058",
+          "section_path": [
+            "Configuration",
+            "OpenAI provider defaults"
+          ],
+          "char_start": 6229,
+          "char_end": 6518,
+          "score": 0.5189454864827089,
+          "rank": 2,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "6c4f540cad53435ddfd130fc273351206616cfaaa7e5de8fcc8af39befc6109b",
+          "text_len": 289
+        },
+        {
+          "chunk_id": "chk_d968677d8b907799740ef81bea9a8c005b2b2e7d",
+          "version_id": "ver_02c06cea4a4bbffd4d01ee202f124a75",
+          "section_path": [
+            "OpenAI Agents SDK"
+          ],
+          "char_start": 0,
+          "char_end": 1001,
+          "score": 0.518347755621307,
+          "rank": 3,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "9c9dd590f306fa41d96e0139387cc1fc8d64b8252b26a91c57c42aead014b504",
+          "text_len": 1001
+        },
+        {
+          "chunk_id": "chk_600fe1685960a129813639141d8e6d0bd21e2f87",
+          "version_id": "ver_6b90217721b841b1329f51ec1caab139",
+          "section_path": [
+            "Tracing"
+          ],
+          "char_start": 0,
+          "char_end": 883,
+          "score": 0.49688932281072873,
+          "rank": 4,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "62c80e8d31b7358a6f39eab2aec950d731c95dd608b6f758fde6c65fe229511b",
+          "text_len": 883
+        },
+        {
+          "chunk_id": "chk_f40474e83f00a695a7dd53ac8807dca7c06973ed",
+          "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+          "section_path": [
+            "Running agents",
+            "Durable execution integrations and human-in-the-loop",
+            "Dapr"
+          ],
+          "char_start": 31381,
+          "char_end": 31786,
+          "score": 0.48121573086930314,
+          "rank": 5,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "c6402152cf711f73e195deafdc6c315bb7eb2071d3f5d806ffa297c28ca584b0",
+          "text_len": 405
+        },
+        {
+          "chunk_id": "chk_92fa440a7d4555008d2fd5c2ca71f2679d4cc9af",
+          "version_id": "ver_f15e1a531d680bb98179238f80355058",
+          "section_path": [
+            "Configuration",
+            "API keys and clients"
+          ],
+          "char_start": 1864,
+          "char_end": 2308,
+          "score": 0.46196769064568577,
+          "rank": 6,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "0f993ee7e385e7e6d7c7859eede0491654d1a147cbb656da976f44341568b761",
+          "text_len": 444
+        },
+        {
+          "chunk_id": "chk_482e30a20183db65acb5c05eac23b53f46db98c5",
+          "version_id": "ver_4c8080ebe566273e171b49c803949f77",
+          "section_path": [
+            "For 120B",
+            "Agents SDK Integration"
+          ],
+          "char_start": 4250,
+          "char_end": 4630,
+          "score": 0.4445158375655367,
+          "rank": 7,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "4e24e5b0c430ad74ee29886e2c9d70248717bbb45201f923930fa9a0bc96af02",
+          "text_len": 380
+        },
+        {
+          "chunk_id": "chk_8a95d361e2d7a845790528e160b140bac495020f",
+          "version_id": "ver_20c9ab97979d04b79176cb7056119977",
+          "section_path": [
+            "Agent orchestration"
+          ],
+          "char_start": 0,
+          "char_end": 493,
+          "score": 0.44249649174501005,
+          "rank": 8,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "13e8957f52fbee3414ab6624a3ae2a9d9aa2f060d748b667ee38e53d37e4ca6f",
+          "text_len": 493
+        },
+        {
+          "chunk_id": "chk_1f664f82d4c6fb60f0979355c43b2138c760bbae",
+          "version_id": "ver_7c087a260ac830f2b4fa1396300b3fcc",
+          "section_path": [
+            "Quickstart",
+            "Prerequisites"
+          ],
+          "char_start": 464,
+          "char_end": 575,
+          "score": 0.43188309263486224,
+          "rank": 9,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "d87745c0826b02fc80ebf4ea010783afb17f409f8536b65b30990f49f045b4e9",
+          "text_len": 111
+        },
+        {
+          "chunk_id": "chk_9943058755ba0e768c506d8b54ae7f48f140ef8d",
+          "version_id": "ver_ae909bf8b4bbbe1d1a11119447f7ac94",
+          "section_path": [
+            "Models",
+            "Third-party adapters"
+          ],
+          "char_start": 42524,
+          "char_end": 43251,
+          "score": 0.41346094728657157,
+          "rank": 10,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "f75a4de680a4f23a51a8456db5883b73ef9ebea82328b548786324945fcb080f",
+          "text_len": 727
+        }
+      ]
+    },
+    {
+      "case_id": "OA-007",
+      "category": "normal",
+      "k": 10,
+      "expected_evidence_count": 1,
+      "evidence_found_count": 1,
+      "recall": 1.0,
+      "found": [
+        {
+          "version_id": "ver_b275f1db2ff0a82e2654391774f8e398",
+          "section_path": [
+            "Sessions"
+          ],
+          "char_start": 12,
+          "char_end": 259
+        }
+      ],
+      "missed": [],
+      "hits": [
+        {
+          "chunk_id": "chk_4641f2adc4d01c0dc38577b4d4427167ca8de77e",
+          "version_id": "ver_6b90217721b841b1329f51ec1caab139",
+          "section_path": [
+            "Tracing",
+            "Ecosystem integrations"
+          ],
+          "char_start": 10397,
+          "char_end": 10529,
+          "score": 0.506048858165741,
+          "rank": 1,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "50d230385cbe105c4951db2913f6e82086f7350cb0142b3dc1a0b9229a7994c8",
+          "text_len": 132
+        },
+        {
+          "chunk_id": "chk_1f664f82d4c6fb60f0979355c43b2138c760bbae",
+          "version_id": "ver_7c087a260ac830f2b4fa1396300b3fcc",
+          "section_path": [
+            "Quickstart",
+            "Prerequisites"
+          ],
+          "char_start": 464,
+          "char_end": 575,
+          "score": 0.4813681090285813,
+          "rank": 2,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "d87745c0826b02fc80ebf4ea010783afb17f409f8536b65b30990f49f045b4e9",
+          "text_len": 111
+        },
+        {
+          "chunk_id": "chk_f40474e83f00a695a7dd53ac8807dca7c06973ed",
+          "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+          "section_path": [
+            "Running agents",
+            "Durable execution integrations and human-in-the-loop",
+            "Dapr"
+          ],
+          "char_start": 31381,
+          "char_end": 31786,
+          "score": 0.4797535550741231,
+          "rank": 3,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "c6402152cf711f73e195deafdc6c315bb7eb2071d3f5d806ffa297c28ca584b0",
+          "text_len": 405
+        },
+        {
+          "chunk_id": "chk_db82490165bc7adcbfe38dcb7b65c18edd3f15f8",
+          "version_id": "ver_b275f1db2ff0a82e2654391774f8e398",
+          "section_path": [
+            "Sessions"
+          ],
+          "char_start": 0,
+          "char_end": 867,
+          "score": 0.478333921531802,
+          "rank": 4,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "1c129df6543cdb80e5d7d3a55212ccc2afda1368661e088809037550588ffb57",
+          "text_len": 867
+        },
+        {
+          "chunk_id": "chk_482e30a20183db65acb5c05eac23b53f46db98c5",
+          "version_id": "ver_4c8080ebe566273e171b49c803949f77",
+          "section_path": [
+            "For 120B",
+            "Agents SDK Integration"
+          ],
+          "char_start": 4250,
+          "char_end": 4630,
+          "score": 0.47207212448120117,
+          "rank": 5,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "4e24e5b0c430ad74ee29886e2c9d70248717bbb45201f923930fa9a0bc96af02",
+          "text_len": 380
+        },
+        {
+          "chunk_id": "chk_16f7f9883c4f98eeb329410f51028781413703f7",
+          "version_id": "ver_b275f1db2ff0a82e2654391774f8e398",
+          "section_path": [
+            "Ask a corrected question",
+            "Built-in session implementations"
+          ],
+          "char_start": 7063,
+          "char_end": 7173,
+          "score": 0.46416378021240234,
+          "rank": 6,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "4c50ceefa8c37367b8bae2e67f7aef8e5ba20f1b664ca6cd7cedad2131025e32",
+          "text_len": 110
+        },
+        {
+          "chunk_id": "chk_1b6e57d40bd8afb510c9d68b583a7ae56c4d2300",
+          "version_id": "ver_7c087a260ac830f2b4fa1396300b3fcc",
+          "section_path": [
+            "Quickstart",
+            "Installation"
+          ],
+          "char_start": 577,
+          "char_end": 648,
+          "score": 0.4506116912315825,
+          "rank": 7,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "9a2362f39cfe7532b4dc4744896f6e93f71367f7a5f80454be23c3c261345c8c",
+          "text_len": 71
+        },
+        {
+          "chunk_id": "chk_1b5599cf168fe27b907cf58fc25762f055fb21d3",
+          "version_id": "ver_de7f74230c8f10d30aea5d037a3bd0a5",
+          "section_path": [
+            "Memory Stores"
+          ],
+          "char_start": 2845378,
+          "char_end": 2845393,
+          "score": 0.43800365555308274,
+          "rank": 8,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "dc7da988491bdc974e4c2e0cb9e7599ef153e1c9b5b091adfae4140cd489f396",
+          "text_len": 15
+        },
+        {
+          "chunk_id": "chk_d968677d8b907799740ef81bea9a8c005b2b2e7d",
+          "version_id": "ver_02c06cea4a4bbffd4d01ee202f124a75",
+          "section_path": [
+            "OpenAI Agents SDK"
+          ],
+          "char_start": 0,
+          "char_end": 1001,
+          "score": 0.430522620677948,
+          "rank": 9,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "9c9dd590f306fa41d96e0139387cc1fc8d64b8252b26a91c57c42aead014b504",
+          "text_len": 1001
+        },
+        {
+          "chunk_id": "chk_6e36635a81e1ad458eff8a585dba675fe37df699",
+          "version_id": "ver_feedbba6f99f53753d196209fa7b16b5",
+          "section_path": [
+            "Quickstart",
+            "Create a project and virtual environment",
+            "Install the Agents SDK"
+          ],
+          "char_start": 358,
+          "char_end": 384,
+          "score": 0.41956114768981934,
+          "rank": 10,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "995b922a8558936487c26615b97a0ac41b62166c67b7b1644895ff234d7b8e5a",
+          "text_len": 26
+        }
+      ]
+    },
+    {
+      "case_id": "OA-008",
+      "category": "exact_lookup",
+      "k": 10,
+      "expected_evidence_count": 1,
+      "evidence_found_count": 1,
+      "recall": 1.0,
+      "found": [
+        {
+          "version_id": "ver_ae909bf8b4bbbe1d1a11119447f7ac94",
+          "section_path": [
+            "Models",
+            "OpenAI models"
+          ],
+          "char_start": 2098,
+          "char_end": 2233
+        }
+      ],
+      "missed": [],
+      "hits": [
+        {
+          "chunk_id": "chk_a14c154d51c1a7712cf80870af1109fb9be95ee9",
+          "version_id": "ver_ae909bf8b4bbbe1d1a11119447f7ac94",
+          "section_path": [
+            "Models",
+            "OpenAI models",
+            "Hosted multi-agent (experimental)",
+            "Relationship to SDK orchestration"
+          ],
+          "char_start": 18674,
+          "char_end": 19303,
+          "score": 0.5387690388422641,
+          "rank": 1,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "8a785939ec6e03f4928d82b7674d656bb409cb2d10defff133156d5576aee88a",
+          "text_len": 629
+        },
+        {
+          "chunk_id": "chk_155378a014c2c411b1aba2482afed3eabddf6f28",
+          "version_id": "ver_ae909bf8b4bbbe1d1a11119447f7ac94",
+          "section_path": [
+            "Models",
+            "OpenAI models"
+          ],
+          "char_start": 1893,
+          "char_end": 2588,
+          "score": 0.5210076129736787,
+          "rank": 2,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "68cc59e14ea75a776984a560ae09db760827a6f12112dbb55f9efbf862c80010",
+          "text_len": 695
+        },
+        {
+          "chunk_id": "chk_4641f2adc4d01c0dc38577b4d4427167ca8de77e",
+          "version_id": "ver_6b90217721b841b1329f51ec1caab139",
+          "section_path": [
+            "Tracing",
+            "Ecosystem integrations"
+          ],
+          "char_start": 10397,
+          "char_end": 10529,
+          "score": 0.5016617774963379,
+          "rank": 3,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "50d230385cbe105c4951db2913f6e82086f7350cb0142b3dc1a0b9229a7994c8",
+          "text_len": 132
+        },
+        {
+          "chunk_id": "chk_f40474e83f00a695a7dd53ac8807dca7c06973ed",
+          "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+          "section_path": [
+            "Running agents",
+            "Durable execution integrations and human-in-the-loop",
+            "Dapr"
+          ],
+          "char_start": 31381,
+          "char_end": 31786,
+          "score": 0.491065234478401,
+          "rank": 4,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "c6402152cf711f73e195deafdc6c315bb7eb2071d3f5d806ffa297c28ca584b0",
+          "text_len": 405
+        },
+        {
+          "chunk_id": "chk_482e30a20183db65acb5c05eac23b53f46db98c5",
+          "version_id": "ver_4c8080ebe566273e171b49c803949f77",
+          "section_path": [
+            "For 120B",
+            "Agents SDK Integration"
+          ],
+          "char_start": 4250,
+          "char_end": 4630,
+          "score": 0.47928813099861145,
+          "rank": 5,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "4e24e5b0c430ad74ee29886e2c9d70248717bbb45201f923930fa9a0bc96af02",
+          "text_len": 380
+        },
+        {
+          "chunk_id": "chk_74608b6b6976e760c15fe37ea8fa13ed97c4028c",
+          "version_id": "ver_02c06cea4a4bbffd4d01ee202f124a75",
+          "section_path": [
+            "OpenAI Agents SDK",
+            "Agents SDK or Responses API?"
+          ],
+          "char_start": 2855,
+          "char_end": 3646,
+          "score": 0.47806089985733713,
+          "rank": 6,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "84fa60c12aa4623571088399dec385ea248c02c60e24cf8e6551a52d8e28a17a",
+          "text_len": 791
+        },
+        {
+          "chunk_id": "chk_42749f1409fd690b9de6c4e82970cbb9b093f71b",
+          "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+          "section_path": [
+            "Running agents",
+            "Errors and recovery",
+            "Error handlers"
+          ],
+          "char_start": 28677,
+          "char_end": 29221,
+          "score": 0.45109290467585583,
+          "rank": 7,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "835d70b433e13ef59251d410f10896ded69635349cc307e8d81b09c5c9ed652f",
+          "text_len": 544
+        },
+        {
+          "chunk_id": "chk_3103771531694781f439051781da0bad51eee0ba",
+          "version_id": "ver_1c77f33b04ffffa285ea7e61c2a89653",
+          "section_path": [
+            "(1)!",
+            "Handoff inputs"
+          ],
+          "char_start": 4308,
+          "char_end": 5162,
+          "score": 0.4470411076259946,
+          "rank": 8,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "d84b3e40d767cf80125669ddaa2cdd326e7114fb0e959d5232c91e1a9d72d279",
+          "text_len": 854
+        },
+        {
+          "chunk_id": "chk_a6db41b7735ec84267de12130610c1a77e13249d",
+          "version_id": "ver_35cac5e98c151a17f941a6142d74709f",
+          "section_path": [
+            "Agents"
+          ],
+          "char_start": 0,
+          "char_end": 875,
+          "score": 0.441156268119812,
+          "rank": 9,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "2d655c8083d94d729fc2d1369cc793cc0cecda7f4e9decf2b029da3dde645811",
+          "text_len": 875
+        },
+        {
+          "chunk_id": "chk_4ebf4dc9396d03f36f5822e4c10ca660139f8631",
+          "version_id": "ver_de67d790db9792b2f6c5c7418a507764",
+          "section_path": [
+            "Release process/changelog",
+            "Breaking change changelog",
+            "0.20.0"
+          ],
+          "char_start": 2738,
+          "char_end": 2989,
+          "score": 0.4395637512207031,
+          "rank": 10,
+          "retriever": "dense",
+          "metadata": {},
+          "text_sha256": "fc49877cf85853d64b88e6ca3cb6bb7c9593c53848482748291b3e5732977ba8",
+          "text_len": 251
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,237 @@
+{
+  "snapshot_id": "snap_689e336380a054d8039dc35b2c09cd0a",
+  "anchors": [
+    {
+      "case_id": "AN-001",
+      "canonical_url": "https://platform.claude.com/docs/en/api/versioning",
+      "chunk_type": "prose",
+      "section_path": [
+        "Preamble"
+      ],
+      "quote": "you must send an `anthropic-version` request header",
+      "anchor_text": "you must send an `anthropic-version` request header. For example, `anthropic-version: 2023-06-01`. If you are u"
+    },
+    {
+      "case_id": "AN-002",
+      "canonical_url": "https://platform.claude.com/docs/en/api/errors",
+      "chunk_type": "prose",
+      "section_path": [
+        "HTTP errors"
+      ],
+      "quote": "413 - `request_too_large`",
+      "anchor_text": "413 - `request_too_large`: Request exceeds the maximum allowed number of bytes. See ["
+    },
+    {
+      "case_id": "AN-003",
+      "canonical_url": "https://platform.claude.com/docs/en/api/messages/batches",
+      "chunk_type": "prose",
+      "section_path": [
+        "Batches",
+        "Create a Message Batch",
+        "Body Parameters"
+      ],
+      "quote": "There is a limit of 100,000 messages in a single request.",
+      "anchor_text": "There is a limit of 100,000 messages in a single request."
+    },
+    {
+      "case_id": "AN-004",
+      "canonical_url": "https://platform.claude.com/docs/en/build-with-claude/prompt-caching",
+      "chunk_type": "prose",
+      "section_path": [
+        "Explicit cache breakpoints",
+        "Structuring your prompt",
+        "How automatic prefix checking works"
+      ],
+      "quote": "The lookback window is 20 blocks.",
+      "anchor_text": "The lookback window is 20 blocks.** The system checks at most 20 positions per breakpoint, counting the breakpoint itself as the first. If the system fin"
+    },
+    {
+      "case_id": "AN-005",
+      "canonical_url": "https://platform.claude.com/docs/en/build-with-claude/context-editing",
+      "chunk_type": "prose",
+      "section_path": [
+        "Server-side strategies"
+      ],
+      "quote": "use the beta header `context-management-2025-06-27`",
+      "anchor_text": "use the beta header `context-management-2025-06-27`"
+    },
+    {
+      "case_id": "AN-006",
+      "canonical_url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool",
+      "chunk_type": "table",
+      "section_path": [
+        "Upgrade to latest tool version",
+        "What's changed"
+      ],
+      "quote": "`code-execution-2025-05-22`",
+      "anchor_text": "`code-execution-2025-05-22`"
+    },
+    {
+      "case_id": "AN-007",
+      "canonical_url": "https://platform.claude.com/docs/en/api/errors",
+      "chunk_type": "prose",
+      "section_path": [
+        "HTTP errors"
+      ],
+      "quote": "529 - `overloaded_error`",
+      "anchor_text": "529 - `overloaded_error`: The API is temporarily overloaded.\n\n  <Warning>\n"
+    },
+    {
+      "case_id": "AN-008",
+      "canonical_url": "https://platform.claude.com/docs/en/api/versioning",
+      "chunk_type": "prose",
+      "section_path": [
+        "Preamble"
+      ],
+      "quote": "For any given version with the Messages API, Anthropic preserves:",
+      "anchor_text": "For any given version with the Messages API, Anthropic preserves:\n\n* Existing input parameters\n* Existing output parameters\n\nHowever, A"
+    },
+    {
+      "case_id": "AN-009",
+      "canonical_url": "https://platform.claude.com/docs/en/api/service-tiers",
+      "chunk_type": "prose",
+      "section_path": [
+        "Preamble"
+      ],
+      "quote": "Priority Tier capacity commitments are no longer available for purchase.",
+      "anchor_text": "Priority Tier capacity commitments are no longer available for purchase."
+    },
+    {
+      "case_id": "AN-010",
+      "canonical_url": "https://platform.claude.com/docs/en/about-claude/model-deprecations",
+      "chunk_type": "table",
+      "section_path": [
+        "Model status"
+      ],
+      "quote": "| claude-opus-4-1-20250805   | Retired",
+      "anchor_text": "| claude-opus-4-1-20250805   | Retired       | June 5, 2026      | August 5, 2026                 "
+    },
+    {
+      "case_id": "AN-011",
+      "canonical_url": "https://platform.claude.com/docs/en/api/rate-limits",
+      "chunk_type": "prose",
+      "section_path": [
+        "About rate limits"
+      ],
+      "quote": "Limits are defined by **usage tier**.",
+      "anchor_text": "Limits are defined by **usage tier**. Organizations are placed on a tier automatically based on usage history and account standing and can move to a higher tier over time as the"
+    },
+    {
+      "case_id": "AN-012",
+      "canonical_url": "https://platform.claude.com/docs/en/api/errors",
+      "chunk_type": "prose",
+      "section_path": [
+        "HTTP errors"
+      ],
+      "quote": "429 - `rate_limit_error`",
+      "anchor_text": "429 - `rate_limit_error`: Your account has hit a rate limit.\n\n* "
+    },
+    {
+      "case_id": "AN-012",
+      "canonical_url": "https://platform.claude.com/docs/en/api/rate-limits",
+      "chunk_type": "prose",
+      "section_path": [
+        "About rate limits"
+      ],
+      "quote": "Limits are defined by **usage tier**.",
+      "anchor_text": "Limits are defined by **usage tier**. Organizations are placed on a tier automatically based on usage history and account standing and can move to a higher tier over time as the"
+    },
+    {
+      "case_id": "OA-001",
+      "canonical_url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/tracing.md",
+      "chunk_type": "prose",
+      "section_path": [
+        "Tracing"
+      ],
+      "quote": "OPENAI_AGENTS_DISABLE_TRACING=1",
+      "anchor_text": "OPENAI_AGENTS_DISABLE_TRACING=1`\n    2. Y"
+    },
+    {
+      "case_id": "OA-002",
+      "canonical_url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/running_agents.md",
+      "chunk_type": "prose",
+      "section_path": [
+        "Running agents",
+        "Exceptions"
+      ],
+      "quote": "This exception is raised when the agent's run exceeds the `max_turns` limit",
+      "anchor_text": "This exception is raised when the agent's run exceeds the `max_turns` limit passed to the `Runner.run`, `Runner.run_sync`, or `Runner.run_streamed` methods. It indicates that the agent could not "
+    },
+    {
+      "case_id": "OA-003",
+      "canonical_url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/guardrails.md",
+      "chunk_type": "prose",
+      "section_path": [
+        "Guardrails",
+        "Tripwires"
+      ],
+      "quote": "The runner immediately raises an `InputGuardrailTripwireTriggered`",
+      "anchor_text": "The runner immediately raises an `InputGuardrailTripwireTriggered` or `OutputGuardrailTripwireTriggered` exception and halts agent execution. Tool guardrail"
+    },
+    {
+      "case_id": "OA-004",
+      "canonical_url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/running_agents.md",
+      "chunk_type": "prose",
+      "section_path": [
+        "Running agents",
+        "Runner lifecycle and configuration",
+        "The agent loop"
+      ],
+      "quote": "Pass `max_turns=None` to disable this turn limit.",
+      "anchor_text": "Pass `max_turns=None` to disable this turn limit."
+    },
+    {
+      "case_id": "OA-005",
+      "canonical_url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/config.md",
+      "chunk_type": "prose",
+      "section_path": [
+        "Configuration",
+        "API keys and clients"
+      ],
+      "quote": "set_default_openai_key()][agents.set_default_openai_key] function to set the key",
+      "anchor_text": "set_default_openai_key()][agents.set_default_openai_key] function to set the key."
+    },
+    {
+      "case_id": "OA-006",
+      "canonical_url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/tracing.md",
+      "chunk_type": "prose",
+      "section_path": [
+        "Tracing"
+      ],
+      "quote": "OPENAI_AGENTS_DISABLE_TRACING=1",
+      "anchor_text": "OPENAI_AGENTS_DISABLE_TRACING=1`\n    2. Y"
+    },
+    {
+      "case_id": "OA-006",
+      "canonical_url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/config.md",
+      "chunk_type": "prose",
+      "section_path": [
+        "Configuration",
+        "Tracing"
+      ],
+      "quote": "You can also disable tracing entirely by using the",
+      "anchor_text": "You can also disable tracing entirely by using the [`set_tracing_disabled()`][agents.set_tracing_disabled] function."
+    },
+    {
+      "case_id": "OA-007",
+      "canonical_url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/sessions/index.md",
+      "chunk_type": "prose",
+      "section_path": [
+        "Sessions"
+      ],
+      "quote": "The Agents SDK provides built-in session memory",
+      "anchor_text": "The Agents SDK provides built-in session memory to automatically maintain conversation history across multiple agent runs, eliminating the need to manually handle `.to_input_list()` between turns.\n\nSessions stores conversation history for a specif"
+    },
+    {
+      "case_id": "OA-008",
+      "canonical_url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/models/index.md",
+      "chunk_type": "prose",
+      "section_path": [
+        "Models",
+        "OpenAI models"
+      ],
+      "quote": "does not specify a model, the Agents SDK uses",
+      "anchor_text": "does not specify a model, the Agents SDK uses [`gpt-5.6-luna`](https://developers.openai.com/api/docs/models/gpt-5.6-luna) with `reason"
+    }
+  ]
+}
