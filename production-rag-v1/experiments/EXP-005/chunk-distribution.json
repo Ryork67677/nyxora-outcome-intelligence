@@ -1,0 +1,162 @@
+{
+  "chunk_sets": [
+    {
+      "chunk_set_id": "cs_v1_control",
+      "chunker": "chunker_v1_control",
+      "chunker_version": "1.0",
+      "config_hash": "v1-control-as-shipped",
+      "config": {
+        "max_chunk_chars": 3500,
+        "min_chunk_chars": 200,
+        "enforces_hard_limit": false
+      },
+      "parser_version": "v1.0",
+      "hard_max_chars": null,
+      "documents": 202,
+      "total_chunks": 14209,
+      "chunks_per_document": 70.3,
+      "mean_chars": 1097,
+      "median_chars": 508,
+      "p75_chars": 1517,
+      "p90_chars": 3466,
+      "p95_chars": 3485,
+      "p99_chars": 3500,
+      "max_chars": 16096,
+      "over_1500": 3573,
+      "over_2000": 3069,
+      "over_3000": 2543,
+      "over_hard_max": 0,
+      "unexplained_over_hard_max": 0,
+      "over_hard_max_examples": [],
+      "by_chunk_type": {
+        "prose": 9488,
+        "code": 4432,
+        "table": 289
+      },
+      "by_block_kind": {},
+      "by_provider": {
+        "anthropic": {
+          "chunks": 12028,
+          "mean_chars": 1207,
+          "max_chars": 12341
+        },
+        "openai": {
+          "chunks": 2181,
+          "mean_chars": 491,
+          "max_chars": 16096
+        }
+      }
+    },
+    {
+      "chunk_set_id": "cs_2722bf8b72dcf3eb404336d7",
+      "chunker": "chunker_v2_bounded",
+      "chunker_version": "2.0",
+      "config_hash": "3732f2ea5be61f627abded27ee743eecd41ea25a69cc3bbd996613053f90d71b",
+      "config": {
+        "size_basis": "corpus block-size percentiles, not the golden set",
+        "hard_max_chars": 2000,
+        "min_merge_chars": 120,
+        "target_max_chars": 1200,
+        "enforces_hard_limit": true
+      },
+      "parser_version": "v1.0",
+      "hard_max_chars": 2000,
+      "documents": 202,
+      "total_chunks": 20526,
+      "chunks_per_document": 101.6,
+      "mean_chars": 757,
+      "median_chars": 917,
+      "p75_chars": 1170,
+      "p90_chars": 1193,
+      "p95_chars": 1247,
+      "p99_chars": 1879,
+      "max_chars": 1999,
+      "over_1500": 598,
+      "over_2000": 0,
+      "over_3000": 0,
+      "over_hard_max": 0,
+      "unexplained_over_hard_max": 0,
+      "over_hard_max_examples": [],
+      "by_chunk_type": {
+        "prose": 15900,
+        "code": 4239,
+        "table": 387
+      },
+      "by_block_kind": {
+        "prose": 15900,
+        "code": 4239,
+        "table": 387
+      },
+      "by_provider": {
+        "anthropic": {
+          "chunks": 17948,
+          "mean_chars": 806,
+          "max_chars": 1999
+        },
+        "openai": {
+          "chunks": 2578,
+          "mean_chars": 415,
+          "max_chars": 1991
+        }
+      }
+    },
+    {
+      "chunk_set_id": "cs_9860f30980d382bbd4b6058b",
+      "chunker": "chunker_v3_technical",
+      "chunker_version": "3.0",
+      "config_hash": "b10e0ca2387b3af0b79510b746f68ded544b2693cfe3bcd4d749a3300ff0bfd7",
+      "config": {
+        "context_header": true,
+        "hard_max_chars": 2000,
+        "min_merge_chars": 120,
+        "target_max_chars": 1200,
+        "enforces_hard_limit": true,
+        "table_row_group_size": 4,
+        "parameter_entry_units": true
+      },
+      "parser_version": "v1.0",
+      "hard_max_chars": 2000,
+      "documents": 202,
+      "total_chunks": 20516,
+      "chunks_per_document": 101.6,
+      "mean_chars": 764,
+      "median_chars": 907,
+      "p75_chars": 1170,
+      "p90_chars": 1192,
+      "p95_chars": 1200,
+      "p99_chars": 1837,
+      "max_chars": 1999,
+      "over_1500": 495,
+      "over_2000": 0,
+      "over_3000": 0,
+      "over_hard_max": 0,
+      "unexplained_over_hard_max": 0,
+      "over_hard_max_examples": [],
+      "by_chunk_type": {
+        "prose": 15201,
+        "code": 4858,
+        "table_row": 281,
+        "table": 176
+      },
+      "by_block_kind": {
+        "prose": 15141,
+        "code": 4858,
+        "table_row_group": 281,
+        "table": 176,
+        "parameter_entry": 60
+      },
+      "by_provider": {
+        "anthropic": {
+          "chunks": 18163,
+          "mean_chars": 800,
+          "max_chars": 1999
+        },
+        "openai": {
+          "chunks": 2353,
+          "mean_chars": 483,
+          "max_chars": 1991
+        }
+      }
+    }
+  ]
+}

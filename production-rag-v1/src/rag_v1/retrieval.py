@@ -46,6 +46,27 @@ def query_terms(query: str) -> list[str]:
 BM25_K1 = 1.2
 BM25_B = 0.75
 
+
+def snapshot_chunk_set(snapshot_id: str) -> str:
+    """Resolve which chunking a snapshot pins.
+
+    Since EXP-005 a snapshot fixes both the document versions and the chunking of
+    them, so every chunk query has to be scoped to that chunk set. It is resolved
+    once here, in Python, and passed down as a scalar. Expressing it instead as an
+    extra join on ``corpus_snapshot`` gave the planner one more relation to
+    reorder and it stopped using the GIN index on the outer scoring join — the
+    same evaluation went from under a second to over a minute. A plain equality
+    predicate keeps the query plan that produced the published EXP-000 numbers.
+    """
+    from rag_v1.db import connect
+
+    with connect() as conn, conn.cursor() as cur:
+        cur.execute("SELECT chunk_set_id FROM corpus_snapshot WHERE snapshot_id=%s", (snapshot_id,))
+        row = cur.fetchone()
+    if not row:
+        raise ValueError(f"Unknown snapshot: {snapshot_id}")
+    return row[0]
+
 _LEXICAL_SQL = """
 WITH terms AS (
     SELECT DISTINCT t, phraseto_tsquery('simple', t) AS tq
@@ -57,6 +78,7 @@ corpus AS (
     FROM chunk c
     JOIN corpus_snapshot_version sv ON sv.version_id = c.version_id
     WHERE sv.snapshot_id = %(snapshot_id)s
+      AND c.chunk_set_id = %(chunk_set_id)s
 ),
 weighted AS (
     SELECT terms.tq,
@@ -69,21 +91,29 @@ weighted AS (
         FROM chunk c
         JOIN corpus_snapshot_version sv ON sv.version_id = c.version_id
         WHERE sv.snapshot_id = %(snapshot_id)s
+          AND c.chunk_set_id = %(chunk_set_id)s
           AND c.search_vector @@ terms.tq
     ) AS stat
     WHERE stat.df > 0
 )
-SELECT c.chunk_id, c.version_id, c.section_path, c.char_start, c.char_end, c.text,
-       sum(
-           w.idf * (%(k1)s + 1)
-           / (1 + %(k1)s * (1 - %(b)s + %(b)s * length(c.text) / w.avg_len))
-       ) AS score
-FROM chunk c
-JOIN corpus_snapshot_version sv ON sv.version_id = c.version_id
-JOIN weighted w ON c.search_vector @@ w.tq
-WHERE sv.snapshot_id = %(snapshot_id)s
-GROUP BY c.chunk_id, c.version_id, c.section_path, c.char_start, c.char_end, c.text
-ORDER BY score DESC, c.chunk_id
+SELECT * FROM (
+    SELECT c.chunk_id, c.version_id, c.section_path, c.char_start, c.char_end, c.text,
+           sum(
+               w.idf * (%(k1)s + 1)
+               / (1 + %(k1)s * (1 - %(b)s + %(b)s * length(c.text) / w.avg_len))
+           ) AS score
+    FROM chunk c
+    JOIN corpus_snapshot_version sv ON sv.version_id = c.version_id
+    JOIN weighted w ON c.search_vector @@ w.tq
+    WHERE sv.snapshot_id = %(snapshot_id)s
+      AND c.chunk_set_id = %(chunk_set_id)s
+    GROUP BY c.chunk_id, c.version_id, c.section_path, c.char_start, c.char_end, c.text
+) scored
+-- Ties are common in BM25, and sum() accumulates in whatever order the plan
+-- produces, so two chunks with mathematically equal scores could differ in the
+-- last float bit and swap places between runs. Rounding before the sort makes
+-- exact ties resolve on chunk_id instead, which keeps a re-run reproducible.
+ORDER BY round(scored.score::numeric, 9) DESC, scored.chunk_id
 LIMIT %(k)s
 """
 
@@ -99,6 +129,7 @@ def lexical_search(query: str, snapshot_id: str, k: int = 20) -> list[SearchHit]
             {
                 "terms": terms,
                 "snapshot_id": snapshot_id,
+                "chunk_set_id": snapshot_chunk_set(snapshot_id),
                 "k": k,
                 "k1": BM25_K1,
                 "b": BM25_B,
@@ -126,12 +157,12 @@ def dense_search(query: str, snapshot_id: str, model_id: str, k: int = 20) -> li
     FROM chunk_embedding ce
     JOIN chunk c ON c.chunk_id=ce.chunk_id
     JOIN corpus_snapshot_version sv ON sv.version_id=c.version_id
-    WHERE ce.model_id=%s AND sv.snapshot_id=%s
+    WHERE ce.model_id=%s AND sv.snapshot_id=%s AND c.chunk_set_id=%s
     ORDER BY ce.embedding <=> %s::vector
     LIMIT %s
     """
     with connect() as conn, conn.cursor() as cur:
-        cur.execute(sql, (qvec, model_id, snapshot_id, qvec, k))
+        cur.execute(sql, (qvec, model_id, snapshot_id, snapshot_chunk_set(snapshot_id), qvec, k))
         rows = cur.fetchall()
     return [
         SearchHit(
@@ -194,13 +225,13 @@ def exact_identifier_search(query: str, snapshot_id: str, k: int = 20) -> list[S
            CASE WHEN c.text LIKE %s THEN 1.0 ELSE 0.0 END AS score
     FROM chunk c
     JOIN corpus_snapshot_version sv ON sv.version_id=c.version_id
-    WHERE sv.snapshot_id=%s AND c.text LIKE %s
+    WHERE sv.snapshot_id=%s AND c.chunk_set_id=%s AND c.text LIKE %s
     ORDER BY c.version_id DESC, c.ordinal
     LIMIT %s
     """
     pattern = f"%{token}%"
     with connect() as conn, conn.cursor() as cur:
-        cur.execute(sql, (pattern, snapshot_id, pattern, k))
+        cur.execute(sql, (pattern, snapshot_id, snapshot_chunk_set(snapshot_id), pattern, k))
         rows = cur.fetchall()
     return [
         SearchHit(

@@ -295,6 +295,41 @@ The common advice to default to `rrf_k=60` happens to hold here, but only once t
 
 **Ambiguous questions fail across the board.** AN-011 ("What is my rate limit?") is recalled by dense (1.00) and missed by lexical, interleave and RRF (0.00). One case is not a finding, but it is the only category where dense wins outright.
 
+### EXP-005 — re-chunking (the hypothesis above, tested)
+
+FAIL-0002 concluded that chunk granularity was the ceiling and predicted that re-chunking
+would move span recall toward document recall. That was measured. Full write-up:
+**[EXP-005-rechunking.md](docs/reports/EXP-005-rechunking.md)**.
+
+| Configuration | macro span recall | fully recalled | doc recall | rescued / regressed vs control |
+|---|---:|---:|---:|---|
+| EXP-000 control (`chunker_v1_control`) | 0.475 | 9/20 | 0.825 | — |
+| EXP-005A bounded (`chunker_v2_bounded`) | 0.500 | 9/20 | 0.825 | **0 / 0** |
+| EXP-005B technical (`chunker_v3_technical`) | 0.650 | 12/20 | 0.900 | **3 / 0** |
+
+**The granularity hypothesis was rejected.** V2 enforces a real ceiling — the corpus
+maximum falls from 16,096 characters to 1,999 and 3,069 over-2,000 chunks become none — and
+it rescued **nothing**. Across all 22 spans it improved 8 ranks and worsened 9, and **not
+one span** that was previously unreachable became reachable.
+
+The motivating case is the clearest evidence. AN-003's answer went from 1.65% to 4.79% of
+its chunk and is still not retrieved at depth 300, because every low-df term in the
+question (`contain` df 111, `Batches` df 286, `requests` df 1,218) is absent from the chunk
+holding the answer. That is vocabulary mismatch, which no chunker can fix.
+
+V2 also showed a real cost: AN-002 fell from rank 27 to 172 because splitting its chunk cut
+query-term coverage from 12/13 to 7/13. The control's oversized chunks were accidentally
+*helping* a bag-of-words retriever by aggregating co-occurring terms.
+
+EXP-005B's +3 is real but is **not** the hypothesis being confirmed: V3 also prepends a
+section-path context header to the indexed text, which is why its document recall rose to
+0.900 when the design expected it to stay flat. The gain is attributable to contextual
+enrichment, not to chunk size. `chunker_v1_control` therefore remains the published
+baseline, and the next experiment is to isolate enrichment from granularity.
+
+All three chunkings coexist in the database as separate chunk sets, and EXP-000 re-runs
+byte-identically against the control set.
+
 ### Limitations — read before quoting any number above
 
 1. **EXP-NULL did not run.** The closed-book control needs a generation credential and reachable provider host; this environment has neither (`experiments/EXP-NULL/results.json` records `status: "blocked"` with the exact error). **Nothing here shows that retrieval beats what the model already knows** — that was the primary question V1 was built to answer, and it remains unanswered. Every retrieval number below is uncalibrated against the closed-book floor.
@@ -359,6 +394,6 @@ Those become experiments only after the baseline produces real failures.
 The baseline has now produced two, both written up:
 
 - [FAIL-0001](docs/failure-reports/FAIL-0001.md) — the lexical baseline retrieved nothing at all. Diagnosed and fixed; 0.000 → 0.475.
-- [FAIL-0002](docs/failure-reports/FAIL-0002.md) — retrieval reaches the right document and returns the wrong chunk. Diagnosed and **deliberately left unfixed**, because re-chunking is EXP-004 and must be measured against the same evidence spans rather than folded silently into V1.
+- [FAIL-0002](docs/failure-reports/FAIL-0002.md) — retrieval reaches the right document and returns the wrong chunk. Diagnosed as chunk granularity, then **tested and largely refuted** in [EXP-005](docs/reports/EXP-005-rechunking.md): bounding chunk size rescued zero questions. The report is left standing with its outcome recorded, because a prediction that turned out wrong is part of the record.
 
 And one claim V1 set out to make and could not: **it does not claim retrieval beats closed-book generation**, because EXP-NULL never ran. That is the honest headline.
