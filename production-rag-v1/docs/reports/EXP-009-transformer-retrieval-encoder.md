@@ -131,7 +131,7 @@ mechanism, not a strictly better encoder."*
 The encoder's reference window is 256 WordPiece tokens. Measured against the
 control chunks:
 
-* **35.3%** of chunks are truncated (5,008 of 14,209)
+* **35.2%** of chunks are truncated (5,008 of 14,209)
 * the encoder sees only **51.3%** of all corpus tokens
 * the median truncated chunk is **745 tokens** — nearly three windows long
 
@@ -158,7 +158,7 @@ purpose. Only the context window changed: same weights, same pooling, same
 normalization, same metric, same chunks, same queries, same RRF parameters.
 
 Widening the window from 256 to 512 tokens raises corpus coverage from **51.3%
-to 76.1%** of tokens, and cuts truncated chunks from **35.3% to 23.2%**.
+to 76.1%** of tokens, and cuts truncated chunks from **35.2% to 23.2%**.
 
 | cell | macro recall | fully recalled | spans@10 | doc recall | MRR | absent@300 |
 |---|---|---|---|---|---|---|
