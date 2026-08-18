@@ -74,7 +74,7 @@ WITH terms AS (
     WHERE phraseto_tsquery('simple', t)::text <> ''
 ),
 corpus AS (
-    SELECT count(*)::float8 AS n, avg(length(c.text))::float8 AS avg_len
+    SELECT count(*)::float8 AS n, avg(length(coalesce(c.search_text, c.text)))::float8 AS avg_len
     FROM chunk c
     JOIN corpus_snapshot_version sv ON sv.version_id = c.version_id
     WHERE sv.snapshot_id = %(snapshot_id)s
@@ -100,7 +100,7 @@ SELECT * FROM (
     SELECT c.chunk_id, c.version_id, c.section_path, c.char_start, c.char_end, c.text,
            sum(
                w.idf * (%(k1)s + 1)
-               / (1 + %(k1)s * (1 - %(b)s + %(b)s * length(c.text) / w.avg_len))
+               / (1 + %(k1)s * (1 - %(b)s + %(b)s * length(coalesce(c.search_text, c.text)) / w.avg_len))
            ) AS score
     FROM chunk c
     JOIN corpus_snapshot_version sv ON sv.version_id = c.version_id

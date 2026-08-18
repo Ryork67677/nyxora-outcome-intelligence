@@ -157,16 +157,31 @@ def create_snapshot_for_chunk_set(name: str, chunk_set_id: str, source_snapshot_
             raise RuntimeError(f"No versions for snapshot {source_snapshot_id}")
 
         cur.execute(
-            "SELECT chunker_name, chunker_version, config_hash, config FROM chunk_set WHERE chunk_set_id=%s",
+            """
+            SELECT chunker_name, chunker_version, config_hash, config, enrichment_config
+            FROM chunk_set WHERE chunk_set_id=%s
+            """,
             (chunk_set_id,),
         )
         row = cur.fetchone()
         if not row:
             raise RuntimeError(f"Unknown chunk set {chunk_set_id}")
-        chunker_name, chunker_version, cfg_hash, cfg = row
+        chunker_name, chunker_version, cfg_hash, cfg, enrichment_cfg = row
 
         manifest_hash = config_hash({"versions": [{"version_id": r[0], "content_hash": r[1]} for r in rows]})
-        chunking_hash = config_hash({"chunker": chunker_name, "version": chunker_version, "config": cfg})
+        # The enrichment config and the chunk set itself are part of the snapshot's
+        # identity. Without them an enriched set would hash as the same "chunking"
+        # as the plain set it was copied from, and two different indexes would
+        # collide on one snapshot id.
+        chunking_hash = config_hash(
+            {
+                "chunker": chunker_name,
+                "version": chunker_version,
+                "config": cfg,
+                "enrichment": enrichment_cfg or {},
+                "chunk_set_id": chunk_set_id,
+            }
+        )
         snapshot_id = stable_id("snap", name, manifest_hash, PARSER_VERSION, chunking_hash, length=32)
 
         cur.execute(
@@ -195,3 +210,128 @@ def create_snapshot_for_chunk_set(name: str, chunk_set_id: str, source_snapshot_
             )
         conn.commit()
     return snapshot_id
+
+
+def build_enriched_chunk_set(
+    source_chunk_set_id: str,
+    enrichment_config=None,
+    replace: bool = False,
+) -> dict:
+    """Clone a chunk set, changing only the indexed text.
+
+    Chunk boundaries, section paths, character spans and canonical bodies are
+    copied verbatim from ``source_chunk_set_id``. The only difference is
+    ``search_text``, which carries the structural header. That is what makes the
+    EXP-006 A→B and C→D comparisons a clean ablation of enrichment: any recall
+    difference cannot be a chunking difference, because the chunking is identical
+    row for row.
+    """
+    from rag_v1.enrichment import STRUCTURAL_V1, EnrichmentStats, build_context_header, enrich
+
+    config = enrichment_config or STRUCTURAL_V1
+    started = time.time()
+
+    with connect() as conn, conn.cursor() as cur:
+        cur.execute(
+            """
+            SELECT chunker_name, chunker_version, config_hash, config, parser_version
+            FROM chunk_set WHERE chunk_set_id=%s
+            """,
+            (source_chunk_set_id,),
+        )
+        row = cur.fetchone()
+        if not row:
+            raise RuntimeError(f"Unknown source chunk set {source_chunk_set_id}")
+        chunker_name, chunker_version, chunker_cfg_hash, chunker_cfg, parser_version = row
+
+        target_id = stable_id(
+            "cs", source_chunk_set_id, "enriched", config.name, config.config_hash, length=24
+        )
+        # chunk_set is UNIQUE on (chunker_name, chunker_version, config_hash). An
+        # enriched clone shares its chunker with the set it was copied from, so the
+        # enrichment has to be folded into the config hash — the indexed text is
+        # part of what makes this a distinct chunk set.
+        combined_cfg_hash = config_hash(
+            {"chunker_config_hash": chunker_cfg_hash, "enrichment": config.as_dict()}
+        )
+
+        cur.execute(
+            """
+            INSERT INTO chunk_set(chunk_set_id, chunker_name, chunker_version, config_hash, config,
+                                  parser_version, git_commit, notes, enrichment_config,
+                                  derived_from_chunk_set_id)
+            VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+            ON CONFLICT (chunk_set_id) DO NOTHING
+            """,
+            (
+                target_id, chunker_name, chunker_version, combined_cfg_hash, Jsonb(chunker_cfg),
+                parser_version, _git_commit(),
+                f"Boundaries copied from {source_chunk_set_id}; only search_text differs.",
+                Jsonb(config.as_dict()), source_chunk_set_id,
+            ),
+        )
+
+        cur.execute("SELECT count(*) FROM chunk WHERE chunk_set_id=%s", (target_id,))
+        existing = cur.fetchone()[0]
+        if existing and not replace:
+            raise RuntimeError(f"{target_id} already holds {existing} chunks; pass replace=True")
+        if existing:
+            cur.execute("DELETE FROM chunk WHERE chunk_set_id=%s", (target_id,))
+
+        cur.execute(
+            """
+            SELECT c.chunk_id, c.version_id, c.ordinal, c.section_path, c.chunk_type,
+                   c.char_start, c.char_end, c.content_hash, c.text, c.metadata,
+                   s.provider, s.title
+            FROM chunk c
+            JOIN document_version v ON v.version_id = c.version_id
+            JOIN document_source s ON s.source_id = v.source_id
+            WHERE c.chunk_set_id = %s
+            ORDER BY c.version_id, c.ordinal
+            """,
+            (source_chunk_set_id,),
+        )
+        rows = cur.fetchall()
+        if not rows:
+            raise RuntimeError(f"Source chunk set {source_chunk_set_id} is empty")
+
+        stats = EnrichmentStats()
+        for (
+            src_chunk_id, version_id, ordinal, section_path, chunk_type,
+            char_start, char_end, content_hash_value, text, metadata, provider, title,
+        ) in rows:
+            header = build_context_header(provider, title, list(section_path), config)
+            stats.observe(header)
+            search_text = enrich(text, header)
+            new_id = stable_id("chk", target_id, src_chunk_id, length=40)
+            meta = dict(metadata or {})
+            meta |= {
+                "enriched": bool(header),
+                "enrichment": config.name,
+                "source_chunk_id": src_chunk_id,
+            }
+            cur.execute(
+                """
+                INSERT INTO chunk(chunk_id, chunk_set_id, version_id, ordinal, section_path,
+                                  chunk_type, char_start, char_end, content_hash, text,
+                                  search_text, context_header, metadata)
+                VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+                ON CONFLICT (chunk_id) DO NOTHING
+                """,
+                (
+                    new_id, target_id, version_id, ordinal, section_path, chunk_type,
+                    char_start, char_end, content_hash_value, text,
+                    search_text, header or None, Jsonb(meta),
+                ),
+            )
+        conn.commit()
+
+    return {
+        "chunk_set_id": target_id,
+        "derived_from": source_chunk_set_id,
+        "enrichment": config.as_dict(),
+        "enrichment_config_hash": config.config_hash,
+        "chunks": len(rows),
+        "enrichment_stats": stats.as_dict(),
+        "runtime_seconds": round(time.time() - started, 2),
+    }

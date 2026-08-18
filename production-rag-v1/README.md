@@ -330,6 +330,44 @@ baseline, and the next experiment is to isolate enrichment from granularity.
 All three chunkings coexist in the database as separate chunk sets, and EXP-000 re-runs
 byte-identically against the control set.
 
+### EXP-006 — contextual enrichment ablation (decomposing EXP-005's V3)
+
+EXP-005's V3 changed boundaries *and* prepended structural context to the indexed text, so
+its +3 could not be attributed. EXP-006 decomposes it as a 2×2. Full write-up:
+**[EXP-006-enrichment-ablation.md](docs/reports/EXP-006-enrichment-ablation.md)**.
+
+| | no enrichment | + structural enrichment |
+|---|---|---|
+| **control chunking** | **A** — 0.475, 9/20 | **B** — 0.475, 9/20 |
+| **bounded chunking** | **C** — 0.500, 9/20 | **D** — 0.550, 10/20 |
+
+**Contextual enrichment did not improve retrieval.** A → B — the comparison that isolates
+enrichment — moved macro recall by **exactly zero**, rescuing one question (AN-004, a fragile
+12→7 crossing whose BM25 score actually *fell*) and regressing another (AN-005, 4→18).
+
+The mechanism is measured: enrichment **inflates document frequency**. Writing
+`Provider: anthropic` into all 12,028 Anthropic chunks took that term from df 3,289 to
+12,028, destroying its IDF. Across 22 evidence spans, enrichment supplied a query term to
+only **3**, and in **none** of those was it a discriminative one. AN-005 regressed because
+its best term `editing` went from df 66 to 211.
+
+B and D are row-for-row copies of A and C — 0 boundary differences, 0 body differences — so
+an A→B difference cannot be a chunking difference. The canonical chunk body is never
+mutated; the header lives in a separate `search_text` column, because a citation must quote
+real source text.
+
+AN-003 became reachable for the first time (rank 74 under D, previously absent at depth 300)
+but is still nowhere near k=10. Its discriminative terms — `contain` (df 111), `most`,
+`many`, and `requests`, which never matches the body's singular `request` — appear nowhere
+in the chunk that answers it.
+
+**Two hypotheses have now been tested with controlled interventions and neither survives:**
+oversized chunks (EXP-005, zero rescued) and missing structural context (EXP-006, Δ0.000).
+The surviving diagnosis is that BM25 cannot bridge the vocabulary gap between how a question
+is phrased and how the documentation states the answer. The next justified experiment is a
+real pretrained embedding model, with AN-003 as its canonical test case. Enrichment is
+**not** frozen and the baseline remains control chunking, unenriched.
+
 ### Limitations — read before quoting any number above
 
 1. **EXP-NULL did not run.** The closed-book control needs a generation credential and reachable provider host; this environment has neither (`experiments/EXP-NULL/results.json` records `status: "blocked"` with the exact error). **Nothing here shows that retrieval beats what the model already knows** — that was the primary question V1 was built to answer, and it remains unanswered. Every retrieval number below is uncalibrated against the closed-book floor.
