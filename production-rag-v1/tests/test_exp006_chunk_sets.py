@@ -167,6 +167,44 @@ def test_lexical_search_still_uses_the_gin_index(cursor):
             "k": 10,
             "k1": BM25_K1,
             "b": BM25_B,
+            # EXP-012 added an optional document restriction to the scoring select.
+            # NULL means "whole snapshot", i.e. exactly the pre-EXP-012 query, and
+            # the plan must be unchanged in that case.
+            "version_ids": None,
+        },
+    )
+    plan = "\n".join(r[0] for r in cursor.fetchall())
+    assert "idx_chunk_search_vector" in plan, plan
+
+
+def test_lexical_search_keeps_the_gin_index_when_documents_are_restricted(cursor):
+    """EXP-012 routes to a document subset; that must not cost the GIN plan.
+
+    This is the FAIL-0001 failure mode: an extra predicate gave the planner another
+    way to reach the rows and it abandoned the index, taking the evaluation from
+    under a second to over a minute.
+    """
+    from rag_v1.retrieval import _LEXICAL_SQL, BM25_B, BM25_K1, query_terms
+
+    cursor.execute("SELECT snapshot_id FROM corpus_snapshot WHERE chunk_set_id=%s LIMIT 1", (CONTROL,))
+    row = cursor.fetchone()
+    if not row:
+        pytest.skip("no snapshot for the control chunk set")
+    cursor.execute("SELECT DISTINCT version_id FROM chunk WHERE chunk_set_id=%s LIMIT 5", (CONTROL,))
+    versions = [r[0] for r in cursor.fetchall()]
+    if not versions:
+        pytest.skip("no versions")
+
+    cursor.execute(
+        "EXPLAIN " + _LEXICAL_SQL,
+        {
+            "terms": query_terms("Which HTTP status code does request_too_large return?"),
+            "snapshot_id": row[0],
+            "chunk_set_id": CONTROL,
+            "k": 10,
+            "k1": BM25_K1,
+            "b": BM25_B,
+            "version_ids": versions,
         },
     )
     plan = "\n".join(r[0] for r in cursor.fetchall())

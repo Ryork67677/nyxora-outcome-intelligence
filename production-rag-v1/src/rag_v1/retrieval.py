@@ -107,6 +107,12 @@ SELECT * FROM (
     JOIN weighted w ON c.search_vector @@ w.tq
     WHERE sv.snapshot_id = %(snapshot_id)s
       AND c.chunk_set_id = %(chunk_set_id)s
+      -- EXP-012 restricts candidates to routed documents. The filter sits in the
+      -- *scoring* select only: the corpus and weighted CTEs above still compute n,
+      -- avg_len and df across the whole snapshot, so a term's IDF is identical to
+      -- the global run. Restricting those CTEs instead would re-weight the lexicon
+      -- inside the selected documents and confound topology with statistics.
+      AND (%(version_ids)s::text[] IS NULL OR c.version_id = ANY(%(version_ids)s::text[]))
     GROUP BY c.chunk_id, c.version_id, c.section_path, c.char_start, c.char_end, c.text
 ) scored
 -- Ties are common in BM25, and sum() accumulates in whatever order the plan
@@ -118,7 +124,17 @@ LIMIT %(k)s
 """
 
 
-def lexical_search(query: str, snapshot_id: str, k: int = 20) -> list[SearchHit]:
+def lexical_search(
+    query: str, snapshot_id: str, k: int = 20, version_ids: list[str] | None = None
+) -> list[SearchHit]:
+    """BM25 over the snapshot, optionally restricted to selected documents.
+
+    ``version_ids`` is optional and defaults to the whole snapshot, which is how
+    every experiment through EXP-011 called this. When supplied (EXP-012), the
+    restriction applies to candidate selection only — term statistics remain those
+    of the full corpus, so a chunk's score is the same number it would have had in
+    the global ranking.
+    """
     from rag_v1.db import connect
     terms = query_terms(query)
     if not terms:
@@ -133,6 +149,7 @@ def lexical_search(query: str, snapshot_id: str, k: int = 20) -> list[SearchHit]
                 "k": k,
                 "k1": BM25_K1,
                 "b": BM25_B,
+                "version_ids": version_ids,
             },
         )
         rows = cur.fetchall()
@@ -146,7 +163,8 @@ def lexical_search(query: str, snapshot_id: str, k: int = 20) -> list[SearchHit]
 
 
 def dense_search(
-    query: str, snapshot_id: str, model_id: str, k: int = 20, embedder=None
+    query: str, snapshot_id: str, model_id: str, k: int = 20, embedder=None,
+    version_ids: list[str] | None = None,
 ) -> list[SearchHit]:
     """Exact cosine search. No ANN index exists, so this is a full scan by design.
 
@@ -177,12 +195,14 @@ def dense_search(
         JOIN chunk c ON c.chunk_id=ce.chunk_id
         JOIN corpus_snapshot_version sv ON sv.version_id=c.version_id
         WHERE ce.model_id=%s AND sv.snapshot_id=%s AND c.chunk_set_id=%s
+          AND (%s::text[] IS NULL OR c.version_id = ANY(%s::text[]))
     ) scored
     ORDER BY round(scored.distance::numeric, 9) ASC, scored.chunk_id
     LIMIT %s
     """
     with connect() as conn, conn.cursor() as cur:
-        cur.execute(sql, (qvec, qvec, model_id, snapshot_id, snapshot_chunk_set(snapshot_id), k))
+        cur.execute(sql, (qvec, qvec, model_id, snapshot_id, snapshot_chunk_set(snapshot_id),
+                          version_ids, version_ids, k))
         rows = cur.fetchall()
     return [
         SearchHit(
