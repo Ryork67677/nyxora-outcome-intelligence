@@ -127,3 +127,33 @@ No reranker. No encoder-window sweep (512 is fixed from EXP-009; the chunker's
 conservative target is an ingestion constraint, not a retrieval hyperparameter).
 No second transformer. No new golden questions. No BM25 tuning. No ANN. No
 enrichment. Prior experiment artifacts and chunk sets are immutable.
+
+---
+
+# Addendum — chunker construction, recorded before the chunker was built
+
+A literal reading of "build an encoder-aligned chunker" would re-chunk the corpus
+from source with a ~448-token target. That would change **two** things at once
+relative to cell B: how oversized units are split *and* how already-fitting units
+are grouped. D vs B would then no longer isolate encoder alignment, which is the
+whole point of the cell.
+
+So the encoder-aligned chunk set is **derived from the control chunking**:
+
+* a control chunk whose payload already fits the window is passed through
+  **byte-identical** — same source span, same text, same content hash;
+* a control chunk that exceeds the window is split at structural boundaries into
+  pieces targeting **448** payload tokens, hard cap **480**.
+
+This satisfies the design intent — *every normal retrieval unit is completely
+visible to the encoder* — while changing exactly one thing: units the encoder
+could not previously see whole. Units that already fitted are untouched, so any
+movement in D is attributable to the truncation fix and not to re-grouping.
+
+It also directly serves the §11 warning that shortness is not the objective, and
+the §26 topical-coherence check: coherent units that already fitted cannot be
+fragmented by this intervention, because they are not touched at all.
+
+Consequence to expect in the diagnostics: the encoder-aligned set will have
+**more** chunks than the control (oversized units become several), not fewer, and
+its token distribution will be the control's with the >480 tail folded down.
