@@ -1,7 +1,10 @@
 # EXP-009 — Does a contextual transformer retrieval encoder beat static vectors?
 
-**Status: partially supported — the preregistered accuracy bar was not met, but a
-clear causal mechanism was identified.**
+**Status: supported once the truncation confound is removed.** In the reference
+256-token configuration the preregistered accuracy bar was *not* met. The
+preregistered 512-token sensitivity run clears it decisively, and identifies the
+cause of both directions of movement: the encoder's context window, not its
+architecture.
 
 ## 1. The question
 
@@ -97,9 +100,11 @@ hypothesis supported.
 | C vs B (transformer vs static) | **+0.075** (1.5 cases) | **below the bar** — not "supported" |
 | D vs E (fused) | **+0.025** (1 case) | within noise at n=20 |
 
-**The headline accuracy claim does not clear its own preregistered threshold.**
-At n=20 one case is 5 percentage points; no significance is claimed and a
-one-case difference is not reported as an improvement.
+**In the reference configuration the headline accuracy claim does not clear its
+own preregistered threshold.** At n=20 one case is 5 percentage points; no
+significance is claimed and a one-case difference is not reported as an
+improvement. Section 8b reports the preregistered sensitivity run, which does
+clear the bar — and explains why.
 
 What *is* robust is **reachability**, which does not depend on the top-10 cutoff:
 
@@ -145,6 +150,57 @@ the architecture — and it is the first mechanism in this project that explains
 
 A sensitivity run at the model's 512-token positional limit was preregistered
 precisely so this could be tested rather than argued.
+
+## 8b. The 512-token sensitivity run — the mechanism confirmed
+
+Declared in the preregistration **before any result was seen**, for exactly this
+purpose. Only the context window changed: same weights, same pooling, same
+normalization, same metric, same chunks, same queries, same RRF parameters.
+
+Widening the window from 256 to 512 tokens raises corpus coverage from **51.3%
+to 76.1%** of tokens, and cuts truncated chunks from **35.3% to 23.2%**.
+
+| cell | macro recall | fully recalled | spans@10 | doc recall | MRR | absent@300 |
+|---|---|---|---|---|---|---|
+| A BM25 (gate: PASS) | 0.475 | 9/20 | 10/22 | 0.825 | 0.280 | 1 |
+| B FastText dense (gate: PASS) | 0.425 | 8/20 | 9/22 | 0.725 | 0.360 | 5 |
+| C transformer dense @512 | **0.575** | **11/20** | **13/22** | 0.925 | 0.339 | 1 |
+| D BM25 + transformer RRF @512 | **0.775** | **15/20** | **17/22** | 0.925 | **0.449** | 2 |
+| E BM25 + FastText RRF (gate: PASS) | 0.600 | 11/20 | 13/22 | 0.825 | 0.326 | 2 |
+
+All three reproduction gates still pass, and cell E is byte-identical to the
+256 run — as it must be, since no transformer participates in it. That is the
+control which shows the movement below comes from the window and nothing else.
+
+| comparison | @256 | @512 | preregistered bar (≥0.10) |
+|---|---|---|---|
+| C vs B — transformer vs static | +0.075 | **+0.150** | **cleared** |
+| D vs E — fused, transformer vs static | +0.025 | **+0.175** | **cleared** |
+| D vs A — fused vs frozen baseline | +0.150 | **+0.300** | — |
+
+At 512 the paired analysis reports **net +6 cases rescued over BM25 with zero
+regressions**, and **net +4 over the EXP-007C fusion with zero regressions**.
+A comparison with no losing cases is qualitatively different from a net win, and
+it is the first such result in this project.
+
+Two specific movements matter more than the aggregate:
+
+* **OA-004**, the fusion regression tracked since EXP-007, is *rescued* at 512.
+* **AN-002 and AN-007** — two of FastText's three wins — are still lost. The
+  transformer is now clearly better on aggregate but it is still not strictly
+  better, which is the check the preregistration asked for.
+
+### What this does and does not license
+
+It **does** establish the mechanism: the window, not the architecture, drove the
+256-token result, and the effect is large relative to everything else measured in
+this project.
+
+It **does not** retroactively become the primary result. The preregistered
+primary configuration was the reference 256, and it is reported as it fell. The
+512 figure rests on one run of n=20 questions, where one case is 5 percentage
+points, and 512 is the model's positional ceiling rather than a tuned value —
+there is no sweep here and none should be inferred.
 
 ## 9. AN-003 — first contact
 
@@ -210,12 +266,16 @@ The frozen baseline is **unchanged**: control chunking, no enrichment, BM25,
 
 ## 13. Honest summary
 
-* The hypothesis as preregistered — a transformer beats static vectors on accuracy
-  — **did not clear its own threshold** (+0.075 against a required +0.10).
-* The transformer is **not uniformly better**: it lost every case FastText won.
+* In the **reference 256-token configuration** the hypothesis **did not clear its
+  own threshold** (+0.075 against a required +0.10). That is reported as it fell.
+* In the **preregistered 512-token sensitivity run** it clears the bar decisively:
+  +0.150 dense, +0.175 fused, and **net +6 cases over BM25 with zero regressions**.
+* The transformer is **still not uniformly better**: AN-002 and AN-007 remain lost
+  at 512. Better on aggregate is not the same as strictly better.
 * The genuine finding is **mechanistic**: retrieval quality here is gated by how
-  much of a chunk the encoder can see. 35% of chunks are truncated and half the
-  corpus tokens are invisible to the encoder.
+  much of a chunk the encoder can see. At 256 tokens 35% of chunks are truncated
+  and half the corpus tokens are invisible; at 512 that falls to 23% and 24%, and
+  recall moves with it in both directions.
 * Reachability improvements (absent@300 5 → 1, doc recall 0.725 → 0.925) are large
   enough not to be n=20 noise, unlike the top-10 accuracy deltas.
 * EXP-007's negative result is now **superseded, not confirmed**: it was measured
