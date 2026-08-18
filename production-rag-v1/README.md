@@ -409,6 +409,41 @@ RRF is the leading promotion candidate but is a +2-case movement on a 20-case de
 set. A reranker remains unjustified: AN-003 is absent at depth 300 under every
 configuration, and reranking cannot retrieve what retrieval never found.
 
+### EXP-008 — chunk size × dense retrieval (the EXP-007 correlation, tested)
+
+Full write-up: **[EXP-008-chunk-size-x-dense.md](docs/reports/EXP-008-chunk-size-x-dense.md)**.
+
+| | control chunks | bounded chunks | Δ |
+|---|---:|---:|---:|
+| **BM25** | 0.475 (9/20) | 0.500 (9/20) | +0.025 |
+| **dense** | 0.425 (8/20) | 0.400 (8/20) | **−0.025** |
+
+**The interaction hypothesis was not supported — the EXP-007 chunk-length correlation was
+not causal.** Bounded chunking made dense retrieval *worse*, collapsed MRR from 0.360 to
+**0.259**, and left deep reachability unchanged at 5 spans absent@300. Paired: 1 rescued,
+1 regressed, **net 0**, both single-rank boundary crossings. The interaction term is
+**−0.050** — the opposite sign to the prediction.
+
+One real gain: **AN-003's answer chunk entered the dense pool for the first time** (absent@300
+→ rank 119) once its chunk fell 3,449 → 1,191 chars. But rank 119 is far outside `top_k` and
+any rerank window, and it was offset exactly by AN-004 being **lost entirely** (17 → absent).
+
+The mechanism is the useful part: **mean pooling rewards topical coherence, not shortness.**
+EXP-007's two dense rescues both lived in the same 3,327-char `HTTP errors` chunk — a
+homogeneous list of status codes — and splitting it degraded both (1→6, 2→6) while AN-012
+collapsed from **1 to 140**. Chunk length was a *proxy* for heterogeneity. The correlation even
+survives bounded chunking (median 883 reachable vs 1,167 unreachable), confirming shortening
+cannot fix it.
+
+Exploratory fusion confirms it indirectly: BM25 control + **bounded** dense RRF falls back to
+**0.475**, versus EXP-007's BM25 + **control** dense at **0.600**. Degrading dense destroyed
+the complementarity that made fusion work.
+
+**Four hypotheses, four negative results** — oversized chunks, missing structural context,
+vocabulary mismatch, and now chunk×dense interaction. The best measured configuration remains
+EXP-007C (BM25 + dense, both on control chunks, 0.600 / 11-of-20), and **both retrievers work
+better on the original chunking**. Baseline unchanged; a reranker remains unjustified.
+
 ### Limitations — read before quoting any number above
 
 1. **EXP-NULL did not run.** The closed-book control needs a generation credential and reachable provider host; this environment has neither (`experiments/EXP-NULL/results.json` records `status: "blocked"` with the exact error). **Nothing here shows that retrieval beats what the model already knows** — that was the primary question V1 was built to answer, and it remains unanswered. Every retrieval number below is uncalibrated against the closed-book floor.

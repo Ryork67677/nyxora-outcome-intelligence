@@ -1,0 +1,39 @@
+{
+  "chunk_set_id": "cs_2722bf8b72dcf3eb404336d7",
+  "model_id": "emb_c11d8d9184d2ebc1ac60801a6452b884",
+  "model_card": {
+    "provider": "gensim-data",
+    "model_identifier": "fasttext-wiki-news-subwords-300",
+    "origin": "facebookresearch/fastText wiki-news-300d-1M-subword",
+    "revision": "gensim-data release asset, sha256 be48d40d6c67dbebe4b3eea22ab7dd7c7efbdb977d88654010f4eb740a836552",
+    "training_corpus": "Wikipedia 2017 + UMBC webbase + statmt.org news (~16B tokens)",
+    "vocabulary": 999999,
+    "dimension": 300,
+    "pooling": "mean of L2-normalized in-vocabulary token vectors",
+    "normalization": "L2 on the pooled vector",
+    "distance_metric": "cosine",
+    "query_prefix": null,
+    "document_prefix": null,
+    "corpus_fitted": false
+  },
+  "model_version_fingerprint": "2640a51d599c0468",
+  "chunks": 20526,
+  "embeddings_stored": 34735,
+  "cache_hits": 0,
+  "cache_misses": 20526,
+  "cache_hit_rate": 0.0,
+  "all_zero_embeddings": 128,
+  "vocabulary_forms_requested": 32011,
+  "pretrained_vectors_loaded": 12638,
+  "token_coverage": {
+    "tokens_seen": 1505806,
+    "tokens_matched": 1449659,
+    "match_rate": 0.9627,
+    "vectors_loaded": 12638
+  },
+  "storage_size": "40 MB",
+  "vocabulary_seconds": 1.9,
+  "model_load_seconds": 18.3,
+  "embed_seconds": 21.0,
+  "total_seconds": 41.4
+}

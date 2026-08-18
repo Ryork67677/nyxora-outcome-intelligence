@@ -108,17 +108,30 @@ def test_every_control_chunk_is_embedded_exactly_once(cursor):
     assert cursor.fetchone()[0] == chunks
 
 
-def test_embeddings_cover_only_unenriched_control_chunks(cursor):
-    # EXP-007 freezes the corpus representation: control chunker, no enrichment.
+def test_embeddings_never_cover_an_enriched_chunk(cursor):
+    # EXP-007 froze the representation as control chunks with no enrichment. EXP-008
+    # then added the bounded chunk set under the same model on purpose, so the set
+    # membership check now allows exactly those two. The invariant that must never
+    # move is that no enriched chunk is ever embedded.
     cursor.execute(
         """
         SELECT count(*) FROM chunk_embedding ce
         JOIN chunk c ON c.chunk_id = ce.chunk_id
-        WHERE ce.model_id=%s AND (c.chunk_set_id <> %s OR c.search_text IS NOT NULL)
+        WHERE ce.model_id=%s AND (c.search_text IS NOT NULL OR c.context_header IS NOT NULL)
         """,
-        (MODEL_ID, CONTROL_CHUNK_SET),
+        (MODEL_ID,),
     )
-    assert cursor.fetchone()[0] == 0, "an enriched or non-control chunk was embedded"
+    assert cursor.fetchone()[0] == 0, "an enriched chunk was embedded"
+
+    cursor.execute(
+        """
+        SELECT DISTINCT c.chunk_set_id FROM chunk_embedding ce
+        JOIN chunk c ON c.chunk_id = ce.chunk_id WHERE ce.model_id=%s
+        """,
+        (MODEL_ID,),
+    )
+    embedded_sets = {row[0] for row in cursor.fetchall()}
+    assert embedded_sets <= {CONTROL_CHUNK_SET, "cs_2722bf8b72dcf3eb404336d7"}, embedded_sets
 
 
 def test_no_evaluation_question_text_is_stored_as_a_document(cursor):

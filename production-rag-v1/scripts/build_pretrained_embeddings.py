@@ -15,7 +15,6 @@ import json
 import time
 from pathlib import Path
 
-import numpy as np
 from psycopg.types.json import Jsonb
 
 from rag_v1.db import connect
@@ -85,7 +84,7 @@ def main() -> int:
         )
         cached = {cid: chash for cid, chash in cur.fetchall()}
 
-        hits = misses = 0
+        hits = misses = zero_vectors = 0
         embed_started = time.time()
         for start in range(0, len(rows), args.batch):
             batch = rows[start:start + args.batch]
@@ -98,6 +97,7 @@ def main() -> int:
             if not pending:
                 continue
             vectors = [embedder.embed_one(t) for _cid, t, _h in pending]
+            zero_vectors += sum(1 for v in vectors if not v.any())
             for (chunk_id, _text, chash), vec in zip(pending, vectors, strict=True):
                 cur.execute(
                     """
@@ -123,11 +123,9 @@ def main() -> int:
         )
         stored, size = cur.fetchone()
 
-        cur.execute(
-            "SELECT count(*) FROM chunk_embedding WHERE model_id=%s AND embedding = %s::vector",
-            (model_id, np.zeros(embedder.dimension, dtype=np.float32).tolist()),
-        )
-        all_zero = cur.fetchone()[0]
+        # Counted while encoding: a chunk with no in-vocabulary token yields an
+        # all-zero vector and can never be retrieved by cosine similarity.
+        all_zero = zero_vectors
 
     payload = {
         "chunk_set_id": args.chunk_set,

@@ -245,7 +245,10 @@ def get_pretrained_embedder(vocabulary: set[str] | None = None) -> PretrainedWor
                 "No filtered pretrained-vector cache found. "
                 "Run scripts/build_pretrained_embeddings.py first."
             )
-        path = candidates[-1]
+        # Pick the largest cache. A vocabulary superset encodes any text whose
+        # tokens it covers identically to the full model, so the widest cache is
+        # always the safe choice; sorting by filename would pick arbitrarily.
+        path = max(candidates, key=lambda c: c.stat().st_size)
     else:
         path = build_filtered_cache(vocabulary)
 
