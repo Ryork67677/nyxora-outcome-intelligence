@@ -1,0 +1,114 @@
+{
+  "experiment_id": "EXP-009",
+  "model_card": {
+    "provider": "onnx-sentence-transformers",
+    "model_identifier": "sentence-transformers/all-MiniLM-L6-v2",
+    "origin": "Microsoft MiniLM-L6 distilled, contrastively fine-tuned by UKPLab on ~1B sentence pairs for semantic search",
+    "distribution": "https://chroma-onnx-models.s3.amazonaws.com/all-MiniLM-L6-v2/onnx.tar.gz",
+    "revision": "onnx bundle sha256 913d7300ceae3b2dbc2c50d1de4baacab4be7b9380491c27fab7418616a16ec3",
+    "model_sha256": "4f148ba8ae9c2c7fbee4af2b132db8d06c6a6545b47fc83bbb98c3d22b8393e6",
+    "tokenizer_sha256": "da0e79933b9ed51798a3ae27893d3c5fa4a201126cef75586296df9b4d2c62a0",
+    "architecture": "BertModel, 6 layers, hidden 384, 12 heads, intermediate 1536",
+    "precision": "fp32 (unquantized)",
+    "vocabulary": 30522,
+    "dimension": 384,
+    "max_seq_length": 256,
+    "tokenizer": "BertTokenizer WordPiece, do_lower_case=true",
+    "pooling": "attention-mask-weighted mean over last_hidden_state",
+    "normalization": "L2 on the pooled vector",
+    "distance_metric": "cosine",
+    "query_prefix": null,
+    "document_prefix": null,
+    "contextual": true,
+    "corpus_fitted": false,
+    "provenance_verified_against_publisher": false
+  },
+  "model_fingerprint": "57240b5e0b41c89e",
+  "provenance_note": "huggingface.co is blocked by egress policy, so the bundle cannot be checksummed against the upstream publisher. Structural and behavioural checks are recorded instead.",
+  "structural": {
+    "model_sha256": "4f148ba8ae9c2c7fbee4af2b132db8d06c6a6545b47fc83bbb98c3d22b8393e6",
+    "model_sha256_expected": "4f148ba8ae9c2c7fbee4af2b132db8d06c6a6545b47fc83bbb98c3d22b8393e6",
+    "tokenizer_sha256": "da0e79933b9ed51798a3ae27893d3c5fa4a201126cef75586296df9b4d2c62a0",
+    "tokenizer_sha256_expected": "da0e79933b9ed51798a3ae27893d3c5fa4a201126cef75586296df9b4d2c62a0",
+    "config": {
+      "_name_or_path": "sentence-transformers/all-MiniLM-L6-v2",
+      "architectures": [
+        "BertModel"
+      ],
+      "attention_probs_dropout_prob": 0.1,
+      "classifier_dropout": null,
+      "gradient_checkpointing": false,
+      "hidden_act": "gelu",
+      "hidden_dropout_prob": 0.1,
+      "hidden_size": 384,
+      "initializer_range": 0.02,
+      "intermediate_size": 1536,
+      "layer_norm_eps": 1e-12,
+      "max_position_embeddings": 512,
+      "model_type": "bert",
+      "num_attention_heads": 12,
+      "num_hidden_layers": 6,
+      "pad_token_id": 0,
+      "position_embedding_type": "absolute",
+      "transformers_version": "4.27.4",
+      "type_vocab_size": 2,
+      "use_cache": true,
+      "vocab_size": 30522
+    },
+    "graph_inputs": [
+      "attention_mask",
+      "input_ids",
+      "token_type_ids"
+    ],
+    "output_dimension": 384,
+    "tokenizer_vocab_size": 30522
+  },
+  "behavioural": {
+    "paraphrase_pairs": [
+      {
+        "a": "A man is eating food.",
+        "b": "A man is eating a meal.",
+        "cosine": 0.9262
+      },
+      {
+        "a": "A man is playing a guitar.",
+        "b": "Someone is performing on a musical instrument.",
+        "cosine": 0.6327
+      },
+      {
+        "a": "How do I reset my password?",
+        "b": "What are the steps to change my login credentials?",
+        "cosine": 0.6033
+      }
+    ],
+    "unrelated_pairs": [
+      {
+        "a": "A man is eating food.",
+        "b": "The train arrives at nine o'clock.",
+        "cosine": -0.0281
+      },
+      {
+        "a": "A man is playing a guitar.",
+        "b": "The stock market closed lower today.",
+        "cosine": -0.029
+      },
+      {
+        "a": "How do I reset my password?",
+        "b": "The cat slept on the windowsill all afternoon.",
+        "cosine": 0.1355
+      }
+    ],
+    "min_paraphrase": 0.6033,
+    "max_unrelated": 0.1355,
+    "separation": 0.4678,
+    "zero_overlap_pair_cosine": 0.6033
+  },
+  "reproducibility": {
+    "batch_composition_max_abs_delta": 0.0,
+    "repeat_call_max_abs_delta": 0.0,
+    "bitwise_identical_across_batches": true,
+    "bitwise_identical_across_calls": true
+  },
+  "failures": [],
+  "passed": true
+}

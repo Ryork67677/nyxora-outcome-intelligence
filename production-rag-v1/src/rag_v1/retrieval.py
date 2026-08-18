@@ -145,11 +145,23 @@ def lexical_search(query: str, snapshot_id: str, k: int = 20) -> list[SearchHit]
     ]
 
 
-def dense_search(query: str, snapshot_id: str, model_id: str, k: int = 20) -> list[SearchHit]:
-    from rag_v1.db import connect
-    from rag_v1.embeddings import get_embedder
+def dense_search(
+    query: str, snapshot_id: str, model_id: str, k: int = 20, embedder=None
+) -> list[SearchHit]:
+    """Exact cosine search. No ANN index exists, so this is a full scan by design.
 
-    embedder = get_embedder()
+    ``embedder`` is optional and defaults to the configured one, which is how every
+    experiment through EXP-008 called this. EXP-009 compares two dense encoders in
+    a single process, and each one must embed the query with the same weights that
+    embedded the chunks — a query vector from the wrong encoder would silently
+    produce meaningless similarities rather than an error.
+    """
+    from rag_v1.db import connect
+
+    if embedder is None:
+        from rag_v1.embeddings import get_embedder
+
+        embedder = get_embedder()
     qvec = embedder.embed([query])[0]
     # Cosine ties are common here — the corpus repeats identical documentation text
     # across pages, and EXP-007 found four chunks tied at 0.941729 for one query.

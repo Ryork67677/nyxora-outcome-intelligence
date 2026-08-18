@@ -18,6 +18,11 @@ class Settings(BaseSettings):
     lsa_fit_snapshot_id: str | None = None
     lsa_dimension: int = 384
 
+    # Only read when embedding_provider == "transformer" (EXP-009). The truncation
+    # window is part of the encoder's identity, so the same weights at 256 and at
+    # 512 are two different models with two different embedding caches.
+    transformer_max_seq: int = 256
+
     generation_provider: str = "openai"
     generation_model: str = "gpt-5.6"
     openai_api_key: str | None = None

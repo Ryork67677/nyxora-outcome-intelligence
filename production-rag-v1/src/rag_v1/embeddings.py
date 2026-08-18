@@ -63,6 +63,11 @@ def get_embedder() -> Embedder:
         from rag_v1.embedders_pretrained import get_pretrained_embedder
 
         return get_pretrained_embedder()
+    if provider == "transformer":
+        # EXP-009: contextual pretrained transformer bi-encoder, no corpus fitting.
+        from rag_v1.embedders_transformer import get_transformer_embedder
+
+        return get_transformer_embedder()
     if provider == "local-lsa":
         # Offline fallback used when neither Hugging Face nor the OpenAI embedding
         # endpoint is reachable. See rag_v1.embedders_lsa for what this does and
