@@ -8,7 +8,7 @@ from __future__ import annotations
 
 from collections.abc import Callable
 
-from rag_v1.chunkers import bounded, control, technical
+from rag_v1.chunkers import bounded, control, encoder_aligned, technical
 from rag_v1.chunkers.base import ChunkerSpec
 from rag_v1.types import ChunkRecord, ParsedDocument
 
@@ -18,6 +18,7 @@ _REGISTRY: dict[str, tuple[ChunkerSpec, Chunker]] = {
     control.SPEC.name: (control.SPEC, control.chunk),
     bounded.SPEC.name: (bounded.SPEC, bounded.chunk),
     technical.SPEC.name: (technical.SPEC, technical.chunk),
+    encoder_aligned.SPEC.name: (encoder_aligned.SPEC, encoder_aligned.chunk),
 }
 
 
@@ -40,6 +41,8 @@ def chunk_set_id_for(name: str) -> str:
     spec, _ = get_chunker(name)
     if name == control.SPEC.name:
         return control.CONTROL_CHUNK_SET_ID
+    if name == encoder_aligned.SPEC.name:
+        return encoder_aligned.ENCODER_ALIGNED_CHUNK_SET_ID
     return spec.chunk_set_id
 
 

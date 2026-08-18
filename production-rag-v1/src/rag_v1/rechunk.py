@@ -98,14 +98,16 @@ def build_chunk_set(chunker_name: str, source_snapshot_id: str, replace: bool = 
                 cur.execute(
                     """
                     INSERT INTO chunk(chunk_id, chunk_set_id, version_id, ordinal, section_path,
-                                      chunk_type, char_start, char_end, content_hash, text, metadata)
-                    VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+                                      chunk_type, char_start, char_end, content_hash, text, metadata,
+                                      context_header, search_text)
+                    VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
                     ON CONFLICT (chunk_id) DO NOTHING
                     """,
                     (
                         record.chunk_id, chunk_set_id, record.version_id, record.ordinal,
                         record.section_path, record.chunk_type, record.char_start, record.char_end,
                         record.content_hash, record.text, Jsonb(record.metadata),
+                        record.context_header, record.search_text,
                     ),
                 )
                 # Pieces of one oversized source block point back at the first

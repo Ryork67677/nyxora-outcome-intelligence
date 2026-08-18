@@ -32,6 +32,11 @@ class ChunkRecord(BaseModel):
     text: str
     content_hash: str
     metadata: dict = Field(default_factory=dict)
+    # Set only where a chunker needs the indexed/embedded representation to differ
+    # from the canonical body (EXP-010 carryover at forced splits). Left None by
+    # every earlier chunker, so their stored rows are unchanged.
+    context_header: str | None = None
+    search_text: str | None = None
 
 
 class SearchHit(BaseModel):

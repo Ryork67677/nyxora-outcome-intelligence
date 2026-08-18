@@ -54,12 +54,19 @@ def main() -> int:
     args = parser.parse_args()
 
     started = time.time()
+    # Embeds coalesce(search_text, text): the representation the chunker intends to
+    # be searched. Every chunk set before EXP-010 leaves search_text NULL, so this
+    # is byte-identical to embedding text for them and the EXP-009 cells reproduce
+    # exactly; only EXP-010's carryover chunks differ.
     encoder = TransformerEncoder(max_seq=args.max_seq).load()
     model_id = ensure_model_row(encoder)
 
     with connect() as conn, conn.cursor() as cur:
         cur.execute(
-            "SELECT chunk_id, text, content_hash FROM chunk WHERE chunk_set_id=%s ORDER BY chunk_id",
+            """
+            SELECT chunk_id, coalesce(search_text, text), content_hash
+            FROM chunk WHERE chunk_set_id=%s ORDER BY chunk_id
+            """,
             (args.chunk_set,),
         )
         rows = cur.fetchall()

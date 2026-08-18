@@ -261,3 +261,81 @@ def exact_identifier_search(query: str, snapshot_id: str, k: int = 20) -> list[S
         )
         for i, r in enumerate(rows)
     ]
+
+
+def evidence_region_key(hit: SearchHit) -> tuple:
+    """The identity a candidate is deduplicated on across chunk representations."""
+    return (hit.version_id, tuple(hit.section_path))
+
+
+def rrf_fuse_regions(
+    ranked_lists: list[list[SearchHit]], rrf_k: int = 60, top_k: int = 20
+) -> list[SearchHit]:
+    """RRF across retrievers that may return *different chunk representations*.
+
+    EXP-010 fuses BM25 over the control chunks with the transformer over the
+    encoder-aligned chunks. The two sets cut the same documents differently, so
+    chunk_id cannot be the deduplication key: the same passage appears under two
+    ids and would be scored twice, inflating the fused result for no retrieval
+    reason.
+
+    Two candidates are the same **evidence region** when they share a document
+    version and a section path and their ``[char_start, char_end)`` spans overlap.
+    Overlapping candidates are merged into one contiguous region, and a region
+    receives **one** contribution per retriever, taken at that retriever's best
+    (lowest) rank for the region. A region therefore cannot be rewarded twice
+    merely for existing in two representations.
+
+    The emitted span is the union of the merged members. Because members are merged
+    only when they overlap, the union is contiguous and every point in it lies in
+    some member — so "the union overlaps the evidence" is exactly equivalent to
+    "some retrieved member overlaps the evidence". It does not make a hit easier to
+    score than in a single-representation cell.
+
+    When every list comes from the same chunk set — as in the reproduction cells —
+    chunks do not overlap each other, so no merging occurs and this reduces exactly
+    to :func:`rrf_fuse`.
+    """
+    # Collect candidates per (version, section), then merge overlapping spans.
+    buckets: dict[tuple, list[SearchHit]] = defaultdict(list)
+    for ranked in ranked_lists:
+        for hit in ranked:
+            buckets[evidence_region_key(hit)].append(hit)
+
+    regions: list[dict] = []
+    for key, hits in buckets.items():
+        for hit in sorted(hits, key=lambda h: (h.char_start, h.char_end)):
+            if regions and regions[-1]["key"] == key and hit.char_start < regions[-1]["end"]:
+                regions[-1]["end"] = max(regions[-1]["end"], hit.char_end)
+                regions[-1]["members"].append(hit)
+            else:
+                regions.append({"key": key, "start": hit.char_start, "end": hit.char_end,
+                                "members": [hit]})
+
+    scored: list[tuple[float, str, dict, dict]] = []
+    for region in regions:
+        best_by_retriever: dict[str, SearchHit] = {}
+        for hit in region["members"]:
+            current = best_by_retriever.get(hit.retriever)
+            if current is None or hit.rank < current.rank:
+                best_by_retriever[hit.retriever] = hit
+        contributions = {r: 1.0 / (rrf_k + h.rank) for r, h in best_by_retriever.items()}
+        exemplar = min(best_by_retriever.values(), key=lambda h: (h.rank, h.chunk_id))
+        scored.append((sum(contributions.values()), exemplar.chunk_id, region, {
+            "rrf_contributions": contributions,
+            "member_chunk_ids": sorted({h.chunk_id for h in region["members"]}),
+            "merged_members": len(region["members"]),
+            "region_span": [region["start"], region["end"]],
+            "exemplar_chunk_id": exemplar.chunk_id,
+        }))
+
+    scored.sort(key=lambda row: (-row[0], row[1]))
+    out: list[SearchHit] = []
+    for rank, (score, _cid, region, meta) in enumerate(scored[:top_k], start=1):
+        exemplar = min(region["members"], key=lambda h: (h.rank, h.chunk_id))
+        hit = exemplar.model_copy(deep=True)
+        hit.char_start, hit.char_end = region["start"], region["end"]
+        hit.score, hit.rank, hit.retriever = score, rank, "rrf_regions"
+        hit.metadata = {**hit.metadata, **meta}
+        out.append(hit)
+    return out
