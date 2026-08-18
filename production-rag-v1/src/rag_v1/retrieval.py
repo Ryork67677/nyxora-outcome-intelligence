@@ -339,3 +339,59 @@ def rrf_fuse_regions(
         hit.metadata = {**hit.metadata, **meta}
         out.append(hit)
     return out
+
+
+def rrf_fuse_labelled(
+    labelled_lists: list[tuple[str, list[SearchHit]]], rrf_k: int = 60, top_k: int = 20
+) -> list[SearchHit]:
+    """RRF across lists that differ by *query representation* as well as retriever.
+
+    EXP-011 runs several views of one question — raw, normalized, structured —
+    through both retrievers, producing up to six ranked lists over the same chunk
+    set. :func:`rrf_fuse` keys contributions on ``hit.retriever``, which cannot
+    separate BM25-on-raw from BM25-on-normalized: the second list would overwrite
+    the first and the fusion would silently lose a view.
+
+    Each list is therefore labelled explicitly, and every label contributes once
+    per candidate. Provenance is recorded on the fused hit so any final position
+    can be traced back to the view and retriever that produced it, and to the rank
+    it held there.
+
+    Every list participates equally. No weight is assigned to any view — with 20
+    questions, weights chosen after seeing which cases improve would be fitted to
+    the evaluation set rather than measured on it.
+    """
+    scores: dict[str, float] = defaultdict(float)
+    exemplars: dict[str, SearchHit] = {}
+    contributions: dict[str, dict[str, float]] = defaultdict(dict)
+    source_ranks: dict[str, dict[str, int]] = defaultdict(dict)
+
+    for label, ranked in labelled_lists:
+        best_rank: dict[str, int] = {}
+        for hit in ranked:
+            # One list may not reward the same chunk twice.
+            if hit.chunk_id not in best_rank or hit.rank < best_rank[hit.chunk_id]:
+                best_rank[hit.chunk_id] = hit.rank
+                exemplars.setdefault(hit.chunk_id, hit)
+        for chunk_id, rank in best_rank.items():
+            contribution = 1.0 / (rrf_k + rank)
+            scores[chunk_id] += contribution
+            contributions[chunk_id][label] = contribution
+            source_ranks[chunk_id][label] = rank
+
+    ordered = sorted(scores, key=lambda cid: (-scores[cid], cid))[:top_k]
+    out: list[SearchHit] = []
+    for rank, chunk_id in enumerate(ordered, start=1):
+        hit = exemplars[chunk_id].model_copy(deep=True)
+        hit.score = scores[chunk_id]
+        hit.rank = rank
+        hit.retriever = "rrf_views"
+        hit.metadata = {
+            **hit.metadata,
+            "rrf_contributions": contributions[chunk_id],
+            "source_ranks": source_ranks[chunk_id],
+            "contributing_sources": sorted(contributions[chunk_id]),
+            "source_count": len(contributions[chunk_id]),
+        }
+        out.append(hit)
+    return out
