@@ -368,6 +368,47 @@ is phrased and how the documentation states the answer. The next justified exper
 real pretrained embedding model, with AN-003 as its canonical test case. Enrichment is
 **not** frozen and the baseline remains control chunking, unenriched.
 
+### EXP-007 — pretrained semantic retrieval (the surviving hypothesis, tested)
+
+Full write-up: **[EXP-007-pretrained-semantic-retrieval.md](docs/reports/EXP-007-pretrained-semantic-retrieval.md)**.
+
+| Configuration | macro recall | fully recalled | doc recall | MRR | absent@300 |
+|---|---:|---:|---:|---:|---:|
+| A — BM25 control | 0.475 | 9/20 | 0.825 | 0.280 | 1 |
+| B — pretrained dense | 0.425 | 8/20 | 0.725 | 0.360 | 5 |
+| **C — BM25 + dense RRF** | **0.600** | **11/20** | 0.825 | 0.326 | 2 |
+
+**The vocabulary-mismatch hypothesis was not supported.** A genuinely pretrained model
+(`fasttext-wiki-news-subwords-300`, selected and recorded *before* any result) is worse
+than BM25 standalone and far worse at depth. Critically, **neither of its two rescues was
+a vocabulary rescue** — both spans already contained ≥92% of their query terms, so dense
+corrected a BM25 *ranking* failure, not a lexical *coverage* failure. **AN-003, the
+canonical case, was not rescued.**
+
+The instrument qualifies this: `huggingface.co` and every embedding API are egress-blocked,
+so only a static word-embedding model was reachable. A positive result would have been
+strong evidence; this negative result is **weak** evidence — the hypothesis is
+**unsupported, not falsified**.
+
+The unexpected finding is complementarity: **BM25 + dense RRF reaches 0.600 / 11-of-20**,
+the best configuration measured in this project, because the two retrievers fail on
+disjoint questions (6 both-correct, 3 BM25-only, 2 dense-only, 9 both-wrong). Fusion is
+preregistered (pool 50, `rrf_k=60`), untuned — and it does carry one real regression:
+OA-004 sits at BM25 rank 5, dense rank 73, RRF rank 17, dragged outside `top_k`.
+
+AN-003's trace reframes the root cause. Dense ranked its *document* **first** (BM25: 6th)
+with its top five hits all `Create a Message Batch` chunks at cosine 0.9417 — the model did
+associate the query with the right material. It failed because the answer sits in a
+3,449-character heterogeneous chunk whose mean-pooled vector is diluted. Chunk length
+predicts dense reachability (median 897 chars reachable vs 1,754 unreachable) in a way it
+never predicted BM25 reachability. **Three hypotheses tested, none confirmed** — and the
+residual failures now look like a retrieval-unit problem rather than a vocabulary one.
+
+**The frozen baseline does not change:** control chunking, no enrichment, BM25, `top_k=10`.
+RRF is the leading promotion candidate but is a +2-case movement on a 20-case development
+set. A reranker remains unjustified: AN-003 is absent at depth 300 under every
+configuration, and reranking cannot retrieve what retrieval never found.
+
 ### Limitations — read before quoting any number above
 
 1. **EXP-NULL did not run.** The closed-book control needs a generation credential and reachable provider host; this environment has neither (`experiments/EXP-NULL/results.json` records `status: "blocked"` with the exact error). **Nothing here shows that retrieval beats what the model already knows** — that was the primary question V1 was built to answer, and it remains unanswered. Every retrieval number below is uncalibrated against the closed-book floor.

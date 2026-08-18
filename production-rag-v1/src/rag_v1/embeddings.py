@@ -57,6 +57,12 @@ def get_embedder() -> Embedder:
         return LocalSentenceTransformerEmbedder(settings.embedding_model, settings.embedding_model_version)
     if provider == "openai":
         return OpenAIEmbedder(settings.embedding_model, settings.embedding_model_version)
+    if provider == "pretrained":
+        # EXP-007: genuinely pretrained vectors, no corpus fitting. Loaded once per
+        # process from the filtered cache; see rag_v1.embedders_pretrained.
+        from rag_v1.embedders_pretrained import get_pretrained_embedder
+
+        return get_pretrained_embedder()
     if provider == "local-lsa":
         # Offline fallback used when neither Hugging Face nor the OpenAI embedding
         # endpoint is reachable. See rag_v1.embedders_lsa for what this does and

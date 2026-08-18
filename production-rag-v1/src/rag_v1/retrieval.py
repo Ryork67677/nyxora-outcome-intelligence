@@ -151,18 +151,26 @@ def dense_search(query: str, snapshot_id: str, model_id: str, k: int = 20) -> li
 
     embedder = get_embedder()
     qvec = embedder.embed([query])[0]
+    # Cosine ties are common here — the corpus repeats identical documentation text
+    # across pages, and EXP-007 found four chunks tied at 0.941729 for one query.
+    # Without a tie-break the plan decides their order and a re-run reorders them,
+    # exactly the reproducibility defect fixed for BM25 in EXP-005. Rounding the
+    # distance before sorting makes exact ties resolve on chunk_id.
     sql = """
-    SELECT c.chunk_id, c.version_id, c.section_path, c.char_start, c.char_end, c.text,
-           1 - (ce.embedding <=> %s::vector) AS score
-    FROM chunk_embedding ce
-    JOIN chunk c ON c.chunk_id=ce.chunk_id
-    JOIN corpus_snapshot_version sv ON sv.version_id=c.version_id
-    WHERE ce.model_id=%s AND sv.snapshot_id=%s AND c.chunk_set_id=%s
-    ORDER BY ce.embedding <=> %s::vector
+    SELECT * FROM (
+        SELECT c.chunk_id, c.version_id, c.section_path, c.char_start, c.char_end, c.text,
+               1 - (ce.embedding <=> %s::vector) AS score,
+               (ce.embedding <=> %s::vector) AS distance
+        FROM chunk_embedding ce
+        JOIN chunk c ON c.chunk_id=ce.chunk_id
+        JOIN corpus_snapshot_version sv ON sv.version_id=c.version_id
+        WHERE ce.model_id=%s AND sv.snapshot_id=%s AND c.chunk_set_id=%s
+    ) scored
+    ORDER BY round(scored.distance::numeric, 9) ASC, scored.chunk_id
     LIMIT %s
     """
     with connect() as conn, conn.cursor() as cur:
-        cur.execute(sql, (qvec, model_id, snapshot_id, snapshot_chunk_set(snapshot_id), qvec, k))
+        cur.execute(sql, (qvec, qvec, model_id, snapshot_id, snapshot_chunk_set(snapshot_id), k))
         rows = cur.fetchall()
     return [
         SearchHit(
