@@ -1,0 +1,35 @@
+{
+  "path": "evals/development/v1.jsonl",
+  "cases": 22,
+  "snapshot": "snap_689e336380a054d8039dc35b2c09cd0a",
+  "by_split": {
+    "development": 22
+  },
+  "by_category": {
+    "exact_lookup": 13,
+    "normal": 2,
+    "version_conflict": 2,
+    "ambiguous": 1,
+    "multi_hop": 2,
+    "missing_info": 2
+  },
+  "by_provider": {
+    "anthropic": 12,
+    "openai": 8,
+    "cross": 2
+  },
+  "by_verification": {
+    "human_verified": 22
+  },
+  "failures": [
+    {
+      "case_id": "OA-002",
+      "check": "claim_supported_by_evidence",
+      "detail": "claim 'MaxTurnsExceeded' does not appear in its own evidence span"
+    }
+  ],
+  "failure_counts": {
+    "claim_supported_by_evidence": 1
+  },
+  "passed": false
+}

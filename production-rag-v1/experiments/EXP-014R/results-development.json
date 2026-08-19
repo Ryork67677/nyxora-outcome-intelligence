@@ -1,0 +1,1313 @@
+{
+  "experiment_id": "EXP-014R",
+  "split": "development",
+  "split_path": "evals/development/v1.jsonl",
+  "split_manifest_sha256": "bb89d100625f7590f57d916d399ca70b48bd3aafb68b5306d8fd5946c2afe18a",
+  "timestamp": "2026-08-19T04:13:20Z",
+  "git_commit": "3b75d2545529c8aba682862d631c03b47e04cd58",
+  "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a",
+  "chunk_set": "cs_v1_control",
+  "system_a_config": {
+    "name": "SYSTEM-A-GLOBAL",
+    "description": "global BM25 + transformer RRF over all control chunks",
+    "stage_1": null,
+    "stage_2": {
+      "query": "raw user question, verbatim",
+      "lexical": {
+        "retriever": "bm25",
+        "k1": 1.2,
+        "b": 0.75,
+        "ts_config": "simple",
+        "statistics": "full corpus \u2014 never recomputed inside routed documents"
+      },
+      "dense": {
+        "retriever": "transformer_cosine",
+        "model_id": "emb_e7d4183fd6eb878ae2fdf080efb6861e",
+        "fingerprint": "bd95feaeacf98559",
+        "max_seq_length": 512,
+        "exact_search": true,
+        "ann_index": false
+      },
+      "fusion": {
+        "method": "rrf",
+        "rrf_k": 60,
+        "pool_per_retriever": 50
+      },
+      "top_k": 10,
+      "reranker": null,
+      "cross_encoder": null,
+      "query_rewriting": false,
+      "enrichment": null,
+      "metadata_filtering": false
+    },
+    "snapshot": "snap_689e336380a054d8039dc35b2c09cd0a",
+    "chunk_set": "cs_v1_control",
+    "development_metrics": {
+      "macro_span_recall": 0.775,
+      "cases_fully_recalled": 15,
+      "spans_found_at_10": 17,
+      "document_recall": 0.925,
+      "mrr": 0.449
+    }
+  },
+  "system_b_config": {
+    "name": "SYSTEM-B-DOC-C",
+    "description": "DOC-C-SECTION document routing -> frozen Stage 2",
+    "stage_1": {
+      "representation": "DOC-C-SECTION",
+      "representation_version": "1.0",
+      "construction": [
+        "group stored chunk embeddings by section_path",
+        "mean the normalised chunk vectors within each section",
+        "normalise each section vector",
+        "give every section equal contribution",
+        "mean the section vectors",
+        "normalise the document vector"
+      ],
+      "source_embeddings": "emb_e7d4183fd6eb878ae2fdf080efb6861e",
+      "similarity": "cosine",
+      "top_documents": 5,
+      "fusion_with_chunk_router": false,
+      "fusion_with_bm25": false
+    },
+    "stage_2": {
+      "query": "raw user question, verbatim",
+      "lexical": {
+        "retriever": "bm25",
+        "k1": 1.2,
+        "b": 0.75,
+        "ts_config": "simple",
+        "statistics": "full corpus \u2014 never recomputed inside routed documents"
+      },
+      "dense": {
+        "retriever": "transformer_cosine",
+        "model_id": "emb_e7d4183fd6eb878ae2fdf080efb6861e",
+        "fingerprint": "bd95feaeacf98559",
+        "max_seq_length": 512,
+        "exact_search": true,
+        "ann_index": false
+      },
+      "fusion": {
+        "method": "rrf",
+        "rrf_k": 60,
+        "pool_per_retriever": 50
+      },
+      "top_k": 10,
+      "reranker": null,
+      "cross_encoder": null,
+      "query_rewriting": false,
+      "enrichment": null,
+      "metadata_filtering": false
+    },
+    "snapshot": "snap_689e336380a054d8039dc35b2c09cd0a",
+    "chunk_set": "cs_v1_control",
+    "development_metrics": {
+      "macro_span_recall": 0.875,
+      "cases_fully_recalled": 17,
+      "spans_found_at_10": 19,
+      "document_recall": 0.925,
+      "mrr": 0.474
+    }
+  },
+  "system_a_config_hash": "9afcb5b7c58ebacff0b4c3711dd9618a2e727f4195dd1787a5da81e478ee0b38",
+  "system_b_config_hash": "304c350940b83733df6043ae3a8abdcbcde33d16950730127aa9f1f39494388b",
+  "cases_scored": 20,
+  "system_a": {
+    "system": "SYSTEM-A-GLOBAL",
+    "config_hash": "9afcb5b7c58ebacff0b4c3711dd9618a2e727f4195dd1787a5da81e478ee0b38",
+    "macro_span_recall": 0.775,
+    "cases_fully_recalled": 15,
+    "cases_total": 20,
+    "spans_found_at_10": 17,
+    "spans_total": 22,
+    "document_recall": 0.925,
+    "mrr": 0.4494,
+    "spans_absent_from_top": {
+      "10": 5,
+      "20": 5,
+      "30": 4,
+      "50": 3,
+      "100": 2,
+      "300": 2
+    },
+    "cases": {
+      "AN-001": {
+        "case_id": "AN-001",
+        "spans": [
+          {
+            "rank": 38,
+            "doc_rank": 38,
+            "within": {
+              "10": false,
+              "20": false,
+              "30": false,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": false
+          }
+        ],
+        "recall": 0.0,
+        "fully_recalled": false,
+        "doc_recall": 0.0
+      },
+      "AN-002": {
+        "case_id": "AN-002",
+        "spans": [
+          {
+            "rank": 9,
+            "doc_rank": 1,
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "AN-003": {
+        "case_id": "AN-003",
+        "spans": [
+          {
+            "rank": null,
+            "doc_rank": 3,
+            "within": {
+              "10": false,
+              "20": false,
+              "30": false,
+              "50": false,
+              "100": false,
+              "300": false
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 0.0,
+        "fully_recalled": false,
+        "doc_recall": 1.0
+      },
+      "AN-004": {
+        "case_id": "AN-004",
+        "spans": [
+          {
+            "rank": 3,
+            "doc_rank": 1,
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "AN-005": {
+        "case_id": "AN-005",
+        "spans": [
+          {
+            "rank": 2,
+            "doc_rank": 1,
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "AN-006": {
+        "case_id": "AN-006",
+        "spans": [
+          {
+            "rank": 57,
+            "doc_rank": 8,
+            "within": {
+              "10": false,
+              "20": false,
+              "30": false,
+              "50": false,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 0.0,
+        "fully_recalled": false,
+        "doc_recall": 1.0
+      },
+      "AN-007": {
+        "case_id": "AN-007",
+        "spans": [
+          {
+            "rank": 8,
+            "doc_rank": 1,
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "AN-008": {
+        "case_id": "AN-008",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "AN-009": {
+        "case_id": "AN-009",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "AN-010": {
+        "case_id": "AN-010",
+        "spans": [
+          {
+            "rank": 3,
+            "doc_rank": 1,
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "AN-011": {
+        "case_id": "AN-011",
+        "spans": [
+          {
+            "rank": 21,
+            "doc_rank": 1,
+            "within": {
+              "10": false,
+              "20": false,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 0.0,
+        "fully_recalled": false,
+        "doc_recall": 1.0
+      },
+      "AN-012": {
+        "case_id": "AN-012",
+        "spans": [
+          {
+            "rank": 3,
+            "doc_rank": 1,
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          },
+          {
+            "rank": null,
+            "doc_rank": 14,
+            "within": {
+              "10": false,
+              "20": false,
+              "30": false,
+              "50": false,
+              "100": false,
+              "300": false
+            },
+            "doc_within_10": false
+          }
+        ],
+        "recall": 0.5,
+        "fully_recalled": false,
+        "doc_recall": 0.5
+      },
+      "OA-001": {
+        "case_id": "OA-001",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "OA-002": {
+        "case_id": "OA-002",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "OA-003": {
+        "case_id": "OA-003",
+        "spans": [
+          {
+            "rank": 3,
+            "doc_rank": 1,
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "OA-004": {
+        "case_id": "OA-004",
+        "spans": [
+          {
+            "rank": 8,
+            "doc_rank": 8,
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "OA-005": {
+        "case_id": "OA-005",
+        "spans": [
+          {
+            "rank": 2,
+            "doc_rank": 1,
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "OA-006": {
+        "case_id": "OA-006",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          },
+          {
+            "rank": 10,
+            "doc_rank": 3,
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "OA-007": {
+        "case_id": "OA-007",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "OA-008": {
+        "case_id": "OA-008",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      }
+    }
+  },
+  "system_b": {
+    "system": "SYSTEM-B-DOC-C",
+    "config_hash": "304c350940b83733df6043ae3a8abdcbcde33d16950730127aa9f1f39494388b",
+    "macro_span_recall": 0.875,
+    "cases_fully_recalled": 17,
+    "cases_total": 20,
+    "spans_found_at_10": 19,
+    "spans_total": 22,
+    "document_recall": 0.925,
+    "mrr": 0.474,
+    "spans_absent_from_top": {
+      "10": 3,
+      "20": 3,
+      "30": 3,
+      "50": 3,
+      "100": 3,
+      "300": 3
+    },
+    "cases": {
+      "AN-001": {
+        "case_id": "AN-001",
+        "spans": [
+          {
+            "rank": null,
+            "doc_rank": null,
+            "within": {
+              "10": false,
+              "20": false,
+              "30": false,
+              "50": false,
+              "100": false,
+              "300": false
+            },
+            "doc_within_10": false
+          }
+        ],
+        "recall": 0.0,
+        "fully_recalled": false,
+        "doc_recall": 0.0
+      },
+      "AN-002": {
+        "case_id": "AN-002",
+        "spans": [
+          {
+            "rank": 4,
+            "doc_rank": 1,
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "AN-003": {
+        "case_id": "AN-003",
+        "spans": [
+          {
+            "rank": null,
+            "doc_rank": 2,
+            "within": {
+              "10": false,
+              "20": false,
+              "30": false,
+              "50": false,
+              "100": false,
+              "300": false
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 0.0,
+        "fully_recalled": false,
+        "doc_recall": 1.0
+      },
+      "AN-004": {
+        "case_id": "AN-004",
+        "spans": [
+          {
+            "rank": 2,
+            "doc_rank": 1,
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "AN-005": {
+        "case_id": "AN-005",
+        "spans": [
+          {
+            "rank": 2,
+            "doc_rank": 1,
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "AN-006": {
+        "case_id": "AN-006",
+        "spans": [
+          {
+            "rank": 2,
+            "doc_rank": 2,
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "AN-007": {
+        "case_id": "AN-007",
+        "spans": [
+          {
+            "rank": 6,
+            "doc_rank": 1,
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "AN-008": {
+        "case_id": "AN-008",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "AN-009": {
+        "case_id": "AN-009",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "AN-010": {
+        "case_id": "AN-010",
+        "spans": [
+          {
+            "rank": 5,
+            "doc_rank": 1,
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "AN-011": {
+        "case_id": "AN-011",
+        "spans": [
+          {
+            "rank": 9,
+            "doc_rank": 1,
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "AN-012": {
+        "case_id": "AN-012",
+        "spans": [
+          {
+            "rank": 2,
+            "doc_rank": 1,
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          },
+          {
+            "rank": null,
+            "doc_rank": null,
+            "within": {
+              "10": false,
+              "20": false,
+              "30": false,
+              "50": false,
+              "100": false,
+              "300": false
+            },
+            "doc_within_10": false
+          }
+        ],
+        "recall": 0.5,
+        "fully_recalled": false,
+        "doc_recall": 0.5
+      },
+      "OA-001": {
+        "case_id": "OA-001",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "OA-002": {
+        "case_id": "OA-002",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "OA-003": {
+        "case_id": "OA-003",
+        "spans": [
+          {
+            "rank": 3,
+            "doc_rank": 1,
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "OA-004": {
+        "case_id": "OA-004",
+        "spans": [
+          {
+            "rank": 3,
+            "doc_rank": 3,
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "OA-005": {
+        "case_id": "OA-005",
+        "spans": [
+          {
+            "rank": 2,
+            "doc_rank": 1,
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "OA-006": {
+        "case_id": "OA-006",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          },
+          {
+            "rank": 5,
+            "doc_rank": 3,
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "OA-007": {
+        "case_id": "OA-007",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "OA-008": {
+        "case_id": "OA-008",
+        "spans": [
+          {
+            "rank": 3,
+            "doc_rank": 3,
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      }
+    }
+  },
+  "paired": {
+    "quadrant": {
+      "both_correct": [
+        "AN-002",
+        "AN-004",
+        "AN-005",
+        "AN-007",
+        "AN-008",
+        "AN-009",
+        "AN-010",
+        "OA-001",
+        "OA-002",
+        "OA-003",
+        "OA-004",
+        "OA-005",
+        "OA-006",
+        "OA-007",
+        "OA-008"
+      ],
+      "only_A": [],
+      "only_B": [
+        "AN-006",
+        "AN-011"
+      ],
+      "neither": [
+        "AN-001",
+        "AN-003",
+        "AN-012"
+      ]
+    },
+    "b_rescues_over_a": [
+      "AN-006",
+      "AN-011"
+    ],
+    "b_regressions_vs_a": [],
+    "net_cases": 2,
+    "macro_recall_delta": 0.1
+  },
+  "bootstrap": {
+    "seed": 20250818,
+    "samples": 10000,
+    "n_questions": 20,
+    "macro_recall_delta": {
+      "point_estimate": 0.1,
+      "ci95": [
+        0.0,
+        0.25
+      ]
+    },
+    "fully_recalled_delta_per_case": {
+      "point_estimate": 0.1,
+      "ci95": [
+        0.0,
+        0.25
+      ]
+    }
+  },
+  "mcnemar": {
+    "discordant_pairs": 2,
+    "b_only": 2,
+    "a_only": 0,
+    "p_value": 0.5,
+    "note": "exact binomial; supplementary to the paired case counts, not a substitute for them"
+  },
+  "routing": {
+    "AN-001": {
+      "expected_documents": [
+        "ver_db8326d3bafce3a535c3e3bfc3de7519"
+      ],
+      "all_expected_routed_at_5": false,
+      "expected_document_ranks": {
+        "ver_db8326d3bafce3a535c3e3bfc3de7519": 13
+      }
+    },
+    "AN-002": {
+      "expected_documents": [
+        "ver_0774ca0093ff4a846753577c9a4a39d5"
+      ],
+      "all_expected_routed_at_5": true,
+      "expected_document_ranks": {
+        "ver_0774ca0093ff4a846753577c9a4a39d5": 1
+      }
+    },
+    "AN-003": {
+      "expected_documents": [
+        "ver_ef5f9dacc17f99c298faf449e756ae90"
+      ],
+      "all_expected_routed_at_5": true,
+      "expected_document_ranks": {
+        "ver_ef5f9dacc17f99c298faf449e756ae90": 5
+      }
+    },
+    "AN-004": {
+      "expected_documents": [
+        "ver_7947433dfde6b3b8eccd0faa597c3c9a"
+      ],
+      "all_expected_routed_at_5": true,
+      "expected_document_ranks": {
+        "ver_7947433dfde6b3b8eccd0faa597c3c9a": 1
+      }
+    },
+    "AN-005": {
+      "expected_documents": [
+        "ver_1c53b961e1f5da8124a1e7e8eb92c941"
+      ],
+      "all_expected_routed_at_5": true,
+      "expected_document_ranks": {
+        "ver_1c53b961e1f5da8124a1e7e8eb92c941": 3
+      }
+    },
+    "AN-006": {
+      "expected_documents": [
+        "ver_f65938c74d40ac1e288f169d3d0435b7"
+      ],
+      "all_expected_routed_at_5": true,
+      "expected_document_ranks": {
+        "ver_f65938c74d40ac1e288f169d3d0435b7": 2
+      }
+    },
+    "AN-007": {
+      "expected_documents": [
+        "ver_0774ca0093ff4a846753577c9a4a39d5"
+      ],
+      "all_expected_routed_at_5": true,
+      "expected_document_ranks": {
+        "ver_0774ca0093ff4a846753577c9a4a39d5": 1
+      }
+    },
+    "AN-008": {
+      "expected_documents": [
+        "ver_db8326d3bafce3a535c3e3bfc3de7519"
+      ],
+      "all_expected_routed_at_5": true,
+      "expected_document_ranks": {
+        "ver_db8326d3bafce3a535c3e3bfc3de7519": 1
+      }
+    },
+    "AN-009": {
+      "expected_documents": [
+        "ver_795b67a3865ed717b915a2c9c9e5746c"
+      ],
+      "all_expected_routed_at_5": true,
+      "expected_document_ranks": {
+        "ver_795b67a3865ed717b915a2c9c9e5746c": 1
+      }
+    },
+    "AN-010": {
+      "expected_documents": [
+        "ver_b57691291ac216e12d311d60db579b43"
+      ],
+      "all_expected_routed_at_5": true,
+      "expected_document_ranks": {
+        "ver_b57691291ac216e12d311d60db579b43": 1
+      }
+    },
+    "AN-011": {
+      "expected_documents": [
+        "ver_c8b2c7130cb18508fed4f864d4c3d7a3"
+      ],
+      "all_expected_routed_at_5": true,
+      "expected_document_ranks": {
+        "ver_c8b2c7130cb18508fed4f864d4c3d7a3": 1
+      }
+    },
+    "AN-012": {
+      "expected_documents": [
+        "ver_0774ca0093ff4a846753577c9a4a39d5",
+        "ver_c8b2c7130cb18508fed4f864d4c3d7a3"
+      ],
+      "all_expected_routed_at_5": false,
+      "expected_document_ranks": {
+        "ver_0774ca0093ff4a846753577c9a4a39d5": 1,
+        "ver_c8b2c7130cb18508fed4f864d4c3d7a3": 8
+      }
+    },
+    "OA-001": {
+      "expected_documents": [
+        "ver_6b90217721b841b1329f51ec1caab139"
+      ],
+      "all_expected_routed_at_5": true,
+      "expected_document_ranks": {
+        "ver_6b90217721b841b1329f51ec1caab139": 1
+      }
+    },
+    "OA-002": {
+      "expected_documents": [
+        "ver_2c60e99cfd929a738910b893fd6f1a40"
+      ],
+      "all_expected_routed_at_5": true,
+      "expected_document_ranks": {
+        "ver_2c60e99cfd929a738910b893fd6f1a40": 3
+      }
+    },
+    "OA-003": {
+      "expected_documents": [
+        "ver_f22fbd5c504fa28a4e70440337e4a495"
+      ],
+      "all_expected_routed_at_5": true,
+      "expected_document_ranks": {
+        "ver_f22fbd5c504fa28a4e70440337e4a495": 1
+      }
+    },
+    "OA-004": {
+      "expected_documents": [
+        "ver_2c60e99cfd929a738910b893fd6f1a40"
+      ],
+      "all_expected_routed_at_5": true,
+      "expected_document_ranks": {
+        "ver_2c60e99cfd929a738910b893fd6f1a40": 3
+      }
+    },
+    "OA-005": {
+      "expected_documents": [
+        "ver_f15e1a531d680bb98179238f80355058"
+      ],
+      "all_expected_routed_at_5": true,
+      "expected_document_ranks": {
+        "ver_f15e1a531d680bb98179238f80355058": 3
+      }
+    },
+    "OA-006": {
+      "expected_documents": [
+        "ver_6b90217721b841b1329f51ec1caab139",
+        "ver_f15e1a531d680bb98179238f80355058"
+      ],
+      "all_expected_routed_at_5": true,
+      "expected_document_ranks": {
+        "ver_6b90217721b841b1329f51ec1caab139": 1,
+        "ver_f15e1a531d680bb98179238f80355058": 2
+      }
+    },
+    "OA-007": {
+      "expected_documents": [
+        "ver_b275f1db2ff0a82e2654391774f8e398"
+      ],
+      "all_expected_routed_at_5": true,
+      "expected_document_ranks": {
+        "ver_b275f1db2ff0a82e2654391774f8e398": 2
+      }
+    },
+    "OA-008": {
+      "expected_documents": [
+        "ver_ae909bf8b4bbbe1d1a11119447f7ac94"
+      ],
+      "all_expected_routed_at_5": true,
+      "expected_document_ranks": {
+        "ver_ae909bf8b4bbbe1d1a11119447f7ac94": 1
+      }
+    }
+  },
+  "routing_all_expected_at_5": 18,
+  "document_index": {
+    "representation": "DOC-C-SECTION",
+    "documents": 202,
+    "build_seconds": 3.32,
+    "storage_bytes": 310272
+  },
+  "latency_ms": {
+    "A": 791.3,
+    "B": 3830.5,
+    "routing": 0.5
+  },
+  "runtime_seconds": 96.7,
+  "errors": []
+}
