@@ -30,7 +30,14 @@ VALID_CATEGORIES = {
 VALID_PROVIDERS = {"anthropic", "openai", "cross"}
 VALID_VERIFICATION = {
     "human_verified", "source_anchored_automatic", "absence_verified_against_snapshot",
+    "candidate_unverified", "dual_llm_pass", "dual_llm_fail", "needs_human_review",
+    "human_approved", "human_rejected",
 }
+#: Only these may enter a frozen holdout. A dual-LLM pass is not one of them: two
+#: models agreeing is correlated evidence, not human approval.
+HOLDOUT_APPROVED = {"human_verified", "human_approved"}
+#: Provenance a case must carry to be auditable later.
+REQUIRED_PROVENANCE = ("source_document_title", "source_url", "source_captured_at")
 
 
 def normalise(question: str) -> str:
@@ -139,9 +146,28 @@ def validate(cases: list[dict], sources: dict, require_human: set[str]) -> list[
                  f"same evidence as {seen_evidence[evidence_key]}")
         seen_evidence[evidence_key] = case_id
 
-        if case.get("split") in require_human and not case.get("human_verified"):
-            fail(case_id, "human_verified_required",
-                 f"{case.get('split')} cases require human verification before use")
+        # Multi-hop structure: every required span must be independently anchored,
+        # or partial retrieval would silently earn full credit.
+        if case.get("category") == "multi_hop":
+            if len(evidence) < 2:
+                fail(case_id, "multi_hop_structure",
+                     "a multi-hop case must carry at least two evidence spans")
+            spans = {(e.get("version_id"), e.get("char_start"), e.get("char_end"))
+                     for e in evidence}
+            if len(spans) != len(evidence):
+                fail(case_id, "multi_hop_structure", "duplicate spans within one case")
+
+        if case.get("split") == "holdout":
+            missing = [f for f in REQUIRED_PROVENANCE if case.get(f) in (None, "")]
+            if missing:
+                fail(case_id, "missing_provenance",
+                     f"holdout case lacks {', '.join(missing)}")
+
+        if case.get("split") in require_human:
+            status = case.get("verification")
+            if status not in HOLDOUT_APPROVED or not case.get("human_verified"):
+                fail(case_id, "human_verified_required",
+                     f"{case.get('split')} requires human approval; status is {status!r}")
 
     return failures
 

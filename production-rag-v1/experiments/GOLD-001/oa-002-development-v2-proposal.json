@@ -1,0 +1,33 @@
+{
+  "case_id": "OA-002",
+  "status": "PROPOSED — development/v1 is NOT modified",
+  "issue": "the critical claim does not appear inside the current evidence anchor",
+  "critical_claim": "MaxTurnsExceeded",
+  "current_anchor": {
+    "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+    "section_path": [
+      "Running agents",
+      "Exceptions"
+    ],
+    "char_start": 33598,
+    "char_end": 33793,
+    "text": "This exception is raised when the agent's run exceeds the `max_turns` limit passed to the `Runner.run`, `Runner.run_sync`, or `Runner.run_streamed` methods. It indicates that the agent could not ",
+    "sha256": "f115cfd2246cd5b9a4a54d0125e557ad38561c9face00661fc76b3c2d93677fa",
+    "contains_claim": false
+  },
+  "proposed_anchor": {
+    "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+    "section_path": [
+      "Running agents",
+      "Exceptions"
+    ],
+    "char_start": 33536,
+    "char_end": 33793,
+    "text": "-   [`MaxTurnsExceeded`][agents.exceptions.MaxTurnsExceeded]: This exception is raised when the agent's run exceeds the `max_turns` limit passed to the `Runner.run`, `Runner.run_sync`, or `Runner.run_streamed` methods. It indicates that the agent could not ",
+    "sha256": "2b0b634edf5eb717a561953fa690f7e5c9b695bc12b387b35be7755c62f9d67f",
+    "contains_claim": true,
+    "chars_added_before": 62
+  },
+  "impact_if_adopted": "One of 22 development spans changes. Every EXP-000..EXP-014 metric computed against this anchor would need re-running to remain comparable; adopting the correction without re-running would silently change the meaning of historical numbers.",
+  "governance": "Requires explicit owner approval. If adopted it creates evals/development/v2 alongside an unchanged v1, and historical results stay attached to v1."
+}
