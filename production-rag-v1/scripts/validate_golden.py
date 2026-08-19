@@ -35,7 +35,10 @@ VALID_VERIFICATION = {
 }
 #: Only these may enter a frozen holdout. A dual-LLM pass is not one of them: two
 #: models agreeing is correlated evidence, not human approval.
-HOLDOUT_APPROVED = {"human_verified", "human_approved"}
+#: The only status a holdout case may carry. ``needs_edit`` and an absent decision
+#: are both excluded, and deliberately reach the same outcome: gold requires that
+#: a person said yes, not merely that nobody said no.
+HOLDOUT_APPROVED = {"human_verified"}
 #: Provenance a case must carry to be auditable later.
 REQUIRED_PROVENANCE = ("source_document_title", "source_url", "source_captured_at")
 

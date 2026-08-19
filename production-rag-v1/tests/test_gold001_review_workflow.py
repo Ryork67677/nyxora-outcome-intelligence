@@ -376,7 +376,7 @@ def test_systems_remain_frozen():
     assert FROZEN_HASHES["SYSTEM-B-DOC-C"].startswith("304c350940b83733")
 
 
-# -- human review packet -----------------------------------------------------
+# -- human QC packet --------------------------------------------------------
 
 def _packet_module():
     import importlib.util
@@ -391,48 +391,184 @@ def _packet_module():
 
 def _reviewed_record(**overrides):
     record = {
-        "candidate_id": "GOLD-B001-99", "document_title": "Doc",
-        "section_path": ["A", "B"], "version_id": "ver_x",
-        "char_start": 10, "char_end": 40, "evidence_kind": "explicit_exception",
-        "generator_confidence": "medium", "context_before": "before",
-        "context_after": "after", "evidence_text": "the anchored sentence",
-        "proposed_question": "new question?", "proposed_answer": "new answer",
-        "proposed_atomic_claims": ["a claim"],
+        "candidate_id": "GOLD-B001-99", "document_title": "Guardrails",
+        "section_path": ["Guardrails", "Input guardrails"], "version_id": "ver_x",
+        "char_start": 10, "char_end": 40, "evidence_hash": "h",
+        "evidence_kind": "explicit_exception", "generator_confidence": "medium",
+        "provider": "openai", "source_url": "https://example.invalid/doc",
+        "captured_at": "2026-08-01T00:00:00Z",
+        "context_before": "before", "context_after": "after",
+        "evidence_text": "If true, an `Tripwire` exception is raised.",
+        "proposed_question": "What is raised when `tripwire_triggered` is true?",
+        "proposed_answer": "A `Tripwire` exception.",
+        "proposed_atomic_claims": ["When `tripwire_triggered` is true, `Tripwire` is raised."],
         "verification_status": "needs_human_review",
         "verification": {"verdict": "FIX_REQUIRED", "evidence_boundary_complete": False,
                          "verification_notes": "anchor starts with a pronoun"},
         "revisions": [{"revision": 1, "field": "proposed_question",
-                       "from": "[REVIEWER TO WRITE] …", "to": "new question?",
+                       "from": "[REVIEWER TO WRITE] \u2026", "to": "What is raised?",
                        "author": "chatgpt", "timestamp": "t", "reason": "r"}],
     }
     record.update(overrides)
     return record
 
 
-def test_packet_shows_the_generator_proposal_next_to_the_reviewer_edit():
+def test_a_claim_resting_on_a_term_the_anchor_lacks_is_flagged_not_smoothed_over():
     mod = _packet_module()
-    rendered = mod.render(_reviewed_record(), "mandatory")
-    # A reviewer who only sees the final text cannot tell that a model wrote it.
-    assert "[REVIEWER TO WRITE]" in rendered
-    assert "generator:" in rendered and "reviewer (chatgpt):" in rendered
-    assert "the anchored sentence" in rendered
-    assert "`evidence_boundary_complete`" in rendered
+    item = mod.build_item(_reviewed_record(), "mandatory")
+    # `tripwire_triggered` is asserted by the claim but appears nowhere in the span,
+    # and the section path does not supply it either. This is the OA-002 shape.
+    assert item["anchor_gaps"]["unsupported_in_claims"] == ["tripwire_triggered"]
+    assert item["group"] == "check_anchor"
+    assert item["risk"] == "HIGH"
 
 
-def test_packet_never_declares_a_case_verified():
+def test_a_term_the_section_path_supplies_is_weaker_evidence_not_a_gap():
     mod = _packet_module()
-    rendered = mod.render(_reviewed_record(), "mandatory")
-    assert "human_verified" not in rendered
-    assert "APPROVE" in rendered
-    assert "APPROVE" in mod.VALID_DECISIONS
-    assert mod.DECISION_TEMPLATE["decision"] == "PENDING"
+    record = _reviewed_record(
+        section_path=["Guardrails", "tripwire_triggered handling"])
+    item = mod.build_item(record, "mandatory")
+    assert item["anchor_gaps"]["unsupported_in_claims"] == []
+    assert item["anchor_gaps"]["covered_by_provenance_only"] == ["tripwire_triggered"]
+    assert item["risk"] == "MEDIUM"
 
 
-def test_packet_reports_anchor_disputes_as_rejected():
+def test_example_code_evidence_is_classified_as_d3_not_d2():
     mod = _packet_module()
-    record = _reviewed_record(anchor_disputes=[{
-        "field": "char_start", "reviewer_value": 999, "kept_value": 10,
-        "author": "chatgpt", "timestamp": "t"}])
-    rendered = mod.render(record, "mandatory")
-    assert "was NOT applied" in rendered
-    assert "char_start" in rendered
+    code = _reviewed_record(
+        evidence_text='  "required": ["location"]\n  }\n',
+        verification={"verdict": "FIX_REQUIRED",
+                      "identifier_value_binding_correct": False})
+    prose = _reviewed_record(
+        evidence_text="The runner loops until it reaches the limit.",
+        verification={"verdict": "FIX_REQUIRED",
+                      "identifier_value_binding_correct": False})
+    assert [d["class"] for d in mod.build_item(code, "m")["defects"]] == ["D3"]
+    assert [d["class"] for d in mod.build_item(prose, "m")["defects"]] == ["D2"]
+
+
+def test_a_failed_case_is_presented_for_rejection_not_rescued():
+    mod = _packet_module()
+    item = mod.build_item(_reviewed_record(
+        verification={"verdict": "FAIL", "verification_notes": "sample config"}), "m")
+    assert item["group"] == "recommended_reject"
+    assert "recommends rejection" in item["why_human_review_required"]
+
+
+def test_packet_retains_the_original_proposal_and_the_anchor_as_mined():
+    mod = _packet_module()
+    item = mod.build_item(_reviewed_record(), "mandatory")
+    audit = item["audit"]
+    assert audit["claude_original_proposal"]["proposed_question"].startswith(
+        "[REVIEWER TO WRITE]")
+    assert audit["revisions"][0]["author"] == "chatgpt"
+    assert audit["anchor_as_mined"] == audit["anchor_current"]
+    assert audit["chatgpt_review"]["verdict"] == "FIX_REQUIRED"
+    # The final version is what the human decides on, not a reconstruction job.
+    assert item["final"]["question"] == "What is raised when `tripwire_triggered` is true?"
+
+
+def test_packet_never_declares_a_case_verified_and_never_preselects_approve():
+    mod = _packet_module()
+    item = mod.build_item(_reviewed_record(), "mandatory")
+    assert item["decision"] is None
+    assert item["decision_options"] == ["APPROVE", "REJECT", "NEEDS_EDIT"]
+    assert "human_verified" not in mod.render_item(item)
+
+
+# -- human decision import --------------------------------------------------
+
+def _decisions_module():
+    import importlib.util
+
+    spec = importlib.util.spec_from_file_location(
+        "_import_human_decisions",
+        Path(__file__).resolve().parents[1] / "scripts" / "import_human_decisions.py")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+@pytest.mark.parametrize(("decision", "status"), [
+    ("APPROVE", "human_verified"), ("REJECT", "human_rejected"),
+    ("NEEDS_EDIT", "needs_edit"),
+])
+def test_decisions_map_to_the_declared_statuses(decision, status):
+    mod = _decisions_module()
+    record = _reviewed_record()
+    mod.apply_decision(record, {"candidate_id": record["candidate_id"],
+                                "decision": decision}, "project_owner", "now")
+    assert record["verification_status"] == status
+    assert record["human_verified"] is (decision == "APPROVE")
+    assert (status in mod.GOLD_STATUSES) is (decision == "APPROVE")
+
+
+def test_only_approve_reaches_gold():
+    mod = _decisions_module()
+    assert mod.GOLD_STATUSES == {"human_verified"}
+    gold = {d for d, s in mod.STATUS_FROM_DECISION.items() if s in mod.GOLD_STATUSES}
+    assert gold == {"APPROVE"}
+
+
+def test_an_undecided_candidate_is_never_promoted():
+    mod = _decisions_module()
+    record = _reviewed_record()
+    changed = mod.apply_decision(record, {"candidate_id": record["candidate_id"],
+                                          "decision": None}, "project_owner", "now")
+    assert changed is False
+    assert record["verification_status"] == "needs_human_review"
+    assert record.get("human_verified") is not True
+
+
+def test_a_model_cannot_be_the_human_reviewer():
+    mod = _decisions_module()
+    problems = mod.validate([{"candidate_id": "X", "decision": "APPROVE"}], {"X"}, "chatgpt")
+    assert any("is a model, not a person" in p for p in problems)
+    assert mod.validate([{"candidate_id": "X", "decision": "APPROVE"}],
+                        {"X"}, "project_owner") == []
+
+
+def test_unknown_and_invalid_decisions_are_rejected():
+    mod = _decisions_module()
+    problems = mod.validate([{"candidate_id": "NOPE", "decision": "APPROVE"},
+                             {"candidate_id": "X", "decision": "LGTM"}],
+                            {"X"}, "project_owner")
+    assert any("unknown candidate_id" in p for p in problems)
+    assert any("invalid decision" in p for p in problems)
+
+
+def test_a_decision_is_appended_so_a_re_review_does_not_erase_the_first():
+    mod = _decisions_module()
+    record = _reviewed_record()
+    entry = {"candidate_id": record["candidate_id"], "decision": "NEEDS_EDIT",
+             "notes": "extend the anchor"}
+    mod.apply_decision(record, entry, "project_owner", "t1")
+    mod.apply_decision(record, {**entry, "decision": "APPROVE", "notes": "fixed"},
+                       "project_owner", "t2")
+    assert [h["decision"] for h in record["human_decision_history"]] == [
+        "NEEDS_EDIT", "APPROVE"]
+    assert record["revisions"][0]["author"] == "chatgpt"  # untouched
+
+
+def test_validation_report_blocks_an_approved_case_with_a_placeholder_question():
+    mod = _decisions_module()
+    import hashlib
+    text = "If true, an `Tripwire` exception is raised."
+    record = _reviewed_record(
+        evidence_hash=hashlib.sha256(text.encode()).hexdigest(),
+        proposed_question="[REVIEWER TO WRITE] something",
+        verification_status="human_verified")
+    report = mod.validation_report({"batch": 1, "records": [record]},
+                                   "project_owner", "now")
+    assert report["passed"] is False
+    assert any("placeholder question" in f for f in report["gate_failures"])
+    assert report["eligible_for_gold"] == ["GOLD-B001-99"]
+
+
+def test_validation_report_catches_evidence_hash_drift():
+    mod = _decisions_module()
+    record = _reviewed_record(evidence_hash="not-the-real-hash",
+                              verification_status="human_verified")
+    report = mod.validation_report({"batch": 1, "records": [record]},
+                                   "project_owner", "now")
+    assert any("evidence hash drift" in f for f in report["gate_failures"])

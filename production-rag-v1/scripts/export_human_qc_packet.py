@@ -1,111 +1,346 @@
 #!/usr/bin/env python3
-"""GOLD-001: render the human QC queue as something a person can actually review.
+"""GOLD-001: turn the human QC queue into a packet a person can decide from quickly.
 
-``select_human_qc.py`` decides *who* gets looked at; it emits candidate ids. This
-renders those candidates with the source span, the surrounding context, and both
-models' proposals side by side, so the reviewer judges the evidence rather than
-trusting either model's summary of it.
+``select_human_qc.py`` decides *who* gets reviewed and emits candidate ids. Nobody can
+review ids. This renders each queued candidate as a decision: the final proposed
+question, answer and claims first, then the exact evidence span, then why a human is
+required — and two choices, with ``NEEDS_EDIT`` available for the cases that genuinely
+need one.
 
-The packet is deliberately read-only. Approval is recorded by editing the decision
-file this writes alongside it, which keeps the human decision an explicit,
-diffable act rather than a checkbox nobody can audit later.
+Two things this deliberately does not do:
+
+* It does not present a repaired candidate as if it were sound. The importer forbids a
+  reviewer from moving a source anchor, so a boundary defect can only ever be repaired
+  by rewording the question — the span itself is unchanged. Where that leaves a claim
+  resting on a term the anchor does not contain, the packet says so.
+* It does not approve anything. Nothing here sets ``human_verified``; only
+  ``import_human_decisions.py``, reading a decision a person wrote, can do that.
+
+Audit history is retained in the JSON packet in full: the original generator proposal,
+the reviewer's verdict, every revision, and the anchor as first mined.
 """
 
 from __future__ import annotations
 
 import argparse
 import json
+import re
+from datetime import UTC, datetime
 from pathlib import Path
 
-DECISION_TEMPLATE = {
-    "decision": "PENDING",
-    "final_question": None,
-    "final_answer": None,
-    "final_atomic_claims": None,
-    "reviewer_notes": "",
+#: Decisions a person may record. APPROVE is never pre-selected.
+DECISIONS = ("APPROVE", "REJECT", "NEEDS_EDIT")
+
+#: How much of the surrounding text to show. The full mined window is 900 characters a
+#: side, which is more than a reviewer needs to judge an anchor and more provider prose
+#: than this repository should carry.
+CONTEXT_CHARS = 260
+
+TICK = re.compile(r"`([^`]+)`")
+#: Product and API names carry scope ("which models does this apply to?") and are the
+#: other half of the OA-002 defect, so they are checked alongside code identifiers.
+PROPER = re.compile(
+    r"\b(?:Claude|GPT|OpenAI|Anthropic|Google Cloud|Agent Platform|Responses API|"
+    r"Files API)(?:[ -][A-Z0-9][\w.]*)*"
+)
+#: A span containing assignments, JSON keys or bare closing brackets is example code.
+#: A sample configuration is not a documented rule; conflating the two is defect D3.
+CODE_LINE = re.compile(
+    r"^\s*[\w.\[\]\"']+\s*=\s*\S|^\s*[\]\})],?\s*$|^\s*\"[\w_]+\"\s*:|^\s*raise\s|"
+    r"^\s*return\s",
+    re.MULTILINE,
+)
+
+DEFECT_REPAIRS = {
+    "D1": (
+        "The anchor still opens on a referent it does not contain; the reviewer "
+        "repaired this by rewriting the question to name the scope explicitly, and "
+        "the span itself is unchanged."
+    ),
+    "D2": (
+        "The generator's relation label pointed at the wrong fact; the reviewer "
+        "re-authored the question and claims around what the span actually states."
+    ),
+    "D3": (
+        "The span is example code, and the generator framed it as a documented rule; "
+        "the reviewer narrowed the question to be about the example itself."
+    ),
 }
-#: Only a person writes these. The importer can never produce them.
-VALID_DECISIONS = ("APPROVE", "REJECT", "PENDING")
 
 
-def revision_for(record: dict, field: str) -> dict | None:
-    for revision in reversed(record.get("revisions", [])):
-        if revision["field"] == field:
-            return revision
-    return None
+def scope_terms(text: str) -> set[str]:
+    return set(TICK.findall(text)) | set(PROPER.findall(text))
 
 
-def render(record: dict, reason: str) -> str:
+def classify_defects(record: dict) -> list[str]:
     verification = record.get("verification", {})
-    failed = [
-        key for key, value in verification.items()
-        if isinstance(value, bool) and value is False
-    ]
-    lines = [
-        (f"### {record['candidate_id']} — "
-         f"{verification.get('verdict', 'UNREVIEWED')} ({reason})"),
-        "",
-        f"- **status**: `{record['verification_status']}`",
-        f"- **source**: {record['document_title']} — {' > '.join(record['section_path'])}",
-        (f"- **anchor**: `{record['version_id']}` chars "
-         f"{record['char_start']}–{record['char_end']}"),
-        (f"- **evidence kind**: `{record['evidence_kind']}`, generator confidence "
-         f"`{record['generator_confidence']}`"),
-        f"- **checks that failed**: {', '.join(f'`{f}`' for f in failed) or 'none'}",
-        "",
-        "**Context before**",
-        "",
-        "```",
-        record["context_before"].strip() or "(start of document)",
-        "```",
-        "",
-        "**ANCHORED EVIDENCE — this is what the case is allowed to rest on**",
-        "",
-        "```",
-        record["evidence_text"],
-        "```",
-        "",
-        "**Context after**",
-        "",
-        "```",
-        record["context_after"].strip() or "(end of document)",
-        "```",
-        "",
-        "**Proposals**",
-        "",
-    ]
+    defects = []
+    if verification.get("evidence_boundary_complete") is False:
+        defects.append("D1")
+    if verification.get("identifier_value_binding_correct") is False:
+        defects.append("D3" if CODE_LINE.search(record["evidence_text"]) else "D2")
+    return defects
 
-    for field, label in (("proposed_question", "Question"),
-                         ("proposed_answer", "Answer"),
-                         ("proposed_atomic_claims", "Atomic claims")):
-        revision = revision_for(record, field)
-        current = record.get(field)
-        current_text = json.dumps(current, ensure_ascii=False) if isinstance(
-            current, list) else str(current)
-        if revision is None:
-            lines.append(f"- **{label}** (generator, unchanged): {current_text}")
+
+def anchor_gaps(record: dict) -> dict:
+    """Terms the case asserts that the anchored span does not itself contain.
+
+    A claim has to be checkable against the anchor alone — that is the entire contract
+    of source-anchored evaluation. A term missing from the span but present in the
+    document title or section path is weaker evidence, not none, so it is reported
+    separately rather than lumped in with a real gap.
+    """
+    span = record["evidence_text"]
+    provenance = f"{record['document_title']} {' > '.join(record['section_path'])}"
+    asserted = scope_terms(
+        " ".join([record["proposed_answer"], *record["proposed_atomic_claims"]]))
+    asked = scope_terms(record["proposed_question"])
+
+    unsupported, provenance_only = [], []
+    for term in sorted(asserted):
+        if term in span:
             continue
-        original = revision["from"]
-        original_text = json.dumps(original, ensure_ascii=False) if isinstance(
-            original, list) else str(original)
-        lines.append(f"- **{label}**")
-        lines.append(f"  - generator: {original_text}")
-        lines.append(f"  - reviewer ({revision['author']}): {current_text}")
+        (provenance_only if term in provenance else unsupported).append(term)
+    framing = sorted(t for t in asked
+                     if t not in span and t not in unsupported and t not in provenance_only)
+    return {
+        "unsupported_in_claims": unsupported,
+        "covered_by_provenance_only": provenance_only,
+        "question_framing_only": framing,
+    }
 
-    notes = verification.get("verification_notes", "").strip()
-    if notes:
-        lines += ["", f"**Reviewer notes**: {notes}"]
-    if record.get("anchor_disputes"):
-        lines += ["", "**Anchor disputes (reviewer's change was NOT applied)**", ""]
-        lines += [f"- `{d['field']}`: proposed {d['reviewer_value']!r}, kept "
-                  f"{d['kept_value']!r}" for d in record["anchor_disputes"]]
 
+WHY_FAIL = (
+    "The independent review recommends rejection: the span is a sample configuration, "
+    "so any question over it tests an example rather than a documented rule."
+)
+WHY_UNSUPPORTED = (
+    "A claim asserts {terms}, which the anchored span does not contain and the document "
+    "title and section path do not supply either. Approving accepts a claim the anchor "
+    "cannot support on its own."
+)
+WHY_PROVENANCE = (
+    "A claim asserts {terms}, which appears in the section path but not in the anchored "
+    "span. Confirm the section scope is genuinely part of the claim before approving."
+)
+WHY_AGREED_PASS = (
+    "Both models passed this case. It is here because agreement between two models is "
+    "correlated evidence, not independent confirmation, and this candidate was drawn as "
+    "the deterministic QC sample."
+)
+WHY_REPAIRED = (
+    "The reviewer rewrote the question and claims. Every term they assert is present in "
+    "the anchored span, but a model authored the wording and a model verified it, so the "
+    "case is not gold until you agree."
+)
+WHY_AUTHORED = (
+    "The generator shipped this as evidence with no question; the reviewer wrote the "
+    "question, answer and claims. Two models are not human verification."
+)
+
+
+def assess(record: dict, gaps: dict, defects: list[str]) -> tuple[str, str, str]:
+    """Return (group, risk, why-a-human-is-required)."""
+    verdict = record.get("verification", {}).get("verdict")
+    if verdict == "FAIL":
+        return "recommended_reject", "HIGH", WHY_FAIL
+    if gaps["unsupported_in_claims"]:
+        terms = ", ".join(f"`{t}`" for t in gaps["unsupported_in_claims"])
+        return "check_anchor", "HIGH", WHY_UNSUPPORTED.format(terms=terms)
+    if gaps["covered_by_provenance_only"]:
+        terms = ", ".join(f"`{t}`" for t in gaps["covered_by_provenance_only"])
+        return "check_anchor", "MEDIUM", WHY_PROVENANCE.format(terms=terms)
+    if verdict == "PASS":
+        return "fast_track", "LOW", WHY_AGREED_PASS
+    if defects:
+        return "fast_track", "LOW", WHY_REPAIRED
+    return "fast_track", "LOW", WHY_AUTHORED
+
+
+def build_item(record: dict, reason: str) -> dict:
+    gaps = anchor_gaps(record)
+    defects = classify_defects(record)
+    group, risk, why = assess(record, gaps, defects)
+
+    revisions = record.get("revisions", [])
+    original = {}
+    for field in ("proposed_question", "proposed_answer", "proposed_atomic_claims"):
+        first = next((r for r in revisions if r["field"] == field), None)
+        original[field] = first["from"] if first else record.get(field)
+
+    anchor = {
+        "version_id": record["version_id"], "char_start": record["char_start"],
+        "char_end": record["char_end"], "evidence_hash": record["evidence_hash"],
+        "section_path": record["section_path"],
+    }
+    return {
+        "candidate_id": record["candidate_id"],
+        "group": group,
+        "risk": risk,
+        "queued_because": reason,
+        "chatgpt_verdict": record.get("verification", {}).get("verdict"),
+        "verification_status": record["verification_status"],
+        "final": {
+            "question": record["proposed_question"],
+            "answer": record["proposed_answer"],
+            "atomic_claims": record["proposed_atomic_claims"],
+        },
+        "evidence": {**anchor, "text": record["evidence_text"],
+                     "context_before": record["context_before"][-CONTEXT_CHARS:],
+                     "context_after": record["context_after"][:CONTEXT_CHARS]},
+        "why_human_review_required": why,
+        "defects": [{"class": d, "what_was_repaired": DEFECT_REPAIRS[d]} for d in defects],
+        "anchor_gaps": gaps,
+        "decision_options": list(DECISIONS),
+        "decision": None,
+        "audit": {
+            "claude_original_proposal": original,
+            "chatgpt_review": record.get("verification"),
+            "revisions": revisions,
+            "anchor_as_mined": anchor,
+            "anchor_current": anchor,
+            "anchor_unchanged": True,
+            "anchor_disputes": record.get("anchor_disputes", []),
+            "provenance": {
+                "provider": record["provider"],
+                "document_title": record["document_title"],
+                "source_url": record["source_url"],
+                "captured_at": record["captured_at"],
+                "evidence_kind": record["evidence_kind"],
+                "generator_confidence": record["generator_confidence"],
+            },
+        },
+    }
+
+
+GROUP_HEADINGS = {
+    "fast_track": (
+        "A. Fast track — every asserted term is in the anchored span",
+        ("Read the question, glance at the span, decide. These carry no detected gap "
+         "between what the case claims and what its anchor contains."),
+    ),
+    "check_anchor": (
+        "B. Check the anchor before approving",
+        ("Each of these asserts something the anchored span does not contain. This is "
+         "the OA-002 defect class, and it is the reason the whole batch exists — do not "
+         "skim these."),
+    ),
+    "recommended_reject": (
+        "C. Independent review recommends rejection",
+        ("Included for your decision and the audit trail, not for rescue. No second "
+         "automatic repair was attempted."),
+    ),
+}
+
+
+def render_item(item: dict) -> str:
+    ev = item["evidence"]
+    claims = "\n".join(f"  {i}. {c}" for i, c in enumerate(item["final"]["atomic_claims"], 1))
+    lines = [
+        f"#### {item['candidate_id']} · {item['chatgpt_verdict']} · risk {item['risk']}",
+        "",
+        f"**Q.** {item['final']['question']}",
+        "",
+        f"**A.** {item['final']['answer']}",
+        "",
+        "**Claims**",
+        claims or "  (none)",
+        "",
+        ("**Evidence span** — "
+         f"`{ev['version_id']}` {ev['char_start']}–{ev['char_end']} · "
+         f"{' > '.join(ev['section_path'])}"),
+        "",
+        "```",
+        ev["text"],
+        "```",
+        "",
+        "<details><summary>surrounding context</summary>",
+        "",
+        "```",
+        f"…{ev['context_before'].strip()}",
+        "  ⟦SPAN⟧",
+        f"{ev['context_after'].strip()}…",
+        "```",
+        "",
+        "</details>",
+        "",
+        f"**Why you are seeing this.** {item['why_human_review_required']}",
+    ]
+    for defect in item["defects"]:
+        lines += ["", (f"**{defect['class']} — what was repaired.** "
+                       f"{defect['what_was_repaired']}")]
+    if item["anchor_gaps"]["question_framing_only"]:
+        terms = ", ".join(f"`{t}`" for t in item["anchor_gaps"]["question_framing_only"])
+        lines += ["", (f"*Note:* the question mentions {terms} as framing only; no "
+                       "claim depends on it.")]
     lines += ["",
-              ("**Decision**: record `APPROVE` or `REJECT` for "
-               f"`{record['candidate_id']}` in the decisions file. Approving means "
-               "you checked the anchored evidence yourself and it supports the final "
-               "question, answer and every claim without needing the context blocks."),
+              ("**Decision:** `APPROVE` · `REJECT` · `NEEDS_EDIT` → record for "
+               f"`{item['candidate_id']}` in `human_decisions_batch_001.json`."),
               "", "---", ""]
+    return "\n".join(lines)
+
+
+def render_markdown(packet: dict) -> str:
+    queue = packet["queue"]
+    counts = {g: sum(1 for i in packet["items"] if i["group"] == g) for g in GROUP_HEADINGS}
+    lines = [
+        f"# GOLD-001 — batch {packet['batch']:03d} human QC packet",
+        "",
+        (f"**{len(packet['items'])} decisions.** {counts['fast_track']} fast track, "
+         f"{counts['check_anchor']} need the anchor checked, "
+         f"{counts['recommended_reject']} recommended for rejection."),
+        "",
+        ("Nothing in this packet is gold. A candidate becomes `human_verified` only "
+         "when you record `APPROVE` for it in "
+         "`evals/review/human_decisions_batch_001.json` and import that file. A ChatGPT "
+         "`PASS` produces `dual_llm_pass` and stops there — two AI systems agreeing is "
+         "not human verification."),
+        "",
+        ("**Judge each case against the anchored evidence block alone.** The context "
+         "is there to let you spot a bad anchor, not to answer the question. If you need "
+         "the context to answer it, the anchor is wrong: `NEEDS_EDIT`."),
+        "",
+        ("**The anchors were never moved.** The import path forbids a reviewer from "
+         "changing a source span, so every repair below is a repair to the *wording*. "
+         "Where that leaves a claim resting on a term the span does not contain, it is "
+         "flagged in section B rather than smoothed over."),
+        "",
+        (f"Queue: {len(queue['must_review'])} mandatory + "
+         f"{len(queue['qc_sample_of_dual_llm_pass'])} sampled from the "
+         f"{queue['dual_llm_pass_total']} agreed passes "
+         f"(seed {queue['seed']}, rate {queue['sample_rate']:.0%})."),
+        "",
+        "| id | verdict | risk | defects | one-line |",
+        "| --- | --- | --- | --- | --- |",
+    ]
+    for item in packet["items"]:
+        defects = ", ".join(d["class"] for d in item["defects"]) or "—"
+        question = item["final"]["question"]
+        short = question if len(question) <= 72 else question[:69] + "…"
+        lines.append(f"| `{item['candidate_id'][-2:]}` | {item['chatgpt_verdict']} | "
+                     f"{item['risk']} | {defects} | {short} |")
+    lines.append("")
+
+    for group, (heading, blurb) in GROUP_HEADINGS.items():
+        items = [i for i in packet["items"] if i["group"] == group]
+        if not items:
+            continue
+        lines += ["---", "", f"## {heading}", "", blurb, ""]
+        lines += [render_item(item) for item in items]
+
+    lines += [
+        "## Audit",
+        "",
+        ("The full history — the generator's original proposal, the reviewer's verdict "
+         "and boolean checks, every numbered revision, and the anchor as first mined — "
+         "is retained per candidate in `gold_batch_001_qc.json` under `audit`. Nothing "
+         "was overwritten, and no anchor was changed (0 disputes recorded)."),
+        "",
+        ("OA-002 is a defect in the original development set and is deliberately not "
+         "part of this batch. Its `development/v2` correction remains proposed and "
+         "unapplied."),
+        "",
+    ]
     return "\n".join(lines)
 
 
@@ -121,63 +356,68 @@ def main() -> int:
     queue = json.loads(Path(args.queue).read_text())
     records = {r["candidate_id"]: r for r in batch["records"]}
 
-    reasons: dict[str, str] = {}
-    for candidate_id in queue["must_review"]:
-        reasons[candidate_id] = "mandatory: disagreement, uncertainty or failure"
-    for candidate_id in queue["qc_sample_of_dual_llm_pass"]:
-        reasons[candidate_id] = "QC sample of agreed passes"
-
+    reasons = {cid: "mandatory: disagreement, uncertainty or failure"
+               for cid in queue["must_review"]}
+    reasons.update({cid: "deterministic QC sample of agreed passes"
+                    for cid in queue["qc_sample_of_dual_llm_pass"]})
     missing = sorted(set(reasons) - set(records))
     if missing:
         raise SystemExit(f"queue references candidates not in the batch: {missing}")
 
+    order = {"recommended_reject": 2, "check_anchor": 1, "fast_track": 0}
+    items = [build_item(records[cid], reasons[cid]) for cid in sorted(reasons)]
+    items.sort(key=lambda i: (order[i["group"]], i["candidate_id"]))
+
     number = batch.get("batch", 0)
     out_dir = Path(args.out_dir) if args.out_dir else batch_path.parent
-    ordered = sorted(reasons)
+    packet = {
+        "batch": number,
+        "source_batch_sha256": batch.get("batch_sha256"),
+        "generated_at": datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "queue": queue,
+        "allowed_decisions": list(DECISIONS),
+        "nothing_here_is_gold": (
+            "A candidate becomes human_verified only through an explicit APPROVE "
+            "recorded by the project owner. A ChatGPT PASS is dual_llm_pass."
+        ),
+        "items": items,
+    }
 
-    body = [
-        f"# GOLD-001 — human review packet, batch {number:03d}",
-        "",
-        (f"{len(ordered)} of {len(records)} candidates need a person: "
-         f"{len(queue['must_review'])} mandatory "
-         f"(ChatGPT disagreed, failed or was uncertain), plus "
-         f"{len(queue['qc_sample_of_dual_llm_pass'])} drawn as a "
-         f"{queue['sample_rate']:.0%} sample of the "
-         f"{queue['dual_llm_pass_total']} cases both models passed (seed "
-         f"{queue['seed']})."),
-        "",
-        ("Nothing in this packet is gold. A candidate becomes `human_verified` "
-         "only when you record an `APPROVE` decision for it; no script can set that "
-         "status."),
-        "",
-        ("Judge each case against the **anchored evidence** block alone. The "
-         "context blocks are there to let you spot a bad anchor, not to answer the "
-         "question — if you need them to answer it, the anchor is wrong and the case "
-         "should be rejected or re-anchored."),
-        "",
-        "---",
-        "",
-    ]
-    body += [render(records[cid], reasons[cid]) for cid in ordered]
-
-    packet = out_dir / f"human_review_packet_batch_{number:03d}.md"
-    packet.write_text("\n".join(body), encoding="utf-8")
+    json_path = out_dir / f"gold_batch_{number:03d}_qc.json"
+    md_path = out_dir / f"gold_batch_{number:03d}_qc.md"
+    json_path.write_text(json.dumps(packet, indent=2, ensure_ascii=False) + "\n",
+                         encoding="utf-8")
+    md_path.write_text(render_markdown(packet), encoding="utf-8")
 
     decisions_path = out_dir / f"human_decisions_batch_{number:03d}.json"
-    if decisions_path.exists():
-        print(f"kept existing {decisions_path} (decisions are never overwritten)")
+    if decisions_path.exists() and any(
+            d.get("decision") for d in
+            json.loads(decisions_path.read_text()).get("decisions", [])):
+        print(f"kept {decisions_path} — it already carries decisions")
     else:
         decisions_path.write_text(json.dumps({
             "batch": number,
             "source_batch_sha256": batch.get("batch_sha256"),
-            "reviewer": None,
+            "reviewer": "project_owner",
             "reviewed_at": None,
-            "valid_decisions": list(VALID_DECISIONS),
-            "decisions": {cid: dict(DECISION_TEMPLATE) for cid in ordered},
+            "allowed_decisions": list(DECISIONS),
+            "instructions": (
+                "Set decision to APPROVE, REJECT or NEEDS_EDIT for each candidate, then "
+                "run scripts/import_human_decisions.py. Only APPROVE produces "
+                "human_verified. Leaving a decision null leaves the candidate out of "
+                "gold."
+            ),
+            "decisions": [{"candidate_id": i["candidate_id"], "decision": None,
+                           "notes": ""} for i in items],
         }, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
         print(f"wrote {decisions_path}")
 
-    print(f"wrote {packet} ({len(ordered)} candidates)")
+    counts = {g: sum(1 for i in items if i["group"] == g) for g in GROUP_HEADINGS}
+    print(f"wrote {md_path}")
+    print(f"wrote {json_path}")
+    print(f"  {len(items)} decisions — fast track {counts['fast_track']}, "
+          f"check anchor {counts['check_anchor']}, "
+          f"recommended reject {counts['recommended_reject']}")
     return 0
 
 

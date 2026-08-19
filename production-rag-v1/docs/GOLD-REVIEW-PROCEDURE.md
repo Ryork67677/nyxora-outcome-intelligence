@@ -26,8 +26,9 @@ frozen corpus
   → independent ChatGPT verification  (you, outside this repo)
   → import verdicts                   scripts/import_verification.py
   → human QC queue                    scripts/select_human_qc.py
-  → human review packet               scripts/export_human_qc_packet.py
-  → human approval                    (you)
+  → human QC packet                   scripts/export_human_qc_packet.py
+  → human decisions                   (you) -> human_decisions_batch_NNN.json
+  → import decisions                  scripts/import_human_decisions.py
   → validator                         scripts/validate_golden.py
   → frozen holdout                    → only then, replication
 ```
@@ -118,33 +119,65 @@ You see every disagreement, uncertainty and failure, plus a seeded random 15% of
 agreed passes — two models agreeing is correlated evidence, not independent
 confirmation, and a shared blind spot would otherwise never surface.
 
-## 5. Render the packet
+## 5. Render the QC packet
 
 ```bash
-python scripts/export_human_qc_packet.py \
+python scripts/export_human_qc_packet.py \\
   evals/review/gold_review_batch_001.json evals/review/human_qc_queue_batch_001.json
 ```
 
-The queue is a list of ids; nobody can review ids. The packet renders each queued
-candidate with its anchored evidence, the context on either side, and the generator's
-proposal *beside* the reviewer's edit rather than in place of it — so you can see that
-a model rewrote the question, and what it originally said.
+Writes `gold_batch_NNN_qc.md` (decide from this), `gold_batch_NNN_qc.json` (the same
+content plus the full audit trail), and a blank `human_decisions_batch_NNN.json`. It
+will not overwrite a decisions file that already carries decisions.
 
-Judge each case against the anchored evidence block alone. The context blocks exist to
-let you spot a bad anchor. If you need them to answer the question, the anchor is
-wrong: reject or re-anchor.
+Each candidate leads with the **final** question, answer and claims, so nobody has to
+reconstruct the case from revision history, then the exact span, then a marked context
+window, then one sentence on why a human is needed. Candidates are grouped so the easy
+ones go fast:
 
-The packet is gitignored. It inlines 900 characters of provider prose on either side of
-every span, which is more source text than the repository should carry, and it is fully
-regenerable from the committed batch JSON.
+| group | meaning |
+|---|---|
+| A — fast track | every term the case asserts appears in the anchored span |
+| B — check the anchor | a claim asserts something the span does not contain |
+| C — recommended reject | the independent review recommended rejection |
+
+Group B is computed, not asserted: code identifiers and product names in the answer and
+claims are checked against the span, and separately against the document title and
+section path. A term the span lacks but the section path supplies is reported as weaker
+evidence rather than as a gap. This is the OA-002 defect made mechanical.
+
+**Repairs are repairs to wording, not to anchors.** The verdict importer forbids a
+reviewer from moving a span, so a boundary defect can only be addressed by rewriting the
+question. Where that leaves a claim resting on a term the anchor does not contain, the
+packet says so instead of presenting the case as fixed.
+
+Judge each case against the anchored evidence alone. If you need the context window to
+answer the question, the anchor is wrong: `NEEDS_EDIT`.
 
 ## 6. Approve
 
-Record `APPROVE` or `REJECT` per candidate in
-`evals/review/human_decisions_batch_NNN.json`, which the packet exporter creates and
-then never overwrites. Set `verification: "human_approved"` and `human_verified: true`
-only for cases you have actually looked at. The validator blocks any holdout case that
-lacks it.
+Record `APPROVE`, `REJECT` or `NEEDS_EDIT` per candidate in
+`evals/review/human_decisions_batch_NNN.json`, then:
+
+```bash
+python scripts/import_human_decisions.py \\
+  evals/review/gold_review_batch_001.json evals/review/human_decisions_batch_001.json
+```
+
+This is the only script that can produce `human_verified`, and it can only do it from a
+decision a person wrote. It refuses a decisions file whose `source_batch_sha256` does not
+match, refuses unknown or duplicate candidate ids, refuses an invalid decision value, and
+**refuses a reviewer name that is a model** — a decisions file claiming `chatgpt` as its
+reviewer is not a human decision whatever it says inside. An absent decision leaves the
+candidate out of gold; `NEEDS_EDIT` keeps it out too.
+
+Decisions append to `human_decision_history`; re-reviewing a case adds an entry rather
+than erasing the first. Revisions, the original proposal and the anchor are untouched.
+
+It then writes `validation_report_batch_NNN.json`, which re-checks what an approval
+cannot vouch for: evidence-hash drift, empty or placeholder questions, missing claims,
+missing provenance. An approval says the case is right; the report says its bytes still
+match the corpus.
 
 ## 7. Validate, then freeze
 
@@ -168,10 +201,11 @@ SYSTEM-B be run against it — **once**.
 | `candidate_unverified` | freshly mined; not evidence of anything |
 | `dual_llm_pass` / `dual_llm_fail` | Claude proposed, ChatGPT reviewed |
 | `needs_human_review` | disagreement, uncertainty, or a repair to check |
-| `human_approved` / `human_rejected` | a person decided |
-| `human_verified` | reserved for the original development set |
+| `human_verified` / `human_rejected` | a person decided, via `import_human_decisions.py` |
+| `needs_edit` | a person looked and wants it changed — out of gold until it is |
 
-Only `human_approved` and `human_verified` may enter a holdout.
+Only `human_verified` may enter a holdout. `needs_edit` and an absent decision are both
+out, and that is the same outcome by design: gold requires someone to have said yes.
 
 ## Batch outcomes
 

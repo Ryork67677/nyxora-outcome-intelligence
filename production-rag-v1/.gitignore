@@ -33,12 +33,3 @@ venv/
 .DS_Store
 .vscode/
 .idea/
-
-# Human review packets.
-#
-# The packet is a working document: it inlines each candidate's evidence span plus
-# 900 characters of surrounding provider prose on either side, which is far more
-# source text than the repository should carry. It is fully regenerable from the
-# committed batch JSON with scripts/export_human_qc_packet.py, so the packet stays
-# local while the decisions it produces are committed.
-/evals/review/human_review_packet_batch_*.md
