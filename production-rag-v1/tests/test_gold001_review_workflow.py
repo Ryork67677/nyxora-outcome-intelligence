@@ -55,11 +55,19 @@ def test_candidate_dataclass_defaults_are_not_verified():
     assert fields["chatgpt_verified"].default is None
 
 
+#: Statuses a batch may hold at any point before a person has approved anything.
+#: ``human_verified`` and ``human_approved`` are deliberately absent.
+PRE_HUMAN_STATUSES = {
+    "candidate_unverified", "dual_llm_pass", "dual_llm_fail", "needs_human_review",
+}
+
+
 def test_batch_declares_nothing_is_gold(batch):
-    assert "candidate_unverified" in batch["verification_status"]
+    # The banner survives import: review changes the status, never the disclaimer.
+    assert "nothing in this file is gold" in batch["verification_status"]
     assert batch["retrieval_was_not_run"] is True
     for record in batch["records"]:
-        assert record["verification_status"] == "candidate_unverified"
+        assert record["verification_status"] in PRE_HUMAN_STATUSES
         assert record.get("human_verified") is not True
 
 
@@ -232,6 +240,31 @@ def test_invalid_verdicts_are_rejected():
     assert any("invalid verdict" in p for p in problems)
 
 
+@pytest.mark.parametrize("key", ["reviews", "records", "results"])
+def test_review_envelopes_are_accepted_whatever_the_verifier_called_the_list(key):
+    mod = _importer()
+    reviews = [{"candidate_id": "X", "verdict": "PASS"}]
+    assert mod.extract_reviews({key: reviews}) == reviews
+    assert mod.extract_reviews(reviews) == reviews
+
+
+def test_an_envelope_with_no_review_list_is_refused_rather_than_iterated():
+    mod = _importer()
+    # ``raw.get("reviews", raw)`` would return the dict here and iterate its keys,
+    # importing garbage. Refusing loudly is the point.
+    with pytest.raises(SystemExit):
+        mod.extract_reviews({"reviewer": "chatgpt", "reviewed_at": "now"})
+
+
+def test_a_review_of_a_different_batch_is_refused():
+    mod = _importer()
+    batch = {"batch_sha256": "a" * 64}
+    mod.check_batch_provenance({"source_batch_sha256": "a" * 64}, batch)  # matches
+    with pytest.raises(SystemExit) as excinfo:
+        mod.check_batch_provenance({"source_batch_sha256": "b" * 64}, batch)
+    assert "mismatch" in str(excinfo.value)
+
+
 # -- human QC sampling -------------------------------------------------------
 
 def _qc():
@@ -341,3 +374,65 @@ def test_systems_remain_frozen():
 
     assert FROZEN_HASHES["SYSTEM-A-GLOBAL"].startswith("9afcb5b7c58ebacf")
     assert FROZEN_HASHES["SYSTEM-B-DOC-C"].startswith("304c350940b83733")
+
+
+# -- human review packet -----------------------------------------------------
+
+def _packet_module():
+    import importlib.util
+
+    spec = importlib.util.spec_from_file_location(
+        "_export_human_qc_packet",
+        Path(__file__).resolve().parents[1] / "scripts" / "export_human_qc_packet.py")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def _reviewed_record(**overrides):
+    record = {
+        "candidate_id": "GOLD-B001-99", "document_title": "Doc",
+        "section_path": ["A", "B"], "version_id": "ver_x",
+        "char_start": 10, "char_end": 40, "evidence_kind": "explicit_exception",
+        "generator_confidence": "medium", "context_before": "before",
+        "context_after": "after", "evidence_text": "the anchored sentence",
+        "proposed_question": "new question?", "proposed_answer": "new answer",
+        "proposed_atomic_claims": ["a claim"],
+        "verification_status": "needs_human_review",
+        "verification": {"verdict": "FIX_REQUIRED", "evidence_boundary_complete": False,
+                         "verification_notes": "anchor starts with a pronoun"},
+        "revisions": [{"revision": 1, "field": "proposed_question",
+                       "from": "[REVIEWER TO WRITE] …", "to": "new question?",
+                       "author": "chatgpt", "timestamp": "t", "reason": "r"}],
+    }
+    record.update(overrides)
+    return record
+
+
+def test_packet_shows_the_generator_proposal_next_to_the_reviewer_edit():
+    mod = _packet_module()
+    rendered = mod.render(_reviewed_record(), "mandatory")
+    # A reviewer who only sees the final text cannot tell that a model wrote it.
+    assert "[REVIEWER TO WRITE]" in rendered
+    assert "generator:" in rendered and "reviewer (chatgpt):" in rendered
+    assert "the anchored sentence" in rendered
+    assert "`evidence_boundary_complete`" in rendered
+
+
+def test_packet_never_declares_a_case_verified():
+    mod = _packet_module()
+    rendered = mod.render(_reviewed_record(), "mandatory")
+    assert "human_verified" not in rendered
+    assert "APPROVE" in rendered
+    assert "APPROVE" in mod.VALID_DECISIONS
+    assert mod.DECISION_TEMPLATE["decision"] == "PENDING"
+
+
+def test_packet_reports_anchor_disputes_as_rejected():
+    mod = _packet_module()
+    record = _reviewed_record(anchor_disputes=[{
+        "field": "char_start", "reviewer_value": 999, "kept_value": 10,
+        "author": "chatgpt", "timestamp": "t"}])
+    rendered = mod.render(record, "mandatory")
+    assert "was NOT applied" in rendered
+    assert "char_start" in rendered

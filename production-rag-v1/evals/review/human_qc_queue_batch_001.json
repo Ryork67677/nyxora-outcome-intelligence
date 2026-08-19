@@ -2,8 +2,6 @@
   "seed": 20250819,
   "sample_rate": 0.15,
   "must_review": [
-    "GOLD-B001-01",
-    "GOLD-B001-02",
     "GOLD-B001-03",
     "GOLD-B001-04",
     "GOLD-B001-05",
@@ -21,9 +19,11 @@
     "GOLD-B001-17",
     "GOLD-B001-18"
   ],
-  "qc_sample_of_dual_llm_pass": [],
-  "dual_llm_pass_total": 0,
-  "human_queue_size": 18,
+  "qc_sample_of_dual_llm_pass": [
+    "GOLD-B001-02"
+  ],
+  "dual_llm_pass_total": 2,
+  "human_queue_size": 17,
   "rationale": "Disagreements, uncertainty and failures always reach a person. Agreed passes are sampled because two models agreeing is correlated evidence, not independent confirmation.",
   "batch": 1
 }

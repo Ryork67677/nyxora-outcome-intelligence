@@ -26,6 +26,7 @@ frozen corpus
   → independent ChatGPT verification  (you, outside this repo)
   → import verdicts                   scripts/import_verification.py
   → human QC queue                    scripts/select_human_qc.py
+  → human review packet               scripts/export_human_qc_packet.py
   → human approval                    (you)
   → validator                         scripts/validate_golden.py
   → frozen holdout                    → only then, replication
@@ -93,6 +94,12 @@ python scripts/import_verification.py \
   evals/review/gold_review_batch_001.json reviews_001.json
 ```
 
+The verifier's output may be a bare JSON list or an object with a `reviews`,
+`records` or `results` list; all four shapes are accepted so nobody has to reformat a
+review by hand. If the file carries a `source_batch_sha256` it must match the batch's
+own `batch_sha256`, otherwise the import aborts — verdicts written against a different
+batch would attach to the wrong evidence, and that is not a thing to discover later.
+
 The importer refuses the whole file if any candidate id or verdict is invalid —
 partial imports would leave the batch in a state nobody could reason about. Every
 edit is appended as a numbered revision with author, timestamp and reason; the
@@ -111,12 +118,35 @@ You see every disagreement, uncertainty and failure, plus a seeded random 15% of
 agreed passes — two models agreeing is correlated evidence, not independent
 confirmation, and a shared blind spot would otherwise never surface.
 
-## 5. Approve
+## 5. Render the packet
 
-Set `verification: "human_approved"` and `human_verified: true` only for cases you
-have actually looked at. The validator blocks any holdout case that lacks it.
+```bash
+python scripts/export_human_qc_packet.py \
+  evals/review/gold_review_batch_001.json evals/review/human_qc_queue_batch_001.json
+```
 
-## 6. Validate, then freeze
+The queue is a list of ids; nobody can review ids. The packet renders each queued
+candidate with its anchored evidence, the context on either side, and the generator's
+proposal *beside* the reviewer's edit rather than in place of it — so you can see that
+a model rewrote the question, and what it originally said.
+
+Judge each case against the anchored evidence block alone. The context blocks exist to
+let you spot a bad anchor. If you need them to answer the question, the anchor is
+wrong: reject or re-anchor.
+
+The packet is gitignored. It inlines 900 characters of provider prose on either side of
+every span, which is more source text than the repository should carry, and it is fully
+regenerable from the committed batch JSON.
+
+## 6. Approve
+
+Record `APPROVE` or `REJECT` per candidate in
+`evals/review/human_decisions_batch_NNN.json`, which the packet exporter creates and
+then never overwrites. Set `verification: "human_approved"` and `human_verified: true`
+only for cases you have actually looked at. The validator blocks any holdout case that
+lacks it.
+
+## 7. Validate, then freeze
 
 ```bash
 python scripts/validate_golden.py evals/holdout/v1.jsonl --require-human holdout
@@ -142,6 +172,12 @@ SYSTEM-B be run against it — **once**.
 | `human_verified` | reserved for the original development set |
 
 Only `human_approved` and `human_verified` may enter a holdout.
+
+## Batch outcomes
+
+| batch | verdicts | outcome |
+|---|---|---|
+| 001 | PASS 2, FIX_REQUIRED 15, FAIL 1 | 17 queued for a person; three miner defects recorded in `experiments/GOLD-001/batch-001-findings.md` and preregistered as changes for batch 002 |
 
 ## What is deliberately not automated
 

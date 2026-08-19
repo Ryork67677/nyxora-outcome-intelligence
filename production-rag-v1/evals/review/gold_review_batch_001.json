@@ -23,7 +23,7 @@
     "medium": 16
   },
   "needs_human_interpretation": 16,
-  "verification_status": "candidate_unverified — nothing in this file is gold",
+  "verification_status": "dual_llm_reviewed by chatgpt — nothing in this file is gold; every case still requires human approval",
   "retrieval_was_not_run": true,
   "records": [
     {
@@ -55,11 +55,23 @@
       "generator_notes": "Row-scoped association, so the value cannot belong to a different parameter. Reviewer should still confirm the row is a parameter table and not a comparison or pricing table.",
       "needs_human_interpretation": false,
       "candidate_type": "supported",
-      "verification_status": "candidate_unverified",
+      "verification_status": "dual_llm_pass",
       "claude_proposed": true,
-      "chatgpt_verified": null,
+      "chatgpt_verified": true,
       "schema_version": "1.0",
-      "revisions": []
+      "revisions": [],
+      "verification": {
+        "reviewer": "chatgpt",
+        "verdict": "PASS",
+        "reviewed_at": "2026-08-19T05:41:57Z",
+        "question_supported": true,
+        "answer_supported": true,
+        "all_critical_claims_supported": true,
+        "evidence_boundary_complete": true,
+        "identifier_value_binding_correct": true,
+        "natural_question": true,
+        "verification_notes": "The row is clearly part of the computer-use tool parameter table. The same row names `enable_zoom` and explicitly states `Default: false`, so the proposed question, answer, and claim are directly supported."
+      }
     },
     {
       "candidate_id": "GOLD-B001-02",
@@ -90,11 +102,23 @@
       "generator_notes": "Row-scoped association, so the value cannot belong to a different parameter. Reviewer should still confirm the row is a parameter table and not a comparison or pricing table.",
       "needs_human_interpretation": false,
       "candidate_type": "supported",
-      "verification_status": "candidate_unverified",
+      "verification_status": "dual_llm_pass",
       "claude_proposed": true,
-      "chatgpt_verified": null,
+      "chatgpt_verified": true,
       "schema_version": "1.0",
-      "revisions": []
+      "revisions": [],
+      "verification": {
+        "reviewer": "chatgpt",
+        "verdict": "PASS",
+        "reviewed_at": "2026-08-19T05:41:57Z",
+        "question_supported": true,
+        "answer_supported": true,
+        "all_critical_claims_supported": true,
+        "evidence_boundary_complete": true,
+        "identifier_value_binding_correct": true,
+        "natural_question": true,
+        "verification_notes": "The row is part of the Agent basic-configuration table and directly binds `reset_tool_choice` to `(default: True)`. The proposed question and answer are fully supported by the anchored row."
+      }
     },
     {
       "candidate_id": "GOLD-B001-03",
@@ -113,20 +137,64 @@
       "context_before": "de/models/introducing-claude-fable-5-and-claude-mythos-5) is Anthropic's most capable widely released model, generally available on the Claude API, [Amazon Bedrock](https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock), [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws), [Google Cloud](https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai), and [Microsoft Foundry](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry). [Claude Mythos 5](https://anthropic.com/glasswing) shares the same capabilities and is offered in limited availability to approved customers in Project Glasswing.\n\nThe baseline settings shared by `claude-fable-5` and `claude-mythos-5`:\n\n* **Thinking:** [Adaptive thinking](https://platform.claude.com/docs/en/build-with-claude/thinking) is always on. ",
       "context_after": " Both `thinking: {type: \"disabled\"}` and manual extended thinking (`thinking: {type: \"enabled\", budget_tokens: N}`) return a 400 error.\n* **Prefill:** Prefilling the assistant message returns a 400 error. Use system prompt instructions instead.\n* **Context window and output:** A [1M token context window](https://platform.claude.com/docs/en/build-with-claude/context-windows) by default, and up to 128k output tokens per request.\n* **Pricing:** $10 USD per million input tokens and $50 USD per million output tokens. See [Claude pricing](https://platform.claude.com/docs/en/about-claude/pricing).\n* **Data retention:** Both models require 30-day data retention and are not available under zero data retention (ZDR) arrangements; both are designated Covered Models. On the Claude API, a request to Claude Fable 5 from an organization whose data retention configuration does not meet this requirement ",
       "proposed_category": "exact_lookup",
-      "proposed_question": "[REVIEWER TO WRITE] A question about thinking in Migration guide, answerable from the evidence below (relationship stated: 'required').",
-      "proposed_atomic_claims": [],
-      "proposed_answer": "",
+      "proposed_question": "For Claude Fable 5 and Claude Mythos 5, is a `thinking` configuration required?",
+      "proposed_atomic_claims": [
+        "For Claude Fable 5 and Claude Mythos 5, no `thinking` configuration is required."
+      ],
+      "proposed_answer": "No. Adaptive thinking is always on, the model decides when and how much to think, and no `thinking` configuration is required.",
       "evidence_kind": "explicit_required_optional",
       "binding": "single identifier in the sentence",
       "generator_confidence": "medium",
       "generator_notes": "Matched explicit marker 'required'. No claim is proposed: the reviewer should write the question and the atomic claims from the evidence. ",
       "needs_human_interpretation": true,
       "candidate_type": "supported",
-      "verification_status": "candidate_unverified",
+      "verification_status": "needs_human_review",
       "claude_proposed": true,
-      "chatgpt_verified": null,
+      "chatgpt_verified": false,
       "schema_version": "1.0",
-      "revisions": []
+      "revisions": [
+        {
+          "revision": 1,
+          "field": "proposed_question",
+          "from": "[REVIEWER TO WRITE] A question about thinking in Migration guide, answerable from the evidence below (relationship stated: 'required').",
+          "to": "For Claude Fable 5 and Claude Mythos 5, is a `thinking` configuration required?",
+          "author": "chatgpt",
+          "timestamp": "2026-08-19T05:41:57Z",
+          "reason": "Replace the placeholder question/empty answer and extend the evidence anchor upward to include the nearby text identifying the statement as a baseline setting shared by `claude-fable-5` and `claude-mythos-5` (ideally including the `Thinking: Adaptive thinking is always on` line)."
+        },
+        {
+          "revision": 2,
+          "field": "proposed_answer",
+          "from": "",
+          "to": "No. Adaptive thinking is always on, the model decides when and how much to think, and no `thinking` configuration is required.",
+          "author": "chatgpt",
+          "timestamp": "2026-08-19T05:41:57Z",
+          "reason": "Replace the placeholder question/empty answer and extend the evidence anchor upward to include the nearby text identifying the statement as a baseline setting shared by `claude-fable-5` and `claude-mythos-5` (ideally including the `Thinking: Adaptive thinking is always on` line)."
+        },
+        {
+          "revision": 3,
+          "field": "proposed_atomic_claims",
+          "from": [],
+          "to": [
+            "For Claude Fable 5 and Claude Mythos 5, no `thinking` configuration is required."
+          ],
+          "author": "chatgpt",
+          "timestamp": "2026-08-19T05:41:57Z",
+          "reason": "Replace the placeholder question/empty answer and extend the evidence anchor upward to include the nearby text identifying the statement as a baseline setting shared by `claude-fable-5` and `claude-mythos-5` (ideally including the `Thinking: Adaptive thinking is always on` line)."
+        }
+      ],
+      "verification": {
+        "reviewer": "chatgpt",
+        "verdict": "FIX_REQUIRED",
+        "reviewed_at": "2026-08-19T05:41:57Z",
+        "question_supported": false,
+        "answer_supported": false,
+        "all_critical_claims_supported": false,
+        "evidence_boundary_complete": false,
+        "identifier_value_binding_correct": true,
+        "natural_question": false,
+        "verification_notes": "The core statement is clear, but the current anchored sentence does not name the models. A natural standalone question needs that scope, so the evidence boundary should be expanded rather than relying on surrounding context that is outside the anchor."
+      }
     },
     {
       "candidate_id": "GOLD-B001-04",
@@ -146,20 +214,64 @@
       "context_before": "uardrails** run only for the agent that produces the final output.\n-   **Tool guardrails** run on every custom function-tool invocation, with input guardrails before execution and output guardrails after execution.\n\nIf you need checks before and/or after each custom function-tool call in a workflow that includes managers, handoffs, or delegated specialists, use tool guardrails instead of relying only on agent-level input/output guardrails.\n\n## Input guardrails\n\nInput guardrails run in 3 steps:\n\n1. First, the guardrail receives the same input passed to the agent.\n2. Next, the guardrail function runs to produce a [`GuardrailFunctionOutput`][agents.guardrail.GuardrailFunctionOutput], which is then wrapped in an [`InputGuardrailResult`][agents.guardrail.InputGuardrailResult]\n3. Finally, we check if [`.tripwire_triggered`][agents.guardrail.GuardrailFunctionOutput.tripwire_triggered] is true. ",
       "context_after": "\n\n!!! Note\n\n    Input guardrails are intended to run on user input, so an agent's guardrails only run if the agent is the *first* agent. You might wonder, why is the `guardrails` property on the agent instead of passed to `Runner.run`? It's because guardrails tend to be related to the actual Agent - you'd run different guardrails for different agents, so colocating the code is useful for readability.\n\n### Execution modes\n\nInput guardrails support two execution modes:\n\n- **Parallel execution** (default, `run_in_parallel=True`): The guardrail runs concurrently with the agent's execution. This provides the best latency since both start at the same time. However, if the guardrail's tripwire is triggered, the agent may have already consumed tokens and executed tools before being cancelled.\n\n- **Blocking execution** (`run_in_parallel=False`): The guardrail runs and completes *before* the agent",
       "proposed_category": "exact_lookup",
-      "proposed_question": "[REVIEWER TO WRITE] A question about InputGuardrailTripwireTriggered in Guardrails, answerable from the evidence below (relationship stated: 'is raised').",
-      "proposed_atomic_claims": [],
-      "proposed_answer": "",
+      "proposed_question": "What exception is raised when an input guardrail's `tripwire_triggered` value is true?",
+      "proposed_atomic_claims": [
+        "When an input guardrail's `tripwire_triggered` value is true, an `InputGuardrailTripwireTriggered` exception is raised."
+      ],
+      "proposed_answer": "`InputGuardrailTripwireTriggered`.",
       "evidence_kind": "explicit_exception",
       "binding": "single identifier in the sentence",
       "generator_confidence": "medium",
       "generator_notes": "Matched explicit marker 'is raised'. No claim is proposed: the reviewer should write the question and the atomic claims from the evidence. ",
       "needs_human_interpretation": true,
       "candidate_type": "supported",
-      "verification_status": "candidate_unverified",
+      "verification_status": "needs_human_review",
       "claude_proposed": true,
-      "chatgpt_verified": null,
+      "chatgpt_verified": false,
       "schema_version": "1.0",
-      "revisions": []
+      "revisions": [
+        {
+          "revision": 1,
+          "field": "proposed_question",
+          "from": "[REVIEWER TO WRITE] A question about InputGuardrailTripwireTriggered in Guardrails, answerable from the evidence below (relationship stated: 'is raised').",
+          "to": "What exception is raised when an input guardrail's `tripwire_triggered` value is true?",
+          "author": "chatgpt",
+          "timestamp": "2026-08-19T05:41:57Z",
+          "reason": "Replace the placeholder question/empty answer and extend the evidence anchor slightly upward to include the preceding sentence/step that says `.tripwire_triggered` is checked for true. The current span begins with the anaphoric phrase `If true` without naming what is true."
+        },
+        {
+          "revision": 2,
+          "field": "proposed_answer",
+          "from": "",
+          "to": "`InputGuardrailTripwireTriggered`.",
+          "author": "chatgpt",
+          "timestamp": "2026-08-19T05:41:57Z",
+          "reason": "Replace the placeholder question/empty answer and extend the evidence anchor slightly upward to include the preceding sentence/step that says `.tripwire_triggered` is checked for true. The current span begins with the anaphoric phrase `If true` without naming what is true."
+        },
+        {
+          "revision": 3,
+          "field": "proposed_atomic_claims",
+          "from": [],
+          "to": [
+            "When an input guardrail's `tripwire_triggered` value is true, an `InputGuardrailTripwireTriggered` exception is raised."
+          ],
+          "author": "chatgpt",
+          "timestamp": "2026-08-19T05:41:57Z",
+          "reason": "Replace the placeholder question/empty answer and extend the evidence anchor slightly upward to include the preceding sentence/step that says `.tripwire_triggered` is checked for true. The current span begins with the anaphoric phrase `If true` without naming what is true."
+        }
+      ],
+      "verification": {
+        "reviewer": "chatgpt",
+        "verdict": "FIX_REQUIRED",
+        "reviewed_at": "2026-08-19T05:41:57Z",
+        "question_supported": false,
+        "answer_supported": false,
+        "all_critical_claims_supported": false,
+        "evidence_boundary_complete": false,
+        "identifier_value_binding_correct": true,
+        "natural_question": false,
+        "verification_notes": "The exception name is explicit, but the anchored evidence starts with `If true`; the condition is only identified in context before. This is exactly the kind of incomplete-boundary issue the validator is meant to catch."
+      }
     },
     {
       "candidate_id": "GOLD-B001-05",
@@ -178,20 +290,66 @@
       "context_before": "de compaction](https://platform.claude.com/docs/en/build-with-claude/compaction). Compaction automatically summarizes earlier parts of the conversation on the server, so the conversation can continue past the context window limit. It is available in beta for Claude 4.6 and later models and [Claude Mythos Preview](https://anthropic.com/glasswing).\n\nFor more specialized needs, [context editing](https://platform.claude.com/docs/en/build-with-claude/context-editing) offers additional strategies:\n\n* **Tool result clearing:** Clear old tool results in agentic workflows\n* **Thinking block clearing:** Manage thinking blocks when you use extended thinking\n\nCached prompt prefixes still occupy the context window: [prompt caching](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) changes what you pay for those tokens, not whether they count.\n\n## Context window overflow behavior\n\n",
       "context_after": "\n\nOn Claude 4.5 models and newer, if input tokens plus `max_tokens` exceeds the context window size, the API accepts the request. If generation then reaches the context window limit, it stops with `stop_reason: \"model_context_window_exceeded\"`. On earlier models, the API returns a [validation error](https://platform.claude.com/docs/en/api/errors) instead. To opt in to the `model_context_window_exceeded` behavior on those models, use the `model-context-window-exceeded-2025-08-26` beta header. See [Stop reasons and fallback](https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons) for details.\n\nTo stay within context window limits, use the [token counting API](https://platform.claude.com/docs/en/build-with-claude/token-counting) to estimate token usage before sending messages to Claude.\n\n## Next steps\n\n<CardGroup cols={2}>\n  <Card title=\"Compaction\" icon=\"stack\" href=\"h",
       "proposed_category": "exact_lookup",
-      "proposed_question": "[REVIEWER TO WRITE] A question about invalid_request_error in Context windows, answerable from the evidence below (relationship stated: 'returns a').",
-      "proposed_atomic_claims": [],
-      "proposed_answer": "",
+      "proposed_question": "What does the Claude API return if the input alone already exceeds the model's context window?",
+      "proposed_atomic_claims": [
+        "If the input alone exceeds the model's context window, the API returns a 400 `invalid_request_error`.",
+        "The error message is `prompt is too long`."
+      ],
+      "proposed_answer": "A 400 `invalid_request_error` with the message `prompt is too long`.",
       "evidence_kind": "explicit_response",
       "binding": "single identifier in the sentence",
       "generator_confidence": "medium",
       "generator_notes": "Matched explicit marker 'returns a'. No claim is proposed: the reviewer should write the question and the atomic claims from the evidence. ",
       "needs_human_interpretation": true,
       "candidate_type": "supported",
-      "verification_status": "candidate_unverified",
+      "verification_status": "needs_human_review",
       "claude_proposed": true,
-      "chatgpt_verified": null,
+      "chatgpt_verified": false,
       "schema_version": "1.0",
-      "revisions": []
+      "revisions": [
+        {
+          "revision": 1,
+          "field": "proposed_question",
+          "from": "[REVIEWER TO WRITE] A question about invalid_request_error in Context windows, answerable from the evidence below (relationship stated: 'returns a').",
+          "to": "What does the Claude API return if the input alone already exceeds the model's context window?",
+          "author": "chatgpt",
+          "timestamp": "2026-08-19T05:41:57Z",
+          "reason": "Replace the reviewer placeholder with the suggested natural question, answer, and atomic claims."
+        },
+        {
+          "revision": 2,
+          "field": "proposed_answer",
+          "from": "",
+          "to": "A 400 `invalid_request_error` with the message `prompt is too long`.",
+          "author": "chatgpt",
+          "timestamp": "2026-08-19T05:41:57Z",
+          "reason": "Replace the reviewer placeholder with the suggested natural question, answer, and atomic claims."
+        },
+        {
+          "revision": 3,
+          "field": "proposed_atomic_claims",
+          "from": [],
+          "to": [
+            "If the input alone exceeds the model's context window, the API returns a 400 `invalid_request_error`.",
+            "The error message is `prompt is too long`."
+          ],
+          "author": "chatgpt",
+          "timestamp": "2026-08-19T05:41:57Z",
+          "reason": "Replace the reviewer placeholder with the suggested natural question, answer, and atomic claims."
+        }
+      ],
+      "verification": {
+        "reviewer": "chatgpt",
+        "verdict": "FIX_REQUIRED",
+        "reviewed_at": "2026-08-19T05:41:57Z",
+        "question_supported": false,
+        "answer_supported": false,
+        "all_critical_claims_supported": false,
+        "evidence_boundary_complete": true,
+        "identifier_value_binding_correct": true,
+        "natural_question": false,
+        "verification_notes": "The anchored sentence explicitly states the triggering condition, HTTP status, error type, and message. No boundary expansion is needed."
+      }
     },
     {
       "candidate_id": "GOLD-B001-06",
@@ -212,20 +370,66 @@
       "context_before": "pe)`.\n\n```python\nfrom pathlib import Path\nfrom openai import OpenAI\n\nclient = OpenAI()\n\nclient.files.create(\n    file=Path(\"input.jsonl\"),\n    purpose=\"fine-tune\",\n)\n```\n\nThe async client uses the exact same interface. If you pass a [`PathLike`](https://docs.python.org/3/library/os.html#os.PathLike) instance, the file contents will be read asynchronously automatically.\n\n## Webhook Verification\n\nVerifying webhook signatures is _optional but encouraged_.\n\nFor more information about webhooks, see [the API docs](https://platform.openai.com/docs/guides/webhooks).\n\n### Parsing webhook payloads\n\nFor most use cases, you will likely want to verify the webhook and parse the payload at the same time. To achieve this, we provide the method `client.webhooks.unwrap()`, which parses a webhook request and verifies that it was sent by OpenAI. This method will raise an error if the signature is invalid.\n\n",
       "context_after": " The `.unwrap()` method will parse this JSON for you into an event object after verifying the webhook was sent from OpenAI.\n\n```python\nfrom openai import OpenAI\nfrom flask import Flask, request\n\napp = Flask(__name__)\nclient = OpenAI()  # OPENAI_WEBHOOK_SECRET environment variable is used by default\n\n\n@app.route(\"/webhook\", methods=[\"POST\"])\ndef webhook():\n    request_body = request.get_data(as_text=True)\n\n    try:\n        event = client.webhooks.unwrap(request_body, request.headers)\n\n        if event.type == \"response.completed\":\n            print(\"Response completed:\", event.data)\n        elif event.type == \"response.failed\":\n            print(\"Response failed:\", event.data)\n        else:\n            print(\"Unhandled event type:\", event.type)\n\n        return \"ok\"\n    except Exception as e:\n        print(\"Invalid signature:\", e)\n        return \"Invalid signature\", 400\n\n\nif __name__ == \"_",
       "proposed_category": "exact_lookup",
-      "proposed_question": "[REVIEWER TO WRITE] A question about body in OpenAI Python API library, answerable from the evidence below (relationship stated: 'must be').",
-      "proposed_atomic_claims": [],
-      "proposed_answer": "",
+      "proposed_question": "When parsing an OpenAI webhook payload, what must the `body` parameter contain?",
+      "proposed_atomic_claims": [
+        "The `body` parameter must be the raw JSON string sent from the server.",
+        "The body should not be parsed before being passed to the webhook parsing/verification method."
+      ],
+      "proposed_answer": "The raw JSON string sent from the server; it should not be parsed first.",
       "evidence_kind": "explicit_constraint",
       "binding": "single identifier in the sentence",
       "generator_confidence": "medium",
       "generator_notes": "Matched explicit marker 'must be'. No claim is proposed: the reviewer should write the question and the atomic claims from the evidence. ",
       "needs_human_interpretation": true,
       "candidate_type": "supported",
-      "verification_status": "candidate_unverified",
+      "verification_status": "needs_human_review",
       "claude_proposed": true,
-      "chatgpt_verified": null,
+      "chatgpt_verified": false,
       "schema_version": "1.0",
-      "revisions": []
+      "revisions": [
+        {
+          "revision": 1,
+          "field": "proposed_question",
+          "from": "[REVIEWER TO WRITE] A question about body in OpenAI Python API library, answerable from the evidence below (relationship stated: 'must be').",
+          "to": "When parsing an OpenAI webhook payload, what must the `body` parameter contain?",
+          "author": "chatgpt",
+          "timestamp": "2026-08-19T05:41:57Z",
+          "reason": "Replace the placeholder question/empty answer with the suggested question, answer, and claims."
+        },
+        {
+          "revision": 2,
+          "field": "proposed_answer",
+          "from": "",
+          "to": "The raw JSON string sent from the server; it should not be parsed first.",
+          "author": "chatgpt",
+          "timestamp": "2026-08-19T05:41:57Z",
+          "reason": "Replace the placeholder question/empty answer with the suggested question, answer, and claims."
+        },
+        {
+          "revision": 3,
+          "field": "proposed_atomic_claims",
+          "from": [],
+          "to": [
+            "The `body` parameter must be the raw JSON string sent from the server.",
+            "The body should not be parsed before being passed to the webhook parsing/verification method."
+          ],
+          "author": "chatgpt",
+          "timestamp": "2026-08-19T05:41:57Z",
+          "reason": "Replace the placeholder question/empty answer with the suggested question, answer, and claims."
+        }
+      ],
+      "verification": {
+        "reviewer": "chatgpt",
+        "verdict": "FIX_REQUIRED",
+        "reviewed_at": "2026-08-19T05:41:57Z",
+        "question_supported": false,
+        "answer_supported": false,
+        "all_critical_claims_supported": false,
+        "evidence_boundary_complete": true,
+        "identifier_value_binding_correct": true,
+        "natural_question": false,
+        "verification_notes": "The requirement is explicit in the anchored sentence. The surrounding context establishes that this is the webhook parsing/verification flow, while the critical body requirement is fully inside the evidence span."
+      }
     },
     {
       "candidate_id": "GOLD-B001-07",
@@ -244,20 +448,64 @@
       "context_before": "hanges, so the cached prefix stays intact.\n\n`tool_addition` and `tool_removal` are content blocks in the `content` array of a `role: \"system\"` message, and they can be mixed with `text` blocks in the same message. The message follows the same placement rules as any mid-conversation system message (see [Limitations](https://platform.claude.com/docs/en/build-with-claude/mid-conversation-system-messages#limitations)), and the change applies from that point in the conversation onward. Each block's `tool` field references a tool rather than defining one: `{\"type\": \"tool_reference\", \"name\": \"...\"}` names a tool declared in the request's `tools` array, and [MCP connector](https://platform.claude.com/docs/en/agents-and-tools/mcp-connector) tools can be referenced individually with `mcp_tool_reference` (`server_name` and `name`) or as a whole toolset with `mcp_toolset_reference` (`server_name`). ",
       "context_after": "\n\nEvery tool declared in `tools` is offered to the model from the start of the conversation unless it is declared with `defer_loading: true`, which keeps it withheld until a `tool_addition` block surfaces it. `tool_addition` also re-offers a tool that an earlier `tool_removal` withdrew.\n\n<CodeGroup>\n  ```bash cURL\n  curl https://api.anthropic.com/v1/messages \\\n    -H \"content-type: application/json\" \\\n    -H \"x-api-key: $ANTHROPIC_API_KEY\" \\\n    -H \"anthropic-version: 2023-06-01\" \\\n    -H \"anthropic-beta: mid-conversation-tool-changes-2026-07-01\" \\\n    -d '{\n      \"model\": \"claude-opus-5\",\n      \"max_tokens\": 1024,\n      \"tools\": [\n        {\n          \"name\": \"get_weather\",\n          \"description\": \"Get the current weather for a location.\",\n          \"input_schema\": {\n            \"type\": \"object\",\n            \"properties\": {\n              \"location\": {\"type\": \"string\", \"description\": \"Ci",
       "proposed_category": "exact_lookup",
-      "proposed_question": "[REVIEWER TO WRITE] A question about tools in Mid-conversation system messages and tool changes, answerable from the evidence below (relationship stated: 'returns a').",
-      "proposed_atomic_claims": [],
-      "proposed_answer": "",
+      "proposed_question": "What happens if a mid-conversation tool change references a tool name that was not declared in the request's `tools` array?",
+      "proposed_atomic_claims": [
+        "Referencing a tool name that is not declared in `tools` returns a 400 error."
+      ],
+      "proposed_answer": "The request returns a 400 error.",
       "evidence_kind": "explicit_response",
       "binding": "single identifier in the sentence",
       "generator_confidence": "medium",
       "generator_notes": "Matched explicit marker 'returns a'. No claim is proposed: the reviewer should write the question and the atomic claims from the evidence. ",
       "needs_human_interpretation": true,
       "candidate_type": "supported",
-      "verification_status": "candidate_unverified",
+      "verification_status": "needs_human_review",
       "claude_proposed": true,
-      "chatgpt_verified": null,
+      "chatgpt_verified": false,
       "schema_version": "1.0",
-      "revisions": []
+      "revisions": [
+        {
+          "revision": 1,
+          "field": "proposed_question",
+          "from": "[REVIEWER TO WRITE] A question about tools in Mid-conversation system messages and tool changes, answerable from the evidence below (relationship stated: 'returns a').",
+          "to": "What happens if a mid-conversation tool change references a tool name that was not declared in the request's `tools` array?",
+          "author": "chatgpt",
+          "timestamp": "2026-08-19T05:41:57Z",
+          "reason": "Replace the placeholder question/empty answer with the suggested question, answer, and claim."
+        },
+        {
+          "revision": 2,
+          "field": "proposed_answer",
+          "from": "",
+          "to": "The request returns a 400 error.",
+          "author": "chatgpt",
+          "timestamp": "2026-08-19T05:41:57Z",
+          "reason": "Replace the placeholder question/empty answer with the suggested question, answer, and claim."
+        },
+        {
+          "revision": 3,
+          "field": "proposed_atomic_claims",
+          "from": [],
+          "to": [
+            "Referencing a tool name that is not declared in `tools` returns a 400 error."
+          ],
+          "author": "chatgpt",
+          "timestamp": "2026-08-19T05:41:57Z",
+          "reason": "Replace the placeholder question/empty answer with the suggested question, answer, and claim."
+        }
+      ],
+      "verification": {
+        "reviewer": "chatgpt",
+        "verdict": "FIX_REQUIRED",
+        "reviewed_at": "2026-08-19T05:41:57Z",
+        "question_supported": false,
+        "answer_supported": false,
+        "all_critical_claims_supported": false,
+        "evidence_boundary_complete": true,
+        "identifier_value_binding_correct": true,
+        "natural_question": false,
+        "verification_notes": "The anchored sentence directly states both the invalid condition and the 400 response. The surrounding context clarifies that the name is a tool reference, but the critical claim is complete in the anchor."
+      }
     },
     {
       "candidate_id": "GOLD-B001-08",
@@ -277,20 +525,64 @@
       "context_before": "nd Alpha releases are forward-compatibility targets,\nnot production support promises. This policy follows lifecycle state rather\nthan even or odd version numbers because every annual Node.js release beginning\nwith Node.js 27 is planned to become LTS.\n\nOpenAI publishes a retirement notice at least six months before removing a\nsupported Node.js line. The notice belongs in the README or support matrix,\nrelease notes, and a pinned GitHub issue. Social-media announcements are not\nrequired. Support ends at upstream EOL by default.\n\nThe SDK and Security teams may approve up to six months of post-EOL grace when\nmigration risk justifies it. The exception must be recorded below with its\nowner, reason, and end date. It provides only feasible SDK fixes and migration\nhelp; OpenAI cannot provide missing upstream runtime security fixes, and the\nexception may end early.\n\n## Release and packaging rules\n\n",
       "context_after": " An urgent minor-release exception\n  requires SDK and Security approval. Never hide a runtime-floor change in a\n  patch.\n- Adding a newly promoted LTS without raising the minimum is an SDK minor.\n- `engines.node` states the technical floor. The README support matrix is\n  authoritative for lifecycle status because npm engine ranges cannot express\n  only the currently supported LTS lines.\n- Repository tooling may use a newer Node.js version than SDK consumers.\n- Node.js lifecycle changes do not silently redefine TypeScript, Deno, Bun,\n  browser, Workers, edge-runtime, Jest, or Nitro support.\n- Required CI runs the SDK test suite on every supported Node.js line.\n- Required CI builds and installs the packed npm artifact on supported lines,\n  exercising CommonJS, ESM, and published engine metadata.\n\n## Current compatibility\n\n| Node.js line | Upstream status on 2026-07-27      | OpenAI status ",
       "proposed_category": "exact_lookup",
-      "proposed_question": "[REVIEWER TO WRITE] A question about engines.node in Node.js Version Support Policy, answerable from the evidence below (relationship stated: 'required').",
-      "proposed_atomic_claims": [],
-      "proposed_answer": "",
+      "proposed_question": "By default, what kind of SDK release is used when `engines.node`, emitted JavaScript syntax, or required runtime APIs are raised?",
+      "proposed_atomic_claims": [
+        "Raising `engines.node`, emitted JavaScript syntax, or required runtime APIs ships in an SDK major release by default."
+      ],
+      "proposed_answer": "An SDK major release.",
       "evidence_kind": "explicit_required_optional",
       "binding": "single identifier in the sentence",
       "generator_confidence": "medium",
       "generator_notes": "Matched explicit marker 'required'. No claim is proposed: the reviewer should write the question and the atomic claims from the evidence. ",
       "needs_human_interpretation": true,
       "candidate_type": "supported",
-      "verification_status": "candidate_unverified",
+      "verification_status": "needs_human_review",
       "claude_proposed": true,
-      "chatgpt_verified": null,
+      "chatgpt_verified": false,
       "schema_version": "1.0",
-      "revisions": []
+      "revisions": [
+        {
+          "revision": 1,
+          "field": "proposed_question",
+          "from": "[REVIEWER TO WRITE] A question about engines.node in Node.js Version Support Policy, answerable from the evidence below (relationship stated: 'required').",
+          "to": "By default, what kind of SDK release is used when `engines.node`, emitted JavaScript syntax, or required runtime APIs are raised?",
+          "author": "chatgpt",
+          "timestamp": "2026-08-19T05:41:57Z",
+          "reason": "Replace the placeholder and discard the generator's `required` relationship interpretation. Here `required` modifies `runtime APIs`; the actual documented relationship is that raising any of the listed runtime floors ships in an SDK major release by default."
+        },
+        {
+          "revision": 2,
+          "field": "proposed_answer",
+          "from": "",
+          "to": "An SDK major release.",
+          "author": "chatgpt",
+          "timestamp": "2026-08-19T05:41:57Z",
+          "reason": "Replace the placeholder and discard the generator's `required` relationship interpretation. Here `required` modifies `runtime APIs`; the actual documented relationship is that raising any of the listed runtime floors ships in an SDK major release by default."
+        },
+        {
+          "revision": 3,
+          "field": "proposed_atomic_claims",
+          "from": [],
+          "to": [
+            "Raising `engines.node`, emitted JavaScript syntax, or required runtime APIs ships in an SDK major release by default."
+          ],
+          "author": "chatgpt",
+          "timestamp": "2026-08-19T05:41:57Z",
+          "reason": "Replace the placeholder and discard the generator's `required` relationship interpretation. Here `required` modifies `runtime APIs`; the actual documented relationship is that raising any of the listed runtime floors ships in an SDK major release by default."
+        }
+      ],
+      "verification": {
+        "reviewer": "chatgpt",
+        "verdict": "FIX_REQUIRED",
+        "reviewed_at": "2026-08-19T05:41:57Z",
+        "question_supported": false,
+        "answer_supported": false,
+        "all_critical_claims_supported": false,
+        "evidence_boundary_complete": true,
+        "identifier_value_binding_correct": false,
+        "natural_question": false,
+        "verification_notes": "The evidence itself is strong, but the generator attached its trigger word to the wrong semantic relation. This is a good candidate only after the question is rewritten around the release rule."
+      }
     },
     {
       "candidate_id": "GOLD-B001-09",
@@ -309,20 +601,66 @@
       "context_before": "CalculateSum.new],\n      messages: [\n        {role: \"user\", content: \"What's the weather like in Paris? Also, what's 15 + 27?\"}\n      ]\n    )\n\n    runner.each_message do |message|\n      message.content.each do |block|\n        puts block.text if block.type == :text\n      end\n    end\n    ```\n\n    The `Anthropic::BaseTool` class uses the `doc` method for the tool description and `input_schema` to define the expected parameters. The SDK automatically converts this to the appropriate JSON schema format.\n  </Tab>\n</Tabs>\n\n## Iterating over the tool runner\n\nThe tool runner is an iterable that yields messages from Claude. On each iteration, the runner checks whether Claude requested a tool use. If so, it runs the tool and sends the result back to Claude automatically, then yields the next message from Claude to continue your loop.\n\nYou can end the loop at any iteration with a `break` statement. ",
       "context_after": "\n\nIf you don't need intermediate messages, you can get the final message directly:\n\n<Tabs>\n  <Tab title=\"Python\">\n    Use `runner.until_done()` to get the final message.\n\n    ```python\n    client = anthropic.Anthropic()\n    # ...\n    runner = client.beta.messages.tool_runner(\n        model=\"claude-opus-5\",\n        max_tokens=1024,\n        tools=[get_weather, calculate_sum],\n        messages=[\n            {\n                \"role\": \"user\",\n                \"content\": \"What's the weather like in Paris? Also, what's 15 + 27?\",\n            }\n        ],\n    )\n    final_message = runner.until_done()\n    for block in final_message.content:\n        if block.type == \"text\":\n            print(block.text)\n    ```\n  </Tab>\n\n  <Tab title=\"TypeScript\">\n    `await` the runner to get the final message.\n\n    ```typescript\n    const client = new Anthropic();\n    // ...\n    const runner = client.beta.message",
       "proposed_category": "exact_lookup",
-      "proposed_question": "[REVIEWER TO WRITE] A question about max_iterations in Tool runner (SDK), answerable from the evidence below (relationship stated: 'returns a').",
-      "proposed_atomic_claims": [],
-      "proposed_answer": "",
+      "proposed_question": "When does the Anthropic SDK tool runner stop looping?",
+      "proposed_atomic_claims": [
+        "The tool runner stops when Claude returns a message without a tool use.",
+        "If `max_iterations` is set, the tool runner also stops when that limit is reached."
+      ],
+      "proposed_answer": "When Claude returns a message without a tool use, or when the runner reaches `max_iterations` if that limit was set.",
       "evidence_kind": "explicit_response",
       "binding": "single identifier in the sentence",
       "generator_confidence": "medium",
       "generator_notes": "Matched explicit marker 'returns a'. No claim is proposed: the reviewer should write the question and the atomic claims from the evidence. ",
       "needs_human_interpretation": true,
       "candidate_type": "supported",
-      "verification_status": "candidate_unverified",
+      "verification_status": "needs_human_review",
       "claude_proposed": true,
-      "chatgpt_verified": null,
+      "chatgpt_verified": false,
       "schema_version": "1.0",
-      "revisions": []
+      "revisions": [
+        {
+          "revision": 1,
+          "field": "proposed_question",
+          "from": "[REVIEWER TO WRITE] A question about max_iterations in Tool runner (SDK), answerable from the evidence below (relationship stated: 'returns a').",
+          "to": "When does the Anthropic SDK tool runner stop looping?",
+          "author": "chatgpt",
+          "timestamp": "2026-08-19T05:41:57Z",
+          "reason": "Replace the placeholder question and remove the generator's `returns a` relationship label; `returns a message` describes Claude's output, while `max_iterations` is a stopping limit."
+        },
+        {
+          "revision": 2,
+          "field": "proposed_answer",
+          "from": "",
+          "to": "When Claude returns a message without a tool use, or when the runner reaches `max_iterations` if that limit was set.",
+          "author": "chatgpt",
+          "timestamp": "2026-08-19T05:41:57Z",
+          "reason": "Replace the placeholder question and remove the generator's `returns a` relationship label; `returns a message` describes Claude's output, while `max_iterations` is a stopping limit."
+        },
+        {
+          "revision": 3,
+          "field": "proposed_atomic_claims",
+          "from": [],
+          "to": [
+            "The tool runner stops when Claude returns a message without a tool use.",
+            "If `max_iterations` is set, the tool runner also stops when that limit is reached."
+          ],
+          "author": "chatgpt",
+          "timestamp": "2026-08-19T05:41:57Z",
+          "reason": "Replace the placeholder question and remove the generator's `returns a` relationship label; `returns a message` describes Claude's output, while `max_iterations` is a stopping limit."
+        }
+      ],
+      "verification": {
+        "reviewer": "chatgpt",
+        "verdict": "FIX_REQUIRED",
+        "reviewed_at": "2026-08-19T05:41:57Z",
+        "question_supported": false,
+        "answer_supported": false,
+        "all_critical_claims_supported": false,
+        "evidence_boundary_complete": true,
+        "identifier_value_binding_correct": false,
+        "natural_question": false,
+        "verification_notes": "The evidence gives a complete two-part stopping condition. The candidate is useful after re-authoring, but the generator's detected relation is semantically wrong."
+      }
     },
     {
       "candidate_id": "GOLD-B001-10",
@@ -343,20 +681,66 @@
       "context_before": "nAI from 'npm:openai';\n```\n\n## Usage\n\nThe full API of this library can be found in [api.md file](api.md) along with many [code examples](https://github.com/openai/openai-node/tree/main/examples).\n\nThe primary API for interacting with OpenAI models is the [Responses API](https://platform.openai.com/docs/api-reference/responses). You can generate text from the model with the code below.\n\n```ts\nimport OpenAI from 'openai';\n\nconst client = new OpenAI({\n  apiKey: process.env['OPENAI_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.responses.create({\n  model: 'gpt-5.5',\n  instructions: 'You are a coding assistant that talks like a pirate',\n  input: 'Are semicolons optional in JavaScript?',\n});\n\nconsole.log(response.output_text);\n```\n\n### Multi-turn conversations\n\nWhen you manage Responses API conversation history manually, preserve output items in order. ",
       "context_after": "\n\nUse the SDK's `toResponseInputItems()` helper to normalize all replayable output items before adding them to\nthe next request. For simple continuation, you can pass `previous_response_id` instead.\n\nSee the [manual conversation state example](examples/responses/manual-conversation-state.ts) and\n[conversation state guide](https://developers.openai.com/api/docs/guides/conversation-state).\n\nThe previous standard (supported indefinitely) for generating text is the [Chat Completions API](https://platform.openai.com/docs/api-reference/chat). You can use that API to generate text from the model with the code below.\n\n```ts\nimport OpenAI from 'openai';\n\nconst client = new OpenAI({\n  apiKey: process.env['OPENAI_API_KEY'], // This is the default and can be omitted\n});\n\nconst completion = await client.chat.completions.create({\n  model: 'gpt-5.5',\n  messages: [\n    { role: 'developer', content: 'Tal",
       "proposed_category": "exact_lookup",
-      "proposed_question": "[REVIEWER TO WRITE] A question about response.output in OpenAI TypeScript and JavaScript API Library, answerable from the evidence below (relationship stated: 'required').",
-      "proposed_atomic_claims": [],
-      "proposed_answer": "",
+      "proposed_question": "Why should you avoid filtering `response.output` down to only message items when manually carrying Responses API conversation history forward?",
+      "proposed_atomic_claims": [
+        "Filtering `response.output` to message items can remove required reasoning or tool-call items.",
+        "Dropping those required items can cause the next request to fail."
+      ],
+      "proposed_answer": "Because doing so can drop required reasoning or tool-call items and cause the next request to fail.",
       "evidence_kind": "explicit_required_optional",
       "binding": "single identifier in the sentence",
       "generator_confidence": "medium",
       "generator_notes": "Matched explicit marker 'required'. No claim is proposed: the reviewer should write the question and the atomic claims from the evidence. ",
       "needs_human_interpretation": true,
       "candidate_type": "supported",
-      "verification_status": "candidate_unverified",
+      "verification_status": "needs_human_review",
       "claude_proposed": true,
-      "chatgpt_verified": null,
+      "chatgpt_verified": false,
       "schema_version": "1.0",
-      "revisions": []
+      "revisions": [
+        {
+          "revision": 1,
+          "field": "proposed_question",
+          "from": "[REVIEWER TO WRITE] A question about response.output in OpenAI TypeScript and JavaScript API Library, answerable from the evidence below (relationship stated: 'required').",
+          "to": "Why should you avoid filtering `response.output` down to only message items when manually carrying Responses API conversation history forward?",
+          "author": "chatgpt",
+          "timestamp": "2026-08-19T05:41:57Z",
+          "reason": "Replace the placeholder question/empty answer with the suggested question, answer, and atomic claims."
+        },
+        {
+          "revision": 2,
+          "field": "proposed_answer",
+          "from": "",
+          "to": "Because doing so can drop required reasoning or tool-call items and cause the next request to fail.",
+          "author": "chatgpt",
+          "timestamp": "2026-08-19T05:41:57Z",
+          "reason": "Replace the placeholder question/empty answer with the suggested question, answer, and atomic claims."
+        },
+        {
+          "revision": 3,
+          "field": "proposed_atomic_claims",
+          "from": [],
+          "to": [
+            "Filtering `response.output` to message items can remove required reasoning or tool-call items.",
+            "Dropping those required items can cause the next request to fail."
+          ],
+          "author": "chatgpt",
+          "timestamp": "2026-08-19T05:41:57Z",
+          "reason": "Replace the placeholder question/empty answer with the suggested question, answer, and atomic claims."
+        }
+      ],
+      "verification": {
+        "reviewer": "chatgpt",
+        "verdict": "FIX_REQUIRED",
+        "reviewed_at": "2026-08-19T05:41:57Z",
+        "question_supported": false,
+        "answer_supported": false,
+        "all_critical_claims_supported": false,
+        "evidence_boundary_complete": true,
+        "identifier_value_binding_correct": true,
+        "natural_question": false,
+        "verification_notes": "The anchored statement directly describes both the unsafe operation and its consequence. The wording should be framed as a behavior/constraint question rather than a generic `required` lookup."
+      }
     },
     {
       "candidate_id": "GOLD-B001-11",
@@ -375,20 +759,64 @@
       "context_before": "nput)\n      }\n    end\n\n    messages << {role: \"assistant\", content: response.content}\n    messages << {role: \"user\", content: tool_results}\n\n    response = client.messages.create(\n      model: \"claude-opus-5\",\n      max_tokens: 1024,\n      tools: tools,\n      messages: messages\n    )\n  end\n\n  response.content.each do |block|\n    puts block.text if block.type == :text\n  end\n  ```\n</CodeGroup>\n\n**What to expect**\n\n```text Output wrap\nI checked your calendar for next Monday and found an existing meeting from 2pm to 3pm. I've scheduled the planning session for 10am to 11am to avoid the conflict.\n```\n\nFor more on concurrent execution and ordering guarantees, see [Parallel tool use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/parallel-tool-use).\n\n## Ring 4: Error handling\n\nTools fail. A calendar API might reject an event with too many attendees, or a date might be malformed. ",
       "context_after": " Claude reads the error and can retry with corrected input, ask the user for clarification, or explain the limitation.\n\n<CodeGroup>\n  ```bash cURL\n  #!/bin/bash\n  # Ring 4: Error handling.\n\n  TOOLS='[\n    {\n      \"name\": \"create_calendar_event\",\n      \"description\": \"Create a calendar event with attendees and optional recurrence.\",\n      \"input_schema\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"title\": {\"type\": \"string\"},\n          \"start\": {\"type\": \"string\", \"format\": \"date-time\"},\n          \"end\": {\"type\": \"string\", \"format\": \"date-time\"},\n          \"attendees\": {\"type\": \"array\", \"items\": {\"type\": \"string\", \"format\": \"email\"}},\n          \"recurrence\": {\n            \"type\": \"object\",\n            \"properties\": {\n              \"frequency\": {\"enum\": [\"daily\", \"weekly\", \"monthly\"]},\n              \"count\": {\"type\": \"integer\", \"minimum\": 1}\n            }\n          }\n     ",
       "proposed_category": "exact_lookup",
-      "proposed_question": "[REVIEWER TO WRITE] A question about is_error in Tutorial: Build a tool-using agent, answerable from the evidence below (relationship stated: 'raises').",
-      "proposed_atomic_claims": [],
-      "proposed_answer": "",
+      "proposed_question": "How should a tool-using Claude agent handle an error raised by a tool?",
+      "proposed_atomic_claims": [
+        "When a tool raises an error, the tool result should return the error message with `is_error: true` rather than crashing."
+      ],
+      "proposed_answer": "Send the error message back with `is_error: true` instead of crashing.",
       "evidence_kind": "explicit_exception",
       "binding": "single identifier in the sentence",
       "generator_confidence": "medium",
       "generator_notes": "Matched explicit marker 'raises'. No claim is proposed: the reviewer should write the question and the atomic claims from the evidence. ",
       "needs_human_interpretation": true,
       "candidate_type": "supported",
-      "verification_status": "candidate_unverified",
+      "verification_status": "needs_human_review",
       "claude_proposed": true,
-      "chatgpt_verified": null,
+      "chatgpt_verified": false,
       "schema_version": "1.0",
-      "revisions": []
+      "revisions": [
+        {
+          "revision": 1,
+          "field": "proposed_question",
+          "from": "[REVIEWER TO WRITE] A question about is_error in Tutorial: Build a tool-using agent, answerable from the evidence below (relationship stated: 'raises').",
+          "to": "How should a tool-using Claude agent handle an error raised by a tool?",
+          "author": "chatgpt",
+          "timestamp": "2026-08-19T05:41:57Z",
+          "reason": "Replace the placeholder question/empty answer with the suggested question, answer, and claim."
+        },
+        {
+          "revision": 2,
+          "field": "proposed_answer",
+          "from": "",
+          "to": "Send the error message back with `is_error: true` instead of crashing.",
+          "author": "chatgpt",
+          "timestamp": "2026-08-19T05:41:57Z",
+          "reason": "Replace the placeholder question/empty answer with the suggested question, answer, and claim."
+        },
+        {
+          "revision": 3,
+          "field": "proposed_atomic_claims",
+          "from": [],
+          "to": [
+            "When a tool raises an error, the tool result should return the error message with `is_error: true` rather than crashing."
+          ],
+          "author": "chatgpt",
+          "timestamp": "2026-08-19T05:41:57Z",
+          "reason": "Replace the placeholder question/empty answer with the suggested question, answer, and claim."
+        }
+      ],
+      "verification": {
+        "reviewer": "chatgpt",
+        "verdict": "FIX_REQUIRED",
+        "reviewed_at": "2026-08-19T05:41:57Z",
+        "question_supported": false,
+        "answer_supported": false,
+        "all_critical_claims_supported": false,
+        "evidence_boundary_complete": true,
+        "identifier_value_binding_correct": true,
+        "natural_question": false,
+        "verification_notes": "The evidence is explicit and complete. The generator's marker came from `raises`, but the useful gold fact is the documented error-handling behavior."
+      }
     },
     {
       "candidate_id": "GOLD-B001-12",
@@ -408,20 +836,64 @@
       "context_before": "will be handed off.\n-   `tool_name_override`: By default, the `Handoff.default_tool_name()` function is used, which resolves to `transfer_to_<agent_name>`. You can override this.\n-   `tool_description_override`: Override the default tool description from `Handoff.default_tool_description()`\n-   `on_handoff`: A callback function executed when the handoff is invoked. This is useful for things like kicking off some data fetching as soon as you know a handoff is being invoked. This function receives the agent context, and can optionally also receive LLM generated input. The input data is controlled by the `input_type` param.\n-   `input_type`: The schema for the handoff tool-call arguments. When set, the parsed payload is passed to `on_handoff`.\n-   `input_filter`: This lets you filter the input received by the next agent. See below for more.\n-   `is_enabled`: Whether the handoff is enabled. ",
       "context_after": " If `None`, the value defined in the active run configuration is used instead.\n\nThe [`handoff()`][agents.handoffs.handoff] helper always transfers control to the specific `agent` you passed in. If you have multiple possible destinations, register one handoff per destination and let the model choose among them. Use a custom [`Handoff`][agents.handoffs.Handoff] only when your own handoff code must decide which agent to return at invocation time.\n\n```python\nfrom agents import Agent, handoff, RunContextWrapper\n\ndef on_handoff(ctx: RunContextWrapper[None]):\n    print(\"Handoff called\")\n\nagent = Agent(name=\"My agent\")\n\nhandoff_obj = handoff(\n    agent=agent,\n    on_handoff=on_handoff,\n    tool_name_override=\"custom_handoff_tool\",\n    tool_description_override=\"Custom description\",\n)\n```\n\n## Handoff inputs\n\nIn certain situations, you want the LLM to provide some data when it calls a handoff. For",
       "proposed_category": "exact_lookup",
-      "proposed_question": "[REVIEWER TO WRITE] A question about nest_handoff_history in Handoffs, answerable from the evidence below (relationship stated: 'returns a').",
-      "proposed_atomic_claims": [],
-      "proposed_answer": "",
+      "proposed_question": "What does the `nest_handoff_history` option on `handoff()` override?",
+      "proposed_atomic_claims": [
+        "`nest_handoff_history` is an optional per-handoff override for the RunConfig-level `nest_handoff_history` setting."
+      ],
+      "proposed_answer": "It is an optional per-handoff override for the RunConfig-level `nest_handoff_history` setting.",
       "evidence_kind": "explicit_response",
       "binding": "single identifier in the sentence",
       "generator_confidence": "medium",
       "generator_notes": "Matched explicit marker 'returns a'. No claim is proposed: the reviewer should write the question and the atomic claims from the evidence. ",
       "needs_human_interpretation": true,
       "candidate_type": "supported",
-      "verification_status": "candidate_unverified",
+      "verification_status": "needs_human_review",
       "claude_proposed": true,
-      "chatgpt_verified": null,
+      "chatgpt_verified": false,
       "schema_version": "1.0",
-      "revisions": []
+      "revisions": [
+        {
+          "revision": 1,
+          "field": "proposed_question",
+          "from": "[REVIEWER TO WRITE] A question about nest_handoff_history in Handoffs, answerable from the evidence below (relationship stated: 'returns a').",
+          "to": "What does the `nest_handoff_history` option on `handoff()` override?",
+          "author": "chatgpt",
+          "timestamp": "2026-08-19T05:41:57Z",
+          "reason": "Replace the placeholder and ignore the generator's `returns a` relation. The first sentence in the current span (`This can be a boolean...`) refers to the preceding `is_enabled` item and is unrelated; the usable fact is the `nest_handoff_history` bullet. Ideally tighten the evidence span to that bullet only, or leave the extra sentence as non-critical context if anchor edits are deferred."
+        },
+        {
+          "revision": 2,
+          "field": "proposed_answer",
+          "from": "",
+          "to": "It is an optional per-handoff override for the RunConfig-level `nest_handoff_history` setting.",
+          "author": "chatgpt",
+          "timestamp": "2026-08-19T05:41:57Z",
+          "reason": "Replace the placeholder and ignore the generator's `returns a` relation. The first sentence in the current span (`This can be a boolean...`) refers to the preceding `is_enabled` item and is unrelated; the usable fact is the `nest_handoff_history` bullet. Ideally tighten the evidence span to that bullet only, or leave the extra sentence as non-critical context if anchor edits are deferred."
+        },
+        {
+          "revision": 3,
+          "field": "proposed_atomic_claims",
+          "from": [],
+          "to": [
+            "`nest_handoff_history` is an optional per-handoff override for the RunConfig-level `nest_handoff_history` setting."
+          ],
+          "author": "chatgpt",
+          "timestamp": "2026-08-19T05:41:57Z",
+          "reason": "Replace the placeholder and ignore the generator's `returns a` relation. The first sentence in the current span (`This can be a boolean...`) refers to the preceding `is_enabled` item and is unrelated; the usable fact is the `nest_handoff_history` bullet. Ideally tighten the evidence span to that bullet only, or leave the extra sentence as non-critical context if anchor edits are deferred."
+        }
+      ],
+      "verification": {
+        "reviewer": "chatgpt",
+        "verdict": "FIX_REQUIRED",
+        "reviewed_at": "2026-08-19T05:41:57Z",
+        "question_supported": false,
+        "answer_supported": false,
+        "all_critical_claims_supported": false,
+        "evidence_boundary_complete": true,
+        "identifier_value_binding_correct": false,
+        "natural_question": false,
+        "verification_notes": "The `nest_handoff_history` bullet is self-contained and supports a clean question. The generator's inferred relation is wrong, and the evidence span contains an unrelated anaphoric sentence before the relevant bullet."
+      }
     },
     {
       "candidate_id": "GOLD-B001-13",
@@ -440,20 +912,64 @@
       "context_before": "---\ntitle: Claude on Google Cloud\nurl: https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai\ndescription: Anthropic's Claude models are available through [Google Cloud's Agent Platform](https://cloud.google.com/vertex-ai).\n---\n\nThe API for accessing Claude on Google Cloud's Agent Platform is nearly identical to the [Messages API](https://platform.claude.com/docs/en/api/messages/create), with two key differences in request format:\n\n* On Agent Platform, `model` is not passed in the request body. ",
       "context_after": "\n\nAgent Platform is also supported by Anthropic's official [client SDKs](https://platform.claude.com/docs/en/cli-sdks-libraries/overview). This guide walks you through making a request to Claude on Agent Platform using one of Anthropic's client SDKs.\n\nNote that this guide assumes you already have a Google Cloud project that is able to use Agent Platform. See [Anthropic Claude models on Agent Platform](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/partner-models/claude) for more information on the setup required and a full walkthrough.\n\n## Install an SDK for accessing Agent Platform\n\nFirst, install Anthropic's [client SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) for your language of choice.\n\n<Tabs>\n  <Tab title=\"Python\">\n    ```bash\n    pip install -U \"anthropic[vertex]\"\n    ```\n  </Tab>\n\n  <Tab title=\"TypeScript\">\n    ```bash\n    npm insta",
       "proposed_category": "exact_lookup",
-      "proposed_question": "[REVIEWER TO WRITE] A question about anthropic_version in Claude on Google Cloud, answerable from the evidence below (relationship stated: 'must be').",
-      "proposed_atomic_claims": [],
-      "proposed_answer": "",
+      "proposed_question": "What value must `anthropic_version` be set to when using Claude on Google Cloud's Agent Platform?",
+      "proposed_atomic_claims": [
+        "On Google Cloud Agent Platform, `anthropic_version` is passed in the request body and must be set to `vertex-2023-10-16`."
+      ],
+      "proposed_answer": "`vertex-2023-10-16`.",
       "evidence_kind": "explicit_constraint",
       "binding": "single identifier in the sentence",
       "generator_confidence": "medium",
       "generator_notes": "Matched explicit marker 'must be'. No claim is proposed: the reviewer should write the question and the atomic claims from the evidence. ",
       "needs_human_interpretation": true,
       "candidate_type": "supported",
-      "verification_status": "candidate_unverified",
+      "verification_status": "needs_human_review",
       "claude_proposed": true,
-      "chatgpt_verified": null,
+      "chatgpt_verified": false,
       "schema_version": "1.0",
-      "revisions": []
+      "revisions": [
+        {
+          "revision": 1,
+          "field": "proposed_question",
+          "from": "[REVIEWER TO WRITE] A question about anthropic_version in Claude on Google Cloud, answerable from the evidence below (relationship stated: 'must be').",
+          "to": "What value must `anthropic_version` be set to when using Claude on Google Cloud's Agent Platform?",
+          "author": "chatgpt",
+          "timestamp": "2026-08-19T05:41:57Z",
+          "reason": "Replace the placeholder question/empty answer with the suggested question, answer, and claim."
+        },
+        {
+          "revision": 2,
+          "field": "proposed_answer",
+          "from": "",
+          "to": "`vertex-2023-10-16`.",
+          "author": "chatgpt",
+          "timestamp": "2026-08-19T05:41:57Z",
+          "reason": "Replace the placeholder question/empty answer with the suggested question, answer, and claim."
+        },
+        {
+          "revision": 3,
+          "field": "proposed_atomic_claims",
+          "from": [],
+          "to": [
+            "On Google Cloud Agent Platform, `anthropic_version` is passed in the request body and must be set to `vertex-2023-10-16`."
+          ],
+          "author": "chatgpt",
+          "timestamp": "2026-08-19T05:41:57Z",
+          "reason": "Replace the placeholder question/empty answer with the suggested question, answer, and claim."
+        }
+      ],
+      "verification": {
+        "reviewer": "chatgpt",
+        "verdict": "FIX_REQUIRED",
+        "reviewed_at": "2026-08-19T05:41:57Z",
+        "question_supported": false,
+        "answer_supported": false,
+        "all_critical_claims_supported": false,
+        "evidence_boundary_complete": true,
+        "identifier_value_binding_correct": true,
+        "natural_question": false,
+        "verification_notes": "The anchored text directly binds `anthropic_version` to `vertex-2023-10-16` and also states that it is passed in the request body rather than as a header."
+      }
     },
     {
       "candidate_id": "GOLD-B001-14",
@@ -473,20 +989,66 @@
       "context_before": "umulator = MessageAccumulator::forMessages();\n  foreach ($stream as $event) {\n      $accumulator->accumulate($event);\n  }\n\n  echo array_find($accumulator->message()->content, static fn ($block): bool => $block->type === 'text')->text;\n  ```\n\n  ```ruby Ruby\n  client = Anthropic::Client.new\n\n  message = client.messages.stream(\n    model: \"claude-sonnet-5\",\n    max_tokens: 128000,\n    messages: [{ role: \"user\", content: \"Write a detailed analysis...\" }]\n  ).accumulated_message\n\n  puts message.content.find { it.type == :text }.text\n  ```\n</CodeGroup>\n\nSee [Streaming Messages](https://platform.claude.com/docs/en/build-with-claude/streaming#get-the-final-message-without-handling-events) for more details.\n\n## Common validation errors\n\n### Prefill not supported\n\nClaude 4.6 and later models and [Claude Mythos Preview](https://anthropic.com/glasswing) do not support prefilling assistant messages. ",
       "context_after": "\n\n```json\n{\n  \"type\": \"error\",\n  \"error\": {\n    \"type\": \"invalid_request_error\",\n    \"message\": \"This model does not support assistant message prefill. The conversation must end with a user message.\"\n  }\n}\n```\n\nUse [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs) on models that support it, system prompt instructions, or [`output_config.format`](https://platform.claude.com/docs/en/build-with-claude/structured-outputs#json-outputs) instead.\n\n### Thinking blocks cannot be modified\n\nIf the most recent assistant message contains `thinking` or `redacted_thinking` blocks that were edited, reordered, filtered out, or reconstructed before being sent back to the API, the request returns a 400 `invalid_request_error`. The error message starts with the position of the offending block (for example, `messages.1.content.0`) and contains:\n\n```text wrap\n`thin",
       "proposed_category": "exact_lookup",
-      "proposed_question": "[REVIEWER TO WRITE] A question about invalid_request_error in Claude API errors, answerable from the evidence below (relationship stated: 'returns a').",
-      "proposed_atomic_claims": [],
-      "proposed_answer": "",
+      "proposed_question": "What error is returned if you send a prefilled last assistant message to Claude 4.6-and-later models or Claude Mythos Preview?",
+      "proposed_atomic_claims": [
+        "Claude 4.6-and-later models and Claude Mythos Preview do not support prefilling assistant messages.",
+        "Sending a request with a prefilled last assistant message to those models returns a 400 `invalid_request_error`."
+      ],
+      "proposed_answer": "A 400 `invalid_request_error`.",
       "evidence_kind": "explicit_response",
       "binding": "single identifier in the sentence",
       "generator_confidence": "medium",
       "generator_notes": "Matched explicit marker 'returns a'. No claim is proposed: the reviewer should write the question and the atomic claims from the evidence. ",
       "needs_human_interpretation": true,
       "candidate_type": "supported",
-      "verification_status": "candidate_unverified",
+      "verification_status": "needs_human_review",
       "claude_proposed": true,
-      "chatgpt_verified": null,
+      "chatgpt_verified": false,
       "schema_version": "1.0",
-      "revisions": []
+      "revisions": [
+        {
+          "revision": 1,
+          "field": "proposed_question",
+          "from": "[REVIEWER TO WRITE] A question about invalid_request_error in Claude API errors, answerable from the evidence below (relationship stated: 'returns a').",
+          "to": "What error is returned if you send a prefilled last assistant message to Claude 4.6-and-later models or Claude Mythos Preview?",
+          "author": "chatgpt",
+          "timestamp": "2026-08-19T05:41:57Z",
+          "reason": "Replace the placeholder and extend the evidence anchor upward to include the preceding sentence naming `Claude 4.6 and later models` and `Claude Mythos Preview`. The current span says only `any of these models`, so a standalone model-scoped claim is incomplete inside the anchor."
+        },
+        {
+          "revision": 2,
+          "field": "proposed_answer",
+          "from": "",
+          "to": "A 400 `invalid_request_error`.",
+          "author": "chatgpt",
+          "timestamp": "2026-08-19T05:41:57Z",
+          "reason": "Replace the placeholder and extend the evidence anchor upward to include the preceding sentence naming `Claude 4.6 and later models` and `Claude Mythos Preview`. The current span says only `any of these models`, so a standalone model-scoped claim is incomplete inside the anchor."
+        },
+        {
+          "revision": 3,
+          "field": "proposed_atomic_claims",
+          "from": [],
+          "to": [
+            "Claude 4.6-and-later models and Claude Mythos Preview do not support prefilling assistant messages.",
+            "Sending a request with a prefilled last assistant message to those models returns a 400 `invalid_request_error`."
+          ],
+          "author": "chatgpt",
+          "timestamp": "2026-08-19T05:41:57Z",
+          "reason": "Replace the placeholder and extend the evidence anchor upward to include the preceding sentence naming `Claude 4.6 and later models` and `Claude Mythos Preview`. The current span says only `any of these models`, so a standalone model-scoped claim is incomplete inside the anchor."
+        }
+      ],
+      "verification": {
+        "reviewer": "chatgpt",
+        "verdict": "FIX_REQUIRED",
+        "reviewed_at": "2026-08-19T05:41:57Z",
+        "question_supported": false,
+        "answer_supported": false,
+        "all_critical_claims_supported": false,
+        "evidence_boundary_complete": false,
+        "identifier_value_binding_correct": true,
+        "natural_question": false,
+        "verification_notes": "The response code/type is explicit, but the model scope is outside the current source span. The anchor should be expanded to make the critical scope auditable."
+      }
     },
     {
       "candidate_id": "GOLD-B001-15",
@@ -506,20 +1068,64 @@
       "context_before": "orts [fine-grained streaming](https://platform.claude.com/docs/en/agents-and-tools/tool-use/fine-grained-tool-streaming) for parameter values. Enable it per tool with `eager_input_streaming`.\n</Tip>\n\nThis request asks Claude to use a tool to report the weather.\n\n<CodeGroup>\n  ```bash cURL\n    curl https://api.anthropic.com/v1/messages \\\n      -H \"content-type: application/json\" \\\n      -H \"x-api-key: $ANTHROPIC_API_KEY\" \\\n      -H \"anthropic-version: 2023-06-01\" \\\n      -d '{\n        \"model\": \"claude-opus-5\",\n        \"max_tokens\": 1024,\n        \"tools\": [\n          {\n            \"name\": \"get_weather\",\n            \"description\": \"Get the current weather in a given location\",\n            \"input_schema\": {\n              \"type\": \"object\",\n              \"properties\": {\n                \"location\": {\n                  \"type\": \"string\",\n                  \"description\": \"The city and state, e.g. ",
       "context_after": "\n\n  ```bash CLI\n  ant messages create --stream --format jsonl <<'YAML'\n  model: claude-opus-5\n  max_tokens: 1024\n  tools:\n    - name: get_weather\n      description: Get the current weather in a given location\n      input_schema:\n        type: object\n        properties:\n          location:\n            type: string\n            description: The city and state, e.g. San Francisco, CA\n        required:\n          - location\n  tool_choice:\n    type: any\n  messages:\n    - role: user\n      content: What is the weather like in San Francisco?\n  YAML\n  ```\n\n  ```python Python\n  client = anthropic.Anthropic()\n\n  tools = [\n      {\n          \"name\": \"get_weather\",\n          \"description\": \"Get the current weather in a given location\",\n          \"input_schema\": {\n              \"type\": \"object\",\n              \"properties\": {\n                  \"location\": {\n                      \"type\": \"string\",\n        ",
       "proposed_category": "exact_lookup",
-      "proposed_question": "[REVIEWER TO WRITE] A question about tool_choice in Streaming messages, answerable from the evidence below (relationship stated: 'required').",
-      "proposed_atomic_claims": [],
-      "proposed_answer": "",
+      "proposed_question": "In the specific streaming tool-use example, what value is `tool_choice.type` set to?",
+      "proposed_atomic_claims": [
+        "In this example request, `tool_choice.type` is set to `any`."
+      ],
+      "proposed_answer": "`any`.",
       "evidence_kind": "explicit_required_optional",
       "binding": "single identifier in the sentence",
       "generator_confidence": "medium",
       "generator_notes": "Matched explicit marker 'required'. No claim is proposed: the reviewer should write the question and the atomic claims from the evidence. ",
       "needs_human_interpretation": true,
       "candidate_type": "supported",
-      "verification_status": "candidate_unverified",
+      "verification_status": "dual_llm_fail",
       "claude_proposed": true,
-      "chatgpt_verified": null,
+      "chatgpt_verified": false,
       "schema_version": "1.0",
-      "revisions": []
+      "revisions": [
+        {
+          "revision": 1,
+          "field": "proposed_question",
+          "from": "[REVIEWER TO WRITE] A question about tool_choice in Streaming messages, answerable from the evidence below (relationship stated: 'required').",
+          "to": "In the specific streaming tool-use example, what value is `tool_choice.type` set to?",
+          "author": "chatgpt",
+          "timestamp": "2026-08-19T05:41:57Z",
+          "reason": "Reject this candidate for the gold queue unless it is intentionally repurposed as an example-specific question. The generator matched the word `required` from the tool input schema (`required: [\"location\"]`), not a requirement on `tool_choice`. The snippet only shows an example setting; it does not establish a general default or requirement for `tool_choice`."
+        },
+        {
+          "revision": 2,
+          "field": "proposed_answer",
+          "from": "",
+          "to": "`any`.",
+          "author": "chatgpt",
+          "timestamp": "2026-08-19T05:41:57Z",
+          "reason": "Reject this candidate for the gold queue unless it is intentionally repurposed as an example-specific question. The generator matched the word `required` from the tool input schema (`required: [\"location\"]`), not a requirement on `tool_choice`. The snippet only shows an example setting; it does not establish a general default or requirement for `tool_choice`."
+        },
+        {
+          "revision": 3,
+          "field": "proposed_atomic_claims",
+          "from": [],
+          "to": [
+            "In this example request, `tool_choice.type` is set to `any`."
+          ],
+          "author": "chatgpt",
+          "timestamp": "2026-08-19T05:41:57Z",
+          "reason": "Reject this candidate for the gold queue unless it is intentionally repurposed as an example-specific question. The generator matched the word `required` from the tool input schema (`required: [\"location\"]`), not a requirement on `tool_choice`. The snippet only shows an example setting; it does not establish a general default or requirement for `tool_choice`."
+        }
+      ],
+      "verification": {
+        "reviewer": "chatgpt",
+        "verdict": "FAIL",
+        "reviewed_at": "2026-08-19T05:41:57Z",
+        "question_supported": false,
+        "answer_supported": false,
+        "all_critical_claims_supported": false,
+        "evidence_boundary_complete": true,
+        "identifier_value_binding_correct": false,
+        "natural_question": false,
+        "verification_notes": "This is the same kind of false token-to-identifier association GOLD-001 is designed to prevent. A narrowly framed example question is technically answerable, but it would test a sample configuration rather than a documented API rule, so it is poor gold material in its current form."
+      }
     },
     {
       "candidate_id": "GOLD-B001-16",
@@ -539,20 +1145,66 @@
       "context_before": " integer (`uint8`) 77.\n    > * `binary`: The binary sequence is represented as the signed integer (`int8`) -51, calculated using the offset binary method (77 - 128 = -51).\n  </Accordion>\n\n  <Accordion title=\"How can I truncate Matryoshka embeddings?\">\n    Matryoshka learning creates embeddings with coarse-to-fine representations within a single vector. Voyage models, such as `voyage-code-3`, that support multiple output dimensions generate such Matryoshka embeddings. You can truncate these vectors by keeping the leading subset of dimensions. For example, the following Python code demonstrates how to truncate 1024-dimensional vectors to 256 dimensions:\n\n    ```python\n    import voyageai\n    import numpy as np\n\n\n    def embd_normalize(v: np.ndarray) -> np.ndarray:\n        \"\"\"\n        Normalize the rows of a 2D numpy array to unit vectors by dividing each row by its Euclidean\n        norm. ",
       "context_after": "\n\n\n    vo = voyageai.Client()\n\n    # Generate voyage-code-3 vectors, which by default are 1024-dimensional floating-point numbers\n    embd = vo.embed([\"Sample text 1\", \"Sample text 2\"], model=\"voyage-code-3\").embeddings\n\n    # Set shorter dimension\n    short_dim = 256\n\n    # Resize and normalize vectors to shorter dimension\n    resized_embd = embd_normalize(np.array(embd)[:, :short_dim]).tolist()\n    ```\n  </Accordion>\n</AccordionGroup>\n\n## Pricing\n\nVisit Voyage's [pricing page](https://docs.voyageai.com/docs/pricing?ref=anthropic) for the most up to date pricing details.\n",
       "proposed_category": "exact_lookup",
-      "proposed_question": "[REVIEWER TO WRITE] A question about row_norms in Embeddings, answerable from the evidence below (relationship stated: 'raises').",
-      "proposed_atomic_claims": [],
-      "proposed_answer": "",
+      "proposed_question": "What happens if the `embd_normalize` helper encounters a row whose norm is zero?",
+      "proposed_atomic_claims": [
+        "The example `embd_normalize` helper raises a `ValueError` if any row has a norm of zero.",
+        "The zero-norm check prevents division by zero."
+      ],
+      "proposed_answer": "It raises a `ValueError` to prevent division by zero.",
       "evidence_kind": "explicit_exception",
       "binding": "single identifier in the sentence",
       "generator_confidence": "medium",
       "generator_notes": "Matched explicit marker 'raises'. No claim is proposed: the reviewer should write the question and the atomic claims from the evidence. ",
       "needs_human_interpretation": true,
       "candidate_type": "supported",
-      "verification_status": "candidate_unverified",
+      "verification_status": "needs_human_review",
       "claude_proposed": true,
-      "chatgpt_verified": null,
+      "chatgpt_verified": false,
       "schema_version": "1.0",
-      "revisions": []
+      "revisions": [
+        {
+          "revision": 1,
+          "field": "proposed_question",
+          "from": "[REVIEWER TO WRITE] A question about row_norms in Embeddings, answerable from the evidence below (relationship stated: 'raises').",
+          "to": "What happens if the `embd_normalize` helper encounters a row whose norm is zero?",
+          "author": "chatgpt",
+          "timestamp": "2026-08-19T05:41:57Z",
+          "reason": "Replace the placeholder and do not frame the fact as `row_norms` raising an exception. `row_norms` is a local variable; the helper function raises `ValueError` when any row norm equals zero. Keep the question explicitly scoped to the example helper."
+        },
+        {
+          "revision": 2,
+          "field": "proposed_answer",
+          "from": "",
+          "to": "It raises a `ValueError` to prevent division by zero.",
+          "author": "chatgpt",
+          "timestamp": "2026-08-19T05:41:57Z",
+          "reason": "Replace the placeholder and do not frame the fact as `row_norms` raising an exception. `row_norms` is a local variable; the helper function raises `ValueError` when any row norm equals zero. Keep the question explicitly scoped to the example helper."
+        },
+        {
+          "revision": 3,
+          "field": "proposed_atomic_claims",
+          "from": [],
+          "to": [
+            "The example `embd_normalize` helper raises a `ValueError` if any row has a norm of zero.",
+            "The zero-norm check prevents division by zero."
+          ],
+          "author": "chatgpt",
+          "timestamp": "2026-08-19T05:41:57Z",
+          "reason": "Replace the placeholder and do not frame the fact as `row_norms` raising an exception. `row_norms` is a local variable; the helper function raises `ValueError` when any row norm equals zero. Keep the question explicitly scoped to the example helper."
+        }
+      ],
+      "verification": {
+        "reviewer": "chatgpt",
+        "verdict": "FIX_REQUIRED",
+        "reviewed_at": "2026-08-19T05:41:57Z",
+        "question_supported": false,
+        "answer_supported": false,
+        "all_critical_claims_supported": false,
+        "evidence_boundary_complete": true,
+        "identifier_value_binding_correct": false,
+        "natural_question": false,
+        "verification_notes": "The code and docstring fully support the behavior, but the generator identified the wrong subject. This is valid only as a question about the example helper code, not as a general embeddings API behavior."
+      }
     },
     {
       "candidate_id": "GOLD-B001-17",
@@ -571,20 +1223,66 @@
       "context_before": " [workspace access warning](https://platform.claude.com/docs/en/build-with-claude/files#workspace-scoped-access))\n* Files cannot be modified or renamed after upload. To change a file's content, upload a new file and delete the old one\n* Files persist until you delete them with the `DELETE /v1/files/{file_id}` endpoint\n* Deleted files cannot be recovered\n* Files are inaccessible through the API shortly after deletion, but they may persist in active Messages API calls and associated tool uses\n* Files that users delete will be deleted in accordance with Anthropic's [data retention policy](https://privacy.claude.com/en/articles/7996866-how-long-do-you-store-my-organization-s-data). For ZDR eligibility across all features, see [API and data retention](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention)\n\n## Error handling\n\nCommon errors when using the Files API include:\n\n",
       "context_after": " Only files created by skills or the code execution tool can be downloaded\n* **Exceeds context window size (400):** The file is larger than the context window size (for example, using a 500 MB plain text file in a `/v1/messages` request)\n* **Invalid filename (400):** The file name doesn't meet the length requirements (1-255 characters) or contains forbidden characters (`<`, `>`, `:`, `\"`, `|`, `?`, `*`, `\\`, `/`, or Unicode characters 0-31)\n* **File too large (413):** File exceeds the 500 MB limit\n* **Storage limit exceeded (400):** Your organization has reached the 500 GB storage limit\n\n```json Output\n{\n  \"type\": \"error\",\n  \"error\": {\n    \"type\": \"not_found_error\",\n    \"message\": \"File `file_011CNha8iCJcU1wXNR6q4V8w` not found.\"\n  },\n  \"request_id\": \"req_011CQFYcrRp7mCHLDsAYT8Qt\"\n}\n```\n\n## Usage and billing\n\nFiles API operations are free:\n\n* Uploading files\n* Downloading files\n* Listing",
       "proposed_category": "exact_lookup",
-      "proposed_question": "[REVIEWER TO WRITE] A question about file_id in Files API, answerable from the evidence below (relationship stated: 'cannot be').",
-      "proposed_atomic_claims": [],
-      "proposed_answer": "",
+      "proposed_question": "What does a 404 `File not found` error mean in the Anthropic Files API?",
+      "proposed_atomic_claims": [
+        "A Files API `File not found` error uses HTTP 404.",
+        "It indicates that the specified `file_id` does not exist or the caller does not have access to it."
+      ],
+      "proposed_answer": "The specified `file_id` does not exist or you do not have access to it.",
       "evidence_kind": "explicit_constraint",
       "binding": "single identifier in the sentence",
       "generator_confidence": "medium",
       "generator_notes": "Matched explicit marker 'cannot be'. No claim is proposed: the reviewer should write the question and the atomic claims from the evidence. ",
       "needs_human_interpretation": true,
       "candidate_type": "supported",
-      "verification_status": "candidate_unverified",
+      "verification_status": "needs_human_review",
       "claude_proposed": true,
-      "chatgpt_verified": null,
+      "chatgpt_verified": false,
       "schema_version": "1.0",
-      "revisions": []
+      "revisions": [
+        {
+          "revision": 1,
+          "field": "proposed_question",
+          "from": "[REVIEWER TO WRITE] A question about file_id in Files API, answerable from the evidence below (relationship stated: 'cannot be').",
+          "to": "What does a 404 `File not found` error mean in the Anthropic Files API?",
+          "author": "chatgpt",
+          "timestamp": "2026-08-19T05:41:57Z",
+          "reason": "Replace the placeholder and discard the generator's `cannot be` relation; that phrase belongs to the separate `Not downloadable (400)` bullet, not to `file_id`. Use the first bullet as the claim."
+        },
+        {
+          "revision": 2,
+          "field": "proposed_answer",
+          "from": "",
+          "to": "The specified `file_id` does not exist or you do not have access to it.",
+          "author": "chatgpt",
+          "timestamp": "2026-08-19T05:41:57Z",
+          "reason": "Replace the placeholder and discard the generator's `cannot be` relation; that phrase belongs to the separate `Not downloadable (400)` bullet, not to `file_id`. Use the first bullet as the claim."
+        },
+        {
+          "revision": 3,
+          "field": "proposed_atomic_claims",
+          "from": [],
+          "to": [
+            "A Files API `File not found` error uses HTTP 404.",
+            "It indicates that the specified `file_id` does not exist or the caller does not have access to it."
+          ],
+          "author": "chatgpt",
+          "timestamp": "2026-08-19T05:41:57Z",
+          "reason": "Replace the placeholder and discard the generator's `cannot be` relation; that phrase belongs to the separate `Not downloadable (400)` bullet, not to `file_id`. Use the first bullet as the claim."
+        }
+      ],
+      "verification": {
+        "reviewer": "chatgpt",
+        "verdict": "FIX_REQUIRED",
+        "reviewed_at": "2026-08-19T05:41:57Z",
+        "question_supported": false,
+        "answer_supported": false,
+        "all_critical_claims_supported": false,
+        "evidence_boundary_complete": true,
+        "identifier_value_binding_correct": false,
+        "natural_question": false,
+        "verification_notes": "The first error bullet is a strong source-anchored fact, but the generator linked `file_id` to wording from a different bullet. Re-authoring around the 404 meaning fixes the candidate."
+      }
     },
     {
       "candidate_id": "GOLD-B001-18",
@@ -604,21 +1302,76 @@
       "context_before": "ng either code-execution tool version satisfies tools that list either caller. Response blocks always tag the caller as `code_execution_20260120` regardless of which version the request declared.\n\nOmitting `\"direct\"` from the array (for example, `\"allowed_callers\": [\"code_execution_20260120\"]`) guides Claude to call the tool only from within code execution. The response's `tool_use` block includes a `caller` field that identifies which caller called the tool. See [Programmatic tool calling](https://platform.claude.com/docs/en/agents-and-tools/tool-use/programmatic-tool-calling#the-allowed-callers-field) for the full treatment, including the `caller` response shape and error behavior.\n\n### `defer_loading` and prompt caching\n\nTools with `defer_loading: true` are stripped from the rendered tools section before the cache key is computed. They don't appear in the system-prompt prefix at all. ",
       "context_after": "\n\nThis means `defer_loading: true` preserves your prompt cache. You can add deferred tools to a request without invalidating an existing cache entry, and the cache remains valid across the turn where the tool is discovered and the turn where it's called.\n\nFor how to combine `defer_loading` with `cache_control` breakpoints, see the [Tool search tool prompt caching guidance](https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-search-tool#prompt-caching).\n",
       "proposed_category": "exact_lookup",
-      "proposed_question": "[REVIEWER TO WRITE] A question about tool_reference in Tool reference, answerable from the evidence below (relationship stated: 'returns a').",
-      "proposed_atomic_claims": [],
-      "proposed_answer": "",
+      "proposed_question": "When tool search discovers a deferred tool and returns a `tool_reference`, where is the tool's full definition expanded?",
+      "proposed_atomic_claims": [
+        "When a deferred tool is discovered and returned as a `tool_reference`, its full definition is expanded inline in the conversation body.",
+        "The full definition is not expanded in the prompt prefix."
+      ],
+      "proposed_answer": "Inline at that point in the conversation body, not in the prompt prefix.",
       "evidence_kind": "explicit_response",
       "binding": "single identifier in the sentence",
       "generator_confidence": "medium",
       "generator_notes": "Matched explicit marker 'returns a'. No claim is proposed: the reviewer should write the question and the atomic claims from the evidence. ",
       "needs_human_interpretation": true,
       "candidate_type": "supported",
-      "verification_status": "candidate_unverified",
+      "verification_status": "needs_human_review",
       "claude_proposed": true,
-      "chatgpt_verified": null,
+      "chatgpt_verified": false,
       "schema_version": "1.0",
-      "revisions": []
+      "revisions": [
+        {
+          "revision": 1,
+          "field": "proposed_question",
+          "from": "[REVIEWER TO WRITE] A question about tool_reference in Tool reference, answerable from the evidence below (relationship stated: 'returns a').",
+          "to": "When tool search discovers a deferred tool and returns a `tool_reference`, where is the tool's full definition expanded?",
+          "author": "chatgpt",
+          "timestamp": "2026-08-19T05:41:57Z",
+          "reason": "Replace the placeholder question/empty answer with the suggested question, answer, and claims."
+        },
+        {
+          "revision": 2,
+          "field": "proposed_answer",
+          "from": "",
+          "to": "Inline at that point in the conversation body, not in the prompt prefix.",
+          "author": "chatgpt",
+          "timestamp": "2026-08-19T05:41:57Z",
+          "reason": "Replace the placeholder question/empty answer with the suggested question, answer, and claims."
+        },
+        {
+          "revision": 3,
+          "field": "proposed_atomic_claims",
+          "from": [],
+          "to": [
+            "When a deferred tool is discovered and returned as a `tool_reference`, its full definition is expanded inline in the conversation body.",
+            "The full definition is not expanded in the prompt prefix."
+          ],
+          "author": "chatgpt",
+          "timestamp": "2026-08-19T05:41:57Z",
+          "reason": "Replace the placeholder question/empty answer with the suggested question, answer, and claims."
+        }
+      ],
+      "verification": {
+        "reviewer": "chatgpt",
+        "verdict": "FIX_REQUIRED",
+        "reviewed_at": "2026-08-19T05:41:57Z",
+        "question_supported": false,
+        "answer_supported": false,
+        "all_critical_claims_supported": false,
+        "evidence_boundary_complete": true,
+        "identifier_value_binding_correct": true,
+        "natural_question": false,
+        "verification_notes": "The anchored sentence directly states the trigger and where the full tool definition appears. It is self-contained and suitable after normal question authoring."
+      }
     }
   ],
-  "batch_sha256": "a3fe9242e33fb2dff8be78f4c5f1baffc8037066b09445a936a2e3dc9f11ea73"
+  "batch_sha256": "a3fe9242e33fb2dff8be78f4c5f1baffc8037066b09445a936a2e3dc9f11ea73",
+  "verification_imported_at": "2026-08-19T05:41:57Z",
+  "verification_reviewer": "chatgpt",
+  "reviewed_candidates": 18,
+  "unreviewed_candidates": [],
+  "status_counts": {
+    "dual_llm_pass": 2,
+    "needs_human_review": 15,
+    "dual_llm_fail": 1
+  }
 }

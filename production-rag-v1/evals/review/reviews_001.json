@@ -1,0 +1,319 @@
+{
+  "batch": 1,
+  "reviewer": "ChatGPT",
+  "review_basis": "Frozen corpus evidence and surrounding context supplied in gold_review_batch_001.json only; no live documentation consulted.",
+  "reviewed_at": "2026-08-19T05:29:00Z",
+  "source_batch_sha256": "a3fe9242e33fb2dff8be78f4c5f1baffc8037066b09445a936a2e3dc9f11ea73",
+  "records": [
+    {
+      "candidate_id": "GOLD-B001-01",
+      "verdict": "PASS",
+      "question_supported": true,
+      "answer_supported": true,
+      "all_critical_claims_supported": true,
+      "evidence_boundary_complete": true,
+      "identifier_value_binding_correct": true,
+      "natural_question": true,
+      "suggested_question": null,
+      "suggested_answer": null,
+      "suggested_claims": null,
+      "suggested_fix": null,
+      "verification_notes": "The row is clearly part of the computer-use tool parameter table. The same row names `enable_zoom` and explicitly states `Default: false`, so the proposed question, answer, and claim are directly supported."
+    },
+    {
+      "candidate_id": "GOLD-B001-02",
+      "verdict": "PASS",
+      "question_supported": true,
+      "answer_supported": true,
+      "all_critical_claims_supported": true,
+      "evidence_boundary_complete": true,
+      "identifier_value_binding_correct": true,
+      "natural_question": true,
+      "suggested_question": null,
+      "suggested_answer": null,
+      "suggested_claims": null,
+      "suggested_fix": null,
+      "verification_notes": "The row is part of the Agent basic-configuration table and directly binds `reset_tool_choice` to `(default: True)`. The proposed question and answer are fully supported by the anchored row."
+    },
+    {
+      "candidate_id": "GOLD-B001-03",
+      "verdict": "FIX_REQUIRED",
+      "question_supported": false,
+      "answer_supported": false,
+      "all_critical_claims_supported": false,
+      "evidence_boundary_complete": false,
+      "identifier_value_binding_correct": true,
+      "natural_question": false,
+      "suggested_question": "For Claude Fable 5 and Claude Mythos 5, is a `thinking` configuration required?",
+      "suggested_answer": "No. Adaptive thinking is always on, the model decides when and how much to think, and no `thinking` configuration is required.",
+      "suggested_claims": [
+        "For Claude Fable 5 and Claude Mythos 5, no `thinking` configuration is required."
+      ],
+      "suggested_fix": "Replace the placeholder question/empty answer and extend the evidence anchor upward to include the nearby text identifying the statement as a baseline setting shared by `claude-fable-5` and `claude-mythos-5` (ideally including the `Thinking: Adaptive thinking is always on` line).",
+      "verification_notes": "The core statement is clear, but the current anchored sentence does not name the models. A natural standalone question needs that scope, so the evidence boundary should be expanded rather than relying on surrounding context that is outside the anchor."
+    },
+    {
+      "candidate_id": "GOLD-B001-04",
+      "verdict": "FIX_REQUIRED",
+      "question_supported": false,
+      "answer_supported": false,
+      "all_critical_claims_supported": false,
+      "evidence_boundary_complete": false,
+      "identifier_value_binding_correct": true,
+      "natural_question": false,
+      "suggested_question": "What exception is raised when an input guardrail's `tripwire_triggered` value is true?",
+      "suggested_answer": "`InputGuardrailTripwireTriggered`.",
+      "suggested_claims": [
+        "When an input guardrail's `tripwire_triggered` value is true, an `InputGuardrailTripwireTriggered` exception is raised."
+      ],
+      "suggested_fix": "Replace the placeholder question/empty answer and extend the evidence anchor slightly upward to include the preceding sentence/step that says `.tripwire_triggered` is checked for true. The current span begins with the anaphoric phrase `If true` without naming what is true.",
+      "verification_notes": "The exception name is explicit, but the anchored evidence starts with `If true`; the condition is only identified in context before. This is exactly the kind of incomplete-boundary issue the validator is meant to catch."
+    },
+    {
+      "candidate_id": "GOLD-B001-05",
+      "verdict": "FIX_REQUIRED",
+      "question_supported": false,
+      "answer_supported": false,
+      "all_critical_claims_supported": false,
+      "evidence_boundary_complete": true,
+      "identifier_value_binding_correct": true,
+      "natural_question": false,
+      "suggested_question": "What does the Claude API return if the input alone already exceeds the model's context window?",
+      "suggested_answer": "A 400 `invalid_request_error` with the message `prompt is too long`.",
+      "suggested_claims": [
+        "If the input alone exceeds the model's context window, the API returns a 400 `invalid_request_error`.",
+        "The error message is `prompt is too long`."
+      ],
+      "suggested_fix": "Replace the reviewer placeholder with the suggested natural question, answer, and atomic claims.",
+      "verification_notes": "The anchored sentence explicitly states the triggering condition, HTTP status, error type, and message. No boundary expansion is needed."
+    },
+    {
+      "candidate_id": "GOLD-B001-06",
+      "verdict": "FIX_REQUIRED",
+      "question_supported": false,
+      "answer_supported": false,
+      "all_critical_claims_supported": false,
+      "evidence_boundary_complete": true,
+      "identifier_value_binding_correct": true,
+      "natural_question": false,
+      "suggested_question": "When parsing an OpenAI webhook payload, what must the `body` parameter contain?",
+      "suggested_answer": "The raw JSON string sent from the server; it should not be parsed first.",
+      "suggested_claims": [
+        "The `body` parameter must be the raw JSON string sent from the server.",
+        "The body should not be parsed before being passed to the webhook parsing/verification method."
+      ],
+      "suggested_fix": "Replace the placeholder question/empty answer with the suggested question, answer, and claims.",
+      "verification_notes": "The requirement is explicit in the anchored sentence. The surrounding context establishes that this is the webhook parsing/verification flow, while the critical body requirement is fully inside the evidence span."
+    },
+    {
+      "candidate_id": "GOLD-B001-07",
+      "verdict": "FIX_REQUIRED",
+      "question_supported": false,
+      "answer_supported": false,
+      "all_critical_claims_supported": false,
+      "evidence_boundary_complete": true,
+      "identifier_value_binding_correct": true,
+      "natural_question": false,
+      "suggested_question": "What happens if a mid-conversation tool change references a tool name that was not declared in the request's `tools` array?",
+      "suggested_answer": "The request returns a 400 error.",
+      "suggested_claims": [
+        "Referencing a tool name that is not declared in `tools` returns a 400 error."
+      ],
+      "suggested_fix": "Replace the placeholder question/empty answer with the suggested question, answer, and claim.",
+      "verification_notes": "The anchored sentence directly states both the invalid condition and the 400 response. The surrounding context clarifies that the name is a tool reference, but the critical claim is complete in the anchor."
+    },
+    {
+      "candidate_id": "GOLD-B001-08",
+      "verdict": "FIX_REQUIRED",
+      "question_supported": false,
+      "answer_supported": false,
+      "all_critical_claims_supported": false,
+      "evidence_boundary_complete": true,
+      "identifier_value_binding_correct": false,
+      "natural_question": false,
+      "suggested_question": "By default, what kind of SDK release is used when `engines.node`, emitted JavaScript syntax, or required runtime APIs are raised?",
+      "suggested_answer": "An SDK major release.",
+      "suggested_claims": [
+        "Raising `engines.node`, emitted JavaScript syntax, or required runtime APIs ships in an SDK major release by default."
+      ],
+      "suggested_fix": "Replace the placeholder and discard the generator's `required` relationship interpretation. Here `required` modifies `runtime APIs`; the actual documented relationship is that raising any of the listed runtime floors ships in an SDK major release by default.",
+      "verification_notes": "The evidence itself is strong, but the generator attached its trigger word to the wrong semantic relation. This is a good candidate only after the question is rewritten around the release rule."
+    },
+    {
+      "candidate_id": "GOLD-B001-09",
+      "verdict": "FIX_REQUIRED",
+      "question_supported": false,
+      "answer_supported": false,
+      "all_critical_claims_supported": false,
+      "evidence_boundary_complete": true,
+      "identifier_value_binding_correct": false,
+      "natural_question": false,
+      "suggested_question": "When does the Anthropic SDK tool runner stop looping?",
+      "suggested_answer": "When Claude returns a message without a tool use, or when the runner reaches `max_iterations` if that limit was set.",
+      "suggested_claims": [
+        "The tool runner stops when Claude returns a message without a tool use.",
+        "If `max_iterations` is set, the tool runner also stops when that limit is reached."
+      ],
+      "suggested_fix": "Replace the placeholder question and remove the generator's `returns a` relationship label; `returns a message` describes Claude's output, while `max_iterations` is a stopping limit.",
+      "verification_notes": "The evidence gives a complete two-part stopping condition. The candidate is useful after re-authoring, but the generator's detected relation is semantically wrong."
+    },
+    {
+      "candidate_id": "GOLD-B001-10",
+      "verdict": "FIX_REQUIRED",
+      "question_supported": false,
+      "answer_supported": false,
+      "all_critical_claims_supported": false,
+      "evidence_boundary_complete": true,
+      "identifier_value_binding_correct": true,
+      "natural_question": false,
+      "suggested_question": "Why should you avoid filtering `response.output` down to only message items when manually carrying Responses API conversation history forward?",
+      "suggested_answer": "Because doing so can drop required reasoning or tool-call items and cause the next request to fail.",
+      "suggested_claims": [
+        "Filtering `response.output` to message items can remove required reasoning or tool-call items.",
+        "Dropping those required items can cause the next request to fail."
+      ],
+      "suggested_fix": "Replace the placeholder question/empty answer with the suggested question, answer, and atomic claims.",
+      "verification_notes": "The anchored statement directly describes both the unsafe operation and its consequence. The wording should be framed as a behavior/constraint question rather than a generic `required` lookup."
+    },
+    {
+      "candidate_id": "GOLD-B001-11",
+      "verdict": "FIX_REQUIRED",
+      "question_supported": false,
+      "answer_supported": false,
+      "all_critical_claims_supported": false,
+      "evidence_boundary_complete": true,
+      "identifier_value_binding_correct": true,
+      "natural_question": false,
+      "suggested_question": "How should a tool-using Claude agent handle an error raised by a tool?",
+      "suggested_answer": "Send the error message back with `is_error: true` instead of crashing.",
+      "suggested_claims": [
+        "When a tool raises an error, the tool result should return the error message with `is_error: true` rather than crashing."
+      ],
+      "suggested_fix": "Replace the placeholder question/empty answer with the suggested question, answer, and claim.",
+      "verification_notes": "The evidence is explicit and complete. The generator's marker came from `raises`, but the useful gold fact is the documented error-handling behavior."
+    },
+    {
+      "candidate_id": "GOLD-B001-12",
+      "verdict": "FIX_REQUIRED",
+      "question_supported": false,
+      "answer_supported": false,
+      "all_critical_claims_supported": false,
+      "evidence_boundary_complete": true,
+      "identifier_value_binding_correct": false,
+      "natural_question": false,
+      "suggested_question": "What does the `nest_handoff_history` option on `handoff()` override?",
+      "suggested_answer": "It is an optional per-handoff override for the RunConfig-level `nest_handoff_history` setting.",
+      "suggested_claims": [
+        "`nest_handoff_history` is an optional per-handoff override for the RunConfig-level `nest_handoff_history` setting."
+      ],
+      "suggested_fix": "Replace the placeholder and ignore the generator's `returns a` relation. The first sentence in the current span (`This can be a boolean...`) refers to the preceding `is_enabled` item and is unrelated; the usable fact is the `nest_handoff_history` bullet. Ideally tighten the evidence span to that bullet only, or leave the extra sentence as non-critical context if anchor edits are deferred.",
+      "verification_notes": "The `nest_handoff_history` bullet is self-contained and supports a clean question. The generator's inferred relation is wrong, and the evidence span contains an unrelated anaphoric sentence before the relevant bullet."
+    },
+    {
+      "candidate_id": "GOLD-B001-13",
+      "verdict": "FIX_REQUIRED",
+      "question_supported": false,
+      "answer_supported": false,
+      "all_critical_claims_supported": false,
+      "evidence_boundary_complete": true,
+      "identifier_value_binding_correct": true,
+      "natural_question": false,
+      "suggested_question": "What value must `anthropic_version` be set to when using Claude on Google Cloud's Agent Platform?",
+      "suggested_answer": "`vertex-2023-10-16`.",
+      "suggested_claims": [
+        "On Google Cloud Agent Platform, `anthropic_version` is passed in the request body and must be set to `vertex-2023-10-16`."
+      ],
+      "suggested_fix": "Replace the placeholder question/empty answer with the suggested question, answer, and claim.",
+      "verification_notes": "The anchored text directly binds `anthropic_version` to `vertex-2023-10-16` and also states that it is passed in the request body rather than as a header."
+    },
+    {
+      "candidate_id": "GOLD-B001-14",
+      "verdict": "FIX_REQUIRED",
+      "question_supported": false,
+      "answer_supported": false,
+      "all_critical_claims_supported": false,
+      "evidence_boundary_complete": false,
+      "identifier_value_binding_correct": true,
+      "natural_question": false,
+      "suggested_question": "What error is returned if you send a prefilled last assistant message to Claude 4.6-and-later models or Claude Mythos Preview?",
+      "suggested_answer": "A 400 `invalid_request_error`.",
+      "suggested_claims": [
+        "Claude 4.6-and-later models and Claude Mythos Preview do not support prefilling assistant messages.",
+        "Sending a request with a prefilled last assistant message to those models returns a 400 `invalid_request_error`."
+      ],
+      "suggested_fix": "Replace the placeholder and extend the evidence anchor upward to include the preceding sentence naming `Claude 4.6 and later models` and `Claude Mythos Preview`. The current span says only `any of these models`, so a standalone model-scoped claim is incomplete inside the anchor.",
+      "verification_notes": "The response code/type is explicit, but the model scope is outside the current source span. The anchor should be expanded to make the critical scope auditable."
+    },
+    {
+      "candidate_id": "GOLD-B001-15",
+      "verdict": "FAIL",
+      "question_supported": false,
+      "answer_supported": false,
+      "all_critical_claims_supported": false,
+      "evidence_boundary_complete": true,
+      "identifier_value_binding_correct": false,
+      "natural_question": false,
+      "suggested_question": "In the specific streaming tool-use example, what value is `tool_choice.type` set to?",
+      "suggested_answer": "`any`.",
+      "suggested_claims": [
+        "In this example request, `tool_choice.type` is set to `any`."
+      ],
+      "suggested_fix": "Reject this candidate for the gold queue unless it is intentionally repurposed as an example-specific question. The generator matched the word `required` from the tool input schema (`required: [\"location\"]`), not a requirement on `tool_choice`. The snippet only shows an example setting; it does not establish a general default or requirement for `tool_choice`.",
+      "verification_notes": "This is the same kind of false token-to-identifier association GOLD-001 is designed to prevent. A narrowly framed example question is technically answerable, but it would test a sample configuration rather than a documented API rule, so it is poor gold material in its current form."
+    },
+    {
+      "candidate_id": "GOLD-B001-16",
+      "verdict": "FIX_REQUIRED",
+      "question_supported": false,
+      "answer_supported": false,
+      "all_critical_claims_supported": false,
+      "evidence_boundary_complete": true,
+      "identifier_value_binding_correct": false,
+      "natural_question": false,
+      "suggested_question": "What happens if the `embd_normalize` helper encounters a row whose norm is zero?",
+      "suggested_answer": "It raises a `ValueError` to prevent division by zero.",
+      "suggested_claims": [
+        "The example `embd_normalize` helper raises a `ValueError` if any row has a norm of zero.",
+        "The zero-norm check prevents division by zero."
+      ],
+      "suggested_fix": "Replace the placeholder and do not frame the fact as `row_norms` raising an exception. `row_norms` is a local variable; the helper function raises `ValueError` when any row norm equals zero. Keep the question explicitly scoped to the example helper.",
+      "verification_notes": "The code and docstring fully support the behavior, but the generator identified the wrong subject. This is valid only as a question about the example helper code, not as a general embeddings API behavior."
+    },
+    {
+      "candidate_id": "GOLD-B001-17",
+      "verdict": "FIX_REQUIRED",
+      "question_supported": false,
+      "answer_supported": false,
+      "all_critical_claims_supported": false,
+      "evidence_boundary_complete": true,
+      "identifier_value_binding_correct": false,
+      "natural_question": false,
+      "suggested_question": "What does a 404 `File not found` error mean in the Anthropic Files API?",
+      "suggested_answer": "The specified `file_id` does not exist or you do not have access to it.",
+      "suggested_claims": [
+        "A Files API `File not found` error uses HTTP 404.",
+        "It indicates that the specified `file_id` does not exist or the caller does not have access to it."
+      ],
+      "suggested_fix": "Replace the placeholder and discard the generator's `cannot be` relation; that phrase belongs to the separate `Not downloadable (400)` bullet, not to `file_id`. Use the first bullet as the claim.",
+      "verification_notes": "The first error bullet is a strong source-anchored fact, but the generator linked `file_id` to wording from a different bullet. Re-authoring around the 404 meaning fixes the candidate."
+    },
+    {
+      "candidate_id": "GOLD-B001-18",
+      "verdict": "FIX_REQUIRED",
+      "question_supported": false,
+      "answer_supported": false,
+      "all_critical_claims_supported": false,
+      "evidence_boundary_complete": true,
+      "identifier_value_binding_correct": true,
+      "natural_question": false,
+      "suggested_question": "When tool search discovers a deferred tool and returns a `tool_reference`, where is the tool's full definition expanded?",
+      "suggested_answer": "Inline at that point in the conversation body, not in the prompt prefix.",
+      "suggested_claims": [
+        "When a deferred tool is discovered and returned as a `tool_reference`, its full definition is expanded inline in the conversation body.",
+        "The full definition is not expanded in the prompt prefix."
+      ],
+      "suggested_fix": "Replace the placeholder question/empty answer with the suggested question, answer, and claims.",
+      "verification_notes": "The anchored sentence directly states the trigger and where the full tool definition appears. It is self-contained and suitable after normal question authoring."
+    }
+  ]
+}
