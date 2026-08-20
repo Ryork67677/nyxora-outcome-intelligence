@@ -1462,11 +1462,12 @@ def test_batch_003_ships_complete_and_unverified(batch3):
     assert batch3["retrieval_was_not_run"] is True
     assert batch3["systems_executed"] == []
     for record in batch3["records"]:
-        # Unverified at generation, needs_human_review once independently reviewed —
-        # never gold, at any point, without a person.
-        assert record["verification_status"] in {"candidate_unverified",
-                                                 "needs_human_review"}
-        assert record.get("human_verified") is not True
+        # The status moves through the lifecycle; the invariant that does not move is
+        # that gold requires an APPROVE a person recorded.
+        approvals = [h["decision"] for h in record.get("human_decision_history", [])]
+        gold = record["verification_status"] == "human_verified"
+        assert gold == (approvals[-1:] == ["APPROVE"]), record["candidate_id"]
+        assert record.get("human_verified", False) == gold
         assert record["claude_proposed"] is True
         assert record["retrieval_was_not_run"] is True
         assert record["proposed_question"] and record["proposed_answer"]
@@ -1852,7 +1853,159 @@ def test_batch_003_still_asserts_no_retrieval_and_frozen_systems(batch3):
     assert batch3["systems_executed"] == []
     for record in batch3["records"]:
         assert record["retrieval_was_not_run"] is True
-        assert record["verification_status"] != "human_verified"
-        assert record.get("human_verified") is not True
+        assert record.get("retrieval_rank") is None
     assert FROZEN_HASHES["SYSTEM-A-GLOBAL"].startswith("9afcb5b7c58ebacf")
     assert FROZEN_HASHES["SYSTEM-B-DOC-C"].startswith("304c350940b83733")
+
+
+# -- critical vs noncritical anaphora ----------------------------------------
+#
+# The detector is deliberately conservative and has flagged phrases that are not
+# anaphors at all. Classifying its findings is only safe while the conservative answer
+# stays visible, so nothing here deletes a finding — it decides whether the finding is
+# load-bearing, and a noncritical one still blocks until a person accepts it.
+
+def _anaphora():
+    from rag_v1.gold import anaphora
+
+    return anaphora
+
+
+def test_A_an_unresolved_condition_the_claim_needs_stays_blocking():
+    mod = _anaphora()
+    candidate = {
+        "proposed_question": "What happens if the guardrail's tripwire is true?",
+        "proposed_answer": "The API returns a 400 error.",
+        "proposed_atomic_claims": ["If the tripwire is true, the API returns a 400 error."],
+        "critical_strings": ["400 error"],
+    }
+    verdict = mod.evaluate_span("If true, the API returns a 400 error.", candidate)
+    assert verdict["status"] == mod.CRITICAL
+    assert verdict["blocking"] is True
+
+
+def test_B_an_unresolved_model_group_the_claim_needs_stays_blocking():
+    mod = _anaphora()
+    candidate = {
+        "proposed_question": "What happens on these models?",
+        "proposed_answer": "They return a 400 error.",
+        "proposed_atomic_claims": ["These models return a 400 error."],
+        "critical_strings": ["400 error"],
+    }
+    verdict = mod.evaluate_span("These models return a 400 error.", candidate)
+    assert verdict["status"] == mod.CRITICAL
+    assert verdict["blocking"] is True
+
+
+def test_C_an_incidental_phrase_is_noncritical_only_when_nothing_scored_needs_it():
+    mod = _anaphora()
+    span = ("The executor model (the top-level `model` field) and the advisor model "
+            "(the `model` field inside the tool definition) must form a valid pair.")
+
+    scoped_away = {
+        "proposed_question": ("What happens when the executor model and advisor model "
+                              "do not form a valid pair?"),
+        "proposed_answer": "The API returns a `400 invalid_request_error`.",
+        "proposed_atomic_claims": [
+            "The executor model and advisor model must form a valid pair."],
+        "critical_strings": ["executor model", "advisor model", "must form a valid pair"],
+    }
+    assert mod.classify(span, scoped_away)["status"] == mod.NONCRITICAL
+
+    # The same span, with a question that does depend on which tool: critical again.
+    depends = {**scoped_away,
+               "proposed_question": "Which tool definition holds the advisor `model`?",
+               "critical_strings": ["tool definition"]}
+    assert mod.classify(span, depends)["status"] == mod.CRITICAL
+
+
+def test_D_a_noncritical_finding_blocks_until_a_named_human_accepts_it():
+    mod = _anaphora()
+    span = ("The executor model (the top-level `model` field) and the advisor model "
+            "(the `model` field inside the tool definition) must form a valid pair.")
+    base = {
+        "proposed_question": ("What happens when the executor model and advisor model "
+                              "do not form a valid pair?"),
+        "proposed_answer": "The API returns a `400 invalid_request_error`.",
+        "proposed_atomic_claims": [
+            "The executor model and advisor model must form a valid pair."],
+        "critical_strings": ["executor model", "advisor model"],
+    }
+    assert mod.evaluate_span(span, base)["blocking"] is True
+
+    with_owner = mod.evaluate_span(
+        span, {**base, "human_anaphora_override": True,
+               "override_reviewer": "project_owner"})
+    assert with_owner["blocking"] is False
+    assert with_owner["status"] == mod.NONCRITICAL, "the finding is not erased"
+    assert with_owner["finding"], "the original detector text is retained"
+
+    # A model cannot accept its own finding.
+    by_model = mod.evaluate_span(
+        span, {**base, "human_anaphora_override": True, "override_reviewer": "claude"})
+    assert by_model["blocking"] is True
+    assert "must name a human reviewer" in by_model["override_refused"]
+
+
+def test_D2_a_critical_finding_cannot_be_overridden_at_all():
+    mod = _anaphora()
+    candidate = {
+        "proposed_atomic_claims": ["These models return a 400 error."],
+        "critical_strings": ["400 error"],
+        "human_anaphora_override": True, "override_reviewer": "project_owner",
+    }
+    verdict = mod.evaluate_span("These models return a 400 error.", candidate)
+    assert verdict["blocking"] is True
+    assert "cannot be overridden" in verdict["override_refused"]
+
+
+def test_E_the_raw_evidence_is_never_edited_to_silence_the_detector(batch3):
+    """B003-04 was repaired by rewriting the question, not by touching the source."""
+    import hashlib
+
+    record = next(r for r in batch3["records"]
+                  if r["candidate_id"] == "GOLD-B003-04")
+    spans = record["expected_evidence"]
+    assert len(spans) == 2
+    for span in spans:
+        assert hashlib.sha256(
+            span["evidence_text"].encode()).hexdigest() == span["evidence_hash"]
+    # The phrase the detector objected to is still in the evidence, verbatim.
+    assert "the tool definition" in spans[0]["evidence_text"]
+    assert record["anaphora_status"] == "NONCRITICAL_ANAPHORA"
+    assert record["anaphora_finding"]["finding"], "the finding is recorded, not erased"
+    # No revision ever touched an evidence field.
+    for revision in record["revisions"]:
+        assert revision["field"] not in {"evidence_text", "evidence_hash",
+                                         "expected_evidence", "char_start", "char_end"}
+
+
+def test_b003_04_is_repaired_but_not_approved(batch3):
+    record = next(r for r in batch3["records"]
+                  if r["candidate_id"] == "GOLD-B003-04")
+    assert record["verification_status"] == "needs_human_review"
+    assert record["human_verified"] is False
+    assert record["human_decision"] == "NEEDS_EDIT"
+    assert record["reasoning_type"] == "error_behavior"
+    assert record["evidence_shape"] == "multi_span"
+    assert record["requires_all_evidence"] is True
+    assert "advisor tool" not in record["proposed_question"]
+    assert record["precheck_holdout_ready"] is True
+    assert record["human_anaphora_override"] is True
+    assert record["override_reviewer"] == "project_owner"
+
+
+def test_batch_003_after_the_owner_decisions(batch3):
+    from collections import Counter
+
+    statuses = Counter(r["verification_status"] for r in batch3["records"])
+    assert statuses["human_verified"] == 19
+    assert statuses["needs_human_review"] == 1
+    assert statuses.get("human_rejected", 0) == 0
+    assert batch3["genuine_multi_hop"] == 0, "the corrected finding is preserved"
+    for record in batch3["records"]:
+        assert record["retrieval_was_not_run"] is True
+        if record["verification_status"] == "human_verified":
+            history = record["human_decision_history"][-1]
+            assert history["decision"] == "APPROVE"
+            assert history["approved_evidence_hash"] == record["evidence_hash"]

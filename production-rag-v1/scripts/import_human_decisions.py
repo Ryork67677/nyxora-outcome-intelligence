@@ -89,7 +89,11 @@ def revision_problems(record: dict, entry: dict) -> list[str]:
             f"[{candidate_id}] approves_evidence_hash {claimed_hash[:16]}… does not "
             f"match the current anchor {record['evidence_hash'][:16]}…"
         )
-    if claimed_hash == latest["old_evidence_hash"]:
+    # Anchor revisions come in two shapes: a single grown span (batch 001) and a list
+    # of spans, because a repair may split one anchor into two precise ones (batch 003).
+    superseded = ({latest["old_evidence_hash"]} if "old_evidence_hash" in latest
+                  else {s["evidence_hash"] for s in latest.get("old_spans", [])})
+    if claimed_hash in superseded:
         problems.append(
             f"[{candidate_id}] the approval names the anchor as it was BEFORE the "
             "repair; that version was sent back, not approved"

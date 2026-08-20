@@ -60,7 +60,12 @@ def evaluate(case: dict) -> dict:
                        "case without checking anything about its claims"),
         })
 
-    evidence = case.get("evidence_text", "")
+    # A multi-span case's evidence is all of its spans. Checking only the first would
+    # call a case ineligible for a string its second span carries — and every batch-003
+    # multi-span case keeps part of its claim in the second span.
+    spans = case.get("expected_evidence")
+    evidence = (" \n".join(s["evidence_text"] for s in spans) if spans
+                else case.get("evidence_text", ""))
     missing = [s for s in strings if not contains_claim_string(evidence, s)]
     if missing:
         failures.append({
@@ -68,13 +73,18 @@ def evaluate(case: dict) -> dict:
             "detail": f"not inside the anchored span: {missing}",
         })
 
-    recorded = case.get("evidence_hash")
-    actual = hashlib.sha256(evidence.encode("utf-8")).hexdigest() if evidence else None
-    if not recorded or recorded != actual:
-        failures.append({
-            "condition": "evidence_hash_valid",
-            "detail": "the stored hash does not match the stored evidence text",
-        })
+    # Each span's own hash must match its own text; a joined blob has no meaningful
+    # hash, so multi-span cases are checked span by span.
+    for span in (spans or [case]):
+        recorded = span.get("evidence_hash")
+        body = span.get("evidence_text", "")
+        actual = hashlib.sha256(body.encode("utf-8")).hexdigest() if body else None
+        if not recorded or recorded != actual:
+            failures.append({
+                "condition": "evidence_hash_valid",
+                "detail": ("the stored hash does not match the stored evidence text"
+                           + (f" (span at {span.get('char_start')})" if spans else "")),
+            })
 
     scope = case.get("unresolved_scope_defect")
     if scope:

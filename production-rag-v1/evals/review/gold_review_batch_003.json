@@ -33,7 +33,7 @@
     "openai": 7
   },
   "needs_human_interpretation": 4,
-  "precheck_holdout_ready": 19,
+  "precheck_holdout_ready": 20,
   "evidence_length": {
     "mean": 195.8,
     "median": 169,
@@ -45,7 +45,7 @@
     "duplicate_question": 5,
     "not_selected_diversity": 11
   },
-  "verification_status": "reviewed by independent_review — revised where required; nothing here is gold",
+  "verification_status": "human_reviewed by project_owner — approved cases are gold; every other case, including NEEDS_EDIT and undecided, is not",
   "retrieval_was_not_run": true,
   "systems_executed": [],
   "records": [
@@ -81,7 +81,7 @@
       "candidate_type": "supported",
       "generator_confidence": "high",
       "needs_human_interpretation": false,
-      "verification_status": "needs_human_review",
+      "verification_status": "human_verified",
       "claude_proposed": true,
       "chatgpt_verified": null,
       "retrieval_was_not_run": true,
@@ -99,7 +99,20 @@
         "verdict": "PASS",
         "reviewed_at": "2026-08-20T19:46:01Z",
         "verification_notes": "Clean as written; no revision required."
-      }
+      },
+      "human_decision_history": [
+        {
+          "decision": "APPROVE",
+          "reviewer": "project_owner",
+          "decided_at": "2026-08-20T20:38:30Z",
+          "notes": "APPROVE as revised in gold_batch_003_qc.md.",
+          "approved_evidence_hash": "69f0e702e0bb07103ace3ebefb7463c93734e68dff39b5340fe7c6a437045dd0"
+        }
+      ],
+      "human_decision": "APPROVE",
+      "human_verified": true,
+      "human_reviewed_at": "2026-08-20T20:38:30Z",
+      "human_reviewer": "project_owner"
     },
     {
       "candidate_id": "GOLD-B003-02",
@@ -135,7 +148,7 @@
       "candidate_type": "supported",
       "generator_confidence": "high",
       "needs_human_interpretation": false,
-      "verification_status": "needs_human_review",
+      "verification_status": "human_verified",
       "claude_proposed": true,
       "chatgpt_verified": null,
       "retrieval_was_not_run": true,
@@ -205,7 +218,20 @@
         "verdict": "FIX_REQUIRED",
         "reviewed_at": "2026-08-20T19:46:01Z",
         "verification_notes": "`description` is a generic field name; the anchor already supports the scoped wording, and the critical strings now verify the claim's content rather than only the field name."
-      }
+      },
+      "human_decision_history": [
+        {
+          "decision": "APPROVE",
+          "reviewer": "project_owner",
+          "decided_at": "2026-08-20T20:38:30Z",
+          "notes": "APPROVE as revised in gold_batch_003_qc.md.",
+          "approved_evidence_hash": "66278a33ed1cd9fee813a738ecc2bccf492b2e942e8b9c648b03769ebe5552c5"
+        }
+      ],
+      "human_decision": "APPROVE",
+      "human_verified": true,
+      "human_reviewed_at": "2026-08-20T20:38:30Z",
+      "human_reviewer": "project_owner"
     },
     {
       "candidate_id": "GOLD-B003-03",
@@ -239,7 +265,7 @@
       "candidate_type": "supported",
       "generator_confidence": "high",
       "needs_human_interpretation": false,
-      "verification_status": "needs_human_review",
+      "verification_status": "human_verified",
       "claude_proposed": true,
       "chatgpt_verified": null,
       "retrieval_was_not_run": true,
@@ -257,7 +283,20 @@
         "verdict": "PASS",
         "reviewed_at": "2026-08-20T19:46:01Z",
         "verification_notes": "Clean as written; no revision required."
-      }
+      },
+      "human_decision_history": [
+        {
+          "decision": "APPROVE",
+          "reviewer": "project_owner",
+          "decided_at": "2026-08-20T20:38:30Z",
+          "notes": "APPROVE as revised in gold_batch_003_qc.md.",
+          "approved_evidence_hash": "b3c74cfef64094ba54f567277897183f35d0ccdccbeffe1f934a7779e9be642f"
+        }
+      ],
+      "human_decision": "APPROVE",
+      "human_verified": true,
+      "human_reviewed_at": "2026-08-20T20:38:30Z",
+      "human_reviewer": "project_owner"
     },
     {
       "candidate_id": "GOLD-B003-04",
@@ -277,16 +316,17 @@
       "context_before": "or both together) when you want to bias toward brevity without risking a mid-thought cut.\n\n### Pairing with effort settings\n\nFor coding tasks, pairing a Sonnet executor at medium [effort](https://platform.claude.com/docs/en/build-with-claude/effort) with an Opus advisor achieves intelligence comparable to Sonnet at default effort, at lower cost. For maximum intelligence, keep the executor at default effort.\n\n### Cost control\n\n* For conversation-level budgets, count advisor calls client-side. When you reach your cap, remove the advisor tool from `tools`; you do not need to strip `advisor_tool_result` blocks from your message history (see the note in [Multi-turn conversations](https://platform.claude.com/docs/en/agents-and-tools/tool-use/advisor-tool#multi-turn-conversations)).\n* Enable `caching` only for conversations where you expect three or more advisor calls.\n\n## Model compatibility\n\n",
       "context_after": "\n\n### Platform availability\n\nThe advisor tool is available in beta on the Claude API and on [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws). It is not currently available on Amazon Bedrock, Google Cloud, or Microsoft Foundry.\n\n## Advisor on Claude Managed Agents\n\n[Claude Managed Agents](https://platform.claude.com/docs/en/managed-agents/overview) sessions support an advisor as well, configured as part of the agent rather than as a tool definition: add a `{\"type\": \"advisor\", \"model\": ...}` entry to the agent's multiagent roster, and the session's primary thread can consult that model mid-turn. The roster entry takes no `max_uses`, `max_tokens`, or `caching` options, and advice is delivered as thread events on the session's event stream rather than as `advisor_tool_result` blocks in the response. See [Give the session an advisor](https",
       "proposed_category": "error_behavior",
-      "proposed_question": "What happens when the executor and advisor models requested for the advisor tool do not form a valid pair?",
+      "proposed_question": "What happens when the executor model and advisor model do not form a valid pair?",
       "proposed_answer": "The API returns a `400 invalid_request_error` naming the unsupported combination.",
       "proposed_atomic_claims": [
-        "The executor model and the advisor model must form a valid pair.",
+        "The executor model and advisor model must form a valid pair.",
         "Requesting an invalid pair returns a `400 invalid_request_error` naming the unsupported combination."
       ],
       "critical_strings": [
         "executor model",
         "advisor model",
         "must form a valid pair",
+        "invalid pair",
         "400 invalid_request_error",
         "naming the unsupported combination"
       ],
@@ -349,12 +389,59 @@
           "author": "independent_review",
           "timestamp": "2026-08-20T19:46:01Z",
           "reason": "EVIDENCE_BOUNDARY, QUESTION_SCOPE"
+        },
+        {
+          "revision": 5,
+          "field": "proposed_question",
+          "from": "What happens when the executor and advisor models requested for the advisor tool do not form a valid pair?",
+          "to": "What happens when the executor model and advisor model do not form a valid pair?",
+          "author": "claude",
+          "directed_by": "project_owner",
+          "timestamp": "2026-08-20T20:39:52Z",
+          "reason": "QUESTION_SCOPE: remove framing the evidence cannot resolve"
+        },
+        {
+          "revision": 6,
+          "field": "proposed_atomic_claims",
+          "from": [
+            "The executor model and the advisor model must form a valid pair.",
+            "Requesting an invalid pair returns a `400 invalid_request_error` naming the unsupported combination."
+          ],
+          "to": [
+            "The executor model and advisor model must form a valid pair.",
+            "Requesting an invalid pair returns a `400 invalid_request_error` naming the unsupported combination."
+          ],
+          "author": "claude",
+          "directed_by": "project_owner",
+          "timestamp": "2026-08-20T20:39:52Z",
+          "reason": "QUESTION_SCOPE: remove framing the evidence cannot resolve"
+        },
+        {
+          "revision": 7,
+          "field": "critical_strings",
+          "from": [
+            "executor model",
+            "advisor model",
+            "must form a valid pair",
+            "400 invalid_request_error",
+            "naming the unsupported combination"
+          ],
+          "to": [
+            "executor model",
+            "advisor model",
+            "must form a valid pair",
+            "invalid pair",
+            "400 invalid_request_error",
+            "naming the unsupported combination"
+          ],
+          "author": "claude",
+          "directed_by": "project_owner",
+          "timestamp": "2026-08-20T20:39:52Z",
+          "reason": "QUESTION_SCOPE: remove framing the evidence cannot resolve"
         }
       ],
-      "precheck_holdout_ready": false,
-      "precheck_failures": [
-        "unresolved anaphora: refers to 'the tool' with no antecedent in the span"
-      ],
+      "precheck_holdout_ready": true,
+      "precheck_failures": [],
       "anchor_revisions": [
         {
           "revision": 1,
@@ -424,7 +511,35 @@
         "verdict": "FIX_REQUIRED",
         "reviewed_at": "2026-08-20T19:46:01Z",
         "verification_notes": "The anchor did not establish what \"pair\" refers to."
-      }
+      },
+      "human_decision_history": [
+        {
+          "decision": "NEEDS_EDIT",
+          "reviewer": "project_owner",
+          "decided_at": "2026-08-20T20:38:30Z",
+          "notes": "NEEDS_EDIT — keep the technical fact. Remove the advisor-tool framing from the question so the incidental phrase 'the tool definition' is no longer load-bearing.",
+          "approved_anchor_revision": 1
+        }
+      ],
+      "human_decision": "NEEDS_EDIT",
+      "human_verified": false,
+      "human_reviewed_at": "2026-08-20T20:38:30Z",
+      "human_reviewer": "project_owner",
+      "anaphora_status": "NONCRITICAL_ANAPHORA",
+      "anaphora_finding": {
+        "status": "NONCRITICAL_ANAPHORA",
+        "finding": "refers to 'the tool' with no antecedent in the span",
+        "phrase": "the tool",
+        "blocking": false,
+        "why": "Nothing scored mentions 'tool': the question, answer, claims and critical strings are all satisfied without resolving it.",
+        "human_anaphora_override": true,
+        "override_reviewer": "project_owner"
+      },
+      "awaiting": "explicit owner approval of the rewritten version",
+      "rewrite_reason": "The advisor-tool framing was removed from the question. Nothing scored — question, answer, claims or critical strings — now depends on resolving \"the tool definition\", so the detector's finding becomes noncritical. The evidence spans, their offsets and their hashes are unchanged.",
+      "human_anaphora_override": true,
+      "override_reviewer": "project_owner",
+      "override_recorded_at": "2026-08-20T20:41:32Z"
     },
     {
       "candidate_id": "GOLD-B003-05",
@@ -459,7 +574,7 @@
       "candidate_type": "supported",
       "generator_confidence": "high",
       "needs_human_interpretation": false,
-      "verification_status": "needs_human_review",
+      "verification_status": "human_verified",
       "claude_proposed": true,
       "chatgpt_verified": null,
       "retrieval_was_not_run": true,
@@ -477,7 +592,20 @@
         "verdict": "PASS",
         "reviewed_at": "2026-08-20T19:46:01Z",
         "verification_notes": "Clean as written; no revision required."
-      }
+      },
+      "human_decision_history": [
+        {
+          "decision": "APPROVE",
+          "reviewer": "project_owner",
+          "decided_at": "2026-08-20T20:38:30Z",
+          "notes": "APPROVE as revised in gold_batch_003_qc.md.",
+          "approved_evidence_hash": "c350f77ce87cfd0174b84862828cdb66748548f219d232874fc2e6391563b4d8"
+        }
+      ],
+      "human_decision": "APPROVE",
+      "human_verified": true,
+      "human_reviewed_at": "2026-08-20T20:38:30Z",
+      "human_reviewer": "project_owner"
     },
     {
       "candidate_id": "GOLD-B003-06",
@@ -514,7 +642,7 @@
       "candidate_type": "supported",
       "generator_confidence": "high",
       "needs_human_interpretation": false,
-      "verification_status": "needs_human_review",
+      "verification_status": "human_verified",
       "claude_proposed": true,
       "chatgpt_verified": null,
       "retrieval_was_not_run": true,
@@ -628,7 +756,21 @@
         "verdict": "FIX_REQUIRED",
         "reviewed_at": "2026-08-20T19:46:01Z",
         "verification_notes": "The section establishes the model, the anchor did not, and the unqualified question implied the behaviour is general."
-      }
+      },
+      "human_decision_history": [
+        {
+          "decision": "APPROVE",
+          "reviewer": "project_owner",
+          "decided_at": "2026-08-20T20:38:30Z",
+          "notes": "APPROVE as revised in gold_batch_003_qc.md.",
+          "approved_evidence_hash": "fbd40033fb7a571e8d5469e0d55335018504e83d8cabdb2f3b68025595f14eef",
+          "approved_anchor_revision": 1
+        }
+      ],
+      "human_decision": "APPROVE",
+      "human_verified": true,
+      "human_reviewed_at": "2026-08-20T20:38:30Z",
+      "human_reviewer": "project_owner"
     },
     {
       "candidate_id": "GOLD-B003-07",
@@ -661,7 +803,7 @@
       "candidate_type": "supported",
       "generator_confidence": "high",
       "needs_human_interpretation": false,
-      "verification_status": "needs_human_review",
+      "verification_status": "human_verified",
       "claude_proposed": true,
       "chatgpt_verified": null,
       "retrieval_was_not_run": true,
@@ -679,7 +821,20 @@
         "verdict": "PASS",
         "reviewed_at": "2026-08-20T19:46:01Z",
         "verification_notes": "Clean as written; no revision required."
-      }
+      },
+      "human_decision_history": [
+        {
+          "decision": "APPROVE",
+          "reviewer": "project_owner",
+          "decided_at": "2026-08-20T20:38:30Z",
+          "notes": "APPROVE as revised in gold_batch_003_qc.md.",
+          "approved_evidence_hash": "59f01f8e97ee095363064619d3a6c8624ee4c23f0c704e349d95fb3f6e317bd1"
+        }
+      ],
+      "human_decision": "APPROVE",
+      "human_verified": true,
+      "human_reviewed_at": "2026-08-20T20:38:30Z",
+      "human_reviewer": "project_owner"
     },
     {
       "candidate_id": "GOLD-B003-08",
@@ -714,7 +869,7 @@
       "candidate_type": "supported",
       "generator_confidence": "high",
       "needs_human_interpretation": false,
-      "verification_status": "needs_human_review",
+      "verification_status": "human_verified",
       "claude_proposed": true,
       "chatgpt_verified": null,
       "retrieval_was_not_run": true,
@@ -732,7 +887,20 @@
         "verdict": "PASS",
         "reviewed_at": "2026-08-20T19:46:01Z",
         "verification_notes": "Clean as written; no revision required."
-      }
+      },
+      "human_decision_history": [
+        {
+          "decision": "APPROVE",
+          "reviewer": "project_owner",
+          "decided_at": "2026-08-20T20:38:30Z",
+          "notes": "APPROVE as revised in gold_batch_003_qc.md.",
+          "approved_evidence_hash": "0d9c14fa664fc1fa17fe06a36446e74388266834eea924efdce7212bbf128275"
+        }
+      ],
+      "human_decision": "APPROVE",
+      "human_verified": true,
+      "human_reviewed_at": "2026-08-20T20:38:30Z",
+      "human_reviewer": "project_owner"
     },
     {
       "candidate_id": "GOLD-B003-09",
@@ -767,7 +935,7 @@
       "candidate_type": "supported",
       "generator_confidence": "high",
       "needs_human_interpretation": false,
-      "verification_status": "needs_human_review",
+      "verification_status": "human_verified",
       "claude_proposed": true,
       "chatgpt_verified": null,
       "retrieval_was_not_run": true,
@@ -785,7 +953,20 @@
         "verdict": "PASS",
         "reviewed_at": "2026-08-20T19:46:01Z",
         "verification_notes": "Clean as written; no revision required."
-      }
+      },
+      "human_decision_history": [
+        {
+          "decision": "APPROVE",
+          "reviewer": "project_owner",
+          "decided_at": "2026-08-20T20:38:30Z",
+          "notes": "APPROVE as revised in gold_batch_003_qc.md.",
+          "approved_evidence_hash": "5e31087b75a7b25386838a480325b27e2d1c3c20133032dfa50c815dcdb6249a"
+        }
+      ],
+      "human_decision": "APPROVE",
+      "human_verified": true,
+      "human_reviewed_at": "2026-08-20T20:38:30Z",
+      "human_reviewer": "project_owner"
     },
     {
       "candidate_id": "GOLD-B003-10",
@@ -820,7 +1001,7 @@
       "candidate_type": "supported",
       "generator_confidence": "high",
       "needs_human_interpretation": false,
-      "verification_status": "needs_human_review",
+      "verification_status": "human_verified",
       "claude_proposed": true,
       "chatgpt_verified": null,
       "retrieval_was_not_run": true,
@@ -881,7 +1062,20 @@
         "verdict": "FIX_REQUIRED",
         "reviewed_at": "2026-08-20T19:46:01Z",
         "verification_notes": "The evidence deprecates `budget_tokens` for two named models. The unqualified claim generalised beyond the source."
-      }
+      },
+      "human_decision_history": [
+        {
+          "decision": "APPROVE",
+          "reviewer": "project_owner",
+          "decided_at": "2026-08-20T20:38:30Z",
+          "notes": "APPROVE as revised in gold_batch_003_qc.md.",
+          "approved_evidence_hash": "5e3a985e78eb1da6f0488cb76c6d3a0d9ce7b33721dec498a262d48004355cd8"
+        }
+      ],
+      "human_decision": "APPROVE",
+      "human_verified": true,
+      "human_reviewed_at": "2026-08-20T20:38:30Z",
+      "human_reviewer": "project_owner"
     },
     {
       "candidate_id": "GOLD-B003-11",
@@ -917,7 +1111,7 @@
       "candidate_type": "supported",
       "generator_confidence": "high",
       "needs_human_interpretation": false,
-      "verification_status": "needs_human_review",
+      "verification_status": "human_verified",
       "claude_proposed": true,
       "chatgpt_verified": null,
       "retrieval_was_not_run": true,
@@ -987,7 +1181,20 @@
         "verdict": "FIX_REQUIRED",
         "reviewed_at": "2026-08-20T19:46:01Z",
         "verification_notes": "The generated answer said \"on Claude Opus 4\" where the source says \"on Claude Opus 4.7 or later models\" — a different and much broader claim. Root cause: the lifecycle pattern's tail capture stopped at the decimal point in \"4.7\". The evidence itself was always correct; only the generated wording was wrong. The pattern is fixed in rag_v1.gold.mining_v3 so it cannot recur."
-      }
+      },
+      "human_decision_history": [
+        {
+          "decision": "APPROVE",
+          "reviewer": "project_owner",
+          "decided_at": "2026-08-20T20:38:30Z",
+          "notes": "APPROVE as revised in gold_batch_003_qc.md.",
+          "approved_evidence_hash": "16608ec5271e0b907e6a2c8056e5f99bf28930c884f3c06737c649d6dd250dce"
+        }
+      ],
+      "human_decision": "APPROVE",
+      "human_verified": true,
+      "human_reviewed_at": "2026-08-20T20:38:30Z",
+      "human_reviewer": "project_owner"
     },
     {
       "candidate_id": "GOLD-B003-12",
@@ -1024,7 +1231,7 @@
       "candidate_type": "supported",
       "generator_confidence": "medium",
       "needs_human_interpretation": true,
-      "verification_status": "needs_human_review",
+      "verification_status": "human_verified",
       "claude_proposed": true,
       "chatgpt_verified": null,
       "retrieval_was_not_run": true,
@@ -1074,7 +1281,20 @@
         "verdict": "FIX_REQUIRED",
         "reviewed_at": "2026-08-20T19:46:01Z",
         "verification_notes": "Two independent facts retrieved from two spans is a multi-span retrieval test, not multi-hop reasoning: the answer is the two facts, not a third derived from them. These four keep their value as retrieval tests and none of them counts toward the project's genuine multi-hop target, which stands at zero."
-      }
+      },
+      "human_decision_history": [
+        {
+          "decision": "APPROVE",
+          "reviewer": "project_owner",
+          "decided_at": "2026-08-20T20:38:30Z",
+          "notes": "APPROVE as revised in gold_batch_003_qc.md.",
+          "approved_evidence_hash": "1f871467d6bdec51cc18260805c01e9fae9fcf91c1516ee83ee0e52c683a1296"
+        }
+      ],
+      "human_decision": "APPROVE",
+      "human_verified": true,
+      "human_reviewed_at": "2026-08-20T20:38:30Z",
+      "human_reviewer": "project_owner"
     },
     {
       "candidate_id": "GOLD-B003-13",
@@ -1109,7 +1329,7 @@
       "candidate_type": "supported",
       "generator_confidence": "high",
       "needs_human_interpretation": false,
-      "verification_status": "needs_human_review",
+      "verification_status": "human_verified",
       "claude_proposed": true,
       "chatgpt_verified": null,
       "retrieval_was_not_run": true,
@@ -1178,7 +1398,20 @@
         "verdict": "FIX_REQUIRED",
         "reviewed_at": "2026-08-20T19:46:01Z",
         "verification_notes": "The question and claim dropped the \"If both are provided\" condition."
-      }
+      },
+      "human_decision_history": [
+        {
+          "decision": "APPROVE",
+          "reviewer": "project_owner",
+          "decided_at": "2026-08-20T20:38:30Z",
+          "notes": "APPROVE as revised in gold_batch_003_qc.md.",
+          "approved_evidence_hash": "dff3475a86903edf467c12a3c0d9ac5f5bb4113a64eb65141d7ce5939eac2049"
+        }
+      ],
+      "human_decision": "APPROVE",
+      "human_verified": true,
+      "human_reviewed_at": "2026-08-20T20:38:30Z",
+      "human_reviewer": "project_owner"
     },
     {
       "candidate_id": "GOLD-B003-14",
@@ -1212,7 +1445,7 @@
       "candidate_type": "supported",
       "generator_confidence": "high",
       "needs_human_interpretation": false,
-      "verification_status": "needs_human_review",
+      "verification_status": "human_verified",
       "claude_proposed": true,
       "chatgpt_verified": null,
       "retrieval_was_not_run": true,
@@ -1281,7 +1514,20 @@
         "verdict": "FIX_REQUIRED",
         "reviewed_at": "2026-08-20T19:46:01Z",
         "verification_notes": "The question and claim dropped the authentication condition."
-      }
+      },
+      "human_decision_history": [
+        {
+          "decision": "APPROVE",
+          "reviewer": "project_owner",
+          "decided_at": "2026-08-20T20:38:30Z",
+          "notes": "APPROVE as revised in gold_batch_003_qc.md.",
+          "approved_evidence_hash": "9b98846da6fae1b207d5694efcfcb74d188d8fd47e8a30fdaaee8f616a70d892"
+        }
+      ],
+      "human_decision": "APPROVE",
+      "human_verified": true,
+      "human_reviewed_at": "2026-08-20T20:38:30Z",
+      "human_reviewer": "project_owner"
     },
     {
       "candidate_id": "GOLD-B003-15",
@@ -1315,7 +1561,7 @@
       "candidate_type": "supported",
       "generator_confidence": "high",
       "needs_human_interpretation": false,
-      "verification_status": "needs_human_review",
+      "verification_status": "human_verified",
       "claude_proposed": true,
       "chatgpt_verified": null,
       "retrieval_was_not_run": true,
@@ -1333,7 +1579,20 @@
         "verdict": "PASS",
         "reviewed_at": "2026-08-20T19:46:01Z",
         "verification_notes": "Clean as written; no revision required."
-      }
+      },
+      "human_decision_history": [
+        {
+          "decision": "APPROVE",
+          "reviewer": "project_owner",
+          "decided_at": "2026-08-20T20:38:30Z",
+          "notes": "APPROVE as revised in gold_batch_003_qc.md.",
+          "approved_evidence_hash": "e4baa4d8b15b1b3bd9760a7f33bd4815eeba4fe73dd26e4bdb82839e9f6459c7"
+        }
+      ],
+      "human_decision": "APPROVE",
+      "human_verified": true,
+      "human_reviewed_at": "2026-08-20T20:38:30Z",
+      "human_reviewer": "project_owner"
     },
     {
       "candidate_id": "GOLD-B003-16",
@@ -1371,7 +1630,7 @@
       "candidate_type": "supported",
       "generator_confidence": "high",
       "needs_human_interpretation": false,
-      "verification_status": "needs_human_review",
+      "verification_status": "human_verified",
       "claude_proposed": true,
       "chatgpt_verified": null,
       "retrieval_was_not_run": true,
@@ -1474,7 +1733,21 @@
         "verdict": "FIX_REQUIRED",
         "reviewed_at": "2026-08-20T19:46:01Z",
         "verification_notes": "`chunk` is generic; the anchor did not name the event type."
-      }
+      },
+      "human_decision_history": [
+        {
+          "decision": "APPROVE",
+          "reviewer": "project_owner",
+          "decided_at": "2026-08-20T20:38:30Z",
+          "notes": "APPROVE as revised in gold_batch_003_qc.md.",
+          "approved_evidence_hash": "e06211303ca4c18bcde7d0ff55b0f4ee061028ba58386fcec49b2f42594a3c2d",
+          "approved_anchor_revision": 1
+        }
+      ],
+      "human_decision": "APPROVE",
+      "human_verified": true,
+      "human_reviewed_at": "2026-08-20T20:38:30Z",
+      "human_reviewer": "project_owner"
     },
     {
       "candidate_id": "GOLD-B003-17",
@@ -1511,7 +1784,7 @@
       "candidate_type": "supported",
       "generator_confidence": "high",
       "needs_human_interpretation": false,
-      "verification_status": "needs_human_review",
+      "verification_status": "human_verified",
       "claude_proposed": true,
       "chatgpt_verified": null,
       "retrieval_was_not_run": true,
@@ -1622,7 +1895,21 @@
         "verdict": "FIX_REQUIRED",
         "reviewed_at": "2026-08-20T19:46:01Z",
         "verification_notes": "`parsed` occurs on `ContentDeltaEvent` and `ContentDoneEvent` with different meanings; the anchor did not distinguish them."
-      }
+      },
+      "human_decision_history": [
+        {
+          "decision": "APPROVE",
+          "reviewer": "project_owner",
+          "decided_at": "2026-08-20T20:38:30Z",
+          "notes": "APPROVE as revised in gold_batch_003_qc.md.",
+          "approved_evidence_hash": "f3a7e4d49ba92f2c66d4421fc1b8e56c6c1da2a7607df39db8ca0794efbac3d9",
+          "approved_anchor_revision": 1
+        }
+      ],
+      "human_decision": "APPROVE",
+      "human_verified": true,
+      "human_reviewed_at": "2026-08-20T20:38:30Z",
+      "human_reviewer": "project_owner"
     },
     {
       "candidate_id": "GOLD-B003-18",
@@ -1659,7 +1946,7 @@
       "candidate_type": "supported",
       "generator_confidence": "medium",
       "needs_human_interpretation": true,
-      "verification_status": "needs_human_review",
+      "verification_status": "human_verified",
       "claude_proposed": true,
       "chatgpt_verified": null,
       "retrieval_was_not_run": true,
@@ -1709,7 +1996,20 @@
         "verdict": "FIX_REQUIRED",
         "reviewed_at": "2026-08-20T19:46:01Z",
         "verification_notes": "Two independent facts retrieved from two spans is a multi-span retrieval test, not multi-hop reasoning: the answer is the two facts, not a third derived from them. These four keep their value as retrieval tests and none of them counts toward the project's genuine multi-hop target, which stands at zero."
-      }
+      },
+      "human_decision_history": [
+        {
+          "decision": "APPROVE",
+          "reviewer": "project_owner",
+          "decided_at": "2026-08-20T20:38:30Z",
+          "notes": "APPROVE as revised in gold_batch_003_qc.md.",
+          "approved_evidence_hash": "2b64f4eec75d5525277e90f40f25a8e9306d857e38dae514f6498177cca5d460"
+        }
+      ],
+      "human_decision": "APPROVE",
+      "human_verified": true,
+      "human_reviewed_at": "2026-08-20T20:38:30Z",
+      "human_reviewer": "project_owner"
     },
     {
       "candidate_id": "GOLD-B003-19",
@@ -1749,7 +2049,7 @@
       "candidate_type": "supported",
       "generator_confidence": "medium",
       "needs_human_interpretation": true,
-      "verification_status": "needs_human_review",
+      "verification_status": "human_verified",
       "claude_proposed": true,
       "chatgpt_verified": null,
       "retrieval_was_not_run": true,
@@ -1842,7 +2142,21 @@
         "verdict": "FIX_REQUIRED",
         "reviewed_at": "2026-08-20T19:46:01Z",
         "verification_notes": "The fields' owner type lived outside both spans, and the case is two independent lookups rather than multi-hop reasoning."
-      }
+      },
+      "human_decision_history": [
+        {
+          "decision": "APPROVE",
+          "reviewer": "project_owner",
+          "decided_at": "2026-08-20T20:38:30Z",
+          "notes": "APPROVE as revised in gold_batch_003_qc.md.",
+          "approved_evidence_hash": "9edfa438aab0b1be7075143e68f70b290cfe3ceea5b7219f8b63880770c98838",
+          "approved_anchor_revision": 1
+        }
+      ],
+      "human_decision": "APPROVE",
+      "human_verified": true,
+      "human_reviewed_at": "2026-08-20T20:38:30Z",
+      "human_reviewer": "project_owner"
     },
     {
       "candidate_id": "GOLD-B003-20",
@@ -1879,7 +2193,7 @@
       "candidate_type": "supported",
       "generator_confidence": "medium",
       "needs_human_interpretation": true,
-      "verification_status": "needs_human_review",
+      "verification_status": "human_verified",
       "claude_proposed": true,
       "chatgpt_verified": null,
       "retrieval_was_not_run": true,
@@ -1929,14 +2243,28 @@
         "verdict": "FIX_REQUIRED",
         "reviewed_at": "2026-08-20T19:46:01Z",
         "verification_notes": "Two independent facts retrieved from two spans is a multi-span retrieval test, not multi-hop reasoning: the answer is the two facts, not a third derived from them. These four keep their value as retrieval tests and none of them counts toward the project's genuine multi-hop target, which stands at zero."
-      }
+      },
+      "human_decision_history": [
+        {
+          "decision": "APPROVE",
+          "reviewer": "project_owner",
+          "decided_at": "2026-08-20T20:38:30Z",
+          "notes": "APPROVE as revised in gold_batch_003_qc.md.",
+          "approved_evidence_hash": "8702caec0644940fc64fa01be2a9e75ad77dceb3ecde7bdd03c87af21c4ca79f"
+        }
+      ],
+      "human_decision": "APPROVE",
+      "human_verified": true,
+      "human_reviewed_at": "2026-08-20T20:38:30Z",
+      "human_reviewer": "project_owner"
     }
   ],
   "batch_sha256": "89d2360d60df71aa88e4db217ea68c844fb8000ec7e09a01d4bcd5d6c0c2f7a9",
   "review_applied_at": "2026-08-20T19:46:01Z",
   "review_reviewer": "independent_review",
   "status_counts": {
-    "needs_human_review": 20
+    "human_verified": 19,
+    "needs_edit": 1
   },
   "by_reasoning_type": {
     "configuration_interaction": 4,
@@ -1948,5 +2276,8 @@
     "single_span": 15,
     "multi_span": 5
   },
-  "genuine_multi_hop": 0
+  "genuine_multi_hop": 0,
+  "human_decisions_imported_at": "2026-08-20T20:38:30Z",
+  "human_reviewer": "project_owner",
+  "undecided_candidates": []
 }

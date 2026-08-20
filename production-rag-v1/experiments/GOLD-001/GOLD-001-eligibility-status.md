@@ -1,6 +1,6 @@
 # GOLD-001 — eligibility status
 
-As of 2026-08-20T18:57:08Z.
+As of 2026-08-20T20:43:02Z.
 
 | batch | candidates | `human_verified` | `human_rejected` | `holdout_eligible` | eligibility read from |
 | --- | --- | --- | --- | --- | --- |
