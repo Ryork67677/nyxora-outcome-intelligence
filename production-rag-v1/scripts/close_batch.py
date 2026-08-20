@@ -59,6 +59,9 @@ def candidate_digest(records: list[dict]) -> str:
 
 def defects_of(record: dict) -> list[str]:
     """Recover the taxonomy classes from what the independent reviewer recorded."""
+    named = record.get("review_defect_class")
+    if named:
+        return [named]
     verification = record.get("verification", {})
     import re
     code = re.search(r"^\s*[\w.\[\]\"']+\s*=\s*\S|^\s*[\]\})],?\s*$|^\s*\"[\w_]+\"\s*:|"
@@ -126,6 +129,25 @@ def build(batch: dict, validation: dict, now: str) -> dict:
             "approval_pinned_to": r["human_decision_history"][-1].get(
                 "approved_evidence_hash"),
         } for r in sorted(repaired, key=lambda r: r["candidate_id"])],
+        "question_authoring_revisions": [{
+            "candidate_id": r["candidate_id"],
+            "fields_revised": sorted({rev["field"] for rev in r.get("revisions", [])}),
+            "revisions": len(r.get("revisions", [])),
+            "miner_original_question": next(
+                (rev["from"] for rev in r.get("revisions", [])
+                 if rev["field"] == "proposed_question"), None),
+            "final_question": r["proposed_question"],
+        } for r in sorted(records, key=lambda r: r["candidate_id"])
+            if r.get("revisions")],
+        "claim_checkable": {
+            "with_critical_strings": with_critical,
+            "of_verified": len(verified),
+            "note": (
+                "A case without literal critical strings passes the claim-in-evidence "
+                "gate vacuously. This count, not the validator's green tick, is what "
+                "says whether the claims were actually checked."
+            ),
+        },
         "defect_taxonomy": DEFECT_TAXONOMY,
         "defects_seen": dict(Counter(
             d for r in records for d in defects_of(r))),
@@ -180,6 +202,8 @@ def render(closure: dict) -> str:
         for key, value in closure["defect_taxonomy"].items())
     outstanding = "\n".join(f"- {item}" for item in closure["not_yet_done"])
 
+    authoring = closure.get("question_authoring_revisions", [])
+    checkable = closure.get("claim_checkable", {})
     return "\n".join([
         f"# GOLD-001 — batch {closure['batch']:03d} closure",
         "",
@@ -219,6 +243,16 @@ def render(closure: dict) -> str:
          "depended on; the new span is a strict superset of the old, and both are "
          "retained in `anchor_revisions`. Each approval pins the post-repair hash, so "
          "the record shows which version the owner actually approved."),
+        "",
+        "## Question-authoring revisions",
+        "",
+        (f"{len(authoring)} of {totals['candidates']} candidates had their question, "
+         "answer or claims re-authored during review. The miner's original wording is "
+         "retained on every one of them as revision 1; nothing was overwritten."),
+        "",
+        (f"**Claims actually checkable: {checkable.get('with_critical_strings', 0)} of "
+         f"{checkable.get('of_verified', 0)} verified cases carry literal critical "
+         f"strings.** {checkable.get('note', '')}"),
         "",
         "## Miner defect taxonomy",
         "",

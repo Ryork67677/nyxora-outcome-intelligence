@@ -262,6 +262,56 @@ structure.
 Only after the holdout is validated, approved, hashed and frozen may SYSTEM-A and
 SYSTEM-B be run against it — **once**.
 
+## Two states, not one
+
+`human_verified` and `holdout_eligible` are separate, and conflating them is the defect
+the batch 001 claim audit found.
+
+| state | means |
+|---|---|
+| `human_verified` | a person read the case and said yes — historical, permanent, never revoked by tooling |
+| `holdout_eligible` | all five conditions in `rag_v1.gold.eligibility` hold **right now** |
+
+The conditions: human approval · a deterministic check for every claim · critical strings
+present in the evidence · a valid evidence hash · no unresolved scope defect.
+
+A case can gain eligibility through added metadata without being re-approved, and lose it
+to a corpus change without the approval being called wrong. **Only `holdout_eligible`
+cases may enter a frozen holdout.**
+
+## Comparing a claim to its evidence
+
+Claims are checked as literal strings inside the anchored span, with one documented
+transformation: **Markdown backslash escapes are undone on both sides, and nothing else.**
+`GOLD-B002-02`'s row writes the URL scheme as `https\://` so the renderer does not
+linkify it, while the claim writes `https://`; failing on a backslash the renderer would
+drop is a defect in the checker, not the evidence.
+
+No case folding beyond the existing case-insensitive match, no whitespace collapsing, no
+quote or dash substitution — each would let a claim match evidence that does not say it.
+Normalisation lives only inside a comparison: evidence is stored raw, hashed raw and
+displayed raw, so the exact source form survives for audit. See
+`src/rag_v1/gold/normalisation.py`.
+
+## Versioned promotion overlays
+
+When later work shows an approved case is missing something a machine needs, the answer
+is a new version layered on top, never an edit underneath:
+
+```bash
+python scripts/build_batch_v2_overlay.py evals/review/gold_review_batch_001.json
+python scripts/validate_golden.py evals/gold/batch_001_v2/projection.jsonl \\
+  --require-human validation
+```
+
+The builder re-verifies the v1 closure hash first and refuses to layer on drifted
+records. It copies question, answer, claims, span, version and hash from the closed case
+and refuses to write if the spec would change any of them — an overlay of this kind adds
+validation metadata and nothing else.
+
+A defect metadata cannot fix goes to `scripts/propose_scope_repairs.py`, which writes a
+packet and applies nothing.
+
 ## Status vocabulary
 
 | status | meaning |
@@ -285,7 +335,8 @@ out, and that is the same outcome by design: gold requires someone to have said 
 | 001 | owner: APPROVE the 3 repairs | 15 `human_verified`, 2 `human_rejected`, 1 `dual_llm_pass` |
 | 001 | **CLOSED** | 16 `human_verified`, 2 `human_rejected`, 88.9% acceptance. `validate_golden.py` passes on all 16 with `--require-human validation`. Closure hash `d6f92e8d1a7e77ea…`; the test suite re-checks it, so an edit after closure fails the tests. See `experiments/GOLD-001/GOLD-001-batch-001-closure.md`. |
 | 002 | generated | 18 candidates, 50% structural, 9 complete proposals. Built with the four preregistered rules and nothing else. |
-| 002 | independently reviewed | 0 rejects, all 18 FIX_REQUIRED. A new defect class found: 9 structural candidates whose miner-written question depended on table-header semantics outside the row. 2 anchor extensions (`12`, `18`). All 18 revised and queued for the owner. |
+| 002 | independently reviewed | 0 rejects, all 18 FIX_REQUIRED. A new defect class found: 9 structural candidates whose miner-written question depended on table-header semantics outside the row. 2 anchor extensions (`12`, `18`). |
+| 002 | **CLOSED** | 17 `human_verified`, 1 `human_rejected` (`12`, OVERSIZED_EVIDENCE_ANCHOR — a 1,430-character anchor for one fact), 94.4% acceptance. **17 of 17 carry critical strings**, against batch 001's 3 of 16. Closure hash `69364f672e233fb3…`. |
 
 ## Auditing a closed batch
 

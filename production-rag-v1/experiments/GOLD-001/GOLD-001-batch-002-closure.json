@@ -1,0 +1,328 @@
+{
+  "batch": 2,
+  "closed_at": "2026-08-20T08:01:40Z",
+  "closed_by": "project_owner",
+  "source_batch_sha256": "b108d925a09c539de26cb2f7a3e8b96a0fbf3462d0c0f6b95e1a86e82df07736",
+  "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a",
+  "schema_version": "1.0",
+  "git_commit": "f5214aeed2628a1114b4ac9c1440695bf85e70b6",
+  "totals": {
+    "candidates": 18,
+    "human_verified": 17,
+    "human_rejected": 1,
+    "needs_human_review": 0,
+    "outstanding_decisions": 0,
+    "acceptance_rate": 0.9444
+  },
+  "status_counts": {
+    "human_verified": 17,
+    "human_rejected": 1
+  },
+  "human_verified_ids": [
+    "GOLD-B002-01",
+    "GOLD-B002-02",
+    "GOLD-B002-03",
+    "GOLD-B002-04",
+    "GOLD-B002-05",
+    "GOLD-B002-06",
+    "GOLD-B002-07",
+    "GOLD-B002-08",
+    "GOLD-B002-09",
+    "GOLD-B002-10",
+    "GOLD-B002-11",
+    "GOLD-B002-13",
+    "GOLD-B002-14",
+    "GOLD-B002-15",
+    "GOLD-B002-16",
+    "GOLD-B002-17",
+    "GOLD-B002-18"
+  ],
+  "rejected": [
+    {
+      "candidate_id": "GOLD-B002-12",
+      "defects": [
+        "MINER_EVIDENCE_DEFECT"
+      ],
+      "reason": "REJECT — OVERSIZED_EVIDENCE_ANCHOR / EVIDENCE_PRECISION_COST. The documentation is correct and the fact is real. Making the anchor self-contained required expanding it from ~70 to ~1,430 characters, taking in the complete per-model cache-length list. That evidence unit is disproportionate to the fact under test and would make retrieval artificially easier. Preserved for audit history; no further automatic salvage attempted in batch 002. A future candidate may test this fact from a naturally smaller self-contained span.",
+      "independent_verdict": "FIX_REQUIRED",
+      "preserved_as": "negative audit example - the record is kept, not deleted"
+    }
+  ],
+  "repaired": [
+    {
+      "candidate_id": "GOLD-B002-12",
+      "reason": "evidence_boundary_completion",
+      "old_span": [
+        31104,
+        31174
+      ],
+      "new_span": [
+        29744,
+        31174
+      ],
+      "old_evidence_hash": "69cd87fb0e58c5a9fa404c3c52bf4aefbe04f459e57ecb622cbd47a0d9710d6f",
+      "new_evidence_hash": "6cc24e6e6b65f438091a92d67001b08fe2c2ffd1b7ba20567aff964b6f61c290",
+      "approval_pinned_to": null
+    },
+    {
+      "candidate_id": "GOLD-B002-18",
+      "reason": "evidence_boundary_completion",
+      "old_span": [
+        25565,
+        25931
+      ],
+      "new_span": [
+        25347,
+        25931
+      ],
+      "old_evidence_hash": "bf1170489ee5a850170efac3e0d42b41fcbe86932bef88b6f56d686ec122911a",
+      "new_evidence_hash": "0d3851e614b9ed909eed9c8d808773e3a548ca0e557c370c6c183c11c663c9cd",
+      "approval_pinned_to": "0d3851e614b9ed909eed9c8d808773e3a548ca0e557c370c6c183c11c663c9cd"
+    }
+  ],
+  "question_authoring_revisions": [
+    {
+      "candidate_id": "GOLD-B002-01",
+      "fields_revised": [
+        "proposed_answer",
+        "proposed_atomic_claims",
+        "proposed_question"
+      ],
+      "revisions": 3,
+      "miner_original_question": "Is the `summary_prompt` parameter required?",
+      "final_question": "What is the `summary_prompt` parameter used for?"
+    },
+    {
+      "candidate_id": "GOLD-B002-02",
+      "fields_revised": [
+        "proposed_answer",
+        "proposed_atomic_claims",
+        "proposed_question"
+      ],
+      "revisions": 3,
+      "miner_original_question": "Is the `url` parameter required?",
+      "final_question": "What URL scheme must the MCP connector's `url` value start with?"
+    },
+    {
+      "candidate_id": "GOLD-B002-03",
+      "fields_revised": [
+        "proposed_answer",
+        "proposed_atomic_claims",
+        "proposed_question"
+      ],
+      "revisions": 3,
+      "miner_original_question": "Is the `prompt` parameter required?",
+      "final_question": "What kinds of values can an agent's `prompt` configuration accept?"
+    },
+    {
+      "candidate_id": "GOLD-B002-04",
+      "fields_revised": [
+        "proposed_answer",
+        "proposed_atomic_claims",
+        "proposed_question"
+      ],
+      "revisions": 3,
+      "miner_original_question": "What type does the `source` parameter take?",
+      "final_question": "What kinds of values can the `source` field of a search result contain?"
+    },
+    {
+      "candidate_id": "GOLD-B002-05",
+      "fields_revised": [
+        "proposed_answer",
+        "proposed_atomic_claims",
+        "proposed_question"
+      ],
+      "revisions": 3,
+      "miner_original_question": "Is the `restart` parameter required?",
+      "final_question": "What does setting `restart` to `true` do for the Bash tool?"
+    },
+    {
+      "candidate_id": "GOLD-B002-06",
+      "fields_revised": [
+        "proposed_answer",
+        "proposed_atomic_claims",
+        "proposed_question"
+      ],
+      "revisions": 3,
+      "miner_original_question": "What type does the `max_tokens` parameter take?",
+      "final_question": "What is the minimum allowed `max_tokens` value for the advisor tool?"
+    },
+    {
+      "candidate_id": "GOLD-B002-07",
+      "fields_revised": [
+        "proposed_answer",
+        "proposed_atomic_claims",
+        "proposed_question"
+      ],
+      "revisions": 3,
+      "miner_original_question": "What type does the `pause_after_compaction` parameter take?",
+      "final_question": "What does the `pause_after_compaction` parameter control?"
+    },
+    {
+      "candidate_id": "GOLD-B002-08",
+      "fields_revised": [
+        "proposed_answer",
+        "proposed_atomic_claims",
+        "proposed_question"
+      ],
+      "revisions": 3,
+      "miner_original_question": "Is the `text` parameter required?",
+      "final_question": "What is the maximum length of the `text` field when triggering a routine through the API?"
+    },
+    {
+      "candidate_id": "GOLD-B002-09",
+      "fields_revised": [
+        "proposed_answer",
+        "proposed_atomic_claims",
+        "proposed_question"
+      ],
+      "revisions": 3,
+      "miner_original_question": "Is the `display_height_px` parameter required?",
+      "final_question": "What does `display_height_px` specify for the computer use tool?"
+    },
+    {
+      "candidate_id": "GOLD-B002-10",
+      "fields_revised": [
+        "proposed_answer",
+        "proposed_atomic_claims",
+        "proposed_question"
+      ],
+      "revisions": 3,
+      "miner_original_question": "[REVIEWER TO WRITE] A question answerable from the evidence below, which mentions `parsed_output`.",
+      "final_question": "What attribute does the `parse()` method return after transforming the Pydantic model and validating the response?"
+    },
+    {
+      "candidate_id": "GOLD-B002-11",
+      "fields_revised": [
+        "proposed_answer",
+        "proposed_atomic_claims",
+        "proposed_question"
+      ],
+      "revisions": 3,
+      "miner_original_question": "[REVIEWER TO WRITE] A question answerable from the evidence below, which mentions `temperature`, `top_p`, `top_k`.",
+      "final_question": "What happens in Claude Sonnet 5 if `temperature`, `top_p`, or `top_k` is set to a non-default value?"
+    },
+    {
+      "candidate_id": "GOLD-B002-12",
+      "fields_revised": [
+        "proposed_answer",
+        "proposed_atomic_claims",
+        "proposed_question"
+      ],
+      "revisions": 3,
+      "miner_original_question": "[REVIEWER TO WRITE] A question answerable from the evidence below, which mentions `cache_control`.",
+      "final_question": "Can a prompt below the applicable minimum cacheable length be cached simply by marking it with `cache_control`?"
+    },
+    {
+      "candidate_id": "GOLD-B002-13",
+      "fields_revised": [
+        "proposed_answer",
+        "proposed_atomic_claims",
+        "proposed_question"
+      ],
+      "revisions": 3,
+      "miner_original_question": "[REVIEWER TO WRITE] A question answerable from the evidence below, which mentions `TUNNEL_TOKEN`.",
+      "final_question": "Why must `TUNNEL_TOKEN` be exported again in every fresh shell and after a reboot for this Docker Compose deployment?"
+    },
+    {
+      "candidate_id": "GOLD-B002-14",
+      "fields_revised": [
+        "proposed_answer",
+        "proposed_atomic_claims",
+        "proposed_question"
+      ],
+      "revisions": 3,
+      "miner_original_question": "[REVIEWER TO WRITE] A question answerable from the evidence below, which mentions `max_tokens`.",
+      "final_question": "What `max_tokens` cap does the `output-300k-2026-03-24` beta header enable for supported Message Batch requests?"
+    },
+    {
+      "candidate_id": "GOLD-B002-15",
+      "fields_revised": [
+        "proposed_answer",
+        "proposed_atomic_claims",
+        "proposed_question"
+      ],
+      "revisions": 3,
+      "miner_original_question": "[REVIEWER TO WRITE] A question answerable from the evidence below, which mentions `ScriptedModel`.",
+      "final_question": "When does `ScriptedModel` record a model call relative to resolving or raising the selected step?"
+    },
+    {
+      "candidate_id": "GOLD-B002-16",
+      "fields_revised": [
+        "proposed_answer",
+        "proposed_atomic_claims",
+        "proposed_question"
+      ],
+      "revisions": 3,
+      "miner_original_question": "[REVIEWER TO WRITE] A question answerable from the evidence below, which mentions `anthropic_version`.",
+      "final_question": "On Google Cloud Agent Platform, where is `anthropic_version` supplied and what value must it have?"
+    },
+    {
+      "candidate_id": "GOLD-B002-17",
+      "fields_revised": [
+        "proposed_answer",
+        "proposed_atomic_claims",
+        "proposed_question"
+      ],
+      "revisions": 3,
+      "miner_original_question": "[REVIEWER TO WRITE] A question answerable from the evidence below, which mentions `parent_id`, `child_id`.",
+      "final_question": "For a method calling `/v1/parents/{parent_id}/children/{child_id}`, which path parameter remains positional and how must the other be passed?"
+    },
+    {
+      "candidate_id": "GOLD-B002-18",
+      "fields_revised": [
+        "proposed_answer",
+        "proposed_atomic_claims",
+        "proposed_question"
+      ],
+      "revisions": 3,
+      "miner_original_question": "[REVIEWER TO WRITE] A question answerable from the evidence below, which mentions `allowed_fallback_models`, `max_tokens`, `thinking`.",
+      "final_question": "For an explicit server-side fallback entry, which per-attempt settings can be overridden?"
+    }
+  ],
+  "claim_checkable": {
+    "with_critical_strings": 17,
+    "of_verified": 17,
+    "note": "A case without literal critical strings passes the claim-in-evidence gate vacuously. This count, not the validator's green tick, is what says whether the claims were actually checked."
+  },
+  "defect_taxonomy": {
+    "D1": {
+      "name": "anaphoric anchor",
+      "description": "The span opens on, or silently depends on, a referent outside itself — 'If true', 'any of these models'. The claim cannot be checked against the anchor alone."
+    },
+    "D2": {
+      "name": "wrong relation label",
+      "description": "The miner matched a trigger word and labelled the candidate with a relation the sentence does not express. The evidence is usually fine; the label aims the reviewer at the wrong question."
+    },
+    "D3": {
+      "name": "example-code false binding",
+      "description": "An identifier matched inside a fenced code block or JSON literal and was framed as a documented rule. A sample configuration is not a rule."
+    }
+  },
+  "defects_seen": {
+    "MINER_QUESTION_HEADER_DEPENDENCY": 9,
+    "QUESTION_AUTHORING_REQUIRED": 7,
+    "MINER_EVIDENCE_DEFECT": 2
+  },
+  "validation": {
+    "validator": "scripts/validate_golden.py",
+    "projection": "evals/review/batch_002_approved_projection.jsonl",
+    "cases": 17,
+    "failures": 0,
+    "passed": true,
+    "require_human": "validation",
+    "caveat": "The claim-in-evidence check only fires on claims marked critical. Only the three repaired cases carry literal critical strings, so for the other 13 this pass says nothing about claim support. That gap must be closed before any of these enters a frozen holdout."
+  },
+  "retrieval": {
+    "retrieval_was_not_run": true,
+    "systems_run_against_these_candidates": [],
+    "statement": "No retrieval system was run against any candidate in this batch at any point. SYSTEM-A and SYSTEM-B remain frozen and were not executed. Candidate selection could not be influenced by what either system succeeds or fails on, which is what keeps a future holdout honest."
+  },
+  "not_yet_done": [
+    "No split has been assigned; the projection's split is a placeholder.",
+    "No holdout is frozen.",
+    "Critical claim strings exist for 17 of 17 verified cases; the rest are not claim-checked.",
+    "OA-002 remains a recorded defect in development/v1 with an unapplied development/v2 correction proposal."
+  ],
+  "closure_sha256": "69364f672e233fb32685a7a0fe283cfaec7c864816e9a3db7759d9bb7a132965"
+}

@@ -31,7 +31,7 @@
     "4. the share of structural candidates is raised and enforced"
   ],
   "excluded_from": "evals/review/gold_review_batch_001.json",
-  "verification_status": "reviewed by independent_review — every candidate is FIX_REQUIRED and revised; nothing in this file is gold",
+  "verification_status": "human_reviewed by project_owner — approved cases are gold; every other case, including NEEDS_EDIT and undecided, is not",
   "retrieval_was_not_run": true,
   "records": [
     {
@@ -63,7 +63,7 @@
       "generator_notes": "Row-scoped association, so the state cannot belong to a different parameter. Reviewer should confirm the table is a parameter table and that the column header means what it appears to mean.",
       "needs_human_interpretation": false,
       "candidate_type": "supported",
-      "verification_status": "needs_human_review",
+      "verification_status": "human_verified",
       "claude_proposed": true,
       "chatgpt_verified": false,
       "schema_version": "1.0",
@@ -117,7 +117,20 @@
         "identifier_value_binding_correct": true,
         "natural_question": false,
         "verification_notes": "MINER_QUESTION_HEADER_DEPENDENCY: the anchored row is sound evidence, but the miner's exported question asked about a column whose meaning (Yes/No, string, integer) lives in a table header outside the row. The question is re-authored around a fact stated inside the row itself; the anchor does not move."
-      }
+      },
+      "human_decision_history": [
+        {
+          "decision": "APPROVE",
+          "reviewer": "project_owner",
+          "decided_at": "2026-08-20T08:01:15Z",
+          "notes": "APPROVE as revised in gold_batch_002_qc.md.",
+          "approved_evidence_hash": "4bcfd667e1e607737bf0184ba9ae6c38c55901596263af9910aff44ffe857c14"
+        }
+      ],
+      "human_decision": "APPROVE",
+      "human_verified": true,
+      "human_reviewed_at": "2026-08-20T08:01:15Z",
+      "human_reviewer": "project_owner"
     },
     {
       "candidate_id": "GOLD-B002-02",
@@ -148,7 +161,7 @@
       "generator_notes": "Row-scoped association, so the state cannot belong to a different parameter. Reviewer should confirm the table is a parameter table and that the column header means what it appears to mean.",
       "needs_human_interpretation": false,
       "candidate_type": "supported",
-      "verification_status": "needs_human_review",
+      "verification_status": "human_verified",
       "claude_proposed": true,
       "chatgpt_verified": false,
       "schema_version": "1.0",
@@ -188,7 +201,7 @@
       "critical_strings": [
         "url",
         "The URL of the MCP server",
-        "Must start with https"
+        "Must start with https://"
       ],
       "anchor_extended": false,
       "review_defect_class": "MINER_QUESTION_HEADER_DEPENDENCY",
@@ -203,7 +216,20 @@
         "identifier_value_binding_correct": true,
         "natural_question": false,
         "verification_notes": "MINER_QUESTION_HEADER_DEPENDENCY: the anchored row is sound evidence, but the miner's exported question asked about a column whose meaning (Yes/No, string, integer) lives in a table header outside the row. The question is re-authored around a fact stated inside the row itself; the anchor does not move. READER NOTE: the span writes the scheme as `https\\://` — a markdown escape of the colon. The claim writes `https://`. Same fact, different literal form, so the critical string checked by the validator is `Must start with https` rather than the full scheme."
-      }
+      },
+      "human_decision_history": [
+        {
+          "decision": "APPROVE",
+          "reviewer": "project_owner",
+          "decided_at": "2026-08-20T08:01:15Z",
+          "notes": "APPROVE as revised in gold_batch_002_qc.md.",
+          "approved_evidence_hash": "1902239b249b9d3162ab9f0c19da21a1087bceb5b19714d57ab918d3f15e7cc5"
+        }
+      ],
+      "human_decision": "APPROVE",
+      "human_verified": true,
+      "human_reviewed_at": "2026-08-20T08:01:15Z",
+      "human_reviewer": "project_owner"
     },
     {
       "candidate_id": "GOLD-B002-03",
@@ -234,7 +260,7 @@
       "generator_notes": "Row-scoped association, so the state cannot belong to a different parameter. Reviewer should confirm the table is a parameter table and that the column header means what it appears to mean.",
       "needs_human_interpretation": false,
       "candidate_type": "supported",
-      "verification_status": "needs_human_review",
+      "verification_status": "human_verified",
       "claude_proposed": true,
       "chatgpt_verified": false,
       "schema_version": "1.0",
@@ -288,7 +314,20 @@
         "identifier_value_binding_correct": true,
         "natural_question": false,
         "verification_notes": "MINER_QUESTION_HEADER_DEPENDENCY: the anchored row is sound evidence, but the miner's exported question asked about a column whose meaning (Yes/No, string, integer) lives in a table header outside the row. The question is re-authored around a fact stated inside the row itself; the anchor does not move."
-      }
+      },
+      "human_decision_history": [
+        {
+          "decision": "APPROVE",
+          "reviewer": "project_owner",
+          "decided_at": "2026-08-20T08:01:15Z",
+          "notes": "APPROVE as revised in gold_batch_002_qc.md.",
+          "approved_evidence_hash": "5368be02d4beae2374838cc277695191b43b91bf4f099b3bffbdf1d8b0a856f7"
+        }
+      ],
+      "human_decision": "APPROVE",
+      "human_verified": true,
+      "human_reviewed_at": "2026-08-20T08:01:15Z",
+      "human_reviewer": "project_owner"
     },
     {
       "candidate_id": "GOLD-B002-04",
@@ -319,7 +358,7 @@
       "generator_notes": "Row-scoped association. Reviewer should confirm the table is a parameter table and that the column header means the parameter's own type rather than, say, a return type.",
       "needs_human_interpretation": false,
       "candidate_type": "supported",
-      "verification_status": "needs_human_review",
+      "verification_status": "human_verified",
       "claude_proposed": true,
       "chatgpt_verified": false,
       "schema_version": "1.0",
@@ -374,7 +413,20 @@
         "identifier_value_binding_correct": true,
         "natural_question": false,
         "verification_notes": "MINER_QUESTION_HEADER_DEPENDENCY: the anchored row is sound evidence, but the miner's exported question asked about a column whose meaning (Yes/No, string, integer) lives in a table header outside the row. The question is re-authored around a fact stated inside the row itself; the anchor does not move."
-      }
+      },
+      "human_decision_history": [
+        {
+          "decision": "APPROVE",
+          "reviewer": "project_owner",
+          "decided_at": "2026-08-20T08:01:15Z",
+          "notes": "APPROVE as revised in gold_batch_002_qc.md.",
+          "approved_evidence_hash": "7e393ec3bf702a944bcf3a5c7f31452b8f19e06764f1584cc3e2a94878423cd9"
+        }
+      ],
+      "human_decision": "APPROVE",
+      "human_verified": true,
+      "human_reviewed_at": "2026-08-20T08:01:15Z",
+      "human_reviewer": "project_owner"
     },
     {
       "candidate_id": "GOLD-B002-05",
@@ -404,7 +456,7 @@
       "generator_notes": "Row-scoped association, so the state cannot belong to a different parameter. Reviewer should confirm the table is a parameter table and that the column header means what it appears to mean.",
       "needs_human_interpretation": false,
       "candidate_type": "supported",
-      "verification_status": "needs_human_review",
+      "verification_status": "human_verified",
       "claude_proposed": true,
       "chatgpt_verified": false,
       "schema_version": "1.0",
@@ -458,7 +510,20 @@
         "identifier_value_binding_correct": true,
         "natural_question": false,
         "verification_notes": "MINER_QUESTION_HEADER_DEPENDENCY: the anchored row is sound evidence, but the miner's exported question asked about a column whose meaning (Yes/No, string, integer) lives in a table header outside the row. The question is re-authored around a fact stated inside the row itself; the anchor does not move."
-      }
+      },
+      "human_decision_history": [
+        {
+          "decision": "APPROVE",
+          "reviewer": "project_owner",
+          "decided_at": "2026-08-20T08:01:15Z",
+          "notes": "APPROVE as revised in gold_batch_002_qc.md.",
+          "approved_evidence_hash": "a0aa27b1c1f05377d146ebf70ff1b56b3966497f0fde1a547a9ed9578f3c9044"
+        }
+      ],
+      "human_decision": "APPROVE",
+      "human_verified": true,
+      "human_reviewed_at": "2026-08-20T08:01:15Z",
+      "human_reviewer": "project_owner"
     },
     {
       "candidate_id": "GOLD-B002-06",
@@ -488,7 +553,7 @@
       "generator_notes": "Row-scoped association. Reviewer should confirm the table is a parameter table and that the column header means the parameter's own type rather than, say, a return type.",
       "needs_human_interpretation": false,
       "candidate_type": "supported",
-      "verification_status": "needs_human_review",
+      "verification_status": "human_verified",
       "claude_proposed": true,
       "chatgpt_verified": false,
       "schema_version": "1.0",
@@ -542,7 +607,20 @@
         "identifier_value_binding_correct": true,
         "natural_question": false,
         "verification_notes": "MINER_QUESTION_HEADER_DEPENDENCY: the anchored row is sound evidence, but the miner's exported question asked about a column whose meaning (Yes/No, string, integer) lives in a table header outside the row. The question is re-authored around a fact stated inside the row itself; the anchor does not move."
-      }
+      },
+      "human_decision_history": [
+        {
+          "decision": "APPROVE",
+          "reviewer": "project_owner",
+          "decided_at": "2026-08-20T08:01:15Z",
+          "notes": "APPROVE as revised in gold_batch_002_qc.md.",
+          "approved_evidence_hash": "d2dd49438ce16e5b9f9ba575c2c63f34ddb1b0b20569f891c5261f72d21e3046"
+        }
+      ],
+      "human_decision": "APPROVE",
+      "human_verified": true,
+      "human_reviewed_at": "2026-08-20T08:01:15Z",
+      "human_reviewer": "project_owner"
     },
     {
       "candidate_id": "GOLD-B002-07",
@@ -572,7 +650,7 @@
       "generator_notes": "Row-scoped association. Reviewer should confirm the table is a parameter table and that the column header means the parameter's own type rather than, say, a return type.",
       "needs_human_interpretation": false,
       "candidate_type": "supported",
-      "verification_status": "needs_human_review",
+      "verification_status": "human_verified",
       "claude_proposed": true,
       "chatgpt_verified": false,
       "schema_version": "1.0",
@@ -626,7 +704,20 @@
         "identifier_value_binding_correct": true,
         "natural_question": false,
         "verification_notes": "MINER_QUESTION_HEADER_DEPENDENCY: the anchored row is sound evidence, but the miner's exported question asked about a column whose meaning (Yes/No, string, integer) lives in a table header outside the row. The question is re-authored around a fact stated inside the row itself; the anchor does not move."
-      }
+      },
+      "human_decision_history": [
+        {
+          "decision": "APPROVE",
+          "reviewer": "project_owner",
+          "decided_at": "2026-08-20T08:01:15Z",
+          "notes": "APPROVE as revised in gold_batch_002_qc.md.",
+          "approved_evidence_hash": "3dc311a8dcb1e09a11ce53c6e0b86e5d95abb99d28c59de16053ff4ee269e090"
+        }
+      ],
+      "human_decision": "APPROVE",
+      "human_verified": true,
+      "human_reviewed_at": "2026-08-20T08:01:15Z",
+      "human_reviewer": "project_owner"
     },
     {
       "candidate_id": "GOLD-B002-08",
@@ -657,7 +748,7 @@
       "generator_notes": "Row-scoped association, so the state cannot belong to a different parameter. Reviewer should confirm the table is a parameter table and that the column header means what it appears to mean.",
       "needs_human_interpretation": false,
       "candidate_type": "supported",
-      "verification_status": "needs_human_review",
+      "verification_status": "human_verified",
       "claude_proposed": true,
       "chatgpt_verified": false,
       "schema_version": "1.0",
@@ -711,7 +802,20 @@
         "identifier_value_binding_correct": true,
         "natural_question": false,
         "verification_notes": "MINER_QUESTION_HEADER_DEPENDENCY: the anchored row is sound evidence, but the miner's exported question asked about a column whose meaning (Yes/No, string, integer) lives in a table header outside the row. The question is re-authored around a fact stated inside the row itself; the anchor does not move."
-      }
+      },
+      "human_decision_history": [
+        {
+          "decision": "APPROVE",
+          "reviewer": "project_owner",
+          "decided_at": "2026-08-20T08:01:15Z",
+          "notes": "APPROVE as revised in gold_batch_002_qc.md.",
+          "approved_evidence_hash": "08bde1a6bcc80fb723b61f2a895db6045a1643c0d9534d427ca377e88e587d0f"
+        }
+      ],
+      "human_decision": "APPROVE",
+      "human_verified": true,
+      "human_reviewed_at": "2026-08-20T08:01:15Z",
+      "human_reviewer": "project_owner"
     },
     {
       "candidate_id": "GOLD-B002-09",
@@ -742,7 +846,7 @@
       "generator_notes": "Row-scoped association, so the state cannot belong to a different parameter. Reviewer should confirm the table is a parameter table and that the column header means what it appears to mean.",
       "needs_human_interpretation": false,
       "candidate_type": "supported",
-      "verification_status": "needs_human_review",
+      "verification_status": "human_verified",
       "claude_proposed": true,
       "chatgpt_verified": false,
       "schema_version": "1.0",
@@ -796,7 +900,20 @@
         "identifier_value_binding_correct": true,
         "natural_question": false,
         "verification_notes": "MINER_QUESTION_HEADER_DEPENDENCY: the anchored row is sound evidence, but the miner's exported question asked about a column whose meaning (Yes/No, string, integer) lives in a table header outside the row. The question is re-authored around a fact stated inside the row itself; the anchor does not move."
-      }
+      },
+      "human_decision_history": [
+        {
+          "decision": "APPROVE",
+          "reviewer": "project_owner",
+          "decided_at": "2026-08-20T08:01:15Z",
+          "notes": "APPROVE as revised in gold_batch_002_qc.md.",
+          "approved_evidence_hash": "d40e824bd901a423486c55c4093e5f80b879fa7a62a0172e31f62cb5ce47ff5b"
+        }
+      ],
+      "human_decision": "APPROVE",
+      "human_verified": true,
+      "human_reviewed_at": "2026-08-20T08:01:15Z",
+      "human_reviewer": "project_owner"
     },
     {
       "candidate_id": "GOLD-B002-10",
@@ -828,7 +945,7 @@
       "generator_notes": "The reviewer writes the question and the atomic claims from the evidence; no relation is proposed. The span was checked to resolve its own references and is not drawn from example code. ",
       "needs_human_interpretation": true,
       "candidate_type": "supported",
-      "verification_status": "needs_human_review",
+      "verification_status": "human_verified",
       "claude_proposed": true,
       "chatgpt_verified": false,
       "schema_version": "1.0",
@@ -881,7 +998,20 @@
         "identifier_value_binding_correct": true,
         "natural_question": false,
         "verification_notes": "QUESTION_AUTHORING_REQUIRED: the span is self-contained and the reviewer authors the question, answer and claims, exactly as the prose miner is designed to work. No defect."
-      }
+      },
+      "human_decision_history": [
+        {
+          "decision": "APPROVE",
+          "reviewer": "project_owner",
+          "decided_at": "2026-08-20T08:01:15Z",
+          "notes": "APPROVE as revised in gold_batch_002_qc.md.",
+          "approved_evidence_hash": "19c025f578eef5b96e2371865a7bdfb7bc1736a165c83a78687b2400592cfe4d"
+        }
+      ],
+      "human_decision": "APPROVE",
+      "human_verified": true,
+      "human_reviewed_at": "2026-08-20T08:01:15Z",
+      "human_reviewer": "project_owner"
     },
     {
       "candidate_id": "GOLD-B002-11",
@@ -911,7 +1041,7 @@
       "generator_notes": "The reviewer writes the question and the atomic claims from the evidence; no relation is proposed. The span was checked to resolve its own references and is not drawn from example code. More than one identifier appears, so the subject is not machine-determinable.",
       "needs_human_interpretation": true,
       "candidate_type": "supported",
-      "verification_status": "needs_human_review",
+      "verification_status": "human_verified",
       "claude_proposed": true,
       "chatgpt_verified": false,
       "schema_version": "1.0",
@@ -966,7 +1096,20 @@
         "identifier_value_binding_correct": true,
         "natural_question": false,
         "verification_notes": "QUESTION_AUTHORING_REQUIRED: the span is self-contained and the reviewer authors the question, answer and claims, exactly as the prose miner is designed to work. No defect."
-      }
+      },
+      "human_decision_history": [
+        {
+          "decision": "APPROVE",
+          "reviewer": "project_owner",
+          "decided_at": "2026-08-20T08:01:15Z",
+          "notes": "APPROVE as revised in gold_batch_002_qc.md.",
+          "approved_evidence_hash": "996e12e80cd4a4543e3ec678555b8ca6e562fcc4630e783e0d773ff13d991f4f"
+        }
+      ],
+      "human_decision": "APPROVE",
+      "human_verified": true,
+      "human_reviewed_at": "2026-08-20T08:01:15Z",
+      "human_reviewer": "project_owner"
     },
     {
       "candidate_id": "GOLD-B002-12",
@@ -997,7 +1140,7 @@
       "generator_notes": "The reviewer writes the question and the atomic claims from the evidence; no relation is proposed. The span was checked to resolve its own references and is not drawn from example code. ",
       "needs_human_interpretation": true,
       "candidate_type": "supported",
-      "verification_status": "needs_human_review",
+      "verification_status": "human_rejected",
       "claude_proposed": true,
       "chatgpt_verified": false,
       "schema_version": "1.0",
@@ -1072,7 +1215,20 @@
         "identifier_value_binding_correct": true,
         "natural_question": false,
         "verification_notes": "MINER_EVIDENCE_DEFECT: the anchor does not contain what its claim depends on and must be extended."
-      }
+      },
+      "human_decision_history": [
+        {
+          "decision": "REJECT",
+          "reviewer": "project_owner",
+          "decided_at": "2026-08-20T08:01:15Z",
+          "notes": "REJECT — OVERSIZED_EVIDENCE_ANCHOR / EVIDENCE_PRECISION_COST. The documentation is correct and the fact is real. Making the anchor self-contained required expanding it from ~70 to ~1,430 characters, taking in the complete per-model cache-length list. That evidence unit is disproportionate to the fact under test and would make retrieval artificially easier. Preserved for audit history; no further automatic salvage attempted in batch 002. A future candidate may test this fact from a naturally smaller self-contained span.",
+          "approved_anchor_revision": 1
+        }
+      ],
+      "human_decision": "REJECT",
+      "human_verified": false,
+      "human_reviewed_at": "2026-08-20T08:01:15Z",
+      "human_reviewer": "project_owner"
     },
     {
       "candidate_id": "GOLD-B002-13",
@@ -1102,7 +1258,7 @@
       "generator_notes": "The reviewer writes the question and the atomic claims from the evidence; no relation is proposed. The span was checked to resolve its own references and is not drawn from example code. ",
       "needs_human_interpretation": true,
       "candidate_type": "supported",
-      "verification_status": "needs_human_review",
+      "verification_status": "human_verified",
       "claude_proposed": true,
       "chatgpt_verified": false,
       "schema_version": "1.0",
@@ -1155,7 +1311,20 @@
         "identifier_value_binding_correct": true,
         "natural_question": false,
         "verification_notes": "QUESTION_AUTHORING_REQUIRED: the span is self-contained and the reviewer authors the question, answer and claims, exactly as the prose miner is designed to work. No defect."
-      }
+      },
+      "human_decision_history": [
+        {
+          "decision": "APPROVE",
+          "reviewer": "project_owner",
+          "decided_at": "2026-08-20T08:01:15Z",
+          "notes": "APPROVE as revised in gold_batch_002_qc.md.",
+          "approved_evidence_hash": "7fc8662a80faa78665b372bcd2e42a7bdb81f115356af0954065e3632f452399"
+        }
+      ],
+      "human_decision": "APPROVE",
+      "human_verified": true,
+      "human_reviewed_at": "2026-08-20T08:01:15Z",
+      "human_reviewer": "project_owner"
     },
     {
       "candidate_id": "GOLD-B002-14",
@@ -1187,7 +1356,7 @@
       "generator_notes": "The reviewer writes the question and the atomic claims from the evidence; no relation is proposed. The span was checked to resolve its own references and is not drawn from example code. ",
       "needs_human_interpretation": true,
       "candidate_type": "supported",
-      "verification_status": "needs_human_review",
+      "verification_status": "human_verified",
       "claude_proposed": true,
       "chatgpt_verified": false,
       "schema_version": "1.0",
@@ -1240,7 +1409,20 @@
         "identifier_value_binding_correct": true,
         "natural_question": false,
         "verification_notes": "QUESTION_AUTHORING_REQUIRED: the span is self-contained and the reviewer authors the question, answer and claims, exactly as the prose miner is designed to work. No defect."
-      }
+      },
+      "human_decision_history": [
+        {
+          "decision": "APPROVE",
+          "reviewer": "project_owner",
+          "decided_at": "2026-08-20T08:01:15Z",
+          "notes": "APPROVE as revised in gold_batch_002_qc.md.",
+          "approved_evidence_hash": "f8ccc077e09433a0ea6ff181125d66bdf740712ff81dd002cfb90183ba5079e1"
+        }
+      ],
+      "human_decision": "APPROVE",
+      "human_verified": true,
+      "human_reviewed_at": "2026-08-20T08:01:15Z",
+      "human_reviewer": "project_owner"
     },
     {
       "candidate_id": "GOLD-B002-15",
@@ -1272,7 +1454,7 @@
       "generator_notes": "The reviewer writes the question and the atomic claims from the evidence; no relation is proposed. The span was checked to resolve its own references and is not drawn from example code. ",
       "needs_human_interpretation": true,
       "candidate_type": "supported",
-      "verification_status": "needs_human_review",
+      "verification_status": "human_verified",
       "claude_proposed": true,
       "chatgpt_verified": false,
       "schema_version": "1.0",
@@ -1324,7 +1506,20 @@
         "identifier_value_binding_correct": true,
         "natural_question": false,
         "verification_notes": "QUESTION_AUTHORING_REQUIRED: the span is self-contained and the reviewer authors the question, answer and claims, exactly as the prose miner is designed to work. No defect."
-      }
+      },
+      "human_decision_history": [
+        {
+          "decision": "APPROVE",
+          "reviewer": "project_owner",
+          "decided_at": "2026-08-20T08:01:15Z",
+          "notes": "APPROVE as revised in gold_batch_002_qc.md.",
+          "approved_evidence_hash": "4e49b02f88712c6bc25df0a0922fee678f35cda505a6566acd07e3ef79744c55"
+        }
+      ],
+      "human_decision": "APPROVE",
+      "human_verified": true,
+      "human_reviewed_at": "2026-08-20T08:01:15Z",
+      "human_reviewer": "project_owner"
     },
     {
       "candidate_id": "GOLD-B002-16",
@@ -1355,7 +1550,7 @@
       "generator_notes": "The reviewer writes the question and the atomic claims from the evidence; no relation is proposed. The span was checked to resolve its own references and is not drawn from example code. ",
       "needs_human_interpretation": true,
       "candidate_type": "supported",
-      "verification_status": "needs_human_review",
+      "verification_status": "human_verified",
       "claude_proposed": true,
       "chatgpt_verified": false,
       "schema_version": "1.0",
@@ -1410,7 +1605,20 @@
         "identifier_value_binding_correct": true,
         "natural_question": false,
         "verification_notes": "QUESTION_AUTHORING_REQUIRED: the span is self-contained and the reviewer authors the question, answer and claims, exactly as the prose miner is designed to work. No defect."
-      }
+      },
+      "human_decision_history": [
+        {
+          "decision": "APPROVE",
+          "reviewer": "project_owner",
+          "decided_at": "2026-08-20T08:01:15Z",
+          "notes": "APPROVE as revised in gold_batch_002_qc.md.",
+          "approved_evidence_hash": "ac3e89163be1107c3d35db15f53bcb85db1947213bc3984263c7785d6ddd05ee"
+        }
+      ],
+      "human_decision": "APPROVE",
+      "human_verified": true,
+      "human_reviewed_at": "2026-08-20T08:01:15Z",
+      "human_reviewer": "project_owner"
     },
     {
       "candidate_id": "GOLD-B002-17",
@@ -1443,7 +1651,7 @@
       "generator_notes": "The reviewer writes the question and the atomic claims from the evidence; no relation is proposed. The span was checked to resolve its own references and is not drawn from example code. More than one identifier appears, so the subject is not machine-determinable.",
       "needs_human_interpretation": true,
       "candidate_type": "supported",
-      "verification_status": "needs_human_review",
+      "verification_status": "human_verified",
       "claude_proposed": true,
       "chatgpt_verified": false,
       "schema_version": "1.0",
@@ -1498,7 +1706,20 @@
         "identifier_value_binding_correct": true,
         "natural_question": false,
         "verification_notes": "QUESTION_AUTHORING_REQUIRED: the span is self-contained and the reviewer authors the question, answer and claims, exactly as the prose miner is designed to work. No defect. READER NOTE: the span says \"only the _last_ path parameter is positional\" without naming it. That the last one is `child_id` follows from the path `/v1/parents/{parent_id}/children/{child_id}` in the same span, but it is read off the path rather than stated outright."
-      }
+      },
+      "human_decision_history": [
+        {
+          "decision": "APPROVE",
+          "reviewer": "project_owner",
+          "decided_at": "2026-08-20T08:01:15Z",
+          "notes": "APPROVE as revised in gold_batch_002_qc.md.",
+          "approved_evidence_hash": "ce96064e0fb9f17d8dd88451aeaf1f97f587089ebc43dbbd79b70501924014be"
+        }
+      ],
+      "human_decision": "APPROVE",
+      "human_verified": true,
+      "human_reviewed_at": "2026-08-20T08:01:15Z",
+      "human_reviewer": "project_owner"
     },
     {
       "candidate_id": "GOLD-B002-18",
@@ -1529,7 +1750,7 @@
       "generator_notes": "The reviewer writes the question and the atomic claims from the evidence; no relation is proposed. The span was checked to resolve its own references and is not drawn from example code. More than one identifier appears, so the subject is not machine-determinable.",
       "needs_human_interpretation": true,
       "candidate_type": "supported",
-      "verification_status": "needs_human_review",
+      "verification_status": "human_verified",
       "claude_proposed": true,
       "chatgpt_verified": false,
       "schema_version": "1.0",
@@ -1607,18 +1828,38 @@
         "identifier_value_binding_correct": true,
         "natural_question": false,
         "verification_notes": "MINER_EVIDENCE_DEFECT: the anchor does not contain what its claim depends on and must be extended."
-      }
+      },
+      "human_decision_history": [
+        {
+          "decision": "APPROVE",
+          "reviewer": "project_owner",
+          "decided_at": "2026-08-20T08:01:15Z",
+          "notes": "APPROVE as revised in gold_batch_002_qc.md.",
+          "approved_evidence_hash": "0d3851e614b9ed909eed9c8d808773e3a548ca0e557c370c6c183c11c663c9cd",
+          "approved_anchor_revision": 1
+        }
+      ],
+      "human_decision": "APPROVE",
+      "human_verified": true,
+      "human_reviewed_at": "2026-08-20T08:01:15Z",
+      "human_reviewer": "project_owner"
     }
   ],
   "batch_sha256": "b108d925a09c539de26cb2f7a3e8b96a0fbf3462d0c0f6b95e1a86e82df07736",
   "review_applied_at": "2026-08-20T07:23:19Z",
   "review_reviewer": "independent_review",
   "status_counts": {
-    "needs_human_review": 18
+    "human_verified": 17,
+    "human_rejected": 1
   },
   "review_defect_classes": {
     "MINER_QUESTION_HEADER_DEPENDENCY": 9,
     "QUESTION_AUTHORING_REQUIRED": 7,
     "MINER_EVIDENCE_DEFECT": 2
-  }
+  },
+  "human_decisions_imported_at": "2026-08-20T08:01:15Z",
+  "human_reviewer": "project_owner",
+  "undecided_candidates": [],
+  "closed_at": "2026-08-20T08:01:40Z",
+  "closure_sha256": "69364f672e233fb32685a7a0fe283cfaec7c864816e9a3db7759d9bb7a132965"
 }

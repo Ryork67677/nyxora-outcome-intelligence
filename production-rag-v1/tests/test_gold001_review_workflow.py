@@ -987,22 +987,27 @@ def batch2():
     return json.loads(BATCH_002.read_text())
 
 
-def test_batch_002_is_revised_but_not_gold(batch2):
+def test_batch_002_reached_gold_only_through_a_human_approve(batch2):
     for record in batch2["records"]:
-        assert record["verification_status"] == "needs_human_review"
-        assert record.get("human_verified") is not True
+        # Every candidate was FIX_REQUIRED at the independent-review stage; none
+        # reached approval carrying the proposal the miner exported.
         assert record["verification"]["verdict"] == "FIX_REQUIRED"
+        gold = record["verification_status"] == "human_verified"
+        approvals = [h["decision"] for h in record.get("human_decision_history", [])]
+        assert gold == (approvals[-1:] == ["APPROVE"]), record["candidate_id"]
+        assert record.get("human_verified", False) == gold
     assert batch2["retrieval_was_not_run"] is True
-    assert "nothing in this file is gold" in batch2["verification_status"]
 
 
 def test_every_batch_002_critical_string_is_inside_its_own_span(batch2):
     """The gap batch 001 closed with: a claim the validator cannot check."""
+    from rag_v1.gold.normalisation import contains_claim_string
+
     for record in batch2["records"]:
-        span = record["evidence_text"].lower()
         assert record["critical_strings"], record["candidate_id"]
         for string in record["critical_strings"]:
-            assert string.lower() in span, (record["candidate_id"], string)
+            assert contains_claim_string(record["evidence_text"], string), (
+                record["candidate_id"], string)
 
 
 def test_batch_002_revisions_preserve_the_miner_original(batch2):
@@ -1110,3 +1115,171 @@ def test_holdout_eligibility_requires_both_support_and_a_checkable_claim():
     assert without["holdout_eligible"] is False
     with_strings = mod.audit_case({**record, "critical_strings": ["alpha", "5"]})
     assert with_strings["holdout_eligible"] is True
+
+
+# -- markdown-escape normalisation -------------------------------------------
+#
+# GOLD-B002-02's row writes the scheme as `https\://`, escaping the colon so the
+# renderer does not linkify it, while the claim writes `https://`. Failing that check
+# on a backslash the renderer would drop is a defect in the checker.
+
+def test_a_markdown_escape_does_not_defeat_a_critical_string():
+    from rag_v1.gold.normalisation import contains_claim_string
+
+    row = r"| `url` | string | Yes | The URL of the MCP server. Must start with https\://. |"
+    assert contains_claim_string(row, "Must start with https://")
+    assert contains_claim_string(row, r"Must start with https\://")
+
+
+def test_normalisation_undoes_escapes_and_nothing_else():
+    from rag_v1.gold.normalisation import normalise_for_comparison, unescape_markdown
+
+    assert unescape_markdown(r"a\.b\:c\*d") == "a.b:c*d"
+    # A backslash before a non-escapable character is not a Markdown escape, so it stays.
+    assert unescape_markdown(r"a\qb") == r"a\qb"
+    # No case folding, no whitespace collapsing, no quote or dash substitution — each
+    # would let a claim match evidence that does not say it.
+    for text in ("Two  spaces", "MiXeD CaSe", "en–dash", "“curly”"):
+        assert normalise_for_comparison(text) == text
+
+
+def test_normalisation_cannot_make_a_false_claim_match():
+    from rag_v1.gold.normalisation import contains_claim_string
+
+    assert not contains_claim_string("The default is 5.", "The default is 6")
+    assert not contains_claim_string("must start with http://", "must start with https://")
+
+
+def test_evidence_is_stored_and_hashed_raw_not_normalised(batch2):
+    """Normalisation is for comparison only; the hash must stay on the source form."""
+    import hashlib
+
+    record = next(r for r in batch2["records"] if r["candidate_id"] == "GOLD-B002-02")
+    assert r"https\://" in record["evidence_text"], "raw escape must survive in storage"
+    assert hashlib.sha256(
+        record["evidence_text"].encode("utf-8")).hexdigest() == record["evidence_hash"]
+
+
+# -- holdout eligibility is not human approval -------------------------------
+
+def _eligible_case(**overrides):
+    import hashlib
+
+    evidence = "| `alpha` | No | Default: `5` |"
+    case = {
+        "candidate_id": "X", "verification_status": "human_verified",
+        "human_verified": True, "evidence_text": evidence,
+        "evidence_hash": hashlib.sha256(evidence.encode()).hexdigest(),
+        "proposed_atomic_claims": ["`alpha` defaults to `5`."],
+        "critical_strings": ["`alpha`", "Default: `5`"],
+    }
+    case.update(overrides)
+    return case
+
+
+def test_the_two_states_are_independent():
+    from rag_v1.gold.eligibility import evaluate
+
+    # Approved but not checkable: still human_verified, not holdout-eligible.
+    approved_only = _eligible_case(critical_strings=[])
+    verdict = evaluate(approved_only)
+    assert verdict["holdout_eligible"] is False
+    assert approved_only["verification_status"] == "human_verified"
+    assert approved_only["human_verified"] is True, "eligibility must not revoke approval"
+
+    # Checkable but not approved: eligibility cannot substitute for a person.
+    unapproved = _eligible_case(verification_status="needs_human_review",
+                                human_verified=False)
+    assert evaluate(unapproved)["holdout_eligible"] is False
+    assert any(f["condition"] == "human_verified"
+               for f in evaluate(unapproved)["failures"])
+
+
+def test_every_holdout_condition_can_block_on_its_own():
+    from rag_v1.gold.eligibility import HOLDOUT_CONDITIONS, evaluate
+
+    assert evaluate(_eligible_case())["holdout_eligible"] is True
+    blockers = {
+        "human_verified": {"human_verified": False},
+        "every_claim_has_a_deterministic_check": {"critical_strings": []},
+        "critical_strings_present_in_evidence": {"critical_strings": ["not in the span"]},
+        "evidence_hash_valid": {"evidence_hash": "0" * 64},
+        "no_unresolved_scope_defect": {"unresolved_scope_defect": "claim scope outside span"},
+    }
+    assert set(blockers) == set(HOLDOUT_CONDITIONS)
+    for condition, override in blockers.items():
+        verdict = evaluate(_eligible_case(**override))
+        assert verdict["holdout_eligible"] is False, condition
+        assert any(f["condition"] == condition for f in verdict["failures"]), condition
+
+
+def test_only_eligible_cases_are_offered_to_a_holdout():
+    from rag_v1.gold.eligibility import eligible
+
+    cases = [_eligible_case(candidate_id="A"),
+             _eligible_case(candidate_id="B", critical_strings=[])]
+    assert [c["candidate_id"] for c in eligible(cases)] == ["A"]
+
+
+# -- batch 001 v2 overlay ----------------------------------------------------
+
+V2 = Path(__file__).resolve().parents[1] / "evals" / "gold" / "batch_001_v2"
+
+
+@pytest.fixture
+def overlay():
+    path = V2 / "overlay.json"
+    if not path.exists():
+        pytest.skip("the v2 overlay has not been built")
+    return json.loads(path.read_text())
+
+
+def test_the_overlay_changes_no_v1_content(overlay, batch):
+    v1 = {r["candidate_id"]: r for r in batch["records"]}
+    for case in overlay["case_records"]:
+        original = v1[case["candidate_id"]]
+        for field in ("proposed_question", "proposed_answer", "proposed_atomic_claims",
+                      "char_start", "char_end", "version_id", "evidence_hash",
+                      "evidence_text"):
+            assert case[field] == original[field], (case["candidate_id"], field)
+
+
+def test_the_overlay_records_the_v1_closure_hash_and_v1_still_matches(overlay, batch):
+    mod = _close_module()
+    assert overlay["v1_closure_sha256"] == batch["closure_sha256"]
+    assert mod.candidate_digest(batch["records"]) == batch["closure_sha256"]
+
+
+def test_every_overlay_critical_string_is_inside_its_own_span(overlay):
+    from rag_v1.gold.normalisation import contains_claim_string
+
+    for case in overlay["case_records"]:
+        assert case["critical_strings"], case["candidate_id"]
+        for string in case["critical_strings"]:
+            assert contains_claim_string(case["evidence_text"], string), (
+                case["candidate_id"], string)
+
+
+def test_the_scope_defect_cases_are_excluded_until_repaired(overlay):
+    present = {c["candidate_id"] for c in overlay["case_records"]}
+    assert "GOLD-B001-13" not in present
+    assert "GOLD-B001-17" not in present
+    assert set(overlay["pending_scope_repair"]) == {"GOLD-B001-13", "GOLD-B001-17"}
+    # The count claimed must be the count computed, not a number in prose.
+    assert overlay["holdout_eligible_count"] == len(overlay["holdout_eligible"])
+    assert overlay["holdout_eligible_count"] == len(overlay["case_records"])
+
+
+def test_the_scope_repairs_are_proposed_and_applied_to_nothing(batch):
+    path = V2 / "gold_batch_001_v2_scope_repairs.json"
+    if not path.exists():
+        pytest.skip("the scope-repair packet has not been built")
+    packet = json.loads(path.read_text())
+    assert packet["status"].startswith("PROPOSED")
+    assert packet["v1_closure_sha256"] == batch["closure_sha256"]
+    v1 = {r["candidate_id"]: r for r in batch["records"]}
+    for candidate_id, options in packet["repairs"].items():
+        # v1 still holds the pre-repair anchor and no critical strings.
+        assert v1[candidate_id]["char_start"] == options[0]["old_char_start"]
+        assert not v1[candidate_id].get("critical_strings")
+        assert any(o["recommended"] for o in options)

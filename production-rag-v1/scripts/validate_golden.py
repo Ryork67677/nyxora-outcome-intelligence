@@ -20,6 +20,7 @@ from collections import Counter
 from pathlib import Path
 
 from rag_v1.db import connect
+from rag_v1.gold.normalisation import contains_claim_string
 
 SNAPSHOT = "snap_689e336380a054d8039dc35b2c09cd0a"
 VALID_SPLITS = {"development", "validation", "holdout"}
@@ -135,10 +136,14 @@ def validate(cases: list[dict], sources: dict, require_human: set[str]) -> list[
                 if actual != expected_hash:
                     fail(case_id, "evidence_hash", "source text at the anchor has changed")
             # Every critical claim must actually appear in the evidence it cites.
-            span_text = text[start:end].lower()
+            span_text = text[start:end]
             if len(evidence) == 1:
                 for claim in case.get("expected_claims", []):
-                    if claim.get("critical") and claim["text"].lower() not in span_text:
+                    # Compared with Markdown backslash escapes undone on both sides, so
+                    # `https\://` in the source matches `https://` in the claim. Nothing
+                    # else is normalised — see rag_v1.gold.normalisation.
+                    if claim.get("critical") and not contains_claim_string(
+                            span_text, claim["text"]):
                         fail(case_id, "claim_supported_by_evidence",
                              f"claim {claim['text']!r} does not appear in its own evidence span")
 

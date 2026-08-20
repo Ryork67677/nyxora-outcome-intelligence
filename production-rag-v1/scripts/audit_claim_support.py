@@ -29,6 +29,11 @@ from collections import Counter
 from datetime import UTC, datetime
 from pathlib import Path
 
+from rag_v1.gold.normalisation import (
+    contains_claim_string,
+    normalise_for_comparison,
+)
+
 SUPPORTED = "SUPPORTED"
 NEEDS_REVIEW = "NEEDS_REVIEW"
 UNSUPPORTED = "UNSUPPORTED"
@@ -61,15 +66,15 @@ def content_words(text: str) -> set[str]:
 
 
 def audit_claim(claim: str, span: str, provenance: str) -> dict:
-    span_lower = span.lower()
     missing, provenance_only = [], []
     for term in sorted(terms(claim)):
-        if term.lower() in span_lower:
+        if contains_claim_string(span, term):
             continue
-        (provenance_only if term.lower() in provenance.lower() else missing).append(term)
+        (provenance_only if contains_claim_string(provenance, term)
+         else missing).append(term)
 
     words = content_words(claim)
-    span_words = content_words(span)
+    span_words = content_words(normalise_for_comparison(span))
     covered = words & span_words
     coverage = len(covered) / len(words) if words else 1.0
 

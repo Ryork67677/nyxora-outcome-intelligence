@@ -1,0 +1,692 @@
+{
+  "overlay": "batch_001_v2",
+  "built_at": "2026-08-20T08:03:37Z",
+  "layers_on": "evals/review/gold_review_batch_001.json",
+  "v1_closure_sha256": "d6f92e8d1a7e77eae760d8a866b0353603aeefaec3c2309817e64f19a3a39f97",
+  "v1_is_unchanged": "This overlay reads the closed batch and writes nothing back to it. The v1 closure hash above was re-verified against the v1 records before building.",
+  "kind": "validation_metadata_only",
+  "rule": "This overlay adds critical claim strings and nothing else. Question, answer, atomic claims, evidence span, source version and evidence hash are copied from the closed v1 case unchanged, and the builder refuses to write if any of them differ.",
+  "cases": 14,
+  "metadata_upgraded": 11,
+  "carried_forward_unchanged": 3,
+  "holdout_eligible_count": 14,
+  "holdout_eligible": [
+    "GOLD-B001-01",
+    "GOLD-B001-02",
+    "GOLD-B001-03",
+    "GOLD-B001-04",
+    "GOLD-B001-05",
+    "GOLD-B001-06",
+    "GOLD-B001-07",
+    "GOLD-B001-08",
+    "GOLD-B001-09",
+    "GOLD-B001-10",
+    "GOLD-B001-11",
+    "GOLD-B001-12",
+    "GOLD-B001-14",
+    "GOLD-B001-18"
+  ],
+  "not_included": {
+    "GOLD-B001-13": "genuine scope defect — proposed repair in gold_batch_001_v2_scope_repairs",
+    "GOLD-B001-17": "genuine scope defect — proposed repair in gold_batch_001_v2_scope_repairs",
+    "GOLD-B001-03": "already carries critical strings from the boundary repair",
+    "GOLD-B001-04": "already carries critical strings from the boundary repair",
+    "GOLD-B001-14": "already carries critical strings from the boundary repair"
+  },
+  "pending_scope_repair": [
+    "GOLD-B001-13",
+    "GOLD-B001-17"
+  ],
+  "eligibility_verdicts": {
+    "GOLD-B001-01": {
+      "candidate_id": "GOLD-B001-01",
+      "holdout_eligible": true,
+      "conditions_checked": [
+        "human_verified",
+        "every_claim_has_a_deterministic_check",
+        "critical_strings_present_in_evidence",
+        "evidence_hash_valid",
+        "no_unresolved_scope_defect"
+      ],
+      "failures": [],
+      "note": "human_verified is unaffected by this result. Eligibility is a property of the case's current metadata, not a judgement on the person's approval."
+    },
+    "GOLD-B001-02": {
+      "candidate_id": "GOLD-B001-02",
+      "holdout_eligible": true,
+      "conditions_checked": [
+        "human_verified",
+        "every_claim_has_a_deterministic_check",
+        "critical_strings_present_in_evidence",
+        "evidence_hash_valid",
+        "no_unresolved_scope_defect"
+      ],
+      "failures": [],
+      "note": "human_verified is unaffected by this result. Eligibility is a property of the case's current metadata, not a judgement on the person's approval."
+    },
+    "GOLD-B001-05": {
+      "candidate_id": "GOLD-B001-05",
+      "holdout_eligible": true,
+      "conditions_checked": [
+        "human_verified",
+        "every_claim_has_a_deterministic_check",
+        "critical_strings_present_in_evidence",
+        "evidence_hash_valid",
+        "no_unresolved_scope_defect"
+      ],
+      "failures": [],
+      "note": "human_verified is unaffected by this result. Eligibility is a property of the case's current metadata, not a judgement on the person's approval."
+    },
+    "GOLD-B001-06": {
+      "candidate_id": "GOLD-B001-06",
+      "holdout_eligible": true,
+      "conditions_checked": [
+        "human_verified",
+        "every_claim_has_a_deterministic_check",
+        "critical_strings_present_in_evidence",
+        "evidence_hash_valid",
+        "no_unresolved_scope_defect"
+      ],
+      "failures": [],
+      "note": "human_verified is unaffected by this result. Eligibility is a property of the case's current metadata, not a judgement on the person's approval."
+    },
+    "GOLD-B001-07": {
+      "candidate_id": "GOLD-B001-07",
+      "holdout_eligible": true,
+      "conditions_checked": [
+        "human_verified",
+        "every_claim_has_a_deterministic_check",
+        "critical_strings_present_in_evidence",
+        "evidence_hash_valid",
+        "no_unresolved_scope_defect"
+      ],
+      "failures": [],
+      "note": "human_verified is unaffected by this result. Eligibility is a property of the case's current metadata, not a judgement on the person's approval."
+    },
+    "GOLD-B001-08": {
+      "candidate_id": "GOLD-B001-08",
+      "holdout_eligible": true,
+      "conditions_checked": [
+        "human_verified",
+        "every_claim_has_a_deterministic_check",
+        "critical_strings_present_in_evidence",
+        "evidence_hash_valid",
+        "no_unresolved_scope_defect"
+      ],
+      "failures": [],
+      "note": "human_verified is unaffected by this result. Eligibility is a property of the case's current metadata, not a judgement on the person's approval."
+    },
+    "GOLD-B001-09": {
+      "candidate_id": "GOLD-B001-09",
+      "holdout_eligible": true,
+      "conditions_checked": [
+        "human_verified",
+        "every_claim_has_a_deterministic_check",
+        "critical_strings_present_in_evidence",
+        "evidence_hash_valid",
+        "no_unresolved_scope_defect"
+      ],
+      "failures": [],
+      "note": "human_verified is unaffected by this result. Eligibility is a property of the case's current metadata, not a judgement on the person's approval."
+    },
+    "GOLD-B001-10": {
+      "candidate_id": "GOLD-B001-10",
+      "holdout_eligible": true,
+      "conditions_checked": [
+        "human_verified",
+        "every_claim_has_a_deterministic_check",
+        "critical_strings_present_in_evidence",
+        "evidence_hash_valid",
+        "no_unresolved_scope_defect"
+      ],
+      "failures": [],
+      "note": "human_verified is unaffected by this result. Eligibility is a property of the case's current metadata, not a judgement on the person's approval."
+    },
+    "GOLD-B001-11": {
+      "candidate_id": "GOLD-B001-11",
+      "holdout_eligible": true,
+      "conditions_checked": [
+        "human_verified",
+        "every_claim_has_a_deterministic_check",
+        "critical_strings_present_in_evidence",
+        "evidence_hash_valid",
+        "no_unresolved_scope_defect"
+      ],
+      "failures": [],
+      "note": "human_verified is unaffected by this result. Eligibility is a property of the case's current metadata, not a judgement on the person's approval."
+    },
+    "GOLD-B001-12": {
+      "candidate_id": "GOLD-B001-12",
+      "holdout_eligible": true,
+      "conditions_checked": [
+        "human_verified",
+        "every_claim_has_a_deterministic_check",
+        "critical_strings_present_in_evidence",
+        "evidence_hash_valid",
+        "no_unresolved_scope_defect"
+      ],
+      "failures": [],
+      "note": "human_verified is unaffected by this result. Eligibility is a property of the case's current metadata, not a judgement on the person's approval."
+    },
+    "GOLD-B001-18": {
+      "candidate_id": "GOLD-B001-18",
+      "holdout_eligible": true,
+      "conditions_checked": [
+        "human_verified",
+        "every_claim_has_a_deterministic_check",
+        "critical_strings_present_in_evidence",
+        "evidence_hash_valid",
+        "no_unresolved_scope_defect"
+      ],
+      "failures": [],
+      "note": "human_verified is unaffected by this result. Eligibility is a property of the case's current metadata, not a judgement on the person's approval."
+    },
+    "GOLD-B001-03": {
+      "candidate_id": "GOLD-B001-03",
+      "holdout_eligible": true,
+      "conditions_checked": [
+        "human_verified",
+        "every_claim_has_a_deterministic_check",
+        "critical_strings_present_in_evidence",
+        "evidence_hash_valid",
+        "no_unresolved_scope_defect"
+      ],
+      "failures": [],
+      "note": "human_verified is unaffected by this result. Eligibility is a property of the case's current metadata, not a judgement on the person's approval."
+    },
+    "GOLD-B001-04": {
+      "candidate_id": "GOLD-B001-04",
+      "holdout_eligible": true,
+      "conditions_checked": [
+        "human_verified",
+        "every_claim_has_a_deterministic_check",
+        "critical_strings_present_in_evidence",
+        "evidence_hash_valid",
+        "no_unresolved_scope_defect"
+      ],
+      "failures": [],
+      "note": "human_verified is unaffected by this result. Eligibility is a property of the case's current metadata, not a judgement on the person's approval."
+    },
+    "GOLD-B001-14": {
+      "candidate_id": "GOLD-B001-14",
+      "holdout_eligible": true,
+      "conditions_checked": [
+        "human_verified",
+        "every_claim_has_a_deterministic_check",
+        "critical_strings_present_in_evidence",
+        "evidence_hash_valid",
+        "no_unresolved_scope_defect"
+      ],
+      "failures": [],
+      "note": "human_verified is unaffected by this result. Eligibility is a property of the case's current metadata, not a judgement on the person's approval."
+    }
+  },
+  "human_verified_is_unchanged": "Every case here was human_verified in v1 and still is. Eligibility is a separate state; gaining it required no new approval and losing it would not revoke one.",
+  "retrieval_was_not_run": true,
+  "case_records": [
+    {
+      "proposed_question": "What is the default value of enable_zoom?",
+      "proposed_answer": "false",
+      "proposed_atomic_claims": [
+        "enable_zoom defaults to false"
+      ],
+      "char_start": 33781,
+      "char_end": 33949,
+      "version_id": "ver_d9ba3ab0d872dd86047c7ed6dc783235",
+      "evidence_hash": "cbc58014a907362462bde388e06308d8bc705e9be69cc30f09d79b54e55224f4",
+      "evidence_text": "| `enable_zoom`       | No       | Enable zoom action (`computer_20251124` only). Set to `true` to allow Claude to zoom into specific screen regions. Default: `false` |",
+      "candidate_id": "GOLD-B001-01",
+      "verification_status": "human_verified",
+      "human_verified": true,
+      "human_reviewer": "project_owner",
+      "human_reviewed_at": "2026-08-20T06:19:23Z",
+      "section_path": [
+        "How to implement computer use",
+        "Tool parameters"
+      ],
+      "provider": "anthropic",
+      "document_title": "Computer use tool",
+      "source_url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool",
+      "captured_at": "2026-08-17 04:46:19+00:00",
+      "proposed_category": "exact_lookup",
+      "critical_strings": [
+        "`enable_zoom`",
+        "Default: `false`"
+      ],
+      "v2_change": "validation metadata only: critical claim strings added",
+      "v1_evidence_hash": "cbc58014a907362462bde388e06308d8bc705e9be69cc30f09d79b54e55224f4"
+    },
+    {
+      "proposed_question": "What is the default value of reset_tool_choice?",
+      "proposed_answer": "True",
+      "proposed_atomic_claims": [
+        "reset_tool_choice defaults to True"
+      ],
+      "char_start": 3571,
+      "char_end": 3725,
+      "version_id": "ver_35cac5e98c151a17f941a6142d74709f",
+      "evidence_hash": "ccfe6f93ac677faab71307cd0a7e18fa3d0582a38221742e553284c8aaad21c4",
+      "evidence_text": "| `reset_tool_choice` | no | Reset `tool_choice` after a tool call (default: `True`) to avoid tool-use loops. See [Forcing tool use](#forcing-tool-use). |",
+      "candidate_id": "GOLD-B001-02",
+      "verification_status": "human_verified",
+      "human_verified": true,
+      "human_reviewer": "project_owner",
+      "human_reviewed_at": "2026-08-20T03:06:55Z",
+      "section_path": [
+        "Agents",
+        "Basic configuration"
+      ],
+      "provider": "openai",
+      "document_title": "Agents",
+      "source_url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/agents.md",
+      "captured_at": "2026-08-17 04:46:19+00:00",
+      "proposed_category": "exact_lookup",
+      "critical_strings": [
+        "`reset_tool_choice`",
+        "default: `True`"
+      ],
+      "v2_change": "validation metadata only: critical claim strings added",
+      "v1_evidence_hash": "ccfe6f93ac677faab71307cd0a7e18fa3d0582a38221742e553284c8aaad21c4"
+    },
+    {
+      "proposed_question": "What does the Claude API return if the input alone already exceeds the model's context window?",
+      "proposed_answer": "A 400 `invalid_request_error` with the message `prompt is too long`.",
+      "proposed_atomic_claims": [
+        "If the input alone exceeds the model's context window, the API returns a 400 `invalid_request_error`.",
+        "The error message is `prompt is too long`."
+      ],
+      "char_start": 14083,
+      "char_end": 14230,
+      "version_id": "ver_b42814c2d273210095c8e5844612933e",
+      "evidence_hash": "3e6d9ef631e77b3c4fbfc9c3ab3a510c4bbe9e7e791b3248915b95bfdfa82174",
+      "evidence_text": "If the input alone already exceeds the model's context window, the API returns a 400 `invalid_request_error` (\"prompt is too long\") on every model.",
+      "candidate_id": "GOLD-B001-05",
+      "verification_status": "human_verified",
+      "human_verified": true,
+      "human_reviewer": "project_owner",
+      "human_reviewed_at": "2026-08-20T03:06:55Z",
+      "section_path": [
+        "Context window overflow behavior"
+      ],
+      "provider": "anthropic",
+      "document_title": "Context windows",
+      "source_url": "https://platform.claude.com/docs/en/build-with-claude/context-windows",
+      "captured_at": "2026-08-17 04:46:19+00:00",
+      "proposed_category": "exact_lookup",
+      "critical_strings": [
+        "400",
+        "invalid_request_error",
+        "prompt is too long"
+      ],
+      "v2_change": "validation metadata only: critical claim strings added",
+      "v1_evidence_hash": "3e6d9ef631e77b3c4fbfc9c3ab3a510c4bbe9e7e791b3248915b95bfdfa82174"
+    },
+    {
+      "proposed_question": "When parsing an OpenAI webhook payload, what must the `body` parameter contain?",
+      "proposed_answer": "The raw JSON string sent from the server; it should not be parsed first.",
+      "proposed_atomic_claims": [
+        "The `body` parameter must be the raw JSON string sent from the server.",
+        "The body should not be parsed before being passed to the webhook parsing/verification method."
+      ],
+      "char_start": 14847,
+      "char_end": 14951,
+      "version_id": "ver_9247e3ce4df6f79d9cadc44e1a3bbd0c",
+      "evidence_hash": "b41d372109411e73c998b149e835500374947a5d3f2f0fa5b228609bc60fd911",
+      "evidence_text": "Note that the `body` parameter must be the raw JSON string sent from the server (do not parse it first).",
+      "candidate_id": "GOLD-B001-06",
+      "verification_status": "human_verified",
+      "human_verified": true,
+      "human_reviewer": "project_owner",
+      "human_reviewed_at": "2026-08-20T03:06:55Z",
+      "section_path": [
+        "Remove `await` for non-async usage.",
+        "Webhook Verification",
+        "Parsing webhook payloads"
+      ],
+      "provider": "openai",
+      "document_title": "OpenAI Python API library",
+      "source_url": "https://github.com/openai/openai-python/blob/10ee3f0da2ac6f93345c1204bd7bb1a2faa79ff2/README.md",
+      "captured_at": "2026-08-17 04:46:19+00:00",
+      "proposed_category": "exact_lookup",
+      "critical_strings": [
+        "`body`",
+        "raw JSON string sent from the server",
+        "do not parse it first"
+      ],
+      "v2_change": "validation metadata only: critical claim strings added",
+      "v1_evidence_hash": "b41d372109411e73c998b149e835500374947a5d3f2f0fa5b228609bc60fd911",
+      "human_review_outcome": "The mechanical audit flagged 11% content-word overlap. Human inspection found the span states both halves outright — the `body` must be the raw JSON string sent from the server, and it must not be parsed first. Lexical overlap does not overrule explicit source meaning. Evidence retained; critical strings added."
+    },
+    {
+      "proposed_question": "What happens if a mid-conversation tool change references a tool name that was not declared in the request's `tools` array?",
+      "proposed_answer": "The request returns a 400 error.",
+      "proposed_atomic_claims": [
+        "Referencing a tool name that is not declared in `tools` returns a 400 error."
+      ],
+      "char_start": 4256,
+      "char_end": 4327,
+      "version_id": "ver_77fbe47b4b7db32ee46b972b2f611d0e",
+      "evidence_hash": "470054e785b3210c2ff7a0ffe28915e4d7bcd5d850a1c76c80efc11b47e35553",
+      "evidence_text": "Referencing a name that is not declared in `tools` returns a 400 error.",
+      "candidate_id": "GOLD-B001-07",
+      "verification_status": "human_verified",
+      "human_verified": true,
+      "human_reviewer": "project_owner",
+      "human_reviewed_at": "2026-08-20T03:06:55Z",
+      "section_path": [
+        "Mid-conversation tool changes"
+      ],
+      "provider": "anthropic",
+      "document_title": "Mid-conversation system messages and tool changes",
+      "source_url": "https://platform.claude.com/docs/en/build-with-claude/mid-conversation-system-messages",
+      "captured_at": "2026-08-17 04:46:19+00:00",
+      "proposed_category": "exact_lookup",
+      "critical_strings": [
+        "not declared in `tools`",
+        "returns a 400 error"
+      ],
+      "v2_change": "validation metadata only: critical claim strings added",
+      "v1_evidence_hash": "470054e785b3210c2ff7a0ffe28915e4d7bcd5d850a1c76c80efc11b47e35553"
+    },
+    {
+      "proposed_question": "By default, what kind of SDK release is used when `engines.node`, emitted JavaScript syntax, or required runtime APIs are raised?",
+      "proposed_answer": "An SDK major release.",
+      "proposed_atomic_claims": [
+        "Raising `engines.node`, emitted JavaScript syntax, or required runtime APIs ships in an SDK major release by default."
+      ],
+      "char_start": 1250,
+      "char_end": 1371,
+      "version_id": "ver_0699973a131d91f270d69f81ba7a0da0",
+      "evidence_hash": "25c4c111c21182582529b9659bd54deaf21ca4882b6e033468870bb7031e4b3f",
+      "evidence_text": "- Raising `engines.node`, emitted JavaScript syntax, or required runtime APIs\n  ships in an SDK major release by default.",
+      "candidate_id": "GOLD-B001-08",
+      "verification_status": "human_verified",
+      "human_verified": true,
+      "human_reviewer": "project_owner",
+      "human_reviewed_at": "2026-08-20T03:06:55Z",
+      "section_path": [
+        "Node.js Version Support Policy",
+        "Release and packaging rules"
+      ],
+      "provider": "openai",
+      "document_title": "Node.js Version Support Policy",
+      "source_url": "https://github.com/openai/openai-node/blob/cc7dbfa9b9dd6fe0ff72141e9c0c3d82b18ba9aa/NODE_VERSION_POLICY.md",
+      "captured_at": "2026-08-17 04:46:19+00:00",
+      "proposed_category": "exact_lookup",
+      "critical_strings": [
+        "`engines.node`",
+        "ships in an SDK major release by default"
+      ],
+      "v2_change": "validation metadata only: critical claim strings added",
+      "v1_evidence_hash": "25c4c111c21182582529b9659bd54deaf21ca4882b6e033468870bb7031e4b3f"
+    },
+    {
+      "proposed_question": "When does the Anthropic SDK tool runner stop looping?",
+      "proposed_answer": "When Claude returns a message without a tool use, or when the runner reaches `max_iterations` if that limit was set.",
+      "proposed_atomic_claims": [
+        "The tool runner stops when Claude returns a message without a tool use.",
+        "If `max_iterations` is set, the tool runner also stops when that limit is reached."
+      ],
+      "char_start": 19885,
+      "char_end": 20004,
+      "version_id": "ver_96d5aba3c4e7771cabd4f3d4f5a3fff1",
+      "evidence_hash": "a385ffd27c124f8949711aae7c8da7943c4bcff1ba7eff01fad64583c21ff3aa",
+      "evidence_text": "The runner loops until Claude returns a message without a tool use, or until it reaches `max_iterations` if you set it.",
+      "candidate_id": "GOLD-B001-09",
+      "verification_status": "human_verified",
+      "human_verified": true,
+      "human_reviewer": "project_owner",
+      "human_reviewed_at": "2026-08-20T03:06:55Z",
+      "section_path": [
+        "Iterating over the tool runner"
+      ],
+      "provider": "anthropic",
+      "document_title": "Tool runner (SDK)",
+      "source_url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-runner",
+      "captured_at": "2026-08-17 04:46:19+00:00",
+      "proposed_category": "exact_lookup",
+      "critical_strings": [
+        "message without a tool use",
+        "`max_iterations`"
+      ],
+      "v2_change": "validation metadata only: critical claim strings added",
+      "v1_evidence_hash": "a385ffd27c124f8949711aae7c8da7943c4bcff1ba7eff01fad64583c21ff3aa",
+      "human_review_outcome": "The mechanical audit flagged 50% content-word overlap on the `max_iterations` claim. The span states both stopping conditions in one sentence. Evidence retained; critical strings added for each condition."
+    },
+    {
+      "proposed_question": "Why should you avoid filtering `response.output` down to only message items when manually carrying Responses API conversation history forward?",
+      "proposed_answer": "Because doing so can drop required reasoning or tool-call items and cause the next request to fail.",
+      "proposed_atomic_claims": [
+        "Filtering `response.output` to message items can remove required reasoning or tool-call items.",
+        "Dropping those required items can cause the next request to fail."
+      ],
+      "char_start": 1631,
+      "char_end": 1753,
+      "version_id": "ver_f30a6447e4df2ab76e4c1475f353109c",
+      "evidence_hash": "c82bd812c3918f280af16d6e4cd487c659850756582a9a0b3237df027132d08a",
+      "evidence_text": "Filtering\n`response.output` to messages can drop required reasoning or tool-call items and cause the next request to\nfail.",
+      "candidate_id": "GOLD-B001-10",
+      "verification_status": "human_verified",
+      "human_verified": true,
+      "human_reviewer": "project_owner",
+      "human_reviewed_at": "2026-08-20T03:06:55Z",
+      "section_path": [
+        "OpenAI TypeScript and JavaScript API Library",
+        "Usage",
+        "Multi-turn conversations"
+      ],
+      "provider": "openai",
+      "document_title": "OpenAI TypeScript and JavaScript API Library",
+      "source_url": "https://github.com/openai/openai-node/blob/cc7dbfa9b9dd6fe0ff72141e9c0c3d82b18ba9aa/README.md",
+      "captured_at": "2026-08-17 04:46:19+00:00",
+      "proposed_category": "exact_lookup",
+      "critical_strings": [
+        "`response.output`",
+        "drop required reasoning or tool-call items"
+      ],
+      "v2_change": "validation metadata only: critical claim strings added",
+      "v1_evidence_hash": "c82bd812c3918f280af16d6e4cd487c659850756582a9a0b3237df027132d08a"
+    },
+    {
+      "proposed_question": "How should a tool-using Claude agent handle an error raised by a tool?",
+      "proposed_answer": "Send the error message back with `is_error: true` instead of crashing.",
+      "proposed_atomic_claims": [
+        "When a tool raises an error, the tool result should return the error message with `is_error: true` rather than crashing."
+      ],
+      "char_start": 103289,
+      "char_end": 103388,
+      "version_id": "ver_fc127d394b32ba1f136356d746c083e5",
+      "evidence_hash": "6e8940663d1635baabd1a001161b3c2a9573269e92d19d9bcde089fa9c1297e4",
+      "evidence_text": "When a tool raises an error, send the error message back with `is_error: true` instead of crashing.",
+      "candidate_id": "GOLD-B001-11",
+      "verification_status": "human_verified",
+      "human_verified": true,
+      "human_reviewer": "project_owner",
+      "human_reviewed_at": "2026-08-20T03:06:55Z",
+      "section_path": [
+        "Ring 4: Error handling"
+      ],
+      "provider": "anthropic",
+      "document_title": "Tutorial: Build a tool-using agent",
+      "source_url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/build-a-tool-using-agent",
+      "captured_at": "2026-08-17 04:46:19+00:00",
+      "proposed_category": "exact_lookup",
+      "critical_strings": [
+        "When a tool raises an error",
+        "`is_error: true`",
+        "instead of crashing"
+      ],
+      "v2_change": "validation metadata only: critical claim strings added",
+      "v1_evidence_hash": "6e8940663d1635baabd1a001161b3c2a9573269e92d19d9bcde089fa9c1297e4"
+    },
+    {
+      "proposed_question": "What does the `nest_handoff_history` option on `handoff()` override?",
+      "proposed_answer": "It is an optional per-handoff override for the RunConfig-level `nest_handoff_history` setting.",
+      "proposed_atomic_claims": [
+        "`nest_handoff_history` is an optional per-handoff override for the RunConfig-level `nest_handoff_history` setting."
+      ],
+      "char_start": 2603,
+      "char_end": 2846,
+      "version_id": "ver_1c77f33b04ffffa285ea7e61c2a89653",
+      "evidence_hash": "76aaa903928075a23e3098296adf5c444417ae8138a94312e0446d4c4d0ffb4d",
+      "evidence_text": "This can be a boolean or a function that returns a boolean, allowing you to dynamically enable or disable the handoff at runtime.\n-   `nest_handoff_history`: Optional per-handoff override for the RunConfig-level `nest_handoff_history` setting.",
+      "candidate_id": "GOLD-B001-12",
+      "verification_status": "human_verified",
+      "human_verified": true,
+      "human_reviewer": "project_owner",
+      "human_reviewed_at": "2026-08-20T03:06:55Z",
+      "section_path": [
+        "(1)!",
+        "Customizing handoffs via the `handoff()` function"
+      ],
+      "provider": "openai",
+      "document_title": "Handoffs",
+      "source_url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/handoffs.md",
+      "captured_at": "2026-08-17 04:46:19+00:00",
+      "proposed_category": "exact_lookup",
+      "critical_strings": [
+        "`nest_handoff_history`",
+        "Optional per-handoff override for the RunConfig-level"
+      ],
+      "v2_change": "validation metadata only: critical claim strings added",
+      "v1_evidence_hash": "76aaa903928075a23e3098296adf5c444417ae8138a94312e0446d4c4d0ffb4d"
+    },
+    {
+      "proposed_question": "When tool search discovers a deferred tool and returns a `tool_reference`, where is the tool's full definition expanded?",
+      "proposed_answer": "Inline at that point in the conversation body, not in the prompt prefix.",
+      "proposed_atomic_claims": [
+        "When a deferred tool is discovered and returned as a `tool_reference`, its full definition is expanded inline in the conversation body.",
+        "The full definition is not expanded in the prompt prefix."
+      ],
+      "char_start": 11593,
+      "char_end": 11779,
+      "version_id": "ver_5f5df502fc725ffcca9d893fef90fe3f",
+      "evidence_hash": "d9166324157cd373bbe32fa4768e5cfab2417678b1c6341677f4d917df4ead2a",
+      "evidence_text": "When tool search discovers a deferred tool and returns a `tool_reference` for it, the tool's full definition is expanded inline at that point in the conversation body, not in the prefix.",
+      "candidate_id": "GOLD-B001-18",
+      "verification_status": "human_verified",
+      "human_verified": true,
+      "human_reviewer": "project_owner",
+      "human_reviewed_at": "2026-08-20T03:06:55Z",
+      "section_path": [
+        "Tool definition properties",
+        "`defer_loading` and prompt caching"
+      ],
+      "provider": "anthropic",
+      "document_title": "Tool reference",
+      "source_url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-reference",
+      "captured_at": "2026-08-17 04:46:19+00:00",
+      "proposed_category": "exact_lookup",
+      "critical_strings": [
+        "`tool_reference`",
+        "expanded inline at that point in the conversation body",
+        "not in the prefix"
+      ],
+      "v2_change": "validation metadata only: critical claim strings added",
+      "v1_evidence_hash": "d9166324157cd373bbe32fa4768e5cfab2417678b1c6341677f4d917df4ead2a"
+    },
+    {
+      "proposed_question": "For `claude-fable-5` and `claude-mythos-5`, is a `thinking` configuration required?",
+      "proposed_answer": "No. Adaptive thinking is always on for those models, so no `thinking` configuration is required.",
+      "proposed_atomic_claims": [
+        "`claude-fable-5` and `claude-mythos-5` share a baseline setting of adaptive thinking, which is always on.",
+        "No `thinking` configuration is required for `claude-fable-5` and `claude-mythos-5`."
+      ],
+      "char_start": 2223,
+      "char_end": 2519,
+      "version_id": "ver_a7bda3595f2c124605c3228464d4ee52",
+      "evidence_hash": "54f4b6a0802f04ab207e720c571b5f4b342a2e9a4db858371a17da4ff3dc5665",
+      "evidence_text": "The baseline settings shared by `claude-fable-5` and `claude-mythos-5`:\n\n* **Thinking:** [Adaptive thinking](https://platform.claude.com/docs/en/build-with-claude/thinking) is always on. The model determines when and how much to think on each request, and no `thinking` configuration is required.",
+      "candidate_id": "GOLD-B001-03",
+      "verification_status": "human_verified",
+      "human_verified": true,
+      "human_reviewer": "project_owner",
+      "human_reviewed_at": "2026-08-20T03:43:09Z",
+      "section_path": [
+        "Migrating to Claude Mythos 5 and Claude Fable 5"
+      ],
+      "provider": "anthropic",
+      "document_title": "Migration guide",
+      "source_url": "https://platform.claude.com/docs/en/about-claude/models/migration-guide",
+      "captured_at": "2026-08-17 04:46:19+00:00",
+      "proposed_category": "exact_lookup",
+      "critical_strings": [
+        "claude-fable-5",
+        "claude-mythos-5",
+        "is always on",
+        "no `thinking` configuration is required"
+      ],
+      "v2_change": "carried forward from v1 unchanged; already claim-checkable",
+      "v1_evidence_hash": "54f4b6a0802f04ab207e720c571b5f4b342a2e9a4db858371a17da4ff3dc5665"
+    },
+    {
+      "proposed_question": "What happens when an input guardrail's `.tripwire_triggered` value is true?",
+      "proposed_answer": "An `InputGuardrailTripwireTriggered` exception is raised.",
+      "proposed_atomic_claims": [
+        "If an input guardrail's `.tripwire_triggered` value is true, an `InputGuardrailTripwireTriggered` exception is raised."
+      ],
+      "char_start": 1496,
+      "char_end": 2119,
+      "version_id": "ver_f22fbd5c504fa28a4e70440337e4a495",
+      "evidence_hash": "f54443978632400969965418b871831dcfe67fc173b41826c857de06bbed20f8",
+      "evidence_text": "Input guardrails run in 3 steps:\n\n1. First, the guardrail receives the same input passed to the agent.\n2. Next, the guardrail function runs to produce a [`GuardrailFunctionOutput`][agents.guardrail.GuardrailFunctionOutput], which is then wrapped in an [`InputGuardrailResult`][agents.guardrail.InputGuardrailResult]\n3. Finally, we check if [`.tripwire_triggered`][agents.guardrail.GuardrailFunctionOutput.tripwire_triggered] is true. If true, an [`InputGuardrailTripwireTriggered`][agents.exceptions.InputGuardrailTripwireTriggered] exception is raised, so you can appropriately respond to the user or handle the exception.",
+      "candidate_id": "GOLD-B001-04",
+      "verification_status": "human_verified",
+      "human_verified": true,
+      "human_reviewer": "project_owner",
+      "human_reviewed_at": "2026-08-20T03:43:09Z",
+      "section_path": [
+        "Guardrails",
+        "Input guardrails"
+      ],
+      "provider": "openai",
+      "document_title": "Guardrails",
+      "source_url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/guardrails.md",
+      "captured_at": "2026-08-17 04:46:19+00:00",
+      "proposed_category": "exact_lookup",
+      "critical_strings": [
+        "input guardrails",
+        ".tripwire_triggered",
+        "inputguardrailtripwiretriggered",
+        "exception is raised"
+      ],
+      "v2_change": "carried forward from v1 unchanged; already claim-checkable",
+      "v1_evidence_hash": "f54443978632400969965418b871831dcfe67fc173b41826c857de06bbed20f8"
+    },
+    {
+      "proposed_question": "What happens if a request sends a prefilled last assistant message to Claude 4.6 and later models or Claude Mythos Preview?",
+      "proposed_answer": "The request returns a 400 `invalid_request_error`.",
+      "proposed_atomic_claims": [
+        "Claude 4.6 and later models and Claude Mythos Preview do not support prefilling assistant messages.",
+        "Sending a request with a prefilled last assistant message to those models returns a 400 `invalid_request_error`."
+      ],
+      "char_start": 19054,
+      "char_end": 19308,
+      "version_id": "ver_0774ca0093ff4a846753577c9a4a39d5",
+      "evidence_hash": "9e8be2c9734a4b12b3b026d72710b12672592d9f394dfcc6a427bea8274c1948",
+      "evidence_text": "Claude 4.6 and later models and [Claude Mythos Preview](https://anthropic.com/glasswing) do not support prefilling assistant messages. Sending a request with a prefilled last assistant message to any of these models returns a 400 `invalid_request_error`:",
+      "candidate_id": "GOLD-B001-14",
+      "verification_status": "human_verified",
+      "human_verified": true,
+      "human_reviewer": "project_owner",
+      "human_reviewed_at": "2026-08-20T03:43:09Z",
+      "section_path": [
+        "Common validation errors",
+        "Prefill not supported"
+      ],
+      "provider": "anthropic",
+      "document_title": "Claude API errors",
+      "source_url": "https://platform.claude.com/docs/en/api/errors",
+      "captured_at": "2026-08-17 04:46:19+00:00",
+      "proposed_category": "exact_lookup",
+      "critical_strings": [
+        "claude 4.6 and later models",
+        "claude mythos preview",
+        "do not support prefilling assistant messages",
+        "400 `invalid_request_error`"
+      ],
+      "v2_change": "carried forward from v1 unchanged; already claim-checkable",
+      "v1_evidence_hash": "9e8be2c9734a4b12b3b026d72710b12672592d9f394dfcc6a427bea8274c1948"
+    }
+  ]
+}

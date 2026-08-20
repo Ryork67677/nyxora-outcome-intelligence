@@ -27,6 +27,7 @@ from datetime import UTC, datetime
 from pathlib import Path
 
 from rag_v1.db import connect
+from rag_v1.gold.normalisation import contains_claim_string
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from repair_evidence_boundary import check_superset, locate
@@ -87,8 +88,9 @@ def apply_text(record: dict, repair: dict, reviewer: str, now: str) -> int:
 
 
 def unsupported_strings(record: dict) -> list[str]:
-    span = record["evidence_text"].lower()
-    return [s for s in record.get("critical_strings", []) if s.lower() not in span]
+    span = record["evidence_text"]
+    return [s for s in record.get("critical_strings", [])
+            if not contains_claim_string(span, s)]
 
 
 def main() -> int:

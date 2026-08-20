@@ -1,0 +1,99 @@
+"""Holdout eligibility — a separate state from human approval, and a stricter one.
+
+The batch 001 claim audit exposed the gap this module closes. ``human_verified`` means a
+person read the case and said yes. It does **not** mean a machine can check the case
+later: 13 of 16 approved batch-001 cases carried no literal critical string, so the
+claim-in-evidence gate passed over them without testing anything, and a holdout built
+from them would have been gated on nothing.
+
+The two states are deliberately independent:
+
+``human_verified``
+    A person approved this case. Historical, permanent, and never revoked by anything
+    here — an approval that was honestly given stays given.
+
+``holdout_eligible``
+    Everything in ``HOLDOUT_CONDITIONS`` holds *right now*. Metadata can make a case
+    eligible without re-approving it, and a corpus change can make it ineligible without
+    calling the approval wrong.
+
+Only ``holdout_eligible`` cases may enter a frozen holdout. Nothing here modifies a case
+or downgrades an approval; it answers a question.
+"""
+
+from __future__ import annotations
+
+import hashlib
+
+from rag_v1.gold.normalisation import contains_claim_string
+
+#: The conditions, in the order they are reported. Each maps to one check below.
+HOLDOUT_CONDITIONS = (
+    "human_verified",
+    "every_claim_has_a_deterministic_check",
+    "critical_strings_present_in_evidence",
+    "evidence_hash_valid",
+    "no_unresolved_scope_defect",
+)
+
+
+def evaluate(case: dict) -> dict:
+    """Return the eligibility verdict for one case, with a reason per failed condition."""
+    failures: list[dict] = []
+
+    if case.get("verification_status") != "human_verified" or not case.get("human_verified"):
+        failures.append({
+            "condition": "human_verified",
+            "detail": (f"status is {case.get('verification_status')!r}; only a case a "
+                       "person approved may enter a holdout"),
+        })
+
+    claims = case.get("proposed_atomic_claims") or []
+    strings = case.get("critical_strings") or []
+    if not claims:
+        failures.append({"condition": "every_claim_has_a_deterministic_check",
+                         "detail": "the case asserts no atomic claims"})
+    elif not strings:
+        failures.append({
+            "condition": "every_claim_has_a_deterministic_check",
+            "detail": ("no critical strings, so the claim-in-evidence gate passes this "
+                       "case without checking anything about its claims"),
+        })
+
+    evidence = case.get("evidence_text", "")
+    missing = [s for s in strings if not contains_claim_string(evidence, s)]
+    if missing:
+        failures.append({
+            "condition": "critical_strings_present_in_evidence",
+            "detail": f"not inside the anchored span: {missing}",
+        })
+
+    recorded = case.get("evidence_hash")
+    actual = hashlib.sha256(evidence.encode("utf-8")).hexdigest() if evidence else None
+    if not recorded or recorded != actual:
+        failures.append({
+            "condition": "evidence_hash_valid",
+            "detail": "the stored hash does not match the stored evidence text",
+        })
+
+    scope = case.get("unresolved_scope_defect")
+    if scope:
+        failures.append({"condition": "no_unresolved_scope_defect", "detail": scope})
+
+    return {
+        "candidate_id": case.get("candidate_id"),
+        "holdout_eligible": not failures,
+        "conditions_checked": list(HOLDOUT_CONDITIONS),
+        "failures": failures,
+        "note": (
+            "human_verified is unaffected by this result. Eligibility is a property of "
+            "the case's current metadata, not a judgement on the person's approval."
+        ),
+    }
+
+
+def eligible(cases: list[dict]) -> list[dict]:
+    return [c for c in cases if evaluate(c)["holdout_eligible"]]
+
+
+__all__ = ["HOLDOUT_CONDITIONS", "eligible", "evaluate"]

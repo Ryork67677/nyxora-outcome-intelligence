@@ -35,7 +35,7 @@
       "candidate_id": "GOLD-B002-02",
       "verdict": "FIX_REQUIRED",
       "defect_class": "MINER_QUESTION_HEADER_DEPENDENCY",
-      "defect_note": "MINER_QUESTION_HEADER_DEPENDENCY: the anchored row is sound evidence, but the miner's exported question asked about a column whose meaning (Yes/No, string, integer) lives in a table header outside the row. The question is re-authored around a fact stated inside the row itself; the anchor does not move. READER NOTE: the span writes the scheme as `https\\://` — a markdown escape of the colon. The claim writes `https://`. Same fact, different literal form, so the critical string checked by the validator is `Must start with https` rather than the full scheme.",
+      "defect_note": "MINER_QUESTION_HEADER_DEPENDENCY: the anchored row is sound evidence, but the miner's exported question asked about a column whose meaning (Yes/No, string, integer) lives in a table header outside the row. The question is re-authored around a fact stated inside the row itself; the anchor does not move. READER NOTE: the span writes the scheme as `https\\://` — a markdown escape of the colon. The claim writes `https://`. Same fact, different literal form, so the critical string checked by the validator is `Must start with https` rather than the full scheme. The scheme is now asserted directly: `Must start with https://` is checked against the source's `https\\://` through the documented Markdown-escape normalisation, so the case enforces the fact rather than working around it.",
       "question": "What URL scheme must the MCP connector's `url` value start with?",
       "answer": "`https://`",
       "atomic_claims": [
@@ -44,7 +44,7 @@
       "critical_strings": [
         "url",
         "The URL of the MCP server",
-        "Must start with https"
+        "Must start with https://"
       ]
     },
     {

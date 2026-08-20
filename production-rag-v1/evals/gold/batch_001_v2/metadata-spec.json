@@ -1,0 +1,67 @@
+{
+  "overlay": "batch_001_v2",
+  "layers_on": "evals/review/gold_review_batch_001.json",
+  "kind": "validation_metadata_only",
+  "rule": "This overlay adds critical claim strings and nothing else. Question, answer, atomic claims, evidence span, source version and evidence hash are copied from the closed v1 case unchanged, and the builder refuses to write if any of them differ.",
+  "critical_strings": {
+    "GOLD-B001-01": [
+      "`enable_zoom`",
+      "Default: `false`"
+    ],
+    "GOLD-B001-02": [
+      "`reset_tool_choice`",
+      "default: `True`"
+    ],
+    "GOLD-B001-05": [
+      "400",
+      "invalid_request_error",
+      "prompt is too long"
+    ],
+    "GOLD-B001-06": [
+      "`body`",
+      "raw JSON string sent from the server",
+      "do not parse it first"
+    ],
+    "GOLD-B001-07": [
+      "not declared in `tools`",
+      "returns a 400 error"
+    ],
+    "GOLD-B001-08": [
+      "`engines.node`",
+      "ships in an SDK major release by default"
+    ],
+    "GOLD-B001-09": [
+      "message without a tool use",
+      "`max_iterations`"
+    ],
+    "GOLD-B001-10": [
+      "`response.output`",
+      "drop required reasoning or tool-call items"
+    ],
+    "GOLD-B001-11": [
+      "When a tool raises an error",
+      "`is_error: true`",
+      "instead of crashing"
+    ],
+    "GOLD-B001-12": [
+      "`nest_handoff_history`",
+      "Optional per-handoff override for the RunConfig-level"
+    ],
+    "GOLD-B001-18": [
+      "`tool_reference`",
+      "expanded inline at that point in the conversation body",
+      "not in the prefix"
+    ]
+  },
+  "human_review_outcomes": {
+    "GOLD-B001-06": "The mechanical audit flagged 11% content-word overlap. Human inspection found the span states both halves outright — the `body` must be the raw JSON string sent from the server, and it must not be parsed first. Lexical overlap does not overrule explicit source meaning. Evidence retained; critical strings added.",
+    "GOLD-B001-09": "The mechanical audit flagged 50% content-word overlap on the `max_iterations` claim. The span states both stopping conditions in one sentence. Evidence retained; critical strings added for each condition."
+  },
+  "not_included": {
+    "GOLD-B001-13": "genuine scope defect — proposed repair in gold_batch_001_v2_scope_repairs",
+    "GOLD-B001-17": "genuine scope defect — proposed repair in gold_batch_001_v2_scope_repairs",
+    "GOLD-B001-03": "already carries critical strings from the boundary repair",
+    "GOLD-B001-04": "already carries critical strings from the boundary repair",
+    "GOLD-B001-14": "already carries critical strings from the boundary repair"
+  }
+}
