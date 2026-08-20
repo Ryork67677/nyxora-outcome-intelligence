@@ -1,0 +1,80 @@
+{
+  "generated_at": "2026-08-20T18:29:38Z",
+  "batches": [
+    {
+      "batch": 1,
+      "closed_record": "evals/review/gold_review_batch_001.json",
+      "eligibility_source": "evals/gold/batch_001_v2/overlay.json",
+      "closure_sha256": "d6f92e8d1a7e77eae760d8a866b0353603aeefaec3c2309817e64f19a3a39f97",
+      "candidates": 18,
+      "human_verified": 16,
+      "human_rejected": 2,
+      "holdout_eligible": 16,
+      "holdout_eligible_ids": [
+        "GOLD-B001-01",
+        "GOLD-B001-02",
+        "GOLD-B001-03",
+        "GOLD-B001-04",
+        "GOLD-B001-05",
+        "GOLD-B001-06",
+        "GOLD-B001-07",
+        "GOLD-B001-08",
+        "GOLD-B001-09",
+        "GOLD-B001-10",
+        "GOLD-B001-11",
+        "GOLD-B001-12",
+        "GOLD-B001-13",
+        "GOLD-B001-14",
+        "GOLD-B001-17",
+        "GOLD-B001-18"
+      ],
+      "not_eligible": [],
+      "overlay_version": "batch_001_v2"
+    },
+    {
+      "batch": 2,
+      "closed_record": "evals/review/gold_review_batch_002.json",
+      "eligibility_source": "evals/review/gold_review_batch_002.json",
+      "closure_sha256": "69364f672e233fb32685a7a0fe283cfaec7c864816e9a3db7759d9bb7a132965",
+      "candidates": 18,
+      "human_verified": 17,
+      "human_rejected": 1,
+      "holdout_eligible": 17,
+      "holdout_eligible_ids": [
+        "GOLD-B002-01",
+        "GOLD-B002-02",
+        "GOLD-B002-03",
+        "GOLD-B002-04",
+        "GOLD-B002-05",
+        "GOLD-B002-06",
+        "GOLD-B002-07",
+        "GOLD-B002-08",
+        "GOLD-B002-09",
+        "GOLD-B002-10",
+        "GOLD-B002-11",
+        "GOLD-B002-13",
+        "GOLD-B002-14",
+        "GOLD-B002-15",
+        "GOLD-B002-16",
+        "GOLD-B002-17",
+        "GOLD-B002-18"
+      ],
+      "not_eligible": [],
+      "overlay_version": null
+    }
+  ],
+  "combined": {
+    "candidates": 36,
+    "human_verified": 33,
+    "human_rejected": 3,
+    "holdout_eligible": 33
+  },
+  "target": {
+    "validation": "30–40",
+    "holdout": "70–100"
+  },
+  "holdout_frozen": false,
+  "reason_not_frozen": "33 eligible cases cannot support both a 30–40 validation split and a 70–100 holdout.",
+  "retrieval_was_not_run": true,
+  "systems_executed": []
+}

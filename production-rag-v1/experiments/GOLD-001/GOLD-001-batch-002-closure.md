@@ -1,6 +1,6 @@
 # GOLD-001 — batch 002 closure
 
-**Closed 2026-08-20T08:01:40Z by project_owner.** Every candidate reached an explicit human decision. Nothing is outstanding.
+**Closed 2026-08-20T18:27:35Z by project_owner.** Every candidate reached an explicit human decision. Nothing is outstanding.
 
 | | |
 | --- | --- |
@@ -60,7 +60,7 @@ The closure hash covers the candidate records. A closed batch is not supposed to
 
 `scripts/validate_golden.py` — **17 cases, 0 failures**, `--require-human validation`.
 
-**Caveat.** The claim-in-evidence check only fires on claims marked critical. Only the three repaired cases carry literal critical strings, so for the other 13 this pass says nothing about claim support. That gap must be closed before any of these enters a frozen holdout.
+**Caveat.** All 17 verified cases carry literal critical strings, so the claim-in-evidence check ran on every one of them. The validator's pass covers claim support, not only structure.
 
 ## Retrieval
 

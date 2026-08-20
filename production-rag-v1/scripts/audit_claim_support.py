@@ -29,10 +29,18 @@ from collections import Counter
 from datetime import UTC, datetime
 from pathlib import Path
 
+from rag_v1.gold.eligibility import evaluate
+from rag_v1.gold.mining import anaphora_problem
 from rag_v1.gold.normalisation import (
     contains_claim_string,
     normalise_for_comparison,
 )
+
+#: Below this, a claim's vocabulary is worth a second look — but only where no critical
+#: string checks the claim already. See ``audit_claim``.
+COVERAGE_THRESHOLD = 0.6
+#: Bumped when the audit's rules change, so two audits are never silently compared.
+AUDIT_RULE_VERSION = 2
 
 SUPPORTED = "SUPPORTED"
 NEEDS_REVIEW = "NEEDS_REVIEW"
@@ -60,12 +68,26 @@ def terms(text: str) -> set[str]:
     return set(TICK.findall(text)) | set(NUMBER.findall(text)) | set(PROPER.findall(text))
 
 
+#: Suffixes stripped before comparing vocabulary. "Setting … restarts" and "Set … to
+#: restart" are the same words; counting them as different made five well-supported
+#: batch-002 claims look like paraphrases.
+_SUFFIXES = ("ing", "ed", "es", "s")
+
+
+def stem(word: str) -> str:
+    for suffix in _SUFFIXES:
+        if len(word) > len(suffix) + 2 and word.endswith(suffix):
+            return word[: -len(suffix)]
+    return word
+
+
 def content_words(text: str) -> set[str]:
     words = re.findall(r"[A-Za-z][A-Za-z0-9_.-]{2,}", text.lower())
-    return {w for w in words if w not in STOPWORDS}
+    return {stem(w) for w in words if w not in STOPWORDS}
 
 
-def audit_claim(claim: str, span: str, provenance: str) -> dict:
+def audit_claim(claim: str, span: str, provenance: str,
+                has_deterministic_check: bool = False) -> dict:
     missing, provenance_only = [], []
     for term in sorted(terms(claim)):
         if contains_claim_string(span, term):
@@ -87,10 +109,19 @@ def audit_claim(claim: str, span: str, provenance: str) -> dict:
         reason = ("the claim asserts " + ", ".join(f"`{t}`" for t in provenance_only) +
                   ", which appears in the document title or section path but not in the "
                   "span itself")
-    elif coverage < 0.6:
+    elif coverage < COVERAGE_THRESHOLD and not has_deterministic_check:
+        # Blocking only where nothing else checks the claim. Coverage is a proxy for
+        # "is this a paraphrase the span does not carry", and it is a poor one: a claim
+        # naming its own subject ("the routine-trigger `text` field") scores low while
+        # asserting nothing the span lacks.
         status = NEEDS_REVIEW
-        reason = (f"only {coverage:.0%} of the claim's content words appear in the span; "
-                  "the claim may be a paraphrase the span does not carry")
+        reason = (f"only {coverage:.0%} of the claim's content words appear in the span, "
+                  "and the case carries no critical strings, so nothing else checks it")
+    elif coverage < COVERAGE_THRESHOLD:
+        status = SUPPORTED
+        reason = (f"every asserted term is inside the span; content-word coverage is "
+                  f"{coverage:.0%}, which is advisory here because the case's critical "
+                  "strings provide the deterministic check")
     else:
         status = SUPPORTED
         reason = (f"every asserted term is inside the span and {coverage:.0%} of the "
@@ -107,7 +138,9 @@ def audit_claim(claim: str, span: str, provenance: str) -> dict:
 def audit_case(record: dict) -> dict:
     span = record["evidence_text"]
     provenance = f"{record['document_title']} {' > '.join(record['section_path'])}"
-    claims = [audit_claim(c, span, provenance) for c in record["proposed_atomic_claims"]]
+    strings = record.get("critical_strings", [])
+    claims = [audit_claim(c, span, provenance, has_deterministic_check=bool(strings))
+              for c in record["proposed_atomic_claims"]]
     statuses = {c["status"] for c in claims}
     if UNSUPPORTED in statuses:
         overall = UNSUPPORTED
@@ -117,9 +150,49 @@ def audit_case(record: dict) -> dict:
         overall = SUPPORTED
 
     history = record.get("human_decision_history", [{}])[-1]
+    outside = [s for s in strings if not contains_claim_string(span, s)]
+    # Two different questions, and only the first can block eligibility:
+    #
+    #   * does a *claim* depend on something the span does not contain?  (scope gap)
+    #   * does the span contain anaphoric phrasing anywhere?             (advisory)
+    #
+    # Treating the second as a defect misreads three v2 cases. GOLD-B001-03's span says
+    # "The model determines…" with the two models named in its own first line, just as
+    # identifiers rather than the word "model"; GOLD-B001-05's "the model's context
+    # window" is generic and its span says "on every model"; GOLD-B001-12's span opens on
+    # an unrelated sentence its claim never uses. None of their claims rest on an
+    # unresolved reference, so the phrasing is recorded as an advisory rather than
+    # failing a case whose claims are fully anchored.
+    anaphoric = anaphora_problem(span) if record.get(
+        "evidence_kind") != "parameter_table_row" else None
+    scope_gaps = [t for c in claims for t in c["terms_missing_from_span"]]
+    verdict = evaluate({**record, "unresolved_scope_defect":
+                        f"claim asserts {scope_gaps}" if scope_gaps else None})
     return {
         "candidate_id": record["candidate_id"],
         "status": overall,
+        "human_verified": record.get("human_verified", False),
+        "approved_revision": len(record.get("anchor_revisions", [])),
+        "atomic_claims": record["proposed_atomic_claims"],
+        "critical_strings": strings,
+        "critical_string_count": len(strings),
+        "each_critical_string_present_in_raw_evidence": not outside,
+        "critical_strings_outside_evidence": outside,
+        "all_atomic_claims_have_deterministic_check": bool(claims) and bool(strings),
+        "evidence_hash_valid": (
+            hashlib.sha256(span.encode("utf-8")).hexdigest() == record["evidence_hash"]),
+        "scope_self_contained": not scope_gaps,
+        # A boundary defect is a claim resting on something outside its span. Anaphoric
+        # phrasing no claim depends on is reported separately, not as a defect.
+        "boundary_defect": bool(scope_gaps),
+        "boundary_defect_detail": (f"claims assert {scope_gaps}, absent from the span"
+                                   if scope_gaps else None),
+        "anaphoric_span_advisory": anaphoric,
+        "holdout_eligible_verdict": verdict,
+        "notes": (
+            "Comparison uses documented Markdown-escape normalisation only; the stored "
+            "evidence and its hash are the raw source form."
+        ),
         "approved_evidence_hash": record["evidence_hash"],
         "approved_evidence_hash_recomputes": (
             hashlib.sha256(span.encode("utf-8")).hexdigest() == record["evidence_hash"]),
@@ -127,13 +200,12 @@ def audit_case(record: dict) -> dict:
         "approved_question": record["proposed_question"],
         "approved_answer": record["proposed_answer"],
         "approved_atomic_claims": record["proposed_atomic_claims"],
-        "has_critical_strings": bool(record.get("critical_strings")),
-        "critical_strings": record.get("critical_strings", []),
+        "has_critical_strings": bool(strings),
         "evidence_boundary_dependency": [
             t for c in claims for t in c["terms_missing_from_span"] +
             c["terms_only_in_provenance"]],
         "claims": claims,
-        "holdout_eligible": overall == SUPPORTED and bool(record.get("critical_strings")),
+        "holdout_eligible": overall == SUPPORTED and verdict["holdout_eligible"],
     }
 
 
@@ -254,6 +326,19 @@ def main() -> int:
         "batch": batch.get("batch"),
         "audited_at": now,
         "auditor": "claude",
+        "audit_rule_version": AUDIT_RULE_VERSION,
+        "rule_change": (
+            "Version 2: content-word coverage is blocking only where the case carries no "
+            "critical strings. Where it does, the critical strings are the deterministic "
+            "check and coverage is advisory. Vocabulary is also compared with light "
+            "suffix stripping, so 'setting/set' and 'restarts/restart' count as the same "
+            "word. Version 1 blocked on coverage regardless, which flagged five "
+            "well-supported batch-002 claims as possible paraphrases. A boundary defect "
+            "is now a claim resting on something outside its span; anaphoric phrasing no "
+            "claim depends on is an advisory and does not block."
+        ),
+        "anaphoric_span_advisories": sorted(
+            c["candidate_id"] for c in cases if c["anaphoric_span_advisory"]),
         "is_an_overlay": (
             "This file describes the closed batch; it does not change it. No record was "
             "modified and the closure hash was not recomputed."

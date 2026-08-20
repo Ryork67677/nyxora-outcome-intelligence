@@ -310,7 +310,27 @@ and refuses to write if the spec would change any of them — an overlay of this
 validation metadata and nothing else.
 
 A defect metadata cannot fix goes to `scripts/propose_scope_repairs.py`, which writes a
-packet and applies nothing.
+packet and applies nothing. Once the owner approves an option, the approval is recorded
+in the spec's `scope_repairs` block with the span **and its expected hash**; the builder
+refuses to write if the approved span hashes to anything else, because an approval of a
+different span is not an approval of this one. Each repaired v2 record carries its v1
+span, text, hash, claims and approval beside the new ones.
+
+## Reporting
+
+```bash
+python scripts/eligibility_status.py
+```
+
+Writes `GOLD-001-eligibility-status.{md,json}` — per batch and combined, `human_verified`
+and `holdout_eligible` reported separately, read from the records and from the overlay
+where one supersedes a closed batch.
+
+**A report may not out-claim its records.** Batch 002's closure once said "17 of 17 carry
+critical strings" and, two sections later, "only the three repaired cases carry literal
+critical strings" — the second was a fixed string written for batch 001 and emitted
+verbatim ever after. Report prose that describes the data is now derived from it, and a
+regression test asserts a closure's caveat cannot contradict its own count.
 
 ## Status vocabulary
 
@@ -336,7 +356,8 @@ out, and that is the same outcome by design: gold requires someone to have said 
 | 001 | **CLOSED** | 16 `human_verified`, 2 `human_rejected`, 88.9% acceptance. `validate_golden.py` passes on all 16 with `--require-human validation`. Closure hash `d6f92e8d1a7e77ea…`; the test suite re-checks it, so an edit after closure fails the tests. See `experiments/GOLD-001/GOLD-001-batch-001-closure.md`. |
 | 002 | generated | 18 candidates, 50% structural, 9 complete proposals. Built with the four preregistered rules and nothing else. |
 | 002 | independently reviewed | 0 rejects, all 18 FIX_REQUIRED. A new defect class found: 9 structural candidates whose miner-written question depended on table-header semantics outside the row. 2 anchor extensions (`12`, `18`). |
-| 002 | **CLOSED** | 17 `human_verified`, 1 `human_rejected` (`12`, OVERSIZED_EVIDENCE_ANCHOR — a 1,430-character anchor for one fact), 94.4% acceptance. **17 of 17 carry critical strings**, against batch 001's 3 of 16. Closure hash `69364f672e233fb3…`. |
+| 002 | **CLOSED** | 17 `human_verified`, 1 `human_rejected` (`12`, OVERSIZED_EVIDENCE_ANCHOR — a 1,430-character anchor for one fact), 94.4% acceptance. **17 of 17 carry critical strings**, against batch 001's 3 of 16. Closure hash `69364f672e233fb3…`. One erratum: the closure's caveat was a fixed string describing batch 001 and contradicted the batch's own count — see `GOLD-001-batch-002-closure-erratum.md`. |
+| 001 v2 | **CLOSED** | 16 cases, **16 `holdout_eligible`** — 11 metadata upgrades, 2 owner-approved scope repairs (`13`, `17`), 3 carried forward. v1 stays closed and unchanged at `d6f92e8d1a7e77ea…`. |
 
 ## Auditing a closed batch
 

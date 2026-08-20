@@ -50,6 +50,37 @@ DEFECT_TAXONOMY = {
 }
 
 
+def claim_check_caveat(verified: int, with_critical: int) -> str:
+    """State what the validator's pass does and does not cover, from the records.
+
+    The claim-in-evidence gate only fires on claims marked critical, so a case carrying
+    none passes it without anything being tested. Whether that matters is a fact about
+    the batch, so it is derived here rather than written down once and left to rot.
+    """
+    unchecked = verified - with_critical
+    if verified == 0:
+        return "No verified cases, so the validator's result covers nothing."
+    if unchecked == 0:
+        return (
+            f"All {verified} verified cases carry literal critical strings, so the "
+            "claim-in-evidence check ran on every one of them. The validator's pass "
+            "covers claim support, not only structure."
+        )
+    if with_critical == 0:
+        return (
+            f"None of the {verified} verified cases carry literal critical strings, so "
+            "the claim-in-evidence check passed over all of them without testing "
+            "anything. This pass says nothing about claim support, and that gap must be "
+            "closed before any of these enters a frozen holdout."
+        )
+    return (
+        f"Only {with_critical} of {verified} verified cases carry literal critical "
+        f"strings, so for the other {unchecked} the claim-in-evidence check passed "
+        "without testing anything. That gap must be closed before those cases enter a "
+        "frozen holdout."
+    )
+
+
 def candidate_digest(records: list[dict]) -> str:
     """Hash the candidates in a stable order, ignoring key ordering."""
     payload = json.dumps(sorted(records, key=lambda r: r["candidate_id"]),
@@ -158,12 +189,11 @@ def build(batch: dict, validation: dict, now: str) -> dict:
             "failures": len(validation.get("failures", [])),
             "passed": validation.get("passed"),
             "require_human": "validation",
-            "caveat": (
-                "The claim-in-evidence check only fires on claims marked critical. Only "
-                "the three repaired cases carry literal critical strings, so for the "
-                "other 13 this pass says nothing about claim support. That gap must be "
-                "closed before any of these enters a frozen holdout."
-            ),
+            # Computed, never asserted. This sentence was previously a fixed string
+            # describing batch 001, and it was emitted verbatim into batch 002's
+            # closure, where it contradicted that batch's own 17-of-17 count. A caveat
+            # that cannot see the records is not a caveat, it is a leftover.
+            "caveat": claim_check_caveat(len(verified), with_critical),
         },
         "retrieval": {
             "retrieval_was_not_run": batch.get("retrieval_was_not_run"),

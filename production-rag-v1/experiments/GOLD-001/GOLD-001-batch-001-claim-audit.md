@@ -16,13 +16,13 @@ A claim can pass every check here and still be a bad paraphrase; a claim can fai
 
 | candidate | status | critical strings | min claim coverage | holdout-eligible |
 | --- | --- | --- | --- | --- |
-| `GOLD-B001-01` | SUPPORTED | no | 67% | no |
-| `GOLD-B001-02` | SUPPORTED | no | 67% | no |
+| `GOLD-B001-01` | SUPPORTED | no | 100% | no |
+| `GOLD-B001-02` | SUPPORTED | no | 100% | no |
 | `GOLD-B001-03` | SUPPORTED | yes | 78% | **yes** |
 | `GOLD-B001-04` | SUPPORTED | yes | 75% | **yes** |
 | `GOLD-B001-05` | SUPPORTED | no | 60% | no |
-| `GOLD-B001-06` | NEEDS_REVIEW | no | 11% | no |
-| `GOLD-B001-07` | SUPPORTED | no | 86% | no |
+| `GOLD-B001-06` | NEEDS_REVIEW | no | 12% | no |
+| `GOLD-B001-07` | SUPPORTED | no | 100% | no |
 | `GOLD-B001-08` | SUPPORTED | no | 100% | no |
 | `GOLD-B001-09` | NEEDS_REVIEW | no | 50% | no |
 | `GOLD-B001-10` | SUPPORTED | no | 67% | no |
@@ -31,20 +31,20 @@ A claim can pass every check here and still be a bad paraphrase; a claim can fai
 | `GOLD-B001-13` | UNSUPPORTED | no | 100% | no |
 | `GOLD-B001-14` | SUPPORTED | yes | 100% | **yes** |
 | `GOLD-B001-17` | NEEDS_REVIEW | no | 50% | no |
-| `GOLD-B001-18` | SUPPORTED | no | 73% | no |
+| `GOLD-B001-18` | SUPPORTED | no | 80% | no |
 
 ## Cases that are not clean
 
 ### GOLD-B001-01 — SUPPORTED
 
 - *SUPPORTED* — enable_zoom defaults to false
-  - every asserted term is inside the span and 67% of the claim's content words appear there
+  - every asserted term is inside the span and 100% of the claim's content words appear there
 - no critical claim strings, so `validate_golden.py` does not check this case's claims at all
 
 ### GOLD-B001-02 — SUPPORTED
 
 - *SUPPORTED* — reset_tool_choice defaults to True
-  - every asserted term is inside the span and 67% of the claim's content words appear there
+  - every asserted term is inside the span and 100% of the claim's content words appear there
 - no critical claim strings, so `validate_golden.py` does not check this case's claims at all
 
 ### GOLD-B001-05 — SUPPORTED
@@ -60,13 +60,13 @@ A claim can pass every check here and still be a bad paraphrase; a claim can fai
 - *SUPPORTED* — The `body` parameter must be the raw JSON string sent from the server.
   - every asserted term is inside the span and 86% of the claim's content words appear there
 - *NEEDS_REVIEW* — The body should not be parsed before being passed to the webhook parsing/verification method.
-  - only 11% of the claim's content words appear in the span; the claim may be a paraphrase the span does not carry
+  - only 12% of the claim's content words appear in the span, and the case carries no critical strings, so nothing else checks it
 - no critical claim strings, so `validate_golden.py` does not check this case's claims at all
 
 ### GOLD-B001-07 — SUPPORTED
 
 - *SUPPORTED* — Referencing a tool name that is not declared in `tools` returns a 400 error.
-  - every asserted term is inside the span and 86% of the claim's content words appear there
+  - every asserted term is inside the span and 100% of the claim's content words appear there
 - no critical claim strings, so `validate_golden.py` does not check this case's claims at all
 
 ### GOLD-B001-08 — SUPPORTED
@@ -80,7 +80,7 @@ A claim can pass every check here and still be a bad paraphrase; a claim can fai
 - *SUPPORTED* — The tool runner stops when Claude returns a message without a tool use.
   - every asserted term is inside the span and 75% of the claim's content words appear there
 - *NEEDS_REVIEW* — If `max_iterations` is set, the tool runner also stops when that limit is reached.
-  - only 50% of the claim's content words appear in the span; the claim may be a paraphrase the span does not carry
+  - only 50% of the claim's content words appear in the span, and the case carries no critical strings, so nothing else checks it
 - no critical claim strings, so `validate_golden.py` does not check this case's claims at all
 
 ### GOLD-B001-10 — SUPPORTED
@@ -114,13 +114,13 @@ A claim can pass every check here and still be a bad paraphrase; a claim can fai
 - *NEEDS_REVIEW* — A Files API `File not found` error uses HTTP 404.
   - the claim asserts `Files API`, which appears in the document title or section path but not in the span itself
 - *NEEDS_REVIEW* — It indicates that the specified `file_id` does not exist or the caller does not have access to it.
-  - only 57% of the claim's content words appear in the span; the claim may be a paraphrase the span does not carry
+  - only 57% of the claim's content words appear in the span, and the case carries no critical strings, so nothing else checks it
 - no critical claim strings, so `validate_golden.py` does not check this case's claims at all
 
 ### GOLD-B001-18 — SUPPORTED
 
 - *SUPPORTED* — When a deferred tool is discovered and returned as a `tool_reference`, its full definition is expanded inline in the conversation body.
-  - every asserted term is inside the span and 73% of the claim's content words appear there
+  - every asserted term is inside the span and 91% of the claim's content words appear there
 - *SUPPORTED* — The full definition is not expanded in the prompt prefix.
   - every asserted term is inside the span and 80% of the claim's content words appear there
 - no critical claim strings, so `validate_golden.py` does not check this case's claims at all

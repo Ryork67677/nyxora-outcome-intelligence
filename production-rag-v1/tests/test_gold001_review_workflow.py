@@ -1102,9 +1102,14 @@ def test_the_audit_is_an_overlay_and_never_edits_the_closed_batch(batch):
 
 def test_holdout_eligibility_requires_both_support_and_a_checkable_claim():
     mod = _audit_module()
+    import hashlib
+
+    evidence = "`alpha` defaults to `5`."
     record = {
-        "candidate_id": "X", "evidence_text": "`alpha` defaults to `5`.",
-        "evidence_hash": "unchecked", "document_title": "Doc", "section_path": ["S"],
+        "candidate_id": "X", "evidence_text": evidence,
+        "evidence_hash": hashlib.sha256(evidence.encode()).hexdigest(),
+        "verification_status": "human_verified", "human_verified": True,
+        "document_title": "Doc", "section_path": ["S"],
         "proposed_question": "q", "proposed_answer": "a",
         "proposed_atomic_claims": ["`alpha` defaults to `5`."],
     }
@@ -1234,14 +1239,25 @@ def overlay():
     return json.loads(path.read_text())
 
 
-def test_the_overlay_changes_no_v1_content(overlay, batch):
+def test_a_metadata_upgrade_changes_no_v1_content(overlay, batch):
+    """Metadata-only cases must be byte-identical to v1 apart from critical strings.
+
+    Scope repairs are excluded: those legitimately move the span, and are held to a
+    different contract by the scope-repair test below.
+    """
     v1 = {r["candidate_id"]: r for r in batch["records"]}
+    repaired = set(overlay["scope_repairs"])
+    checked = 0
     for case in overlay["case_records"]:
+        if case["candidate_id"] in repaired:
+            continue
         original = v1[case["candidate_id"]]
         for field in ("proposed_question", "proposed_answer", "proposed_atomic_claims",
                       "char_start", "char_end", "version_id", "evidence_hash",
                       "evidence_text"):
             assert case[field] == original[field], (case["candidate_id"], field)
+        checked += 1
+    assert checked == len(overlay["case_records"]) - len(repaired)
 
 
 def test_the_overlay_records_the_v1_closure_hash_and_v1_still_matches(overlay, batch):
@@ -1260,11 +1276,18 @@ def test_every_overlay_critical_string_is_inside_its_own_span(overlay):
                 case["candidate_id"], string)
 
 
-def test_the_scope_defect_cases_are_excluded_until_repaired(overlay):
+def test_the_scope_defect_cases_entered_v2_only_through_an_approved_repair(overlay):
     present = {c["candidate_id"] for c in overlay["case_records"]}
-    assert "GOLD-B001-13" not in present
-    assert "GOLD-B001-17" not in present
-    assert set(overlay["pending_scope_repair"]) == {"GOLD-B001-13", "GOLD-B001-17"}
+    assert {"GOLD-B001-13", "GOLD-B001-17"} <= present
+    assert overlay["pending_scope_repair"] == []
+    for candidate_id in ("GOLD-B001-13", "GOLD-B001-17"):
+        case = next(c for c in overlay["case_records"]
+                    if c["candidate_id"] == candidate_id)
+        # Present because a person approved a specific span, not because a script
+        # decided the case looked fixed.
+        assert case["v2_approval"]["decision"] == "APPROVE"
+        assert case["v2_approval"]["approved_evidence_hash"] == case["evidence_hash"]
+        assert case["v1_evidence_hash"] != case["evidence_hash"]
     # The count claimed must be the count computed, not a number in prose.
     assert overlay["holdout_eligible_count"] == len(overlay["holdout_eligible"])
     assert overlay["holdout_eligible_count"] == len(overlay["case_records"])
@@ -1283,3 +1306,126 @@ def test_the_scope_repairs_are_proposed_and_applied_to_nothing(batch):
         assert v1[candidate_id]["char_start"] == options[0]["old_char_start"]
         assert not v1[candidate_id].get("critical_strings")
         assert any(o["recommended"] for o in options)
+
+
+# -- closure reports may not contradict themselves ---------------------------
+#
+# Batch 002's closure said "17 of 17 verified cases carry literal critical strings" and,
+# two sections later, "only the three repaired cases carry literal critical strings".
+# The second was a fixed string describing batch 001 that the builder emitted verbatim
+# into every batch afterwards. See GOLD-001-batch-002-closure-erratum.md.
+
+@pytest.mark.parametrize(("verified", "with_critical"), [
+    (17, 17), (16, 3), (5, 0), (1, 1), (0, 0), (40, 39),
+])
+def test_the_claim_check_caveat_never_contradicts_its_own_count(verified, with_critical):
+    mod = _close_module()
+    caveat = mod.claim_check_caveat(verified, with_critical)
+    unchecked = verified - with_critical
+
+    if verified and unchecked == 0:
+        # It must not claim anything is unchecked when nothing is.
+        assert "says nothing about claim support" not in caveat
+        assert "without testing anything" not in caveat
+        assert str(verified) in caveat
+    elif verified:
+        # It must name the real shortfall, not a remembered one.
+        assert str(with_critical) in caveat or "None of" in caveat
+        assert str(unchecked) in caveat or with_critical == 0
+
+
+def test_the_caveat_is_derived_from_the_records_not_stored_prose():
+    mod = _close_module()
+    # The same builder, given different batches, must produce different caveats.
+    assert mod.claim_check_caveat(17, 17) != mod.claim_check_caveat(16, 3)
+
+
+def test_batch_002_closure_agrees_with_its_own_records(batch2):
+    from rag_v1.gold.normalisation import contains_claim_string
+
+    closure = Path(__file__).resolve().parents[1] / "experiments" / "GOLD-001" / \
+        "GOLD-001-batch-002-closure.json"
+    if not closure.exists():
+        pytest.skip("batch 002 is not closed")
+    report = json.loads(closure.read_text())
+    verified = [r for r in batch2["records"]
+                if r["verification_status"] == "human_verified"]
+    with_critical = [r for r in verified if r.get("critical_strings")]
+
+    assert report["claim_checkable"]["of_verified"] == len(verified)
+    assert report["claim_checkable"]["with_critical_strings"] == len(with_critical)
+    # And the records back the number up, string by string.
+    for record in with_critical:
+        for string in record["critical_strings"]:
+            assert contains_claim_string(record["evidence_text"], string)
+
+
+# -- batch 001 v2 scope repairs applied --------------------------------------
+
+def test_the_approved_scope_repairs_are_in_v2_and_not_in_v1(overlay, batch):
+    repairs = overlay["scope_repairs"]
+    assert set(repairs) == {"GOLD-B001-13", "GOLD-B001-17"}
+    v1 = {r["candidate_id"]: r for r in batch["records"]}
+    for candidate_id, repair in repairs.items():
+        # v1 keeps the pre-repair anchor, hash and absence of critical strings.
+        assert v1[candidate_id]["char_start"] == repair["v1_span"][0]
+        assert v1[candidate_id]["evidence_hash"] == repair["v1_evidence_hash"]
+        assert not v1[candidate_id].get("critical_strings")
+        # v2 grew the anchor outward and both approvals are recorded.
+        assert repair["v2_span"][0] <= repair["v1_span"][0]
+        assert repair["v2_span"][1] >= repair["v1_span"][1]
+        assert repair["characters_added"] > 0
+        assert repair["v1_approval"]["decision"] == "APPROVE"
+        assert repair["v2_approval"]["decision"] == "APPROVE"
+        assert repair["v2_approval"]["reviewer"] == "project_owner"
+        assert repair["v2_evidence_hash"] != repair["v1_evidence_hash"]
+
+
+def test_a_scope_repair_whose_hash_does_not_match_the_approval_is_refused():
+    import importlib.util
+
+    spec = importlib.util.spec_from_file_location(
+        "_build_batch_v2_overlay",
+        Path(__file__).resolve().parents[1] / "scripts" / "build_batch_v2_overlay.py")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+
+    import hashlib
+    text = "Scope sentence here. The fact under test is stated plainly."
+    old_start = text.index("The fact")
+    v1 = {
+        "candidate_id": "X", "char_start": old_start, "char_end": len(text),
+        "evidence_text": text[old_start:],
+        "evidence_hash": hashlib.sha256(text[old_start:].encode()).hexdigest(),
+        "proposed_question": "q?", "proposed_answer": "a",
+        "proposed_atomic_claims": ["c"], "section_path": ["S"], "provider": "anthropic",
+        "document_title": "D", "source_url": "u", "captured_at": "t",
+        "verification_status": "human_verified", "human_verified": True,
+        "version_id": "v", "proposed_category": "exact_lookup",
+    }
+    approval = {
+        "option": "A", "kind": "evidence_boundary_expansion",
+        "char_start": 0, "char_end": len(text),
+        "expected_hash_prefix": "0" * 16,  # the owner approved a different span
+        "atomic_claims": ["c"], "critical_strings": ["Scope sentence"], "reason": "r",
+    }
+    with pytest.raises(SystemExit) as excinfo:
+        mod.build_scope_repair(v1, approval, text, "now")
+    assert "approved a different span" in str(excinfo.value)
+
+
+# -- project-wide eligibility ------------------------------------------------
+
+def test_the_eligibility_status_counts_match_the_records():
+    status_path = Path(__file__).resolve().parents[1] / "experiments" / "GOLD-001" / \
+        "GOLD-001-eligibility-status.json"
+    if not status_path.exists():
+        pytest.skip("the status report has not been generated")
+    status = json.loads(status_path.read_text())
+    combined = status["combined"]
+    for key in ("candidates", "human_verified", "human_rejected", "holdout_eligible"):
+        assert combined[key] == sum(b[key] for b in status["batches"]), key
+    # A status report may never announce a frozen holdout on its own.
+    assert status["holdout_frozen"] is False
+    assert status["retrieval_was_not_run"] is True
+    assert status["systems_executed"] == []

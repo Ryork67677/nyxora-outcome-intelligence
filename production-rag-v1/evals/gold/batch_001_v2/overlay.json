@@ -1,15 +1,74 @@
 {
   "overlay": "batch_001_v2",
-  "built_at": "2026-08-20T08:03:37Z",
+  "built_at": "2026-08-20T18:28:30Z",
   "layers_on": "evals/review/gold_review_batch_001.json",
   "v1_closure_sha256": "d6f92e8d1a7e77eae760d8a866b0353603aeefaec3c2309817e64f19a3a39f97",
   "v1_is_unchanged": "This overlay reads the closed batch and writes nothing back to it. The v1 closure hash above was re-verified against the v1 records before building.",
   "kind": "validation_metadata_only",
   "rule": "This overlay adds critical claim strings and nothing else. Question, answer, atomic claims, evidence span, source version and evidence hash are copied from the closed v1 case unchanged, and the builder refuses to write if any of them differ.",
-  "cases": 14,
+  "cases": 16,
   "metadata_upgraded": 11,
+  "scope_repaired": 2,
+  "scope_repairs": {
+    "GOLD-B001-13": {
+      "v1_span": [
+        519,
+        725
+      ],
+      "v2_span": [
+        248,
+        725
+      ],
+      "v1_evidence_hash": "39c03eda7465a346b7a8caab9f0aec8de7e19d515c78f3d15b9468a9db06c279",
+      "v2_evidence_hash": "f9057cf3281d924bc692492005f4adb21a4b7a3dc4f0c82264267d867449723b",
+      "characters_added": 271,
+      "reason": "The v1 claim asserted \"On Google Cloud Agent Platform\" while the v1 span did not contain that scope. The expansion also closes an anaphoric opening the claim audit did not test for: the v1 span began \"Instead, it is specified in…\".",
+      "v1_approval": {
+        "reviewer": "project_owner",
+        "reviewed_at": "2026-08-20T03:06:55Z",
+        "decision": "APPROVE"
+      },
+      "v2_approval": {
+        "reviewer": "project_owner",
+        "decision": "APPROVE",
+        "reviewed_at": "2026-08-20T18:28:30Z",
+        "approved_char_start": 248,
+        "approved_char_end": 725,
+        "approved_evidence_hash": "f9057cf3281d924bc692492005f4adb21a4b7a3dc4f0c82264267d867449723b",
+        "approved_option": "A"
+      }
+    },
+    "GOLD-B001-17": {
+      "v1_span": [
+        29836,
+        30171
+      ],
+      "v2_span": [
+        29787,
+        30171
+      ],
+      "v1_evidence_hash": "83e5abb14c4495a64a146a526cb3e89f9b6dad82697170511a2f8fa0fcf1a4f3",
+      "v2_evidence_hash": "8089c9eb85636cf688eafdb61dfdef87aac031b02b90a86563448cc5fcf2cdd5",
+      "characters_added": 49,
+      "reason": "The v1 claim asserted \"Files API\", a scope present only in the document title and section path. The expansion puts it inside the anchor. The span's end is unchanged, so two unrelated error bullets remain — the repair path only grows an anchor outward so the new span provably contains the approved one.",
+      "v1_approval": {
+        "reviewer": "project_owner",
+        "reviewed_at": "2026-08-20T03:06:55Z",
+        "decision": "APPROVE"
+      },
+      "v2_approval": {
+        "reviewer": "project_owner",
+        "decision": "APPROVE",
+        "reviewed_at": "2026-08-20T18:28:30Z",
+        "approved_char_start": 29787,
+        "approved_char_end": 30171,
+        "approved_evidence_hash": "8089c9eb85636cf688eafdb61dfdef87aac031b02b90a86563448cc5fcf2cdd5",
+        "approved_option": "A"
+      }
+    }
+  },
   "carried_forward_unchanged": 3,
-  "holdout_eligible_count": 14,
+  "holdout_eligible_count": 16,
   "holdout_eligible": [
     "GOLD-B001-01",
     "GOLD-B001-02",
@@ -23,20 +82,17 @@
     "GOLD-B001-10",
     "GOLD-B001-11",
     "GOLD-B001-12",
+    "GOLD-B001-13",
     "GOLD-B001-14",
+    "GOLD-B001-17",
     "GOLD-B001-18"
   ],
   "not_included": {
-    "GOLD-B001-13": "genuine scope defect — proposed repair in gold_batch_001_v2_scope_repairs",
-    "GOLD-B001-17": "genuine scope defect — proposed repair in gold_batch_001_v2_scope_repairs",
     "GOLD-B001-03": "already carries critical strings from the boundary repair",
     "GOLD-B001-04": "already carries critical strings from the boundary repair",
     "GOLD-B001-14": "already carries critical strings from the boundary repair"
   },
-  "pending_scope_repair": [
-    "GOLD-B001-13",
-    "GOLD-B001-17"
-  ],
+  "pending_scope_repair": [],
   "eligibility_verdicts": {
     "GOLD-B001-01": {
       "candidate_id": "GOLD-B001-01",
@@ -170,6 +226,32 @@
     },
     "GOLD-B001-18": {
       "candidate_id": "GOLD-B001-18",
+      "holdout_eligible": true,
+      "conditions_checked": [
+        "human_verified",
+        "every_claim_has_a_deterministic_check",
+        "critical_strings_present_in_evidence",
+        "evidence_hash_valid",
+        "no_unresolved_scope_defect"
+      ],
+      "failures": [],
+      "note": "human_verified is unaffected by this result. Eligibility is a property of the case's current metadata, not a judgement on the person's approval."
+    },
+    "GOLD-B001-13": {
+      "candidate_id": "GOLD-B001-13",
+      "holdout_eligible": true,
+      "conditions_checked": [
+        "human_verified",
+        "every_claim_has_a_deterministic_check",
+        "critical_strings_present_in_evidence",
+        "evidence_hash_valid",
+        "no_unresolved_scope_defect"
+      ],
+      "failures": [],
+      "note": "human_verified is unaffected by this result. Eligibility is a property of the case's current metadata, not a judgement on the person's approval."
+    },
+    "GOLD-B001-17": {
+      "candidate_id": "GOLD-B001-17",
       "holdout_eligible": true,
       "conditions_checked": [
         "human_verified",
@@ -584,6 +666,120 @@
       ],
       "v2_change": "validation metadata only: critical claim strings added",
       "v1_evidence_hash": "d9166324157cd373bbe32fa4768e5cfab2417678b1c6341677f4d917df4ead2a"
+    },
+    {
+      "proposed_question": "What value must `anthropic_version` be set to when using Claude on Google Cloud's Agent Platform?",
+      "proposed_answer": "`vertex-2023-10-16`.",
+      "proposed_atomic_claims": [
+        "On Google Cloud's Agent Platform, `anthropic_version` is passed in the request body rather than as a header.",
+        "`anthropic_version` must be set to `vertex-2023-10-16`."
+      ],
+      "char_start": 248,
+      "char_end": 725,
+      "version_id": "ver_e312b7f41115cc2b84cd36151efc6dd8",
+      "evidence_hash": "f9057cf3281d924bc692492005f4adb21a4b7a3dc4f0c82264267d867449723b",
+      "evidence_text": "The API for accessing Claude on Google Cloud's Agent Platform is nearly identical to the [Messages API](https://platform.claude.com/docs/en/api/messages/create), with two key differences in request format:\n\n* On Agent Platform, `model` is not passed in the request body. Instead, it is specified in the Google Cloud endpoint URL.\n* On Agent Platform, `anthropic_version` is passed in the request body (rather than as a header), and must be set to the value `vertex-2023-10-16`.",
+      "candidate_id": "GOLD-B001-13",
+      "verification_status": "human_verified",
+      "human_verified": true,
+      "human_reviewer": "project_owner",
+      "human_reviewed_at": "2026-08-20T03:06:55Z",
+      "section_path": [
+        "Preamble"
+      ],
+      "provider": "anthropic",
+      "document_title": "Claude on Google Cloud",
+      "source_url": "https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai",
+      "captured_at": "2026-08-17 04:46:19+00:00",
+      "proposed_category": "exact_lookup",
+      "critical_strings": [
+        "Google Cloud's Agent Platform",
+        "`anthropic_version`",
+        "passed in the request body",
+        "rather than as a header",
+        "vertex-2023-10-16"
+      ],
+      "v2_change": "evidence_boundary_expansion (option A)",
+      "v1_evidence_hash": "39c03eda7465a346b7a8caab9f0aec8de7e19d515c78f3d15b9468a9db06c279",
+      "v2_approval": {
+        "reviewer": "project_owner",
+        "decision": "APPROVE",
+        "reviewed_at": "2026-08-20T18:28:30Z",
+        "approved_char_start": 248,
+        "approved_char_end": 725,
+        "approved_evidence_hash": "f9057cf3281d924bc692492005f4adb21a4b7a3dc4f0c82264267d867449723b",
+        "approved_option": "A"
+      },
+      "v1_char_start": 519,
+      "v1_char_end": 725,
+      "v1_evidence_text": "Instead, it is specified in the Google Cloud endpoint URL.\n* On Agent Platform, `anthropic_version` is passed in the request body (rather than as a header), and must be set to the value `vertex-2023-10-16`.",
+      "v1_atomic_claims": [
+        "On Google Cloud Agent Platform, `anthropic_version` is passed in the request body and must be set to `vertex-2023-10-16`."
+      ],
+      "v1_approval": {
+        "reviewer": "project_owner",
+        "reviewed_at": "2026-08-20T03:06:55Z",
+        "decision": "APPROVE"
+      },
+      "repair_reason": "The v1 claim asserted \"On Google Cloud Agent Platform\" while the v1 span did not contain that scope. The expansion also closes an anaphoric opening the claim audit did not test for: the v1 span began \"Instead, it is specified in…\".",
+      "characters_added": 271
+    },
+    {
+      "proposed_question": "What does a 404 `File not found` error mean in the Anthropic Files API?",
+      "proposed_answer": "The specified `file_id` does not exist or you do not have access to it.",
+      "proposed_atomic_claims": [
+        "A Files API `File not found` error uses HTTP 404.",
+        "It indicates that the specified `file_id` does not exist or the caller does not have access to it."
+      ],
+      "char_start": 29787,
+      "char_end": 30171,
+      "version_id": "ver_ab9e2c2bf4c17bf70ce1b94355d01729",
+      "evidence_hash": "8089c9eb85636cf688eafdb61dfdef87aac031b02b90a86563448cc5fcf2cdd5",
+      "evidence_text": "Common errors when using the Files API include:\n\n* **File not found (404):** The specified `file_id` doesn't exist or you don't have access to it\n* **Invalid file type (400):** The file type doesn't match the content block type (for example, using an image file in a document block)\n* **Not downloadable (400):** Files you upload have `\"downloadable\": false` and cannot be downloaded.",
+      "candidate_id": "GOLD-B001-17",
+      "verification_status": "human_verified",
+      "human_verified": true,
+      "human_reviewer": "project_owner",
+      "human_reviewed_at": "2026-08-20T03:06:55Z",
+      "section_path": [
+        "Error handling"
+      ],
+      "provider": "anthropic",
+      "document_title": "Files API",
+      "source_url": "https://platform.claude.com/docs/en/build-with-claude/files",
+      "captured_at": "2026-08-17 04:46:19+00:00",
+      "proposed_category": "exact_lookup",
+      "critical_strings": [
+        "Common errors when using the Files API",
+        "File not found (404)",
+        "`file_id`",
+        "doesn't exist or you don't have access to it"
+      ],
+      "v2_change": "evidence_boundary_expansion (option A)",
+      "v1_evidence_hash": "83e5abb14c4495a64a146a526cb3e89f9b6dad82697170511a2f8fa0fcf1a4f3",
+      "v2_approval": {
+        "reviewer": "project_owner",
+        "decision": "APPROVE",
+        "reviewed_at": "2026-08-20T18:28:30Z",
+        "approved_char_start": 29787,
+        "approved_char_end": 30171,
+        "approved_evidence_hash": "8089c9eb85636cf688eafdb61dfdef87aac031b02b90a86563448cc5fcf2cdd5",
+        "approved_option": "A"
+      },
+      "v1_char_start": 29836,
+      "v1_char_end": 30171,
+      "v1_evidence_text": "* **File not found (404):** The specified `file_id` doesn't exist or you don't have access to it\n* **Invalid file type (400):** The file type doesn't match the content block type (for example, using an image file in a document block)\n* **Not downloadable (400):** Files you upload have `\"downloadable\": false` and cannot be downloaded.",
+      "v1_atomic_claims": [
+        "A Files API `File not found` error uses HTTP 404.",
+        "It indicates that the specified `file_id` does not exist or the caller does not have access to it."
+      ],
+      "v1_approval": {
+        "reviewer": "project_owner",
+        "reviewed_at": "2026-08-20T03:06:55Z",
+        "decision": "APPROVE"
+      },
+      "repair_reason": "The v1 claim asserted \"Files API\", a scope present only in the document title and section path. The expansion puts it inside the anchor. The span's end is unchanged, so two unrelated error bullets remain — the repair path only grows an anchor outward so the new span provably contains the approved one.",
+      "characters_added": 49
     },
     {
       "proposed_question": "For `claude-fable-5` and `claude-mythos-5`, is a `thinking` configuration required?",

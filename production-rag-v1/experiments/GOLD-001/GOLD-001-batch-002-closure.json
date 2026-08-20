@@ -1,6 +1,6 @@
 {
   "batch": 2,
-  "closed_at": "2026-08-20T08:01:40Z",
+  "closed_at": "2026-08-20T18:27:35Z",
   "closed_by": "project_owner",
   "source_batch_sha256": "b108d925a09c539de26cb2f7a3e8b96a0fbf3462d0c0f6b95e1a86e82df07736",
   "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a",
@@ -311,7 +311,7 @@
     "failures": 0,
     "passed": true,
     "require_human": "validation",
-    "caveat": "The claim-in-evidence check only fires on claims marked critical. Only the three repaired cases carry literal critical strings, so for the other 13 this pass says nothing about claim support. That gap must be closed before any of these enters a frozen holdout."
+    "caveat": "All 17 verified cases carry literal critical strings, so the claim-in-evidence check ran on every one of them. The validator's pass covers claim support, not only structure."
   },
   "retrieval": {
     "retrieval_was_not_run": true,
