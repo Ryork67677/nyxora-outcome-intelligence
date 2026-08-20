@@ -282,7 +282,21 @@ out, and that is the same outcome by design: gold requires someone to have said 
 |---|---|---|
 | 001 | PASS 2, FIX_REQUIRED 15, FAIL 1 | 17 queued for a person; three miner defects recorded in `experiments/GOLD-001/batch-001-findings.md` and preregistered as changes for batch 002 |
 | 001 | owner: APPROVE 12, NEEDS_EDIT 3, REJECT 2 | 12 `human_verified`; 2 `human_rejected` kept as negative audit examples; 3 boundary-repaired and back at `needs_human_review` |
-| 001 | owner: APPROVE the 3 repairs | 15 `human_verified`, 2 `human_rejected`, 1 `dual_llm_pass`. `validate_golden.py` passes on all 15 with `--require-human validation`. `GOLD-B001-01` never reached a human; one decision closes the batch. |
+| 001 | owner: APPROVE the 3 repairs | 15 `human_verified`, 2 `human_rejected`, 1 `dual_llm_pass` |
+| 001 | **CLOSED** | 16 `human_verified`, 2 `human_rejected`, 88.9% acceptance. `validate_golden.py` passes on all 16 with `--require-human validation`. Closure hash `d6f92e8d1a7e77ea…`; the test suite re-checks it, so an edit after closure fails the tests. See `experiments/GOLD-001/GOLD-001-batch-001-closure.md`. |
+| 002 | generated, unreviewed | 18 candidates, 50% structural, 9 complete proposals. Built with the four preregistered rules and nothing else. Awaiting independent verification. |
+
+## Closing a batch
+
+```bash
+python scripts/close_batch.py evals/review/gold_review_batch_001.json
+```
+
+Closure is a statement that every candidate reached a human decision, so the script
+refuses to write one while anything is outstanding, and refuses if the validator did not
+pass. It records a `closure_sha256` over the candidate records; the test suite re-checks
+it, which is the difference between saying a closed batch does not change and being able
+to tell when it has.
 
 ## What is deliberately not automated
 

@@ -1,19 +1,18 @@
 {
   "batch": 1,
   "source_batch_sha256": "a3fe9242e33fb2dff8be78f4c5f1baffc8037066b09445a936a2e3dc9f11ea73",
-  "generated_at": "2026-08-20T03:43:09Z",
+  "generated_at": "2026-08-20T06:19:23Z",
   "reviewer": "project_owner",
   "status_counts": {
-    "dual_llm_pass": 1,
-    "human_verified": 15,
+    "human_verified": 16,
     "human_rejected": 2
   },
   "decision_counts": {
-    "no_decision": 1,
-    "APPROVE": 15,
+    "APPROVE": 16,
     "REJECT": 2
   },
   "eligible_for_gold": [
+    "GOLD-B001-01",
     "GOLD-B001-02",
     "GOLD-B001-03",
     "GOLD-B001-04",
@@ -30,7 +29,7 @@
     "GOLD-B001-17",
     "GOLD-B001-18"
   ],
-  "eligible_for_gold_count": 15,
+  "eligible_for_gold_count": 16,
   "gate_failures": [],
   "passed": true,
   "note": "Eligible for gold means human_verified. NEEDS_EDIT and undecided candidates are deliberately excluded. This report checks integrity, not correctness — correctness is what the human decision is for."

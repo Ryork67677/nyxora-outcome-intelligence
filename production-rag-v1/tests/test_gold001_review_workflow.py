@@ -9,9 +9,15 @@ import pytest
 
 from rag_v1.gold.mining import (
     Candidate,
+    anaphora_problem,
+    code_regions,
     identifiers_in,
+    inside_code,
+    looks_like_code,
     mine_explicit_statements,
     mine_table_parameters,
+    mine_table_required,
+    resolve_anaphora,
 )
 
 BATCH = Path("evals/review/gold_review_batch_001.json")
@@ -135,8 +141,10 @@ def test_table_miner_does_not_bind_across_rows():
 
 
 def test_prose_miner_flags_ambiguous_subjects_instead_of_guessing():
-    text = ("The `first_option` and `second_option` settings must be configured before "
-            "the client starts, and each one is required for the handshake to complete. ")
+    # No unresolved reference here — this fixture is about ambiguity of subject, which
+    # is a different defect from the anaphoric-span rule tested below.
+    text = ("The `first_option` and `second_option` values must be configured before "
+            "startup, and each one is required for the handshake to complete now. ")
     doc = make_doc(text)
     candidates = mine_explicit_statements(doc)
     assert candidates
@@ -789,3 +797,178 @@ def test_projection_reports_which_cases_are_not_claim_checked():
     assert verbatim["expected_claims"] == [{"text": "Tripwire", "critical": True}]
     # A projection is not a split assignment.
     assert verbatim["split_is_placeholder"] is True
+
+
+# -- closure -----------------------------------------------------------------
+
+def _close_module():
+    import importlib.util
+
+    spec = importlib.util.spec_from_file_location(
+        "_close_batch",
+        Path(__file__).resolve().parents[1] / "scripts" / "close_batch.py")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+CLOSURE = Path(__file__).resolve().parents[1] / "experiments" / "GOLD-001" / \
+    "GOLD-001-batch-001-closure.json"
+
+
+def test_a_closed_batch_has_not_been_edited_since_closure(batch):
+    """The point of recording a closure hash is that someone checks it."""
+    if not CLOSURE.exists() or "closure_sha256" not in batch:
+        pytest.skip("batch 001 is not closed yet")
+    mod = _close_module()
+    closure = json.loads(CLOSURE.read_text())
+    actual = mod.candidate_digest(batch["records"])
+    assert actual == batch["closure_sha256"], "batch 001 changed after closure"
+    assert actual == closure["closure_sha256"]
+
+
+def test_closure_counts_match_the_batch_itself(batch):
+    if not CLOSURE.exists():
+        pytest.skip("batch 001 is not closed yet")
+    closure = json.loads(CLOSURE.read_text())
+    from collections import Counter
+    statuses = Counter(r["verification_status"] for r in batch["records"])
+    assert closure["totals"]["candidates"] == len(batch["records"])
+    assert closure["totals"]["human_verified"] == statuses["human_verified"]
+    assert closure["totals"]["human_rejected"] == statuses["human_rejected"]
+    assert closure["totals"]["outstanding_decisions"] == 0
+    # A closure may not claim a higher acceptance rate than the records support.
+    expected = statuses["human_verified"] / len(batch["records"])
+    assert closure["totals"]["acceptance_rate"] == round(expected, 4)
+
+
+def test_closure_is_refused_while_a_decision_is_outstanding():
+    mod = _close_module()
+    records = [{"candidate_id": "X", "verification_status": "human_verified"},
+               {"candidate_id": "Y", "verification_status": "dual_llm_pass"}]
+    with pytest.raises(SystemExit) as excinfo:
+        mod.build({"batch": 1, "records": records}, {"passed": True}, "now")
+    assert "no final human decision" in str(excinfo.value)
+    assert "Y" in str(excinfo.value)
+
+
+def test_rejected_candidates_survive_closure(batch):
+    if not CLOSURE.exists():
+        pytest.skip("batch 001 is not closed yet")
+    closure = json.loads(CLOSURE.read_text())
+    rejected_ids = {r["candidate_id"] for r in closure["rejected"]}
+    present = {r["candidate_id"] for r in batch["records"]}
+    assert rejected_ids and rejected_ids <= present
+    for entry in closure["rejected"]:
+        assert entry["reason"].strip(), entry["candidate_id"]
+
+
+def test_closure_does_not_claim_retrieval_was_run(batch):
+    if not CLOSURE.exists():
+        pytest.skip("batch 001 is not closed yet")
+    closure = json.loads(CLOSURE.read_text())
+    assert closure["retrieval"]["retrieval_was_not_run"] is True
+    assert closure["retrieval"]["systems_run_against_these_candidates"] == []
+
+
+# -- batch 002 preregistered miner rules -------------------------------------
+#
+# Each test names the batch-001 candidate whose defect the rule exists to prevent, so a
+# later change to the rule has to argue with the evidence rather than with an opinion.
+
+def test_rule1_resolves_the_gold_b001_04_shape():
+    """"If true, an exception is raised" — the antecedent was outside the anchor."""
+    text = ("Finally, we check if `.tripwire_triggered` is true. "
+            "If true, an `InputGuardrailTripwireTriggered` exception is raised.")
+    start = text.index("If true")
+    assert anaphora_problem(text[start:]) is not None
+    resolved = resolve_anaphora(text, start, len(text))
+    assert resolved == (0, len(text))
+    assert ".tripwire_triggered" in text[resolved[0]:resolved[1]]
+
+
+def test_rule1_resolves_the_gold_b001_14_shape():
+    """"any of these models" — the scope was outside the anchor."""
+    text = ("Claude 4.6 and later models do not support prefilling. "
+            "Sending a request to any of these models returns a 400 error.")
+    start = text.index("Sending")
+    assert "no antecedent" in anaphora_problem(text[start:])
+    assert resolve_anaphora(text, start, len(text)) == (0, len(text))
+
+
+def test_rule1_drops_a_span_whose_antecedent_does_not_exist():
+    # Extension is bounded; a span that cannot be made self-contained is dropped, which
+    # is a legitimate and preferable outcome to shipping an uncheckable candidate.
+    text = "If true, an exception is raised."
+    assert resolve_anaphora(text, 0, len(text)) is None
+
+
+def test_rule1_leaves_a_self_contained_span_alone():
+    text = "The `body` parameter must be the raw JSON string sent from the server."
+    assert anaphora_problem(text) is None
+    assert resolve_anaphora(text, 0, len(text)) == (0, len(text))
+
+
+def test_rule2_no_relation_label_reaches_the_reviewer():
+    """Batch 001's label was wrong on five of sixteen and steered the first reading."""
+    text = ("A `ValidationError` is raised when the payload cannot be parsed by the "
+            "server before any downstream processing takes place at all here. ")
+    candidates = mine_explicit_statements(make_doc(text))
+    assert candidates
+    for candidate in candidates:
+        assert candidate.evidence_kind == "prose_statement"
+        exported = json.dumps(candidate.to_dict()).lower()
+        for label in ("explicit_exception", "explicit_response", "explicit_constraint",
+                      "explicit_required_optional", "explicit_deprecation"):
+            assert label not in exported
+        # The marker phrase that selected the sentence is not named either.
+        assert "relationship stated" not in exported
+
+
+def test_rule3_refuses_a_span_inside_a_fenced_block():
+    """GOLD-B001-15: `required: ["location"]` read out of an example request body."""
+    text = ('Some prose about tools that is long enough to be mined and then some.\n\n'
+            '```json\n{\n  "required": ["location"],\n  "tool_choice": {"type": "any"}\n}\n```\n')
+    regions = code_regions(text)
+    fence = text.index("```json")
+    assert regions and inside_code(regions, fence + 10, fence + 40)
+    assert not inside_code(regions, 0, 20)
+    assert mine_explicit_statements(make_doc(text)) == []
+
+
+def test_rule3_refuses_a_span_that_is_shaped_like_code_without_a_fence():
+    assert looks_like_code('  "required": ["location"]')
+    assert looks_like_code("    raise ValueError('no')")
+    assert not looks_like_code("The runner loops until Claude returns a message.")
+
+
+def test_rule4_required_column_yields_a_complete_structural_proposal():
+    text = ("| name | required | description |\n| --- | --- | --- |\n"
+            "| `session_id` | yes | Identifies the session. |\n")
+    candidates = mine_table_required(make_doc(text))
+    assert candidates
+    c = candidates[0]
+    assert c.proposed_question == "Is the `session_id` parameter required?"
+    assert c.proposed_answer == "Yes, it is required."
+    assert c.proposed_atomic_claims == ["`session_id` is required."]
+    assert c.generator_confidence == "high"
+    assert c.needs_human_interpretation is False
+    # Complete means claim-checkable: every critical string is inside the span.
+    assert c.critical_strings
+    assert all(s.lower() in c.evidence_text.lower() for s in c.critical_strings)
+
+
+def test_rule4_required_miner_does_not_bind_across_rows():
+    text = ("| name | required | description |\n| --- | --- | --- |\n"
+            "| `alpha_flag` | no | Optional switch. |\n"
+            "| `beta_id` | yes | Needed always. |\n")
+    answers = {c.proposed_question: c.proposed_answer
+               for c in mine_table_required(make_doc(text))}
+    assert answers["Is the `alpha_flag` parameter required?"] == "No, it is optional."
+    assert answers["Is the `beta_id` parameter required?"] == "Yes, it is required."
+
+
+def test_rule4_required_miner_ignores_a_table_with_no_required_column():
+    text = ("| name | type | description |\n| --- | --- | --- |\n"
+            "| `session_id` | string | Identifies the session. |\n")
+    assert mine_table_required(make_doc(text)) == []

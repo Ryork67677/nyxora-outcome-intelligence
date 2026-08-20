@@ -55,7 +55,7 @@
       "generator_notes": "Row-scoped association, so the value cannot belong to a different parameter. Reviewer should still confirm the row is a parameter table and not a comparison or pricing table.",
       "needs_human_interpretation": false,
       "candidate_type": "supported",
-      "verification_status": "dual_llm_pass",
+      "verification_status": "human_verified",
       "claude_proposed": true,
       "chatgpt_verified": true,
       "schema_version": "1.0",
@@ -71,7 +71,20 @@
         "identifier_value_binding_correct": true,
         "natural_question": true,
         "verification_notes": "The row is clearly part of the computer-use tool parameter table. The same row names `enable_zoom` and explicitly states `Default: false`, so the proposed question, answer, and claim are directly supported."
-      }
+      },
+      "human_decision_history": [
+        {
+          "decision": "APPROVE",
+          "reviewer": "project_owner",
+          "decided_at": "2026-08-20T06:19:23Z",
+          "notes": "APPROVE as reviewed in gold_batch_001_final_case_review.md: original generator proposal, independent PASS with no rewrite, structural table-row binding.",
+          "approved_evidence_hash": "cbc58014a907362462bde388e06308d8bc705e9be69cc30f09d79b54e55224f4"
+        }
+      ],
+      "human_decision": "APPROVE",
+      "human_verified": true,
+      "human_reviewed_at": "2026-08-20T06:19:23Z",
+      "human_reviewer": "project_owner"
     },
     {
       "candidate_id": "GOLD-B001-02",
@@ -1785,14 +1798,13 @@
   "reviewed_candidates": 18,
   "unreviewed_candidates": [],
   "status_counts": {
-    "dual_llm_pass": 1,
-    "human_verified": 15,
+    "human_verified": 16,
     "human_rejected": 2
   },
-  "human_decisions_imported_at": "2026-08-20T03:43:09Z",
+  "human_decisions_imported_at": "2026-08-20T06:19:23Z",
   "human_reviewer": "project_owner",
-  "undecided_candidates": [
-    "GOLD-B001-01"
-  ],
-  "boundary_repairs_applied_at": "2026-08-20T03:11:22Z"
+  "undecided_candidates": [],
+  "boundary_repairs_applied_at": "2026-08-20T03:11:22Z",
+  "closed_at": "2026-08-20T06:21:04Z",
+  "closure_sha256": "d6f92e8d1a7e77eae760d8a866b0353603aeefaec3c2309817e64f19a3a39f97"
 }

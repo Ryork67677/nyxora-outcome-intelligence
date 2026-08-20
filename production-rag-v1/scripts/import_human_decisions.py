@@ -51,17 +51,39 @@ def revision_problems(record: dict, entry: dict) -> list[str]:
     the same candidate id now has two spans with two hashes. An approval that does not
     pin the current one is refused rather than guessed at.
     """
-    if entry.get("decision") != "APPROVE" or not record.get("anchor_revisions"):
+    if entry.get("decision") != "APPROVE":
         return []
 
     candidate_id = record["candidate_id"]
-    latest = record["anchor_revisions"][-1]
+    revisions = record.get("anchor_revisions") or []
     problems = []
 
+    # An approval may pin the number of text revisions it saw. On an unrepaired
+    # candidate this is what distinguishes "I approved the generator's original" from
+    # "I approved something a model rewrote".
+    claimed_count = entry.get("approves_revision_count")
+    if claimed_count is not None and claimed_count != len(record.get("revisions", [])):
+        problems.append(
+            f"[{candidate_id}] approves {claimed_count} revisions, but the candidate "
+            f"carries {len(record.get('revisions', []))}"
+        )
+
     claimed_hash = entry.get("approves_evidence_hash")
+    if not revisions:
+        # No repair: a pin is optional, but if given it must be right.
+        if claimed_hash is not None and claimed_hash != record["evidence_hash"]:
+            problems.append(
+                f"[{candidate_id}] approves_evidence_hash {claimed_hash[:16]}… does not "
+                f"match the anchor {record['evidence_hash'][:16]}…"
+            )
+        return problems
+
+    latest = revisions[-1]
     if claimed_hash is None:
-        return [(f"[{candidate_id}] has a repaired anchor; an APPROVE must pin it "
-                 f"with approves_evidence_hash (current: {record['evidence_hash']})")]
+        problems.append(
+            f"[{candidate_id}] has a repaired anchor; an APPROVE must pin it "
+            f"with approves_evidence_hash (current: {record['evidence_hash']})")
+        return problems
     if claimed_hash != record["evidence_hash"]:
         problems.append(
             f"[{candidate_id}] approves_evidence_hash {claimed_hash[:16]}… does not "
