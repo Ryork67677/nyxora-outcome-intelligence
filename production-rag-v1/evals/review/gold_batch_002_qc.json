@@ -1,0 +1,2515 @@
+{
+  "batch": 2,
+  "source_batch_sha256": "b108d925a09c539de26cb2f7a3e8b96a0fbf3462d0c0f6b95e1a86e82df07736",
+  "generated_at": "2026-08-20T07:24:47Z",
+  "queue": {
+    "seed": 20250819,
+    "sample_rate": 0.15,
+    "must_review": [
+      "GOLD-B002-01",
+      "GOLD-B002-02",
+      "GOLD-B002-03",
+      "GOLD-B002-04",
+      "GOLD-B002-05",
+      "GOLD-B002-06",
+      "GOLD-B002-07",
+      "GOLD-B002-08",
+      "GOLD-B002-09",
+      "GOLD-B002-10",
+      "GOLD-B002-11",
+      "GOLD-B002-12",
+      "GOLD-B002-13",
+      "GOLD-B002-14",
+      "GOLD-B002-15",
+      "GOLD-B002-16",
+      "GOLD-B002-17",
+      "GOLD-B002-18"
+    ],
+    "qc_sample_of_dual_llm_pass": [],
+    "dual_llm_pass_total": 0,
+    "human_queue_size": 18,
+    "rationale": "Disagreements, uncertainty and failures always reach a person. Agreed passes are sampled because two models agreeing is correlated evidence, not independent confirmation.",
+    "batch": 2
+  },
+  "allowed_decisions": [
+    "APPROVE",
+    "REJECT",
+    "NEEDS_EDIT"
+  ],
+  "nothing_here_is_gold": "A candidate becomes human_verified only through an explicit APPROVE recorded by the project owner. A ChatGPT PASS is dual_llm_pass.",
+  "items": [
+    {
+      "candidate_id": "GOLD-B002-01",
+      "batch": 2,
+      "group": "fast_track",
+      "risk": "LOW",
+      "queued_because": "mandatory: disagreement, uncertainty or failure",
+      "chatgpt_verdict": "FIX_REQUIRED",
+      "verification_status": "needs_human_review",
+      "final": {
+        "question": "What is the `summary_prompt` parameter used for?",
+        "answer": "It specifies a custom prompt for summary generation.",
+        "atomic_claims": [
+          "`summary_prompt` is used to provide a custom prompt for summary generation."
+        ]
+      },
+      "evidence": {
+        "version_id": "ver_1c53b961e1f5da8124a1e7e8eb92c941",
+        "char_start": 83548,
+        "char_end": 83766,
+        "evidence_hash": "4bcfd667e1e607737bf0184ba9ae6c38c55901596263af9910aff44ffe857c14",
+        "section_path": [
+          "Client-side compaction (SDK)",
+          "Configuration options"
+        ],
+        "text": "| `summary_prompt`          | string  | No       | See [Default summary prompt](https://platform.claude.com/docs/en/build-with-claude/context-editing#default-summary-prompt) | Custom prompt for summary generation     |",
+        "context_before": "ken count at which compaction triggers |\n| `model`                   | string  | No       | Same as main model                                                                                                         | Model to use for generating summaries    |\n",
+        "context_after": "\n\n#### Choosing a token threshold\n\nThe threshold determines when compaction occurs. A lower threshold means more frequent compactions with smaller context windows. A higher threshold allows more context but risks hitting limits.\n\n<Tabs>\n  <Tab title=\"cURL\">\n  "
+      },
+      "why_human_review_required": "The reviewer rewrote the question and claims. Every term they assert is present in the anchored span, but a model authored the wording and a model verified it, so the case is not gold until you agree.",
+      "defects": [
+        {
+          "class": "MINER_QUESTION_HEADER_DEPENDENCY",
+          "what_was_repaired": "The anchored row is sound evidence; the miner's exported question asked about a column whose meaning lives in a table header outside the row. The question was re-authored around a fact stated inside the row, and the anchor did not move."
+        }
+      ],
+      "anchor_gaps": {
+        "unsupported_in_claims": [],
+        "covered_by_provenance_only": [],
+        "question_framing_only": []
+      },
+      "critical_strings": [
+        "summary_prompt",
+        "Custom prompt for summary generation"
+      ],
+      "anchor_revisions": [],
+      "decision_options": [
+        "APPROVE",
+        "REJECT",
+        "NEEDS_EDIT"
+      ],
+      "decision": null,
+      "audit": {
+        "claude_original_proposal": {
+          "proposed_question": "Is the `summary_prompt` parameter required?",
+          "proposed_answer": "No, it is optional.",
+          "proposed_atomic_claims": [
+            "`summary_prompt` is optional."
+          ]
+        },
+        "chatgpt_review": {
+          "reviewer": "independent_review",
+          "verdict": "FIX_REQUIRED",
+          "reviewed_at": "2026-08-20T07:23:19Z",
+          "question_supported": false,
+          "answer_supported": false,
+          "all_critical_claims_supported": false,
+          "evidence_boundary_complete": true,
+          "identifier_value_binding_correct": true,
+          "natural_question": false,
+          "verification_notes": "MINER_QUESTION_HEADER_DEPENDENCY: the anchored row is sound evidence, but the miner's exported question asked about a column whose meaning (Yes/No, string, integer) lives in a table header outside the row. The question is re-authored around a fact stated inside the row itself; the anchor does not move."
+        },
+        "revisions": [
+          {
+            "revision": 1,
+            "field": "proposed_question",
+            "from": "Is the `summary_prompt` parameter required?",
+            "to": "What is the `summary_prompt` parameter used for?",
+            "author": "independent_review",
+            "timestamp": "2026-08-20T07:23:19Z",
+            "reason": "MINER_QUESTION_HEADER_DEPENDENCY"
+          },
+          {
+            "revision": 2,
+            "field": "proposed_answer",
+            "from": "No, it is optional.",
+            "to": "It specifies a custom prompt for summary generation.",
+            "author": "independent_review",
+            "timestamp": "2026-08-20T07:23:19Z",
+            "reason": "MINER_QUESTION_HEADER_DEPENDENCY"
+          },
+          {
+            "revision": 3,
+            "field": "proposed_atomic_claims",
+            "from": [
+              "`summary_prompt` is optional."
+            ],
+            "to": [
+              "`summary_prompt` is used to provide a custom prompt for summary generation."
+            ],
+            "author": "independent_review",
+            "timestamp": "2026-08-20T07:23:19Z",
+            "reason": "MINER_QUESTION_HEADER_DEPENDENCY"
+          }
+        ],
+        "anchor_as_mined": {
+          "version_id": "ver_1c53b961e1f5da8124a1e7e8eb92c941",
+          "char_start": 83548,
+          "char_end": 83766,
+          "evidence_hash": "4bcfd667e1e607737bf0184ba9ae6c38c55901596263af9910aff44ffe857c14",
+          "section_path": [
+            "Client-side compaction (SDK)",
+            "Configuration options"
+          ]
+        },
+        "anchor_current": {
+          "version_id": "ver_1c53b961e1f5da8124a1e7e8eb92c941",
+          "char_start": 83548,
+          "char_end": 83766,
+          "evidence_hash": "4bcfd667e1e607737bf0184ba9ae6c38c55901596263af9910aff44ffe857c14",
+          "section_path": [
+            "Client-side compaction (SDK)",
+            "Configuration options"
+          ]
+        },
+        "anchor_unchanged": true,
+        "anchor_disputes": [],
+        "provenance": {
+          "provider": "anthropic",
+          "document_title": "Context editing",
+          "source_url": "https://platform.claude.com/docs/en/build-with-claude/context-editing",
+          "captured_at": "2026-08-17 04:46:19+00:00",
+          "evidence_kind": "parameter_table_row",
+          "generator_confidence": "high"
+        }
+      }
+    },
+    {
+      "candidate_id": "GOLD-B002-03",
+      "batch": 2,
+      "group": "fast_track",
+      "risk": "LOW",
+      "queued_because": "mandatory: disagreement, uncertainty or failure",
+      "chatgpt_verdict": "FIX_REQUIRED",
+      "verification_status": "needs_human_review",
+      "final": {
+        "question": "What kinds of values can an agent's `prompt` configuration accept?",
+        "answer": "A static prompt object or a function.",
+        "atomic_claims": [
+          "The agent `prompt` configuration accepts either a static prompt object or a function."
+        ]
+      },
+      "evidence": {
+        "version_id": "ver_35cac5e98c151a17f941a6142d74709f",
+        "char_start": 2057,
+        "char_end": 2208,
+        "evidence_hash": "5368be02d4beae2374838cc277695191b43b91bf4f099b3bffbdf1d8b0a856f7",
+        "section_path": [
+          "Agents",
+          "Basic configuration"
+        ],
+        "text": "| `prompt` | no | OpenAI Responses API prompt configuration. Accepts a static prompt object or a function. See [Prompt templates](#prompt-templates). |",
+        "context_before": "nt are:\n\n| Property | Required | Description |\n| --- | --- | --- |\n| `name` | yes | Human-readable agent name. |\n| `instructions` | no | System prompt or dynamic instructions callback. Strongly recommended. See [Dynamic instructions](#dynamic-instructions). |\n",
+        "context_after": "\n| `handoff_description` | no | Short description exposed when this agent is offered as a handoff target. |\n| `handoffs` | no | Delegate the conversation to specialist agents. See [handoffs](handoffs.md). |\n| `model` | no | Which LLM to use. See [Models](model"
+      },
+      "why_human_review_required": "The reviewer rewrote the question and claims. Every term they assert is present in the anchored span, but a model authored the wording and a model verified it, so the case is not gold until you agree.",
+      "defects": [
+        {
+          "class": "MINER_QUESTION_HEADER_DEPENDENCY",
+          "what_was_repaired": "The anchored row is sound evidence; the miner's exported question asked about a column whose meaning lives in a table header outside the row. The question was re-authored around a fact stated inside the row, and the anchor did not move."
+        }
+      ],
+      "anchor_gaps": {
+        "unsupported_in_claims": [],
+        "covered_by_provenance_only": [],
+        "question_framing_only": []
+      },
+      "critical_strings": [
+        "prompt",
+        "Accepts a static prompt object or a function"
+      ],
+      "anchor_revisions": [],
+      "decision_options": [
+        "APPROVE",
+        "REJECT",
+        "NEEDS_EDIT"
+      ],
+      "decision": null,
+      "audit": {
+        "claude_original_proposal": {
+          "proposed_question": "Is the `prompt` parameter required?",
+          "proposed_answer": "No, it is optional.",
+          "proposed_atomic_claims": [
+            "`prompt` is optional."
+          ]
+        },
+        "chatgpt_review": {
+          "reviewer": "independent_review",
+          "verdict": "FIX_REQUIRED",
+          "reviewed_at": "2026-08-20T07:23:19Z",
+          "question_supported": false,
+          "answer_supported": false,
+          "all_critical_claims_supported": false,
+          "evidence_boundary_complete": true,
+          "identifier_value_binding_correct": true,
+          "natural_question": false,
+          "verification_notes": "MINER_QUESTION_HEADER_DEPENDENCY: the anchored row is sound evidence, but the miner's exported question asked about a column whose meaning (Yes/No, string, integer) lives in a table header outside the row. The question is re-authored around a fact stated inside the row itself; the anchor does not move."
+        },
+        "revisions": [
+          {
+            "revision": 1,
+            "field": "proposed_question",
+            "from": "Is the `prompt` parameter required?",
+            "to": "What kinds of values can an agent's `prompt` configuration accept?",
+            "author": "independent_review",
+            "timestamp": "2026-08-20T07:23:19Z",
+            "reason": "MINER_QUESTION_HEADER_DEPENDENCY"
+          },
+          {
+            "revision": 2,
+            "field": "proposed_answer",
+            "from": "No, it is optional.",
+            "to": "A static prompt object or a function.",
+            "author": "independent_review",
+            "timestamp": "2026-08-20T07:23:19Z",
+            "reason": "MINER_QUESTION_HEADER_DEPENDENCY"
+          },
+          {
+            "revision": 3,
+            "field": "proposed_atomic_claims",
+            "from": [
+              "`prompt` is optional."
+            ],
+            "to": [
+              "The agent `prompt` configuration accepts either a static prompt object or a function."
+            ],
+            "author": "independent_review",
+            "timestamp": "2026-08-20T07:23:19Z",
+            "reason": "MINER_QUESTION_HEADER_DEPENDENCY"
+          }
+        ],
+        "anchor_as_mined": {
+          "version_id": "ver_35cac5e98c151a17f941a6142d74709f",
+          "char_start": 2057,
+          "char_end": 2208,
+          "evidence_hash": "5368be02d4beae2374838cc277695191b43b91bf4f099b3bffbdf1d8b0a856f7",
+          "section_path": [
+            "Agents",
+            "Basic configuration"
+          ]
+        },
+        "anchor_current": {
+          "version_id": "ver_35cac5e98c151a17f941a6142d74709f",
+          "char_start": 2057,
+          "char_end": 2208,
+          "evidence_hash": "5368be02d4beae2374838cc277695191b43b91bf4f099b3bffbdf1d8b0a856f7",
+          "section_path": [
+            "Agents",
+            "Basic configuration"
+          ]
+        },
+        "anchor_unchanged": true,
+        "anchor_disputes": [],
+        "provenance": {
+          "provider": "openai",
+          "document_title": "Agents",
+          "source_url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/agents.md",
+          "captured_at": "2026-08-17 04:46:19+00:00",
+          "evidence_kind": "parameter_table_row",
+          "generator_confidence": "high"
+        }
+      }
+    },
+    {
+      "candidate_id": "GOLD-B002-04",
+      "batch": 2,
+      "group": "fast_track",
+      "risk": "LOW",
+      "queued_because": "mandatory: disagreement, uncertainty or failure",
+      "chatgpt_verdict": "FIX_REQUIRED",
+      "verification_status": "needs_human_review",
+      "final": {
+        "question": "What kinds of values can the `source` field of a search result contain?",
+        "answer": "Any stable string, such as a URL or an internal identifier.",
+        "atomic_claims": [
+          "The search-result `source` field can be any stable string, including a URL or internal identifier."
+        ]
+      },
+      "evidence": {
+        "version_id": "ver_42a4f3d941b664a285883aaf6ff90373",
+        "char_start": 2380,
+        "char_end": 2517,
+        "evidence_hash": "7e393ec3bf702a944bcf3a5c7f31452b8f19e06764f1584cc3e2a94878423cd9",
+        "section_path": [
+          "How it works",
+          "Required fields"
+        ],
+        "text": "| `source`  | string | The source of the content. Any stable string works: a URL, or an internal identifier such as `kb://article-1234` |",
+        "context_before": "---- | ---------------------------------------------------------------------------------------------------------------- |\n| `type`    | string | Must be `\"search_result\"`                                                                                        |\n",
+        "context_after": "\n| `title`   | string | A descriptive title for the search result                                                                        |\n| `content` | array  | An array of text blocks containing the actual content                                             "
+      },
+      "why_human_review_required": "The reviewer rewrote the question and claims. Every term they assert is present in the anchored span, but a model authored the wording and a model verified it, so the case is not gold until you agree.",
+      "defects": [
+        {
+          "class": "MINER_QUESTION_HEADER_DEPENDENCY",
+          "what_was_repaired": "The anchored row is sound evidence; the miner's exported question asked about a column whose meaning lives in a table header outside the row. The question was re-authored around a fact stated inside the row, and the anchor did not move."
+        }
+      ],
+      "anchor_gaps": {
+        "unsupported_in_claims": [],
+        "covered_by_provenance_only": [],
+        "question_framing_only": []
+      },
+      "critical_strings": [
+        "source",
+        "Any stable string works",
+        "a URL, or an internal identifier"
+      ],
+      "anchor_revisions": [],
+      "decision_options": [
+        "APPROVE",
+        "REJECT",
+        "NEEDS_EDIT"
+      ],
+      "decision": null,
+      "audit": {
+        "claude_original_proposal": {
+          "proposed_question": "What type does the `source` parameter take?",
+          "proposed_answer": "`string`",
+          "proposed_atomic_claims": [
+            "`source` is of type string."
+          ]
+        },
+        "chatgpt_review": {
+          "reviewer": "independent_review",
+          "verdict": "FIX_REQUIRED",
+          "reviewed_at": "2026-08-20T07:23:19Z",
+          "question_supported": false,
+          "answer_supported": false,
+          "all_critical_claims_supported": false,
+          "evidence_boundary_complete": true,
+          "identifier_value_binding_correct": true,
+          "natural_question": false,
+          "verification_notes": "MINER_QUESTION_HEADER_DEPENDENCY: the anchored row is sound evidence, but the miner's exported question asked about a column whose meaning (Yes/No, string, integer) lives in a table header outside the row. The question is re-authored around a fact stated inside the row itself; the anchor does not move."
+        },
+        "revisions": [
+          {
+            "revision": 1,
+            "field": "proposed_question",
+            "from": "What type does the `source` parameter take?",
+            "to": "What kinds of values can the `source` field of a search result contain?",
+            "author": "independent_review",
+            "timestamp": "2026-08-20T07:23:19Z",
+            "reason": "MINER_QUESTION_HEADER_DEPENDENCY"
+          },
+          {
+            "revision": 2,
+            "field": "proposed_answer",
+            "from": "`string`",
+            "to": "Any stable string, such as a URL or an internal identifier.",
+            "author": "independent_review",
+            "timestamp": "2026-08-20T07:23:19Z",
+            "reason": "MINER_QUESTION_HEADER_DEPENDENCY"
+          },
+          {
+            "revision": 3,
+            "field": "proposed_atomic_claims",
+            "from": [
+              "`source` is of type string."
+            ],
+            "to": [
+              "The search-result `source` field can be any stable string, including a URL or internal identifier."
+            ],
+            "author": "independent_review",
+            "timestamp": "2026-08-20T07:23:19Z",
+            "reason": "MINER_QUESTION_HEADER_DEPENDENCY"
+          }
+        ],
+        "anchor_as_mined": {
+          "version_id": "ver_42a4f3d941b664a285883aaf6ff90373",
+          "char_start": 2380,
+          "char_end": 2517,
+          "evidence_hash": "7e393ec3bf702a944bcf3a5c7f31452b8f19e06764f1584cc3e2a94878423cd9",
+          "section_path": [
+            "How it works",
+            "Required fields"
+          ]
+        },
+        "anchor_current": {
+          "version_id": "ver_42a4f3d941b664a285883aaf6ff90373",
+          "char_start": 2380,
+          "char_end": 2517,
+          "evidence_hash": "7e393ec3bf702a944bcf3a5c7f31452b8f19e06764f1584cc3e2a94878423cd9",
+          "section_path": [
+            "How it works",
+            "Required fields"
+          ]
+        },
+        "anchor_unchanged": true,
+        "anchor_disputes": [],
+        "provenance": {
+          "provider": "anthropic",
+          "document_title": "Search results",
+          "source_url": "https://platform.claude.com/docs/en/build-with-claude/search-results",
+          "captured_at": "2026-08-17 04:46:19+00:00",
+          "evidence_kind": "parameter_table_row",
+          "generator_confidence": "high"
+        }
+      }
+    },
+    {
+      "candidate_id": "GOLD-B002-05",
+      "batch": 2,
+      "group": "fast_track",
+      "risk": "LOW",
+      "queued_because": "mandatory: disagreement, uncertainty or failure",
+      "chatgpt_verdict": "FIX_REQUIRED",
+      "verification_status": "needs_human_review",
+      "final": {
+        "question": "What does setting `restart` to `true` do for the Bash tool?",
+        "answer": "It restarts the bash session.",
+        "atomic_claims": [
+          "Setting `restart` to `true` restarts the bash session."
+        ]
+      },
+      "evidence": {
+        "version_id": "ver_9bf8513721dc2d1ef3e1ec42bf535dc6",
+        "char_start": 7758,
+        "char_end": 7826,
+        "evidence_hash": "a0aa27b1c1f05377d146ebf70ff1b56b3966497f0fde1a547a9ed9578f3c9044",
+        "section_path": [
+          "Parameters"
+        ],
+        "text": "| `restart` | No       | Set to `true` to restart the bash session |",
+        "context_before": "he input fields Claude sets when it calls the tool.\n\n| Parameter | Required | Description                               |\n| --------- | -------- | ----------------------------------------- |\n| `command` | Yes\\*    | The bash command to run                   |\n",
+        "context_after": "\n\n\\*Required unless using `restart`\n\nTo handle `restart: true`, kill the shell process, start a new one, and return a `tool_result` that confirms the restart. A restarted session starts clean: the working directory, environment variables, and any running proce"
+      },
+      "why_human_review_required": "The reviewer rewrote the question and claims. Every term they assert is present in the anchored span, but a model authored the wording and a model verified it, so the case is not gold until you agree.",
+      "defects": [
+        {
+          "class": "MINER_QUESTION_HEADER_DEPENDENCY",
+          "what_was_repaired": "The anchored row is sound evidence; the miner's exported question asked about a column whose meaning lives in a table header outside the row. The question was re-authored around a fact stated inside the row, and the anchor did not move."
+        }
+      ],
+      "anchor_gaps": {
+        "unsupported_in_claims": [],
+        "covered_by_provenance_only": [],
+        "question_framing_only": []
+      },
+      "critical_strings": [
+        "restart",
+        "Set to `true` to restart the bash session"
+      ],
+      "anchor_revisions": [],
+      "decision_options": [
+        "APPROVE",
+        "REJECT",
+        "NEEDS_EDIT"
+      ],
+      "decision": null,
+      "audit": {
+        "claude_original_proposal": {
+          "proposed_question": "Is the `restart` parameter required?",
+          "proposed_answer": "No, it is optional.",
+          "proposed_atomic_claims": [
+            "`restart` is optional."
+          ]
+        },
+        "chatgpt_review": {
+          "reviewer": "independent_review",
+          "verdict": "FIX_REQUIRED",
+          "reviewed_at": "2026-08-20T07:23:19Z",
+          "question_supported": false,
+          "answer_supported": false,
+          "all_critical_claims_supported": false,
+          "evidence_boundary_complete": true,
+          "identifier_value_binding_correct": true,
+          "natural_question": false,
+          "verification_notes": "MINER_QUESTION_HEADER_DEPENDENCY: the anchored row is sound evidence, but the miner's exported question asked about a column whose meaning (Yes/No, string, integer) lives in a table header outside the row. The question is re-authored around a fact stated inside the row itself; the anchor does not move."
+        },
+        "revisions": [
+          {
+            "revision": 1,
+            "field": "proposed_question",
+            "from": "Is the `restart` parameter required?",
+            "to": "What does setting `restart` to `true` do for the Bash tool?",
+            "author": "independent_review",
+            "timestamp": "2026-08-20T07:23:19Z",
+            "reason": "MINER_QUESTION_HEADER_DEPENDENCY"
+          },
+          {
+            "revision": 2,
+            "field": "proposed_answer",
+            "from": "No, it is optional.",
+            "to": "It restarts the bash session.",
+            "author": "independent_review",
+            "timestamp": "2026-08-20T07:23:19Z",
+            "reason": "MINER_QUESTION_HEADER_DEPENDENCY"
+          },
+          {
+            "revision": 3,
+            "field": "proposed_atomic_claims",
+            "from": [
+              "`restart` is optional."
+            ],
+            "to": [
+              "Setting `restart` to `true` restarts the bash session."
+            ],
+            "author": "independent_review",
+            "timestamp": "2026-08-20T07:23:19Z",
+            "reason": "MINER_QUESTION_HEADER_DEPENDENCY"
+          }
+        ],
+        "anchor_as_mined": {
+          "version_id": "ver_9bf8513721dc2d1ef3e1ec42bf535dc6",
+          "char_start": 7758,
+          "char_end": 7826,
+          "evidence_hash": "a0aa27b1c1f05377d146ebf70ff1b56b3966497f0fde1a547a9ed9578f3c9044",
+          "section_path": [
+            "Parameters"
+          ]
+        },
+        "anchor_current": {
+          "version_id": "ver_9bf8513721dc2d1ef3e1ec42bf535dc6",
+          "char_start": 7758,
+          "char_end": 7826,
+          "evidence_hash": "a0aa27b1c1f05377d146ebf70ff1b56b3966497f0fde1a547a9ed9578f3c9044",
+          "section_path": [
+            "Parameters"
+          ]
+        },
+        "anchor_unchanged": true,
+        "anchor_disputes": [],
+        "provenance": {
+          "provider": "anthropic",
+          "document_title": "Bash tool",
+          "source_url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/bash-tool",
+          "captured_at": "2026-08-17 04:46:19+00:00",
+          "evidence_kind": "parameter_table_row",
+          "generator_confidence": "high"
+        }
+      }
+    },
+    {
+      "candidate_id": "GOLD-B002-06",
+      "batch": 2,
+      "group": "fast_track",
+      "risk": "LOW",
+      "queued_because": "mandatory: disagreement, uncertainty or failure",
+      "chatgpt_verdict": "FIX_REQUIRED",
+      "verification_status": "needs_human_review",
+      "final": {
+        "question": "What is the minimum allowed `max_tokens` value for the advisor tool?",
+        "answer": "1024.",
+        "atomic_claims": [
+          "The advisor tool's `max_tokens` value has a minimum of 1024."
+        ]
+      },
+      "evidence": {
+        "version_id": "ver_b8b18cda9b875d51a2ce979a1bf4e909",
+        "char_start": 13205,
+        "char_end": 13710,
+        "evidence_hash": "d2dd49438ce16e5b9f9ba575c2c63f34ddb1b0b20569f891c5261f72d21e3046",
+        "section_path": [
+          "Tool parameters"
+        ],
+        "text": "| `max_tokens` | integer        | advisor model's output cap | Caps the advisor's total output (thinking plus text) per call. Minimum 1024. See [Capping advisor output](https://platform.claude.com/docs/en/agents-and-tools/tool-use/advisor-tool#capping-advisor-output).                                                                                                                                                                                                                                            |",
+        "context_before": "s_exceeded\"` and the executor continues without further advice. This is a per-request cap, not a per-conversation cap. See [Cost control](https://platform.claude.com/docs/en/agents-and-tools/tool-use/advisor-tool#cost-control) for conversation-level limits. |\n",
+        "context_after": "\n| `caching`    | object \\| null | `null` (off)               | Enables [prompt caching](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) for the advisor's own transcript across calls within a conversation. See [Advisor prompt caching](htt"
+      },
+      "why_human_review_required": "The reviewer rewrote the question and claims. Every term they assert is present in the anchored span, but a model authored the wording and a model verified it, so the case is not gold until you agree.",
+      "defects": [
+        {
+          "class": "MINER_QUESTION_HEADER_DEPENDENCY",
+          "what_was_repaired": "The anchored row is sound evidence; the miner's exported question asked about a column whose meaning lives in a table header outside the row. The question was re-authored around a fact stated inside the row, and the anchor did not move."
+        }
+      ],
+      "anchor_gaps": {
+        "unsupported_in_claims": [],
+        "covered_by_provenance_only": [],
+        "question_framing_only": []
+      },
+      "critical_strings": [
+        "max_tokens",
+        "Minimum 1024"
+      ],
+      "anchor_revisions": [],
+      "decision_options": [
+        "APPROVE",
+        "REJECT",
+        "NEEDS_EDIT"
+      ],
+      "decision": null,
+      "audit": {
+        "claude_original_proposal": {
+          "proposed_question": "What type does the `max_tokens` parameter take?",
+          "proposed_answer": "`integer`",
+          "proposed_atomic_claims": [
+            "`max_tokens` is of type integer."
+          ]
+        },
+        "chatgpt_review": {
+          "reviewer": "independent_review",
+          "verdict": "FIX_REQUIRED",
+          "reviewed_at": "2026-08-20T07:23:19Z",
+          "question_supported": false,
+          "answer_supported": false,
+          "all_critical_claims_supported": false,
+          "evidence_boundary_complete": true,
+          "identifier_value_binding_correct": true,
+          "natural_question": false,
+          "verification_notes": "MINER_QUESTION_HEADER_DEPENDENCY: the anchored row is sound evidence, but the miner's exported question asked about a column whose meaning (Yes/No, string, integer) lives in a table header outside the row. The question is re-authored around a fact stated inside the row itself; the anchor does not move."
+        },
+        "revisions": [
+          {
+            "revision": 1,
+            "field": "proposed_question",
+            "from": "What type does the `max_tokens` parameter take?",
+            "to": "What is the minimum allowed `max_tokens` value for the advisor tool?",
+            "author": "independent_review",
+            "timestamp": "2026-08-20T07:23:19Z",
+            "reason": "MINER_QUESTION_HEADER_DEPENDENCY"
+          },
+          {
+            "revision": 2,
+            "field": "proposed_answer",
+            "from": "`integer`",
+            "to": "1024.",
+            "author": "independent_review",
+            "timestamp": "2026-08-20T07:23:19Z",
+            "reason": "MINER_QUESTION_HEADER_DEPENDENCY"
+          },
+          {
+            "revision": 3,
+            "field": "proposed_atomic_claims",
+            "from": [
+              "`max_tokens` is of type integer."
+            ],
+            "to": [
+              "The advisor tool's `max_tokens` value has a minimum of 1024."
+            ],
+            "author": "independent_review",
+            "timestamp": "2026-08-20T07:23:19Z",
+            "reason": "MINER_QUESTION_HEADER_DEPENDENCY"
+          }
+        ],
+        "anchor_as_mined": {
+          "version_id": "ver_b8b18cda9b875d51a2ce979a1bf4e909",
+          "char_start": 13205,
+          "char_end": 13710,
+          "evidence_hash": "d2dd49438ce16e5b9f9ba575c2c63f34ddb1b0b20569f891c5261f72d21e3046",
+          "section_path": [
+            "Tool parameters"
+          ]
+        },
+        "anchor_current": {
+          "version_id": "ver_b8b18cda9b875d51a2ce979a1bf4e909",
+          "char_start": 13205,
+          "char_end": 13710,
+          "evidence_hash": "d2dd49438ce16e5b9f9ba575c2c63f34ddb1b0b20569f891c5261f72d21e3046",
+          "section_path": [
+            "Tool parameters"
+          ]
+        },
+        "anchor_unchanged": true,
+        "anchor_disputes": [],
+        "provenance": {
+          "provider": "anthropic",
+          "document_title": "Advisor tool",
+          "source_url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/advisor-tool",
+          "captured_at": "2026-08-17 04:46:19+00:00",
+          "evidence_kind": "parameter_table_row",
+          "generator_confidence": "high"
+        }
+      }
+    },
+    {
+      "candidate_id": "GOLD-B002-07",
+      "batch": 2,
+      "group": "fast_track",
+      "risk": "LOW",
+      "queued_because": "mandatory: disagreement, uncertainty or failure",
+      "chatgpt_verdict": "FIX_REQUIRED",
+      "verification_status": "needs_human_review",
+      "final": {
+        "question": "What does the `pause_after_compaction` parameter control?",
+        "answer": "Whether to pause after generating the compaction summary.",
+        "atomic_claims": [
+          "`pause_after_compaction` controls whether execution pauses after the compaction summary is generated."
+        ]
+      },
+      "evidence": {
+        "version_id": "ver_c60f7418b69b6610bd20e974b92cdd8c",
+        "char_start": 9443,
+        "char_end": 9648,
+        "evidence_hash": "3dc311a8dcb1e09a11ce53c6e0b86e5d95abb99d28c59de16053ff4ee269e090",
+        "section_path": [
+          "Parameters"
+        ],
+        "text": "| `pause_after_compaction` | boolean | `false`                                     | Whether to pause after generating the compaction summary                                                               |",
+        "context_before": "                                                    |\n| `trigger`                | object  | `{\"type\": \"input_tokens\", \"value\": 150000}` | When to trigger compaction. `input_tokens` is the only supported trigger type. `value` must be at least 50,000 tokens. |\n",
+        "context_after": "\n| `instructions`           | string  | `null`                                      | Custom summarization prompt. Completely replaces the default prompt when provided.                                     |\n\n### Trigger configuration\n\nConfigure when compaction"
+      },
+      "why_human_review_required": "The reviewer rewrote the question and claims. Every term they assert is present in the anchored span, but a model authored the wording and a model verified it, so the case is not gold until you agree.",
+      "defects": [
+        {
+          "class": "MINER_QUESTION_HEADER_DEPENDENCY",
+          "what_was_repaired": "The anchored row is sound evidence; the miner's exported question asked about a column whose meaning lives in a table header outside the row. The question was re-authored around a fact stated inside the row, and the anchor did not move."
+        }
+      ],
+      "anchor_gaps": {
+        "unsupported_in_claims": [],
+        "covered_by_provenance_only": [],
+        "question_framing_only": []
+      },
+      "critical_strings": [
+        "pause_after_compaction",
+        "Whether to pause after generating the compaction summary"
+      ],
+      "anchor_revisions": [],
+      "decision_options": [
+        "APPROVE",
+        "REJECT",
+        "NEEDS_EDIT"
+      ],
+      "decision": null,
+      "audit": {
+        "claude_original_proposal": {
+          "proposed_question": "What type does the `pause_after_compaction` parameter take?",
+          "proposed_answer": "`boolean`",
+          "proposed_atomic_claims": [
+            "`pause_after_compaction` is of type boolean."
+          ]
+        },
+        "chatgpt_review": {
+          "reviewer": "independent_review",
+          "verdict": "FIX_REQUIRED",
+          "reviewed_at": "2026-08-20T07:23:19Z",
+          "question_supported": false,
+          "answer_supported": false,
+          "all_critical_claims_supported": false,
+          "evidence_boundary_complete": true,
+          "identifier_value_binding_correct": true,
+          "natural_question": false,
+          "verification_notes": "MINER_QUESTION_HEADER_DEPENDENCY: the anchored row is sound evidence, but the miner's exported question asked about a column whose meaning (Yes/No, string, integer) lives in a table header outside the row. The question is re-authored around a fact stated inside the row itself; the anchor does not move."
+        },
+        "revisions": [
+          {
+            "revision": 1,
+            "field": "proposed_question",
+            "from": "What type does the `pause_after_compaction` parameter take?",
+            "to": "What does the `pause_after_compaction` parameter control?",
+            "author": "independent_review",
+            "timestamp": "2026-08-20T07:23:19Z",
+            "reason": "MINER_QUESTION_HEADER_DEPENDENCY"
+          },
+          {
+            "revision": 2,
+            "field": "proposed_answer",
+            "from": "`boolean`",
+            "to": "Whether to pause after generating the compaction summary.",
+            "author": "independent_review",
+            "timestamp": "2026-08-20T07:23:19Z",
+            "reason": "MINER_QUESTION_HEADER_DEPENDENCY"
+          },
+          {
+            "revision": 3,
+            "field": "proposed_atomic_claims",
+            "from": [
+              "`pause_after_compaction` is of type boolean."
+            ],
+            "to": [
+              "`pause_after_compaction` controls whether execution pauses after the compaction summary is generated."
+            ],
+            "author": "independent_review",
+            "timestamp": "2026-08-20T07:23:19Z",
+            "reason": "MINER_QUESTION_HEADER_DEPENDENCY"
+          }
+        ],
+        "anchor_as_mined": {
+          "version_id": "ver_c60f7418b69b6610bd20e974b92cdd8c",
+          "char_start": 9443,
+          "char_end": 9648,
+          "evidence_hash": "3dc311a8dcb1e09a11ce53c6e0b86e5d95abb99d28c59de16053ff4ee269e090",
+          "section_path": [
+            "Parameters"
+          ]
+        },
+        "anchor_current": {
+          "version_id": "ver_c60f7418b69b6610bd20e974b92cdd8c",
+          "char_start": 9443,
+          "char_end": 9648,
+          "evidence_hash": "3dc311a8dcb1e09a11ce53c6e0b86e5d95abb99d28c59de16053ff4ee269e090",
+          "section_path": [
+            "Parameters"
+          ]
+        },
+        "anchor_unchanged": true,
+        "anchor_disputes": [],
+        "provenance": {
+          "provider": "anthropic",
+          "document_title": "Compaction",
+          "source_url": "https://platform.claude.com/docs/en/build-with-claude/compaction",
+          "captured_at": "2026-08-17 04:46:19+00:00",
+          "evidence_kind": "parameter_table_row",
+          "generator_confidence": "high"
+        }
+      }
+    },
+    {
+      "candidate_id": "GOLD-B002-08",
+      "batch": 2,
+      "group": "fast_track",
+      "risk": "LOW",
+      "queued_because": "mandatory: disagreement, uncertainty or failure",
+      "chatgpt_verdict": "FIX_REQUIRED",
+      "verification_status": "needs_human_review",
+      "final": {
+        "question": "What is the maximum length of the `text` field when triggering a routine through the API?",
+        "answer": "65,536 characters.",
+        "atomic_claims": [
+          "The routine-trigger `text` field has a maximum length of 65,536 characters."
+        ]
+      },
+      "evidence": {
+        "version_id": "ver_d81ee605bd8bbb880deea432e51462ac",
+        "char_start": 8144,
+        "char_end": 8480,
+        "evidence_hash": "08bde1a6bcc80fb723b61f2a895db6045a1643c0d9534d427ca377e88e587d0f",
+        "section_path": [
+          "Trigger a routine",
+          "Request body"
+        ],
+        "text": "| `text` | string | No       | Initial context for this run, such as an alert body, a failing log line, or a git diff. The value is freeform text and is not parsed; if you send JSON or another structured payload, the routine receives it as a literal string. Passed to the routine alongside its saved prompt. Maximum 65,536 characters. |",
+        "context_before": "----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n",
+        "context_after": "\n\nThe body is optional. Unknown fields in the body are ignored.\n\n### Response\n\nA successful request returns `200 OK` with the new session details:\n\n```json\n{\n  \"type\": \"routine_fire\",\n  \"claude_code_session_id\": \"session_01HJKLMNOPQRSTUVWXYZ\",\n  \"claude_code_s"
+      },
+      "why_human_review_required": "The reviewer rewrote the question and claims. Every term they assert is present in the anchored span, but a model authored the wording and a model verified it, so the case is not gold until you agree.",
+      "defects": [
+        {
+          "class": "MINER_QUESTION_HEADER_DEPENDENCY",
+          "what_was_repaired": "The anchored row is sound evidence; the miner's exported question asked about a column whose meaning lives in a table header outside the row. The question was re-authored around a fact stated inside the row, and the anchor did not move."
+        }
+      ],
+      "anchor_gaps": {
+        "unsupported_in_claims": [],
+        "covered_by_provenance_only": [],
+        "question_framing_only": []
+      },
+      "critical_strings": [
+        "text",
+        "Maximum 65,536 characters"
+      ],
+      "anchor_revisions": [],
+      "decision_options": [
+        "APPROVE",
+        "REJECT",
+        "NEEDS_EDIT"
+      ],
+      "decision": null,
+      "audit": {
+        "claude_original_proposal": {
+          "proposed_question": "Is the `text` parameter required?",
+          "proposed_answer": "No, it is optional.",
+          "proposed_atomic_claims": [
+            "`text` is optional."
+          ]
+        },
+        "chatgpt_review": {
+          "reviewer": "independent_review",
+          "verdict": "FIX_REQUIRED",
+          "reviewed_at": "2026-08-20T07:23:19Z",
+          "question_supported": false,
+          "answer_supported": false,
+          "all_critical_claims_supported": false,
+          "evidence_boundary_complete": true,
+          "identifier_value_binding_correct": true,
+          "natural_question": false,
+          "verification_notes": "MINER_QUESTION_HEADER_DEPENDENCY: the anchored row is sound evidence, but the miner's exported question asked about a column whose meaning (Yes/No, string, integer) lives in a table header outside the row. The question is re-authored around a fact stated inside the row itself; the anchor does not move."
+        },
+        "revisions": [
+          {
+            "revision": 1,
+            "field": "proposed_question",
+            "from": "Is the `text` parameter required?",
+            "to": "What is the maximum length of the `text` field when triggering a routine through the API?",
+            "author": "independent_review",
+            "timestamp": "2026-08-20T07:23:19Z",
+            "reason": "MINER_QUESTION_HEADER_DEPENDENCY"
+          },
+          {
+            "revision": 2,
+            "field": "proposed_answer",
+            "from": "No, it is optional.",
+            "to": "65,536 characters.",
+            "author": "independent_review",
+            "timestamp": "2026-08-20T07:23:19Z",
+            "reason": "MINER_QUESTION_HEADER_DEPENDENCY"
+          },
+          {
+            "revision": 3,
+            "field": "proposed_atomic_claims",
+            "from": [
+              "`text` is optional."
+            ],
+            "to": [
+              "The routine-trigger `text` field has a maximum length of 65,536 characters."
+            ],
+            "author": "independent_review",
+            "timestamp": "2026-08-20T07:23:19Z",
+            "reason": "MINER_QUESTION_HEADER_DEPENDENCY"
+          }
+        ],
+        "anchor_as_mined": {
+          "version_id": "ver_d81ee605bd8bbb880deea432e51462ac",
+          "char_start": 8144,
+          "char_end": 8480,
+          "evidence_hash": "08bde1a6bcc80fb723b61f2a895db6045a1643c0d9534d427ca377e88e587d0f",
+          "section_path": [
+            "Trigger a routine",
+            "Request body"
+          ]
+        },
+        "anchor_current": {
+          "version_id": "ver_d81ee605bd8bbb880deea432e51462ac",
+          "char_start": 8144,
+          "char_end": 8480,
+          "evidence_hash": "08bde1a6bcc80fb723b61f2a895db6045a1643c0d9534d427ca377e88e587d0f",
+          "section_path": [
+            "Trigger a routine",
+            "Request body"
+          ]
+        },
+        "anchor_unchanged": true,
+        "anchor_disputes": [],
+        "provenance": {
+          "provider": "anthropic",
+          "document_title": "Trigger a routine through the API",
+          "source_url": "https://platform.claude.com/docs/en/api/claude-code/routines-fire",
+          "captured_at": "2026-08-17 04:46:19+00:00",
+          "evidence_kind": "parameter_table_row",
+          "generator_confidence": "high"
+        }
+      }
+    },
+    {
+      "candidate_id": "GOLD-B002-09",
+      "batch": 2,
+      "group": "fast_track",
+      "risk": "LOW",
+      "queued_because": "mandatory: disagreement, uncertainty or failure",
+      "chatgpt_verdict": "FIX_REQUIRED",
+      "verification_status": "needs_human_review",
+      "final": {
+        "question": "What does `display_height_px` specify for the computer use tool?",
+        "answer": "The display height in pixels.",
+        "atomic_claims": [
+          "`display_height_px` specifies the display height in pixels."
+        ]
+      },
+      "evidence": {
+        "version_id": "ver_d9ba3ab0d872dd86047c7ed6dc783235",
+        "char_start": 33443,
+        "char_end": 33611,
+        "evidence_hash": "d40e824bd901a423486c55c4093e5f80b879fa7a62a0172e31f62cb5ce47ff5b",
+        "section_path": [
+          "How to implement computer use",
+          "Tool parameters"
+        ],
+        "text": "| `display_height_px` | Yes      | Display height in pixels                                                                                                            |",
+        "context_before": "                                                                                         |\n| `display_width_px`  | Yes      | Display width in pixels                                                                                                             |\n",
+        "context_after": "\n| `display_number`    | No       | Display number for X11 environments                                                                                                 |\n| `enable_zoom`       | No       | Enable zoom action (`computer_20251124` only). Set to `"
+      },
+      "why_human_review_required": "The reviewer rewrote the question and claims. Every term they assert is present in the anchored span, but a model authored the wording and a model verified it, so the case is not gold until you agree.",
+      "defects": [
+        {
+          "class": "MINER_QUESTION_HEADER_DEPENDENCY",
+          "what_was_repaired": "The anchored row is sound evidence; the miner's exported question asked about a column whose meaning lives in a table header outside the row. The question was re-authored around a fact stated inside the row, and the anchor did not move."
+        }
+      ],
+      "anchor_gaps": {
+        "unsupported_in_claims": [],
+        "covered_by_provenance_only": [],
+        "question_framing_only": []
+      },
+      "critical_strings": [
+        "display_height_px",
+        "Display height in pixels"
+      ],
+      "anchor_revisions": [],
+      "decision_options": [
+        "APPROVE",
+        "REJECT",
+        "NEEDS_EDIT"
+      ],
+      "decision": null,
+      "audit": {
+        "claude_original_proposal": {
+          "proposed_question": "Is the `display_height_px` parameter required?",
+          "proposed_answer": "Yes, it is required.",
+          "proposed_atomic_claims": [
+            "`display_height_px` is required."
+          ]
+        },
+        "chatgpt_review": {
+          "reviewer": "independent_review",
+          "verdict": "FIX_REQUIRED",
+          "reviewed_at": "2026-08-20T07:23:19Z",
+          "question_supported": false,
+          "answer_supported": false,
+          "all_critical_claims_supported": false,
+          "evidence_boundary_complete": true,
+          "identifier_value_binding_correct": true,
+          "natural_question": false,
+          "verification_notes": "MINER_QUESTION_HEADER_DEPENDENCY: the anchored row is sound evidence, but the miner's exported question asked about a column whose meaning (Yes/No, string, integer) lives in a table header outside the row. The question is re-authored around a fact stated inside the row itself; the anchor does not move."
+        },
+        "revisions": [
+          {
+            "revision": 1,
+            "field": "proposed_question",
+            "from": "Is the `display_height_px` parameter required?",
+            "to": "What does `display_height_px` specify for the computer use tool?",
+            "author": "independent_review",
+            "timestamp": "2026-08-20T07:23:19Z",
+            "reason": "MINER_QUESTION_HEADER_DEPENDENCY"
+          },
+          {
+            "revision": 2,
+            "field": "proposed_answer",
+            "from": "Yes, it is required.",
+            "to": "The display height in pixels.",
+            "author": "independent_review",
+            "timestamp": "2026-08-20T07:23:19Z",
+            "reason": "MINER_QUESTION_HEADER_DEPENDENCY"
+          },
+          {
+            "revision": 3,
+            "field": "proposed_atomic_claims",
+            "from": [
+              "`display_height_px` is required."
+            ],
+            "to": [
+              "`display_height_px` specifies the display height in pixels."
+            ],
+            "author": "independent_review",
+            "timestamp": "2026-08-20T07:23:19Z",
+            "reason": "MINER_QUESTION_HEADER_DEPENDENCY"
+          }
+        ],
+        "anchor_as_mined": {
+          "version_id": "ver_d9ba3ab0d872dd86047c7ed6dc783235",
+          "char_start": 33443,
+          "char_end": 33611,
+          "evidence_hash": "d40e824bd901a423486c55c4093e5f80b879fa7a62a0172e31f62cb5ce47ff5b",
+          "section_path": [
+            "How to implement computer use",
+            "Tool parameters"
+          ]
+        },
+        "anchor_current": {
+          "version_id": "ver_d9ba3ab0d872dd86047c7ed6dc783235",
+          "char_start": 33443,
+          "char_end": 33611,
+          "evidence_hash": "d40e824bd901a423486c55c4093e5f80b879fa7a62a0172e31f62cb5ce47ff5b",
+          "section_path": [
+            "How to implement computer use",
+            "Tool parameters"
+          ]
+        },
+        "anchor_unchanged": true,
+        "anchor_disputes": [],
+        "provenance": {
+          "provider": "anthropic",
+          "document_title": "Computer use tool",
+          "source_url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool",
+          "captured_at": "2026-08-17 04:46:19+00:00",
+          "evidence_kind": "parameter_table_row",
+          "generator_confidence": "high"
+        }
+      }
+    },
+    {
+      "candidate_id": "GOLD-B002-10",
+      "batch": 2,
+      "group": "fast_track",
+      "risk": "LOW",
+      "queued_because": "mandatory: disagreement, uncertainty or failure",
+      "chatgpt_verdict": "FIX_REQUIRED",
+      "verification_status": "needs_human_review",
+      "final": {
+        "question": "What attribute does the `parse()` method return after transforming the Pydantic model and validating the response?",
+        "answer": "`parsed_output`",
+        "atomic_claims": [
+          "The `parse()` method transforms the Pydantic model, validates the response, and returns a `parsed_output` attribute."
+        ]
+      },
+      "evidence": {
+        "version_id": "ver_0865c9612dfe97d8f30dd870dd12e53e",
+        "char_start": 24246,
+        "char_end": 24381,
+        "evidence_hash": "19c025f578eef5b96e2371865a7bdfb7bc1736a165c83a78687b2400592cfe4d",
+        "section_path": [
+          "JSON outputs",
+          "Working with JSON outputs in SDKs",
+          "SDK-specific methods"
+        ],
+        "text": "    The `parse()` method automatically transforms your Pydantic model, validates the response, and returns a `parsed_output` attribute.",
+        "context_before": "       required: [name, email, plan_interest]\n          additionalProperties: false\n    YAML\n    ```\n\n    ```yaml Output\n    name: John Smith\n    email: john@example.com\n    ```\n  </Tab>\n\n  <Tab title=\"Python\">\n    **`client.messages.parse()` (Recommended)**\n\n",
+        "context_after": "\n\n    ```python\n    from pydantic import BaseModel\n    # ...\n    class ContactInfo(BaseModel):\n        name: str\n        email: str\n        plan_interest: str\n    # ...\n    response = client.messages.parse(\n        model=\"claude-opus-5\",\n        max_tokens=102"
+      },
+      "why_human_review_required": "The reviewer rewrote the question and claims. Every term they assert is present in the anchored span, but a model authored the wording and a model verified it, so the case is not gold until you agree.",
+      "defects": [
+        {
+          "class": "QUESTION_AUTHORING_REQUIRED",
+          "what_was_repaired": "No defect. The span is self-contained and the reviewer authored the question, answer and claims, which is how the prose miner is designed to work."
+        }
+      ],
+      "anchor_gaps": {
+        "unsupported_in_claims": [],
+        "covered_by_provenance_only": [],
+        "question_framing_only": []
+      },
+      "critical_strings": [
+        "parse()",
+        "validates the response",
+        "parsed_output"
+      ],
+      "anchor_revisions": [],
+      "decision_options": [
+        "APPROVE",
+        "REJECT",
+        "NEEDS_EDIT"
+      ],
+      "decision": null,
+      "audit": {
+        "claude_original_proposal": {
+          "proposed_question": "[REVIEWER TO WRITE] A question answerable from the evidence below, which mentions `parsed_output`.",
+          "proposed_answer": "",
+          "proposed_atomic_claims": []
+        },
+        "chatgpt_review": {
+          "reviewer": "independent_review",
+          "verdict": "FIX_REQUIRED",
+          "reviewed_at": "2026-08-20T07:23:19Z",
+          "question_supported": false,
+          "answer_supported": false,
+          "all_critical_claims_supported": false,
+          "evidence_boundary_complete": true,
+          "identifier_value_binding_correct": true,
+          "natural_question": false,
+          "verification_notes": "QUESTION_AUTHORING_REQUIRED: the span is self-contained and the reviewer authors the question, answer and claims, exactly as the prose miner is designed to work. No defect."
+        },
+        "revisions": [
+          {
+            "revision": 1,
+            "field": "proposed_question",
+            "from": "[REVIEWER TO WRITE] A question answerable from the evidence below, which mentions `parsed_output`.",
+            "to": "What attribute does the `parse()` method return after transforming the Pydantic model and validating the response?",
+            "author": "independent_review",
+            "timestamp": "2026-08-20T07:23:19Z",
+            "reason": "QUESTION_AUTHORING_REQUIRED"
+          },
+          {
+            "revision": 2,
+            "field": "proposed_answer",
+            "from": "",
+            "to": "`parsed_output`",
+            "author": "independent_review",
+            "timestamp": "2026-08-20T07:23:19Z",
+            "reason": "QUESTION_AUTHORING_REQUIRED"
+          },
+          {
+            "revision": 3,
+            "field": "proposed_atomic_claims",
+            "from": [],
+            "to": [
+              "The `parse()` method transforms the Pydantic model, validates the response, and returns a `parsed_output` attribute."
+            ],
+            "author": "independent_review",
+            "timestamp": "2026-08-20T07:23:19Z",
+            "reason": "QUESTION_AUTHORING_REQUIRED"
+          }
+        ],
+        "anchor_as_mined": {
+          "version_id": "ver_0865c9612dfe97d8f30dd870dd12e53e",
+          "char_start": 24246,
+          "char_end": 24381,
+          "evidence_hash": "19c025f578eef5b96e2371865a7bdfb7bc1736a165c83a78687b2400592cfe4d",
+          "section_path": [
+            "JSON outputs",
+            "Working with JSON outputs in SDKs",
+            "SDK-specific methods"
+          ]
+        },
+        "anchor_current": {
+          "version_id": "ver_0865c9612dfe97d8f30dd870dd12e53e",
+          "char_start": 24246,
+          "char_end": 24381,
+          "evidence_hash": "19c025f578eef5b96e2371865a7bdfb7bc1736a165c83a78687b2400592cfe4d",
+          "section_path": [
+            "JSON outputs",
+            "Working with JSON outputs in SDKs",
+            "SDK-specific methods"
+          ]
+        },
+        "anchor_unchanged": true,
+        "anchor_disputes": [],
+        "provenance": {
+          "provider": "anthropic",
+          "document_title": "Structured outputs",
+          "source_url": "https://platform.claude.com/docs/en/build-with-claude/structured-outputs",
+          "captured_at": "2026-08-17 04:46:19+00:00",
+          "evidence_kind": "prose_statement",
+          "generator_confidence": "medium"
+        }
+      }
+    },
+    {
+      "candidate_id": "GOLD-B002-11",
+      "batch": 2,
+      "group": "fast_track",
+      "risk": "LOW",
+      "queued_because": "mandatory: disagreement, uncertainty or failure",
+      "chatgpt_verdict": "FIX_REQUIRED",
+      "verification_status": "needs_human_review",
+      "final": {
+        "question": "What happens in Claude Sonnet 5 if `temperature`, `top_p`, or `top_k` is set to a non-default value?",
+        "answer": "The request returns a 400 error.",
+        "atomic_claims": [
+          "Claude Sonnet 5 returns a 400 error when `temperature`, `top_p`, or `top_k` is set to a non-default value."
+        ]
+      },
+      "evidence": {
+        "version_id": "ver_6c0983aad96f198367a0de369b3bb86c",
+        "char_start": 205,
+        "char_end": 656,
+        "evidence_hash": "996e12e80cd4a4543e3ec678555b8ca6e562fcc4630e783e0d773ff13d991f4f",
+        "section_path": [
+          "Preamble"
+        ],
+        "text": "Claude Sonnet 5 is the next generation of Anthropic's Sonnet model family. It is a drop-in upgrade for Claude Sonnet 4.6 with three behavior changes: [adaptive thinking](https://platform.claude.com/docs/en/build-with-claude/thinking) is on by default, manual extended thinking now returns a 400 error (it was deprecated on Claude Sonnet 4.6), and setting sampling parameters (`temperature`, `top_p`, `top_k`) to non-default values returns a 400 error.",
+        "context_before": "---\ntitle: What's new in Claude Sonnet 5\nurl: https://platform.claude.com/docs/en/about-claude/models/whats-new-sonnet-5\ndescription: Overview of new features and behavior changes in Claude Sonnet 5.\n---\n\n",
+        "context_after": " This page summarizes everything new at launch, including a new tokenizer.\n\n## New model\n\n| Model           | API model ID      | Description                                    |\n| --------------- | ----------------- | -----------------------------------------"
+      },
+      "why_human_review_required": "The reviewer rewrote the question and claims. Every term they assert is present in the anchored span, but a model authored the wording and a model verified it, so the case is not gold until you agree.",
+      "defects": [
+        {
+          "class": "QUESTION_AUTHORING_REQUIRED",
+          "what_was_repaired": "No defect. The span is self-contained and the reviewer authored the question, answer and claims, which is how the prose miner is designed to work."
+        }
+      ],
+      "anchor_gaps": {
+        "unsupported_in_claims": [],
+        "covered_by_provenance_only": [],
+        "question_framing_only": []
+      },
+      "critical_strings": [
+        "Claude Sonnet 5",
+        "temperature",
+        "top_p",
+        "top_k",
+        "non-default values returns a 400 error"
+      ],
+      "anchor_revisions": [],
+      "decision_options": [
+        "APPROVE",
+        "REJECT",
+        "NEEDS_EDIT"
+      ],
+      "decision": null,
+      "audit": {
+        "claude_original_proposal": {
+          "proposed_question": "[REVIEWER TO WRITE] A question answerable from the evidence below, which mentions `temperature`, `top_p`, `top_k`.",
+          "proposed_answer": "",
+          "proposed_atomic_claims": []
+        },
+        "chatgpt_review": {
+          "reviewer": "independent_review",
+          "verdict": "FIX_REQUIRED",
+          "reviewed_at": "2026-08-20T07:23:19Z",
+          "question_supported": false,
+          "answer_supported": false,
+          "all_critical_claims_supported": false,
+          "evidence_boundary_complete": true,
+          "identifier_value_binding_correct": true,
+          "natural_question": false,
+          "verification_notes": "QUESTION_AUTHORING_REQUIRED: the span is self-contained and the reviewer authors the question, answer and claims, exactly as the prose miner is designed to work. No defect."
+        },
+        "revisions": [
+          {
+            "revision": 1,
+            "field": "proposed_question",
+            "from": "[REVIEWER TO WRITE] A question answerable from the evidence below, which mentions `temperature`, `top_p`, `top_k`.",
+            "to": "What happens in Claude Sonnet 5 if `temperature`, `top_p`, or `top_k` is set to a non-default value?",
+            "author": "independent_review",
+            "timestamp": "2026-08-20T07:23:19Z",
+            "reason": "QUESTION_AUTHORING_REQUIRED"
+          },
+          {
+            "revision": 2,
+            "field": "proposed_answer",
+            "from": "",
+            "to": "The request returns a 400 error.",
+            "author": "independent_review",
+            "timestamp": "2026-08-20T07:23:19Z",
+            "reason": "QUESTION_AUTHORING_REQUIRED"
+          },
+          {
+            "revision": 3,
+            "field": "proposed_atomic_claims",
+            "from": [],
+            "to": [
+              "Claude Sonnet 5 returns a 400 error when `temperature`, `top_p`, or `top_k` is set to a non-default value."
+            ],
+            "author": "independent_review",
+            "timestamp": "2026-08-20T07:23:19Z",
+            "reason": "QUESTION_AUTHORING_REQUIRED"
+          }
+        ],
+        "anchor_as_mined": {
+          "version_id": "ver_6c0983aad96f198367a0de369b3bb86c",
+          "char_start": 205,
+          "char_end": 656,
+          "evidence_hash": "996e12e80cd4a4543e3ec678555b8ca6e562fcc4630e783e0d773ff13d991f4f",
+          "section_path": [
+            "Preamble"
+          ]
+        },
+        "anchor_current": {
+          "version_id": "ver_6c0983aad96f198367a0de369b3bb86c",
+          "char_start": 205,
+          "char_end": 656,
+          "evidence_hash": "996e12e80cd4a4543e3ec678555b8ca6e562fcc4630e783e0d773ff13d991f4f",
+          "section_path": [
+            "Preamble"
+          ]
+        },
+        "anchor_unchanged": true,
+        "anchor_disputes": [],
+        "provenance": {
+          "provider": "anthropic",
+          "document_title": "What's new in Claude Sonnet 5",
+          "source_url": "https://platform.claude.com/docs/en/about-claude/models/whats-new-sonnet-5",
+          "captured_at": "2026-08-17 04:46:19+00:00",
+          "evidence_kind": "prose_statement",
+          "generator_confidence": "low"
+        }
+      }
+    },
+    {
+      "candidate_id": "GOLD-B002-12",
+      "batch": 2,
+      "group": "fast_track",
+      "risk": "LOW",
+      "queued_because": "mandatory: disagreement, uncertainty or failure",
+      "chatgpt_verdict": "FIX_REQUIRED",
+      "verification_status": "needs_human_review",
+      "final": {
+        "question": "Can a prompt below the applicable minimum cacheable length be cached simply by marking it with `cache_control`?",
+        "answer": "No.",
+        "atomic_claims": [
+          "A prompt below the applicable minimum cacheable length cannot be cached even when marked with `cache_control`."
+        ]
+      },
+      "evidence": {
+        "version_id": "ver_7947433dfde6b3b8eccd0faa597c3c9a",
+        "char_start": 29744,
+        "char_end": 31174,
+        "evidence_hash": "6cc24e6e6b65f438091a92d67001b08fe2c2ffd1b7ba20567aff964b6f61c290",
+        "section_path": [
+          "Caching strategies and considerations",
+          "Cache limitations"
+        ],
+        "text": "On the Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws), [Google Cloud](https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai), and [Microsoft Foundry](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry), the minimum cacheable prompt length is:\n\n* 512 tokens for Claude Opus 5, Claude Fable 5, and [Claude Mythos 5](https://anthropic.com/glasswing)\n* 2,048 tokens for [Claude Mythos Preview](https://anthropic.com/glasswing) and Claude Opus 4.7\n* 4,096 tokens for Claude Opus 4.6 and Claude Opus 4.5\n* 1,024 tokens for Claude Opus 4.8, Claude Sonnet 5, Claude Sonnet 4.6, Claude Sonnet 4.5, Claude Opus 4.1 ([retired, except on Bedrock and Google Cloud](https://platform.claude.com/docs/en/about-claude/model-deprecations)), Claude Opus 4 ([retired, except on Google Cloud](https://platform.claude.com/docs/en/about-claude/model-deprecations)), and Claude Sonnet 4 ([retired, except on Bedrock and Google Cloud](https://platform.claude.com/docs/en/about-claude/model-deprecations))\n* 4,096 tokens for Claude Haiku 4.5\n* 2,048 tokens for Claude Haiku 3.5 ([retired, except on Bedrock and Google Cloud](https://platform.claude.com/docs/en/about-claude/model-deprecations))\n\nThese minimums apply on every platform where each model is available.\n\nShorter prompts cannot be cached, even if marked with `cache_control`.",
+        "context_before": "sn't increase your costs - you still pay the same amount based on what content is actually cached and read. The breakpoints give you control over what sections can be cached independently.\n\n***\n\n## Caching strategies and considerations\n\n### Cache limitations\n\n",
+        "context_after": " Any requests to cache fewer than this number of tokens will be processed without caching, and no error is returned. To verify whether a prompt was cached, check the [response usage fields](https://platform.claude.com/docs/en/build-with-claude/prompt-caching#t"
+      },
+      "why_human_review_required": "The reviewer rewrote the question and claims. Every term they assert is present in the anchored span, but a model authored the wording and a model verified it, so the case is not gold until you agree.",
+      "defects": [
+        {
+          "class": "MINER_EVIDENCE_DEFECT",
+          "what_was_repaired": "The anchor did not contain what its claim depends on, and was extended. Both spans and both hashes are retained below."
+        }
+      ],
+      "anchor_gaps": {
+        "unsupported_in_claims": [],
+        "covered_by_provenance_only": [],
+        "question_framing_only": []
+      },
+      "critical_strings": [
+        "minimum cacheable prompt length",
+        "Shorter prompts cannot be cached",
+        "cache_control"
+      ],
+      "anchor_revisions": [
+        {
+          "revision": 1,
+          "reason": "evidence_boundary_completion",
+          "old_char_start": 31104,
+          "old_char_end": 31174,
+          "old_evidence_hash": "69cd87fb0e58c5a9fa404c3c52bf4aefbe04f459e57ecb622cbd47a0d9710d6f",
+          "old_evidence_text": "Shorter prompts cannot be cached, even if marked with `cache_control`.",
+          "new_char_start": 29744,
+          "new_char_end": 31174,
+          "new_evidence_hash": "6cc24e6e6b65f438091a92d67001b08fe2c2ffd1b7ba20567aff964b6f61c290",
+          "new_evidence_text": "On the Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws), [Google Cloud](https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai), and [Microsoft Foundry](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry), the minimum cacheable prompt length is:\n\n* 512 tokens for Claude Opus 5, Claude Fable 5, and [Claude Mythos 5](https://anthropic.com/glasswing)\n* 2,048 tokens for [Claude Mythos Preview](https://anthropic.com/glasswing) and Claude Opus 4.7\n* 4,096 tokens for Claude Opus 4.6 and Claude Opus 4.5\n* 1,024 tokens for Claude Opus 4.8, Claude Sonnet 5, Claude Sonnet 4.6, Claude Sonnet 4.5, Claude Opus 4.1 ([retired, except on Bedrock and Google Cloud](https://platform.claude.com/docs/en/about-claude/model-deprecations)), Claude Opus 4 ([retired, except on Google Cloud](https://platform.claude.com/docs/en/about-claude/model-deprecations)), and Claude Sonnet 4 ([retired, except on Bedrock and Google Cloud](https://platform.claude.com/docs/en/about-claude/model-deprecations))\n* 4,096 tokens for Claude Haiku 4.5\n* 2,048 tokens for Claude Haiku 3.5 ([retired, except on Bedrock and Google Cloud](https://platform.claude.com/docs/en/about-claude/model-deprecations))\n\nThese minimums apply on every platform where each model is available.\n\nShorter prompts cannot be cached, even if marked with `cache_control`.",
+          "characters_added_before": 1360,
+          "characters_added_after": 0,
+          "what_changed": "Extended backwards 1,360 characters to the sentence that introduces the per-model minimum cacheable prompt length, and the list of those minimums.",
+          "why_complete": "The claim turns on \"the applicable minimum cacheable length\", and that phrase appears nowhere in the original span. A smaller extension is available and was rejected: starting at \"These minimums apply on every platform…\" costs only 71 extra characters but leaves the anchor opening on \"These minimums\", which is the same anaphoric defect one sentence further up. See the size warning below.",
+          "size_warning": "1,430 characters is a large anchor and does make the case easier to retrieve. The alternative 141-character anchor is recorded in the packet; choosing it means also weakening the claim to something the smaller span can support.",
+          "author": "claude",
+          "directed_by": "independent_review",
+          "timestamp": "2026-08-20T07:23:19Z"
+        }
+      ],
+      "decision_options": [
+        "APPROVE",
+        "REJECT",
+        "NEEDS_EDIT"
+      ],
+      "decision": null,
+      "audit": {
+        "claude_original_proposal": {
+          "proposed_question": "[REVIEWER TO WRITE] A question answerable from the evidence below, which mentions `cache_control`.",
+          "proposed_answer": "",
+          "proposed_atomic_claims": []
+        },
+        "chatgpt_review": {
+          "reviewer": "independent_review",
+          "verdict": "FIX_REQUIRED",
+          "reviewed_at": "2026-08-20T07:23:19Z",
+          "question_supported": false,
+          "answer_supported": false,
+          "all_critical_claims_supported": false,
+          "evidence_boundary_complete": false,
+          "identifier_value_binding_correct": true,
+          "natural_question": false,
+          "verification_notes": "MINER_EVIDENCE_DEFECT: the anchor does not contain what its claim depends on and must be extended."
+        },
+        "revisions": [
+          {
+            "revision": 1,
+            "field": "proposed_question",
+            "from": "[REVIEWER TO WRITE] A question answerable from the evidence below, which mentions `cache_control`.",
+            "to": "Can a prompt below the applicable minimum cacheable length be cached simply by marking it with `cache_control`?",
+            "author": "independent_review",
+            "timestamp": "2026-08-20T07:23:19Z",
+            "reason": "MINER_EVIDENCE_DEFECT"
+          },
+          {
+            "revision": 2,
+            "field": "proposed_answer",
+            "from": "",
+            "to": "No.",
+            "author": "independent_review",
+            "timestamp": "2026-08-20T07:23:19Z",
+            "reason": "MINER_EVIDENCE_DEFECT"
+          },
+          {
+            "revision": 3,
+            "field": "proposed_atomic_claims",
+            "from": [],
+            "to": [
+              "A prompt below the applicable minimum cacheable length cannot be cached even when marked with `cache_control`."
+            ],
+            "author": "independent_review",
+            "timestamp": "2026-08-20T07:23:19Z",
+            "reason": "MINER_EVIDENCE_DEFECT"
+          }
+        ],
+        "anchor_as_mined": {
+          "version_id": "ver_7947433dfde6b3b8eccd0faa597c3c9a",
+          "char_start": 29744,
+          "char_end": 31174,
+          "evidence_hash": "6cc24e6e6b65f438091a92d67001b08fe2c2ffd1b7ba20567aff964b6f61c290",
+          "section_path": [
+            "Caching strategies and considerations",
+            "Cache limitations"
+          ]
+        },
+        "anchor_current": {
+          "version_id": "ver_7947433dfde6b3b8eccd0faa597c3c9a",
+          "char_start": 29744,
+          "char_end": 31174,
+          "evidence_hash": "6cc24e6e6b65f438091a92d67001b08fe2c2ffd1b7ba20567aff964b6f61c290",
+          "section_path": [
+            "Caching strategies and considerations",
+            "Cache limitations"
+          ]
+        },
+        "anchor_unchanged": true,
+        "anchor_disputes": [],
+        "provenance": {
+          "provider": "anthropic",
+          "document_title": "Prompt caching",
+          "source_url": "https://platform.claude.com/docs/en/build-with-claude/prompt-caching",
+          "captured_at": "2026-08-17 04:46:19+00:00",
+          "evidence_kind": "prose_statement",
+          "generator_confidence": "medium"
+        }
+      }
+    },
+    {
+      "candidate_id": "GOLD-B002-13",
+      "batch": 2,
+      "group": "fast_track",
+      "risk": "LOW",
+      "queued_because": "mandatory: disagreement, uncertainty or failure",
+      "chatgpt_verdict": "FIX_REQUIRED",
+      "verification_status": "needs_human_review",
+      "final": {
+        "question": "Why must `TUNNEL_TOKEN` be exported again in every fresh shell and after a reboot for this Docker Compose deployment?",
+        "answer": "Because the compose file reads it from the host environment and has no default.",
+        "atomic_claims": [
+          "The compose file reads `TUNNEL_TOKEN` from the host environment with no default, so the export must be repeated in every fresh shell and after a reboot."
+        ]
+      },
+      "evidence": {
+        "version_id": "ver_b05e105d93045aff4c7ce998b198ae79",
+        "char_start": 17854,
+        "char_end": 18006,
+        "evidence_hash": "7fc8662a80faa78665b372bcd2e42a7bdb81f115356af0954065e3632f452399",
+        "section_path": [
+          "Install"
+        ],
+        "text": "The compose file reads `TUNNEL_TOKEN` from the host environment with no default, so the export must be repeated in every fresh shell and after a reboot.",
+        "context_before": "l --quiet mcp && python hello_server.py\"\n            restart: unless-stopped\n        EOF\n        ```\n      </Step>\n\n      <Step title=\"Start the deployment\">\n        ```bash\n        docker compose up -d\n        ```\n      </Step>\n    </Steps>\n  </Tab>\n</Tabs>\n\n",
+        "context_after": "\n\nFor a multi-VM deployment, copy the `mcp-tunnel/` directory to each host, set `TUNNEL_TOKEN`, and run `docker compose up -d`. In the programmatic flow `TUNNEL_TOKEN` is `$(sudo cat data/tunnel-token)`; in the manual flow it's the value you copied from the Co"
+      },
+      "why_human_review_required": "The reviewer rewrote the question and claims. Every term they assert is present in the anchored span, but a model authored the wording and a model verified it, so the case is not gold until you agree.",
+      "defects": [
+        {
+          "class": "QUESTION_AUTHORING_REQUIRED",
+          "what_was_repaired": "No defect. The span is self-contained and the reviewer authored the question, answer and claims, which is how the prose miner is designed to work."
+        }
+      ],
+      "anchor_gaps": {
+        "unsupported_in_claims": [],
+        "covered_by_provenance_only": [],
+        "question_framing_only": []
+      },
+      "critical_strings": [
+        "TUNNEL_TOKEN",
+        "from the host environment with no default",
+        "every fresh shell and after a reboot"
+      ],
+      "anchor_revisions": [],
+      "decision_options": [
+        "APPROVE",
+        "REJECT",
+        "NEEDS_EDIT"
+      ],
+      "decision": null,
+      "audit": {
+        "claude_original_proposal": {
+          "proposed_question": "[REVIEWER TO WRITE] A question answerable from the evidence below, which mentions `TUNNEL_TOKEN`.",
+          "proposed_answer": "",
+          "proposed_atomic_claims": []
+        },
+        "chatgpt_review": {
+          "reviewer": "independent_review",
+          "verdict": "FIX_REQUIRED",
+          "reviewed_at": "2026-08-20T07:23:19Z",
+          "question_supported": false,
+          "answer_supported": false,
+          "all_critical_claims_supported": false,
+          "evidence_boundary_complete": true,
+          "identifier_value_binding_correct": true,
+          "natural_question": false,
+          "verification_notes": "QUESTION_AUTHORING_REQUIRED: the span is self-contained and the reviewer authors the question, answer and claims, exactly as the prose miner is designed to work. No defect."
+        },
+        "revisions": [
+          {
+            "revision": 1,
+            "field": "proposed_question",
+            "from": "[REVIEWER TO WRITE] A question answerable from the evidence below, which mentions `TUNNEL_TOKEN`.",
+            "to": "Why must `TUNNEL_TOKEN` be exported again in every fresh shell and after a reboot for this Docker Compose deployment?",
+            "author": "independent_review",
+            "timestamp": "2026-08-20T07:23:19Z",
+            "reason": "QUESTION_AUTHORING_REQUIRED"
+          },
+          {
+            "revision": 2,
+            "field": "proposed_answer",
+            "from": "",
+            "to": "Because the compose file reads it from the host environment and has no default.",
+            "author": "independent_review",
+            "timestamp": "2026-08-20T07:23:19Z",
+            "reason": "QUESTION_AUTHORING_REQUIRED"
+          },
+          {
+            "revision": 3,
+            "field": "proposed_atomic_claims",
+            "from": [],
+            "to": [
+              "The compose file reads `TUNNEL_TOKEN` from the host environment with no default, so the export must be repeated in every fresh shell and after a reboot."
+            ],
+            "author": "independent_review",
+            "timestamp": "2026-08-20T07:23:19Z",
+            "reason": "QUESTION_AUTHORING_REQUIRED"
+          }
+        ],
+        "anchor_as_mined": {
+          "version_id": "ver_b05e105d93045aff4c7ce998b198ae79",
+          "char_start": 17854,
+          "char_end": 18006,
+          "evidence_hash": "7fc8662a80faa78665b372bcd2e42a7bdb81f115356af0954065e3632f452399",
+          "section_path": [
+            "Install"
+          ]
+        },
+        "anchor_current": {
+          "version_id": "ver_b05e105d93045aff4c7ce998b198ae79",
+          "char_start": 17854,
+          "char_end": 18006,
+          "evidence_hash": "7fc8662a80faa78665b372bcd2e42a7bdb81f115356af0954065e3632f452399",
+          "section_path": [
+            "Install"
+          ]
+        },
+        "anchor_unchanged": true,
+        "anchor_disputes": [],
+        "provenance": {
+          "provider": "anthropic",
+          "document_title": "Deploy MCP tunnels with Docker Compose",
+          "source_url": "https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/deploy-compose",
+          "captured_at": "2026-08-17 04:46:19+00:00",
+          "evidence_kind": "prose_statement",
+          "generator_confidence": "medium"
+        }
+      }
+    },
+    {
+      "candidate_id": "GOLD-B002-14",
+      "batch": 2,
+      "group": "fast_track",
+      "risk": "LOW",
+      "queued_because": "mandatory: disagreement, uncertainty or failure",
+      "chatgpt_verdict": "FIX_REQUIRED",
+      "verification_status": "needs_human_review",
+      "final": {
+        "question": "What `max_tokens` cap does the `output-300k-2026-03-24` beta header enable for supported Message Batch requests?",
+        "answer": "300,000 tokens.",
+        "atomic_claims": [
+          "The `output-300k-2026-03-24` beta header raises the `max_tokens` cap to 300,000 for the supported Message Batch models listed in the evidence."
+        ]
+      },
+      "evidence": {
+        "version_id": "ver_cec813c3bb15b76dcf16e7a0c2231ef1",
+        "char_start": 59581,
+        "char_end": 59790,
+        "evidence_hash": "f8ccc077e09433a0ea6ff181125d66bdf740712ff81dd002cfb90183ba5079e1",
+        "section_path": [
+          "Message Batches API",
+          "How to use the Message Batches API",
+          "Extended output (beta)"
+        ],
+        "text": "The `output-300k-2026-03-24` beta header raises the `max_tokens` cap to 300,000 for batch requests using Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 5, or Claude Sonnet 4.6.",
+        "context_before": "ch processing does not exhaust your organization's web-search rate limit. The batch retries throttled requests automatically; you don't need to handle this yourself, but very large web-search batches might take longer to complete.\n\n### Extended output (beta)\n\n",
+        "context_after": " Include the header to generate outputs far longer than the standard 128k `max_tokens` limit in a single turn.\n\n<Note>\n  Extended output is available on the Message Batches API only, not the synchronous Messages API. It is supported on the Claude API and Claud"
+      },
+      "why_human_review_required": "The reviewer rewrote the question and claims. Every term they assert is present in the anchored span, but a model authored the wording and a model verified it, so the case is not gold until you agree.",
+      "defects": [
+        {
+          "class": "QUESTION_AUTHORING_REQUIRED",
+          "what_was_repaired": "No defect. The span is self-contained and the reviewer authored the question, answer and claims, which is how the prose miner is designed to work."
+        }
+      ],
+      "anchor_gaps": {
+        "unsupported_in_claims": [],
+        "covered_by_provenance_only": [],
+        "question_framing_only": []
+      },
+      "critical_strings": [
+        "output-300k-2026-03-24",
+        "max_tokens",
+        "300,000"
+      ],
+      "anchor_revisions": [],
+      "decision_options": [
+        "APPROVE",
+        "REJECT",
+        "NEEDS_EDIT"
+      ],
+      "decision": null,
+      "audit": {
+        "claude_original_proposal": {
+          "proposed_question": "[REVIEWER TO WRITE] A question answerable from the evidence below, which mentions `max_tokens`.",
+          "proposed_answer": "",
+          "proposed_atomic_claims": []
+        },
+        "chatgpt_review": {
+          "reviewer": "independent_review",
+          "verdict": "FIX_REQUIRED",
+          "reviewed_at": "2026-08-20T07:23:19Z",
+          "question_supported": false,
+          "answer_supported": false,
+          "all_critical_claims_supported": false,
+          "evidence_boundary_complete": true,
+          "identifier_value_binding_correct": true,
+          "natural_question": false,
+          "verification_notes": "QUESTION_AUTHORING_REQUIRED: the span is self-contained and the reviewer authors the question, answer and claims, exactly as the prose miner is designed to work. No defect."
+        },
+        "revisions": [
+          {
+            "revision": 1,
+            "field": "proposed_question",
+            "from": "[REVIEWER TO WRITE] A question answerable from the evidence below, which mentions `max_tokens`.",
+            "to": "What `max_tokens` cap does the `output-300k-2026-03-24` beta header enable for supported Message Batch requests?",
+            "author": "independent_review",
+            "timestamp": "2026-08-20T07:23:19Z",
+            "reason": "QUESTION_AUTHORING_REQUIRED"
+          },
+          {
+            "revision": 2,
+            "field": "proposed_answer",
+            "from": "",
+            "to": "300,000 tokens.",
+            "author": "independent_review",
+            "timestamp": "2026-08-20T07:23:19Z",
+            "reason": "QUESTION_AUTHORING_REQUIRED"
+          },
+          {
+            "revision": 3,
+            "field": "proposed_atomic_claims",
+            "from": [],
+            "to": [
+              "The `output-300k-2026-03-24` beta header raises the `max_tokens` cap to 300,000 for the supported Message Batch models listed in the evidence."
+            ],
+            "author": "independent_review",
+            "timestamp": "2026-08-20T07:23:19Z",
+            "reason": "QUESTION_AUTHORING_REQUIRED"
+          }
+        ],
+        "anchor_as_mined": {
+          "version_id": "ver_cec813c3bb15b76dcf16e7a0c2231ef1",
+          "char_start": 59581,
+          "char_end": 59790,
+          "evidence_hash": "f8ccc077e09433a0ea6ff181125d66bdf740712ff81dd002cfb90183ba5079e1",
+          "section_path": [
+            "Message Batches API",
+            "How to use the Message Batches API",
+            "Extended output (beta)"
+          ]
+        },
+        "anchor_current": {
+          "version_id": "ver_cec813c3bb15b76dcf16e7a0c2231ef1",
+          "char_start": 59581,
+          "char_end": 59790,
+          "evidence_hash": "f8ccc077e09433a0ea6ff181125d66bdf740712ff81dd002cfb90183ba5079e1",
+          "section_path": [
+            "Message Batches API",
+            "How to use the Message Batches API",
+            "Extended output (beta)"
+          ]
+        },
+        "anchor_unchanged": true,
+        "anchor_disputes": [],
+        "provenance": {
+          "provider": "anthropic",
+          "document_title": "Batch processing",
+          "source_url": "https://platform.claude.com/docs/en/build-with-claude/batch-processing",
+          "captured_at": "2026-08-17 04:46:19+00:00",
+          "evidence_kind": "prose_statement",
+          "generator_confidence": "medium"
+        }
+      }
+    },
+    {
+      "candidate_id": "GOLD-B002-15",
+      "batch": 2,
+      "group": "fast_track",
+      "risk": "LOW",
+      "queued_because": "mandatory: disagreement, uncertainty or failure",
+      "chatgpt_verdict": "FIX_REQUIRED",
+      "verification_status": "needs_human_review",
+      "final": {
+        "question": "When does `ScriptedModel` record a model call relative to resolving or raising the selected step?",
+        "answer": "Before resolving or raising the selected step.",
+        "atomic_claims": [
+          "`ScriptedModel` records each call before it resolves or raises the selected step."
+        ]
+      },
+      "evidence": {
+        "version_id": "ver_d2295786320b2815477eb963eb1f5e8a",
+        "char_start": 7031,
+        "char_end": 7112,
+        "evidence_hash": "4e49b02f88712c6bc25df0a0922fee678f35cda505a6566acd07e3ef79744c55",
+        "section_path": [
+          "Testing",
+          "Agent workflow recipes",
+          "Inspect model calls"
+        ],
+        "text": "`ScriptedModel` records each call before it resolves or raises the selected step.",
+        "context_before": "quivalent dictionary form, `ModelResponse`, a normalized output-item sequence, or an exception. Prefer fixed output sequences when a response does not depend on the call because fixed scripts make unexpected turns easier to diagnose.\n\n### Inspect model calls\n\n",
+        "context_after": "\n\n| Member | Contains |\n| --- | --- |\n| `calls` | Every `ModelCall` in invocation order |\n| `first_call` | The first call, or `None` |\n| `last_call` | The most recent call, or `None` |\n| `remaining_steps` | The number of configured steps not yet consumed |\n\nCo"
+      },
+      "why_human_review_required": "The reviewer rewrote the question and claims. Every term they assert is present in the anchored span, but a model authored the wording and a model verified it, so the case is not gold until you agree.",
+      "defects": [
+        {
+          "class": "QUESTION_AUTHORING_REQUIRED",
+          "what_was_repaired": "No defect. The span is self-contained and the reviewer authored the question, answer and claims, which is how the prose miner is designed to work."
+        }
+      ],
+      "anchor_gaps": {
+        "unsupported_in_claims": [],
+        "covered_by_provenance_only": [],
+        "question_framing_only": []
+      },
+      "critical_strings": [
+        "ScriptedModel",
+        "records each call before it resolves or raises the selected step"
+      ],
+      "anchor_revisions": [],
+      "decision_options": [
+        "APPROVE",
+        "REJECT",
+        "NEEDS_EDIT"
+      ],
+      "decision": null,
+      "audit": {
+        "claude_original_proposal": {
+          "proposed_question": "[REVIEWER TO WRITE] A question answerable from the evidence below, which mentions `ScriptedModel`.",
+          "proposed_answer": "",
+          "proposed_atomic_claims": []
+        },
+        "chatgpt_review": {
+          "reviewer": "independent_review",
+          "verdict": "FIX_REQUIRED",
+          "reviewed_at": "2026-08-20T07:23:19Z",
+          "question_supported": false,
+          "answer_supported": false,
+          "all_critical_claims_supported": false,
+          "evidence_boundary_complete": true,
+          "identifier_value_binding_correct": true,
+          "natural_question": false,
+          "verification_notes": "QUESTION_AUTHORING_REQUIRED: the span is self-contained and the reviewer authors the question, answer and claims, exactly as the prose miner is designed to work. No defect."
+        },
+        "revisions": [
+          {
+            "revision": 1,
+            "field": "proposed_question",
+            "from": "[REVIEWER TO WRITE] A question answerable from the evidence below, which mentions `ScriptedModel`.",
+            "to": "When does `ScriptedModel` record a model call relative to resolving or raising the selected step?",
+            "author": "independent_review",
+            "timestamp": "2026-08-20T07:23:19Z",
+            "reason": "QUESTION_AUTHORING_REQUIRED"
+          },
+          {
+            "revision": 2,
+            "field": "proposed_answer",
+            "from": "",
+            "to": "Before resolving or raising the selected step.",
+            "author": "independent_review",
+            "timestamp": "2026-08-20T07:23:19Z",
+            "reason": "QUESTION_AUTHORING_REQUIRED"
+          },
+          {
+            "revision": 3,
+            "field": "proposed_atomic_claims",
+            "from": [],
+            "to": [
+              "`ScriptedModel` records each call before it resolves or raises the selected step."
+            ],
+            "author": "independent_review",
+            "timestamp": "2026-08-20T07:23:19Z",
+            "reason": "QUESTION_AUTHORING_REQUIRED"
+          }
+        ],
+        "anchor_as_mined": {
+          "version_id": "ver_d2295786320b2815477eb963eb1f5e8a",
+          "char_start": 7031,
+          "char_end": 7112,
+          "evidence_hash": "4e49b02f88712c6bc25df0a0922fee678f35cda505a6566acd07e3ef79744c55",
+          "section_path": [
+            "Testing",
+            "Agent workflow recipes",
+            "Inspect model calls"
+          ]
+        },
+        "anchor_current": {
+          "version_id": "ver_d2295786320b2815477eb963eb1f5e8a",
+          "char_start": 7031,
+          "char_end": 7112,
+          "evidence_hash": "4e49b02f88712c6bc25df0a0922fee678f35cda505a6566acd07e3ef79744c55",
+          "section_path": [
+            "Testing",
+            "Agent workflow recipes",
+            "Inspect model calls"
+          ]
+        },
+        "anchor_unchanged": true,
+        "anchor_disputes": [],
+        "provenance": {
+          "provider": "openai",
+          "document_title": "Testing",
+          "source_url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/testing.md",
+          "captured_at": "2026-08-17 04:46:19+00:00",
+          "evidence_kind": "prose_statement",
+          "generator_confidence": "medium"
+        }
+      }
+    },
+    {
+      "candidate_id": "GOLD-B002-16",
+      "batch": 2,
+      "group": "fast_track",
+      "risk": "LOW",
+      "queued_because": "mandatory: disagreement, uncertainty or failure",
+      "chatgpt_verdict": "FIX_REQUIRED",
+      "verification_status": "needs_human_review",
+      "final": {
+        "question": "On Google Cloud Agent Platform, where is `anthropic_version` supplied and what value must it have?",
+        "answer": "It is passed in the request body and must be `vertex-2023-10-16`.",
+        "atomic_claims": [
+          "On Agent Platform, `anthropic_version` is passed in the request body rather than as a header.",
+          "It must be set to `vertex-2023-10-16`."
+        ]
+      },
+      "evidence": {
+        "version_id": "ver_e312b7f41115cc2b84cd36151efc6dd8",
+        "char_start": 455,
+        "char_end": 725,
+        "evidence_hash": "ac3e89163be1107c3d35db15f53bcb85db1947213bc3984263c7785d6ddd05ee",
+        "section_path": [
+          "Preamble"
+        ],
+        "text": "* On Agent Platform, `model` is not passed in the request body. Instead, it is specified in the Google Cloud endpoint URL.\n* On Agent Platform, `anthropic_version` is passed in the request body (rather than as a header), and must be set to the value `vertex-2023-10-16`.",
+        "context_before": " Platform](https://cloud.google.com/vertex-ai).\n---\n\nThe API for accessing Claude on Google Cloud's Agent Platform is nearly identical to the [Messages API](https://platform.claude.com/docs/en/api/messages/create), with two key differences in request format:\n\n",
+        "context_after": "\n\nAgent Platform is also supported by Anthropic's official [client SDKs](https://platform.claude.com/docs/en/cli-sdks-libraries/overview). This guide walks you through making a request to Claude on Agent Platform using one of Anthropic's client SDKs.\n\nNote tha"
+      },
+      "why_human_review_required": "The reviewer rewrote the question and claims. Every term they assert is present in the anchored span, but a model authored the wording and a model verified it, so the case is not gold until you agree.",
+      "defects": [
+        {
+          "class": "QUESTION_AUTHORING_REQUIRED",
+          "what_was_repaired": "No defect. The span is self-contained and the reviewer authored the question, answer and claims, which is how the prose miner is designed to work."
+        }
+      ],
+      "anchor_gaps": {
+        "unsupported_in_claims": [],
+        "covered_by_provenance_only": [],
+        "question_framing_only": [
+          "Google Cloud Agent Platform"
+        ]
+      },
+      "critical_strings": [
+        "anthropic_version",
+        "passed in the request body",
+        "rather than as a header",
+        "vertex-2023-10-16"
+      ],
+      "anchor_revisions": [],
+      "decision_options": [
+        "APPROVE",
+        "REJECT",
+        "NEEDS_EDIT"
+      ],
+      "decision": null,
+      "audit": {
+        "claude_original_proposal": {
+          "proposed_question": "[REVIEWER TO WRITE] A question answerable from the evidence below, which mentions `anthropic_version`.",
+          "proposed_answer": "",
+          "proposed_atomic_claims": []
+        },
+        "chatgpt_review": {
+          "reviewer": "independent_review",
+          "verdict": "FIX_REQUIRED",
+          "reviewed_at": "2026-08-20T07:23:19Z",
+          "question_supported": false,
+          "answer_supported": false,
+          "all_critical_claims_supported": false,
+          "evidence_boundary_complete": true,
+          "identifier_value_binding_correct": true,
+          "natural_question": false,
+          "verification_notes": "QUESTION_AUTHORING_REQUIRED: the span is self-contained and the reviewer authors the question, answer and claims, exactly as the prose miner is designed to work. No defect."
+        },
+        "revisions": [
+          {
+            "revision": 1,
+            "field": "proposed_question",
+            "from": "[REVIEWER TO WRITE] A question answerable from the evidence below, which mentions `anthropic_version`.",
+            "to": "On Google Cloud Agent Platform, where is `anthropic_version` supplied and what value must it have?",
+            "author": "independent_review",
+            "timestamp": "2026-08-20T07:23:19Z",
+            "reason": "QUESTION_AUTHORING_REQUIRED"
+          },
+          {
+            "revision": 2,
+            "field": "proposed_answer",
+            "from": "",
+            "to": "It is passed in the request body and must be `vertex-2023-10-16`.",
+            "author": "independent_review",
+            "timestamp": "2026-08-20T07:23:19Z",
+            "reason": "QUESTION_AUTHORING_REQUIRED"
+          },
+          {
+            "revision": 3,
+            "field": "proposed_atomic_claims",
+            "from": [],
+            "to": [
+              "On Agent Platform, `anthropic_version` is passed in the request body rather than as a header.",
+              "It must be set to `vertex-2023-10-16`."
+            ],
+            "author": "independent_review",
+            "timestamp": "2026-08-20T07:23:19Z",
+            "reason": "QUESTION_AUTHORING_REQUIRED"
+          }
+        ],
+        "anchor_as_mined": {
+          "version_id": "ver_e312b7f41115cc2b84cd36151efc6dd8",
+          "char_start": 455,
+          "char_end": 725,
+          "evidence_hash": "ac3e89163be1107c3d35db15f53bcb85db1947213bc3984263c7785d6ddd05ee",
+          "section_path": [
+            "Preamble"
+          ]
+        },
+        "anchor_current": {
+          "version_id": "ver_e312b7f41115cc2b84cd36151efc6dd8",
+          "char_start": 455,
+          "char_end": 725,
+          "evidence_hash": "ac3e89163be1107c3d35db15f53bcb85db1947213bc3984263c7785d6ddd05ee",
+          "section_path": [
+            "Preamble"
+          ]
+        },
+        "anchor_unchanged": true,
+        "anchor_disputes": [],
+        "provenance": {
+          "provider": "anthropic",
+          "document_title": "Claude on Google Cloud",
+          "source_url": "https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai",
+          "captured_at": "2026-08-17 04:46:19+00:00",
+          "evidence_kind": "prose_statement",
+          "generator_confidence": "medium"
+        }
+      }
+    },
+    {
+      "candidate_id": "GOLD-B002-17",
+      "batch": 2,
+      "group": "fast_track",
+      "risk": "LOW",
+      "queued_because": "mandatory: disagreement, uncertainty or failure",
+      "chatgpt_verdict": "FIX_REQUIRED",
+      "verification_status": "needs_human_review",
+      "final": {
+        "question": "For a method calling `/v1/parents/{parent_id}/children/{child_id}`, which path parameter remains positional and how must the other be passed?",
+        "answer": "`child_id` remains positional; `parent_id` must be passed as a named argument.",
+        "atomic_claims": [
+          "The last path parameter, `child_id`, is positional in the example.",
+          "`parent_id` must be passed as a named argument."
+        ]
+      },
+      "evidence": {
+        "version_id": "ver_e8a7b17b5af64679cadea33cd8f6d250",
+        "char_start": 1813,
+        "char_end": 2009,
+        "evidence_hash": "ce96064e0fb9f17d8dd88451aeaf1f97f587089ebc43dbbd79b70501924014be",
+        "section_path": [
+          "Migration guide",
+          "Breaking changes",
+          "Named path parameters"
+        ],
+        "text": "For example, for a method that would call an endpoint at `/v1/parents/{parent_id}/children/{child_id}`, only the _last_ path parameter is positional and the rest must be passed as named arguments.",
+        "context_before": "| undefined>`.\n\n### Named path parameters\n\nMethods that take multiple path parameters typically now use named instead of positional arguments for better clarity and to prevent a footgun where it was easy to accidentally pass arguments in the incorrect order.\n\n",
+        "context_after": "\n\n```ts\n// Before\nclient.parents.children.retrieve('p_123', 'c_456');\n\n// After\nclient.parents.children.retrieve('c_456', { parent_id: 'p_123' });\n```\n\n<details>\n\n<summary>This affects the following methods</summary>\n\n- `client.fineTuning.checkpoints.permissio"
+      },
+      "why_human_review_required": "The reviewer rewrote the question and claims. Every term they assert is present in the anchored span, but a model authored the wording and a model verified it, so the case is not gold until you agree.",
+      "defects": [
+        {
+          "class": "QUESTION_AUTHORING_REQUIRED",
+          "what_was_repaired": "No defect. The span is self-contained and the reviewer authored the question, answer and claims, which is how the prose miner is designed to work."
+        }
+      ],
+      "anchor_gaps": {
+        "unsupported_in_claims": [],
+        "covered_by_provenance_only": [],
+        "question_framing_only": []
+      },
+      "critical_strings": [
+        "parent_id",
+        "child_id",
+        "only the _last_ path parameter is positional",
+        "must be passed as named arguments"
+      ],
+      "anchor_revisions": [],
+      "decision_options": [
+        "APPROVE",
+        "REJECT",
+        "NEEDS_EDIT"
+      ],
+      "decision": null,
+      "audit": {
+        "claude_original_proposal": {
+          "proposed_question": "[REVIEWER TO WRITE] A question answerable from the evidence below, which mentions `parent_id`, `child_id`.",
+          "proposed_answer": "",
+          "proposed_atomic_claims": []
+        },
+        "chatgpt_review": {
+          "reviewer": "independent_review",
+          "verdict": "FIX_REQUIRED",
+          "reviewed_at": "2026-08-20T07:23:19Z",
+          "question_supported": false,
+          "answer_supported": false,
+          "all_critical_claims_supported": false,
+          "evidence_boundary_complete": true,
+          "identifier_value_binding_correct": true,
+          "natural_question": false,
+          "verification_notes": "QUESTION_AUTHORING_REQUIRED: the span is self-contained and the reviewer authors the question, answer and claims, exactly as the prose miner is designed to work. No defect. READER NOTE: the span says \"only the _last_ path parameter is positional\" without naming it. That the last one is `child_id` follows from the path `/v1/parents/{parent_id}/children/{child_id}` in the same span, but it is read off the path rather than stated outright."
+        },
+        "revisions": [
+          {
+            "revision": 1,
+            "field": "proposed_question",
+            "from": "[REVIEWER TO WRITE] A question answerable from the evidence below, which mentions `parent_id`, `child_id`.",
+            "to": "For a method calling `/v1/parents/{parent_id}/children/{child_id}`, which path parameter remains positional and how must the other be passed?",
+            "author": "independent_review",
+            "timestamp": "2026-08-20T07:23:19Z",
+            "reason": "QUESTION_AUTHORING_REQUIRED"
+          },
+          {
+            "revision": 2,
+            "field": "proposed_answer",
+            "from": "",
+            "to": "`child_id` remains positional; `parent_id` must be passed as a named argument.",
+            "author": "independent_review",
+            "timestamp": "2026-08-20T07:23:19Z",
+            "reason": "QUESTION_AUTHORING_REQUIRED"
+          },
+          {
+            "revision": 3,
+            "field": "proposed_atomic_claims",
+            "from": [],
+            "to": [
+              "The last path parameter, `child_id`, is positional in the example.",
+              "`parent_id` must be passed as a named argument."
+            ],
+            "author": "independent_review",
+            "timestamp": "2026-08-20T07:23:19Z",
+            "reason": "QUESTION_AUTHORING_REQUIRED"
+          }
+        ],
+        "anchor_as_mined": {
+          "version_id": "ver_e8a7b17b5af64679cadea33cd8f6d250",
+          "char_start": 1813,
+          "char_end": 2009,
+          "evidence_hash": "ce96064e0fb9f17d8dd88451aeaf1f97f587089ebc43dbbd79b70501924014be",
+          "section_path": [
+            "Migration guide",
+            "Breaking changes",
+            "Named path parameters"
+          ]
+        },
+        "anchor_current": {
+          "version_id": "ver_e8a7b17b5af64679cadea33cd8f6d250",
+          "char_start": 1813,
+          "char_end": 2009,
+          "evidence_hash": "ce96064e0fb9f17d8dd88451aeaf1f97f587089ebc43dbbd79b70501924014be",
+          "section_path": [
+            "Migration guide",
+            "Breaking changes",
+            "Named path parameters"
+          ]
+        },
+        "anchor_unchanged": true,
+        "anchor_disputes": [],
+        "provenance": {
+          "provider": "openai",
+          "document_title": "Migration guide",
+          "source_url": "https://github.com/openai/openai-node/blob/cc7dbfa9b9dd6fe0ff72141e9c0c3d82b18ba9aa/MIGRATION.md",
+          "captured_at": "2026-08-17 04:46:19+00:00",
+          "evidence_kind": "prose_statement",
+          "generator_confidence": "low"
+        }
+      }
+    },
+    {
+      "candidate_id": "GOLD-B002-18",
+      "batch": 2,
+      "group": "fast_track",
+      "risk": "LOW",
+      "queued_because": "mandatory: disagreement, uncertainty or failure",
+      "chatgpt_verdict": "FIX_REQUIRED",
+      "verification_status": "needs_human_review",
+      "final": {
+        "question": "For an explicit server-side fallback entry, which per-attempt settings can be overridden?",
+        "answer": "`max_tokens`, `thinking`, `output_config`, and `speed`.",
+        "atomic_claims": [
+          "Each explicit fallback entry can override `max_tokens`, `thinking`, `output_config`, and `speed` for that attempt only."
+        ]
+      },
+      "evidence": {
+        "version_id": "ver_fa78e1feb6289d6bcb22305e61bbbfc3",
+        "char_start": 25347,
+        "char_end": 25931,
+        "evidence_hash": "0d3851e614b9ed909eed9c8d808773e3a548ca0e557c370c6c183c11c663c9cd",
+        "section_path": [
+          "Server-side fallback",
+          "Naming your own fallback models"
+        ],
+        "text": "A few rules apply to the `fallbacks` list:\n\n* Entries are tried in order. Each must be distinct from the other entries and from the requested model.\n* Each entry must be one of the requested model's permitted targets. With the beta header set, that list is published as `allowed_fallback_models` on the model's entry in the [Models API](https://platform.claude.com/docs/en/api/models/list).\n* Each entry names a `model` and can override `max_tokens`, `thinking`, `output_config`, and `speed` for that attempt only.\n* The request must be valid as a direct request to every model named.",
+        "context_before": "ges.create(\n    model: \"claude-fable-5\",\n    max_tokens: 1024,\n    messages: [{role: \"user\", content: \"Hello, Claude\"}],\n    fallbacks: [{model: \"claude-opus-4-8\"}],\n    betas: [\"server-side-fallback-2026-07-01\"]\n  )\n\n  puts response.model\n  ```\n</CodeGroup>\n\n",
+        "context_after": " If a fallback model does not support a feature the request uses, the API rejects the request up front.\n* As with the default mode, only a safety classifier decline triggers the fallback. A rate limit, overload, or server error on the requested model is return"
+      },
+      "why_human_review_required": "The reviewer rewrote the question and claims. Every term they assert is present in the anchored span, but a model authored the wording and a model verified it, so the case is not gold until you agree.",
+      "defects": [
+        {
+          "class": "MINER_EVIDENCE_DEFECT",
+          "what_was_repaired": "The anchor did not contain what its claim depends on, and was extended. Both spans and both hashes are retained below."
+        }
+      ],
+      "anchor_gaps": {
+        "unsupported_in_claims": [],
+        "covered_by_provenance_only": [],
+        "question_framing_only": []
+      },
+      "critical_strings": [
+        "fallbacks",
+        "max_tokens",
+        "thinking",
+        "output_config",
+        "speed",
+        "for that attempt only"
+      ],
+      "anchor_revisions": [
+        {
+          "revision": 1,
+          "reason": "evidence_boundary_completion",
+          "old_char_start": 25565,
+          "old_char_end": 25931,
+          "old_evidence_hash": "bf1170489ee5a850170efac3e0d42b41fcbe86932bef88b6f56d686ec122911a",
+          "old_evidence_text": "With the beta header set, that list is published as `allowed_fallback_models` on the model's entry in the [Models API](https://platform.claude.com/docs/en/api/models/list).\n* Each entry names a `model` and can override `max_tokens`, `thinking`, `output_config`, and `speed` for that attempt only.\n* The request must be valid as a direct request to every model named.",
+          "new_char_start": 25347,
+          "new_char_end": 25931,
+          "new_evidence_hash": "0d3851e614b9ed909eed9c8d808773e3a548ca0e557c370c6c183c11c663c9cd",
+          "new_evidence_text": "A few rules apply to the `fallbacks` list:\n\n* Entries are tried in order. Each must be distinct from the other entries and from the requested model.\n* Each entry must be one of the requested model's permitted targets. With the beta header set, that list is published as `allowed_fallback_models` on the model's entry in the [Models API](https://platform.claude.com/docs/en/api/models/list).\n* Each entry names a `model` and can override `max_tokens`, `thinking`, `output_config`, and `speed` for that attempt only.\n* The request must be valid as a direct request to every model named.",
+          "characters_added_before": 218,
+          "characters_added_after": 0,
+          "what_changed": "Extended backwards 218 characters to the line that names the `fallbacks` list, so \"Each entry\" has something to refer to.",
+          "why_complete": "The original span opened on \"With the beta header set, that list…\" and then said \"Each entry…\" — both referring to the `fallbacks` list, which was outside the anchor. The repaired span states what the list is before making rules about its entries.",
+          "size_warning": null,
+          "author": "claude",
+          "directed_by": "independent_review",
+          "timestamp": "2026-08-20T07:23:19Z"
+        }
+      ],
+      "decision_options": [
+        "APPROVE",
+        "REJECT",
+        "NEEDS_EDIT"
+      ],
+      "decision": null,
+      "audit": {
+        "claude_original_proposal": {
+          "proposed_question": "[REVIEWER TO WRITE] A question answerable from the evidence below, which mentions `allowed_fallback_models`, `max_tokens`, `thinking`.",
+          "proposed_answer": "",
+          "proposed_atomic_claims": []
+        },
+        "chatgpt_review": {
+          "reviewer": "independent_review",
+          "verdict": "FIX_REQUIRED",
+          "reviewed_at": "2026-08-20T07:23:19Z",
+          "question_supported": false,
+          "answer_supported": false,
+          "all_critical_claims_supported": false,
+          "evidence_boundary_complete": false,
+          "identifier_value_binding_correct": true,
+          "natural_question": false,
+          "verification_notes": "MINER_EVIDENCE_DEFECT: the anchor does not contain what its claim depends on and must be extended."
+        },
+        "revisions": [
+          {
+            "revision": 1,
+            "field": "proposed_question",
+            "from": "[REVIEWER TO WRITE] A question answerable from the evidence below, which mentions `allowed_fallback_models`, `max_tokens`, `thinking`.",
+            "to": "For an explicit server-side fallback entry, which per-attempt settings can be overridden?",
+            "author": "independent_review",
+            "timestamp": "2026-08-20T07:23:19Z",
+            "reason": "MINER_EVIDENCE_DEFECT"
+          },
+          {
+            "revision": 2,
+            "field": "proposed_answer",
+            "from": "",
+            "to": "`max_tokens`, `thinking`, `output_config`, and `speed`.",
+            "author": "independent_review",
+            "timestamp": "2026-08-20T07:23:19Z",
+            "reason": "MINER_EVIDENCE_DEFECT"
+          },
+          {
+            "revision": 3,
+            "field": "proposed_atomic_claims",
+            "from": [],
+            "to": [
+              "Each explicit fallback entry can override `max_tokens`, `thinking`, `output_config`, and `speed` for that attempt only."
+            ],
+            "author": "independent_review",
+            "timestamp": "2026-08-20T07:23:19Z",
+            "reason": "MINER_EVIDENCE_DEFECT"
+          }
+        ],
+        "anchor_as_mined": {
+          "version_id": "ver_fa78e1feb6289d6bcb22305e61bbbfc3",
+          "char_start": 25347,
+          "char_end": 25931,
+          "evidence_hash": "0d3851e614b9ed909eed9c8d808773e3a548ca0e557c370c6c183c11c663c9cd",
+          "section_path": [
+            "Server-side fallback",
+            "Naming your own fallback models"
+          ]
+        },
+        "anchor_current": {
+          "version_id": "ver_fa78e1feb6289d6bcb22305e61bbbfc3",
+          "char_start": 25347,
+          "char_end": 25931,
+          "evidence_hash": "0d3851e614b9ed909eed9c8d808773e3a548ca0e557c370c6c183c11c663c9cd",
+          "section_path": [
+            "Server-side fallback",
+            "Naming your own fallback models"
+          ]
+        },
+        "anchor_unchanged": true,
+        "anchor_disputes": [],
+        "provenance": {
+          "provider": "anthropic",
+          "document_title": "Refusals and fallback",
+          "source_url": "https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback",
+          "captured_at": "2026-08-17 04:46:19+00:00",
+          "evidence_kind": "prose_statement",
+          "generator_confidence": "low"
+        }
+      }
+    },
+    {
+      "candidate_id": "GOLD-B002-02",
+      "batch": 2,
+      "group": "check_anchor",
+      "risk": "HIGH",
+      "queued_because": "mandatory: disagreement, uncertainty or failure",
+      "chatgpt_verdict": "FIX_REQUIRED",
+      "verification_status": "needs_human_review",
+      "final": {
+        "question": "What URL scheme must the MCP connector's `url` value start with?",
+        "answer": "`https://`",
+        "atomic_claims": [
+          "The MCP server `url` must start with `https://`."
+        ]
+      },
+      "evidence": {
+        "version_id": "ver_279d37a3a0cc4e8a9209e01f16f9df88",
+        "char_start": 11319,
+        "char_end": 11677,
+        "evidence_hash": "1902239b249b9d3162ab9f0c19da21a1087bceb5b19714d57ab918d3f15e7cc5",
+        "section_path": [
+          "MCP server configuration",
+          "Field descriptions"
+        ],
+        "text": "| `url`                 | string | Yes      | The URL of the MCP server. Must start with https\\://.                                                                                                                                                                                                                                                                  |",
+        "context_before": "                                                                                                                                                                                                                                                                  |\n",
+        "context_after": "\n| `name`                | string | Yes      | A unique identifier for this MCP server. Must be referenced by exactly one MCPToolset in the `tools` array.                                                                                                          "
+      },
+      "why_human_review_required": "A claim asserts `https://`, which the anchored span does not contain and the document title and section path do not supply either. Approving accepts a claim the anchor cannot support on its own.",
+      "defects": [
+        {
+          "class": "MINER_QUESTION_HEADER_DEPENDENCY",
+          "what_was_repaired": "The anchored row is sound evidence; the miner's exported question asked about a column whose meaning lives in a table header outside the row. The question was re-authored around a fact stated inside the row, and the anchor did not move."
+        }
+      ],
+      "anchor_gaps": {
+        "unsupported_in_claims": [
+          "https://"
+        ],
+        "covered_by_provenance_only": [],
+        "question_framing_only": []
+      },
+      "critical_strings": [
+        "url",
+        "The URL of the MCP server",
+        "Must start with https"
+      ],
+      "anchor_revisions": [],
+      "decision_options": [
+        "APPROVE",
+        "REJECT",
+        "NEEDS_EDIT"
+      ],
+      "decision": null,
+      "audit": {
+        "claude_original_proposal": {
+          "proposed_question": "Is the `url` parameter required?",
+          "proposed_answer": "Yes, it is required.",
+          "proposed_atomic_claims": [
+            "`url` is required."
+          ]
+        },
+        "chatgpt_review": {
+          "reviewer": "independent_review",
+          "verdict": "FIX_REQUIRED",
+          "reviewed_at": "2026-08-20T07:23:19Z",
+          "question_supported": false,
+          "answer_supported": false,
+          "all_critical_claims_supported": false,
+          "evidence_boundary_complete": true,
+          "identifier_value_binding_correct": true,
+          "natural_question": false,
+          "verification_notes": "MINER_QUESTION_HEADER_DEPENDENCY: the anchored row is sound evidence, but the miner's exported question asked about a column whose meaning (Yes/No, string, integer) lives in a table header outside the row. The question is re-authored around a fact stated inside the row itself; the anchor does not move. READER NOTE: the span writes the scheme as `https\\://` — a markdown escape of the colon. The claim writes `https://`. Same fact, different literal form, so the critical string checked by the validator is `Must start with https` rather than the full scheme."
+        },
+        "revisions": [
+          {
+            "revision": 1,
+            "field": "proposed_question",
+            "from": "Is the `url` parameter required?",
+            "to": "What URL scheme must the MCP connector's `url` value start with?",
+            "author": "independent_review",
+            "timestamp": "2026-08-20T07:23:19Z",
+            "reason": "MINER_QUESTION_HEADER_DEPENDENCY"
+          },
+          {
+            "revision": 2,
+            "field": "proposed_answer",
+            "from": "Yes, it is required.",
+            "to": "`https://`",
+            "author": "independent_review",
+            "timestamp": "2026-08-20T07:23:19Z",
+            "reason": "MINER_QUESTION_HEADER_DEPENDENCY"
+          },
+          {
+            "revision": 3,
+            "field": "proposed_atomic_claims",
+            "from": [
+              "`url` is required."
+            ],
+            "to": [
+              "The MCP server `url` must start with `https://`."
+            ],
+            "author": "independent_review",
+            "timestamp": "2026-08-20T07:23:19Z",
+            "reason": "MINER_QUESTION_HEADER_DEPENDENCY"
+          }
+        ],
+        "anchor_as_mined": {
+          "version_id": "ver_279d37a3a0cc4e8a9209e01f16f9df88",
+          "char_start": 11319,
+          "char_end": 11677,
+          "evidence_hash": "1902239b249b9d3162ab9f0c19da21a1087bceb5b19714d57ab918d3f15e7cc5",
+          "section_path": [
+            "MCP server configuration",
+            "Field descriptions"
+          ]
+        },
+        "anchor_current": {
+          "version_id": "ver_279d37a3a0cc4e8a9209e01f16f9df88",
+          "char_start": 11319,
+          "char_end": 11677,
+          "evidence_hash": "1902239b249b9d3162ab9f0c19da21a1087bceb5b19714d57ab918d3f15e7cc5",
+          "section_path": [
+            "MCP server configuration",
+            "Field descriptions"
+          ]
+        },
+        "anchor_unchanged": true,
+        "anchor_disputes": [],
+        "provenance": {
+          "provider": "anthropic",
+          "document_title": "MCP connector",
+          "source_url": "https://platform.claude.com/docs/en/agents-and-tools/mcp-connector",
+          "captured_at": "2026-08-17 04:46:19+00:00",
+          "evidence_kind": "parameter_table_row",
+          "generator_confidence": "high"
+        }
+      }
+    }
+  ]
+}

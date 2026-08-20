@@ -284,7 +284,26 @@ out, and that is the same outcome by design: gold requires someone to have said 
 | 001 | owner: APPROVE 12, NEEDS_EDIT 3, REJECT 2 | 12 `human_verified`; 2 `human_rejected` kept as negative audit examples; 3 boundary-repaired and back at `needs_human_review` |
 | 001 | owner: APPROVE the 3 repairs | 15 `human_verified`, 2 `human_rejected`, 1 `dual_llm_pass` |
 | 001 | **CLOSED** | 16 `human_verified`, 2 `human_rejected`, 88.9% acceptance. `validate_golden.py` passes on all 16 with `--require-human validation`. Closure hash `d6f92e8d1a7e77ea…`; the test suite re-checks it, so an edit after closure fails the tests. See `experiments/GOLD-001/GOLD-001-batch-001-closure.md`. |
-| 002 | generated, unreviewed | 18 candidates, 50% structural, 9 complete proposals. Built with the four preregistered rules and nothing else. Awaiting independent verification. |
+| 002 | generated | 18 candidates, 50% structural, 9 complete proposals. Built with the four preregistered rules and nothing else. |
+| 002 | independently reviewed | 0 rejects, all 18 FIX_REQUIRED. A new defect class found: 9 structural candidates whose miner-written question depended on table-header semantics outside the row. 2 anchor extensions (`12`, `18`). All 18 revised and queued for the owner. |
+
+## Auditing a closed batch
+
+```bash
+python scripts/audit_claim_support.py evals/review/gold_review_batch_001.json
+```
+
+A passing `validate_golden.py` run is weaker than it looks: the claim-in-evidence gate
+only fires on claims marked *critical*, and a case with none passes it vacuously. This
+audits the approved claims of a closed batch without touching it — no record is modified
+and the closure hash is not recomputed — and writes an overlay keyed by candidate id and
+approved evidence hash.
+
+It is a mechanical screen, not a semantic proof: it checks that the terms a claim turns
+on appear inside the approved span, and measures content-word coverage. Anything short of
+clean is `NEEDS_REVIEW` addressed to a person, never a verdict. Findings that would
+change a closed case become a **proposed** v2 promotion, returned for approval and
+applied to nothing.
 
 ## Closing a batch
 

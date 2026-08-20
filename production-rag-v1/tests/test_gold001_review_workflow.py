@@ -972,3 +972,141 @@ def test_rule4_required_miner_ignores_a_table_with_no_required_column():
     text = ("| name | type | description |\n| --- | --- | --- |\n"
             "| `session_id` | string | Identifies the session. |\n")
     assert mine_table_required(make_doc(text)) == []
+
+
+# -- batch 002 review revisions ----------------------------------------------
+
+BATCH_002 = Path(__file__).resolve().parents[1] / "evals" / "review" / \
+    "gold_review_batch_002.json"
+
+
+@pytest.fixture
+def batch2():
+    if not BATCH_002.exists():
+        pytest.skip("batch 002 has not been generated")
+    return json.loads(BATCH_002.read_text())
+
+
+def test_batch_002_is_revised_but_not_gold(batch2):
+    for record in batch2["records"]:
+        assert record["verification_status"] == "needs_human_review"
+        assert record.get("human_verified") is not True
+        assert record["verification"]["verdict"] == "FIX_REQUIRED"
+    assert batch2["retrieval_was_not_run"] is True
+    assert "nothing in this file is gold" in batch2["verification_status"]
+
+
+def test_every_batch_002_critical_string_is_inside_its_own_span(batch2):
+    """The gap batch 001 closed with: a claim the validator cannot check."""
+    for record in batch2["records"]:
+        span = record["evidence_text"].lower()
+        assert record["critical_strings"], record["candidate_id"]
+        for string in record["critical_strings"]:
+            assert string.lower() in span, (record["candidate_id"], string)
+
+
+def test_batch_002_revisions_preserve_the_miner_original(batch2):
+    for record in batch2["records"]:
+        first = next(r for r in record["revisions"]
+                     if r["field"] == "proposed_question")
+        # The exported question the miner wrote is still recoverable.
+        assert first["from"] != record["proposed_question"]
+        assert first["reason"] in {
+            "MINER_QUESTION_HEADER_DEPENDENCY", "QUESTION_AUTHORING_REQUIRED",
+            "MINER_EVIDENCE_DEFECT"}
+
+
+def test_batch_002_anchor_extensions_are_supersets_and_keep_both_spans(batch2):
+    repaired = [r for r in batch2["records"] if r.get("anchor_revisions")]
+    assert {r["candidate_id"] for r in repaired} == {"GOLD-B002-12", "GOLD-B002-18"}
+    for record in repaired:
+        revision = record["anchor_revisions"][-1]
+        assert revision["new_char_start"] <= revision["old_char_start"]
+        assert revision["new_char_end"] >= revision["old_char_end"]
+        assert revision["old_evidence_text"] in revision["new_evidence_text"]
+        assert record["evidence_hash"] == revision["new_evidence_hash"]
+        assert revision["old_evidence_hash"] != revision["new_evidence_hash"]
+
+
+def test_the_defect_classes_the_review_named_are_preserved(batch2):
+    classes = {r["candidate_id"]: r["review_defect_class"] for r in batch2["records"]}
+    assert classes["GOLD-B002-12"] == "MINER_EVIDENCE_DEFECT"
+    assert classes["GOLD-B002-18"] == "MINER_EVIDENCE_DEFECT"
+    # The nine structural candidates are a third class, not folded into either of the
+    # two the review named: their evidence is sound, but the miner's question was not.
+    header = [c for c, k in classes.items() if k == "MINER_QUESTION_HEADER_DEPENDENCY"]
+    assert len(header) == 9
+    assert all(c <= "GOLD-B002-09" for c in header)
+
+
+# -- claim-support audit -----------------------------------------------------
+
+def _audit_module():
+    import importlib.util
+
+    spec = importlib.util.spec_from_file_location(
+        "_audit_claim_support",
+        Path(__file__).resolve().parents[1] / "scripts" / "audit_claim_support.py")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def test_a_claim_asserting_a_term_the_span_lacks_is_unsupported():
+    mod = _audit_module()
+    result = mod.audit_claim(
+        "On Google Cloud Agent Platform, `anthropic_version` must be `vertex-2023-10-16`.",
+        "On Agent Platform, `anthropic_version` must be set to `vertex-2023-10-16`.",
+        provenance="Claude on Google Cloud")
+    assert result["status"] == mod.UNSUPPORTED
+    assert "Google Cloud Agent Platform" in result["terms_missing_from_span"]
+
+
+def test_a_term_supplied_only_by_provenance_needs_review_not_a_verdict():
+    mod = _audit_module()
+    result = mod.audit_claim(
+        "A Files API `File not found` error uses HTTP 404.",
+        "**File not found (404):** The specified `file_id` doesn't exist.",
+        provenance="Files API > Error handling")
+    assert result["status"] == mod.NEEDS_REVIEW
+    assert result["terms_only_in_provenance"] == ["Files API"]
+
+
+def test_a_claim_whose_terms_are_all_in_the_span_is_supported():
+    mod = _audit_module()
+    result = mod.audit_claim(
+        "`enable_zoom` defaults to `false`.",
+        "| `enable_zoom` | No | Enable zoom action. Default: `false` |",
+        provenance="Computer use tool")
+    assert result["status"] == mod.SUPPORTED
+
+
+def test_the_audit_is_an_overlay_and_never_edits_the_closed_batch(batch):
+    audit = Path(__file__).resolve().parents[1] / "experiments" / "GOLD-001" / \
+        "GOLD-001-batch-001-claim-audit.json"
+    if not audit.exists() or "closure_sha256" not in batch:
+        pytest.skip("audit or closure not present")
+    mod = _close_module()
+    overlay = json.loads(audit.read_text())
+    # The overlay records the hash it audited, and the batch still hashes to it.
+    assert overlay["closure_sha256"] == batch["closure_sha256"]
+    assert mod.candidate_digest(batch["records"]) == batch["closure_sha256"]
+    assert overlay["proposed_v2"]["status"].startswith("PROPOSED")
+    assert overlay["retrieval_was_not_run"] is True
+
+
+def test_holdout_eligibility_requires_both_support_and_a_checkable_claim():
+    mod = _audit_module()
+    record = {
+        "candidate_id": "X", "evidence_text": "`alpha` defaults to `5`.",
+        "evidence_hash": "unchecked", "document_title": "Doc", "section_path": ["S"],
+        "proposed_question": "q", "proposed_answer": "a",
+        "proposed_atomic_claims": ["`alpha` defaults to `5`."],
+    }
+    without = mod.audit_case(record)
+    assert without["status"] == mod.SUPPORTED
+    # Supported claims are not enough: with no critical strings the validator checks
+    # nothing, so a holdout built on it would be gated on nothing.
+    assert without["holdout_eligible"] is False
+    with_strings = mod.audit_case({**record, "critical_strings": ["alpha", "5"]})
+    assert with_strings["holdout_eligible"] is True

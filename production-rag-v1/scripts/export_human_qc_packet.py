@@ -51,6 +51,25 @@ CODE_LINE = re.compile(
     re.MULTILINE,
 )
 
+#: Classes a reviewer named directly on a candidate. Where present these are used
+#: instead of the inferred D1/D2/D3, because the reviewer said what the defect was and
+#: the inference is only a fallback for reviews that did not.
+REVIEW_DEFECT_REPAIRS = {
+    "MINER_QUESTION_HEADER_DEPENDENCY": (
+        "The anchored row is sound evidence; the miner's exported question asked about a "
+        "column whose meaning lives in a table header outside the row. The question was "
+        "re-authored around a fact stated inside the row, and the anchor did not move."
+    ),
+    "QUESTION_AUTHORING_REQUIRED": (
+        "No defect. The span is self-contained and the reviewer authored the question, "
+        "answer and claims, which is how the prose miner is designed to work."
+    ),
+    "MINER_EVIDENCE_DEFECT": (
+        "The anchor did not contain what its claim depends on, and was extended. Both "
+        "spans and both hashes are retained below."
+    ),
+}
+
 DEFECT_REPAIRS = {
     "D1": (
         "The anchor still opens on a referent it does not contain; the reviewer "
@@ -73,6 +92,9 @@ def scope_terms(text: str) -> set[str]:
 
 
 def classify_defects(record: dict) -> list[str]:
+    named = record.get("review_defect_class")
+    if named:
+        return [named]
     verification = record.get("verification", {})
     defects = []
     if verification.get("evidence_boundary_complete") is False:
@@ -157,7 +179,7 @@ def assess(record: dict, gaps: dict, defects: list[str]) -> tuple[str, str, str]
     return "fast_track", "LOW", WHY_AUTHORED
 
 
-def build_item(record: dict, reason: str) -> dict:
+def build_item(record: dict, reason: str, batch: int = 1) -> dict:
     gaps = anchor_gaps(record)
     defects = classify_defects(record)
     group, risk, why = assess(record, gaps, defects)
@@ -175,6 +197,7 @@ def build_item(record: dict, reason: str) -> dict:
     }
     return {
         "candidate_id": record["candidate_id"],
+        "batch": batch,
         "group": group,
         "risk": risk,
         "queued_because": reason,
@@ -189,8 +212,13 @@ def build_item(record: dict, reason: str) -> dict:
                      "context_before": record["context_before"][-CONTEXT_CHARS:],
                      "context_after": record["context_after"][:CONTEXT_CHARS]},
         "why_human_review_required": why,
-        "defects": [{"class": d, "what_was_repaired": DEFECT_REPAIRS[d]} for d in defects],
+        "defects": [{"class": d,
+                     "what_was_repaired": REVIEW_DEFECT_REPAIRS.get(
+                         d, DEFECT_REPAIRS.get(d, ""))}
+                    for d in defects],
         "anchor_gaps": gaps,
+        "critical_strings": record.get("critical_strings", []),
+        "anchor_revisions": record.get("anchor_revisions", []),
         "decision_options": list(DECISIONS),
         "decision": None,
         "audit": {
@@ -233,6 +261,11 @@ GROUP_HEADINGS = {
 }
 
 
+def code_span(text: str) -> str:
+    """Markdown code span that survives text already containing backticks."""
+    return f"`` {text} ``" if "`" in text else f"`{text}`"
+
+
 def render_item(item: dict) -> str:
     ev = item["evidence"]
     claims = "\n".join(f"  {i}. {c}" for i, c in enumerate(item["final"]["atomic_claims"], 1))
@@ -273,9 +306,30 @@ def render_item(item: dict) -> str:
         terms = ", ".join(f"`{t}`" for t in item["anchor_gaps"]["question_framing_only"])
         lines += ["", (f"*Note:* the question mentions {terms} as framing only; no "
                        "claim depends on it.")]
+    for revision in item.get("anchor_revisions", []):
+        lines += [
+            "",
+            (f"**Anchor extended** — {revision['old_char_start']}–"
+             f"{revision['old_char_end']} → {revision['new_char_start']}–"
+             f"{revision['new_char_end']} "
+             f"(+{revision['characters_added_before']} before, "
+             f"+{revision['characters_added_after']} after). "
+             f"{revision.get('what_changed', '')}"),
+            "",
+            f"*Why complete:* {revision.get('why_complete', '')}",
+        ]
+        if revision.get("size_warning"):
+            lines += ["", f"*Size warning:* {revision['size_warning']}"]
+        lines += ["", "<details><summary>the span before the extension</summary>", "",
+                  "```", revision["old_evidence_text"], "```", "", "</details>"]
+    if item.get("critical_strings"):
+        strings = ", ".join(code_span(x) for x in item["critical_strings"])
+        lines += ["", (f"*Critical claim strings, each verified inside the span above:* "
+                       f"{strings}")]
     lines += ["",
               ("**Decision:** `APPROVE` · `REJECT` · `NEEDS_EDIT` → record for "
-               f"`{item['candidate_id']}` in `human_decisions_batch_001.json`."),
+               f"`{item['candidate_id']}` in "
+               f"`human_decisions_batch_{item['batch']:03d}.json`."),
               "", "---", ""]
     return "\n".join(lines)
 
@@ -292,9 +346,9 @@ def render_markdown(packet: dict) -> str:
         "",
         ("Nothing in this packet is gold. A candidate becomes `human_verified` only "
          "when you record `APPROVE` for it in "
-         "`evals/review/human_decisions_batch_001.json` and import that file. A ChatGPT "
-         "`PASS` produces `dual_llm_pass` and stops there — two AI systems agreeing is "
-         "not human verification."),
+         f"`evals/review/human_decisions_batch_{packet['batch']:03d}.json` and import "
+         "that file. An independent-review PASS produces `dual_llm_pass` and stops "
+         "there — two AI systems agreeing is not human verification."),
         "",
         ("**Judge each case against the anchored evidence block alone.** The context "
          "is there to let you spot a bad anchor, not to answer the question. If you need "
@@ -365,10 +419,10 @@ def main() -> int:
         raise SystemExit(f"queue references candidates not in the batch: {missing}")
 
     order = {"recommended_reject": 2, "check_anchor": 1, "fast_track": 0}
-    items = [build_item(records[cid], reasons[cid]) for cid in sorted(reasons)]
+    number = batch.get("batch", 0)
+    items = [build_item(records[cid], reasons[cid], number) for cid in sorted(reasons)]
     items.sort(key=lambda i: (order[i["group"]], i["candidate_id"]))
 
-    number = batch.get("batch", 0)
     out_dir = Path(args.out_dir) if args.out_dir else batch_path.parent
     packet = {
         "batch": number,
