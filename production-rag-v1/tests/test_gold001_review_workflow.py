@@ -1429,3 +1429,212 @@ def test_the_eligibility_status_counts_match_the_records():
     assert status["holdout_frozen"] is False
     assert status["retrieval_was_not_run"] is True
     assert status["systems_executed"] == []
+
+
+# -- batch 003 miner ---------------------------------------------------------
+
+BATCH_003 = Path(__file__).resolve().parents[1] / "evals" / "review" / \
+    "gold_review_batch_003.json"
+
+
+@pytest.fixture
+def batch3():
+    if not BATCH_003.exists():
+        pytest.skip("batch 003 has not been generated")
+    return json.loads(BATCH_003.read_text())
+
+
+def _v3():
+    from rag_v1.gold import mining_v3
+
+    return mining_v3
+
+
+def _doc(text: str, provider: str = "anthropic") -> dict:
+    return {"text": text, "provider": provider, "title": "Doc", "version_id": "ver_x",
+            "url": "https://example.invalid", "captured_at": "2026-08-01",
+            "sections": []}
+
+
+def test_batch_003_ships_complete_and_unverified(batch3):
+    from rag_v1.gold.normalisation import contains_claim_string
+
+    assert batch3["retrieval_was_not_run"] is True
+    assert batch3["systems_executed"] == []
+    for record in batch3["records"]:
+        assert record["verification_status"] == "candidate_unverified"
+        assert record["chatgpt_verified"] is None
+        assert record["claude_proposed"] is True
+        assert record["retrieval_was_not_run"] is True
+        assert record["proposed_question"] and record["proposed_answer"]
+        assert record["proposed_atomic_claims"] and record["critical_strings"]
+        assert "[REVIEWER TO WRITE]" not in record["proposed_question"]
+        spans = record.get("expected_evidence") or [record]
+        combined = " \n".join(s["evidence_text"] for s in spans)
+        for string in record["critical_strings"]:
+            assert contains_claim_string(combined, string), (
+                record["candidate_id"], string)
+
+
+def test_batch_003_evidence_hashes_and_lengths_are_honest(batch3):
+    import hashlib
+
+    for record in batch3["records"]:
+        for span in record.get("expected_evidence") or [record]:
+            assert hashlib.sha256(
+                span["evidence_text"].encode()).hexdigest() == span["evidence_hash"]
+            assert span["evidence_char_length"] == len(span["evidence_text"])
+            assert span["char_end"] - span["char_start"] == len(span["evidence_text"])
+        assert record["evidence_char_length"] <= _v3().EVIDENCE_HARD_CAP
+
+
+def test_batch_003_never_reuses_an_earlier_question_or_span(batch3):
+    import importlib.util
+
+    spec = importlib.util.spec_from_file_location(
+        "_export_batch_003",
+        Path(__file__).resolve().parents[1] / "scripts" / "export_batch_003.py")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+
+    questions, spans, _ = mod.prior_material()
+    seen_questions, seen_spans = set(), set()
+    for record in batch3["records"]:
+        key = mod.normalise_question(record["proposed_question"])
+        span = tuple(sorted(
+            (s["version_id"], s["char_start"], s["char_end"])
+            for s in (record.get("expected_evidence") or [record])))
+        assert key not in questions, record["candidate_id"]
+        assert span not in spans, record["candidate_id"]
+        assert key not in seen_questions and span not in seen_spans
+        seen_questions.add(key)
+        seen_spans.add(span)
+
+
+def test_batch_003_multi_hop_cases_carry_independently_anchored_spans(batch3):
+    multi = [r for r in batch3["records"] if r["proposed_category"] == "multi_hop"]
+    assert multi, "the batch claims a multi_hop category"
+    for record in multi:
+        spans = record["expected_evidence"]
+        assert len(spans) >= 2
+        # Distinct spans, so partial retrieval cannot earn full credit.
+        assert len({(s["version_id"], s["char_start"], s["char_end"])
+                    for s in spans}) == len(spans)
+        assert len(record["proposed_atomic_claims"]) >= 2
+        assert record["proposed_question"].count("?") == 1
+
+
+def test_batch_003_reports_the_composition_it_actually_has(batch3):
+    from collections import Counter
+
+    assert batch3["by_provider"] == dict(
+        Counter(r["provider"] for r in batch3["records"]))
+    assert batch3["by_category"] == dict(
+        Counter(r["proposed_category"] for r in batch3["records"]))
+    assert batch3["unique_documents"] == len(
+        {r["document_title"] for r in batch3["records"]})
+    assert batch3["candidates"] == len(batch3["records"])
+    lengths = [r["evidence_char_length"] for r in batch3["records"]]
+    assert batch3["evidence_length"]["max"] == max(lengths)
+
+
+# -- the batch-001/002 lessons, still enforced -------------------------------
+
+def test_v3_drops_a_span_that_cannot_resolve_its_own_reference():
+    """Batch 001's D1. The antecedent is absent, so the candidate must not ship."""
+    text = ("If true, the API returns a 400 `invalid_request_error` for the request "
+            "and stops processing it immediately.")
+    assert _v3().mine_prose(_doc(text)) == []
+
+
+def test_v3_keeps_a_span_that_carries_its_own_condition():
+    text = ("If the `stream` parameter is omitted, the API returns a 400 "
+            "`invalid_request_error` naming the missing field.")
+    mined = _v3().mine_prose(_doc(text))
+    assert mined, "a self-contained conditional should mine"
+    assert "stream" in mined[0]["proposed_question"]
+    assert mined[0]["proposed_category"] == "error_behavior"
+
+
+def test_v3_refuses_normative_claims_from_example_code():
+    """Batch 001's D3, and the EXP-014R failure before it."""
+    text = ('Some prose about tool configuration that runs long enough to mine.\n\n'
+            '```json\n{\n  "required": ["location"],\n'
+            '  "tool_choice": {"type": "any"}\n}\n```\n')
+    assert _v3().mine_prose(_doc(text)) == []
+
+
+def test_v3_asks_a_row_about_what_the_row_says_not_what_a_header_means():
+    """Batch 002's header dependency: a bare Yes/No answers nothing on its own."""
+    text = ("| name | required | description |\n| --- | --- | --- |\n"
+            "| `retry_budget` | yes | Controls how many times a failed call is retried. |\n")
+    mined = _v3().mine_row_facts(_doc(text))
+    assert mined
+    question = mined[0]["proposed_question"]
+    assert "required" not in question.lower()
+    assert "retry_budget" in question
+    # The answer is stated inside the row, so the anchor supports it alone.
+    assert "retried" in mined[0]["proposed_answer"]
+
+
+def test_v3_will_not_ask_about_a_generic_identifier_it_cannot_scope():
+    """"What is the `path` option?" has a dozen answers in this corpus."""
+    generic = "-   `path`: The path to the file or directory to view now.\n"
+    specific = "-   `path`: The path passed to the `TextEditorTool` constructor now.\n"
+    assert _v3().mine_definition_bullets(_doc(generic)) == []
+    assert _v3().mine_definition_bullets(_doc(specific))
+
+
+def test_v3_rejects_a_value_literal_mistaken_for_a_subject():
+    text = ("Setting `audio.turn_detection` to `None` disables automatic turn "
+            "detection for the session entirely.")
+    for candidate in _v3().mine_prose(_doc(text)):
+        assert "`None`" not in candidate["proposed_question"]
+
+
+def test_v3_enforces_the_evidence_size_budget():
+    v3 = _v3()
+    assert v3.EVIDENCE_SOFT_CAP < v3.EVIDENCE_HARD_CAP
+    long_condition = "the request body contains a field that is not recognised, " * 30
+    text = f"If {long_condition}the API returns a 400 error."
+    assert _v3().mine_prose(_doc(text)) == []
+
+
+def test_v3_precheck_names_what_would_block_eligibility():
+    import importlib.util
+
+    spec = importlib.util.spec_from_file_location(
+        "_export_batch_003",
+        Path(__file__).resolve().parents[1] / "scripts" / "export_batch_003.py")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+
+    import hashlib
+    evidence = "The `limit` parameter caps results at 100 per page."
+    good = {
+        "version_id": "v", "char_start": 0, "char_end": len(evidence),
+        "evidence_text": evidence,
+        "evidence_hash": hashlib.sha256(evidence.encode()).hexdigest(),
+        "evidence_char_length": len(evidence),
+        "proposed_atomic_claims": ["`limit` caps results at 100 per page."],
+        "critical_strings": ["`limit`", "100 per page"],
+        "retrieval_was_not_run": True,
+    }
+    assert mod.precheck(good) == []
+    assert any("critical strings outside" in f
+               for f in mod.precheck({**good, "critical_strings": ["not present"]}))
+    assert any("no atomic claims" in f
+               for f in mod.precheck({**good, "proposed_atomic_claims": []}))
+    assert any("retrieval leakage" in f
+               for f in mod.precheck({**good, "retrieval_was_not_run": False}))
+    assert any("hash does not match" in f
+               for f in mod.precheck({**good, "evidence_hash": "0" * 64}))
+
+
+def test_the_frozen_systems_are_untouched_by_batch_003():
+    from rag_v1.systems import FROZEN_HASHES
+
+    assert FROZEN_HASHES["SYSTEM-A-GLOBAL"] == (
+        "9afcb5b7c58ebacff0b4c3711dd9618a2e727f4195dd1787a5da81e478ee0b38")
+    assert FROZEN_HASHES["SYSTEM-B-DOC-C"] == (
+        "304c350940b83733df6043ae3a8abdcbcde33d16950730127aa9f1f39494388b")

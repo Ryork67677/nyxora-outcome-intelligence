@@ -316,6 +316,32 @@ refuses to write if the approved span hashes to anything else, because an approv
 different span is not an approval of this one. Each repaired v2 record carries its v1
 span, text, hash, claims and approval beside the new ones.
 
+## Generating a diverse batch
+
+```bash
+python scripts/export_batch_003.py --size 20
+```
+
+`rag_v1.gold.mining_v3` mines *sentence and definition shapes* rather than table
+columns: each pattern fires only where the sentence structure already contains the
+question and the answer, and both are built from the captured groups. That is the
+difference between it and the EXP-014R generator, which invented a question and then
+looked for support.
+
+Selection fills provider and category floors before anything else. Batch 002 ordered by
+confidence and came out 15-to-3, because the mechanism producing the most confident
+candidates was concentrated in one provider's documentation.
+
+Two rules carried forward and generalised:
+
+* **A generic identifier needs the span to scope it.** "What is the `path` option?" has a
+  dozen answers in this corpus, and qualifying it by section would put the scope outside
+  the anchor — the batch-002 table-header defect in a new costume. Such candidates are
+  dropped, not qualified.
+* **Multi-hop means two facts, not one fact twice.** Two spans asking the same question
+  are rejected, and the composed question is phrased as one question rather than two
+  glued together.
+
 ## Reporting
 
 ```bash
@@ -357,6 +383,7 @@ out, and that is the same outcome by design: gold requires someone to have said 
 | 002 | generated | 18 candidates, 50% structural, 9 complete proposals. Built with the four preregistered rules and nothing else. |
 | 002 | independently reviewed | 0 rejects, all 18 FIX_REQUIRED. A new defect class found: 9 structural candidates whose miner-written question depended on table-header semantics outside the row. 2 anchor extensions (`12`, `18`). |
 | 002 | **CLOSED** | 17 `human_verified`, 1 `human_rejected` (`12`, OVERSIZED_EVIDENCE_ANCHOR — a 1,430-character anchor for one fact), 94.4% acceptance. **17 of 17 carry critical strings**, against batch 001's 3 of 16. Closure hash `69364f672e233fb3…`. One erratum: the closure's caveat was a fixed string describing batch 001 and contradicted the batch's own count — see `GOLD-001-batch-002-closure-erratum.md`. |
+| 003 | generated, unreviewed | 20 candidates, 12 Anthropic / 8 OpenAI across 17 documents, 5 categories including 4 multi-hop. All 20 ship complete with critical strings and pass the holdout precheck. Median evidence 129 chars. Awaiting independent review. |
 | 001 v2 | **CLOSED** | 16 cases, **16 `holdout_eligible`** — 11 metadata upgrades, 2 owner-approved scope repairs (`13`, `17`), 3 carried forward. v1 stays closed and unchanged at `d6f92e8d1a7e77ea…`. |
 
 ## Auditing a closed batch
