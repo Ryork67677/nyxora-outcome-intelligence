@@ -29,6 +29,8 @@ frozen corpus
   → human QC packet                   scripts/export_human_qc_packet.py
   → human decisions                   (you) -> human_decisions_batch_NNN.json
   → import decisions                  scripts/import_human_decisions.py
+  → boundary repair (NEEDS_EDIT only) scripts/repair_evidence_boundary.py
+  → re-decide the repaired cases      (you)
   → validator                         scripts/validate_golden.py
   → frozen holdout                    → only then, replication
 ```
@@ -179,6 +181,35 @@ cannot vouch for: evidence-hash drift, empty or placeholder questions, missing c
 missing provenance. An approval says the case is right; the report says its bytes still
 match the corpus.
 
+## 6a. Repair a boundary the owner sent back
+
+```bash
+python scripts/repair_evidence_boundary.py \\
+  evals/review/gold_review_batch_001.json \\
+  experiments/GOLD-001/batch-001-boundary-repairs.json
+```
+
+An anchor is otherwise immutable — `import_verification.py` refuses to let a reviewer
+move one. This is the single authorised exception, and it is deliberately narrow:
+
+* it only touches candidates the owner marked `NEEDS_EDIT`;
+* the new span must be a **strict superset** of the old, so an anchor can only grow
+  outward to include what its claim already depended on. A span that moves elsewhere is
+  a re-anchoring, and is refused;
+* the old offsets, text and hash are kept in a numbered `anchor_revisions` entry beside
+  the new ones. Nothing is overwritten;
+* the repaired case returns to `needs_human_review`. Repairing is not approving, and
+  this script cannot produce `human_verified`.
+
+It then projects each repaired candidate into the golden-case schema and runs the real
+`validate()` over it — alongside the already-approved candidates and the development set,
+so duplicate question and duplicate evidence are checked against everything that exists.
+
+**Known schema gap.** The validator's convention is that a critical claim is a literal
+string appearing inside its own span; the batch candidates carry sentence-form atomic
+claims instead. Repaired cases are authored with both. Every other candidate will need
+its critical strings written before it can enter a validated holdout.
+
 ## 7. Validate, then freeze
 
 ```bash
@@ -203,6 +234,7 @@ SYSTEM-B be run against it — **once**.
 | `needs_human_review` | disagreement, uncertainty, or a repair to check |
 | `human_verified` / `human_rejected` | a person decided, via `import_human_decisions.py` |
 | `needs_edit` | a person looked and wants it changed — out of gold until it is |
+| `needs_human_review` | also where a repaired case lands: the change is made, the approval is not |
 
 Only `human_verified` may enter a holdout. `needs_edit` and an absent decision are both
 out, and that is the same outcome by design: gold requires someone to have said yes.
@@ -212,6 +244,7 @@ out, and that is the same outcome by design: gold requires someone to have said 
 | batch | verdicts | outcome |
 |---|---|---|
 | 001 | PASS 2, FIX_REQUIRED 15, FAIL 1 | 17 queued for a person; three miner defects recorded in `experiments/GOLD-001/batch-001-findings.md` and preregistered as changes for batch 002 |
+| 001 | owner: APPROVE 12, NEEDS_EDIT 3, REJECT 2 | 12 `human_verified`; 2 `human_rejected` kept as negative audit examples; 3 boundary-repaired and back at `needs_human_review`; `GOLD-B001-01` never reached a human and stays `dual_llm_pass`. Batch 001 is **not closed**. |
 
 ## What is deliberately not automated
 

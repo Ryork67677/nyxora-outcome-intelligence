@@ -1,0 +1,68 @@
+{
+  "batch": 1,
+  "reason": "evidence_boundary_completion",
+  "directed_by": "project_owner",
+  "rule": "The repaired span must be a strict superset of the original: it may only grow outward to include what the claim already depended on. A span that moves elsewhere is a re-anchoring, not a boundary completion, and is refused.",
+  "claims_are_verbatim": "The golden-set convention is that a critical claim is a literal string that must appear inside its own evidence span. The sentence-form atomic claims stay on the candidate for the human; critical_strings is what the validator checks.",
+  "repairs": [
+    {
+      "candidate_id": "GOLD-B001-03",
+      "locate_head": "The baseline settings shared by",
+      "locate_tail": "no `thinking` configuration is required.",
+      "question": "For `claude-fable-5` and `claude-mythos-5`, is a `thinking` configuration required?",
+      "answer": "No. Adaptive thinking is always on for those models, so no `thinking` configuration is required.",
+      "atomic_claims": [
+        "`claude-fable-5` and `claude-mythos-5` share a baseline setting of adaptive thinking, which is always on.",
+        "No `thinking` configuration is required for `claude-fable-5` and `claude-mythos-5`."
+      ],
+      "critical_strings": [
+        "claude-fable-5",
+        "claude-mythos-5",
+        "is always on",
+        "no `thinking` configuration is required"
+      ],
+      "category": "exact_lookup",
+      "what_changed": "Extended backwards by 187 characters to the sentence that names which models the baseline settings belong to.",
+      "why_complete": "The model scope, the adaptive-thinking setting and the no-configuration-required statement are now all inside one contiguous span. The question is worded with the model identifiers the span actually contains rather than the display names, which appear only in the section heading."
+    },
+    {
+      "candidate_id": "GOLD-B001-04",
+      "locate_head": "Input guardrails run in 3 steps:",
+      "locate_tail": "or handle the exception.",
+      "question": "What happens when an input guardrail's `.tripwire_triggered` value is true?",
+      "answer": "An `InputGuardrailTripwireTriggered` exception is raised.",
+      "atomic_claims": [
+        "If an input guardrail's `.tripwire_triggered` value is true, an `InputGuardrailTripwireTriggered` exception is raised."
+      ],
+      "critical_strings": [
+        "input guardrails",
+        ".tripwire_triggered",
+        "inputguardrailtripwiretriggered",
+        "exception is raised"
+      ],
+      "category": "exact_lookup",
+      "what_changed": "Extended backwards by 434 characters to the start of the numbered procedure, so the anchor carries both the subject (input guardrails) and the condition (`.tripwire_triggered` is true).",
+      "why_complete": "The original span opened on the bare pronoun `If true`. The repaired span states what is checked, what makes it true, and what is raised, without any reference outside itself."
+    },
+    {
+      "candidate_id": "GOLD-B001-14",
+      "locate_head": "Claude 4.6 and later models and",
+      "locate_tail": "returns a 400 `invalid_request_error`:",
+      "question": "What happens if a request sends a prefilled last assistant message to Claude 4.6 and later models or Claude Mythos Preview?",
+      "answer": "The request returns a 400 `invalid_request_error`.",
+      "atomic_claims": [
+        "Claude 4.6 and later models and Claude Mythos Preview do not support prefilling assistant messages.",
+        "Sending a request with a prefilled last assistant message to those models returns a 400 `invalid_request_error`."
+      ],
+      "critical_strings": [
+        "claude 4.6 and later models",
+        "claude mythos preview",
+        "do not support prefilling assistant messages",
+        "400 `invalid_request_error`"
+      ],
+      "category": "exact_lookup",
+      "what_changed": "Extended backwards by 135 characters to the sentence that defines `these models`.",
+      "why_complete": "The model scope is now stated inside the anchor instead of being carried by the phrase `any of these models`. The claim asserts exactly the range the frozen source names and no more."
+    }
+  ]
+}

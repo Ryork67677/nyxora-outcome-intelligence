@@ -23,7 +23,7 @@
     "medium": 16
   },
   "needs_human_interpretation": 16,
-  "verification_status": "dual_llm_reviewed by chatgpt — nothing in this file is gold; every case still requires human approval",
+  "verification_status": "human_reviewed by project_owner — approved cases are gold; every other case, including NEEDS_EDIT and undecided, is not",
   "retrieval_was_not_run": true,
   "records": [
     {
@@ -102,7 +102,7 @@
       "generator_notes": "Row-scoped association, so the value cannot belong to a different parameter. Reviewer should still confirm the row is a parameter table and not a comparison or pricing table.",
       "needs_human_interpretation": false,
       "candidate_type": "supported",
-      "verification_status": "dual_llm_pass",
+      "verification_status": "human_verified",
       "claude_proposed": true,
       "chatgpt_verified": true,
       "schema_version": "1.0",
@@ -118,7 +118,19 @@
         "identifier_value_binding_correct": true,
         "natural_question": true,
         "verification_notes": "The row is part of the Agent basic-configuration table and directly binds `reset_tool_choice` to `(default: True)`. The proposed question and answer are fully supported by the anchored row."
-      }
+      },
+      "human_decision_history": [
+        {
+          "decision": "APPROVE",
+          "reviewer": "project_owner",
+          "decided_at": "2026-08-20T03:06:55Z",
+          "notes": ""
+        }
+      ],
+      "human_decision": "APPROVE",
+      "human_verified": true,
+      "human_reviewed_at": "2026-08-20T03:06:55Z",
+      "human_reviewer": "project_owner"
     },
     {
       "candidate_id": "GOLD-B001-03",
@@ -130,18 +142,19 @@
       "section_path": [
         "Migrating to Claude Mythos 5 and Claude Fable 5"
       ],
-      "char_start": 2410,
+      "char_start": 2223,
       "char_end": 2519,
-      "evidence_text": "The model determines when and how much to think on each request, and no `thinking` configuration is required.",
-      "evidence_hash": "85dd3cb0dd55e21aa941a2cfb4cde5742be207bae3904be0477f0e95d7b2cae6",
-      "context_before": "de/models/introducing-claude-fable-5-and-claude-mythos-5) is Anthropic's most capable widely released model, generally available on the Claude API, [Amazon Bedrock](https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock), [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws), [Google Cloud](https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai), and [Microsoft Foundry](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry). [Claude Mythos 5](https://anthropic.com/glasswing) shares the same capabilities and is offered in limited availability to approved customers in Project Glasswing.\n\nThe baseline settings shared by `claude-fable-5` and `claude-mythos-5`:\n\n* **Thinking:** [Adaptive thinking](https://platform.claude.com/docs/en/build-with-claude/thinking) is always on. ",
+      "evidence_text": "The baseline settings shared by `claude-fable-5` and `claude-mythos-5`:\n\n* **Thinking:** [Adaptive thinking](https://platform.claude.com/docs/en/build-with-claude/thinking) is always on. The model determines when and how much to think on each request, and no `thinking` configuration is required.",
+      "evidence_hash": "54f4b6a0802f04ab207e720c571b5f4b342a2e9a4db858371a17da4ff3dc5665",
+      "context_before": "justs model ID formats and feature changes for those platforms.\n</Tip>\n\n## Migrating to Claude Mythos 5 and Claude Fable 5\n\n[Claude Fable 5](https://platform.claude.com/docs/en/about-claude/models/introducing-claude-fable-5-and-claude-mythos-5) is Anthropic's most capable widely released model, generally available on the Claude API, [Amazon Bedrock](https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock), [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws), [Google Cloud](https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai), and [Microsoft Foundry](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry). [Claude Mythos 5](https://anthropic.com/glasswing) shares the same capabilities and is offered in limited availability to approved customers in Project Glasswing.\n\n",
       "context_after": " Both `thinking: {type: \"disabled\"}` and manual extended thinking (`thinking: {type: \"enabled\", budget_tokens: N}`) return a 400 error.\n* **Prefill:** Prefilling the assistant message returns a 400 error. Use system prompt instructions instead.\n* **Context window and output:** A [1M token context window](https://platform.claude.com/docs/en/build-with-claude/context-windows) by default, and up to 128k output tokens per request.\n* **Pricing:** $10 USD per million input tokens and $50 USD per million output tokens. See [Claude pricing](https://platform.claude.com/docs/en/about-claude/pricing).\n* **Data retention:** Both models require 30-day data retention and are not available under zero data retention (ZDR) arrangements; both are designated Covered Models. On the Claude API, a request to Claude Fable 5 from an organization whose data retention configuration does not meet this requirement ",
       "proposed_category": "exact_lookup",
-      "proposed_question": "For Claude Fable 5 and Claude Mythos 5, is a `thinking` configuration required?",
+      "proposed_question": "For `claude-fable-5` and `claude-mythos-5`, is a `thinking` configuration required?",
       "proposed_atomic_claims": [
-        "For Claude Fable 5 and Claude Mythos 5, no `thinking` configuration is required."
+        "`claude-fable-5` and `claude-mythos-5` share a baseline setting of adaptive thinking, which is always on.",
+        "No `thinking` configuration is required for `claude-fable-5` and `claude-mythos-5`."
       ],
-      "proposed_answer": "No. Adaptive thinking is always on, the model decides when and how much to think, and no `thinking` configuration is required.",
+      "proposed_answer": "No. Adaptive thinking is always on for those models, so no `thinking` configuration is required.",
       "evidence_kind": "explicit_required_optional",
       "binding": "single identifier in the sentence",
       "generator_confidence": "medium",
@@ -181,6 +194,41 @@
           "author": "chatgpt",
           "timestamp": "2026-08-19T05:41:57Z",
           "reason": "Replace the placeholder question/empty answer and extend the evidence anchor upward to include the nearby text identifying the statement as a baseline setting shared by `claude-fable-5` and `claude-mythos-5` (ideally including the `Thinking: Adaptive thinking is always on` line)."
+        },
+        {
+          "revision": 4,
+          "field": "proposed_question",
+          "from": "For Claude Fable 5 and Claude Mythos 5, is a `thinking` configuration required?",
+          "to": "For `claude-fable-5` and `claude-mythos-5`, is a `thinking` configuration required?",
+          "author": "claude",
+          "directed_by": "project_owner",
+          "timestamp": "2026-08-20T03:11:22Z",
+          "reason": "evidence_boundary_completion"
+        },
+        {
+          "revision": 5,
+          "field": "proposed_answer",
+          "from": "No. Adaptive thinking is always on, the model decides when and how much to think, and no `thinking` configuration is required.",
+          "to": "No. Adaptive thinking is always on for those models, so no `thinking` configuration is required.",
+          "author": "claude",
+          "directed_by": "project_owner",
+          "timestamp": "2026-08-20T03:11:22Z",
+          "reason": "evidence_boundary_completion"
+        },
+        {
+          "revision": 6,
+          "field": "proposed_atomic_claims",
+          "from": [
+            "For Claude Fable 5 and Claude Mythos 5, no `thinking` configuration is required."
+          ],
+          "to": [
+            "`claude-fable-5` and `claude-mythos-5` share a baseline setting of adaptive thinking, which is always on.",
+            "No `thinking` configuration is required for `claude-fable-5` and `claude-mythos-5`."
+          ],
+          "author": "claude",
+          "directed_by": "project_owner",
+          "timestamp": "2026-08-20T03:11:22Z",
+          "reason": "evidence_boundary_completion"
         }
       ],
       "verification": {
@@ -194,7 +242,46 @@
         "identifier_value_binding_correct": true,
         "natural_question": false,
         "verification_notes": "The core statement is clear, but the current anchored sentence does not name the models. A natural standalone question needs that scope, so the evidence boundary should be expanded rather than relying on surrounding context that is outside the anchor."
-      }
+      },
+      "human_decision_history": [
+        {
+          "decision": "NEEDS_EDIT",
+          "reviewer": "project_owner",
+          "decided_at": "2026-08-20T03:06:55Z",
+          "notes": "NEEDS_EDIT — expand the anchor to carry the model scope."
+        }
+      ],
+      "human_decision": "NEEDS_EDIT",
+      "human_verified": false,
+      "human_reviewed_at": "2026-08-20T03:06:55Z",
+      "human_reviewer": "project_owner",
+      "anchor_revisions": [
+        {
+          "revision": 1,
+          "reason": "evidence_boundary_completion",
+          "old_char_start": 2410,
+          "old_char_end": 2519,
+          "old_evidence_hash": "85dd3cb0dd55e21aa941a2cfb4cde5742be207bae3904be0477f0e95d7b2cae6",
+          "old_evidence_text": "The model determines when and how much to think on each request, and no `thinking` configuration is required.",
+          "new_char_start": 2223,
+          "new_char_end": 2519,
+          "new_evidence_hash": "54f4b6a0802f04ab207e720c571b5f4b342a2e9a4db858371a17da4ff3dc5665",
+          "new_evidence_text": "The baseline settings shared by `claude-fable-5` and `claude-mythos-5`:\n\n* **Thinking:** [Adaptive thinking](https://platform.claude.com/docs/en/build-with-claude/thinking) is always on. The model determines when and how much to think on each request, and no `thinking` configuration is required.",
+          "characters_added_before": 187,
+          "characters_added_after": 0,
+          "author": "claude",
+          "directed_by": "project_owner",
+          "timestamp": "2026-08-20T03:11:22Z"
+        }
+      ],
+      "critical_strings": [
+        "claude-fable-5",
+        "claude-mythos-5",
+        "is always on",
+        "no `thinking` configuration is required"
+      ],
+      "repaired_at": "2026-08-20T03:11:22Z",
+      "awaiting": "explicit owner approval of the repaired version"
     },
     {
       "candidate_id": "GOLD-B001-04",
@@ -207,18 +294,18 @@
         "Guardrails",
         "Input guardrails"
       ],
-      "char_start": 1930,
+      "char_start": 1496,
       "char_end": 2119,
-      "evidence_text": "If true, an [`InputGuardrailTripwireTriggered`][agents.exceptions.InputGuardrailTripwireTriggered] exception is raised, so you can appropriately respond to the user or handle the exception.",
-      "evidence_hash": "c700d2b8e7c2cc4e6465224b51637c34ea28ddd8621fc4f6912cce37263fcfcc",
-      "context_before": "uardrails** run only for the agent that produces the final output.\n-   **Tool guardrails** run on every custom function-tool invocation, with input guardrails before execution and output guardrails after execution.\n\nIf you need checks before and/or after each custom function-tool call in a workflow that includes managers, handoffs, or delegated specialists, use tool guardrails instead of relying only on agent-level input/output guardrails.\n\n## Input guardrails\n\nInput guardrails run in 3 steps:\n\n1. First, the guardrail receives the same input passed to the agent.\n2. Next, the guardrail function runs to produce a [`GuardrailFunctionOutput`][agents.guardrail.GuardrailFunctionOutput], which is then wrapped in an [`InputGuardrailResult`][agents.guardrail.InputGuardrailResult]\n3. Finally, we check if [`.tripwire_triggered`][agents.guardrail.GuardrailFunctionOutput.tripwire_triggered] is true. ",
+      "evidence_text": "Input guardrails run in 3 steps:\n\n1. First, the guardrail receives the same input passed to the agent.\n2. Next, the guardrail function runs to produce a [`GuardrailFunctionOutput`][agents.guardrail.GuardrailFunctionOutput], which is then wrapped in an [`InputGuardrailResult`][agents.guardrail.InputGuardrailResult]\n3. Finally, we check if [`.tripwire_triggered`][agents.guardrail.GuardrailFunctionOutput.tripwire_triggered] is true. If true, an [`InputGuardrailTripwireTriggered`][agents.exceptions.InputGuardrailTripwireTriggered] exception is raised, so you can appropriately respond to the user or handle the exception.",
+      "evidence_hash": "f54443978632400969965418b871831dcfe67fc173b41826c857de06bbed20f8",
+      "context_before": "ave started before the guardrail completes. See \"Execution modes\" below for details.\n\nThere are two kinds of guardrails:\n\n1. Input guardrails run on the initial user input\n2. Output guardrails run on the final agent output\n\n## Workflow boundaries\n\nGuardrails are attached to agents and tools, but they do not all run at the same points in a workflow:\n\n-   **Input guardrails** run only for the first agent in the chain.\n-   **Output guardrails** run only for the agent that produces the final output.\n-   **Tool guardrails** run on every custom function-tool invocation, with input guardrails before execution and output guardrails after execution.\n\nIf you need checks before and/or after each custom function-tool call in a workflow that includes managers, handoffs, or delegated specialists, use tool guardrails instead of relying only on agent-level input/output guardrails.\n\n## Input guardrails\n\n",
       "context_after": "\n\n!!! Note\n\n    Input guardrails are intended to run on user input, so an agent's guardrails only run if the agent is the *first* agent. You might wonder, why is the `guardrails` property on the agent instead of passed to `Runner.run`? It's because guardrails tend to be related to the actual Agent - you'd run different guardrails for different agents, so colocating the code is useful for readability.\n\n### Execution modes\n\nInput guardrails support two execution modes:\n\n- **Parallel execution** (default, `run_in_parallel=True`): The guardrail runs concurrently with the agent's execution. This provides the best latency since both start at the same time. However, if the guardrail's tripwire is triggered, the agent may have already consumed tokens and executed tools before being cancelled.\n\n- **Blocking execution** (`run_in_parallel=False`): The guardrail runs and completes *before* the agent",
       "proposed_category": "exact_lookup",
-      "proposed_question": "What exception is raised when an input guardrail's `tripwire_triggered` value is true?",
+      "proposed_question": "What happens when an input guardrail's `.tripwire_triggered` value is true?",
       "proposed_atomic_claims": [
-        "When an input guardrail's `tripwire_triggered` value is true, an `InputGuardrailTripwireTriggered` exception is raised."
+        "If an input guardrail's `.tripwire_triggered` value is true, an `InputGuardrailTripwireTriggered` exception is raised."
       ],
-      "proposed_answer": "`InputGuardrailTripwireTriggered`.",
+      "proposed_answer": "An `InputGuardrailTripwireTriggered` exception is raised.",
       "evidence_kind": "explicit_exception",
       "binding": "single identifier in the sentence",
       "generator_confidence": "medium",
@@ -258,6 +345,40 @@
           "author": "chatgpt",
           "timestamp": "2026-08-19T05:41:57Z",
           "reason": "Replace the placeholder question/empty answer and extend the evidence anchor slightly upward to include the preceding sentence/step that says `.tripwire_triggered` is checked for true. The current span begins with the anaphoric phrase `If true` without naming what is true."
+        },
+        {
+          "revision": 4,
+          "field": "proposed_question",
+          "from": "What exception is raised when an input guardrail's `tripwire_triggered` value is true?",
+          "to": "What happens when an input guardrail's `.tripwire_triggered` value is true?",
+          "author": "claude",
+          "directed_by": "project_owner",
+          "timestamp": "2026-08-20T03:11:22Z",
+          "reason": "evidence_boundary_completion"
+        },
+        {
+          "revision": 5,
+          "field": "proposed_answer",
+          "from": "`InputGuardrailTripwireTriggered`.",
+          "to": "An `InputGuardrailTripwireTriggered` exception is raised.",
+          "author": "claude",
+          "directed_by": "project_owner",
+          "timestamp": "2026-08-20T03:11:22Z",
+          "reason": "evidence_boundary_completion"
+        },
+        {
+          "revision": 6,
+          "field": "proposed_atomic_claims",
+          "from": [
+            "When an input guardrail's `tripwire_triggered` value is true, an `InputGuardrailTripwireTriggered` exception is raised."
+          ],
+          "to": [
+            "If an input guardrail's `.tripwire_triggered` value is true, an `InputGuardrailTripwireTriggered` exception is raised."
+          ],
+          "author": "claude",
+          "directed_by": "project_owner",
+          "timestamp": "2026-08-20T03:11:22Z",
+          "reason": "evidence_boundary_completion"
         }
       ],
       "verification": {
@@ -271,7 +392,46 @@
         "identifier_value_binding_correct": true,
         "natural_question": false,
         "verification_notes": "The exception name is explicit, but the anchored evidence starts with `If true`; the condition is only identified in context before. This is exactly the kind of incomplete-boundary issue the validator is meant to catch."
-      }
+      },
+      "human_decision_history": [
+        {
+          "decision": "NEEDS_EDIT",
+          "reviewer": "project_owner",
+          "decided_at": "2026-08-20T03:06:55Z",
+          "notes": "NEEDS_EDIT — expand the anchor to carry the `tripwire_triggered` condition."
+        }
+      ],
+      "human_decision": "NEEDS_EDIT",
+      "human_verified": false,
+      "human_reviewed_at": "2026-08-20T03:06:55Z",
+      "human_reviewer": "project_owner",
+      "anchor_revisions": [
+        {
+          "revision": 1,
+          "reason": "evidence_boundary_completion",
+          "old_char_start": 1930,
+          "old_char_end": 2119,
+          "old_evidence_hash": "c700d2b8e7c2cc4e6465224b51637c34ea28ddd8621fc4f6912cce37263fcfcc",
+          "old_evidence_text": "If true, an [`InputGuardrailTripwireTriggered`][agents.exceptions.InputGuardrailTripwireTriggered] exception is raised, so you can appropriately respond to the user or handle the exception.",
+          "new_char_start": 1496,
+          "new_char_end": 2119,
+          "new_evidence_hash": "f54443978632400969965418b871831dcfe67fc173b41826c857de06bbed20f8",
+          "new_evidence_text": "Input guardrails run in 3 steps:\n\n1. First, the guardrail receives the same input passed to the agent.\n2. Next, the guardrail function runs to produce a [`GuardrailFunctionOutput`][agents.guardrail.GuardrailFunctionOutput], which is then wrapped in an [`InputGuardrailResult`][agents.guardrail.InputGuardrailResult]\n3. Finally, we check if [`.tripwire_triggered`][agents.guardrail.GuardrailFunctionOutput.tripwire_triggered] is true. If true, an [`InputGuardrailTripwireTriggered`][agents.exceptions.InputGuardrailTripwireTriggered] exception is raised, so you can appropriately respond to the user or handle the exception.",
+          "characters_added_before": 434,
+          "characters_added_after": 0,
+          "author": "claude",
+          "directed_by": "project_owner",
+          "timestamp": "2026-08-20T03:11:22Z"
+        }
+      ],
+      "critical_strings": [
+        "input guardrails",
+        ".tripwire_triggered",
+        "inputguardrailtripwiretriggered",
+        "exception is raised"
+      ],
+      "repaired_at": "2026-08-20T03:11:22Z",
+      "awaiting": "explicit owner approval of the repaired version"
     },
     {
       "candidate_id": "GOLD-B001-05",
@@ -302,7 +462,7 @@
       "generator_notes": "Matched explicit marker 'returns a'. No claim is proposed: the reviewer should write the question and the atomic claims from the evidence. ",
       "needs_human_interpretation": true,
       "candidate_type": "supported",
-      "verification_status": "needs_human_review",
+      "verification_status": "human_verified",
       "claude_proposed": true,
       "chatgpt_verified": false,
       "schema_version": "1.0",
@@ -349,7 +509,19 @@
         "identifier_value_binding_correct": true,
         "natural_question": false,
         "verification_notes": "The anchored sentence explicitly states the triggering condition, HTTP status, error type, and message. No boundary expansion is needed."
-      }
+      },
+      "human_decision_history": [
+        {
+          "decision": "APPROVE",
+          "reviewer": "project_owner",
+          "decided_at": "2026-08-20T03:06:55Z",
+          "notes": ""
+        }
+      ],
+      "human_decision": "APPROVE",
+      "human_verified": true,
+      "human_reviewed_at": "2026-08-20T03:06:55Z",
+      "human_reviewer": "project_owner"
     },
     {
       "candidate_id": "GOLD-B001-06",
@@ -382,7 +554,7 @@
       "generator_notes": "Matched explicit marker 'must be'. No claim is proposed: the reviewer should write the question and the atomic claims from the evidence. ",
       "needs_human_interpretation": true,
       "candidate_type": "supported",
-      "verification_status": "needs_human_review",
+      "verification_status": "human_verified",
       "claude_proposed": true,
       "chatgpt_verified": false,
       "schema_version": "1.0",
@@ -429,7 +601,19 @@
         "identifier_value_binding_correct": true,
         "natural_question": false,
         "verification_notes": "The requirement is explicit in the anchored sentence. The surrounding context establishes that this is the webhook parsing/verification flow, while the critical body requirement is fully inside the evidence span."
-      }
+      },
+      "human_decision_history": [
+        {
+          "decision": "APPROVE",
+          "reviewer": "project_owner",
+          "decided_at": "2026-08-20T03:06:55Z",
+          "notes": ""
+        }
+      ],
+      "human_decision": "APPROVE",
+      "human_verified": true,
+      "human_reviewed_at": "2026-08-20T03:06:55Z",
+      "human_reviewer": "project_owner"
     },
     {
       "candidate_id": "GOLD-B001-07",
@@ -459,7 +643,7 @@
       "generator_notes": "Matched explicit marker 'returns a'. No claim is proposed: the reviewer should write the question and the atomic claims from the evidence. ",
       "needs_human_interpretation": true,
       "candidate_type": "supported",
-      "verification_status": "needs_human_review",
+      "verification_status": "human_verified",
       "claude_proposed": true,
       "chatgpt_verified": false,
       "schema_version": "1.0",
@@ -505,7 +689,19 @@
         "identifier_value_binding_correct": true,
         "natural_question": false,
         "verification_notes": "The anchored sentence directly states both the invalid condition and the 400 response. The surrounding context clarifies that the name is a tool reference, but the critical claim is complete in the anchor."
-      }
+      },
+      "human_decision_history": [
+        {
+          "decision": "APPROVE",
+          "reviewer": "project_owner",
+          "decided_at": "2026-08-20T03:06:55Z",
+          "notes": ""
+        }
+      ],
+      "human_decision": "APPROVE",
+      "human_verified": true,
+      "human_reviewed_at": "2026-08-20T03:06:55Z",
+      "human_reviewer": "project_owner"
     },
     {
       "candidate_id": "GOLD-B001-08",
@@ -536,7 +732,7 @@
       "generator_notes": "Matched explicit marker 'required'. No claim is proposed: the reviewer should write the question and the atomic claims from the evidence. ",
       "needs_human_interpretation": true,
       "candidate_type": "supported",
-      "verification_status": "needs_human_review",
+      "verification_status": "human_verified",
       "claude_proposed": true,
       "chatgpt_verified": false,
       "schema_version": "1.0",
@@ -582,7 +778,19 @@
         "identifier_value_binding_correct": false,
         "natural_question": false,
         "verification_notes": "The evidence itself is strong, but the generator attached its trigger word to the wrong semantic relation. This is a good candidate only after the question is rewritten around the release rule."
-      }
+      },
+      "human_decision_history": [
+        {
+          "decision": "APPROVE",
+          "reviewer": "project_owner",
+          "decided_at": "2026-08-20T03:06:55Z",
+          "notes": ""
+        }
+      ],
+      "human_decision": "APPROVE",
+      "human_verified": true,
+      "human_reviewed_at": "2026-08-20T03:06:55Z",
+      "human_reviewer": "project_owner"
     },
     {
       "candidate_id": "GOLD-B001-09",
@@ -613,7 +821,7 @@
       "generator_notes": "Matched explicit marker 'returns a'. No claim is proposed: the reviewer should write the question and the atomic claims from the evidence. ",
       "needs_human_interpretation": true,
       "candidate_type": "supported",
-      "verification_status": "needs_human_review",
+      "verification_status": "human_verified",
       "claude_proposed": true,
       "chatgpt_verified": false,
       "schema_version": "1.0",
@@ -660,7 +868,19 @@
         "identifier_value_binding_correct": false,
         "natural_question": false,
         "verification_notes": "The evidence gives a complete two-part stopping condition. The candidate is useful after re-authoring, but the generator's detected relation is semantically wrong."
-      }
+      },
+      "human_decision_history": [
+        {
+          "decision": "APPROVE",
+          "reviewer": "project_owner",
+          "decided_at": "2026-08-20T03:06:55Z",
+          "notes": ""
+        }
+      ],
+      "human_decision": "APPROVE",
+      "human_verified": true,
+      "human_reviewed_at": "2026-08-20T03:06:55Z",
+      "human_reviewer": "project_owner"
     },
     {
       "candidate_id": "GOLD-B001-10",
@@ -693,7 +913,7 @@
       "generator_notes": "Matched explicit marker 'required'. No claim is proposed: the reviewer should write the question and the atomic claims from the evidence. ",
       "needs_human_interpretation": true,
       "candidate_type": "supported",
-      "verification_status": "needs_human_review",
+      "verification_status": "human_verified",
       "claude_proposed": true,
       "chatgpt_verified": false,
       "schema_version": "1.0",
@@ -740,7 +960,19 @@
         "identifier_value_binding_correct": true,
         "natural_question": false,
         "verification_notes": "The anchored statement directly describes both the unsafe operation and its consequence. The wording should be framed as a behavior/constraint question rather than a generic `required` lookup."
-      }
+      },
+      "human_decision_history": [
+        {
+          "decision": "APPROVE",
+          "reviewer": "project_owner",
+          "decided_at": "2026-08-20T03:06:55Z",
+          "notes": ""
+        }
+      ],
+      "human_decision": "APPROVE",
+      "human_verified": true,
+      "human_reviewed_at": "2026-08-20T03:06:55Z",
+      "human_reviewer": "project_owner"
     },
     {
       "candidate_id": "GOLD-B001-11",
@@ -770,7 +1002,7 @@
       "generator_notes": "Matched explicit marker 'raises'. No claim is proposed: the reviewer should write the question and the atomic claims from the evidence. ",
       "needs_human_interpretation": true,
       "candidate_type": "supported",
-      "verification_status": "needs_human_review",
+      "verification_status": "human_verified",
       "claude_proposed": true,
       "chatgpt_verified": false,
       "schema_version": "1.0",
@@ -816,7 +1048,19 @@
         "identifier_value_binding_correct": true,
         "natural_question": false,
         "verification_notes": "The evidence is explicit and complete. The generator's marker came from `raises`, but the useful gold fact is the documented error-handling behavior."
-      }
+      },
+      "human_decision_history": [
+        {
+          "decision": "APPROVE",
+          "reviewer": "project_owner",
+          "decided_at": "2026-08-20T03:06:55Z",
+          "notes": ""
+        }
+      ],
+      "human_decision": "APPROVE",
+      "human_verified": true,
+      "human_reviewed_at": "2026-08-20T03:06:55Z",
+      "human_reviewer": "project_owner"
     },
     {
       "candidate_id": "GOLD-B001-12",
@@ -847,7 +1091,7 @@
       "generator_notes": "Matched explicit marker 'returns a'. No claim is proposed: the reviewer should write the question and the atomic claims from the evidence. ",
       "needs_human_interpretation": true,
       "candidate_type": "supported",
-      "verification_status": "needs_human_review",
+      "verification_status": "human_verified",
       "claude_proposed": true,
       "chatgpt_verified": false,
       "schema_version": "1.0",
@@ -893,7 +1137,19 @@
         "identifier_value_binding_correct": false,
         "natural_question": false,
         "verification_notes": "The `nest_handoff_history` bullet is self-contained and supports a clean question. The generator's inferred relation is wrong, and the evidence span contains an unrelated anaphoric sentence before the relevant bullet."
-      }
+      },
+      "human_decision_history": [
+        {
+          "decision": "APPROVE",
+          "reviewer": "project_owner",
+          "decided_at": "2026-08-20T03:06:55Z",
+          "notes": ""
+        }
+      ],
+      "human_decision": "APPROVE",
+      "human_verified": true,
+      "human_reviewed_at": "2026-08-20T03:06:55Z",
+      "human_reviewer": "project_owner"
     },
     {
       "candidate_id": "GOLD-B001-13",
@@ -923,7 +1179,7 @@
       "generator_notes": "Matched explicit marker 'must be'. No claim is proposed: the reviewer should write the question and the atomic claims from the evidence. ",
       "needs_human_interpretation": true,
       "candidate_type": "supported",
-      "verification_status": "needs_human_review",
+      "verification_status": "human_verified",
       "claude_proposed": true,
       "chatgpt_verified": false,
       "schema_version": "1.0",
@@ -969,7 +1225,19 @@
         "identifier_value_binding_correct": true,
         "natural_question": false,
         "verification_notes": "The anchored text directly binds `anthropic_version` to `vertex-2023-10-16` and also states that it is passed in the request body rather than as a header."
-      }
+      },
+      "human_decision_history": [
+        {
+          "decision": "APPROVE",
+          "reviewer": "project_owner",
+          "decided_at": "2026-08-20T03:06:55Z",
+          "notes": ""
+        }
+      ],
+      "human_decision": "APPROVE",
+      "human_verified": true,
+      "human_reviewed_at": "2026-08-20T03:06:55Z",
+      "human_reviewer": "project_owner"
     },
     {
       "candidate_id": "GOLD-B001-14",
@@ -982,19 +1250,19 @@
         "Common validation errors",
         "Prefill not supported"
       ],
-      "char_start": 19189,
+      "char_start": 19054,
       "char_end": 19308,
-      "evidence_text": "Sending a request with a prefilled last assistant message to any of these models returns a 400 `invalid_request_error`:",
-      "evidence_hash": "96a1b300f611627511a3893562f8dedab2125af7110cebc7e7b09675da512694",
-      "context_before": "umulator = MessageAccumulator::forMessages();\n  foreach ($stream as $event) {\n      $accumulator->accumulate($event);\n  }\n\n  echo array_find($accumulator->message()->content, static fn ($block): bool => $block->type === 'text')->text;\n  ```\n\n  ```ruby Ruby\n  client = Anthropic::Client.new\n\n  message = client.messages.stream(\n    model: \"claude-sonnet-5\",\n    max_tokens: 128000,\n    messages: [{ role: \"user\", content: \"Write a detailed analysis...\" }]\n  ).accumulated_message\n\n  puts message.content.find { it.type == :text }.text\n  ```\n</CodeGroup>\n\nSee [Streaming Messages](https://platform.claude.com/docs/en/build-with-claude/streaming#get-the-final-message-without-handling-events) for more details.\n\n## Common validation errors\n\n### Prefill not supported\n\nClaude 4.6 and later models and [Claude Mythos Preview](https://anthropic.com/glasswing) do not support prefilling assistant messages. ",
+      "evidence_text": "Claude 4.6 and later models and [Claude Mythos Preview](https://anthropic.com/glasswing) do not support prefilling assistant messages. Sending a request with a prefilled last assistant message to any of these models returns a 400 `invalid_request_error`:",
+      "evidence_hash": "9e8be2c9734a4b12b3b026d72710b12672592d9f394dfcc6a427bea8274c1948",
+      "context_before": "ude-sonnet-5',\n      maxTokens: 128000,\n      messages: [['role' => 'user', 'content' => 'Write a detailed analysis...']],\n  );\n\n  $accumulator = MessageAccumulator::forMessages();\n  foreach ($stream as $event) {\n      $accumulator->accumulate($event);\n  }\n\n  echo array_find($accumulator->message()->content, static fn ($block): bool => $block->type === 'text')->text;\n  ```\n\n  ```ruby Ruby\n  client = Anthropic::Client.new\n\n  message = client.messages.stream(\n    model: \"claude-sonnet-5\",\n    max_tokens: 128000,\n    messages: [{ role: \"user\", content: \"Write a detailed analysis...\" }]\n  ).accumulated_message\n\n  puts message.content.find { it.type == :text }.text\n  ```\n</CodeGroup>\n\nSee [Streaming Messages](https://platform.claude.com/docs/en/build-with-claude/streaming#get-the-final-message-without-handling-events) for more details.\n\n## Common validation errors\n\n### Prefill not supported\n\n",
       "context_after": "\n\n```json\n{\n  \"type\": \"error\",\n  \"error\": {\n    \"type\": \"invalid_request_error\",\n    \"message\": \"This model does not support assistant message prefill. The conversation must end with a user message.\"\n  }\n}\n```\n\nUse [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs) on models that support it, system prompt instructions, or [`output_config.format`](https://platform.claude.com/docs/en/build-with-claude/structured-outputs#json-outputs) instead.\n\n### Thinking blocks cannot be modified\n\nIf the most recent assistant message contains `thinking` or `redacted_thinking` blocks that were edited, reordered, filtered out, or reconstructed before being sent back to the API, the request returns a 400 `invalid_request_error`. The error message starts with the position of the offending block (for example, `messages.1.content.0`) and contains:\n\n```text wrap\n`thin",
       "proposed_category": "exact_lookup",
-      "proposed_question": "What error is returned if you send a prefilled last assistant message to Claude 4.6-and-later models or Claude Mythos Preview?",
+      "proposed_question": "What happens if a request sends a prefilled last assistant message to Claude 4.6 and later models or Claude Mythos Preview?",
       "proposed_atomic_claims": [
-        "Claude 4.6-and-later models and Claude Mythos Preview do not support prefilling assistant messages.",
+        "Claude 4.6 and later models and Claude Mythos Preview do not support prefilling assistant messages.",
         "Sending a request with a prefilled last assistant message to those models returns a 400 `invalid_request_error`."
       ],
-      "proposed_answer": "A 400 `invalid_request_error`.",
+      "proposed_answer": "The request returns a 400 `invalid_request_error`.",
       "evidence_kind": "explicit_response",
       "binding": "single identifier in the sentence",
       "generator_confidence": "medium",
@@ -1035,6 +1303,42 @@
           "author": "chatgpt",
           "timestamp": "2026-08-19T05:41:57Z",
           "reason": "Replace the placeholder and extend the evidence anchor upward to include the preceding sentence naming `Claude 4.6 and later models` and `Claude Mythos Preview`. The current span says only `any of these models`, so a standalone model-scoped claim is incomplete inside the anchor."
+        },
+        {
+          "revision": 4,
+          "field": "proposed_question",
+          "from": "What error is returned if you send a prefilled last assistant message to Claude 4.6-and-later models or Claude Mythos Preview?",
+          "to": "What happens if a request sends a prefilled last assistant message to Claude 4.6 and later models or Claude Mythos Preview?",
+          "author": "claude",
+          "directed_by": "project_owner",
+          "timestamp": "2026-08-20T03:11:22Z",
+          "reason": "evidence_boundary_completion"
+        },
+        {
+          "revision": 5,
+          "field": "proposed_answer",
+          "from": "A 400 `invalid_request_error`.",
+          "to": "The request returns a 400 `invalid_request_error`.",
+          "author": "claude",
+          "directed_by": "project_owner",
+          "timestamp": "2026-08-20T03:11:22Z",
+          "reason": "evidence_boundary_completion"
+        },
+        {
+          "revision": 6,
+          "field": "proposed_atomic_claims",
+          "from": [
+            "Claude 4.6-and-later models and Claude Mythos Preview do not support prefilling assistant messages.",
+            "Sending a request with a prefilled last assistant message to those models returns a 400 `invalid_request_error`."
+          ],
+          "to": [
+            "Claude 4.6 and later models and Claude Mythos Preview do not support prefilling assistant messages.",
+            "Sending a request with a prefilled last assistant message to those models returns a 400 `invalid_request_error`."
+          ],
+          "author": "claude",
+          "directed_by": "project_owner",
+          "timestamp": "2026-08-20T03:11:22Z",
+          "reason": "evidence_boundary_completion"
         }
       ],
       "verification": {
@@ -1048,7 +1352,46 @@
         "identifier_value_binding_correct": true,
         "natural_question": false,
         "verification_notes": "The response code/type is explicit, but the model scope is outside the current source span. The anchor should be expanded to make the critical scope auditable."
-      }
+      },
+      "human_decision_history": [
+        {
+          "decision": "NEEDS_EDIT",
+          "reviewer": "project_owner",
+          "decided_at": "2026-08-20T03:06:55Z",
+          "notes": "NEEDS_EDIT — expand the anchor to name the applicable model scope."
+        }
+      ],
+      "human_decision": "NEEDS_EDIT",
+      "human_verified": false,
+      "human_reviewed_at": "2026-08-20T03:06:55Z",
+      "human_reviewer": "project_owner",
+      "anchor_revisions": [
+        {
+          "revision": 1,
+          "reason": "evidence_boundary_completion",
+          "old_char_start": 19189,
+          "old_char_end": 19308,
+          "old_evidence_hash": "96a1b300f611627511a3893562f8dedab2125af7110cebc7e7b09675da512694",
+          "old_evidence_text": "Sending a request with a prefilled last assistant message to any of these models returns a 400 `invalid_request_error`:",
+          "new_char_start": 19054,
+          "new_char_end": 19308,
+          "new_evidence_hash": "9e8be2c9734a4b12b3b026d72710b12672592d9f394dfcc6a427bea8274c1948",
+          "new_evidence_text": "Claude 4.6 and later models and [Claude Mythos Preview](https://anthropic.com/glasswing) do not support prefilling assistant messages. Sending a request with a prefilled last assistant message to any of these models returns a 400 `invalid_request_error`:",
+          "characters_added_before": 135,
+          "characters_added_after": 0,
+          "author": "claude",
+          "directed_by": "project_owner",
+          "timestamp": "2026-08-20T03:11:22Z"
+        }
+      ],
+      "critical_strings": [
+        "claude 4.6 and later models",
+        "claude mythos preview",
+        "do not support prefilling assistant messages",
+        "400 `invalid_request_error`"
+      ],
+      "repaired_at": "2026-08-20T03:11:22Z",
+      "awaiting": "explicit owner approval of the repaired version"
     },
     {
       "candidate_id": "GOLD-B001-15",
@@ -1079,7 +1422,7 @@
       "generator_notes": "Matched explicit marker 'required'. No claim is proposed: the reviewer should write the question and the atomic claims from the evidence. ",
       "needs_human_interpretation": true,
       "candidate_type": "supported",
-      "verification_status": "dual_llm_fail",
+      "verification_status": "human_rejected",
       "claude_proposed": true,
       "chatgpt_verified": false,
       "schema_version": "1.0",
@@ -1125,7 +1468,19 @@
         "identifier_value_binding_correct": false,
         "natural_question": false,
         "verification_notes": "This is the same kind of false token-to-identifier association GOLD-001 is designed to prevent. A narrowly framed example question is technically answerable, but it would test a sample configuration rather than a documented API rule, so it is poor gold material in its current form."
-      }
+      },
+      "human_decision_history": [
+        {
+          "decision": "REJECT",
+          "reviewer": "project_owner",
+          "decided_at": "2026-08-20T03:06:55Z",
+          "notes": "REJECT — code/example false binding. `required: [\"location\"]` belongs to the tool input schema in the example request and does not establish a general requirement on `tool_choice`."
+        }
+      ],
+      "human_decision": "REJECT",
+      "human_verified": false,
+      "human_reviewed_at": "2026-08-20T03:06:55Z",
+      "human_reviewer": "project_owner"
     },
     {
       "candidate_id": "GOLD-B001-16",
@@ -1157,7 +1512,7 @@
       "generator_notes": "Matched explicit marker 'raises'. No claim is proposed: the reviewer should write the question and the atomic claims from the evidence. ",
       "needs_human_interpretation": true,
       "candidate_type": "supported",
-      "verification_status": "needs_human_review",
+      "verification_status": "human_rejected",
       "claude_proposed": true,
       "chatgpt_verified": false,
       "schema_version": "1.0",
@@ -1204,7 +1559,19 @@
         "identifier_value_binding_correct": false,
         "natural_question": false,
         "verification_notes": "The code and docstring fully support the behavior, but the generator identified the wrong subject. This is valid only as a question about the example helper code, not as a general embeddings API behavior."
-      }
+      },
+      "human_decision_history": [
+        {
+          "decision": "REJECT",
+          "reviewer": "project_owner",
+          "decided_at": "2026-08-20T03:06:55Z",
+          "notes": "REJECT — concerns the implementation behaviour of a local example helper function rather than an externally meaningful API or documentation fact. Stronger benchmark material is preferred."
+        }
+      ],
+      "human_decision": "REJECT",
+      "human_verified": false,
+      "human_reviewed_at": "2026-08-20T03:06:55Z",
+      "human_reviewer": "project_owner"
     },
     {
       "candidate_id": "GOLD-B001-17",
@@ -1235,7 +1602,7 @@
       "generator_notes": "Matched explicit marker 'cannot be'. No claim is proposed: the reviewer should write the question and the atomic claims from the evidence. ",
       "needs_human_interpretation": true,
       "candidate_type": "supported",
-      "verification_status": "needs_human_review",
+      "verification_status": "human_verified",
       "claude_proposed": true,
       "chatgpt_verified": false,
       "schema_version": "1.0",
@@ -1282,7 +1649,19 @@
         "identifier_value_binding_correct": false,
         "natural_question": false,
         "verification_notes": "The first error bullet is a strong source-anchored fact, but the generator linked `file_id` to wording from a different bullet. Re-authoring around the 404 meaning fixes the candidate."
-      }
+      },
+      "human_decision_history": [
+        {
+          "decision": "APPROVE",
+          "reviewer": "project_owner",
+          "decided_at": "2026-08-20T03:06:55Z",
+          "notes": ""
+        }
+      ],
+      "human_decision": "APPROVE",
+      "human_verified": true,
+      "human_reviewed_at": "2026-08-20T03:06:55Z",
+      "human_reviewer": "project_owner"
     },
     {
       "candidate_id": "GOLD-B001-18",
@@ -1314,7 +1693,7 @@
       "generator_notes": "Matched explicit marker 'returns a'. No claim is proposed: the reviewer should write the question and the atomic claims from the evidence. ",
       "needs_human_interpretation": true,
       "candidate_type": "supported",
-      "verification_status": "needs_human_review",
+      "verification_status": "human_verified",
       "claude_proposed": true,
       "chatgpt_verified": false,
       "schema_version": "1.0",
@@ -1361,7 +1740,19 @@
         "identifier_value_binding_correct": true,
         "natural_question": false,
         "verification_notes": "The anchored sentence directly states the trigger and where the full tool definition appears. It is self-contained and suitable after normal question authoring."
-      }
+      },
+      "human_decision_history": [
+        {
+          "decision": "APPROVE",
+          "reviewer": "project_owner",
+          "decided_at": "2026-08-20T03:06:55Z",
+          "notes": ""
+        }
+      ],
+      "human_decision": "APPROVE",
+      "human_verified": true,
+      "human_reviewed_at": "2026-08-20T03:06:55Z",
+      "human_reviewer": "project_owner"
     }
   ],
   "batch_sha256": "a3fe9242e33fb2dff8be78f4c5f1baffc8037066b09445a936a2e3dc9f11ea73",
@@ -1370,8 +1761,15 @@
   "reviewed_candidates": 18,
   "unreviewed_candidates": [],
   "status_counts": {
-    "dual_llm_pass": 2,
-    "needs_human_review": 15,
-    "dual_llm_fail": 1
-  }
+    "dual_llm_pass": 1,
+    "human_verified": 12,
+    "needs_edit": 3,
+    "human_rejected": 2
+  },
+  "human_decisions_imported_at": "2026-08-20T03:06:55Z",
+  "human_reviewer": "project_owner",
+  "undecided_candidates": [
+    "GOLD-B001-01"
+  ],
+  "boundary_repairs_applied_at": "2026-08-20T03:11:22Z"
 }

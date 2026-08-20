@@ -62,13 +62,38 @@ PRE_HUMAN_STATUSES = {
 }
 
 
-def test_batch_declares_nothing_is_gold(batch):
-    # The banner survives import: review changes the status, never the disclaimer.
-    assert "nothing in this file is gold" in batch["verification_status"]
+def test_nothing_is_gold_without_a_human_approve(batch):
+    """The invariant that outlives the batch's own lifecycle.
+
+    The batch starts entirely unverified, gains dual-LLM statuses, then gains human
+    ones. Through all of it, exactly one thing must never happen: a record reaching
+    ``human_verified`` without a person having recorded APPROVE for it.
+    """
     assert batch["retrieval_was_not_run"] is True
     for record in batch["records"]:
-        assert record["verification_status"] in PRE_HUMAN_STATUSES
-        assert record.get("human_verified") is not True
+        gold = record["verification_status"] == "human_verified"
+        approvals = [h["decision"] for h in record.get("human_decision_history", [])]
+        assert gold == (approvals[-1:] == ["APPROVE"]), record["candidate_id"]
+        assert record.get("human_verified", False) == gold
+        if not gold:
+            assert record["verification_status"] in PRE_HUMAN_STATUSES | {
+                "human_rejected", "needs_edit"}
+
+
+def test_a_repaired_candidate_is_sent_back_for_review_not_approved(batch):
+    repaired = [r for r in batch["records"] if r.get("anchor_revisions")]
+    if not repaired:
+        pytest.skip("no boundary repairs applied yet")
+    for record in repaired:
+        assert record["verification_status"] == "needs_human_review"
+        assert record["human_verified"] is False
+        # The old anchor survives beside the new one, and the new one contains it.
+        revision = record["anchor_revisions"][-1]
+        assert revision["reason"] == "evidence_boundary_completion"
+        assert revision["new_char_start"] <= revision["old_char_start"]
+        assert revision["new_char_end"] >= revision["old_char_end"]
+        assert revision["old_evidence_text"] in revision["new_evidence_text"]
+        assert revision["old_evidence_hash"] != revision["new_evidence_hash"]
 
 
 # -- binding is structural, not proximity ------------------------------------
@@ -572,3 +597,106 @@ def test_validation_report_catches_evidence_hash_drift():
     report = mod.validation_report({"batch": 1, "records": [record]},
                                    "project_owner", "now")
     assert any("evidence hash drift" in f for f in report["gate_failures"])
+
+
+# -- evidence-boundary repair ------------------------------------------------
+
+def _repair_module():
+    import importlib.util
+
+    spec = importlib.util.spec_from_file_location(
+        "_repair_evidence_boundary",
+        Path(__file__).resolve().parents[1] / "scripts" / "repair_evidence_boundary.py")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+SOURCE = ("Input guardrails run in 3 steps. Finally we check `.tripwire_triggered`. "
+          "If true, an exception is raised.")
+
+
+def _repairable(**overrides):
+    import hashlib
+    old = SOURCE.index("If true")
+    text = SOURCE[old:]
+    record = {
+        "candidate_id": "GOLD-B001-99", "version_id": "ver_x",
+        "char_start": old, "char_end": len(SOURCE),
+        "evidence_text": text,
+        "evidence_hash": hashlib.sha256(text.encode()).hexdigest(),
+        "section_path": ["Guardrails"], "document_title": "Guardrails",
+        "provider": "openai", "source_url": "https://example.invalid",
+        "captured_at": "2026-08-01T00:00:00Z", "evidence_kind": "explicit_exception",
+        "generator_confidence": "medium", "context_before": "", "context_after": "",
+        "proposed_question": "old question?", "proposed_answer": "old answer",
+        "proposed_atomic_claims": ["old claim"],
+        "verification_status": "needs_edit", "human_decision": "NEEDS_EDIT",
+        "human_verified": False,
+    }
+    record.update(overrides)
+    return record
+
+
+REPAIR = {
+    "candidate_id": "GOLD-B001-99",
+    "locate_head": "Input guardrails run in 3 steps.",
+    "locate_tail": "an exception is raised.",
+    "question": "What happens when `.tripwire_triggered` is true?",
+    "answer": "An exception is raised.",
+    "atomic_claims": ["If `.tripwire_triggered` is true, an exception is raised."],
+    "critical_strings": [".tripwire_triggered", "an exception is raised"],
+}
+
+
+def test_a_repair_grows_the_anchor_and_keeps_the_old_one():
+    mod = _repair_module()
+    record = _repairable()
+    old_start, old_hash = record["char_start"], record["evidence_hash"]
+    revision = mod.apply_repair(record, REPAIR, SOURCE, "2026-01-01T00:00:00Z")
+
+    assert revision["old_char_start"] == old_start
+    assert revision["old_evidence_hash"] == old_hash
+    assert revision["new_char_start"] == 0
+    assert revision["old_evidence_text"] in revision["new_evidence_text"]
+    assert record["char_start"] == 0 and record["evidence_hash"] != old_hash
+    # The repair sends the case back for review; it cannot approve it.
+    assert record["verification_status"] == "needs_human_review"
+    assert record["human_verified"] is False
+    assert mod.STATUS_AFTER_REPAIR != "human_verified"
+
+
+def test_a_repair_that_would_move_the_anchor_elsewhere_is_refused():
+    mod = _repair_module()
+    # A span that does not contain the original is a re-anchoring, not a completion.
+    with pytest.raises(SystemExit) as excinfo:
+        mod.check_superset(SOURCE, (0, 31), (SOURCE.index("If true"), len(SOURCE)))
+    assert "does not contain old span" in str(excinfo.value)
+
+
+def test_only_a_candidate_the_owner_sent_back_may_be_repaired():
+    mod = _repair_module()
+    for decision in ("APPROVE", "REJECT", None):
+        record = _repairable(human_decision=decision)
+        with pytest.raises(SystemExit) as excinfo:
+            mod.apply_repair(record, REPAIR, SOURCE, "t")
+        assert "not NEEDS_EDIT" in str(excinfo.value)
+
+
+def test_the_rewritten_question_is_a_revision_not_an_overwrite():
+    mod = _repair_module()
+    record = _repairable()
+    mod.apply_repair(record, REPAIR, SOURCE, "t")
+    revision = next(r for r in record["revisions"] if r["field"] == "proposed_question")
+    assert revision["from"] == "old question?"
+    assert revision["reason"] == "evidence_boundary_completion"
+    assert revision["directed_by"] == "project_owner"
+    assert record["proposed_question"] == REPAIR["question"]
+
+
+def test_every_critical_string_is_actually_inside_the_repaired_span():
+    mod = _repair_module()
+    record = _repairable()
+    mod.apply_repair(record, REPAIR, SOURCE, "t")
+    span = record["evidence_text"].lower()
+    assert all(s.lower() in span for s in record["critical_strings"])

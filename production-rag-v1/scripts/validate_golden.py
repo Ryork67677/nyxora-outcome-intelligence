@@ -31,7 +31,7 @@ VALID_PROVIDERS = {"anthropic", "openai", "cross"}
 VALID_VERIFICATION = {
     "human_verified", "source_anchored_automatic", "absence_verified_against_snapshot",
     "candidate_unverified", "dual_llm_pass", "dual_llm_fail", "needs_human_review",
-    "human_approved", "human_rejected",
+    "needs_edit", "human_rejected",
 }
 #: Only these may enter a frozen holdout. A dual-LLM pass is not one of them: two
 #: models agreeing is correlated evidence, not human approval.
