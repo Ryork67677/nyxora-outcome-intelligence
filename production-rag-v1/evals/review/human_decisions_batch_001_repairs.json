@@ -1,0 +1,35 @@
+{
+  "batch": 1,
+  "source_batch_sha256": "a3fe9242e33fb2dff8be78f4c5f1baffc8037066b09445a936a2e3dc9f11ea73",
+  "reviewer": "project_owner",
+  "reviewed_at": null,
+  "allowed_decisions": [
+    "APPROVE",
+    "REJECT",
+    "NEEDS_EDIT"
+  ],
+  "scope": "The three evidence-boundary repairs only. Each approval pins the anchor revision and hash it applies to, so it cannot be read as approving the pre-repair span.",
+  "decisions": [
+    {
+      "candidate_id": "GOLD-B001-03",
+      "decision": "APPROVE",
+      "notes": "APPROVE the repaired version reviewed in gold_batch_001_repair_review.md.",
+      "approves_anchor_revision": 1,
+      "approves_evidence_hash": "54f4b6a0802f04ab207e720c571b5f4b342a2e9a4db858371a17da4ff3dc5665"
+    },
+    {
+      "candidate_id": "GOLD-B001-04",
+      "decision": "APPROVE",
+      "notes": "APPROVE the repaired version reviewed in gold_batch_001_repair_review.md.",
+      "approves_anchor_revision": 1,
+      "approves_evidence_hash": "f54443978632400969965418b871831dcfe67fc173b41826c857de06bbed20f8"
+    },
+    {
+      "candidate_id": "GOLD-B001-14",
+      "decision": "APPROVE",
+      "notes": "APPROVE the repaired version reviewed in gold_batch_001_repair_review.md.",
+      "approves_anchor_revision": 1,
+      "approves_evidence_hash": "9e8be2c9734a4b12b3b026d72710b12672592d9f394dfcc6a427bea8274c1948"
+    }
+  ]
+}

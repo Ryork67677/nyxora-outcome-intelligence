@@ -44,7 +44,46 @@ MODEL_REVIEWERS = frozenset({
 REQUIRED_PROVENANCE = ("document_title", "source_url", "captured_at")
 
 
-def validate(decisions: list[dict], known: set[str], reviewer: str) -> list[str]:
+def revision_problems(record: dict, entry: dict) -> list[str]:
+    """A repaired case may only be approved against the revision the owner saw.
+
+    Once an anchor has been extended, "APPROVE" is ambiguous unless it names a version:
+    the same candidate id now has two spans with two hashes. An approval that does not
+    pin the current one is refused rather than guessed at.
+    """
+    if entry.get("decision") != "APPROVE" or not record.get("anchor_revisions"):
+        return []
+
+    candidate_id = record["candidate_id"]
+    latest = record["anchor_revisions"][-1]
+    problems = []
+
+    claimed_hash = entry.get("approves_evidence_hash")
+    if claimed_hash is None:
+        return [(f"[{candidate_id}] has a repaired anchor; an APPROVE must pin it "
+                 f"with approves_evidence_hash (current: {record['evidence_hash']})")]
+    if claimed_hash != record["evidence_hash"]:
+        problems.append(
+            f"[{candidate_id}] approves_evidence_hash {claimed_hash[:16]}… does not "
+            f"match the current anchor {record['evidence_hash'][:16]}…"
+        )
+    if claimed_hash == latest["old_evidence_hash"]:
+        problems.append(
+            f"[{candidate_id}] the approval names the anchor as it was BEFORE the "
+            "repair; that version was sent back, not approved"
+        )
+
+    claimed_revision = entry.get("approves_anchor_revision")
+    if claimed_revision is not None and claimed_revision != latest["revision"]:
+        problems.append(
+            f"[{candidate_id}] approves anchor revision {claimed_revision}, but the "
+            f"latest is {latest['revision']}"
+        )
+    return problems
+
+
+def validate(decisions: list[dict], known: set[str], reviewer: str,
+             records: dict | None = None) -> list[str]:
     problems: list[str] = []
     if reviewer.strip().lower() in MODEL_REVIEWERS:
         problems.append(
@@ -66,6 +105,8 @@ def validate(decisions: list[dict], known: set[str], reviewer: str) -> list[str]
                 f"[{candidate_id}] invalid decision {decision!r}; "
                 f"allowed: {', '.join(sorted(VALID_DECISIONS))}"
             )
+        if records is not None:
+            problems.extend(revision_problems(records[candidate_id], entry))
     return problems
 
 
@@ -77,10 +118,16 @@ def apply_decision(record: dict, entry: dict, reviewer: str, now: str) -> bool:
         return False
 
     # Appended, never overwritten — a re-review is a second entry, not a rewrite.
-    record.setdefault("human_decision_history", []).append({
+    history = {
         "decision": decision, "reviewer": reviewer, "decided_at": now,
         "notes": entry.get("notes", ""),
-    })
+    }
+    # Pin what was approved, so a later reader can tell which span the owner saw.
+    if entry.get("approves_evidence_hash"):
+        history["approved_evidence_hash"] = entry["approves_evidence_hash"]
+    if record.get("anchor_revisions"):
+        history["approved_anchor_revision"] = record["anchor_revisions"][-1]["revision"]
+    record.setdefault("human_decision_history", []).append(history)
     record["human_decision"] = decision
     record["verification_status"] = STATUS_FROM_DECISION[decision]
     record["human_verified"] = decision == "APPROVE"
@@ -160,7 +207,7 @@ def main() -> int:
         )
 
     records = {r["candidate_id"]: r for r in batch["records"]}
-    problems = validate(entries, set(records), reviewer)
+    problems = validate(entries, set(records), reviewer, records)
     if problems:
         print(f"{len(problems)} problems — nothing was imported:")
         for problem in problems[:20]:

@@ -80,13 +80,11 @@ def test_nothing_is_gold_without_a_human_approve(batch):
                 "human_rejected", "needs_edit"}
 
 
-def test_a_repaired_candidate_is_sent_back_for_review_not_approved(batch):
+def test_a_repaired_candidate_keeps_its_old_anchor_and_pins_what_was_approved(batch):
     repaired = [r for r in batch["records"] if r.get("anchor_revisions")]
     if not repaired:
         pytest.skip("no boundary repairs applied yet")
     for record in repaired:
-        assert record["verification_status"] == "needs_human_review"
-        assert record["human_verified"] is False
         # The old anchor survives beside the new one, and the new one contains it.
         revision = record["anchor_revisions"][-1]
         assert revision["reason"] == "evidence_boundary_completion"
@@ -94,6 +92,19 @@ def test_a_repaired_candidate_is_sent_back_for_review_not_approved(batch):
         assert revision["new_char_end"] >= revision["old_char_end"]
         assert revision["old_evidence_text"] in revision["new_evidence_text"]
         assert revision["old_evidence_hash"] != revision["new_evidence_hash"]
+        assert record["evidence_hash"] == revision["new_evidence_hash"]
+
+        # A repair alone never approves. If the case is gold, the approval must name
+        # the repaired anchor — approving the span that was sent back is the mistake
+        # this pin exists to make impossible.
+        if record["verification_status"] == "human_verified":
+            history = record["human_decision_history"][-1]
+            assert history["decision"] == "APPROVE"
+            assert history["approved_evidence_hash"] == revision["new_evidence_hash"]
+            assert history["approved_anchor_revision"] == revision["revision"]
+        else:
+            assert record["verification_status"] in {"needs_edit", "needs_human_review"}
+            assert record["human_verified"] is False
 
 
 # -- binding is structural, not proximity ------------------------------------
@@ -700,3 +711,81 @@ def test_every_critical_string_is_actually_inside_the_repaired_span():
     mod.apply_repair(record, REPAIR, SOURCE, "t")
     span = record["evidence_text"].lower()
     assert all(s.lower() in span for s in record["critical_strings"])
+
+
+# -- approving a repaired case ----------------------------------------------
+
+def _repaired_record():
+    record = _reviewed_record(
+        candidate_id="GOLD-B001-98",
+        evidence_hash="new" + "0" * 61,
+        human_decision="NEEDS_EDIT",
+        anchor_revisions=[{
+            "revision": 1, "reason": "evidence_boundary_completion",
+            "old_char_start": 10, "old_char_end": 40, "old_evidence_hash": "old" + "0" * 61,
+            "new_char_start": 0, "new_char_end": 40, "new_evidence_hash": "new" + "0" * 61,
+        }])
+    return record
+
+
+def test_approving_a_repaired_case_must_name_the_revision_it_approves():
+    mod = _decisions_module()
+    record = _repaired_record()
+    entry = {"candidate_id": record["candidate_id"], "decision": "APPROVE"}
+    problems = mod.revision_problems(record, entry)
+    assert any("must pin it with approves_evidence_hash" in p for p in problems)
+
+
+def test_an_approval_of_the_pre_repair_anchor_is_refused():
+    mod = _decisions_module()
+    record = _repaired_record()
+    # The owner reviewed the repair packet; approving the span that was sent back
+    # would silently gold the version the repair existed to replace.
+    problems = mod.revision_problems(record, {
+        "candidate_id": record["candidate_id"], "decision": "APPROVE",
+        "approves_evidence_hash": record["anchor_revisions"][0]["old_evidence_hash"]})
+    assert any("BEFORE the repair" in p for p in problems)
+
+
+def test_an_approval_pinned_to_the_current_anchor_is_accepted():
+    mod = _decisions_module()
+    record = _repaired_record()
+    entry = {"candidate_id": record["candidate_id"], "decision": "APPROVE",
+             "approves_evidence_hash": record["evidence_hash"],
+             "approves_anchor_revision": 1}
+    assert mod.revision_problems(record, entry) == []
+    mod.apply_decision(record, entry, "project_owner", "now")
+    assert record["verification_status"] == "human_verified"
+    history = record["human_decision_history"][-1]
+    assert history["approved_evidence_hash"] == record["evidence_hash"]
+    assert history["approved_anchor_revision"] == 1
+    # The repair history is not erased by the approval.
+    assert record["anchor_revisions"][0]["old_evidence_hash"] == "old" + "0" * 61
+
+
+def test_an_unrepaired_case_needs_no_pin():
+    mod = _decisions_module()
+    record = _reviewed_record()
+    assert mod.revision_problems(
+        record, {"candidate_id": record["candidate_id"], "decision": "APPROVE"}) == []
+
+
+def test_projection_reports_which_cases_are_not_claim_checked():
+    import importlib.util
+
+    spec = importlib.util.spec_from_file_location(
+        "_export_golden_projection",
+        Path(__file__).resolve().parents[1] / "scripts" / "export_golden_projection.py")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+
+    sentence = mod.project(_reviewed_record(), "validation")
+    assert sentence["claims_are_critical"] is False
+    assert all(c["critical"] is False for c in sentence["expected_claims"])
+
+    verbatim = mod.project(
+        _reviewed_record(critical_strings=["Tripwire"]), "validation")
+    assert verbatim["claims_are_critical"] is True
+    assert verbatim["expected_claims"] == [{"text": "Tripwire", "critical": True}]
+    # A projection is not a split assignment.
+    assert verbatim["split_is_placeholder"] is True

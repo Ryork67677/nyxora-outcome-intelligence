@@ -161,7 +161,7 @@
       "generator_notes": "Matched explicit marker 'required'. No claim is proposed: the reviewer should write the question and the atomic claims from the evidence. ",
       "needs_human_interpretation": true,
       "candidate_type": "supported",
-      "verification_status": "needs_human_review",
+      "verification_status": "human_verified",
       "claude_proposed": true,
       "chatgpt_verified": false,
       "schema_version": "1.0",
@@ -249,11 +249,19 @@
           "reviewer": "project_owner",
           "decided_at": "2026-08-20T03:06:55Z",
           "notes": "NEEDS_EDIT — expand the anchor to carry the model scope."
+        },
+        {
+          "decision": "APPROVE",
+          "reviewer": "project_owner",
+          "decided_at": "2026-08-20T03:43:09Z",
+          "notes": "APPROVE the repaired version reviewed in gold_batch_001_repair_review.md.",
+          "approved_evidence_hash": "54f4b6a0802f04ab207e720c571b5f4b342a2e9a4db858371a17da4ff3dc5665",
+          "approved_anchor_revision": 1
         }
       ],
-      "human_decision": "NEEDS_EDIT",
-      "human_verified": false,
-      "human_reviewed_at": "2026-08-20T03:06:55Z",
+      "human_decision": "APPROVE",
+      "human_verified": true,
+      "human_reviewed_at": "2026-08-20T03:43:09Z",
       "human_reviewer": "project_owner",
       "anchor_revisions": [
         {
@@ -312,7 +320,7 @@
       "generator_notes": "Matched explicit marker 'is raised'. No claim is proposed: the reviewer should write the question and the atomic claims from the evidence. ",
       "needs_human_interpretation": true,
       "candidate_type": "supported",
-      "verification_status": "needs_human_review",
+      "verification_status": "human_verified",
       "claude_proposed": true,
       "chatgpt_verified": false,
       "schema_version": "1.0",
@@ -399,11 +407,19 @@
           "reviewer": "project_owner",
           "decided_at": "2026-08-20T03:06:55Z",
           "notes": "NEEDS_EDIT — expand the anchor to carry the `tripwire_triggered` condition."
+        },
+        {
+          "decision": "APPROVE",
+          "reviewer": "project_owner",
+          "decided_at": "2026-08-20T03:43:09Z",
+          "notes": "APPROVE the repaired version reviewed in gold_batch_001_repair_review.md.",
+          "approved_evidence_hash": "f54443978632400969965418b871831dcfe67fc173b41826c857de06bbed20f8",
+          "approved_anchor_revision": 1
         }
       ],
-      "human_decision": "NEEDS_EDIT",
-      "human_verified": false,
-      "human_reviewed_at": "2026-08-20T03:06:55Z",
+      "human_decision": "APPROVE",
+      "human_verified": true,
+      "human_reviewed_at": "2026-08-20T03:43:09Z",
       "human_reviewer": "project_owner",
       "anchor_revisions": [
         {
@@ -1269,7 +1285,7 @@
       "generator_notes": "Matched explicit marker 'returns a'. No claim is proposed: the reviewer should write the question and the atomic claims from the evidence. ",
       "needs_human_interpretation": true,
       "candidate_type": "supported",
-      "verification_status": "needs_human_review",
+      "verification_status": "human_verified",
       "claude_proposed": true,
       "chatgpt_verified": false,
       "schema_version": "1.0",
@@ -1359,11 +1375,19 @@
           "reviewer": "project_owner",
           "decided_at": "2026-08-20T03:06:55Z",
           "notes": "NEEDS_EDIT — expand the anchor to name the applicable model scope."
+        },
+        {
+          "decision": "APPROVE",
+          "reviewer": "project_owner",
+          "decided_at": "2026-08-20T03:43:09Z",
+          "notes": "APPROVE the repaired version reviewed in gold_batch_001_repair_review.md.",
+          "approved_evidence_hash": "9e8be2c9734a4b12b3b026d72710b12672592d9f394dfcc6a427bea8274c1948",
+          "approved_anchor_revision": 1
         }
       ],
-      "human_decision": "NEEDS_EDIT",
-      "human_verified": false,
-      "human_reviewed_at": "2026-08-20T03:06:55Z",
+      "human_decision": "APPROVE",
+      "human_verified": true,
+      "human_reviewed_at": "2026-08-20T03:43:09Z",
       "human_reviewer": "project_owner",
       "anchor_revisions": [
         {
@@ -1762,11 +1786,10 @@
   "unreviewed_candidates": [],
   "status_counts": {
     "dual_llm_pass": 1,
-    "human_verified": 12,
-    "needs_edit": 3,
+    "human_verified": 15,
     "human_rejected": 2
   },
-  "human_decisions_imported_at": "2026-08-20T03:06:55Z",
+  "human_decisions_imported_at": "2026-08-20T03:43:09Z",
   "human_reviewer": "project_owner",
   "undecided_candidates": [
     "GOLD-B001-01"

@@ -210,6 +210,43 @@ string appearing inside its own span; the batch candidates carry sentence-form a
 claims instead. Repaired cases are authored with both. Every other candidate will need
 its critical strings written before it can enter a validated holdout.
 
+## 6b. Approving a repaired case
+
+Once an anchor has been extended, the candidate id has two spans with two hashes, and a
+bare `APPROVE` is ambiguous. An approval of a repaired case must pin the version it
+applies to:
+
+```json
+{
+  "candidate_id": "GOLD-B001-03",
+  "decision": "APPROVE",
+  "approves_anchor_revision": 1,
+  "approves_evidence_hash": "54f4b6a0802f04ab…"
+}
+```
+
+The importer refuses an approval that omits the pin, one that names a hash other than
+the current anchor, and — specifically — one that names the anchor *as it was before the
+repair*, since that version was sent back rather than approved. The pin is stored on the
+decision, so a later reader can tell which span the owner actually saw.
+
+## 6c. Project and validate
+
+```bash
+python scripts/export_golden_projection.py evals/review/gold_review_batch_001.json
+python scripts/validate_golden.py \\
+  evals/review/batch_001_approved_projection.jsonl --require-human validation
+```
+
+A review batch and a golden set are different shapes, so the approved candidates are
+projected into the golden-case schema and run through the real validator. The projection
+asserts a **placeholder** split; assigning cases to validation or holdout is a separate
+decision and is not made there.
+
+The projection prints how many cases are genuinely claim-checked. For batch 001 that is
+3 of 15 — see the schema gap in §6a. A validator pass over the other 12 says nothing
+about claim support, and the script says so rather than letting the green tick imply it.
+
 ## 7. Validate, then freeze
 
 ```bash
@@ -244,7 +281,8 @@ out, and that is the same outcome by design: gold requires someone to have said 
 | batch | verdicts | outcome |
 |---|---|---|
 | 001 | PASS 2, FIX_REQUIRED 15, FAIL 1 | 17 queued for a person; three miner defects recorded in `experiments/GOLD-001/batch-001-findings.md` and preregistered as changes for batch 002 |
-| 001 | owner: APPROVE 12, NEEDS_EDIT 3, REJECT 2 | 12 `human_verified`; 2 `human_rejected` kept as negative audit examples; 3 boundary-repaired and back at `needs_human_review`; `GOLD-B001-01` never reached a human and stays `dual_llm_pass`. Batch 001 is **not closed**. |
+| 001 | owner: APPROVE 12, NEEDS_EDIT 3, REJECT 2 | 12 `human_verified`; 2 `human_rejected` kept as negative audit examples; 3 boundary-repaired and back at `needs_human_review` |
+| 001 | owner: APPROVE the 3 repairs | 15 `human_verified`, 2 `human_rejected`, 1 `dual_llm_pass`. `validate_golden.py` passes on all 15 with `--require-human validation`. `GOLD-B001-01` never reached a human; one decision closes the batch. |
 
 ## What is deliberately not automated
 
