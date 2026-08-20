@@ -1462,8 +1462,11 @@ def test_batch_003_ships_complete_and_unverified(batch3):
     assert batch3["retrieval_was_not_run"] is True
     assert batch3["systems_executed"] == []
     for record in batch3["records"]:
-        assert record["verification_status"] == "candidate_unverified"
-        assert record["chatgpt_verified"] is None
+        # Unverified at generation, needs_human_review once independently reviewed —
+        # never gold, at any point, without a person.
+        assert record["verification_status"] in {"candidate_unverified",
+                                                 "needs_human_review"}
+        assert record.get("human_verified") is not True
         assert record["claude_proposed"] is True
         assert record["retrieval_was_not_run"] is True
         assert record["proposed_question"] and record["proposed_answer"]
@@ -1511,9 +1514,10 @@ def test_batch_003_never_reuses_an_earlier_question_or_span(batch3):
         seen_spans.add(span)
 
 
-def test_batch_003_multi_hop_cases_carry_independently_anchored_spans(batch3):
-    multi = [r for r in batch3["records"] if r["proposed_category"] == "multi_hop"]
-    assert multi, "the batch claims a multi_hop category"
+def test_batch_003_multi_span_cases_carry_independently_anchored_spans(batch3):
+    multi = [r for r in batch3["records"]
+             if len(r.get("expected_evidence") or [1]) > 1]
+    assert multi, "the batch contains multi-span cases"
     for record in multi:
         spans = record["expected_evidence"]
         assert len(spans) >= 2
@@ -1531,6 +1535,13 @@ def test_batch_003_reports_the_composition_it_actually_has(batch3):
         Counter(r["provider"] for r in batch3["records"]))
     assert batch3["by_category"] == dict(
         Counter(r["proposed_category"] for r in batch3["records"]))
+    if "by_reasoning_type" in batch3:
+        assert batch3["by_reasoning_type"] == dict(
+            Counter(r["reasoning_type"] for r in batch3["records"]))
+        assert batch3["by_evidence_shape"] == dict(
+            Counter(r["evidence_shape"] for r in batch3["records"]))
+        assert batch3["precheck_holdout_ready"] == sum(
+            1 for r in batch3["records"] if r["precheck_holdout_ready"])
     assert batch3["unique_documents"] == len(
         {r["document_title"] for r in batch3["records"]})
     assert batch3["candidates"] == len(batch3["records"])
@@ -1638,3 +1649,210 @@ def test_the_frozen_systems_are_untouched_by_batch_003():
         "9afcb5b7c58ebacff0b4c3711dd9618a2e727f4195dd1787a5da81e478ee0b38")
     assert FROZEN_HASHES["SYSTEM-B-DOC-C"] == (
         "304c350940b83733df6043ae3a8abdcbcde33d16950730127aa9f1f39494388b")
+
+
+# -- batch 003 independent review --------------------------------------------
+
+def _apply3():
+    import importlib.util
+
+    spec = importlib.util.spec_from_file_location(
+        "_apply_batch_003_review",
+        Path(__file__).resolve().parents[1] / "scripts" / "apply_batch_003_review.py")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def _export3():
+    import importlib.util
+
+    spec = importlib.util.spec_from_file_location(
+        "_export_batch_003",
+        Path(__file__).resolve().parents[1] / "scripts" / "export_batch_003.py")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def _reviewed_case(**overrides):
+    import hashlib
+
+    evidence = "The `limit` parameter caps results at 100 per page."
+    case = {
+        "candidate_id": "X", "evidence_kind": "normative_statement",
+        "evidence_text": evidence, "evidence_char_length": len(evidence),
+        "evidence_hash": hashlib.sha256(evidence.encode()).hexdigest(),
+        "char_start": 0, "char_end": len(evidence), "version_id": "v",
+        "section_path": ["S"],
+        "proposed_atomic_claims": ["`limit` caps results at 100 per page."],
+        "critical_strings": ["`limit`", "100 per page"],
+        "retrieval_was_not_run": True,
+    }
+    case.update(overrides)
+    return case
+
+
+def test_an_unresolved_anaphora_blocks_the_precheck():
+    """The contradiction the report erratum records: 20/20 ready with 1 anaphoric span."""
+    import hashlib
+
+    mod = _apply3()
+    assert mod.audit(_reviewed_case())["failures"] == []
+
+    evidence = "If true, the API returns a 400 error and stops processing the request."
+    blocked = _reviewed_case(
+        evidence_text=evidence, evidence_char_length=len(evidence),
+        evidence_hash=hashlib.sha256(evidence.encode()).hexdigest(),
+        proposed_atomic_claims=["The API returns a 400 error."],
+        critical_strings=["400 error"])
+    failures = mod.audit(blocked)["failures"]
+    assert any("unresolved anaphora" in f for f in failures)
+
+
+def test_the_anaphora_check_covers_every_evidence_kind():
+    """An exemption by evidence kind would quietly weaken the gate for later batches."""
+    import inspect
+
+    source = inspect.getsource(_apply3().audit)
+    assert "parameter_table_row" not in source
+    assert "definition_bullet" not in source
+
+
+def test_multi_span_is_not_multi_hop(batch3):
+    multi_span = [r for r in batch3["records"]
+                  if r.get("evidence_shape") == "multi_span"]
+    assert multi_span
+    for record in multi_span:
+        assert record["reasoning_type"] != "genuine_multi_hop", record["candidate_id"]
+        assert record["requires_all_evidence"] is True
+    # The four the generator mislabelled carry the correction on the record itself, so
+    # a later reader cannot mistake a multi-span retrieval test for multi-hop reasoning.
+    reclassified = [r for r in batch3["records"] if r.get("not_genuine_multi_hop")]
+    assert {r["candidate_id"] for r in reclassified} == {
+        "GOLD-B003-12", "GOLD-B003-18", "GOLD-B003-19", "GOLD-B003-20"}
+    assert batch3["genuine_multi_hop"] == 0
+    # The shortfall against the 3–4 target is recorded, not quietly refilled.
+    assert batch3["by_reasoning_type"].get("genuine_multi_hop", 0) == 0
+
+
+def test_reasoning_type_and_evidence_shape_are_independent_dimensions(batch3):
+    mod = _apply3()
+    shapes = {r["evidence_shape"] for r in batch3["records"]}
+    reasonings = {r["reasoning_type"] for r in batch3["records"]}
+    assert shapes <= set(mod.EVIDENCE_SHAPES)
+    assert reasonings <= set(mod.REASONING_TYPES)
+    # Both single- and multi-span cases exist under the same reasoning type, which is
+    # what makes the two dimensions independent rather than one relabelled.
+    lookups = [r for r in batch3["records"] if r["reasoning_type"] == "exact_lookup"]
+    assert {r["evidence_shape"] for r in lookups} == {"single_span", "multi_span"}
+    assert "multi_hop" not in mod.EVIDENCE_SHAPES
+
+
+def test_model_scope_is_inside_the_anchor_where_the_claim_asserts_it(batch3):
+    """B003-06 and B003-10: a claim naming a model needs the anchor to name it too."""
+    from rag_v1.gold.normalisation import contains_claim_string
+
+    for candidate_id in ("GOLD-B003-06", "GOLD-B003-10", "GOLD-B003-11"):
+        record = next(r for r in batch3["records"]
+                      if r["candidate_id"] == candidate_id)
+        combined = " \n".join(s["evidence_text"]
+                              for s in (record.get("expected_evidence") or [record]))
+        for string in record["critical_strings"]:
+            assert contains_claim_string(combined, string), (candidate_id, string)
+
+
+def test_b003_11_says_what_the_source_says():
+    """The worst defect in batch 003: "Claude Opus 4" for "Claude Opus 4.7 or later"."""
+    from rag_v1.gold.mining_v3 import _p_lifecycle
+
+    sentence = ('`thinking: {type: "enabled"}` is no longer supported on Claude Opus '
+                "4.7 or later models and returns a 400 error.")
+    built = _p_lifecycle(sentence)
+    assert "Claude Opus 4.7 or later models" in built[2]
+    assert not built[2].endswith("Claude Opus 4.")
+
+
+def test_conditional_claims_keep_their_condition(batch3):
+    for candidate_id, condition in (("GOLD-B003-13", "If both are provided"),
+                                    ("GOLD-B003-14", "Without explicit authentication")):
+        record = next(r for r in batch3["records"]
+                      if r["candidate_id"] == candidate_id)
+        claims = " ".join(record["proposed_atomic_claims"])
+        assert condition.lower() in claims.lower(), candidate_id
+        assert condition in record["critical_strings"]
+
+
+def test_event_field_cases_name_their_event_type(batch3):
+    for candidate_id, event in (("GOLD-B003-16", "ChunkEvent"),
+                                ("GOLD-B003-17", "ContentDeltaEvent")):
+        record = next(r for r in batch3["records"]
+                      if r["candidate_id"] == candidate_id)
+        assert event in record["proposed_question"]
+        assert event in record["evidence_text"], candidate_id
+    # `parsed` means something different on ContentDoneEvent; the anchor must not
+    # silently include it as if it were the same field.
+    seventeen = next(r for r in batch3["records"]
+                     if r["candidate_id"] == "GOLD-B003-17")
+    assert "ContentDoneEvent" not in seventeen["evidence_text"]
+
+
+def test_batch_003_review_preserves_every_original_proposal(batch3):
+    revised = [r for r in batch3["records"] if r.get("revisions")]
+    assert revised
+    for record in revised:
+        for revision in record["revisions"]:
+            assert revision["from"] != revision["to"]
+            assert revision["author"] and revision["reason"]
+        for anchor in record.get("anchor_revisions", []):
+            assert anchor["old_spans"] and anchor["new_spans"]
+            assert anchor["old_spans"] != anchor["new_spans"]
+
+
+def test_a_self_contradicting_report_is_refused():
+    mod = _export3()
+    consistent = {
+        "total_candidates": 20, "precheck_holdout_ready": 19,
+        "complete_question_answer_claims": 20, "needs_human_interpretation": 4,
+        "comparison": {"batches": [{"batch": "003",
+                                    "complete_question_answer_claims": 20,
+                                    "needs_human_interpretation": 4,
+                                    "anaphoric_spans": 1}]},
+    }
+    mod.check_report_consistency(consistent)
+
+    # The exact shape the original batch-003 report shipped with.
+    with pytest.raises(SystemExit) as excinfo:
+        mod.check_report_consistency({**consistent, "precheck_holdout_ready": 20})
+    assert "must block the precheck" in str(excinfo.value)
+
+    with pytest.raises(SystemExit):
+        mod.check_report_consistency({
+            **consistent, "complete_question_answer_claims": 16})
+
+
+def test_the_erratum_preserves_the_original_report():
+    root = Path(__file__).resolve().parents[1] / "experiments" / "GOLD-001"
+    original = root / "GOLD-001-batch-003-generation-report-original.json"
+    erratum = root / "GOLD-001-batch-003-report-erratum.json"
+    if not erratum.exists():
+        pytest.skip("erratum not written")
+    assert original.exists(), "the original report must be kept as historical output"
+    body = json.loads(erratum.read_text())
+    assert body["candidate_records_affected"] is False
+    assert {e["id"] for e in body["errata"]} == {"E1", "E2"}
+    # The original still carries the numbers the erratum corrects.
+    assert json.loads(original.read_text())["precheck_holdout_ready"] == 20
+
+
+def test_batch_003_still_asserts_no_retrieval_and_frozen_systems(batch3):
+    from rag_v1.systems import FROZEN_HASHES
+
+    assert batch3["retrieval_was_not_run"] is True
+    assert batch3["systems_executed"] == []
+    for record in batch3["records"]:
+        assert record["retrieval_was_not_run"] is True
+        assert record["verification_status"] != "human_verified"
+        assert record.get("human_verified") is not True
+    assert FROZEN_HASHES["SYSTEM-A-GLOBAL"].startswith("9afcb5b7c58ebacf")
+    assert FROZEN_HASHES["SYSTEM-B-DOC-C"].startswith("304c350940b83733")

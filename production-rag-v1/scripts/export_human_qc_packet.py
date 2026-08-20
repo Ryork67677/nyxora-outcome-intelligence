@@ -55,6 +55,22 @@ CODE_LINE = re.compile(
 #: instead of the inferred D1/D2/D3, because the reviewer said what the defect was and
 #: the inference is only a fallback for reviews that did not.
 REVIEW_DEFECT_REPAIRS = {
+    "QUESTION_SCOPE": (
+        "The question was ambiguous or broader than the evidence supports; it was "
+        "re-scoped to what the anchor states."
+    ),
+    "CLAIM_SCOPE": (
+        "The claim asserted more, or less, than the anchored evidence states; it was "
+        "brought back to the source's own scope."
+    ),
+    "EVIDENCE_BOUNDARY": (
+        "The anchor did not carry the scope its claim depends on, and was extended or "
+        "split into precise spans. Both old and new spans are retained."
+    ),
+    "CATEGORY_MISCLASSIFICATION": (
+        "The recorded reasoning type was wrong. Two facts from two spans is a "
+        "multi-span retrieval test, not multi-hop reasoning."
+    ),
     "MINER_QUESTION_HEADER_DEPENDENCY": (
         "The anchored row is sound evidence; the miner's exported question asked about a "
         "column whose meaning lives in a table header outside the row. The question was "
@@ -88,13 +104,18 @@ DEFECT_REPAIRS = {
 
 
 def scope_terms(text: str) -> set[str]:
-    return set(TICK.findall(text)) | set(PROPER.findall(text))
+    # A sentence-final period gets swept into a version number — "Claude Sonnet 4.6." —
+    # and then reads as a term the span is missing. Trim trailing punctuation.
+    return set(TICK.findall(text)) | {
+        term.rstrip(".,;:") for term in PROPER.findall(text)}
 
 
 def classify_defects(record: dict) -> list[str]:
-    named = record.get("review_defect_class")
-    if named:
+    named = record.get("review_defect_classes") or record.get("review_defect_class")
+    if isinstance(named, str):
         return [named]
+    if named:
+        return list(named)
     verification = record.get("verification", {})
     defects = []
     if verification.get("evidence_boundary_complete") is False:
@@ -112,7 +133,10 @@ def anchor_gaps(record: dict) -> dict:
     document title or section path is weaker evidence, not none, so it is reported
     separately rather than lumped in with a real gap.
     """
-    span = record["evidence_text"]
+    # For a multi-span case the evidence is all of its spans: a term carried by the
+    # second span is not missing just because the first does not have it.
+    span = " \n".join(s["evidence_text"]
+                      for s in (record.get("expected_evidence") or [record]))
     provenance = f"{record['document_title']} {' > '.join(record['section_path'])}"
     asserted = scope_terms(
         " ".join([record["proposed_answer"], *record["proposed_atomic_claims"]]))
@@ -161,9 +185,20 @@ WHY_AUTHORED = (
 )
 
 
+WHY_PRECHECK_BLOCKED = (
+    "The deterministic precheck blocks this case: {failures}. It cannot become "
+    "holdout-eligible until that is resolved, so it needs a decision on the evidence "
+    "rather than a quick approval."
+)
+
+
 def assess(record: dict, gaps: dict, defects: list[str]) -> tuple[str, str, str]:
     """Return (group, risk, why-a-human-is-required)."""
     verdict = record.get("verification", {}).get("verdict")
+    failures = record.get("precheck_failures") or []
+    if failures:
+        return ("check_anchor", "HIGH",
+                WHY_PRECHECK_BLOCKED.format(failures="; ".join(failures)))
     if verdict == "FAIL":
         return "recommended_reject", "HIGH", WHY_FAIL
     if gaps["unsupported_in_claims"]:
@@ -219,6 +254,13 @@ def build_item(record: dict, reason: str, batch: int = 1) -> dict:
         "anchor_gaps": gaps,
         "critical_strings": record.get("critical_strings", []),
         "anchor_revisions": record.get("anchor_revisions", []),
+        "reasoning_type": record.get("reasoning_type"),
+        "evidence_shape": record.get("evidence_shape"),
+        "requires_all_evidence": record.get("requires_all_evidence"),
+        "precheck_holdout_ready": record.get("precheck_holdout_ready"),
+        "precheck_failures": record.get("precheck_failures", []),
+        "extra_spans": (record.get("expected_evidence") or [])[1:],
+        "review_reason": record.get("review_reason"),
         "decision_options": list(DECISIONS),
         "decision": None,
         "audit": {
@@ -269,8 +311,14 @@ def code_span(text: str) -> str:
 def render_item(item: dict) -> str:
     ev = item["evidence"]
     claims = "\n".join(f"  {i}. {c}" for i, c in enumerate(item["final"]["atomic_claims"], 1))
+    taxonomy = ""
+    if item.get("reasoning_type"):
+        taxonomy = (f"\n\n`reasoning_type: {item['reasoning_type']}` · "
+                    f"`evidence_shape: {item['evidence_shape']}` · "
+                    f"`requires_all_evidence: {item['requires_all_evidence']}`")
     lines = [
-        f"#### {item['candidate_id']} · {item['chatgpt_verdict']} · risk {item['risk']}",
+        f"#### {item['candidate_id']} · {item['chatgpt_verdict']} · risk {item['risk']}"
+        + taxonomy,
         "",
         f"**Q.** {item['final']['question']}",
         "",
@@ -307,6 +355,21 @@ def render_item(item: dict) -> str:
         lines += ["", (f"*Note:* the question mentions {terms} as framing only; no "
                        "claim depends on it.")]
     for revision in item.get("anchor_revisions", []):
+        if "old_spans" in revision:
+            # Batch 003 records anchor changes as span lists, because a repair may split
+            # one anchor into two precise spans rather than growing it.
+            old_spans = ", ".join(f"{s['char_start']}–{s['char_end']}"
+                                  for s in revision["old_spans"])
+            new_spans = ", ".join(f"{s['char_start']}–{s['char_end']}"
+                                  for s in revision["new_spans"])
+            lines += [
+                "",
+                (f"**Anchor changed** ({revision['reason']}) — {old_spans} → "
+                 f"{new_spans}"),
+                "",
+                f"*Why:* {revision.get('why', '')}",
+            ]
+            continue
         lines += [
             "",
             (f"**Anchor extended** — {revision['old_char_start']}–"
@@ -322,6 +385,22 @@ def render_item(item: dict) -> str:
             lines += ["", f"*Size warning:* {revision['size_warning']}"]
         lines += ["", "<details><summary>the span before the extension</summary>", "",
                   "```", revision["old_evidence_text"], "```", "", "</details>"]
+    for index, span in enumerate(item.get("extra_spans", []), 2):
+        lines += [
+            "",
+            (f"**Evidence span {index}** — {span['char_start']}–{span['char_end']} "
+             f"({span['evidence_char_length']} chars)"),
+            "", "```", span["evidence_text"], "```", "",
+            ("*Both spans are required: a retriever earns credit only by finding all "
+             "of them.*"),
+            "",
+        ]
+    if item.get("precheck_failures"):
+        lines += ["", ("**Precheck blocked** — "
+                       + "; ".join(item["precheck_failures"]))]
+    elif item.get("precheck_holdout_ready") is not None:
+        lines += ["", ("**Precheck holdout-ready.** Structurally capable of becoming "
+                       "eligible; not an approval.")]
     if item.get("critical_strings"):
         strings = ", ".join(code_span(x) for x in item["critical_strings"])
         lines += ["", (f"*Critical claim strings, each verified inside the span above:* "

@@ -15,7 +15,7 @@
     "error_behavior": 4,
     "exact_constraint": 6,
     "lifecycle": 2,
-    "multi_hop": 4
+    "exact_lookup": 4
   },
   "by_evidence_kind": {
     "normative_statement": 10,
@@ -33,11 +33,11 @@
     "openai": 7
   },
   "needs_human_interpretation": 4,
-  "precheck_holdout_ready": 20,
+  "precheck_holdout_ready": 19,
   "evidence_length": {
-    "mean": 150.1,
-    "median": 129,
-    "max": 295,
+    "mean": 195.8,
+    "median": 169,
+    "max": 473,
     "over_soft_cap": 0
   },
   "removed": {
@@ -45,7 +45,7 @@
     "duplicate_question": 5,
     "not_selected_diversity": 11
   },
-  "verification_status": "candidate_unverified — nothing in this file is gold",
+  "verification_status": "reviewed by independent_review — revised where required; nothing here is gold",
   "retrieval_was_not_run": true,
   "systems_executed": [],
   "records": [
@@ -81,14 +81,25 @@
       "candidate_type": "supported",
       "generator_confidence": "high",
       "needs_human_interpretation": false,
-      "verification_status": "candidate_unverified",
+      "verification_status": "needs_human_review",
       "claude_proposed": true,
       "chatgpt_verified": null,
       "retrieval_was_not_run": true,
       "schema_version": "1.1",
       "revisions": [],
       "precheck_holdout_ready": true,
-      "precheck_failures": []
+      "precheck_failures": [],
+      "reasoning_type": "configuration_interaction",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "evidence_over_soft_cap": false,
+      "review_defect_classes": [],
+      "verification": {
+        "reviewer": "independent_review",
+        "verdict": "PASS",
+        "reviewed_at": "2026-08-20T19:46:01Z",
+        "verification_notes": "Clean as written; no revision required."
+      }
     },
     {
       "candidate_id": "GOLD-B003-02",
@@ -109,26 +120,92 @@
       "context_before": "or capability the Skill provides.\n\nRemember that the `name` field must use lowercase letters, numbers, and hyphens only.\n\n**Good naming examples (gerund form):**\n\n* `processing-pdfs`\n* `analyzing-spreadsheets`\n* `managing-databases`\n* `testing-code`\n* `writing-documentation`\n\n**Acceptable alternatives:**\n\n* Noun phrases: `pdf-processing`, `spreadsheet-analysis`\n* Action-oriented: `process-pdfs`, `analyze-spreadsheets`\n\n**Avoid:**\n\n* Vague names: `helper`, `utils`, `tools`\n* Overly generic: `documents`, `data`, `files`\n* Reserved words: `anthropic-helper`, `claude-tools`\n* Inconsistent patterns within your skill collection\n\nConsistent naming makes it easier to:\n\n* Reference Skills in documentation and conversations\n* Understand what a Skill does at a glance\n* Organize and search through multiple Skills\n* Maintain a professional, cohesive skill library\n\n### Writing effective descriptions\n\n",
       "context_after": "\n\n<Warning>\n  **Always write in third person**. The description is injected into the system prompt, and inconsistent point-of-view can cause discovery problems.\n\n  * **Good:** \"Processes Excel files and generates reports\"\n  * **Avoid:** \"I can help you process Excel files\"\n  * **Avoid:** \"You can use this to process Excel files\"\n</Warning>\n\n**Be specific and include key terms**. Include both what the Skill does and specific triggers/contexts for when to use it.\n\nEach Skill has exactly one description field. The description is critical for skill selection: Claude uses it to choose the right Skill from potentially 100+ available Skills. Your description must provide enough detail for Claude to know when to select this Skill, while the rest of SKILL.md provides the implementation details.\n\nEffective examples:\n\n**PDF Processing skill:**\n\n```yaml\ndescription: Extract text and tables from PDF ",
       "proposed_category": "configuration_interaction",
-      "proposed_question": "What does `description` enable?",
-      "proposed_answer": "Skill discovery and should include both what the Skill does and when to use it.",
+      "proposed_question": "In a Skill definition, what does the `description` field enable and what should it include?",
+      "proposed_answer": "It enables Skill discovery and should include both what the Skill does and when to use it.",
       "proposed_atomic_claims": [
-        "`description` enables Skill discovery and should include both what the Skill does and when to use it."
+        "The Skill `description` field enables Skill discovery and should include both what the Skill does and when to use it."
       ],
       "critical_strings": [
-        "description"
+        "description",
+        "Skill discovery",
+        "what the Skill does",
+        "when to use it"
       ],
       "evidence_kind": "normative_statement",
       "candidate_type": "supported",
       "generator_confidence": "high",
       "needs_human_interpretation": false,
-      "verification_status": "candidate_unverified",
+      "verification_status": "needs_human_review",
       "claude_proposed": true,
       "chatgpt_verified": null,
       "retrieval_was_not_run": true,
       "schema_version": "1.1",
-      "revisions": [],
+      "revisions": [
+        {
+          "revision": 1,
+          "field": "proposed_question",
+          "from": "What does `description` enable?",
+          "to": "In a Skill definition, what does the `description` field enable and what should it include?",
+          "author": "independent_review",
+          "timestamp": "2026-08-20T19:46:01Z",
+          "reason": "QUESTION_SCOPE, CLAIM_SCOPE"
+        },
+        {
+          "revision": 2,
+          "field": "proposed_answer",
+          "from": "Skill discovery and should include both what the Skill does and when to use it.",
+          "to": "It enables Skill discovery and should include both what the Skill does and when to use it.",
+          "author": "independent_review",
+          "timestamp": "2026-08-20T19:46:01Z",
+          "reason": "QUESTION_SCOPE, CLAIM_SCOPE"
+        },
+        {
+          "revision": 3,
+          "field": "proposed_atomic_claims",
+          "from": [
+            "`description` enables Skill discovery and should include both what the Skill does and when to use it."
+          ],
+          "to": [
+            "The Skill `description` field enables Skill discovery and should include both what the Skill does and when to use it."
+          ],
+          "author": "independent_review",
+          "timestamp": "2026-08-20T19:46:01Z",
+          "reason": "QUESTION_SCOPE, CLAIM_SCOPE"
+        },
+        {
+          "revision": 4,
+          "field": "critical_strings",
+          "from": [
+            "description"
+          ],
+          "to": [
+            "description",
+            "Skill discovery",
+            "what the Skill does",
+            "when to use it"
+          ],
+          "author": "independent_review",
+          "timestamp": "2026-08-20T19:46:01Z",
+          "reason": "QUESTION_SCOPE, CLAIM_SCOPE"
+        }
+      ],
       "precheck_holdout_ready": true,
-      "precheck_failures": []
+      "precheck_failures": [],
+      "reasoning_type": "configuration_interaction",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "evidence_over_soft_cap": false,
+      "review_defect_classes": [
+        "QUESTION_SCOPE",
+        "CLAIM_SCOPE"
+      ],
+      "review_reason": "`description` is a generic field name; the anchor already supports the scoped wording, and the critical strings now verify the claim's content rather than only the field name.",
+      "verification": {
+        "reviewer": "independent_review",
+        "verdict": "FIX_REQUIRED",
+        "reviewed_at": "2026-08-20T19:46:01Z",
+        "verification_notes": "`description` is a generic field name; the anchor already supports the scoped wording, and the critical strings now verify the claim's content rather than only the field name."
+      }
     },
     {
       "candidate_id": "GOLD-B003-03",
@@ -162,14 +239,25 @@
       "candidate_type": "supported",
       "generator_confidence": "high",
       "needs_human_interpretation": false,
-      "verification_status": "candidate_unverified",
+      "verification_status": "needs_human_review",
       "claude_proposed": true,
       "chatgpt_verified": null,
       "retrieval_was_not_run": true,
       "schema_version": "1.1",
       "revisions": [],
       "precheck_holdout_ready": true,
-      "precheck_failures": []
+      "precheck_failures": [],
+      "reasoning_type": "error_behavior",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "evidence_over_soft_cap": false,
+      "review_defect_classes": [],
+      "verification": {
+        "reviewer": "independent_review",
+        "verdict": "PASS",
+        "reviewed_at": "2026-08-20T19:46:01Z",
+        "verification_notes": "Clean as written; no revision required."
+      }
     },
     {
       "candidate_id": "GOLD-B003-04",
@@ -181,35 +269,162 @@
       "section_path": [
         "Model compatibility"
       ],
-      "char_start": 92785,
-      "char_end": 92898,
-      "evidence_text": "If you request an invalid pair, the API returns a `400 invalid_request_error` naming the unsupported combination.",
-      "evidence_hash": "1591ea4b2fc1d87d21cf20cfcad5388e059bdec54fe54ec1da99c644eb6a2a44",
-      "evidence_char_length": 113,
-      "context_before": "laude Mythos 5 (claude-mythos-5) Claude Fable 5 (claude-fable-5) Claude Opus 5 (claude-opus-5)                                                                                                                                                                               |\n| Claude Fable 5 (claude-fable-5)       | Claude Mythos 5 (claude-mythos-5) Claude Fable 5 (claude-fable-5) Claude Opus 5 (claude-opus-5)                                                                                                                                                                               |\n| Claude Mythos 5 (claude-mythos-5)     | Claude Mythos 5 (claude-mythos-5) Claude Fable 5 (claude-fable-5) Claude Opus 5 (claude-opus-5)                                                                                                                                                                               |\n\n",
+      "char_start": 88971,
+      "char_end": 89112,
+      "evidence_text": "The executor model (the top-level `model` field) and the advisor model (the `model` field inside the tool definition) must form a valid pair.",
+      "evidence_hash": "a147d3f035dd177a051a5cc5c4636e048cfb4467c171f0f0f23672f6beb7279d",
+      "evidence_char_length": 254,
+      "context_before": "or both together) when you want to bias toward brevity without risking a mid-thought cut.\n\n### Pairing with effort settings\n\nFor coding tasks, pairing a Sonnet executor at medium [effort](https://platform.claude.com/docs/en/build-with-claude/effort) with an Opus advisor achieves intelligence comparable to Sonnet at default effort, at lower cost. For maximum intelligence, keep the executor at default effort.\n\n### Cost control\n\n* For conversation-level budgets, count advisor calls client-side. When you reach your cap, remove the advisor tool from `tools`; you do not need to strip `advisor_tool_result` blocks from your message history (see the note in [Multi-turn conversations](https://platform.claude.com/docs/en/agents-and-tools/tool-use/advisor-tool#multi-turn-conversations)).\n* Enable `caching` only for conversations where you expect three or more advisor calls.\n\n## Model compatibility\n\n",
       "context_after": "\n\n### Platform availability\n\nThe advisor tool is available in beta on the Claude API and on [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws). It is not currently available on Amazon Bedrock, Google Cloud, or Microsoft Foundry.\n\n## Advisor on Claude Managed Agents\n\n[Claude Managed Agents](https://platform.claude.com/docs/en/managed-agents/overview) sessions support an advisor as well, configured as part of the agent rather than as a tool definition: add a `{\"type\": \"advisor\", \"model\": ...}` entry to the agent's multiagent roster, and the session's primary thread can consult that model mid-turn. The roster entry takes no `max_uses`, `max_tokens`, or `caching` options, and advice is delivered as thread events on the session's event stream rather than as `advisor_tool_result` blocks in the response. See [Give the session an advisor](https",
       "proposed_category": "error_behavior",
-      "proposed_question": "What happens if you request an invalid pair?",
-      "proposed_answer": "The api returns a `400 invalid_request_error` naming the unsupported combination.",
+      "proposed_question": "What happens when the executor and advisor models requested for the advisor tool do not form a valid pair?",
+      "proposed_answer": "The API returns a `400 invalid_request_error` naming the unsupported combination.",
       "proposed_atomic_claims": [
-        "If you request an invalid pair, the API returns a `400 invalid_request_error` naming the unsupported combination."
+        "The executor model and the advisor model must form a valid pair.",
+        "Requesting an invalid pair returns a `400 invalid_request_error` naming the unsupported combination."
       ],
       "critical_strings": [
+        "executor model",
+        "advisor model",
+        "must form a valid pair",
         "400 invalid_request_error",
-        "a `400 invalid_request_error` naming the unsupported combination"
+        "naming the unsupported combination"
       ],
       "evidence_kind": "normative_statement",
       "candidate_type": "supported",
       "generator_confidence": "high",
       "needs_human_interpretation": false,
-      "verification_status": "candidate_unverified",
+      "verification_status": "needs_human_review",
       "claude_proposed": true,
       "chatgpt_verified": null,
       "retrieval_was_not_run": true,
       "schema_version": "1.1",
-      "revisions": [],
-      "precheck_holdout_ready": true,
-      "precheck_failures": []
+      "revisions": [
+        {
+          "revision": 1,
+          "field": "proposed_question",
+          "from": "What happens if you request an invalid pair?",
+          "to": "What happens when the executor and advisor models requested for the advisor tool do not form a valid pair?",
+          "author": "independent_review",
+          "timestamp": "2026-08-20T19:46:01Z",
+          "reason": "EVIDENCE_BOUNDARY, QUESTION_SCOPE"
+        },
+        {
+          "revision": 2,
+          "field": "proposed_answer",
+          "from": "The api returns a `400 invalid_request_error` naming the unsupported combination.",
+          "to": "The API returns a `400 invalid_request_error` naming the unsupported combination.",
+          "author": "independent_review",
+          "timestamp": "2026-08-20T19:46:01Z",
+          "reason": "EVIDENCE_BOUNDARY, QUESTION_SCOPE"
+        },
+        {
+          "revision": 3,
+          "field": "proposed_atomic_claims",
+          "from": [
+            "If you request an invalid pair, the API returns a `400 invalid_request_error` naming the unsupported combination."
+          ],
+          "to": [
+            "The executor model and the advisor model must form a valid pair.",
+            "Requesting an invalid pair returns a `400 invalid_request_error` naming the unsupported combination."
+          ],
+          "author": "independent_review",
+          "timestamp": "2026-08-20T19:46:01Z",
+          "reason": "EVIDENCE_BOUNDARY, QUESTION_SCOPE"
+        },
+        {
+          "revision": 4,
+          "field": "critical_strings",
+          "from": [
+            "400 invalid_request_error",
+            "a `400 invalid_request_error` naming the unsupported combination"
+          ],
+          "to": [
+            "executor model",
+            "advisor model",
+            "must form a valid pair",
+            "400 invalid_request_error",
+            "naming the unsupported combination"
+          ],
+          "author": "independent_review",
+          "timestamp": "2026-08-20T19:46:01Z",
+          "reason": "EVIDENCE_BOUNDARY, QUESTION_SCOPE"
+        }
+      ],
+      "precheck_holdout_ready": false,
+      "precheck_failures": [
+        "unresolved anaphora: refers to 'the tool' with no antecedent in the span"
+      ],
+      "anchor_revisions": [
+        {
+          "revision": 1,
+          "reason": "ANAPHORIC_SCOPE_COMPLETION",
+          "why": "\"pair\" is defined 3,838 characters earlier, with a model-compatibility table in between, so a contiguous extension would pull in the whole table. Two precise spans are the sanctioned alternative to one giant one: the definition of a valid pair, and the failure behaviour.",
+          "old_spans": [
+            {
+              "char_start": 92785,
+              "char_end": 92898,
+              "evidence_hash": "1591ea4b2fc1d87d21cf20cfcad5388e059bdec54fe54ec1da99c644eb6a2a44"
+            }
+          ],
+          "new_spans": [
+            {
+              "char_start": 88971,
+              "char_end": 89112,
+              "evidence_hash": "a147d3f035dd177a051a5cc5c4636e048cfb4467c171f0f0f23672f6beb7279d",
+              "evidence_char_length": 141
+            },
+            {
+              "char_start": 92785,
+              "char_end": 92898,
+              "evidence_hash": "1591ea4b2fc1d87d21cf20cfcad5388e059bdec54fe54ec1da99c644eb6a2a44",
+              "evidence_char_length": 113
+            }
+          ],
+          "author": "claude",
+          "directed_by": "independent_review",
+          "timestamp": "2026-08-20T19:46:01Z"
+        }
+      ],
+      "expected_evidence": [
+        {
+          "version_id": "ver_b8b18cda9b875d51a2ce979a1bf4e909",
+          "char_start": 88971,
+          "char_end": 89112,
+          "section_path": [
+            "Model compatibility"
+          ],
+          "evidence_text": "The executor model (the top-level `model` field) and the advisor model (the `model` field inside the tool definition) must form a valid pair.",
+          "evidence_hash": "a147d3f035dd177a051a5cc5c4636e048cfb4467c171f0f0f23672f6beb7279d",
+          "evidence_char_length": 141
+        },
+        {
+          "version_id": "ver_b8b18cda9b875d51a2ce979a1bf4e909",
+          "char_start": 92785,
+          "char_end": 92898,
+          "section_path": [
+            "Model compatibility"
+          ],
+          "evidence_text": "If you request an invalid pair, the API returns a `400 invalid_request_error` naming the unsupported combination.",
+          "evidence_hash": "1591ea4b2fc1d87d21cf20cfcad5388e059bdec54fe54ec1da99c644eb6a2a44",
+          "evidence_char_length": 113
+        }
+      ],
+      "reasoning_type": "error_behavior",
+      "evidence_shape": "multi_span",
+      "requires_all_evidence": true,
+      "evidence_over_soft_cap": false,
+      "review_defect_classes": [
+        "EVIDENCE_BOUNDARY",
+        "QUESTION_SCOPE"
+      ],
+      "review_reason": "The anchor did not establish what \"pair\" refers to.",
+      "verification": {
+        "reviewer": "independent_review",
+        "verdict": "FIX_REQUIRED",
+        "reviewed_at": "2026-08-20T19:46:01Z",
+        "verification_notes": "The anchor did not establish what \"pair\" refers to."
+      }
     },
     {
       "candidate_id": "GOLD-B003-05",
@@ -244,14 +459,25 @@
       "candidate_type": "supported",
       "generator_confidence": "high",
       "needs_human_interpretation": false,
-      "verification_status": "candidate_unverified",
+      "verification_status": "needs_human_review",
       "claude_proposed": true,
       "chatgpt_verified": null,
       "retrieval_was_not_run": true,
       "schema_version": "1.1",
       "revisions": [],
       "precheck_holdout_ready": true,
-      "precheck_failures": []
+      "precheck_failures": [],
+      "reasoning_type": "error_behavior",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "evidence_over_soft_cap": false,
+      "review_defect_classes": [],
+      "verification": {
+        "reviewer": "independent_review",
+        "verdict": "PASS",
+        "reviewed_at": "2026-08-20T19:46:01Z",
+        "verification_notes": "Clean as written; no revision required."
+      }
     },
     {
       "candidate_id": "GOLD-B003-06",
@@ -264,37 +490,145 @@
         "Behavior changes",
         "Sampling parameters not accepted"
       ],
-      "char_start": 2207,
+      "char_start": 1820,
       "char_end": 2293,
-      "evidence_text": "Setting `temperature`, `top_p`, or `top_k` to a non-default value returns a 400 error.",
-      "evidence_hash": "eab7ee79eef8446cbe584411a9f4e6b48aabc6295641037016e3fcaf965008e2",
-      "evidence_char_length": 86,
-      "context_before": "m/docs/en/build-with-claude/thinking), and the same set of tools and platform features as Claude Sonnet 4.6, except [Priority Tier](https://platform.claude.com/docs/en/api/service-tiers#supported-models), which is not available on Claude Sonnet 5.\n\nFor complete pricing and specs, see the [models overview](https://platform.claude.com/docs/en/about-claude/models/overview).\n\n## Behavior changes\n\n### Adaptive thinking on by default\n\nOn Claude Sonnet 4.6, requests without a `thinking` field run without thinking. On Claude Sonnet 5, the same requests run with [adaptive thinking](https://platform.claude.com/docs/en/build-with-claude/thinking). To turn thinking off, pass `thinking: {type: \"disabled\"}`. Because `max_tokens` is a hard limit on total output (thinking plus response text), revisit it for workloads that ran without thinking on Claude Sonnet 4.6.\n\n### Sampling parameters not accepted\n\n",
+      "evidence_text": "On Claude Sonnet 5, the same requests run with [adaptive thinking](https://platform.claude.com/docs/en/build-with-claude/thinking). To turn thinking off, pass `thinking: {type: \"disabled\"}`. Because `max_tokens` is a hard limit on total output (thinking plus response text), revisit it for workloads that ran without thinking on Claude Sonnet 4.6.\n\n### Sampling parameters not accepted\n\nSetting `temperature`, `top_p`, or `top_k` to a non-default value returns a 400 error.",
+      "evidence_hash": "fbd40033fb7a571e8d5469e0d55335018504e83d8cabdb2f3b68025595f14eef",
+      "evidence_char_length": 473,
+      "context_before": "- |\n| Claude Sonnet 5 | `claude-sonnet-5` | The best combination of speed and intelligence |\n\nClaude Sonnet 5 supports the [1M token context window](https://platform.claude.com/docs/en/build-with-claude/context-windows) by default (1M tokens is both the default and the maximum; there is no smaller context variant), 128k max output tokens, [adaptive thinking](https://platform.claude.com/docs/en/build-with-claude/thinking), and the same set of tools and platform features as Claude Sonnet 4.6, except [Priority Tier](https://platform.claude.com/docs/en/api/service-tiers#supported-models), which is not available on Claude Sonnet 5.\n\nFor complete pricing and specs, see the [models overview](https://platform.claude.com/docs/en/about-claude/models/overview).\n\n## Behavior changes\n\n### Adaptive thinking on by default\n\nOn Claude Sonnet 4.6, requests without a `thinking` field run without thinking. ",
       "context_after": " Remove these parameters when migrating; the default value (or omitting the parameter) is accepted. Use system-prompt instructions to guide model behavior. This is new for Sonnet-class models; the same constraint was previously introduced on Claude Opus 4.7.\n\n### Manual extended thinking removed\n\nManual extended thinking (`thinking: {type: \"enabled\", budget_tokens: N}`) was deprecated on Claude Sonnet 4.6; on Claude Sonnet 5 it is removed and returns a 400 error, the same as on Claude Opus 4.8 and Claude Opus 4.7. Use adaptive thinking with the [effort parameter](https://platform.claude.com/docs/en/build-with-claude/effort) instead.\n\n<CodeGroup exclude=\"shell\">\n  ```python Python\n  # Not supported on Claude Sonnet 5 (returns 400)\n  thinking = {\"type\": \"enabled\", \"budget_tokens\": 32000}\n\n  # Use this instead\n  thinking = {\"type\": \"adaptive\"}\n  ```\n\n  ```typescript TypeScript\n  // Not supp",
       "proposed_category": "error_behavior",
-      "proposed_question": "What happens when setting `temperature`, `top_p`, or `top_k` to a non-default value?",
-      "proposed_answer": "It returns a 400 error.",
+      "proposed_question": "On Claude Sonnet 5, what happens if `temperature`, `top_p`, or `top_k` is set to a non-default value?",
+      "proposed_answer": "The request returns a 400 error.",
       "proposed_atomic_claims": [
-        "Setting `temperature`, `top_p`, or `top_k` to a non-default value returns a 400 error."
+        "On Claude Sonnet 5, setting `temperature`, `top_p`, or `top_k` to a non-default value returns a 400 error."
       ],
       "critical_strings": [
+        "Claude Sonnet 5",
         "temperature",
         "top_p",
         "top_k",
-        "a 400 error"
+        "400 error"
       ],
       "evidence_kind": "normative_statement",
       "candidate_type": "supported",
       "generator_confidence": "high",
       "needs_human_interpretation": false,
-      "verification_status": "candidate_unverified",
+      "verification_status": "needs_human_review",
       "claude_proposed": true,
       "chatgpt_verified": null,
       "retrieval_was_not_run": true,
       "schema_version": "1.1",
-      "revisions": [],
+      "revisions": [
+        {
+          "revision": 1,
+          "field": "proposed_question",
+          "from": "What happens when setting `temperature`, `top_p`, or `top_k` to a non-default value?",
+          "to": "On Claude Sonnet 5, what happens if `temperature`, `top_p`, or `top_k` is set to a non-default value?",
+          "author": "independent_review",
+          "timestamp": "2026-08-20T19:46:01Z",
+          "reason": "EVIDENCE_BOUNDARY, QUESTION_SCOPE, CLAIM_SCOPE"
+        },
+        {
+          "revision": 2,
+          "field": "proposed_answer",
+          "from": "It returns a 400 error.",
+          "to": "The request returns a 400 error.",
+          "author": "independent_review",
+          "timestamp": "2026-08-20T19:46:01Z",
+          "reason": "EVIDENCE_BOUNDARY, QUESTION_SCOPE, CLAIM_SCOPE"
+        },
+        {
+          "revision": 3,
+          "field": "proposed_atomic_claims",
+          "from": [
+            "Setting `temperature`, `top_p`, or `top_k` to a non-default value returns a 400 error."
+          ],
+          "to": [
+            "On Claude Sonnet 5, setting `temperature`, `top_p`, or `top_k` to a non-default value returns a 400 error."
+          ],
+          "author": "independent_review",
+          "timestamp": "2026-08-20T19:46:01Z",
+          "reason": "EVIDENCE_BOUNDARY, QUESTION_SCOPE, CLAIM_SCOPE"
+        },
+        {
+          "revision": 4,
+          "field": "critical_strings",
+          "from": [
+            "temperature",
+            "top_p",
+            "top_k",
+            "a 400 error"
+          ],
+          "to": [
+            "Claude Sonnet 5",
+            "temperature",
+            "top_p",
+            "top_k",
+            "400 error"
+          ],
+          "author": "independent_review",
+          "timestamp": "2026-08-20T19:46:01Z",
+          "reason": "EVIDENCE_BOUNDARY, QUESTION_SCOPE, CLAIM_SCOPE"
+        }
+      ],
       "precheck_holdout_ready": true,
-      "precheck_failures": []
+      "precheck_failures": [],
+      "anchor_revisions": [
+        {
+          "revision": 1,
+          "reason": "MODEL_SCOPE_COMPLETION",
+          "why": "The nearest occurrence of \"Claude Sonnet 5\" is 384 characters earlier, in the adjacent \"Adaptive thinking on by default\" subsection. The extension is 470 characters and under the soft cap, but it drags in a subsection about thinking that the claim does not use. This is a real trade and the owner should confirm it rather than have it made quietly.",
+          "old_spans": [
+            {
+              "char_start": 2207,
+              "char_end": 2293,
+              "evidence_hash": "eab7ee79eef8446cbe584411a9f4e6b48aabc6295641037016e3fcaf965008e2"
+            }
+          ],
+          "new_spans": [
+            {
+              "char_start": 1820,
+              "char_end": 2293,
+              "evidence_hash": "fbd40033fb7a571e8d5469e0d55335018504e83d8cabdb2f3b68025595f14eef",
+              "evidence_char_length": 473
+            }
+          ],
+          "author": "claude",
+          "directed_by": "independent_review",
+          "timestamp": "2026-08-20T19:46:01Z"
+        }
+      ],
+      "expected_evidence": [
+        {
+          "version_id": "ver_6c0983aad96f198367a0de369b3bb86c",
+          "char_start": 1820,
+          "char_end": 2293,
+          "section_path": [
+            "Behavior changes",
+            "Sampling parameters not accepted"
+          ],
+          "evidence_text": "On Claude Sonnet 5, the same requests run with [adaptive thinking](https://platform.claude.com/docs/en/build-with-claude/thinking). To turn thinking off, pass `thinking: {type: \"disabled\"}`. Because `max_tokens` is a hard limit on total output (thinking plus response text), revisit it for workloads that ran without thinking on Claude Sonnet 4.6.\n\n### Sampling parameters not accepted\n\nSetting `temperature`, `top_p`, or `top_k` to a non-default value returns a 400 error.",
+          "evidence_hash": "fbd40033fb7a571e8d5469e0d55335018504e83d8cabdb2f3b68025595f14eef",
+          "evidence_char_length": 473
+        }
+      ],
+      "reasoning_type": "error_behavior",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "evidence_over_soft_cap": false,
+      "review_defect_classes": [
+        "EVIDENCE_BOUNDARY",
+        "QUESTION_SCOPE",
+        "CLAIM_SCOPE"
+      ],
+      "review_reason": "The section establishes the model, the anchor did not, and the unqualified question implied the behaviour is general.",
+      "verification": {
+        "reviewer": "independent_review",
+        "verdict": "FIX_REQUIRED",
+        "reviewed_at": "2026-08-20T19:46:01Z",
+        "verification_notes": "The section establishes the model, the anchor did not, and the unqualified question implied the behaviour is general."
+      }
     },
     {
       "candidate_id": "GOLD-B003-07",
@@ -327,14 +661,25 @@
       "candidate_type": "supported",
       "generator_confidence": "high",
       "needs_human_interpretation": false,
-      "verification_status": "candidate_unverified",
+      "verification_status": "needs_human_review",
       "claude_proposed": true,
       "chatgpt_verified": null,
       "retrieval_was_not_run": true,
       "schema_version": "1.1",
       "revisions": [],
       "precheck_holdout_ready": true,
-      "precheck_failures": []
+      "precheck_failures": [],
+      "reasoning_type": "exact_lookup",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "evidence_over_soft_cap": false,
+      "review_defect_classes": [],
+      "verification": {
+        "reviewer": "independent_review",
+        "verdict": "PASS",
+        "reviewed_at": "2026-08-20T19:46:01Z",
+        "verification_notes": "Clean as written; no revision required."
+      }
     },
     {
       "candidate_id": "GOLD-B003-08",
@@ -369,14 +714,25 @@
       "candidate_type": "supported",
       "generator_confidence": "high",
       "needs_human_interpretation": false,
-      "verification_status": "candidate_unverified",
+      "verification_status": "needs_human_review",
       "claude_proposed": true,
       "chatgpt_verified": null,
       "retrieval_was_not_run": true,
       "schema_version": "1.1",
       "revisions": [],
       "precheck_holdout_ready": true,
-      "precheck_failures": []
+      "precheck_failures": [],
+      "reasoning_type": "exact_lookup",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "evidence_over_soft_cap": false,
+      "review_defect_classes": [],
+      "verification": {
+        "reviewer": "independent_review",
+        "verdict": "PASS",
+        "reviewed_at": "2026-08-20T19:46:01Z",
+        "verification_notes": "Clean as written; no revision required."
+      }
     },
     {
       "candidate_id": "GOLD-B003-09",
@@ -411,14 +767,25 @@
       "candidate_type": "supported",
       "generator_confidence": "high",
       "needs_human_interpretation": false,
-      "verification_status": "candidate_unverified",
+      "verification_status": "needs_human_review",
       "claude_proposed": true,
       "chatgpt_verified": null,
       "retrieval_was_not_run": true,
       "schema_version": "1.1",
       "revisions": [],
       "precheck_holdout_ready": true,
-      "precheck_failures": []
+      "precheck_failures": [],
+      "reasoning_type": "exact_lookup",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "evidence_over_soft_cap": false,
+      "review_defect_classes": [],
+      "verification": {
+        "reviewer": "independent_review",
+        "verdict": "PASS",
+        "reviewed_at": "2026-08-20T19:46:01Z",
+        "verification_notes": "Clean as written; no revision required."
+      }
     },
     {
       "candidate_id": "GOLD-B003-10",
@@ -438,27 +805,83 @@
       "context_before": "the-context-window)\n* [Thinking encryption](https://platform.claude.com/docs/en/build-with-claude/thinking#thinking-encryption)\n* [Pricing](https://platform.claude.com/docs/en/build-with-claude/thinking-steering-and-cost#pricing) (on the [Steering thinking](https://platform.claude.com/docs/en/build-with-claude/thinking-steering-and-cost) page)\n\n## Migrating to adaptive thinking\n\nIf your model supports only extended thinking (Claude Sonnet 4.5, Claude Opus 4.5, Claude Haiku 4.5, and earlier Claude 4 models), no action is needed now: adaptive thinking is not available there, and `type: \"adaptive\"` [returns a 400 error](https://platform.claude.com/docs/en/build-with-claude/thinking-troubleshooting#error-thinking-type-adaptive). Keep `budget_tokens` until you move to a model that supports adaptive thinking, then apply the mapping that follows.\n\nYou need to migrate off `type: \"enabled\"` if:\n\n",
       "context_after": "\n\nThe mapping is small: remove `budget_tokens`, set `thinking: {type: \"adaptive\"}`, and control reasoning depth with `output_config: {effort: ...}` instead of a token budget.\n\n```json\n{\n  \"model\": \"claude-sonnet-4-6\",\n  \"max_tokens\": 16000,\n  \"thinking\": {\n    \"type\": \"enabled\",\n    \"budget_tokens\": 10000\n  }\n}\n```\n\nbecomes:\n\n```json\n{\n  \"model\": \"claude-sonnet-4-6\",\n  \"max_tokens\": 16000,\n  \"thinking\": {\n    \"type\": \"adaptive\"\n  },\n  \"output_config\": {\n    \"effort\": \"high\"\n  }\n}\n```\n\n`effort: \"high\"` matches the API default; it appears here only to show where the depth control now lives, and omitting it produces identical behavior.\n\nExpect a behavioral difference, not just a syntax change. With a fixed budget, Claude thinks on every request. With adaptive thinking, Claude decides whether and how much to think on each request, and at lower [effort](https://platform.claude.com/docs/en/bui",
       "proposed_category": "lifecycle",
-      "proposed_question": "What is the documented status of `budget_tokens`?",
+      "proposed_question": "What is the documented status of `budget_tokens` on Claude Opus 4.6 and Claude Sonnet 4.6?",
       "proposed_answer": "It is deprecated.",
       "proposed_atomic_claims": [
-        "`budget_tokens` is deprecated."
+        "`budget_tokens` is deprecated on Claude Opus 4.6 and Claude Sonnet 4.6."
       ],
       "critical_strings": [
         "budget_tokens",
-        "deprecated"
+        "deprecated",
+        "Claude Opus 4.6",
+        "Claude Sonnet 4.6"
       ],
       "evidence_kind": "normative_statement",
       "candidate_type": "supported",
       "generator_confidence": "high",
       "needs_human_interpretation": false,
-      "verification_status": "candidate_unverified",
+      "verification_status": "needs_human_review",
       "claude_proposed": true,
       "chatgpt_verified": null,
       "retrieval_was_not_run": true,
       "schema_version": "1.1",
-      "revisions": [],
+      "revisions": [
+        {
+          "revision": 1,
+          "field": "proposed_question",
+          "from": "What is the documented status of `budget_tokens`?",
+          "to": "What is the documented status of `budget_tokens` on Claude Opus 4.6 and Claude Sonnet 4.6?",
+          "author": "independent_review",
+          "timestamp": "2026-08-20T19:46:01Z",
+          "reason": "CLAIM_SCOPE"
+        },
+        {
+          "revision": 2,
+          "field": "proposed_atomic_claims",
+          "from": [
+            "`budget_tokens` is deprecated."
+          ],
+          "to": [
+            "`budget_tokens` is deprecated on Claude Opus 4.6 and Claude Sonnet 4.6."
+          ],
+          "author": "independent_review",
+          "timestamp": "2026-08-20T19:46:01Z",
+          "reason": "CLAIM_SCOPE"
+        },
+        {
+          "revision": 3,
+          "field": "critical_strings",
+          "from": [
+            "budget_tokens",
+            "deprecated"
+          ],
+          "to": [
+            "budget_tokens",
+            "deprecated",
+            "Claude Opus 4.6",
+            "Claude Sonnet 4.6"
+          ],
+          "author": "independent_review",
+          "timestamp": "2026-08-20T19:46:01Z",
+          "reason": "CLAIM_SCOPE"
+        }
+      ],
       "precheck_holdout_ready": true,
-      "precheck_failures": []
+      "precheck_failures": [],
+      "reasoning_type": "lifecycle",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "evidence_over_soft_cap": false,
+      "review_defect_classes": [
+        "CLAIM_SCOPE"
+      ],
+      "review_reason": "The evidence deprecates `budget_tokens` for two named models. The unqualified claim generalised beyond the source.",
+      "verification": {
+        "reviewer": "independent_review",
+        "verdict": "FIX_REQUIRED",
+        "reviewed_at": "2026-08-20T19:46:01Z",
+        "verification_notes": "The evidence deprecates `budget_tokens` for two named models. The unqualified claim generalised beyond the source."
+      }
     },
     {
       "candidate_id": "GOLD-B003-11",
@@ -479,27 +902,92 @@
       "context_before": "code-execution-tool), [computer use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool), [text editor](https://platform.claude.com/docs/en/agents-and-tools/tool-use/text-editor-tool), [web search](https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool), [MCP connector](https://platform.claude.com/docs/en/agents-and-tools/mcp-connector), [memory](https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool))\n\nTwo exceptions: [web fetch](https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-fetch-tool) is not available on Claude Opus 5, and [Priority Tier](https://platform.claude.com/docs/en/api/service-tiers#supported-models) is not supported on Claude Opus 5.\n\n#### Update your model name\n\n```python\n# Opus migration\nmodel = \"claude-opus-4-6\"  # Before\nmodel = \"claude-opus-5\"  # After\n```\n\n#### Breaking changes\n\n",
       "context_after": " Switch to [adaptive thinking](https://platform.claude.com/docs/en/build-with-claude/thinking) (`thinking: {type: \"adaptive\"}`) and use the [effort parameter](https://platform.claude.com/docs/en/build-with-claude/effort) to control thinking depth. On Claude Opus 5, adaptive thinking is **on by default**: `thinking: {type: \"adaptive\"}` is valid and equivalent to omitting the `thinking` field entirely (see the next item).\n\n   Before (Claude Opus 4.6):\n\n   <CodeGroup>\n     ```bash cURL\n     curl https://api.anthropic.com/v1/messages \\\n       -H \"x-api-key: $ANTHROPIC_API_KEY\" \\\n       -H \"anthropic-version: 2023-06-01\" \\\n       -H \"content-type: application/json\" \\\n       -d '{\n         \"model\": \"claude-opus-4-6\",\n         \"max_tokens\": 16000,\n         \"thinking\": {\n           \"type\": \"enabled\",\n           \"budget_tokens\": 10000\n         },\n         \"messages\": [\n           {\n             \"",
       "proposed_category": "lifecycle",
-      "proposed_question": "What is the documented status of `thinking: {type: \"enabled\", budget_tokens: N}`?",
-      "proposed_answer": "It is no longer supported on Claude Opus 4.",
+      "proposed_question": "What happens if manual extended thinking `thinking: {type: \"enabled\", budget_tokens: N}` is used on Claude Opus 4.7 or later models?",
+      "proposed_answer": "It is no longer supported and returns a 400 error.",
       "proposed_atomic_claims": [
-        "`thinking: {type: \"enabled\", budget_tokens: N}` is no longer supported on Claude Opus 4."
+        "`thinking: {type: \"enabled\", budget_tokens: N}` is no longer supported on Claude Opus 4.7 or later models.",
+        "Using it on those models returns a 400 error."
       ],
       "critical_strings": [
-        "thinking: {type: \"enabled\", budget_tokens: N}",
-        "no longer supported"
+        "Claude Opus 4.7 or later models",
+        "no longer supported",
+        "400 error"
       ],
       "evidence_kind": "normative_statement",
       "candidate_type": "supported",
       "generator_confidence": "high",
       "needs_human_interpretation": false,
-      "verification_status": "candidate_unverified",
+      "verification_status": "needs_human_review",
       "claude_proposed": true,
       "chatgpt_verified": null,
       "retrieval_was_not_run": true,
       "schema_version": "1.1",
-      "revisions": [],
+      "revisions": [
+        {
+          "revision": 1,
+          "field": "proposed_question",
+          "from": "What is the documented status of `thinking: {type: \"enabled\", budget_tokens: N}`?",
+          "to": "What happens if manual extended thinking `thinking: {type: \"enabled\", budget_tokens: N}` is used on Claude Opus 4.7 or later models?",
+          "author": "independent_review",
+          "timestamp": "2026-08-20T19:46:01Z",
+          "reason": "CLAIM_SCOPE"
+        },
+        {
+          "revision": 2,
+          "field": "proposed_answer",
+          "from": "It is no longer supported on Claude Opus 4.",
+          "to": "It is no longer supported and returns a 400 error.",
+          "author": "independent_review",
+          "timestamp": "2026-08-20T19:46:01Z",
+          "reason": "CLAIM_SCOPE"
+        },
+        {
+          "revision": 3,
+          "field": "proposed_atomic_claims",
+          "from": [
+            "`thinking: {type: \"enabled\", budget_tokens: N}` is no longer supported on Claude Opus 4."
+          ],
+          "to": [
+            "`thinking: {type: \"enabled\", budget_tokens: N}` is no longer supported on Claude Opus 4.7 or later models.",
+            "Using it on those models returns a 400 error."
+          ],
+          "author": "independent_review",
+          "timestamp": "2026-08-20T19:46:01Z",
+          "reason": "CLAIM_SCOPE"
+        },
+        {
+          "revision": 4,
+          "field": "critical_strings",
+          "from": [
+            "thinking: {type: \"enabled\", budget_tokens: N}",
+            "no longer supported"
+          ],
+          "to": [
+            "Claude Opus 4.7 or later models",
+            "no longer supported",
+            "400 error"
+          ],
+          "author": "independent_review",
+          "timestamp": "2026-08-20T19:46:01Z",
+          "reason": "CLAIM_SCOPE"
+        }
+      ],
       "precheck_holdout_ready": true,
-      "precheck_failures": []
+      "precheck_failures": [],
+      "reasoning_type": "lifecycle",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "evidence_over_soft_cap": false,
+      "review_defect_classes": [
+        "CLAIM_SCOPE"
+      ],
+      "review_reason": "The generated answer said \"on Claude Opus 4\" where the source says \"on Claude Opus 4.7 or later models\" — a different and much broader claim. Root cause: the lifecycle pattern's tail capture stopped at the decimal point in \"4.7\". The evidence itself was always correct; only the generated wording was wrong. The pattern is fixed in rag_v1.gold.mining_v3 so it cannot recur.",
+      "verification": {
+        "reviewer": "independent_review",
+        "verdict": "FIX_REQUIRED",
+        "reviewed_at": "2026-08-20T19:46:01Z",
+        "verification_notes": "The generated answer said \"on Claude Opus 4\" where the source says \"on Claude Opus 4.7 or later models\" — a different and much broader claim. Root cause: the lifecycle pattern's tail capture stopped at the decimal point in \"4.7\". The evidence itself was always correct; only the generated wording was wrong. The pattern is fixed in rag_v1.gold.mining_v3 so it cannot recur."
+      }
     },
     {
       "candidate_id": "GOLD-B003-12",
@@ -519,7 +1007,7 @@
       "evidence_char_length": 226,
       "context_before": "or with the `max_uses_exceeded` error code.\n\nSimple factual queries typically use 1–3 searches; comparative or multientity research can use 10 or more. For guidance on choosing a value, see [Server tools](https://platform.claude.com/docs/en/agents-and-tools/tool-use/server-tools).\n\n### Domain filtering\n\nProvide `allowed_domains` or `blocked_domains`, not both. If a request includes both, the API returns a 400 error. Entries are bare domains with an optional path, for example `example.com` or `example.com/blog`, without a scheme.\n\nFor the full domain filtering rules, see [Domain filtering](https://platform.claude.com/docs/en/agents-and-tools/tool-use/server-tools#domain-filtering) in the Server tools guide.\n\n### Localization\n\nThe `user_location` parameter allows you to localize search results based on a user's location. Provide at least one of `city`, `region`, `country`, or `timezone`.\n\n",
       "context_after": "\n* `city`: The city name\n* `region`: The region or state\n* `country`: The two-letter [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code. The API rejects unsupported country codes with a 400 error.\n* `timezone`: The [IANA timezone ID](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).\n\n### Response inclusion\n\n<Note>\n  Requires `web_search_20260318` or later.\n</Note>\n\nThe `response_inclusion` parameter controls how search result blocks appear in the API response when the result was consumed by a completed [code execution](https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool) call in the same turn. Set `\"response_inclusion\": \"excluded\"` to drop those nested `server_tool_use` and result block pairs entirely from the response, reducing output token costs for agentic workflows that don't need to echo raw search content b",
-      "proposed_category": "multi_hop",
+      "proposed_category": "exact_lookup",
       "proposed_question": "What do the `type` and `country` options specify in Localization?",
       "proposed_answer": "The type of location (must be `approximate`). The two-letter [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code. The API rejects unsupported country codes with a 400 error.",
       "proposed_atomic_claims": [
@@ -536,7 +1024,7 @@
       "candidate_type": "supported",
       "generator_confidence": "medium",
       "needs_human_interpretation": true,
-      "verification_status": "candidate_unverified",
+      "verification_status": "needs_human_review",
       "claude_proposed": true,
       "chatgpt_verified": null,
       "retrieval_was_not_run": true,
@@ -571,7 +1059,22 @@
       ],
       "multi_hop_note": "Two independently anchored spans. A retriever earns credit only by finding both, and each claim is checked against the span it came from. The question asks for both facts; it does not ask the reader to derive a third, because the source does not state one.",
       "precheck_holdout_ready": true,
-      "precheck_failures": []
+      "precheck_failures": [],
+      "reasoning_type": "exact_lookup",
+      "evidence_shape": "multi_span",
+      "requires_all_evidence": true,
+      "not_genuine_multi_hop": "Two independent facts from two spans. The answer is the two facts, not a third derived from them, so this is a multi-span retrieval test and does not count toward the genuine multi-hop target.",
+      "evidence_over_soft_cap": false,
+      "review_defect_classes": [
+        "CATEGORY_MISCLASSIFICATION"
+      ],
+      "review_reason": "Two independent facts retrieved from two spans is a multi-span retrieval test, not multi-hop reasoning: the answer is the two facts, not a third derived from them. These four keep their value as retrieval tests and none of them counts toward the project's genuine multi-hop target, which stands at zero.",
+      "verification": {
+        "reviewer": "independent_review",
+        "verdict": "FIX_REQUIRED",
+        "reviewed_at": "2026-08-20T19:46:01Z",
+        "verification_notes": "Two independent facts retrieved from two spans is a multi-span retrieval test, not multi-hop reasoning: the answer is the two facts, not a third derived from them. These four keep their value as retrieval tests and none of them counts toward the project's genuine multi-hop target, which stands at zero."
+      }
     },
     {
       "candidate_id": "GOLD-B003-13",
@@ -592,26 +1095,90 @@
       "context_before": "ty identity fields.\n\nYou do not need to resolve every pending approval in the same pass. `interruptions` can contain a mix of regular function tools, hosted MCP approvals, and nested `Agent.as_tool()` approvals. If you rerun after approving or rejecting only some items, those resolved calls can continue while unresolved ones remain in `interruptions` and pause the run again.\n\n## Custom rejection messages\n\nBy default, a rejected tool call returns the SDK's standard rejection text back into the run. You can customize that message in two layers:\n\n-   Run-wide fallback: set [`RunConfig.tool_error_formatter`][agents.run.RunConfig.tool_error_formatter] to control the default model-visible message for approval rejections across the whole run.\n-   Per-call override: pass `rejection_message=...` to `state.reject(...)` when you want one specific rejected tool call to surface a different message.\n\n",
       "context_after": "\n\n```python\nfrom agents import RunConfig, ToolErrorFormatterArgs\n\n\ndef format_rejection(args: ToolErrorFormatterArgs[None]) -> str | None:\n    if args.kind != \"approval_rejected\":\n        return None\n    return \"Publish action was canceled because approval was rejected.\"\n\n\nrun_config = RunConfig(tool_error_formatter=format_rejection)\n\n# Later, while resolving a specific interruption:\nstate.reject(\n    interruption,\n    rejection_message=\"Publish action was canceled because the reviewer denied approval.\",\n)\n```\n\nSee [`examples/agent_patterns/human_in_the_loop_custom_rejection.py`](https://github.com/openai/openai-agents-python/tree/main/examples/agent_patterns/human_in_the_loop_custom_rejection.py) for a complete example that shows both layers together.\n\n## Automatic approval decisions\n\nManual `interruptions` are the most general pattern, but they are not the only one:\n\n-   Local [`ShellT",
       "proposed_category": "configuration_interaction",
-      "proposed_question": "What does `rejection_message` take precedence over?",
-      "proposed_answer": "The run-wide formatter.",
+      "proposed_question": "If both a per-call `rejection_message` and the run-wide formatter are provided, which one takes precedence?",
+      "proposed_answer": "The per-call `rejection_message`.",
       "proposed_atomic_claims": [
-        "`rejection_message` takes precedence over the run-wide formatter."
+        "If both are provided, the per-call `rejection_message` takes precedence over the run-wide formatter."
       ],
       "critical_strings": [
-        "rejection_message"
+        "If both are provided",
+        "rejection_message",
+        "run-wide formatter"
       ],
       "evidence_kind": "normative_statement",
       "candidate_type": "supported",
       "generator_confidence": "high",
       "needs_human_interpretation": false,
-      "verification_status": "candidate_unverified",
+      "verification_status": "needs_human_review",
       "claude_proposed": true,
       "chatgpt_verified": null,
       "retrieval_was_not_run": true,
       "schema_version": "1.1",
-      "revisions": [],
+      "revisions": [
+        {
+          "revision": 1,
+          "field": "proposed_question",
+          "from": "What does `rejection_message` take precedence over?",
+          "to": "If both a per-call `rejection_message` and the run-wide formatter are provided, which one takes precedence?",
+          "author": "independent_review",
+          "timestamp": "2026-08-20T19:46:01Z",
+          "reason": "QUESTION_SCOPE, CLAIM_SCOPE"
+        },
+        {
+          "revision": 2,
+          "field": "proposed_answer",
+          "from": "The run-wide formatter.",
+          "to": "The per-call `rejection_message`.",
+          "author": "independent_review",
+          "timestamp": "2026-08-20T19:46:01Z",
+          "reason": "QUESTION_SCOPE, CLAIM_SCOPE"
+        },
+        {
+          "revision": 3,
+          "field": "proposed_atomic_claims",
+          "from": [
+            "`rejection_message` takes precedence over the run-wide formatter."
+          ],
+          "to": [
+            "If both are provided, the per-call `rejection_message` takes precedence over the run-wide formatter."
+          ],
+          "author": "independent_review",
+          "timestamp": "2026-08-20T19:46:01Z",
+          "reason": "QUESTION_SCOPE, CLAIM_SCOPE"
+        },
+        {
+          "revision": 4,
+          "field": "critical_strings",
+          "from": [
+            "rejection_message"
+          ],
+          "to": [
+            "If both are provided",
+            "rejection_message",
+            "run-wide formatter"
+          ],
+          "author": "independent_review",
+          "timestamp": "2026-08-20T19:46:01Z",
+          "reason": "QUESTION_SCOPE, CLAIM_SCOPE"
+        }
+      ],
       "precheck_holdout_ready": true,
-      "precheck_failures": []
+      "precheck_failures": [],
+      "reasoning_type": "configuration_interaction",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "evidence_over_soft_cap": false,
+      "review_defect_classes": [
+        "QUESTION_SCOPE",
+        "CLAIM_SCOPE"
+      ],
+      "review_reason": "The question and claim dropped the \"If both are provided\" condition.",
+      "verification": {
+        "reviewer": "independent_review",
+        "verdict": "FIX_REQUIRED",
+        "reviewed_at": "2026-08-20T19:46:01Z",
+        "verification_notes": "The question and claim dropped the \"If both are provided\" condition."
+      }
     },
     {
       "candidate_id": "GOLD-B003-14",
@@ -631,26 +1198,90 @@
       "context_before": "t bearer and AWS credential options are mutually exclusive.\n\nPass `base_url` to `bedrock(...)` or set `AWS_BEDROCK_BASE_URL` to override the derived `https://bedrock-mantle.<region>.api.aws/openai/v1` endpoint.\n\nSigV4 requests require replayable, fully serialized request bodies. Standard JSON requests already meet this requirement, and response streaming is unaffected. Low-level one-shot request streams must be buffered before sending, or sent with bearer authentication and retries disabled.\n\nBearer tokens remain available as a compatibility or manual authentication mode. Set `AWS_BEARER_TOKEN_BEDROCK` to an [Amazon Bedrock API key](https://docs.aws.amazon.com/bedrock/latest/userguide/api-keys.html), pass `api_key`, or provide a refresh callback:\n\n```py\nclient = OpenAI(\n    provider=bedrock(\n        region=\"us-west-2\",\n        token_provider=lambda: refresh_bedrock_token(),\n    )\n)\n```\n\n",
       "context_after": "\n\n### Legacy `BedrockOpenAI` client\n\n`BedrockOpenAI` and `AsyncBedrockOpenAI` remain available for existing applications and delegate to the same provider implementation. New applications should prefer `OpenAI(provider=bedrock(...))`.\n\n```py\nfrom openai import BedrockOpenAI\n\nclient = BedrockOpenAI(\n    aws_region=\"us-west-2\",\n    aws_profile=\"my-profile\",\n)\n```\n\nThe legacy module client also continues to support `openai.api_type = \"amazon-bedrock\"` or `OPENAI_API_TYPE=amazon-bedrock`.\n\n## Versioning\n\nThis package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions, though certain backwards-incompatible changes may be released as minor versions:\n\n1. Changes that only affect static types, without breaking runtime behavior.\n2. Changes to library internals which are technically public but not intended or documented for external use. _(Please open a GitHub issue to let",
       "proposed_category": "configuration_interaction",
-      "proposed_question": "What does `AWS_BEARER_TOKEN_BEDROCK` take precedence over?",
-      "proposed_answer": "The default AWS credential chain for backwards compatibility.",
+      "proposed_question": "Without explicit authentication, what does `AWS_BEARER_TOKEN_BEDROCK` take precedence over?",
+      "proposed_answer": "The default AWS credential chain.",
       "proposed_atomic_claims": [
-        "`AWS_BEARER_TOKEN_BEDROCK` takes precedence over the default AWS credential chain for backwards compatibility."
+        "Without explicit authentication, `AWS_BEARER_TOKEN_BEDROCK` takes precedence over the default AWS credential chain."
       ],
       "critical_strings": [
-        "AWS_BEARER_TOKEN_BEDROCK"
+        "Without explicit authentication",
+        "AWS_BEARER_TOKEN_BEDROCK",
+        "default AWS credential chain"
       ],
       "evidence_kind": "normative_statement",
       "candidate_type": "supported",
       "generator_confidence": "high",
       "needs_human_interpretation": false,
-      "verification_status": "candidate_unverified",
+      "verification_status": "needs_human_review",
       "claude_proposed": true,
       "chatgpt_verified": null,
       "retrieval_was_not_run": true,
       "schema_version": "1.1",
-      "revisions": [],
+      "revisions": [
+        {
+          "revision": 1,
+          "field": "proposed_question",
+          "from": "What does `AWS_BEARER_TOKEN_BEDROCK` take precedence over?",
+          "to": "Without explicit authentication, what does `AWS_BEARER_TOKEN_BEDROCK` take precedence over?",
+          "author": "independent_review",
+          "timestamp": "2026-08-20T19:46:01Z",
+          "reason": "QUESTION_SCOPE, CLAIM_SCOPE"
+        },
+        {
+          "revision": 2,
+          "field": "proposed_answer",
+          "from": "The default AWS credential chain for backwards compatibility.",
+          "to": "The default AWS credential chain.",
+          "author": "independent_review",
+          "timestamp": "2026-08-20T19:46:01Z",
+          "reason": "QUESTION_SCOPE, CLAIM_SCOPE"
+        },
+        {
+          "revision": 3,
+          "field": "proposed_atomic_claims",
+          "from": [
+            "`AWS_BEARER_TOKEN_BEDROCK` takes precedence over the default AWS credential chain for backwards compatibility."
+          ],
+          "to": [
+            "Without explicit authentication, `AWS_BEARER_TOKEN_BEDROCK` takes precedence over the default AWS credential chain."
+          ],
+          "author": "independent_review",
+          "timestamp": "2026-08-20T19:46:01Z",
+          "reason": "QUESTION_SCOPE, CLAIM_SCOPE"
+        },
+        {
+          "revision": 4,
+          "field": "critical_strings",
+          "from": [
+            "AWS_BEARER_TOKEN_BEDROCK"
+          ],
+          "to": [
+            "Without explicit authentication",
+            "AWS_BEARER_TOKEN_BEDROCK",
+            "default AWS credential chain"
+          ],
+          "author": "independent_review",
+          "timestamp": "2026-08-20T19:46:01Z",
+          "reason": "QUESTION_SCOPE, CLAIM_SCOPE"
+        }
+      ],
       "precheck_holdout_ready": true,
-      "precheck_failures": []
+      "precheck_failures": [],
+      "reasoning_type": "configuration_interaction",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "evidence_over_soft_cap": false,
+      "review_defect_classes": [
+        "QUESTION_SCOPE",
+        "CLAIM_SCOPE"
+      ],
+      "review_reason": "The question and claim dropped the authentication condition.",
+      "verification": {
+        "reviewer": "independent_review",
+        "verdict": "FIX_REQUIRED",
+        "reviewed_at": "2026-08-20T19:46:01Z",
+        "verification_notes": "The question and claim dropped the authentication condition."
+      }
     },
     {
       "candidate_id": "GOLD-B003-15",
@@ -684,14 +1315,25 @@
       "candidate_type": "supported",
       "generator_confidence": "high",
       "needs_human_interpretation": false,
-      "verification_status": "candidate_unverified",
+      "verification_status": "needs_human_review",
       "claude_proposed": true,
       "chatgpt_verified": null,
       "retrieval_was_not_run": true,
       "schema_version": "1.1",
       "revisions": [],
       "precheck_holdout_ready": true,
-      "precheck_failures": []
+      "precheck_failures": [],
+      "reasoning_type": "exact_lookup",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "evidence_over_soft_cap": false,
+      "review_defect_classes": [],
+      "verification": {
+        "reviewer": "independent_review",
+        "verdict": "PASS",
+        "reviewed_at": "2026-08-20T19:46:01Z",
+        "verification_notes": "Clean as written; no revision required."
+      }
     },
     {
       "candidate_id": "GOLD-B003-16",
@@ -706,35 +1348,133 @@
         "Chat Completions Events",
         "ChunkEvent"
       ],
-      "char_start": 5603,
+      "char_start": 5518,
       "char_end": 5672,
-      "evidence_text": "- `chunk`: The raw `ChatCompletionChunk` object received from the API",
-      "evidence_hash": "f13394b4a4561189602615505bf3805211e0b53465ae8a0cb23b0dbb713da1fc",
-      "evidence_char_length": 69,
-      "context_before": " event.type == 'content.delta':\n            print(event.content, flush=True, end='')\n```\n\nWhen the context manager is entered, a `ChatCompletionStream` / `AsyncChatCompletionStream` instance is returned which, like `.create(stream=True)` is an iterator in the sync client and an async iterator in the async client. The full list of events that are yielded by the iterator are outlined [below](#chat-completions-events).\n\nWhen the context manager exits, the response will be closed, however the `stream` instance is still available outside\nthe context manager.\n\n### Chat Completions Events\n\nThese events allow you to track the progress of the chat completion generation, access partial results, and handle different aspects of the stream separately.\n\nBelow is a list of the different event types you may encounter:\n\n#### ChunkEvent\n\nEmitted for every chunk received from the API.\n\n- `type`: `\"chunk\"`\n",
+      "evidence_text": "#### ChunkEvent\n\nEmitted for every chunk received from the API.\n\n- `type`: `\"chunk\"`\n- `chunk`: The raw `ChatCompletionChunk` object received from the API",
+      "evidence_hash": "e06211303ca4c18bcde7d0ff55b0f4ee061028ba58386fcec49b2f42594a3c2d",
+      "evidence_char_length": 154,
+      "context_before": "24-08-06',\n    messages=[...],\n) as stream:\n    async for event in stream:\n        if event.type == 'content.delta':\n            print(event.content, flush=True, end='')\n```\n\nWhen the context manager is entered, a `ChatCompletionStream` / `AsyncChatCompletionStream` instance is returned which, like `.create(stream=True)` is an iterator in the sync client and an async iterator in the async client. The full list of events that are yielded by the iterator are outlined [below](#chat-completions-events).\n\nWhen the context manager exits, the response will be closed, however the `stream` instance is still available outside\nthe context manager.\n\n### Chat Completions Events\n\nThese events allow you to track the progress of the chat completion generation, access partial results, and handle different aspects of the stream separately.\n\nBelow is a list of the different event types you may encounter:\n\n",
       "context_after": "\n- `snapshot`: The current accumulated state of the chat completion\n\n#### ContentDeltaEvent\n\nEmitted for every chunk containing new content.\n\n- `type`: `\"content.delta\"`\n- `delta`: The new content string received in this chunk\n- `snapshot`: The accumulated content so far\n- `parsed`: The partially parsed content (if applicable)\n\n#### ContentDoneEvent\n\nEmitted when the content generation is complete. May be fired multiple times if there are multiple choices.\n\n- `type`: `\"content.done\"`\n- `content`: The full generated content\n- `parsed`: The fully parsed content (if applicable)\n\n#### RefusalDeltaEvent\n\nEmitted when a chunk contains part of a content refusal.\n\n- `type`: `\"refusal.delta\"`\n- `delta`: The new refusal content string received in this chunk\n- `snapshot`: The accumulated refusal content string so far\n\n#### RefusalDoneEvent\n\nEmitted when the refusal content is complete.\n\n- `type`: `",
       "proposed_category": "exact_constraint",
-      "proposed_question": "What is the `chunk` option?",
+      "proposed_question": "In a Chat Completions `ChunkEvent`, what does the `chunk` field contain?",
       "proposed_answer": "The raw `ChatCompletionChunk` object received from the API.",
       "proposed_atomic_claims": [
-        "`chunk`: The raw `ChatCompletionChunk` object received from the API."
+        "The `chunk` field of a Chat Completions `ChunkEvent` contains the raw `ChatCompletionChunk` object received from the API."
       ],
       "critical_strings": [
+        "ChunkEvent",
         "chunk",
-        "The raw `ChatCompletionChunk` object received from the API"
+        "ChatCompletionChunk",
+        "received from the API"
       ],
       "evidence_kind": "definition_bullet",
       "candidate_type": "supported",
       "generator_confidence": "high",
       "needs_human_interpretation": false,
-      "verification_status": "candidate_unverified",
+      "verification_status": "needs_human_review",
       "claude_proposed": true,
       "chatgpt_verified": null,
       "retrieval_was_not_run": true,
       "schema_version": "1.1",
-      "revisions": [],
+      "revisions": [
+        {
+          "revision": 1,
+          "field": "proposed_question",
+          "from": "What is the `chunk` option?",
+          "to": "In a Chat Completions `ChunkEvent`, what does the `chunk` field contain?",
+          "author": "independent_review",
+          "timestamp": "2026-08-20T19:46:01Z",
+          "reason": "EVIDENCE_BOUNDARY, QUESTION_SCOPE"
+        },
+        {
+          "revision": 2,
+          "field": "proposed_atomic_claims",
+          "from": [
+            "`chunk`: The raw `ChatCompletionChunk` object received from the API."
+          ],
+          "to": [
+            "The `chunk` field of a Chat Completions `ChunkEvent` contains the raw `ChatCompletionChunk` object received from the API."
+          ],
+          "author": "independent_review",
+          "timestamp": "2026-08-20T19:46:01Z",
+          "reason": "EVIDENCE_BOUNDARY, QUESTION_SCOPE"
+        },
+        {
+          "revision": 3,
+          "field": "critical_strings",
+          "from": [
+            "chunk",
+            "The raw `ChatCompletionChunk` object received from the API"
+          ],
+          "to": [
+            "ChunkEvent",
+            "chunk",
+            "ChatCompletionChunk",
+            "received from the API"
+          ],
+          "author": "independent_review",
+          "timestamp": "2026-08-20T19:46:01Z",
+          "reason": "EVIDENCE_BOUNDARY, QUESTION_SCOPE"
+        }
+      ],
       "precheck_holdout_ready": true,
-      "precheck_failures": []
+      "precheck_failures": [],
+      "anchor_revisions": [
+        {
+          "revision": 1,
+          "reason": "EVENT_TYPE_SCOPE_COMPLETION",
+          "why": "Adds the event-type heading that scopes the field, 85 characters.",
+          "old_spans": [
+            {
+              "char_start": 5603,
+              "char_end": 5672,
+              "evidence_hash": "f13394b4a4561189602615505bf3805211e0b53465ae8a0cb23b0dbb713da1fc"
+            }
+          ],
+          "new_spans": [
+            {
+              "char_start": 5518,
+              "char_end": 5672,
+              "evidence_hash": "e06211303ca4c18bcde7d0ff55b0f4ee061028ba58386fcec49b2f42594a3c2d",
+              "evidence_char_length": 154
+            }
+          ],
+          "author": "claude",
+          "directed_by": "independent_review",
+          "timestamp": "2026-08-20T19:46:01Z"
+        }
+      ],
+      "expected_evidence": [
+        {
+          "version_id": "ver_57e26a49b0a3714f3e90376d014d7f52",
+          "char_start": 5518,
+          "char_end": 5672,
+          "section_path": [
+            "Streaming Helpers",
+            "Chat Completions API",
+            "Chat Completions Events",
+            "ChunkEvent"
+          ],
+          "evidence_text": "#### ChunkEvent\n\nEmitted for every chunk received from the API.\n\n- `type`: `\"chunk\"`\n- `chunk`: The raw `ChatCompletionChunk` object received from the API",
+          "evidence_hash": "e06211303ca4c18bcde7d0ff55b0f4ee061028ba58386fcec49b2f42594a3c2d",
+          "evidence_char_length": 154
+        }
+      ],
+      "reasoning_type": "exact_lookup",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "evidence_over_soft_cap": false,
+      "review_defect_classes": [
+        "EVIDENCE_BOUNDARY",
+        "QUESTION_SCOPE"
+      ],
+      "review_reason": "`chunk` is generic; the anchor did not name the event type.",
+      "verification": {
+        "reviewer": "independent_review",
+        "verdict": "FIX_REQUIRED",
+        "reviewed_at": "2026-08-20T19:46:01Z",
+        "verification_notes": "`chunk` is generic; the anchor did not name the event type."
+      }
     },
     {
       "candidate_id": "GOLD-B003-17",
@@ -749,35 +1489,140 @@
         "Chat Completions Events",
         "ContentDeltaEvent"
       ],
-      "char_start": 5944,
+      "char_start": 5741,
       "char_end": 6000,
-      "evidence_text": "- `parsed`: The partially parsed content (if applicable)",
-      "evidence_hash": "a02a17c174d7178d5bf898d59679c0395d296a1b7c1df04e2051351929b45367",
-      "evidence_char_length": 56,
-      "context_before": "at are yielded by the iterator are outlined [below](#chat-completions-events).\n\nWhen the context manager exits, the response will be closed, however the `stream` instance is still available outside\nthe context manager.\n\n### Chat Completions Events\n\nThese events allow you to track the progress of the chat completion generation, access partial results, and handle different aspects of the stream separately.\n\nBelow is a list of the different event types you may encounter:\n\n#### ChunkEvent\n\nEmitted for every chunk received from the API.\n\n- `type`: `\"chunk\"`\n- `chunk`: The raw `ChatCompletionChunk` object received from the API\n- `snapshot`: The current accumulated state of the chat completion\n\n#### ContentDeltaEvent\n\nEmitted for every chunk containing new content.\n\n- `type`: `\"content.delta\"`\n- `delta`: The new content string received in this chunk\n- `snapshot`: The accumulated content so far\n",
+      "evidence_text": "#### ContentDeltaEvent\n\nEmitted for every chunk containing new content.\n\n- `type`: `\"content.delta\"`\n- `delta`: The new content string received in this chunk\n- `snapshot`: The accumulated content so far\n- `parsed`: The partially parsed content (if applicable)",
+      "evidence_hash": "f3a7e4d49ba92f2c66d4421fc1b8e56c6c1da2a7607df39db8ca0794efbac3d9",
+      "evidence_char_length": 259,
+      "context_before": "letionStream` / `AsyncChatCompletionStream` instance is returned which, like `.create(stream=True)` is an iterator in the sync client and an async iterator in the async client. The full list of events that are yielded by the iterator are outlined [below](#chat-completions-events).\n\nWhen the context manager exits, the response will be closed, however the `stream` instance is still available outside\nthe context manager.\n\n### Chat Completions Events\n\nThese events allow you to track the progress of the chat completion generation, access partial results, and handle different aspects of the stream separately.\n\nBelow is a list of the different event types you may encounter:\n\n#### ChunkEvent\n\nEmitted for every chunk received from the API.\n\n- `type`: `\"chunk\"`\n- `chunk`: The raw `ChatCompletionChunk` object received from the API\n- `snapshot`: The current accumulated state of the chat completion\n\n",
       "context_after": "\n\n#### ContentDoneEvent\n\nEmitted when the content generation is complete. May be fired multiple times if there are multiple choices.\n\n- `type`: `\"content.done\"`\n- `content`: The full generated content\n- `parsed`: The fully parsed content (if applicable)\n\n#### RefusalDeltaEvent\n\nEmitted when a chunk contains part of a content refusal.\n\n- `type`: `\"refusal.delta\"`\n- `delta`: The new refusal content string received in this chunk\n- `snapshot`: The accumulated refusal content string so far\n\n#### RefusalDoneEvent\n\nEmitted when the refusal content is complete.\n\n- `type`: `\"refusal.done\"`\n- `refusal`: The full refusal content\n\n#### FunctionToolCallArgumentsDeltaEvent\n\nEmitted when a chunk contains part of a function tool call's arguments.\n\n- `type`: `\"tool_calls.function.arguments.delta\"`\n- `name`: The name of the function being called\n- `index`: The index of the tool call\n- `arguments`: The acc",
       "proposed_category": "exact_constraint",
-      "proposed_question": "What is the `parsed` option?",
-      "proposed_answer": "The partially parsed content (if applicable).",
+      "proposed_question": "In a Chat Completions `ContentDeltaEvent`, what does the `parsed` field contain?",
+      "proposed_answer": "The partially parsed content, if applicable.",
       "proposed_atomic_claims": [
-        "`parsed`: The partially parsed content (if applicable)."
+        "In `ContentDeltaEvent`, the `parsed` field contains the partially parsed content, if applicable."
       ],
       "critical_strings": [
+        "ContentDeltaEvent",
         "parsed",
-        "The partially parsed content (if applicable"
+        "The partially parsed content (if applicable)"
       ],
       "evidence_kind": "definition_bullet",
       "candidate_type": "supported",
       "generator_confidence": "high",
       "needs_human_interpretation": false,
-      "verification_status": "candidate_unverified",
+      "verification_status": "needs_human_review",
       "claude_proposed": true,
       "chatgpt_verified": null,
       "retrieval_was_not_run": true,
       "schema_version": "1.1",
-      "revisions": [],
+      "revisions": [
+        {
+          "revision": 1,
+          "field": "proposed_question",
+          "from": "What is the `parsed` option?",
+          "to": "In a Chat Completions `ContentDeltaEvent`, what does the `parsed` field contain?",
+          "author": "independent_review",
+          "timestamp": "2026-08-20T19:46:01Z",
+          "reason": "EVIDENCE_BOUNDARY, QUESTION_SCOPE"
+        },
+        {
+          "revision": 2,
+          "field": "proposed_answer",
+          "from": "The partially parsed content (if applicable).",
+          "to": "The partially parsed content, if applicable.",
+          "author": "independent_review",
+          "timestamp": "2026-08-20T19:46:01Z",
+          "reason": "EVIDENCE_BOUNDARY, QUESTION_SCOPE"
+        },
+        {
+          "revision": 3,
+          "field": "proposed_atomic_claims",
+          "from": [
+            "`parsed`: The partially parsed content (if applicable)."
+          ],
+          "to": [
+            "In `ContentDeltaEvent`, the `parsed` field contains the partially parsed content, if applicable."
+          ],
+          "author": "independent_review",
+          "timestamp": "2026-08-20T19:46:01Z",
+          "reason": "EVIDENCE_BOUNDARY, QUESTION_SCOPE"
+        },
+        {
+          "revision": 4,
+          "field": "critical_strings",
+          "from": [
+            "parsed",
+            "The partially parsed content (if applicable"
+          ],
+          "to": [
+            "ContentDeltaEvent",
+            "parsed",
+            "The partially parsed content (if applicable)"
+          ],
+          "author": "independent_review",
+          "timestamp": "2026-08-20T19:46:01Z",
+          "reason": "EVIDENCE_BOUNDARY, QUESTION_SCOPE"
+        }
+      ],
       "precheck_holdout_ready": true,
-      "precheck_failures": []
+      "precheck_failures": [],
+      "anchor_revisions": [
+        {
+          "revision": 1,
+          "reason": "EVENT_TYPE_SCOPE_COMPLETION",
+          "why": "Adds the event-type heading and the sibling fields, 259 characters. `parsed` appears on several event types with different meanings, so the event type is the claim.",
+          "old_spans": [
+            {
+              "char_start": 5944,
+              "char_end": 6000,
+              "evidence_hash": "a02a17c174d7178d5bf898d59679c0395d296a1b7c1df04e2051351929b45367"
+            }
+          ],
+          "new_spans": [
+            {
+              "char_start": 5741,
+              "char_end": 6000,
+              "evidence_hash": "f3a7e4d49ba92f2c66d4421fc1b8e56c6c1da2a7607df39db8ca0794efbac3d9",
+              "evidence_char_length": 259
+            }
+          ],
+          "author": "claude",
+          "directed_by": "independent_review",
+          "timestamp": "2026-08-20T19:46:01Z"
+        }
+      ],
+      "expected_evidence": [
+        {
+          "version_id": "ver_57e26a49b0a3714f3e90376d014d7f52",
+          "char_start": 5741,
+          "char_end": 6000,
+          "section_path": [
+            "Streaming Helpers",
+            "Chat Completions API",
+            "Chat Completions Events",
+            "ContentDeltaEvent"
+          ],
+          "evidence_text": "#### ContentDeltaEvent\n\nEmitted for every chunk containing new content.\n\n- `type`: `\"content.delta\"`\n- `delta`: The new content string received in this chunk\n- `snapshot`: The accumulated content so far\n- `parsed`: The partially parsed content (if applicable)",
+          "evidence_hash": "f3a7e4d49ba92f2c66d4421fc1b8e56c6c1da2a7607df39db8ca0794efbac3d9",
+          "evidence_char_length": 259
+        }
+      ],
+      "reasoning_type": "exact_lookup",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "evidence_over_soft_cap": false,
+      "review_defect_classes": [
+        "EVIDENCE_BOUNDARY",
+        "QUESTION_SCOPE"
+      ],
+      "review_reason": "`parsed` occurs on `ContentDeltaEvent` and `ContentDoneEvent` with different meanings; the anchor did not distinguish them.",
+      "verification": {
+        "reviewer": "independent_review",
+        "verdict": "FIX_REQUIRED",
+        "reviewed_at": "2026-08-20T19:46:01Z",
+        "verification_notes": "`parsed` occurs on `ContentDeltaEvent` and `ContentDoneEvent` with different meanings; the anchor did not distinguish them."
+      }
     },
     {
       "candidate_id": "GOLD-B003-18",
@@ -797,7 +1642,7 @@
       "evidence_char_length": 270,
       "context_before": "e model should pick that handoff without writing a full `handoff()` object.\n\nYou can create a handoff using the [`handoff()`][agents.handoffs.handoff] function provided by the Agents SDK. This function allows you to specify the agent to hand off to, along with optional overrides and input filters.\n\n### Basic usage\n\nHere's how you can create a simple handoff:\n\n```python\nfrom agents import Agent, handoff\n\nbilling_agent = Agent(name=\"Billing agent\")\nrefund_agent = Agent(name=\"Refund agent\")\n\n# (1)!\ntriage_agent = Agent(name=\"Triage agent\", handoffs=[billing_agent, handoff(refund_agent)])\n```\n\n1. You can use the agent directly (as in `billing_agent`), or you can use the `handoff()` function.\n\n### Customizing handoffs via the `handoff()` function\n\nThe [`handoff()`][agents.handoffs.handoff] function lets you customize things.\n\n-   `agent`: This is the agent to which things will be handed off.\n",
       "context_after": "\n-   `tool_description_override`: Override the default tool description from `Handoff.default_tool_description()`\n-   `on_handoff`: A callback function executed when the handoff is invoked. This is useful for things like kicking off some data fetching as soon as you know a handoff is being invoked. This function receives the agent context, and can optionally also receive LLM generated input. The input data is controlled by the `input_type` param.\n-   `input_type`: The schema for the handoff tool-call arguments. When set, the parsed payload is passed to `on_handoff`.\n-   `input_filter`: This lets you filter the input received by the next agent. See below for more.\n-   `is_enabled`: Whether the handoff is enabled. This can be a boolean or a function that returns a boolean, allowing you to dynamically enable or disable the handoff at runtime.\n-   `nest_handoff_history`: Optional per-handoff",
-      "proposed_category": "multi_hop",
+      "proposed_category": "exact_lookup",
       "proposed_question": "What do the `tool_name_override` and `tool_description_override` options specify in Customizing handoffs via the `handoff()` function?",
       "proposed_answer": "By default, the `Handoff.default_tool_name()` function is used, which resolves to `transfer_to_<agent_name>`. You can override this. Override the default tool description from `Handoff.default_tool_description()`.",
       "proposed_atomic_claims": [
@@ -814,7 +1659,7 @@
       "candidate_type": "supported",
       "generator_confidence": "medium",
       "needs_human_interpretation": true,
-      "verification_status": "candidate_unverified",
+      "verification_status": "needs_human_review",
       "claude_proposed": true,
       "chatgpt_verified": null,
       "retrieval_was_not_run": true,
@@ -849,7 +1694,22 @@
       ],
       "multi_hop_note": "Two independently anchored spans. A retriever earns credit only by finding both, and each claim is checked against the span it came from. The question asks for both facts; it does not ask the reader to derive a third, because the source does not state one.",
       "precheck_holdout_ready": true,
-      "precheck_failures": []
+      "precheck_failures": [],
+      "reasoning_type": "exact_lookup",
+      "evidence_shape": "multi_span",
+      "requires_all_evidence": true,
+      "not_genuine_multi_hop": "Two independent facts from two spans. The answer is the two facts, not a third derived from them, so this is a multi-span retrieval test and does not count toward the genuine multi-hop target.",
+      "evidence_over_soft_cap": false,
+      "review_defect_classes": [
+        "CATEGORY_MISCLASSIFICATION"
+      ],
+      "review_reason": "Two independent facts retrieved from two spans is a multi-span retrieval test, not multi-hop reasoning: the answer is the two facts, not a third derived from them. These four keep their value as retrieval tests and none of them counts toward the project's genuine multi-hop target, which stands at zero.",
+      "verification": {
+        "reviewer": "independent_review",
+        "verdict": "FIX_REQUIRED",
+        "reviewed_at": "2026-08-20T19:46:01Z",
+        "verification_notes": "Two independent facts retrieved from two spans is a multi-span retrieval test, not multi-hop reasoning: the answer is the two facts, not a third derived from them. These four keep their value as retrieval tests and none of them counts toward the project's genuine multi-hop target, which stands at zero."
+      }
     },
     {
       "candidate_id": "GOLD-B003-19",
@@ -865,14 +1725,14 @@
         "Run config details",
         "`tool_error_formatter`"
       ],
-      "char_start": 15366,
+      "char_start": 15267,
       "char_end": 15450,
-      "evidence_text": "-   `kind`: The error category, such as `\"approval_rejected\"` or `\"tool_not_found\"`.",
-      "evidence_hash": "66c10c152e829a91560c0261f85055982554064105e911b1300c8f98599a55c6",
-      "evidence_char_length": 190,
-      "context_before": "erable. In that mode, the SDK appends a `function_call_output` for the unresolved tool call and runs the model again, so the model can choose an available tool or answer without using that tool.\n\n```python\nfrom agents import Agent, RunConfig, Runner\n\nagent = Agent(name=\"Assistant\", tools=[...])\n\nresult = await Runner.run(\n    agent,\n    \"Handle this request with the available tools.\",\n    run_config=RunConfig(tool_not_found_behavior=\"return_error_to_model\"),\n)\n```\n\nThis option currently applies only to function tool calls that fail tool-name lookup. Other invalid tool payloads continue to use their existing error behavior.\n\n##### `tool_error_formatter`\n\nUse `tool_error_formatter` to customize the message that is returned to the model when the SDK creates a model-visible tool error output.\n\nThe formatter receives [`ToolErrorFormatterArgs`][agents.run_config.ToolErrorFormatterArgs] with:\n\n",
-      "context_after": "\n-   `tool_type`: The tool runtime (`\"function\"`, `\"computer\"`, `\"shell\"`, `\"apply_patch\"`, or `\"custom\"`).\n-   `tool_name`: The tool name.\n-   `call_id`: The tool call ID.\n-   `default_message`: The SDK's default model-visible message.\n-   `run_context`: The active run context wrapper.\n\nReturn a string to replace the message, or `None` to use the SDK default.\n\n```python\nfrom agents import Agent, RunConfig, Runner, ToolErrorFormatterArgs\n\n\ndef format_rejection(args: ToolErrorFormatterArgs[None]) -> str | None:\n    if args.kind == \"approval_rejected\":\n        return (\n            f\"Tool call '{args.tool_name}' was rejected by a human reviewer. \"\n            \"Ask for confirmation or propose a safer alternative.\"\n        )\n    if args.kind == \"tool_not_found\":\n        return f\"Tool '{args.tool_name}' is not available. Choose one of the listed tools.\"\n    return None\n\n\nagent = Agent(name=\"As",
-      "proposed_category": "multi_hop",
+      "evidence_text": "The formatter receives [`ToolErrorFormatterArgs`][agents.run_config.ToolErrorFormatterArgs] with:\n\n-   `kind`: The error category, such as `\"approval_rejected\"` or `\"tool_not_found\"`.",
+      "evidence_hash": "9edfa438aab0b1be7075143e68f70b290cfe3ceea5b7219f8b63880770c98838",
+      "evidence_char_length": 289,
+      "context_before": "rror`.\n\nSet `tool_not_found_behavior=\"return_error_to_model\"` when you want the run to remain recoverable. In that mode, the SDK appends a `function_call_output` for the unresolved tool call and runs the model again, so the model can choose an available tool or answer without using that tool.\n\n```python\nfrom agents import Agent, RunConfig, Runner\n\nagent = Agent(name=\"Assistant\", tools=[...])\n\nresult = await Runner.run(\n    agent,\n    \"Handle this request with the available tools.\",\n    run_config=RunConfig(tool_not_found_behavior=\"return_error_to_model\"),\n)\n```\n\nThis option currently applies only to function tool calls that fail tool-name lookup. Other invalid tool payloads continue to use their existing error behavior.\n\n##### `tool_error_formatter`\n\nUse `tool_error_formatter` to customize the message that is returned to the model when the SDK creates a model-visible tool error output.\n\n",
+      "context_after": "\n-   `tool_name`: The tool name.\n-   `call_id`: The tool call ID.\n-   `default_message`: The SDK's default model-visible message.\n-   `run_context`: The active run context wrapper.\n\nReturn a string to replace the message, or `None` to use the SDK default.\n\n```python\nfrom agents import Agent, RunConfig, Runner, ToolErrorFormatterArgs\n\n\ndef format_rejection(args: ToolErrorFormatterArgs[None]) -> str | None:\n    if args.kind == \"approval_rejected\":\n        return (\n            f\"Tool call '{args.tool_name}' was rejected by a human reviewer. \"\n            \"Ask for confirmation or propose a safer alternative.\"\n        )\n    if args.kind == \"tool_not_found\":\n        return f\"Tool '{args.tool_name}' is not available. Choose one of the listed tools.\"\n    return None\n\n\nagent = Agent(name=\"Assistant\")\nresult = Runner.run_sync(\n    agent,\n    \"Please delete the production database.\",\n    run_config",
+      "proposed_category": "exact_lookup",
       "proposed_question": "What do the `kind` and `tool_type` options specify in `tool_error_formatter`?",
       "proposed_answer": "The error category, such as `\"approval_rejected\"` or `\"tool_not_found\"`. The tool runtime (`\"function\"`, `\"computer\"`, `\"shell\"`, `\"apply_patch\"`, or `\"custom\"`).",
       "proposed_atomic_claims": [
@@ -889,7 +1749,7 @@
       "candidate_type": "supported",
       "generator_confidence": "medium",
       "needs_human_interpretation": true,
-      "verification_status": "candidate_unverified",
+      "verification_status": "needs_human_review",
       "claude_proposed": true,
       "chatgpt_verified": null,
       "retrieval_was_not_run": true,
@@ -899,7 +1759,7 @@
       "expected_evidence": [
         {
           "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
-          "char_start": 15366,
+          "char_start": 15267,
           "char_end": 15450,
           "section_path": [
             "Running agents",
@@ -908,9 +1768,9 @@
             "Run config details",
             "`tool_error_formatter`"
           ],
-          "evidence_text": "-   `kind`: The error category, such as `\"approval_rejected\"` or `\"tool_not_found\"`.",
-          "evidence_hash": "66c10c152e829a91560c0261f85055982554064105e911b1300c8f98599a55c6",
-          "evidence_char_length": 84
+          "evidence_text": "The formatter receives [`ToolErrorFormatterArgs`][agents.run_config.ToolErrorFormatterArgs] with:\n\n-   `kind`: The error category, such as `\"approval_rejected\"` or `\"tool_not_found\"`.",
+          "evidence_hash": "9edfa438aab0b1be7075143e68f70b290cfe3ceea5b7219f8b63880770c98838",
+          "evidence_char_length": 183
         },
         {
           "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
@@ -930,7 +1790,59 @@
       ],
       "multi_hop_note": "Two independently anchored spans. A retriever earns credit only by finding both, and each claim is checked against the span it came from. The question asks for both facts; it does not ask the reader to derive a third, because the source does not state one.",
       "precheck_holdout_ready": true,
-      "precheck_failures": []
+      "precheck_failures": [],
+      "anchor_revisions": [
+        {
+          "revision": 1,
+          "reason": "OWNER_TYPE_SCOPE_COMPLETION",
+          "why": "The first span grows 99 characters upward to the line naming `ToolErrorFormatterArgs`, so the fields have an owner inside the evidence. The second field span is unchanged.",
+          "old_spans": [
+            {
+              "char_start": 15366,
+              "char_end": 15450,
+              "evidence_hash": "66c10c152e829a91560c0261f85055982554064105e911b1300c8f98599a55c6"
+            },
+            {
+              "char_start": 15451,
+              "char_end": 15557,
+              "evidence_hash": "e90002b1fef99b3275a7b55b4dbef56e0db8ff827bd3661e7120f21edd08987b"
+            }
+          ],
+          "new_spans": [
+            {
+              "char_start": 15267,
+              "char_end": 15450,
+              "evidence_hash": "9edfa438aab0b1be7075143e68f70b290cfe3ceea5b7219f8b63880770c98838",
+              "evidence_char_length": 183
+            },
+            {
+              "char_start": 15451,
+              "char_end": 15557,
+              "evidence_hash": "e90002b1fef99b3275a7b55b4dbef56e0db8ff827bd3661e7120f21edd08987b",
+              "evidence_char_length": 106
+            }
+          ],
+          "author": "claude",
+          "directed_by": "independent_review",
+          "timestamp": "2026-08-20T19:46:01Z"
+        }
+      ],
+      "reasoning_type": "exact_lookup",
+      "evidence_shape": "multi_span",
+      "requires_all_evidence": true,
+      "not_genuine_multi_hop": "Two independent facts from two spans. The answer is the two facts, not a third derived from them, so this is a multi-span retrieval test and does not count toward the genuine multi-hop target.",
+      "evidence_over_soft_cap": false,
+      "review_defect_classes": [
+        "EVIDENCE_BOUNDARY",
+        "CATEGORY_MISCLASSIFICATION"
+      ],
+      "review_reason": "The fields' owner type lived outside both spans, and the case is two independent lookups rather than multi-hop reasoning.",
+      "verification": {
+        "reviewer": "independent_review",
+        "verdict": "FIX_REQUIRED",
+        "reviewed_at": "2026-08-20T19:46:01Z",
+        "verification_notes": "The fields' owner type lived outside both spans, and the case is two independent lookups rather than multi-hop reasoning."
+      }
     },
     {
       "candidate_id": "GOLD-B003-20",
@@ -950,7 +1862,7 @@
       "evidence_char_length": 267,
       "context_before": "ls, handoffs, guardrails, and even custom events that occur. Using the [Traces dashboard](https://platform.openai.com/traces), you can debug, visualize, and monitor your workflows during development and in production.\n\n!!!note\n\n    Tracing is enabled by default. You can disable it in three common ways:\n\n    1. You can globally disable tracing by setting the env var `OPENAI_AGENTS_DISABLE_TRACING=1`\n    2. You can globally disable tracing in code with [`set_tracing_disabled(True)`][agents.set_tracing_disabled]\n    3. You can disable tracing for a single run by setting [`agents.run.RunConfig.tracing_disabled`][] to `True`\n\n***Tracing is unavailable for organizations that use OpenAI's APIs under a Zero Data Retention (ZDR) policy.***\n\n## Traces and spans\n\n-   **Traces** represent a single end-to-end operation of a \"workflow\". They're composed of Spans. Traces have the following properties:\n",
       "context_after": "\n    -   `trace_id`: A unique ID for the trace. Automatically generated if you don't pass one. Must have the format `trace_<32_alphanumeric>`.\n    -   `group_id`: Optional group ID, to link multiple traces from the same conversation. For example, you might use a chat thread ID.\n    -   `disabled`: If True, the trace will not be recorded.\n    -   `metadata`: Optional metadata for the trace.\n-   **Spans** represent operations that have a start and end time. Spans have:\n    -   `started_at` and `ended_at` timestamps.\n    -   `trace_id`, to represent the trace they belong to\n    -   `parent_id`, which points to the parent Span of this Span (if any)\n    -   `span_data`, which is information about the Span. For example, `AgentSpanData` contains information about the Agent, `GenerationSpanData` contains information about the LLM generation, etc.\n\n## Default tracing\n\nBy default, the SDK traces t",
-      "proposed_category": "multi_hop",
+      "proposed_category": "exact_lookup",
       "proposed_question": "What do the `workflow_name` and `trace_id` options specify in Traces and spans?",
       "proposed_answer": "This is the name of the logical workflow or app. For example \"Code generation\" or \"Customer service\". A unique ID for the trace. Automatically generated if you don't pass one. Must have the format `trace_<32_alphanumeric>`.",
       "proposed_atomic_claims": [
@@ -967,7 +1879,7 @@
       "candidate_type": "supported",
       "generator_confidence": "medium",
       "needs_human_interpretation": true,
-      "verification_status": "candidate_unverified",
+      "verification_status": "needs_human_review",
       "claude_proposed": true,
       "chatgpt_verified": null,
       "retrieval_was_not_run": true,
@@ -1002,8 +1914,39 @@
       ],
       "multi_hop_note": "Two independently anchored spans. A retriever earns credit only by finding both, and each claim is checked against the span it came from. The question asks for both facts; it does not ask the reader to derive a third, because the source does not state one.",
       "precheck_holdout_ready": true,
-      "precheck_failures": []
+      "precheck_failures": [],
+      "reasoning_type": "exact_lookup",
+      "evidence_shape": "multi_span",
+      "requires_all_evidence": true,
+      "not_genuine_multi_hop": "Two independent facts from two spans. The answer is the two facts, not a third derived from them, so this is a multi-span retrieval test and does not count toward the genuine multi-hop target.",
+      "evidence_over_soft_cap": false,
+      "review_defect_classes": [
+        "CATEGORY_MISCLASSIFICATION"
+      ],
+      "review_reason": "Two independent facts retrieved from two spans is a multi-span retrieval test, not multi-hop reasoning: the answer is the two facts, not a third derived from them. These four keep their value as retrieval tests and none of them counts toward the project's genuine multi-hop target, which stands at zero.",
+      "verification": {
+        "reviewer": "independent_review",
+        "verdict": "FIX_REQUIRED",
+        "reviewed_at": "2026-08-20T19:46:01Z",
+        "verification_notes": "Two independent facts retrieved from two spans is a multi-span retrieval test, not multi-hop reasoning: the answer is the two facts, not a third derived from them. These four keep their value as retrieval tests and none of them counts toward the project's genuine multi-hop target, which stands at zero."
+      }
     }
   ],
-  "batch_sha256": "89d2360d60df71aa88e4db217ea68c844fb8000ec7e09a01d4bcd5d6c0c2f7a9"
+  "batch_sha256": "89d2360d60df71aa88e4db217ea68c844fb8000ec7e09a01d4bcd5d6c0c2f7a9",
+  "review_applied_at": "2026-08-20T19:46:01Z",
+  "review_reviewer": "independent_review",
+  "status_counts": {
+    "needs_human_review": 20
+  },
+  "by_reasoning_type": {
+    "configuration_interaction": 4,
+    "error_behavior": 4,
+    "exact_lookup": 10,
+    "lifecycle": 2
+  },
+  "by_evidence_shape": {
+    "single_span": 15,
+    "multi_span": 5
+  },
+  "genuine_multi_hop": 0
 }

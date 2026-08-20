@@ -239,10 +239,14 @@ def _p_lifecycle(sentence: str) -> tuple | None:
     The subject must be a backticked identifier. Free proper-noun capture produced
     "Opus 4.6 and Sonnet 4.6 but" as a subject — a phrase cut mid-conjunction.
     """
+    # ``[^.]`` stopped the tail at the decimal point in "Claude Opus 4.7", turning
+    # "no longer supported on Claude Opus 4.7 or later models" into "on Claude Opus 4" —
+    # a different and far broader claim than the source makes. The tail now runs to a
+    # sentence-ending period (one not followed by a digit) instead.
     match = re.search(
         r"(?P<subject>`[^`]{2,60}`) (?:is|are|was|has been) "
         r"(?P<state>deprecated|no longer supported|removed|retired|unsupported)"
-        r"(?P<rest>[^.]{0,120})\.",
+        r"(?P<rest>(?:[^.]|\.(?=\d)){0,160})\.(?!\d)",
         sentence)
     if not match:
         return None

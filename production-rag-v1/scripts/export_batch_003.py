@@ -425,7 +425,9 @@ def compare_generations(payload: dict) -> dict:
             "distinct_question_forms": len({
                 " ".join(r["proposed_question"].split("`")[0].split()[:4])
                 for r in records}),
-            "complete_proposals": sum(1 for r in records if r["proposed_answer"]),
+            "complete_question_answer_claims": sum(
+                1 for r in records
+                if r["proposed_answer"] and r["proposed_atomic_claims"]),
             "with_critical_strings": sum(1 for r in records
                                          if r.get("critical_strings")),
             "needs_human_interpretation": sum(
@@ -456,7 +458,8 @@ def render_report(report: dict) -> str:
                        ("openai_share", "OpenAI share"),
                        ("unique_documents", "distinct documents"),
                        ("distinct_question_forms", "distinct question forms"),
-                       ("complete_proposals", "complete question+answer+claims"),
+                       ("complete_question_answer_claims",
+                        "complete question+answer+claims"),
                        ("with_critical_strings", "carrying critical strings"),
                        ("needs_human_interpretation", "needing reviewer authoring"),
                        ("anaphoric_spans", "anaphoric spans"),
@@ -488,8 +491,11 @@ def render_report(report: dict) -> str:
         f"| documents by provider | {report['documents_by_provider']} |",
         f"| evidence kind | {report['by_evidence_kind']} |",
         f"| confidence | {report['by_confidence']} |",
-        (f"| complete proposals | "
-         f"{report['total_candidates'] - report['needs_human_interpretation']} of "
+        (f"| complete question+answer+claims | "
+         f"{report['complete_question_answer_claims']} of "
+         f"{report['total_candidates']} |"),
+        (f"| needing reviewer judgement (`needs_human_interpretation`) | "
+         f"{report['needs_human_interpretation']} of "
          f"{report['total_candidates']} |"),
         (f"| precheck holdout-ready | {report['precheck_holdout_ready']} of "
          f"{report['total_candidates']} |"),
@@ -541,6 +547,40 @@ def render_report(report: dict) -> str:
     ])
 
 
+def check_report_consistency(report: dict) -> None:
+    """Refuse to write a report that contradicts itself.
+
+    The first batch-003 report claimed 20 of 20 precheck-ready while also counting one
+    anaphoric span, and used "complete proposals" for two different quantities in two
+    tables. Both were report-generation defects, not record defects — and both were
+    only caught by a person reading two tables against each other. This makes the
+    generator do it.
+    """
+    problems = []
+    batch = next((b for b in report["comparison"]["batches"] if b["batch"] == "003"),
+                 None)
+    if batch is None:
+        problems.append("the comparison has no batch 003 row")
+    else:
+        if batch["complete_question_answer_claims"] != \
+                report["complete_question_answer_claims"]:
+            problems.append(
+                "complete_question_answer_claims differs between the composition and "
+                f"comparison tables: {report['complete_question_answer_claims']} vs "
+                f"{batch['complete_question_answer_claims']}")
+        if batch["needs_human_interpretation"] != report["needs_human_interpretation"]:
+            problems.append("needs_human_interpretation differs between tables")
+        if batch["anaphoric_spans"] and \
+                report["precheck_holdout_ready"] == report["total_candidates"]:
+            problems.append(
+                f"{batch['anaphoric_spans']} anaphoric span(s) counted while claiming "
+                "every candidate is precheck holdout-ready — an unresolved anaphora "
+                "must block the precheck")
+    if problems:
+        raise SystemExit("refusing to write a self-contradicting report:\n  "
+                         + "\n  ".join(problems))
+
+
 def write_report(payload: dict, report_dir: Path) -> None:
     report_dir.mkdir(parents=True, exist_ok=True)
     report = {
@@ -563,7 +603,11 @@ def write_report(payload: dict, report_dir: Path) -> None:
         "systems_executed": [],
         "targets": {"provider": PROVIDER_TARGET, "category": CATEGORY_TARGET},
     }
+    report["complete_question_answer_claims"] = sum(
+        1 for r in payload["records"]
+        if r["proposed_answer"] and r["proposed_atomic_claims"])
     report["comparison"] = compare_generations(payload)
+    check_report_consistency(report)
     (report_dir / "GOLD-001-batch-003-generation-report.json").write_text(
         json.dumps(report, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     (report_dir / "GOLD-001-batch-003-generation-report.md").write_text(

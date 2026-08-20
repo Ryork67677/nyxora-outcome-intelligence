@@ -1,0 +1,138 @@
+{
+  "batch": 3,
+  "generated_at": "2026-08-20T18:55:07Z",
+  "batch_sha256": "89d2360d60df71aa88e4db217ea68c844fb8000ec7e09a01d4bcd5d6c0c2f7a9",
+  "total_candidates": 20,
+  "candidate_pool_size": 42,
+  "by_provider": {
+    "anthropic": 12,
+    "openai": 8
+  },
+  "documents_by_provider": {
+    "anthropic": 10,
+    "openai": 7
+  },
+  "unique_documents": 17,
+  "by_category": {
+    "configuration_interaction": 4,
+    "error_behavior": 4,
+    "exact_constraint": 6,
+    "lifecycle": 2,
+    "multi_hop": 4
+  },
+  "by_evidence_kind": {
+    "normative_statement": 10,
+    "parameter_table_row": 1,
+    "definition_bullet": 5,
+    "multi_span": 4
+  },
+  "by_confidence": {
+    "high": 16,
+    "medium": 4
+  },
+  "needs_human_interpretation": 4,
+  "precheck_holdout_ready": 20,
+  "evidence_length": {
+    "mean": 150.1,
+    "median": 129,
+    "max": 295,
+    "over_soft_cap": 0
+  },
+  "removed": {
+    "duplicate_evidence": 2,
+    "duplicate_question": 5,
+    "not_selected_diversity": 11
+  },
+  "retrieval_was_not_run": true,
+  "systems_executed": [],
+  "targets": {
+    "provider": {
+      "openai": [
+        8,
+        10
+      ],
+      "anthropic": [
+        8,
+        10
+      ]
+    },
+    "category": {
+      "exact_constraint": [
+        4,
+        5
+      ],
+      "error_behavior": [
+        3,
+        4
+      ],
+      "multi_hop": [
+        3,
+        4
+      ],
+      "configuration_interaction": [
+        2,
+        3
+      ],
+      "lifecycle": [
+        2,
+        3
+      ]
+    }
+  },
+  "comparison": {
+    "note": "Generation and evidence metrics only. No retrieval was run against any candidate in any batch.",
+    "batches": [
+      {
+        "batch": "001 (as generated)",
+        "candidates": 18,
+        "providers": {
+          "anthropic": 12,
+          "openai": 6
+        },
+        "openai_share": 0.333,
+        "unique_documents": 18,
+        "distinct_question_forms": 2,
+        "complete_proposals": 2,
+        "with_critical_strings": 3,
+        "needs_human_interpretation": 16,
+        "anaphoric_spans": 4,
+        "evidence_median": 186,
+        "evidence_max": 623
+      },
+      {
+        "batch": "002 (as generated)",
+        "candidates": 18,
+        "providers": {
+          "anthropic": 15,
+          "openai": 3
+        },
+        "openai_share": 0.167,
+        "unique_documents": 18,
+        "distinct_question_forms": 3,
+        "complete_proposals": 9,
+        "with_critical_strings": 18,
+        "needs_human_interpretation": 9,
+        "anaphoric_spans": 0,
+        "evidence_median": 209,
+        "evidence_max": 1430
+      },
+      {
+        "batch": "003",
+        "candidates": 20,
+        "providers": {
+          "anthropic": 12,
+          "openai": 8
+        },
+        "openai_share": 0.4,
+        "unique_documents": 17,
+        "distinct_question_forms": 9,
+        "complete_proposals": 20,
+        "with_critical_strings": 20,
+        "needs_human_interpretation": 4,
+        "anaphoric_spans": 1,
+        "evidence_median": 129,
+        "evidence_max": 295
+      }
+    ]
+  }
+}

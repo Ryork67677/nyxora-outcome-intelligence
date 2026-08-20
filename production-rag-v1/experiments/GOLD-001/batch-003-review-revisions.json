@@ -1,0 +1,265 @@
+{
+  "batch": 3,
+  "reviewer": "independent_review",
+  "source_batch_sha256": "89d2360d60df71aa88e4db217ea68c844fb8000ec7e09a01d4bcd5d6c0c2f7a9",
+  "summary": {
+    "candidates": 20,
+    "outright_rejects": 0,
+    "clean_as_written": 7,
+    "wording_repair": 5,
+    "evidence_repair": 5,
+    "taxonomy_repair": 4
+  },
+  "defect_classes": {
+    "QUESTION_SCOPE": "The question is ambiguous or over-broad relative to what the evidence supports.",
+    "CLAIM_SCOPE": "The claim asserts more, or less, than the anchored evidence states.",
+    "EVIDENCE_BOUNDARY": "The anchor does not contain the scope its claim depends on.",
+    "CATEGORY_MISCLASSIFICATION": "The reasoning type recorded is not the reasoning the case requires.",
+    "REPORT_GATE_BUG": "A generated report asserted something its own records contradict."
+  },
+  "clean": [
+    "GOLD-B003-01",
+    "GOLD-B003-03",
+    "GOLD-B003-05",
+    "GOLD-B003-07",
+    "GOLD-B003-08",
+    "GOLD-B003-09",
+    "GOLD-B003-15"
+  ],
+  "revisions": {
+    "GOLD-B003-02": {
+      "defect_classes": [
+        "QUESTION_SCOPE",
+        "CLAIM_SCOPE"
+      ],
+      "question": "In a Skill definition, what does the `description` field enable and what should it include?",
+      "answer": "It enables Skill discovery and should include both what the Skill does and when to use it.",
+      "atomic_claims": [
+        "The Skill `description` field enables Skill discovery and should include both what the Skill does and when to use it."
+      ],
+      "critical_strings": [
+        "description",
+        "Skill discovery",
+        "what the Skill does",
+        "when to use it"
+      ],
+      "reason": "`description` is a generic field name; the anchor already supports the scoped wording, and the critical strings now verify the claim's content rather than only the field name."
+    },
+    "GOLD-B003-10": {
+      "defect_classes": [
+        "CLAIM_SCOPE"
+      ],
+      "question": "What is the documented status of `budget_tokens` on Claude Opus 4.6 and Claude Sonnet 4.6?",
+      "answer": "It is deprecated.",
+      "atomic_claims": [
+        "`budget_tokens` is deprecated on Claude Opus 4.6 and Claude Sonnet 4.6."
+      ],
+      "critical_strings": [
+        "budget_tokens",
+        "deprecated",
+        "Claude Opus 4.6",
+        "Claude Sonnet 4.6"
+      ],
+      "reason": "The evidence deprecates `budget_tokens` for two named models. The unqualified claim generalised beyond the source."
+    },
+    "GOLD-B003-11": {
+      "defect_classes": [
+        "CLAIM_SCOPE"
+      ],
+      "question": "What happens if manual extended thinking `thinking: {type: \"enabled\", budget_tokens: N}` is used on Claude Opus 4.7 or later models?",
+      "answer": "It is no longer supported and returns a 400 error.",
+      "atomic_claims": [
+        "`thinking: {type: \"enabled\", budget_tokens: N}` is no longer supported on Claude Opus 4.7 or later models.",
+        "Using it on those models returns a 400 error."
+      ],
+      "critical_strings": [
+        "Claude Opus 4.7 or later models",
+        "no longer supported",
+        "400 error"
+      ],
+      "reason": "The generated answer said \"on Claude Opus 4\" where the source says \"on Claude Opus 4.7 or later models\" — a different and much broader claim. Root cause: the lifecycle pattern's tail capture stopped at the decimal point in \"4.7\". The evidence itself was always correct; only the generated wording was wrong. The pattern is fixed in rag_v1.gold.mining_v3 so it cannot recur."
+    },
+    "GOLD-B003-13": {
+      "defect_classes": [
+        "QUESTION_SCOPE",
+        "CLAIM_SCOPE"
+      ],
+      "question": "If both a per-call `rejection_message` and the run-wide formatter are provided, which one takes precedence?",
+      "answer": "The per-call `rejection_message`.",
+      "atomic_claims": [
+        "If both are provided, the per-call `rejection_message` takes precedence over the run-wide formatter."
+      ],
+      "critical_strings": [
+        "If both are provided",
+        "rejection_message",
+        "run-wide formatter"
+      ],
+      "reason": "The question and claim dropped the \"If both are provided\" condition."
+    },
+    "GOLD-B003-14": {
+      "defect_classes": [
+        "QUESTION_SCOPE",
+        "CLAIM_SCOPE"
+      ],
+      "question": "Without explicit authentication, what does `AWS_BEARER_TOKEN_BEDROCK` take precedence over?",
+      "answer": "The default AWS credential chain.",
+      "atomic_claims": [
+        "Without explicit authentication, `AWS_BEARER_TOKEN_BEDROCK` takes precedence over the default AWS credential chain."
+      ],
+      "critical_strings": [
+        "Without explicit authentication",
+        "AWS_BEARER_TOKEN_BEDROCK",
+        "default AWS credential chain"
+      ],
+      "reason": "The question and claim dropped the authentication condition."
+    },
+    "GOLD-B003-04": {
+      "defect_classes": [
+        "EVIDENCE_BOUNDARY",
+        "QUESTION_SCOPE"
+      ],
+      "anchor": {
+        "kind": "multi_span",
+        "reason": "ANAPHORIC_SCOPE_COMPLETION",
+        "spans": [
+          {
+            "locate_head": "The executor model (the top-level `model` field)",
+            "locate_tail": "must form a valid pair."
+          },
+          {
+            "keep_existing": true
+          }
+        ],
+        "why": "\"pair\" is defined 3,838 characters earlier, with a model-compatibility table in between, so a contiguous extension would pull in the whole table. Two precise spans are the sanctioned alternative to one giant one: the definition of a valid pair, and the failure behaviour."
+      },
+      "question": "What happens when the executor and advisor models requested for the advisor tool do not form a valid pair?",
+      "answer": "The API returns a `400 invalid_request_error` naming the unsupported combination.",
+      "atomic_claims": [
+        "The executor model and the advisor model must form a valid pair.",
+        "Requesting an invalid pair returns a `400 invalid_request_error` naming the unsupported combination."
+      ],
+      "critical_strings": [
+        "executor model",
+        "advisor model",
+        "must form a valid pair",
+        "400 invalid_request_error",
+        "naming the unsupported combination"
+      ],
+      "reason": "The anchor did not establish what \"pair\" refers to."
+    },
+    "GOLD-B003-06": {
+      "defect_classes": [
+        "EVIDENCE_BOUNDARY",
+        "QUESTION_SCOPE",
+        "CLAIM_SCOPE"
+      ],
+      "anchor": {
+        "kind": "extend",
+        "reason": "MODEL_SCOPE_COMPLETION",
+        "locate_head": "On Claude Sonnet 5, the same requests run with",
+        "locate_tail": "to a non-default value returns a 400 error.",
+        "why": "The nearest occurrence of \"Claude Sonnet 5\" is 384 characters earlier, in the adjacent \"Adaptive thinking on by default\" subsection. The extension is 470 characters and under the soft cap, but it drags in a subsection about thinking that the claim does not use. This is a real trade and the owner should confirm it rather than have it made quietly."
+      },
+      "question": "On Claude Sonnet 5, what happens if `temperature`, `top_p`, or `top_k` is set to a non-default value?",
+      "answer": "The request returns a 400 error.",
+      "atomic_claims": [
+        "On Claude Sonnet 5, setting `temperature`, `top_p`, or `top_k` to a non-default value returns a 400 error."
+      ],
+      "critical_strings": [
+        "Claude Sonnet 5",
+        "temperature",
+        "top_p",
+        "top_k",
+        "400 error"
+      ],
+      "reason": "The section establishes the model, the anchor did not, and the unqualified question implied the behaviour is general."
+    },
+    "GOLD-B003-16": {
+      "defect_classes": [
+        "EVIDENCE_BOUNDARY",
+        "QUESTION_SCOPE"
+      ],
+      "anchor": {
+        "kind": "extend",
+        "reason": "EVENT_TYPE_SCOPE_COMPLETION",
+        "locate_head": "#### ChunkEvent",
+        "locate_tail": "The raw `ChatCompletionChunk` object received from the API",
+        "why": "Adds the event-type heading that scopes the field, 85 characters."
+      },
+      "question": "In a Chat Completions `ChunkEvent`, what does the `chunk` field contain?",
+      "answer": "The raw `ChatCompletionChunk` object received from the API.",
+      "atomic_claims": [
+        "The `chunk` field of a Chat Completions `ChunkEvent` contains the raw `ChatCompletionChunk` object received from the API."
+      ],
+      "critical_strings": [
+        "ChunkEvent",
+        "chunk",
+        "ChatCompletionChunk",
+        "received from the API"
+      ],
+      "reason": "`chunk` is generic; the anchor did not name the event type."
+    },
+    "GOLD-B003-17": {
+      "defect_classes": [
+        "EVIDENCE_BOUNDARY",
+        "QUESTION_SCOPE"
+      ],
+      "anchor": {
+        "kind": "extend",
+        "reason": "EVENT_TYPE_SCOPE_COMPLETION",
+        "locate_head": "#### ContentDeltaEvent",
+        "locate_tail": "The partially parsed content (if applicable)",
+        "why": "Adds the event-type heading and the sibling fields, 259 characters. `parsed` appears on several event types with different meanings, so the event type is the claim."
+      },
+      "question": "In a Chat Completions `ContentDeltaEvent`, what does the `parsed` field contain?",
+      "answer": "The partially parsed content, if applicable.",
+      "atomic_claims": [
+        "In `ContentDeltaEvent`, the `parsed` field contains the partially parsed content, if applicable."
+      ],
+      "critical_strings": [
+        "ContentDeltaEvent",
+        "parsed",
+        "The partially parsed content (if applicable)"
+      ],
+      "reason": "`parsed` occurs on `ContentDeltaEvent` and `ContentDoneEvent` with different meanings; the anchor did not distinguish them."
+    },
+    "GOLD-B003-19": {
+      "defect_classes": [
+        "EVIDENCE_BOUNDARY",
+        "CATEGORY_MISCLASSIFICATION"
+      ],
+      "anchor": {
+        "kind": "multi_span",
+        "reason": "OWNER_TYPE_SCOPE_COMPLETION",
+        "spans": [
+          {
+            "locate_head": "The formatter receives [`ToolErrorFormatterArgs`]",
+            "locate_tail": "such as `\"approval_rejected\"` or `\"tool_not_found\"`."
+          },
+          {
+            "keep_index": 1
+          }
+        ],
+        "why": "The first span grows 99 characters upward to the line naming `ToolErrorFormatterArgs`, so the fields have an owner inside the evidence. The second field span is unchanged."
+      },
+      "reasoning_type": "exact_lookup",
+      "evidence_shape": "multi_span",
+      "reason": "The fields' owner type lived outside both spans, and the case is two independent lookups rather than multi-hop reasoning."
+    }
+  },
+  "taxonomy_only": {
+    "GOLD-B003-12": {
+      "reasoning_type": "exact_lookup",
+      "evidence_shape": "multi_span"
+    },
+    "GOLD-B003-18": {
+      "reasoning_type": "exact_lookup",
+      "evidence_shape": "multi_span"
+    },
+    "GOLD-B003-20": {
+      "reasoning_type": "exact_lookup",
+      "evidence_shape": "multi_span"
+    }
+  },
+  "taxonomy_note": "Two independent facts retrieved from two spans is a multi-span retrieval test, not multi-hop reasoning: the answer is the two facts, not a third derived from them. These four keep their value as retrieval tests and none of them counts toward the project's genuine multi-hop target, which stands at zero."
+}
