@@ -1,0 +1,87 @@
+{
+  "confirmed": {
+    "source": "experiments/GOLD-001/GOLD-001-eligibility-status.json",
+    "batches": [
+      {
+        "batch": 1,
+        "human_verified": 16,
+        "holdout_eligible": 16,
+        "human_rejected": 2,
+        "by_reasoning_type": {
+          "exact_lookup": 16
+        },
+        "by_provider": {
+          "anthropic": 10,
+          "openai": 6
+        },
+        "genuine_multi_hop": 0
+      },
+      {
+        "batch": 2,
+        "human_verified": 17,
+        "holdout_eligible": 17,
+        "human_rejected": 1,
+        "by_reasoning_type": {
+          "exact_lookup": 17
+        },
+        "by_provider": {
+          "anthropic": 14,
+          "openai": 3
+        },
+        "genuine_multi_hop": 0
+      },
+      {
+        "batch": 3,
+        "human_verified": 20,
+        "holdout_eligible": 20,
+        "human_rejected": 0,
+        "by_reasoning_type": {
+          "configuration_interaction": 4,
+          "error_behavior": 4,
+          "exact_lookup": 10,
+          "lifecycle": 2
+        },
+        "by_provider": {
+          "anthropic": 12,
+          "openai": 8
+        },
+        "genuine_multi_hop": 0
+      }
+    ],
+    "combined": {
+      "candidates": 56,
+      "human_verified": 53,
+      "human_rejected": 3,
+      "holdout_eligible": 53
+    },
+    "by_reasoning_type": {
+      "exact_lookup": 43,
+      "configuration_interaction": 4,
+      "error_behavior": 4,
+      "lifecycle": 2
+    },
+    "by_provider": {
+      "anthropic": 36,
+      "openai": 17
+    },
+    "genuine_multi_hop": 0,
+    "holdout_frozen": false
+  },
+  "batch_004_candidates": {
+    "candidates": 15,
+    "by_reasoning_type": {
+      "configuration_interaction": 5,
+      "error_behavior": 3,
+      "exact_lookup": 3,
+      "lifecycle_compatibility_migration": 1,
+      "ambiguity_disambiguation": 2,
+      "genuine_multi_hop": 1
+    },
+    "by_provider": {
+      "anthropic": 7,
+      "openai": 8
+    },
+    "holdout_eligible": 0,
+    "human_verified": 0
+  }
+}

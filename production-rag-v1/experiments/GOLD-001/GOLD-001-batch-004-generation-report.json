@@ -1,0 +1,135 @@
+{
+  "batch": 4,
+  "generated_at": "2026-08-21T05:10:57Z",
+  "batch_sha256": "a3bbcebedf675c83c899dd3082118884463bcf5230366287f11527482be700b2",
+  "total_candidates": 15,
+  "candidate_pool_size": 58,
+  "by_provider": {
+    "anthropic": 7,
+    "openai": 8
+  },
+  "documents_by_provider": {
+    "anthropic": 5,
+    "openai": 5
+  },
+  "versions_by_provider": {
+    "anthropic": 5,
+    "openai": 6
+  },
+  "unique_documents": 10,
+  "by_reasoning_type": {
+    "configuration_interaction": 5,
+    "error_behavior": 3,
+    "exact_lookup": 3,
+    "lifecycle_compatibility_migration": 1,
+    "ambiguity_disambiguation": 2,
+    "genuine_multi_hop": 1
+  },
+  "by_evidence_shape": {
+    "single_span": 12,
+    "multi_span": 2,
+    "multi_document": 1
+  },
+  "by_confidence": {
+    "medium": 12,
+    "high": 3
+  },
+  "genuine_multi_hop": 1,
+  "multi_document": 1,
+  "needs_human_interpretation": 3,
+  "precheck_holdout_ready": 15,
+  "evidence_length": {
+    "spans": 18,
+    "mean": 141.4,
+    "median": 144,
+    "max": 330,
+    "over_soft_cap": 0
+  },
+  "removed": {
+    "excluded_known_failure_case": 1,
+    "fake_multi_hop": 558,
+    "duplicate_question": 24,
+    "duplicate_evidence": 25,
+    "blocking_anaphora": 1,
+    "failed_precheck": 4,
+    "reasoning_type_ceiling": 62,
+    "not_selected_diversity": 62
+  },
+  "eligible_pool": {
+    "by_reasoning_type": {
+      "error_behavior": 18,
+      "lifecycle_compatibility_migration": 1,
+      "configuration_interaction": 39,
+      "exact_lookup": 16,
+      "ambiguity_disambiguation": 2,
+      "genuine_multi_hop": 1
+    },
+    "by_provider": {
+      "anthropic": 40,
+      "openai": 37
+    },
+    "candidates": 77
+  },
+  "multi_hop_rejection": {
+    "attempted_pairs": 559,
+    "passed": 1,
+    "rejected": 558,
+    "reasons": {
+      "span_1_alone_answered_the_full_question": 16,
+      "span_2_alone_answered_the_full_question": 16,
+      "the_spans_were_two_unrelated_lookups": 379,
+      "no_bridge_relationship_existed": 147,
+      "the_composed_answer_introduced_unsupported_inference": 0
+    },
+    "unclassified": 0,
+    "by_check": {
+      "span 2 states no condition on the bridge entity": 371,
+      "span 1 enumerates values rather than stating a requirement about the b": 147,
+      "span 1 alone already answers the whole question": 16,
+      "span 2 alone already answers the whole question": 16,
+      "the spans are two unrelated lookups": 8
+    },
+    "note": "Counted from each check's own reason string, not asserted. A pair is counted once, under the first reason it failed. `unclassified` is a guard: it should be 0, and a non-zero value means a check grew a reason the report does not know how to file."
+  },
+  "complete_question_answer_claims": 15,
+  "retrieval_was_not_run": true,
+  "systems_executed": [],
+  "targets": {
+    "provider": {
+      "openai": [
+        10,
+        12
+      ],
+      "anthropic": [
+        8,
+        10
+      ]
+    },
+    "reasoning_type": {
+      "genuine_multi_hop": [
+        6,
+        8
+      ],
+      "configuration_interaction": [
+        4,
+        5
+      ],
+      "ambiguity_disambiguation": [
+        3,
+        4
+      ],
+      "error_behavior": [
+        2,
+        3
+      ],
+      "lifecycle_compatibility_migration": [
+        2,
+        3
+      ],
+      "exact_lookup": [
+        0,
+        3
+      ]
+    }
+  }
+}

@@ -23,7 +23,8 @@ def _sections_from_markdown(text: str) -> list[ParsedSection]:
     for idx, match in enumerate(matches):
         level = len(match.group(1))
         title = match.group(2).strip()
-        heading_stack = [(l, t) for l, t in heading_stack if l < level]
+        heading_stack = [(depth, name) for depth, name in heading_stack
+                         if depth < level]
         heading_stack.append((level, title))
         start = match.start()
         end = matches[idx + 1].start() if idx + 1 < len(matches) else len(text)
