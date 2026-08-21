@@ -1,0 +1,161 @@
+{
+  "pairs": 5,
+  "rule_under_test": "states_dependency — span 2's conditional must test the bridge entity's own state",
+  "clause_window": 70,
+  "diagnostic_only": true,
+  "promoted_to_batch_004": 0,
+  "batch_004_regenerated": false,
+  "retrieval_was_not_run": true,
+  "systems_executed": [],
+  "findings": [
+    {
+      "bridge_entity": "OpenAIChatCompletionsModel",
+      "provider": "openai",
+      "verdict": "CORRECT_REJECTION",
+      "same_document": false,
+      "span_1": {
+        "version_id": "ver_63b870e1cf5b36c3e7d310867ca793c7",
+        "char_start": 16259,
+        "char_end": 16421,
+        "evidence_text": "The built-in `OpenAIResponsesModel` and `OpenAIChatCompletionsModel` propagate an available server-generated `x-request-id` on their HTTP and SSE transport paths.",
+        "critical_strings": [
+          "OpenAIResponsesModel",
+          "OpenAIChatCompletionsModel"
+        ]
+      },
+      "span_2": {
+        "version_id": "ver_ae909bf8b4bbbe1d1a11119447f7ac94",
+        "char_start": 40154,
+        "char_end": 40377,
+        "evidence_text": "The OpenAI Chat Completions API can return audio output, but [`OpenAIChatCompletionsModel`][agents.models.openai_chatcompletions.OpenAIChatCompletionsModel] does not currently convert audio output into Agents SDK run items.",
+        "critical_strings": [
+          "OpenAIChatCompletionsModel",
+          "openai_chatcompletions"
+        ]
+      },
+      "composition_check": "PASS",
+      "entity_state_rejection": "the span carries no conditional marker at all, so there is no clause that could test the entity's state",
+      "reviewer_reasoning": "Span 1 says the built-in models propagate `x-request-id` on their transport paths. Span 2 says the Chat Completions API can return audio output that the model does not convert into run items. These are two unrelated facts that happen to name the same class: request-id propagation has no bearing on audio conversion, and no answer follows from holding both. Span 2 contains no conditional at all, so there was nothing for span 1 to establish. The rejection is right, and it would have been right under any of the rules."
+    },
+    {
+      "bridge_entity": "allowed_callers",
+      "provider": "anthropic",
+      "verdict": "CORRECT_REJECTION",
+      "same_document": true,
+      "span_1": {
+        "version_id": "ver_7cd600e1124f25cfedc3f1f6d5c297e5",
+        "char_start": 3767,
+        "char_end": 4053,
+        "evidence_text": "Adding `allowed_callers: [\"code_execution_20260120\"]` to a tool definition is what makes that tool callable from within code execution (see [The `allowed_callers` field](https://platform.claude.com/docs/en/agents-and-tools/tool-use/programmatic-tool-calling#the-allowed-callers-field)):",
+        "critical_strings": [
+          "allowed_callers",
+          "code_execution_20260120"
+        ]
+      },
+      "span_2": {
+        "version_id": "ver_7cd600e1124f25cfedc3f1f6d5c297e5",
+        "char_start": 49972,
+        "char_end": 50159,
+        "evidence_text": "Including a code execution tool version in `allowed_callers` for such a tool causes the request to fail with a `400 invalid_request_error` whose message contains `Circular $ref detected`.",
+        "critical_strings": [
+          "allowed_callers",
+          "invalid_request_error"
+        ]
+      },
+      "composition_check": "PASS",
+      "entity_state_rejection": "the span's conditional markers are ['whose'], and none of their clauses contains `allowed_callers` — 'whose' governs 'message contains `Circular $ref detected`.'",
+      "reviewer_reasoning": "This is the closest of the five and still a correct rejection, though the rule caught it for a shallower reason than the one that matters. The rule saw that the only conditional marker in span 2 (`whose`) governs the error message rather than `allowed_callers`. The substantive problem is narrower: span 2's failure applies to a tool whose input schema contains a circular `$ref`, a qualification the phrase 'for such a tool' carries from text outside the span. Composing it with span 1 would produce 'adding `allowed_callers` makes the tool callable, and doing so fails with 400', which is false in general and true only for that unstated subcase. That is unsupported inference, which is the composition check's own §9 criterion. Span 1 also ends in a colon introducing a code block, so it is weak evidence on its own terms."
+    },
+    {
+      "bridge_entity": "max_tokens",
+      "provider": "anthropic",
+      "verdict": "CORRECT_REJECTION",
+      "same_document": false,
+      "span_1": {
+        "version_id": "ver_3acba29982fd40528ac6498dd0d5fe18",
+        "char_start": 13497,
+        "char_end": 13840,
+        "evidence_text": "* `budget_tokens` can exceed `max_tokens` here; the [budget rules](https://platform.claude.com/docs/en/build-with-claude/extended-thinking#budget-rules-and-tuning) explain this exception.\n* Interleaved thinking is only supported for [tools used through the Messages API](https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview).",
+        "critical_strings": [
+          "budget_tokens",
+          "max_tokens"
+        ]
+      },
+      "span_2": {
+        "version_id": "ver_462141128848e293fd652c38dcdfcd33",
+        "char_start": 5866,
+        "char_end": 6093,
+        "evidence_text": "The loop exits on any other stop reason (`\"end_turn\"`, `\"max_tokens\"`, `\"stop_sequence\"`, or `\"refusal\"`), which means Claude has either produced a final answer or stopped for another reason that your application should handle.",
+        "critical_strings": [
+          "end_turn",
+          "max_tokens",
+          "stop_sequence"
+        ]
+      },
+      "composition_check": "PASS",
+      "entity_state_rejection": "the span carries no conditional marker at all, so there is no clause that could test the entity's state",
+      "reviewer_reasoning": "The most instructive of the five. Span 1 uses `max_tokens` as a request parameter that `budget_tokens` may exceed during interleaved thinking. Span 2 uses `\"max_tokens\"` as one of the stop_reason values on which the agentic loop exits. The bridge test matched a string that names two different things in the two spans, so there was never an entity to chain through. This is equivocation, not a hop, and it is worth recording that the bridge-entity requirement — the entity must appear in both spans — cannot detect it."
+    },
+    {
+      "bridge_entity": "tool_result",
+      "provider": "anthropic",
+      "verdict": "CORRECT_REJECTION",
+      "same_document": false,
+      "span_1": {
+        "version_id": "ver_7cd600e1124f25cfedc3f1f6d5c297e5",
+        "char_start": 52015,
+        "char_end": 52153,
+        "evidence_text": "**Text-only tool result content:** The `content` of each `tool_result` that answers a programmatic call must be a string or `text` blocks.",
+        "critical_strings": [
+          "content",
+          "tool_result",
+          "text"
+        ]
+      },
+      "span_2": {
+        "version_id": "ver_4d14aec24504f4b8f6f28938b84587dc",
+        "char_start": 51189,
+        "char_end": 51435,
+        "evidence_text": "Adding anything after the `tool_result` blocks in that user message, such as text, ends the assistant turn; for a server tool Claude called directly, the request then fails with a 400 `invalid_request_error` that names the unresolved server tool:",
+        "critical_strings": [
+          "tool_result",
+          "invalid_request_error"
+        ]
+      },
+      "composition_check": "PASS",
+      "entity_state_rejection": "the span carries no conditional marker at all, so there is no clause that could test the entity's state",
+      "reviewer_reasoning": "Span 1 requires the `content` of a `tool_result` answering a programmatic call to be a string or text blocks. Span 2 says that adding anything after the `tool_result` blocks in a user message ends the assistant turn, and fails with 400 for a server tool Claude called directly. Both are formatting rules about `tool_result` and neither depends on the other: satisfying span 1 tells a reader nothing about span 2's outcome. Two rules in one subject area are still two lookups. Span 2 also ends in a colon, and its condition is about message structure rather than about the entity's configured state."
+    },
+    {
+      "bridge_entity": "view_range",
+      "provider": "anthropic",
+      "verdict": "CORRECT_REJECTION",
+      "same_document": false,
+      "span_1": {
+        "version_id": "ver_72833144cee232446fa450e9e040995a",
+        "char_start": 8605,
+        "char_end": 8787,
+        "evidence_text": "* `command`: Must be \"view\"\n* `path`: The path to the file or directory to view\n* `view_range` (optional): An array of two integers specifying the start and end line numbers to view.",
+        "critical_strings": [
+          "command",
+          "path",
+          "view_range"
+        ]
+      },
+      "span_2": {
+        "version_id": "ver_96d1698a3864f79451e8576f87a07004",
+        "char_start": 27790,
+        "char_end": 27976,
+        "evidence_text": "`view_range` is optional and applies to text-file views: `[start_line, end_line]` returns those lines, and `[start_line, -1]` returns everything from `start_line` to the end of the file.",
+        "critical_strings": [
+          "view_range",
+          "start_line",
+          "end_line"
+        ]
+      },
+      "composition_check": "PASS",
+      "entity_state_rejection": "the span carries no conditional marker at all, so there is no clause that could test the entity's state",
+      "reviewer_reasoning": "Span 1 is a bullet list describing `view_range` in the text editor tool; span 2 describes `view_range` in the memory tool. They are two parallel definitions of a parameter in two different tools, which is the plainest possible case of multi-span-is-not-multi-hop. Span 1 is also a list fragment whose stem sits outside the span, so it would have failed the evidence-scope check even if the pair had been a chain."
+    }
+  ]
+}

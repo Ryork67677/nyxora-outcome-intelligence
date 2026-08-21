@@ -22,6 +22,10 @@ BATCH = REPO_ROOT / "evals" / "review" / "gold_review_batch_004.json"
 REPORT = REPO_ROOT / "experiments" / "GOLD-001" / "GOLD-001-batch-004-generation-report.json"
 COVERAGE = (REPO_ROOT / "experiments" / "GOLD-001"
             / "GOLD-001-coverage-status-after-b004-generation.json")
+#: The near-miss count was hardcoded here once and was wrong (three, against five).
+#: It is now read from the diagnostic that computes it.
+NEAR_MISS = (REPO_ROOT / "experiments" / "GOLD-001"
+             / "BATCH-004-near-miss-multihop-review.json")
 CHROME_CANDIDATES = (
     "/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell",
     "/usr/bin/chromium", "/usr/bin/chromium-browser", "/usr/bin/google-chrome",
@@ -99,8 +103,14 @@ def rows(pairs, classes=("", "num")) -> str:
         for row in pairs)
 
 
-def build_html(batch: dict, report: dict, coverage: dict) -> str:
+def build_html(batch: dict, report: dict, coverage: dict, near_miss: dict) -> str:
     confirmed = coverage["confirmed"]
+    near_miss_count = near_miss["pairs"]
+    verdicts = {f["verdict"] for f in near_miss["findings"]}
+    near_miss_verdicts = (
+        "; the review finds every one a correct rejection"
+        if verdicts == {"CORRECT_REJECTION"} else
+        f"; reviewer verdicts: {', '.join(sorted(verdicts))}")
     rejection = report["multi_hop_rejection"]
     pool = report["eligible_pool"]["by_reasoning_type"]
     targets = report["targets"]
@@ -316,10 +326,11 @@ kind, and the mechanical check that admitted it cannot judge whether span&nbsp;1
 establishes the state span&nbsp;2's condition tests.</p>
 <p>Two cases I would flag without being asked. The batch's evidence for
 <code>GOLD-B004-04</code> opens “If generation <span class="b">then</span> reaches…”,
-which leans on a preceding sentence the span does not contain. And three bridge pairs that
-passed every other check were rejected only by the entity-state rule — a reviewer should
-satisfy themselves that the line was drawn on the evidence rather than to reach a
-comfortable number.</p>
+which leans on a preceding sentence the span does not contain. And {near_miss_count}
+bridge pairs passed every other check and were rejected only by the entity-state rule —
+a reviewer should satisfy themselves that the line was drawn on the evidence rather than
+to reach a comfortable number. Each is set out in
+<code>BATCH-004-near-miss-multihop-review.md</code>{near_miss_verdicts}.</p>
 </div>
 
 <footer>
@@ -342,7 +353,7 @@ def main() -> int:
         "--out", default="docs/reports/GOLD-001-batch-004-generation-results.pdf")
     args = parser.parse_args()
 
-    for path in (BATCH, REPORT, COVERAGE):
+    for path in (BATCH, REPORT, COVERAGE, NEAR_MISS):
         if not path.exists():
             raise SystemExit(f"{path} is missing — run scripts/export_batch_004.py first")
 
@@ -354,7 +365,8 @@ def main() -> int:
             "the generation report was built from a different batch file — regenerate "
             "both rather than publishing a document whose numbers disagree")
 
-    document = build_html(batch, report, coverage)
+    near_miss = json.loads(NEAR_MISS.read_text())
+    document = build_html(batch, report, coverage, near_miss)
     chrome = next((c for c in CHROME_CANDIDATES if Path(c).exists()), None)
     if chrome is None:
         raise SystemExit("No Chromium binary found")
