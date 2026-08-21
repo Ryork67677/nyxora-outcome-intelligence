@@ -334,7 +334,7 @@
       "candidate_type": "supported",
       "generator_confidence": "high",
       "needs_human_interpretation": false,
-      "verification_status": "needs_human_review",
+      "verification_status": "human_verified",
       "claude_proposed": true,
       "chatgpt_verified": null,
       "retrieval_was_not_run": true,
@@ -519,11 +519,19 @@
           "decided_at": "2026-08-20T20:38:30Z",
           "notes": "NEEDS_EDIT — keep the technical fact. Remove the advisor-tool framing from the question so the incidental phrase 'the tool definition' is no longer load-bearing.",
           "approved_anchor_revision": 1
+        },
+        {
+          "decision": "APPROVE",
+          "reviewer": "project_owner",
+          "decided_at": "2026-08-20T22:53:09Z",
+          "notes": "APPROVE the rewritten version: advisor-tool framing removed, both evidence spans unchanged, NONCRITICAL_ANAPHORA finding and project-owner override retained.",
+          "approved_evidence_hash": "a147d3f035dd177a051a5cc5c4636e048cfb4467c171f0f0f23672f6beb7279d",
+          "approved_anchor_revision": 1
         }
       ],
-      "human_decision": "NEEDS_EDIT",
-      "human_verified": false,
-      "human_reviewed_at": "2026-08-20T20:38:30Z",
+      "human_decision": "APPROVE",
+      "human_verified": true,
+      "human_reviewed_at": "2026-08-20T22:53:09Z",
       "human_reviewer": "project_owner",
       "anaphora_status": "NONCRITICAL_ANAPHORA",
       "anaphora_finding": {
@@ -539,7 +547,7 @@
       "rewrite_reason": "The advisor-tool framing was removed from the question. Nothing scored — question, answer, claims or critical strings — now depends on resolving \"the tool definition\", so the detector's finding becomes noncritical. The evidence spans, their offsets and their hashes are unchanged.",
       "human_anaphora_override": true,
       "override_reviewer": "project_owner",
-      "override_recorded_at": "2026-08-20T20:41:32Z"
+      "override_recorded_at": "2026-08-20T22:52:47Z"
     },
     {
       "candidate_id": "GOLD-B003-05",
@@ -2263,8 +2271,7 @@
   "review_applied_at": "2026-08-20T19:46:01Z",
   "review_reviewer": "independent_review",
   "status_counts": {
-    "human_verified": 19,
-    "needs_edit": 1
+    "human_verified": 20
   },
   "by_reasoning_type": {
     "configuration_interaction": 4,
@@ -2277,7 +2284,17 @@
     "multi_span": 5
   },
   "genuine_multi_hop": 0,
-  "human_decisions_imported_at": "2026-08-20T20:38:30Z",
+  "human_decisions_imported_at": "2026-08-20T22:53:09Z",
   "human_reviewer": "project_owner",
-  "undecided_candidates": []
+  "undecided_candidates": [],
+  "closure_errata": [
+    {
+      "id": "E3",
+      "class": "REPORT_GATE_BUG",
+      "summary": "The first GOLD-B003-04 final-case artifact printed `needs_human_review = 0` while its own prose said the case was awaiting review.",
+      "detail": "Cause: a status-counting bug, not display or prose. `import_human_decisions` wrote `status_counts = {human_verified: 19, needs_edit: 1}`; `rewrite_b003_04.py` then moved the record to `needs_human_review` and refreshed `precheck_holdout_ready` but not `status_counts`, so the header claimed a status no record held. The true pre-approval state was 19 verified / 1 needing review / 0 rejected. Fixed twice over: the rewrite refreshes the counts, and the renderer now derives them from the records instead of trusting a header. The original artifact is preserved at gold_batch_003_final_case_review-original.md with its error intact, and a regression test asserts a pending case is counted."
+    }
+  ],
+  "closed_at": "2026-08-21T00:02:09Z",
+  "closure_sha256": "e186a2f30efd4cd610d718df6bddc07a76f205a42bbba3f0bf8945900a49270e"
 }

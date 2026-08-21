@@ -107,6 +107,34 @@ def defects_of(record: dict) -> list[str]:
     return classes
 
 
+def _repair_summary(record: dict) -> dict:
+    """Describe an anchor repair in either recorded shape.
+
+    Batch 001 grew a single span and recorded ``old_char_start``/``old_evidence_hash``.
+    Batch 003 records span *lists*, because a repair may split one anchor into two
+    precise spans rather than growing it outward.
+    """
+    latest = record["anchor_revisions"][-1]
+    if "old_spans" in latest:
+        old_spans = [[s["char_start"], s["char_end"]] for s in latest["old_spans"]]
+        new_spans = [[s["char_start"], s["char_end"]] for s in latest["new_spans"]]
+        old_hashes = [s["evidence_hash"] for s in latest["old_spans"]]
+        new_hashes = [s["evidence_hash"] for s in latest["new_spans"]]
+    else:
+        old_spans = [[latest["old_char_start"], latest["old_char_end"]]]
+        new_spans = [[latest["new_char_start"], latest["new_char_end"]]]
+        old_hashes = [latest["old_evidence_hash"]]
+        new_hashes = [latest["new_evidence_hash"]]
+    return {
+        "candidate_id": record["candidate_id"],
+        "reason": latest["reason"],
+        "old_spans": old_spans, "new_spans": new_spans,
+        "old_evidence_hashes": old_hashes, "new_evidence_hashes": new_hashes,
+        "approval_pinned_to": record["human_decision_history"][-1].get(
+            "approved_evidence_hash"),
+    }
+
+
 def build(batch: dict, validation: dict, now: str) -> dict:
     records = batch["records"]
     statuses = Counter(r["verification_status"] for r in records)
@@ -148,18 +176,8 @@ def build(batch: dict, validation: dict, now: str) -> dict:
             "independent_verdict": r["verification"]["verdict"],
             "preserved_as": "negative audit example - the record is kept, not deleted",
         } for r in sorted(rejected, key=lambda r: r["candidate_id"])],
-        "repaired": [{
-            "candidate_id": r["candidate_id"],
-            "reason": r["anchor_revisions"][-1]["reason"],
-            "old_span": [r["anchor_revisions"][-1]["old_char_start"],
-                         r["anchor_revisions"][-1]["old_char_end"]],
-            "new_span": [r["anchor_revisions"][-1]["new_char_start"],
-                         r["anchor_revisions"][-1]["new_char_end"]],
-            "old_evidence_hash": r["anchor_revisions"][-1]["old_evidence_hash"],
-            "new_evidence_hash": r["anchor_revisions"][-1]["new_evidence_hash"],
-            "approval_pinned_to": r["human_decision_history"][-1].get(
-                "approved_evidence_hash"),
-        } for r in sorted(repaired, key=lambda r: r["candidate_id"])],
+        "repaired": [_repair_summary(r) for r in
+                     sorted(repaired, key=lambda r: r["candidate_id"])],
         "question_authoring_revisions": [{
             "candidate_id": r["candidate_id"],
             "fields_revised": sorted({rev["field"] for rev in r.get("revisions", [])}),
@@ -179,6 +197,18 @@ def build(batch: dict, validation: dict, now: str) -> dict:
                 "says whether the claims were actually checked."
             ),
         },
+        "reasoning_and_shape": {
+            "by_reasoning_type": batch.get("by_reasoning_type", {}),
+            "by_evidence_shape": batch.get("by_evidence_shape", {}),
+            "genuine_multi_hop": batch.get("genuine_multi_hop"),
+            "note": (
+                "Reasoning type and evidence shape are separate dimensions. A case "
+                "needing two spans is multi_span; multi_hop is a reasoning type, and a "
+                "case only earns it when the answer is derived from combining spans "
+                "rather than being the spans' contents."
+            ),
+        },
+        "errata": batch.get("closure_errata", []),
         "defect_taxonomy": DEFECT_TAXONOMY,
         "defects_seen": dict(Counter(
             d for r in records for d in defects_of(r))),
@@ -222,9 +252,12 @@ def render(closure: dict) -> str:
     rejected = "\n".join(
         f"| `{r['candidate_id']}` | {', '.join(r['defects']) or '—'} | {r['reason']} |"
         for r in closure["rejected"])
+    def spans(entries: list) -> str:
+        return ", ".join(f"{a}–{b}" for a, b in entries)
+
     repaired = "\n".join(
-        f"| `{r['candidate_id']}` | {r['old_span'][0]}–{r['old_span'][1]} | "
-        f"{r['new_span'][0]}–{r['new_span'][1]} | `{r['new_evidence_hash'][:12]}…` |"
+        f"| `{r['candidate_id']}` | {spans(r['old_spans'])} | "
+        f"{spans(r['new_spans'])} | `{r['new_evidence_hashes'][0][:12]}…` |"
         for r in closure["repaired"])
     taxonomy = "\n".join(
         f"| `{key}` | {value['name']} | {closure['defects_seen'].get(key, 0)} | "
@@ -284,6 +317,22 @@ def render(closure: dict) -> str:
          f"{checkable.get('of_verified', 0)} verified cases carry literal critical "
          f"strings.** {checkable.get('note', '')}"),
         "",
+        "## Reasoning type and evidence shape",
+        "",
+        (f"Reasoning types: {closure['reasoning_and_shape']['by_reasoning_type']}. "
+         f"Evidence shapes: {closure['reasoning_and_shape']['by_evidence_shape']}."),
+        "",
+        (f"**Genuine multi-hop reasoning cases: "
+         f"{closure['reasoning_and_shape']['genuine_multi_hop']}**, against a "
+         "generation target of three to four."),
+        "",
+        (closure["reasoning_and_shape"]["note"] + " The multi-span cases in this batch "
+         "are useful multi-evidence retrieval tests and are not relabelled to close the "
+         "gap; a later batch has to target genuine multi-hop reasoning directly."),
+        "",
+        *(["## Errata", ""] + [
+            f"- **{e['id']}** — {e['summary']} {e['detail']}"
+            for e in closure["errata"]] + [""] if closure["errata"] else []),
         "## Miner defect taxonomy",
         "",
         "| class | name | seen | description |",

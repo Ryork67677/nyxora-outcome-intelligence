@@ -38,7 +38,12 @@ def project(record: dict, split: str) -> dict:
         "case_id": record["candidate_id"],
         "question": record["proposed_question"],
         "answer": record["proposed_answer"],
-        "category": record.get("proposed_category") or "exact_lookup",
+        # reasoning_type is authoritative once a review has set it; proposed_category
+        # is the miner's pre-review guess.
+        "category": (record.get("reasoning_type")
+                     or record.get("proposed_category") or "exact_lookup"),
+        "evidence_shape": record.get("evidence_shape"),
+        "requires_all_evidence": record.get("requires_all_evidence"),
         "split": split,
         "split_is_placeholder": True,
         "provider": record["provider"],
@@ -48,12 +53,18 @@ def project(record: dict, split: str) -> dict:
         "evidence_text_sha256": record["evidence_hash"],
         "expected_claims": claims,
         "claims_are_critical": bool(critical),
-        "expected_evidence": [{
-            "version_id": record["version_id"],
-            "char_start": record["char_start"],
-            "char_end": record["char_end"],
-            "section_path": record["section_path"],
-        }],
+        # Every span, not just the first. A multi-span case projected as one span
+        # silently drops the evidence its second claim rests on.
+        "expected_evidence": [
+            {"version_id": s["version_id"], "char_start": s["char_start"],
+             "char_end": s["char_end"], "section_path": s["section_path"],
+             "evidence_text_sha256": s.get("evidence_hash")}
+            for s in (record.get("expected_evidence") or [{
+                "version_id": record["version_id"],
+                "char_start": record["char_start"],
+                "char_end": record["char_end"],
+                "section_path": record["section_path"],
+                "evidence_hash": record["evidence_hash"]}])],
         "source_document_title": record["document_title"],
         "source_url": record["source_url"],
         "source_captured_at": str(record["captured_at"]),

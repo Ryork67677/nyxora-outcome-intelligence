@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-20T20:43:02Z",
+  "generated_at": "2026-08-21T00:02:33Z",
   "batches": [
     {
       "batch": 1,
@@ -61,20 +61,54 @@
       ],
       "not_eligible": [],
       "overlay_version": null
+    },
+    {
+      "batch": 3,
+      "closed_record": "evals/review/gold_review_batch_003.json",
+      "eligibility_source": "evals/review/gold_review_batch_003.json",
+      "closure_sha256": "e186a2f30efd4cd610d718df6bddc07a76f205a42bbba3f0bf8945900a49270e",
+      "candidates": 20,
+      "human_verified": 20,
+      "human_rejected": 0,
+      "holdout_eligible": 20,
+      "holdout_eligible_ids": [
+        "GOLD-B003-01",
+        "GOLD-B003-02",
+        "GOLD-B003-03",
+        "GOLD-B003-04",
+        "GOLD-B003-05",
+        "GOLD-B003-06",
+        "GOLD-B003-07",
+        "GOLD-B003-08",
+        "GOLD-B003-09",
+        "GOLD-B003-10",
+        "GOLD-B003-11",
+        "GOLD-B003-12",
+        "GOLD-B003-13",
+        "GOLD-B003-14",
+        "GOLD-B003-15",
+        "GOLD-B003-16",
+        "GOLD-B003-17",
+        "GOLD-B003-18",
+        "GOLD-B003-19",
+        "GOLD-B003-20"
+      ],
+      "not_eligible": [],
+      "overlay_version": null
     }
   ],
   "combined": {
-    "candidates": 36,
-    "human_verified": 33,
+    "candidates": 56,
+    "human_verified": 53,
     "human_rejected": 3,
-    "holdout_eligible": 33
+    "holdout_eligible": 53
   },
   "target": {
     "validation": "30–40",
     "holdout": "70–100"
   },
   "holdout_frozen": false,
-  "reason_not_frozen": "33 eligible cases cannot support both a 30–40 validation split and a 70–100 holdout.",
+  "reason_not_frozen": "53 eligible cases cannot support both a 30–40 validation split and a 70–100 holdout.",
   "retrieval_was_not_run": true,
   "systems_executed": []
 }

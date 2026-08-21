@@ -21,6 +21,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+from collections import Counter
 from datetime import UTC, datetime
 from pathlib import Path
 
@@ -133,6 +134,10 @@ def main() -> int:
     # defect class as the report contradictions this batch already had to correct.
     batch["precheck_holdout_ready"] = sum(1 for r in batch["records"]
                                           if r["precheck_holdout_ready"])
+    # And the status counts. Moving a record from needs_edit to needs_human_review
+    # without refreshing these left the batch header claiming a status nothing had.
+    batch["status_counts"] = dict(Counter(r["verification_status"]
+                                          for r in batch["records"]))
     batch_path.write_text(json.dumps(batch, indent=2, ensure_ascii=False) + "\n",
                           encoding="utf-8")
 

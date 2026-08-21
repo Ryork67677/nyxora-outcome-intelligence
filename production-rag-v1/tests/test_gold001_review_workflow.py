@@ -1980,12 +1980,15 @@ def test_E_the_raw_evidence_is_never_edited_to_silence_the_detector(batch3):
                                          "expected_evidence", "char_start", "char_end"}
 
 
-def test_b003_04_is_repaired_but_not_approved(batch3):
+def test_b003_04_kept_everything_the_repair_and_approval_depend_on(batch3):
     record = next(r for r in batch3["records"]
                   if r["candidate_id"] == "GOLD-B003-04")
-    assert record["verification_status"] == "needs_human_review"
-    assert record["human_verified"] is False
-    assert record["human_decision"] == "NEEDS_EDIT"
+    # NEEDS_EDIT then APPROVE: both decisions survive, in order.
+    decisions = [h["decision"] for h in record["human_decision_history"]]
+    assert decisions == ["NEEDS_EDIT", "APPROVE"]
+    gold = record["verification_status"] == "human_verified"
+    assert gold == (decisions[-1] == "APPROVE")
+    assert record["human_verified"] is gold
     assert record["reasoning_type"] == "error_behavior"
     assert record["evidence_shape"] == "multi_span"
     assert record["requires_all_evidence"] is True
@@ -1999,8 +2002,8 @@ def test_batch_003_after_the_owner_decisions(batch3):
     from collections import Counter
 
     statuses = Counter(r["verification_status"] for r in batch3["records"])
-    assert statuses["human_verified"] == 19
-    assert statuses["needs_human_review"] == 1
+    assert statuses["human_verified"] == 20
+    assert statuses.get("needs_human_review", 0) == 0
     assert statuses.get("human_rejected", 0) == 0
     assert batch3["genuine_multi_hop"] == 0, "the corrected finding is preserved"
     for record in batch3["records"]:
@@ -2009,3 +2012,87 @@ def test_batch_003_after_the_owner_decisions(batch3):
             history = record["human_decision_history"][-1]
             assert history["decision"] == "APPROVE"
             assert history["approved_evidence_hash"] == record["evidence_hash"]
+
+
+# -- state counts must come from the records ---------------------------------
+#
+# The first B003-04 review artifact printed `needs_human_review = 0` while its own prose
+# said the case was awaiting review. The cause was neither display nor prose: a script
+# moved a record from `needs_edit` to `needs_human_review` and refreshed
+# `precheck_holdout_ready` but not `status_counts`, so the batch header claimed a status
+# nothing had. The lesson is that a report must derive its numbers from the records.
+
+def test_a_candidate_pending_final_review_is_counted_as_needing_review():
+    import importlib.util
+    from collections import Counter
+
+    spec = importlib.util.spec_from_file_location(
+        "_export_b003_04_review",
+        Path(__file__).resolve().parents[1] / "scripts" / "export_b003_04_review.py")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+
+    # A batch whose stored header is stale in exactly the way the artifact was.
+    batch = {
+        "status_counts": {"human_verified": 19, "needs_edit": 1},
+        "records": [{"verification_status": "human_verified"} for _ in range(19)]
+                   + [{"verification_status": "needs_human_review"}],
+    }
+    counted = mod.status_counts(batch)
+    assert counted["needs_human_review"] == 1, "the pending case must be counted"
+    assert counted != batch["status_counts"], "and the stale header must not be trusted"
+    assert counted == dict(Counter(r["verification_status"] for r in batch["records"]))
+
+
+def test_every_batch_header_count_agrees_with_its_records(batch, batch2, batch3):
+    """No batch may carry an aggregate its own records contradict."""
+    from collections import Counter
+
+    for name, payload in (("001", batch), ("002", batch2), ("003", batch3)):
+        recomputed = dict(Counter(r["verification_status"] for r in payload["records"]))
+        assert payload["status_counts"] == recomputed, name
+        if "precheck_holdout_ready" in payload:
+            assert payload["precheck_holdout_ready"] == sum(
+                1 for r in payload["records"] if r["precheck_holdout_ready"]), name
+
+
+def test_the_original_review_artifact_is_preserved_with_its_error():
+    original = (Path(__file__).resolve().parents[1] / "evals" / "review"
+                / "gold_batch_003_final_case_review-original.md")
+    if not original.exists():
+        pytest.skip("the original artifact is not present")
+    body = original.read_text()
+    # Kept as shipped, wrong count and all — the correction is recorded, not hidden.
+    assert "| `needs_human_review` | 0 |" in body
+
+
+def test_a_multi_span_case_is_claim_checked_at_all():
+    """Checking only the first span skipped the gate entirely for multi-span cases."""
+    import importlib.util
+
+    spec = importlib.util.spec_from_file_location(
+        "_validate_golden",
+        Path(__file__).resolve().parents[1] / "scripts" / "validate_golden.py")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+
+    text = "First span says alpha. Filler in between. Second span says beta."
+    sources = {"v": {"text": text, "provider": "anthropic"}}
+    case = {
+        "case_id": "M", "question": "What do the two spans say together?",
+        "category": "multi_hop", "split": "validation", "provider": "anthropic",
+        "verification": "human_verified", "human_verified": True,
+        "expected_abstain": False,
+        "expected_claims": [{"text": "alpha", "critical": True},
+                            {"text": "beta", "critical": True}],
+        "expected_evidence": [
+            {"version_id": "v", "char_start": 0, "char_end": 21, "section_path": ["S"]},
+            {"version_id": "v", "char_start": 41, "char_end": 64, "section_path": ["S"]},
+        ],
+    }
+    assert mod.validate([case], sources, require_human=set()) == []
+
+    # A claim in neither span must now fail rather than pass unchecked.
+    unsupported = {**case, "expected_claims": [{"text": "gamma", "critical": True}]}
+    failures = mod.validate([unsupported], sources, require_human=set())
+    assert any(f["check"] == "claim_supported_by_evidence" for f in failures)

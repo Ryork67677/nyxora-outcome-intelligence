@@ -75,7 +75,8 @@ Eligibility is not approval. This case is `needs_human_review` and stays there u
 | | |
 | --- | --- |
 | `human_verified` | 19 |
-| `needs_human_review` | 1 |
+| `needs_human_review` | 0 |
+| `human_rejected` | 0 |
 | genuine multi-hop | 0 (target 3–4) |
 
 The multi-hop shortfall is unchanged and is not being quietly refilled. The five multi-span cases remain useful retrieval tests; none of them is multi-hop reasoning.

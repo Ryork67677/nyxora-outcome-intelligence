@@ -24,9 +24,13 @@ from rag_v1.gold.normalisation import contains_claim_string
 
 SNAPSHOT = "snap_689e336380a054d8039dc35b2c09cd0a"
 VALID_SPLITS = {"development", "validation", "holdout"}
+#: A case's category is its *reasoning* type. Batch 003 split that from evidence
+#: shape, so "multi_hop" here means multi-hop reasoning — a case needing two spans is
+#: multi_span, which is a different field and not a category at all.
 VALID_CATEGORIES = {
-    "exact_lookup", "version_conflict", "multi_hop", "ambiguous", "missing_info",
-    "routing_heavy", "passage_heavy", "sanity", "normal",
+    "exact_lookup", "version_conflict", "multi_hop", "genuine_multi_hop", "ambiguous",
+    "ambiguity", "missing_info", "abstention", "routing_heavy", "passage_heavy",
+    "error_behavior", "configuration_interaction", "lifecycle", "sanity", "normal",
 }
 VALID_PROVIDERS = {"anthropic", "openai", "cross"}
 VALID_VERIFICATION = {
@@ -129,23 +133,32 @@ def validate(cases: list[dict], sources: dict, require_human: set[str]) -> list[
             if not ref.get("section_path"):
                 fail(case_id, "section_path_present", f"evidence {index} has no section path")
             # The check that catches silent drift: the anchor must still contain
-            # the text the case was written against.
-            expected_hash = case.get("evidence_text_sha256")
-            if len(evidence) == 1 and expected_hash:
+            # the text the case was written against. A multi-span case carries a hash
+            # per span; a single-span case may carry one at case level.
+            expected_hash = (ref.get("evidence_text_sha256")
+                             or (case.get("evidence_text_sha256")
+                                 if len(evidence) == 1 else None))
+            if expected_hash:
                 actual = hashlib.sha256(text[start:end].encode("utf-8")).hexdigest()
                 if actual != expected_hash:
-                    fail(case_id, "evidence_hash", "source text at the anchor has changed")
-            # Every critical claim must actually appear in the evidence it cites.
-            span_text = text[start:end]
-            if len(evidence) == 1:
-                for claim in case.get("expected_claims", []):
-                    # Compared with Markdown backslash escapes undone on both sides, so
-                    # `https\://` in the source matches `https://` in the claim. Nothing
-                    # else is normalised — see rag_v1.gold.normalisation.
-                    if claim.get("critical") and not contains_claim_string(
-                            span_text, claim["text"]):
-                        fail(case_id, "claim_supported_by_evidence",
-                             f"claim {claim['text']!r} does not appear in its own evidence span")
+                    fail(case_id, "evidence_hash",
+                         f"source text at span {index} has changed")
+
+        # Every critical claim must appear in the evidence the case cites. For a
+        # multi-span case that means *some* span carries it — checking only the first
+        # span skipped the check entirely, so multi-span cases were never claim-gated.
+        cited = " \n".join(
+            sources[ref["version_id"]]["text"][ref["char_start"]:ref["char_end"]]
+            for ref in evidence
+            if ref.get("version_id") in sources
+            and ref.get("char_start") is not None and ref.get("char_end") is not None)
+        for claim in case.get("expected_claims", []):
+            # Compared with Markdown backslash escapes undone on both sides, so
+            # `https\://` in the source matches `https://` in the claim. Nothing
+            # else is normalised — see rag_v1.gold.normalisation.
+            if claim.get("critical") and not contains_claim_string(cited, claim["text"]):
+                fail(case_id, "claim_supported_by_evidence",
+                     f"claim {claim['text']!r} does not appear in the evidence it cites")
 
         evidence_key = tuple(sorted((e.get("version_id"), e.get("char_start"), e.get("char_end"))
                                     for e in evidence))

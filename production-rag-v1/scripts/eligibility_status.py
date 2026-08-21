@@ -23,6 +23,7 @@ from rag_v1.gold.eligibility import evaluate
 SOURCES = (
     (1, "evals/review/gold_review_batch_001.json", "evals/gold/batch_001_v2/overlay.json"),
     (2, "evals/review/gold_review_batch_002.json", None),
+    (3, "evals/review/gold_review_batch_003.json", None),
 )
 #: What the project is aiming at. Reported so a count can be read against a target
 #: instead of in a vacuum.

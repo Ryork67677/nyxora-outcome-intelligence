@@ -11,6 +11,7 @@ from __future__ import annotations
 import argparse
 import json
 import sys
+from collections import Counter
 from pathlib import Path
 
 from rag_v1.gold.eligibility import evaluate
@@ -25,6 +26,17 @@ CANDIDATE = "GOLD-B003-04"
 
 def code_span(text: str) -> str:
     return f"`` {text} ``" if "`" in text else f"`{text}`"
+
+
+def status_counts(batch: dict) -> dict:
+    """Counted from the records, never read from the batch header.
+
+    The first version of this artifact printed needs_human_review = 0 while its own
+    prose said the case was awaiting review. The header dict was stale — a script had
+    changed a record's status without refreshing it. A report that derives its numbers
+    from the records cannot disagree with them.
+    """
+    return dict(Counter(r["verification_status"] for r in batch["records"]))
 
 
 def render(record: dict, validator: str, eligibility: dict, batch: dict) -> str:
@@ -130,9 +142,8 @@ def render(record: dict, validator: str, eligibility: dict, batch: dict) -> str:
         "",
         "| | |",
         "| --- | --- |",
-        f"| `human_verified` | {batch['status_counts'].get('human_verified', 0)} |",
-        f"| `needs_human_review` | {batch['status_counts'].get('needs_human_review', 0)} |",
-        f"| `human_rejected` | {batch['status_counts'].get('human_rejected', 0)} |",
+        *[f"| `{status}` | {count} |"
+          for status, count in sorted(status_counts(batch).items())],
         f"| genuine multi-hop | {batch['genuine_multi_hop']} (target 3–4) |",
         "",
         ("The multi-hop shortfall is unchanged and is not being quietly refilled. The "
