@@ -1,6 +1,6 @@
 # Gold review batch 004
 
-**15 candidates · corpus snapshot `snap_689e336380a054d8039dc35b2c09cd0a` · generated 2026-08-21T05:10:57Z**
+**15 candidates · corpus snapshot `snap_689e336380a054d8039dc35b2c09cd0a` · generated 2026-08-21T05:18:49Z**
 
 Nothing in this file is ground truth. Every candidate is `candidate_unverified`. The evidence is quoted verbatim from the frozen corpus and is authoritative for this review — **do not consult live documentation**, which may have changed since the snapshot.
 

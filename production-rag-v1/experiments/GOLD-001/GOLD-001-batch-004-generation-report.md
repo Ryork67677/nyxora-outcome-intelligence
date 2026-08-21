@@ -78,7 +78,7 @@ Counted from each check's own reason string, not asserted. A pair is counted onc
 | check | pairs |
 | --- | --- |
 | span 2 states no condition on the bridge entity | 371 |
-| span 1 enumerates values rather than stating a requirement about the b | 147 |
+| span 1 enumerates values rather than stating a requirement about the bridge entity | 147 |
 | span 1 alone already answers the whole question | 16 |
 | span 2 alone already answers the whole question | 16 |
 | the spans are two unrelated lookups | 8 |

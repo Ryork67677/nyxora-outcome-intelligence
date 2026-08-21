@@ -655,7 +655,9 @@ def rejection_summary(rejected: list[dict], accepted: int) -> dict:
     unmatched = 0
     for entry in rejected:
         reason = entry["reasons"][0]
-        verbatim[reason.split(" — ")[0].split(":")[0][:70]] += 1
+        # Trim at the em dash or colon that introduces the explanation, not at a fixed
+        # width: a table row reading "…a requirement about the b" looks like a bug.
+        verbatim[reason.split(" — ")[0].split(":")[0].strip()] += 1
         label = next((label for phrase, label in _REJECTION_BUCKETS if phrase in reason),
                      None)
         if label is None:
