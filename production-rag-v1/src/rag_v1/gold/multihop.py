@@ -25,6 +25,9 @@ from __future__ import annotations
 
 import re
 
+from collections import Counter
+
+from rag_v1.gold.bridge_equivalence import same_semantic_entity
 from rag_v1.gold.normalisation import contains_claim_string
 
 PASS = "PASS"
@@ -303,3 +306,150 @@ __all__ = [
     "CONDITION_PATTERNS", "CONSEQUENCE_PATTERNS", "FAIL", "PASS", "composition_check",
     "find_bridges", "is_condition", "is_consequence",
 ]
+
+
+#: §15's dependency vocabulary. A chain starts from a sentence that *states a
+#: dependency*, not from two sentences that happen to share an identifier — batch 004
+#: searched 559 shared-identifier pairs for one chain, and the yield is the reason this
+#: search runs the other way round.
+DEPENDENCY_MARKERS = (
+    re.compile(r"\brequires?\b"), re.compile(r"\bonly if\b"),
+    re.compile(r"\bif\b.*\bthen\b"), re.compile(r"\btakes precedence\b"),
+    re.compile(r"\bmust\b"), re.compile(r"\bunsupported when\b"),
+    re.compile(r"\bdepends on\b"), re.compile(r"\bavailable only\b"),
+    re.compile(r"\bapplies (?:only )?when\b"), re.compile(r"\bresults? in\b"),
+    re.compile(r"\bcauses?\b"), re.compile(r"\bfalls? back to\b"),
+    re.compile(r"\bset\b.*\bto\b"), re.compile(r"\bis (?:deprecated|required)\b"),
+    re.compile(r"\bwhen\b.*\bis (?:present|set|omitted|enabled|disabled)\b"),
+)
+#: Span 1 has to *put the entity in a state*, not merely mention it. §16: span 1
+#: establishes fact/state A, span 2 establishes the rule A → B.
+_STATE_ASSIGNMENT = (
+    r"set\s+`?{e}`?\s+to", r"`?{e}`?\s+(?:is|are|must be|defaults? to)\s",
+    r"(?:pass|provide|include|add|adding|specify|use|using)\s+`?{e}`?",
+    r"`?{e}`?\s+requires?\s", r"`?{e}`?\s+(?:is|are)\s+(?:deprecated|required|optional)",
+    r"with\s+`?{e}`?\s+(?:set|enabled|present)",
+)
+#: §18: a deterministic ceiling on the search, so a low-yield lane cannot eat the batch.
+DEPENDENCY_PAIR_BUDGET = 1000
+
+
+def is_dependency_statement(text: str) -> bool:
+    """Does this sentence state a dependency at all?"""
+    lowered = text.lower()
+    return any(marker.search(lowered) for marker in DEPENDENCY_MARKERS)
+
+
+def state_implication(entity: str, span_1: str) -> dict:
+    """Does span 1 put the bridge entity into a state span 2 could test?
+
+    A span that merely mentions the entity establishes nothing for the second hop to
+    consume. This looks for the entity being set, required, passed, or declared to be
+    something — the "fact/state A" half of §16's definition.
+    """
+    escaped = re.escape(entity)
+    for pattern in _STATE_ASSIGNMENT:
+        match = re.search(pattern.format(e=escaped), span_1, re.IGNORECASE)
+        if match:
+            return {"state_established": True, "state_evidence": match.group(0).strip()}
+    return {
+        "state_established": False,
+        "state_evidence": None,
+        "reason": (f"span 1 mentions `{entity}` without putting it in a state — nothing "
+                   "for span 2's condition to be true of"),
+    }
+
+
+def find_dependency_chains(facts: list[dict], limit: int = 8,
+                           budget: int = DEPENDENCY_PAIR_BUDGET) -> tuple[list, dict]:
+    """Dependency-first multi-hop search, with a funnel report.
+
+    The order is the point. Batch 004 took every pair of facts sharing a plausible
+    identifier and asked whether it composed; 558 of 559 did not. Here a pair is only
+    considered when span 1 already states a dependency and puts the entity in a state,
+    and span 2 makes an outcome conditional on that entity. The funnel counts what each
+    gate removed, so the next batch can see which gate is doing the work.
+    """
+    by_entity: dict[str, list[dict]] = {}
+    for fact in facts:
+        for raw in set(re.findall(r"`([^`]{3,60})`", fact["evidence_text"])):
+            entity = raw.strip().strip("`\"'")
+            if plausible_bridge(entity):
+                by_entity.setdefault(entity, []).append(fact)
+
+    funnel = Counter()
+    pairs: list[dict] = []
+    rejected: list[dict] = []
+    used: set[str] = set()
+
+    for entity, group in sorted(by_entity.items()):
+        if len(pairs) >= limit or funnel["dependency_pairs_considered"] >= budget:
+            break
+        group = group[:MAX_FACTS_PER_ENTITY]
+        # Lane B starts here: only spans that state a dependency and put the entity in
+        # a state may open a chain.
+        openers = [f for f in group
+                   if is_dependency_statement(f["evidence_text"])
+                   and about(f["evidence_text"], entity)
+                   and state_implication(entity, f["evidence_text"])["state_established"]]
+        consumers = [f for f in group
+                     if is_consequence(f["evidence_text"])
+                     and states_dependency(f["evidence_text"], entity)]
+        if not openers or not consumers:
+            continue
+
+        for first in openers:
+            for second in consumers:
+                if funnel["dependency_pairs_considered"] >= budget:
+                    break
+                if first["evidence_hash"] == second["evidence_hash"]:
+                    continue
+                if {first["evidence_hash"], second["evidence_hash"]} & used:
+                    continue
+                funnel["dependency_pairs_considered"] += 1
+
+                equivalence = same_semantic_entity(entity, first, second)
+                if not equivalence["same_semantic_entity"]:
+                    funnel["failed_semantic_equivalence"] += 1
+                    rejected.append({"bridge_entity": entity, "gate": "semantic_equivalence",
+                                     "reason": equivalence["bridge_equivalence_reason"]})
+                    continue
+                if is_list_membership(first["evidence_text"]):
+                    funnel["failed_state_implication"] += 1
+                    rejected.append({"bridge_entity": entity, "gate": "state_implication",
+                                     "reason": "span 1 enumerates values rather than "
+                                               "putting the entity in a state"})
+                    continue
+                if (self_contained(first["evidence_text"])
+                        and self_contained(second["evidence_text"])):
+                    funnel["failed_span_independence"] += 1
+                    rejected.append({"bridge_entity": entity, "gate": "span_independence",
+                                     "reason": "both spans carry their own condition and "
+                                               "outcome: two parallel lookups"})
+                    continue
+                verdict = composition_check(
+                    entity, first["evidence_text"], second["evidence_text"],
+                    first["critical_strings"], second["critical_strings"])
+                if verdict["multi_hop_composition_check"] != PASS:
+                    funnel["failed_span_independence"] += 1
+                    rejected.append({"bridge_entity": entity, "gate": "span_independence",
+                                     "reason": "; ".join(verdict["reasons"])})
+                    continue
+
+                state = state_implication(entity, first["evidence_text"])
+                funnel["passed"] += 1
+                used |= {first["evidence_hash"], second["evidence_hash"]}
+                pairs.append({
+                    "bridge_entity": entity, "first": first, "second": second,
+                    **verdict, **equivalence, **state,
+                })
+                break
+            else:
+                continue
+            break
+
+    return pairs, {"funnel": dict(funnel), "budget": budget,
+                   "rejected": rejected,
+                   "entities_with_a_dependency_opener": sum(
+                       1 for entity, group in by_entity.items()
+                       if any(is_dependency_statement(f["evidence_text"]) for f in group))}

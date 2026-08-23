@@ -1,0 +1,412 @@
+{
+  "batch": 5,
+  "schema_version": "1.3",
+  "generated_at": "2026-08-23T16:29:55Z",
+  "git_commit": "f4c7d4e11a97b252e8e250649dc21896e241cff0",
+  "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a",
+  "starting_state": {
+    "human_verified": 67,
+    "holdout_eligible": 67,
+    "human_rejected": 4,
+    "genuine_multi_hop": 1,
+    "by_batch": [
+      {
+        "batch": 1,
+        "human_verified": 16,
+        "holdout_eligible": 16,
+        "human_rejected": 2,
+        "genuine_multi_hop": 0
+      },
+      {
+        "batch": 2,
+        "human_verified": 17,
+        "holdout_eligible": 17,
+        "human_rejected": 1,
+        "genuine_multi_hop": 0
+      },
+      {
+        "batch": 3,
+        "human_verified": 20,
+        "holdout_eligible": 20,
+        "human_rejected": 0,
+        "genuine_multi_hop": 0
+      },
+      {
+        "batch": 4,
+        "human_verified": 14,
+        "holdout_eligible": 14,
+        "human_rejected": 1,
+        "genuine_multi_hop": 1
+      }
+    ],
+    "holdout_frozen": false,
+    "read_from": "experiments/GOLD-001/GOLD-001-eligibility-status.json"
+  },
+  "candidate_pool_size": 1354,
+  "candidates": 19,
+  "by_provider": {
+    "anthropic": 8,
+    "openai": 11
+  },
+  "by_reasoning_type": {
+    "ambiguity_disambiguation": 1,
+    "configuration_interaction": 9,
+    "error_behavior": 3,
+    "exact_lookup": 2,
+    "lifecycle_compatibility_migration": 4
+  },
+  "by_evidence_shape": {
+    "multi_document": 1,
+    "single_span": 18
+  },
+  "by_confidence": {
+    "medium": 10,
+    "high": 9
+  },
+  "unique_documents": 16,
+  "documents_by_provider": {
+    "anthropic": 7,
+    "openai": 9
+  },
+  "versions_by_provider": {
+    "anthropic": 8,
+    "openai": 9
+  },
+  "genuine_multi_hop": 0,
+  "multi_document": 1,
+  "complete_questions": 19,
+  "complete_answers": 19,
+  "complete_claims": 19,
+  "needs_human_interpretation": 1,
+  "precheck_holdout_ready": 19,
+  "internal_review": {
+    "counts": {
+      "DROP": 27,
+      "READY_FOR_INDEPENDENT_REVIEW": 19
+    },
+    "repaired": [],
+    "dropped": [
+      {
+        "question": "What must `openssl` be?",
+        "reasoning_type": "exact_lookup",
+        "findings": [
+          "QUESTION_FORM: too short to carry its conditions"
+        ]
+      },
+      {
+        "question": "What does `created_at` require?",
+        "reasoning_type": "configuration_interaction",
+        "findings": [
+          "CATEGORY: labelled configuration_interaction but the evidence names fewer than two settings, and the question was written for a relation the evidence does not state"
+        ]
+      },
+      {
+        "question": "What happens if recent raw memories exceed `max_raw_memories_for_consolidation` (defaults to 256)?",
+        "reasoning_type": "configuration_interaction",
+        "findings": [
+          "CATEGORY: labelled configuration_interaction but the evidence names fewer than two settings, and the question was written for a relation the evidence does not state"
+        ]
+      },
+      {
+        "question": "What is the `default_message` option?",
+        "reasoning_type": "exact_lookup",
+        "findings": [
+          "CLAIM_SCOPE: a definition bullet whose parent type is in the heading, not in the span — the same shape batch 004's review rejected"
+        ]
+      },
+      {
+        "question": "What is the `parsed` option?",
+        "reasoning_type": "exact_lookup",
+        "findings": [
+          "CLAIM_SCOPE: a definition bullet whose parent type is in the heading, not in the span — the same shape batch 004's review rejected"
+        ]
+      },
+      {
+        "question": "What is the `group_id` option?",
+        "reasoning_type": "exact_lookup",
+        "findings": [
+          "CLAIM_SCOPE: a definition bullet whose parent type is in the heading, not in the span — the same shape batch 004's review rejected"
+        ]
+      },
+      {
+        "question": "What is the `insert_line` option?",
+        "reasoning_type": "exact_lookup",
+        "findings": [
+          "CLAIM_SCOPE: a definition bullet whose parent type is in the heading, not in the span — the same shape batch 004's review rejected"
+        ]
+      },
+      {
+        "question": "What should I move to instead of `httpx`?",
+        "reasoning_type": "lifecycle_compatibility_migration",
+        "findings": [
+          "CLAIM_SCOPE: the answer points outside its evidence with a demonstrative"
+        ]
+      },
+      {
+        "question": "What is the `tool_use_id` option?",
+        "reasoning_type": "exact_lookup",
+        "findings": [
+          "CLAIM_SCOPE: a definition bullet whose parent type is in the heading, not in the span — the same shape batch 004's review rejected"
+        ]
+      },
+      {
+        "question": "What happens when the memory tool is present in your request's `tools`?",
+        "reasoning_type": "configuration_interaction",
+        "findings": [
+          "CATEGORY: labelled configuration_interaction but the evidence names fewer than two settings, and the question was written for a relation the evidence does not state"
+        ]
+      },
+      {
+        "question": "What must `name` be?",
+        "reasoning_type": "exact_lookup",
+        "findings": [
+          "GENERIC_IDENTIFIER: `name` names something that exists in many APIs, and the question does not say which one"
+        ]
+      },
+      {
+        "question": "What must `name` be?",
+        "reasoning_type": "exact_lookup",
+        "findings": [
+          "GENERIC_IDENTIFIER: `name` names something that exists in many APIs, and the question does not say which one"
+        ]
+      },
+      {
+        "question": "What must `name` be?",
+        "reasoning_type": "exact_lookup",
+        "findings": [
+          "GENERIC_IDENTIFIER: `name` names something that exists in many APIs, and the question does not say which one"
+        ]
+      },
+      {
+        "question": "What does `RunConfig.session_settings` override?",
+        "reasoning_type": "configuration_interaction",
+        "findings": [
+          "QUESTION_SCOPE: the question makes `RunConfig.session_settings` the subject, but the evidence has it after 'in'"
+        ]
+      },
+      {
+        "question": "What happens when extended thinking is enabled without explicit `clear_thinking` configuration?",
+        "reasoning_type": "configuration_interaction",
+        "findings": [
+          "CATEGORY: labelled configuration_interaction but the evidence names fewer than two settings, and the question was written for a relation the evidence does not state"
+        ]
+      },
+      {
+        "question": "What does `speed` require?",
+        "reasoning_type": "configuration_interaction",
+        "findings": [
+          "QUESTION_SCOPE: the question makes `speed` the subject, but the evidence has it after 'by'"
+        ]
+      },
+      {
+        "question": "What happens when the API receives a `compaction` block?",
+        "reasoning_type": "configuration_interaction",
+        "findings": [
+          "CATEGORY: labelled configuration_interaction but the evidence names fewer than two settings, and the question was written for a relation the evidence does not state"
+        ]
+      },
+      {
+        "question": "What does `audio.input.turn_detection=None` disable?",
+        "reasoning_type": "configuration_interaction",
+        "findings": [
+          "CATEGORY: labelled configuration_interaction but the evidence names fewer than two settings, and the question was written for a relation the evidence does not state"
+        ]
+      },
+      {
+        "question": "What happens if the precondition fails but the stored state already exactly matches the requested `content` and `path`?",
+        "reasoning_type": "error_behavior",
+        "findings": [
+          "GENERIC_IDENTIFIER: `content` names something that exists in many APIs, and the question does not say which one"
+        ]
+      },
+      {
+        "question": "What happens if the precondition fails but the stored state already exactly matches the requested `content` and `path`?",
+        "reasoning_type": "error_behavior",
+        "findings": [
+          "GENERIC_IDENTIFIER: `content` names something that exists in many APIs, and the question does not say which one"
+        ]
+      },
+      {
+        "question": "What happens if the precondition fails but the stored state already exactly matches the requested `content` and `path`?",
+        "reasoning_type": "error_behavior",
+        "findings": [
+          "GENERIC_IDENTIFIER: `content` names something that exists in many APIs, and the question does not say which one"
+        ]
+      },
+      {
+        "question": "What happens if the precondition fails but the stored state already exactly matches the requested `content` and `path`?",
+        "reasoning_type": "error_behavior",
+        "findings": [
+          "GENERIC_IDENTIFIER: `content` names something that exists in many APIs, and the question does not say which one"
+        ]
+      },
+      {
+        "question": "What happens if the precondition fails but the stored state already exactly matches the requested `content` and `path`?",
+        "reasoning_type": "error_behavior",
+        "findings": [
+          "GENERIC_IDENTIFIER: `content` names something that exists in many APIs, and the question does not say which one"
+        ]
+      },
+      {
+        "question": "What happens if the precondition fails but the stored state already exactly matches the requested `content` and `path`?",
+        "reasoning_type": "error_behavior",
+        "findings": [
+          "GENERIC_IDENTIFIER: `content` names something that exists in many APIs, and the question does not say which one"
+        ]
+      },
+      {
+        "question": "What happens when `ANTHROPIC_API_KEY` is set in your environment?",
+        "reasoning_type": "configuration_interaction",
+        "findings": [
+          "CATEGORY: labelled configuration_interaction but the evidence names fewer than two settings, and the question was written for a relation the evidence does not state"
+        ]
+      },
+      {
+        "question": "What happens when an application supplies `params[\"auth\"]` or `params[\"httpx_client_factory\"]`?",
+        "reasoning_type": "configuration_interaction",
+        "findings": [
+          "CLAIM_SCOPE: the answer points outside its evidence with a demonstrative"
+        ]
+      },
+      {
+        "question": "What does `structuredContent` take precedence over?",
+        "reasoning_type": "configuration_interaction",
+        "findings": [
+          "CLAIM_SCOPE: the answer points outside its evidence with a demonstrative"
+        ]
+      }
+    ],
+    "note": "A generation self-review, not independent verification and not human approval. Every candidate here is candidate_unverified."
+  },
+  "selected_by": {
+    "target": 16,
+    "overflow": 3
+  },
+  "overflow_cap": {
+    "error_behavior": 4,
+    "configuration_interaction": 4,
+    "exact_lookup": 3
+  },
+  "question_openings": {
+    "what happens when": 4,
+    "what happens if": 3,
+    "in web fetch": 1,
+    "what must `allowed_domains`": 1,
+    "where is `fallbacks`": 1,
+    "is `compaction_control` still": 1,
+    "where is `budget_tokens`": 1,
+    "what does `betas`": 1,
+    "what does `aws_bedrock_base_url`": 1,
+    "what does `fusemountpattern`": 1,
+    "what does `s3filesmountpattern`": 1,
+    "what does `applypatchtool`": 1,
+    "what must `dispatcher`": 1,
+    "what happened to": 1
+  },
+  "evidence_length": {
+    "spans": 20,
+    "mean": 141.8,
+    "median": 133,
+    "max": 277,
+    "min": 70,
+    "over_soft_cap": 0
+  },
+  "removed": {
+    "excluded_known_failure_case": 1,
+    "unbuildable": 1260,
+    "dropped_by_semantic_review": 27,
+    "duplicate_question": 18,
+    "duplicate_evidence": 26,
+    "blocking_anaphora": 1,
+    "duplicate_evidence_text": 3,
+    "reasoning_type_ceiling": 3,
+    "short_of_target_before_overflow": 14,
+    "not_selected_diversity": 0
+  },
+  "eligible_pool": {
+    "candidates": 19,
+    "by_reasoning_type": {
+      "lifecycle_compatibility_migration": 4,
+      "error_behavior": 3,
+      "configuration_interaction": 9,
+      "exact_lookup": 2,
+      "ambiguity_disambiguation": 1
+    },
+    "by_provider": {
+      "anthropic": 8,
+      "openai": 11
+    }
+  },
+  "multi_hop_search": {
+    "strategy": "dependency-first: a chain may only open on a sentence that states a dependency and puts the entity in a state",
+    "funnel": {
+      "dependency_pairs_considered": 3,
+      "failed_span_independence": 1,
+      "failed_semantic_equivalence": 1,
+      "passed": 1
+    },
+    "budget": 1000,
+    "rejected": [
+      {
+        "bridge_entity": "input_filter",
+        "gate": "span_independence",
+        "reason": "span 1 alone already answers the whole question — not multi-hop"
+      },
+      {
+        "bridge_entity": "max_tokens",
+        "gate": "semantic_equivalence",
+        "reason": "`max_tokens` is a request parameter in span 1 and an enum value in span 2: the same string naming two different things, which is a coincidence rather than a chain"
+      }
+    ],
+    "entities_with_a_dependency_opener": 122,
+    "valid_chains": 1,
+    "exported_chains": 0
+  },
+  "targets": {
+    "reasoning_type": {
+      "genuine_multi_hop": [
+        0,
+        6
+      ],
+      "error_behavior": [
+        5,
+        6
+      ],
+      "configuration_interaction": [
+        5,
+        6
+      ],
+      "exact_lookup": [
+        5,
+        6
+      ],
+      "lifecycle_compatibility_migration": [
+        3,
+        4
+      ],
+      "ambiguity_disambiguation": [
+        3,
+        4
+      ],
+      "comparison": [
+        2,
+        3
+      ]
+    },
+    "provider": {
+      "openai": [
+        14,
+        16
+      ],
+      "anthropic": [
+        14,
+        16
+      ]
+    }
+  },
+  "verification_status": "candidate_unverified — nothing in this file is gold",
+  "retrieval_was_not_run": true,
+  "systems_executed": [],
+  "batch_sha256": "37bf3509a9205637588730760dc14bf2dcaed19e03e4ed6bcd4ba7580e501af3",
+  "report_of": "evals/review/gold_review_batch_005.json"
+}

@@ -56,17 +56,26 @@ def _claim(sentence: str) -> str:
     return " ".join(sentence.split()).rstrip()
 
 
-def mine_bridge_facts(doc: dict, limit: int = 400) -> list[dict]:
-    """Condition and consequence sentences, packaged as reusable hop members."""
+def iter_guarded_spans(doc: dict, keep=None, limit: int = 400):
+    """Walk a document's sentences, yielding only spans that clear every guard.
+
+    Every miner needs the same sequence — split, reject fenced code and code-shaped
+    prose, resolve anaphora backwards, reject fragments, hold the size caps, require a
+    checkable identifier — and each one that reimplements it is a chance for the guards
+    to drift apart. ``keep`` decides which *sentences* are of interest; the guards are
+    not the caller's business.
+
+    Yields ``(start, end, span_text, identifiers)`` for the resolved span.
+    """
     text = doc["text"]
     fenced = code_regions(text)
-    out: list[dict] = []
     seen: set[tuple[int, int]] = set()
     cursor = 0
+    yielded = 0
 
     for piece in _SENTENCE_SPLIT.split(text):
-        if len(out) >= limit:
-            break
+        if yielded >= limit:
+            return
         start = text.find(piece, cursor)
         if start < 0:
             continue
@@ -79,10 +88,7 @@ def mine_bridge_facts(doc: dict, limit: int = 400) -> list[dict]:
             continue
         if inside_code(fenced, start, end) or looks_like_code(sentence):
             continue
-
-        condition = is_condition(sentence)
-        consequence = is_consequence(sentence)
-        if not (condition or consequence):
+        if keep is not None and not keep(sentence):
             continue
 
         identifiers = identifiers_in(sentence)
@@ -99,14 +105,58 @@ def mine_bridge_facts(doc: dict, limit: int = 400) -> list[dict]:
                 or not (MIN_EVIDENCE_CHARS <= end - start <= EVIDENCE_HARD_CAP)
                 or (start, end) in seen):
             continue
+        seen.add((start, end))
+        yielded += 1
+        yield start, end, span, identifiers
 
+
+def package_fact(doc: dict, start: int, end: int, span: str, critical: list[str],
+                 role: str, kind: str = "normative_statement") -> dict:
+    """Wrap a guarded span with the provenance every candidate carries."""
+    before, after = _context(doc["text"], start, end)
+    return {
+        "candidate_id": "",
+        "provider": doc["provider"],
+        "document_title": doc["title"],
+        "version_id": doc["version_id"],
+        "source_url": doc.get("url"),
+        "captured_at": str(doc.get("captured_at")),
+        "section_path": _section_for(doc["sections"], start),
+        "char_start": start,
+        "char_end": end,
+        "evidence_text": span,
+        "evidence_hash": hashlib.sha256(span.encode("utf-8")).hexdigest(),
+        "evidence_char_length": end - start,
+        "context_before": before,
+        "context_after": after,
+        "fact_role": role,
+        "proposed_question": None,
+        "proposed_answer": _claim(span),
+        "proposed_atomic_claims": [_claim(span)],
+        "critical_strings": critical,
+        "evidence_kind": kind,
+        "candidate_type": "supported",
+        "generator_confidence": "medium",
+        "retrieval_was_not_run": True,
+        "schema_version": SCHEMA_VERSION,
+    }
+
+
+def mine_bridge_facts(doc: dict, limit: int = 400) -> list[dict]:
+    """Condition and consequence sentences, packaged as reusable hop members."""
+    out: list[dict] = []
+
+    def keep(sentence: str) -> bool:
+        return is_condition(sentence) or is_consequence(sentence)
+
+    for start, end, span, identifiers in iter_guarded_spans(doc, keep, limit):
         critical = [i for i in identifiers if contains_claim_string(span, i)]
         if not critical:
             continue
         critical = critical[:MAX_CRITICAL_STRINGS]
-
-        seen.add((start, end))
-        before, after = _context(text, start, end)
+        condition = is_condition(span)
+        consequence = is_consequence(span)
+        before, after = _context(doc["text"], start, end)
         out.append({
             "candidate_id": "",
             "provider": doc["provider"],
