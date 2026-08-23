@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-21T00:02:33Z",
+  "generated_at": "2026-08-23T06:18:13Z",
   "batches": [
     {
       "batch": 1,
@@ -29,6 +29,7 @@
         "GOLD-B001-18"
       ],
       "not_eligible": [],
+      "genuine_multi_hop": 0,
       "overlay_version": "batch_001_v2"
     },
     {
@@ -60,6 +61,7 @@
         "GOLD-B002-18"
       ],
       "not_eligible": [],
+      "genuine_multi_hop": 0,
       "overlay_version": null
     },
     {
@@ -94,21 +96,73 @@
         "GOLD-B003-20"
       ],
       "not_eligible": [],
+      "genuine_multi_hop": 0,
+      "overlay_version": null
+    },
+    {
+      "batch": 4,
+      "closed_record": "evals/review/gold_review_batch_004_final.json",
+      "eligibility_source": "evals/review/gold_review_batch_004_final.json",
+      "closure_sha256": "57269018d21a2b1f72b607b419ce5f9c02789ff98e6699ca0c58ea65811c8908",
+      "candidates": 15,
+      "human_verified": 14,
+      "human_rejected": 1,
+      "holdout_eligible": 14,
+      "holdout_eligible_ids": [
+        "GOLD-B004-01",
+        "GOLD-B004-02",
+        "GOLD-B004-03",
+        "GOLD-B004-04",
+        "GOLD-B004-05",
+        "GOLD-B004-06",
+        "GOLD-B004-07",
+        "GOLD-B004-09",
+        "GOLD-B004-10",
+        "GOLD-B004-11",
+        "GOLD-B004-12",
+        "GOLD-B004-13",
+        "GOLD-B004-14",
+        "GOLD-B004-15"
+      ],
+      "not_eligible": [],
+      "genuine_multi_hop": 1,
       "overlay_version": null
     }
   ],
   "combined": {
-    "candidates": 56,
-    "human_verified": 53,
-    "human_rejected": 3,
-    "holdout_eligible": 53
+    "candidates": 71,
+    "human_verified": 67,
+    "human_rejected": 4,
+    "holdout_eligible": 67,
+    "genuine_multi_hop": 1
   },
   "target": {
     "validation": "30–40",
     "holdout": "70–100"
   },
+  "multi_hop_generation": {
+    "attempted_pairs": 559,
+    "passed": 1,
+    "rejected": 558,
+    "reasons": {
+      "span_1_alone_answered_the_full_question": 16,
+      "span_2_alone_answered_the_full_question": 16,
+      "the_spans_were_two_unrelated_lookups": 379,
+      "no_bridge_relationship_existed": 147,
+      "the_composed_answer_introduced_unsupported_inference": 0
+    },
+    "unclassified": 0,
+    "by_check": {
+      "span 2 states no condition on the bridge entity": 371,
+      "span 1 enumerates values rather than stating a requirement about the bridge entity": 147,
+      "span 1 alone already answers the whole question": 16,
+      "span 2 alone already answers the whole question": 16,
+      "the spans are two unrelated lookups": 8
+    },
+    "note": "Counted from each check's own reason string, not asserted. A pair is counted once, under the first reason it failed. `unclassified` is a guard: it should be 0, and a non-zero value means a check grew a reason the report does not know how to file."
+  },
   "holdout_frozen": false,
-  "reason_not_frozen": "53 eligible cases cannot support both a 30–40 validation split and a 70–100 holdout.",
+  "reason_not_frozen": "67 eligible cases cannot support both a 30–40 validation split and a 70–100 holdout.",
   "retrieval_was_not_run": true,
   "systems_executed": []
 }

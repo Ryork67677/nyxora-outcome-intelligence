@@ -1,0 +1,526 @@
+{
+  "batch": 4,
+  "closed_at": "2026-08-23T06:17:18Z",
+  "closed_by": "project_owner",
+  "source_batch_sha256": "1ce046829660332c073d41101d74415efd569ab6e2a5059c793a10d001bed712",
+  "generation_batch_sha256": "e7c6d58c3c21b9ece940ae9665cba96ada35c887558803bba1797aaa142b93f9",
+  "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a",
+  "schema_version": "1.2",
+  "git_commit": "2daaa9e62566c8d4ab799f2c1dc7aa92878d41d0",
+  "totals": {
+    "candidates": 15,
+    "human_verified": 14,
+    "human_rejected": 1,
+    "needs_human_review": 0,
+    "outstanding_decisions": 0,
+    "acceptance_rate": 0.9333
+  },
+  "status_counts": {
+    "human_verified": 14,
+    "human_rejected": 1
+  },
+  "human_verified_ids": [
+    "GOLD-B004-01",
+    "GOLD-B004-02",
+    "GOLD-B004-03",
+    "GOLD-B004-04",
+    "GOLD-B004-05",
+    "GOLD-B004-06",
+    "GOLD-B004-07",
+    "GOLD-B004-09",
+    "GOLD-B004-10",
+    "GOLD-B004-11",
+    "GOLD-B004-12",
+    "GOLD-B004-13",
+    "GOLD-B004-14",
+    "GOLD-B004-15"
+  ],
+  "rejected": [
+    {
+      "candidate_id": "GOLD-B004-08",
+      "defects": [],
+      "reason": "Rejected: BENCHMARK_QUALITY / TAXONOMY_MISCLASSIFICATION. The facts are not disputed — ContentDeltaEvent carries type \"content.delta\" and ContentDoneEvent carries type \"content.done\" — but two discriminator constants are not meaningful disambiguation. Relabelling to exact_lookup would produce two trivial literal lookups of little benchmark value. Not salvaged to increase the candidate count. Preserved as an audit example.",
+      "independent_verdict": null,
+      "internal_review_status": "REJECT_RECOMMENDED",
+      "preserved_as": "negative audit example - the record is kept, not deleted"
+    }
+  ],
+  "repaired": [
+    {
+      "candidate_id": "GOLD-B004-04",
+      "reason": "evidence_boundary_completion",
+      "actions": {
+        "extend_boundary": 1
+      },
+      "old_spans": [
+        [
+          48081,
+          48225
+        ]
+      ],
+      "new_spans": [
+        [
+          47953,
+          48225
+        ]
+      ],
+      "old_evidence_hashes": [
+        "13f22cd01eeaeaad4e7c51e02e5ea5347541780f320e43c4cb816a141c933afb"
+      ],
+      "new_evidence_hashes": [
+        "8eb88b1c77cc0a04bd7ffe36232db6fb450a7bf9b650087984be147984df7753"
+      ],
+      "scope_spans_added": [],
+      "approval_pinned_to": [
+        "8eb88b1c77cc0a04bd7ffe36232db6fb450a7bf9b650087984be147984df7753"
+      ]
+    },
+    {
+      "candidate_id": "GOLD-B004-06",
+      "reason": "evidence_scope_completion",
+      "actions": {
+        "extend_boundary": 1
+      },
+      "old_spans": [
+        [
+          16744,
+          16843
+        ]
+      ],
+      "new_spans": [
+        [
+          16295,
+          16843
+        ]
+      ],
+      "old_evidence_hashes": [
+        "0bd723f53fa5e63b4e74a9bd5ffb4a3886ed049776ce3c69528c18e1a7371371"
+      ],
+      "new_evidence_hashes": [
+        "b38e23b266e3c424991cafafdc60be26959220d2a50a395e7ae813d5fba08c7c"
+      ],
+      "scope_spans_added": [],
+      "approval_pinned_to": [
+        "b38e23b266e3c424991cafafdc60be26959220d2a50a395e7ae813d5fba08c7c"
+      ]
+    },
+    {
+      "candidate_id": "GOLD-B004-09",
+      "reason": "evidence_scope_completion",
+      "actions": {
+        "extend_boundary": 2
+      },
+      "old_spans": [
+        [
+          6938,
+          6997
+        ],
+        [
+          7362,
+          7509
+        ]
+      ],
+      "new_spans": [
+        [
+          6627,
+          6997
+        ],
+        [
+          7072,
+          7509
+        ]
+      ],
+      "old_evidence_hashes": [
+        "a3608232ce720258f2e6af35dce62d3ec8968dd22a187707c40130688f78032b",
+        "24e776c42e7a5e4cecfb38c19c02bf8757d107244a0b584f4701adf6c1231f5f"
+      ],
+      "new_evidence_hashes": [
+        "53b4b866ce9f1066a9bbe80d16dacdd21318dd256b8564216256943b8adec57e",
+        "2c4842349ec2c5fd3374e46a6cd2378745ff41ad0f8ac74ce9b24f259dd8aa26"
+      ],
+      "scope_spans_added": [],
+      "approval_pinned_to": [
+        "53b4b866ce9f1066a9bbe80d16dacdd21318dd256b8564216256943b8adec57e",
+        "2c4842349ec2c5fd3374e46a6cd2378745ff41ad0f8ac74ce9b24f259dd8aa26"
+      ]
+    },
+    {
+      "candidate_id": "GOLD-B004-10",
+      "reason": "evidence_boundary_completion",
+      "actions": {
+        "extend_boundary": 1
+      },
+      "old_spans": [
+        [
+          1979,
+          2121
+        ]
+      ],
+      "new_spans": [
+        [
+          1827,
+          2121
+        ]
+      ],
+      "old_evidence_hashes": [
+        "ad1950090760f8b3b9378e1d9d7cddb5d66e5921d1a9005eda690004597ed6f5"
+      ],
+      "new_evidence_hashes": [
+        "352fcab03e4bb99e38aeb11550323d6e3efe49a101b144bd2ea2a2f28ac35d9d"
+      ],
+      "scope_spans_added": [],
+      "approval_pinned_to": [
+        "352fcab03e4bb99e38aeb11550323d6e3efe49a101b144bd2ea2a2f28ac35d9d"
+      ]
+    },
+    {
+      "candidate_id": "GOLD-B004-14",
+      "reason": "evidence_scope_completion",
+      "actions": {
+        "add_scope_span": 1
+      },
+      "old_spans": [],
+      "new_spans": [
+        [
+          1576,
+          1654
+        ]
+      ],
+      "old_evidence_hashes": [],
+      "new_evidence_hashes": [
+        "6ed28e39bdd7b060856374798eb975198a88cf4e9866ee4f8ccd25450138caba"
+      ],
+      "scope_spans_added": [
+        "E0"
+      ],
+      "approval_pinned_to": [
+        "6ed28e39bdd7b060856374798eb975198a88cf4e9866ee4f8ccd25450138caba",
+        "1c50ad6eeed23afe1fd9cb3c931d490f140d744f683d5f95de266846dae0364a"
+      ]
+    },
+    {
+      "candidate_id": "GOLD-B004-15",
+      "reason": "evidence_scope_completion",
+      "actions": {
+        "extend_boundary": 1
+      },
+      "old_spans": [
+        [
+          16756,
+          16910
+        ]
+      ],
+      "new_spans": [
+        [
+          16313,
+          16910
+        ]
+      ],
+      "old_evidence_hashes": [
+        "2f49ae6be39cdc333394907d21b3cc5a25e24bd034782f78f478b26d95c87085"
+      ],
+      "new_evidence_hashes": [
+        "b0ef211a15b2f158ac09382986237d5050567eaf25439c000f7fc76a3415bafd"
+      ],
+      "scope_spans_added": [],
+      "approval_pinned_to": [
+        "72cb1e104a68797ed1296cfed17b04ba519cd1890449a2e5542f4ed36ad4e836",
+        "b0ef211a15b2f158ac09382986237d5050567eaf25439c000f7fc76a3415bafd"
+      ]
+    }
+  ],
+  "question_authoring_revisions": [
+    {
+      "candidate_id": "GOLD-B004-01",
+      "fields_revised": [
+        "answer",
+        "question",
+        "reasoning_type"
+      ],
+      "revisions": 3,
+      "miner_original_question": null,
+      "final_question": "When using server tools, what does the API return if the server-side sampling loop reaches its iteration limit?"
+    },
+    {
+      "candidate_id": "GOLD-B004-04",
+      "fields_revised": [
+        "answer",
+        "atomic_claims",
+        "question"
+      ],
+      "revisions": 3,
+      "miner_original_question": null,
+      "final_question": "On Claude 4.5 models and newer, if input tokens plus `max_tokens` exceed the context window size, what happens when generation reaches the context window limit?"
+    },
+    {
+      "candidate_id": "GOLD-B004-06",
+      "fields_revised": [
+        "answer",
+        "atomic_claims",
+        "question"
+      ],
+      "revisions": 3,
+      "miner_original_question": null,
+      "final_question": "Within the `user_location` parameter, what value does the `timezone` field take?"
+    },
+    {
+      "candidate_id": "GOLD-B004-07",
+      "fields_revised": [
+        "answer",
+        "question"
+      ],
+      "revisions": 2,
+      "miner_original_question": null,
+      "final_question": "If I need a hard ceiling on thinking costs, what is the support status of extended thinking with a `budget_tokens` cap on Opus 4.6 and Sonnet 4.6?"
+    },
+    {
+      "candidate_id": "GOLD-B004-10",
+      "fields_revised": [
+        "atomic_claims",
+        "question"
+      ],
+      "revisions": 2,
+      "miner_original_question": null,
+      "final_question": "`RealtimeRunner` uses `OpenAIRealtimeWebSocketModel` by default. What happens if I pass a different `RealtimeModel`?"
+    },
+    {
+      "candidate_id": "GOLD-B004-11",
+      "fields_revised": [
+        "question",
+        "reasoning_type"
+      ],
+      "revisions": 2,
+      "miner_original_question": null,
+      "final_question": "In a streamed run, what happens if a tool requires approval?"
+    },
+    {
+      "candidate_id": "GOLD-B004-13",
+      "fields_revised": [
+        "question"
+      ],
+      "revisions": 1,
+      "miner_original_question": null,
+      "final_question": "For a handoff, what does the `input_type` option specify?"
+    },
+    {
+      "candidate_id": "GOLD-B004-14",
+      "fields_revised": [
+        "answer",
+        "atomic_claims",
+        "question"
+      ],
+      "revisions": 3,
+      "miner_original_question": null,
+      "final_question": "In the `handoff()` function, what does the `input_filter` option do?"
+    },
+    {
+      "candidate_id": "GOLD-B004-15",
+      "fields_revised": [
+        "answer",
+        "bridge_relationship",
+        "composed_answer",
+        "composed_claim",
+        "question",
+        "why_span_1_alone_is_insufficient",
+        "why_span_2_alone_is_insufficient"
+      ],
+      "revisions": 7,
+      "miner_original_question": null,
+      "final_question": "If I set `needs_approval` to `True` on a function tool used with hosted agents, what happens?"
+    }
+  ],
+  "claim_checkable": {
+    "with_critical_strings": 14,
+    "of_verified": 14,
+    "note": "A case without literal critical strings passes the claim-in-evidence gate vacuously. This count, not the validator's green tick, is what says whether the claims were actually checked."
+  },
+  "by_provider": {
+    "generated": {
+      "anthropic": 7,
+      "openai": 8
+    },
+    "human_verified": {
+      "anthropic": 7,
+      "openai": 7
+    }
+  },
+  "human_overrides": [
+    {
+      "candidate_id": "GOLD-B004-02",
+      "anaphora_status": "NONCRITICAL_ANAPHORA",
+      "dependency_status": null,
+      "human_anaphora_override": true,
+      "human_dependency_override": null,
+      "override_reviewer": "project_owner",
+      "finding_retained": true
+    },
+    {
+      "candidate_id": "GOLD-B004-05",
+      "anaphora_status": null,
+      "dependency_status": "NONCRITICAL_DEPENDENCY",
+      "human_anaphora_override": null,
+      "human_dependency_override": true,
+      "override_reviewer": "project_owner",
+      "finding_retained": true
+    },
+    {
+      "candidate_id": "GOLD-B004-15",
+      "anaphora_status": "NONCRITICAL_ANAPHORA",
+      "dependency_status": null,
+      "human_anaphora_override": true,
+      "human_dependency_override": null,
+      "override_reviewer": "project_owner",
+      "finding_retained": true
+    }
+  ],
+  "reasoning_and_shape": {
+    "by_reasoning_type": {
+      "error_behavior": 5,
+      "configuration_interaction": 3,
+      "exact_lookup": 3,
+      "lifecycle_compatibility_migration": 1,
+      "ambiguity_disambiguation": 2,
+      "genuine_multi_hop": 1
+    },
+    "by_reasoning_type_verified": {
+      "error_behavior": 5,
+      "configuration_interaction": 3,
+      "exact_lookup": 3,
+      "lifecycle_compatibility_migration": 1,
+      "ambiguity_disambiguation": 1,
+      "genuine_multi_hop": 1
+    },
+    "by_evidence_shape": {
+      "single_span": 11,
+      "multi_span": 3,
+      "multi_document": 1
+    },
+    "by_evidence_shape_verified": {
+      "single_span": 11,
+      "multi_span": 2,
+      "multi_document": 1
+    },
+    "genuine_multi_hop": 1,
+    "note": "Reasoning type and evidence shape are separate dimensions. A case needing two spans is multi_span; multi_hop is a reasoning type, and a case only earns it when the answer is derived from combining spans rather than being the spans' contents."
+  },
+  "errata": [
+    {
+      "correction": "near-miss bridge-pair count",
+      "was": "3 pairs rejected only by the entity-state rule",
+      "is": "5 pairs",
+      "why": "The 3 came from a manual probe run mid-development, with the composer's per-run limit and used-fact set in force and before the entity-state rule existed. scripts/diagnose_b004_near_miss.py derives the set properly, and the PDF builder now reads the count from it rather than hardcoding one.",
+      "recorded_in": "experiments/GOLD-001/GOLD-001-batch-004-report-erratum.md",
+      "affects_generation_figures": false
+    }
+  ],
+  "multi_hop_rejection": {
+    "attempted_pairs": 559,
+    "passed": 1,
+    "rejected": 558,
+    "reasons": {
+      "span_1_alone_answered_the_full_question": 16,
+      "span_2_alone_answered_the_full_question": 16,
+      "the_spans_were_two_unrelated_lookups": 379,
+      "no_bridge_relationship_existed": 147,
+      "the_composed_answer_introduced_unsupported_inference": 0
+    },
+    "unclassified": 0,
+    "by_check": {
+      "span 2 states no condition on the bridge entity": 371,
+      "span 1 enumerates values rather than stating a requirement about the bridge entity": 147,
+      "span 1 alone already answers the whole question": 16,
+      "span 2 alone already answers the whole question": 16,
+      "the spans are two unrelated lookups": 8
+    },
+    "note": "Counted from each check's own reason string, not asserted. A pair is counted once, under the first reason it failed. `unclassified` is a guard: it should be 0, and a non-zero value means a check grew a reason the report does not know how to file."
+  },
+  "near_miss_diagnostic": {
+    "pairs": 5,
+    "rule_under_test": "states_dependency — span 2's conditional must test the bridge entity's own state",
+    "verdicts": {
+      "OpenAIChatCompletionsModel": "CORRECT_REJECTION",
+      "allowed_callers": "CORRECT_REJECTION",
+      "max_tokens": "CORRECT_REJECTION",
+      "tool_result": "CORRECT_REJECTION",
+      "view_range": "CORRECT_REJECTION"
+    },
+    "promoted_to_batch_004": 0,
+    "batch_004_regenerated": false,
+    "document": "experiments/GOLD-001/BATCH-004-near-miss-multihop-review.md"
+  },
+  "reasoning_targets": {
+    "genuine_multi_hop": [
+      6,
+      8
+    ],
+    "configuration_interaction": [
+      4,
+      5
+    ],
+    "ambiguity_disambiguation": [
+      3,
+      4
+    ],
+    "error_behavior": [
+      2,
+      3
+    ],
+    "lifecycle_compatibility_migration": [
+      2,
+      3
+    ],
+    "exact_lookup": [
+      0,
+      3
+    ]
+  },
+  "precheck_limitation": {
+    "candidates": 15,
+    "precheck_ready": 15,
+    "repaired": 10,
+    "anchor_repairs": 6,
+    "reject_recommended": 1,
+    "means": "structurally capable",
+    "does_not_mean": [
+      "semantic correctness",
+      "human approval",
+      "holdout eligibility"
+    ]
+  },
+  "defect_taxonomy": {
+    "D1": {
+      "name": "anaphoric anchor",
+      "description": "The span opens on, or silently depends on, a referent outside itself — 'If true', 'any of these models'. The claim cannot be checked against the anchor alone."
+    },
+    "D2": {
+      "name": "wrong relation label",
+      "description": "The miner matched a trigger word and labelled the candidate with a relation the sentence does not express. The evidence is usually fine; the label aims the reviewer at the wrong question."
+    },
+    "D3": {
+      "name": "example-code false binding",
+      "description": "An identifier matched inside a fenced code block or JSON literal and was framed as a documented rule. A sample configuration is not a rule."
+    }
+  },
+  "defects_seen": {},
+  "validation": {
+    "validator": "scripts/validate_golden.py",
+    "projection": "evals/gold/batch_004_projection.jsonl",
+    "cases": 14,
+    "failures": 0,
+    "passed": true,
+    "require_human": "validation",
+    "caveat": "All 14 verified cases carry literal critical strings, so the claim-in-evidence check ran on every one of them. The validator's pass covers claim support, not only structure."
+  },
+  "retrieval": {
+    "retrieval_was_not_run": true,
+    "systems_run_against_these_candidates": [],
+    "statement": "No retrieval system was run against any candidate in this batch at any point. SYSTEM-A and SYSTEM-B remain frozen and were not executed. Candidate selection could not be influenced by what either system succeeds or fails on, which is what keeps a future holdout honest."
+  },
+  "not_yet_done": [
+    "No split has been assigned; the projection's split is a placeholder.",
+    "No holdout is frozen.",
+    "Critical claim strings exist for 14 of 14 verified cases, so every one of them is claim-checked.",
+    "OA-002 remains a recorded defect in development/v1 with an unapplied development/v2 correction proposal."
+  ],
+  "closure_sha256": "57269018d21a2b1f72b607b419ce5f9c02789ff98e6699ca0c58ea65811c8908"
+}

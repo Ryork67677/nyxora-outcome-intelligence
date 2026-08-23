@@ -31,6 +31,11 @@ VALID_CATEGORIES = {
     "exact_lookup", "version_conflict", "multi_hop", "genuine_multi_hop", "ambiguous",
     "ambiguity", "missing_info", "abstention", "routing_heavy", "passage_heavy",
     "error_behavior", "configuration_interaction", "lifecycle", "sanity", "normal",
+    # Batch 004's reasoning types. "ambiguity_disambiguation" is the scoped-meaning
+    # case and "lifecycle_compatibility_migration" the deprecation/migration one; both
+    # are spellings of categories already here, kept distinct because a closed batch's
+    # label is not rewritten to match a later vocabulary.
+    "ambiguity_disambiguation", "lifecycle_compatibility_migration",
 }
 VALID_PROVIDERS = {"anthropic", "openai", "cross"}
 VALID_VERIFICATION = {

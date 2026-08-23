@@ -275,6 +275,7 @@ def test_configuration_interaction_labels_were_checked(repairs):
 
 
 def test_packet_keeps_the_three_states_apart(packet):
+    """The packet is a request for decisions and records none of its own."""
     assert packet["human_verified"] == 0
     assert packet["holdout_eligible"] == 0
     assert packet["precheck_holdout_ready"] == len(packet["candidates"])
@@ -282,33 +283,65 @@ def test_packet_keeps_the_three_states_apart(packet):
         assert entry["record"]["verification_status"] == "candidate_unverified"
 
 
-def test_owner_decisions_start_null(decisions):
-    assert decisions["decided_by"] is None
-    assert len(decisions["decisions"]) == 15
-    for row in decisions["decisions"]:
-        assert row["decision"] is None, (
-            f"{row['candidate_id']} arrived with a decision already made")
-        assert row["notes"] is None
+def test_every_candidate_has_exactly_one_decision_slot(decisions):
+    """The packet ships undecided; once decided, every candidate is accounted for.
+
+    This test asserted that every decision was ``null``, which was right while the
+    packet was waiting for a person and wrong the moment one answered. What has to hold
+    either way is that there is one slot per candidate, no duplicates, and no decision
+    outside the allowed set — a filled-in file must not smuggle in a candidate the
+    packet never showed.
+    """
+    rows = decisions["decisions"]
+    assert len(rows) == 15
+    assert len({r["candidate_id"] for r in rows}) == 15
+    for row in rows:
+        assert row["decision"] in (None, "APPROVE", "REJECT", "NEEDS_EDIT")
+    if decisions["decided_by"] is None:
+        assert all(r["decision"] is None for r in rows), (
+            "decisions were recorded without naming who made them")
 
 
 def test_repaired_candidates_require_a_hash_to_approve(decisions, repairs):
-    repaired = {r["candidate_id"] for r in repairs["records"]}
+    """A repaired candidate carries a hash slot per span, empty until it is approved."""
+    repaired = {r["candidate_id"]: r for r in repairs["records"]}
     for row in decisions["decisions"]:
-        if row["candidate_id"] in repaired:
-            assert row["was_repaired"] is True
-            assert isinstance(row["approves_evidence_hash"], list)
-            assert all(value is None for value in row["approves_evidence_hash"])
-        else:
+        pinned = row["approves_evidence_hash"]
+        if row["candidate_id"] not in repaired:
             assert row["was_repaired"] is False
-            assert row["approves_evidence_hash"] is None
+            continue
+        assert row["was_repaired"] is True
+        assert isinstance(pinned, list)
+        spans = repaired[row["candidate_id"]]["expected_evidence"]
+        assert len(pinned) == len(spans)
+        if row["decision"] == "APPROVE":
+            assert pinned == [s["evidence_hash"] for s in spans], row["candidate_id"]
+        elif row["decision"] is None:
+            assert all(value is None for value in pinned)
 
 
 def test_internal_review_status_is_not_a_decision(decisions):
-    """A recommendation must not be readable as an approval."""
+    """A recommendation must not be readable as an approval, or as a veto.
+
+    The status field sits next to the decision field in the same row, and the risk is
+    that one is read as the other. It is not: a NEEDS_REPAIR candidate can be approved
+    once repaired, and a REJECT_RECOMMENDED one can be approved over the
+    recommendation. Only the ``decision`` field decides anything, and only a person
+    fills it in.
+    """
     for row in decisions["decisions"]:
         assert row["internal_review_status"] in (
             "READY_FOR_OWNER_REVIEW", "NEEDS_REPAIR", "REJECT_RECOMMENDED")
-        assert row["decision"] is None
+    statuses = {r["candidate_id"]: r["internal_review_status"]
+                for r in decisions["decisions"]}
+    outcomes = {r["candidate_id"]: r["decision"] for r in decisions["decisions"]}
+    if all(value is None for value in outcomes.values()):
+        return
+    repaired_and_approved = [cid for cid, status in statuses.items()
+                             if status == "NEEDS_REPAIR" and outcomes[cid] == "APPROVE"]
+    assert repaired_and_approved, (
+        "no NEEDS_REPAIR candidate was approved, which would mean the recommendation "
+        "was being read as a verdict")
 
 
 # ------------------------------------------------------------------------- invariants

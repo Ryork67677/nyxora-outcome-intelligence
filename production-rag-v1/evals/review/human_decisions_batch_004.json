@@ -3,150 +3,172 @@
   "prepared_at": "2026-08-21T16:40:08Z",
   "source_batch_sha256": "e7c6d58c3c21b9ece940ae9665cba96ada35c887558803bba1797aaa142b93f9",
   "instructions": "Record one decision per candidate. decision must be APPROVE, REJECT or NEEDS_EDIT — a null decision is an undecided candidate and the batch cannot close while one remains. For a repaired candidate, set approves_evidence_hash to the evidence_hash of each span you are approving; the importer refuses an approval that quotes the pre-repair hash, so a repair cannot be approved by someone who only saw the original.",
-  "decided_by": null,
+  "decided_by": "project_owner",
   "decisions": [
     {
       "candidate_id": "GOLD-B004-01",
-      "decision": null,
+      "decision": "APPROVE",
       "internal_review_status": "NEEDS_REPAIR",
       "was_repaired": true,
       "approves_evidence_hash": [
-        null
+        "b13da047087150f9eefa746b904f26b9fc06d87cbc58b912916dd6eba0a74231"
       ],
       "notes": null
     },
     {
       "candidate_id": "GOLD-B004-02",
-      "decision": null,
+      "decision": "APPROVE",
       "internal_review_status": "READY_FOR_OWNER_REVIEW",
       "was_repaired": false,
-      "approves_evidence_hash": null,
-      "notes": null
+      "approves_evidence_hash": [
+        "0f83094654abd858b9e46cff62a781ffc8b0bb12c679beb91ed3498045109e06"
+      ],
+      "notes": "Approved as written. 'instead' depends on the preceding pause_turn discussion, but the fact under test — web search plus a client tool in one parallel group returns stop_reason tool_use and does not run the search yet — is explicit inside the exact evidence. Do not expand the evidence to remove an incidental word.",
+      "human_anaphora_override": true,
+      "override_reviewer": "project_owner",
+      "anaphora_status": "NONCRITICAL_ANAPHORA"
     },
     {
       "candidate_id": "GOLD-B004-03",
-      "decision": null,
+      "decision": "APPROVE",
       "internal_review_status": "READY_FOR_OWNER_REVIEW",
       "was_repaired": false,
-      "approves_evidence_hash": null,
+      "approves_evidence_hash": [
+        "1f1dbc851bb4029f1d827d1c11462573659eaa43a6e23acae8e9b1e0a916cdff"
+      ],
       "notes": null
     },
     {
       "candidate_id": "GOLD-B004-04",
-      "decision": null,
+      "decision": "APPROVE",
       "internal_review_status": "NEEDS_REPAIR",
       "was_repaired": true,
       "approves_evidence_hash": [
-        null
+        "8eb88b1c77cc0a04bd7ffe36232db6fb450a7bf9b650087984be147984df7753"
       ],
       "notes": null
     },
     {
       "candidate_id": "GOLD-B004-05",
-      "decision": null,
+      "decision": "APPROVE",
       "internal_review_status": "READY_FOR_OWNER_REVIEW",
       "was_repaired": false,
-      "approves_evidence_hash": null,
-      "notes": null
+      "approves_evidence_hash": [
+        "9d881c94127cc6d29cf87e6cce6611ee77ac7b4fdbfb19477653a4f5b0a8fa08"
+      ],
+      "notes": "Approved without expanding the evidence. The question asks what happens when Claude attempts more searches than allowed; the span answers it directly. The parameter that defines the allowed count is not needed unless the question is later changed to ask which parameter sets the limit.",
+      "human_dependency_override": true,
+      "override_reviewer": "project_owner",
+      "dependency_status": "NONCRITICAL_DEPENDENCY"
     },
     {
       "candidate_id": "GOLD-B004-06",
-      "decision": null,
+      "decision": "APPROVE",
       "internal_review_status": "NEEDS_REPAIR",
       "was_repaired": true,
       "approves_evidence_hash": [
-        null
+        "b38e23b266e3c424991cafafdc60be26959220d2a50a395e7ae813d5fba08c7c"
       ],
       "notes": null
     },
     {
       "candidate_id": "GOLD-B004-07",
-      "decision": null,
+      "decision": "APPROVE",
       "internal_review_status": "NEEDS_REPAIR",
       "was_repaired": true,
       "approves_evidence_hash": [
-        null
+        "6defce92772b6eefb4f7e6e8c08c6c7107cc017e934290819360eb5bfd38c874"
       ],
       "notes": null
     },
     {
       "candidate_id": "GOLD-B004-08",
-      "decision": null,
+      "decision": "REJECT",
       "internal_review_status": "REJECT_RECOMMENDED",
       "was_repaired": false,
       "approves_evidence_hash": null,
-      "notes": null
+      "notes": "Rejected: BENCHMARK_QUALITY / TAXONOMY_MISCLASSIFICATION. The facts are not disputed — ContentDeltaEvent carries type \"content.delta\" and ContentDoneEvent carries type \"content.done\" — but two discriminator constants are not meaningful disambiguation. Relabelling to exact_lookup would produce two trivial literal lookups of little benchmark value. Not salvaged to increase the candidate count. Preserved as an audit example."
     },
     {
       "candidate_id": "GOLD-B004-09",
-      "decision": null,
+      "decision": "APPROVE",
       "internal_review_status": "NEEDS_REPAIR",
       "was_repaired": true,
       "approves_evidence_hash": [
-        null,
-        null
+        "53b4b866ce9f1066a9bbe80d16dacdd21318dd256b8564216256943b8adec57e",
+        "2c4842349ec2c5fd3374e46a6cd2378745ff41ad0f8ac74ce9b24f259dd8aa26"
       ],
       "notes": null
     },
     {
       "candidate_id": "GOLD-B004-10",
-      "decision": null,
+      "decision": "APPROVE",
       "internal_review_status": "NEEDS_REPAIR",
       "was_repaired": true,
       "approves_evidence_hash": [
-        null
+        "352fcab03e4bb99e38aeb11550323d6e3efe49a101b144bd2ea2a2f28ac35d9d"
       ],
       "notes": null
     },
     {
       "candidate_id": "GOLD-B004-11",
-      "decision": null,
+      "decision": "APPROVE",
       "internal_review_status": "NEEDS_REPAIR",
       "was_repaired": true,
       "approves_evidence_hash": [
-        null
+        "fd6ec23ac1830d0625b7509d4ef3572a6ec90090565db15c3d8402acbc147908"
       ],
       "notes": null
     },
     {
       "candidate_id": "GOLD-B004-12",
-      "decision": null,
+      "decision": "APPROVE",
       "internal_review_status": "READY_FOR_OWNER_REVIEW",
       "was_repaired": false,
-      "approves_evidence_hash": null,
+      "approves_evidence_hash": [
+        "cfb7414fc8aeb9482635a45eede6ce305286f8df5f58cf54cc0818e14e954232"
+      ],
       "notes": null
     },
     {
       "candidate_id": "GOLD-B004-13",
-      "decision": null,
+      "decision": "APPROVE",
       "internal_review_status": "NEEDS_REPAIR",
       "was_repaired": true,
       "approves_evidence_hash": [
-        null
+        "3b8a83ecd785ac37429a82c6060abc61a4f6d4ac14a89586830b25a4ec75f25e"
       ],
       "notes": null
     },
     {
       "candidate_id": "GOLD-B004-14",
-      "decision": null,
+      "decision": "APPROVE",
       "internal_review_status": "NEEDS_REPAIR",
       "was_repaired": true,
       "approves_evidence_hash": [
-        null,
-        null
+        "6ed28e39bdd7b060856374798eb975198a88cf4e9866ee4f8ccd25450138caba",
+        "1c50ad6eeed23afe1fd9cb3c931d490f140d744f683d5f95de266846dae0364a"
       ],
       "notes": null
     },
     {
       "candidate_id": "GOLD-B004-15",
-      "decision": null,
+      "decision": "APPROVE",
       "internal_review_status": "NEEDS_REPAIR",
       "was_repaired": true,
       "approves_evidence_hash": [
-        null,
-        null
+        "72cb1e104a68797ed1296cfed17b04ba519cd1890449a2e5542f4ed36ad4e836",
+        "b0ef211a15b2f158ac09382986237d5050567eaf25439c000f7fc76a3415bafd"
       ],
-      "notes": null
+      "notes": "Approved as genuine_multi_hop / multi_document / requires_all_evidence, using the repaired version scoped to hosted agents. The approved chain: needs_approval=True means the tool always requires approval; on the hosted-agent surface SDK approval interruptions are unsupported and any function tool whose needs_approval is not False is rejected before the request is sent; True is not False, so the tool configured in E1 satisfies the condition in E2 and is rejected there. The documented distinction from the normal Runner flow is preserved and this result is not to be generalized outside hosted agents.",
+      "human_anaphora_override": true,
+      "override_reviewer": "project_owner",
+      "anaphora_status": "NONCRITICAL_ANAPHORA"
     }
-  ]
+  ],
+  "reviewer": "project_owner",
+  "reviewed_at": "2026-08-23T06:09:14Z",
+  "reviewed_state": "evals/review/gold_review_batch_004_final.json",
+  "reviewed_state_sha256": "1ce046829660332c073d41101d74415efd569ab6e2a5059c793a10d001bed712",
+  "approval_scope": "Every approval applies to the final reviewed revision shown in the batch-004 owner QC packet, not to the original generated revision."
 }

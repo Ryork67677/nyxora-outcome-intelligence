@@ -34,6 +34,7 @@ HOLDOUT_CONDITIONS = (
     "critical_strings_present_in_evidence",
     "evidence_hash_valid",
     "no_unresolved_scope_defect",
+    "required_evidence_declared",
 )
 
 
@@ -89,6 +90,49 @@ def evaluate(case: dict) -> dict:
     scope = case.get("unresolved_scope_defect")
     if scope:
         failures.append({"condition": "no_unresolved_scope_defect", "detail": scope})
+
+    # A case built from more than one span must say so. Without the flag a holdout
+    # runner has no way to know that retrieving one span is a partial answer rather
+    # than the answer, and a multi-hop case scored on one span is scored wrongly.
+    if spans and len(spans) > 1:
+        if not case.get("requires_all_evidence"):
+            failures.append({
+                "condition": "required_evidence_declared",
+                "detail": (f"{len(spans)} spans but requires_all_evidence is not set, so "
+                           "nothing records that a partial retrieval is a partial answer"),
+            })
+        # Per-span critical strings are the batch-004 convention. Batch 003 keeps one
+        # list on the record, and that list is already checked against the joined
+        # evidence above, so requiring the newer shape there would retroactively
+        # disqualify closed cases for a convention that did not exist when a person
+        # approved them. What is a defect in either convention is a *mixed* record: one
+        # span carrying its own strings while another carries none is a span nothing
+        # checks.
+        declared = [s for s in spans if s.get("critical_strings")]
+        if declared and len(declared) != len(spans):
+            bare = [s.get("evidence_id") or s.get("char_start")
+                    for s in spans if not s.get("critical_strings")]
+            failures.append({
+                "condition": "required_evidence_declared",
+                "detail": (f"some spans declare their own critical strings and these do "
+                           f"not, so nothing checks them: {bare}"),
+            })
+    if case.get("reasoning_type") == "genuine_multi_hop":
+        if len(spans or []) < 2:
+            failures.append({"condition": "required_evidence_declared",
+                             "detail": "genuine_multi_hop with fewer than two spans"})
+        if case.get("multi_hop_composition_check") != "PASS":
+            failures.append({
+                "condition": "required_evidence_declared",
+                "detail": ("genuine_multi_hop without a passing composition check: "
+                           f"{case.get('multi_hop_composition_check')!r}")})
+        if case.get("evidence_shape") == "multi_document":
+            documents = {s.get("version_id") for s in (spans or [])}
+            if len(documents) < 2:
+                failures.append({
+                    "condition": "required_evidence_declared",
+                    "detail": ("labelled multi_document but every span is in the same "
+                               "document version")})
 
     return {
         "candidate_id": case.get("candidate_id"),

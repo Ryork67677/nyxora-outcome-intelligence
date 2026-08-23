@@ -29,8 +29,9 @@ PROJECTED_STATUS = "human_verified"
 PLACEHOLDER_SPLIT = "validation"
 
 
-def project(record: dict, split: str) -> dict:
+def project(record: dict, split: str, batch: int = 1) -> dict:
     critical = record.get("critical_strings")
+    spans = record.get("expected_evidence")
     claims = ([{"text": s, "critical": True} for s in critical] if critical
               else [{"text": c, "critical": False}
                     for c in record.get("proposed_atomic_claims", [])])
@@ -50,7 +51,13 @@ def project(record: dict, split: str) -> dict:
         "verification": record["verification_status"],
         "human_verified": record.get("human_verified", False),
         "expected_abstain": False,
-        "evidence_text_sha256": record["evidence_hash"],
+        # A multi-span case has no single anchor hash. The per-span hashes below are
+        # the real check; the top-level one is a convenience the validator falls back
+        # to, and inventing one for a multi-span case would give the fallback something
+        # false to agree with.
+        "evidence_text_sha256": (record.get("evidence_hash") if not spans
+                                 else spans[0]["evidence_hash"] if len(spans) == 1
+                                 else None),
         "expected_claims": claims,
         "claims_are_critical": bool(critical),
         # Every span, not just the first. A multi-span case projected as one span
@@ -69,7 +76,7 @@ def project(record: dict, split: str) -> dict:
         "source_url": record["source_url"],
         "source_captured_at": str(record["captured_at"]),
         "provenance": {
-            "batch": 1,
+            "batch": batch,
             "generator": "claude",
             "independent_reviewer": record.get("verification", {}).get("reviewer"),
             "independent_verdict": record.get("verification", {}).get("verdict"),
@@ -92,7 +99,8 @@ def main() -> int:
 
     batch = json.loads(Path(args.batch).read_text())
     extra = {c for c in (args.include or "").split(",") if c}
-    cases = [project(r, args.split) for r in batch["records"]
+    number = batch.get("batch", 1)
+    cases = [project(r, args.split, number) for r in batch["records"]
              if r.get("verification_status") == PROJECTED_STATUS
              or r["candidate_id"] in extra]
 

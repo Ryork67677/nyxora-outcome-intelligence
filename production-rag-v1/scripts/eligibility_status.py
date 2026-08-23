@@ -24,6 +24,9 @@ SOURCES = (
     (1, "evals/review/gold_review_batch_001.json", "evals/gold/batch_001_v2/overlay.json"),
     (2, "evals/review/gold_review_batch_002.json", None),
     (3, "evals/review/gold_review_batch_003.json", None),
+    # Batch 004 kept repairs out of its generation artifact, so its decided state is the
+    # composed file the owner's decisions were imported into.
+    (4, "evals/review/gold_review_batch_004_final.json", None),
 )
 #: What the project is aiming at. Reported so a count can be read against a target
 #: instead of in a vacuum.
@@ -57,15 +60,55 @@ def count(batch_path: str, overlay_path: str | None) -> dict:
         "holdout_eligible_ids": eligible,
         "not_eligible": sorted({v["candidate_id"] for v in verdicts.values()}
                                - set(eligible)),
+        # Reported per batch because the project-wide figure is the one that is easy to
+        # overstate, and because a category with a single member should look like one.
+        "genuine_multi_hop": sum(
+            1 for c in cases
+            if c.get("reasoning_type") == "genuine_multi_hop"
+            and c["candidate_id"] in set(eligible)),
         "overlay_version": overlay["overlay"] if overlay else None,
     }
+
+
+def multi_hop_section(status: dict) -> list[str]:
+    """Say what the multi-hop number is, and refuse to let it sound like coverage."""
+    count = status["combined"]["genuine_multi_hop"]
+    total = status["combined"]["holdout_eligible"]
+    tested = status.get("multi_hop_generation", {})
+    lines = [
+        "## Genuine multi-hop",
+        "",
+        (f"**{count} of {total} eligible cases** is a genuine multi-hop reasoning case."
+         if count else
+         "**No eligible case** is a genuine multi-hop reasoning case."),
+        "",
+    ]
+    if count:
+        lines += [
+            ("That is one observation. It proves the benchmark infrastructure can "
+             "represent a genuine multi-hop case — anchor it, check its composition, "
+             "and carry it through review — and it does not mean the category is "
+             "adequately sampled. A single case cannot support a claim about how any "
+             "system handles multi-hop reasoning."),
+            "",
+        ]
+    if tested:
+        lines += [
+            (f"Batch 004's composer tested **{tested['attempted_pairs']}** bridge pairs "
+             f"and **{tested['passed']}** passed the composition check. That ratio is a "
+             "finding about the corpus and the authoring method, not a defect that was "
+             "tuned away: two facts sharing an identifier are almost never two halves "
+             "of an argument."),
+            "",
+        ]
+    return lines
 
 
 def render(status: dict) -> str:
     rows = "\n".join(
         f"| {b['batch']:03d} | {b['candidates']} | {b['human_verified']} | "
         f"{b['human_rejected']} | **{b['holdout_eligible']}** | "
-        f"{b['overlay_version'] or 'v1'} |"
+        f"{b['genuine_multi_hop']} | {b['overlay_version'] or 'v1'} |"
         for b in status["batches"])
     combined = status["combined"]
     return "\n".join([
@@ -73,13 +116,16 @@ def render(status: dict) -> str:
         "",
         f"As of {status['generated_at']}.",
         "",
-        "| batch | candidates | `human_verified` | `human_rejected` | `holdout_eligible` | eligibility read from |",
-        "| --- | --- | --- | --- | --- | --- |",
+        ("| batch | candidates | `human_verified` | `human_rejected` | "
+         "`holdout_eligible` | genuine multi-hop | eligibility read from |"),
+        "| --- | --- | --- | --- | --- | --- | --- |",
         rows,
         (f"| **all** | **{combined['candidates']}** | "
          f"**{combined['human_verified']}** | **{combined['human_rejected']}** | "
-         f"**{combined['holdout_eligible']}** | |"),
+         f"**{combined['holdout_eligible']}** | "
+         f"**{combined['genuine_multi_hop']}** | |"),
         "",
+        *multi_hop_section(status),
         "## The two numbers are not the same question",
         "",
         ("`human_verified` counts approvals a person gave; it is historical and does not "
@@ -117,13 +163,19 @@ def main() -> int:
     batches = [count(record, overlay) for _, record, overlay in SOURCES]
     combined = {
         key: sum(b[key] for b in batches)
-        for key in ("candidates", "human_verified", "human_rejected", "holdout_eligible")
+        for key in ("candidates", "human_verified", "human_rejected",
+                    "holdout_eligible", "genuine_multi_hop")
     }
+    generation = Path("experiments/GOLD-001/GOLD-001-batch-004-generation-report.json")
+    multi_hop_generation = (
+        json.loads(generation.read_text())["multi_hop_rejection"]
+        if generation.exists() else {})
     status = {
         "generated_at": datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "batches": batches,
         "combined": combined,
         "target": TARGET,
+        "multi_hop_generation": multi_hop_generation,
         "holdout_frozen": False,
         "reason_not_frozen": (
             f"{combined['holdout_eligible']} eligible cases cannot support both a "

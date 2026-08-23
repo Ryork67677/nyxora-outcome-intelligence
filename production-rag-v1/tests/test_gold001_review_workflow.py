@@ -1210,6 +1210,10 @@ def test_every_holdout_condition_can_block_on_its_own():
         "critical_strings_present_in_evidence": {"critical_strings": ["not in the span"]},
         "evidence_hash_valid": {"evidence_hash": "0" * 64},
         "no_unresolved_scope_defect": {"unresolved_scope_defect": "claim scope outside span"},
+        # Batch 004: a case built from two spans must say that both are required, or a
+        # holdout runner cannot tell a partial retrieval from a complete answer.
+        "required_evidence_declared": {"reasoning_type": "genuine_multi_hop",
+                                       "multi_hop_composition_check": "FAIL"},
     }
     assert set(blockers) == set(HOLDOUT_CONDITIONS)
     for condition, override in blockers.items():

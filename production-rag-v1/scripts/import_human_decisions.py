@@ -42,6 +42,25 @@ MODEL_REVIEWERS = frozenset({
     "assistant", "ai", "llm", "model",
 })
 REQUIRED_PROVENANCE = ("document_title", "source_url", "captured_at")
+#: Overrides a decision may carry. Each records that a person looked at a finding and
+#: accepted it; none of them deletes the finding.
+OVERRIDE_FIELDS = ("human_anaphora_override", "override_reviewer", "anaphora_status",
+                   "human_dependency_override", "dependency_status")
+
+
+def spans(record: dict) -> list[dict]:
+    """The record's evidence, whichever shape the batch uses.
+
+    Batches 001–003 carry one anchor on the record itself. Batch 004 carries a list in
+    ``expected_evidence``, because a case may need two precise spans rather than one
+    wide one. Everything downstream should ask this rather than reaching for
+    ``record["evidence_hash"]``, which only exists in the older shape.
+    """
+    return record.get("expected_evidence") or [record]
+
+
+def current_hashes(record: dict) -> list[str]:
+    return [span["evidence_hash"] for span in spans(record)]
 
 
 def revision_problems(record: dict, entry: dict) -> list[str]:
@@ -68,42 +87,57 @@ def revision_problems(record: dict, entry: dict) -> list[str]:
             f"carries {len(record.get('revisions', []))}"
         )
 
-    claimed_hash = entry.get("approves_evidence_hash")
+    # A pin may be one hash or, for a multi-span case, one per span in evidence order.
+    claimed = entry.get("approves_evidence_hash")
+    claimed_list = ([claimed] if isinstance(claimed, str)
+                    else list(claimed) if claimed is not None else None)
+    actual = current_hashes(record)
+
     if not revisions:
         # No repair: a pin is optional, but if given it must be right.
-        if claimed_hash is not None and claimed_hash != record["evidence_hash"]:
+        if claimed_list is not None and claimed_list != actual:
             problems.append(
-                f"[{candidate_id}] approves_evidence_hash {claimed_hash[:16]}… does not "
-                f"match the anchor {record['evidence_hash'][:16]}…"
+                f"[{candidate_id}] approves_evidence_hash does not match the anchor: "
+                f"{[h[:16] for h in claimed_list]} vs {[h[:16] for h in actual]}"
             )
         return problems
 
-    latest = revisions[-1]
-    if claimed_hash is None:
+    if claimed_list is None:
         problems.append(
-            f"[{candidate_id}] has a repaired anchor; an APPROVE must pin it "
-            f"with approves_evidence_hash (current: {record['evidence_hash']})")
+            f"[{candidate_id}] has a repaired anchor; an APPROVE must pin it with "
+            f"approves_evidence_hash (current: {actual})")
         return problems
-    if claimed_hash != record["evidence_hash"]:
+    if len(claimed_list) != len(actual):
         problems.append(
-            f"[{candidate_id}] approves_evidence_hash {claimed_hash[:16]}… does not "
-            f"match the current anchor {record['evidence_hash'][:16]}…"
+            f"[{candidate_id}] approves {len(claimed_list)} evidence hashes, but the "
+            f"candidate has {len(actual)} spans")
+    elif claimed_list != actual:
+        problems.append(
+            f"[{candidate_id}] approves_evidence_hash does not match the current "
+            f"anchor: {[h[:16] for h in claimed_list]} vs {[h[:16] for h in actual]}"
         )
-    # Anchor revisions come in two shapes: a single grown span (batch 001) and a list
-    # of spans, because a repair may split one anchor into two precise ones (batch 003).
-    superseded = ({latest["old_evidence_hash"]} if "old_evidence_hash" in latest
-                  else {s["evidence_hash"] for s in latest.get("old_spans", [])})
-    if claimed_hash in superseded:
+
+    # Anchor revisions come in three shapes: a single grown span (batch 001), a list of
+    # spans where a repair split one anchor into two (batch 003), and a per-span entry
+    # naming the evidence it repaired (batch 004).
+    superseded: set[str] = set()
+    for revision in revisions:
+        if "old_evidence_hash" in revision:
+            superseded.add(revision["old_evidence_hash"])
+        superseded.update(s["evidence_hash"] for s in revision.get("old_spans", []))
+    overlap = superseded.intersection(claimed_list)
+    if overlap:
         problems.append(
             f"[{candidate_id}] the approval names the anchor as it was BEFORE the "
             "repair; that version was sent back, not approved"
         )
 
     claimed_revision = entry.get("approves_anchor_revision")
-    if claimed_revision is not None and claimed_revision != latest["revision"]:
+    latest = revisions[-1]
+    if claimed_revision is not None and claimed_revision != latest.get("revision"):
         problems.append(
             f"[{candidate_id}] approves anchor revision {claimed_revision}, but the "
-            f"latest is {latest['revision']}"
+            f"latest is {latest.get('revision')}"
         )
     return problems
 
@@ -152,7 +186,29 @@ def apply_decision(record: dict, entry: dict, reviewer: str, now: str) -> bool:
     if entry.get("approves_evidence_hash"):
         history["approved_evidence_hash"] = entry["approves_evidence_hash"]
     if record.get("anchor_revisions"):
-        history["approved_anchor_revision"] = record["anchor_revisions"][-1]["revision"]
+        # Batch 004's revisions are per-span and carry no ordinal, so pin what is
+        # actually there: which spans were repaired, and the hashes now approved.
+        latest = record["anchor_revisions"][-1]
+        history["approved_anchor_revision"] = latest.get("revision")
+        history["approved_anchor_spans"] = [
+            {"evidence_id": r["evidence_id"], "action": r["action"],
+             "new_evidence_hash": r["new_evidence_hash"]}
+            for r in record["anchor_revisions"] if "evidence_id" in r]
+    # An override is part of the decision: it records that a person saw a finding and
+    # accepted it. The finding itself is never deleted — anaphora.evaluate_span still
+    # reports it, and still refuses to let a *critical* one be overridden at all.
+    overrides = {k: entry[k] for k in OVERRIDE_FIELDS if k in entry}
+    if overrides:
+        if entry.get("human_anaphora_override") or entry.get("human_dependency_override"):
+            named = entry.get("override_reviewer") or reviewer
+            if named.strip().lower() in MODEL_REVIEWERS:
+                raise SystemExit(
+                    f"[{record['candidate_id']}] override_reviewer {named!r} is a model; "
+                    "a model cannot accept a finding on a person's behalf")
+            overrides.setdefault("override_reviewer", reviewer)
+        record.update(overrides)
+        history["overrides"] = overrides
+
     record.setdefault("human_decision_history", []).append(history)
     record["human_decision"] = decision
     record["verification_status"] = STATUS_FROM_DECISION[decision]
@@ -172,9 +228,12 @@ def validation_report(batch: dict, reviewer: str, now: str) -> dict:
                 if r.get("verification_status") in GOLD_STATUSES]
     failures: list[str] = []
     for record in approved:
-        actual = hashlib.sha256(record["evidence_text"].encode("utf-8")).hexdigest()
-        if actual != record["evidence_hash"]:
-            failures.append(f"[{record['candidate_id']}] evidence hash drift")
+        for span in spans(record):
+            actual = hashlib.sha256(span["evidence_text"].encode("utf-8")).hexdigest()
+            if actual != span["evidence_hash"]:
+                failures.append(
+                    f"[{record['candidate_id']}] {span.get('evidence_id', 'E1')} "
+                    "evidence hash drift")
         if not record["proposed_question"].strip():
             failures.append(f"[{record['candidate_id']}] approved with an empty question")
         if not record["proposed_answer"].strip():
@@ -225,10 +284,16 @@ def main() -> int:
         supplied.get("reviewer") if isinstance(supplied, dict) else None) or "project_owner"
 
     claimed = supplied.get("source_batch_sha256") if isinstance(supplied, dict) else None
-    if claimed and batch.get("batch_sha256") and claimed != batch["batch_sha256"]:
+    # A decision file pins the batch the owner reviewed. Where repairs were kept out of
+    # the generation artifact, that batch is a composed reviewed-state file, which
+    # records the generation hash it was built from — so either identity satisfies the
+    # pin, and a decision file naming some *other* batch is still refused.
+    accepted = {h for h in (batch.get("batch_sha256"), batch.get("source_batch_sha256"))
+                if h}
+    if claimed and accepted and claimed not in accepted:
         raise SystemExit(
             "batch hash mismatch — nothing was imported.\n"
-            f"  batch on disk    : {batch['batch_sha256']}\n"
+            f"  batch on disk    : {sorted(accepted)}\n"
             f"  decisions claim  : {claimed}"
         )
 
