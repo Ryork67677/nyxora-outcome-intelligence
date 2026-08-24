@@ -16,7 +16,8 @@ from __future__ import annotations
 
 import re
 
-from rag_v1.gold.normalisation import contains_claim_string
+from rag_v1.gold.normalisation import contains_claim_string, strip_markdown_links
+from rag_v1.gold.questionform import phrasal_predicate, states_non_support
 
 _MD_LINK = re.compile(r"\[([^\]]+)\]\((?:[^)]+)\)|\[([^\]]+)\]\[(?:[^\]]+)\]")
 #: "If <clause>, <result>." Split at the last comma that leaves a well-formed outcome.
@@ -52,6 +53,15 @@ _FINITE_VERB = re.compile(
     r"rerun|use|treat|expect)\b", re.IGNORECASE)
 _NOT_AN_OUTCOME = re.compile(r"^(?:not\b|containing\b|including\b|such as\b|and\b|"
                              r"or\b|with\b|without\b)", re.IGNORECASE)
+#: §17. A comma between two sibling literals is a list separator, not a clause boundary.
+#: "When a `ComputerTool` is present, `tool_choice="computer"`, `"computer_use"`, and
+#: `"computer_use_preview"` are all accepted" split at the *second* comma, leaving the
+#: condition ending mid-enumeration and the outcome opening on the tail of a list. Each
+#: half is separately balanced, so the delimiter check could not see it.
+_ENUMERATION_TAIL = re.compile(
+    r"""^(?:`[^`]*`|"[^"]*"|'[^']*')\s*,?\s*(?:and|or)\b""")
+_ENDS_IN_LITERAL = re.compile(r"""(?:`[^`]*`|"[^"]*"|'[^']*')\s*$""")
+
 CLAUSE_MIN, CLAUSE_MAX = 12, 180
 RESULT_MIN, RESULT_MAX = 12, 240
 
@@ -65,13 +75,50 @@ def _balanced(text: str) -> bool:
 
 
 def plain(text: str) -> str:
-    """Drop markdown link plumbing from prose meant to be read as a question."""
-    return " ".join(_MD_LINK.sub(lambda m: m.group(1) or m.group(2), text).split())
+    """Drop markdown link plumbing from prose meant to be read as a question.
+
+    §Fix B: the shared stripper handles inline, full-reference and collapsed links, and
+    keeps a code-span label intact. Evidence is never passed through here.
+    """
+    return " ".join(strip_markdown_links(text).split())
 
 
 def sentence(text: str) -> str:
     text = " ".join(text.split()).strip()
     return text if text.endswith((".", "!", "?", ":")) else text + "."
+
+
+#: "... is not supported on Claude Sonnet 5 and returns a 400 error." The place is what
+#: comes after the preposition and before the sentence continues into something else.
+_NON_SUPPORT_TARGET = re.compile(
+    r"(?:is|are)\s+not\s+supported\s+(?:on|in|for|by)\s+"
+    r"(?P<target>.+?)(?=\s+(?:and|or|but)\b|\s*[.,;]|$)", re.IGNORECASE)
+
+
+def non_support_target(text: str) -> str | None:
+    """Where the evidence says something is *not* supported, if it names a place.
+
+    The link is stripped before the sentence is cut, because the pattern stops at the
+    first full stop and a URL is full of them: one batch-006 draft asked *"Is
+    ``fallbacks`` supported on the [Message Batches API](https://platform?"*. A target
+    that still carries link punctuation after stripping is not a place name, and no
+    question is built from it.
+    """
+    match = _NON_SUPPORT_TARGET.search(strip_markdown_links(text))
+    if not match:
+        return None
+    target = match.group("target").strip(" .,;:")
+    if not target or re.search(r"[\[\]()<>]|https?:", target):
+        return None
+    return target
+
+
+def _after_phrasal(text: str, predicate: str, preposition: str) -> str | None:
+    """What the phrasal predicate points at — the object a bare copula would lose."""
+    match = re.search(
+        re.escape(f"must be {predicate} {preposition}") + r"\s+(?P<object>[^.;]+)",
+        text, re.IGNORECASE)
+    return match.group("object").strip(" .,;:") if match else None
 
 
 def _first_identifier(fact: dict) -> str | None:
@@ -105,6 +152,11 @@ def split_conditional(text: str) -> tuple[str, str, str] | None:
         if not (_balanced(clause) and _balanced(result)):
             continue
         if _NOT_AN_OUTCOME.match(result):
+            continue
+        # A literal on each side of the comma, with the outcome continuing into "and"
+        # or "or": that comma separates list items, and splitting there cuts an
+        # enumeration in half.
+        if _ENDS_IN_LITERAL.search(clause) and _ENUMERATION_TAIL.match(result):
             continue
         best = (marker, clause, result)
     return best
@@ -178,6 +230,11 @@ def build_interaction(fact: dict) -> dict | None:
         "question": question,
         "answer": plain(text),
         "atomic_claims": [sentence(text)],
+        # §Fix D: the builder knows which identifier it made the subject. Recording it
+        # here is the only place that knowledge is not a guess.
+        "question_subject": f"`{identifiers[0]}`",
+        "question_relation": fact["interaction_relation"],
+        "question_object": f"`{identifiers[1]}`",
     }
 
 
@@ -197,13 +254,32 @@ def build_constraint(fact: dict) -> dict | None:
     if subject is None or template is None:
         return None
     text = " ".join(fact["evidence_text"].split())
-    question = plain(template.format(a=f"`{subject}`"))
+    relation = f"constraint_{fact['constraint_kind']}"
+    obj = None
+    # §15: "What must `dispatcher` be?" asked of "must be paired with the matching
+    # `fetch` implementation" truncates the predicate away and asks for an identity the
+    # evidence never gives. When the evidence has a phrasal predicate, the question has
+    # to carry it — that was GOLD-B005-18.
+    if fact["constraint_kind"] == "required_value":
+        phrasal = phrasal_predicate(text)
+        if phrasal:
+            predicate, preposition = phrasal
+            question = plain(f"What must `{subject}` be {predicate} {preposition}?")
+            relation = f"must_be_{predicate}_{preposition}"
+            obj = _after_phrasal(text, predicate, preposition)
+        else:
+            question = plain(template.format(a=f"`{subject}`"))
+    else:
+        question = plain(template.format(a=f"`{subject}`"))
     return {
         "reasoning_type": "exact_lookup",
         "secondary_category": f"constraint_{fact['constraint_kind']}",
         "question": question,
         "answer": plain(text),
         "atomic_claims": [sentence(text)],
+        "question_subject": f"`{subject}`",
+        "question_relation": relation,
+        "question_object": obj,
     }
 
 
@@ -222,7 +298,19 @@ def build_lifecycle(fact: dict) -> dict | None:
     if subject is None or template is None:
         return None
     text = " ".join(fact["evidence_text"].split())
-    question = plain(template.format(a=f"`{subject}`"))
+    relation = fact["lifecycle_kind"]
+    obj = None
+    # §15: evidence that names one place something does *not* work cannot answer "where
+    # is it supported?". Ask the question the sentence answers — that was GOLD-B005-08.
+    if fact["lifecycle_kind"] == "compatibility" and states_non_support(text):
+        target = non_support_target(text)
+        if target is None:
+            return None
+        question = plain(f"Is `{subject}` supported on {target}?")
+        relation = "is_not_supported_on"
+        obj = target
+    else:
+        question = plain(template.format(a=f"`{subject}`"))
     if DANGLING_REFERENCE.search(question):
         return None
     return {
@@ -231,6 +319,9 @@ def build_lifecycle(fact: dict) -> dict | None:
         "question": question,
         "answer": plain(text),
         "atomic_claims": [sentence(text)],
+        "question_subject": f"`{subject}`",
+        "question_relation": relation,
+        "question_object": obj,
     }
 
 
@@ -300,3 +391,161 @@ __all__ = [
     "compose_multi_hop_question", "plain", "sentence", "split_conditional",
     "strings_in",
 ]
+
+
+#: §9 and §10. One frame per predicate the corpus actually uses, each producing a
+#: question out of the sentence's own subject plus a frame word. Nothing is paraphrased:
+#: if the frame does not fit the sentence, no candidate is built.
+#:
+#: These exist because batches 001-005 spent everything the conditional and template
+#: miners could reach. 698 distinct unspent spans remained in the snapshot and no
+#: builder could turn any of them into a question — the shortage was in the authoring,
+#: not in the corpus.
+PREDICATE_FRAMES = (
+    (r"\breturns\b", "What does {s} return?", "error_behavior", "returns"),
+    (r"\braises\b", "What does {s} raise?", "error_behavior", "raises"),
+    (r"\bthrows\b", "What does {s} throw?", "error_behavior", "throws"),
+    (r"\brejects\b", "What does {s} reject?", "error_behavior", "rejects"),
+    (r"\b(?:is|are)\s+rejected\b", "What happens to {s}?", "error_behavior",
+     "is_rejected"),
+    (r"\bstops?\s+with\b", "What does {s} stop with?", "error_behavior", "stops_with"),
+    (r"\bfails?\s+with\b", "What does {s} fail with?", "error_behavior", "fails_with"),
+    (r"\bemits\b", "What does {s} emit?", "error_behavior", "emits"),
+    (r"\bdefaults\s+to\b", "What does {s} default to?", "exact_lookup", "defaults_to"),
+    (r"\bcounts?\s+towards?\b", "What does {s} count towards?", "exact_lookup",
+     "counts_towards"),
+    (r"\b(?:is|are)\s+limited\s+to\b", "What is {s} limited to?", "exact_lookup",
+     "is_limited_to"),
+    (r"\b(?:may\s+not|cannot|must\s+not)\s+exceed\b",
+     "What is the documented maximum for {s}?", "exact_lookup", "may_not_exceed"),
+    (r"\bexpires\s+after\b", "How long does {s} last?", "exact_lookup",
+     "expires_after"),
+    (r"\baccepts\b", "What does {s} accept?", "exact_lookup", "accepts"),
+    (r"\bmust\s+match\b", "What must {s} match?", "exact_lookup", "must_match"),
+    (r"\btransitions\s+to\b", "What does {s} transition to?",
+     "lifecycle_compatibility_migration", "transitions_to"),
+    (r"\b(?:is|are)\s+deprecated\b", "What is the support status of {s}?",
+     "lifecycle_compatibility_migration", "is_deprecated"),
+    (r"\b(?:is|are)\s+not\s+supported\s+(?:on|in)\b",
+     "Is {s} supported on {o}?", "lifecycle_compatibility_migration",
+     "is_not_supported_on"),
+    (r"\b(?:is|are)\s+ignored\b", "When is {s} ignored?", "configuration_interaction",
+     "is_ignored"),
+    (r"\bdisables\b", "What does {s} disable?", "configuration_interaction",
+     "disables"),
+    (r"\brequires\b", "What does {s} require?", "configuration_interaction",
+     "requires"),
+)
+#: A subject the reader cannot resolve inside the span, or that is not a subject at all.
+_PRONOUN_SUBJECT = re.compile(
+    r"^(?:this|that|these|those|it|they|there|here|such|and|or|but|both|also|however|"
+    r"the (?:following|above|previous|latter|former))\b", re.IGNORECASE)
+#: Another finite verb before the frame verb means the frame verb is not the main one.
+_SUBJECT_VERB = re.compile(
+    r"\b(?:is|are|was|were|has|have|will|can|may|must|does|do|returns|raises|accepts|"
+    r"sets|sends|uses|makes|gives|adds|allows|requires|stops|starts|becomes|contains|"
+    r"includes|supports|emits|counts|applies|treats|reads|writes|calls|takes|runs|"
+    r"executes|loops|records|resolves|matches|carries|means)\b", re.IGNORECASE)
+_TRAILING_ADVERB = re.compile(
+    r"\s+(?:always|never|only|still|then|also|automatically|currently|typically|"
+    r"generally|normally|already|simply|just|therefore|instead)$", re.IGNORECASE)
+_SUBJECT_ENDS_PREP = re.compile(
+    r"\b(?:of|for|with|without|to|in|on|by|from|at|as|than)$", re.IGNORECASE)
+#: The subject has to name something. A backticked identifier, a CamelCase or dotted
+#: name, or a proper-noun phrase like "Claude Sonnet 5".
+_SUBJECT_NAMES_SOMETHING = re.compile(
+    r"`[^`]+`|\b(?:[A-Z][a-z0-9]+){2,}\b|\b[a-z][\w]*(?:\.[a-z][\w]*)+\b")
+_PROPER_PHRASE = re.compile(r"\b[A-Z][A-Za-z0-9]+(?:\s+[A-Z0-9][A-Za-z0-9.]*)+")
+#: "What does the response return?" is a question about nothing in particular.
+_GENERIC_SUBJECT = re.compile(
+    r"^(?:the\s+|a\s+|an\s+)?(?:api|response|responses|request|requests|default|"
+    r"defaults|runner|user|users|client|server|model|models|system|application|"
+    r"method|function|call|value|values|result|results|output|input|data|error|"
+    r"errors|claude|field|fields|object|type|parameter|option|setting)$", re.IGNORECASE)
+#: A bare value, not a thing that can be the subject of a rule.
+_LITERAL_ONLY = re.compile(
+    r"^(?:setting\s+)?`?(?:-?\d+(?:\.\d+)?|true|false|null|none|nil|\"[^\"]*\"|"
+    r"[a-z]{1,8})`?$", re.IGNORECASE)
+#: Frames that place the subject at the start of the question, where a leading article
+#: must keep its capital. Everywhere else it lands mid-sentence and must not.
+_SUBJECT_LEADS = re.compile(r"^\{s\}|^Is \{s\}")
+
+SUBJECT_MAX_CHARS, SUBJECT_MAX_WORDS = 72, 10
+
+
+def _sentences(text: str) -> list[str]:
+    return [s.strip() for s in _SENTENCE_BOUNDARY.split(" ".join(text.split()))
+            if s.strip()]
+
+
+def usable_subject(subject: str) -> bool:
+    """Can a reader tell what this question is about, from the subject alone?"""
+    if not subject or len(subject) > SUBJECT_MAX_CHARS:
+        return False
+    if len(subject.split()) > SUBJECT_MAX_WORDS:
+        return False
+    if re.search(r"[,:;()\[\]{}]", subject):
+        return False
+    if _PRONOUN_SUBJECT.match(subject) or _SUBJECT_VERB.search(subject):
+        return False
+    if _SUBJECT_ENDS_PREP.search(subject) or _GENERIC_SUBJECT.match(subject):
+        return False
+    if " and " in subject or " or " in subject:
+        return False
+    if _LITERAL_ONLY.match(subject.strip()):
+        return False
+    return bool(_SUBJECT_NAMES_SOMETHING.search(subject)
+                or _PROPER_PHRASE.search(subject))
+
+
+def build_predicate_fact(fact: dict) -> dict | None:
+    """A plain statement of the form *subject predicate object*.
+
+    The question is the sentence's own subject inside a frame chosen by its verb, so
+    every word in it except the frame comes from the source. A sentence whose subject a
+    reader could not resolve — a pronoun, a run-on clause, a generic noun — produces no
+    candidate rather than a vague one.
+    """
+    critical = [c for c in (fact.get("critical_strings") or []) if c]
+    for raw in _sentences(fact["evidence_text"]):
+        line = raw if raw.endswith(".") else raw + "."
+        if line.startswith(("-", "*", "#", ">", "|")):
+            continue
+        if critical and not any(contains_claim_string(line, c) for c in critical):
+            continue
+        for pattern, frame, reasoning, relation in PREDICATE_FRAMES:
+            match = re.search(pattern, line, re.IGNORECASE)
+            if not match or match.start() < 4:
+                continue
+            subject = _TRAILING_ADVERB.sub("", line[:match.start()].strip()).strip()
+            obj = line[match.end():].strip(" .")
+            if not usable_subject(subject) or len(obj) < 4:
+                continue
+            # "... requires `name` and `description` fields with specific validation
+            # rules:" — a colon means the content is the list that follows, outside
+            # this span. The claim would be incomplete.
+            if obj.rstrip().endswith(":"):
+                continue
+            placed = subject
+            if not _SUBJECT_LEADS.match(frame) and re.match(
+                    r"^(?:The|A|An|Each|Every|Both|Any)\s", placed):
+                placed = placed[0].lower() + placed[1:]
+            target = non_support_target(line) if "{o}" in frame else None
+            if "{o}" in frame and not target:
+                continue
+            question = plain(frame.format(s=placed, o=target)
+                             if target else frame.format(s=placed))
+            if DANGLING_REFERENCE.search(question) or _BARE_THIS.search(question):
+                continue
+            answer = plain(line)
+            return {
+                "reasoning_type": reasoning,
+                "secondary_category": relation,
+                "question": question,
+                "answer": answer,
+                "atomic_claims": [sentence(line)],
+                "question_subject": subject,
+                "question_relation": relation,
+                "question_object": obj,
+            }
+    return None

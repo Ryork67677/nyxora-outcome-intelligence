@@ -1,0 +1,393 @@
+{
+  "audit": "GOLD-001 heading parser",
+  "generated_at": "2026-08-24T05:31:07Z",
+  "snapshot": "snap_689e336380a054d8039dc35b2c09cd0a",
+  "parser": "rag_v1.parsing._HEADING_RE",
+  "documents": 202,
+  "headings_parsed": 5857,
+  "suspicious_headings": 82,
+  "likely_prose": 44,
+  "likely_prose_share": 0.0075,
+  "documents_with_prose_headings": 15,
+  "documents_affected_ids": [
+    "ver_02c06cea4a4bbffd4d01ee202f124a75",
+    "ver_26f61f56d6ff7124cfa38152f7baef3d",
+    "ver_3d4b8881962381cbfba18ade50c598e1",
+    "ver_4c8080ebe566273e171b49c803949f77",
+    "ver_57e26a49b0a3714f3e90376d014d7f52",
+    "ver_9247e3ce4df6f79d9cadc44e1a3bbd0c",
+    "ver_a0184f8cded1db1ff228531d8624afbe",
+    "ver_a1558a5b96585b57f0f8865f48e33073",
+    "ver_a183af1cb18fd2f8c9d16398cc617af6",
+    "ver_aeebd84b52caf334c627e31a5f0add5e",
+    "ver_afb1f954c442c4f7f5b4e310d991f6e8",
+    "ver_b05e105d93045aff4c7ce998b198ae79",
+    "ver_b275f1db2ff0a82e2654391774f8e398",
+    "ver_de67d790db9792b2f6c5c7418a507764",
+    "ver_e3b7dcb3dd413a59614b6bb3aa2aae19"
+  ],
+  "reason_counts": {
+    "starts lowercase": 30,
+    "ends in a sentence-final period": 21,
+    "contains a comma-separated 'or'/'and' list": 16,
+    "longer than 12 words": 14,
+    "ends in a comma, semicolon or colon": 13
+  },
+  "per_document_suspicious": {
+    "ver_9247e3ce4df6f79d9cadc44e1a3bbd0c": 13,
+    "ver_a7bda3595f2c124605c3228464d4ee52": 9,
+    "ver_e3b7dcb3dd413a59614b6bb3aa2aae19": 5,
+    "ver_4c8080ebe566273e171b49c803949f77": 4,
+    "ver_aeebd84b52caf334c627e31a5f0add5e": 4,
+    "ver_afb1f954c442c4f7f5b4e310d991f6e8": 4,
+    "ver_b05e105d93045aff4c7ce998b198ae79": 4,
+    "ver_b275f1db2ff0a82e2654391774f8e398": 4,
+    "ver_02c06cea4a4bbffd4d01ee202f124a75": 3,
+    "ver_2c60e99cfd929a738910b893fd6f1a40": 3,
+    "ver_57e26a49b0a3714f3e90376d014d7f52": 3,
+    "ver_a183af1cb18fd2f8c9d16398cc617af6": 3,
+    "ver_14a2187cf2216b9d56c213b520a28479": 2,
+    "ver_3d4b8881962381cbfba18ade50c598e1": 2,
+    "ver_7947433dfde6b3b8eccd0faa597c3c9a": 2,
+    "ver_7e0826c6c11d52cd63fb0e5100924c4e": 2,
+    "ver_a0184f8cded1db1ff228531d8624afbe": 2,
+    "ver_a1558a5b96585b57f0f8865f48e33073": 2,
+    "ver_26f61f56d6ff7124cfa38152f7baef3d": 1,
+    "ver_63b870e1cf5b36c3e7d310867ca793c7": 1,
+    "ver_6bb251ec84d35aaf9d0b9f38b97b4e65": 1,
+    "ver_ae3bfcc42c733c5051abda30f0f6db07": 1,
+    "ver_b57691291ac216e12d311d60db579b43": 1,
+    "ver_bfb563bf20c1c363e3e071dcc34a98ee": 1,
+    "ver_de67d790db9792b2f6c5c7418a507764": 1,
+    "ver_e312b7f41115cc2b84cd36151efc6dd8": 1,
+    "ver_e8a7b17b5af64679cadea33cd8f6d250": 1,
+    "ver_f15e1a531d680bb98179238f80355058": 1,
+    "ver_f4be547b9adbe8f607eae8c2422c6985": 1
+  },
+  "examples": [
+    {
+      "version_id": "ver_b275f1db2ff0a82e2654391774f8e398",
+      "provider": "openai",
+      "document_title": "Sessions",
+      "level": 1,
+      "heading": "Decide when to compact (e.g., on idle, every N turns, or size thresholds).",
+      "char_start": 14158,
+      "reasons": [
+        "ends in a sentence-final period",
+        "longer than 12 words",
+        "contains a comma-separated 'or'/'and' list"
+      ],
+      "likely_prose": true
+    },
+    {
+      "version_id": "ver_9247e3ce4df6f79d9cadc44e1a3bbd0c",
+      "provider": "openai",
+      "document_title": "OpenAI Python API library",
+      "level": 1,
+      "heading": "configured through AWS_REGION, AWS_DEFAULT_REGION, or your AWS profile.",
+      "char_start": 32644,
+      "reasons": [
+        "ends in a sentence-final period",
+        "starts lowercase",
+        "contains a comma-separated 'or'/'and' list"
+      ],
+      "likely_prose": true
+    },
+    {
+      "version_id": "ver_4c8080ebe566273e171b49c803949f77",
+      "provider": "openai",
+      "document_title": "How to run gpt-oss with vLLM",
+      "level": 1,
+      "heading": "'entries' is a sequence of structured conversation entries (assistant messages, tool calls, etc.).",
+      "char_start": 7770,
+      "reasons": [
+        "ends in a sentence-final period",
+        "longer than 12 words"
+      ],
+      "likely_prose": true
+    },
+    {
+      "version_id": "ver_aeebd84b52caf334c627e31a5f0add5e",
+      "provider": "openai",
+      "document_title": "How to run gpt-oss locally with LM Studio",
+      "level": 1,
+      "heading": "Define a function that can be called by the model and provide them as tools to the model.",
+      "char_start": 4479,
+      "reasons": [
+        "ends in a sentence-final period",
+        "longer than 12 words"
+      ],
+      "likely_prose": true
+    },
+    {
+      "version_id": "ver_9247e3ce4df6f79d9cadc44e1a3bbd0c",
+      "provider": "openai",
+      "document_title": "OpenAI Python API library",
+      "level": 1,
+      "heading": "operating system's normal trusted certificate authorities.",
+      "char_start": 26789,
+      "reasons": [
+        "ends in a sentence-final period",
+        "starts lowercase"
+      ],
+      "likely_prose": true
+    },
+    {
+      "version_id": "ver_57e26a49b0a3714f3e90376d014d7f52",
+      "provider": "openai",
+      "document_title": "Structured Outputs Parsing Helpers",
+      "level": 1,
+      "heading": "how we want to handle the events in the response stream.",
+      "char_start": 10143,
+      "reasons": [
+        "ends in a sentence-final period",
+        "starts lowercase"
+      ],
+      "likely_prose": true
+    },
+    {
+      "version_id": "ver_b05e105d93045aff4c7ce998b198ae79",
+      "provider": "anthropic",
+      "document_title": "Deploy MCP tunnels with Docker Compose",
+      "level": 1,
+      "heading": "environment (it will have expired since install).",
+      "char_start": 19889,
+      "reasons": [
+        "ends in a sentence-final period",
+        "starts lowercase"
+      ],
+      "likely_prose": true
+    },
+    {
+      "version_id": "ver_26f61f56d6ff7124cfa38152f7baef3d",
+      "provider": "anthropic",
+      "document_title": "Embeddings",
+      "level": 1,
+      "heading": "and cosine similarity are the same.",
+      "char_start": 14587,
+      "reasons": [
+        "ends in a sentence-final period",
+        "starts lowercase"
+      ],
+      "likely_prose": true
+    },
+    {
+      "version_id": "ver_57e26a49b0a3714f3e90376d014d7f52",
+      "provider": "openai",
+      "document_title": "Structured Outputs Parsing Helpers",
+      "level": 1,
+      "heading": "and stream the response.",
+      "char_start": 11172,
+      "reasons": [
+        "ends in a sentence-final period",
+        "starts lowercase"
+      ],
+      "likely_prose": true
+    },
+    {
+      "version_id": "ver_b05e105d93045aff4c7ce998b198ae79",
+      "provider": "anthropic",
+      "document_title": "Deploy MCP tunnels with Docker Compose",
+      "level": 1,
+      "heading": "hasn't changed.",
+      "char_start": 19535,
+      "reasons": [
+        "ends in a sentence-final period",
+        "starts lowercase"
+      ],
+      "likely_prose": true
+    },
+    {
+      "version_id": "ver_a183af1cb18fd2f8c9d16398cc617af6",
+      "provider": "openai",
+      "document_title": "OpenAI harmony response format",
+      "level": 1,
+      "heading": "Valid channels: analysis, commentary, final. Channel must be included for every message.",
+      "char_start": 14599,
+      "reasons": [
+        "ends in a sentence-final period"
+      ],
+      "likely_prose": true
+    },
+    {
+      "version_id": "ver_a183af1cb18fd2f8c9d16398cc617af6",
+      "provider": "openai",
+      "document_title": "OpenAI harmony response format",
+      "level": 1,
+      "heading": "Valid channels: analysis, commentary, final. Channel must be included for every message.",
+      "char_start": 19215,
+      "reasons": [
+        "ends in a sentence-final period"
+      ],
+      "likely_prose": true
+    },
+    {
+      "version_id": "ver_a183af1cb18fd2f8c9d16398cc617af6",
+      "provider": "openai",
+      "document_title": "OpenAI harmony response format",
+      "level": 1,
+      "heading": "Valid channels: analysis, commentary, final. Channel must be included for every message.",
+      "char_start": 21777,
+      "reasons": [
+        "ends in a sentence-final period"
+      ],
+      "likely_prose": true
+    },
+    {
+      "version_id": "ver_3d4b8881962381cbfba18ade50c598e1",
+      "provider": "openai",
+      "document_title": "Sandbox clients",
+      "level": 1,
+      "heading": "Broader authority such as managed or workload identity and external credential files.",
+      "char_start": 11748,
+      "reasons": [
+        "ends in a sentence-final period"
+      ],
+      "likely_prose": true
+    },
+    {
+      "version_id": "ver_b05e105d93045aff4c7ce998b198ae79",
+      "provider": "anthropic",
+      "document_title": "Deploy MCP tunnels with Docker Compose",
+      "level": 1,
+      "heading": "export ANTHROPIC_WORKSPACE_ID=wrkspc_...   # if your rule is workspace-scoped",
+      "char_start": 19738,
+      "reasons": [
+        "starts lowercase"
+      ],
+      "likely_prose": true
+    },
+    {
+      "version_id": "ver_aeebd84b52caf334c627e31a5f0add5e",
+      "provider": "openai",
+      "document_title": "How to run gpt-oss locally with LM Studio",
+      "level": 1,
+      "heading": "Tools are just regular Python functions. They can be anything at all.",
+      "char_start": 4571,
+      "reasons": [
+        "ends in a sentence-final period"
+      ],
+      "likely_prose": true
+    },
+    {
+      "version_id": "ver_b05e105d93045aff4c7ce998b198ae79",
+      "provider": "anthropic",
+      "document_title": "Deploy MCP tunnels with Docker Compose",
+      "level": 1,
+      "heading": "export TUNNEL_ID=tnl_...   # set only if you set it during install",
+      "char_start": 19554,
+      "reasons": [
+        "starts lowercase"
+      ],
+      "likely_prose": true
+    },
+    {
+      "version_id": "ver_b275f1db2ff0a82e2654391774f8e398",
+      "provider": "openai",
+      "document_title": "Sessions",
+      "level": 1,
+      "heading": "session = OpenAIConversationsSession(conversation_id=\"conv_123\")",
+      "char_start": 9593,
+      "reasons": [
+        "starts lowercase"
+      ],
+      "likely_prose": true
+    },
+    {
+      "version_id": "ver_9247e3ce4df6f79d9cadc44e1a3bbd0c",
+      "provider": "openai",
+      "document_title": "OpenAI Python API library",
+      "level": 1,
+      "heading": "gets the API Key from environment variable AZURE_OPENAI_API_KEY",
+      "char_start": 30871,
+      "reasons": [
+        "starts lowercase"
+      ],
+      "likely_prose": true
+    },
+    {
+      "version_id": "ver_de67d790db9792b2f6c5c7418a507764",
+      "provider": "openai",
+      "document_title": "Release process/changelog",
+      "level": 1,
+      "heading": "This is an absolute host path outside the SDK process base_dir.",
+      "char_start": 11330,
+      "reasons": [
+        "ends in a sentence-final period"
+      ],
+      "likely_prose": true
+    },
+    {
+      "version_id": "ver_e3b7dcb3dd413a59614b6bb3aa2aae19",
+      "provider": "openai",
+      "document_title": "Verifying gpt-oss implementations",
+      "level": 1,
+      "heading": "change the provider config in providers.ts to add your provider",
+      "char_start": 5873,
+      "reasons": [
+        "starts lowercase"
+      ],
+      "likely_prose": true
+    },
+    {
+      "version_id": "ver_3d4b8881962381cbfba18ade50c598e1",
+      "provider": "openai",
+      "document_title": "Sandbox clients",
+      "level": 1,
+      "heading": "Mount-scoped values such as inline access keys.",
+      "char_start": 11612,
+      "reasons": [
+        "ends in a sentence-final period"
+      ],
+      "likely_prose": true
+    },
+    {
+      "version_id": "ver_57e26a49b0a3714f3e90376d014d7f52",
+      "provider": "openai",
+      "document_title": "Structured Outputs Parsing Helpers",
+      "level": 1,
+      "heading": "with the `EventHandler` class to create the Run",
+      "char_start": 11122,
+      "reasons": [
+        "starts lowercase"
+      ],
+      "likely_prose": true
+    },
+    {
+      "version_id": "ver_9247e3ce4df6f79d9cadc44e1a3bbd0c",
+      "provider": "openai",
+      "document_title": "OpenAI Python API library",
+      "level": 1,
+      "heading": "Automatically fetches more pages as needed.",
+      "char_start": 12015,
+      "reasons": [
+        "ends in a sentence-final period"
+      ],
+      "likely_prose": true
+    },
+    {
+      "version_id": "ver_e3b7dcb3dd413a59614b6bb3aa2aae19",
+      "provider": "openai",
+      "document_title": "Verifying gpt-oss implementations",
+      "level": 1,
+      "heading": "go into the compatibility test directory",
+      "char_start": 5758,
+      "reasons": [
+        "starts lowercase"
+      ],
+      "likely_prose": true
+    }
+  ],
+  "verdict": {
+    "systematic": false,
+    "finding": "44 of 5857 parsed headings (0.75%), in 15 of 202 documents. That is isolated. It does not justify a parser experiment on its own, and the batch-006 rule — never trust section_path for scope — is the cheaper fix.",
+    "recommended_next_step": "A parser experiment AFTER GOLD-001 is complete. Not now: changing the parser changes section_path for every stored document, and the corpus snapshot is frozen for the duration of this evaluation."
+  },
+  "actions_taken": [],
+  "not_done": [
+    "No heading was rewritten and no document was reparsed into storage.",
+    "No existing evidence anchor moved; closed batches are unchanged.",
+    "GOLD-B005-11 keeps its recorded section_path — it is a closed record."
+  ],
+  "rule_for_batch_006": "section_path is not trusted for claim scope. A candidate's exact evidence must contain the scope its claim needs, and a candidate whose scope would depend on a suspicious heading is repaired or dropped."
+}

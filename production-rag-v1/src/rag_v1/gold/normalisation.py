@@ -47,9 +47,51 @@ def contains_claim_string(evidence: str, claim_string: str) -> bool:
             in normalise_for_comparison(evidence).lower())
 
 
+#: Markdown link plumbing, in the three shapes CommonMark allows a link to be written.
+#: The label is kept and everything else goes: a question is read by a person, and
+#: ``[`ComputerTool`][agents.tool.ComputerTool]`` names a class while looking like a
+#: syntax error. Order matters — inline first, then full reference, then collapsed and
+#: shortcut, so a longer form is never half-consumed by a shorter pattern.
+_INLINE_LINK = re.compile(r"\[(?P<label>[^\]]*)\]\((?:[^()]*|\([^()]*\))*\)")
+_REFERENCE_LINK = re.compile(r"\[(?P<label>[^\]]*)\]\[(?P<ref>[^\]]*)\]")
+_IMAGE_PREFIX = re.compile(r"!(?=\[)")
+#: A link whose label is a code span, written across the label and the reference. The
+#: backticks are the project's own convention for an identifier and are kept; only the
+#: reference is plumbing.
+_LINK_LIKE = re.compile(r"\]\s*[\[(]")
+
+
+def strip_markdown_links(text: str) -> str:
+    """Reduce every Markdown link in ``text`` to its visible label.
+
+    ``[label](url)``, ``[label][ref]`` and ``[label][]`` all become ``label``; an image
+    ``![alt](src)`` becomes ``alt``. A code-span label keeps its backticks, because in
+    this project backticks mark an identifier and are not link syntax.
+
+    This is for authoring a question or an answer. It must never be applied to stored
+    evidence: evidence is anchored by offset and hashed as written, and rewriting it
+    would break both.
+    """
+    out = _IMAGE_PREFIX.sub("", text)
+    for _ in range(4):  # nested labels resolve from the inside out; four is generous
+        replaced = _INLINE_LINK.sub(lambda m: m.group("label"), out)
+        replaced = _REFERENCE_LINK.sub(lambda m: m.group("label"), replaced)
+        if replaced == out:
+            break
+        out = replaced
+    return out
+
+
+def has_markdown_link(text: str) -> bool:
+    """Would ``strip_markdown_links`` change this text? Cheap enough to assert with."""
+    return bool(_LINK_LIKE.search(text)) and strip_markdown_links(text) != text
+
+
 __all__ = [
     "ESCAPABLE",
     "contains_claim_string",
+    "has_markdown_link",
     "normalise_for_comparison",
+    "strip_markdown_links",
     "unescape_markdown",
 ]
