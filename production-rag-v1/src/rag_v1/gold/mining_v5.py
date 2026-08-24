@@ -31,49 +31,49 @@ from rag_v1.gold.normalisation import contains_claim_string
 #: A relation between two named settings. Each pattern has to match a sentence that
 #: mentions *both* sides, which is checked separately — the verb alone is not enough.
 INTERACTION_PATTERNS = (
-    (re.compile(r"\btakes precedence over\b", re.I), "takes_precedence"),
-    (re.compile(r"\bis ignored (?:when|if|unless)\b", re.I), "ignored_under_condition"),
-    (re.compile(r"\b(?:disables?|prevents?|suppresses?)\b", re.I), "disables"),
-    (re.compile(r"\brequires?\b", re.I), "requires"),
-    (re.compile(r"\boverrides?\b", re.I), "overrides"),
-    (re.compile(r"\bcannot be (?:used|combined|set) (?:with|together)\b", re.I),
+    (re.compile(r"\btakes precedence over\b", re.IGNORECASE), "takes_precedence"),
+    (re.compile(r"\bis ignored (?:when|if|unless)\b", re.IGNORECASE), "ignored_under_condition"),
+    (re.compile(r"\b(?:disables?|prevents?|suppresses?)\b", re.IGNORECASE), "disables"),
+    (re.compile(r"\brequires?\b", re.IGNORECASE), "requires"),
+    (re.compile(r"\boverrides?\b", re.IGNORECASE), "overrides"),
+    (re.compile(r"\bcannot be (?:used|combined|set) (?:with|together)\b", re.IGNORECASE),
      "mutually_exclusive"),
-    (re.compile(r"\bonly (?:applies|works|available) (?:when|if|with)\b", re.I),
+    (re.compile(r"\bonly (?:applies|works|available) (?:when|if|with)\b", re.IGNORECASE),
      "conditional_availability"),
     # "when X is present" matched sentences whose subject was somewhere else entirely
     # — "How does `memory_stores` change behaviour when it is present?" answered with a
     # field definition. The relation is real but this pattern cannot find its subject,
     # so it is not mined rather than mined badly.
 
-    (re.compile(r"\bfalls? back to\b", re.I), "fallback"),
-    (re.compile(r"\bchanges? (?:the )?(?:behaviou?r|meaning|semantics) of\b", re.I),
+    (re.compile(r"\bfalls? back to\b", re.IGNORECASE), "fallback"),
+    (re.compile(r"\bchanges? (?:the )?(?:behaviou?r|meaning|semantics) of\b", re.IGNORECASE),
      "changes_behaviour"),
 )
 #: A hard limit or a required format — the exact lookups §14 says must earn their place.
 CONSTRAINT_PATTERNS = (
-    (re.compile(r"\bmust be\b", re.I), "required_value"),
-    (re.compile(r"\bmust (?:not|never)\b", re.I), "prohibited"),
-    (re.compile(r"\bmaximum (?:of |is |allowed )?\b", re.I), "maximum"),
-    (re.compile(r"\bcannot exceed\b", re.I), "maximum"),
-    (re.compile(r"\bis limited to\b", re.I), "maximum"),
-    (re.compile(r"\bup to \d", re.I), "maximum"),
-    (re.compile(r"\bat (?:most|least) \d", re.I), "bound"),
-    (re.compile(r"\bmust (?:match|conform|start with|end with|contain)\b", re.I),
+    (re.compile(r"\bmust be\b", re.IGNORECASE), "required_value"),
+    (re.compile(r"\bmust (?:not|never)\b", re.IGNORECASE), "prohibited"),
+    (re.compile(r"\bmaximum (?:of |is |allowed )?\b", re.IGNORECASE), "maximum"),
+    (re.compile(r"\bcannot exceed\b", re.IGNORECASE), "maximum"),
+    (re.compile(r"\bis limited to\b", re.IGNORECASE), "maximum"),
+    (re.compile(r"\bup to \d", re.IGNORECASE), "maximum"),
+    (re.compile(r"\bat (?:most|least) \d", re.IGNORECASE), "bound"),
+    (re.compile(r"\bmust (?:match|conform|start with|end with|contain)\b", re.IGNORECASE),
      "required_format"),
 )
 #: §13's vocabulary. "version_conflict" is deliberately absent: the corpus has no
 #: superseded-version chains, so nothing here can be one.
 LIFECYCLE_PATTERNS = (
-    (re.compile(r"\bis deprecated\b", re.I), "deprecation"),
-    (re.compile(r"\bare deprecated\b", re.I), "deprecation"),
-    (re.compile(r"\bno longer (?:supported|available|returned|accepted)\b", re.I),
+    (re.compile(r"\bis deprecated\b", re.IGNORECASE), "deprecation"),
+    (re.compile(r"\bare deprecated\b", re.IGNORECASE), "deprecation"),
+    (re.compile(r"\bno longer (?:supported|available|returned|accepted)\b", re.IGNORECASE),
      "deprecation"),
-    (re.compile(r"\b(?:has been|was|is) removed\b", re.I), "removal"),
-    (re.compile(r"\bmigrat(?:e|ing|ion)\b", re.I), "migration"),
-    (re.compile(r"\bsupersed(?:es|ed)\b", re.I), "migration"),
-    (re.compile(r"\breplaced by\b", re.I), "migration"),
-    (re.compile(r"\bstill (?:functional|supported|works)\b", re.I), "compatibility"),
-    (re.compile(r"\bnot supported (?:on|for|in)\b", re.I), "compatibility"),
+    (re.compile(r"\b(?:has been|was|is) removed\b", re.IGNORECASE), "removal"),
+    (re.compile(r"\bmigrat(?:e|ing|ion)\b", re.IGNORECASE), "migration"),
+    (re.compile(r"\bsupersed(?:es|ed)\b", re.IGNORECASE), "migration"),
+    (re.compile(r"\breplaced by\b", re.IGNORECASE), "migration"),
+    (re.compile(r"\bstill (?:functional|supported|works)\b", re.IGNORECASE), "compatibility"),
+    (re.compile(r"\bnot supported (?:on|for|in)\b", re.IGNORECASE), "compatibility"),
 )
 #: ``-   `field`: Description.`` — the definition bullets the scope miner pairs.
 _FIELD = re.compile(

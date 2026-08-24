@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-23T06:18:13Z",
+  "generated_at": "2026-08-24T05:04:03Z",
   "batches": [
     {
       "batch": 1,
@@ -127,13 +127,43 @@
       "not_eligible": [],
       "genuine_multi_hop": 1,
       "overlay_version": null
+    },
+    {
+      "batch": 5,
+      "closed_record": "evals/review/gold_review_batch_005_final.json",
+      "eligibility_source": "evals/review/gold_review_batch_005_final.json",
+      "closure_sha256": "ffbf9dda40ec1554d15ade41480d0927464fb2c35a2f4a08aaa9f6fb065df4c0",
+      "candidates": 19,
+      "human_verified": 15,
+      "human_rejected": 4,
+      "holdout_eligible": 15,
+      "holdout_eligible_ids": [
+        "GOLD-B005-02",
+        "GOLD-B005-03",
+        "GOLD-B005-04",
+        "GOLD-B005-05",
+        "GOLD-B005-07",
+        "GOLD-B005-08",
+        "GOLD-B005-09",
+        "GOLD-B005-11",
+        "GOLD-B005-12",
+        "GOLD-B005-14",
+        "GOLD-B005-15",
+        "GOLD-B005-16",
+        "GOLD-B005-17",
+        "GOLD-B005-18",
+        "GOLD-B005-19"
+      ],
+      "not_eligible": [],
+      "genuine_multi_hop": 0,
+      "overlay_version": null
     }
   ],
   "combined": {
-    "candidates": 71,
-    "human_verified": 67,
-    "human_rejected": 4,
-    "holdout_eligible": 67,
+    "candidates": 90,
+    "human_verified": 82,
+    "human_rejected": 8,
+    "holdout_eligible": 82,
     "genuine_multi_hop": 1
   },
   "target": {
@@ -161,8 +191,33 @@
     },
     "note": "Counted from each check's own reason string, not asserted. A pair is counted once, under the first reason it failed. `unclassified` is a guard: it should be 0, and a non-zero value means a check grew a reason the report does not know how to file."
   },
+  "multi_hop_dependency_first": {
+    "strategy": "dependency-first: a chain may only open on a sentence that states a dependency and puts the entity in a state",
+    "funnel": {
+      "dependency_pairs_considered": 3,
+      "failed_span_independence": 1,
+      "failed_semantic_equivalence": 1,
+      "passed": 1
+    },
+    "budget": 1000,
+    "rejected": [
+      {
+        "bridge_entity": "input_filter",
+        "gate": "span_independence",
+        "reason": "span 1 alone already answers the whole question — not multi-hop"
+      },
+      {
+        "bridge_entity": "max_tokens",
+        "gate": "semantic_equivalence",
+        "reason": "`max_tokens` is a request parameter in span 1 and an enum value in span 2: the same string naming two different things, which is a coincidence rather than a chain"
+      }
+    ],
+    "entities_with_a_dependency_opener": 122,
+    "valid_chains": 1,
+    "exported_chains": 0
+  },
   "holdout_frozen": false,
-  "reason_not_frozen": "67 eligible cases cannot support both a 30–40 validation split and a 70–100 holdout.",
+  "reason_not_frozen": "82 eligible cases cannot support both a 30–40 validation split and a 70–100 holdout.",
   "retrieval_was_not_run": true,
   "systems_executed": []
 }

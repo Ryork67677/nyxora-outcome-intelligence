@@ -24,7 +24,6 @@ supports this at all.
 from __future__ import annotations
 
 import re
-
 from collections import Counter
 
 from rag_v1.gold.bridge_equivalence import same_semantic_entity
@@ -117,7 +116,7 @@ def composition_check(bridge: str, span_1: str, span_2: str,
 _SYMBOL = re.compile(r"^[A-Za-z_][\w.]{3,}$")
 _NOT_A_BRIDGE = frozenset({
     "true", "false", "none", "null", "nil", "nan", "undefined", "yes", "no",
-    "string", "number", "boolean", "integer", "array", "object", "null", "float",
+    "string", "number", "boolean", "integer", "array", "object", "float",
     "error", "errors", "refusal", "request", "response", "result", "results",
     "input", "output", "value", "values", "default", "message", "messages",
     "content", "text", "json", "http", "https", "python", "typescript", "javascript",

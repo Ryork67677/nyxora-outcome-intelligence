@@ -20,6 +20,13 @@ from collections import Counter
 from datetime import UTC, datetime
 from pathlib import Path
 
+from rag_v1.gold.eligibility import evaluate
+
+#: An owner may accept a noncritical finding. These are the flags that records it,
+#: and the closure reports every one of them — an accepted finding is still a finding.
+OVERRIDE_FLAGS = ("human_anaphora_override", "human_dependency_override",
+                  "human_scope_override")
+
 GOLD = "human_verified"
 REJECTED = "human_rejected"
 #: Anything else outstanding blocks closure.
@@ -86,6 +93,22 @@ def candidate_digest(records: list[dict]) -> str:
     payload = json.dumps(sorted(records, key=lambda r: r["candidate_id"]),
                          sort_keys=True, ensure_ascii=False, separators=(",", ":"))
     return hashlib.sha256(payload.encode("utf-8")).hexdigest()
+
+
+def review_findings(record: dict) -> list[str]:
+    """The tags the source-integrity review put on a record, if it recorded any.
+
+    Batch 005's review wrote findings as ``TAG: prose``. The tag is the classification
+    and the prose is the argument, so a closure table can show the first without
+    reprinting the second — and a rejection with a recorded reason should never render
+    as an em dash just because it predates the D1/D2/D3 taxonomy.
+    """
+    tags = []
+    for finding in record.get("internal_review_findings") or []:
+        head = finding.split(":", 1)[0].strip()
+        if head and head.replace("_", "").isupper() and " " not in head:
+            tags.append(head)
+    return sorted(set(tags))
 
 
 def defects_of(record: dict) -> list[str]:
@@ -160,6 +183,28 @@ def _repair_summary(record: dict) -> dict:
     }
 
 
+def generation_targets(batch: dict) -> dict | None:
+    """Recover what generation aimed at, from the artifact this batch was composed from.
+
+    Batches composed before ``compose_final_batch.py`` carried the targets forward do
+    not hold them, and a closure that cannot see a target silently reports a count
+    against nothing. The generation artifact's hash is checked against the one the
+    composed file recorded, because a target read out of the wrong file is worse than
+    no target at all.
+    """
+    if batch.get("reasoning_targets") is not None:
+        return batch["reasoning_targets"]
+    source = batch.get("source_batch")
+    if not source or not Path(source).exists():
+        return None
+    generation = json.loads(Path(source).read_text())
+    if generation.get("batch_sha256") != batch.get("source_batch_sha256"):
+        raise SystemExit(
+            "refusing to close: the generation artifact this batch names does not "
+            "match the recorded source_batch_sha256")
+    return generation.get("targets", {}).get("reasoning_type")
+
+
 def build(batch: dict, validation: dict, now: str) -> dict:
     records = batch["records"]
     statuses = Counter(r["verification_status"] for r in records)
@@ -175,6 +220,8 @@ def build(batch: dict, validation: dict, now: str) -> dict:
     with_critical = sum(1 for r in verified if r.get("critical_strings"))
     rejected = [r for r in records if r["verification_status"] == REJECTED]
     repaired = [r for r in records if r.get("anchor_revisions")]
+    verdicts = [evaluate(r) for r in verified]
+    eligible = sorted(v["candidate_id"] for v in verdicts if v["holdout_eligible"])
 
     return {
         "batch": batch.get("batch"),
@@ -196,12 +243,21 @@ def build(batch: dict, validation: dict, now: str) -> dict:
             "needs_human_review": 0,
             "outstanding_decisions": 0,
             "acceptance_rate": round(len(verified) / len(records), 4),
+            # Derived, not asserted: the deterministic gate is re-run here, so a
+            # closure cannot claim an eligibility the records do not currently support.
+            "holdout_eligible": len(eligible),
         },
+        "holdout_eligible_ids": eligible,
+        "not_holdout_eligible": [
+            {"candidate_id": v["candidate_id"],
+             "failures": [f["condition"] for f in v["failures"]]}
+            for v in verdicts if not v["holdout_eligible"]],
         "status_counts": dict(statuses),
         "human_verified_ids": sorted(r["candidate_id"] for r in verified),
         "rejected": [{
             "candidate_id": r["candidate_id"],
             "defects": defects_of(r),
+            "review_findings": review_findings(r),
             "reason": r["human_decision_history"][-1]["notes"],
             # Batch 004 had no independent model pass; its rejection came from the
             # internal source-integrity review and the owner's decision.
@@ -217,8 +273,11 @@ def build(batch: dict, validation: dict, now: str) -> dict:
             "revisions": len(r.get("revisions", [])),
             "miner_original_question": next(
                 (rev["from"] for rev in r.get("revisions", [])
-                 if rev["field"] == "proposed_question"), None),
-            "final_question": r["proposed_question"],
+                 # Batches 001-004 named the field `proposed_question`; batch 005's
+                 # review names it `question`. Asking for only the older name made the
+                 # closure report every batch-005 rewrite with an empty "as mined".
+                 if rev["field"] in ("proposed_question", "question")), None),
+            "final_question": r.get("proposed_question") or r["question"],
         } for r in sorted(records, key=lambda r: r["candidate_id"])
             if r.get("revisions")],
         "claim_checkable": {
@@ -238,12 +297,14 @@ def build(batch: dict, validation: dict, now: str) -> dict:
             "candidate_id": r["candidate_id"],
             "anaphora_status": r.get("anaphora_status"),
             "dependency_status": r.get("dependency_status"),
+            "scope_status": r.get("scope_status"),
             "human_anaphora_override": r.get("human_anaphora_override"),
             "human_dependency_override": r.get("human_dependency_override"),
+            "human_scope_override": r.get("human_scope_override"),
             "override_reviewer": r.get("override_reviewer"),
             "finding_retained": True,
         } for r in sorted(records, key=lambda r: r["candidate_id"])
-            if r.get("human_anaphora_override") or r.get("human_dependency_override")],
+            if any(r.get(f) for f in OVERRIDE_FLAGS)],
         "reasoning_and_shape": {
             # Counted from the records that closed, not from the generation-time
             # totals: a rejected candidate is still in the generated mix and must not
@@ -271,8 +332,18 @@ def build(batch: dict, validation: dict, now: str) -> dict:
         },
         "errata": batch.get("closure_errata", []),
         "multi_hop_rejection": batch.get("multi_hop_rejection"),
+        "multi_hop_search": batch.get("multi_hop_search"),
+        "generation_shortfall": ({
+            "target": batch["generation_target"],
+            "exported": batch["generation_exported"],
+            "dropped_by_semantic_self_review":
+                batch.get("internal_review", {}).get("counts", {}).get("DROP"),
+            "entered_semantic_self_review":
+                sum((batch.get("internal_review", {}).get("counts") or {}).values())
+                or None,
+        } if batch.get("generation_target") is not None else None),
         "near_miss_diagnostic": batch.get("near_miss_diagnostic"),
-        "reasoning_targets": batch.get("reasoning_targets"),
+        "reasoning_targets": generation_targets(batch),
         "precheck_limitation": {
             "candidates": len(records),
             "precheck_ready": sum(1 for r in records
@@ -346,7 +417,7 @@ def erratum_line(entry: dict) -> str:
 
 def multi_hop_line(closure: dict) -> str:
     count = closure["reasoning_and_shape"]["genuine_multi_hop"]
-    target = closure.get("reasoning_targets", {}).get("genuine_multi_hop")
+    target = (closure.get("reasoning_targets") or {}).get("genuine_multi_hop")
     against = f", against a generation target of {target[0]}–{target[1]}" if target else ""
     return f"**Genuine multi-hop reasoning cases: {count}**{against}."
 
@@ -391,6 +462,91 @@ def multi_hop_rejection_section(closure: dict) -> list[str]:
     ]
 
 
+def multi_hop_search_section(closure: dict) -> list[str]:
+    """Render a dependency-first search.
+
+    Batch 004 tried every bridge pair and reported a histogram of rejection reasons.
+    Batch 005 only opened a chain on a sentence that states a dependency, which is a
+    different question and produces a funnel, not a histogram. Both are results about
+    the corpus; neither is a number to improve.
+    """
+    search = closure.get("multi_hop_search")
+    if not search:
+        return []
+    funnel = search["funnel"]
+    rows = "\n".join(
+        f"| `{r['bridge_entity']}` | {r['gate'].replace('_', ' ')} | {r['reason']} |"
+        for r in search.get("rejected", []))
+    exported = search.get("exported_chains")
+    return [
+        "## Multi-hop search — dependency-first",
+        "",
+        (f"{search['strategy'].capitalize()}. "
+         f"**{search['entities_with_a_dependency_opener']}** entities had a sentence "
+         f"that could open a chain; **{funnel['dependency_pairs_considered']}** "
+         f"dependency pairs reached the composition gates, within a budget of "
+         f"{search['budget']}."),
+        "",
+        "| | |",
+        "| --- | --- |",
+        f"| dependency pairs considered | {funnel['dependency_pairs_considered']} |",
+        f"| failed span independence | {funnel['failed_span_independence']} |",
+        f"| failed semantic equivalence | {funnel['failed_semantic_equivalence']} |",
+        f"| valid chains | **{search['valid_chains']}** |",
+        f"| new unique chains exported | **{exported}** |",
+        "",
+        *(["| bridge entity | gate | why it was rejected |",
+           "| --- | --- | --- |", rows, ""] if rows else []),
+        (("The one valid chain is the chain batch 004 already closed, so this batch "
+          "exported none. That is the finding, not a failure: searching a different "
+          "way found the same single composable structure, which is evidence that the "
+          "frozen corpus contains very little naturally composable multi-hop material "
+          "— not that the search was run badly.") if search["valid_chains"] and not
+         exported else
+         ("No candidate was regenerated to improve this number, and no chain was "
+          "relabelled to fill the category.")),
+        "",
+    ]
+
+
+def shortfall_section(closure: dict) -> list[str]:
+    """Say why the batch is smaller than its target, from the generation record."""
+    short = closure.get("generation_shortfall")
+    if not short:
+        return []
+    target, exported = short["target"], short["exported"]
+    if exported >= target:
+        return []
+    dropped = short.get("dropped_by_semantic_self_review")
+    reviewed = short.get("entered_semantic_self_review")
+    lines = [
+        f"## Target {target}, exported {exported}",
+        "",
+        (f"The generation target was **{target}**; the batch exported "
+         f"**{exported}**."),
+        "",
+    ]
+    if dropped and reviewed:
+        lines += [
+            (f"**{reviewed}** candidates reached the semantic self-review and "
+             f"**{dropped}** were dropped there, leaving {reviewed - dropped}. The "
+             "drops were led by generic identifiers, claims wider than their span, and "
+             "category labels the evidence did not support — not by anything the "
+             "structural precheck could see."),
+            "",
+        ]
+    lines += [
+        ("The shortfall is the review working, not a miner failing to reach a number. "
+         "An earlier draft of this batch did reach 30 candidates; those candidates "
+         "carried pervasive question-subject/fact-subject mismatches, the miners were "
+         "corrected rather than the candidates patched, and the corrected run returned "
+         f"{exported}. Padding back to {target} would have meant keeping cases a "
+         "reader could not check, so the count was the thing allowed to move."),
+        "",
+    ]
+    return lines
+
+
 def near_miss_section(closure: dict) -> list[str]:
     near = closure.get("near_miss_diagnostic")
     if not near:
@@ -421,9 +577,12 @@ def overrides_section(closure: dict) -> list[str]:
     overrides = closure.get("human_overrides")
     if not overrides:
         return []
+    def finding(o: dict) -> str:
+        return (o.get("anaphora_status") or o.get("dependency_status")
+                or o.get("scope_status") or "—")
+
     rows = "\n".join(
-        f"| `{o['candidate_id']}` | "
-        f"{o.get('anaphora_status') or o.get('dependency_status')} | "
+        f"| `{o['candidate_id']}` | {finding(o)} | "
         f"{o['override_reviewer']} | finding retained |"
         for o in overrides)
     return [
@@ -464,7 +623,9 @@ def precheck_section(closure: dict) -> list[str]:
 def render(closure: dict) -> str:
     totals = closure["totals"]
     rejected = "\n".join(
-        f"| `{r['candidate_id']}` | {', '.join(r['defects']) or '—'} | {r['reason']} |"
+        f"| `{r['candidate_id']}` | "
+        f"{', '.join(r['defects'] or r.get('review_findings') or []) or '—'} | "
+        f"{r['reason']} |"
         for r in closure["rejected"])
     def spans(entries: list) -> str:
         return ", ".join(f"{a}–{b}" for a, b in entries)
@@ -495,12 +656,21 @@ def render(closure: dict) -> str:
         f"| `human_rejected` | {totals['human_rejected']} |",
         f"| `needs_human_review` | {totals['needs_human_review']} |",
         f"| outstanding decisions | {totals['outstanding_decisions']} |",
+        f"| `holdout_eligible` | **{totals['holdout_eligible']}** |",
         f"| acceptance rate | **{totals['acceptance_rate']:.1%}** |",
         "",
         ("Acceptance rate is not a quality score. It is the share of *mined candidates* "
          "a person kept, and it says as much about how permissive the miner was as "
          f"about how good the evidence is. With n={totals['candidates']} one candidate "
          f"moves it {100 / totals['candidates']:.1f} points."),
+        "",
+        (f"`holdout_eligible` is the deterministic gate re-run at closure over the "
+         f"{totals['human_verified']} verified records — human approval and machine "
+         f"checkability are separate states, and this one is derived, never asserted. "
+         + ("Every verified case passes it."
+            if totals["holdout_eligible"] == totals["human_verified"] else
+            f"{totals['human_verified'] - totals['holdout_eligible']} verified "
+            "case(s) do not pass it; see `not_holdout_eligible` in the JSON.")),
         "",
         "## Rejected — kept, not deleted",
         "",
@@ -539,14 +709,33 @@ def render(closure: dict) -> str:
         "",
         "## Reasoning type and evidence shape",
         "",
-        (f"Reasoning types: {closure['reasoning_and_shape']['by_reasoning_type']}. "
-         f"Evidence shapes: {closure['reasoning_and_shape']['by_evidence_shape']}."),
+        f"| dimension | all {totals['candidates']} records | verified only |",
+        "| --- | --- | --- |",
+        *[f"| {label} | {generated} | {verified_only} |" for label, generated,
+          verified_only in (
+              ("reasoning type",
+               closure["reasoning_and_shape"]["by_reasoning_type"],
+               closure["reasoning_and_shape"]["by_reasoning_type_verified"]),
+              ("evidence shape",
+               closure["reasoning_and_shape"]["by_evidence_shape"],
+               closure["reasoning_and_shape"]["by_evidence_shape_verified"]),
+              ("provider",
+               closure["by_provider"]["generated"],
+               closure["by_provider"]["human_verified"]))],
+        "",
+        ("Both columns carry the labels the records hold at closure, so a category "
+         "the review corrected reads as corrected here and not as the miner first "
+         "guessed — the generation report is the record of what was mined. The left "
+         "column is every candidate; the right is the mix that survived, and only the "
+         "right one is coverage."),
         "",
         multi_hop_line(closure),
         "",
         (closure["reasoning_and_shape"]["note"] + multi_hop_tail(closure)),
         "",
         *multi_hop_rejection_section(closure),
+        *multi_hop_search_section(closure),
+        *shortfall_section(closure),
         *near_miss_section(closure),
         *overrides_section(closure),
         *precheck_section(closure),
@@ -563,8 +752,8 @@ def render(closure: dict) -> str:
         "| | |",
         "| --- | --- |",
         f"| reviewed-state sha256 | `{closure['source_batch_sha256']}` |",
-        *([f"| generation batch sha256 | "
-           f"`{closure['generation_batch_sha256']}` |"]
+        *([(f"| generation batch sha256 | "
+           f"`{closure['generation_batch_sha256']}` |")]
           if closure.get("generation_batch_sha256") else []),
         f"| corpus snapshot | `{closure['corpus_snapshot']}` |",
         f"| schema version | {closure['schema_version']} |",

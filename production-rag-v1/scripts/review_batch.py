@@ -296,8 +296,8 @@ def render_review(payload: dict, decisions_doc: dict) -> str:
                    "regenerated, so a fix belongs in the next batch's preregistration "
                    "where it can be declared before it sees a candidate."), ""]
         for defect in defects:
-            lines += [f"- **{defect['defect']}** (seen in {defect['seen_in']}). "
-                      f"{defect['detail']}"]
+            lines += [(f"- **{defect['defect']}** (seen in {defect['seen_in']}). "
+                      f"{defect['detail']}")]
         lines.append("")
 
     lines += [

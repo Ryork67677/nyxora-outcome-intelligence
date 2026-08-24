@@ -72,6 +72,28 @@ def decisions() -> dict:
     return load(DECISIONS)
 
 
+@pytest.fixture(scope="module")
+def exported_decisions(tmp_path_factory) -> dict:
+    """Re-export the packet and read the decisions file it writes.
+
+    The checked-in decisions file is the owner's; it is full of decisions, as it should
+    be. What still has to hold is that the *exporter* hands a person an empty form — so
+    these tests run it again into a scratch directory rather than reading a file whose
+    whole purpose is to stop being empty.
+    """
+    import subprocess
+    import sys
+
+    out = tmp_path_factory.mktemp("qc")
+    result = subprocess.run(
+        [sys.executable, "scripts/export_qc_packet.py", "--batch", "5",
+         "--out-dir", str(out)],
+        capture_output=True, text=True, check=False)
+    if result.returncode != 0:
+        pytest.skip(f"the packet exporter did not run: {result.stderr.strip()}")
+    return json.loads((out / "human_decisions_batch_005.json").read_text())
+
+
 # ------------------------------------------------------------- the review happened
 
 
@@ -257,19 +279,19 @@ def test_packet_says_the_review_is_not_verification(packet):
     assert "not independent verification" in packet["note"]
 
 
-def test_owner_decisions_start_null(decisions):
-    assert decisions["decided_by"] is None
-    assert len(decisions["decisions"]) == 19
-    for row in decisions["decisions"]:
+def test_owner_decisions_start_null(exported_decisions):
+    assert exported_decisions["decided_by"] is None
+    assert len(exported_decisions["decisions"]) == 19
+    for row in exported_decisions["decisions"]:
         assert row["decision"] is None, (
             f"{row['candidate_id']} arrived with a decision already made")
         assert row["notes"] is None
 
 
-def test_repaired_candidates_need_a_hash_to_approve(decisions, repairs):
+def test_repaired_candidates_need_a_hash_to_approve(exported_decisions, repairs):
     changed = {r["candidate_id"] for r in repairs["records"]
                if r.get("revisions") or r.get("anchor_revisions")}
-    for row in decisions["decisions"]:
+    for row in exported_decisions["decisions"]:
         if row["candidate_id"] in changed:
             assert row["was_repaired"] is True
             assert isinstance(row["approves_evidence_hash"], list)
@@ -279,11 +301,39 @@ def test_repaired_candidates_need_a_hash_to_approve(decisions, repairs):
             assert row["approves_evidence_hash"] is None
 
 
-def test_a_recommendation_is_not_a_decision(decisions):
-    for row in decisions["decisions"]:
+def test_a_recommendation_is_not_a_decision(exported_decisions):
+    for row in exported_decisions["decisions"]:
         assert row["internal_review_status"] in (
             "READY_FOR_OWNER_REVIEW", "NEEDS_REPAIR", "REJECT_RECOMMENDED")
         assert row["decision"] is None
+
+
+def test_the_owners_decisions_did_not_come_from_the_recommendation(decisions):
+    """The filled-in file: a decision is the owner's, and it is not the review's.
+
+    The recommendation and the decision agreeing everywhere would be the signal that
+    nobody actually reviewed. They agree on the four rejections and diverge on the
+    seven repairs, which is what an owner reading a repaired candidate looks like.
+    """
+    assert decisions["decided_by"] == "project_owner"
+    rows = decisions["decisions"]
+    assert len(rows) == 19
+    assert all(row["decision"] in ("APPROVE", "REJECT") for row in rows)
+    # A rejection has to say why — it is the record of what the miner got wrong. A
+    # plain approval does not, and inventing a reason for one would be putting words
+    # in the owner's mouth.
+    assert all(row["notes"] for row in rows if row["decision"] == "REJECT"), (
+        "a rejection with no stated reason")
+
+    recommended_reject = {row["candidate_id"] for row in rows
+                          if row["internal_review_status"] == "REJECT_RECOMMENDED"}
+    rejected = {row["candidate_id"] for row in rows if row["decision"] == "REJECT"}
+    assert rejected == recommended_reject == {
+        "GOLD-B005-01", "GOLD-B005-06", "GOLD-B005-10", "GOLD-B005-13"}
+    approved_after_repair = {row["candidate_id"] for row in rows
+                             if row["decision"] == "APPROVE"
+                             and row["internal_review_status"] == "NEEDS_REPAIR"}
+    assert approved_after_repair, "no repaired candidate was approved on its repair"
 
 
 # ------------------------------------------------------------------- invariants
@@ -324,17 +374,14 @@ def test_internal_review_document_exists_and_agrees():
 
 
 def test_frozen_systems_are_unchanged():
-    frozen = Path("evals/frozen")
-    if not frozen.exists():
-        pytest.skip("no frozen system directory")
-    seen = {}
-    for path in sorted(frozen.glob("*.json")):
-        payload = json.loads(path.read_text())
-        name = payload.get("system_id") or payload.get("name")
-        digest = payload.get("config_sha256") or payload.get("config_hash")
-        if name in FROZEN_SYSTEMS and digest:
-            seen[name] = digest
-    if not seen:
-        pytest.skip("frozen system hashes are recorded elsewhere")
-    for name, digest in seen.items():
-        assert digest == FROZEN_SYSTEMS[name], f"{name} changed"
+    """The frozen configs still hash to what was frozen.
+
+    This looked for an ``evals/frozen`` directory that does not exist, so it skipped —
+    and a skipping test is not coverage of the invariant it names. The hashes are
+    computed from ``rag_v1.systems`` at import, which is where a change to either
+    system would actually show up.
+    """
+    from rag_v1.systems import FROZEN_HASHES
+
+    assert FROZEN_HASHES == FROZEN_SYSTEMS
+

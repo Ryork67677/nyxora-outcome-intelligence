@@ -31,8 +31,8 @@ import json
 import re
 import subprocess
 from collections import Counter
-from itertools import zip_longest
 from datetime import UTC, datetime
+from itertools import zip_longest
 from pathlib import Path
 
 from rag_v1.db import connect
@@ -951,10 +951,10 @@ def render(payload: dict) -> str:
                 f"- **hop 1**: {record['hop_1_claim']}",
                 f"- **hop 2**: {record['hop_2_claim']}",
                 f"- **composed**: {record['composed_claim']}",
-                f"- **span 1 alone is not enough**: "
-                f"{record['why_span_1_alone_is_insufficient']}",
-                f"- **span 2 alone is not enough**: "
-                f"{record['why_span_2_alone_is_insufficient']}",
+                (f"- **span 1 alone is not enough**: "
+                f"{record['why_span_1_alone_is_insufficient']}"),
+                (f"- **span 2 alone is not enough**: "
+                f"{record['why_span_2_alone_is_insufficient']}"),
                 (f"- **composition check**: "
                  f"`{record['multi_hop_composition_check']}` · "
                  f"documents {record['document_count']} · "

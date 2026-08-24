@@ -157,10 +157,10 @@ def render(pairs: list[dict], verdicts: dict) -> str:
             f"## {index}. `{entity}`",
             "",
             f"- **provider**: {first['provider']}",
-            f"- **span 1 document**: {first['document_title']} — "
-            f"{' › '.join(first['section_path'])}",
-            f"- **span 2 document**: {second['document_title']} — "
-            f"{' › '.join(second['section_path'])}",
+            (f"- **span 1 document**: {first['document_title']} — "
+            f"{' › '.join(first['section_path'])}"),
+            (f"- **span 2 document**: {second['document_title']} — "
+            f"{' › '.join(second['section_path'])}"),
             f"- **same document**: {same_doc}",
             "",
             "**Span 1 (proposed hop 1)**",

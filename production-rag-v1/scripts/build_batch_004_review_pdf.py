@@ -215,8 +215,8 @@ def build_html(data: dict) -> str:
         (f"<code>{e['record']['candidate_id']}</code>", e["record"]["provider"],
          f"<code>{e['record']['reasoning_type']}</code>",
          e["record"]["evidence_shape"],
-         f"<span class='{ {'REJECT_RECOMMENDED': 'bad', 'NEEDS_REPAIR': 'warnt'}.get(e['review']['status'], 'good') }'>"
-         f"{e['review']['status']}</span>",
+         (f"<span class='{ {'REJECT_RECOMMENDED': 'bad', 'NEEDS_REPAIR': 'warnt'}.get(e['review']['status'], 'good') }'>"
+         f"{e['review']['status']}</span>"),
          "yes" if e["was_repaired"] else "no",
          len(e["review"]["findings"]))
         for e in entries

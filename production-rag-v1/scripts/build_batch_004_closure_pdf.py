@@ -142,8 +142,8 @@ def build_html(data: dict) -> str:
          decided[cid]["internal_review_status"],
          "yes" if record.get("anchor_revisions") else
          "text only" if record.get("revisions") else "no",
-         f"<span class='{'bad' if decided[cid]['decision'] == 'REJECT' else 'good'}'>"
-         f"{decided[cid]['decision']}</span>")
+         (f"<span class='{'bad' if decided[cid]['decision'] == 'REJECT' else 'good'}'>"
+         f"{decided[cid]['decision']}</span>"))
         for cid, record in sorted(records.items())
     ], classes=("mono", "", "", "", "", "num", ""))
 

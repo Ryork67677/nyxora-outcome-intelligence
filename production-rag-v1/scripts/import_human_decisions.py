@@ -45,7 +45,10 @@ REQUIRED_PROVENANCE = ("document_title", "source_url", "captured_at")
 #: Overrides a decision may carry. Each records that a person looked at a finding and
 #: accepted it; none of them deletes the finding.
 OVERRIDE_FIELDS = ("human_anaphora_override", "override_reviewer", "anaphora_status",
-                   "human_dependency_override", "dependency_status")
+                   "human_dependency_override", "dependency_status",
+                   # Batch 005: a scope finding an owner accepted — the span does not
+                   # name the endpoint or the tool, and the scored fact stands anyway.
+                   "human_scope_override", "scope_status")
 
 
 def spans(record: dict) -> list[dict]:
@@ -199,7 +202,9 @@ def apply_decision(record: dict, entry: dict, reviewer: str, now: str) -> bool:
     # reports it, and still refuses to let a *critical* one be overridden at all.
     overrides = {k: entry[k] for k in OVERRIDE_FIELDS if k in entry}
     if overrides:
-        if entry.get("human_anaphora_override") or entry.get("human_dependency_override"):
+        if any(entry.get(flag) for flag in
+               ("human_anaphora_override", "human_dependency_override",
+                "human_scope_override")):
             named = entry.get("override_reviewer") or reviewer
             if named.strip().lower() in MODEL_REVIEWERS:
                 raise SystemExit(

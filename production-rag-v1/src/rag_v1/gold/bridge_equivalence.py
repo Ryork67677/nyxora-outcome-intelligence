@@ -55,7 +55,7 @@ _NAMESPACE_STOPWORDS = frozenset({
     "the", "a", "an", "and", "or", "of", "in", "on", "for", "with", "to", "api",
     "apis", "reference", "guide", "overview", "docs", "documentation", "tool",
     "tools", "use", "using", "usage", "response", "request", "parameters",
-    "parameter", "options", "fields", "and", "sdk",
+    "parameter", "options", "fields", "sdk",
 })
 
 

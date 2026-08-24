@@ -393,11 +393,27 @@ def test_retrieval_was_not_run(batch):
 
 
 def test_starting_state_was_read_from_the_records(batch):
+    """What the project held *before* this batch, checked against batches 001-004.
+
+    This used to compare the recorded starting state against the live status document,
+    which was the same number only until batch 005 itself closed. A starting state is
+    historical: it must equal what the batches that existed at the time still sum to,
+    and it must keep naming the document it was read from.
+    """
     state = batch["starting_state"]
     status = load(Path(state["read_from"]))
-    assert state["human_verified"] == status["combined"]["human_verified"]
-    assert state["holdout_eligible"] == status["combined"]["holdout_eligible"]
+    earlier = [b for b in status["batches"] if b["batch"] < batch["batch"]]
+    assert earlier, "the status document lists no batch before this one"
+    assert state["human_verified"] == sum(b["human_verified"] for b in earlier)
+    assert state["holdout_eligible"] == sum(b["holdout_eligible"] for b in earlier)
     assert state["holdout_frozen"] is False
+    assert status["holdout_frozen"] is False
+
+    per_batch = {b["batch"]: b for b in state["by_batch"]}
+    for row in earlier:
+        recorded = per_batch[row["batch"]]
+        assert recorded["human_verified"] == row["human_verified"]
+        assert recorded["holdout_eligible"] == row["holdout_eligible"]
 
 
 def test_report_agrees_with_the_batch(batch):
@@ -409,17 +425,14 @@ def test_report_agrees_with_the_batch(batch):
 
 
 def test_frozen_systems_are_unchanged():
-    frozen = Path("evals/frozen")
-    if not frozen.exists():
-        pytest.skip("no frozen system directory")
-    seen = {}
-    for path in sorted(frozen.glob("*.json")):
-        payload = json.loads(path.read_text())
-        name = payload.get("system_id") or payload.get("name")
-        digest = payload.get("config_sha256") or payload.get("config_hash")
-        if name in FROZEN_SYSTEMS and digest:
-            seen[name] = digest
-    if not seen:
-        pytest.skip("frozen system hashes are recorded elsewhere")
-    for name, digest in seen.items():
-        assert digest == FROZEN_SYSTEMS[name], f"{name} changed"
+    """The frozen configs still hash to what was frozen.
+
+    This looked for an ``evals/frozen`` directory that does not exist, so it skipped —
+    and a skipping test is not coverage of the invariant it names. The hashes are
+    computed from ``rag_v1.systems`` at import, which is where a change to either
+    system would actually show up.
+    """
+    from rag_v1.systems import FROZEN_HASHES
+
+    assert FROZEN_HASHES == FROZEN_SYSTEMS
+

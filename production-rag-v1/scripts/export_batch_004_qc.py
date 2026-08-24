@@ -170,29 +170,29 @@ def render(packet: dict) -> str:
             for revision in record.get("anchor_revisions", []):
                 if revision["action"] == "extend_boundary":
                     lines += [
-                        f"- **{revision['evidence_id']} anchor extended** "
-                        f"({revision['reason']})",
-                        f"  - was {revision['old_char_start']}–"
+                        (f"- **{revision['evidence_id']} anchor extended** "
+                        f"({revision['reason']})"),
+                        (f"  - was {revision['old_char_start']}–"
                         f"{revision['old_char_end']}, hash "
-                        f"`{revision['old_evidence_hash'][:16]}…`",
-                        f"  - now {revision['new_char_start']}–"
+                        f"`{revision['old_evidence_hash'][:16]}…`"),
+                        (f"  - now {revision['new_char_start']}–"
                         f"{revision['new_char_end']}, hash "
-                        f"`{revision['new_evidence_hash'][:16]}…`",
+                        f"`{revision['new_evidence_hash'][:16]}…`"),
                     ]
                 else:
                     lines += [
-                        f"- **{revision['evidence_id']} scope span added** "
-                        f"({revision['reason']})",
-                        f"  - {revision['new_char_start']}–{revision['new_char_end']}, "
-                        f"hash `{revision['new_evidence_hash'][:16]}…`",
+                        (f"- **{revision['evidence_id']} scope span added** "
+                        f"({revision['reason']})"),
+                        (f"  - {revision['new_char_start']}–{revision['new_char_end']}, "
+                        f"hash `{revision['new_evidence_hash'][:16]}…`"),
                     ]
             for revision in record.get("revisions", []):
                 before = revision["from"]
                 after = revision["to"]
                 lines += [
                     f"- **{revision['field']} rewritten** ({revision['reason']})",
-                    f"  - was: {before if isinstance(before, str) else before}",
-                    f"  - now: {after if isinstance(after, str) else after}",
+                    f"  - was: {before}",
+                    f"  - now: {after}",
                 ]
         if record.get("precheck_flags"):
             lines += ["", "### Flags for your judgement", ""]

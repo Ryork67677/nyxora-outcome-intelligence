@@ -480,11 +480,11 @@ def semantic_review(record: dict) -> tuple[str, list[str], list[dict]]:
             findings.append("NOT_AMBIGUITY: the readings do not differ")
             return DROP, findings, repairs
 
-    if record["reasoning_type"] == "genuine_multi_hop":
-        if not record.get("same_semantic_entity"):
-            findings.append("BRIDGE_EQUIVALENCE: the bridge entity does not mean the "
-                            "same thing in both spans")
-            return DROP, findings, repairs
+    if (record["reasoning_type"] == "genuine_multi_hop"
+            and not record.get("same_semantic_entity")):
+        findings.append("BRIDGE_EQUIVALENCE: the bridge entity does not mean the "
+                        "same thing in both spans")
+        return DROP, findings, repairs
 
     # A bare definition bullet takes its scope from the heading above it. Batch 004's
     # review rejected three candidates of exactly this shape — "What is the `timezone`
@@ -1018,8 +1018,8 @@ def render(payload: dict) -> str:
                       f"- **term**: {code_span(record['ambiguous_term'])}"]
             lines += [f"  - in `{r['scope']}`: {r['meaning']}"
                       for r in record["candidate_interpretations"]]
-            lines += [f"- **scope needed to answer**: "
-                      f"{record['required_scope_to_answer']}", ""]
+            lines += [(f"- **scope needed to answer**: "
+                      f"{record['required_scope_to_answer']}"), ""]
 
         lines += ["**Exact evidence**", ""]
         for span in spans:
@@ -1220,9 +1220,9 @@ def render_report(payload: dict) -> str:
         *(["### Dropped rather than shipped with a caveat", "",
            "| reasoning type | finding | question |", "| --- | --- | --- |",
            dropped_rows, ""] if review["dropped"] else []),
-        *([f"**{len(review['repaired'])} candidates repaired.** Each repair is a "
+        *([(f"**{len(review['repaired'])} candidates repaired.** Each repair is a "
            "numbered generation revision that keeps the original value, so the review "
-           "can be disagreed with.", ""] if review["repaired"] else []),
+           "can be disagreed with."), ""] if review["repaired"] else []),
         "## Question shapes",
         "",
         "| opening | candidates |",

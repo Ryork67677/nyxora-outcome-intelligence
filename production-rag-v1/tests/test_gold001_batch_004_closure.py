@@ -346,16 +346,28 @@ def test_validator_ran_on_the_projection(closure):
 
 
 def test_project_wide_counts_are_consistent():
+    """The status document must add up, and batch 004's row must not drift.
+
+    This asserted the project totals as they stood when batch 004 closed. A project
+    total is not a fact about batch 004 — the next batch moves it, and a test that
+    fails because more work was done is measuring the wrong thing. What batch 004 can
+    still hold the status file to is its own row and the file's internal arithmetic.
+    """
     status = load(STATUS)
     combined = status["combined"]
-    assert combined["human_verified"] == 67
-    assert combined["holdout_eligible"] == 67
-    assert combined["human_rejected"] == 4
-    assert combined["genuine_multi_hop"] == 1
-    assert sum(b["human_verified"] for b in status["batches"]) == 67
-    assert sum(b["holdout_eligible"] for b in status["batches"]) == 67
+    assert combined["human_verified"] == sum(
+        b["human_verified"] for b in status["batches"])
+    assert combined["holdout_eligible"] == sum(
+        b["holdout_eligible"] for b in status["batches"])
+    assert combined["human_rejected"] == sum(
+        b["human_rejected"] for b in status["batches"])
     for batch in status["batches"]:
         assert len(batch["holdout_eligible_ids"]) == batch["holdout_eligible"]
+
+    row = next(b for b in status["batches"] if b["batch"] == 4)
+    assert (row["human_verified"], row["holdout_eligible"], row["human_rejected"]) == (
+        14, 14, 1)
+    assert row["genuine_multi_hop"] == 1
 
 
 def test_multi_hop_coverage_is_not_overstated():
@@ -387,17 +399,14 @@ def test_retrieval_was_not_run(final, closure):
 
 
 def test_frozen_systems_are_unchanged():
-    frozen = Path("evals/frozen")
-    if not frozen.exists():
-        pytest.skip("no frozen system directory")
-    seen = {}
-    for path in sorted(frozen.glob("*.json")):
-        payload = json.loads(path.read_text())
-        name = payload.get("system_id") or payload.get("name")
-        digest = payload.get("config_sha256") or payload.get("config_hash")
-        if name in FROZEN_SYSTEMS and digest:
-            seen[name] = digest
-    if not seen:
-        pytest.skip("frozen system hashes are recorded elsewhere")
-    for name, digest in seen.items():
-        assert digest == FROZEN_SYSTEMS[name], f"{name} changed"
+    """The frozen configs still hash to what was frozen.
+
+    This looked for an ``evals/frozen`` directory that does not exist, so it skipped —
+    and a skipping test is not coverage of the invariant it names. The hashes are
+    computed from ``rag_v1.systems`` at import, which is where a change to either
+    system would actually show up.
+    """
+    from rag_v1.systems import FROZEN_HASHES
+
+    assert FROZEN_HASHES == FROZEN_SYSTEMS
+

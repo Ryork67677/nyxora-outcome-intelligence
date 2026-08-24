@@ -17,7 +17,7 @@ import json
 from datetime import UTC, datetime
 from pathlib import Path
 
-from rag_v1.gold.eligibility import evaluate
+from rag_v1.gold.eligibility import HOLDOUT_CONDITIONS, evaluate
 
 #: Batch, closed record, and the overlay that supersedes it for eligibility, if any.
 SOURCES = (
@@ -27,6 +27,9 @@ SOURCES = (
     # Batch 004 kept repairs out of its generation artifact, so its decided state is the
     # composed file the owner's decisions were imported into.
     (4, "evals/review/gold_review_batch_004_final.json", None),
+    # Batch 005 followed the same composition: repairs live beside the generation
+    # artifact, and the decided state is the composed file.
+    (5, "evals/review/gold_review_batch_005_final.json", None),
 )
 #: What the project is aiming at. Reported so a count can be read against a target
 #: instead of in a vacuum.
@@ -101,6 +104,23 @@ def multi_hop_section(status: dict) -> list[str]:
              "of an argument."),
             "",
         ]
+    second = status.get("multi_hop_dependency_first") or {}
+    if second:
+        funnel = second["funnel"]
+        lines += [
+            (f"Batch 005 searched the same corpus dependency-first instead — only "
+             "sentences that state a dependency may open a chain — and reached the "
+             f"composition gates with **{funnel['dependency_pairs_considered']}** "
+             f"pairs. **{second['valid_chains']}** was a valid chain, and it is the "
+             f"chain batch 004 already closed, so **{second['exported_chains']}** new "
+             "unique chains were exported."),
+            "",
+            ("Two searches, two methods, one composable structure. That is a measured "
+             "property of this frozen corpus, not a failure of either search, and it "
+             "is the reason the multi-hop count above is 1 rather than a number a "
+             "later batch can be expected to raise easily."),
+            "",
+        ]
     return lines
 
 
@@ -128,12 +148,15 @@ def render(status: dict) -> str:
         *multi_hop_section(status),
         "## The two numbers are not the same question",
         "",
-        ("`human_verified` counts approvals a person gave; it is historical and does not "
-         "change. `holdout_eligible` counts cases a machine can still check — human "
-         "approval, a deterministic check for every claim, critical strings present in "
-         "the evidence, a valid evidence hash, and no unresolved scope defect, all "
-         "holding now. A case can gain eligibility through added metadata without being "
-         "re-approved, and lose it to corpus drift without the approval being wrong."),
+        ("`human_verified` counts approvals a person gave; it is historical and does "
+         "not change. `holdout_eligible` counts cases a machine can still check: every "
+         "one of "
+         + ", ".join(f"`{condition}`" for condition in HOLDOUT_CONDITIONS)
+         + " holding right now. The list is read from `rag_v1.gold.eligibility`, so a "
+           "condition added to the gate appears here instead of being described from "
+           "memory. A case can gain eligibility through added metadata without being "
+           "re-approved, and lose it to corpus drift without the approval being "
+           "wrong."),
         "",
         "## Against the target",
         "",
@@ -170,12 +193,21 @@ def main() -> int:
     multi_hop_generation = (
         json.loads(generation.read_text())["multi_hop_rejection"]
         if generation.exists() else {})
+    # Batch 005 searched the same corpus a different way. Both results belong here:
+    # a project-wide multi-hop number that cites only the first search implies the
+    # second one has not happened.
+    dependency_first = Path(
+        "experiments/GOLD-001/GOLD-001-batch-005-generation-report.json")
+    multi_hop_dependency_first = (
+        json.loads(dependency_first.read_text()).get("multi_hop_search", {})
+        if dependency_first.exists() else {})
     status = {
         "generated_at": datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "batches": batches,
         "combined": combined,
         "target": TARGET,
         "multi_hop_generation": multi_hop_generation,
+        "multi_hop_dependency_first": multi_hop_dependency_first,
         "holdout_frozen": False,
         "reason_not_frozen": (
             f"{combined['holdout_eligible']} eligible cases cannot support both a "

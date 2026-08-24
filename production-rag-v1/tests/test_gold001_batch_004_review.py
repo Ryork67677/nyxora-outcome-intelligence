@@ -376,17 +376,14 @@ def test_near_miss_diagnostic_is_diagnostic_only(batch):
 
 
 def test_frozen_systems_are_unchanged():
-    frozen = Path("evals/frozen")
-    if not frozen.exists():
-        pytest.skip("no frozen system directory")
-    seen = {}
-    for path in sorted(frozen.glob("*.json")):
-        payload = json.loads(path.read_text())
-        name = payload.get("system_id") or payload.get("name")
-        digest = payload.get("config_sha256") or payload.get("config_hash")
-        if name in FROZEN_SYSTEMS and digest:
-            seen[name] = digest
-    if not seen:
-        pytest.skip("frozen system hashes are recorded elsewhere")
-    for name, digest in seen.items():
-        assert digest == FROZEN_SYSTEMS[name], f"{name} changed"
+    """The frozen configs still hash to what was frozen.
+
+    This looked for an ``evals/frozen`` directory that does not exist, so it skipped —
+    and a skipping test is not coverage of the invariant it names. The hashes are
+    computed from ``rag_v1.systems`` at import, which is where a change to either
+    system would actually show up.
+    """
+    from rag_v1.systems import FROZEN_HASHES
+
+    assert FROZEN_HASHES == FROZEN_SYSTEMS
+
