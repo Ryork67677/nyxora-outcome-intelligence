@@ -205,6 +205,26 @@ def generation_targets(batch: dict) -> dict | None:
     return generation.get("targets", {}).get("reasoning_type")
 
 
+def heading_audit_summary(batch: dict) -> dict | None:
+    """Read the heading-parser audit's own numbers, if this batch ran one."""
+    path = batch.get("heading_audit")
+    if not path or not Path(path).exists():
+        return None
+    audit = json.loads(Path(path).read_text())
+    return {
+        "report": path,
+        "headings_parsed": audit["headings_parsed"],
+        "suspicious": audit["suspicious_headings"],
+        "likely_prose": audit["likely_prose"],
+        "share": audit["likely_prose_share"],
+        "documents_affected": audit["documents_with_prose_headings"],
+        "documents": audit["documents"],
+        "systematic": audit["verdict"]["systematic"],
+        "finding": audit["verdict"]["finding"],
+        "nothing_was_rewritten": audit["actions_taken"] == [],
+    }
+
+
 def build(batch: dict, validation: dict, now: str) -> dict:
     records = batch["records"]
     statuses = Counter(r["verification_status"] for r in records)
@@ -343,6 +363,12 @@ def build(batch: dict, validation: dict, now: str) -> dict:
                 or None,
         } if batch.get("generation_target") is not None else None),
         "near_miss_diagnostic": batch.get("near_miss_diagnostic"),
+        # A shortfall means nothing without the reason. Batch 006 came back at nine
+        # against twenty-eight, and the census is what distinguishes "the corpus is
+        # spent" from "the authoring cannot reach what is left" — opposite conclusions
+        # with opposite next steps.
+        "corpus_census": batch.get("corpus_census"),
+        "heading_parser_audit": heading_audit_summary(batch),
         "reasoning_targets": generation_targets(batch),
         "precheck_limitation": {
             "candidates": len(records),
@@ -462,6 +488,32 @@ def multi_hop_rejection_section(closure: dict) -> list[str]:
     ]
 
 
+def heading_audit_section(closure: dict) -> list[str]:
+    audit = closure.get("heading_parser_audit")
+    if not audit:
+        return []
+    return [
+        "## Heading parser audit",
+        "",
+        (f"**{audit['likely_prose']} of {audit['headings_parsed']} parsed headings "
+         f"({audit['share']:.2%})** read as ordinary prose rather than as a label, "
+         f"across {audit['documents_affected']} of {audit['documents']} documents. "
+         f"{audit['suspicious']} were suspicious on at least one rule."),
+        "",
+        audit["finding"],
+        "",
+        ("**Nothing was rewritten.** No heading was changed, no document was reparsed "
+         "into storage, and no existing evidence anchor moved — a closed case approved "
+         "against a bad `section_path` was approved against its *evidence*, and the "
+         "path is metadata beside it. What changed is a rule: `section_path` is not "
+         "trusted for claim scope, and a candidate's exact evidence must carry the "
+         "scope its claim needs."
+         if audit["nothing_was_rewritten"] else
+         "This audit recorded actions taken; see the audit report."),
+        "",
+    ]
+
+
 def multi_hop_search_section(closure: dict) -> list[str]:
     """Render a dependency-first search.
 
@@ -473,6 +525,19 @@ def multi_hop_search_section(closure: dict) -> list[str]:
     search = closure.get("multi_hop_search")
     if not search:
         return []
+    if search.get("ran") is False:
+        return [
+            "## Multi-hop — no search was run",
+            "",
+            ("**This batch deliberately ran no multi-hop search.** "
+             + search.get("reason", "")),
+            "",
+            (f"Genuine multi-hop cases exported by this batch: "
+             f"**{search.get('exported_chains', 0)}**. No multi-span case was "
+             "relabelled as multi-hop to raise the count, and the project's multi-hop "
+             "total is unchanged by this batch."),
+            "",
+        ]
     funnel = search["funnel"]
     rows = "\n".join(
         f"| `{r['bridge_entity']}` | {r['gate'].replace('_', ' ')} | {r['reason']} |"
@@ -533,6 +598,28 @@ def shortfall_section(closure: dict) -> list[str]:
              "drops were led by generic identifiers, claims wider than their span, and "
              "category labels the evidence did not support — not by anything the "
              "structural precheck could see."),
+            "",
+        ]
+    census = closure.get("corpus_census")
+    if census:
+        lines += [
+            "| | |",
+            "| --- | --- |",
+            f"| facts mined | {census['facts_mined']} |",
+            (f"| distinct evidence spans the miners reach | "
+             f"{census['distinct_evidence_texts']} |"),
+            (f"| **of those, unspent by any closed batch** | "
+             f"**{census['unspent_distinct_texts']}** |"),
+            "",
+            (f"**The corpus is not exhausted — the authoring is.** "
+             f"{census['unspent_distinct_texts']} distinct evidence spans in the frozen "
+             "snapshot have never been used by a closed batch. What blocked them was "
+             "that no deterministic question template could express them without "
+             "paraphrasing: the prose left in this corpus is long and multi-clause, "
+             "while the builders need a single-clause statement they can template "
+             "exactly. That is the finding batch 007's preregistration is written "
+             "from, and it points at a change of authoring method rather than at a "
+             "smaller corpus or a lower bar."),
             "",
         ]
     lines += [
@@ -734,7 +821,9 @@ def render(closure: dict) -> str:
         (closure["reasoning_and_shape"]["note"] + multi_hop_tail(closure)),
         "",
         *multi_hop_rejection_section(closure),
+        *shortfall_section(closure),
         *multi_hop_search_section(closure),
+        *heading_audit_section(closure),
         *shortfall_section(closure),
         *near_miss_section(closure),
         *overrides_section(closure),

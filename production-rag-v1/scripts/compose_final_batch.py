@@ -91,6 +91,10 @@ def main() -> int:
         "generation_target": report.get("targets", {}).get("size", 30),
         "generation_exported": batch["candidates"],
         "multi_hop_search": batch.get("multi_hop_search"),
+        # Batch 006's central finding: the corpus is not exhausted, the authoring is.
+        # Carried so a closure states it from the census rather than from prose.
+        "corpus_census": batch.get("corpus_census"),
+        "heading_audit": batch.get("heading_audit"),
         # Carried so a closure can report counts against what generation aimed
         # at, without reaching back into the generation artifact.
         "reasoning_targets": batch.get("targets", {}).get("reasoning_type"),

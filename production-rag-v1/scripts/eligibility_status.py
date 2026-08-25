@@ -30,6 +30,7 @@ SOURCES = (
     # Batch 005 followed the same composition: repairs live beside the generation
     # artifact, and the decided state is the composed file.
     (5, "evals/review/gold_review_batch_005_final.json", None),
+    (6, "evals/review/gold_review_batch_006_final.json", None),
 )
 #: What the project is aiming at. Reported so a count can be read against a target
 #: instead of in a vacuum.

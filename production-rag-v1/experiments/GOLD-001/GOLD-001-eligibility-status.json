@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-24T05:04:03Z",
+  "generated_at": "2026-08-24T17:47:23Z",
   "batches": [
     {
       "batch": 1,
@@ -157,13 +157,36 @@
       "not_eligible": [],
       "genuine_multi_hop": 0,
       "overlay_version": null
+    },
+    {
+      "batch": 6,
+      "closed_record": "evals/review/gold_review_batch_006_final.json",
+      "eligibility_source": "evals/review/gold_review_batch_006_final.json",
+      "closure_sha256": null,
+      "candidates": 9,
+      "human_verified": 8,
+      "human_rejected": 1,
+      "holdout_eligible": 8,
+      "holdout_eligible_ids": [
+        "GOLD-B006-01",
+        "GOLD-B006-02",
+        "GOLD-B006-03",
+        "GOLD-B006-04",
+        "GOLD-B006-05",
+        "GOLD-B006-07",
+        "GOLD-B006-08",
+        "GOLD-B006-09"
+      ],
+      "not_eligible": [],
+      "genuine_multi_hop": 0,
+      "overlay_version": null
     }
   ],
   "combined": {
-    "candidates": 90,
-    "human_verified": 82,
-    "human_rejected": 8,
-    "holdout_eligible": 82,
+    "candidates": 99,
+    "human_verified": 90,
+    "human_rejected": 9,
+    "holdout_eligible": 90,
     "genuine_multi_hop": 1
   },
   "target": {
@@ -217,7 +240,7 @@
     "exported_chains": 0
   },
   "holdout_frozen": false,
-  "reason_not_frozen": "82 eligible cases cannot support both a 30–40 validation split and a 70–100 holdout.",
+  "reason_not_frozen": "90 eligible cases cannot support both a 30–40 validation split and a 70–100 holdout.",
   "retrieval_was_not_run": true,
   "systems_executed": []
 }

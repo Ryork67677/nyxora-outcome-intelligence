@@ -1,0 +1,99 @@
+{
+  "batch": 6,
+  "prepared_at": "2026-08-24T17:45:58Z",
+  "source_batch_sha256": "0c47fc891053f8c475ad89aa2dd085b2905ffbf0efa9eb1b641135ae4fd08f0e",
+  "instructions": "Record one decision per candidate. decision must be APPROVE, REJECT or NEEDS_EDIT — a null decision is an undecided candidate and the batch cannot close while one remains. For a repaired candidate, set approves_evidence_hash to the evidence_hash of each span you are approving; the importer refuses an approval that quotes the pre-repair hash, so a repair cannot be approved by someone who only saw the original.",
+  "decided_by": "project_owner",
+  "decisions": [
+    {
+      "candidate_id": "GOLD-B006-01",
+      "decision": "APPROVE",
+      "internal_review_status": "NEEDS_REPAIR",
+      "was_repaired": true,
+      "approves_evidence_hash": [
+        "481c22beedb734b9c72fffe1c1646f3f9a3bceb7782aa08f4c8c28a70da5a10c"
+      ],
+      "notes": "Fact approved. Reasoning label was inflated: relabelled to exact_lookup / requirement_constraint, and the question now asks both halves of the sentence. Two atomic claims from one span — explicitly NOT multi-hop."
+    },
+    {
+      "candidate_id": "GOLD-B006-02",
+      "decision": "APPROVE",
+      "internal_review_status": "NEEDS_REPAIR",
+      "was_repaired": true,
+      "approves_evidence_hash": [
+        "d5fd68caa4e7d689da55ce58f7b6befd6e94d1b3ba2645ccfd3bf0144ffcb366"
+      ],
+      "notes": "Question was broader than the exact fact. Rewritten to ask about the condition and its outcome; critical strings extended to Claude Opus 4.7, role: \"system\", messages and 400. error_behavior retained. No anchor movement."
+    },
+    {
+      "candidate_id": "GOLD-B006-03",
+      "decision": "APPROVE",
+      "internal_review_status": "NEEDS_REPAIR",
+      "was_repaired": true,
+      "approves_evidence_hash": [
+        "8832424c5f41dd8f1c3801845a9f0fcfa7a6fcb08e8a803cc4cdc30b97b2cccb"
+      ],
+      "notes": "exact_lookup understated the case. Relabelled to lifecycle_compatibility_migration / compatibility. Compound compatibility fact stated in one span — explicitly NOT genuine multi-hop."
+    },
+    {
+      "candidate_id": "GOLD-B006-04",
+      "decision": "APPROVE",
+      "internal_review_status": "NEEDS_REPAIR",
+      "was_repaired": true,
+      "approves_evidence_hash": [
+        "712a1a0780ade57f504d68707890cf5dea3b05f3f7c32b98cb7f1d704c0ac55b"
+      ],
+      "notes": "Approved as currently supported. The offered scoped wording was applied for naturalness; the fact is otherwise unchanged."
+    },
+    {
+      "candidate_id": "GOLD-B006-05",
+      "decision": "APPROVE",
+      "internal_review_status": "NEEDS_REPAIR",
+      "was_repaired": true,
+      "approves_evidence_hash": [
+        "7fa16f3bd72441cb82aeca4783f2642ce67e3cfa78da3dca956bb6d2ea672e6c"
+      ],
+      "notes": "Question was too broad — the source scopes the default to named models. Rewritten to name them. The optional second claim about `display: \"summarized\"` was NOT included, because the question does not test it. No anchor movement."
+    },
+    {
+      "candidate_id": "GOLD-B006-06",
+      "decision": "REJECT",
+      "internal_review_status": "REJECT_RECOMMENDED",
+      "was_repaired": false,
+      "approves_evidence_hash": null,
+      "notes": "REJECT — DUPLICATE_FACT / BENCHMARK_REDUNDANCY. The fact is supported, but GOLD-B005-11 already carries substantially the same operational relation from the OpenAI Python library; this obtains it from the TypeScript/JavaScript library. Useful source corroboration, not enough independent benchmark information. Preserved as an audit example and NOT replaced."
+    },
+    {
+      "candidate_id": "GOLD-B006-07",
+      "decision": "APPROVE",
+      "internal_review_status": "READY_FOR_OWNER_REVIEW",
+      "was_repaired": false,
+      "approves_evidence_hash": [
+        "38635aabfe1d74a3c43fa3a4724d6953e94ae26cd373b55e576f27cf497fc07b"
+      ],
+      "notes": "Approved. Evidence is self-contained and the relationship direction is correct."
+    },
+    {
+      "candidate_id": "GOLD-B006-08",
+      "decision": "APPROVE",
+      "internal_review_status": "NEEDS_REPAIR",
+      "was_repaired": true,
+      "approves_evidence_hash": [
+        "ca119ba8c06e5c6b054c06540e3bda4ced4fe15e0478460fa687fe581aec303d"
+      ],
+      "notes": "Fact approved; primary label should not have been configuration_interaction. Relabelled to lifecycle_compatibility_migration / migration. The MCP/httpx2 sentence is not needed by the final claims and is no longer a critical string."
+    },
+    {
+      "candidate_id": "GOLD-B006-09",
+      "decision": "APPROVE",
+      "internal_review_status": "READY_FOR_OWNER_REVIEW",
+      "was_repaired": false,
+      "approves_evidence_hash": [
+        "35af2508c1e224460838e49c3faa5dcd8894bae3b8d76bc91438cd362d9d33a2"
+      ],
+      "notes": "Approved. The fully-qualified identifier makes the question sufficiently scoped."
+    }
+  ],
+  "decision_source": "Project owner's written decision brief: 5 approved after the revisions the owner specified, 3 approved as currently supported, 1 rejected as a benchmark duplicate.",
+  "repin_note": "Re-pinned after the composed file carried two extra generation figures forward (the corpus census and the heading-audit path). No record changed and no approved evidence hash moved — verified before re-pinning, not assumed."
+}

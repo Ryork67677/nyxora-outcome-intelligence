@@ -250,10 +250,23 @@ def test_the_coverage_projection_does_not_claim_the_target(batch):
             "the projection must say plainly that this batch cannot reach the target")
 
 
-def test_batch_006_is_not_counted_as_confirmed(batch):
+def test_the_generation_artifact_never_counted_itself_as_confirmed(batch):
+    """At generation time nothing in batch 006 was verified, and the artifact says so.
+
+    This test used to assert batch 006 was absent from the project status. That was
+    true until the owner closed the batch, and then it was a test asserting the project
+    had not moved on. What it was actually protecting is the generation artifact: it
+    must never carry a decision, whatever happens downstream.
+    """
+    assert batch["verification_status"].startswith("candidate_unverified")
+    for record in batch["records"]:
+        assert record["verification_status"] == "candidate_unverified"
+        assert "human_decision_history" not in record
     status = load(STATUS)
-    assert all(b["batch"] != 6 for b in status["batches"])
-    assert status["combined"]["human_verified"] == 82
+    closed = next((b for b in status["batches"] if b["batch"] == 6), None)
+    if closed is not None:
+        # Once closed, the decided state lives in the composed file, never here.
+        assert closed["eligibility_source"].endswith("_final.json")
 
 
 # ---------------------------------------------------------------------- invariants

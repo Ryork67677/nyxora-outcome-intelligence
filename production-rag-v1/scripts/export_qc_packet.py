@@ -24,6 +24,8 @@ from collections import Counter
 from datetime import UTC, datetime
 from pathlib import Path
 
+from rag_v1.gold.defects import line as defect_line
+
 OPTIONS = ("APPROVE", "REJECT", "NEEDS_EDIT")
 
 
@@ -204,8 +206,7 @@ def render(packet: dict) -> str:
                   ("Recorded, not patched: the generation artifact is not being "
                    "regenerated, and a fix belongs in the next batch's "
                    "preregistration."), ""]
-        lines += [f"- **{d['defect']}** (seen in {d['seen_in']}). {d['detail']}"
-                  for d in defects]
+        lines += [defect_line(d) for d in defects]
         lines.append("")
     return "\n".join(lines)
 

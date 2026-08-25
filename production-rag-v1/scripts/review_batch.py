@@ -28,6 +28,7 @@ from pathlib import Path
 
 from rag_v1.db import connect
 from rag_v1.gold.anaphora import CRITICAL, NONCRITICAL, evaluate_span
+from rag_v1.gold.defects import line as defect_line
 from rag_v1.gold.mining import _section_for
 from rag_v1.gold.normalisation import contains_claim_string
 from rag_v1.parsing import _sections_from_markdown
@@ -162,7 +163,13 @@ def apply_decision(record: dict, decision: dict, sources: dict) -> dict:
         repaired.setdefault("revisions", []).append({
             "revision": len(repaired.get("revisions", [])) + 1,
             "field": field, "from": repaired.get(field), "to": decision[field],
-            "author": "claude (internal authoring review)", "timestamp": now,
+            # Batch 006's revisions were dictated by the owner in their decision brief,
+            # not proposed by Claude reading its own output. Those are different acts
+            # and the record has to be able to tell them apart, so a decision may name
+            # its author. Absent that, it is Claude's own review.
+            "author": decision.get("revision_author",
+                                   "claude (internal authoring review)"),
+            "timestamp": now,
             "reason": decision.get("reason") or "internal source-integrity review"})
         repaired[field] = decision[field]
 
@@ -295,9 +302,7 @@ def render_review(payload: dict, decisions_doc: dict) -> str:
                   ("Recorded rather than patched. The generation artifact is not being "
                    "regenerated, so a fix belongs in the next batch's preregistration "
                    "where it can be declared before it sees a candidate."), ""]
-        for defect in defects:
-            lines += [(f"- **{defect['defect']}** (seen in {defect['seen_in']}). "
-                      f"{defect['detail']}")]
+        lines += [defect_line(d) for d in defects]
         lines.append("")
 
     lines += [
@@ -358,7 +363,7 @@ def main() -> int:
         if decision["status"] == "REJECT_RECOMMENDED":
             continue
         touches = any(key in decision for key in
-                      ("evidence_repairs", "critical_strings",
+                      ("evidence_repairs", "critical_strings", "revision_author",
                        "critical_strings_by_span", "interaction", *REWRITABLE))
         if not touches:
             continue
