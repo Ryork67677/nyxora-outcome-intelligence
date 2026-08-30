@@ -7,10 +7,11 @@ run**, because the frozen evidence it must draw from is not in this environment.
 that opened on three green fixes and put the pilot in a footnote would be describing a
 batch that is further along than it is.
 
-Every figure is read from the artifacts at build time. Six gates refuse the build rather
-than publish something false — including one that refuses to render if a batch-007
+Every figure is read from the artifacts at build time. Seven gates refuse the build
+rather than publish something false — including one that refuses to render if a batch-007
 candidate or pilot artifact has appeared, because then this page is describing a state
-the project has left.
+the project has left, and one that refuses to render the independent automated review as
+anything but a recommendation, because only the project owner approves.
 """
 
 from __future__ import annotations
@@ -120,7 +121,23 @@ def build_html(data: dict) -> str:
     fix_e, fix_f, fix_g = record["fixes_implemented"]
     pilot = record["calibration_pilot"]
     finding = record["finding_for_reviewer"]
+    review = record["independent_automated_review"]
+    checklist = record["blocker_recovery_checklist"]
     prereg = data["prereg"]
+
+    review_items = "".join(
+        f"<h3>{esc(r['id'])}. {ticks(r['text'])}</h3><p>{ticks(r['rationale'])}</p>"
+        for r in review["recommendation"])
+
+    prohibition_items = "".join(f"<li>{ticks(h)}</li>"
+                                for h in checklist["hard_prohibitions"])
+    step_rows = rows([
+        (f"<b>{s['step']}</b>",
+         f"<b>{ticks(s['action'])}</b><br>{ticks(s['detail'])}",
+         f"<i>Expected:</i> {ticks(s['expected'])}<br>"
+         f"<i>Done when:</i> {ticks(s['done_when'])}")
+        for s in checklist["steps"]
+    ], classes=("num", "", ""))
 
     state_rows = rows([
         ("human_verified", f"<b>{state['human_verified']}</b>", "<span class='ok'>PASS</span>"),
@@ -250,6 +267,19 @@ critical strings is what turns this from a style rule into a gate.</p>
 <p><i>{esc(finding['status'])}.</i></p>
 </div>
 
+<div class="callout warn">
+<div class="label">{esc(review['label'])}</div>
+<p>{ticks(review['authority'])}</p>
+<p class="dim">Recorded {esc(review['recorded_at'])} · concerns
+{esc(review['concerns'])}</p>
+</div>
+{review_items}
+<p><b>Consequence accepted.</b> {ticks(review['consequence_accepted'])}</p>
+<p><b>What this changes in the code:</b>
+{ticks(review['what_this_changes_in_the_code'])}
+<b>Status of the finding:</b>
+{ticks(review['status_of_finding_after_this_recommendation'])}</p>
+
 <h2>5. The calibration pilot was not run</h2>
 <div class="callout warn">
 <div class="label">Blocked</div>
@@ -269,6 +299,15 @@ That input cannot be obtained here, on four independent grounds.</p>
 scale. The preregistration is explicit that a failed pilot means revising the authoring
 contract and re-piloting — not proceeding — and an <i>absent</i> pilot is not a weaker
 condition than a failed one.</p>
+
+<h3>Recovery checklist</h3>
+<p>{ticks(checklist['purpose'])}</p>
+<div class="callout warn">
+<div class="label">Not admissible as a substitute for the frozen corpus</div>
+<ul>{prohibition_items}</ul>
+</div>
+<table class="long"><thead><tr><th class="num">#</th><th>step</th>
+<th>expected / done when</th></tr></thead><tbody>{step_rows}</tbody></table>
 
 <h2>6. Invariants</h2>
 <ul>
@@ -360,12 +399,29 @@ def main() -> int:
             raise SystemExit(f"refusing to build: {path.name} exists, so this page "
                              "would describe a state the project has left")
 
+    # 7. The independent automated review is a recommendation, and the page must never
+    #    render it as anything else. Only the owner approves; a page that let a
+    #    recommendation read as approval would be manufacturing an approval nobody gave.
+    review = record["independent_automated_review"]
+    if review["is_project_owner_approval"] is not False:
+        raise SystemExit("refusing to build: the recommendation is marked as owner "
+                         "approval, which no automated review can give")
+    if "NOT PROJECT-OWNER APPROVAL" not in review["label"]:
+        raise SystemExit("refusing to build: the recommendation's label does not "
+                         "disclaim owner approval")
+    if record["finding_for_reviewer"]["id"] not in review["concerns"]:
+        raise SystemExit("refusing to build: the recommendation does not name the "
+                         "finding it concerns")
+
     chrome = next((c for c in CHROME_CANDIDATES if Path(c).exists()), None)
     if chrome is None:
         raise SystemExit("No Chromium binary found")
     out = REPO_ROOT / args.out
     out.parent.mkdir(parents=True, exist_ok=True)
     document = build_html(data)
+    if "NOT PROJECT-OWNER APPROVAL" not in document:
+        raise SystemExit("refusing to build: the rendered page does not carry the "
+                         "recommendation's disclaimer")
     with tempfile.TemporaryDirectory() as tmp:
         src = Path(tmp) / "efg007.html"
         src.write_text(document, encoding="utf-8")

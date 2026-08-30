@@ -161,6 +161,28 @@
     "detail": "The preregistered rule requires the scope qualifier in the question AND in the critical strings. GOLD-B006-08 carries 'OpenAI Python SDK' in its question but not in its critical strings, and the owner approved it. Implemented as preregistered rather than loosened; recorded so the reviewer can decide whether batch 007 should hold to the stricter rule.",
     "status": "recorded as a passing test, not tuned away"
   },
+  "independent_automated_review": {
+    "label": "INDEPENDENT AUTOMATED-REVIEW RECOMMENDATION — NOT PROJECT-OWNER APPROVAL",
+    "is_project_owner_approval": false,
+    "authority": "A recommendation only. It does not approve, verify or close anything, does not set human_verified, and does not alter the preregistration. Only the project owner may approve, and the preregistration is amended only by the owner.",
+    "recorded_at": "2026-08-30T04:04:55Z",
+    "concerns": "finding G-STRICTER-THAN-BATCH-006",
+    "recommendation": [
+      {
+        "id": "R1",
+        "text": "Keep Gate G exactly as preregistered for batch 007.",
+        "rationale": "The preregistered rule requires the scope qualifier in the question AND in the critical strings. The second condition is the one that has effect: a qualifier appearing only in the question is read by no check, which is how two of batch 006's three rescoped candidates passed with the qualifier absent from the critical strings entirely. Loosening the gate to match what batch 006 accepted would remove the part that does the work, and a rule relaxed after seeing which candidates it would drop is a rule fitted to the output — the precise failure preregistration exists to prevent."
+      },
+      {
+        "id": "R2",
+        "text": "Grandfather GOLD-B006-08 under the closed batch-006 standard. Do not rewrite it, do not relabel it, do not re-open it.",
+        "rationale": "GOLD-B006-08 was authored, reviewed and approved by the owner under the rule in force for batch 006, and batch 006 is closed and hash-covered. A closed batch is a historical artifact: the standing constraint is that it is never edited, and an erratum, audit or versioned overlay is the only admissible instrument. A stricter rule preregistered for batch 007 governs batch 007. Applying it backwards would rewrite an approved record to satisfy a rule that did not exist when the owner approved it, and would break the closure hash that covers it."
+      }
+    ],
+    "consequence_accepted": "Gate G will drop batch-007 candidates that batch 006 would have accepted. That is the intended effect of the stricter rule, not a regression, and the drop count belongs in the batch-007 generation report so the cost is visible.",
+    "what_this_changes_in_the_code": "Nothing. Gate G is already implemented as preregistered.",
+    "status_of_finding_after_this_recommendation": "Still open for the project owner. The recommendation is recorded, not applied as a decision."
+  },
   "calibration_pilot": {
     "required_by_preregistration": true,
     "size": 10,
@@ -205,6 +227,52 @@
     },
     "to_unblock": "Restore the corpus snapshot into Postgres (or restore data/raw/ and re-ingest), then re-run batch 006's miners to re-derive the spans that reach no builder and take the pilot's 10 from that set."
   },
+  "blocker_recovery_checklist": {
+    "purpose": "The ordered, precise steps that unblock the calibration pilot. Nothing here has been performed; the pilot remains not run.",
+    "hard_prohibitions": [
+      "Do NOT substitute the current live contents of the manifest URLs. The documentation has moved on from the capture date, so offsets and evidence hashes would not match the frozen snapshot and the evidence would not be the frozen evidence.",
+      "Do NOT substitute toy, synthetic or fixture data. tests/fixtures/docs/widget_v2.md is a synthetic document for unit tests and is not corpus.",
+      "Do NOT reconstruct spans by hand from quotations in closed batch records.",
+      "Do NOT run any retrieval system at any step; SYSTEM-A and SYSTEM-B stay frozen."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Restore the exact frozen source-corpus snapshot into the expected PostgreSQL schema.",
+        "detail": "Create the `rag` database and role and apply sql/001_init.sql, sql/002_chunk_sets.sql, sql/003_search_text.sql and sql/004_embedding_cache.sql, then restore the corpus from a backup of the snapshot — or restore data/raw/ (gitignored, 202 documents) and re-ingest it. The snapshot must be the one captured 2026-08-17T04:46:19Z, not a re-fetch.",
+        "expected": "document_source, document_version and corpus_snapshot_version populated; snapshot_id snap_689e336380a054d8039dc35b2c09cd0a present.",
+        "done_when": "scripts/export_batch_006.py's load_docs() returns 202 documents."
+      },
+      {
+        "step": 2,
+        "action": "Verify the restored corpus is the frozen one, by fingerprint, before using it.",
+        "detail": "Identity is not the snapshot id — that is a label anyone can write. Re-read each closed batch-006 span from the restored corpus at its recorded (version_id, char_start, char_end) and re-hash it; every evidence_hash must reproduce exactly. Batch 006's nine records give nine independent checks against text that cannot have drifted, and batches 001-005 give more. Also confirm rag_v1.systems.FROZEN_HASHES still equals SYSTEM-A 9afcb5b7… and SYSTEM-B 304c3509….",
+        "expected": "every re-hash matches its recorded evidence_hash; document count 202.",
+        "done_when": "zero hash mismatches. A single mismatch means the restored corpus is not the frozen snapshot — stop, do not proceed to step 3."
+      },
+      {
+        "step": 3,
+        "action": "Deterministically re-derive the batch-006 NO_BUILDER / UNBUILDABLE span set.",
+        "detail": "The set was counted, never persisted: scripts/export_batch_006.py:733 increments removed['unbuildable'] and returns, discarding the fact. Re-run batch 006's miners against the restored snapshot at the same commit and record, for each fact where the builder returns None, its (version_id, char_start, char_end, evidence_text) rather than only a count. Do not change any builder while doing this: the set is defined by the builders as they were.",
+        "expected": "the recorded count reproduces exactly: 2482 unbuildable facts.",
+        "done_when": "the re-derived count equals 2482. A different count means the derivation is not reproducing batch 006's conditions — diagnose before selecting anything."
+      },
+      {
+        "step": 4,
+        "action": "Select the preregistered 10 pilot cases from that set, and only from it.",
+        "detail": "Take 10 spans that failed batch 006 ONLY because no builder could express them. Exclude any span that failed a semantic gate — those failed for reasons paraphrasing does not fix — and exclude any span already spent by a closed batch. Record the selection basis for each so the choice is auditable and not a convenience sample.",
+        "expected": "10 spans, each traceable to the step-3 set.",
+        "done_when": "each of the 10 carries its version_id, offsets and selection basis."
+      },
+      {
+        "step": 5,
+        "action": "Run the calibration pilot and measure the four preregistered thresholds.",
+        "detail": "Author in the preregistered order — frozen evidence, literal source fact, subject/relation/object, atomic claims, and only then the paraphrased question — never the forbidden order. Record all eight required fields on every case. Run the A-G entailment self-check, where any failure is a DROP with no flag-and-continue branch, then every retained gate including the new E, F and G. No retrieval is run on the pilot.",
+        "expected": "factually sound >= 8 of 10; unsupported claims 0; relation-direction reversals 0; scope broadening 0. Wording cleanup does not count against the criterion.",
+        "done_when": "the pilot is independently reviewed against those four thresholds. If it fails, do not scale the lane: revise the authoring contract and re-pilot."
+      }
+    ]
+  },
   "invariants_held": {
     "retrieval_was_not_run": true,
     "systems_executed": [],
@@ -221,5 +289,5 @@
     ],
     "files_modified": []
   },
-  "next_step": "Independent review of the three fixes, and a decision on the G-STRICTER finding, before the corpus is restored and the pilot is run. The paraphrasing lane does not scale until the pilot passes."
+  "next_step": "An independent automated review has recommended keeping Gate G as preregistered and grandfathering GOLD-B006-08; that recommendation is recorded here and is not owner approval, so the G-STRICTER finding remains open for the project owner. The blocker recovery checklist must then be worked in order to restore the frozen corpus before the calibration pilot can run. The paraphrasing lane does not scale until the pilot passes and is independently reviewed."
 }
