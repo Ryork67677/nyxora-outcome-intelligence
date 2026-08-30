@@ -129,7 +129,7 @@ No pilot case was authored. Authoring 10 cases against invented or re-fetched ev
 
 ### Recovery search — every path, and what was in it
 
-*2026-08-30T10:59:40Z.* **NO — exhausted; the snapshot is not present in any reachable location. Corroborated by an independent host-side search (host_side_recovery_evidence), by the assessment of the 2026-08-17 published results (published_results_evidence), and by the ChatGPT-project archive audit (chatgpt_project_archive_evidence) which closed the production-rag-v1.zip lead as early scaffold carrying no corpus.**
+*2026-08-30T10:59:40Z.* **NO — exhausted; the snapshot is not present in any reachable location. Corroborated by an independent host-side search, by the assessment of the 2026-08-17 published results, by the ChatGPT-project archive audit, and by a quarantined rehydration attempt recorded under rehydration_feasibility, which established that certification is mathematically possible and then failed to achieve it: 63 of 202 documents are unfetchable and 12 of 14 sampled reachable documents have drifted.**
 
 Can the exact frozen corpus snapshot snap_689e336380a054d8039dc35b2c09cd0a, captured 2026-08-17T04:46:19Z, be recovered non-destructively from anything reachable in this session?
 
@@ -177,6 +177,67 @@ Can the exact frozen corpus snapshot snap_689e336380a054d8039dc35b2c09cd0a, capt
 **Conclusion.** NO — the host-side search found no copy of the frozen corpus. Together with the in-session search this closes the reachable search space known to the project: the container has no copy and the owner's host has no copy.
 
 **What this does not establish.** It does not prove the corpus is gone everywhere. It was not searched for on the machine that actually ran batches 001-006 if that is a different machine, nor in any off-host backup, external drive or cloud snapshot of it. The external artifact named in recovery_search.remaining_external_artifact_required is still what is required, and is still outstanding.
+
+### Rehydration feasibility — could a live crawl ever be certified?
+
+*REHYDRATION FEASIBILITY ANALYSIS — performed and tested in this session. Assessed 2026-08-30T12:03:50Z.*
+
+**Could a quarantine rehydration from the 202 saved canonical URLs ever be proven byte/content-identical to snap_689e336380a054d8039dc35b2c09cd0a?**
+
+**Conclusion.** POSSIBLE IN PRINCIPLE, REFUTED IN PRACTICE. The snapshot id is a content-derived digest, so a byte-identical rehydration would certify — the route is not closed by mathematics. It is closed by the corpus: 63 documents are unreachable and the reachable ones have drifted. The narrowest remaining artifact is unchanged, and it is still a copy of the 2026-08-17 bytes rather than anything derivable from live pages.
+
+#### The mathematics: CERTIFICATION IS MATHEMATICALLY POSSIBLE — the snapshot id is content-derived, not random.
+
+The id chain, read from the code:
+
+```
+src_id_i       = stable_id('src', provider_i.lower(), canonical_url_i)   [rag_v1/ingest.py:23]
+content_hash_i = sha256(normalized_text_i)                                [rag_v1/ingest.py:24]
+version_id_i   = stable_id('ver', src_id_i, content_hash_i)               [rag_v1/ingest.py:25]
+manifest_hash  = sha256(json({'versions':[{version_id, content_hash} x202]}))  [rag_v1/snapshot.py]
+snapshot_id    = stable_id('snap', name, manifest_hash, PARSER_VERSION, chunking_hash)
+```
+No uuid, sequence, or clock enters any id. captured_at is stored on the document_version row but is not an input to version_id or to the snapshot id, so a later re-fetch is not doomed by the clock. rag_v1/parsing.py contains no datetime, random or uuid: normalized_text is a pure function of the fetched bytes.
+
+| input | persisted? |
+| --- | --- |
+| `provider` | manifest (202/202) |
+| `canonical_url` | manifest (202/202) |
+| `PARSER_VERSION` | code = 'v1.0' |
+| `max_chunk_chars` | settings = 3500 (corroborated by the published results' 3,500 budget) |
+| `min_chunk_chars` | settings = 200 |
+| `snapshot_name` | not persisted; CLI default is 'v1-seed'. A free parameter, not a weakness: candidates are searched, and a match is a 256-bit coincidence whichever name produced it. |
+| `normalized_text` | NOT persisted — this is exactly what a rehydration would supply |
+
+snap_689e336380a054d8039dc35b2c09cd0a is a complete authoritative digest over all 202 normalized texts simultaneously. Reproducing it would certify the entire corpus cryptographically — not by matching counts, and not by the 137 sampled closed spans. This is the certification instrument the rule requires, so fetching the saved official URLs became permitted.
+
+*src_id is computable now, from persisted fields alone, for 202/202 sources.*
+
+#### The attempt: NOT CERTIFIED — rehydration from live pages cannot reproduce the frozen corpus.
+
+scripts/rehydrate_quarantine.py fetched only the exact URLs saved in the manifest, into a quarantine directory outside the repository, recomputed every content_hash and version_id, and recomputed the snapshot id under each candidate name.
+
+Attempted **202**, fetched **139**, failed **63**.
+
+**63 of 202 documents are unfetchable.** Every OpenAI source is a github.com blob URL pinned to commit 39327d7c5d04c120bf47f1ee9696c078e1f55441 and returns HTTP 403 Forbidden through this environment. All 139 Anthropic pages fetched; all 63 OpenAI ones failed. The snapshot id hashes all 202 together, so 139 of 202 certifies nothing.
+
+**the reachable documents have already drifted.** A targeted drift probe re-fetched the 14 reachable Anthropic documents that closed GOLD records anchor to and checked the recorded evidence_hash at the recorded offsets. 12 of 14 documents differ from the 2026-08-17 capture, and only 2 of 21 spans reproduce their recorded hash. Certification needs all 202 byte-identical; an 86% drift rate on the reachable sample settles it independently of the 403s.
+
+**Fail-closed.** Nothing was accepted. The quarantine was discarded, no database was touched, nothing under data/ was written, and no project artifact changed. A partial crawl is refused before any comparison, so 139 of 202 could not read as a near miss.
+
+**Not recovered data.** The 139 fetched documents are current live pages, not the frozen capture. They were discarded and are not recorded as recovery.
+
+**What would change this.** Byte-identical 2026-08-17 documents from any source — including, for the OpenAI half, the pinned GitHub commit 39327d7c5d04c120bf47f1ee9696c078e1f55441, which is immutable and would reproduce if it could be fetched. That still leaves the 139 Anthropic pages, which have drifted and have no pinned equivalent.
+
+Implemented in `scripts/rehydrate_quarantine.py`, tested in `tests/test_gold001_rehydration.py`. Properties pinned:
+
+- the id chain is content-derived and captured_at is not an input
+- the snapshot id changes if any one document changes
+- a missing document changes it
+- synthetic input never reproduces the frozen target
+- a quarantine inside the repository is refused
+- a partial crawl is refused before any comparison
+- diagnostics are never treated as certification
 
 ### ChatGPT-project archive evidence — the production-rag-v1.zip lead
 
@@ -387,7 +448,7 @@ Run in this environment it refuses at the first check and writes nothing, both w
 - Closed batches modified: **0**. Dataset records modified: **0**. Eligibility state modified: **false**.
 - Validation and holdout were neither inspected nor modified.
 - `human_verified` set by this work: **0**. Only the project owner may set it.
-- Files added (7), modified (0):
+- Files added (9), modified (0):
   - `src/rag_v1/gold/factidentity.py` (new)
   - `src/rag_v1/gold/reasoningtype.py` (new)
   - `src/rag_v1/gold/questionscope.py` (new)
@@ -395,5 +456,7 @@ Run in this environment it refuses at the first check and writes nothing, both w
   - `src/rag_v1/gold/provenance.py` (new)
   - `tests/test_gold001_provenance.py` (new)
   - `scripts/rederive_unbuildable.py` (new)
+  - `scripts/rehydrate_quarantine.py` (new)
+  - `tests/test_gold001_rehydration.py` (new)
 
-**Next:** Three independent searches have now closed: this container, the owner's host, and the ChatGPT-project archive, and the 2026-08-17 published results confirm the target without carrying corpus text. The pilot stays blocked on the narrowest remaining artifact recorded under published_results_evidence: document_version, document_source and corpus_snapshot_version for snap_689e336380a054d8039dc35b2c09cd0a, or the 202 byte-identical raw files, from the machine that ran batches 001-006 or a backup of it. With either, scripts/rederive_unbuildable.py enforces shape, fingerprint, closed-span and 2482 reproduction before any pilot case exists. The G-STRICTER finding remains open for the project owner; no AI review is owner approval.
+**Next:** Rehydration from live pages is refuted: certification is mathematically possible but the corpus is unreachable (63 of 202) and drifted (12 of 14 sampled). The pilot stays blocked on the same narrowest artifact — document_version, document_source and corpus_snapshot_version for snap_689e336380a054d8039dc35b2c09cd0a, or the 202 byte-identical raw files from the machine that ran batches 001-006 or a backup of it. With either, scripts/rederive_unbuildable.py enforces shape, fingerprint, closed-span and 2482 reproduction before any pilot case exists. The G-STRICTER finding remains open for the project owner; no AI review is owner approval.

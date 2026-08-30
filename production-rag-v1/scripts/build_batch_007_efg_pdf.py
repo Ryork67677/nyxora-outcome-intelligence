@@ -7,7 +7,7 @@ run**, because the frozen evidence it must draw from is not in this environment.
 that opened on three green fixes and put the pilot in a footnote would be describing a
 batch that is further along than it is.
 
-Every figure is read from the artifacts at build time. Eleven gates refuse the build
+Every figure is read from the artifacts at build time. Twelve gates refuse the build
 rather than publish something false — including one that refuses to render if a batch-007
 candidate or pilot artifact has appeared, because then this page is describing a state
 the project has left, and one that refuses to render the independent automated review as
@@ -29,6 +29,9 @@ sys.path.insert(0, str(REPO_ROOT / "src"))
 
 from rag_v1.gold import questionscope, reasoningtype  # noqa: E402
 from rag_v1.gold.factidentity import duplicate_facts  # noqa: E402
+from rag_v1.gold.provenance import FROZEN_CAPTURE_SHAPE  # noqa: E402
+
+FROZEN_DOCUMENTS = FROZEN_CAPTURE_SHAPE["documents"]
 
 RECORD = REPO_ROOT / "experiments/GOLD-001/GOLD-001-batch-007-efg-fixes.json"
 PREREG = REPO_ROOT / "experiments/GOLD-001/GOLD-001-batch-007-preregistration.json"
@@ -127,7 +130,18 @@ def build_html(data: dict) -> str:
     host = record["host_side_recovery_evidence"]
     published = record["published_results_evidence"]
     archive = record["chatgpt_project_archive_evidence"]
+    rehy = record["rehydration_feasibility"]
+    math_f, emp_f = rehy["mathematical_finding"], rehy["empirical_finding"]
     safeguards = record["reproducibility_safeguards_added"]
+
+    chain = "<br>".join(esc(line) for line in math_f["chain_read_from_code"])
+    input_rows = rows([(f"<code>{esc(k)}</code>", ticks(v))
+                       for k, v in math_f["inputs_persisted"].items()])
+    fail_blocks = "".join(
+        f"<h3>{ticks(w['reason'])}</h3><p>{ticks(w['detail'])}</p>"
+        for w in emp_f["why_it_fails"])
+    pinned_items = "".join(f"<li>{ticks(x)}</li>"
+                           for x in rehy["implemented"]["properties_pinned"])
 
     arc = archive["archive"]
     archive_rows = rows([
@@ -407,7 +421,38 @@ condition than a failed one.</p>
 <p>{ticks(host['what_this_does_not_establish'])}</p>
 </div>
 
-<h2 class="break">8. The ChatGPT-project archive lead, closed</h2>
+<h2 class="break">8. Rehydration feasibility — could a live crawl ever be certified?</h2>
+<p><b>{ticks(rehy['question'])}</b></p>
+<div class="callout warn">
+<div class="label">Possible in principle, refuted in practice</div>
+<p>{ticks(rehy['conclusion'])}</p>
+</div>
+<h3>The mathematics</h3>
+<div class="callout win">
+<div class="label">{esc(math_f['verdict'])}</div>
+<p>{ticks(math_f['no_nondeterminism'])}</p>
+</div>
+<blockquote>{chain}</blockquote>
+<table><thead><tr><th>id input</th><th>persisted?</th></tr></thead>
+<tbody>{input_rows}</tbody></table>
+<p>{ticks(math_f['consequence'])}</p>
+<p class="dim">{ticks(math_f['src_id_check_run_here'])}</p>
+<h3>The attempt</h3>
+<div class="callout warn">
+<div class="label">{esc(emp_f['verdict'])}</div>
+<p>{ticks(emp_f['method'])}</p>
+<p>Attempted <b>{emp_f['attempted']}</b>, fetched <b>{emp_f['fetched_ok']}</b>, failed
+<b>{emp_f['fetch_failures']}</b>.</p>
+</div>
+{fail_blocks}
+<p><b>Fail-closed.</b> {ticks(emp_f['fail_closed_behaviour'])}</p>
+<p><b>Not recovered data.</b> {ticks(emp_f['not_recovered_data'])}</p>
+<p><b>What would change this.</b> {ticks(rehy['what_would_change_this'])}</p>
+<p>Implemented in <code>{esc(rehy['implemented']['verifier'])}</code>, tested in
+<code>{esc(rehy['implemented']['tests'])}</code>. Properties pinned:</p>
+<ul>{pinned_items}</ul>
+
+<h2 class="break">9. The ChatGPT-project archive lead, closed</h2>
 <div class="callout warn">
 <div class="label">{esc(archive['label'])}</div>
 <p>{ticks(archive['authority'])}</p>
@@ -433,7 +478,7 @@ condition than a failed one.</p>
 <p>{ticks(archive['what_this_does_not_establish'])}</p>
 </div>
 
-<h2 class="break">9. The 2026-08-17 published results, assessed</h2>
+<h2 class="break">10. The 2026-08-17 published results, assessed</h2>
 <div class="callout warn">
 <div class="label">{esc(published['conclusion'].split(' — ')[0])}</div>
 <p>{ticks(published['conclusion'])}</p>
@@ -461,14 +506,14 @@ condition than a failed one.</p>
 {ticks(published['what_it_does_make_possible']['explicitly_not_identity'])}</p>
 </div>
 
-<h2>10. The narrowest remaining artifact</h2>
+<h2>11. The narrowest remaining artifact</h2>
 <p><b>Narrowed from</b> {ticks(narrow['narrowed_from'])} <b>to</b>
 {ticks(narrow['narrowed_to'])}</p>
 <p><b>Why this is enough.</b> {ticks(narrow['why_this_is_enough'])}</p>
 <p><b>Why nothing narrower works.</b> {ticks(narrow['why_nothing_narrower_works'])}</p>
 <p><b>Environment prerequisite.</b> {ticks(narrow['environment_prerequisite'])}</p>
 
-<h2>11. The earlier statement of the required artifact</h2>
+<h2>12. The earlier statement of the required artifact</h2>
 <p>{ticks(required['summary'])}</p>
 {option_blocks}
 <div class="callout warn">
@@ -477,7 +522,7 @@ condition than a failed one.</p>
 </div>
 <p><b>Acceptance test.</b> {ticks(required['acceptance_test'])}</p>
 
-<h2>12. Reproducibility safeguards added</h2>
+<h2>13. Reproducibility safeguards added</h2>
 <p>{ticks(safeguards['why'])}</p>
 <p>Implemented in <code>{esc(safeguards['implemented_in'])}</code>, tested in
 <code>{esc(safeguards['tested_in'])}</code>.</p>
@@ -490,7 +535,7 @@ condition than a failed one.</p>
 <ul>{refuse_items}</ul>
 <p>{ticks(safeguards['harness']['verified_now'])}</p>
 
-<h2>13. Invariants</h2>
+<h2>14. Invariants</h2>
 <ul>
 <li><code>retrieval_was_not_run</code> is still <code>true</code> and
 <code>systems_executed</code> is still <code>[]</code>. No retrieval system was run
@@ -646,6 +691,16 @@ def main() -> int:
     if not archive["conclusion"].startswith("LEAD CLOSED"):
         raise SystemExit("refusing to build: the archive audit no longer closes the lead, "
                          "so this page is stale")
+
+    # 12. A live crawl is never recovery. If the record ever says the rehydration
+    #     certified, this page must not publish until that is real and restored.
+    rehy = record["rehydration_feasibility"]
+    if not rehy["empirical_finding"]["verdict"].startswith("NOT CERTIFIED"):
+        raise SystemExit("refusing to build: the rehydration record no longer says NOT "
+                         "CERTIFIED, so this page is stale")
+    if rehy["empirical_finding"]["fetched_ok"] >= FROZEN_DOCUMENTS:
+        raise SystemExit("refusing to build: the record claims a complete crawl, which "
+                         "would change the verdict — re-run and re-certify")
 
     chrome = next((c for c in CHROME_CANDIDATES if Path(c).exists()), None)
     if chrome is None:
