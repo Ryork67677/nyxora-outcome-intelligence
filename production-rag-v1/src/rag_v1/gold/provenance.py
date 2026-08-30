@@ -157,6 +157,50 @@ def verify_fingerprint(expected_snapshot_id: str, versions: Iterable[tuple[str, 
     }
 
 
+#: The shape of the frozen capture, corroborated by the 2026-08-17 published results
+#: ("Production RAG v1 — Measured Results", generated from experiments/summary.json).
+#: These are cross-checks, not the identity: a corpus can have the right counts and be the
+#: wrong corpus, so they are cheap early rejections that run before the fingerprint, never
+#: instead of it.
+FROZEN_CAPTURE_SHAPE = {
+    "snapshot_id": "snap_689e336380a054d8039dc35b2c09cd0a",
+    "documents": 202,
+    "chunks": 14209,
+    "documents_by_provider": {"anthropic": 139, "openai": 63},
+    "chunks_by_provider": {"anthropic": 12028, "openai": 2181},
+    "source": ("docs/reports/production-rag-v1-results.pdf, 2026-08-17, generated from "
+               "experiments/summary.json by scripts/build_report_pdf.py"),
+}
+
+
+def verify_corpus_shape(documents: int, chunks: int | None = None, *,
+                        expected: dict | None = None) -> dict:
+    """Does a restored corpus have the shape the published results record?
+
+    A cheap rejection that runs before the expensive one. It cannot prove identity — the
+    right counts over the wrong documents still gives the right counts — so a pass here
+    means only "worth fingerprinting", never "this is the frozen corpus".
+
+    ``chunks`` is optional because the pilot needs no chunks: it runs no retrieval, and a
+    restore of document text alone is enough to re-derive the unbuildable set.
+    """
+    shape = expected or FROZEN_CAPTURE_SHAPE
+    problems = []
+    if documents != shape["documents"]:
+        problems.append(f"expected {shape['documents']} documents, found {documents}")
+    if chunks is not None and chunks != shape["chunks"]:
+        problems.append(f"expected {shape['chunks']} chunks, found {chunks}")
+    return {
+        "documents": documents,
+        "chunks": chunks,
+        "expected": {"documents": shape["documents"], "chunks": shape["chunks"]},
+        "problems": problems,
+        "matches": not problems,
+        "note": ("Shape only. Passing this is necessary and not sufficient: identity is "
+                 "the fingerprint, and the fingerprint is checked separately."),
+    }
+
+
 def verify_restored_corpus(records: Sequence[dict],
                            read_span: Callable[[str, int, int], str | None]) -> dict:
     """Re-read every closed span from a restored corpus and re-hash it.
@@ -257,6 +301,7 @@ def pilot_thresholds_unmet(results: dict[str, Any]) -> list[str]:
 
 
 __all__ = [
+    "FROZEN_CAPTURE_SHAPE",
     "NO_BUILDER",
     "chunking_config_from_settings",
     "SEMANTIC_GATE",
@@ -265,6 +310,7 @@ __all__ = [
     "pilot_thresholds_unmet",
     "select_pilot_cases",
     "span_key",
+    "verify_corpus_shape",
     "verify_fingerprint",
     "verify_restored_corpus",
 ]

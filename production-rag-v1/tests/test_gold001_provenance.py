@@ -19,7 +19,9 @@ from pathlib import Path
 import pytest
 
 from rag_v1.gold.provenance import (
+    FROZEN_CAPTURE_SHAPE,
     NO_BUILDER,
+    verify_corpus_shape,
     chunking_config_from_settings,
     SEMANTIC_GATE,
     UnbuildableLog,
@@ -185,6 +187,39 @@ def test_verification_accepts_the_corpus_that_does_hash_to_it():
 
     assert verify_fingerprint(claimed, versions, name="c", parser_version="p1",
                               chunking_config=CHUNKING)["matches"] is True
+
+
+def test_the_published_capture_shape_is_internally_consistent():
+    """139 + 63 = 202 documents and 12,028 + 2,181 = 14,209 chunks, per the results."""
+    shape = FROZEN_CAPTURE_SHAPE
+
+    assert sum(shape["documents_by_provider"].values()) == shape["documents"] == 202
+    assert sum(shape["chunks_by_provider"].values()) == shape["chunks"] == 14209
+
+
+def test_a_corpus_of_the_published_shape_passes():
+    assert verify_corpus_shape(202, 14209)["matches"] is True
+
+
+def test_one_document_short_is_rejected_before_fingerprinting():
+    result = verify_corpus_shape(201, 14209)
+
+    assert result["matches"] is False
+    assert "expected 202 documents, found 201" in result["problems"]
+
+
+def test_a_wrong_chunk_count_is_rejected():
+    assert verify_corpus_shape(202, 14208)["matches"] is False
+
+
+def test_chunks_are_optional_because_the_pilot_runs_no_retrieval():
+    """Document text alone is enough to re-derive the unbuildable set."""
+    assert verify_corpus_shape(202)["matches"] is True
+
+
+def test_shape_is_never_treated_as_identity():
+    """Right counts over wrong documents still gives right counts."""
+    assert "necessary and not sufficient" in verify_corpus_shape(202)["note"]
 
 
 # --------------------------------------------------------------- 3. restore verifier

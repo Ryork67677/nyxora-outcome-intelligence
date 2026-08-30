@@ -129,7 +129,7 @@ No pilot case was authored. Authoring 10 cases against invented or re-fetched ev
 
 ### Recovery search — every path, and what was in it
 
-*2026-08-30T10:59:40Z.* **NO — exhausted; the snapshot is not present in any reachable location. Corroborated by an independent host-side search recorded under host_side_recovery_evidence, which found no copy on the owner's machine either.**
+*2026-08-30T10:59:40Z.* **NO — exhausted; the snapshot is not present in any reachable location. Corroborated by an independent host-side search recorded under host_side_recovery_evidence, and by the assessment of the 2026-08-17 published results under published_results_evidence, which confirms the capture's identity and shape but carries no corpus text.**
 
 Can the exact frozen corpus snapshot snap_689e336380a054d8039dc35b2c09cd0a, captured 2026-08-17T04:46:19Z, be recovered non-destructively from anything reachable in this session?
 
@@ -177,6 +177,60 @@ Can the exact frozen corpus snapshot snap_689e336380a054d8039dc35b2c09cd0a, capt
 **Conclusion.** NO — the host-side search found no copy of the frozen corpus. Together with the in-session search this closes the reachable search space known to the project: the container has no copy and the owner's host has no copy.
 
 **What this does not establish.** It does not prove the corpus is gone everywhere. It was not searched for on the machine that actually ran batches 001-006 if that is a different machine, nor in any off-host backup, external drive or cloud snapshot of it. The external artifact named in recovery_search.remaining_external_artifact_required is still what is required, and is still outstanding.
+
+### Published results evidence (2026-08-17)
+
+**PRIMARY PROJECT EVIDENCE — assessed by this session** — Production RAG v1 — Measured Results, 2026-08-17, generated from experiments/summary.json by scripts/build_report_pdf.py. Assessed 2026-08-30T11:49:13Z.
+
+**Conclusion.** INSUFFICIENT FOR RECOVERY — the pilot remains blocked. The attachment confirms the target and strengthens the acceptance test; it supplies no corpus text and no content hashes.
+
+**What it confirms.**
+
+- snapshot `snap_689e336380a054d8039dc35b2c09cd0a`; **202** documents; **14,209** chunks (Anthropic 139/12,028, OpenAI 63/2,181)
+- 22 evidence spans in the v1 run; embedding model `emb_205f51a2d4db0273e121527cb5c6ff83`
+- evidence anchoring (version_id, section_path, char_start, char_end) — never chunk_id
+- 139 + 63 = 202 documents and 12,028 + 2,181 = 14,209 chunks: the figures are internally consistent.
+
+**Why it cannot recover the corpus.** The document states it directly: "Raw provider documentation is not redistributed; published results carry evidence anchors, ranks and scores with retrieved text replaced by a content hash." It is a results report, not a corpus. It carries no document text at all.
+
+**Every named reference, chased.**
+
+| reference | found | what it carries |
+| --- | --- | --- |
+| `experiments/summary.json` | present, 12KB | aggregate metrics and per_case_recall only. Zero occurrences of content_hash, version_id, snap_, local_path or raw_snapshot. |
+| `scripts/build_report_pdf.py` | present, 19KB | the report builder. Its 'retrieved text replaced by a content hash' line is a static footer stating a redaction policy — it is not a field the pipeline ever wrote, and no such hash exists in any artifact. |
+| `per-case experiment artifacts (EXP-000 … EXP-014R)` | present | version_ids for documents that reached top-k, and ranks and scores. Zero content_hash, text_hash, chunk_hash or retrieved_text_hash fields across every artifact scanned. |
+| `source manifests` | data/manifests/v1-openai-anthropic.yaml | 202 entries with canonical_url, local_path and captured_at. No document text and no content hashes. Its local_path values point into data/raw/, which is gitignored and empty. |
+| `document_version / content_hash records` | none | no artifact in the repository carries a document content_hash. The only file mentioning the field name is this recovery report. |
+| `raw_snapshot_path / local_path fields` | local_path in the manifests only | paths into the empty gitignored data/raw/. raw_snapshot_path does not exist. |
+| `corpus_snapshot_version rows` | none | no artifact carries these rows; they exist only in the PostgreSQL database, which this container does not have. |
+
+**Coverage measured here.**
+
+| | |
+| --- | --- |
+| artifact files scanned | 155 |
+| distinct version ids persisted | **131** of 202 |
+| distinct version ids from closed GOLD | 29 |
+| document content hashes persisted | **0** of 202 |
+
+131 of 202 version ids are recoverable from artifacts and 0 of 202 content hashes are. The snapshot fingerprint is a hash over (version_id, content_hash) for all 202 current versions, so it cannot be assembled from artifacts — and no artifact carries a single character of document text, so nothing can be reconstructed even in principle.
+
+**What it does make possible.**
+
+The attachment does not recover the corpus, but it is not inert: it independently corroborates the shape a restore must have, which sharpens the acceptance test.
+
+- *Implemented:* provenance.FROZEN_CAPTURE_SHAPE and verify_corpus_shape() record 202 documents and 14,209 chunks as a cheap fail-closed rejection that runs before the fingerprint in scripts/rederive_unbuildable.py.
+- *Explicitly not identity:* A corpus can have the right counts and be the wrong corpus. Shape is necessary, never sufficient; the fingerprint remains the identity check and still runs.
+- *On the fingerprint:* The 202 content hashes are not needed in advance: a restored database supplies them, and the fingerprint is computed from the restore and compared to the snapshot id this document confirms.
+
+**Narrowest remaining artifact.**
+
+- *Narrowed from:* a full pg_dump of the rag database, or the complete data/raw/ tree
+- *Narrowed to:* three tables: document_version (version_id, normalized_text, content_hash, status), document_source (provider, title, canonical_url) and corpus_snapshot_version for snap_689e336380a054d8039dc35b2c09cd0a — or, equivalently, the 202 raw Markdown files at the manifest's local_path values, byte-identical to the 2026-08-17 capture.
+- *Why this is enough:* scripts/export_batch_006.py's load_docs() reads only version_id, normalized_text, provider, title, canonical_url and captured_at, and the fingerprint needs content_hash. The pilot runs no retrieval, so the chunk, embedding and search tables are not required at all.
+- *Why nothing narrower works:* The unbuildable set is defined by mining every document, so a subset of documents would produce a different set and fail the 2482 reproduction check. Partial evidence cannot substitute: 131 known version ids carry no text.
+- *Environment prerequisite:* a PostgreSQL with pgvector, which this container lacks, if restoring via the schema
 
 ### The precise remaining external artifact
 
@@ -261,6 +315,7 @@ Implemented in `src/rag_v1/gold/provenance.py`, tested in `tests/test_gold001_pr
 | **S3** | restore verifier | verify_restored_corpus() re-reads every closed span at its recorded offsets and re-hashes it against evidence_hash, reporting mismatches and missing versions rather than a bare boolean. | all 137 closed spans across batches 003-006 satisfy sha256(evidence_text) == evidence_hash; a correct restore verifies; a single changed character fails; an offset shifted by one fails; a missing document is reported, not skipped |
 | **S4** | deterministic pilot-selection manifest | select_pilot_cases() orders by span identity and records a selection basis per case, so the same input returns the same ten. Semantic-gate failures and spans already spent by a closed batch are excluded; a short pool is reported short rather than padded. | selection is order-independent; takes the preregistered ten; never selects a semantic-gate failure; excludes spent spans; records why each was chosen; reports a short pool |
 | **S5** | a guard so no report can call an unrun pilot passed | pilot_thresholds_unmet() returns which of the four preregistered thresholds a result fails. An absent result fails all four, because unmeasured is not met. | an unrun pilot fails all four; a passing pilot meets all four; one unsupported claim fails; seven of ten sound fails |
+| **S6** | reject a wrongly-shaped restore before the expensive checks | FROZEN_CAPTURE_SHAPE and verify_corpus_shape() hold the 202 documents and 14,209 chunks the published results record, checked in the harness before the fingerprint. Chunk count is optional, since the pilot needs only document text. | the published shape is internally consistent (139+63=202, 12028+2181=14209); a correct shape passes; one document short is rejected; a wrong chunk count is rejected; shape is never treated as identity |
 
 **Harness — `scripts/rederive_unbuildable.py`.** Recovers the identities batch 006 discarded, by re-running batch 006's own miners and builders imported unmodified. The unbuildable set is defined by those builders as they were, so re-deriving it with a changed builder would answer a different question.
 
@@ -290,4 +345,4 @@ Run in this environment it refuses at the first check and writes nothing, both w
   - `tests/test_gold001_provenance.py` (new)
   - `scripts/rederive_unbuildable.py` (new)
 
-**Next:** The calibration pilot cannot run until the external artifact named in recovery_search.remaining_external_artifact_required is supplied: a PostgreSQL dump of the corpus, or the 202 raw files captured 2026-08-17, restored into a PostgreSQL that has pgvector. Then work the recovery checklist in order — scripts/rederive_unbuildable.py enforces steps 1 to 3 and refuses on any failure. The G-STRICTER finding remains open for the project owner; the recorded recommendation is not owner approval. The paraphrasing lane does not scale until the pilot passes and is independently reviewed.
+**Next:** The 2026-08-17 published results confirm the target and sharpen the acceptance test but cannot recover the corpus. The pilot stays blocked on the narrowest remaining artifact recorded under published_results_evidence: document_version, document_source and corpus_snapshot_version for snap_689e336380a054d8039dc35b2c09cd0a, or the 202 byte-identical raw files. With either, scripts/rederive_unbuildable.py enforces shape, fingerprint, closed-span and 2482 reproduction before any pilot case exists. The G-STRICTER finding remains open for the project owner; no AI review is owner approval.

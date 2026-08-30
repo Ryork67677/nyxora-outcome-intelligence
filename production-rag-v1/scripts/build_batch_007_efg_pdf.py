@@ -7,7 +7,7 @@ run**, because the frozen evidence it must draw from is not in this environment.
 that opened on three green fixes and put the pilot in a footnote would be describing a
 batch that is further along than it is.
 
-Every figure is read from the artifacts at build time. Nine gates refuse the build
+Every figure is read from the artifacts at build time. Ten gates refuse the build
 rather than publish something false — including one that refuses to render if a batch-007
 candidate or pilot artifact has appeared, because then this page is describing a state
 the project has left, and one that refuses to render the independent automated review as
@@ -125,7 +125,24 @@ def build_html(data: dict) -> str:
     checklist = record["blocker_recovery_checklist"]
     search = record["recovery_search"]
     host = record["host_side_recovery_evidence"]
+    published = record["published_results_evidence"]
     safeguards = record["reproducibility_safeguards_added"]
+
+    ref_rows = rows([
+        (f"<code>{esc(r['reference'])}</code>", ticks(r["found"]), ticks(r["carries"]))
+        for r in published["references_chased"]])
+    cov = published["coverage_measured_here"]
+    cov_rows = rows([
+        ("artifact files scanned", f"{cov['artifact_files_scanned']}"),
+        ("distinct version ids persisted",
+         f"<b>{cov['distinct_version_ids_persisted']}</b> of {cov['corpus_documents']}"),
+        ("distinct version ids from closed GOLD",
+         f"{cov['distinct_version_ids_from_closed_gold']}"),
+        ("document content hashes persisted",
+         f"<b class='no'>{cov['document_content_hashes_persisted']}</b> of "
+         f"{cov['corpus_documents']}"),
+    ], classes=("", "num"))
+    narrow = published["narrowest_remaining_artifact"]
 
     host_rows = rows([
         (f"<b>{ticks(f['area'])}</b>",
@@ -373,7 +390,42 @@ condition than a failed one.</p>
 <p>{ticks(host['what_this_does_not_establish'])}</p>
 </div>
 
-<h2 class="break">8. The precise remaining external artifact</h2>
+<h2 class="break">8. The 2026-08-17 published results, assessed</h2>
+<div class="callout warn">
+<div class="label">{esc(published['conclusion'].split(' — ')[0])}</div>
+<p>{ticks(published['conclusion'])}</p>
+<p class="dim">{esc(published['artifact'])} · assessed
+{esc(published['assessed_at'])}</p>
+</div>
+<p><b>What it confirms.</b> Snapshot
+<code>{esc(published['what_it_confirms']['snapshot_id'])}</code>;
+<b>{published['what_it_confirms']['documents']}</b> documents;
+<b>{published['what_it_confirms']['chunks']:,}</b> chunks; and
+{published['what_it_confirms']['v1_evidence_spans']} evidence spans in the v1 run.
+{ticks(published['what_it_confirms']['arithmetic_checked_here'])}</p>
+<p><b>Why it cannot recover the corpus.</b>
+{ticks(published['why_it_cannot_recover_the_corpus'])}</p>
+<table class="long"><thead><tr><th>reference chased</th><th>found</th>
+<th>what it carries</th></tr></thead><tbody>{ref_rows}</tbody></table>
+<table><thead><tr><th>coverage measured here</th><th class="num"></th></tr></thead>
+<tbody>{cov_rows}</tbody></table>
+<p>{ticks(cov['verdict'])}</p>
+<div class="callout win">
+<div class="label">What it does make possible</div>
+<p>{ticks(published['what_it_does_make_possible']['summary'])}</p>
+<p><b>Implemented.</b> {ticks(published['what_it_does_make_possible']['implemented'])}</p>
+<p><b>Not identity.</b>
+{ticks(published['what_it_does_make_possible']['explicitly_not_identity'])}</p>
+</div>
+
+<h2>9. The narrowest remaining artifact</h2>
+<p><b>Narrowed from</b> {ticks(narrow['narrowed_from'])} <b>to</b>
+{ticks(narrow['narrowed_to'])}</p>
+<p><b>Why this is enough.</b> {ticks(narrow['why_this_is_enough'])}</p>
+<p><b>Why nothing narrower works.</b> {ticks(narrow['why_nothing_narrower_works'])}</p>
+<p><b>Environment prerequisite.</b> {ticks(narrow['environment_prerequisite'])}</p>
+
+<h2>10. The earlier statement of the required artifact</h2>
 <p>{ticks(required['summary'])}</p>
 {option_blocks}
 <div class="callout warn">
@@ -382,7 +434,7 @@ condition than a failed one.</p>
 </div>
 <p><b>Acceptance test.</b> {ticks(required['acceptance_test'])}</p>
 
-<h2>9. Reproducibility safeguards added</h2>
+<h2>11. Reproducibility safeguards added</h2>
 <p>{ticks(safeguards['why'])}</p>
 <p>Implemented in <code>{esc(safeguards['implemented_in'])}</code>, tested in
 <code>{esc(safeguards['tested_in'])}</code>.</p>
@@ -395,7 +447,7 @@ condition than a failed one.</p>
 <ul>{refuse_items}</ul>
 <p>{ticks(safeguards['harness']['verified_now'])}</p>
 
-<h2>10. Invariants</h2>
+<h2>12. Invariants</h2>
 <ul>
 <li><code>retrieval_was_not_run</code> is still <code>true</code> and
 <code>systems_executed</code> is still <code>[]</code>. No retrieval system was run
@@ -524,6 +576,17 @@ def main() -> int:
     if not host["conclusion"].startswith("NO"):
         raise SystemExit("refusing to build: the host-side search no longer concludes the "
                          "corpus is absent, so this page is stale")
+
+    # 10. The published results are evidence about the corpus, not the corpus. If this
+    #     record ever claims otherwise, the page would be describing a recovery that did
+    #     not happen.
+    published = record["published_results_evidence"]
+    if not published["conclusion"].startswith("INSUFFICIENT FOR RECOVERY"):
+        raise SystemExit("refusing to build: the published-results assessment no longer "
+                         "concludes the attachment is insufficient for recovery")
+    if published["coverage_measured_here"]["document_content_hashes_persisted"] != 0:
+        raise SystemExit("refusing to build: the record claims persisted document content "
+                         "hashes, which would change the recovery verdict — re-measure")
 
     chrome = next((c for c in CHROME_CANDIDATES if Path(c).exists()), None)
     if chrome is None:

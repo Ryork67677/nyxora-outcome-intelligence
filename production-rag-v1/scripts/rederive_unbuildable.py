@@ -13,13 +13,15 @@ changed builder would produce a different set and quietly answer a different que
 
 Nothing is authored here and no candidate is produced. The output is a manifest of spans.
 
-**It refuses rather than guesses.** Three checks run before any mining, in this order,
-and each is fatal:
+**It refuses rather than guesses.** Four checks run before any mining, in this order,
+cheapest first, and each is fatal:
 
 1. the corpus must be present;
-2. it must hash to the frozen snapshot id — a restore labelled ``snap_689e…`` proves
+2. it must have the shape the published 2026-08-17 results record — 202 documents — which
+   is a cheap rejection, never a proof of identity;
+3. it must hash to the frozen snapshot id — a restore labelled ``snap_689e…`` proves
    nothing, since the label is written by whoever did the restore;
-3. every closed span must re-read and re-hash correctly at its recorded offsets.
+4. every closed span must re-read and re-hash correctly at its recorded offsets.
 
 Only then does it mine, and the re-derived count must equal the count batch 006
 recorded. A different count means the derivation is not reproducing batch 006's
@@ -42,9 +44,11 @@ sys.path.insert(0, str(REPO_ROOT / "src"))
 sys.path.insert(0, str(REPO_ROOT / "scripts"))
 
 from rag_v1.gold.provenance import (  # noqa: E402
+    FROZEN_CAPTURE_SHAPE,
     NO_BUILDER,
     UnbuildableLog,
     chunking_config_from_settings,
+    verify_corpus_shape,
     verify_fingerprint,
     verify_restored_corpus,
 )
@@ -113,8 +117,20 @@ def main() -> int:
             f"refusing to re-derive: no documents found for {args.snapshot}. The database "
             "is reachable but holds no corpus.")
 
-    # 2. It must hash to the snapshot it claims to be.
+    # 2. Its shape must match the published capture — a cheap rejection before the
+    #    expensive one. The 2026-08-17 results record 202 documents; a restore that is
+    #    not that size is not worth fingerprinting.
     print(f"corpus: {len(docs)} documents, {len(versions)} versions in {args.snapshot}")
+    shape = verify_corpus_shape(len(docs))
+    if not shape["matches"]:
+        raise SystemExit(
+            "refusing to re-derive: the restored corpus does not have the shape the "
+            f"published results record ({'; '.join(shape['problems'])}). Expected "
+            f"{FROZEN_CAPTURE_SHAPE['documents']} documents per "
+            f"{FROZEN_CAPTURE_SHAPE['source']}.")
+    print(f"shape: {len(docs)} documents — matches the published capture")
+
+    # 3. It must hash to the snapshot it claims to be.
     check = verify_fingerprint(args.snapshot, versions, name=SNAPSHOT_NAME,
                                parser_version=PARSER_VERSION,
                                chunking_config=chunking_config_from_settings())
@@ -125,7 +141,7 @@ def main() -> int:
             "This is not the 2026-08-17 corpus. A re-fetch is not a restore.")
     print(f"fingerprint: {check['computed']} — matches the frozen snapshot")
 
-    # 3. Every closed span must re-read and re-hash at its recorded offsets.
+    # 4. Every closed span must re-read and re-hash at its recorded offsets.
     for doc in docs:
         doc["sections"] = b006._sections_from_markdown(doc["text"])
     by_version = {d["version_id"]: d for d in docs}
@@ -197,6 +213,7 @@ def main() -> int:
     manifest["reproduced_recorded_count"] = True
     manifest["recorded_count"] = wanted
     manifest["fingerprint_verified"] = check["computed"]
+    manifest["corpus_shape_verified"] = shape
     manifest["closed_spans_verified"] = restore["spans_matched"]
     out.write_text(json.dumps(manifest, indent=2, ensure_ascii=False) + "\n")
     print(f"wrote {out} ({len(log)} span identities)")
