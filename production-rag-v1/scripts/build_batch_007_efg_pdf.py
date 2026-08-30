@@ -7,7 +7,7 @@ run**, because the frozen evidence it must draw from is not in this environment.
 that opened on three green fixes and put the pilot in a footnote would be describing a
 batch that is further along than it is.
 
-Every figure is read from the artifacts at build time. Twelve gates refuse the build
+Every figure is read from the artifacts at build time. Thirteen gates refuse the build
 rather than publish something false — including one that refuses to render if a batch-007
 candidate or pilot artifact has appeared, because then this page is describing a state
 the project has left, and one that refuses to render the independent automated review as
@@ -132,7 +132,30 @@ def build_html(data: dict) -> str:
     archive = record["chatgpt_project_archive_evidence"]
     rehy = record["rehydration_feasibility"]
     math_f, emp_f = rehy["mathematical_finding"], rehy["empirical_finding"]
+    cert = record["certified_recovery_attempt"]
+    oa_half, an_half = cert["openai_half"], cert["anthropic_half"]
+    accept = cert["acceptance_test"]
     safeguards = record["reproducibility_safeguards_added"]
+
+    commit_rows = rows([(f"<code>{esc(k)}</code>", f"<code>{esc(v)}</code>")
+                        for k, v in oa_half["commits"].items()])
+    live = an_half["live_fetch"]
+    live_rows = rows([
+        ("live-fetched", f"{live['fetched']} of 139 (failed {live['failed']})"),
+        ("checkable against persisted identity",
+         f"{live['checkable_against_persisted_identity']}"),
+        ("still matching the frozen version_id",
+         f"<b class='ok'>{live['matching_the_frozen_version_id']}</b>"),
+        ("provably drifted", f"<b class='no'>{live['provably_drifted']}</b>"),
+        ("unverifiable individually", f"{live['unverifiable_individually']}"),
+    ], classes=("", "num"))
+    source_rows = rows([(ticks(h["source"]), ticks(h["result"]))
+                        for h in an_half["historical_sources_attempted"]])
+    blocking = an_half["smallest_blocking_set"]
+    blocking_items = "".join(f"<li><code>{esc(u)}</code></li>"
+                             for u in blocking["provably_mismatched"])
+    accept_rows = rows([(f"<code>{esc(n)}</code>", f"<code>{esc(sid)}</code>")
+                        for n, sid in accept["computed_snapshot_ids"].items()])
 
     chain = "<br>".join(esc(line) for line in math_f["chain_read_from_code"])
     input_rows = rows([(f"<code>{esc(k)}</code>", ticks(v))
@@ -421,7 +444,52 @@ condition than a failed one.</p>
 <p>{ticks(host['what_this_does_not_establish'])}</p>
 </div>
 
-<h2 class="break">8. Rehydration feasibility — could a live crawl ever be certified?</h2>
+<h2 class="break">8. Certified recovery attempt — OpenAI recovered, Anthropic not</h2>
+<div class="callout warn">
+<div class="label">Partial recovery</div>
+<p>{ticks(cert['outcome'])}</p>
+</div>
+<h3>OpenAI — {esc(oa_half['verdict'])}</h3>
+<p>{ticks(oa_half['method'])}</p>
+<table><thead><tr><th>repository</th><th>pinned commit</th></tr></thead>
+<tbody>{commit_rows}</tbody></table>
+<div class="callout win">
+<div class="label">Cryptographic identity check</div>
+<p>fetched <b>{oa_half['fetched']}/63</b>, failed {oa_half['failed']}, unsafe redirects
+{oa_half['unsafe_redirects']} · persisted version_ids
+<b>{oa_half['identity_verification']['version_ids_matched']} of
+{oa_half['identity_verification']['persisted_version_ids_available']} matched</b> ·
+evidence hashes <b>{oa_half['identity_verification']['evidence_hashes_reproduced']} of
+{oa_half['identity_verification']['evidence_spans_checkable']} reproduced</b></p>
+<p>{ticks(oa_half['identity_verification']['meaning'])}</p>
+</div>
+<p><b>Durability.</b> {ticks(oa_half['durability'])}</p>
+
+<h3>Anthropic — {esc(an_half['verdict'])}</h3>
+<table><thead><tr><th>live fetch</th><th class="num"></th></tr></thead>
+<tbody>{live_rows}</tbody></table>
+<p>{ticks(live['note'])}</p>
+<table class="long"><thead><tr><th>historical source attempted</th><th>result</th>
+</tr></thead><tbody>{source_rows}</tbody></table>
+<p><b>Smallest blocking set — {blocking['count_provably_mismatched']} provably mismatched
+Anthropic documents:</b></p>
+<ul>{blocking_items}</ul>
+<p class="dim">Plus {blocking['unverifiable']} unverifiable individually;
+{len(blocking['still_matching'])} still matches.</p>
+
+<h3>Acceptance test — {'CERTIFIED' if accept['certified'] else 'REJECTED'}</h3>
+<p>Assembled <b>{accept['assembled']}</b> candidates against target
+<code>{esc(accept['target'])}</code>.</p>
+<table><thead><tr><th>candidate snapshot name</th><th>computed id</th></tr></thead>
+<tbody>{accept_rows}</tbody></table>
+<p>{ticks(accept['verdict'])}</p>
+<p><b>Fail-closed.</b> {ticks(cert['fail_closed'])}</p>
+<div class="callout win">
+<div class="label">What this changes</div>
+<p>{ticks(cert['what_this_changes'])}</p>
+</div>
+
+<h2 class="break">9. Rehydration feasibility — could a live crawl ever be certified?</h2>
 <p><b>{ticks(rehy['question'])}</b></p>
 <div class="callout warn">
 <div class="label">Possible in principle, refuted in practice</div>
@@ -452,7 +520,7 @@ condition than a failed one.</p>
 <code>{esc(rehy['implemented']['tests'])}</code>. Properties pinned:</p>
 <ul>{pinned_items}</ul>
 
-<h2 class="break">9. The ChatGPT-project archive lead, closed</h2>
+<h2 class="break">10. The ChatGPT-project archive lead, closed</h2>
 <div class="callout warn">
 <div class="label">{esc(archive['label'])}</div>
 <p>{ticks(archive['authority'])}</p>
@@ -478,7 +546,7 @@ condition than a failed one.</p>
 <p>{ticks(archive['what_this_does_not_establish'])}</p>
 </div>
 
-<h2 class="break">10. The 2026-08-17 published results, assessed</h2>
+<h2 class="break">11. The 2026-08-17 published results, assessed</h2>
 <div class="callout warn">
 <div class="label">{esc(published['conclusion'].split(' — ')[0])}</div>
 <p>{ticks(published['conclusion'])}</p>
@@ -506,14 +574,14 @@ condition than a failed one.</p>
 {ticks(published['what_it_does_make_possible']['explicitly_not_identity'])}</p>
 </div>
 
-<h2>11. The narrowest remaining artifact</h2>
+<h2>12. The narrowest remaining artifact</h2>
 <p><b>Narrowed from</b> {ticks(narrow['narrowed_from'])} <b>to</b>
 {ticks(narrow['narrowed_to'])}</p>
 <p><b>Why this is enough.</b> {ticks(narrow['why_this_is_enough'])}</p>
 <p><b>Why nothing narrower works.</b> {ticks(narrow['why_nothing_narrower_works'])}</p>
 <p><b>Environment prerequisite.</b> {ticks(narrow['environment_prerequisite'])}</p>
 
-<h2>12. The earlier statement of the required artifact</h2>
+<h2>13. The earlier statement of the required artifact</h2>
 <p>{ticks(required['summary'])}</p>
 {option_blocks}
 <div class="callout warn">
@@ -522,7 +590,7 @@ condition than a failed one.</p>
 </div>
 <p><b>Acceptance test.</b> {ticks(required['acceptance_test'])}</p>
 
-<h2>13. Reproducibility safeguards added</h2>
+<h2>14. Reproducibility safeguards added</h2>
 <p>{ticks(safeguards['why'])}</p>
 <p>Implemented in <code>{esc(safeguards['implemented_in'])}</code>, tested in
 <code>{esc(safeguards['tested_in'])}</code>.</p>
@@ -535,7 +603,7 @@ condition than a failed one.</p>
 <ul>{refuse_items}</ul>
 <p>{ticks(safeguards['harness']['verified_now'])}</p>
 
-<h2>14. Invariants</h2>
+<h2>15. Invariants</h2>
 <ul>
 <li><code>retrieval_was_not_run</code> is still <code>true</code> and
 <code>systems_executed</code> is still <code>[]</code>. No retrieval system was run
@@ -701,6 +769,16 @@ def main() -> int:
     if rehy["empirical_finding"]["fetched_ok"] >= FROZEN_DOCUMENTS:
         raise SystemExit("refusing to build: the record claims a complete crawl, which "
                          "would change the verdict — re-run and re-certify")
+
+    # 13. The recovery attempt is partial. If it ever certifies, the corpus must be
+    #     restored and the pilot run before this page can describe the project again.
+    cert = record["certified_recovery_attempt"]
+    if cert["acceptance_test"]["certified"] is not False:
+        raise SystemExit("refusing to build: the acceptance test now certifies, so this "
+                         "page is stale — restore and re-report")
+    if cert["acceptance_test"]["target"] != FROZEN_CAPTURE_SHAPE["snapshot_id"]:
+        raise SystemExit("refusing to build: the acceptance test targets a different "
+                         "snapshot than the frozen one")
 
     chrome = next((c for c in CHROME_CANDIDATES if Path(c).exists()), None)
     if chrome is None:

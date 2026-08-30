@@ -129,7 +129,7 @@ No pilot case was authored. Authoring 10 cases against invented or re-fetched ev
 
 ### Recovery search — every path, and what was in it
 
-*2026-08-30T10:59:40Z.* **NO — exhausted; the snapshot is not present in any reachable location. Corroborated by an independent host-side search, by the assessment of the 2026-08-17 published results, by the ChatGPT-project archive audit, and by a quarantined rehydration attempt recorded under rehydration_feasibility, which established that certification is mathematically possible and then failed to achieve it: 63 of 202 documents are unfetchable and 12 of 14 sampled reachable documents have drifted.**
+*2026-08-30T10:59:40Z.* **NO — exhausted; the frozen snapshot is not present in any reachable location. A certified recovery attempt (certified_recovery_attempt) then recovered the OpenAI half outright — 63 of 63 from pinned commits, 14 of 14 persisted version_ids matching — but could not recover the Anthropic 139: no versioned asset, no Last-Modified or ETag, no source repository, and every web-archive host blocked at the egress proxy. The assembled 202 is rejected.**
 
 Can the exact frozen corpus snapshot snap_689e336380a054d8039dc35b2c09cd0a, captured 2026-08-17T04:46:19Z, be recovered non-destructively from anything reachable in this session?
 
@@ -177,6 +177,90 @@ Can the exact frozen corpus snapshot snap_689e336380a054d8039dc35b2c09cd0a, capt
 **Conclusion.** NO — the host-side search found no copy of the frozen corpus. Together with the in-session search this closes the reachable search space known to the project: the container has no copy and the owner's host has no copy.
 
 **What this does not establish.** It does not prove the corpus is gone everywhere. It was not searched for on the machine that actually ran batches 001-006 if that is a different machine, nor in any off-host backup, external drive or cloud snapshot of it. The external artifact named in recovery_search.remaining_external_artifact_required is still what is required, and is still outstanding.
+
+### Certified recovery attempt — OpenAI recovered, Anthropic not
+
+*CERTIFIED RECOVERY ATTEMPT — performed and tested in this session. 2026-08-30T12:13:59Z.*
+
+**Outcome.** PARTIAL — the OpenAI half is cryptographically recovered and the Anthropic half is not. The assembled 202 is REJECTED.
+
+#### OpenAI: RECOVERED AND CERTIFIED — 63 of 63.
+
+Every saved OpenAI URL is a github.com blob pinned to a full 40-hex commit across four repositories. Each was rewritten to its raw.githubusercontent.com form preserving owner, repo, commit and path verbatim, and fetched into quarantine. A redirect that dropped or changed the commit would have been refused; none occurred.
+
+| repository | pinned commit |
+| --- | --- |
+| `openai/openai-agents-python` | `39327d7c5d04c120bf47f1ee9696c078e1f55441 (37 docs)` |
+| `openai/openai-python` | `10ee3f0da2ac... (6 docs)` |
+| `openai/openai-node` | `cc7dbfa9b9dd... (5 docs)` |
+| `openai/openai-cookbook` | `aa2c1e8867b8... (15 docs)` |
+
+- fetched **63/63**, failed 0, unsafe redirects 0
+- persisted version_ids available **14**, matched **14**
+- evidence spans checkable **27**, hashes reproduced **27**
+
+version_id is stable_id('ver', src_id, sha256(normalized_text)), so a matching version_id is cryptographic proof that the re-fetched document is byte-identical to the frozen one. 14 of 14 matched and every one of the 27 checkable evidence hashes reproduced at its recorded offsets.
+
+**Durability.** This half is solved permanently and reproducibly: a commit SHA names the same bytes forever, so anyone can re-derive these 63 documents at any time from the manifest alone.
+
+#### Anthropic: NOT RECOVERED — no reproducible historical source is reachable.
+
+| | |
+| --- | --- |
+| live-fetched | 139 of 139 (failed 0) |
+| checkable against persisted identity | 14 |
+| still matching the frozen version_id | **1** |
+| provably drifted | **13** |
+| unverifiable individually | 125 |
+
+125 documents have no persisted per-document identity, so they can only ever be verified through the all-202 snapshot fingerprint. This is why 13 known-wrong documents settle the result: the fingerprint needs every one of the 202 to be right.
+
+**Historical sources attempted.**
+
+| source | result |
+| --- | --- |
+| official versioned or static assets | platform.claude.com exposes no versioned or dated paths. Its sitemap lists 2,973 URLs with zero lastmod entries, and llms.txt carries no version references. |
+| response metadata that could identify a past version | Document responses carry no Last-Modified and no ETag, and are served Cache-Control: private, no-store. There is no handle by which a past version could be identified or requested. |
+| source repositories | The manifest names none for the Anthropic half — its retrieval_method is https_markdown_rendering, not a pinned clone, which is exactly the difference from the OpenAI half. |
+| read-only web-archive captures at or before captured_at | Unavailable from this environment: web.archive.org, archive.org/wayback/available and timetravel.mementoweb.org all return 403 Tunnel connection failed at the egress proxy. This is a reachability finding, not a finding that no capture exists. |
+
+**Smallest blocking set — 13 provably mismatched Anthropic documents:**
+
+- `https://platform.claude.com/docs/en/about-claude/models/migration-guide`
+- `https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool`
+- `https://platform.claude.com/docs/en/agents-and-tools/tool-use/server-tools`
+- `https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-fetch-tool`
+- `https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool`
+- `https://platform.claude.com/docs/en/api/admin`
+- `https://platform.claude.com/docs/en/api/beta`
+- `https://platform.claude.com/docs/en/api/errors`
+- `https://platform.claude.com/docs/en/build-with-claude/context-editing`
+- `https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons`
+- `https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices`
+- `https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-sonnet-5`
+- `https://platform.claude.com/docs/en/build-with-claude/thinking`
+
+Plus 125 unverifiable individually; 1 still matches.
+
+#### Acceptance test: REJECTED
+
+Assembled **202** candidates. Target `snap_689e336380a054d8039dc35b2c09cd0a`.
+
+| candidate snapshot name | computed id |
+| --- | --- |
+| `v1-seed` | `snap_b2b5c7c095ea4bd0ecbb02944717aeb3` |
+| `v1` | `snap_bf9cda78eb2d8e4b545449ad45496b91` |
+| `v1-openai-anthropic` | `snap_32487720b1894dbde5e859defc24d5d7` |
+| `production-rag-v1` | `snap_8a66230e6b06d7afc89abc7a679371a2` |
+| `seed` | `snap_b9725cd3bc7e01ad66ac3243fa1a794c` |
+
+REJECTED. All 202 were assembled in quarantine and the full content-derived chain recomputed; no candidate snapshot name reproduces the frozen fingerprint. Per the acceptance rule an incomplete or mismatched set stays rejected, so nothing was restored and no pilot case was created.
+
+**Fail-closed.** Everything was assembled only in quarantine outside the repository. The quarantine was discarded; data/raw still holds only .gitkeep; no database was created; no authoritative record changed; no retrieval ran. The 139 live Anthropic pages are current documents and are not recorded as recovery.
+
+**What this changes.** The required artifact is now materially narrower. It was 202 documents; it is now 139 — only the Anthropic half. The OpenAI 63 need never be supplied again, since they are reproducible from pinned commits on demand.
+
+Implemented in `src/rag_v1/gold/rehydration.py`, tested in `tests/test_gold001_rehydration_sources.py`.
 
 ### Rehydration feasibility — could a live crawl ever be certified?
 
@@ -448,7 +532,7 @@ Run in this environment it refuses at the first check and writes nothing, both w
 - Closed batches modified: **0**. Dataset records modified: **0**. Eligibility state modified: **false**.
 - Validation and holdout were neither inspected nor modified.
 - `human_verified` set by this work: **0**. Only the project owner may set it.
-- Files added (9), modified (0):
+- Files added (11), modified (0):
   - `src/rag_v1/gold/factidentity.py` (new)
   - `src/rag_v1/gold/reasoningtype.py` (new)
   - `src/rag_v1/gold/questionscope.py` (new)
@@ -458,5 +542,7 @@ Run in this environment it refuses at the first check and writes nothing, both w
   - `scripts/rederive_unbuildable.py` (new)
   - `scripts/rehydrate_quarantine.py` (new)
   - `tests/test_gold001_rehydration.py` (new)
+  - `src/rag_v1/gold/rehydration.py` (new)
+  - `tests/test_gold001_rehydration_sources.py` (new)
 
-**Next:** Rehydration from live pages is refuted: certification is mathematically possible but the corpus is unreachable (63 of 202) and drifted (12 of 14 sampled). The pilot stays blocked on the same narrowest artifact — document_version, document_source and corpus_snapshot_version for snap_689e336380a054d8039dc35b2c09cd0a, or the 202 byte-identical raw files from the machine that ran batches 001-006 or a backup of it. With either, scripts/rederive_unbuildable.py enforces shape, fingerprint, closed-span and 2482 reproduction before any pilot case exists. The G-STRICTER finding remains open for the project owner; no AI review is owner approval.
+**Next:** The OpenAI half is recovered and reproducible from pinned commits; the outstanding artifact is now only the 139 Anthropic documents as they stood on 2026-08-17, of which 13 are provably drifted and 125 are unverifiable without the frozen fingerprint. Reachable routes are exhausted here: a web-archive lookup would be the next thing to try from an environment where archive.org is not blocked at the proxy. Failing that, the artifact remains a copy of the 2026-08-17 bytes from the machine that ran batches 001-006 or a backup of it. The pilot stays blocked; the G-STRICTER finding remains open for the project owner; no AI review is owner approval.

@@ -230,7 +230,7 @@
   "recovery_search": {
     "performed_at": "2026-08-30T10:59:40Z",
     "question": "Can the exact frozen corpus snapshot snap_689e336380a054d8039dc35b2c09cd0a, captured 2026-08-17T04:46:19Z, be recovered non-destructively from anything reachable in this session?",
-    "conclusion": "NO — exhausted; the snapshot is not present in any reachable location. Corroborated by an independent host-side search, by the assessment of the 2026-08-17 published results, by the ChatGPT-project archive audit, and by a quarantined rehydration attempt recorded under rehydration_feasibility, which established that certification is mathematically possible and then failed to achieve it: 63 of 202 documents are unfetchable and 12 of 14 sampled reachable documents have drifted.",
+    "conclusion": "NO — exhausted; the frozen snapshot is not present in any reachable location. A certified recovery attempt (certified_recovery_attempt) then recovered the OpenAI half outright — 63 of 63 from pinned commits, 14 of 14 persisted version_ids matching — but could not recover the Anthropic 139: no versioned asset, no Last-Modified or ETag, no source repository, and every web-archive host blocked at the egress proxy. The assembled 202 is rejected.",
     "constraints_observed": [
       "No current live URL was fetched.",
       "No toy or fixture data was used or accepted as corpus.",
@@ -560,6 +560,103 @@
       ]
     }
   },
+  "certified_recovery_attempt": {
+    "label": "CERTIFIED RECOVERY ATTEMPT — performed and tested in this session",
+    "assessed_at": "2026-08-30T12:13:59Z",
+    "outcome": "PARTIAL — the OpenAI half is cryptographically recovered and the Anthropic half is not. The assembled 202 is REJECTED.",
+    "openai_half": {
+      "verdict": "RECOVERED AND CERTIFIED — 63 of 63.",
+      "method": "Every saved OpenAI URL is a github.com blob pinned to a full 40-hex commit across four repositories. Each was rewritten to its raw.githubusercontent.com form preserving owner, repo, commit and path verbatim, and fetched into quarantine. A redirect that dropped or changed the commit would have been refused; none occurred.",
+      "commits": {
+        "openai/openai-agents-python": "39327d7c5d04c120bf47f1ee9696c078e1f55441 (37 docs)",
+        "openai/openai-python": "10ee3f0da2ac... (6 docs)",
+        "openai/openai-node": "cc7dbfa9b9dd... (5 docs)",
+        "openai/openai-cookbook": "aa2c1e8867b8... (15 docs)"
+      },
+      "fetched": 63,
+      "failed": 0,
+      "unsafe_redirects": 0,
+      "identity_verification": {
+        "persisted_version_ids_available": 14,
+        "version_ids_matched": 14,
+        "evidence_spans_checkable": 27,
+        "evidence_hashes_reproduced": 27,
+        "meaning": "version_id is stable_id('ver', src_id, sha256(normalized_text)), so a matching version_id is cryptographic proof that the re-fetched document is byte-identical to the frozen one. 14 of 14 matched and every one of the 27 checkable evidence hashes reproduced at its recorded offsets."
+      },
+      "durability": "This half is solved permanently and reproducibly: a commit SHA names the same bytes forever, so anyone can re-derive these 63 documents at any time from the manifest alone."
+    },
+    "anthropic_half": {
+      "verdict": "NOT RECOVERED — no reproducible historical source is reachable.",
+      "live_fetch": {
+        "fetched": 139,
+        "failed": 0,
+        "checkable_against_persisted_identity": 14,
+        "matching_the_frozen_version_id": 1,
+        "provably_drifted": 13,
+        "unverifiable_individually": 125,
+        "note": "125 documents have no persisted per-document identity, so they can only ever be verified through the all-202 snapshot fingerprint. This is why 13 known-wrong documents settle the result: the fingerprint needs every one of the 202 to be right."
+      },
+      "historical_sources_attempted": [
+        {
+          "source": "official versioned or static assets",
+          "result": "platform.claude.com exposes no versioned or dated paths. Its sitemap lists 2,973 URLs with zero lastmod entries, and llms.txt carries no version references."
+        },
+        {
+          "source": "response metadata that could identify a past version",
+          "result": "Document responses carry no Last-Modified and no ETag, and are served Cache-Control: private, no-store. There is no handle by which a past version could be identified or requested."
+        },
+        {
+          "source": "source repositories",
+          "result": "The manifest names none for the Anthropic half — its retrieval_method is https_markdown_rendering, not a pinned clone, which is exactly the difference from the OpenAI half."
+        },
+        {
+          "source": "read-only web-archive captures at or before captured_at",
+          "result": "Unavailable from this environment: web.archive.org, archive.org/wayback/available and timetravel.mementoweb.org all return 403 Tunnel connection failed at the egress proxy. This is a reachability finding, not a finding that no capture exists."
+        }
+      ],
+      "smallest_blocking_set": {
+        "provably_mismatched": [
+          "https://platform.claude.com/docs/en/about-claude/models/migration-guide",
+          "https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool",
+          "https://platform.claude.com/docs/en/agents-and-tools/tool-use/server-tools",
+          "https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-fetch-tool",
+          "https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool",
+          "https://platform.claude.com/docs/en/api/admin",
+          "https://platform.claude.com/docs/en/api/beta",
+          "https://platform.claude.com/docs/en/api/errors",
+          "https://platform.claude.com/docs/en/build-with-claude/context-editing",
+          "https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons",
+          "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
+          "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-sonnet-5",
+          "https://platform.claude.com/docs/en/build-with-claude/thinking"
+        ],
+        "count_provably_mismatched": 13,
+        "unverifiable": 125,
+        "still_matching": [
+          "https://platform.claude.com/docs/en/build-with-claude/effort"
+        ]
+      }
+    },
+    "acceptance_test": {
+      "assembled": 202,
+      "computed_snapshot_ids": {
+        "v1-seed": "snap_b2b5c7c095ea4bd0ecbb02944717aeb3",
+        "v1": "snap_bf9cda78eb2d8e4b545449ad45496b91",
+        "v1-openai-anthropic": "snap_32487720b1894dbde5e859defc24d5d7",
+        "production-rag-v1": "snap_8a66230e6b06d7afc89abc7a679371a2",
+        "seed": "snap_b9725cd3bc7e01ad66ac3243fa1a794c"
+      },
+      "target": "snap_689e336380a054d8039dc35b2c09cd0a",
+      "certified": false,
+      "verdict": "REJECTED. All 202 were assembled in quarantine and the full content-derived chain recomputed; no candidate snapshot name reproduces the frozen fingerprint. Per the acceptance rule an incomplete or mismatched set stays rejected, so nothing was restored and no pilot case was created."
+    },
+    "fail_closed": "Everything was assembled only in quarantine outside the repository. The quarantine was discarded; data/raw still holds only .gitkeep; no database was created; no authoritative record changed; no retrieval ran. The 139 live Anthropic pages are current documents and are not recorded as recovery.",
+    "what_this_changes": "The required artifact is now materially narrower. It was 202 documents; it is now 139 — only the Anthropic half. The OpenAI 63 need never be supplied again, since they are reproducible from pinned commits on demand.",
+    "implemented": {
+      "module": "src/rag_v1/gold/rehydration.py",
+      "tests": "tests/test_gold001_rehydration_sources.py"
+    }
+  },
   "blocker_recovery_checklist": {
     "purpose": "The ordered, precise steps that unblock the calibration pilot. Nothing here has been performed; the pilot remains not run.",
     "hard_prohibitions": [
@@ -678,10 +775,12 @@
       "tests/test_gold001_provenance.py",
       "scripts/rederive_unbuildable.py",
       "scripts/rehydrate_quarantine.py",
-      "tests/test_gold001_rehydration.py"
+      "tests/test_gold001_rehydration.py",
+      "src/rag_v1/gold/rehydration.py",
+      "tests/test_gold001_rehydration_sources.py"
     ],
     "files_modified": [],
     "live_pages_fetched": "Yes — only the exact URLs saved in the manifest, only after establishing that the snapshot id is a content-derived digest capable of certifying the result, and only into a quarantine outside the repository. Nothing fetched was accepted, retained, or recorded as recovery; the quarantine was discarded."
   },
-  "next_step": "Rehydration from live pages is refuted: certification is mathematically possible but the corpus is unreachable (63 of 202) and drifted (12 of 14 sampled). The pilot stays blocked on the same narrowest artifact — document_version, document_source and corpus_snapshot_version for snap_689e336380a054d8039dc35b2c09cd0a, or the 202 byte-identical raw files from the machine that ran batches 001-006 or a backup of it. With either, scripts/rederive_unbuildable.py enforces shape, fingerprint, closed-span and 2482 reproduction before any pilot case exists. The G-STRICTER finding remains open for the project owner; no AI review is owner approval."
+  "next_step": "The OpenAI half is recovered and reproducible from pinned commits; the outstanding artifact is now only the 139 Anthropic documents as they stood on 2026-08-17, of which 13 are provably drifted and 125 are unverifiable without the frozen fingerprint. Reachable routes are exhausted here: a web-archive lookup would be the next thing to try from an environment where archive.org is not blocked at the proxy. Failing that, the artifact remains a copy of the 2026-08-17 bytes from the machine that ran batches 001-006 or a backup of it. The pilot stays blocked; the G-STRICTER finding remains open for the project owner; no AI review is owner approval."
 }
