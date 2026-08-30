@@ -129,7 +129,7 @@ No pilot case was authored. Authoring 10 cases against invented or re-fetched ev
 
 ### Recovery search — every path, and what was in it
 
-*2026-08-30T10:59:40Z.* **NO — exhausted; the snapshot is not present in any reachable location. Corroborated by an independent host-side search recorded under host_side_recovery_evidence, and by the assessment of the 2026-08-17 published results under published_results_evidence, which confirms the capture's identity and shape but carries no corpus text.**
+*2026-08-30T10:59:40Z.* **NO — exhausted; the snapshot is not present in any reachable location. Corroborated by an independent host-side search (host_side_recovery_evidence), by the assessment of the 2026-08-17 published results (published_results_evidence), and by the ChatGPT-project archive audit (chatgpt_project_archive_evidence) which closed the production-rag-v1.zip lead as early scaffold carrying no corpus.**
 
 Can the exact frozen corpus snapshot snap_689e336380a054d8039dc35b2c09cd0a, captured 2026-08-17T04:46:19Z, be recovered non-destructively from anything reachable in this session?
 
@@ -177,6 +177,57 @@ Can the exact frozen corpus snapshot snap_689e336380a054d8039dc35b2c09cd0a, capt
 **Conclusion.** NO — the host-side search found no copy of the frozen corpus. Together with the in-session search this closes the reachable search space known to the project: the container has no copy and the owner's host has no copy.
 
 **What this does not establish.** It does not prove the corpus is gone everywhere. It was not searched for on the machine that actually ran batches 001-006 if that is a different machine, nor in any off-host backup, external drive or cloud snapshot of it. The external artifact named in recovery_search.remaining_external_artifact_required is still what is required, and is still outstanding.
+
+### ChatGPT-project archive evidence — the production-rag-v1.zip lead
+
+> **EXTERNAL AUTOMATED CHATGPT-PROJECT ARCHIVE EVIDENCE — NOT PROJECT-OWNER APPROVAL**
+
+> A read-only archive audit performed in a ChatGPT project and reported to this session. It approves nothing and sets no human_verified. Only the project owner may approve.
+
+*Recorded 2026-08-30T11:54:02Z. Lead: the August 17 archive production-rag-v1.zip in the Engineering rag system project.*
+
+**Provenance.** Performed project-side and relayed here. It was NOT performed or independently confirmed inside this Claude container: this session cannot reach the sandbox path or hash the archive, so the audit's findings are recorded as reported, not as verified.
+
+**Conclusion.** LEAD CLOSED — the archive is the early scaffold. It contains no corpus text, no populated corpus rows and no content hashes, so it does not make recovery possible. The narrowest remaining artifact is unchanged.
+
+**The archive.**
+
+| | |
+| --- | --- |
+| path | `sandbox:/workspace/scratch/ff7d44533203/recovery/Engineering rag system/production-rag-v1.zip` |
+| size | 62,874 bytes |
+| sha256 | `99e7c13e84052ea57dcb6106636d7923f9b4f163a2f90a8f5271e5ddea99495e` |
+| root | `production-rag-v1/` |
+| top level | `CODE_TOOL_HANDOFF.md`, `Makefile`, `README.md`, `docker-compose.yml`, `pyproject.toml`, `data/`, `docs/`, `evals/`, `experiments/`, `scripts/`, `sql/`, `src/`, `tests/` |
+
+**Audit found.**
+
+- data/raw contains only an empty placeholder
+- no provider-document files
+- no pg_dump or backup
+- no populated corpus_snapshot_version rows
+- no document_version normalized_text records
+- no populated content hashes
+- no real corpus manifest
+- the exact snapshot ID does not appear
+- sources.example.yaml has only one synthetic Widget API fixture
+
+*Constraints: no retrieval ran; no project artifact was modified.*
+
+**Corroborated inside this container.**
+
+**the archive is far too small to contain the corpus.** 62,874 bytes against a corpus of at least 2,711,869 characters. Even at a generous 4x Markdown compression the corpus floor is about 678,000 bytes, roughly 11 times the archive's entire size. Scaffold-only is arithmetically consistent; a corpus could not fit.
+
+- *Method:* compared the reported archive size against the corpus floor implied by closed GOLD offsets, which reach character 2,711,869 across 202 documents
+- *Note:* This is an inference from the reported size, not verification of the archive itself, which this session cannot read.
+
+**the synthetic Widget fixture matches what this repository carries.** It holds exactly one entry — Widget API v2, canonical_url https://example.invalid/widget/v2, local_path pointing at tests/fixtures/docs/widget_v2.md — matching the audit's description and matching the synthetic fixture found in the earlier in-session search.
+
+- *Method:* read data/manifests/sources.example.yaml in this checkout
+
+**the supplied August 17 architecture packet.** It defines raw_snapshot_path only as proposed schema and contains no populated paths and no corpus rows. Not a recovery artifact. A field defined in a schema proposal carries no data; it names a place a path could have been stored, not a path.
+
+**What this does not establish.** It closes this archive as a lead. It does not prove no other copy exists — the machine that ran batches 001-006 and any off-host backup of it remain unsearched.
 
 ### Published results evidence (2026-08-17)
 
@@ -345,4 +396,4 @@ Run in this environment it refuses at the first check and writes nothing, both w
   - `tests/test_gold001_provenance.py` (new)
   - `scripts/rederive_unbuildable.py` (new)
 
-**Next:** The 2026-08-17 published results confirm the target and sharpen the acceptance test but cannot recover the corpus. The pilot stays blocked on the narrowest remaining artifact recorded under published_results_evidence: document_version, document_source and corpus_snapshot_version for snap_689e336380a054d8039dc35b2c09cd0a, or the 202 byte-identical raw files. With either, scripts/rederive_unbuildable.py enforces shape, fingerprint, closed-span and 2482 reproduction before any pilot case exists. The G-STRICTER finding remains open for the project owner; no AI review is owner approval.
+**Next:** Three independent searches have now closed: this container, the owner's host, and the ChatGPT-project archive, and the 2026-08-17 published results confirm the target without carrying corpus text. The pilot stays blocked on the narrowest remaining artifact recorded under published_results_evidence: document_version, document_source and corpus_snapshot_version for snap_689e336380a054d8039dc35b2c09cd0a, or the 202 byte-identical raw files, from the machine that ran batches 001-006 or a backup of it. With either, scripts/rederive_unbuildable.py enforces shape, fingerprint, closed-span and 2482 reproduction before any pilot case exists. The G-STRICTER finding remains open for the project owner; no AI review is owner approval.

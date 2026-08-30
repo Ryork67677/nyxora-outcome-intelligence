@@ -7,7 +7,7 @@ run**, because the frozen evidence it must draw from is not in this environment.
 that opened on three green fixes and put the pilot in a footnote would be describing a
 batch that is further along than it is.
 
-Every figure is read from the artifacts at build time. Ten gates refuse the build
+Every figure is read from the artifacts at build time. Eleven gates refuse the build
 rather than publish something false — including one that refuses to render if a batch-007
 candidate or pilot artifact has appeared, because then this page is describing a state
 the project has left, and one that refuses to render the independent automated review as
@@ -126,7 +126,24 @@ def build_html(data: dict) -> str:
     search = record["recovery_search"]
     host = record["host_side_recovery_evidence"]
     published = record["published_results_evidence"]
+    archive = record["chatgpt_project_archive_evidence"]
     safeguards = record["reproducibility_safeguards_added"]
+
+    arc = archive["archive"]
+    archive_rows = rows([
+        ("path", f"<code>{esc(arc['path'])}</code>"),
+        ("size", f"{arc['size_bytes']:,} bytes"),
+        ("sha256", f"<code>{esc(arc['sha256'])}</code>"),
+        ("root", f"<code>{esc(arc['root'])}</code>"),
+        ("top level", ", ".join(f"<code>{esc(t)}</code>" for t in arc["top_level"])),
+    ])
+    finding_items = "".join(f"<li>{ticks(f)}</li>" for f in archive["audit_findings"])
+    corroboration_blocks = "".join(
+        f"<h3>{ticks(c['check'])}</h3><p>{ticks(c['result'])}</p>"
+        f"<p class='dim'><i>Method:</i> {ticks(c['method'])}"
+        + (f"<br><i>Note:</i> {ticks(c['note'])}" if c.get("note") else "")
+        + "</p>"
+        for c in archive["corroborated_in_session"])
 
     ref_rows = rows([
         (f"<code>{esc(r['reference'])}</code>", ticks(r["found"]), ticks(r["carries"]))
@@ -390,7 +407,33 @@ condition than a failed one.</p>
 <p>{ticks(host['what_this_does_not_establish'])}</p>
 </div>
 
-<h2 class="break">8. The 2026-08-17 published results, assessed</h2>
+<h2 class="break">8. The ChatGPT-project archive lead, closed</h2>
+<div class="callout warn">
+<div class="label">{esc(archive['label'])}</div>
+<p>{ticks(archive['authority'])}</p>
+<p class="dim">Recorded {esc(archive['recorded_at'])} · lead:
+{esc(archive['lead'])}</p>
+</div>
+<p><b>Provenance.</b> {ticks(archive['provenance'])}</p>
+<p><b>Conclusion.</b> {ticks(archive['conclusion'])}</p>
+<table><thead><tr><th>the archive</th><th></th></tr></thead>
+<tbody>{archive_rows}</tbody></table>
+<p><b>The audit found:</b></p>
+<ul>{finding_items}</ul>
+<p class="dim">Constraints: {esc('; '.join(archive['audit_constraints']))}.</p>
+<h3>Corroborated inside this container</h3>
+{corroboration_blocks}
+<div class="callout">
+<div class="label">The August 17 architecture packet</div>
+<p>{ticks(archive['architecture_packet']['finding'])}
+{ticks(archive['architecture_packet']['verdict'])}</p>
+</div>
+<div class="callout">
+<div class="label">What this does not establish</div>
+<p>{ticks(archive['what_this_does_not_establish'])}</p>
+</div>
+
+<h2 class="break">9. The 2026-08-17 published results, assessed</h2>
 <div class="callout warn">
 <div class="label">{esc(published['conclusion'].split(' — ')[0])}</div>
 <p>{ticks(published['conclusion'])}</p>
@@ -418,14 +461,14 @@ condition than a failed one.</p>
 {ticks(published['what_it_does_make_possible']['explicitly_not_identity'])}</p>
 </div>
 
-<h2>9. The narrowest remaining artifact</h2>
+<h2>10. The narrowest remaining artifact</h2>
 <p><b>Narrowed from</b> {ticks(narrow['narrowed_from'])} <b>to</b>
 {ticks(narrow['narrowed_to'])}</p>
 <p><b>Why this is enough.</b> {ticks(narrow['why_this_is_enough'])}</p>
 <p><b>Why nothing narrower works.</b> {ticks(narrow['why_nothing_narrower_works'])}</p>
 <p><b>Environment prerequisite.</b> {ticks(narrow['environment_prerequisite'])}</p>
 
-<h2>10. The earlier statement of the required artifact</h2>
+<h2>11. The earlier statement of the required artifact</h2>
 <p>{ticks(required['summary'])}</p>
 {option_blocks}
 <div class="callout warn">
@@ -434,7 +477,7 @@ condition than a failed one.</p>
 </div>
 <p><b>Acceptance test.</b> {ticks(required['acceptance_test'])}</p>
 
-<h2>11. Reproducibility safeguards added</h2>
+<h2>12. Reproducibility safeguards added</h2>
 <p>{ticks(safeguards['why'])}</p>
 <p>Implemented in <code>{esc(safeguards['implemented_in'])}</code>, tested in
 <code>{esc(safeguards['tested_in'])}</code>.</p>
@@ -447,7 +490,7 @@ condition than a failed one.</p>
 <ul>{refuse_items}</ul>
 <p>{ticks(safeguards['harness']['verified_now'])}</p>
 
-<h2>12. Invariants</h2>
+<h2>13. Invariants</h2>
 <ul>
 <li><code>retrieval_was_not_run</code> is still <code>true</code> and
 <code>systems_executed</code> is still <code>[]</code>. No retrieval system was run
@@ -587,6 +630,22 @@ def main() -> int:
     if published["coverage_measured_here"]["document_content_hashes_persisted"] != 0:
         raise SystemExit("refusing to build: the record claims persisted document content "
                          "hashes, which would change the recovery verdict — re-measure")
+
+    # 11. The archive audit is relayed external evidence that closed a lead negatively.
+    #     It is not approval, was not verified here, and must not read as a recovery.
+    archive = record["chatgpt_project_archive_evidence"]
+    if archive["is_project_owner_approval"] is not False:
+        raise SystemExit("refusing to build: the archive audit is marked as owner "
+                         "approval, which an archive listing cannot be")
+    if "NOT PROJECT-OWNER APPROVAL" not in archive["label"]:
+        raise SystemExit("refusing to build: the archive audit label does not disclaim "
+                         "owner approval")
+    if "NOT performed or independently confirmed" not in archive["provenance"]:
+        raise SystemExit("refusing to build: the archive audit does not disclose that "
+                         "this session did not verify it")
+    if not archive["conclusion"].startswith("LEAD CLOSED"):
+        raise SystemExit("refusing to build: the archive audit no longer closes the lead, "
+                         "so this page is stale")
 
     chrome = next((c for c in CHROME_CANDIDATES if Path(c).exists()), None)
     if chrome is None:
