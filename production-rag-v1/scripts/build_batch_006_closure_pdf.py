@@ -126,6 +126,13 @@ def build_html(data: dict) -> str:
     rejected = [r for r in final["records"]
                 if r["verification_status"] == "human_rejected"]
 
+    # The closure's own reason already ends on the no-relabelling claim, so the page
+    # would print it twice. The record's wording wins; the template only supplies the
+    # claim if the record ever stops carrying it.
+    search_reason = closure["multi_hop_search"]["reason"]
+    relabel_claim = ("" if "relabelled to raise the count" in search_reason
+                     else " No multi-span case was relabelled to raise the count.")
+
     approved_rows = rows([
         (f"<code>{r['candidate_id'][-2:]}</code>", r["provider"],
          f"<code>{r['reasoning_type']}</code>",
@@ -279,10 +286,9 @@ moved. What changed is a rule: <code>section_path</code> is not trusted for clai
 and a candidate's exact evidence must carry the scope its claim needs.</p>
 
 <h2>4. Multi-hop</h2>
-<p><b>No search was run.</b> {ticks(closure['multi_hop_search']['reason'])}
+<p><b>No search was run.</b> {ticks(search_reason)}
 Genuine multi-hop cases in this batch:
-<b>{closure['reasoning_and_shape']['genuine_multi_hop']}</b>. No multi-span case was
-relabelled to raise the count.</p>
+<b>{closure['reasoning_and_shape']['genuine_multi_hop']}</b>.{relabel_claim}</p>
 
 <h2>5. Project state</h2>
 <table><thead><tr><th>batch</th><th class="num">candidates</th>
