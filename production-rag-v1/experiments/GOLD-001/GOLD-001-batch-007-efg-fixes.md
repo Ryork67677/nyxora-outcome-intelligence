@@ -129,7 +129,7 @@ No pilot case was authored. Authoring 10 cases against invented or re-fetched ev
 
 ### Recovery search — every path, and what was in it
 
-*2026-08-30T10:59:40Z.* **NO — exhausted; the snapshot is not present in any reachable location.**
+*2026-08-30T10:59:40Z.* **NO — exhausted; the snapshot is not present in any reachable location. Corroborated by an independent host-side search recorded under host_side_recovery_evidence, which found no copy on the owner's machine either.**
 
 Can the exact frozen corpus snapshot snap_689e336380a054d8039dc35b2c09cd0a, captured 2026-08-17T04:46:19Z, be recovered non-destructively from anything reachable in this session?
 
@@ -151,6 +151,32 @@ Can the exact frozen corpus snapshot snap_689e336380a054d8039dc35b2c09cd0a, capt
 - SYSTEM-A and SYSTEM-B were not run.
 - Validation and holdout were not inspected.
 - Fingerprint proof was required before any corpus would have been accepted; none was offered because none was found.
+
+### Host-side recovery evidence
+
+> **EXTERNAL AUTOMATED SEARCH EVIDENCE — NOT PROJECT-OWNER APPROVAL**
+
+> An independent automated host-side search, reported to this session. It approves nothing, verifies nothing about the benchmark, and does not set human_verified. Only the project owner may approve.
+
+*Recorded 2026-08-30T11:06:02Z. Read-only searches; nothing on the host was modified.*
+
+**Provenance.** Performed on the owner's host machine and relayed to this session as a result. It was NOT performed or independently confirmed from inside this container: this session cannot see the host filesystem, so these findings are recorded as reported, not as verified. They are consistent with, and extend to the host, the in-session search recorded under recovery_search.
+
+**Locations searched.** `C:\Users\yorkr\Documents`, `C:\Users\yorkr\Downloads`, `OneDrive`, `projects`, `Claude`, `.claude`, `nyxora-recovery`
+
+**Looked for.** a RAG corpus dump; a PostgreSQL backup; a byte-identical raw capture; the snapshot ID snap_689e336380a054d8039dc35b2c09cd0a; a corpus_snapshot_version artifact.
+
+| area | result |
+| --- | --- |
+| user document, download, OneDrive, project and Claude directories | No RAG corpus dump, PostgreSQL backup, byte-identical raw capture, snapshot ID or corpus_snapshot_version artifact was found outside the repository. |
+| Claude local application data | No matching persisted corpus was found. |
+| Docker Desktop | Stopped. Its only docker_data.vhdx was last modified 2026-07-15, which is before the 2026-08-17 frozen capture, so it cannot contain that snapshot. *A disk image whose last write precedes the capture date cannot hold the captured corpus. This rules the image out on its timestamp alone, without needing to mount or inspect it.* |
+| local PostgreSQL service | None exists on the host. |
+| matches returned | The only matches were repository schemas and reports already covered by the in-session search — no new artifact. |
+
+**Conclusion.** NO — the host-side search found no copy of the frozen corpus. Together with the in-session search this closes the reachable search space known to the project: the container has no copy and the owner's host has no copy.
+
+**What this does not establish.** It does not prove the corpus is gone everywhere. It was not searched for on the machine that actually ran batches 001-006 if that is a different machine, nor in any off-host backup, external drive or cloud snapshot of it. The external artifact named in recovery_search.remaining_external_artifact_required is still what is required, and is still outstanding.
 
 ### The precise remaining external artifact
 

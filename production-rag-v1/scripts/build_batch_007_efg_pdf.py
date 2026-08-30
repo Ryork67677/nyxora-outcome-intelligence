@@ -7,7 +7,7 @@ run**, because the frozen evidence it must draw from is not in this environment.
 that opened on three green fixes and put the pilot in a footnote would be describing a
 batch that is further along than it is.
 
-Every figure is read from the artifacts at build time. Eight gates refuse the build
+Every figure is read from the artifacts at build time. Nine gates refuse the build
 rather than publish something false — including one that refuses to render if a batch-007
 candidate or pilot artifact has appeared, because then this page is describing a state
 the project has left, and one that refuses to render the independent automated review as
@@ -124,7 +124,18 @@ def build_html(data: dict) -> str:
     review = record["independent_automated_review"]
     checklist = record["blocker_recovery_checklist"]
     search = record["recovery_search"]
+    host = record["host_side_recovery_evidence"]
     safeguards = record["reproducibility_safeguards_added"]
+
+    host_rows = rows([
+        (f"<b>{ticks(f['area'])}</b>",
+         ticks(f["result"])
+         + (f"<br><i>{ticks(f['inference'])}</i>" if f.get("inference") else ""))
+        for f in host["findings"]])
+    host_locations = ", ".join(f"<code>{esc(loc)}</code>"
+                               for loc in host["locations_searched"])
+    host_wanted = "".join(f"<li>{ticks(a)}</li>"
+                          for a in host["artifacts_looked_for"])
     prereg = data["prereg"]
 
     search_rows = rows([
@@ -344,7 +355,25 @@ condition than a failed one.</p>
 <p><b>Constraints observed throughout.</b></p>
 <ul>{constraint_items}</ul>
 
-<h2>7. The precise remaining external artifact</h2>
+<h2>7. Host-side recovery evidence</h2>
+<div class="callout warn">
+<div class="label">{esc(host['label'])}</div>
+<p>{ticks(host['authority'])}</p>
+<p class="dim">Recorded {esc(host['recorded_at'])} · {esc(host['scope'])}</p>
+</div>
+<p><b>Provenance.</b> {ticks(host['provenance'])}</p>
+<p><b>Locations searched.</b> {host_locations}</p>
+<p><b>Looked for:</b></p>
+<ul>{host_wanted}</ul>
+<table class="long"><thead><tr><th>area</th><th>result</th></tr></thead>
+<tbody>{host_rows}</tbody></table>
+<p><b>Conclusion.</b> {ticks(host['conclusion'])}</p>
+<div class="callout">
+<div class="label">What this does not establish</div>
+<p>{ticks(host['what_this_does_not_establish'])}</p>
+</div>
+
+<h2 class="break">8. The precise remaining external artifact</h2>
 <p>{ticks(required['summary'])}</p>
 {option_blocks}
 <div class="callout warn">
@@ -353,7 +382,7 @@ condition than a failed one.</p>
 </div>
 <p><b>Acceptance test.</b> {ticks(required['acceptance_test'])}</p>
 
-<h2>8. Reproducibility safeguards added</h2>
+<h2>9. Reproducibility safeguards added</h2>
 <p>{ticks(safeguards['why'])}</p>
 <p>Implemented in <code>{esc(safeguards['implemented_in'])}</code>, tested in
 <code>{esc(safeguards['tested_in'])}</code>.</p>
@@ -366,7 +395,7 @@ condition than a failed one.</p>
 <ul>{refuse_items}</ul>
 <p>{ticks(safeguards['harness']['verified_now'])}</p>
 
-<h2>9. Invariants</h2>
+<h2>10. Invariants</h2>
 <ul>
 <li><code>retrieval_was_not_run</code> is still <code>true</code> and
 <code>systems_executed</code> is still <code>[]</code>. No retrieval system was run
@@ -479,6 +508,22 @@ def main() -> int:
     if unbuildable.exists():
         raise SystemExit("refusing to build: an unbuildable-span manifest exists, so the "
                          "blocker this page describes has been cleared")
+
+    # 9. The host-side search is external evidence relayed to this session, not an
+    #    approval and not something this session verified. The page must say both.
+    host = record["host_side_recovery_evidence"]
+    if host["is_project_owner_approval"] is not False:
+        raise SystemExit("refusing to build: host-side evidence is marked as owner "
+                         "approval, which a filesystem search cannot be")
+    if "NOT PROJECT-OWNER APPROVAL" not in host["label"]:
+        raise SystemExit("refusing to build: the host-side evidence label does not "
+                         "disclaim owner approval")
+    if "NOT performed or independently confirmed" not in host["provenance"]:
+        raise SystemExit("refusing to build: the host-side evidence does not disclose "
+                         "that this session did not verify it")
+    if not host["conclusion"].startswith("NO"):
+        raise SystemExit("refusing to build: the host-side search no longer concludes the "
+                         "corpus is absent, so this page is stale")
 
     chrome = next((c for c in CHROME_CANDIDATES if Path(c).exists()), None)
     if chrome is None:

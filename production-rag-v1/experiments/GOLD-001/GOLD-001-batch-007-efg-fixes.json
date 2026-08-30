@@ -230,7 +230,7 @@
   "recovery_search": {
     "performed_at": "2026-08-30T10:59:40Z",
     "question": "Can the exact frozen corpus snapshot snap_689e336380a054d8039dc35b2c09cd0a, captured 2026-08-17T04:46:19Z, be recovered non-destructively from anything reachable in this session?",
-    "conclusion": "NO — exhausted; the snapshot is not present in any reachable location.",
+    "conclusion": "NO — exhausted; the snapshot is not present in any reachable location. Corroborated by an independent host-side search recorded under host_side_recovery_evidence, which found no copy on the owner's machine either.",
     "constraints_observed": [
       "No current live URL was fetched.",
       "No toy or fixture data was used or accepted as corpus.",
@@ -303,6 +303,55 @@
       "environment_prerequisite": "The target PostgreSQL must have the pgvector extension available. This container does not, so sql/001_init.sql cannot create the schema here even given the data.",
       "acceptance_test": "scripts/rederive_unbuildable.py refuses unless the restored corpus hashes to snap_689e336380a054d8039dc35b2c09cd0a, every closed span re-hashes at its recorded offsets, and the re-derived unbuildable count reproduces 2482. Passing all three is the proof; a snapshot row saying so is not."
     }
+  },
+  "host_side_recovery_evidence": {
+    "label": "EXTERNAL AUTOMATED SEARCH EVIDENCE — NOT PROJECT-OWNER APPROVAL",
+    "is_project_owner_approval": false,
+    "authority": "An independent automated host-side search, reported to this session. It approves nothing, verifies nothing about the benchmark, and does not set human_verified. Only the project owner may approve.",
+    "provenance": "Performed on the owner's host machine and relayed to this session as a result. It was NOT performed or independently confirmed from inside this container: this session cannot see the host filesystem, so these findings are recorded as reported, not as verified. They are consistent with, and extend to the host, the in-session search recorded under recovery_search.",
+    "recorded_at": "2026-08-30T11:06:02Z",
+    "scope": "read-only searches; nothing on the host was modified",
+    "locations_searched": [
+      "C:\\Users\\yorkr\\Documents",
+      "C:\\Users\\yorkr\\Downloads",
+      "OneDrive",
+      "projects",
+      "Claude",
+      ".claude",
+      "nyxora-recovery"
+    ],
+    "artifacts_looked_for": [
+      "a RAG corpus dump",
+      "a PostgreSQL backup",
+      "a byte-identical raw capture",
+      "the snapshot ID snap_689e336380a054d8039dc35b2c09cd0a",
+      "a corpus_snapshot_version artifact"
+    ],
+    "findings": [
+      {
+        "area": "user document, download, OneDrive, project and Claude directories",
+        "result": "No RAG corpus dump, PostgreSQL backup, byte-identical raw capture, snapshot ID or corpus_snapshot_version artifact was found outside the repository."
+      },
+      {
+        "area": "Claude local application data",
+        "result": "No matching persisted corpus was found."
+      },
+      {
+        "area": "Docker Desktop",
+        "result": "Stopped. Its only docker_data.vhdx was last modified 2026-07-15, which is before the 2026-08-17 frozen capture, so it cannot contain that snapshot.",
+        "inference": "A disk image whose last write precedes the capture date cannot hold the captured corpus. This rules the image out on its timestamp alone, without needing to mount or inspect it."
+      },
+      {
+        "area": "local PostgreSQL service",
+        "result": "None exists on the host."
+      },
+      {
+        "area": "matches returned",
+        "result": "The only matches were repository schemas and reports already covered by the in-session search — no new artifact."
+      }
+    ],
+    "conclusion": "NO — the host-side search found no copy of the frozen corpus. Together with the in-session search this closes the reachable search space known to the project: the container has no copy and the owner's host has no copy.",
+    "what_this_does_not_establish": "It does not prove the corpus is gone everywhere. It was not searched for on the machine that actually ran batches 001-006 if that is a different machine, nor in any off-host backup, external drive or cloud snapshot of it. The external artifact named in recovery_search.remaining_external_artifact_required is still what is required, and is still outstanding."
   },
   "blocker_recovery_checklist": {
     "purpose": "The ordered, precise steps that unblock the calibration pilot. Nothing here has been performed; the pilot remains not run.",
