@@ -1,6 +1,6 @@
 # GOLD-001 batch 007 — E/F/G implemented, calibration pilot blocked
 
-**FIXES IMPLEMENTED AND VERIFIED — PILOT NOT RUN — STOPPED FOR INDEPENDENT REVIEW**
+**FIXES IMPLEMENTED AND VERIFIED — CORPUS RECOVERY EXHAUSTED AND FAILED — SAFEGUARDS ADDED — PILOT NOT RUN — STOPPED FOR INDEPENDENT REVIEW**
 
 *Written 2026-08-30T03:58:20Z against corpus snapshot `snap_689e336380a054d8039dc35b2c09cd0a`, commit `c65d5204901e`. Follows `GOLD-001-batch-007-preregistration.md` and `.json`.*
 
@@ -127,6 +127,53 @@ No pilot case was authored. Authoring 10 cases against invented or re-fetched ev
 
 **To unblock:** Restore the corpus snapshot into Postgres (or restore data/raw/ and re-ingest), then re-run batch 006's miners to re-derive the spans that reach no builder and take the pilot's 10 from that set.
 
+### Recovery search — every path, and what was in it
+
+*2026-08-30T10:59:40Z.* **NO — exhausted; the snapshot is not present in any reachable location.**
+
+Can the exact frozen corpus snapshot snap_689e336380a054d8039dc35b2c09cd0a, captured 2026-08-17T04:46:19Z, be recovered non-destructively from anything reachable in this session?
+
+| path searched | method | result |
+| --- | --- | --- |
+| git history — all refs, all commits | git log --all --diff-filter=A over data/raw/*; git rev-list --all with ls-tree for every path ever present; search of every added path for dump/archive/backup extensions | Only data/raw/.gitkeep was ever tracked (added in 185bc3a). No database dump, archive or corpus file has ever been committed on any branch. |
+| tracked repository artifacts | scanned every evals/, experiments/ and docs/ JSON and JSONL for document or chunk body text | The largest carrier, experiments/EXP-011/results.json, holds 9858 characters of query-result snippets across 0 identifiable version ids. Closed records reference offsets up to character 2711869, so the corpus is at least ~2.7M characters: the artifacts hold under 0.4% of it, with no version ids and no offsets into normalized_text. Reconstruction is impossible and would in any case be the prohibited hand-reconstruction. |
+| prior-session artifacts, manifests, logs and reports | searched the whole filesystem for any file naming the snapshot id | The only file outside the repository naming snap_689e336380a054d8039dc35b2c09cd0a is this session's own transcript at /root/.claude/projects/. No prior-session artifact carries corpus text. |
+| database dump or backup locations named by project documentation | grep across all Markdown, Python, YAML and the Makefile for pg_dump, pg_restore, backup, .dump and restore instructions | The project documentation names no backup or dump location anywhere. There is no documented restore path; the corpus was only ever produced by scripts/fetch_corpus.py into gitignored data/raw/ and ingested from there. |
+| Docker volumes (docker-compose.yml declares rag_pgdata) | inspected /var/lib/docker/volumes and the Docker daemon | /var/lib/docker/volumes does not exist and no Docker daemon is running. The rag_pgdata volume has never existed in this container. |
+| PostgreSQL data directories | pg_lsclusters; started the 16/main cluster; enumerated databases, user tables and WAL | One cluster, initdb'd 2026-03-31 at image build. It holds only postgres, template0 and template1, zero user tables, and a single WAL segment 000000010000000000000001 — it has never held project data. A second finding: the pgvector extension is not available in this cluster at all (0 rows in pg_available_extensions, no extension files on disk), so the expected schema cannot even be created here, let alone populated, because sql/001_init.sql requires the VECTOR type. |
+| persistent Claude workspace and mounted volumes | findmnt for non-overlay mounts; listed /home/user, /mnt/user-data, /mnt/attach, /srv, /root/.claude/backups and /root/.claude/projects | All empty of corpus. /mnt/user-data/working, /mnt/attach and /srv are empty directories; /root/.claude/backups holds only Claude configuration backups. |
+| filesystem-wide archive sweep | find / -xdev for *.dump, *.pgdump, *.sql.gz, *.tar, *.tar.gz, *.tgz, *.bak and *backup* over 100KB, excluding system and package directories | No candidate found. No provider documentation exists anywhere outside the repository. |
+
+**Constraints observed.**
+
+- No current live URL was fetched.
+- No toy or fixture data was used or accepted as corpus.
+- SYSTEM-A and SYSTEM-B were not run.
+- Validation and holdout were not inspected.
+- Fingerprint proof was required before any corpus would have been accepted; none was offered because none was found.
+
+### The precise remaining external artifact
+
+One of two artifacts, neither of which exists in this environment. Both must reproduce the frozen fingerprint; nothing else is admissible.
+
+**Option A — A PostgreSQL dump of the `rag` database as it stood on or after 2026-08-17.**
+
+- document_source rows for all 202 documents
+- document_version rows carrying normalized_text and content_hash
+- corpus_snapshot and corpus_snapshot_version rows for snap_689e336380a054d8039dc35b2c09cd0a
+- *Produced by:* pg_dump of the machine that ran batches 001-006
+
+**Option B — The 202 raw Markdown files that were under data/raw/, as captured 2026-08-17T04:46:19Z.**
+
+- the files at the local_path values in data/manifests/v1-openai-anthropic.yaml
+- byte-identical to the capture, since content_hash is taken over the ingested text
+- *Produced by:* the gitignored data/raw/ tree on the machine that ran scripts/fetch_corpus.py
+- *Note:* Re-running fetch_corpus.py today does NOT produce this: it fetches current documentation.
+
+**Environment prerequisite.** The target PostgreSQL must have the pgvector extension available. This container does not, so sql/001_init.sql cannot create the schema here even given the data.
+
+**Acceptance test.** scripts/rederive_unbuildable.py refuses unless the restored corpus hashes to snap_689e336380a054d8039dc35b2c09cd0a, every closed span re-hashes at its recorded offsets, and the re-derived unbuildable count reproduces 2482. Passing all three is the proof; a snapshot row saying so is not.
+
 ### Recovery checklist
 
 *The ordered, precise steps that unblock the calibration pilot. Nothing here has been performed; the pilot remains not run.*
@@ -175,16 +222,46 @@ Author in the preregistered order — frozen evidence, literal source fact, subj
 
 Until the pilot runs and is independently reviewed, the paraphrasing lane does not scale and no batch-007 candidate is authored. The preregistration is explicit that a failed or absent pilot means revising the contract and re-piloting — not proceeding.
 
-## 5. Invariants
+## 5. Reproducibility safeguards added
+
+The blocker is not only that the corpus is missing. It is that batch 006 recorded a count instead of identities, so even a restored corpus needs a re-derivation step that batch 006 made necessary. These safeguards mean a future batch does not repeat that.
+
+Implemented in `src/rag_v1/gold/provenance.py`, tested in `tests/test_gold001_provenance.py`.
+
+| | need | provides | verified by |
+| --- | --- | --- | --- |
+| **S1** | future generation persists the unbuildable-span identities | UnbuildableLog records (version_id, char_start, char_end, evidence_text, evidence_hash, reason) for every fact a builder declines, and writes a manifest. NO_BUILDER is kept distinct from SEMANTIC_GATE, because the pilot may draw only from the former. | identity is kept not just counted; the same span twice is one entry; the two reasons stay distinguishable; the manifest carries the entries |
+| **S2** | corpus snapshot fingerprint | fingerprint() reproduces the snapshot-id construction of rag_v1.snapshot.create_snapshot without a database, and verify_fingerprint() answers whether a corpus hashes to the id it claims. chunking_config_from_settings() builds the hashed config so a caller cannot silently mis-key it. | construction matches rag_v1.ids primitives exactly; one changed content hash changes the id; a missing document changes the id; a corpus claiming an id it does not hash to is rejected |
+| **S3** | restore verifier | verify_restored_corpus() re-reads every closed span at its recorded offsets and re-hashes it against evidence_hash, reporting mismatches and missing versions rather than a bare boolean. | all 137 closed spans across batches 003-006 satisfy sha256(evidence_text) == evidence_hash; a correct restore verifies; a single changed character fails; an offset shifted by one fails; a missing document is reported, not skipped |
+| **S4** | deterministic pilot-selection manifest | select_pilot_cases() orders by span identity and records a selection basis per case, so the same input returns the same ten. Semantic-gate failures and spans already spent by a closed batch are excluded; a short pool is reported short rather than padded. | selection is order-independent; takes the preregistered ten; never selects a semantic-gate failure; excludes spent spans; records why each was chosen; reports a short pool |
+| **S5** | a guard so no report can call an unrun pilot passed | pilot_thresholds_unmet() returns which of the four preregistered thresholds a result fails. An absent result fails all four, because unmeasured is not met. | an unrun pilot fails all four; a passing pilot meets all four; one unsupported claim fails; seven of ten sound fails |
+
+**Harness — `scripts/rederive_unbuildable.py`.** Recovers the identities batch 006 discarded, by re-running batch 006's own miners and builders imported unmodified. The unbuildable set is defined by those builders as they were, so re-deriving it with a changed builder would answer a different question.
+
+*scripts/export_batch_006.py is imported, never edited. Editing it would break the very re-derivation the recovery checklist depends on.*
+
+It refuses unless:
+
+- the corpus is reachable
+- it hashes to the frozen snapshot id
+- every closed span re-reads and re-hashes correctly
+- the re-derived count reproduces the count batch 006 recorded
+
+Run in this environment it refuses at the first check and writes nothing, both with PostgreSQL stopped and with it running but empty.
+
+## 6. Invariants
 
 - `retrieval_was_not_run` is still true; `systems_executed` is still `[]`. No retrieval system was run at any point.
 - Closed batches modified: **0**. Dataset records modified: **0**. Eligibility state modified: **false**.
 - Validation and holdout were neither inspected nor modified.
 - `human_verified` set by this work: **0**. Only the project owner may set it.
-- Files added (4), modified (0):
+- Files added (7), modified (0):
   - `src/rag_v1/gold/factidentity.py` (new)
   - `src/rag_v1/gold/reasoningtype.py` (new)
   - `src/rag_v1/gold/questionscope.py` (new)
   - `tests/test_gold001_b007_fixes.py` (new)
+  - `src/rag_v1/gold/provenance.py` (new)
+  - `tests/test_gold001_provenance.py` (new)
+  - `scripts/rederive_unbuildable.py` (new)
 
-**Next:** An independent automated review has recommended keeping Gate G as preregistered and grandfathering GOLD-B006-08; that recommendation is recorded here and is not owner approval, so the G-STRICTER finding remains open for the project owner. The blocker recovery checklist must then be worked in order to restore the frozen corpus before the calibration pilot can run. The paraphrasing lane does not scale until the pilot passes and is independently reviewed.
+**Next:** The calibration pilot cannot run until the external artifact named in recovery_search.remaining_external_artifact_required is supplied: a PostgreSQL dump of the corpus, or the 202 raw files captured 2026-08-17, restored into a PostgreSQL that has pgvector. Then work the recovery checklist in order — scripts/rederive_unbuildable.py enforces steps 1 to 3 and refuses on any failure. The G-STRICTER finding remains open for the project owner; the recorded recommendation is not owner approval. The paraphrasing lane does not scale until the pilot passes and is independently reviewed.

@@ -7,7 +7,7 @@ run**, because the frozen evidence it must draw from is not in this environment.
 that opened on three green fixes and put the pilot in a footnote would be describing a
 batch that is further along than it is.
 
-Every figure is read from the artifacts at build time. Seven gates refuse the build
+Every figure is read from the artifacts at build time. Eight gates refuse the build
 rather than publish something false — including one that refuses to render if a batch-007
 candidate or pilot artifact has appeared, because then this page is describing a state
 the project has left, and one that refuses to render the independent automated review as
@@ -123,7 +123,31 @@ def build_html(data: dict) -> str:
     finding = record["finding_for_reviewer"]
     review = record["independent_automated_review"]
     checklist = record["blocker_recovery_checklist"]
+    search = record["recovery_search"]
+    safeguards = record["reproducibility_safeguards_added"]
     prereg = data["prereg"]
+
+    search_rows = rows([
+        (f"<b>{ticks(ps['path'])}</b>", ticks(ps["method"]), ticks(ps["result"]))
+        for ps in search["paths_searched"]])
+    constraint_items = "".join(f"<li>{ticks(c)}</li>"
+                               for c in search["constraints_observed"])
+    required = search["remaining_external_artifact_required"]
+    option_blocks = "".join(
+        f"<h3>{key.replace('_', ' ').title()} — {ticks(required[key]['artifact'])}</h3>"
+        + "<ul>" + "".join(f"<li>{ticks(m)}</li>"
+                           for m in required[key]["must_contain"])
+        + f"<li><i>Produced by:</i> {ticks(required[key]['produced_by'])}</li>"
+        + (f"<li><i>Note:</i> {ticks(required[key]['note'])}</li>"
+           if required[key].get("note") else "")
+        + "</ul>"
+        for key in ("option_a", "option_b"))
+    safeguard_rows = rows([
+        (f"<b>{sg['id']}</b>", ticks(sg["need"]), ticks(sg["provides"]),
+         ticks(sg["verified_by"]))
+        for sg in safeguards["safeguards"]], classes=("num", "", "", ""))
+    refuse_items = "".join(f"<li>{ticks(r)}</li>"
+                           for r in safeguards["harness"]["refuses_unless"])
 
     review_items = "".join(
         f"<h3>{esc(r['id'])}. {ticks(r['text'])}</h3><p>{ticks(r['rationale'])}</p>"
@@ -309,7 +333,40 @@ condition than a failed one.</p>
 <table class="long"><thead><tr><th class="num">#</th><th>step</th>
 <th>expected / done when</th></tr></thead><tbody>{step_rows}</tbody></table>
 
-<h2>6. Invariants</h2>
+<h2 class="break">6. Recovery search — every path, and what was in it</h2>
+<div class="callout warn">
+<div class="label">{esc(search['conclusion'])}</div>
+<p>{ticks(search['question'])}</p>
+<p class="dim">Searched {esc(search['performed_at'])}</p>
+</div>
+<table class="long"><thead><tr><th>path searched</th><th>method</th><th>result</th>
+</tr></thead><tbody>{search_rows}</tbody></table>
+<p><b>Constraints observed throughout.</b></p>
+<ul>{constraint_items}</ul>
+
+<h2>7. The precise remaining external artifact</h2>
+<p>{ticks(required['summary'])}</p>
+{option_blocks}
+<div class="callout warn">
+<div class="label">Environment prerequisite</div>
+<p>{ticks(required['environment_prerequisite'])}</p>
+</div>
+<p><b>Acceptance test.</b> {ticks(required['acceptance_test'])}</p>
+
+<h2>8. Reproducibility safeguards added</h2>
+<p>{ticks(safeguards['why'])}</p>
+<p>Implemented in <code>{esc(safeguards['implemented_in'])}</code>, tested in
+<code>{esc(safeguards['tested_in'])}</code>.</p>
+<table class="long"><thead><tr><th class="num"></th><th>need</th><th>provides</th>
+<th>verified by</th></tr></thead><tbody>{safeguard_rows}</tbody></table>
+<p><b>Harness — <code>{esc(safeguards['harness']['script'])}</code>.</b>
+{ticks(safeguards['harness']['purpose'])}</p>
+<p><i>{ticks(safeguards['harness']['does_not_modify'])}</i></p>
+<p>It refuses unless:</p>
+<ul>{refuse_items}</ul>
+<p>{ticks(safeguards['harness']['verified_now'])}</p>
+
+<h2>9. Invariants</h2>
 <ul>
 <li><code>retrieval_was_not_run</code> is still <code>true</code> and
 <code>systems_executed</code> is still <code>[]</code>. No retrieval system was run
@@ -412,6 +469,16 @@ def main() -> int:
     if record["finding_for_reviewer"]["id"] not in review["concerns"]:
         raise SystemExit("refusing to build: the recommendation does not name the "
                          "finding it concerns")
+
+    # 8. The page describes a failed recovery. If a corpus has since been restored and
+    #    verified, this page is stale and must not be republished as current.
+    if not record["recovery_search"]["conclusion"].startswith("NO"):
+        raise SystemExit("refusing to build: the recovery search no longer concludes the "
+                         "corpus is unavailable, so this page is stale")
+    unbuildable = REPO_ROOT / "experiments/GOLD-001/GOLD-001-batch-006-unbuildable.json"
+    if unbuildable.exists():
+        raise SystemExit("refusing to build: an unbuildable-span manifest exists, so the "
+                         "blocker this page describes has been cleared")
 
     chrome = next((c for c in CHROME_CANDIDATES if Path(c).exists()), None)
     if chrome is None:
