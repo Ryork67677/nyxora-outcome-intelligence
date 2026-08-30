@@ -1,0 +1,381 @@
+#!/usr/bin/env python3
+"""Render the batch-007 E/F/G implementation and the blocked calibration pilot as a PDF.
+
+The finding leads: the three preregistered generator fixes are implemented and verified
+against the real candidates that revealed them, and the calibration pilot **did not
+run**, because the frozen evidence it must draw from is not in this environment. A page
+that opened on three green fixes and put the pilot in a footnote would be describing a
+batch that is further along than it is.
+
+Every figure is read from the artifacts at build time. Six gates refuse the build rather
+than publish something false — including one that refuses to render if a batch-007
+candidate or pilot artifact has appeared, because then this page is describing a state
+the project has left.
+"""
+
+from __future__ import annotations
+
+import argparse
+import html
+import json
+import subprocess
+import sys
+import tempfile
+from pathlib import Path
+
+REPO_ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(REPO_ROOT / "src"))
+
+from rag_v1.gold import questionscope, reasoningtype  # noqa: E402
+from rag_v1.gold.factidentity import duplicate_facts  # noqa: E402
+
+RECORD = REPO_ROOT / "experiments/GOLD-001/GOLD-001-batch-007-efg-fixes.json"
+PREREG = REPO_ROOT / "experiments/GOLD-001/GOLD-001-batch-007-preregistration.json"
+STATUS = REPO_ROOT / "experiments/GOLD-001/GOLD-001-eligibility-status.json"
+BATCH_006 = REPO_ROOT / "evals/review/gold_review_batch_006_final.json"
+BATCH_006_GEN = REPO_ROOT / "evals/review/gold_review_batch_006.json"
+BATCH_005 = REPO_ROOT / "evals/review/gold_review_batch_005_final.json"
+CHROME_CANDIDATES = (
+    "/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell",
+    "/usr/bin/chromium", "/usr/bin/chromium-browser", "/usr/bin/google-chrome",
+)
+
+CSS = """
+@page { size: Letter; margin: 16mm 14mm 14mm 14mm; }
+* { box-sizing: border-box; }
+body { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 9.4pt;
+  line-height: 1.45; color: #16181c; margin: 0;
+  -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+h1 { font-size: 19pt; line-height: 1.15; margin: 0 0 4pt; letter-spacing: -0.4pt; }
+h2 { font-size: 11.8pt; margin: 16pt 0 6pt; padding-bottom: 4pt;
+     border-bottom: 1.2pt solid #16181c; letter-spacing: -0.2pt; }
+h3 { font-size: 9.7pt; margin: 10pt 0 4pt; }
+p { margin: 0 0 6pt; }
+code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 8.2pt; background: #eef0f3; padding: 0.5pt 3pt; border-radius: 2pt; }
+td.mono { white-space: nowrap; width: 1%; }
+.subtitle { font-size: 10.3pt; color: #52565d; margin: 0 0 11pt; }
+.rule { height: 2.5pt; background: #16181c; margin: 0 0 13pt; }
+table { width: 100%; border-collapse: collapse; margin: 7pt 0 11pt; font-size: 8.3pt;
+  page-break-inside: avoid; }
+table.long { page-break-inside: auto; }
+tr { page-break-inside: avoid; }
+th { text-align: left; font-weight: 600; padding: 5pt 6pt; background: #16181c;
+     color: #fff; }
+td { padding: 4pt 6pt; border-bottom: 0.6pt solid #dde0e4; vertical-align: top; }
+tbody tr:nth-child(even) td { background: #f6f7f9; }
+.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.ok { color: #14532d; font-weight: 700; }
+.no { color: #8a1c1c; font-weight: 700; }
+.dim { color: #6f747b; }
+.callout { border-left: 2.5pt solid #16181c; background: #f6f7f9; padding: 8pt 11pt;
+  margin: 9pt 0 11pt; page-break-inside: avoid; }
+.callout.warn { border-left-color: #8a1c1c; background: #fdf5f5; }
+.callout.win { border-left-color: #14532d; background: #f2f8f4; }
+.callout p:last-child { margin-bottom: 0; }
+.callout .label { font-size: 7.2pt; letter-spacing: 0.7pt; text-transform: uppercase;
+  color: #52565d; font-weight: 700; margin-bottom: 3pt; }
+.callout.warn .label { color: #8a1c1c; }
+.callout.win .label { color: #14532d; }
+ol, ul { margin: 0 0 7pt; padding-left: 15pt; } li { margin-bottom: 3.5pt; }
+.grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8pt;
+  margin: 4pt 0 11pt; }
+.stat { border: 0.8pt solid #dde0e4; padding: 7pt 9pt; border-radius: 3pt; }
+.stat.warn { border-color: #8a1c1c; background: #fdf5f5; }
+.stat.win { border-color: #14532d; background: #f2f8f4; }
+.stat .big { font-size: 14.5pt; font-weight: 700; line-height: 1.1;
+  letter-spacing: -0.5pt; }
+.stat .cap { font-size: 7.2pt; color: #52565d; margin-top: 2pt; }
+blockquote { margin: 4pt 0 6pt; padding: 5pt 9pt; border-left: 2pt solid #c9ccd1;
+  background: #f6f7f9; font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 7.6pt; color: #33373d; white-space: pre-wrap; }
+.break { page-break-before: always; }
+footer { margin-top: 14pt; padding-top: 8pt; border-top: 0.6pt solid #dde0e4;
+  font-size: 7.6pt; color: #6f747b; }
+"""
+
+
+def esc(text: object) -> str:
+    return html.escape(str(text), quote=False)
+
+
+def ticks(text: str) -> str:
+    out, parts = [], esc(text).split("`")
+    for index, part in enumerate(parts):
+        out.append(f"<code>{part}</code>" if index % 2 else part)
+    return "".join(out)
+
+
+def rows(items, classes=()) -> str:
+    return "".join(
+        "<tr>" + "".join(
+            f"<td class='{classes[i] if i < len(classes) else ''}'>{cell}</td>"
+            for i, cell in enumerate(row)) + "</tr>"
+        for row in items)
+
+
+def build_html(data: dict) -> str:
+    record = data["record"]
+    state = record["state_verified_before_any_change"]
+    fix_e, fix_f, fix_g = record["fixes_implemented"]
+    pilot = record["calibration_pilot"]
+    finding = record["finding_for_reviewer"]
+    prereg = data["prereg"]
+
+    state_rows = rows([
+        ("human_verified", f"<b>{state['human_verified']}</b>", "<span class='ok'>PASS</span>"),
+        ("holdout_eligible", f"<b>{state['holdout_eligible']}</b>", "<span class='ok'>PASS</span>"),
+        ("human_rejected", f"<b>{state['human_rejected']}</b>", "<span class='ok'>PASS</span>"),
+        ("genuine multi-hop", state["genuine_multi_hop"], "<span class='ok'>PASS</span>"),
+        ("closure sha256",
+         f"<code>{esc(state['closure_sha256_recomputed'][:24])}…</code>",
+         "<span class='ok'>recomputed, PASS</span>"),
+        ("retrieval_was_not_run", f"<code>{str(state['retrieval_was_not_run']).lower()}</code>",
+         "<span class='ok'>PASS</span>"),
+        ("systems_executed", "<code>[]</code>", "<span class='ok'>PASS</span>"),
+        ("SYSTEM-A / SYSTEM-B", "<code>9afcb5b7…</code> / <code>304c3509…</code>",
+         "<span class='ok'>frozen, unchanged</span>"),
+        ("batch-007 candidate or pilot artifact", "none",
+         "<span class='ok'>PASS</span>"),
+    ], classes=("", "mono", ""))
+
+    f_rows = rows([
+        (f"<code>{r['candidate_id'][-2:]}</code>",
+         f"<code>{r['generated_label']}</code>",
+         f"<code>{r['owner_label']}</code>",
+         f"<code>{r['derived_label']}</code>",
+         ("<span class='ok'>PASS</span>" if r["agrees_with_owner"]
+          else "<span class='no'>FAIL</span>")
+         + (" <b>relabelled</b>" if r["was_relabelled_by_owner"] else ""))
+        for r in fix_f["result"]["per_candidate"]
+    ], classes=("mono", "", "", "", ""))
+
+    g_rows = rows([
+        (f"<code>{cid[-2:]}</code>",
+         f"<code>{fix_g['result']['as_generated_correctly_dropped'][cid]}</code>"
+         " — <span class='ok'>dropped</span>",
+         f"<code>{fix_g['result']['as_approved_pass'][cid]}</code>"
+         " — <span class='ok'>exports</span>")
+        for cid in sorted(fix_g["result"]["as_generated_correctly_dropped"])
+    ], classes=("mono", "", ""))
+
+    why_items = "".join(
+        f"<li><b>{esc(w['finding'])}.</b> {ticks(w['evidence'])}</li>"
+        for w in pilot["why"])
+
+    threshold_rows = rows([
+        (k.replace("_", " "), v["threshold"],
+         "<span class='no'>not measured — pilot not run</span>")
+        for k, v in pilot["thresholds_not_measurable"].items()
+    ])
+
+    files_items = "".join(f"<li><code>{esc(f)}</code> (new)</li>"
+                          for f in record["invariants_held"]["files_added"])
+
+    return f"""<title>Batch 007 E/F/G Fixes</title>
+<style>{CSS}</style>
+<h1>GOLD-001 — Batch 007 Fixes E/F/G,<br>and the Pilot That Could Not Run</h1>
+<p class="subtitle">Production RAG v1 · {esc(record['written_at'])} · corpus snapshot
+<code>{esc(record['corpus_snapshot'])}</code> · commit
+<code>{esc(record['git_commit'][:12])}</code></p>
+<div class="rule"></div>
+
+<div class="callout warn">
+<div class="label">The finding</div>
+<p><b>The calibration pilot did not run.</b> The three preregistered generator defects
+are implemented and verified against the real candidates that revealed them. The pilot
+the preregistration requires before the paraphrasing lane may scale could not be run:
+the frozen evidence it must draw from is not present in this environment, and no
+substitute for it is admissible. <b>The paraphrasing lane does not scale, and no
+batch-007 candidate has been authored.</b></p>
+</div>
+
+<div class="grid4">
+<div class="stat win"><div class="big">3 / 3</div>
+<div class="cap">preregistered fixes implemented</div></div>
+<div class="stat win"><div class="big">{esc(fix_f['result']['agreement_with_owner'])}</div>
+<div class="cap">whole-sentence labels agreeing with the owner</div></div>
+<div class="stat warn"><div class="big">0 / 10</div>
+<div class="cap">pilot cases authored — input unobtainable</div></div>
+<div class="stat"><div class="big">{state['holdout_eligible']}</div>
+<div class="cap">project holdout-eligible, unchanged</div></div>
+</div>
+
+<h2>1. State verified before anything was written</h2>
+<table><thead><tr><th>reads</th><th>value</th><th></th></tr></thead>
+<tbody>{state_rows}</tbody></table>
+<p>The closure hash was <b>recomputed</b> from the nine closed batch-006 records rather
+than read off the closure, so the state is checked rather than quoted.</p>
+
+<h2>2. E — cross-library duplicate facts</h2>
+<p><code>{esc(fix_e['implemented_in'])}</code></p>
+<p>{ticks(fix_e['behaviour'])}</p>
+<p><b>The pair the owner caught is now visible.</b> <code>GOLD-B005-11</code> (OpenAI
+Python library) and <code>GOLD-B006-06</code> (TypeScript/JavaScript library) share no
+question text, no span offsets and no span text — which is exactly why the old
+comparison could not see them. Both now normalise to the triple
+<code>{esc(tuple(fix_e['result']['shared_triple']))}</code>, and the second is flagged.</p>
+<blockquote>B005-11  Pass `base_url` to `bedrock(...)` or set `AWS_BEDROCK_BASE_URL` to override the derived `https://bedrock-mantle.&lt;region&gt;.api.aws/openai/v1` endpoint.
+B006-06  … and `AWS_BEDROCK_BASE_URL` can override the endpoint.</blockquote>
+<p>Batch 005 predates the triple fields, so its triple is <b>derived from its frozen
+evidence</b> — never from its question, because the evidence is the part that cannot
+drift. Within batch 006 the check raises
+<b>{fix_e['result']['false_positives_within_batch_006']}</b> false positives. It
+<b>flags and never drops</b>: two libraries genuinely differing in behaviour is a real
+case, and only a reviewer can tell that apart from a restatement.</p>
+
+<h2>3. F — reasoning type read from the whole sentence</h2>
+<p><code>{esc(fix_f['implemented_in'])}</code></p>
+<p>{ticks(fix_f['behaviour'])}</p>
+<table class="long"><thead><tr><th>id</th><th>generated</th><th>owner</th>
+<th>whole-sentence</th><th></th></tr></thead><tbody>{f_rows}</tbody></table>
+<p><b>{esc(fix_f['result']['agreement_with_owner'])}</b> agreement with the owner's
+labels, including all <b>{fix_f['result']['relabelled_cases_now_correct']}</b> the owner
+had to relabel. Lifecycle is tested first, whatever the verb: a compatibility sentence
+almost always also contains a lookup verb, and reading it as a lookup is precisely how
+<code>GOLD-B006-03</code> was mislabelled.</p>
+
+<h2 class="break">4. G — a scoped source needs a scoped question</h2>
+<p><code>{esc(fix_g['implemented_in'])}</code></p>
+<p>{ticks(fix_g['behaviour'])}</p>
+<table><thead><tr><th>id</th><th>as generated</th><th>as owner-approved</th></tr></thead>
+<tbody>{g_rows}</tbody></table>
+<p>The second condition is the one with teeth. A qualifier that appears in the question
+but in no critical string is decoration: nothing downstream reads it. Requiring it in the
+critical strings is what turns this from a style rule into a gate.</p>
+
+<div class="callout">
+<div class="label">A finding the reviewer must decide — {esc(finding['id'])}</div>
+<p>{ticks(finding['detail'])}</p>
+<p><i>{esc(finding['status'])}.</i></p>
+</div>
+
+<h2>5. The calibration pilot was not run</h2>
+<div class="callout warn">
+<div class="label">Blocked</div>
+<p>{ticks(pilot['status'])}</p>
+</div>
+<p>The preregistration fixes the pilot's input exactly: <i>10 evidence spans that failed
+batch 006 ONLY because no builder could express them — NO_BUILDER / UNBUILDABLE.</i>
+That input cannot be obtained here, on four independent grounds.</p>
+<ol>{why_items}</ol>
+<p>{ticks(pilot['what_was_not_done_and_why'])}</p>
+
+<h3>The four thresholds, unmeasured</h3>
+<table><thead><tr><th>criterion</th><th>threshold</th><th>measured</th></tr></thead>
+<tbody>{threshold_rows}</tbody></table>
+<p><b>To unblock:</b> {ticks(pilot['to_unblock'])}</p>
+<p>Until the pilot runs and is independently reviewed, the paraphrasing lane does not
+scale. The preregistration is explicit that a failed pilot means revising the authoring
+contract and re-piloting — not proceeding — and an <i>absent</i> pilot is not a weaker
+condition than a failed one.</p>
+
+<h2>6. Invariants</h2>
+<ul>
+<li><code>retrieval_was_not_run</code> is still <code>true</code> and
+<code>systems_executed</code> is still <code>[]</code>. No retrieval system was run
+against any candidate at any point; SYSTEM-A and SYSTEM-B remain frozen and unexecuted.</li>
+<li>Closed batches modified: <b>{record['invariants_held']['closed_batches_modified']}</b>.
+Dataset records modified:
+<b>{record['invariants_held']['dataset_records_modified']}</b>. Eligibility state
+modified: <b>{str(record['invariants_held']['eligibility_state_modified']).lower()}</b>.</li>
+<li>Validation and holdout were neither inspected nor modified; no split is frozen.</li>
+<li><code>human_verified</code> set by this work:
+<b>{record['invariants_held']['human_verified_set_by_this_work']}</b>.
+{esc(prereg['who_may_set_human_verified'])}</li>
+<li>Files added, none modified:<ul>{files_items}</ul></li>
+</ul>
+<p><b>Next:</b> {ticks(record['next_step'])}</p>
+
+<footer>Generated by <code>scripts/build_batch_007_efg_pdf.py</code> from the E/F/G
+implementation record, the batch-007 preregistration, the project-wide eligibility status
+and the closed batch-005 and batch-006 records. Every figure is read from those artifacts
+at build time. The build refuses to run if the record's state disagrees with the
+eligibility status, if the E/F/G checks re-run here disagree with the recorded results,
+if a batch-007 candidate or pilot artifact exists, or if the page would claim the pilot
+ran. Raw provider documentation is not redistributed; quoted spans are the short excerpts
+under review.</footer>
+"""
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--out",
+                        default="docs/reports/GOLD-001-batch-007-efg-fixes.pdf")
+    args = parser.parse_args()
+
+    paths = {"record": RECORD, "prereg": PREREG, "status": STATUS,
+             "batch_006": BATCH_006, "batch_006_gen": BATCH_006_GEN,
+             "batch_005": BATCH_005}
+    for name, path in paths.items():
+        if not path.exists():
+            raise SystemExit(f"{path} is missing — cannot build the {name} section")
+    data = {name: json.loads(path.read_text()) for name, path in paths.items()}
+    record, status = data["record"], data["status"]
+    b006 = {r["candidate_id"]: r for r in data["batch_006"]["records"]}
+    b005 = {r["candidate_id"]: r for r in data["batch_005"]["records"]}
+    gen006 = {r["candidate_id"]: r for r in data["batch_006_gen"]["records"]}
+
+    # 1. The record's starting state must still be the project's state.
+    state = record["state_verified_before_any_change"]
+    if (state["holdout_eligible"] != status["combined"]["holdout_eligible"]
+            or state["human_rejected"] != status["combined"]["human_rejected"]
+            or state["human_verified"] != status["combined"]["human_verified"]):
+        raise SystemExit("refusing to build: the record's state disagrees with the "
+                         "eligibility status")
+
+    # 2. Retrieval must still not have been run. This page asserts it on every page.
+    if status["retrieval_was_not_run"] is not True or status["systems_executed"] != []:
+        raise SystemExit("refusing to build: retrieval state has changed")
+
+    # 3. Fix F is re-run here, never trusted: the recorded agreement must reproduce.
+    for row in record["fixes_implemented"][1]["result"]["per_candidate"]:
+        derived = reasoningtype.evaluate(b006[row["candidate_id"]])["derived"]
+        if derived != row["derived_label"]:
+            raise SystemExit(f"refusing to build: fix F no longer derives "
+                             f"{row['derived_label']} for {row['candidate_id']}")
+
+    # 4. Fix G is re-run here too, on both the generated and the approved forms.
+    result_g = record["fixes_implemented"][2]["result"]
+    for cid, expected in result_g["as_generated_correctly_dropped"].items():
+        if questionscope.evaluate(gen006[cid])["status"] != expected:
+            raise SystemExit(f"refusing to build: fix G no longer drops {cid}")
+    for cid, expected in result_g["as_approved_pass"].items():
+        if questionscope.evaluate(b006[cid])["status"] != expected:
+            raise SystemExit(f"refusing to build: fix G changed its verdict on {cid}")
+
+    # 5. Fix E must still see the pair the owner caught.
+    flags = duplicate_facts([b006["GOLD-B006-06"]], [b005["GOLD-B005-11"]])
+    if not flags or flags[0]["status"] != "duplicate_fact":
+        raise SystemExit("refusing to build: fix E no longer flags the pair it was "
+                         "written for")
+
+    # 6. The pilot must still be un-run, and no batch-007 candidate may exist. If either
+    #    changed, this page describes a state the project has left.
+    if record["calibration_pilot"]["run"] is not False:
+        raise SystemExit("refusing to build: the record says the pilot ran")
+    for path in (REPO_ROOT / "evals/review/gold_review_batch_007.json",
+                 REPO_ROOT / "evals/review/gold_review_batch_007_pilot.json"):
+        if path.exists():
+            raise SystemExit(f"refusing to build: {path.name} exists, so this page "
+                             "would describe a state the project has left")
+
+    chrome = next((c for c in CHROME_CANDIDATES if Path(c).exists()), None)
+    if chrome is None:
+        raise SystemExit("No Chromium binary found")
+    out = REPO_ROOT / args.out
+    out.parent.mkdir(parents=True, exist_ok=True)
+    document = build_html(data)
+    with tempfile.TemporaryDirectory() as tmp:
+        src = Path(tmp) / "efg007.html"
+        src.write_text(document, encoding="utf-8")
+        subprocess.run([chrome, "--headless", "--no-sandbox", "--disable-gpu",
+                        f"--user-data-dir={tmp}/profile", "--no-pdf-header-footer",
+                        f"--print-to-pdf={out}", src.as_uri()],
+                       check=True, capture_output=True)
+    print(f"wrote {out} ({out.stat().st_size // 1024} KB)")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

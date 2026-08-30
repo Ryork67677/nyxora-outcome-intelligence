@@ -1,0 +1,225 @@
+{
+  "document": "GOLD-001 batch 007 — preregistered fixes E/F/G implemented; calibration pilot BLOCKED",
+  "status": "FIXES IMPLEMENTED AND VERIFIED — PILOT NOT RUN — STOPPED FOR INDEPENDENT REVIEW",
+  "written_at": "2026-08-30T03:58:20Z",
+  "git_commit": "c65d5204901e38e5187552c006f79892b4c9e83c",
+  "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a",
+  "preregistration_followed": [
+    "experiments/GOLD-001/GOLD-001-batch-007-preregistration.md",
+    "experiments/GOLD-001/GOLD-001-batch-007-preregistration.json"
+  ],
+  "state_verified_before_any_change": {
+    "human_verified": 90,
+    "holdout_eligible": 90,
+    "human_rejected": 9,
+    "genuine_multi_hop": 1,
+    "candidates": 99,
+    "closure_sha256_recomputed": "7ff5596c755a01fc57cf59b04cafdb77bd86a9f97f49cfdb58ff1782e07f68a2",
+    "closure_sha256_matches_record": true,
+    "retrieval_was_not_run": true,
+    "systems_executed": [],
+    "holdout_frozen": false,
+    "frozen_systems_verified": {
+      "SYSTEM-A-GLOBAL": "9afcb5b7c58ebacff0b4c3711dd9618a2e727f4195dd1787a5da81e478ee0b38",
+      "SYSTEM-B-DOC-C": "304c350940b83733df6043ae3a8abdcbcde33d16950730127aa9f1f39494388b",
+      "unchanged": true
+    },
+    "no_batch_007_artifact_existed": true,
+    "no_pilot_artifact_existed": true
+  },
+  "fixes_implemented": [
+    {
+      "id": "E",
+      "defect": "cross-library duplicate facts are invisible to duplicate control",
+      "implemented_in": "src/rag_v1/gold/factidentity.py",
+      "behaviour": "compares the normalised (subject, relation, object) triple in addition to text and offsets; flags, never drops; reports 'not_comparable' when no triple can be read",
+      "verified_against": "the real GOLD-B005-11 / GOLD-B006-06 pair the owner caught",
+      "result": {
+        "pair_detected": true,
+        "shared_triple": [
+          "aws_bedrock_base_url",
+          "override",
+          "endpoint"
+        ],
+        "false_positives_within_batch_006": 0
+      }
+    },
+    {
+      "id": "F",
+      "defect": "compound single-span facts are labelled by their first verb",
+      "implemented_in": "src/rag_v1/gold/reasoningtype.py",
+      "behaviour": "classifies from the whole sentence; lifecycle first whatever the verb; configuration_interaction requires an interaction verb, so one requirement naming two identifiers is a lookup",
+      "verified_against": "all nine batch-006 candidates against the owner's labels",
+      "result": {
+        "agreement_with_owner": "9/9",
+        "relabelled_cases_now_correct": 3,
+        "per_candidate": [
+          {
+            "candidate_id": "GOLD-B006-01",
+            "generated_label": "configuration_interaction",
+            "owner_label": "exact_lookup",
+            "derived_label": "exact_lookup",
+            "agrees_with_owner": true,
+            "was_relabelled_by_owner": true
+          },
+          {
+            "candidate_id": "GOLD-B006-02",
+            "generated_label": "error_behavior",
+            "owner_label": "error_behavior",
+            "derived_label": "error_behavior",
+            "agrees_with_owner": true,
+            "was_relabelled_by_owner": false
+          },
+          {
+            "candidate_id": "GOLD-B006-03",
+            "generated_label": "exact_lookup",
+            "owner_label": "lifecycle_compatibility_migration",
+            "derived_label": "lifecycle_compatibility_migration",
+            "agrees_with_owner": true,
+            "was_relabelled_by_owner": true
+          },
+          {
+            "candidate_id": "GOLD-B006-04",
+            "generated_label": "exact_lookup",
+            "owner_label": "exact_lookup",
+            "derived_label": "exact_lookup",
+            "agrees_with_owner": true,
+            "was_relabelled_by_owner": false
+          },
+          {
+            "candidate_id": "GOLD-B006-05",
+            "generated_label": "exact_lookup",
+            "owner_label": "exact_lookup",
+            "derived_label": "exact_lookup",
+            "agrees_with_owner": true,
+            "was_relabelled_by_owner": false
+          },
+          {
+            "candidate_id": "GOLD-B006-06",
+            "generated_label": "configuration_interaction",
+            "owner_label": "configuration_interaction",
+            "derived_label": "configuration_interaction",
+            "agrees_with_owner": true,
+            "was_relabelled_by_owner": false
+          },
+          {
+            "candidate_id": "GOLD-B006-07",
+            "generated_label": "configuration_interaction",
+            "owner_label": "configuration_interaction",
+            "derived_label": "configuration_interaction",
+            "agrees_with_owner": true,
+            "was_relabelled_by_owner": false
+          },
+          {
+            "candidate_id": "GOLD-B006-08",
+            "generated_label": "configuration_interaction",
+            "owner_label": "lifecycle_compatibility_migration",
+            "derived_label": "lifecycle_compatibility_migration",
+            "agrees_with_owner": true,
+            "was_relabelled_by_owner": true
+          },
+          {
+            "candidate_id": "GOLD-B006-09",
+            "generated_label": "exact_lookup",
+            "owner_label": "exact_lookup",
+            "derived_label": "exact_lookup",
+            "agrees_with_owner": true,
+            "was_relabelled_by_owner": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "G",
+      "defect": "questions inherit the breadth of their frame, not of their evidence",
+      "implemented_in": "src/rag_v1/gold/questionscope.py",
+      "behaviour": "a scope qualifier in the evidence must appear in the question AND in the critical strings, else the candidate does not export; a comparative aside is not a scope",
+      "verified_against": "the three rescoped candidates as generated and as approved",
+      "result": {
+        "as_generated_correctly_dropped": {
+          "GOLD-B006-02": "SCOPE_MISSING_FROM_CRITICAL_STRINGS",
+          "GOLD-B006-04": "SCOPE_MISSING_FROM_QUESTION",
+          "GOLD-B006-05": "SCOPE_MISSING_FROM_QUESTION"
+        },
+        "as_approved_pass": {
+          "GOLD-B006-01": "UNSCOPED_SOURCE",
+          "GOLD-B006-02": "SCOPED",
+          "GOLD-B006-03": "SCOPED",
+          "GOLD-B006-04": "SCOPED",
+          "GOLD-B006-05": "SCOPED",
+          "GOLD-B006-06": "UNSCOPED_SOURCE",
+          "GOLD-B006-07": "UNSCOPED_SOURCE",
+          "GOLD-B006-08": "SCOPE_MISSING_FROM_CRITICAL_STRINGS",
+          "GOLD-B006-09": "UNSCOPED_SOURCE"
+        }
+      }
+    }
+  ],
+  "finding_for_reviewer": {
+    "id": "G-STRICTER-THAN-BATCH-006",
+    "candidate": "GOLD-B006-08",
+    "detail": "The preregistered rule requires the scope qualifier in the question AND in the critical strings. GOLD-B006-08 carries 'OpenAI Python SDK' in its question but not in its critical strings, and the owner approved it. Implemented as preregistered rather than loosened; recorded so the reviewer can decide whether batch 007 should hold to the stricter rule.",
+    "status": "recorded as a passing test, not tuned away"
+  },
+  "calibration_pilot": {
+    "required_by_preregistration": true,
+    "size": 10,
+    "run": false,
+    "status": "BLOCKED — the frozen evidence the pilot must draw from is not present in this environment",
+    "why": [
+      {
+        "finding": "the NO_BUILDER/UNBUILDABLE set was counted, never persisted",
+        "evidence": "batch 006 recorded removed.unbuildable = 2482 as an integer; scripts/export_batch_006.py:733 increments the counter and returns, discarding the fact's identity. No artifact records which spans they were."
+      },
+      {
+        "finding": "the corpus text exists only in Postgres, and this container has no corpus",
+        "evidence": "load_docs() reads document_version.normalized_text joined to corpus_snapshot_version. The local cluster starts but holds only postgres/template0/template1 — there is no 'rag' database and no snapshot."
+      },
+      {
+        "finding": "the raw documents are not in the repository",
+        "evidence": "data/raw/ contains only .gitkeep and is gitignored by design; data/cache/ is empty."
+      },
+      {
+        "finding": "re-fetching would not reproduce the frozen snapshot",
+        "evidence": "data/manifests/v1-openai-anthropic.yaml lists 202 documents captured 2026-08-17 with no text and no content hashes. Re-fetching returns the documentation as it stands today, so offsets and evidence hashes would not match snap_689e336380a054d8039dc35b2c09cd0a, and the evidence would not be the frozen evidence."
+      }
+    ],
+    "what_was_not_done_and_why": "No pilot case was authored. Authoring 10 cases against invented or re-fetched evidence would produce exactly what the preregistration exists to prevent — a benchmark testing what its author imagined rather than what the documentation says — and the pilot's four thresholds would measure nothing.",
+    "thresholds_not_measurable": {
+      "independently_judged_factually_sound": {
+        "threshold": ">= 8 of 10",
+        "measured": null
+      },
+      "unsupported_claims": {
+        "threshold": "0",
+        "measured": null
+      },
+      "relation_direction_reversals": {
+        "threshold": "0",
+        "measured": null
+      },
+      "scope_broadening": {
+        "threshold": "0",
+        "measured": null
+      }
+    },
+    "to_unblock": "Restore the corpus snapshot into Postgres (or restore data/raw/ and re-ingest), then re-run batch 006's miners to re-derive the spans that reach no builder and take the pilot's 10 from that set."
+  },
+  "invariants_held": {
+    "retrieval_was_not_run": true,
+    "systems_executed": [],
+    "closed_batches_modified": 0,
+    "dataset_records_modified": 0,
+    "eligibility_state_modified": false,
+    "human_verified_set_by_this_work": 0,
+    "validation_or_holdout_inspected": false,
+    "files_added": [
+      "src/rag_v1/gold/factidentity.py",
+      "src/rag_v1/gold/reasoningtype.py",
+      "src/rag_v1/gold/questionscope.py",
+      "tests/test_gold001_b007_fixes.py"
+    ],
+    "files_modified": []
+  },
+  "next_step": "Independent review of the three fixes, and a decision on the G-STRICTER finding, before the corpus is restored and the pilot is run. The paraphrasing lane does not scale until the pilot passes."
+}
