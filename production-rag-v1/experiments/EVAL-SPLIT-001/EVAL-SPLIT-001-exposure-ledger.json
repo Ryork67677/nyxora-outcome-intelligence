@@ -1,0 +1,3644 @@
+{
+  "historical_exposure": {
+    "source": "evals/development/v1.jsonl",
+    "cases": 22,
+    "scored": 20,
+    "abstain_controls": 2,
+    "case_ids": [
+      "AN-001",
+      "AN-002",
+      "AN-003",
+      "AN-004",
+      "AN-005",
+      "AN-006",
+      "AN-007",
+      "AN-008",
+      "AN-009",
+      "AN-010",
+      "AN-011",
+      "AN-012",
+      "OA-001",
+      "OA-002",
+      "OA-003",
+      "OA-004",
+      "OA-005",
+      "OA-006",
+      "OA-007",
+      "OA-008",
+      "MI-001",
+      "MI-002"
+    ],
+    "note": "Derived from the artifacts, not assumed: these are the only case identifiers any EXP-000..EXP-014R result file references."
+  },
+  "summary": {
+    "UNEXPOSED": 149,
+    "EXPOSED_EVIDENCE_OVERLAP": 1
+  },
+  "ledger": [
+    {
+      "candidate_id": "GOLD-B001-01",
+      "provider": "anthropic",
+      "group": "001",
+      "reasoning_type": null,
+      "reasoning_type_inferred": "unlabeled_legacy",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_d9ba3ab0d872dd86047c7ed6dc783235"
+      ],
+      "source_documents": [
+        "Computer use tool"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B001-02",
+      "provider": "openai",
+      "group": "001",
+      "reasoning_type": null,
+      "reasoning_type_inferred": "unlabeled_legacy",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_35cac5e98c151a17f941a6142d74709f"
+      ],
+      "source_documents": [
+        "Agents"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B001-03",
+      "provider": "anthropic",
+      "group": "001",
+      "reasoning_type": null,
+      "reasoning_type_inferred": "unlabeled_legacy",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_a7bda3595f2c124605c3228464d4ee52"
+      ],
+      "source_documents": [
+        "Migration guide"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B001-04",
+      "provider": "openai",
+      "group": "001",
+      "reasoning_type": null,
+      "reasoning_type_inferred": "unlabeled_legacy",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_f22fbd5c504fa28a4e70440337e4a495"
+      ],
+      "source_documents": [
+        "Guardrails"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B001-05",
+      "provider": "anthropic",
+      "group": "001",
+      "reasoning_type": null,
+      "reasoning_type_inferred": "unlabeled_legacy",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_b42814c2d273210095c8e5844612933e"
+      ],
+      "source_documents": [
+        "Context windows"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B001-06",
+      "provider": "openai",
+      "group": "001",
+      "reasoning_type": null,
+      "reasoning_type_inferred": "unlabeled_legacy",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_9247e3ce4df6f79d9cadc44e1a3bbd0c"
+      ],
+      "source_documents": [
+        "OpenAI Python API library"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B001-07",
+      "provider": "anthropic",
+      "group": "001",
+      "reasoning_type": null,
+      "reasoning_type_inferred": "unlabeled_legacy",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_77fbe47b4b7db32ee46b972b2f611d0e"
+      ],
+      "source_documents": [
+        "Mid-conversation system messages and tool changes"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B001-08",
+      "provider": "openai",
+      "group": "001",
+      "reasoning_type": null,
+      "reasoning_type_inferred": "unlabeled_legacy",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_0699973a131d91f270d69f81ba7a0da0"
+      ],
+      "source_documents": [
+        "Node.js Version Support Policy"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B001-09",
+      "provider": "anthropic",
+      "group": "001",
+      "reasoning_type": null,
+      "reasoning_type_inferred": "unlabeled_legacy",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_96d5aba3c4e7771cabd4f3d4f5a3fff1"
+      ],
+      "source_documents": [
+        "Tool runner (SDK)"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B001-10",
+      "provider": "openai",
+      "group": "001",
+      "reasoning_type": null,
+      "reasoning_type_inferred": "unlabeled_legacy",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_f30a6447e4df2ab76e4c1475f353109c"
+      ],
+      "source_documents": [
+        "OpenAI TypeScript and JavaScript API Library"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B001-11",
+      "provider": "anthropic",
+      "group": "001",
+      "reasoning_type": null,
+      "reasoning_type_inferred": "unlabeled_legacy",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_fc127d394b32ba1f136356d746c083e5"
+      ],
+      "source_documents": [
+        "Tutorial: Build a tool-using agent"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B001-12",
+      "provider": "openai",
+      "group": "001",
+      "reasoning_type": null,
+      "reasoning_type_inferred": "unlabeled_legacy",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_1c77f33b04ffffa285ea7e61c2a89653"
+      ],
+      "source_documents": [
+        "Handoffs"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B001-13",
+      "provider": "anthropic",
+      "group": "001",
+      "reasoning_type": null,
+      "reasoning_type_inferred": "unlabeled_legacy",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_e312b7f41115cc2b84cd36151efc6dd8"
+      ],
+      "source_documents": [
+        "Claude on Google Cloud"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B001-14",
+      "provider": "anthropic",
+      "group": "001",
+      "reasoning_type": null,
+      "reasoning_type_inferred": "unlabeled_legacy",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_0774ca0093ff4a846753577c9a4a39d5"
+      ],
+      "source_documents": [
+        "Claude API errors"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B001-17",
+      "provider": "anthropic",
+      "group": "001",
+      "reasoning_type": null,
+      "reasoning_type_inferred": "unlabeled_legacy",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_ab9e2c2bf4c17bf70ce1b94355d01729"
+      ],
+      "source_documents": [
+        "Files API"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B001-18",
+      "provider": "anthropic",
+      "group": "001",
+      "reasoning_type": null,
+      "reasoning_type_inferred": "unlabeled_legacy",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_5f5df502fc725ffcca9d893fef90fe3f"
+      ],
+      "source_documents": [
+        "Tool reference"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B002-01",
+      "provider": "anthropic",
+      "group": "002",
+      "reasoning_type": null,
+      "reasoning_type_inferred": "unlabeled_legacy",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_1c53b961e1f5da8124a1e7e8eb92c941"
+      ],
+      "source_documents": [
+        "Context editing"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B002-02",
+      "provider": "anthropic",
+      "group": "002",
+      "reasoning_type": null,
+      "reasoning_type_inferred": "unlabeled_legacy",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_279d37a3a0cc4e8a9209e01f16f9df88"
+      ],
+      "source_documents": [
+        "MCP connector"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B002-03",
+      "provider": "openai",
+      "group": "002",
+      "reasoning_type": null,
+      "reasoning_type_inferred": "unlabeled_legacy",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_35cac5e98c151a17f941a6142d74709f"
+      ],
+      "source_documents": [
+        "Agents"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B002-04",
+      "provider": "anthropic",
+      "group": "002",
+      "reasoning_type": null,
+      "reasoning_type_inferred": "unlabeled_legacy",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_42a4f3d941b664a285883aaf6ff90373"
+      ],
+      "source_documents": [
+        "Search results"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B002-05",
+      "provider": "anthropic",
+      "group": "002",
+      "reasoning_type": null,
+      "reasoning_type_inferred": "unlabeled_legacy",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_9bf8513721dc2d1ef3e1ec42bf535dc6"
+      ],
+      "source_documents": [
+        "Bash tool"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B002-06",
+      "provider": "anthropic",
+      "group": "002",
+      "reasoning_type": null,
+      "reasoning_type_inferred": "unlabeled_legacy",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_b8b18cda9b875d51a2ce979a1bf4e909"
+      ],
+      "source_documents": [
+        "Advisor tool"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B002-07",
+      "provider": "anthropic",
+      "group": "002",
+      "reasoning_type": null,
+      "reasoning_type_inferred": "unlabeled_legacy",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_c60f7418b69b6610bd20e974b92cdd8c"
+      ],
+      "source_documents": [
+        "Compaction"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B002-08",
+      "provider": "anthropic",
+      "group": "002",
+      "reasoning_type": null,
+      "reasoning_type_inferred": "unlabeled_legacy",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_d81ee605bd8bbb880deea432e51462ac"
+      ],
+      "source_documents": [
+        "Trigger a routine through the API"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B002-09",
+      "provider": "anthropic",
+      "group": "002",
+      "reasoning_type": null,
+      "reasoning_type_inferred": "unlabeled_legacy",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_d9ba3ab0d872dd86047c7ed6dc783235"
+      ],
+      "source_documents": [
+        "Computer use tool"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B002-10",
+      "provider": "anthropic",
+      "group": "002",
+      "reasoning_type": null,
+      "reasoning_type_inferred": "unlabeled_legacy",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_0865c9612dfe97d8f30dd870dd12e53e"
+      ],
+      "source_documents": [
+        "Structured outputs"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B002-11",
+      "provider": "anthropic",
+      "group": "002",
+      "reasoning_type": null,
+      "reasoning_type_inferred": "unlabeled_legacy",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_6c0983aad96f198367a0de369b3bb86c"
+      ],
+      "source_documents": [
+        "What's new in Claude Sonnet 5"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B002-13",
+      "provider": "anthropic",
+      "group": "002",
+      "reasoning_type": null,
+      "reasoning_type_inferred": "unlabeled_legacy",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_b05e105d93045aff4c7ce998b198ae79"
+      ],
+      "source_documents": [
+        "Deploy MCP tunnels with Docker Compose"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B002-14",
+      "provider": "anthropic",
+      "group": "002",
+      "reasoning_type": null,
+      "reasoning_type_inferred": "unlabeled_legacy",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_cec813c3bb15b76dcf16e7a0c2231ef1"
+      ],
+      "source_documents": [
+        "Batch processing"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B002-15",
+      "provider": "openai",
+      "group": "002",
+      "reasoning_type": null,
+      "reasoning_type_inferred": "unlabeled_legacy",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_d2295786320b2815477eb963eb1f5e8a"
+      ],
+      "source_documents": [
+        "Testing"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B002-16",
+      "provider": "anthropic",
+      "group": "002",
+      "reasoning_type": null,
+      "reasoning_type_inferred": "unlabeled_legacy",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_e312b7f41115cc2b84cd36151efc6dd8"
+      ],
+      "source_documents": [
+        "Claude on Google Cloud"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B002-17",
+      "provider": "openai",
+      "group": "002",
+      "reasoning_type": null,
+      "reasoning_type_inferred": "unlabeled_legacy",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_e8a7b17b5af64679cadea33cd8f6d250"
+      ],
+      "source_documents": [
+        "Migration guide"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B002-18",
+      "provider": "anthropic",
+      "group": "002",
+      "reasoning_type": null,
+      "reasoning_type_inferred": "unlabeled_legacy",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_fa78e1feb6289d6bcb22305e61bbbfc3"
+      ],
+      "source_documents": [
+        "Refusals and fallback"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B003-01",
+      "provider": "anthropic",
+      "group": "003",
+      "reasoning_type": "configuration_interaction",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_42a4f3d941b664a285883aaf6ff90373"
+      ],
+      "source_documents": [
+        "Search results"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B003-02",
+      "provider": "anthropic",
+      "group": "003",
+      "reasoning_type": "configuration_interaction",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_90de89ac7da393e4d9056cf12204d046"
+      ],
+      "source_documents": [
+        "Skill authoring best practices"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B003-03",
+      "provider": "anthropic",
+      "group": "003",
+      "reasoning_type": "error_behavior",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_b8b18cda9b875d51a2ce979a1bf4e909"
+      ],
+      "source_documents": [
+        "Advisor tool"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B003-04",
+      "provider": "anthropic",
+      "group": "003",
+      "reasoning_type": "error_behavior",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "multi_span",
+      "span_count": 2,
+      "version_ids": [
+        "ver_b8b18cda9b875d51a2ce979a1bf4e909"
+      ],
+      "source_documents": [
+        "Advisor tool"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B003-05",
+      "provider": "anthropic",
+      "group": "003",
+      "reasoning_type": "error_behavior",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_7cd600e1124f25cfedc3f1f6d5c297e5"
+      ],
+      "source_documents": [
+        "Programmatic tool calling"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B003-06",
+      "provider": "anthropic",
+      "group": "003",
+      "reasoning_type": "error_behavior",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_6c0983aad96f198367a0de369b3bb86c"
+      ],
+      "source_documents": [
+        "What's new in Claude Sonnet 5"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B003-07",
+      "provider": "anthropic",
+      "group": "003",
+      "reasoning_type": "exact_lookup",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_1c53b961e1f5da8124a1e7e8eb92c941"
+      ],
+      "source_documents": [
+        "Context editing"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B003-08",
+      "provider": "anthropic",
+      "group": "003",
+      "reasoning_type": "exact_lookup",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_72833144cee232446fa450e9e040995a"
+      ],
+      "source_documents": [
+        "Text editor tool"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B003-09",
+      "provider": "anthropic",
+      "group": "003",
+      "reasoning_type": "exact_lookup",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_72833144cee232446fa450e9e040995a"
+      ],
+      "source_documents": [
+        "Text editor tool"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B003-10",
+      "provider": "anthropic",
+      "group": "003",
+      "reasoning_type": "lifecycle",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_3acba29982fd40528ac6498dd0d5fe18"
+      ],
+      "source_documents": [
+        "Extended thinking"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B003-11",
+      "provider": "anthropic",
+      "group": "003",
+      "reasoning_type": "lifecycle",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_a7bda3595f2c124605c3228464d4ee52"
+      ],
+      "source_documents": [
+        "Migration guide"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B003-12",
+      "provider": "anthropic",
+      "group": "003",
+      "reasoning_type": "exact_lookup",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "multi_span",
+      "span_count": 2,
+      "version_ids": [
+        "ver_53da2f78e855c75ec755089c13d44c28"
+      ],
+      "source_documents": [
+        "Web search tool"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B003-13",
+      "provider": "openai",
+      "group": "003",
+      "reasoning_type": "configuration_interaction",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_ae3bfcc42c733c5051abda30f0f6db07"
+      ],
+      "source_documents": [
+        "Human-in-the-loop"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B003-14",
+      "provider": "openai",
+      "group": "003",
+      "reasoning_type": "configuration_interaction",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_9247e3ce4df6f79d9cadc44e1a3bbd0c"
+      ],
+      "source_documents": [
+        "OpenAI Python API library"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B003-15",
+      "provider": "openai",
+      "group": "003",
+      "reasoning_type": "exact_lookup",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_35cac5e98c151a17f941a6142d74709f"
+      ],
+      "source_documents": [
+        "Agents"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B003-16",
+      "provider": "openai",
+      "group": "003",
+      "reasoning_type": "exact_lookup",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_57e26a49b0a3714f3e90376d014d7f52"
+      ],
+      "source_documents": [
+        "Structured Outputs Parsing Helpers"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B003-17",
+      "provider": "openai",
+      "group": "003",
+      "reasoning_type": "exact_lookup",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_57e26a49b0a3714f3e90376d014d7f52"
+      ],
+      "source_documents": [
+        "Structured Outputs Parsing Helpers"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B003-18",
+      "provider": "openai",
+      "group": "003",
+      "reasoning_type": "exact_lookup",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "multi_span",
+      "span_count": 2,
+      "version_ids": [
+        "ver_1c77f33b04ffffa285ea7e61c2a89653"
+      ],
+      "source_documents": [
+        "Handoffs"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B003-19",
+      "provider": "openai",
+      "group": "003",
+      "reasoning_type": "exact_lookup",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "multi_span",
+      "span_count": 2,
+      "version_ids": [
+        "ver_2c60e99cfd929a738910b893fd6f1a40"
+      ],
+      "source_documents": [
+        "Running agents"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B003-20",
+      "provider": "openai",
+      "group": "003",
+      "reasoning_type": "exact_lookup",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "multi_span",
+      "span_count": 2,
+      "version_ids": [
+        "ver_6b90217721b841b1329f51ec1caab139"
+      ],
+      "source_documents": [
+        "Tracing"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B004-01",
+      "provider": "anthropic",
+      "group": "004",
+      "reasoning_type": "error_behavior",
+      "reasoning_type_inferred": null,
+      "secondary_category": "conditional_behavior",
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_4d14aec24504f4b8f6f28938b84587dc"
+      ],
+      "source_documents": [
+        "Stop reasons and fallback"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B004-02",
+      "provider": "anthropic",
+      "group": "004",
+      "reasoning_type": "configuration_interaction",
+      "reasoning_type_inferred": null,
+      "secondary_category": "conditional_behavior",
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_53da2f78e855c75ec755089c13d44c28"
+      ],
+      "source_documents": [
+        "Web search tool"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B004-03",
+      "provider": "anthropic",
+      "group": "004",
+      "reasoning_type": "error_behavior",
+      "reasoning_type_inferred": null,
+      "secondary_category": "conditional_behavior",
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_0774ca0093ff4a846753577c9a4a39d5"
+      ],
+      "source_documents": [
+        "Claude API errors"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B004-04",
+      "provider": "anthropic",
+      "group": "004",
+      "reasoning_type": "error_behavior",
+      "reasoning_type_inferred": null,
+      "secondary_category": "conditional_behavior",
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_012b734775e7edb2649d3a9ddfd93070"
+      ],
+      "source_documents": [
+        "Thinking"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B004-05",
+      "provider": "anthropic",
+      "group": "004",
+      "reasoning_type": "error_behavior",
+      "reasoning_type_inferred": null,
+      "secondary_category": "conditional_behavior",
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_53da2f78e855c75ec755089c13d44c28"
+      ],
+      "source_documents": [
+        "Web search tool"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B004-06",
+      "provider": "anthropic",
+      "group": "004",
+      "reasoning_type": "exact_lookup",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_53da2f78e855c75ec755089c13d44c28"
+      ],
+      "source_documents": [
+        "Web search tool"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B004-07",
+      "provider": "anthropic",
+      "group": "004",
+      "reasoning_type": "lifecycle_compatibility_migration",
+      "reasoning_type_inferred": null,
+      "secondary_category": "conditional_behavior",
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_0a5b292d4854b92db0a9e025b4949123"
+      ],
+      "source_documents": [
+        "Prompting best practices"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B004-09",
+      "provider": "openai",
+      "group": "004",
+      "reasoning_type": "ambiguity_disambiguation",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "multi_span",
+      "span_count": 2,
+      "version_ids": [
+        "ver_57e26a49b0a3714f3e90376d014d7f52"
+      ],
+      "source_documents": [
+        "Structured Outputs Parsing Helpers"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B004-10",
+      "provider": "openai",
+      "group": "004",
+      "reasoning_type": "configuration_interaction",
+      "reasoning_type_inferred": null,
+      "secondary_category": "conditional_behavior",
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_14a2187cf2216b9d56c213b520a28479"
+      ],
+      "source_documents": [
+        "Realtime agents guide"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B004-11",
+      "provider": "openai",
+      "group": "004",
+      "reasoning_type": "error_behavior",
+      "reasoning_type_inferred": null,
+      "secondary_category": "conditional_behavior",
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_12004469f7a5592cd1e6cab936117fce"
+      ],
+      "source_documents": [
+        "Streaming"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B004-12",
+      "provider": "openai",
+      "group": "004",
+      "reasoning_type": "configuration_interaction",
+      "reasoning_type_inferred": null,
+      "secondary_category": "conditional_behavior",
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_12004469f7a5592cd1e6cab936117fce"
+      ],
+      "source_documents": [
+        "Streaming"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B004-13",
+      "provider": "openai",
+      "group": "004",
+      "reasoning_type": "exact_lookup",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_1c77f33b04ffffa285ea7e61c2a89653"
+      ],
+      "source_documents": [
+        "Handoffs"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B004-14",
+      "provider": "openai",
+      "group": "004",
+      "reasoning_type": "exact_lookup",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "multi_span",
+      "span_count": 2,
+      "version_ids": [
+        "ver_1c77f33b04ffffa285ea7e61c2a89653"
+      ],
+      "source_documents": [
+        "Handoffs"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B004-15",
+      "provider": "openai",
+      "group": "004",
+      "reasoning_type": "genuine_multi_hop",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "multi_document",
+      "span_count": 2,
+      "version_ids": [
+        "ver_ae3bfcc42c733c5051abda30f0f6db07",
+        "ver_ae909bf8b4bbbe1d1a11119447f7ac94"
+      ],
+      "source_documents": [
+        "Human-in-the-loop"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B005-02",
+      "provider": "anthropic",
+      "group": "005",
+      "reasoning_type": "configuration_interaction",
+      "reasoning_type_inferred": null,
+      "secondary_category": "conditional_behavior",
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_c299b58fe1f5a4d3a081b550334a7df6"
+      ],
+      "source_documents": [
+        "Admin"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B005-03",
+      "provider": "anthropic",
+      "group": "005",
+      "reasoning_type": "error_behavior",
+      "reasoning_type_inferred": null,
+      "secondary_category": "normative_statement",
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_de7f74230c8f10d30aea5d037a3bd0a5"
+      ],
+      "source_documents": [
+        "Beta"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B005-04",
+      "provider": "anthropic",
+      "group": "005",
+      "reasoning_type": "error_behavior",
+      "reasoning_type_inferred": null,
+      "secondary_category": "conditional_behavior",
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_53da2f78e855c75ec755089c13d44c28"
+      ],
+      "source_documents": [
+        "Web search tool"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B005-05",
+      "provider": "anthropic",
+      "group": "005",
+      "reasoning_type": "exact_lookup",
+      "reasoning_type_inferred": null,
+      "secondary_category": "constraint_required_value",
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_8d2a22e3827c98e0b9d4e1ef411e5353"
+      ],
+      "source_documents": [
+        "Server tools"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B005-07",
+      "provider": "anthropic",
+      "group": "005",
+      "reasoning_type": "lifecycle_compatibility_migration",
+      "reasoning_type_inferred": null,
+      "secondary_category": "deprecation",
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_1c53b961e1f5da8124a1e7e8eb92c941"
+      ],
+      "source_documents": [
+        "Context editing"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B005-08",
+      "provider": "anthropic",
+      "group": "005",
+      "reasoning_type": "lifecycle_compatibility_migration",
+      "reasoning_type_inferred": null,
+      "secondary_category": "compatibility",
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_9c5166b670bf43589ee63d0dbe8b93d2"
+      ],
+      "source_documents": [
+        "Prompting Claude Sonnet 5"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B005-09",
+      "provider": "openai",
+      "group": "005",
+      "reasoning_type": "error_behavior",
+      "reasoning_type_inferred": null,
+      "secondary_category": "fail_closed_behavior",
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_ae3bfcc42c733c5051abda30f0f6db07"
+      ],
+      "source_documents": [
+        "Human-in-the-loop"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B005-11",
+      "provider": "openai",
+      "group": "005",
+      "reasoning_type": "configuration_interaction",
+      "reasoning_type_inferred": null,
+      "secondary_category": "overrides",
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_9247e3ce4df6f79d9cadc44e1a3bbd0c"
+      ],
+      "source_documents": [
+        "OpenAI Python API library"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B005-12",
+      "provider": "openai",
+      "group": "005",
+      "reasoning_type": "configuration_interaction",
+      "reasoning_type_inferred": null,
+      "secondary_category": "requires",
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_3d4b8881962381cbfba18ade50c598e1"
+      ],
+      "source_documents": [
+        "Sandbox clients"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B005-14",
+      "provider": "openai",
+      "group": "005",
+      "reasoning_type": "configuration_interaction",
+      "reasoning_type_inferred": null,
+      "secondary_category": "requires",
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_cbeb36b7cf9a5e241940a011629b6f1b"
+      ],
+      "source_documents": [
+        "Tools"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B005-15",
+      "provider": "openai",
+      "group": "005",
+      "reasoning_type": "configuration_interaction",
+      "reasoning_type_inferred": null,
+      "secondary_category": "normative_statement",
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_cbeb36b7cf9a5e241940a011629b6f1b"
+      ],
+      "source_documents": [
+        "Tools"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B005-16",
+      "provider": "openai",
+      "group": "005",
+      "reasoning_type": "configuration_interaction",
+      "reasoning_type_inferred": null,
+      "secondary_category": "conditional_behavior",
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_f8002fe268b970eaea8d640f9dd91fb3"
+      ],
+      "source_documents": [
+        "Usage"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B005-17",
+      "provider": "openai",
+      "group": "005",
+      "reasoning_type": "error_behavior",
+      "reasoning_type_inferred": null,
+      "secondary_category": "conditional_behavior",
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_2c60e99cfd929a738910b893fd6f1a40"
+      ],
+      "source_documents": [
+        "Running agents"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B005-18",
+      "provider": "openai",
+      "group": "005",
+      "reasoning_type": "exact_lookup",
+      "reasoning_type_inferred": null,
+      "secondary_category": "constraint_required_value",
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_f30a6447e4df2ab76e4c1475f353109c"
+      ],
+      "source_documents": [
+        "OpenAI TypeScript and JavaScript API Library"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B005-19",
+      "provider": "openai",
+      "group": "005",
+      "reasoning_type": "lifecycle_compatibility_migration",
+      "reasoning_type_inferred": null,
+      "secondary_category": "removal",
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_e8a7b17b5af64679cadea33cd8f6d250"
+      ],
+      "source_documents": [
+        "Migration guide"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B006-01",
+      "provider": "anthropic",
+      "group": "006",
+      "reasoning_type": "exact_lookup",
+      "reasoning_type_inferred": null,
+      "secondary_category": "requirement_constraint",
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_c299b58fe1f5a4d3a081b550334a7df6"
+      ],
+      "source_documents": [
+        "Admin"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B006-02",
+      "provider": "anthropic",
+      "group": "006",
+      "reasoning_type": "error_behavior",
+      "reasoning_type_inferred": null,
+      "secondary_category": "rejects",
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_a7bda3595f2c124605c3228464d4ee52"
+      ],
+      "source_documents": [
+        "Migration guide"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B006-03",
+      "provider": "anthropic",
+      "group": "006",
+      "reasoning_type": "lifecycle_compatibility_migration",
+      "reasoning_type_inferred": null,
+      "secondary_category": "compatibility",
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_f65938c74d40ac1e288f169d3d0435b7"
+      ],
+      "source_documents": [
+        "Code execution tool"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B006-04",
+      "provider": "anthropic",
+      "group": "006",
+      "reasoning_type": "exact_lookup",
+      "reasoning_type_inferred": null,
+      "secondary_category": "defaults_to",
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_238961530ce62a75c61bdeead5ccb10d"
+      ],
+      "source_documents": [
+        "Effort"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B006-05",
+      "provider": "anthropic",
+      "group": "006",
+      "reasoning_type": "exact_lookup",
+      "reasoning_type_inferred": null,
+      "secondary_category": "defaults_to",
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_a7bda3595f2c124605c3228464d4ee52"
+      ],
+      "source_documents": [
+        "Migration guide"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B006-07",
+      "provider": "openai",
+      "group": "006",
+      "reasoning_type": "configuration_interaction",
+      "reasoning_type_inferred": null,
+      "secondary_category": "disables",
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_14a2187cf2216b9d56c213b520a28479"
+      ],
+      "source_documents": [
+        "Realtime agents guide"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B006-08",
+      "provider": "openai",
+      "group": "006",
+      "reasoning_type": "lifecycle_compatibility_migration",
+      "reasoning_type_inferred": null,
+      "secondary_category": "migration",
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_de67d790db9792b2f6c5c7418a507764"
+      ],
+      "source_documents": [
+        "Release process/changelog"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "GOLD-B006-09",
+      "provider": "openai",
+      "group": "006",
+      "reasoning_type": "exact_lookup",
+      "reasoning_type_inferred": null,
+      "secondary_category": "defaults_to",
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_2c60e99cfd929a738910b893fd6f1a40"
+      ],
+      "source_documents": [
+        "Running agents"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "HA-01",
+      "provider": "openai",
+      "group": "HA",
+      "reasoning_type": "configuration_interaction",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_b275f1db2ff0a82e2654391774f8e398"
+      ],
+      "source_documents": [
+        "Sessions"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "HA-02",
+      "provider": "openai",
+      "group": "HA",
+      "reasoning_type": "lifecycle_compatibility_migration",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_f15e1a531d680bb98179238f80355058"
+      ],
+      "source_documents": [
+        "Configuration"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "HA-03",
+      "provider": "openai",
+      "group": "HA",
+      "reasoning_type": "configuration_interaction",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_f15e1a531d680bb98179238f80355058"
+      ],
+      "source_documents": [
+        "Configuration"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "HA-04",
+      "provider": "openai",
+      "group": "HA",
+      "reasoning_type": "configuration_interaction",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_f22fbd5c504fa28a4e70440337e4a495"
+      ],
+      "source_documents": [
+        "Guardrails"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "HA-05",
+      "provider": "openai",
+      "group": "HA",
+      "reasoning_type": "error_behavior",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "multi_span_same_fact",
+      "span_count": 2,
+      "version_ids": [
+        "ver_ae909bf8b4bbbe1d1a11119447f7ac94"
+      ],
+      "source_documents": [
+        "Models"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "HA-06",
+      "provider": "openai",
+      "group": "HA",
+      "reasoning_type": "lifecycle_compatibility_migration",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_f4be547b9adbe8f607eae8c2422c6985"
+      ],
+      "source_documents": [
+        "Model context protocol (MCP)"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "HA-07",
+      "provider": "openai",
+      "group": "HA",
+      "reasoning_type": "exact_lookup",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "multi_span_same_fact",
+      "span_count": 2,
+      "version_ids": [
+        "ver_e818e78755f8e2a71b458c743ce52db1"
+      ],
+      "source_documents": [
+        "Realtime transport"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "HA-08",
+      "provider": "openai",
+      "group": "HA",
+      "reasoning_type": "error_behavior",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_f15e1a531d680bb98179238f80355058"
+      ],
+      "source_documents": [
+        "Configuration"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "HA-09",
+      "provider": "openai",
+      "group": "HA",
+      "reasoning_type": "configuration_interaction",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_f15e1a531d680bb98179238f80355058"
+      ],
+      "source_documents": [
+        "Configuration"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "HA-10",
+      "provider": "openai",
+      "group": "HA",
+      "reasoning_type": "configuration_interaction",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_f15e1a531d680bb98179238f80355058"
+      ],
+      "source_documents": [
+        "Configuration"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "HA-11",
+      "provider": "openai",
+      "group": "HA",
+      "reasoning_type": "error_behavior",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_f22fbd5c504fa28a4e70440337e4a495"
+      ],
+      "source_documents": [
+        "Guardrails"
+      ],
+      "exposure_status": "EXPOSED_EVIDENCE_OVERLAP",
+      "historical_matches": [
+        "OA-003"
+      ],
+      "matching_experiments": null,
+      "criteria_hit": [
+        "D_evidence_overlap"
+      ],
+      "question_text_match": false,
+      "evidence_overlap": 14,
+      "fact_overlap": 0.0,
+      "reason": "OA-003 via D_evidence_overlap: 14 characters shared in ver_f22fbd5c504fa28a4e70440337e4a495 (7367-7497 vs 7225-7381)"
+    },
+    {
+      "candidate_id": "HA-12",
+      "provider": "openai",
+      "group": "HA",
+      "reasoning_type": "error_behavior",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_f22fbd5c504fa28a4e70440337e4a495"
+      ],
+      "source_documents": [
+        "Guardrails"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "HA-13",
+      "provider": "openai",
+      "group": "HA",
+      "reasoning_type": "exact_lookup",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_f22fbd5c504fa28a4e70440337e4a495"
+      ],
+      "source_documents": [
+        "Guardrails"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "HA-14",
+      "provider": "openai",
+      "group": "HA",
+      "reasoning_type": "error_behavior",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "multi_span_same_fact",
+      "span_count": 2,
+      "version_ids": [
+        "ver_f22fbd5c504fa28a4e70440337e4a495"
+      ],
+      "source_documents": [
+        "Guardrails"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "HA-15",
+      "provider": "openai",
+      "group": "HA",
+      "reasoning_type": "request_response",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_1c77f33b04ffffa285ea7e61c2a89653"
+      ],
+      "source_documents": [
+        "Handoffs"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "HA-16",
+      "provider": "openai",
+      "group": "HA",
+      "reasoning_type": "configuration_interaction",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "multi_span_same_fact",
+      "span_count": 2,
+      "version_ids": [
+        "ver_1c77f33b04ffffa285ea7e61c2a89653"
+      ],
+      "source_documents": [
+        "Handoffs"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "HA-17",
+      "provider": "openai",
+      "group": "HA",
+      "reasoning_type": "request_response",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_ae3bfcc42c733c5051abda30f0f6db07"
+      ],
+      "source_documents": [
+        "Human-in-the-loop"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "HA-18",
+      "provider": "openai",
+      "group": "HA",
+      "reasoning_type": "configuration_interaction",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_ae3bfcc42c733c5051abda30f0f6db07"
+      ],
+      "source_documents": [
+        "Human-in-the-loop"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "HA-19",
+      "provider": "openai",
+      "group": "HA",
+      "reasoning_type": "configuration_interaction",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_ae3bfcc42c733c5051abda30f0f6db07"
+      ],
+      "source_documents": [
+        "Human-in-the-loop"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "HA-20",
+      "provider": "openai",
+      "group": "HA",
+      "reasoning_type": "configuration_interaction",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_ae3bfcc42c733c5051abda30f0f6db07"
+      ],
+      "source_documents": [
+        "Human-in-the-loop"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "HA-21",
+      "provider": "openai",
+      "group": "HA",
+      "reasoning_type": "request_response",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_ae3bfcc42c733c5051abda30f0f6db07"
+      ],
+      "source_documents": [
+        "Human-in-the-loop"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "HA-22",
+      "provider": "openai",
+      "group": "HA",
+      "reasoning_type": "exact_lookup",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_ae3bfcc42c733c5051abda30f0f6db07"
+      ],
+      "source_documents": [
+        "Human-in-the-loop"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "HA-23",
+      "provider": "openai",
+      "group": "HA",
+      "reasoning_type": "request_response",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "multi_span_same_fact",
+      "span_count": 2,
+      "version_ids": [
+        "ver_1c77f33b04ffffa285ea7e61c2a89653"
+      ],
+      "source_documents": [
+        "Handoffs"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "HA-24",
+      "provider": "openai",
+      "group": "HA",
+      "reasoning_type": "request_response",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_fef74b4dda29e84a533c3e83f753effd"
+      ],
+      "source_documents": [
+        "Context management"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "HA-25",
+      "provider": "openai",
+      "group": "HA",
+      "reasoning_type": "exact_lookup",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_f15e1a531d680bb98179238f80355058"
+      ],
+      "source_documents": [
+        "Configuration"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "HA-26",
+      "provider": "openai",
+      "group": "HA",
+      "reasoning_type": "exact_lookup",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_f15e1a531d680bb98179238f80355058"
+      ],
+      "source_documents": [
+        "Configuration"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "HA-27",
+      "provider": "openai",
+      "group": "HA",
+      "reasoning_type": "exact_lookup",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_f15e1a531d680bb98179238f80355058"
+      ],
+      "source_documents": [
+        "Configuration"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "HA-28",
+      "provider": "openai",
+      "group": "HA",
+      "reasoning_type": "exact_lookup",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_f15e1a531d680bb98179238f80355058"
+      ],
+      "source_documents": [
+        "Configuration"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "HA-29",
+      "provider": "openai",
+      "group": "HA",
+      "reasoning_type": "exact_lookup",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_f15e1a531d680bb98179238f80355058"
+      ],
+      "source_documents": [
+        "Configuration"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "HA-30",
+      "provider": "openai",
+      "group": "HA",
+      "reasoning_type": "exact_lookup",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_f15e1a531d680bb98179238f80355058"
+      ],
+      "source_documents": [
+        "Configuration"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "HA-31",
+      "provider": "openai",
+      "group": "HA",
+      "reasoning_type": "exact_lookup",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_f15e1a531d680bb98179238f80355058"
+      ],
+      "source_documents": [
+        "Configuration"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "HA-32",
+      "provider": "openai",
+      "group": "HA",
+      "reasoning_type": "exact_lookup",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_f15e1a531d680bb98179238f80355058"
+      ],
+      "source_documents": [
+        "Configuration"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "HA-33",
+      "provider": "openai",
+      "group": "HA",
+      "reasoning_type": "exact_lookup",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_f15e1a531d680bb98179238f80355058"
+      ],
+      "source_documents": [
+        "Configuration"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "HA-34",
+      "provider": "openai",
+      "group": "HA",
+      "reasoning_type": "exact_lookup",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_fef74b4dda29e84a533c3e83f753effd"
+      ],
+      "source_documents": [
+        "Context management"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "HA-35",
+      "provider": "openai",
+      "group": "HA",
+      "reasoning_type": "exact_lookup",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_fef74b4dda29e84a533c3e83f753effd"
+      ],
+      "source_documents": [
+        "Context management"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "HA-36",
+      "provider": "openai",
+      "group": "HA",
+      "reasoning_type": "exact_lookup",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_fef74b4dda29e84a533c3e83f753effd"
+      ],
+      "source_documents": [
+        "Context management"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "HA-37",
+      "provider": "openai",
+      "group": "HA",
+      "reasoning_type": "exact_lookup",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_fef74b4dda29e84a533c3e83f753effd"
+      ],
+      "source_documents": [
+        "Context management"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "HA-38",
+      "provider": "openai",
+      "group": "HA",
+      "reasoning_type": "exact_lookup",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "multi_span_same_fact",
+      "span_count": 2,
+      "version_ids": [
+        "ver_fef74b4dda29e84a533c3e83f753effd"
+      ],
+      "source_documents": [
+        "Context management"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "HA-39",
+      "provider": "openai",
+      "group": "HA",
+      "reasoning_type": "exact_lookup",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "multi_span_same_fact",
+      "span_count": 2,
+      "version_ids": [
+        "ver_fef74b4dda29e84a533c3e83f753effd"
+      ],
+      "source_documents": [
+        "Context management"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "HA-40",
+      "provider": "openai",
+      "group": "HA",
+      "reasoning_type": "exact_lookup",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "multi_span_same_fact",
+      "span_count": 2,
+      "version_ids": [
+        "ver_e818e78755f8e2a71b458c743ce52db1"
+      ],
+      "source_documents": [
+        "Realtime transport"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "HA-41",
+      "provider": "openai",
+      "group": "HA",
+      "reasoning_type": "exact_lookup",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "multi_span_same_fact",
+      "span_count": 2,
+      "version_ids": [
+        "ver_e818e78755f8e2a71b458c743ce52db1"
+      ],
+      "source_documents": [
+        "Realtime transport"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "HA-42",
+      "provider": "openai",
+      "group": "HA",
+      "reasoning_type": "exact_lookup",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "multi_span_same_fact",
+      "span_count": 2,
+      "version_ids": [
+        "ver_e818e78755f8e2a71b458c743ce52db1"
+      ],
+      "source_documents": [
+        "Realtime transport"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "HA-43",
+      "provider": "openai",
+      "group": "HA",
+      "reasoning_type": "exact_lookup",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "multi_span_same_fact",
+      "span_count": 2,
+      "version_ids": [
+        "ver_e818e78755f8e2a71b458c743ce52db1"
+      ],
+      "source_documents": [
+        "Realtime transport"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "HA-44",
+      "provider": "openai",
+      "group": "HA",
+      "reasoning_type": "exact_lookup",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_1c77f33b04ffffa285ea7e61c2a89653"
+      ],
+      "source_documents": [
+        "Handoffs"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "HA-45",
+      "provider": "openai",
+      "group": "HA",
+      "reasoning_type": "exact_lookup",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_1c77f33b04ffffa285ea7e61c2a89653"
+      ],
+      "source_documents": [
+        "Handoffs"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "HA-46",
+      "provider": "openai",
+      "group": "HA",
+      "reasoning_type": "exact_lookup",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_1c77f33b04ffffa285ea7e61c2a89653"
+      ],
+      "source_documents": [
+        "Handoffs"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "HA-47",
+      "provider": "openai",
+      "group": "HA",
+      "reasoning_type": "exact_lookup",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_1c77f33b04ffffa285ea7e61c2a89653"
+      ],
+      "source_documents": [
+        "Handoffs"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "HA-48",
+      "provider": "openai",
+      "group": "HA",
+      "reasoning_type": "exact_lookup",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_f22fbd5c504fa28a4e70440337e4a495"
+      ],
+      "source_documents": [
+        "Guardrails"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "HA-49",
+      "provider": "openai",
+      "group": "HA",
+      "reasoning_type": "exact_lookup",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_f22fbd5c504fa28a4e70440337e4a495"
+      ],
+      "source_documents": [
+        "Guardrails"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "HA-50",
+      "provider": "openai",
+      "group": "HA",
+      "reasoning_type": "exact_lookup",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "multi_span_same_fact",
+      "span_count": 2,
+      "version_ids": [
+        "ver_ae3bfcc42c733c5051abda30f0f6db07"
+      ],
+      "source_documents": [
+        "Human-in-the-loop"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "HA-51",
+      "provider": "openai",
+      "group": "HA",
+      "reasoning_type": "exact_lookup",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "multi_span_same_fact",
+      "span_count": 2,
+      "version_ids": [
+        "ver_ae3bfcc42c733c5051abda30f0f6db07"
+      ],
+      "source_documents": [
+        "Human-in-the-loop"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "HA-52",
+      "provider": "openai",
+      "group": "HA",
+      "reasoning_type": "exact_lookup",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "multi_span_same_fact",
+      "span_count": 2,
+      "version_ids": [
+        "ver_ae3bfcc42c733c5051abda30f0f6db07"
+      ],
+      "source_documents": [
+        "Human-in-the-loop"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "HA-53",
+      "provider": "openai",
+      "group": "HA",
+      "reasoning_type": "exact_lookup",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_ae909bf8b4bbbe1d1a11119447f7ac94"
+      ],
+      "source_documents": [
+        "Models"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "HA-54",
+      "provider": "openai",
+      "group": "HA",
+      "reasoning_type": "exact_lookup",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_ae909bf8b4bbbe1d1a11119447f7ac94"
+      ],
+      "source_documents": [
+        "Models"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "HA-55",
+      "provider": "openai",
+      "group": "HA",
+      "reasoning_type": "exact_lookup",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_ae909bf8b4bbbe1d1a11119447f7ac94"
+      ],
+      "source_documents": [
+        "Models"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "HA-56",
+      "provider": "openai",
+      "group": "HA",
+      "reasoning_type": "exact_lookup",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "multi_span_same_fact",
+      "span_count": 2,
+      "version_ids": [
+        "ver_ae909bf8b4bbbe1d1a11119447f7ac94"
+      ],
+      "source_documents": [
+        "Models"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "HA-57",
+      "provider": "openai",
+      "group": "HA",
+      "reasoning_type": "exact_lookup",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_ae909bf8b4bbbe1d1a11119447f7ac94"
+      ],
+      "source_documents": [
+        "Models"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "HA-58",
+      "provider": "openai",
+      "group": "HA",
+      "reasoning_type": "exact_lookup",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_ae909bf8b4bbbe1d1a11119447f7ac94"
+      ],
+      "source_documents": [
+        "Models"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "HA-59",
+      "provider": "openai",
+      "group": "HA",
+      "reasoning_type": "exact_lookup",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "multi_span_same_fact",
+      "span_count": 2,
+      "version_ids": [
+        "ver_ae909bf8b4bbbe1d1a11119447f7ac94"
+      ],
+      "source_documents": [
+        "Models"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    },
+    {
+      "candidate_id": "HA-60",
+      "provider": "openai",
+      "group": "HA",
+      "reasoning_type": "exact_lookup",
+      "reasoning_type_inferred": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "version_ids": [
+        "ver_ae909bf8b4bbbe1d1a11119447f7ac94"
+      ],
+      "source_documents": [
+        "Models"
+      ],
+      "exposure_status": "UNEXPOSED",
+      "historical_matches": [],
+      "matching_experiments": null,
+      "criteria_hit": [],
+      "question_text_match": false,
+      "evidence_overlap": 0,
+      "fact_overlap": 0.0,
+      "reason": "no historical case shares this question, its anchor, an overlapping anchor, or its claim"
+    }
+  ]
+}

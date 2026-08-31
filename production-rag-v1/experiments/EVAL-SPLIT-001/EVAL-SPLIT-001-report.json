@@ -1,0 +1,502 @@
+{
+  "document": "EVAL-SPLIT-001 — contamination-aware freeze of the 150-case set",
+  "generated_at": "2026-08-31T22:30:29Z",
+  "split_version": "gold150-v1",
+  "algorithm_version": "eval-split-001/v1",
+  "seed": 689336380,
+  "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a",
+  "gold_version": "GOLD-001 (150 human_verified)",
+  "targets": {
+    "development": 20,
+    "validation": 40,
+    "holdout": 90
+  },
+  "historical_exposure": {
+    "source": "evals/development/v1.jsonl",
+    "cases": 22,
+    "scored": 20,
+    "abstain_controls": 2,
+    "case_ids": [
+      "AN-001",
+      "AN-002",
+      "AN-003",
+      "AN-004",
+      "AN-005",
+      "AN-006",
+      "AN-007",
+      "AN-008",
+      "AN-009",
+      "AN-010",
+      "AN-011",
+      "AN-012",
+      "OA-001",
+      "OA-002",
+      "OA-003",
+      "OA-004",
+      "OA-005",
+      "OA-006",
+      "OA-007",
+      "OA-008",
+      "MI-001",
+      "MI-002"
+    ],
+    "note": "Derived from the artifacts, not assumed: these are the only case identifiers any EXP-000..EXP-014R result file references."
+  },
+  "exposure_summary": {
+    "UNEXPOSED": 149,
+    "EXPOSED_EVIDENCE_OVERLAP": 1
+  },
+  "contaminated_case_ids": [
+    "HA-11"
+  ],
+  "counts": {
+    "development": 20,
+    "holdout": 90,
+    "validation": 40
+  },
+  "assignment": {
+    "HA-11": "development",
+    "GOLD-B004-09": "holdout",
+    "GOLD-B004-15": "holdout",
+    "HA-07": "validation",
+    "HA-40": "validation",
+    "HA-41": "validation",
+    "HA-42": "validation",
+    "HA-16": "holdout",
+    "HA-23": "holdout",
+    "HA-45": "holdout",
+    "GOLD-B001-13": "development",
+    "GOLD-B002-16": "development",
+    "GOLD-B002-11": "holdout",
+    "GOLD-B003-06": "holdout",
+    "GOLD-B003-12": "holdout",
+    "GOLD-B004-06": "holdout",
+    "HA-05": "holdout",
+    "HA-53": "holdout",
+    "HA-15": "validation",
+    "HA-47": "validation",
+    "HA-20": "holdout",
+    "HA-50": "holdout",
+    "HA-38": "holdout",
+    "HA-39": "holdout",
+    "HA-51": "development",
+    "HA-52": "development",
+    "GOLD-B001-01": "validation",
+    "GOLD-B001-02": "holdout",
+    "GOLD-B001-03": "validation",
+    "GOLD-B001-04": "holdout",
+    "GOLD-B001-05": "holdout",
+    "GOLD-B001-06": "holdout",
+    "GOLD-B001-07": "validation",
+    "GOLD-B001-08": "holdout",
+    "GOLD-B001-09": "holdout",
+    "GOLD-B001-10": "validation",
+    "GOLD-B001-11": "holdout",
+    "GOLD-B001-12": "holdout",
+    "GOLD-B001-14": "development",
+    "GOLD-B001-17": "holdout",
+    "GOLD-B001-18": "holdout",
+    "GOLD-B002-01": "validation",
+    "GOLD-B002-02": "validation",
+    "GOLD-B002-03": "holdout",
+    "GOLD-B002-04": "holdout",
+    "GOLD-B002-05": "development",
+    "GOLD-B002-06": "holdout",
+    "GOLD-B002-07": "validation",
+    "GOLD-B002-08": "holdout",
+    "GOLD-B002-09": "holdout",
+    "GOLD-B002-10": "validation",
+    "GOLD-B002-13": "holdout",
+    "GOLD-B002-14": "holdout",
+    "GOLD-B002-15": "holdout",
+    "GOLD-B002-17": "holdout",
+    "GOLD-B002-18": "validation",
+    "GOLD-B003-01": "development",
+    "GOLD-B003-02": "validation",
+    "GOLD-B003-03": "holdout",
+    "GOLD-B003-04": "holdout",
+    "GOLD-B003-05": "development",
+    "GOLD-B003-07": "holdout",
+    "GOLD-B003-08": "validation",
+    "GOLD-B003-09": "holdout",
+    "GOLD-B003-10": "holdout",
+    "GOLD-B003-11": "validation",
+    "GOLD-B003-13": "holdout",
+    "GOLD-B003-14": "holdout",
+    "GOLD-B003-15": "validation",
+    "GOLD-B003-16": "holdout",
+    "GOLD-B003-17": "holdout",
+    "GOLD-B003-18": "validation",
+    "GOLD-B003-19": "holdout",
+    "GOLD-B003-20": "development",
+    "GOLD-B004-01": "holdout",
+    "GOLD-B004-02": "development",
+    "GOLD-B004-03": "holdout",
+    "GOLD-B004-04": "validation",
+    "GOLD-B004-05": "holdout",
+    "GOLD-B004-07": "holdout",
+    "GOLD-B004-10": "validation",
+    "GOLD-B004-11": "holdout",
+    "GOLD-B004-12": "validation",
+    "GOLD-B004-13": "development",
+    "GOLD-B004-14": "validation",
+    "GOLD-B005-02": "holdout",
+    "GOLD-B005-03": "holdout",
+    "GOLD-B005-04": "holdout",
+    "GOLD-B005-05": "holdout",
+    "GOLD-B005-07": "holdout",
+    "GOLD-B005-08": "holdout",
+    "GOLD-B005-09": "validation",
+    "GOLD-B005-11": "development",
+    "GOLD-B005-12": "holdout",
+    "GOLD-B005-14": "holdout",
+    "GOLD-B005-15": "validation",
+    "GOLD-B005-16": "holdout",
+    "GOLD-B005-17": "validation",
+    "GOLD-B005-18": "development",
+    "GOLD-B005-19": "validation",
+    "GOLD-B006-01": "holdout",
+    "GOLD-B006-02": "holdout",
+    "GOLD-B006-03": "validation",
+    "GOLD-B006-04": "validation",
+    "GOLD-B006-05": "holdout",
+    "GOLD-B006-07": "holdout",
+    "GOLD-B006-08": "development",
+    "GOLD-B006-09": "holdout",
+    "HA-01": "holdout",
+    "HA-02": "holdout",
+    "HA-03": "holdout",
+    "HA-04": "holdout",
+    "HA-06": "holdout",
+    "HA-08": "validation",
+    "HA-09": "holdout",
+    "HA-10": "validation",
+    "HA-12": "validation",
+    "HA-13": "development",
+    "HA-14": "holdout",
+    "HA-17": "holdout",
+    "HA-18": "validation",
+    "HA-19": "holdout",
+    "HA-21": "holdout",
+    "HA-22": "development",
+    "HA-24": "development",
+    "HA-25": "holdout",
+    "HA-26": "holdout",
+    "HA-27": "holdout",
+    "HA-28": "holdout",
+    "HA-29": "validation",
+    "HA-30": "holdout",
+    "HA-31": "holdout",
+    "HA-32": "validation",
+    "HA-33": "holdout",
+    "HA-34": "holdout",
+    "HA-35": "holdout",
+    "HA-36": "validation",
+    "HA-37": "holdout",
+    "HA-43": "holdout",
+    "HA-44": "validation",
+    "HA-46": "holdout",
+    "HA-48": "holdout",
+    "HA-49": "validation",
+    "HA-54": "holdout",
+    "HA-55": "holdout",
+    "HA-56": "holdout",
+    "HA-57": "development",
+    "HA-58": "holdout",
+    "HA-59": "validation",
+    "HA-60": "development"
+  },
+  "distributions": {
+    "development": {
+      "count": 20,
+      "provider": {
+        "openai": 13,
+        "anthropic": 7
+      },
+      "provider_pct": {
+        "openai": 65.0,
+        "anthropic": 35.0
+      },
+      "reasoning_type": {
+        "error_behavior": 2,
+        "unlabeled_legacy": 4,
+        "exact_lookup": 9,
+        "configuration_interaction": 3,
+        "lifecycle_compatibility_migration": 1,
+        "request_response": 1
+      },
+      "secondary_category": {
+        "none": 16,
+        "conditional_behavior": 1,
+        "overrides": 1,
+        "constraint_required_value": 1,
+        "migration": 1
+      },
+      "group": {
+        "HA": 8,
+        "001": 2,
+        "002": 2,
+        "003": 3,
+        "004": 2,
+        "005": 2,
+        "006": 1
+      },
+      "evidence_shape": {
+        "single_span": 17,
+        "multi_span_same_fact": 2,
+        "multi_span": 1
+      },
+      "span_counts": {
+        "1": 17,
+        "2": 3
+      },
+      "multi_span_cases": 3,
+      "unique_source_documents": 15,
+      "top_source_documents": [
+        [
+          "Human-in-the-loop",
+          3
+        ],
+        [
+          "Guardrails",
+          2
+        ],
+        [
+          "Claude on Google Cloud",
+          2
+        ],
+        [
+          "Models",
+          2
+        ],
+        [
+          "Claude API errors",
+          1
+        ]
+      ],
+      "max_cases_from_one_document": 3
+    },
+    "validation": {
+      "count": 40,
+      "provider": {
+        "openai": 26,
+        "anthropic": 14
+      },
+      "provider_pct": {
+        "openai": 65.0,
+        "anthropic": 35.0
+      },
+      "reasoning_type": {
+        "exact_lookup": 16,
+        "request_response": 1,
+        "unlabeled_legacy": 9,
+        "configuration_interaction": 6,
+        "lifecycle": 1,
+        "error_behavior": 5,
+        "lifecycle_compatibility_migration": 2
+      },
+      "secondary_category": {
+        "none": 31,
+        "conditional_behavior": 4,
+        "fail_closed_behavior": 1,
+        "normative_statement": 1,
+        "removal": 1,
+        "compatibility": 1,
+        "defaults_to": 1
+      },
+      "group": {
+        "HA": 16,
+        "001": 4,
+        "002": 5,
+        "003": 5,
+        "004": 4,
+        "005": 4,
+        "006": 2
+      },
+      "evidence_shape": {
+        "multi_span_same_fact": 5,
+        "single_span": 33,
+        "multi_span": 2
+      },
+      "span_counts": {
+        "2": 7,
+        "1": 33
+      },
+      "multi_span_cases": 7,
+      "unique_source_documents": 26,
+      "top_source_documents": [
+        [
+          "Handoffs",
+          5
+        ],
+        [
+          "Realtime transport",
+          4
+        ],
+        [
+          "Configuration",
+          4
+        ],
+        [
+          "Migration guide",
+          3
+        ],
+        [
+          "Human-in-the-loop",
+          2
+        ]
+      ],
+      "max_cases_from_one_document": 5
+    },
+    "holdout": {
+      "count": 90,
+      "provider": {
+        "openai": 57,
+        "anthropic": 33
+      },
+      "provider_pct": {
+        "openai": 63.3,
+        "anthropic": 36.7
+      },
+      "reasoning_type": {
+        "ambiguity_disambiguation": 1,
+        "genuine_multi_hop": 1,
+        "configuration_interaction": 14,
+        "request_response": 3,
+        "exact_lookup": 33,
+        "unlabeled_legacy": 20,
+        "error_behavior": 12,
+        "lifecycle": 1,
+        "lifecycle_compatibility_migration": 5
+      },
+      "secondary_category": {
+        "none": 71,
+        "conditional_behavior": 8,
+        "normative_statement": 1,
+        "constraint_required_value": 1,
+        "deprecation": 1,
+        "compatibility": 1,
+        "requires": 2,
+        "requirement_constraint": 1,
+        "rejects": 1,
+        "defaults_to": 2,
+        "disables": 1
+      },
+      "group": {
+        "004": 8,
+        "HA": 36,
+        "002": 10,
+        "003": 12,
+        "001": 10,
+        "005": 9,
+        "006": 5
+      },
+      "evidence_shape": {
+        "multi_span": 4,
+        "multi_document": 1,
+        "multi_span_same_fact": 9,
+        "single_span": 76
+      },
+      "span_counts": {
+        "2": 14,
+        "1": 76
+      },
+      "multi_span_cases": 14,
+      "unique_source_documents": 44,
+      "top_source_documents": [
+        [
+          "Configuration",
+          10
+        ],
+        [
+          "Human-in-the-loop",
+          7
+        ],
+        [
+          "Models",
+          6
+        ],
+        [
+          "Handoffs",
+          5
+        ],
+        [
+          "Context management",
+          5
+        ]
+      ],
+      "max_cases_from_one_document": 10
+    }
+  },
+  "fact_clusters": {
+    "total": 137,
+    "multi_member": 10,
+    "cases_in_multi_member_clusters": 23,
+    "thresholds": {
+      "overlap_chars": 40,
+      "claim_jaccard": 0.8,
+      "question_jaccard": 0.75
+    },
+    "straddling_clusters": []
+  },
+  "rare_categories": {
+    "genuine_multi_hop": {
+      "case_ids": [
+        "GOLD-B004-15"
+      ],
+      "count": 1,
+      "exposed": []
+    },
+    "ambiguity_disambiguation": {
+      "case_ids": [
+        "GOLD-B004-09"
+      ],
+      "count": 1,
+      "exposed": []
+    }
+  },
+  "rare_category_placement": {
+    "GOLD-B004-15": "holdout",
+    "GOLD-B004-09": "holdout"
+  },
+  "interventions": [],
+  "gates": {
+    "every_case_assigned_once": true,
+    "no_contaminated_in_validation": true,
+    "no_contaminated_in_holdout": true,
+    "validation_all_unexposed": true,
+    "holdout_all_unexposed": true,
+    "no_cluster_straddles_a_split": true,
+    "snapshot_unchanged": true
+  },
+  "generation_policy": {
+    "authoring_model_exposure": "Claude, ChatGPT, Grok and Codex participated in authoring and review of these cases. Retrieval configurations were not tuned on them, but answer generation must not be run inside an authoring conversation.",
+    "required_runtime_rule": "Answer generation must use fresh, stateless model calls. The generation input carries only the experiment-defined system prompt, the query and the retrieved context — nothing from any benchmark-authoring conversation, and no prior turn of one."
+  },
+  "not_done": [
+    "No retrieval was run: no BM25, dense, RRF, DOC-C, routing, reranking or generation, and no rank or score was computed.",
+    "No case was placed using system performance knowledge.",
+    "No GOLD record was modified.",
+    "The holdout was not run."
+  ],
+  "succeeded": true,
+  "split_artifact_sha256": {
+    "development": "e62670f38a0afaad132a196c6015ee3d0bae8679eb565f9075d65371547e7c5d",
+    "validation": "451963bdf379cef146bfb75e73932d7c0e54ce3b2ffdf32cd9d33f7c6a93356b",
+    "holdout": "756a3a9bc74ce3e2dd3a7924c4048984a0ae5e74237bc8053e18b6fec202d914"
+  },
+  "contamination_audit_sha256": "e3711444cec75a89af8135fce0f9e2210f8a386f9efb473347e11f2c3d10e9c5",
+  "fact_cluster_sha256": "57f01048478d5bf3263d09776cd5d5ba8d27f3bd9bbdba0ccd70131bef1202a6",
+  "holdout_frozen": true,
+  "holdout_lock": {
+    "holdout_frozen": true,
+    "frozen_at": "2026-08-31T22:30:29Z",
+    "split_version": "gold150-v1",
+    "holdout_sha256": "756a3a9bc74ce3e2dd3a7924c4048984a0ae5e74237bc8053e18b6fec202d914",
+    "holdout_count": 90,
+    "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a",
+    "rule": "Holdout membership may not change because of system performance. A failure found during engineering goes to the challenge-candidate queue, never into or out of this set.",
+    "erratum_policy": "A holdout case later shown to be objectively invalid is recorded as a benchmark erratum and retained. It is never silently replaced.",
+    "unlock_requires": "an explicit owner decision recorded as an erratum"
+  }
+}

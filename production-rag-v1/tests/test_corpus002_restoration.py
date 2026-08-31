@@ -198,8 +198,12 @@ def test_gold_records_were_not_modified_to_fit_the_corpus():
     """§5: the corpus is restored to the benchmark, never the benchmark to the corpus."""
     import subprocess
 
+    # The GOLD records specifically, not all of evals/: later phases legitimately add
+    # new files there (EVAL-SPLIT-001 writes evals/splits/), and a test that treats any
+    # new sibling as a modified benchmark cries wolf.
     changed = subprocess.run(
-        ["git", "status", "--porcelain", "evals/", "experiments/GOLD-001/"],
+        ["git", "status", "--porcelain", "evals/gold/", "evals/review/",
+         "experiments/GOLD-001/"],
         capture_output=True, text=True, check=True).stdout.strip()
     assert changed == "", f"GOLD material has uncommitted edits:\n{changed}"
 
