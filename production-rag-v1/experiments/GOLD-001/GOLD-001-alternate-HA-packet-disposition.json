@@ -1,0 +1,38 @@
+{
+  "artifact": "Disposition of the alternate Claude-authored HA packet",
+  "recorded_at": "2026-08-31T02:49:11Z",
+  "packet": "separate Claude-authored 64-case packet (HA-01 … HA-64)",
+  "packet_artifacts": {
+    "v1_zip_sha256": "389f69efa4d1a5856df720e0fc7dd4f3e6e028f3d2d0fee9532bfb15dc330a03",
+    "v2_metadata_repair_zip_sha256": "cd39bcfef771069f33fa34d2e0c836bb2ccc3894a69c3c18a5198cb4166c5d38",
+    "drafts": 64,
+    "location": "outside the repository; delivered to the owner as downloadable ZIPs"
+  },
+  "status": [
+    "NOT_ADMITTED",
+    "NOT_THE_PACKET_OF_RECORD",
+    "PRESERVED_FOR_AUDIT",
+    "NON_AUTHORITATIVE_FOR_GOLD001_ADMISSION",
+    "SUPERSEDED_ALTERNATE_AUTHORING_PACKET"
+  ],
+  "reason": "The project owner has designated a different 60-case Codex derivative, reviewed by Grok Expert and by ChatGPT, as the packet of record for final GOLD-001 admission, and has stated that this 64-case packet is excluded from that compilation to avoid double-counting.",
+  "reason_provenance": "Recorded from the owner's instruction in this session. The master packet Production_RAG_v1_Full_150_Case_Review.pdf was not available in this environment, so its text was not read and is not cited here as if it had been.",
+  "namespace_collision": {
+    "finding": "the two packets share the HA-nn namespace and are not the same cases",
+    "evidence": [
+      "the alternate packet holds 64 drafts, HA-01 … HA-64; the packet of record holds 60",
+      "36 of the 60 reviewed cases (HA-25 … HA-60) do not correspond to any case in the alternate packet; question-text similarity to the same-numbered alternate case is below 0.61 for every one of them",
+      "HA-47 differs outright: the packet of record's HA-47 is the handoff `input_type` non-effect fact in ver_1c77f33b04ffffa285ea7e61c2a89653; the alternate packet's HA-47 is a DefaultAsyncHttpx2Client preference fact in ver_de67d790db9792b2f6c5c7418a507764",
+      "HA-01 … HA-24 do describe the same 24 facts in both packets, 18 of them at >0.85 question-text similarity — which is exactly why a short-id import would look plausible and be wrong"
+    ],
+    "consequence": "No candidate from the 64-case packet may be substituted into the final 150, and no owner decision addressed to HA-01 … HA-60 may be applied to it."
+  },
+  "records_are_unchanged": {
+    "human_verified": 0,
+    "human_rejected": 0,
+    "holdout_eligible": 0,
+    "verification_status": [
+      "unreviewed"
+    ]
+  }
+}

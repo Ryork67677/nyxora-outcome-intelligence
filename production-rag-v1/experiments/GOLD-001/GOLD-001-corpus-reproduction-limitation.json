@@ -1,0 +1,32 @@
+{
+  "artifact": "Corpus reproduction limitation — blocking for retrieval",
+  "recorded_at": "2026-08-31T02:49:11Z",
+  "CORPUS_REPRODUCTION_INCOMPLETE": true,
+  "frozen_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a",
+  "reproduced": {
+    "openai_documents": 63,
+    "basis": "each saved URL is pinned to a full 40-hex commit and was re-fetched from its raw form at that commit; 14/14 persisted version_ids matched and 27/27 sampled evidence hashes reproduced"
+  },
+  "outstanding": {
+    "anthropic_documents": 139,
+    "unbuildable_identities": 2482,
+    "note": "the Anthropic half has no pinned form; 12 of 14 sampled live pages had drifted from the 2026-08-17 capture"
+  },
+  "why_partial_recovery_does_not_close_this": "The snapshot id is a single digest over all 202 normalized texts at once. Reproducing 63 of them certifies those 63 documents individually and says nothing about the collective fingerprint. Recovering the evidence excerpts behind any set of GOLD cases does not reproduce the corpus.",
+  "effect": "RETRIEVAL_BLOCKED",
+  "unblocks_when": [
+    "A. the original frozen corpus/database snapshot is shown to exist and to match its recorded manifest and hashes, or",
+    "B. the intended snapshot is fully reconstructed and revalidated to snap_689e336380a054d8039dc35b2c09cd0a"
+  ],
+  "systems_that_must_not_run_until_then": [
+    "SYSTEM-A",
+    "SYSTEM-B",
+    "BM25",
+    "MiniLM",
+    "transformer retrieval",
+    "DOC-C",
+    "routing",
+    "reranking",
+    "answer generation"
+  ]
+}
