@@ -1,5 +1,7 @@
 # GOLD-001 150-case admission, attempt 002 — stopped at step 2
 
+> **Superseded.** The packet of record was later supplied and verified, the 60 records were extracted with full evidence identity, and the admission completed. See `GOLD-001-HA-admission.json` and `GOLD-001-150-case-closure.md`. This record is kept as the history of attempt 002; its "not written" list describes that attempt, not the project's current state.
+
 **Nothing changed.** No owner decision was imported, no closure was written, no eligibility status was regenerated, no split was frozen and no retrieval was run.
 
 ## Step 2 — authoritative packet identity

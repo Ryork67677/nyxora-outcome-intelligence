@@ -402,7 +402,8 @@ def test_starting_state_was_read_from_the_records(batch):
     """
     state = batch["starting_state"]
     status = load(Path(state["read_from"]))
-    earlier = [b for b in status["batches"] if b["batch"] < batch["batch"]]
+    earlier = [b for b in status["batches"]
+               if isinstance(b["batch"], int) and b["batch"] < batch["batch"]]
     assert earlier, "the status document lists no batch before this one"
     assert state["human_verified"] == sum(b["human_verified"] for b in earlier)
     assert state["holdout_eligible"] == sum(b["holdout_eligible"] for b in earlier)

@@ -1,0 +1,94 @@
+{
+  "generated_at": "2026-08-31T03:30:05Z",
+  "packet_identity": {
+    "packet_sha256": "bf6190fc53ee4ada6c948093d30e8fa7feac3dbf3300918ec75886d2a5a8f786",
+    "pages": 159,
+    "historical_approved_cases": 90,
+    "draft_cases": 60,
+    "draft_ids_are_HA_01_through_HA_60_exactly_once": true,
+    "packet_counts_block": {
+      "approved_historical": 90,
+      "drafts": 60,
+      "official_total": 90
+    },
+    "packet_declares_no_new_approval": true,
+    "front_matter_claims_confirmed": [
+      "no_retrieval_was_run",
+      "part_b_is_the_codex_derivative_reviewed_by_grok",
+      "the_alternate_64_case_packet_is_excluded",
+      "the_drafts_are_not_yet_human_verified"
+    ]
+  },
+  "source_verification": {
+    "records": 60,
+    "spans": 77,
+    "failures": [],
+    "corpus": "/mnt/user-data/working/oa-authoring-packet/sources"
+  },
+  "chatgpt_review": {
+    "bound": true,
+    "records": 60,
+    "counts": {
+      "PASS": 58,
+      "PASS_WITH_NONCRITICAL_ANAPHORA_OVERRIDE": 1,
+      "FIX_REQUIRED_THEN_APPROVE": 1,
+      "total": 60
+    },
+    "binding": "case_id plus exact question and answer against the authoritative record"
+  },
+  "ha15_override": {
+    "anaphora_status": "NONCRITICAL_ANAPHORA",
+    "finding_retained": "refers to 'the model' with no antecedent in the span",
+    "human_anaphora_override": true,
+    "override_reviewer": "project_owner"
+  },
+  "ha47_repair": {
+    "from": [
+      {
+        "char_start": 4308,
+        "char_end": 4378,
+        "evidence_hash": "5e36f5ff857cdcd795d4e8133de6072b5a8e7588be44fc21516e24a5e97f5b34"
+      },
+      {
+        "char_start": 4539,
+        "char_end": 4916,
+        "evidence_hash": "f4d4ee514ca2285d8cc67313a02b7cb7382d11cc3cedfd998733884d98321387"
+      }
+    ],
+    "to": {
+      "char_start": 4308,
+      "char_end": 4916,
+      "evidence_char_length": 608,
+      "evidence_hash": "e894c94d831ccfd2678f4cd132b72b52e44770d07ebeaab6c51e96e0e312a203"
+    },
+    "reason": [
+      "EVIDENCE_BOUNDARY_COMPLETION",
+      "CRITICAL_ANAPHORA_REPAIR"
+    ],
+    "establishes": [
+      "subject_is_input_type",
+      "does_not_replace_the_next_agents_main_input",
+      "does_not_choose_a_different_destination",
+      "handoff_still_transfers_to_the_wrapped_agent"
+    ],
+    "paragraph_break_present": true,
+    "eligibility_blocking": false
+  },
+  "owner_decisions": {
+    "approved": 60,
+    "rejected": 0,
+    "reviewer": "project_owner",
+    "decision_file": "evals/review/human_decisions_HA01_HA60.json",
+    "conditional": {
+      "HA-15": "Approved with the NONCRITICAL_ANAPHORA finding retained and an explicit project-owner override. The detector's finding is not deleted.",
+      "HA-47": "Approval is conditional on the evidence-boundary repair passing source verification. The pre-repair two-span evidence is not the admitted evidence."
+    }
+  },
+  "eligibility": {
+    "evaluated": 60,
+    "holdout_eligible": 60,
+    "ineligible": {}
+  },
+  "retrieval_was_not_run": true,
+  "systems_executed": []
+}

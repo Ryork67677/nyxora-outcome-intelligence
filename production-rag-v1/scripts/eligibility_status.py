@@ -19,25 +19,31 @@ from pathlib import Path
 
 from rag_v1.gold.eligibility import HOLDOUT_CONDITIONS, evaluate
 
-#: Batch, closed record, and the overlay that supersedes it for eligibility, if any.
+#: Group label, closed record, and the overlay that supersedes it for eligibility, if any.
 SOURCES = (
-    (1, "evals/review/gold_review_batch_001.json", "evals/gold/batch_001_v2/overlay.json"),
-    (2, "evals/review/gold_review_batch_002.json", None),
-    (3, "evals/review/gold_review_batch_003.json", None),
+    ("001", "evals/review/gold_review_batch_001.json",
+     "evals/gold/batch_001_v2/overlay.json"),
+    ("002", "evals/review/gold_review_batch_002.json", None),
+    ("003", "evals/review/gold_review_batch_003.json", None),
     # Batch 004 kept repairs out of its generation artifact, so its decided state is the
     # composed file the owner's decisions were imported into.
-    (4, "evals/review/gold_review_batch_004_final.json", None),
+    ("004", "evals/review/gold_review_batch_004_final.json", None),
     # Batch 005 followed the same composition: repairs live beside the generation
     # artifact, and the decided state is the composed file.
-    (5, "evals/review/gold_review_batch_005_final.json", None),
-    (6, "evals/review/gold_review_batch_006_final.json", None),
+    ("005", "evals/review/gold_review_batch_005_final.json", None),
+    ("006", "evals/review/gold_review_batch_006_final.json", None),
+    # HA-01 … HA-60 are not a batch: they come from the 150-case review packet, not from
+    # a generation run, and they were admitted by the owner in one decision. The label
+    # says so rather than borrowing a batch number that would imply the batch-007
+    # preregistered sequence was followed. It was not; see the protocol deviation.
+    ("HA-01–HA-60", "evals/review/gold_review_HA01_HA60_final.json", None),
 )
 #: What the project is aiming at. Reported so a count can be read against a target
 #: instead of in a vacuum.
 TARGET = {"validation": "30–40", "holdout": "70–100"}
 
 
-def count(batch_path: str, overlay_path: str | None) -> dict:
+def count(label: str, batch_path: str, overlay_path: str | None) -> dict:
     batch = json.loads(Path(batch_path).read_text())
     records = batch["records"]
     verified = [r for r in records if r["verification_status"] == "human_verified"]
@@ -53,7 +59,10 @@ def count(batch_path: str, overlay_path: str | None) -> dict:
     verdicts = {c["candidate_id"]: evaluate(c) for c in cases}
     eligible = sorted(cid for cid, v in verdicts.items() if v["holdout_eligible"])
     return {
-        "batch": batch.get("batch"),
+        # The numeric batch, or None for a group that is not a generation batch. The
+        # display label is separate: batch numbers are what other artifacts key on.
+        "batch": batch.get("batch") if isinstance(batch.get("batch"), int) else None,
+        "label": label,
         "closed_record": batch_path,
         "eligibility_source": source,
         "closure_sha256": batch.get("closure_sha256"),
@@ -72,6 +81,24 @@ def count(batch_path: str, overlay_path: str | None) -> dict:
             and c["candidate_id"] in set(eligible)),
         "overlay_version": overlay["overlay"] if overlay else None,
     }
+
+
+def not_frozen_because(combined: dict) -> str:
+    """Why no holdout is frozen — the count reason, or, once the count is there, the
+    reasons that outlast it."""
+    low, high = (int(part) for part in TARGET["holdout"].split("\u2013"))
+    validation_low, _ = (int(part) for part in TARGET["validation"].split("\u2013"))
+    if combined["holdout_eligible"] < validation_low + low:
+        return (f"{combined['holdout_eligible']} eligible cases cannot support both a "
+                f"{TARGET['validation']} validation split and a {TARGET['holdout']} "
+                "holdout.")
+    return (f"{combined['holdout_eligible']} eligible cases can support the "
+            f"{TARGET['validation']} / {TARGET['holdout']} split by size, so size is no "
+            "longer the reason. What is missing is a split policy: the set is "
+            f"provider- and category-skewed and holds {combined['genuine_multi_hop']} "
+            "genuine multi-hop case, so an unweighted split would decide by accident "
+            "which categories the holdout can measure. Freezing also stays blocked "
+            "while corpus reproduction is incomplete.")
 
 
 def multi_hop_section(status: dict) -> list[str]:
@@ -127,7 +154,7 @@ def multi_hop_section(status: dict) -> list[str]:
 
 def render(status: dict) -> str:
     rows = "\n".join(
-        f"| {b['batch']:03d} | {b['candidates']} | {b['human_verified']} | "
+        f"| {b['label']} | {b['candidates']} | {b['human_verified']} | "
         f"{b['human_rejected']} | **{b['holdout_eligible']}** | "
         f"{b['genuine_multi_hop']} | {b['overlay_version'] or 'v1'} |"
         for b in status["batches"])
@@ -164,11 +191,9 @@ def render(status: dict) -> str:
         (f"The project is aiming at roughly **{TARGET['validation']} validation** "
          f"cases and **{TARGET['holdout']} holdout** cases."),
         "",
-        (f"**{combined['holdout_eligible']} eligible cases is not enough for both.** "
-         "Splitting them would leave a holdout too small to measure with and a "
-         "validation set too small to develop against, and every case spent on "
-         "validation is a case the holdout will never see. No holdout is frozen, and "
-         "none should be until the count supports the split."),
+        f"**{status['reason_not_frozen']}**",
+        "",
+        ("No holdout is frozen and `holdout_frozen` stays false."),
         "",
         "## Untouched",
         "",
@@ -184,7 +209,7 @@ def main() -> int:
     parser.add_argument("--out-dir", default="experiments/GOLD-001")
     args = parser.parse_args()
 
-    batches = [count(record, overlay) for _, record, overlay in SOURCES]
+    batches = [count(label, record, overlay) for label, record, overlay in SOURCES]
     combined = {
         key: sum(b[key] for b in batches)
         for key in ("candidates", "human_verified", "human_rejected",
@@ -210,10 +235,7 @@ def main() -> int:
         "multi_hop_generation": multi_hop_generation,
         "multi_hop_dependency_first": multi_hop_dependency_first,
         "holdout_frozen": False,
-        "reason_not_frozen": (
-            f"{combined['holdout_eligible']} eligible cases cannot support both a "
-            f"{TARGET['validation']} validation split and a {TARGET['holdout']} holdout."
-        ),
+        "reason_not_frozen": not_frozen_because(combined),
         "retrieval_was_not_run": True,
         "systems_executed": [],
     }
@@ -224,7 +246,7 @@ def main() -> int:
     (out_dir / "GOLD-001-eligibility-status.md").write_text(render(status), encoding="utf-8")
 
     for batch in batches:
-        print(f"  batch {batch['batch']:03d}: {batch['human_verified']} verified, "
+        print(f"  {batch['label']}: {batch['human_verified']} verified, "
               f"{batch['human_rejected']} rejected, "
               f"{batch['holdout_eligible']} eligible "
               f"({batch['overlay_version'] or 'v1'})")

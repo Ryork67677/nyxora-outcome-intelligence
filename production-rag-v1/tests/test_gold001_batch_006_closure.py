@@ -233,13 +233,16 @@ def test_the_eligibility_gate_is_rerun_not_asserted(final, closure):
 # ------------------------------------------------------------------ project state
 
 
-def test_the_project_stands_at_ninety(closure):
+def test_the_six_generation_batches_still_stand_at_ninety(closure):
+    """Batch 006 carried the six generation batches to 90. Later admissions add to the
+    project total; they must never change what those six hold."""
     status = load(STATUS)
-    combined = status["combined"]
-    assert combined["human_verified"] == 90
-    assert combined["holdout_eligible"] == 90
-    assert combined["human_rejected"] == 9
-    assert any(b["batch"] == 6 for b in status["batches"])
+    generation = [b for b in status["batches"] if isinstance(b["batch"], int)]
+
+    assert sum(b["human_verified"] for b in generation) == 90
+    assert sum(b["holdout_eligible"] for b in generation) == 90
+    assert sum(b["human_rejected"] for b in generation) == 9
+    assert any(b["batch"] == 6 for b in generation)
 
 
 def test_the_closure_reports_the_shortfall_and_its_cause(closure):
@@ -388,8 +391,12 @@ def test_no_ai_may_set_human_verified(prereg):
 def test_the_preregistration_reads_state_rather_than_asserting_it(prereg):
     state = prereg["starting_state"]
     status = load(STATUS)
-    assert state["holdout_eligible"] == status["combined"]["holdout_eligible"]
-    assert state["human_verified"] == status["combined"]["human_verified"]
+    # A starting state is historical. It must equal what the groups that existed when it
+    # was written still sum to — the six generation batches — not the live project total,
+    # which moves every time anything is admitted.
+    generation = [b for b in status["batches"] if isinstance(b["batch"], int)]
+    assert state["holdout_eligible"] == sum(b["holdout_eligible"] for b in generation)
+    assert state["human_verified"] == sum(b["human_verified"] for b in generation)
     assert state["still_needed"] == 150 - state["holdout_eligible"]
     assert state["holdout_frozen"] is False
     assert state["retrieval_was_not_run"] is True

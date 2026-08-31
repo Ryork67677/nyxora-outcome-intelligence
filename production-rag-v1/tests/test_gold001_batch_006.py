@@ -241,8 +241,10 @@ def test_the_coverage_projection_does_not_claim_the_target(batch):
     if not COVERAGE.exists():
         pytest.skip("coverage status has not been generated")
     text = COVERAGE.read_text()
-    status = load(STATUS)
-    confirmed = status["combined"]["holdout_eligible"]
+    # The coverage document is a historical artifact: it records what was confirmed when
+    # batch 006 was generated. Comparing it against the live status made it fail the
+    # moment the project grew, which is a defect in the test, not in the document.
+    confirmed = batch["starting_state"]["holdout_eligible"]
     best = confirmed + batch["candidates"]
     assert str(confirmed) in text
     if best < 100:

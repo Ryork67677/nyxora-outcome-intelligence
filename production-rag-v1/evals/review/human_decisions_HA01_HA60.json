@@ -1,0 +1,22 @@
+{
+  "decisions_for": "HA-01 … HA-60 from Production_RAG_v1_Full_150_Case_Review.pdf",
+  "packet_sha256": "bf6190fc53ee4ada6c948093d30e8fa7feac3dbf3300918ec75886d2a5a8f786",
+  "reviewer": "project_owner",
+  "recorded_from": "the project owner's admission instruction, given in full and quoting each case id",
+  "binding": "These decisions address the 60 records of the packet named above, bound by evidence identity. They must never be applied to the separate Claude-authored 64-case packet, which uses the same HA-nn labels for different cases and is NOT_ADMITTED.",
+  "attribution": "The approval is the project owner's. Codex, Grok Expert and ChatGPT provided independent semantic review and approved nothing; an independent review is a recommendation.",
+  "conditional": {
+    "HA-15": "Approved with the NONCRITICAL_ANAPHORA finding retained and an explicit project-owner override. The detector's finding is not deleted.",
+    "HA-47": "Approval is conditional on the evidence-boundary repair passing source verification. The pre-repair two-span evidence is not the admitted evidence."
+  },
+  "approved": [
+    "HA-01", "HA-02", "HA-03", "HA-04", "HA-05", "HA-06", "HA-07", "HA-08", "HA-09",
+    "HA-10", "HA-11", "HA-12", "HA-13", "HA-14", "HA-15", "HA-16", "HA-17", "HA-18",
+    "HA-19", "HA-20", "HA-21", "HA-22", "HA-23", "HA-24", "HA-25", "HA-26", "HA-27",
+    "HA-28", "HA-29", "HA-30", "HA-31", "HA-32", "HA-33", "HA-34", "HA-35", "HA-36",
+    "HA-37", "HA-38", "HA-39", "HA-40", "HA-41", "HA-42", "HA-43", "HA-44", "HA-45",
+    "HA-46", "HA-47", "HA-48", "HA-49", "HA-50", "HA-51", "HA-52", "HA-53", "HA-54",
+    "HA-55", "HA-56", "HA-57", "HA-58", "HA-59", "HA-60"
+  ],
+  "rejected": []
+}

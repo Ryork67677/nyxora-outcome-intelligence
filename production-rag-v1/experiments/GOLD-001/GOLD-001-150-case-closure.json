@@ -1,0 +1,226 @@
+{
+  "closed_at": "2026-08-31T03:39:01Z",
+  "headline": "150 cases is the achieved GOLD benchmark-size target. It is a size, not coverage.",
+  "target_size": 150,
+  "size_target_achieved": true,
+  "counts": {
+    "human_verified": 150,
+    "holdout_eligible": 150,
+    "human_rejected": 9,
+    "genuine_multi_hop": 1,
+    "candidates_reviewed": 159
+  },
+  "counts_source": "derived from the group records via the eligibility predicate",
+  "by_group": [
+    {
+      "group": "001",
+      "human_verified": 16,
+      "human_rejected": 2,
+      "holdout_eligible": 16,
+      "eligibility_source": "evals/gold/batch_001_v2/overlay.json"
+    },
+    {
+      "group": "002",
+      "human_verified": 17,
+      "human_rejected": 1,
+      "holdout_eligible": 17,
+      "eligibility_source": "evals/review/gold_review_batch_002.json"
+    },
+    {
+      "group": "003",
+      "human_verified": 20,
+      "human_rejected": 0,
+      "holdout_eligible": 20,
+      "eligibility_source": "evals/review/gold_review_batch_003.json"
+    },
+    {
+      "group": "004",
+      "human_verified": 14,
+      "human_rejected": 1,
+      "holdout_eligible": 14,
+      "eligibility_source": "evals/review/gold_review_batch_004_final.json"
+    },
+    {
+      "group": "005",
+      "human_verified": 15,
+      "human_rejected": 4,
+      "holdout_eligible": 15,
+      "eligibility_source": "evals/review/gold_review_batch_005_final.json"
+    },
+    {
+      "group": "006",
+      "human_verified": 8,
+      "human_rejected": 1,
+      "holdout_eligible": 8,
+      "eligibility_source": "evals/review/gold_review_batch_006_final.json"
+    },
+    {
+      "group": "HA-01–HA-60",
+      "human_verified": 60,
+      "human_rejected": 0,
+      "holdout_eligible": 60,
+      "eligibility_source": "evals/review/gold_review_HA01_HA60_final.json"
+    }
+  ],
+  "conditions_checked": [
+    "human_verified",
+    "every_claim_has_a_deterministic_check",
+    "critical_strings_present_in_evidence",
+    "evidence_hash_valid",
+    "no_unresolved_scope_defect",
+    "required_evidence_declared"
+  ],
+  "coverage": {
+    "provider": {
+      "openai": 96,
+      "anthropic": 54
+    },
+    "reasoning_type": {
+      "exact_lookup": 58,
+      "(not recorded in this batch's schema)": 33,
+      "configuration_interaction": 23,
+      "error_behavior": 19,
+      "lifecycle_compatibility_migration": 8,
+      "request_response": 5,
+      "lifecycle": 2,
+      "ambiguity_disambiguation": 1,
+      "genuine_multi_hop": 1
+    },
+    "evidence_shape": {
+      "single_span": 93,
+      "(not recorded in this batch's schema)": 33,
+      "multi_span_same_fact": 16,
+      "multi_span": 7,
+      "multi_document": 1
+    },
+    "genuine_multi_hop_ids": [
+      "GOLD-B004-15"
+    ],
+    "ambiguity_cases": 1,
+    "ambiguity_case_ids": [
+      "GOLD-B004-09"
+    ],
+    "cases_with_no_recorded_reasoning_type": 33,
+    "distinct_source_documents": 60,
+    "most_concentrated_document": [
+      "ver_f15e1a531d680bb98179238f80355058",
+      14
+    ],
+    "cases_from_the_top_document": 14
+  },
+  "admission": {
+    "packet": "Production_RAG_v1_Full_150_Case_Review.pdf",
+    "packet_sha256": "bf6190fc53ee4ada6c948093d30e8fa7feac3dbf3300918ec75886d2a5a8f786",
+    "cases_admitted": 60,
+    "reviewer": "project_owner",
+    "ha15_override": {
+      "anaphora_status": "NONCRITICAL_ANAPHORA",
+      "finding_retained": "refers to 'the model' with no antecedent in the span",
+      "human_anaphora_override": true,
+      "override_reviewer": "project_owner"
+    },
+    "ha47_repair": {
+      "from": [
+        {
+          "char_start": 4308,
+          "char_end": 4378,
+          "evidence_hash": "5e36f5ff857cdcd795d4e8133de6072b5a8e7588be44fc21516e24a5e97f5b34"
+        },
+        {
+          "char_start": 4539,
+          "char_end": 4916,
+          "evidence_hash": "f4d4ee514ca2285d8cc67313a02b7cb7382d11cc3cedfd998733884d98321387"
+        }
+      ],
+      "to": {
+        "char_start": 4308,
+        "char_end": 4916,
+        "evidence_char_length": 608,
+        "evidence_hash": "e894c94d831ccfd2678f4cd132b72b52e44770d07ebeaab6c51e96e0e312a203"
+      },
+      "reason": [
+        "EVIDENCE_BOUNDARY_COMPLETION",
+        "CRITICAL_ANAPHORA_REPAIR"
+      ],
+      "establishes": [
+        "subject_is_input_type",
+        "does_not_replace_the_next_agents_main_input",
+        "does_not_choose_a_different_destination",
+        "handoff_still_transfers_to_the_wrapped_agent"
+      ],
+      "paragraph_break_present": true,
+      "eligibility_blocking": false
+    },
+    "anaphora_overrides_in_the_set": [
+      "GOLD-B003-04",
+      "GOLD-B004-02",
+      "GOLD-B004-15",
+      "HA-15"
+    ],
+    "cases_carrying_a_revision": [
+      "GOLD-B002-01",
+      "GOLD-B002-02",
+      "GOLD-B002-03",
+      "GOLD-B002-04",
+      "GOLD-B002-05",
+      "GOLD-B002-06",
+      "GOLD-B002-07",
+      "GOLD-B002-08",
+      "GOLD-B002-09",
+      "GOLD-B002-10",
+      "GOLD-B002-11",
+      "GOLD-B002-13",
+      "GOLD-B002-14",
+      "GOLD-B002-15",
+      "GOLD-B002-16",
+      "GOLD-B002-17",
+      "GOLD-B002-18",
+      "GOLD-B003-02",
+      "GOLD-B003-04",
+      "GOLD-B003-06",
+      "GOLD-B003-10",
+      "GOLD-B003-11",
+      "GOLD-B003-13",
+      "GOLD-B003-14",
+      "GOLD-B003-16",
+      "GOLD-B003-17",
+      "GOLD-B004-01",
+      "GOLD-B004-04",
+      "GOLD-B004-06",
+      "GOLD-B004-07",
+      "GOLD-B004-10",
+      "GOLD-B004-11",
+      "GOLD-B004-13",
+      "GOLD-B004-14",
+      "GOLD-B004-15",
+      "GOLD-B005-05",
+      "GOLD-B005-08",
+      "GOLD-B005-09",
+      "GOLD-B005-11",
+      "GOLD-B005-15",
+      "GOLD-B005-16",
+      "GOLD-B005-18",
+      "GOLD-B006-01",
+      "GOLD-B006-02",
+      "GOLD-B006-03",
+      "GOLD-B006-04",
+      "GOLD-B006-05",
+      "GOLD-B006-08",
+      "HA-47"
+    ]
+  },
+  "limitations": {
+    "provider_imbalance": "96 of 150 eligible cases come from one provider (openai). A per-provider result from this set is not a comparison between providers.",
+    "category_imbalance": "the largest recorded category holds 58 of 150 cases and the smallest holds 1; 33 cases predate the field entirely. An unweighted score over this set is dominated by the largest category.",
+    "genuine_multi_hop": "1 case. One observation cannot support any claim about multi-hop performance, and 150 does not change that.",
+    "protocol_deviation": "ACCEPTED_PROTOCOL_DEVIATION",
+    "corpus_reproduction": "incomplete; 139 Anthropic documents and 2482 unbuildable identities outstanding",
+    "retrieval": "RETRIEVAL_BLOCKED"
+  },
+  "holdout_frozen": false,
+  "reason_not_frozen": "150 eligible cases can support the 30–40 / 70–100 split by size, so size is no longer the reason. What is missing is a split policy: the set is provider- and category-skewed and holds 1 genuine multi-hop case, so an unweighted split would decide by accident which categories the holdout can measure. Freezing also stays blocked while corpus reproduction is incomplete.",
+  "retrieval_was_not_run": true,
+  "systems_executed": [],
+  "alternate_packet": "The separate Claude-authored 64-case packet is NOT_ADMITTED and contributed no case to this total. See GOLD-001-alternate-HA-packet-disposition.json.",
+  "closure_hash": "32b59f774d3efa31"
+}

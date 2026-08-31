@@ -145,24 +145,41 @@ def test_the_final_count_is_derived_from_the_authoritative_record():
     assert combined["holdout_eligible"] <= combined["human_verified"]
 
 
-def test_no_admission_claimed_150():
+def test_the_only_group_added_to_the_historical_90_is_the_packet_of_record():
+    """Attempt 002 blocked because 60 approvals had no records to bind to. When they
+    arrived, exactly one group joined the six historical batches — and not the
+    alternate packet."""
     status = json.loads(STATUS.read_text())
+    groups = {b["label"]: b for b in status["batches"]}
+    historical = sum(v["holdout_eligible"] for k, v in groups.items()
+                     if k != "HA-01–HA-60")
 
-    assert status["combined"]["human_verified"] == 90
-    assert status["combined"]["holdout_eligible"] == 90
+    assert historical == 90
     assert status["combined"]["human_rejected"] == 9
     assert status["combined"]["genuine_multi_hop"] == 1
+    assert json.loads(
+        Path("evals/review/gold_review_HA01_HA60_final.json").read_text()
+    )["source_packet_sha256"] == (
+        "bf6190fc53ee4ada6c948093d30e8fa7feac3dbf3300918ec75886d2a5a8f786")
 
 
-def test_the_closure_is_absent_while_the_admission_is_blocked():
-    assert not (EXP / "GOLD-001-150-case-closure.json").exists()
-    assert load(BLOCKED)["disposition"].startswith("STOPPED")
+def test_the_blocked_record_is_kept_and_marked_superseded():
+    """It stays as the history of attempt 002 rather than being rewritten."""
+    blocked = load(BLOCKED)
+
+    assert blocked["disposition"].startswith("STOPPED")
+    assert blocked["superseded_by"]["artifacts"]
+    assert "not the project's current state" in blocked["superseded_by"]["note"]
 
 
-def test_the_protocol_deviation_is_not_written_as_accepted_without_its_packet():
-    """An accepted deviation has to name the packet whose admission it excuses."""
-    assert not (EXP / "GOLD-001-protocol-deviation-001.json").exists()
+def test_the_protocol_deviation_names_the_packet_whose_admission_it_excuses():
+    """The reason it could not be written during attempt 002: it needs its packet."""
+    deviation = load(EXP / "GOLD-001-protocol-deviation-001.json")
+    grok = next(m for m in deviation["mitigations_actually_performed"]
+                if "Grok" in m["mitigation"])
+
     assert "GOLD-001-protocol-deviation-001.{json,md}" in load(BLOCKED)["not_written"]
+    assert grok["verified_from"] == "the embedded grok-review-results.json"
 
 
 # ------------------------------------------------------- retrieval stays blocked

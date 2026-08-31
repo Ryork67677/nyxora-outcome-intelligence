@@ -1,6 +1,6 @@
 # GOLD-001 — eligibility status
 
-As of 2026-08-24T17:47:23Z.
+As of 2026-08-31T03:37:38Z.
 
 | batch | candidates | `human_verified` | `human_rejected` | `holdout_eligible` | genuine multi-hop | eligibility read from |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -10,11 +10,12 @@ As of 2026-08-24T17:47:23Z.
 | 004 | 15 | 14 | 1 | **14** | 1 | v1 |
 | 005 | 19 | 15 | 4 | **15** | 0 | v1 |
 | 006 | 9 | 8 | 1 | **8** | 0 | v1 |
-| **all** | **99** | **90** | **9** | **90** | **1** | |
+| HA-01–HA-60 | 60 | 60 | 0 | **60** | 0 | v1 |
+| **all** | **159** | **150** | **9** | **150** | **1** | |
 
 ## Genuine multi-hop
 
-**1 of 90 eligible cases** is a genuine multi-hop reasoning case.
+**1 of 150 eligible cases** is a genuine multi-hop reasoning case.
 
 That is one observation. It proves the benchmark infrastructure can represent a genuine multi-hop case — anchor it, check its composition, and carry it through review — and it does not mean the category is adequately sampled. A single case cannot support a claim about how any system handles multi-hop reasoning.
 
@@ -32,7 +33,9 @@ Two searches, two methods, one composable structure. That is a measured property
 
 The project is aiming at roughly **30–40 validation** cases and **70–100 holdout** cases.
 
-**90 eligible cases is not enough for both.** Splitting them would leave a holdout too small to measure with and a validation set too small to develop against, and every case spent on validation is a case the holdout will never see. No holdout is frozen, and none should be until the count supports the split.
+**150 eligible cases can support the 30–40 / 70–100 split by size, so size is no longer the reason. What is missing is a split policy: the set is provider- and category-skewed and holds 1 genuine multi-hop case, so an unweighted split would decide by accident which categories the holdout can measure. Freezing also stays blocked while corpus reproduction is incomplete.**
+
+No holdout is frozen and `holdout_frozen` stays false.
 
 ## Untouched
 

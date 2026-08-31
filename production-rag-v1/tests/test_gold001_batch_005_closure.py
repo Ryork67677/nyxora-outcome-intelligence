@@ -352,9 +352,16 @@ def test_project_wide_counts_are_consistent(final):
 
 
 def test_holdout_is_not_frozen():
+    """The count reason expired when the set reached 150; the invariant did not.
+
+    This used to assert the eligible count was under 100, which was the reason no split
+    could be frozen at the time. The set has since grown past that, so the assertion is
+    now about what has to stay true regardless: nothing is frozen, and the status says
+    why in its own words rather than leaving it to be inferred.
+    """
     status = load(STATUS)
     assert status["holdout_frozen"] is False
-    assert status["combined"]["holdout_eligible"] < 100
+    assert status["reason_not_frozen"]
 
 
 def test_closed_batches_are_untouched():

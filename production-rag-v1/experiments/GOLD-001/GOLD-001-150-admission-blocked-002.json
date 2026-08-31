@@ -124,5 +124,16 @@
   "to_unblock": [
     "Supply Production_RAG_v1_Full_150_Case_Review.pdf, or the 60 candidate records as JSON with expected_evidence (text, char_start, char_end, evidence_hash), version_id, atomic claims and critical strings.",
     "With those, steps 4 … 13 run end to end: bind by evidence identity, apply the HA-47 repair, record the HA-15 override, import the owner decisions, run the real eligibility predicate, and derive the final count."
-  ]
+  ],
+  "superseded_by": {
+    "resolved_at": "2026-08-31T03:34:50Z",
+    "resolution": "The packet of record was supplied and verified (sha256 bf6190fc53ee4ada6c948093d30e8fa7feac3dbf3300918ec75886d2a5a8f786, 159 pages), its 60 records were extracted with full evidence identity, and the admission completed.",
+    "artifacts": [
+      "GOLD-001-HA-admission.json",
+      "GOLD-001-150-case-closure.json",
+      "GOLD-001-protocol-deviation-001.json",
+      "evals/review/gold_review_HA01_HA60_final.json"
+    ],
+    "note": "This record stays as the history of attempt 002. Its 'not_written' list describes that attempt, not the project's current state."
+  }
 }
