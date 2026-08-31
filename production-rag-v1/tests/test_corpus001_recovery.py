@@ -14,6 +14,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import subprocess
 from pathlib import Path
 
 import pytest
@@ -363,9 +364,19 @@ def test_the_local_database_was_inspected_read_only_and_left_as_found():
 
 
 def test_no_corpus_data_was_written_into_the_repository():
-    """data/raw and data/cache must still hold nothing but their .gitkeep files."""
-    for directory in (Path("data/raw"), Path("data/cache")):
-        assert [p.name for p in directory.iterdir()] == [".gitkeep"], directory
+    """Nothing but the .gitkeep files may be *tracked* under data/raw and data/cache.
+
+    The check is against git, not against the filesystem. Both directories are
+    gitignored precisely so a working copy can hold a fetched corpus — that is how the
+    pipeline runs at all — and asserting the directory is empty on disk fails in every
+    environment that has actually done the work, while saying nothing about what was
+    committed. What must never happen is corpus data entering the repository, and that
+    is a question only git can answer.
+    """
+    tracked = subprocess.run(
+        ["git", "ls-files", "data/raw", "data/cache"],
+        capture_output=True, text=True, check=True).stdout.split()
+    assert sorted(tracked) == ["data/cache/.gitkeep", "data/raw/.gitkeep"], tracked
 
 
 # ---------------------------------------------------- the manifest-hash final oracle

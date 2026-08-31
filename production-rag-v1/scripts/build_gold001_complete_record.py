@@ -35,6 +35,14 @@ STATUS = EXPERIMENTS / "GOLD-001-eligibility-status.json"
 PREREG = EXPERIMENTS / "GOLD-001-batch-007-preregistration.json"
 AUDIT = EXPERIMENTS / "GOLD-001-heading-parser-audit.json"
 B006_INPUTS = EXPERIMENTS / "GOLD-001-batch-006-preregistration-inputs.json"
+CLOSURE_150 = EXPERIMENTS / "GOLD-001-150-case-closure.json"
+B007_OUTCOME = EXPERIMENTS / "GOLD-001-batch-007-efg-fixes.json"
+HA_ADMISSION = EXPERIMENTS / "GOLD-001-HA-admission.json"
+DEVIATION = EXPERIMENTS / "GOLD-001-protocol-deviation-001.md"
+#: The sixty HA cases arrived as an owner-reviewed packet rather than as a generated
+#: batch, so they have records and an admission but no generation report and no closure
+#: of their own. They are a group, not a batch, and the document says so throughout.
+HA_RECORDS = REPO_ROOT / "evals/review/gold_review_HA01_HA60_final.json"
 
 #: Batch → (records file, overlay that supersedes it, review-decisions file).
 #: The same resolution eligibility_status.py uses, so the two cannot drift.
@@ -168,6 +176,9 @@ def gather() -> dict:
             "reviews": reviews, "reports": reports,
             "prereg": load(PREREG), "audit": load(AUDIT),
             "b006_inputs": load(B006_INPUTS),
+            "closure_150": load(CLOSURE_150),
+            "b007": load(B007_OUTCOME),
+            "ha": load(HA_RECORDS) if HA_RECORDS.exists() else None,
             "commits": [c.split("|", 2) for c in commits if "|" in c]}
 
 
@@ -188,13 +199,18 @@ def defect_ledger(data: dict) -> list[dict]:
 
 
 def all_cases(data: dict) -> list[dict]:
-    """Every approved case across every closed batch, with its batch number."""
+    """Every approved case in the benchmark — the six batches and the HA group."""
     out = []
     for number, payload in sorted(data["batches"].items()):
         for record in payload["records"]:
             if record.get("verification_status") != "human_verified":
                 continue
-            out.append({"batch": number, **record})
+            out.append({"group": f"{number:03d}", **record})
+    if data.get("ha"):
+        for record in data["ha"]["records"]:
+            if record.get("verification_status") != "human_verified":
+                continue
+            out.append({"group": "HA", **record})
     return sorted(out, key=lambda r: r["candidate_id"])
 
 
@@ -215,17 +231,34 @@ def build_html(data: dict) -> str:
     cases = all_cases(data)
     rejections = all_rejections(data)
     ledger = defect_ledger(data)
-    state = prereg["starting_state"]
-    proj = prereg["projection"]
+    closure_150 = data["closure_150"]
+    lim = closure_150["limitations"]
+    coverage_150 = closure_150["coverage"]
+    provider_150 = coverage_150["provider"]
+    multi_hop_ids = coverage_150.get("genuine_multi_hop_ids") or []
+    multi_hop_list = ", ".join(f"<code>{esc(c)}</code>" for c in multi_hop_ids) or "none"
+    b007 = data["b007"]
+    ha_total = next((b["human_verified"] for b in status["batches"]
+                     if b["batch"] is None), 0)
+    batches_total = combined["human_verified"] - ha_total
 
+    ha_row = next((b for b in status["batches"] if b["batch"] is None), None)
     batch_rows = rows([
-        (f"<b>{n:03d}</b>", c["closed_at"][:10], c["totals"]["candidates"],
+        (f"<b>{n:03d}</b>", "generated batch", c["closed_at"][:10],
+         c["totals"]["candidates"],
          c["totals"]["human_verified"], c["totals"]["human_rejected"],
          f"{c['totals']['acceptance_rate']:.0%}",
          next(b["holdout_eligible"] for b in status["batches"] if b["batch"] == n),
          f"<code>{c['closure_sha256'][:10]}…</code>")
         for n, c in sorted(closures.items())
-    ], classes=("mono", "mono", "num", "num", "num", "num", "num", ""))
+    ] + ([
+        ("<b>HA</b>", "owner-reviewed packet", closure_150["closed_at"][:10],
+         ha_row["candidates"], ha_row["human_verified"], ha_row["human_rejected"],
+         f"{ha_row['human_verified'] / ha_row['candidates']:.0%}",
+         ha_row["holdout_eligible"],
+         f"<code>{closure_150['closure_hash'][:10]}…</code>")
+    ] if ha_row else []),
+        classes=("mono", "", "mono", "num", "num", "num", "num", "num", ""))
 
     reasoning = Counter(r["reasoning_type"] for r in cases if r.get("reasoning_type"))
     provider = Counter(r["provider"] for r in cases)
@@ -318,11 +351,27 @@ def build_html(data: dict) -> str:
 <div class="label">Where the project stands</div>
 <p><b>{combined['human_verified']} human-verified cases, all
 {combined['holdout_eligible']} of them holdout-eligible</b>, drawn from
-{combined['candidates']} candidates across six closed batches.
-{combined['human_rejected']} were rejected and every one is kept as a negative audit
-example. <b>{combined['genuine_multi_hop']}</b> case is genuine multi-hop.</p>
+{combined['candidates']} candidates reviewed. {combined['human_rejected']} were rejected
+and every one is kept as a negative audit example. They arrive in two groups: six closed
+generated batches ({batches_total} cases) and one owner-reviewed packet of
+{ha_total} standalone drafts (HA-01…HA-60).</p>
 <p>No retrieval system has ever been run against a GOLD candidate. No holdout and no
 validation split is frozen. SYSTEM-A and SYSTEM-B remain frozen and unexecuted.</p>
+</div>
+
+<div class="callout warn">
+<div class="label">Read this before quoting the number</div>
+<p><b>{esc(closure_150['headline'])}</b></p>
+<p>{esc(lim['provider_imbalance'])}</p>
+<p>{esc(lim['category_imbalance'])}</p>
+<p><b>Genuine multi-hop: {len(multi_hop_ids)} case</b> ({multi_hop_list}).
+{esc(lim['genuine_multi_hop'])}</p>
+<p>The sixty HA cases were authored and reviewed <b>outside</b> the preregistered
+sequence, and the calibration pilot that was supposed to precede them
+<b>was never run</b>. That is recorded as
+<code>{esc(lim['protocol_deviation'])}</code> and is set out in section 11.</p>
+<p>Corpus reproduction is <b>{esc(lim['corpus_reproduction'])}</b>, and retrieval is
+<code>{esc(lim['retrieval'])}</code>.</p>
 </div>
 
 <div class="grid4">
@@ -332,12 +381,12 @@ validation split is frozen. SYSTEM-A and SYSTEM-B remain frozen and unexecuted.<
     <div class="cap">holdout-eligible</div></div>
   <div class="stat"><div class="big">{combined['human_rejected']}</div>
     <div class="cap">rejected, all preserved</div></div>
-  <div class="stat warn"><div class="big">{state['still_needed']}</div>
-    <div class="cap">short of the {state['project_target']} target</div></div>
+  <div class="stat warn"><div class="big">{provider_150.get('openai', 0)} / {provider_150.get('anthropic', 0)}</div>
+    <div class="cap">openai / anthropic —<br>not a balanced set</div></div>
 </div>
 
 <div class="toc">
-<div><b>1.</b> The six closed batches</div>
+<div><b>1.</b> The six batches and the HA group</div>
 <div><b>2.</b> What is in the benchmark</div>
 <div><b>3.</b> Every approved case</div>
 <div><b>4.</b> Every rejection</div>
@@ -347,20 +396,27 @@ validation split is frozen. SYSTEM-A and SYSTEM-B remain frozen and unexecuted.<
 <div><b>8.</b> The generator defect ledger</div>
 <div><b>9.</b> Modules built</div>
 <div><b>10.</b> Heading parser audit</div>
-<div><b>11.</b> Batch 007 — preregistered</div>
+<div><b>11.</b> The HA packet, and the protocol deviation</div>
+<div><b>11b.</b> Batch 007 — fixes shipped, pilot blocked</div>
 <div><b>12.</b> Tests and invariants</div>
 <div><b>13.</b> Commits and artifacts</div>
 </div>
 
-<h2>1. The six closed batches</h2>
+<h2>1. The six batches and the HA group</h2>
 <p>A batch closes only when every candidate has a final human decision. The closure
 records a hash over its candidate records, and the test suite re-checks that hash, so an
 edit after closure fails the tests rather than passing unnoticed.</p>
-<table><thead><tr><th>batch</th><th>closed</th><th class="num">candidates</th>
+<p><b>The HA row is not a batch.</b> Those sixty cases were authored as standalone
+drafts and admitted from an owner-reviewed packet, not generated by the pipeline the six
+batches ran through. Its 100% acceptance is not comparable to a batch's: a generated
+batch is reviewed after generation, while this packet was assembled and reviewed
+together. Section 11 sets out what that does and does not establish.</p>
+<table><thead><tr><th>group</th><th>origin</th><th>closed</th>
+<th class="num">candidates</th>
 <th class="num">verified</th><th class="num">rejected</th><th class="num">acceptance</th>
 <th class="num">eligible</th><th>closure hash</th></tr></thead>
 <tbody>{batch_rows}</tbody>
-<tfoot><tr><td>all</td><td></td><td class="num">{combined['candidates']}</td>
+<tfoot><tr><td>all</td><td></td><td></td><td class="num">{combined['candidates']}</td>
 <td class="num">{combined['human_verified']}</td>
 <td class="num">{combined['human_rejected']}</td>
 <td class="num">{combined['human_verified'] / combined['candidates']:.0%}</td>
@@ -537,65 +593,108 @@ beside it. What changed is a rule: <code>section_path</code> is never trusted fo
 scope, and a candidate's exact evidence must carry the scope its claim needs.</p>
 
 <div class="break"></div>
-<h2>11. Batch 007 — preregistered, not generated</h2>
-<p class="subtitle">{esc(prereg['status'])}</p>
+<h2>11. The HA packet, and the protocol deviation</h2>
+<p>Sixty standalone drafts, <code>HA-01</code> through <code>HA-60</code>, were authored
+outside the preregistered sequence and admitted from an owner-reviewed packet
+(<code>{esc(closure_150['admission']['packet'])}</code>, sha256
+<code>{esc(closure_150['admission']['packet_sha256'][:16])}…</code>). All sixty are
+OpenAI-sourced. They are what carried the project from {batches_total} to
+{combined['holdout_eligible']}.</p>
+
+<div class="callout warn">
+<div class="label">Disposition: {esc(lim['protocol_deviation'])}</div>
+<p>The batch-007 preregistration required a prospective 10-case calibration pilot, run
+and independently reviewed, <b>before</b> evidence-grounded paraphrasing was scaled.
+<b>The pilot was never run.</b> The sixty cases were authored first.</p>
+<p><b>These sixty cases are not the preregistered pilot and may not be described as it,
+retrospectively or otherwise. The pilot remains unrun.</b></p>
+<p>A prospective pilot is a commitment made before the data is seen; its value is that
+the thresholds cannot be chosen to fit the result. Reviewing sixty cases afterwards,
+however carefully, cannot recover that property. What the downstream checks establish is
+that these particular cases are sound. What they do not establish is that the method was
+calibrated before it was used.</p>
+</div>
+
+<p>Two case-level records from the admission are worth naming because they are the kind
+of thing that usually disappears into a total:</p>
+<ul>
+<li><b><code>HA-15</code></b> carries a retained anaphora finding —
+<i>{esc(closure_150['admission']['ha15_override']['finding_retained'])}</i> — accepted by
+the owner as <code>{esc(closure_150['admission']['ha15_override']['anaphora_status'])}</code>.
+The override did not delete the finding; it sits on the record beside the decision.</li>
+<li><b><code>HA-47</code></b> had its two spans merged into one contiguous anchor
+({closure_150['admission']['ha47_repair']['to']['evidence_char_length']} characters). The
+prior and new hashes are both recorded, so the repair is auditable rather than assumed.</li>
+</ul>
+
+<h3>What the 150 figure is, and is not</h3>
+<table><thead><tr><th>limitation</th><th>what the record says</th></tr></thead><tbody>
+<tr><td>provider balance</td><td>{esc(lim['provider_imbalance'])}</td></tr>
+<tr><td>category balance</td><td>{esc(lim['category_imbalance'])}</td></tr>
+<tr><td>multi-hop</td><td>{esc(lim['genuine_multi_hop'])}</td></tr>
+<tr><td>protocol</td><td><code>{esc(lim['protocol_deviation'])}</code> — the
+preregistered pilot was not run</td></tr>
+<tr><td>corpus reproduction</td><td>{esc(lim['corpus_reproduction'])}</td></tr>
+<tr><td>retrieval</td><td><code>{esc(lim['retrieval'])}</code></td></tr>
+</tbody></table>
+<p>{coverage_150['cases_with_no_recorded_reasoning_type']} of
+{combined['holdout_eligible']} cases predate the <code>reasoning_type</code> field
+entirely and carry no recorded category. That is reported rather than backfilled:
+assigning a category to a case years after its approval would be inventing review that
+did not happen.</p>
+
+<h3>Why the holdout is still not frozen</h3>
+<p>{esc(closure_150['reason_not_frozen'])}</p>
+
+<h2>11b. Batch 007 — fixes shipped, pilot blocked</h2>
+<p class="subtitle">{esc(b007['status'])}</p>
+<p>The three defects batch 006's review recorded were implemented and verified against
+the real cases that exposed them. Defect <b>E</b>'s fix
+(<code>{esc(b007['fixes_implemented'][0]['implemented_in'])}</code>) detects the
+<code>GOLD-B005-11</code> / <code>GOLD-B006-06</code> pair the owner caught by hand, on
+the shared triple
+<code>{esc(' → '.join(b007['fixes_implemented'][0]['result']['shared_triple']))}</code>,
+with {b007['fixes_implemented'][0]['result']['false_positives_within_batch_006']} false
+positives inside batch 006. It flags rather than drops, because two libraries genuinely
+differing in behaviour is a real case and only a reviewer can tell the two apart.</p>
+
+<div class="callout warn">
+<div class="label">Why the pilot could not run</div>
+<p>{esc(b007['calibration_pilot']['status'])}</p>
+<p>The pilot had to draw from the spans that failed batch 006 <i>only</i> because no
+builder could express them. Batch 006 recorded
+<code>removed.unbuildable = {data['reports'][6]['removed'].get('unbuildable')}</code> as
+an integer and discarded each fact's identity — <b>the set was counted, never
+persisted</b>. The corpus text needed to re-derive it lives only in Postgres, and that
+corpus is not present in the environment where the pilot was attempted.</p>
+<p>This is the cost of a counter where a list was needed, and it is why the batch-006
+generation report now records a corpus census rather than only a count.</p>
+</div>
+
+<p>Corpus reproduction was pursued and is <b>incomplete</b>: the OpenAI half is recovered
+and reproducible from pinned commits; 139 Anthropic documents as they stood on
+2026-08-17 are outstanding, of which 13 are provably drifted and 125 are unverifiable
+without the frozen fingerprint. That work is recorded under CORPUS-001 and is not
+summarised further here.</p>
+
+<h3>The contract batch 007 was preregistered under</h3>
 <div class="callout">
 <div class="label">The line</div>
 <p style="font-size:10.5pt"><b>{esc(prereg['strategy_change']['the_line'])}</b></p>
 </div>
-<p>Batch 007 introduces <b>controlled evidence-grounded question paraphrasing</b>: where
-a deterministic template cannot express an explicit evidence fact, a model may author the
-question. This is an <b>authoring</b> change. The evidence stays frozen and exact, the
-ground truth is still read out of the source, and every existing gate still runs.</p>
-
-<h3>The order is the safeguard</h3>
+<p>Controlled evidence-grounded paraphrasing: where a deterministic template cannot
+express an explicit evidence fact, a model may author the question. An <b>authoring</b>
+change — the evidence stays frozen and exact, the ground truth is still read out of the
+source, and every existing gate still runs.</p>
+<h4>The order is the safeguard</h4>
 <ol>{"".join(f"<li>{esc(step)}</li>" for step in prereg["authoring_order"])}</ol>
-<p><b>Never:</b> {esc(prereg['forbidden_order'])}. Inventing a question and then hunting
-for evidence to support it is how a benchmark ends up testing what its author imagined
-rather than what the documentation says.</p>
-
-<h3>The entailment self-check — any failure drops the candidate</h3>
+<p><b>Never:</b> {esc(prereg['forbidden_order'])}.</p>
+<h4>The entailment self-check — any failure drops the candidate</h4>
 <table class="long"><thead><tr><th></th><th>check</th><th>it fails when</th></tr></thead>
 <tbody>{check_rows}</tbody></table>
-<p>Every paraphrased candidate also stores its <code>source_fact_literal</code> and its
-subject/relation/object beside the authored question, so a reviewer can see the gap
-between fact and question and disagree with it.</p>
-
-<h3>Answer conservatism</h3>
-<p>{esc(prereg['answer_conservatism']['rule'])} Source says
-<i>{esc(prereg['answer_conservatism']['example_source'])}</i> → answer
-<i>{esc(prereg['answer_conservatism']['example_good_answer'])}</i>, <b>not</b>
-<i>{esc(prereg['answer_conservatism']['example_bad_answer'])}</i>.
-{esc(prereg['answer_conservatism']['why_bad'])}</p>
-
-<h3>A pilot gates the lane</h3>
-<p><b>{prereg['calibration_pilot']['size']} spans</b> that failed batch 006 <i>only</i>
-because no builder could express them — not spans that failed a semantic gate, which
-failed for reasons paraphrasing does not fix. Run through the paraphraser and every
-semantic check, then <b>independently reviewed</b> before the lane may scale.</p>
-<table><thead><tr><th>criterion</th><th class="num">threshold</th></tr></thead><tbody>
-<tr><td>independently judged factually sound</td><td class="num">≥ 8 of 10</td></tr>
-<tr><td>unsupported claims</td><td class="num">0</td></tr>
-<tr><td>relation-direction reversals</td><td class="num">0</td></tr>
-<tr><td>scope broadening</td><td class="num">0</td></tr>
-<tr><td>wording cleanup needed</td><td class="num">acceptable</td></tr>
-</tbody></table>
-<p><b>If it fails:</b> {esc(prereg['calibration_pilot']['if_it_fails'])}</p>
-
-<h3>Every existing gate still runs</h3>
+<h4>Every existing gate still runs</h4>
 <table class="long"><thead><tr><th>gate</th><th>implemented in</th><th>behaviour</th>
 </tr></thead><tbody>{gate_rows}</tbody></table>
-
-<div class="callout warn">
-<div class="label">The arithmetic, which is not a plan</div>
-<p>The project holds <b>{state['holdout_eligible']}</b> and the target is
-<b>{state['project_target']}</b>, leaving <b>{state['still_needed']}</b>. Batch 007
-targets <b>{proj['batch_007_target']}</b> candidates, which at the six observed
-acceptance rates lands between <b>{proj['if_low_target_at_worst_rate']}</b> and
-<b>{proj['if_high_target_at_best_rate']}</b> eligible cases — <b>short of
-{state['project_target']}</b>. More than one batch will be needed, and that is not a
-reason to approve a candidate that should not be approved.</p>
-</div>
 
 <div class="break"></div>
 <h2>12. Tests and invariants</h2>
@@ -711,9 +810,24 @@ def main() -> int:
             raise SystemExit(f"refusing to build: batch {number:03d}'s eligibility "
                              f"gate gives {eligible}, the status says {recorded}")
 
-    # 4. The project totals must be the sum of the batches.
+    # 4. The project totals must be the sum of every group, the HA packet included.
     if sum(b["human_verified"] for b in status["batches"]) != combined["human_verified"]:
         raise SystemExit("refusing to build: the project totals do not sum")
+    ha_row = next((b for b in status["batches"] if b["batch"] is None), None)
+    if ha_row and data.get("ha"):
+        admitted = sum(1 for r in data["ha"]["records"]
+                       if r.get("verification_status") == "human_verified")
+        if admitted != ha_row["human_verified"]:
+            raise SystemExit(f"refusing to build: the HA group's records give "
+                             f"{admitted} verified, the status says "
+                             f"{ha_row['human_verified']}")
+        eligible = sum(1 for r in data["ha"]["records"]
+                       if r.get("verification_status") == "human_verified"
+                       and eligibility(r)["holdout_eligible"])
+        if eligible != ha_row["holdout_eligible"]:
+            raise SystemExit(f"refusing to build: the HA eligibility gate gives "
+                             f"{eligible}, the status says "
+                             f"{ha_row['holdout_eligible']}")
 
     # 5. No batch may record a retrieval run.
     for number, payload in batches.items():
@@ -734,9 +848,17 @@ def main() -> int:
         raise SystemExit("refusing to build: this document describes an unfrozen "
                          "holdout and the holdout is frozen")
 
-    # 8. Batch 007 must still be only preregistered.
-    if (REPO_ROOT / "evals/review/gold_review_batch_007.json").exists():
-        raise SystemExit("refusing to build: a batch-007 artifact exists")
+    # 8. The document must state the protocol deviation and the coverage limits. The
+    #    150 figure is a size, and a page that reports it without what the record says
+    #    about its composition is the single most misleading thing this build could
+    #    produce.
+    closure_150 = data["closure_150"]
+    if closure_150["limitations"]["protocol_deviation"] != "ACCEPTED_PROTOCOL_DEVIATION":
+        raise SystemExit("refusing to build: the recorded protocol disposition is not "
+                         "the one this document describes")
+    if data["b007"]["calibration_pilot"]["run"]:
+        raise SystemExit("refusing to build: the pilot has since run and this document "
+                         "still says it did not")
 
     if args.tests:
         data["tests"] = args.tests
@@ -756,11 +878,20 @@ def main() -> int:
 
     document = build_html(data)
 
-    # 9. The page must not claim batch 007 reaches the project target when it cannot.
-    if not data["prereg"]["projection"]["reaches_target_this_batch"] and \
-            "short of" not in document:
-        raise SystemExit("refusing to build: batch 007 cannot reach the project target "
-                         "and the page does not say so")
+    # 9. Every limitation the closure records must appear in the document. Checked on
+    #    the rendered page, not on the intention to render it.
+    required = [
+        closure_150["headline"],
+        closure_150["limitations"]["provider_imbalance"],
+        closure_150["limitations"]["category_imbalance"],
+        closure_150["limitations"]["genuine_multi_hop"],
+        "The pilot remains unrun",
+    ]
+    missing = [phrase for phrase in required if html.escape(phrase, quote=False)
+               not in document and phrase not in document]
+    if missing:
+        raise SystemExit("refusing to build: the page omits what the record says about "
+                         "its own limits — " + "; ".join(m[:60] for m in missing))
 
     chrome = next((c for c in CHROME_CANDIDATES if Path(c).exists()), None)
     if chrome is None:
