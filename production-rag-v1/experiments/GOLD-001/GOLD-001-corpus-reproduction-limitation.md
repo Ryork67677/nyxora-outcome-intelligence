@@ -21,6 +21,14 @@ stable_id('snap', name, manifest_hash, PARSER_VERSION, chunking_hash) reproduces
 
 A further 62 expected `version_id` values survive without a url attached; they still work as an oracle.
 
+## Audit correction CORPUS-001-AC-001
+
+> **Superseded:** "the original 2,482 unbuildable identities remain a corpus reproduction blocker"
+>
+> **Replaced with:** "The original 2,482 value counts failed Batch-006 authoring attempts and is not part of the corpus snapshot digest. It remains relevant only to exact authoring-pipeline reproduction."
+
+The superseded wording is preserved here rather than rewritten out of the older reports. Those reports were accurate records of what the project believed when they were written; this correction is the audit trail, not a silent edit. Basis: `CORPUS-001-unbuildable-identity-analysis.md`.
+
 ## The 2,482 unbuildable identities are not a corpus blocker
 
 Previously counted in this limitation as a corpus gap. NOT a corpus blocker. They are counts of authoring attempts inside batch 006's generator that produced no question — spans inside the 202 documents, not documents. They are required only to reproduce the GOLD authoring process (the batch-007 NO_BUILDER pilot). The count is of attempts, not distinct spans, so 2,482 is not even a count of identities.
@@ -39,3 +47,11 @@ See `CORPUS-001-unbuildable-identity-analysis.md`. **Effect: the corpus gate has
 - A. the original frozen corpus/database snapshot is shown to exist and to match its recorded manifest and hashes, or
 - B. the intended snapshot is fully reconstructed and revalidated to snap_689e336380a054d8039dc35b2c09cd0a
 
+
+## Host search
+
+No Windows host, no WSL mount and no Docker daemon is reachable from this session. The gitignored data/raw captures were never in this container. A host-machine sweep has to be run on the host itself; its results can be brought back here as an artifact, which is how the earlier host evidence in this project arrived. See `CORPUS-001-host-search.md`.
+
+## Identity oracles
+
+166 `version_id` and 803 `chunk_id` values survived the corpus — a historical capture produced outside this session can be accepted or rejected here by arithmetic; 40 Anthropic documents can be verified individually and 16 of those also carry exact byte anchors.

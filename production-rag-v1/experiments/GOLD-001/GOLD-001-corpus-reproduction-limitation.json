@@ -1,6 +1,6 @@
 {
   "artifact": "Corpus reproduction limitation — blocking for retrieval",
-  "recorded_at": "2026-08-31T03:57:17Z",
+  "recorded_at": "2026-08-31T06:26:29Z",
   "CORPUS_REPRODUCTION_INCOMPLETE": true,
   "frozen_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a",
   "reproduced": {
@@ -47,7 +47,34 @@
     "effect_on_this_gate": "the corpus gate has one blocker, not two"
   },
   "blocking_this_gate": [
-    "139 Anthropic documents with no recovered historical bytes",
-    "14 OpenAI documents that reproduce but whose frozen version_id was never recorded, so the reproduction cannot be checked"
-  ]
+    "139 Anthropic documents with no recovered historical bytes (group A 40 verifiable individually, group B 99 only in aggregate)",
+    "14 OpenAI documents that reproduce but whose frozen identity was never recorded, so the reproduction cannot be checked"
+  ],
+  "audit_corrections": [
+    {
+      "correction_id": "CORPUS-001-AC-001",
+      "corrected_at": "2026-08-31T06:26:29Z",
+      "superseded_statement": "the original 2,482 unbuildable identities remain a corpus reproduction blocker",
+      "where_it_appeared": [
+        "GOLD-001-corpus-reproduction-limitation (earlier revisions)",
+        "GOLD-001-150-case-closure",
+        "GOLD-001-150-admission-blocked-002",
+        "the CORPUS-001 brief"
+      ],
+      "replacement_statement": "The original 2,482 value counts failed Batch-006 authoring attempts and is not part of the corpus snapshot digest. It remains relevant only to exact authoring-pipeline reproduction.",
+      "basis": "CORPUS-001-unbuildable-identity-analysis.md",
+      "handling": "The superseded wording is preserved here rather than rewritten out of the older reports. Those reports were accurate records of what the project believed when they were written; this correction is the audit trail, not a silent edit."
+    }
+  ],
+  "the_corpus_blocker": "139 missing Anthropic document captures",
+  "host_search": {
+    "performed": "only within this environment",
+    "reason": "No Windows host, no WSL mount and no Docker daemon is reachable from this session. The gitignored data/raw captures were never in this container. A host-machine sweep has to be run on the host itself; its results can be brought back here as an artifact, which is how the earlier host evidence in this project arrived.",
+    "artifact": "CORPUS-001-host-search.md"
+  },
+  "identity_oracles": {
+    "version_id": 166,
+    "chunk_id": 803,
+    "note": "a historical capture produced outside this session can be accepted or rejected here by arithmetic; 40 Anthropic documents can be verified individually and 16 of those also carry exact byte anchors"
+  }
 }

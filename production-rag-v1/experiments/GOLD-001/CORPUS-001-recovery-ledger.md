@@ -35,3 +35,16 @@ Full rows are in `CORPUS-001-recovery-ledger.json`. Summary by status:
 
 Every `MISSING_SOURCE` row is Anthropic and carries the same next recovery path: an original raw capture, a `document_version` row, or a timestamped archive capture of the 2026-08-17 state. 40 of the 139 now have a recovered expected `version_id`, so a candidate capture for those can be verified exactly rather than judged by eye.
 
+
+## A second oracle, and what it settled
+
+`chunk_id` = `stable_id("chk", version_id, section_path, char_start, char_end, content_hash(text))`. **803** of these survived in experiment artifacts. Running the frozen chunker over every reproduced OpenAI document confirms **36** of them at chunk level — version id, section path, offsets and chunk text together, which is a stronger statement than a version-id match alone.
+
+It reduced `EXPECTED_HASH_UNKNOWN` by **0**. The 14 are exactly the openai documents that never appeared in any logged retrieval result — neither their version_id nor any of their chunk ids survives. there is no further mapping to mine; the search is exhausted by evidence, not by effort.
+
+## The 139, split by what could verify them
+
+- **40** have a recorded `version_id`: a candidate capture is accepted or rejected on its own.
+- **99** have none: a candidate can only be checked collectively, through the manifest hash.
+
+See `CORPUS-001-anthropic-recovery-plan.md`.

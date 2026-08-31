@@ -1,0 +1,1693 @@
+{
+  "generated_at": "2026-08-31T06:25:21Z",
+  "known_anthropic_identities": 40,
+  "found_somewhere_in_the_repository": 40,
+  "whose_location_carries_normalized_text": 0,
+  "finding": "every one of the known identities is recorded, and not one recording carries the document body. GOLD records keep evidence spans, never the normalized text they were cut from.",
+  "documents_with_verified_historical_bytes": 16,
+  "total_verified_historical_bytes": 4551,
+  "entries": [
+    {
+      "index": 5,
+      "source_url": "https://platform.claude.com/docs/en/about-claude/models/migration-guide",
+      "document_title": "Migration guide",
+      "expected_version_id": "ver_a7bda3595f2c124605c3228464d4ee52",
+      "expected_version_id_source": "gold_record",
+      "recorded_in": [
+        "evals/gold/batch_001_v2/overlay.json",
+        "evals/gold/batch_001_v2/projection.jsonl",
+        "evals/gold/batch_006_projection.jsonl",
+        "evals/golden/candidates.jsonl",
+        "evals/review/batch_001_approved_projection.jsonl",
+        "evals/review/batch_003_approved_projection.jsonl",
+        "evals/review/gold_batch_001_qc.json",
+        "evals/review/gold_batch_001_repair_review.json",
+        "evals/review/gold_batch_003_qc.json",
+        "evals/review/gold_batch_006_qc.json",
+        "evals/review/gold_review_batch_001.json",
+        "evals/review/gold_review_batch_003.json",
+        "evals/review/gold_review_batch_006.json",
+        "evals/review/gold_review_batch_006_final.json",
+        "evals/review/gold_review_batch_006_repairs.json",
+        "experiments/EXP-000/results.json",
+        "experiments/EXP-002/results.json",
+        "experiments/EXP-003/results-k10.json",
+        "experiments/EXP-003/results-k20.json",
+        "experiments/EXP-003/results-k60.json",
+        "experiments/EXP-003/sweep/pool10-rrfk10.json",
+        "experiments/EXP-003/sweep/pool10-rrfk20.json",
+        "experiments/EXP-003/sweep/pool10-rrfk60.json",
+        "experiments/EXP-003/sweep/pool100-rrfk10.json",
+        "experiments/EXP-003/sweep/pool100-rrfk20.json",
+        "experiments/EXP-003/sweep/pool100-rrfk60.json",
+        "experiments/EXP-003/sweep/pool20-rrfk10.json",
+        "experiments/EXP-003/sweep/pool20-rrfk20.json",
+        "experiments/EXP-003/sweep/pool20-rrfk60.json",
+        "experiments/EXP-003/sweep/pool50-rrfk10.json",
+        "experiments/EXP-003/sweep/pool50-rrfk20.json",
+        "experiments/EXP-003/sweep/pool50-rrfk60.json",
+        "experiments/EXP-005A_rechunk_bounded_bm25/results.json",
+        "experiments/EXP-005B_rechunk_technical_bm25/results.json",
+        "experiments/EXP-007A_bm25_control/results.json",
+        "experiments/EXP-012/results-n10.json",
+        "experiments/EXP-012/results-n3.json",
+        "experiments/EXP-012/results.json",
+        "experiments/EXP-013/results.json",
+        "experiments/EXP-014/results.json",
+        "experiments/GOLD-001/CORPUS-001-expected-202-manifest.json",
+        "experiments/GOLD-001/CORPUS-001-recovery-ledger.json",
+        "experiments/GOLD-001/GOLD-001-heading-parser-audit.json"
+      ],
+      "byte_anchors": {
+        "expected_version_id": "ver_a7bda3595f2c124605c3228464d4ee52",
+        "distinct_spans": 2,
+        "verified_historical_bytes": 254,
+        "highest_verified_offset": 55378,
+        "spans": [
+          {
+            "char_start": 15155,
+            "char_end": 15337,
+            "evidence_hash": "7fa16f3bd72441cb82aeca4783f2642ce67e3cfa78da3dca956bb6d2ea672e6c"
+          },
+          {
+            "char_start": 15155,
+            "char_end": 15337,
+            "evidence_hash": "7fa16f3bd72441cb82aeca4783f2642ce67e3cfa78da3dca956bb6d2ea672e6c"
+          },
+          {
+            "char_start": 15155,
+            "char_end": 15337,
+            "evidence_hash": "7fa16f3bd72441cb82aeca4783f2642ce67e3cfa78da3dca956bb6d2ea672e6c"
+          },
+          {
+            "char_start": 55306,
+            "char_end": 55378,
+            "evidence_hash": "d5fd68caa4e7d689da55ce58f7b6befd6e94d1b3ba2645ccfd3bf0144ffcb366"
+          },
+          {
+            "char_start": 55306,
+            "char_end": 55378,
+            "evidence_hash": "d5fd68caa4e7d689da55ce58f7b6befd6e94d1b3ba2645ccfd3bf0144ffcb366"
+          },
+          {
+            "char_start": 55306,
+            "char_end": 55378,
+            "evidence_hash": "d5fd68caa4e7d689da55ce58f7b6befd6e94d1b3ba2645ccfd3bf0144ffcb366"
+          }
+        ]
+      }
+    },
+    {
+      "index": 10,
+      "source_url": "https://platform.claude.com/docs/en/about-claude/models/whats-new-sonnet-5",
+      "document_title": "What's new in Claude Sonnet 5",
+      "expected_version_id": "ver_6c0983aad96f198367a0de369b3bb86c",
+      "expected_version_id_source": "gold_record",
+      "recorded_in": [
+        "evals/review/batch_002_approved_projection.jsonl",
+        "evals/review/batch_003_approved_projection.jsonl",
+        "evals/review/gold_batch_002_qc.json",
+        "evals/review/gold_batch_003_qc.json",
+        "evals/review/gold_review_batch_002.json",
+        "evals/review/gold_review_batch_003.json",
+        "experiments/EXP-000/results.json",
+        "experiments/EXP-001/results.json",
+        "experiments/EXP-002/results.json",
+        "experiments/EXP-003/results-k10.json",
+        "experiments/EXP-003/results-k20.json",
+        "experiments/EXP-003/results-k60.json",
+        "experiments/EXP-003/sweep/pool10-rrfk10.json",
+        "experiments/EXP-003/sweep/pool10-rrfk20.json",
+        "experiments/EXP-003/sweep/pool10-rrfk60.json",
+        "experiments/EXP-003/sweep/pool100-rrfk10.json",
+        "experiments/EXP-003/sweep/pool100-rrfk20.json",
+        "experiments/EXP-003/sweep/pool100-rrfk60.json",
+        "experiments/EXP-003/sweep/pool20-rrfk10.json",
+        "experiments/EXP-003/sweep/pool20-rrfk20.json",
+        "experiments/EXP-003/sweep/pool20-rrfk60.json",
+        "experiments/EXP-003/sweep/pool50-rrfk10.json",
+        "experiments/EXP-003/sweep/pool50-rrfk20.json",
+        "experiments/EXP-003/sweep/pool50-rrfk60.json",
+        "experiments/EXP-005A_rechunk_bounded_bm25/results.json",
+        "experiments/EXP-005B_rechunk_technical_bm25/results.json",
+        "experiments/EXP-007A_bm25_control/results.json",
+        "experiments/EXP-012/results-n10.json",
+        "experiments/EXP-012/results.json",
+        "experiments/EXP-013/results.json",
+        "experiments/EXP-014/results.json",
+        "experiments/GOLD-001/CORPUS-001-expected-202-manifest.json",
+        "experiments/GOLD-001/CORPUS-001-recovery-ledger.json"
+      ],
+      "byte_anchors": {
+        "expected_version_id": "ver_6c0983aad96f198367a0de369b3bb86c",
+        "distinct_spans": 1,
+        "verified_historical_bytes": 473,
+        "highest_verified_offset": 2293,
+        "spans": [
+          {
+            "char_start": 1820,
+            "char_end": 2293,
+            "evidence_hash": "fbd40033fb7a571e8d5469e0d55335018504e83d8cabdb2f3b68025595f14eef"
+          }
+        ]
+      }
+    },
+    {
+      "index": 17,
+      "source_url": "https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices",
+      "document_title": "Skill authoring best practices",
+      "expected_version_id": "ver_90de89ac7da393e4d9056cf12204d046",
+      "expected_version_id_source": "gold_record",
+      "recorded_in": [
+        "evals/review/batch_003_approved_projection.jsonl",
+        "evals/review/gold_batch_003_qc.json",
+        "evals/review/gold_review_batch_003.json",
+        "experiments/EXP-001/results.json",
+        "experiments/EXP-012/results-n10.json",
+        "experiments/EXP-012/results-n3.json",
+        "experiments/EXP-012/results.json",
+        "experiments/EXP-014/results.json",
+        "experiments/GOLD-001/CORPUS-001-expected-202-manifest.json",
+        "experiments/GOLD-001/CORPUS-001-recovery-ledger.json"
+      ],
+      "byte_anchors": null
+    },
+    {
+      "index": 22,
+      "source_url": "https://platform.claude.com/docs/en/agents-and-tools/mcp-connector",
+      "document_title": "MCP connector",
+      "expected_version_id": "ver_279d37a3a0cc4e8a9209e01f16f9df88",
+      "expected_version_id_source": "gold_record",
+      "recorded_in": [
+        "evals/review/batch_002_approved_projection.jsonl",
+        "evals/review/gold_batch_002_qc.json",
+        "evals/review/gold_review_batch_002.json",
+        "experiments/EXP-003/sweep/pool100-rrfk60.json",
+        "experiments/EXP-012/results-n10.json",
+        "experiments/GOLD-001/CORPUS-001-expected-202-manifest.json",
+        "experiments/GOLD-001/CORPUS-001-recovery-ledger.json"
+      ],
+      "byte_anchors": null
+    },
+    {
+      "index": 25,
+      "source_url": "https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/deploy-compose",
+      "document_title": "Deploy MCP tunnels with Docker Compose",
+      "expected_version_id": "ver_b05e105d93045aff4c7ce998b198ae79",
+      "expected_version_id_source": "gold_record",
+      "recorded_in": [
+        "evals/review/batch_002_approved_projection.jsonl",
+        "evals/review/gold_batch_002_qc.json",
+        "evals/review/gold_review_batch_002.json",
+        "experiments/GOLD-001/CORPUS-001-expected-202-manifest.json",
+        "experiments/GOLD-001/CORPUS-001-recovery-ledger.json",
+        "experiments/GOLD-001/GOLD-001-heading-parser-audit.json"
+      ],
+      "byte_anchors": null
+    },
+    {
+      "index": 33,
+      "source_url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/advisor-tool",
+      "document_title": "Advisor tool",
+      "expected_version_id": "ver_b8b18cda9b875d51a2ce979a1bf4e909",
+      "expected_version_id_source": "gold_record",
+      "recorded_in": [
+        "evals/golden/candidates.jsonl",
+        "evals/review/batch_002_approved_projection.jsonl",
+        "evals/review/batch_003_approved_projection.jsonl",
+        "evals/review/gold_batch_002_qc.json",
+        "evals/review/gold_batch_003_qc.json",
+        "evals/review/gold_review_batch_002.json",
+        "evals/review/gold_review_batch_003.json",
+        "experiments/EXP-000/results.json",
+        "experiments/EXP-001/results.json",
+        "experiments/EXP-002/results.json",
+        "experiments/EXP-003/results-k10.json",
+        "experiments/EXP-003/results-k20.json",
+        "experiments/EXP-003/results-k60.json",
+        "experiments/EXP-003/sweep/pool10-rrfk10.json",
+        "experiments/EXP-003/sweep/pool10-rrfk20.json",
+        "experiments/EXP-003/sweep/pool10-rrfk60.json",
+        "experiments/EXP-003/sweep/pool100-rrfk10.json",
+        "experiments/EXP-003/sweep/pool100-rrfk20.json",
+        "experiments/EXP-003/sweep/pool100-rrfk60.json",
+        "experiments/EXP-003/sweep/pool20-rrfk10.json",
+        "experiments/EXP-003/sweep/pool20-rrfk20.json",
+        "experiments/EXP-003/sweep/pool20-rrfk60.json",
+        "experiments/EXP-003/sweep/pool50-rrfk10.json",
+        "experiments/EXP-003/sweep/pool50-rrfk20.json",
+        "experiments/EXP-003/sweep/pool50-rrfk60.json",
+        "experiments/EXP-005A_rechunk_bounded_bm25/results.json",
+        "experiments/EXP-005B_rechunk_technical_bm25/results.json",
+        "experiments/EXP-007A_bm25_control/results.json",
+        "experiments/EXP-012/results-n10.json",
+        "experiments/EXP-012/results-n3.json",
+        "experiments/EXP-012/results.json",
+        "experiments/EXP-013/results.json",
+        "experiments/GOLD-001/CORPUS-001-expected-202-manifest.json",
+        "experiments/GOLD-001/CORPUS-001-recovery-ledger.json"
+      ],
+      "byte_anchors": {
+        "expected_version_id": "ver_b8b18cda9b875d51a2ce979a1bf4e909",
+        "distinct_spans": 2,
+        "verified_historical_bytes": 254,
+        "highest_verified_offset": 92898,
+        "spans": [
+          {
+            "char_start": 88971,
+            "char_end": 89112,
+            "evidence_hash": "a147d3f035dd177a051a5cc5c4636e048cfb4467c171f0f0f23672f6beb7279d"
+          },
+          {
+            "char_start": 92785,
+            "char_end": 92898,
+            "evidence_hash": "1591ea4b2fc1d87d21cf20cfcad5388e059bdec54fe54ec1da99c644eb6a2a44"
+          }
+        ]
+      }
+    },
+    {
+      "index": 34,
+      "source_url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/bash-tool",
+      "document_title": "Bash tool",
+      "expected_version_id": "ver_9bf8513721dc2d1ef3e1ec42bf535dc6",
+      "expected_version_id_source": "gold_record",
+      "recorded_in": [
+        "evals/review/batch_002_approved_projection.jsonl",
+        "evals/review/gold_batch_002_qc.json",
+        "evals/review/gold_review_batch_002.json",
+        "experiments/GOLD-001/CORPUS-001-expected-202-manifest.json",
+        "experiments/GOLD-001/CORPUS-001-recovery-ledger.json"
+      ],
+      "byte_anchors": null
+    },
+    {
+      "index": 35,
+      "source_url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/build-a-tool-using-agent",
+      "document_title": "Tutorial: Build a tool-using agent",
+      "expected_version_id": "ver_fc127d394b32ba1f136356d746c083e5",
+      "expected_version_id_source": "gold_record",
+      "recorded_in": [
+        "evals/gold/batch_001_v2/overlay.json",
+        "evals/gold/batch_001_v2/projection.jsonl",
+        "evals/review/batch_001_approved_projection.jsonl",
+        "evals/review/gold_batch_001_qc.json",
+        "evals/review/gold_review_batch_001.json",
+        "experiments/EXP-000/results.json",
+        "experiments/EXP-002/results.json",
+        "experiments/EXP-003/sweep/pool10-rrfk10.json",
+        "experiments/EXP-003/sweep/pool10-rrfk20.json",
+        "experiments/EXP-003/sweep/pool10-rrfk60.json",
+        "experiments/EXP-003/sweep/pool20-rrfk10.json",
+        "experiments/EXP-003/sweep/pool20-rrfk20.json",
+        "experiments/EXP-003/sweep/pool20-rrfk60.json",
+        "experiments/EXP-005A_rechunk_bounded_bm25/results.json",
+        "experiments/EXP-005B_rechunk_technical_bm25/results.json",
+        "experiments/EXP-007A_bm25_control/results.json",
+        "experiments/EXP-012/results-n10.json",
+        "experiments/EXP-012/results.json",
+        "experiments/GOLD-001/CORPUS-001-expected-202-manifest.json",
+        "experiments/GOLD-001/CORPUS-001-recovery-ledger.json"
+      ],
+      "byte_anchors": null
+    },
+    {
+      "index": 36,
+      "source_url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool",
+      "document_title": "Code execution tool",
+      "expected_version_id": "ver_f65938c74d40ac1e288f169d3d0435b7",
+      "expected_version_id_source": "gold_record",
+      "recorded_in": [
+        "evals/development/v1.jsonl",
+        "evals/gold/batch_006_projection.jsonl",
+        "evals/golden/v1.jsonl",
+        "evals/review/gold_batch_006_qc.json",
+        "evals/review/gold_review_batch_006.json",
+        "evals/review/gold_review_batch_006_final.json",
+        "evals/review/gold_review_batch_006_repairs.json",
+        "experiments/EXP-000/results-websearch-and.json",
+        "experiments/EXP-000/results.json",
+        "experiments/EXP-001/results.json",
+        "experiments/EXP-002/results.json",
+        "experiments/EXP-003/results-k10.json",
+        "experiments/EXP-003/results-k20.json",
+        "experiments/EXP-003/results-k60.json",
+        "experiments/EXP-003/sweep/pool10-rrfk10.json",
+        "experiments/EXP-003/sweep/pool10-rrfk20.json",
+        "experiments/EXP-003/sweep/pool10-rrfk60.json",
+        "experiments/EXP-003/sweep/pool100-rrfk10.json",
+        "experiments/EXP-003/sweep/pool100-rrfk20.json",
+        "experiments/EXP-003/sweep/pool100-rrfk60.json",
+        "experiments/EXP-003/sweep/pool20-rrfk10.json",
+        "experiments/EXP-003/sweep/pool20-rrfk20.json",
+        "experiments/EXP-003/sweep/pool20-rrfk60.json",
+        "experiments/EXP-003/sweep/pool50-rrfk10.json",
+        "experiments/EXP-003/sweep/pool50-rrfk20.json",
+        "experiments/EXP-003/sweep/pool50-rrfk60.json",
+        "experiments/EXP-005A_rechunk_bounded_bm25/results.json",
+        "experiments/EXP-005B_rechunk_technical_bm25/results.json",
+        "experiments/EXP-007A_bm25_control/results.json",
+        "experiments/EXP-012/results-n10.json",
+        "experiments/EXP-012/results-n3.json",
+        "experiments/EXP-012/results.json",
+        "experiments/EXP-013/results.json",
+        "experiments/EXP-013/router-e-exploratory.json",
+        "experiments/EXP-014/results.json",
+        "experiments/EXP-014R/results-development.json",
+        "experiments/GOLD-001/CORPUS-001-expected-202-manifest.json",
+        "experiments/GOLD-001/CORPUS-001-recovery-ledger.json"
+      ],
+      "byte_anchors": {
+        "expected_version_id": "ver_f65938c74d40ac1e288f169d3d0435b7",
+        "distinct_spans": 1,
+        "verified_historical_bytes": 345,
+        "highest_verified_offset": 4316,
+        "spans": [
+          {
+            "char_start": 3971,
+            "char_end": 4316,
+            "evidence_hash": "8832424c5f41dd8f1c3801845a9f0fcfa7a6fcb08e8a803cc4cdc30b97b2cccb"
+          },
+          {
+            "char_start": 3971,
+            "char_end": 4316,
+            "evidence_hash": "8832424c5f41dd8f1c3801845a9f0fcfa7a6fcb08e8a803cc4cdc30b97b2cccb"
+          },
+          {
+            "char_start": 3971,
+            "char_end": 4316,
+            "evidence_hash": "8832424c5f41dd8f1c3801845a9f0fcfa7a6fcb08e8a803cc4cdc30b97b2cccb"
+          }
+        ]
+      }
+    },
+    {
+      "index": 37,
+      "source_url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool",
+      "document_title": "Computer use tool",
+      "expected_version_id": "ver_d9ba3ab0d872dd86047c7ed6dc783235",
+      "expected_version_id_source": "gold_record",
+      "recorded_in": [
+        "evals/gold/batch_001_v2/overlay.json",
+        "evals/gold/batch_001_v2/projection.jsonl",
+        "evals/review/batch_001_approved_projection.jsonl",
+        "evals/review/batch_002_approved_projection.jsonl",
+        "evals/review/gold_batch_002_qc.json",
+        "evals/review/gold_review_batch_001.json",
+        "evals/review/gold_review_batch_002.json",
+        "experiments/EXP-000/results.json",
+        "experiments/EXP-001/results.json",
+        "experiments/EXP-003/results-k10.json",
+        "experiments/EXP-003/results-k20.json",
+        "experiments/EXP-003/results-k60.json",
+        "experiments/EXP-003/sweep/pool10-rrfk10.json",
+        "experiments/EXP-003/sweep/pool10-rrfk20.json",
+        "experiments/EXP-003/sweep/pool10-rrfk60.json",
+        "experiments/EXP-003/sweep/pool100-rrfk10.json",
+        "experiments/EXP-003/sweep/pool100-rrfk20.json",
+        "experiments/EXP-003/sweep/pool100-rrfk60.json",
+        "experiments/EXP-003/sweep/pool20-rrfk10.json",
+        "experiments/EXP-003/sweep/pool20-rrfk20.json",
+        "experiments/EXP-003/sweep/pool20-rrfk60.json",
+        "experiments/EXP-003/sweep/pool50-rrfk10.json",
+        "experiments/EXP-003/sweep/pool50-rrfk20.json",
+        "experiments/EXP-003/sweep/pool50-rrfk60.json",
+        "experiments/EXP-005A_rechunk_bounded_bm25/results.json",
+        "experiments/EXP-005B_rechunk_technical_bm25/results.json",
+        "experiments/EXP-007A_bm25_control/results.json",
+        "experiments/EXP-012/results-n10.json",
+        "experiments/EXP-012/results-n3.json",
+        "experiments/EXP-012/results.json",
+        "experiments/EXP-013/results.json",
+        "experiments/EXP-014/results.json",
+        "experiments/GOLD-001/CORPUS-001-expected-202-manifest.json",
+        "experiments/GOLD-001/CORPUS-001-recovery-ledger.json"
+      ],
+      "byte_anchors": null
+    },
+    {
+      "index": 46,
+      "source_url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/programmatic-tool-calling",
+      "document_title": "Programmatic tool calling",
+      "expected_version_id": "ver_7cd600e1124f25cfedc3f1f6d5c297e5",
+      "expected_version_id_source": "gold_record",
+      "recorded_in": [
+        "evals/review/batch_003_approved_projection.jsonl",
+        "evals/review/gold_batch_003_qc.json",
+        "evals/review/gold_review_batch_003.json",
+        "experiments/EXP-000/results.json",
+        "experiments/EXP-001/results.json",
+        "experiments/EXP-002/results.json",
+        "experiments/EXP-003/results-k10.json",
+        "experiments/EXP-003/results-k20.json",
+        "experiments/EXP-003/results-k60.json",
+        "experiments/EXP-003/sweep/pool10-rrfk10.json",
+        "experiments/EXP-003/sweep/pool10-rrfk20.json",
+        "experiments/EXP-003/sweep/pool10-rrfk60.json",
+        "experiments/EXP-003/sweep/pool100-rrfk10.json",
+        "experiments/EXP-003/sweep/pool100-rrfk20.json",
+        "experiments/EXP-003/sweep/pool20-rrfk10.json",
+        "experiments/EXP-003/sweep/pool20-rrfk20.json",
+        "experiments/EXP-003/sweep/pool20-rrfk60.json",
+        "experiments/EXP-003/sweep/pool50-rrfk10.json",
+        "experiments/EXP-003/sweep/pool50-rrfk20.json",
+        "experiments/EXP-003/sweep/pool50-rrfk60.json",
+        "experiments/EXP-005B_rechunk_technical_bm25/results.json",
+        "experiments/EXP-007A_bm25_control/results.json",
+        "experiments/EXP-012/results-n10.json",
+        "experiments/GOLD-001/BATCH-004-near-miss-multihop-review.json",
+        "experiments/GOLD-001/CORPUS-001-expected-202-manifest.json",
+        "experiments/GOLD-001/CORPUS-001-recovery-ledger.json"
+      ],
+      "byte_anchors": null
+    },
+    {
+      "index": 47,
+      "source_url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/server-tools",
+      "document_title": "Server tools",
+      "expected_version_id": "ver_8d2a22e3827c98e0b9d4e1ef411e5353",
+      "expected_version_id_source": "gold_record",
+      "recorded_in": [
+        "evals/gold/batch_005_projection.jsonl",
+        "evals/review/gold_batch_005_qc.json",
+        "evals/review/gold_review_batch_005.json",
+        "evals/review/gold_review_batch_005_final.json",
+        "evals/review/gold_review_batch_005_repairs.json",
+        "experiments/EXP-012/results-n10.json",
+        "experiments/GOLD-001/CORPUS-001-expected-202-manifest.json",
+        "experiments/GOLD-001/CORPUS-001-recovery-ledger.json"
+      ],
+      "byte_anchors": {
+        "expected_version_id": "ver_8d2a22e3827c98e0b9d4e1ef411e5353",
+        "distinct_spans": 1,
+        "verified_historical_bytes": 151,
+        "highest_verified_offset": 40286,
+        "spans": [
+          {
+            "char_start": 40135,
+            "char_end": 40286,
+            "evidence_hash": "e46486f298067b5585bf926b4dffbf606adc0fabe989a04f569377183b1da3a5"
+          },
+          {
+            "char_start": 40135,
+            "char_end": 40286,
+            "evidence_hash": "e46486f298067b5585bf926b4dffbf606adc0fabe989a04f569377183b1da3a5"
+          },
+          {
+            "char_start": 40135,
+            "char_end": 40286,
+            "evidence_hash": "e46486f298067b5585bf926b4dffbf606adc0fabe989a04f569377183b1da3a5"
+          }
+        ]
+      }
+    },
+    {
+      "index": 49,
+      "source_url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/text-editor-tool",
+      "document_title": "Text editor tool",
+      "expected_version_id": "ver_72833144cee232446fa450e9e040995a",
+      "expected_version_id_source": "gold_record",
+      "recorded_in": [
+        "evals/review/batch_003_approved_projection.jsonl",
+        "evals/review/gold_batch_003_qc.json",
+        "evals/review/gold_review_batch_003.json",
+        "experiments/GOLD-001/BATCH-004-near-miss-multihop-review.json",
+        "experiments/GOLD-001/CORPUS-001-expected-202-manifest.json",
+        "experiments/GOLD-001/CORPUS-001-recovery-ledger.json"
+      ],
+      "byte_anchors": null
+    },
+    {
+      "index": 51,
+      "source_url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-reference",
+      "document_title": "Tool reference",
+      "expected_version_id": "ver_5f5df502fc725ffcca9d893fef90fe3f",
+      "expected_version_id_source": "gold_record",
+      "recorded_in": [
+        "evals/gold/batch_001_v2/overlay.json",
+        "evals/gold/batch_001_v2/projection.jsonl",
+        "evals/review/batch_001_approved_projection.jsonl",
+        "evals/review/gold_batch_001_qc.json",
+        "evals/review/gold_review_batch_001.json",
+        "experiments/GOLD-001/CORPUS-001-expected-202-manifest.json",
+        "experiments/GOLD-001/CORPUS-001-recovery-ledger.json"
+      ],
+      "byte_anchors": null
+    },
+    {
+      "index": 52,
+      "source_url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-runner",
+      "document_title": "Tool runner (SDK)",
+      "expected_version_id": "ver_96d5aba3c4e7771cabd4f3d4f5a3fff1",
+      "expected_version_id_source": "gold_record",
+      "recorded_in": [
+        "evals/gold/batch_001_v2/overlay.json",
+        "evals/gold/batch_001_v2/projection.jsonl",
+        "evals/review/batch_001_approved_projection.jsonl",
+        "evals/review/gold_batch_001_qc.json",
+        "evals/review/gold_review_batch_001.json",
+        "experiments/EXP-000/results.json",
+        "experiments/EXP-003/results-k10.json",
+        "experiments/EXP-003/results-k20.json",
+        "experiments/EXP-003/results-k60.json",
+        "experiments/EXP-003/sweep/pool100-rrfk10.json",
+        "experiments/EXP-003/sweep/pool100-rrfk20.json",
+        "experiments/EXP-003/sweep/pool100-rrfk60.json",
+        "experiments/EXP-003/sweep/pool50-rrfk10.json",
+        "experiments/EXP-003/sweep/pool50-rrfk20.json",
+        "experiments/EXP-003/sweep/pool50-rrfk60.json",
+        "experiments/EXP-007A_bm25_control/results.json",
+        "experiments/EXP-012/results-n10.json",
+        "experiments/EXP-012/results.json",
+        "experiments/EXP-013/results.json",
+        "experiments/EXP-014/results.json",
+        "experiments/GOLD-001/CORPUS-001-expected-202-manifest.json",
+        "experiments/GOLD-001/CORPUS-001-recovery-ledger.json"
+      ],
+      "byte_anchors": null
+    },
+    {
+      "index": 56,
+      "source_url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-fetch-tool",
+      "document_title": "Web fetch tool",
+      "expected_version_id": "ver_b7ea8359f97ca269418988f78e80b870",
+      "expected_version_id_source": "gold_record",
+      "recorded_in": [
+        "evals/review/gold_batch_005_qc.json",
+        "evals/review/gold_review_batch_005.json",
+        "evals/review/gold_review_batch_005_final.json",
+        "experiments/EXP-001/results.json",
+        "experiments/EXP-003/results-k10.json",
+        "experiments/EXP-003/results-k20.json",
+        "experiments/EXP-003/results-k60.json",
+        "experiments/EXP-003/sweep/pool100-rrfk10.json",
+        "experiments/EXP-003/sweep/pool100-rrfk20.json",
+        "experiments/EXP-003/sweep/pool100-rrfk60.json",
+        "experiments/EXP-003/sweep/pool20-rrfk10.json",
+        "experiments/EXP-003/sweep/pool20-rrfk20.json",
+        "experiments/EXP-003/sweep/pool20-rrfk60.json",
+        "experiments/EXP-003/sweep/pool50-rrfk10.json",
+        "experiments/EXP-003/sweep/pool50-rrfk20.json",
+        "experiments/EXP-003/sweep/pool50-rrfk60.json",
+        "experiments/EXP-005B_rechunk_technical_bm25/results.json",
+        "experiments/EXP-012/results-n10.json",
+        "experiments/EXP-012/results.json",
+        "experiments/EXP-013/results.json",
+        "experiments/EXP-014/results.json",
+        "experiments/GOLD-001/CORPUS-001-expected-202-manifest.json",
+        "experiments/GOLD-001/CORPUS-001-recovery-ledger.json"
+      ],
+      "byte_anchors": {
+        "expected_version_id": "ver_b7ea8359f97ca269418988f78e80b870",
+        "distinct_spans": 2,
+        "verified_historical_bytes": 224,
+        "highest_verified_offset": 28860,
+        "spans": [
+          {
+            "char_start": 22545,
+            "char_end": 22636,
+            "evidence_hash": "ee532724156923f6591fd9e72285493442b2e0e15541ce46c2f879c5ba54458c"
+          },
+          {
+            "char_start": 22545,
+            "char_end": 22636,
+            "evidence_hash": "ee532724156923f6591fd9e72285493442b2e0e15541ce46c2f879c5ba54458c"
+          },
+          {
+            "char_start": 28727,
+            "char_end": 28860,
+            "evidence_hash": "caf2d8758e197a6698a3f58e49adee4ccdf7bd10082018815144c119cc72ffb3"
+          },
+          {
+            "char_start": 28727,
+            "char_end": 28860,
+            "evidence_hash": "caf2d8758e197a6698a3f58e49adee4ccdf7bd10082018815144c119cc72ffb3"
+          }
+        ]
+      }
+    },
+    {
+      "index": 57,
+      "source_url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool",
+      "document_title": "Web search tool",
+      "expected_version_id": "ver_53da2f78e855c75ec755089c13d44c28",
+      "expected_version_id_source": "gold_record",
+      "recorded_in": [
+        "evals/gold/batch_004_projection.jsonl",
+        "evals/gold/batch_005_projection.jsonl",
+        "evals/review/batch_003_approved_projection.jsonl",
+        "evals/review/gold_batch_003_qc.json",
+        "evals/review/gold_batch_004_qc.json",
+        "evals/review/gold_batch_005_qc.json",
+        "evals/review/gold_review_batch_003.json",
+        "evals/review/gold_review_batch_004.json",
+        "evals/review/gold_review_batch_004_final.json",
+        "evals/review/gold_review_batch_004_repairs.json",
+        "evals/review/gold_review_batch_005.json",
+        "evals/review/gold_review_batch_005_final.json",
+        "experiments/EXP-000/results.json",
+        "experiments/EXP-002/results.json",
+        "experiments/EXP-003/results-k10.json",
+        "experiments/EXP-003/results-k20.json",
+        "experiments/EXP-003/results-k60.json",
+        "experiments/EXP-003/sweep/pool10-rrfk10.json",
+        "experiments/EXP-003/sweep/pool10-rrfk20.json",
+        "experiments/EXP-003/sweep/pool10-rrfk60.json",
+        "experiments/EXP-003/sweep/pool100-rrfk10.json",
+        "experiments/EXP-003/sweep/pool100-rrfk20.json",
+        "experiments/EXP-003/sweep/pool100-rrfk60.json",
+        "experiments/EXP-003/sweep/pool20-rrfk10.json",
+        "experiments/EXP-003/sweep/pool20-rrfk20.json",
+        "experiments/EXP-003/sweep/pool20-rrfk60.json",
+        "experiments/EXP-003/sweep/pool50-rrfk10.json",
+        "experiments/EXP-003/sweep/pool50-rrfk20.json",
+        "experiments/EXP-003/sweep/pool50-rrfk60.json",
+        "experiments/EXP-005A_rechunk_bounded_bm25/results.json",
+        "experiments/EXP-005B_rechunk_technical_bm25/results.json",
+        "experiments/EXP-007A_bm25_control/results.json",
+        "experiments/EXP-012/results-n10.json",
+        "experiments/EXP-012/results-n3.json",
+        "experiments/EXP-012/results.json",
+        "experiments/EXP-013/results.json",
+        "experiments/EXP-014/results.json",
+        "experiments/GOLD-001/CORPUS-001-expected-202-manifest.json",
+        "experiments/GOLD-001/CORPUS-001-recovery-ledger.json"
+      ],
+      "byte_anchors": {
+        "expected_version_id": "ver_53da2f78e855c75ec755089c13d44c28",
+        "distinct_spans": 7,
+        "verified_historical_bytes": 949,
+        "highest_verified_offset": 22875,
+        "spans": [
+          {
+            "char_start": 15475,
+            "char_end": 15603,
+            "evidence_hash": "9d881c94127cc6d29cf87e6cce6611ee77ac7b4fdbfb19477653a4f5b0a8fa08"
+          },
+          {
+            "char_start": 15475,
+            "char_end": 15603,
+            "evidence_hash": "9d881c94127cc6d29cf87e6cce6611ee77ac7b4fdbfb19477653a4f5b0a8fa08"
+          },
+          {
+            "char_start": 16295,
+            "char_end": 16843,
+            "evidence_hash": "b38e23b266e3c424991cafafdc60be26959220d2a50a395e7ae813d5fba08c7c"
+          },
+          {
+            "char_start": 16295,
+            "char_end": 16843,
+            "evidence_hash": "b38e23b266e3c424991cafafdc60be26959220d2a50a395e7ae813d5fba08c7c"
+          },
+          {
+            "char_start": 16460,
+            "char_end": 16514,
+            "evidence_hash": "1f871467d6bdec51cc18260805c01e9fae9fcf91c1516ee83ee0e52c683a1296"
+          },
+          {
+            "char_start": 16571,
+            "char_end": 16743,
+            "evidence_hash": "23992e249e083d6e62fdf916c9ada81240403d3cb6480b80b05feb9cfd32948f"
+          },
+          {
+            "char_start": 16744,
+            "char_end": 16843,
+            "evidence_hash": "0bd723f53fa5e63b4e74a9bd5ffb4a3886ed049776ce3c69528c18e1a7371371"
+          },
+          {
+            "char_start": 20614,
+            "char_end": 20707,
+            "evidence_hash": "bf645608c00bf09471aa9890464ff50f4ed0500135209a9ceab88a6e0b9d29db"
+          },
+          {
+            "char_start": 20614,
+            "char_end": 20707,
+            "evidence_hash": "bf645608c00bf09471aa9890464ff50f4ed0500135209a9ceab88a6e0b9d29db"
+          },
+          {
+            "char_start": 22695,
+            "char_end": 22875,
+            "evidence_hash": "0f83094654abd858b9e46cff62a781ffc8b0bb12c679beb91ed3498045109e06"
+          },
+          {
+            "char_start": 22695,
+            "char_end": 22875,
+            "evidence_hash": "0f83094654abd858b9e46cff62a781ffc8b0bb12c679beb91ed3498045109e06"
+          }
+        ]
+      }
+    },
+    {
+      "index": 58,
+      "source_url": "https://platform.claude.com/docs/en/api/admin",
+      "document_title": "Admin",
+      "expected_version_id": "ver_c299b58fe1f5a4d3a081b550334a7df6",
+      "expected_version_id_source": "gold_record",
+      "recorded_in": [
+        "evals/gold/batch_005_projection.jsonl",
+        "evals/gold/batch_006_projection.jsonl",
+        "evals/review/gold_batch_005_qc.json",
+        "evals/review/gold_batch_006_qc.json",
+        "evals/review/gold_review_batch_005.json",
+        "evals/review/gold_review_batch_005_final.json",
+        "evals/review/gold_review_batch_005_repairs.json",
+        "evals/review/gold_review_batch_006.json",
+        "evals/review/gold_review_batch_006_final.json",
+        "evals/review/gold_review_batch_006_repairs.json",
+        "experiments/EXP-000/results.json",
+        "experiments/EXP-001/results.json",
+        "experiments/EXP-002/results.json",
+        "experiments/EXP-003/results-k10.json",
+        "experiments/EXP-003/results-k20.json",
+        "experiments/EXP-003/results-k60.json",
+        "experiments/EXP-003/sweep/pool10-rrfk10.json",
+        "experiments/EXP-003/sweep/pool10-rrfk20.json",
+        "experiments/EXP-003/sweep/pool10-rrfk60.json",
+        "experiments/EXP-003/sweep/pool100-rrfk10.json",
+        "experiments/EXP-003/sweep/pool100-rrfk20.json",
+        "experiments/EXP-003/sweep/pool100-rrfk60.json",
+        "experiments/EXP-003/sweep/pool20-rrfk10.json",
+        "experiments/EXP-003/sweep/pool20-rrfk20.json",
+        "experiments/EXP-003/sweep/pool20-rrfk60.json",
+        "experiments/EXP-003/sweep/pool50-rrfk10.json",
+        "experiments/EXP-003/sweep/pool50-rrfk20.json",
+        "experiments/EXP-003/sweep/pool50-rrfk60.json",
+        "experiments/EXP-005A_rechunk_bounded_bm25/results.json",
+        "experiments/EXP-005B_rechunk_technical_bm25/results.json",
+        "experiments/EXP-007A_bm25_control/results.json",
+        "experiments/EXP-012/results-n10.json",
+        "experiments/EXP-012/results-n3.json",
+        "experiments/EXP-012/results.json",
+        "experiments/EXP-013/results.json",
+        "experiments/EXP-014/results.json",
+        "experiments/GOLD-001/CORPUS-001-expected-202-manifest.json",
+        "experiments/GOLD-001/CORPUS-001-recovery-ledger.json"
+      ],
+      "byte_anchors": {
+        "expected_version_id": "ver_c299b58fe1f5a4d3a081b550334a7df6",
+        "distinct_spans": 2,
+        "verified_historical_bytes": 458,
+        "highest_verified_offset": 469739,
+        "spans": [
+          {
+            "char_start": 441865,
+            "char_end": 442046,
+            "evidence_hash": "481c22beedb734b9c72fffe1c1646f3f9a3bceb7782aa08f4c8c28a70da5a10c"
+          },
+          {
+            "char_start": 441865,
+            "char_end": 442046,
+            "evidence_hash": "481c22beedb734b9c72fffe1c1646f3f9a3bceb7782aa08f4c8c28a70da5a10c"
+          },
+          {
+            "char_start": 441865,
+            "char_end": 442046,
+            "evidence_hash": "481c22beedb734b9c72fffe1c1646f3f9a3bceb7782aa08f4c8c28a70da5a10c"
+          },
+          {
+            "char_start": 469462,
+            "char_end": 469739,
+            "evidence_hash": "a2602d47d43f5d8dd96abef379a50a1cfd6144349d27e7082f1ae8a69862d873"
+          },
+          {
+            "char_start": 469462,
+            "char_end": 469739,
+            "evidence_hash": "a2602d47d43f5d8dd96abef379a50a1cfd6144349d27e7082f1ae8a69862d873"
+          },
+          {
+            "char_start": 469462,
+            "char_end": 469739,
+            "evidence_hash": "a2602d47d43f5d8dd96abef379a50a1cfd6144349d27e7082f1ae8a69862d873"
+          }
+        ]
+      }
+    },
+    {
+      "index": 59,
+      "source_url": "https://platform.claude.com/docs/en/api/beta",
+      "document_title": "Beta",
+      "expected_version_id": "ver_de7f74230c8f10d30aea5d037a3bd0a5",
+      "expected_version_id_source": "gold_record",
+      "recorded_in": [
+        "evals/gold/batch_005_projection.jsonl",
+        "evals/review/gold_batch_005_qc.json",
+        "evals/review/gold_review_batch_005.json",
+        "evals/review/gold_review_batch_005_final.json",
+        "experiments/EXP-000/results.json",
+        "experiments/EXP-001/results.json",
+        "experiments/EXP-002/results.json",
+        "experiments/EXP-003/results-k10.json",
+        "experiments/EXP-003/results-k20.json",
+        "experiments/EXP-003/results-k60.json",
+        "experiments/EXP-003/sweep/pool10-rrfk10.json",
+        "experiments/EXP-003/sweep/pool10-rrfk20.json",
+        "experiments/EXP-003/sweep/pool10-rrfk60.json",
+        "experiments/EXP-003/sweep/pool100-rrfk10.json",
+        "experiments/EXP-003/sweep/pool100-rrfk20.json",
+        "experiments/EXP-003/sweep/pool100-rrfk60.json",
+        "experiments/EXP-003/sweep/pool20-rrfk10.json",
+        "experiments/EXP-003/sweep/pool20-rrfk20.json",
+        "experiments/EXP-003/sweep/pool20-rrfk60.json",
+        "experiments/EXP-003/sweep/pool50-rrfk10.json",
+        "experiments/EXP-003/sweep/pool50-rrfk20.json",
+        "experiments/EXP-003/sweep/pool50-rrfk60.json",
+        "experiments/EXP-005A_rechunk_bounded_bm25/results.json",
+        "experiments/EXP-005B_rechunk_technical_bm25/results.json",
+        "experiments/EXP-007A_bm25_control/results.json",
+        "experiments/EXP-012/results-n10.json",
+        "experiments/EXP-012/results-n3.json",
+        "experiments/EXP-012/results.json",
+        "experiments/EXP-013/results.json",
+        "experiments/EXP-014/results.json",
+        "experiments/GOLD-001/CORPUS-001-expected-202-manifest.json",
+        "experiments/GOLD-001/CORPUS-001-recovery-ledger.json"
+      ],
+      "byte_anchors": {
+        "expected_version_id": "ver_de7f74230c8f10d30aea5d037a3bd0a5",
+        "distinct_spans": 2,
+        "verified_historical_bytes": 233,
+        "highest_verified_offset": 2711869,
+        "spans": [
+          {
+            "char_start": 8864,
+            "char_end": 9027,
+            "evidence_hash": "0233ca0ebe16c41bd827639d7138b79a98ca3cc5b357e7d6d75bd908bbe774ca"
+          },
+          {
+            "char_start": 8864,
+            "char_end": 9027,
+            "evidence_hash": "0233ca0ebe16c41bd827639d7138b79a98ca3cc5b357e7d6d75bd908bbe774ca"
+          },
+          {
+            "char_start": 2711799,
+            "char_end": 2711869,
+            "evidence_hash": "892ee8dfcbdd186e6454dbbed9e5f70ba5c5f353b262c62c1749656a6d93bd63"
+          },
+          {
+            "char_start": 2711799,
+            "char_end": 2711869,
+            "evidence_hash": "892ee8dfcbdd186e6454dbbed9e5f70ba5c5f353b262c62c1749656a6d93bd63"
+          }
+        ]
+      }
+    },
+    {
+      "index": 61,
+      "source_url": "https://platform.claude.com/docs/en/api/claude-code/routines-fire",
+      "document_title": "Trigger a routine through the API",
+      "expected_version_id": "ver_d81ee605bd8bbb880deea432e51462ac",
+      "expected_version_id_source": "gold_record",
+      "recorded_in": [
+        "evals/review/batch_002_approved_projection.jsonl",
+        "evals/review/gold_batch_002_qc.json",
+        "evals/review/gold_review_batch_002.json",
+        "experiments/EXP-000/results.json",
+        "experiments/EXP-001/results.json",
+        "experiments/EXP-002/results.json",
+        "experiments/EXP-003/results-k10.json",
+        "experiments/EXP-003/results-k20.json",
+        "experiments/EXP-003/results-k60.json",
+        "experiments/EXP-003/sweep/pool10-rrfk10.json",
+        "experiments/EXP-003/sweep/pool10-rrfk20.json",
+        "experiments/EXP-003/sweep/pool10-rrfk60.json",
+        "experiments/EXP-003/sweep/pool100-rrfk10.json",
+        "experiments/EXP-003/sweep/pool100-rrfk20.json",
+        "experiments/EXP-003/sweep/pool100-rrfk60.json",
+        "experiments/EXP-003/sweep/pool20-rrfk10.json",
+        "experiments/EXP-003/sweep/pool20-rrfk20.json",
+        "experiments/EXP-003/sweep/pool20-rrfk60.json",
+        "experiments/EXP-003/sweep/pool50-rrfk10.json",
+        "experiments/EXP-003/sweep/pool50-rrfk20.json",
+        "experiments/EXP-003/sweep/pool50-rrfk60.json",
+        "experiments/EXP-005A_rechunk_bounded_bm25/results.json",
+        "experiments/EXP-005B_rechunk_technical_bm25/results.json",
+        "experiments/EXP-007A_bm25_control/results.json",
+        "experiments/EXP-012/results-n10.json",
+        "experiments/EXP-012/results-n3.json",
+        "experiments/EXP-012/results.json",
+        "experiments/EXP-013/results.json",
+        "experiments/EXP-014/results.json",
+        "experiments/GOLD-001/CORPUS-001-expected-202-manifest.json",
+        "experiments/GOLD-001/CORPUS-001-recovery-ledger.json"
+      ],
+      "byte_anchors": null
+    },
+    {
+      "index": 66,
+      "source_url": "https://platform.claude.com/docs/en/api/errors",
+      "document_title": "Claude API errors",
+      "expected_version_id": "ver_0774ca0093ff4a846753577c9a4a39d5",
+      "expected_version_id_source": "gold_record",
+      "recorded_in": [
+        "evals/development/v1.jsonl",
+        "evals/gold/batch_001_v2/overlay.json",
+        "evals/gold/batch_001_v2/projection.jsonl",
+        "evals/gold/batch_004_projection.jsonl",
+        "evals/golden/v1.jsonl",
+        "evals/review/batch_001_approved_projection.jsonl",
+        "evals/review/gold_batch_001_qc.json",
+        "evals/review/gold_batch_001_repair_review.json",
+        "evals/review/gold_batch_004_qc.json",
+        "evals/review/gold_review_batch_001.json",
+        "evals/review/gold_review_batch_004.json",
+        "evals/review/gold_review_batch_004_final.json",
+        "experiments/EXP-000/results-websearch-and.json",
+        "experiments/EXP-000/results.json",
+        "experiments/EXP-001/results.json",
+        "experiments/EXP-002/results.json",
+        "experiments/EXP-003/results-k10.json",
+        "experiments/EXP-003/results-k20.json",
+        "experiments/EXP-003/results-k60.json",
+        "experiments/EXP-003/sweep/pool10-rrfk10.json",
+        "experiments/EXP-003/sweep/pool10-rrfk20.json",
+        "experiments/EXP-003/sweep/pool10-rrfk60.json",
+        "experiments/EXP-003/sweep/pool100-rrfk10.json",
+        "experiments/EXP-003/sweep/pool100-rrfk20.json",
+        "experiments/EXP-003/sweep/pool100-rrfk60.json",
+        "experiments/EXP-003/sweep/pool20-rrfk10.json",
+        "experiments/EXP-003/sweep/pool20-rrfk20.json",
+        "experiments/EXP-003/sweep/pool20-rrfk60.json",
+        "experiments/EXP-003/sweep/pool50-rrfk10.json",
+        "experiments/EXP-003/sweep/pool50-rrfk20.json",
+        "experiments/EXP-003/sweep/pool50-rrfk60.json",
+        "experiments/EXP-005A_rechunk_bounded_bm25/results.json",
+        "experiments/EXP-005B_rechunk_technical_bm25/results.json",
+        "experiments/EXP-007A_bm25_control/results.json",
+        "experiments/EXP-012/results-n10.json",
+        "experiments/EXP-012/results-n3.json",
+        "experiments/EXP-012/results.json",
+        "experiments/EXP-013/results.json",
+        "experiments/EXP-013/router-e-exploratory.json",
+        "experiments/EXP-014/results.json",
+        "experiments/EXP-014R/results-development.json",
+        "experiments/GOLD-001/CORPUS-001-expected-202-manifest.json",
+        "experiments/GOLD-001/CORPUS-001-recovery-ledger.json"
+      ],
+      "byte_anchors": {
+        "expected_version_id": "ver_0774ca0093ff4a846753577c9a4a39d5",
+        "distinct_spans": 1,
+        "verified_historical_bytes": 232,
+        "highest_verified_offset": 20070,
+        "spans": [
+          {
+            "char_start": 19838,
+            "char_end": 20070,
+            "evidence_hash": "1f1dbc851bb4029f1d827d1c11462573659eaa43a6e23acae8e9b1e0a916cdff"
+          },
+          {
+            "char_start": 19838,
+            "char_end": 20070,
+            "evidence_hash": "1f1dbc851bb4029f1d827d1c11462573659eaa43a6e23acae8e9b1e0a916cdff"
+          }
+        ]
+      }
+    },
+    {
+      "index": 86,
+      "source_url": "https://platform.claude.com/docs/en/build-with-claude/batch-processing",
+      "document_title": "Batch processing",
+      "expected_version_id": "ver_cec813c3bb15b76dcf16e7a0c2231ef1",
+      "expected_version_id_source": "gold_record",
+      "recorded_in": [
+        "evals/review/batch_002_approved_projection.jsonl",
+        "evals/review/gold_batch_002_qc.json",
+        "evals/review/gold_review_batch_002.json",
+        "experiments/EXP-000/results.json",
+        "experiments/EXP-001/results.json",
+        "experiments/EXP-002/results.json",
+        "experiments/EXP-003/results-k10.json",
+        "experiments/EXP-003/results-k20.json",
+        "experiments/EXP-003/results-k60.json",
+        "experiments/EXP-003/sweep/pool10-rrfk10.json",
+        "experiments/EXP-003/sweep/pool10-rrfk20.json",
+        "experiments/EXP-003/sweep/pool10-rrfk60.json",
+        "experiments/EXP-003/sweep/pool100-rrfk10.json",
+        "experiments/EXP-003/sweep/pool100-rrfk20.json",
+        "experiments/EXP-003/sweep/pool100-rrfk60.json",
+        "experiments/EXP-003/sweep/pool20-rrfk10.json",
+        "experiments/EXP-003/sweep/pool20-rrfk20.json",
+        "experiments/EXP-003/sweep/pool20-rrfk60.json",
+        "experiments/EXP-003/sweep/pool50-rrfk10.json",
+        "experiments/EXP-003/sweep/pool50-rrfk20.json",
+        "experiments/EXP-003/sweep/pool50-rrfk60.json",
+        "experiments/EXP-005A_rechunk_bounded_bm25/results.json",
+        "experiments/EXP-005B_rechunk_technical_bm25/results.json",
+        "experiments/EXP-007A_bm25_control/results.json",
+        "experiments/EXP-012/results-n10.json",
+        "experiments/EXP-012/results-n3.json",
+        "experiments/EXP-012/results.json",
+        "experiments/EXP-013/results.json",
+        "experiments/EXP-014/results.json",
+        "experiments/GOLD-001/CORPUS-001-expected-202-manifest.json",
+        "experiments/GOLD-001/CORPUS-001-recovery-ledger.json"
+      ],
+      "byte_anchors": null
+    },
+    {
+      "index": 92,
+      "source_url": "https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai",
+      "document_title": "Claude on Google Cloud",
+      "expected_version_id": "ver_e312b7f41115cc2b84cd36151efc6dd8",
+      "expected_version_id_source": "gold_record",
+      "recorded_in": [
+        "evals/gold/batch_001_v2/overlay.json",
+        "evals/gold/batch_001_v2/projection.jsonl",
+        "evals/review/batch_001_approved_projection.jsonl",
+        "evals/review/batch_002_approved_projection.jsonl",
+        "evals/review/gold_batch_001_qc.json",
+        "evals/review/gold_batch_002_qc.json",
+        "evals/review/gold_review_batch_001.json",
+        "evals/review/gold_review_batch_002.json",
+        "experiments/EXP-012/results-n10.json",
+        "experiments/GOLD-001/CORPUS-001-expected-202-manifest.json",
+        "experiments/GOLD-001/CORPUS-001-recovery-ledger.json",
+        "experiments/GOLD-001/GOLD-001-heading-parser-audit.json"
+      ],
+      "byte_anchors": null
+    },
+    {
+      "index": 94,
+      "source_url": "https://platform.claude.com/docs/en/build-with-claude/compaction",
+      "document_title": "Compaction",
+      "expected_version_id": "ver_c60f7418b69b6610bd20e974b92cdd8c",
+      "expected_version_id_source": "gold_record",
+      "recorded_in": [
+        "evals/review/batch_002_approved_projection.jsonl",
+        "evals/review/gold_batch_002_qc.json",
+        "evals/review/gold_review_batch_002.json",
+        "experiments/EXP-000/results.json",
+        "experiments/EXP-001/results.json",
+        "experiments/EXP-002/results.json",
+        "experiments/EXP-003/results-k10.json",
+        "experiments/EXP-003/results-k20.json",
+        "experiments/EXP-003/results-k60.json",
+        "experiments/EXP-003/sweep/pool10-rrfk10.json",
+        "experiments/EXP-003/sweep/pool10-rrfk20.json",
+        "experiments/EXP-003/sweep/pool10-rrfk60.json",
+        "experiments/EXP-003/sweep/pool100-rrfk10.json",
+        "experiments/EXP-003/sweep/pool100-rrfk20.json",
+        "experiments/EXP-003/sweep/pool100-rrfk60.json",
+        "experiments/EXP-003/sweep/pool20-rrfk10.json",
+        "experiments/EXP-003/sweep/pool20-rrfk20.json",
+        "experiments/EXP-003/sweep/pool20-rrfk60.json",
+        "experiments/EXP-003/sweep/pool50-rrfk10.json",
+        "experiments/EXP-003/sweep/pool50-rrfk20.json",
+        "experiments/EXP-003/sweep/pool50-rrfk60.json",
+        "experiments/EXP-005A_rechunk_bounded_bm25/results.json",
+        "experiments/EXP-005B_rechunk_technical_bm25/results.json",
+        "experiments/EXP-007A_bm25_control/results.json",
+        "experiments/EXP-012/results-n10.json",
+        "experiments/EXP-012/results-n3.json",
+        "experiments/EXP-012/results.json",
+        "experiments/EXP-013/results.json",
+        "experiments/EXP-014/results.json",
+        "experiments/GOLD-001/CORPUS-001-expected-202-manifest.json",
+        "experiments/GOLD-001/CORPUS-001-recovery-ledger.json"
+      ],
+      "byte_anchors": null
+    },
+    {
+      "index": 95,
+      "source_url": "https://platform.claude.com/docs/en/build-with-claude/context-editing",
+      "document_title": "Context editing",
+      "expected_version_id": "ver_1c53b961e1f5da8124a1e7e8eb92c941",
+      "expected_version_id_source": "gold_record",
+      "recorded_in": [
+        "evals/development/v1.jsonl",
+        "evals/gold/batch_005_projection.jsonl",
+        "evals/golden/v1.jsonl",
+        "evals/review/batch_002_approved_projection.jsonl",
+        "evals/review/batch_003_approved_projection.jsonl",
+        "evals/review/gold_batch_002_qc.json",
+        "evals/review/gold_batch_003_qc.json",
+        "evals/review/gold_batch_005_qc.json",
+        "evals/review/gold_review_batch_002.json",
+        "evals/review/gold_review_batch_003.json",
+        "evals/review/gold_review_batch_005.json",
+        "evals/review/gold_review_batch_005_final.json",
+        "experiments/EXP-000/results-websearch-and.json",
+        "experiments/EXP-000/results.json",
+        "experiments/EXP-001/results.json",
+        "experiments/EXP-002/results.json",
+        "experiments/EXP-003/results-k10.json",
+        "experiments/EXP-003/results-k20.json",
+        "experiments/EXP-003/results-k60.json",
+        "experiments/EXP-003/sweep/pool10-rrfk10.json",
+        "experiments/EXP-003/sweep/pool10-rrfk20.json",
+        "experiments/EXP-003/sweep/pool10-rrfk60.json",
+        "experiments/EXP-003/sweep/pool100-rrfk10.json",
+        "experiments/EXP-003/sweep/pool100-rrfk20.json",
+        "experiments/EXP-003/sweep/pool100-rrfk60.json",
+        "experiments/EXP-003/sweep/pool20-rrfk10.json",
+        "experiments/EXP-003/sweep/pool20-rrfk20.json",
+        "experiments/EXP-003/sweep/pool20-rrfk60.json",
+        "experiments/EXP-003/sweep/pool50-rrfk10.json",
+        "experiments/EXP-003/sweep/pool50-rrfk20.json",
+        "experiments/EXP-003/sweep/pool50-rrfk60.json",
+        "experiments/EXP-005A_rechunk_bounded_bm25/results.json",
+        "experiments/EXP-005B_rechunk_technical_bm25/results.json",
+        "experiments/EXP-007A_bm25_control/results.json",
+        "experiments/EXP-012/results-n10.json",
+        "experiments/EXP-012/results-n3.json",
+        "experiments/EXP-012/results.json",
+        "experiments/EXP-013/results.json",
+        "experiments/EXP-013/router-e-exploratory.json",
+        "experiments/EXP-014/results.json",
+        "experiments/EXP-014R/results-development.json",
+        "experiments/GOLD-001/CORPUS-001-expected-202-manifest.json",
+        "experiments/GOLD-001/CORPUS-001-recovery-ledger.json"
+      ],
+      "byte_anchors": {
+        "expected_version_id": "ver_1c53b961e1f5da8124a1e7e8eb92c941",
+        "distinct_spans": 1,
+        "verified_historical_bytes": 130,
+        "highest_verified_offset": 75380,
+        "spans": [
+          {
+            "char_start": 75250,
+            "char_end": 75380,
+            "evidence_hash": "b2f29d24dba4045e411f87f438b77bc9271fe24588f500c999d148195d44736a"
+          },
+          {
+            "char_start": 75250,
+            "char_end": 75380,
+            "evidence_hash": "b2f29d24dba4045e411f87f438b77bc9271fe24588f500c999d148195d44736a"
+          }
+        ]
+      }
+    },
+    {
+      "index": 96,
+      "source_url": "https://platform.claude.com/docs/en/build-with-claude/context-windows",
+      "document_title": "Context windows",
+      "expected_version_id": "ver_b42814c2d273210095c8e5844612933e",
+      "expected_version_id_source": "gold_record",
+      "recorded_in": [
+        "evals/gold/batch_001_v2/overlay.json",
+        "evals/gold/batch_001_v2/projection.jsonl",
+        "evals/review/batch_001_approved_projection.jsonl",
+        "evals/review/gold_batch_001_qc.json",
+        "evals/review/gold_review_batch_001.json",
+        "experiments/EXP-001/results.json",
+        "experiments/EXP-002/results.json",
+        "experiments/EXP-003/results-k10.json",
+        "experiments/EXP-003/results-k20.json",
+        "experiments/EXP-003/results-k60.json",
+        "experiments/EXP-003/sweep/pool10-rrfk10.json",
+        "experiments/EXP-003/sweep/pool10-rrfk20.json",
+        "experiments/EXP-003/sweep/pool10-rrfk60.json",
+        "experiments/EXP-003/sweep/pool100-rrfk10.json",
+        "experiments/EXP-003/sweep/pool100-rrfk20.json",
+        "experiments/EXP-003/sweep/pool100-rrfk60.json",
+        "experiments/EXP-003/sweep/pool20-rrfk10.json",
+        "experiments/EXP-003/sweep/pool20-rrfk20.json",
+        "experiments/EXP-003/sweep/pool20-rrfk60.json",
+        "experiments/EXP-003/sweep/pool50-rrfk10.json",
+        "experiments/EXP-003/sweep/pool50-rrfk20.json",
+        "experiments/EXP-003/sweep/pool50-rrfk60.json",
+        "experiments/EXP-012/results-n10.json",
+        "experiments/EXP-012/results.json",
+        "experiments/EXP-014/results.json",
+        "experiments/GOLD-001/CORPUS-001-expected-202-manifest.json",
+        "experiments/GOLD-001/CORPUS-001-recovery-ledger.json"
+      ],
+      "byte_anchors": null
+    },
+    {
+      "index": 97,
+      "source_url": "https://platform.claude.com/docs/en/build-with-claude/effort",
+      "document_title": "Effort",
+      "expected_version_id": "ver_238961530ce62a75c61bdeead5ccb10d",
+      "expected_version_id_source": "gold_record",
+      "recorded_in": [
+        "evals/gold/batch_006_projection.jsonl",
+        "evals/review/gold_batch_006_qc.json",
+        "evals/review/gold_review_batch_006.json",
+        "evals/review/gold_review_batch_006_final.json",
+        "evals/review/gold_review_batch_006_repairs.json",
+        "experiments/EXP-012/results-n10.json",
+        "experiments/GOLD-001/CORPUS-001-expected-202-manifest.json",
+        "experiments/GOLD-001/CORPUS-001-recovery-ledger.json"
+      ],
+      "byte_anchors": {
+        "expected_version_id": "ver_238961530ce62a75c61bdeead5ccb10d",
+        "distinct_spans": 1,
+        "verified_historical_bytes": 76,
+        "highest_verified_offset": 5199,
+        "spans": [
+          {
+            "char_start": 5123,
+            "char_end": 5199,
+            "evidence_hash": "712a1a0780ade57f504d68707890cf5dea3b05f3f7c32b98cb7f1d704c0ac55b"
+          },
+          {
+            "char_start": 5123,
+            "char_end": 5199,
+            "evidence_hash": "712a1a0780ade57f504d68707890cf5dea3b05f3f7c32b98cb7f1d704c0ac55b"
+          },
+          {
+            "char_start": 5123,
+            "char_end": 5199,
+            "evidence_hash": "712a1a0780ade57f504d68707890cf5dea3b05f3f7c32b98cb7f1d704c0ac55b"
+          }
+        ]
+      }
+    },
+    {
+      "index": 98,
+      "source_url": "https://platform.claude.com/docs/en/build-with-claude/embeddings",
+      "document_title": "Embeddings",
+      "expected_version_id": "ver_26f61f56d6ff7124cfa38152f7baef3d",
+      "expected_version_id_source": "gold_record",
+      "recorded_in": [
+        "evals/review/gold_batch_001_qc.json",
+        "evals/review/gold_review_batch_001.json",
+        "experiments/GOLD-001/CORPUS-001-expected-202-manifest.json",
+        "experiments/GOLD-001/CORPUS-001-recovery-ledger.json",
+        "experiments/GOLD-001/GOLD-001-heading-parser-audit.json"
+      ],
+      "byte_anchors": null
+    },
+    {
+      "index": 99,
+      "source_url": "https://platform.claude.com/docs/en/build-with-claude/extended-thinking",
+      "document_title": "Extended thinking",
+      "expected_version_id": "ver_3acba29982fd40528ac6498dd0d5fe18",
+      "expected_version_id_source": "gold_record",
+      "recorded_in": [
+        "evals/review/batch_003_approved_projection.jsonl",
+        "evals/review/gold_batch_003_qc.json",
+        "evals/review/gold_review_batch_003.json",
+        "experiments/GOLD-001/BATCH-004-near-miss-multihop-review.json",
+        "experiments/GOLD-001/CORPUS-001-expected-202-manifest.json",
+        "experiments/GOLD-001/CORPUS-001-recovery-ledger.json"
+      ],
+      "byte_anchors": null
+    },
+    {
+      "index": 102,
+      "source_url": "https://platform.claude.com/docs/en/build-with-claude/files",
+      "document_title": "Files API",
+      "expected_version_id": "ver_ab9e2c2bf4c17bf70ce1b94355d01729",
+      "expected_version_id_source": "gold_record",
+      "recorded_in": [
+        "evals/gold/batch_001_v2/overlay.json",
+        "evals/gold/batch_001_v2/projection.jsonl",
+        "evals/review/batch_001_approved_projection.jsonl",
+        "evals/review/gold_batch_001_qc.json",
+        "evals/review/gold_review_batch_001.json",
+        "experiments/EXP-012/results-n10.json",
+        "experiments/GOLD-001/CORPUS-001-expected-202-manifest.json",
+        "experiments/GOLD-001/CORPUS-001-recovery-ledger.json"
+      ],
+      "byte_anchors": null
+    },
+    {
+      "index": 103,
+      "source_url": "https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons",
+      "document_title": "Stop reasons and fallback",
+      "expected_version_id": "ver_4d14aec24504f4b8f6f28938b84587dc",
+      "expected_version_id_source": "gold_record",
+      "recorded_in": [
+        "evals/gold/batch_004_projection.jsonl",
+        "evals/review/gold_batch_004_qc.json",
+        "evals/review/gold_review_batch_004.json",
+        "evals/review/gold_review_batch_004_final.json",
+        "evals/review/gold_review_batch_004_repairs.json",
+        "experiments/EXP-000/results.json",
+        "experiments/EXP-001/results.json",
+        "experiments/EXP-002/results.json",
+        "experiments/EXP-003/results-k10.json",
+        "experiments/EXP-003/results-k20.json",
+        "experiments/EXP-003/results-k60.json",
+        "experiments/EXP-003/sweep/pool10-rrfk10.json",
+        "experiments/EXP-003/sweep/pool10-rrfk20.json",
+        "experiments/EXP-003/sweep/pool10-rrfk60.json",
+        "experiments/EXP-003/sweep/pool100-rrfk10.json",
+        "experiments/EXP-003/sweep/pool100-rrfk20.json",
+        "experiments/EXP-003/sweep/pool100-rrfk60.json",
+        "experiments/EXP-003/sweep/pool20-rrfk10.json",
+        "experiments/EXP-003/sweep/pool20-rrfk20.json",
+        "experiments/EXP-003/sweep/pool20-rrfk60.json",
+        "experiments/EXP-003/sweep/pool50-rrfk10.json",
+        "experiments/EXP-003/sweep/pool50-rrfk20.json",
+        "experiments/EXP-003/sweep/pool50-rrfk60.json",
+        "experiments/EXP-005A_rechunk_bounded_bm25/results.json",
+        "experiments/EXP-005B_rechunk_technical_bm25/results.json",
+        "experiments/EXP-007A_bm25_control/results.json",
+        "experiments/EXP-012/results-n10.json",
+        "experiments/EXP-012/results-n3.json",
+        "experiments/EXP-012/results.json",
+        "experiments/EXP-013/results.json",
+        "experiments/EXP-014/results.json",
+        "experiments/GOLD-001/BATCH-004-near-miss-multihop-review.json",
+        "experiments/GOLD-001/CORPUS-001-expected-202-manifest.json",
+        "experiments/GOLD-001/CORPUS-001-recovery-ledger.json"
+      ],
+      "byte_anchors": {
+        "expected_version_id": "ver_4d14aec24504f4b8f6f28938b84587dc",
+        "distinct_spans": 1,
+        "verified_historical_bytes": 209,
+        "highest_verified_offset": 80481,
+        "spans": [
+          {
+            "char_start": 80272,
+            "char_end": 80481,
+            "evidence_hash": "b13da047087150f9eefa746b904f26b9fc06d87cbc58b912916dd6eba0a74231"
+          },
+          {
+            "char_start": 80272,
+            "char_end": 80481,
+            "evidence_hash": "b13da047087150f9eefa746b904f26b9fc06d87cbc58b912916dd6eba0a74231"
+          },
+          {
+            "char_start": 80272,
+            "char_end": 80481,
+            "evidence_hash": "b13da047087150f9eefa746b904f26b9fc06d87cbc58b912916dd6eba0a74231"
+          }
+        ]
+      }
+    },
+    {
+      "index": 105,
+      "source_url": "https://platform.claude.com/docs/en/build-with-claude/mid-conversation-system-messages",
+      "document_title": "Mid-conversation system messages and tool changes",
+      "expected_version_id": "ver_77fbe47b4b7db32ee46b972b2f611d0e",
+      "expected_version_id_source": "gold_record",
+      "recorded_in": [
+        "evals/gold/batch_001_v2/overlay.json",
+        "evals/gold/batch_001_v2/projection.jsonl",
+        "evals/review/batch_001_approved_projection.jsonl",
+        "evals/review/gold_batch_001_qc.json",
+        "evals/review/gold_review_batch_001.json",
+        "experiments/EXP-003/sweep/pool100-rrfk60.json",
+        "experiments/EXP-003/sweep/pool50-rrfk60.json",
+        "experiments/EXP-014/results.json",
+        "experiments/GOLD-001/CORPUS-001-expected-202-manifest.json",
+        "experiments/GOLD-001/CORPUS-001-recovery-ledger.json"
+      ],
+      "byte_anchors": null
+    },
+    {
+      "index": 109,
+      "source_url": "https://platform.claude.com/docs/en/build-with-claude/prompt-caching",
+      "document_title": "Prompt caching",
+      "expected_version_id": "ver_7947433dfde6b3b8eccd0faa597c3c9a",
+      "expected_version_id_source": "gold_record",
+      "recorded_in": [
+        "evals/development/v1.jsonl",
+        "evals/golden/v1.jsonl",
+        "evals/review/gold_batch_002_qc.json",
+        "evals/review/gold_review_batch_002.json",
+        "experiments/EXP-000/results-websearch-and.json",
+        "experiments/EXP-000/results.json",
+        "experiments/EXP-001/results.json",
+        "experiments/EXP-002/results.json",
+        "experiments/EXP-003/results-k10.json",
+        "experiments/EXP-003/results-k20.json",
+        "experiments/EXP-003/results-k60.json",
+        "experiments/EXP-003/sweep/pool10-rrfk10.json",
+        "experiments/EXP-003/sweep/pool10-rrfk20.json",
+        "experiments/EXP-003/sweep/pool10-rrfk60.json",
+        "experiments/EXP-003/sweep/pool100-rrfk10.json",
+        "experiments/EXP-003/sweep/pool100-rrfk20.json",
+        "experiments/EXP-003/sweep/pool100-rrfk60.json",
+        "experiments/EXP-003/sweep/pool20-rrfk10.json",
+        "experiments/EXP-003/sweep/pool20-rrfk20.json",
+        "experiments/EXP-003/sweep/pool20-rrfk60.json",
+        "experiments/EXP-003/sweep/pool50-rrfk10.json",
+        "experiments/EXP-003/sweep/pool50-rrfk20.json",
+        "experiments/EXP-003/sweep/pool50-rrfk60.json",
+        "experiments/EXP-005A_rechunk_bounded_bm25/results.json",
+        "experiments/EXP-005B_rechunk_technical_bm25/results.json",
+        "experiments/EXP-007A_bm25_control/results.json",
+        "experiments/EXP-012/results-n10.json",
+        "experiments/EXP-012/results-n3.json",
+        "experiments/EXP-012/results.json",
+        "experiments/EXP-013/results.json",
+        "experiments/EXP-013/router-e-exploratory.json",
+        "experiments/EXP-014/results.json",
+        "experiments/EXP-014R/results-development.json",
+        "experiments/GOLD-001/CORPUS-001-expected-202-manifest.json",
+        "experiments/GOLD-001/CORPUS-001-recovery-ledger.json",
+        "experiments/GOLD-001/GOLD-001-heading-parser-audit.json"
+      ],
+      "byte_anchors": null
+    },
+    {
+      "index": 110,
+      "source_url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
+      "document_title": "Prompting best practices",
+      "expected_version_id": "ver_0a5b292d4854b92db0a9e025b4949123",
+      "expected_version_id_source": "gold_record",
+      "recorded_in": [
+        "evals/gold/batch_004_projection.jsonl",
+        "evals/review/gold_batch_004_qc.json",
+        "evals/review/gold_review_batch_004.json",
+        "evals/review/gold_review_batch_004_final.json",
+        "evals/review/gold_review_batch_004_repairs.json",
+        "experiments/EXP-012/results-n10.json",
+        "experiments/EXP-012/results-n3.json",
+        "experiments/EXP-012/results.json",
+        "experiments/EXP-013/results.json",
+        "experiments/EXP-014/results.json",
+        "experiments/GOLD-001/CORPUS-001-expected-202-manifest.json",
+        "experiments/GOLD-001/CORPUS-001-recovery-ledger.json"
+      ],
+      "byte_anchors": {
+        "expected_version_id": "ver_0a5b292d4854b92db0a9e025b4949123",
+        "distinct_spans": 1,
+        "verified_historical_bytes": 156,
+        "highest_verified_offset": 27426,
+        "spans": [
+          {
+            "char_start": 27270,
+            "char_end": 27426,
+            "evidence_hash": "6defce92772b6eefb4f7e6e8c08c6c7107cc017e934290819360eb5bfd38c874"
+          },
+          {
+            "char_start": 27270,
+            "char_end": 27426,
+            "evidence_hash": "6defce92772b6eefb4f7e6e8c08c6c7107cc017e934290819360eb5bfd38c874"
+          },
+          {
+            "char_start": 27270,
+            "char_end": 27426,
+            "evidence_hash": "6defce92772b6eefb4f7e6e8c08c6c7107cc017e934290819360eb5bfd38c874"
+          }
+        ]
+      }
+    },
+    {
+      "index": 115,
+      "source_url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-sonnet-5",
+      "document_title": "Prompting Claude Sonnet 5",
+      "expected_version_id": "ver_9c5166b670bf43589ee63d0dbe8b93d2",
+      "expected_version_id_source": "gold_record",
+      "recorded_in": [
+        "evals/gold/batch_005_projection.jsonl",
+        "evals/review/gold_batch_005_qc.json",
+        "evals/review/gold_review_batch_005.json",
+        "evals/review/gold_review_batch_005_final.json",
+        "evals/review/gold_review_batch_005_repairs.json",
+        "experiments/EXP-014/results.json",
+        "experiments/GOLD-001/CORPUS-001-expected-202-manifest.json",
+        "experiments/GOLD-001/CORPUS-001-recovery-ledger.json"
+      ],
+      "byte_anchors": {
+        "expected_version_id": "ver_9c5166b670bf43589ee63d0dbe8b93d2",
+        "distinct_spans": 1,
+        "verified_historical_bytes": 135,
+        "highest_verified_offset": 5491,
+        "spans": [
+          {
+            "char_start": 5356,
+            "char_end": 5491,
+            "evidence_hash": "58fbedd718a3c5c6487312de617ed46995249883d398207176d61663dda9dbbe"
+          },
+          {
+            "char_start": 5356,
+            "char_end": 5491,
+            "evidence_hash": "58fbedd718a3c5c6487312de617ed46995249883d398207176d61663dda9dbbe"
+          },
+          {
+            "char_start": 5356,
+            "char_end": 5491,
+            "evidence_hash": "58fbedd718a3c5c6487312de617ed46995249883d398207176d61663dda9dbbe"
+          }
+        ]
+      }
+    },
+    {
+      "index": 116,
+      "source_url": "https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback",
+      "document_title": "Refusals and fallback",
+      "expected_version_id": "ver_fa78e1feb6289d6bcb22305e61bbbfc3",
+      "expected_version_id_source": "gold_record",
+      "recorded_in": [
+        "evals/review/batch_002_approved_projection.jsonl",
+        "evals/review/gold_batch_002_qc.json",
+        "evals/review/gold_review_batch_002.json",
+        "experiments/EXP-001/results.json",
+        "experiments/EXP-002/results.json",
+        "experiments/EXP-003/results-k10.json",
+        "experiments/EXP-003/results-k20.json",
+        "experiments/EXP-003/results-k60.json",
+        "experiments/EXP-003/sweep/pool10-rrfk10.json",
+        "experiments/EXP-003/sweep/pool10-rrfk20.json",
+        "experiments/EXP-003/sweep/pool10-rrfk60.json",
+        "experiments/EXP-003/sweep/pool100-rrfk10.json",
+        "experiments/EXP-003/sweep/pool100-rrfk20.json",
+        "experiments/EXP-003/sweep/pool100-rrfk60.json",
+        "experiments/EXP-003/sweep/pool20-rrfk10.json",
+        "experiments/EXP-003/sweep/pool20-rrfk20.json",
+        "experiments/EXP-003/sweep/pool20-rrfk60.json",
+        "experiments/EXP-003/sweep/pool50-rrfk10.json",
+        "experiments/EXP-003/sweep/pool50-rrfk20.json",
+        "experiments/EXP-003/sweep/pool50-rrfk60.json",
+        "experiments/EXP-005A_rechunk_bounded_bm25/results.json",
+        "experiments/EXP-005B_rechunk_technical_bm25/results.json",
+        "experiments/EXP-012/results-n10.json",
+        "experiments/EXP-012/results.json",
+        "experiments/EXP-014/results.json",
+        "experiments/GOLD-001/CORPUS-001-expected-202-manifest.json",
+        "experiments/GOLD-001/CORPUS-001-recovery-ledger.json"
+      ],
+      "byte_anchors": null
+    },
+    {
+      "index": 117,
+      "source_url": "https://platform.claude.com/docs/en/build-with-claude/search-results",
+      "document_title": "Search results",
+      "expected_version_id": "ver_42a4f3d941b664a285883aaf6ff90373",
+      "expected_version_id_source": "gold_record",
+      "recorded_in": [
+        "evals/review/batch_002_approved_projection.jsonl",
+        "evals/review/batch_003_approved_projection.jsonl",
+        "evals/review/gold_batch_002_qc.json",
+        "evals/review/gold_batch_003_qc.json",
+        "evals/review/gold_review_batch_002.json",
+        "evals/review/gold_review_batch_003.json",
+        "experiments/EXP-000/results.json",
+        "experiments/EXP-003/results-k10.json",
+        "experiments/EXP-003/results-k20.json",
+        "experiments/EXP-003/results-k60.json",
+        "experiments/EXP-003/sweep/pool100-rrfk10.json",
+        "experiments/EXP-003/sweep/pool100-rrfk20.json",
+        "experiments/EXP-003/sweep/pool100-rrfk60.json",
+        "experiments/EXP-003/sweep/pool20-rrfk10.json",
+        "experiments/EXP-003/sweep/pool20-rrfk20.json",
+        "experiments/EXP-003/sweep/pool20-rrfk60.json",
+        "experiments/EXP-003/sweep/pool50-rrfk10.json",
+        "experiments/EXP-003/sweep/pool50-rrfk20.json",
+        "experiments/EXP-003/sweep/pool50-rrfk60.json",
+        "experiments/EXP-005A_rechunk_bounded_bm25/results.json",
+        "experiments/EXP-007A_bm25_control/results.json",
+        "experiments/EXP-012/results-n10.json",
+        "experiments/EXP-012/results-n3.json",
+        "experiments/EXP-012/results.json",
+        "experiments/GOLD-001/CORPUS-001-expected-202-manifest.json",
+        "experiments/GOLD-001/CORPUS-001-recovery-ledger.json"
+      ],
+      "byte_anchors": null
+    },
+    {
+      "index": 119,
+      "source_url": "https://platform.claude.com/docs/en/build-with-claude/streaming",
+      "document_title": "Streaming messages",
+      "expected_version_id": "ver_1261879c16f641270789647ac9c63c96",
+      "expected_version_id_source": "gold_record",
+      "recorded_in": [
+        "evals/review/gold_batch_001_qc.json",
+        "evals/review/gold_review_batch_001.json",
+        "experiments/EXP-000/results.json",
+        "experiments/EXP-001/results.json",
+        "experiments/EXP-002/results.json",
+        "experiments/EXP-003/results-k10.json",
+        "experiments/EXP-003/results-k20.json",
+        "experiments/EXP-003/results-k60.json",
+        "experiments/EXP-003/sweep/pool10-rrfk10.json",
+        "experiments/EXP-003/sweep/pool10-rrfk20.json",
+        "experiments/EXP-003/sweep/pool10-rrfk60.json",
+        "experiments/EXP-003/sweep/pool100-rrfk10.json",
+        "experiments/EXP-003/sweep/pool100-rrfk20.json",
+        "experiments/EXP-003/sweep/pool100-rrfk60.json",
+        "experiments/EXP-003/sweep/pool20-rrfk10.json",
+        "experiments/EXP-003/sweep/pool20-rrfk20.json",
+        "experiments/EXP-003/sweep/pool20-rrfk60.json",
+        "experiments/EXP-003/sweep/pool50-rrfk10.json",
+        "experiments/EXP-003/sweep/pool50-rrfk20.json",
+        "experiments/EXP-003/sweep/pool50-rrfk60.json",
+        "experiments/EXP-005A_rechunk_bounded_bm25/results.json",
+        "experiments/EXP-005B_rechunk_technical_bm25/results.json",
+        "experiments/EXP-007A_bm25_control/results.json",
+        "experiments/EXP-012/results-n10.json",
+        "experiments/EXP-012/results-n3.json",
+        "experiments/EXP-012/results.json",
+        "experiments/EXP-013/results.json",
+        "experiments/EXP-014/results.json",
+        "experiments/GOLD-001/CORPUS-001-expected-202-manifest.json",
+        "experiments/GOLD-001/CORPUS-001-recovery-ledger.json"
+      ],
+      "byte_anchors": null
+    },
+    {
+      "index": 120,
+      "source_url": "https://platform.claude.com/docs/en/build-with-claude/structured-outputs",
+      "document_title": "Structured outputs",
+      "expected_version_id": "ver_0865c9612dfe97d8f30dd870dd12e53e",
+      "expected_version_id_source": "gold_record",
+      "recorded_in": [
+        "evals/review/batch_002_approved_projection.jsonl",
+        "evals/review/gold_batch_002_qc.json",
+        "evals/review/gold_review_batch_002.json",
+        "experiments/EXP-003/sweep/pool50-rrfk60.json",
+        "experiments/EXP-012/results-n10.json",
+        "experiments/GOLD-001/CORPUS-001-expected-202-manifest.json",
+        "experiments/GOLD-001/CORPUS-001-recovery-ledger.json"
+      ],
+      "byte_anchors": null
+    },
+    {
+      "index": 122,
+      "source_url": "https://platform.claude.com/docs/en/build-with-claude/thinking",
+      "document_title": "Thinking",
+      "expected_version_id": "ver_012b734775e7edb2649d3a9ddfd93070",
+      "expected_version_id_source": "gold_record",
+      "recorded_in": [
+        "evals/gold/batch_004_projection.jsonl",
+        "evals/golden/candidates.jsonl",
+        "evals/review/gold_batch_004_qc.json",
+        "evals/review/gold_review_batch_004.json",
+        "evals/review/gold_review_batch_004_final.json",
+        "evals/review/gold_review_batch_004_repairs.json",
+        "experiments/EXP-014/results.json",
+        "experiments/GOLD-001/CORPUS-001-expected-202-manifest.json",
+        "experiments/GOLD-001/CORPUS-001-recovery-ledger.json"
+      ],
+      "byte_anchors": {
+        "expected_version_id": "ver_012b734775e7edb2649d3a9ddfd93070",
+        "distinct_spans": 2,
+        "verified_historical_bytes": 272,
+        "highest_verified_offset": 48225,
+        "spans": [
+          {
+            "char_start": 47953,
+            "char_end": 48225,
+            "evidence_hash": "8eb88b1c77cc0a04bd7ffe36232db6fb450a7bf9b650087984be147984df7753"
+          },
+          {
+            "char_start": 47953,
+            "char_end": 48225,
+            "evidence_hash": "8eb88b1c77cc0a04bd7ffe36232db6fb450a7bf9b650087984be147984df7753"
+          },
+          {
+            "char_start": 48081,
+            "char_end": 48225,
+            "evidence_hash": "13f22cd01eeaeaad4e7c51e02e5ea5347541780f320e43c4cb816a141c933afb"
+          }
+        ]
+      }
+    }
+  ]
+}

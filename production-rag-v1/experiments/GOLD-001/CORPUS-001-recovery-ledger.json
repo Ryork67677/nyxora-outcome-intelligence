@@ -38,6 +38,18 @@
       "chunking_config_hash": "bbc874e4f27a7e6826d5106e33510942fd76cb28cf55b5c3333f014e2a6fd916",
       "reproduced": false,
       "why_not": "the digest is a hash over all 202 (version_id, content_hash) pairs at once. 139 documents have no recovered bytes, so the manifest cannot be assembled and no partial set can reproduce it."
+    },
+    "second_oracle": {
+      "oracle": "chunk_id",
+      "construction": "stable_id(\"chk\", version_id, section_path, char_start, char_end, content_hash(text))",
+      "surviving": 803,
+      "openai_documents_confirmed": 36,
+      "reduced_expected_hash_unknown_by": 0,
+      "finding": "the 14 are exactly the OpenAI documents that never appeared in any logged retrieval result — neither their version_id nor any of their chunk ids survives. There is no further mapping to mine; the search is exhausted by evidence, not by effort."
+    },
+    "missing_split": {
+      "group_A_verifiable_individually": 40,
+      "group_B_verifiable_only_in_aggregate": 99
     }
   },
   "rows": [

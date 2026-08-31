@@ -29,6 +29,11 @@ LEDGER = EXP / "CORPUS-001-recovery-ledger.json"
 UNBUILDABLE = EXP / "CORPUS-001-unbuildable-identity-analysis.json"
 LIMITATION = EXP / "GOLD-001-corpus-reproduction-limitation.json"
 STATUS = EXP / "GOLD-001-eligibility-status.json"
+HOST_SEARCH = EXP / "CORPUS-001-host-search.json"
+ANTHROPIC_IDS = EXP / "CORPUS-001-known-anthropic-id-search.json"
+PLAN = EXP / "CORPUS-001-anthropic-recovery-plan.json"
+CHUNKING = {"max_chunk_chars": settings.max_chunk_chars,
+            "min_chunk_chars": settings.min_chunk_chars}
 
 SNAPSHOT_ID = "snap_689e336380a054d8039dc35b2c09cd0a"
 MANIFEST_HASH = "452479294cbbbe702b15d2df3f5a268023247dcd630782aaad5e17690cee7b17"
@@ -361,3 +366,150 @@ def test_no_corpus_data_was_written_into_the_repository():
     """data/raw and data/cache must still hold nothing but their .gitkeep files."""
     for directory in (Path("data/raw"), Path("data/cache")):
         assert [p.name for p in directory.iterdir()] == [".gitkeep"], directory
+
+
+# ---------------------------------------------------- the manifest-hash final oracle
+
+def test_the_oracle_refuses_a_partial_corpus():
+    from rag_v1.corpus_oracle import verify_corpus
+
+    verdict = verify_corpus(corpus(201), CHUNKING)
+
+    assert not verdict
+    assert "partial corpus cannot be certified" in verdict.reason
+
+
+def test_the_oracle_refuses_a_duplicate_version_id():
+    from rag_v1.corpus_oracle import verify_corpus
+
+    versions = corpus()
+    verdict = verify_corpus(versions[:-1] + [versions[0]], CHUNKING)
+
+    assert not verdict
+    assert "more than once" in verdict.reason
+
+
+def test_the_oracle_refuses_a_plausible_but_wrong_corpus():
+    """202 well-formed documents that are not the frozen ones must still fail."""
+    from rag_v1.corpus_oracle import verify_corpus
+
+    verdict = verify_corpus(corpus(), CHUNKING)
+
+    assert not verdict
+    assert "manifest hash does not match" in verdict.reason
+    assert verdict.manifest_hash != MANIFEST_HASH
+
+
+def test_the_oracle_separates_a_content_failure_from_a_parameter_failure():
+    """A matching manifest hash with a wrong parameter is a different diagnosis."""
+    from rag_v1.corpus_oracle import snapshot_id_for
+
+    assert snapshot_id_for(MANIFEST_HASH, CHUNKING) == SNAPSHOT_ID
+    assert snapshot_id_for(MANIFEST_HASH, {"max_chunk_chars": 4000,
+                                           "min_chunk_chars": 200}) != SNAPSHOT_ID
+
+
+def test_the_oracle_is_order_independent():
+    from rag_v1.corpus_oracle import manifest_hash_for
+
+    versions = corpus()
+
+    assert manifest_hash_for(versions[100:] + versions[:100]) == manifest_hash_for(
+        versions)
+
+
+def test_a_document_with_no_recorded_identity_cannot_be_verified_alone():
+    from rag_v1.corpus_oracle import verify_document
+
+    result = verify_document("anthropic", "https://example.invalid/x", "text", "UNKNOWN")
+
+    assert result["status"] == "EXPECTED_HASH_UNKNOWN"
+    assert "collectively" in result["detail"]
+
+
+def test_a_document_is_matched_by_derivation_not_by_assertion():
+    from rag_v1.corpus_oracle import verify_document, version_id_for
+
+    url, text = "https://example.invalid/x", "hello"
+    expected = version_id_for("anthropic", url, text)
+
+    assert verify_document("anthropic", url, text, expected)["status"] == "EXACT_MATCH"
+    assert verify_document("anthropic", url, "other", expected)["status"] == (
+        "HASH_MISMATCH")
+
+
+def test_byte_anchors_refute_a_candidate_before_hashing():
+    from rag_v1.corpus_oracle import verify_byte_anchors
+
+    text = "the quick brown fox"
+    anchor = [{"char_start": 4, "char_end": 9,
+               "evidence_hash": hashlib.sha256(b"quick").hexdigest()}]
+
+    assert verify_byte_anchors(text, anchor)[0]["matches"] is True
+    assert verify_byte_anchors("the slow brown fox", anchor)[0]["matches"] is False
+
+
+# --------------------------------------------------- host search and the correction
+
+def test_the_host_was_not_reachable_and_the_record_says_so():
+    host = load(HOST_SEARCH)["host_reachability"]
+    present = [c for c in host["host_locations_requested"] if c["exists"]]
+
+    assert all(c.get("empty") for c in present), "a non-empty host mount would be a lead"
+    assert "No Windows host" in host["verdict"]
+
+
+def test_no_archive_or_dump_was_found_in_the_accessible_filesystems():
+    assert load(HOST_SEARCH)["accessible_sweep"]["archives_found"] == []
+
+
+def test_the_14_unknown_openai_identities_were_tested_against_both_oracles():
+    status = load(HOST_SEARCH)["openai_unknown_identity_status"]
+
+    assert status["expected_hash_unknown_before"] == 14
+    assert status["still_unknown"] == 14
+    assert status["documents_confirmed_by_chunk_id_overall"] > 0
+    assert "exhausted by evidence" in status["finding"]
+
+
+def test_the_40_known_anthropic_identities_carry_no_document_body():
+    search = load(ANTHROPIC_IDS)
+
+    assert search["known_anthropic_identities"] == 40
+    assert search["found_somewhere_in_the_repository"] == 40
+    assert search["whose_location_carries_normalized_text"] == 0
+    assert search["total_verified_historical_bytes"] > 0
+
+
+def test_the_recovery_plan_splits_the_139_by_what_can_be_verified():
+    plan = load(PLAN)
+    group_a = plan["group_A_expected_version_id_known"]
+    group_b = plan["group_B_expected_version_id_unknown"]
+
+    assert group_a["count"] + group_b["count"] == plan["total_missing"] == 139
+    assert group_a["count"] == 40
+
+
+def test_the_plan_never_offers_live_pages_as_a_recovery_path():
+    live = next(c for c in load(PLAN)["candidate_sources_in_preference_order"]
+                if "live" in c["source"])
+
+    assert live["verifiable_exactly"] is False
+    assert "NOT a recovery path" in live["status"]
+
+
+def test_the_audit_correction_preserves_the_superseded_wording():
+    """The old reports were accurate when written; this is a trail, not a silent edit."""
+    correction = load(LIMITATION)["audit_corrections"][0]
+
+    assert "2,482 unbuildable identities remain a corpus" in (
+        correction["superseded_statement"])
+    assert "not part of the corpus snapshot digest" in correction["replacement_statement"]
+    assert "silent edit" in correction["handling"]
+
+
+def test_the_corpus_blocker_is_now_only_the_missing_anthropic_captures():
+    limitation = load(LIMITATION)
+
+    assert limitation["the_corpus_blocker"] == "139 missing Anthropic document captures"
+    assert limitation["RETRIEVAL_BLOCKED"] is True
