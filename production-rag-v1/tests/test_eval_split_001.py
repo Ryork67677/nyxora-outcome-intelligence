@@ -287,9 +287,13 @@ def test_loading_the_holdout_without_the_flag_raises():
         load("holdout")
 
 
-def test_the_holdout_loads_only_with_an_explicit_flag():
-    payload = load("holdout", allow_frozen_holdout=True, reason="test")
+def test_the_holdout_loads_only_with_an_explicit_flag(tmp_path):
+    log = tmp_path / "access.jsonl"
+    payload = load("holdout", allow_frozen_holdout=True, reason="guard test",
+                   log_path=log)
     assert payload["count"] == 90
+    assert log.exists(), "an explicit holdout access must be recorded"
+    assert "guard test" in log.read_text()
 
 
 def test_ordinary_helpers_never_enumerate_the_holdout():

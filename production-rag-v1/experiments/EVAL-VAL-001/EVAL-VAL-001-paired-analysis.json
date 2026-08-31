@@ -1,0 +1,413 @@
+{
+  "paired": {
+    "quadrant": {
+      "both_correct": [
+        "GOLD-B001-07",
+        "GOLD-B002-10",
+        "GOLD-B002-18",
+        "GOLD-B003-02",
+        "GOLD-B003-11",
+        "GOLD-B003-18",
+        "GOLD-B004-10",
+        "GOLD-B004-12",
+        "GOLD-B004-14",
+        "GOLD-B006-04",
+        "HA-08",
+        "HA-10",
+        "HA-12",
+        "HA-15",
+        "HA-18",
+        "HA-32",
+        "HA-47",
+        "HA-49",
+        "HA-59"
+      ],
+      "only_A": [
+        "GOLD-B001-01",
+        "GOLD-B001-10",
+        "GOLD-B002-01",
+        "GOLD-B003-08",
+        "GOLD-B003-15",
+        "GOLD-B004-04",
+        "GOLD-B005-09",
+        "GOLD-B005-15",
+        "GOLD-B005-17",
+        "GOLD-B005-19",
+        "HA-36"
+      ],
+      "only_B": [
+        "GOLD-B002-07",
+        "HA-44"
+      ],
+      "neither": [
+        "GOLD-B001-03",
+        "GOLD-B002-02",
+        "GOLD-B006-03",
+        "HA-07",
+        "HA-29",
+        "HA-40",
+        "HA-41",
+        "HA-42"
+      ]
+    },
+    "b_rescues_over_a": [
+      "GOLD-B002-07",
+      "HA-44"
+    ],
+    "b_regressions_vs_a": [
+      "GOLD-B001-01",
+      "GOLD-B001-10",
+      "GOLD-B002-01",
+      "GOLD-B003-08",
+      "GOLD-B003-15",
+      "GOLD-B004-04",
+      "GOLD-B005-09",
+      "GOLD-B005-15",
+      "GOLD-B005-17",
+      "GOLD-B005-19",
+      "HA-36"
+    ],
+    "net_cases": -9,
+    "macro_recall_delta": -0.225
+  },
+  "bootstrap": {
+    "seed": 20250818,
+    "samples": 10000,
+    "n_questions": 40,
+    "macro_recall_delta": {
+      "point_estimate": -0.225,
+      "ci95": [
+        -0.375,
+        -0.075
+      ]
+    },
+    "fully_recalled_delta_per_case": {
+      "point_estimate": -0.225,
+      "ci95": [
+        -0.375,
+        -0.075
+      ]
+    }
+  },
+  "mcnemar": {
+    "discordant_pairs": 13,
+    "b_only": 2,
+    "a_only": 11,
+    "p_value": 0.0225,
+    "note": "exact binomial; supplementary to the paired case counts, not a substitute for them"
+  },
+  "causal_traces": {
+    "GOLD-B002-07": {
+      "movement": "B_RESCUE",
+      "provider": "anthropic",
+      "reasoning_type": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "a_span_ranks": [
+        24
+      ],
+      "b_span_ranks": [
+        9
+      ],
+      "a_doc_ranks": [
+        1
+      ],
+      "b_doc_ranks": [
+        1
+      ],
+      "all_expected_routed_at_5": true,
+      "expected_document_ranks": {
+        "ver_c60f7418b69b6610bd20e974b92cdd8c": 1
+      },
+      "attribution": "consistent with the DOC-C mechanism: every required document routed into the top 5 and the local passage rank improved"
+    },
+    "HA-44": {
+      "movement": "B_RESCUE",
+      "provider": "openai",
+      "reasoning_type": "exact_lookup",
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "a_span_ranks": [
+        14
+      ],
+      "b_span_ranks": [
+        9
+      ],
+      "a_doc_ranks": [
+        1
+      ],
+      "b_doc_ranks": [
+        1
+      ],
+      "all_expected_routed_at_5": true,
+      "expected_document_ranks": {
+        "ver_1c77f33b04ffffa285ea7e61c2a89653": 2
+      },
+      "attribution": "consistent with the DOC-C mechanism: every required document routed into the top 5 and the local passage rank improved"
+    },
+    "GOLD-B001-01": {
+      "movement": "B_REGRESSION",
+      "provider": "anthropic",
+      "reasoning_type": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "a_span_ranks": [
+        2
+      ],
+      "b_span_ranks": [
+        null
+      ],
+      "a_doc_ranks": [
+        2
+      ],
+      "b_doc_ranks": [
+        null
+      ],
+      "all_expected_routed_at_5": false,
+      "expected_document_ranks": {
+        "ver_d9ba3ab0d872dd86047c7ed6dc783235": 6
+      },
+      "attribution": "caused by Stage-1 routing: a required document was not in the routed top 5, so Stage 2 could never retrieve its passage"
+    },
+    "GOLD-B001-10": {
+      "movement": "B_REGRESSION",
+      "provider": "openai",
+      "reasoning_type": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "a_span_ranks": [
+        1
+      ],
+      "b_span_ranks": [
+        null
+      ],
+      "a_doc_ranks": [
+        1
+      ],
+      "b_doc_ranks": [
+        null
+      ],
+      "all_expected_routed_at_5": false,
+      "expected_document_ranks": {
+        "ver_f30a6447e4df2ab76e4c1475f353109c": 37
+      },
+      "attribution": "caused by Stage-1 routing: a required document was not in the routed top 5, so Stage 2 could never retrieve its passage"
+    },
+    "GOLD-B002-01": {
+      "movement": "B_REGRESSION",
+      "provider": "anthropic",
+      "reasoning_type": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "a_span_ranks": [
+        2
+      ],
+      "b_span_ranks": [
+        null
+      ],
+      "a_doc_ranks": [
+        1
+      ],
+      "b_doc_ranks": [
+        null
+      ],
+      "all_expected_routed_at_5": false,
+      "expected_document_ranks": {
+        "ver_1c53b961e1f5da8124a1e7e8eb92c941": 6
+      },
+      "attribution": "caused by Stage-1 routing: a required document was not in the routed top 5, so Stage 2 could never retrieve its passage"
+    },
+    "GOLD-B003-08": {
+      "movement": "B_REGRESSION",
+      "provider": "anthropic",
+      "reasoning_type": "exact_lookup",
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "a_span_ranks": [
+        4
+      ],
+      "b_span_ranks": [
+        null
+      ],
+      "a_doc_ranks": [
+        4
+      ],
+      "b_doc_ranks": [
+        null
+      ],
+      "all_expected_routed_at_5": false,
+      "expected_document_ranks": {
+        "ver_72833144cee232446fa450e9e040995a": 6
+      },
+      "attribution": "caused by Stage-1 routing: a required document was not in the routed top 5, so Stage 2 could never retrieve its passage"
+    },
+    "GOLD-B003-15": {
+      "movement": "B_REGRESSION",
+      "provider": "openai",
+      "reasoning_type": "exact_lookup",
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "a_span_ranks": [
+        1
+      ],
+      "b_span_ranks": [
+        null
+      ],
+      "a_doc_ranks": [
+        1
+      ],
+      "b_doc_ranks": [
+        null
+      ],
+      "all_expected_routed_at_5": false,
+      "expected_document_ranks": {
+        "ver_35cac5e98c151a17f941a6142d74709f": 88
+      },
+      "attribution": "caused by Stage-1 routing: a required document was not in the routed top 5, so Stage 2 could never retrieve its passage"
+    },
+    "GOLD-B004-04": {
+      "movement": "B_REGRESSION",
+      "provider": "anthropic",
+      "reasoning_type": "error_behavior",
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "a_span_ranks": [
+        9
+      ],
+      "b_span_ranks": [
+        null
+      ],
+      "a_doc_ranks": [
+        9
+      ],
+      "b_doc_ranks": [
+        null
+      ],
+      "all_expected_routed_at_5": false,
+      "expected_document_ranks": {
+        "ver_012b734775e7edb2649d3a9ddfd93070": 17
+      },
+      "attribution": "caused by Stage-1 routing: a required document was not in the routed top 5, so Stage 2 could never retrieve its passage"
+    },
+    "GOLD-B005-09": {
+      "movement": "B_REGRESSION",
+      "provider": "openai",
+      "reasoning_type": "error_behavior",
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "a_span_ranks": [
+        3
+      ],
+      "b_span_ranks": [
+        null
+      ],
+      "a_doc_ranks": [
+        3
+      ],
+      "b_doc_ranks": [
+        null
+      ],
+      "all_expected_routed_at_5": false,
+      "expected_document_ranks": {
+        "ver_ae3bfcc42c733c5051abda30f0f6db07": 137
+      },
+      "attribution": "caused by Stage-1 routing: a required document was not in the routed top 5, so Stage 2 could never retrieve its passage"
+    },
+    "GOLD-B005-15": {
+      "movement": "B_REGRESSION",
+      "provider": "openai",
+      "reasoning_type": "configuration_interaction",
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "a_span_ranks": [
+        2
+      ],
+      "b_span_ranks": [
+        null
+      ],
+      "a_doc_ranks": [
+        2
+      ],
+      "b_doc_ranks": [
+        null
+      ],
+      "all_expected_routed_at_5": false,
+      "expected_document_ranks": {
+        "ver_cbeb36b7cf9a5e241940a011629b6f1b": 8
+      },
+      "attribution": "caused by Stage-1 routing: a required document was not in the routed top 5, so Stage 2 could never retrieve its passage"
+    },
+    "GOLD-B005-17": {
+      "movement": "B_REGRESSION",
+      "provider": "openai",
+      "reasoning_type": "error_behavior",
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "a_span_ranks": [
+        3
+      ],
+      "b_span_ranks": [
+        null
+      ],
+      "a_doc_ranks": [
+        1
+      ],
+      "b_doc_ranks": [
+        null
+      ],
+      "all_expected_routed_at_5": false,
+      "expected_document_ranks": {
+        "ver_2c60e99cfd929a738910b893fd6f1a40": 8
+      },
+      "attribution": "caused by Stage-1 routing: a required document was not in the routed top 5, so Stage 2 could never retrieve its passage"
+    },
+    "GOLD-B005-19": {
+      "movement": "B_REGRESSION",
+      "provider": "openai",
+      "reasoning_type": "lifecycle_compatibility_migration",
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "a_span_ranks": [
+        1
+      ],
+      "b_span_ranks": [
+        null
+      ],
+      "a_doc_ranks": [
+        1
+      ],
+      "b_doc_ranks": [
+        null
+      ],
+      "all_expected_routed_at_5": false,
+      "expected_document_ranks": {
+        "ver_e8a7b17b5af64679cadea33cd8f6d250": 9
+      },
+      "attribution": "caused by Stage-1 routing: a required document was not in the routed top 5, so Stage 2 could never retrieve its passage"
+    },
+    "HA-36": {
+      "movement": "B_REGRESSION",
+      "provider": "openai",
+      "reasoning_type": "exact_lookup",
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "a_span_ranks": [
+        6
+      ],
+      "b_span_ranks": [
+        null
+      ],
+      "a_doc_ranks": [
+        6
+      ],
+      "b_doc_ranks": [
+        null
+      ],
+      "all_expected_routed_at_5": false,
+      "expected_document_ranks": {
+        "ver_fef74b4dda29e84a533c3e83f753effd": 7
+      },
+      "attribution": "caused by Stage-1 routing: a required document was not in the routed top 5, so Stage 2 could never retrieve its passage"
+    }
+  }
+}

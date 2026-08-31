@@ -43,8 +43,13 @@ def is_frozen() -> bool:
 
 
 def load(split: str, *, allow_frozen_holdout: bool = False,
-         reason: str | None = None) -> dict:
-    """Load one split. The holdout needs ``allow_frozen_holdout=True`` and a reason."""
+         reason: str | None = None, log_path: Path | None = None) -> dict:
+    """Load one split. The holdout needs ``allow_frozen_holdout=True`` and a reason.
+
+    ``log_path`` redirects the access record. It exists so the guard's own tests can
+    exercise the logging without writing "test" entries into the real audit log — a log
+    that records rehearsals alongside real accesses is a log nobody can read.
+    """
     if split not in (DEVELOPMENT, VALIDATION, HOLDOUT):
         raise ValueError(f"unknown split {split!r}")
     if split == HOLDOUT and is_frozen() and not allow_frozen_holdout:
@@ -65,7 +70,7 @@ def load(split: str, *, allow_frozen_holdout: bool = False,
               f"({payload['count']} cases). Reason: {record['reason']}. "
               "This access is logged. Holdout membership must not change because of "
               "what a system scores on it.")
-        with ACCESS_LOG.open("a", encoding="utf-8") as handle:
+        with (log_path or ACCESS_LOG).open("a", encoding="utf-8") as handle:
             handle.write(json.dumps(record, ensure_ascii=False) + "\n")
     return payload
 

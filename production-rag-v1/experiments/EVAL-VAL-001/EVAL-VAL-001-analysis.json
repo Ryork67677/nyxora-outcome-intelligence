@@ -1,0 +1,2138 @@
+{
+  "experiment": "EVAL-VAL-001",
+  "generated_at": "2026-08-31T22:48:50Z",
+  "split": {
+    "name": "validation",
+    "count": 40,
+    "expected": 40,
+    "manifest_sha256": "451963bdf379cef146bfb75e73932d7c0e54ce3b2ffdf32cd9d33f7c6a93356b",
+    "holdout_cases_loaded": 0
+  },
+  "frozen_systems": {
+    "SYSTEM-A-GLOBAL": "9afcb5b7c58ebacff0b4c3711dd9618a2e727f4195dd1787a5da81e478ee0b38",
+    "SYSTEM-B-DOC-C": "304c350940b83733df6043ae3a8abdcbcde33d16950730127aa9f1f39494388b",
+    "matches_frozen_record": true
+  },
+  "corpus": {
+    "snapshot": "snap_689e336380a054d8039dc35b2c09cd0a",
+    "expected_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a",
+    "chunk_set": "cs_v1_control",
+    "expected_chunk_set": "cs_v1_control"
+  },
+  "historical_reproduction": {
+    "source": "experiments/EXP-014R/results-development.json",
+    "system_a_strict": "15/20",
+    "system_b_strict": "17/20",
+    "rescues": [
+      "AN-006",
+      "AN-011"
+    ],
+    "regressions": [],
+    "reproduced_exactly": true,
+    "note": "Re-run this session against the same development split and every figure matched: 15/20, 17/20, +2 rescues (AN-006, AN-011), 0 regressions, macro 0.775 / 0.875, MRR 0.449 / 0.474."
+  },
+  "primary_endpoint": {
+    "metric": "strict full-case recall@10",
+    "system_a": 30,
+    "system_b": 21,
+    "cases": 40,
+    "absolute_difference": -9,
+    "percentage_point_difference": -22.5
+  },
+  "secondary": {
+    "system_a": {
+      "system": "SYSTEM-A-GLOBAL",
+      "config_hash": "9afcb5b7c58ebacff0b4c3711dd9618a2e727f4195dd1787a5da81e478ee0b38",
+      "macro_span_recall": 0.75,
+      "cases_fully_recalled": 30,
+      "cases_total": 40,
+      "spans_found_at_10": 33,
+      "spans_total": 47,
+      "document_recall": 0.975,
+      "mrr": 0.5283,
+      "spans_absent_from_top": {
+        "10": 14,
+        "20": 10,
+        "30": 6,
+        "50": 5,
+        "100": 4,
+        "300": 4
+      }
+    },
+    "system_b": {
+      "system": "SYSTEM-B-DOC-C",
+      "config_hash": "304c350940b83733df6043ae3a8abdcbcde33d16950730127aa9f1f39494388b",
+      "macro_span_recall": 0.525,
+      "cases_fully_recalled": 21,
+      "cases_total": 40,
+      "spans_found_at_10": 24,
+      "spans_total": 47,
+      "document_recall": 0.675,
+      "mrr": 0.4022,
+      "spans_absent_from_top": {
+        "10": 23,
+        "20": 19,
+        "30": 14,
+        "50": 13,
+        "100": 12,
+        "300": 12
+      }
+    }
+  },
+  "paired": {
+    "quadrant": {
+      "both_correct": [
+        "GOLD-B001-07",
+        "GOLD-B002-10",
+        "GOLD-B002-18",
+        "GOLD-B003-02",
+        "GOLD-B003-11",
+        "GOLD-B003-18",
+        "GOLD-B004-10",
+        "GOLD-B004-12",
+        "GOLD-B004-14",
+        "GOLD-B006-04",
+        "HA-08",
+        "HA-10",
+        "HA-12",
+        "HA-15",
+        "HA-18",
+        "HA-32",
+        "HA-47",
+        "HA-49",
+        "HA-59"
+      ],
+      "only_A": [
+        "GOLD-B001-01",
+        "GOLD-B001-10",
+        "GOLD-B002-01",
+        "GOLD-B003-08",
+        "GOLD-B003-15",
+        "GOLD-B004-04",
+        "GOLD-B005-09",
+        "GOLD-B005-15",
+        "GOLD-B005-17",
+        "GOLD-B005-19",
+        "HA-36"
+      ],
+      "only_B": [
+        "GOLD-B002-07",
+        "HA-44"
+      ],
+      "neither": [
+        "GOLD-B001-03",
+        "GOLD-B002-02",
+        "GOLD-B006-03",
+        "HA-07",
+        "HA-29",
+        "HA-40",
+        "HA-41",
+        "HA-42"
+      ]
+    },
+    "b_rescues_over_a": [
+      "GOLD-B002-07",
+      "HA-44"
+    ],
+    "b_regressions_vs_a": [
+      "GOLD-B001-01",
+      "GOLD-B001-10",
+      "GOLD-B002-01",
+      "GOLD-B003-08",
+      "GOLD-B003-15",
+      "GOLD-B004-04",
+      "GOLD-B005-09",
+      "GOLD-B005-15",
+      "GOLD-B005-17",
+      "GOLD-B005-19",
+      "HA-36"
+    ],
+    "net_cases": -9,
+    "macro_recall_delta": -0.225
+  },
+  "bootstrap": {
+    "seed": 20250818,
+    "samples": 10000,
+    "n_questions": 40,
+    "macro_recall_delta": {
+      "point_estimate": -0.225,
+      "ci95": [
+        -0.375,
+        -0.075
+      ]
+    },
+    "fully_recalled_delta_per_case": {
+      "point_estimate": -0.225,
+      "ci95": [
+        -0.375,
+        -0.075
+      ]
+    }
+  },
+  "mcnemar": {
+    "discordant_pairs": 13,
+    "b_only": 2,
+    "a_only": 11,
+    "p_value": 0.0225,
+    "note": "exact binomial; supplementary to the paired case counts, not a substitute for them"
+  },
+  "breakdowns": {
+    "provider": {
+      "anthropic": {
+        "cases": 14,
+        "A_strict_full": 10,
+        "A_strict_pct": 71.4,
+        "A_spans_found": 10,
+        "A_spans_total": 14,
+        "A_span_recall": 0.7143,
+        "B_strict_full": 7,
+        "B_strict_pct": 50.0,
+        "B_spans_found": 7,
+        "B_spans_total": 14,
+        "B_span_recall": 0.5,
+        "strict_delta": -3,
+        "case_ids": [
+          "GOLD-B001-01",
+          "GOLD-B001-03",
+          "GOLD-B001-07",
+          "GOLD-B002-01",
+          "GOLD-B002-02",
+          "GOLD-B002-07",
+          "GOLD-B002-10",
+          "GOLD-B002-18",
+          "GOLD-B003-02",
+          "GOLD-B003-08",
+          "GOLD-B003-11",
+          "GOLD-B004-04",
+          "GOLD-B006-03",
+          "GOLD-B006-04"
+        ],
+        "small_n": false
+      },
+      "openai": {
+        "cases": 26,
+        "A_strict_full": 20,
+        "A_strict_pct": 76.9,
+        "A_spans_found": 23,
+        "A_spans_total": 33,
+        "A_span_recall": 0.697,
+        "B_strict_full": 14,
+        "B_strict_pct": 53.8,
+        "B_spans_found": 17,
+        "B_spans_total": 33,
+        "B_span_recall": 0.5152,
+        "strict_delta": -6,
+        "case_ids": [
+          "GOLD-B001-10",
+          "GOLD-B003-15",
+          "GOLD-B003-18",
+          "GOLD-B004-10",
+          "GOLD-B004-12",
+          "GOLD-B004-14",
+          "GOLD-B005-09",
+          "GOLD-B005-15",
+          "GOLD-B005-17",
+          "GOLD-B005-19",
+          "HA-07",
+          "HA-08",
+          "HA-10",
+          "HA-12",
+          "HA-15",
+          "HA-18",
+          "HA-29",
+          "HA-32",
+          "HA-36",
+          "HA-40",
+          "HA-41",
+          "HA-42",
+          "HA-44",
+          "HA-47",
+          "HA-49",
+          "HA-59"
+        ],
+        "small_n": false
+      }
+    },
+    "reasoning_type": {
+      "configuration_interaction": {
+        "cases": 6,
+        "A_strict_full": 6,
+        "A_strict_pct": 100.0,
+        "A_spans_found": 6,
+        "A_spans_total": 6,
+        "A_span_recall": 1.0,
+        "B_strict_full": 5,
+        "B_strict_pct": 83.3,
+        "B_spans_found": 5,
+        "B_spans_total": 6,
+        "B_span_recall": 0.8333,
+        "strict_delta": -1,
+        "case_ids": [
+          "GOLD-B003-02",
+          "GOLD-B004-10",
+          "GOLD-B004-12",
+          "GOLD-B005-15",
+          "HA-10",
+          "HA-18"
+        ],
+        "small_n": false
+      },
+      "error_behavior": {
+        "cases": 5,
+        "A_strict_full": 5,
+        "A_strict_pct": 100.0,
+        "A_spans_found": 5,
+        "A_spans_total": 5,
+        "A_span_recall": 1.0,
+        "B_strict_full": 2,
+        "B_strict_pct": 40.0,
+        "B_spans_found": 2,
+        "B_spans_total": 5,
+        "B_span_recall": 0.4,
+        "strict_delta": -3,
+        "case_ids": [
+          "GOLD-B004-04",
+          "GOLD-B005-09",
+          "GOLD-B005-17",
+          "HA-08",
+          "HA-12"
+        ],
+        "small_n": false
+      },
+      "exact_lookup": {
+        "cases": 16,
+        "A_strict_full": 10,
+        "A_strict_pct": 62.5,
+        "A_spans_found": 13,
+        "A_spans_total": 23,
+        "A_span_recall": 0.5652,
+        "B_strict_full": 8,
+        "B_strict_pct": 50.0,
+        "B_spans_found": 11,
+        "B_spans_total": 23,
+        "B_span_recall": 0.4783,
+        "strict_delta": -2,
+        "case_ids": [
+          "GOLD-B003-08",
+          "GOLD-B003-15",
+          "GOLD-B003-18",
+          "GOLD-B004-14",
+          "GOLD-B006-04",
+          "HA-07",
+          "HA-29",
+          "HA-32",
+          "HA-36",
+          "HA-40",
+          "HA-41",
+          "HA-42",
+          "HA-44",
+          "HA-47",
+          "HA-49",
+          "HA-59"
+        ],
+        "small_n": false
+      },
+      "lifecycle": {
+        "cases": 1,
+        "A_strict_full": 1,
+        "A_strict_pct": 100.0,
+        "A_spans_found": 1,
+        "A_spans_total": 1,
+        "A_span_recall": 1.0,
+        "B_strict_full": 1,
+        "B_strict_pct": 100.0,
+        "B_spans_found": 1,
+        "B_spans_total": 1,
+        "B_span_recall": 1.0,
+        "strict_delta": 0,
+        "case_ids": [
+          "GOLD-B003-11"
+        ],
+        "small_n": true
+      },
+      "lifecycle_compatibility_migration": {
+        "cases": 2,
+        "A_strict_full": 1,
+        "A_strict_pct": 50.0,
+        "A_spans_found": 1,
+        "A_spans_total": 2,
+        "A_span_recall": 0.5,
+        "B_strict_full": 0,
+        "B_strict_pct": 0.0,
+        "B_spans_found": 0,
+        "B_spans_total": 2,
+        "B_span_recall": 0.0,
+        "strict_delta": -1,
+        "case_ids": [
+          "GOLD-B005-19",
+          "GOLD-B006-03"
+        ],
+        "small_n": true
+      },
+      "request_response": {
+        "cases": 1,
+        "A_strict_full": 1,
+        "A_strict_pct": 100.0,
+        "A_spans_found": 1,
+        "A_spans_total": 1,
+        "A_span_recall": 1.0,
+        "B_strict_full": 1,
+        "B_strict_pct": 100.0,
+        "B_spans_found": 1,
+        "B_spans_total": 1,
+        "B_span_recall": 1.0,
+        "strict_delta": 0,
+        "case_ids": [
+          "HA-15"
+        ],
+        "small_n": true
+      },
+      "unlabeled_legacy": {
+        "cases": 9,
+        "A_strict_full": 6,
+        "A_strict_pct": 66.7,
+        "A_spans_found": 6,
+        "A_spans_total": 9,
+        "A_span_recall": 0.6667,
+        "B_strict_full": 4,
+        "B_strict_pct": 44.4,
+        "B_spans_found": 4,
+        "B_spans_total": 9,
+        "B_span_recall": 0.4444,
+        "strict_delta": -2,
+        "case_ids": [
+          "GOLD-B001-01",
+          "GOLD-B001-03",
+          "GOLD-B001-07",
+          "GOLD-B001-10",
+          "GOLD-B002-01",
+          "GOLD-B002-02",
+          "GOLD-B002-07",
+          "GOLD-B002-10",
+          "GOLD-B002-18"
+        ],
+        "small_n": false
+      }
+    },
+    "evidence_shape": {
+      "multi_span": {
+        "cases": 2,
+        "A_strict_full": 2,
+        "A_strict_pct": 100.0,
+        "A_spans_found": 4,
+        "A_spans_total": 4,
+        "A_span_recall": 1.0,
+        "B_strict_full": 2,
+        "B_strict_pct": 100.0,
+        "B_spans_found": 4,
+        "B_spans_total": 4,
+        "B_span_recall": 1.0,
+        "strict_delta": 0,
+        "case_ids": [
+          "GOLD-B003-18",
+          "GOLD-B004-14"
+        ],
+        "small_n": true
+      },
+      "multi_span_same_fact": {
+        "cases": 5,
+        "A_strict_full": 1,
+        "A_strict_pct": 20.0,
+        "A_spans_found": 2,
+        "A_spans_total": 10,
+        "A_span_recall": 0.2,
+        "B_strict_full": 1,
+        "B_strict_pct": 20.0,
+        "B_spans_found": 2,
+        "B_spans_total": 10,
+        "B_span_recall": 0.2,
+        "strict_delta": 0,
+        "case_ids": [
+          "HA-07",
+          "HA-40",
+          "HA-41",
+          "HA-42",
+          "HA-59"
+        ],
+        "small_n": false
+      },
+      "single_span": {
+        "cases": 33,
+        "A_strict_full": 27,
+        "A_strict_pct": 81.8,
+        "A_spans_found": 27,
+        "A_spans_total": 33,
+        "A_span_recall": 0.8182,
+        "B_strict_full": 18,
+        "B_strict_pct": 54.5,
+        "B_spans_found": 18,
+        "B_spans_total": 33,
+        "B_span_recall": 0.5455,
+        "strict_delta": -9,
+        "case_ids": [
+          "GOLD-B001-01",
+          "GOLD-B001-03",
+          "GOLD-B001-07",
+          "GOLD-B001-10",
+          "GOLD-B002-01",
+          "GOLD-B002-02",
+          "GOLD-B002-07",
+          "GOLD-B002-10",
+          "GOLD-B002-18",
+          "GOLD-B003-02",
+          "GOLD-B003-08",
+          "GOLD-B003-11",
+          "GOLD-B003-15",
+          "GOLD-B004-04",
+          "GOLD-B004-10",
+          "GOLD-B004-12",
+          "GOLD-B005-09",
+          "GOLD-B005-15",
+          "GOLD-B005-17",
+          "GOLD-B005-19",
+          "GOLD-B006-03",
+          "GOLD-B006-04",
+          "HA-08",
+          "HA-10",
+          "HA-12",
+          "HA-15",
+          "HA-18",
+          "HA-29",
+          "HA-32",
+          "HA-36",
+          "HA-44",
+          "HA-47",
+          "HA-49"
+        ],
+        "small_n": false
+      }
+    },
+    "group": {
+      "001": {
+        "cases": 4,
+        "A_strict_full": 3,
+        "A_strict_pct": 75.0,
+        "A_spans_found": 3,
+        "A_spans_total": 4,
+        "A_span_recall": 0.75,
+        "B_strict_full": 1,
+        "B_strict_pct": 25.0,
+        "B_spans_found": 1,
+        "B_spans_total": 4,
+        "B_span_recall": 0.25,
+        "strict_delta": -2,
+        "case_ids": [
+          "GOLD-B001-01",
+          "GOLD-B001-03",
+          "GOLD-B001-07",
+          "GOLD-B001-10"
+        ],
+        "small_n": false
+      },
+      "002": {
+        "cases": 5,
+        "A_strict_full": 3,
+        "A_strict_pct": 60.0,
+        "A_spans_found": 3,
+        "A_spans_total": 5,
+        "A_span_recall": 0.6,
+        "B_strict_full": 3,
+        "B_strict_pct": 60.0,
+        "B_spans_found": 3,
+        "B_spans_total": 5,
+        "B_span_recall": 0.6,
+        "strict_delta": 0,
+        "case_ids": [
+          "GOLD-B002-01",
+          "GOLD-B002-02",
+          "GOLD-B002-07",
+          "GOLD-B002-10",
+          "GOLD-B002-18"
+        ],
+        "small_n": false
+      },
+      "003": {
+        "cases": 5,
+        "A_strict_full": 5,
+        "A_strict_pct": 100.0,
+        "A_spans_found": 6,
+        "A_spans_total": 6,
+        "A_span_recall": 1.0,
+        "B_strict_full": 3,
+        "B_strict_pct": 60.0,
+        "B_spans_found": 4,
+        "B_spans_total": 6,
+        "B_span_recall": 0.6667,
+        "strict_delta": -2,
+        "case_ids": [
+          "GOLD-B003-02",
+          "GOLD-B003-08",
+          "GOLD-B003-11",
+          "GOLD-B003-15",
+          "GOLD-B003-18"
+        ],
+        "small_n": false
+      },
+      "004": {
+        "cases": 4,
+        "A_strict_full": 4,
+        "A_strict_pct": 100.0,
+        "A_spans_found": 5,
+        "A_spans_total": 5,
+        "A_span_recall": 1.0,
+        "B_strict_full": 3,
+        "B_strict_pct": 75.0,
+        "B_spans_found": 4,
+        "B_spans_total": 5,
+        "B_span_recall": 0.8,
+        "strict_delta": -1,
+        "case_ids": [
+          "GOLD-B004-04",
+          "GOLD-B004-10",
+          "GOLD-B004-12",
+          "GOLD-B004-14"
+        ],
+        "small_n": false
+      },
+      "005": {
+        "cases": 4,
+        "A_strict_full": 4,
+        "A_strict_pct": 100.0,
+        "A_spans_found": 4,
+        "A_spans_total": 4,
+        "A_span_recall": 1.0,
+        "B_strict_full": 0,
+        "B_strict_pct": 0.0,
+        "B_spans_found": 0,
+        "B_spans_total": 4,
+        "B_span_recall": 0.0,
+        "strict_delta": -4,
+        "case_ids": [
+          "GOLD-B005-09",
+          "GOLD-B005-15",
+          "GOLD-B005-17",
+          "GOLD-B005-19"
+        ],
+        "small_n": false
+      },
+      "006": {
+        "cases": 2,
+        "A_strict_full": 1,
+        "A_strict_pct": 50.0,
+        "A_spans_found": 1,
+        "A_spans_total": 2,
+        "A_span_recall": 0.5,
+        "B_strict_full": 1,
+        "B_strict_pct": 50.0,
+        "B_spans_found": 1,
+        "B_spans_total": 2,
+        "B_span_recall": 0.5,
+        "strict_delta": 0,
+        "case_ids": [
+          "GOLD-B006-03",
+          "GOLD-B006-04"
+        ],
+        "small_n": true
+      },
+      "HA": {
+        "cases": 16,
+        "A_strict_full": 10,
+        "A_strict_pct": 62.5,
+        "A_spans_found": 11,
+        "A_spans_total": 21,
+        "A_span_recall": 0.5238,
+        "B_strict_full": 10,
+        "B_strict_pct": 62.5,
+        "B_spans_found": 11,
+        "B_spans_total": 21,
+        "B_span_recall": 0.5238,
+        "strict_delta": 0,
+        "case_ids": [
+          "HA-07",
+          "HA-08",
+          "HA-10",
+          "HA-12",
+          "HA-15",
+          "HA-18",
+          "HA-29",
+          "HA-32",
+          "HA-36",
+          "HA-40",
+          "HA-41",
+          "HA-42",
+          "HA-44",
+          "HA-47",
+          "HA-49",
+          "HA-59"
+        ],
+        "small_n": false
+      }
+    }
+  },
+  "routing": {
+    "system_b": {
+      "counts": {
+        "DOCUMENT_ROUTING_FAILURE": 12,
+        "WITHIN_DOCUMENT_PASSAGE_FAILURE": 7,
+        "NOT_APPLICABLE": 21
+      },
+      "per_case": {
+        "GOLD-B001-01": {
+          "classification": "DOCUMENT_ROUTING_FAILURE",
+          "expected_documents": [
+            "ver_d9ba3ab0d872dd86047c7ed6dc783235"
+          ],
+          "expected_document_ranks": {
+            "ver_d9ba3ab0d872dd86047c7ed6dc783235": 6
+          },
+          "all_expected_routed_at_5": false,
+          "span_ranks": [
+            null
+          ],
+          "span_doc_ranks": [
+            null
+          ],
+          "fully_recalled": false
+        },
+        "GOLD-B001-03": {
+          "classification": "WITHIN_DOCUMENT_PASSAGE_FAILURE",
+          "expected_documents": [
+            "ver_a7bda3595f2c124605c3228464d4ee52"
+          ],
+          "expected_document_ranks": {
+            "ver_a7bda3595f2c124605c3228464d4ee52": 5
+          },
+          "all_expected_routed_at_5": true,
+          "span_ranks": [
+            11
+          ],
+          "span_doc_ranks": [
+            1
+          ],
+          "fully_recalled": false
+        },
+        "GOLD-B001-07": {
+          "classification": "NOT_APPLICABLE",
+          "expected_documents": [
+            "ver_77fbe47b4b7db32ee46b972b2f611d0e"
+          ],
+          "expected_document_ranks": {
+            "ver_77fbe47b4b7db32ee46b972b2f611d0e": 4
+          },
+          "all_expected_routed_at_5": true,
+          "span_ranks": [
+            1
+          ],
+          "span_doc_ranks": [
+            1
+          ],
+          "fully_recalled": true
+        },
+        "GOLD-B001-10": {
+          "classification": "DOCUMENT_ROUTING_FAILURE",
+          "expected_documents": [
+            "ver_f30a6447e4df2ab76e4c1475f353109c"
+          ],
+          "expected_document_ranks": {
+            "ver_f30a6447e4df2ab76e4c1475f353109c": 37
+          },
+          "all_expected_routed_at_5": false,
+          "span_ranks": [
+            null
+          ],
+          "span_doc_ranks": [
+            null
+          ],
+          "fully_recalled": false
+        },
+        "GOLD-B002-01": {
+          "classification": "DOCUMENT_ROUTING_FAILURE",
+          "expected_documents": [
+            "ver_1c53b961e1f5da8124a1e7e8eb92c941"
+          ],
+          "expected_document_ranks": {
+            "ver_1c53b961e1f5da8124a1e7e8eb92c941": 6
+          },
+          "all_expected_routed_at_5": false,
+          "span_ranks": [
+            null
+          ],
+          "span_doc_ranks": [
+            null
+          ],
+          "fully_recalled": false
+        },
+        "GOLD-B002-02": {
+          "classification": "WITHIN_DOCUMENT_PASSAGE_FAILURE",
+          "expected_documents": [
+            "ver_279d37a3a0cc4e8a9209e01f16f9df88"
+          ],
+          "expected_document_ranks": {
+            "ver_279d37a3a0cc4e8a9209e01f16f9df88": 2
+          },
+          "all_expected_routed_at_5": true,
+          "span_ranks": [
+            17
+          ],
+          "span_doc_ranks": [
+            2
+          ],
+          "fully_recalled": false
+        },
+        "GOLD-B002-07": {
+          "classification": "NOT_APPLICABLE",
+          "expected_documents": [
+            "ver_c60f7418b69b6610bd20e974b92cdd8c"
+          ],
+          "expected_document_ranks": {
+            "ver_c60f7418b69b6610bd20e974b92cdd8c": 1
+          },
+          "all_expected_routed_at_5": true,
+          "span_ranks": [
+            9
+          ],
+          "span_doc_ranks": [
+            1
+          ],
+          "fully_recalled": true
+        },
+        "GOLD-B002-10": {
+          "classification": "NOT_APPLICABLE",
+          "expected_documents": [
+            "ver_0865c9612dfe97d8f30dd870dd12e53e"
+          ],
+          "expected_document_ranks": {
+            "ver_0865c9612dfe97d8f30dd870dd12e53e": 1
+          },
+          "all_expected_routed_at_5": true,
+          "span_ranks": [
+            1
+          ],
+          "span_doc_ranks": [
+            1
+          ],
+          "fully_recalled": true
+        },
+        "GOLD-B002-18": {
+          "classification": "NOT_APPLICABLE",
+          "expected_documents": [
+            "ver_fa78e1feb6289d6bcb22305e61bbbfc3"
+          ],
+          "expected_document_ranks": {
+            "ver_fa78e1feb6289d6bcb22305e61bbbfc3": 1
+          },
+          "all_expected_routed_at_5": true,
+          "span_ranks": [
+            1
+          ],
+          "span_doc_ranks": [
+            1
+          ],
+          "fully_recalled": true
+        },
+        "GOLD-B003-02": {
+          "classification": "NOT_APPLICABLE",
+          "expected_documents": [
+            "ver_90de89ac7da393e4d9056cf12204d046"
+          ],
+          "expected_document_ranks": {
+            "ver_90de89ac7da393e4d9056cf12204d046": 5
+          },
+          "all_expected_routed_at_5": true,
+          "span_ranks": [
+            2
+          ],
+          "span_doc_ranks": [
+            2
+          ],
+          "fully_recalled": true
+        },
+        "GOLD-B003-08": {
+          "classification": "DOCUMENT_ROUTING_FAILURE",
+          "expected_documents": [
+            "ver_72833144cee232446fa450e9e040995a"
+          ],
+          "expected_document_ranks": {
+            "ver_72833144cee232446fa450e9e040995a": 6
+          },
+          "all_expected_routed_at_5": false,
+          "span_ranks": [
+            null
+          ],
+          "span_doc_ranks": [
+            null
+          ],
+          "fully_recalled": false
+        },
+        "GOLD-B003-11": {
+          "classification": "NOT_APPLICABLE",
+          "expected_documents": [
+            "ver_a7bda3595f2c124605c3228464d4ee52"
+          ],
+          "expected_document_ranks": {
+            "ver_a7bda3595f2c124605c3228464d4ee52": 5
+          },
+          "all_expected_routed_at_5": true,
+          "span_ranks": [
+            1
+          ],
+          "span_doc_ranks": [
+            1
+          ],
+          "fully_recalled": true
+        },
+        "GOLD-B003-15": {
+          "classification": "DOCUMENT_ROUTING_FAILURE",
+          "expected_documents": [
+            "ver_35cac5e98c151a17f941a6142d74709f"
+          ],
+          "expected_document_ranks": {
+            "ver_35cac5e98c151a17f941a6142d74709f": 88
+          },
+          "all_expected_routed_at_5": false,
+          "span_ranks": [
+            null
+          ],
+          "span_doc_ranks": [
+            null
+          ],
+          "fully_recalled": false
+        },
+        "GOLD-B003-18": {
+          "classification": "NOT_APPLICABLE",
+          "expected_documents": [
+            "ver_1c77f33b04ffffa285ea7e61c2a89653"
+          ],
+          "expected_document_ranks": {
+            "ver_1c77f33b04ffffa285ea7e61c2a89653": 1
+          },
+          "all_expected_routed_at_5": true,
+          "span_ranks": [
+            1,
+            1
+          ],
+          "span_doc_ranks": [
+            1,
+            1
+          ],
+          "fully_recalled": true
+        },
+        "GOLD-B004-04": {
+          "classification": "DOCUMENT_ROUTING_FAILURE",
+          "expected_documents": [
+            "ver_012b734775e7edb2649d3a9ddfd93070"
+          ],
+          "expected_document_ranks": {
+            "ver_012b734775e7edb2649d3a9ddfd93070": 17
+          },
+          "all_expected_routed_at_5": false,
+          "span_ranks": [
+            null
+          ],
+          "span_doc_ranks": [
+            null
+          ],
+          "fully_recalled": false
+        },
+        "GOLD-B004-10": {
+          "classification": "NOT_APPLICABLE",
+          "expected_documents": [
+            "ver_14a2187cf2216b9d56c213b520a28479"
+          ],
+          "expected_document_ranks": {
+            "ver_14a2187cf2216b9d56c213b520a28479": 2
+          },
+          "all_expected_routed_at_5": true,
+          "span_ranks": [
+            1
+          ],
+          "span_doc_ranks": [
+            1
+          ],
+          "fully_recalled": true
+        },
+        "GOLD-B004-12": {
+          "classification": "NOT_APPLICABLE",
+          "expected_documents": [
+            "ver_12004469f7a5592cd1e6cab936117fce"
+          ],
+          "expected_document_ranks": {
+            "ver_12004469f7a5592cd1e6cab936117fce": 2
+          },
+          "all_expected_routed_at_5": true,
+          "span_ranks": [
+            1
+          ],
+          "span_doc_ranks": [
+            1
+          ],
+          "fully_recalled": true
+        },
+        "GOLD-B004-14": {
+          "classification": "NOT_APPLICABLE",
+          "expected_documents": [
+            "ver_1c77f33b04ffffa285ea7e61c2a89653"
+          ],
+          "expected_document_ranks": {
+            "ver_1c77f33b04ffffa285ea7e61c2a89653": 1
+          },
+          "all_expected_routed_at_5": true,
+          "span_ranks": [
+            4,
+            4
+          ],
+          "span_doc_ranks": [
+            2,
+            2
+          ],
+          "fully_recalled": true
+        },
+        "GOLD-B005-09": {
+          "classification": "DOCUMENT_ROUTING_FAILURE",
+          "expected_documents": [
+            "ver_ae3bfcc42c733c5051abda30f0f6db07"
+          ],
+          "expected_document_ranks": {
+            "ver_ae3bfcc42c733c5051abda30f0f6db07": 137
+          },
+          "all_expected_routed_at_5": false,
+          "span_ranks": [
+            null
+          ],
+          "span_doc_ranks": [
+            null
+          ],
+          "fully_recalled": false
+        },
+        "GOLD-B005-15": {
+          "classification": "DOCUMENT_ROUTING_FAILURE",
+          "expected_documents": [
+            "ver_cbeb36b7cf9a5e241940a011629b6f1b"
+          ],
+          "expected_document_ranks": {
+            "ver_cbeb36b7cf9a5e241940a011629b6f1b": 8
+          },
+          "all_expected_routed_at_5": false,
+          "span_ranks": [
+            null
+          ],
+          "span_doc_ranks": [
+            null
+          ],
+          "fully_recalled": false
+        },
+        "GOLD-B005-17": {
+          "classification": "DOCUMENT_ROUTING_FAILURE",
+          "expected_documents": [
+            "ver_2c60e99cfd929a738910b893fd6f1a40"
+          ],
+          "expected_document_ranks": {
+            "ver_2c60e99cfd929a738910b893fd6f1a40": 8
+          },
+          "all_expected_routed_at_5": false,
+          "span_ranks": [
+            null
+          ],
+          "span_doc_ranks": [
+            null
+          ],
+          "fully_recalled": false
+        },
+        "GOLD-B005-19": {
+          "classification": "DOCUMENT_ROUTING_FAILURE",
+          "expected_documents": [
+            "ver_e8a7b17b5af64679cadea33cd8f6d250"
+          ],
+          "expected_document_ranks": {
+            "ver_e8a7b17b5af64679cadea33cd8f6d250": 9
+          },
+          "all_expected_routed_at_5": false,
+          "span_ranks": [
+            null
+          ],
+          "span_doc_ranks": [
+            null
+          ],
+          "fully_recalled": false
+        },
+        "GOLD-B006-03": {
+          "classification": "WITHIN_DOCUMENT_PASSAGE_FAILURE",
+          "expected_documents": [
+            "ver_f65938c74d40ac1e288f169d3d0435b7"
+          ],
+          "expected_document_ranks": {
+            "ver_f65938c74d40ac1e288f169d3d0435b7": 1
+          },
+          "all_expected_routed_at_5": true,
+          "span_ranks": [
+            23
+          ],
+          "span_doc_ranks": [
+            11
+          ],
+          "fully_recalled": false
+        },
+        "GOLD-B006-04": {
+          "classification": "NOT_APPLICABLE",
+          "expected_documents": [
+            "ver_238961530ce62a75c61bdeead5ccb10d"
+          ],
+          "expected_document_ranks": {
+            "ver_238961530ce62a75c61bdeead5ccb10d": 2
+          },
+          "all_expected_routed_at_5": true,
+          "span_ranks": [
+            1
+          ],
+          "span_doc_ranks": [
+            1
+          ],
+          "fully_recalled": true
+        },
+        "HA-07": {
+          "classification": "WITHIN_DOCUMENT_PASSAGE_FAILURE",
+          "expected_documents": [
+            "ver_e818e78755f8e2a71b458c743ce52db1"
+          ],
+          "expected_document_ranks": {
+            "ver_e818e78755f8e2a71b458c743ce52db1": 5
+          },
+          "all_expected_routed_at_5": true,
+          "span_ranks": [
+            29,
+            31
+          ],
+          "span_doc_ranks": [
+            2,
+            2
+          ],
+          "fully_recalled": false
+        },
+        "HA-08": {
+          "classification": "NOT_APPLICABLE",
+          "expected_documents": [
+            "ver_f15e1a531d680bb98179238f80355058"
+          ],
+          "expected_document_ranks": {
+            "ver_f15e1a531d680bb98179238f80355058": 3
+          },
+          "all_expected_routed_at_5": true,
+          "span_ranks": [
+            2
+          ],
+          "span_doc_ranks": [
+            1
+          ],
+          "fully_recalled": true
+        },
+        "HA-10": {
+          "classification": "NOT_APPLICABLE",
+          "expected_documents": [
+            "ver_f15e1a531d680bb98179238f80355058"
+          ],
+          "expected_document_ranks": {
+            "ver_f15e1a531d680bb98179238f80355058": 2
+          },
+          "all_expected_routed_at_5": true,
+          "span_ranks": [
+            1
+          ],
+          "span_doc_ranks": [
+            1
+          ],
+          "fully_recalled": true
+        },
+        "HA-12": {
+          "classification": "NOT_APPLICABLE",
+          "expected_documents": [
+            "ver_f22fbd5c504fa28a4e70440337e4a495"
+          ],
+          "expected_document_ranks": {
+            "ver_f22fbd5c504fa28a4e70440337e4a495": 1
+          },
+          "all_expected_routed_at_5": true,
+          "span_ranks": [
+            2
+          ],
+          "span_doc_ranks": [
+            1
+          ],
+          "fully_recalled": true
+        },
+        "HA-15": {
+          "classification": "NOT_APPLICABLE",
+          "expected_documents": [
+            "ver_1c77f33b04ffffa285ea7e61c2a89653"
+          ],
+          "expected_document_ranks": {
+            "ver_1c77f33b04ffffa285ea7e61c2a89653": 4
+          },
+          "all_expected_routed_at_5": true,
+          "span_ranks": [
+            1
+          ],
+          "span_doc_ranks": [
+            1
+          ],
+          "fully_recalled": true
+        },
+        "HA-18": {
+          "classification": "NOT_APPLICABLE",
+          "expected_documents": [
+            "ver_ae3bfcc42c733c5051abda30f0f6db07"
+          ],
+          "expected_document_ranks": {
+            "ver_ae3bfcc42c733c5051abda30f0f6db07": 2
+          },
+          "all_expected_routed_at_5": true,
+          "span_ranks": [
+            6
+          ],
+          "span_doc_ranks": [
+            6
+          ],
+          "fully_recalled": true
+        },
+        "HA-29": {
+          "classification": "DOCUMENT_ROUTING_FAILURE",
+          "expected_documents": [
+            "ver_f15e1a531d680bb98179238f80355058"
+          ],
+          "expected_document_ranks": {
+            "ver_f15e1a531d680bb98179238f80355058": 8
+          },
+          "all_expected_routed_at_5": false,
+          "span_ranks": [
+            null
+          ],
+          "span_doc_ranks": [
+            null
+          ],
+          "fully_recalled": false
+        },
+        "HA-32": {
+          "classification": "NOT_APPLICABLE",
+          "expected_documents": [
+            "ver_f15e1a531d680bb98179238f80355058"
+          ],
+          "expected_document_ranks": {
+            "ver_f15e1a531d680bb98179238f80355058": 4
+          },
+          "all_expected_routed_at_5": true,
+          "span_ranks": [
+            1
+          ],
+          "span_doc_ranks": [
+            1
+          ],
+          "fully_recalled": true
+        },
+        "HA-36": {
+          "classification": "DOCUMENT_ROUTING_FAILURE",
+          "expected_documents": [
+            "ver_fef74b4dda29e84a533c3e83f753effd"
+          ],
+          "expected_document_ranks": {
+            "ver_fef74b4dda29e84a533c3e83f753effd": 7
+          },
+          "all_expected_routed_at_5": false,
+          "span_ranks": [
+            null
+          ],
+          "span_doc_ranks": [
+            null
+          ],
+          "fully_recalled": false
+        },
+        "HA-40": {
+          "classification": "WITHIN_DOCUMENT_PASSAGE_FAILURE",
+          "expected_documents": [
+            "ver_e818e78755f8e2a71b458c743ce52db1"
+          ],
+          "expected_document_ranks": {
+            "ver_e818e78755f8e2a71b458c743ce52db1": 3
+          },
+          "all_expected_routed_at_5": true,
+          "span_ranks": [
+            19,
+            22
+          ],
+          "span_doc_ranks": [
+            3,
+            3
+          ],
+          "fully_recalled": false
+        },
+        "HA-41": {
+          "classification": "WITHIN_DOCUMENT_PASSAGE_FAILURE",
+          "expected_documents": [
+            "ver_e818e78755f8e2a71b458c743ce52db1"
+          ],
+          "expected_document_ranks": {
+            "ver_e818e78755f8e2a71b458c743ce52db1": 3
+          },
+          "all_expected_routed_at_5": true,
+          "span_ranks": [
+            21,
+            65
+          ],
+          "span_doc_ranks": [
+            2,
+            2
+          ],
+          "fully_recalled": false
+        },
+        "HA-42": {
+          "classification": "WITHIN_DOCUMENT_PASSAGE_FAILURE",
+          "expected_documents": [
+            "ver_e818e78755f8e2a71b458c743ce52db1"
+          ],
+          "expected_document_ranks": {
+            "ver_e818e78755f8e2a71b458c743ce52db1": 2
+          },
+          "all_expected_routed_at_5": true,
+          "span_ranks": [
+            18,
+            27
+          ],
+          "span_doc_ranks": [
+            4,
+            4
+          ],
+          "fully_recalled": false
+        },
+        "HA-44": {
+          "classification": "NOT_APPLICABLE",
+          "expected_documents": [
+            "ver_1c77f33b04ffffa285ea7e61c2a89653"
+          ],
+          "expected_document_ranks": {
+            "ver_1c77f33b04ffffa285ea7e61c2a89653": 2
+          },
+          "all_expected_routed_at_5": true,
+          "span_ranks": [
+            9
+          ],
+          "span_doc_ranks": [
+            1
+          ],
+          "fully_recalled": true
+        },
+        "HA-47": {
+          "classification": "NOT_APPLICABLE",
+          "expected_documents": [
+            "ver_1c77f33b04ffffa285ea7e61c2a89653"
+          ],
+          "expected_document_ranks": {
+            "ver_1c77f33b04ffffa285ea7e61c2a89653": 1
+          },
+          "all_expected_routed_at_5": true,
+          "span_ranks": [
+            1
+          ],
+          "span_doc_ranks": [
+            1
+          ],
+          "fully_recalled": true
+        },
+        "HA-49": {
+          "classification": "NOT_APPLICABLE",
+          "expected_documents": [
+            "ver_f22fbd5c504fa28a4e70440337e4a495"
+          ],
+          "expected_document_ranks": {
+            "ver_f22fbd5c504fa28a4e70440337e4a495": 2
+          },
+          "all_expected_routed_at_5": true,
+          "span_ranks": [
+            1
+          ],
+          "span_doc_ranks": [
+            1
+          ],
+          "fully_recalled": true
+        },
+        "HA-59": {
+          "classification": "NOT_APPLICABLE",
+          "expected_documents": [
+            "ver_ae909bf8b4bbbe1d1a11119447f7ac94"
+          ],
+          "expected_document_ranks": {
+            "ver_ae909bf8b4bbbe1d1a11119447f7ac94": 1
+          },
+          "all_expected_routed_at_5": true,
+          "span_ranks": [
+            1,
+            1
+          ],
+          "span_doc_ranks": [
+            1,
+            1
+          ],
+          "fully_recalled": true
+        }
+      }
+    },
+    "system_a_equivalent": {
+      "counts": {
+        "NOT_APPLICABLE": 30,
+        "WITHIN_DOCUMENT_PASSAGE_FAILURE": 10
+      },
+      "per_case": {
+        "GOLD-B001-01": {
+          "classification": "NOT_APPLICABLE",
+          "span_ranks": [
+            2
+          ],
+          "span_doc_ranks": [
+            2
+          ],
+          "fully_recalled": true
+        },
+        "GOLD-B001-03": {
+          "classification": "WITHIN_DOCUMENT_PASSAGE_FAILURE",
+          "span_ranks": [
+            11
+          ],
+          "span_doc_ranks": [
+            1
+          ],
+          "fully_recalled": false
+        },
+        "GOLD-B001-07": {
+          "classification": "NOT_APPLICABLE",
+          "span_ranks": [
+            1
+          ],
+          "span_doc_ranks": [
+            1
+          ],
+          "fully_recalled": true
+        },
+        "GOLD-B001-10": {
+          "classification": "NOT_APPLICABLE",
+          "span_ranks": [
+            1
+          ],
+          "span_doc_ranks": [
+            1
+          ],
+          "fully_recalled": true
+        },
+        "GOLD-B002-01": {
+          "classification": "NOT_APPLICABLE",
+          "span_ranks": [
+            2
+          ],
+          "span_doc_ranks": [
+            1
+          ],
+          "fully_recalled": true
+        },
+        "GOLD-B002-02": {
+          "classification": "WITHIN_DOCUMENT_PASSAGE_FAILURE",
+          "span_ranks": [
+            null
+          ],
+          "span_doc_ranks": [
+            2
+          ],
+          "fully_recalled": false
+        },
+        "GOLD-B002-07": {
+          "classification": "WITHIN_DOCUMENT_PASSAGE_FAILURE",
+          "span_ranks": [
+            24
+          ],
+          "span_doc_ranks": [
+            1
+          ],
+          "fully_recalled": false
+        },
+        "GOLD-B002-10": {
+          "classification": "NOT_APPLICABLE",
+          "span_ranks": [
+            1
+          ],
+          "span_doc_ranks": [
+            1
+          ],
+          "fully_recalled": true
+        },
+        "GOLD-B002-18": {
+          "classification": "NOT_APPLICABLE",
+          "span_ranks": [
+            1
+          ],
+          "span_doc_ranks": [
+            1
+          ],
+          "fully_recalled": true
+        },
+        "GOLD-B003-02": {
+          "classification": "NOT_APPLICABLE",
+          "span_ranks": [
+            2
+          ],
+          "span_doc_ranks": [
+            2
+          ],
+          "fully_recalled": true
+        },
+        "GOLD-B003-08": {
+          "classification": "NOT_APPLICABLE",
+          "span_ranks": [
+            4
+          ],
+          "span_doc_ranks": [
+            4
+          ],
+          "fully_recalled": true
+        },
+        "GOLD-B003-11": {
+          "classification": "NOT_APPLICABLE",
+          "span_ranks": [
+            1
+          ],
+          "span_doc_ranks": [
+            1
+          ],
+          "fully_recalled": true
+        },
+        "GOLD-B003-15": {
+          "classification": "NOT_APPLICABLE",
+          "span_ranks": [
+            1
+          ],
+          "span_doc_ranks": [
+            1
+          ],
+          "fully_recalled": true
+        },
+        "GOLD-B003-18": {
+          "classification": "NOT_APPLICABLE",
+          "span_ranks": [
+            1,
+            1
+          ],
+          "span_doc_ranks": [
+            1,
+            1
+          ],
+          "fully_recalled": true
+        },
+        "GOLD-B004-04": {
+          "classification": "NOT_APPLICABLE",
+          "span_ranks": [
+            9
+          ],
+          "span_doc_ranks": [
+            9
+          ],
+          "fully_recalled": true
+        },
+        "GOLD-B004-10": {
+          "classification": "NOT_APPLICABLE",
+          "span_ranks": [
+            1
+          ],
+          "span_doc_ranks": [
+            1
+          ],
+          "fully_recalled": true
+        },
+        "GOLD-B004-12": {
+          "classification": "NOT_APPLICABLE",
+          "span_ranks": [
+            1
+          ],
+          "span_doc_ranks": [
+            1
+          ],
+          "fully_recalled": true
+        },
+        "GOLD-B004-14": {
+          "classification": "NOT_APPLICABLE",
+          "span_ranks": [
+            4,
+            4
+          ],
+          "span_doc_ranks": [
+            2,
+            2
+          ],
+          "fully_recalled": true
+        },
+        "GOLD-B005-09": {
+          "classification": "NOT_APPLICABLE",
+          "span_ranks": [
+            3
+          ],
+          "span_doc_ranks": [
+            3
+          ],
+          "fully_recalled": true
+        },
+        "GOLD-B005-15": {
+          "classification": "NOT_APPLICABLE",
+          "span_ranks": [
+            2
+          ],
+          "span_doc_ranks": [
+            2
+          ],
+          "fully_recalled": true
+        },
+        "GOLD-B005-17": {
+          "classification": "NOT_APPLICABLE",
+          "span_ranks": [
+            3
+          ],
+          "span_doc_ranks": [
+            1
+          ],
+          "fully_recalled": true
+        },
+        "GOLD-B005-19": {
+          "classification": "NOT_APPLICABLE",
+          "span_ranks": [
+            1
+          ],
+          "span_doc_ranks": [
+            1
+          ],
+          "fully_recalled": true
+        },
+        "GOLD-B006-03": {
+          "classification": "WITHIN_DOCUMENT_PASSAGE_FAILURE",
+          "span_ranks": [
+            22
+          ],
+          "span_doc_ranks": [
+            13
+          ],
+          "fully_recalled": false
+        },
+        "GOLD-B006-04": {
+          "classification": "NOT_APPLICABLE",
+          "span_ranks": [
+            1
+          ],
+          "span_doc_ranks": [
+            1
+          ],
+          "fully_recalled": true
+        },
+        "HA-07": {
+          "classification": "WITHIN_DOCUMENT_PASSAGE_FAILURE",
+          "span_ranks": [
+            12,
+            23
+          ],
+          "span_doc_ranks": [
+            1,
+            1
+          ],
+          "fully_recalled": false
+        },
+        "HA-08": {
+          "classification": "NOT_APPLICABLE",
+          "span_ranks": [
+            1
+          ],
+          "span_doc_ranks": [
+            1
+          ],
+          "fully_recalled": true
+        },
+        "HA-10": {
+          "classification": "NOT_APPLICABLE",
+          "span_ranks": [
+            1
+          ],
+          "span_doc_ranks": [
+            1
+          ],
+          "fully_recalled": true
+        },
+        "HA-12": {
+          "classification": "NOT_APPLICABLE",
+          "span_ranks": [
+            2
+          ],
+          "span_doc_ranks": [
+            1
+          ],
+          "fully_recalled": true
+        },
+        "HA-15": {
+          "classification": "NOT_APPLICABLE",
+          "span_ranks": [
+            1
+          ],
+          "span_doc_ranks": [
+            1
+          ],
+          "fully_recalled": true
+        },
+        "HA-18": {
+          "classification": "NOT_APPLICABLE",
+          "span_ranks": [
+            10
+          ],
+          "span_doc_ranks": [
+            10
+          ],
+          "fully_recalled": true
+        },
+        "HA-29": {
+          "classification": "WITHIN_DOCUMENT_PASSAGE_FAILURE",
+          "span_ranks": [
+            31
+          ],
+          "span_doc_ranks": [
+            2
+          ],
+          "fully_recalled": false
+        },
+        "HA-32": {
+          "classification": "NOT_APPLICABLE",
+          "span_ranks": [
+            1
+          ],
+          "span_doc_ranks": [
+            1
+          ],
+          "fully_recalled": true
+        },
+        "HA-36": {
+          "classification": "NOT_APPLICABLE",
+          "span_ranks": [
+            6
+          ],
+          "span_doc_ranks": [
+            6
+          ],
+          "fully_recalled": true
+        },
+        "HA-40": {
+          "classification": "WITHIN_DOCUMENT_PASSAGE_FAILURE",
+          "span_ranks": [
+            null,
+            14
+          ],
+          "span_doc_ranks": [
+            5,
+            5
+          ],
+          "fully_recalled": false
+        },
+        "HA-41": {
+          "classification": "WITHIN_DOCUMENT_PASSAGE_FAILURE",
+          "span_ranks": [
+            null,
+            null
+          ],
+          "span_doc_ranks": [
+            4,
+            4
+          ],
+          "fully_recalled": false
+        },
+        "HA-42": {
+          "classification": "WITHIN_DOCUMENT_PASSAGE_FAILURE",
+          "span_ranks": [
+            73,
+            25
+          ],
+          "span_doc_ranks": [
+            4,
+            4
+          ],
+          "fully_recalled": false
+        },
+        "HA-44": {
+          "classification": "WITHIN_DOCUMENT_PASSAGE_FAILURE",
+          "span_ranks": [
+            14
+          ],
+          "span_doc_ranks": [
+            1
+          ],
+          "fully_recalled": false
+        },
+        "HA-47": {
+          "classification": "NOT_APPLICABLE",
+          "span_ranks": [
+            1
+          ],
+          "span_doc_ranks": [
+            1
+          ],
+          "fully_recalled": true
+        },
+        "HA-49": {
+          "classification": "NOT_APPLICABLE",
+          "span_ranks": [
+            1
+          ],
+          "span_doc_ranks": [
+            1
+          ],
+          "fully_recalled": true
+        },
+        "HA-59": {
+          "classification": "NOT_APPLICABLE",
+          "span_ranks": [
+            1,
+            1
+          ],
+          "span_doc_ranks": [
+            1,
+            1
+          ],
+          "fully_recalled": true
+        }
+      }
+    },
+    "all_expected_routed_at_5": 28,
+    "cases": 40
+  },
+  "causal_traces": {
+    "GOLD-B002-07": {
+      "movement": "B_RESCUE",
+      "provider": "anthropic",
+      "reasoning_type": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "a_span_ranks": [
+        24
+      ],
+      "b_span_ranks": [
+        9
+      ],
+      "a_doc_ranks": [
+        1
+      ],
+      "b_doc_ranks": [
+        1
+      ],
+      "all_expected_routed_at_5": true,
+      "expected_document_ranks": {
+        "ver_c60f7418b69b6610bd20e974b92cdd8c": 1
+      },
+      "attribution": "consistent with the DOC-C mechanism: every required document routed into the top 5 and the local passage rank improved"
+    },
+    "HA-44": {
+      "movement": "B_RESCUE",
+      "provider": "openai",
+      "reasoning_type": "exact_lookup",
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "a_span_ranks": [
+        14
+      ],
+      "b_span_ranks": [
+        9
+      ],
+      "a_doc_ranks": [
+        1
+      ],
+      "b_doc_ranks": [
+        1
+      ],
+      "all_expected_routed_at_5": true,
+      "expected_document_ranks": {
+        "ver_1c77f33b04ffffa285ea7e61c2a89653": 2
+      },
+      "attribution": "consistent with the DOC-C mechanism: every required document routed into the top 5 and the local passage rank improved"
+    },
+    "GOLD-B001-01": {
+      "movement": "B_REGRESSION",
+      "provider": "anthropic",
+      "reasoning_type": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "a_span_ranks": [
+        2
+      ],
+      "b_span_ranks": [
+        null
+      ],
+      "a_doc_ranks": [
+        2
+      ],
+      "b_doc_ranks": [
+        null
+      ],
+      "all_expected_routed_at_5": false,
+      "expected_document_ranks": {
+        "ver_d9ba3ab0d872dd86047c7ed6dc783235": 6
+      },
+      "attribution": "caused by Stage-1 routing: a required document was not in the routed top 5, so Stage 2 could never retrieve its passage"
+    },
+    "GOLD-B001-10": {
+      "movement": "B_REGRESSION",
+      "provider": "openai",
+      "reasoning_type": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "a_span_ranks": [
+        1
+      ],
+      "b_span_ranks": [
+        null
+      ],
+      "a_doc_ranks": [
+        1
+      ],
+      "b_doc_ranks": [
+        null
+      ],
+      "all_expected_routed_at_5": false,
+      "expected_document_ranks": {
+        "ver_f30a6447e4df2ab76e4c1475f353109c": 37
+      },
+      "attribution": "caused by Stage-1 routing: a required document was not in the routed top 5, so Stage 2 could never retrieve its passage"
+    },
+    "GOLD-B002-01": {
+      "movement": "B_REGRESSION",
+      "provider": "anthropic",
+      "reasoning_type": null,
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "a_span_ranks": [
+        2
+      ],
+      "b_span_ranks": [
+        null
+      ],
+      "a_doc_ranks": [
+        1
+      ],
+      "b_doc_ranks": [
+        null
+      ],
+      "all_expected_routed_at_5": false,
+      "expected_document_ranks": {
+        "ver_1c53b961e1f5da8124a1e7e8eb92c941": 6
+      },
+      "attribution": "caused by Stage-1 routing: a required document was not in the routed top 5, so Stage 2 could never retrieve its passage"
+    },
+    "GOLD-B003-08": {
+      "movement": "B_REGRESSION",
+      "provider": "anthropic",
+      "reasoning_type": "exact_lookup",
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "a_span_ranks": [
+        4
+      ],
+      "b_span_ranks": [
+        null
+      ],
+      "a_doc_ranks": [
+        4
+      ],
+      "b_doc_ranks": [
+        null
+      ],
+      "all_expected_routed_at_5": false,
+      "expected_document_ranks": {
+        "ver_72833144cee232446fa450e9e040995a": 6
+      },
+      "attribution": "caused by Stage-1 routing: a required document was not in the routed top 5, so Stage 2 could never retrieve its passage"
+    },
+    "GOLD-B003-15": {
+      "movement": "B_REGRESSION",
+      "provider": "openai",
+      "reasoning_type": "exact_lookup",
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "a_span_ranks": [
+        1
+      ],
+      "b_span_ranks": [
+        null
+      ],
+      "a_doc_ranks": [
+        1
+      ],
+      "b_doc_ranks": [
+        null
+      ],
+      "all_expected_routed_at_5": false,
+      "expected_document_ranks": {
+        "ver_35cac5e98c151a17f941a6142d74709f": 88
+      },
+      "attribution": "caused by Stage-1 routing: a required document was not in the routed top 5, so Stage 2 could never retrieve its passage"
+    },
+    "GOLD-B004-04": {
+      "movement": "B_REGRESSION",
+      "provider": "anthropic",
+      "reasoning_type": "error_behavior",
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "a_span_ranks": [
+        9
+      ],
+      "b_span_ranks": [
+        null
+      ],
+      "a_doc_ranks": [
+        9
+      ],
+      "b_doc_ranks": [
+        null
+      ],
+      "all_expected_routed_at_5": false,
+      "expected_document_ranks": {
+        "ver_012b734775e7edb2649d3a9ddfd93070": 17
+      },
+      "attribution": "caused by Stage-1 routing: a required document was not in the routed top 5, so Stage 2 could never retrieve its passage"
+    },
+    "GOLD-B005-09": {
+      "movement": "B_REGRESSION",
+      "provider": "openai",
+      "reasoning_type": "error_behavior",
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "a_span_ranks": [
+        3
+      ],
+      "b_span_ranks": [
+        null
+      ],
+      "a_doc_ranks": [
+        3
+      ],
+      "b_doc_ranks": [
+        null
+      ],
+      "all_expected_routed_at_5": false,
+      "expected_document_ranks": {
+        "ver_ae3bfcc42c733c5051abda30f0f6db07": 137
+      },
+      "attribution": "caused by Stage-1 routing: a required document was not in the routed top 5, so Stage 2 could never retrieve its passage"
+    },
+    "GOLD-B005-15": {
+      "movement": "B_REGRESSION",
+      "provider": "openai",
+      "reasoning_type": "configuration_interaction",
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "a_span_ranks": [
+        2
+      ],
+      "b_span_ranks": [
+        null
+      ],
+      "a_doc_ranks": [
+        2
+      ],
+      "b_doc_ranks": [
+        null
+      ],
+      "all_expected_routed_at_5": false,
+      "expected_document_ranks": {
+        "ver_cbeb36b7cf9a5e241940a011629b6f1b": 8
+      },
+      "attribution": "caused by Stage-1 routing: a required document was not in the routed top 5, so Stage 2 could never retrieve its passage"
+    },
+    "GOLD-B005-17": {
+      "movement": "B_REGRESSION",
+      "provider": "openai",
+      "reasoning_type": "error_behavior",
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "a_span_ranks": [
+        3
+      ],
+      "b_span_ranks": [
+        null
+      ],
+      "a_doc_ranks": [
+        1
+      ],
+      "b_doc_ranks": [
+        null
+      ],
+      "all_expected_routed_at_5": false,
+      "expected_document_ranks": {
+        "ver_2c60e99cfd929a738910b893fd6f1a40": 8
+      },
+      "attribution": "caused by Stage-1 routing: a required document was not in the routed top 5, so Stage 2 could never retrieve its passage"
+    },
+    "GOLD-B005-19": {
+      "movement": "B_REGRESSION",
+      "provider": "openai",
+      "reasoning_type": "lifecycle_compatibility_migration",
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "a_span_ranks": [
+        1
+      ],
+      "b_span_ranks": [
+        null
+      ],
+      "a_doc_ranks": [
+        1
+      ],
+      "b_doc_ranks": [
+        null
+      ],
+      "all_expected_routed_at_5": false,
+      "expected_document_ranks": {
+        "ver_e8a7b17b5af64679cadea33cd8f6d250": 9
+      },
+      "attribution": "caused by Stage-1 routing: a required document was not in the routed top 5, so Stage 2 could never retrieve its passage"
+    },
+    "HA-36": {
+      "movement": "B_REGRESSION",
+      "provider": "openai",
+      "reasoning_type": "exact_lookup",
+      "evidence_shape": "single_span",
+      "span_count": 1,
+      "a_span_ranks": [
+        6
+      ],
+      "b_span_ranks": [
+        null
+      ],
+      "a_doc_ranks": [
+        6
+      ],
+      "b_doc_ranks": [
+        null
+      ],
+      "all_expected_routed_at_5": false,
+      "expected_document_ranks": {
+        "ver_fef74b4dda29e84a533c3e83f753effd": 7
+      },
+      "attribution": "caused by Stage-1 routing: a required document was not in the routed top 5, so Stage 2 could never retrieve its passage"
+    }
+  },
+  "replication_verdict": {
+    "classification": "REPLICATION_REJECTS_B",
+    "system_a_strict": "30/40",
+    "system_b_strict": "21/40",
+    "rescues": 2,
+    "regressions": 11,
+    "net_cases": -9,
+    "document_routing_failures": 12,
+    "mixed_failures": 0,
+    "mechanism_verdict": "The DOC-C mechanism is contradicted rather than merely unhelpful: 12 of B's failures are cases where a required document never reached Stage 2. Stage-1 routing discards evidence that the global system ranks successfully.",
+    "decision_note": "This is a measurement, not a promotion. The classification is returned to the project owner; no system was promoted, demoted or changed by this task."
+  },
+  "latency_ms": {
+    "A": 652.9,
+    "B": 2738.5,
+    "routing": 0.4
+  },
+  "not_done": [
+    "The holdout was not loaded, enumerated or run. holdout_runs = 0.",
+    "No answer generation, faithfulness judge or citation judge was invoked.",
+    "No system, parameter, model or index was changed.",
+    "No system was promoted; the classification is returned for review."
+  ]
+}
