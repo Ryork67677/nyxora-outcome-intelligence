@@ -1,0 +1,56 @@
+{
+  "artifact": "CORPUS-001 — what the 2,482 unbuildable identities are",
+  "generated_at": "2026-08-31T03:56:09Z",
+  "headline": "They are not documents. They are counts of authoring attempts that produced no question, inside batch 006's generator. They are not a corpus-reproduction blocker.",
+  "where_the_number_comes_from": {
+    "file": "scripts/export_batch_006.py",
+    "statement": "removed[\"unbuildable\"] += 1",
+    "context": "def add(fact, built, confidence): if built is None: removed[\"unbuildable\"] += 1; return",
+    "recorded_in": "experiments/GOLD-001/GOLD-001-batch-006-generation-report.json",
+    "path": "removed.unbuildable",
+    "value": 2482,
+    "siblings": {
+      "excluded_known_failure_case": 1,
+      "dropped_by_semantic_review": 40,
+      "duplicate_question": 26,
+      "duplicate_evidence": 36,
+      "blocking_anaphora": 1,
+      "duplicate_evidence_text": 5,
+      "document_concentration": 1,
+      "short_of_target_before_overflow": 19,
+      "not_selected_diversity": 1
+    }
+  },
+  "what_the_objects_are": {
+    "object_type": "mined facts — (version_id, char_start, char_end) spans of document text, with critical strings, produced by batch 006's miners",
+    "not": [
+      "documents",
+      "document versions",
+      "corpus rows",
+      "GOLD candidates",
+      "evidence spans of any approved case"
+    ],
+    "why_it_matters": "The phrase 'unbuildable identities' reads like missing corpus objects. It is not. Every one of these is a span *inside* the 202 documents, and the documents are what the snapshot is made of. Nothing about them is missing from the corpus; what is missing is the record of which spans they were."
+  },
+  "the_count_is_attempts_not_distinct_spans": {
+    "finding": "2,482 counts calls to add() where the builder returned None, not distinct facts. The generator iterates conditional_facts twice — once for build_conditional and again for build_predicate_fact — so one fact can be counted more than once.",
+    "corroboration": "the same run mined 1361 facts in total and 773 distinct evidence texts. 2482 exceeds both, which is only possible if the counter counts attempts.",
+    "consequence": "the number of distinct unbuildable spans is unknown and is at most 1361, not 2482"
+  },
+  "what_was_lost": "The counter recorded a number and discarded every identity. rag_v1.gold.provenance.UnbuildableLog exists so this cannot happen again: it records the span's version and offsets alongside the reason, so the set survives the run.",
+  "can_the_identities_be_recovered": {
+    "answer": "only by re-running batch 006's miners over the restored corpus",
+    "mechanism": "scripts/rederive_unbuildable.py, which imports the batch-006 miners and builders unmodified and refuses unless the corpus reproduces the frozen snapshot id first",
+    "blocked_by": "the same missing corpus — this is downstream of corpus recovery, never a precondition for it"
+  },
+  "classification": {
+    "A_needed_to_reproduce_the_corpus_snapshot": false,
+    "B_needed_to_reproduce_the_gold_authoring_process": true,
+    "C_needed_for_provenance_only": false,
+    "reasoning": "The snapshot digest is stable_id('snap', name, manifest_hash, PARSER_VERSION, chunking_hash) where manifest_hash covers only the 202 (version_id, content_hash) pairs. No unbuildable span appears in any of those inputs. The set is required input for the batch-007 NO_BUILDER calibration pilot, and for nothing else."
+  },
+  "correction_to_the_project_record": {
+    "previously_reported": "'the original 2,482 unbuildable identities remain outstanding' was carried in the corpus-reproduction limitation as if it were a corpus gap",
+    "corrected": "It is an authoring-pipeline gap. Removing it from the corpus gate does not make the corpus recoverable — the 139 Anthropic documents still do — but it does mean the corpus gate has one blocker, not two."
+  }
+}

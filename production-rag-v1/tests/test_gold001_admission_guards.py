@@ -190,7 +190,6 @@ def test_corpus_reproduction_is_incomplete_and_blocks_retrieval():
     assert limitation["CORPUS_REPRODUCTION_INCOMPLETE"] is True
     assert limitation["effect"] == "RETRIEVAL_BLOCKED"
     assert limitation["outstanding"]["anthropic_documents"] == 139
-    assert limitation["outstanding"]["unbuildable_identities"] == 2482
 
 
 def test_recovering_evidence_excerpts_does_not_reproduce_the_corpus():

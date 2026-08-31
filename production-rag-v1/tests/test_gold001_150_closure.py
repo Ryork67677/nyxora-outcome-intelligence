@@ -278,7 +278,7 @@ def test_reaching_150_did_not_close_the_corpus_gate():
     limitation = load(LIMITATION)
 
     assert limitation["outstanding"]["anthropic_documents"] == 139
-    assert limitation["outstanding"]["unbuildable_identities"] == 2482
+    assert limitation["corpus_snapshot_reproduced"] is False
 
 
 def test_the_closure_leads_with_size_not_coverage():
