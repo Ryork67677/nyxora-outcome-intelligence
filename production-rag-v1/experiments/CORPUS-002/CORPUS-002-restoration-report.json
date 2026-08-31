@@ -1,0 +1,1243 @@
+{
+  "document": "CORPUS-002 — restoration of the verified frozen corpus",
+  "generated_at": "2026-08-31T22:09:11Z",
+  "archive": {
+    "path": "/home/user/corpus-recovery-snap689e3363-20260831T2118Z.tar.gz",
+    "sha256": "4387ae1d5144109adbde3f11f1fcb339c3773480f356f9804909cf3ad2051b33",
+    "expected": "4387ae1d5144109adbde3f11f1fcb339c3773480f356f9804909cf3ad2051b33",
+    "match": true
+  },
+  "package_integrity": {
+    "entries": 203,
+    "verified": 203,
+    "failed": 0
+  },
+  "working_copy": {
+    "path": "recovery/CORPUS-002/working-corpus",
+    "verified": 203,
+    "failed": 0,
+    "mismatches": []
+  },
+  "documents": {
+    "restored": 202,
+    "expected": 202,
+    "by_provider": {
+      "anthropic": 139,
+      "openai": 63
+    },
+    "missing": [],
+    "mismatches": []
+  },
+  "identity": {
+    "manifest_hash_computed": "452479294cbbbe702b15d2df3f5a268023247dcd630782aaad5e17690cee7b17",
+    "manifest_hash_expected": "452479294cbbbe702b15d2df3f5a268023247dcd630782aaad5e17690cee7b17",
+    "manifest_hash_match": true,
+    "snapshot_ids_in_db": [
+      "snap_689e336380a054d8039dc35b2c09cd0a"
+    ],
+    "snapshot_id_expected": "snap_689e336380a054d8039dc35b2c09cd0a",
+    "snapshot_id_match": true,
+    "parser_version": "v1.0",
+    "chunking": {
+      "max_chunk_chars": 3500,
+      "min_chunk_chars": 200,
+      "config_hash": "bbc874e4f27a7e6826d5106e33510942fd76cb28cf55b5c3333f014e2a6fd916"
+    }
+  },
+  "chunks": {
+    "by_chunk_set": {
+      "cs_v1_control": 14209
+    },
+    "control_set": "cs_v1_control",
+    "control_by_provider": {
+      "anthropic": 12028,
+      "openai": 2181
+    },
+    "control_total": 14209,
+    "historical_target": {
+      "total": 14209,
+      "anthropic": 12028,
+      "openai": 2181
+    },
+    "matches_historical": true,
+    "note": "Only the V1 control set is restored here. The historical database also holds seven later experimental chunk sets over the same source corpus; those are retrieval-configuration state, not corpus identity, and CORPUS-002 deliberately does not rebuild them."
+  },
+  "gold_anchors": {
+    "summary": {
+      "cases": 150,
+      "anchored_cases": 150,
+      "unanchored_cases": 0,
+      "spans_total": 174,
+      "spans_verified": 174,
+      "by_shape": {
+        "legacy_flat": 45,
+        "expected_evidence": 129
+      },
+      "by_group": {
+        "001": {
+          "cases": 16,
+          "spans": 16,
+          "verified": 16
+        },
+        "002": {
+          "cases": 17,
+          "spans": 17,
+          "verified": 17
+        },
+        "003": {
+          "cases": 20,
+          "spans": 25,
+          "verified": 25
+        },
+        "004": {
+          "cases": 14,
+          "spans": 17,
+          "verified": 17
+        },
+        "005": {
+          "cases": 15,
+          "spans": 15,
+          "verified": 15
+        },
+        "006": {
+          "cases": 8,
+          "spans": 8,
+          "verified": 8
+        },
+        "HA": {
+          "cases": 60,
+          "spans": 76,
+          "verified": 76
+        }
+      },
+      "failures": []
+    },
+    "per_case": [
+      {
+        "candidate_id": "GOLD-B001-01",
+        "group": "001",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B001-02",
+        "group": "001",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B001-05",
+        "group": "001",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B001-06",
+        "group": "001",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B001-07",
+        "group": "001",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B001-08",
+        "group": "001",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B001-09",
+        "group": "001",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B001-10",
+        "group": "001",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B001-11",
+        "group": "001",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B001-12",
+        "group": "001",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B001-18",
+        "group": "001",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B001-13",
+        "group": "001",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B001-17",
+        "group": "001",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B001-03",
+        "group": "001",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B001-04",
+        "group": "001",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B001-14",
+        "group": "001",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B002-01",
+        "group": "002",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B002-02",
+        "group": "002",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B002-03",
+        "group": "002",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B002-04",
+        "group": "002",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B002-05",
+        "group": "002",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B002-06",
+        "group": "002",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B002-07",
+        "group": "002",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B002-08",
+        "group": "002",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B002-09",
+        "group": "002",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B002-10",
+        "group": "002",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B002-11",
+        "group": "002",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B002-13",
+        "group": "002",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B002-14",
+        "group": "002",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B002-15",
+        "group": "002",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B002-16",
+        "group": "002",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B002-17",
+        "group": "002",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B002-18",
+        "group": "002",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B003-01",
+        "group": "003",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B003-02",
+        "group": "003",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B003-03",
+        "group": "003",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B003-04",
+        "group": "003",
+        "spans": 2,
+        "verified": 2,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B003-05",
+        "group": "003",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B003-06",
+        "group": "003",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B003-07",
+        "group": "003",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B003-08",
+        "group": "003",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B003-09",
+        "group": "003",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B003-10",
+        "group": "003",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B003-11",
+        "group": "003",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B003-12",
+        "group": "003",
+        "spans": 2,
+        "verified": 2,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B003-13",
+        "group": "003",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B003-14",
+        "group": "003",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B003-15",
+        "group": "003",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B003-16",
+        "group": "003",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B003-17",
+        "group": "003",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B003-18",
+        "group": "003",
+        "spans": 2,
+        "verified": 2,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B003-19",
+        "group": "003",
+        "spans": 2,
+        "verified": 2,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B003-20",
+        "group": "003",
+        "spans": 2,
+        "verified": 2,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B004-01",
+        "group": "004",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B004-02",
+        "group": "004",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B004-03",
+        "group": "004",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B004-04",
+        "group": "004",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B004-05",
+        "group": "004",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B004-06",
+        "group": "004",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B004-07",
+        "group": "004",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B004-09",
+        "group": "004",
+        "spans": 2,
+        "verified": 2,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B004-10",
+        "group": "004",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B004-11",
+        "group": "004",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B004-12",
+        "group": "004",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B004-13",
+        "group": "004",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B004-14",
+        "group": "004",
+        "spans": 2,
+        "verified": 2,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B004-15",
+        "group": "004",
+        "spans": 2,
+        "verified": 2,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B005-02",
+        "group": "005",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B005-03",
+        "group": "005",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B005-04",
+        "group": "005",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B005-05",
+        "group": "005",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B005-07",
+        "group": "005",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B005-08",
+        "group": "005",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B005-09",
+        "group": "005",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B005-11",
+        "group": "005",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B005-12",
+        "group": "005",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B005-14",
+        "group": "005",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B005-15",
+        "group": "005",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B005-16",
+        "group": "005",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B005-17",
+        "group": "005",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B005-18",
+        "group": "005",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B005-19",
+        "group": "005",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B006-01",
+        "group": "006",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B006-02",
+        "group": "006",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B006-03",
+        "group": "006",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B006-04",
+        "group": "006",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B006-05",
+        "group": "006",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B006-07",
+        "group": "006",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B006-08",
+        "group": "006",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "GOLD-B006-09",
+        "group": "006",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "HA-01",
+        "group": "HA",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "HA-02",
+        "group": "HA",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "HA-03",
+        "group": "HA",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "HA-04",
+        "group": "HA",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "HA-05",
+        "group": "HA",
+        "spans": 2,
+        "verified": 2,
+        "failures": []
+      },
+      {
+        "candidate_id": "HA-06",
+        "group": "HA",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "HA-07",
+        "group": "HA",
+        "spans": 2,
+        "verified": 2,
+        "failures": []
+      },
+      {
+        "candidate_id": "HA-08",
+        "group": "HA",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "HA-09",
+        "group": "HA",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "HA-10",
+        "group": "HA",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "HA-11",
+        "group": "HA",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "HA-12",
+        "group": "HA",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "HA-13",
+        "group": "HA",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "HA-14",
+        "group": "HA",
+        "spans": 2,
+        "verified": 2,
+        "failures": []
+      },
+      {
+        "candidate_id": "HA-15",
+        "group": "HA",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "HA-16",
+        "group": "HA",
+        "spans": 2,
+        "verified": 2,
+        "failures": []
+      },
+      {
+        "candidate_id": "HA-17",
+        "group": "HA",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "HA-18",
+        "group": "HA",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "HA-19",
+        "group": "HA",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "HA-20",
+        "group": "HA",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "HA-21",
+        "group": "HA",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "HA-22",
+        "group": "HA",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "HA-23",
+        "group": "HA",
+        "spans": 2,
+        "verified": 2,
+        "failures": []
+      },
+      {
+        "candidate_id": "HA-24",
+        "group": "HA",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "HA-25",
+        "group": "HA",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "HA-26",
+        "group": "HA",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "HA-27",
+        "group": "HA",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "HA-28",
+        "group": "HA",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "HA-29",
+        "group": "HA",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "HA-30",
+        "group": "HA",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "HA-31",
+        "group": "HA",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "HA-32",
+        "group": "HA",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "HA-33",
+        "group": "HA",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "HA-34",
+        "group": "HA",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "HA-35",
+        "group": "HA",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "HA-36",
+        "group": "HA",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "HA-37",
+        "group": "HA",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "HA-38",
+        "group": "HA",
+        "spans": 2,
+        "verified": 2,
+        "failures": []
+      },
+      {
+        "candidate_id": "HA-39",
+        "group": "HA",
+        "spans": 2,
+        "verified": 2,
+        "failures": []
+      },
+      {
+        "candidate_id": "HA-40",
+        "group": "HA",
+        "spans": 2,
+        "verified": 2,
+        "failures": []
+      },
+      {
+        "candidate_id": "HA-41",
+        "group": "HA",
+        "spans": 2,
+        "verified": 2,
+        "failures": []
+      },
+      {
+        "candidate_id": "HA-42",
+        "group": "HA",
+        "spans": 2,
+        "verified": 2,
+        "failures": []
+      },
+      {
+        "candidate_id": "HA-43",
+        "group": "HA",
+        "spans": 2,
+        "verified": 2,
+        "failures": []
+      },
+      {
+        "candidate_id": "HA-44",
+        "group": "HA",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "HA-45",
+        "group": "HA",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "HA-46",
+        "group": "HA",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "HA-47",
+        "group": "HA",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "HA-48",
+        "group": "HA",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "HA-49",
+        "group": "HA",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "HA-50",
+        "group": "HA",
+        "spans": 2,
+        "verified": 2,
+        "failures": []
+      },
+      {
+        "candidate_id": "HA-51",
+        "group": "HA",
+        "spans": 2,
+        "verified": 2,
+        "failures": []
+      },
+      {
+        "candidate_id": "HA-52",
+        "group": "HA",
+        "spans": 2,
+        "verified": 2,
+        "failures": []
+      },
+      {
+        "candidate_id": "HA-53",
+        "group": "HA",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "HA-54",
+        "group": "HA",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "HA-55",
+        "group": "HA",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "HA-56",
+        "group": "HA",
+        "spans": 2,
+        "verified": 2,
+        "failures": []
+      },
+      {
+        "candidate_id": "HA-57",
+        "group": "HA",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "HA-58",
+        "group": "HA",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      },
+      {
+        "candidate_id": "HA-59",
+        "group": "HA",
+        "spans": 2,
+        "verified": 2,
+        "failures": []
+      },
+      {
+        "candidate_id": "HA-60",
+        "group": "HA",
+        "spans": 1,
+        "verified": 1,
+        "failures": []
+      }
+    ]
+  },
+  "environment": {
+    "restoration_database": "corpus002_restore",
+    "postgresql": "PostgreSQL 16.13 (Ubuntu 16.13-0ubuntu0.24.04.1) on x86_64-pc-linux-gnu",
+    "pgvector": "0.6.0",
+    "sql_applied_in_order": [
+      "sql/001_init.sql",
+      "(ingest 202 documents)",
+      "(create_snapshot)",
+      "sql/002_chunk_sets.sql",
+      "sql/003_search_text.sql",
+      "sql/004_embedding_cache.sql"
+    ],
+    "sql_order_note": "V1 was ingested before chunk sets existed; sql/002_chunk_sets.sql adopts those rows into cs_v1_control. Applying 002 before ingesting fails on a NOT NULL chunk_set_id, so the historical order is reproduced deliberately.",
+    "tables": [
+      "chunk",
+      "chunk_embedding",
+      "chunk_link",
+      "chunk_set",
+      "corpus_snapshot",
+      "corpus_snapshot_version",
+      "document_source",
+      "document_version",
+      "embedding_model",
+      "query_trace",
+      "retrieval_cache"
+    ],
+    "retrieval_tables_row_counts": {
+      "chunk_embedding": 0,
+      "query_trace": 0,
+      "retrieval_cache": 0,
+      "embedding_model": 0
+    },
+    "python": "3.11.15",
+    "dependencies": {
+      "numpy": "2.4.6",
+      "pgvector": "0.5.0",
+      "psycopg": "3.3.4",
+      "pydantic": "2.13.4",
+      "pydantic-settings": "2.15.0",
+      "pytest": "8.4.2",
+      "PyYAML": "6.0.3",
+      "ruff": "0.16.3",
+      "scikit-learn": "1.9.0"
+    },
+    "parser_version": "v1.0",
+    "git_commit": "0bf4a884ef20fa376c30f5b2d91bd9e315a4c9ce"
+  },
+  "gates": {
+    "archive_hash_matches": true,
+    "package_203_of_203": true,
+    "working_copy_matches_package": true,
+    "documents_202": true,
+    "provider_counts": true,
+    "document_identities_verify": true,
+    "manifest_hash_exact": true,
+    "snapshot_id_exact": true,
+    "all_gold_anchors_validate": true,
+    "no_retrieval_ran": true
+  },
+  "corpus_002_succeeded": true,
+  "flags": {
+    "CORPUS_REPRODUCTION_INCOMPLETE": false,
+    "corpus_snapshot_reproduced": true,
+    "RETRIEVAL_BLOCKED_BY_CORPUS": false,
+    "holdout_split_block": "UNCHANGED — CORPUS-002 does not clear it",
+    "note": "These flags describe corpus state only. The GOLD-001 150-case closure is a closed artifact and was not edited; its recorded corpus_reproduction limitation is superseded by this document rather than rewritten in place."
+  },
+  "not_done": [
+    "No retrieval was run: no BM25, dense, RRF, DOC-C, routing, reranking or generation, and no ranks or scores were produced.",
+    "No embeddings were built; chunk_embedding is empty.",
+    "The holdout and the validation split remain unfrozen.",
+    "The historical database was read but never written.",
+    "No GOLD record was modified.",
+    "No document was fetched from any network source."
+  ]
+}

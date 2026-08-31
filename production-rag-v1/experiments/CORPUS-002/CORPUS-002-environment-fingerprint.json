@@ -1,0 +1,47 @@
+{
+  "restoration_database": "corpus002_restore",
+  "postgresql": "PostgreSQL 16.13 (Ubuntu 16.13-0ubuntu0.24.04.1) on x86_64-pc-linux-gnu",
+  "pgvector": "0.6.0",
+  "sql_applied_in_order": [
+    "sql/001_init.sql",
+    "(ingest 202 documents)",
+    "(create_snapshot)",
+    "sql/002_chunk_sets.sql",
+    "sql/003_search_text.sql",
+    "sql/004_embedding_cache.sql"
+  ],
+  "sql_order_note": "V1 was ingested before chunk sets existed; sql/002_chunk_sets.sql adopts those rows into cs_v1_control. Applying 002 before ingesting fails on a NOT NULL chunk_set_id, so the historical order is reproduced deliberately.",
+  "tables": [
+    "chunk",
+    "chunk_embedding",
+    "chunk_link",
+    "chunk_set",
+    "corpus_snapshot",
+    "corpus_snapshot_version",
+    "document_source",
+    "document_version",
+    "embedding_model",
+    "query_trace",
+    "retrieval_cache"
+  ],
+  "retrieval_tables_row_counts": {
+    "chunk_embedding": 0,
+    "query_trace": 0,
+    "retrieval_cache": 0,
+    "embedding_model": 0
+  },
+  "python": "3.11.15",
+  "dependencies": {
+    "numpy": "2.4.6",
+    "pgvector": "0.5.0",
+    "psycopg": "3.3.4",
+    "pydantic": "2.13.4",
+    "pydantic-settings": "2.15.0",
+    "pytest": "8.4.2",
+    "PyYAML": "6.0.3",
+    "ruff": "0.16.3",
+    "scikit-learn": "1.9.0"
+  },
+  "parser_version": "v1.0",
+  "git_commit": "0bf4a884ef20fa376c30f5b2d91bd9e315a4c9ce"
+}
