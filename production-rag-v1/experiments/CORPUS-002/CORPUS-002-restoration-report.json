@@ -1,6 +1,6 @@
 {
   "document": "CORPUS-002 — restoration of the verified frozen corpus",
-  "generated_at": "2026-08-31T22:09:11Z",
+  "generated_at": "2026-08-31T23:53:16Z",
   "archive": {
     "path": "/home/user/corpus-recovery-snap689e3363-20260831T2118Z.tar.gz",
     "sha256": "4387ae1d5144109adbde3f11f1fcb339c3773480f356f9804909cf3ad2051b33",
@@ -1167,8 +1167,8 @@
   },
   "environment": {
     "restoration_database": "corpus002_restore",
-    "postgresql": "PostgreSQL 16.13 (Ubuntu 16.13-0ubuntu0.24.04.1) on x86_64-pc-linux-gnu",
-    "pgvector": "0.6.0",
+    "postgresql": "PostgreSQL 16.15 (Debian 16.15-1.pgdg12+2) on x86_64-pc-linux-gnu",
+    "pgvector": "0.8.6",
     "sql_applied_in_order": [
       "sql/001_init.sql",
       "(ingest 202 documents)",
@@ -1201,16 +1201,16 @@
     "dependencies": {
       "numpy": "2.4.6",
       "pgvector": "0.5.0",
-      "psycopg": "3.3.4",
-      "pydantic": "2.13.4",
+      "psycopg": "3.3.5",
+      "pydantic": "2.13.5",
       "pydantic-settings": "2.15.0",
       "pytest": "8.4.2",
       "PyYAML": "6.0.3",
-      "ruff": "0.16.3",
+      "ruff": "0.16.5",
       "scikit-learn": "1.9.0"
     },
     "parser_version": "v1.0",
-    "git_commit": "0bf4a884ef20fa376c30f5b2d91bd9e315a4c9ce"
+    "git_commit": ""
   },
   "gates": {
     "archive_hash_matches": true,

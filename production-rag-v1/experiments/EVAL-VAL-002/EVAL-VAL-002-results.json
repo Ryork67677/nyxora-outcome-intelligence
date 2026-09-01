@@ -1,0 +1,3191 @@
+{
+  "experiment_id": "EVAL-VAL-002",
+  "phase": "validation",
+  "split": "gold150-v1/validation",
+  "split_path": "evals/splits/gold150-v1/validation.json",
+  "projection_path": "evals/splits/gold150-v1/validation.jsonl",
+  "timestamp": "2026-09-01T00:42:09Z",
+  "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a",
+  "chunk_set": "cs_v1_control",
+  "system_a_config_hash": "9afcb5b7c58ebacff0b4c3711dd9618a2e727f4195dd1787a5da81e478ee0b38",
+  "system_d_config_hash": "d77b54ba3be0197d6bc1363883aefb0b3399117ee8c65800a38f8196d236ca3a",
+  "system_d_config_hash_matched_freeze_before_scoring": true,
+  "freeze_path": "experiments/EXP-016/SYSTEM-D-GUARD.json",
+  "freeze_untouched": true,
+  "tuned_after_seeing_scores": false,
+  "validation_loaded": true,
+  "holdout_loaded": false,
+  "holdout_ids_enumerated": false,
+  "holdout_question_text_loaded": false,
+  "holdout_access_log_bytes": 0,
+  "holdout_runs": 0,
+  "live_docs_fetched": false,
+  "trained": false,
+  "cases_scored": 40,
+  "d_runs": 1,
+  "embedding": {
+    "chunk_set": "cs_v1_control",
+    "chunks": 14209,
+    "embedding_rows": 14209,
+    "model_id": "emb_e7d4183fd6eb878ae2fdf080efb6861e",
+    "fingerprint_min": "bd95feaeacf98559",
+    "fingerprint_max": "bd95feaeacf98559",
+    "fingerprint_expected": "bd95feaeacf98559",
+    "complete": true
+  },
+  "recorded_system_a": {
+    "source": "experiments/EVAL-VAL-001/EVAL-VAL-001-results.json",
+    "not_a_new_A_evaluation": true,
+    "strict_recall_at_10": "30/40",
+    "cases_fully_recalled": 30,
+    "macro_span_recall": 0.75,
+    "document_recall": 0.975,
+    "mrr": 0.5283,
+    "spans_found_at_10": 33,
+    "spans_total": 47
+  },
+  "rematerialized_A_for_D_candidates_only": {
+    "note": "SYSTEM-A top-100 was retrieved on the 40 val cases as candidate generation for D, not as a new A evaluation. Primary comparison is against recorded EVAL-VAL-001 A metrics and per-case ranks.",
+    "gold_span_rank_mismatches_vs_recorded": [],
+    "mismatch_count": 0,
+    "rematerialized_strict_fully_recalled": 30
+  },
+  "system_d": {
+    "system": "SYSTEM-D-GUARD-BLEND",
+    "config_hash": "d77b54ba3be0197d6bc1363883aefb0b3399117ee8c65800a38f8196d236ca3a",
+    "macro_span_recall": 0.825,
+    "cases_fully_recalled": 33,
+    "cases_total": 40,
+    "strict_recall_at_10": "33/40",
+    "spans_found_at_10": 36,
+    "spans_total": 47,
+    "document_recall": 1.0,
+    "mrr": 0.5887,
+    "spans_absent_from_top": {
+      "10": 11,
+      "20": 9,
+      "30": 7,
+      "50": 6,
+      "100": 4,
+      "300": 4
+    },
+    "cases": {
+      "GOLD-B001-01": {
+        "case_id": "GOLD-B001-01",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_56e46425d7d8661df363a65c2d96e08291bdf8d1",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "GOLD-B001-03": {
+        "case_id": "GOLD-B001-03",
+        "spans": [
+          {
+            "rank": 8,
+            "doc_rank": 1,
+            "chunk_id": "chk_ae2d20b7dda7474cf9d3ec86d99fae0a1266d711",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "GOLD-B001-07": {
+        "case_id": "GOLD-B001-07",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_07f0431749a3c4c9d063a3d39f90388a8876014e",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "GOLD-B001-10": {
+        "case_id": "GOLD-B001-10",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_2124487ad93d57da3e8d3afbc695294fa50f608d",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "GOLD-B002-01": {
+        "case_id": "GOLD-B002-01",
+        "spans": [
+          {
+            "rank": 4,
+            "doc_rank": 2,
+            "chunk_id": "chk_d99c6b3bf495f44a11ddd3f304854b3f177db36d",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "GOLD-B002-02": {
+        "case_id": "GOLD-B002-02",
+        "spans": [
+          {
+            "rank": null,
+            "doc_rank": 4,
+            "chunk_id": null,
+            "within": {
+              "10": false,
+              "20": false,
+              "30": false,
+              "50": false,
+              "100": false,
+              "300": false
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 0.0,
+        "fully_recalled": false,
+        "doc_recall": 1.0
+      },
+      "GOLD-B002-07": {
+        "case_id": "GOLD-B002-07",
+        "spans": [
+          {
+            "rank": 7,
+            "doc_rank": 1,
+            "chunk_id": "chk_dbba4dd3b9158e45d326d715e2e7170b90d7bbf6",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "GOLD-B002-10": {
+        "case_id": "GOLD-B002-10",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_6c43f80384e28b51321d7a8a5720468d98e1715d",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "GOLD-B002-18": {
+        "case_id": "GOLD-B002-18",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_999930d88301a940f1d0e4bc870c1524f51e0dde",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "GOLD-B003-02": {
+        "case_id": "GOLD-B003-02",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_165cb30e358e61a3f1d70a889c650b42959d6c70",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "GOLD-B003-08": {
+        "case_id": "GOLD-B003-08",
+        "spans": [
+          {
+            "rank": 2,
+            "doc_rank": 2,
+            "chunk_id": "chk_7681ff2b4c5f16e8f5e398c4648b509f1501f1c4",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "GOLD-B003-11": {
+        "case_id": "GOLD-B003-11",
+        "spans": [
+          {
+            "rank": 2,
+            "doc_rank": 2,
+            "chunk_id": "chk_1d5a3ad5b7b9f587ae681fd223f25e97f7cf42d1",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "GOLD-B003-15": {
+        "case_id": "GOLD-B003-15",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_a606ee868c51cf03412461867f6338116f84e13f",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "GOLD-B003-18": {
+        "case_id": "GOLD-B003-18",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_b3792274647effec04c5a81b5658d02c96ef4012",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          },
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_b3792274647effec04c5a81b5658d02c96ef4012",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "GOLD-B004-04": {
+        "case_id": "GOLD-B004-04",
+        "spans": [
+          {
+            "rank": 2,
+            "doc_rank": 2,
+            "chunk_id": "chk_3015928b34af6eb8959f16bcd0186fe00ffb2dd6",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "GOLD-B004-10": {
+        "case_id": "GOLD-B004-10",
+        "spans": [
+          {
+            "rank": 3,
+            "doc_rank": 3,
+            "chunk_id": "chk_51676544f6f5e5c6597321fad6e861743c0d0bc7",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "GOLD-B004-12": {
+        "case_id": "GOLD-B004-12",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_a652fa838849020e2730a4b1684c34c1a689755f",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "GOLD-B004-14": {
+        "case_id": "GOLD-B004-14",
+        "spans": [
+          {
+            "rank": 3,
+            "doc_rank": 1,
+            "chunk_id": "chk_b3792274647effec04c5a81b5658d02c96ef4012",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          },
+          {
+            "rank": 3,
+            "doc_rank": 1,
+            "chunk_id": "chk_b3792274647effec04c5a81b5658d02c96ef4012",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "GOLD-B005-09": {
+        "case_id": "GOLD-B005-09",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_15c1a5ddd54293c0cc720b0b08d7da51fc1c1d9d",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "GOLD-B005-15": {
+        "case_id": "GOLD-B005-15",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_15c2cd244a4003b5c5977a39113065a7d7c9f082",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "GOLD-B005-17": {
+        "case_id": "GOLD-B005-17",
+        "spans": [
+          {
+            "rank": 3,
+            "doc_rank": 2,
+            "chunk_id": "chk_54f24b235eee08c3f04656ce79c5baf889005a84",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "GOLD-B005-19": {
+        "case_id": "GOLD-B005-19",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_54006b7f8b94adace97a13e8d2aff0b2063406de",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "GOLD-B006-03": {
+        "case_id": "GOLD-B006-03",
+        "spans": [
+          {
+            "rank": 18,
+            "doc_rank": 4,
+            "chunk_id": "chk_0fc166dbfa8a2094c749b75ca01f26e45573afa2",
+            "within": {
+              "10": false,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 0.0,
+        "fully_recalled": false,
+        "doc_recall": 1.0
+      },
+      "GOLD-B006-04": {
+        "case_id": "GOLD-B006-04",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_637dd0da1f102d7a1b7e3be4de64f3729aa5d601",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "HA-07": {
+        "case_id": "HA-07",
+        "spans": [
+          {
+            "rank": 70,
+            "doc_rank": 1,
+            "chunk_id": "chk_9e9cb342bd309c132d55e2003754887d2faa2c9e",
+            "within": {
+              "10": false,
+              "20": false,
+              "30": false,
+              "50": false,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          },
+          {
+            "rank": 47,
+            "doc_rank": 1,
+            "chunk_id": "chk_0b5c227d373c9e8a9cb290372e1dce9ef897b5a0",
+            "within": {
+              "10": false,
+              "20": false,
+              "30": false,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 0.0,
+        "fully_recalled": false,
+        "doc_recall": 1.0
+      },
+      "HA-08": {
+        "case_id": "HA-08",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_73fa6f201ebe4d053467e93912876caa5dcc9533",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "HA-10": {
+        "case_id": "HA-10",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_9fce033fa3e586e30733c833b6fdc857f4ec67d4",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "HA-12": {
+        "case_id": "HA-12",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_b17099fe75c44006e954e286fa820bb2685015c4",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "HA-15": {
+        "case_id": "HA-15",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_3103771531694781f439051781da0bad51eee0ba",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "HA-18": {
+        "case_id": "HA-18",
+        "spans": [
+          {
+            "rank": 4,
+            "doc_rank": 4,
+            "chunk_id": "chk_91b59aa08660b93d3aa57ac22f7367bb361d3794",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "HA-29": {
+        "case_id": "HA-29",
+        "spans": [
+          {
+            "rank": 19,
+            "doc_rank": 1,
+            "chunk_id": "chk_b81a9e7e718403f09b36f77539bec32ba5abd938",
+            "within": {
+              "10": false,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 0.0,
+        "fully_recalled": false,
+        "doc_recall": 1.0
+      },
+      "HA-32": {
+        "case_id": "HA-32",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_560d301ea4cdcc24ce9c7d269b14a6e0bc4f5953",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "HA-36": {
+        "case_id": "HA-36",
+        "spans": [
+          {
+            "rank": 2,
+            "doc_rank": 2,
+            "chunk_id": "chk_c3e405a5d766f89e5c02d04e02169c115dd4cb73",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "HA-40": {
+        "case_id": "HA-40",
+        "spans": [
+          {
+            "rank": null,
+            "doc_rank": 2,
+            "chunk_id": null,
+            "within": {
+              "10": false,
+              "20": false,
+              "30": false,
+              "50": false,
+              "100": false,
+              "300": false
+            },
+            "doc_within_10": true
+          },
+          {
+            "rank": 24,
+            "doc_rank": 2,
+            "chunk_id": "chk_0b5c227d373c9e8a9cb290372e1dce9ef897b5a0",
+            "within": {
+              "10": false,
+              "20": false,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 0.0,
+        "fully_recalled": false,
+        "doc_recall": 1.0
+      },
+      "HA-41": {
+        "case_id": "HA-41",
+        "spans": [
+          {
+            "rank": null,
+            "doc_rank": 1,
+            "chunk_id": null,
+            "within": {
+              "10": false,
+              "20": false,
+              "30": false,
+              "50": false,
+              "100": false,
+              "300": false
+            },
+            "doc_within_10": true
+          },
+          {
+            "rank": null,
+            "doc_rank": 1,
+            "chunk_id": null,
+            "within": {
+              "10": false,
+              "20": false,
+              "30": false,
+              "50": false,
+              "100": false,
+              "300": false
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 0.0,
+        "fully_recalled": false,
+        "doc_recall": 1.0
+      },
+      "HA-42": {
+        "case_id": "HA-42",
+        "spans": [
+          {
+            "rank": 72,
+            "doc_rank": 3,
+            "chunk_id": "chk_9e9cb342bd309c132d55e2003754887d2faa2c9e",
+            "within": {
+              "10": false,
+              "20": false,
+              "30": false,
+              "50": false,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          },
+          {
+            "rank": 29,
+            "doc_rank": 3,
+            "chunk_id": "chk_0b5c227d373c9e8a9cb290372e1dce9ef897b5a0",
+            "within": {
+              "10": false,
+              "20": false,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 0.0,
+        "fully_recalled": false,
+        "doc_recall": 1.0
+      },
+      "HA-44": {
+        "case_id": "HA-44",
+        "spans": [
+          {
+            "rank": 3,
+            "doc_rank": 1,
+            "chunk_id": "chk_ddacc7aafcf9a596a5302fac95ac286957de4c5c",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "HA-47": {
+        "case_id": "HA-47",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_3103771531694781f439051781da0bad51eee0ba",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "HA-49": {
+        "case_id": "HA-49",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_11ecb8c67ad089f7f5d7efa58ecfd8651cb66db9",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "HA-59": {
+        "case_id": "HA-59",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_4803c9c39d64fd0c4b27351273f4ebc8b0ed26a0",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          },
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_4803c9c39d64fd0c4b27351273f4ebc8b0ed26a0",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      }
+    }
+  },
+  "latency_ms": {
+    "A_retrieval_mean": 512.9,
+    "CE_mean": 5098.8,
+    "D_total_mean": 5680.2,
+    "A_retrieval_median": 520.7,
+    "CE_median": 5066.1,
+    "D_total_median": 5566.4
+  },
+  "named_case_audit": {
+    "HA-22": {
+      "in_validation": false,
+      "in_development": true,
+      "looked_up_in_holdout": false,
+      "status": "development-only; not in validation; not looked up in holdout"
+    },
+    "HA-24": {
+      "in_validation": false,
+      "in_development": true,
+      "looked_up_in_holdout": false,
+      "status": "development-only; not in validation; not looked up in holdout"
+    },
+    "GOLD-B005-11": {
+      "in_validation": false,
+      "in_development": true,
+      "looked_up_in_holdout": false,
+      "status": "development-only; not in validation; not looked up in holdout"
+    }
+  },
+  "cross_encoder": {
+    "name": "cross-encoder/ms-marco-MiniLM-L6-v2",
+    "revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a",
+    "artifact_sha256": "5d3e70fd0c9ff14b9b5169a51e957b7a9c74897afd0a35ce4bd318150c1d4d4a",
+    "pair_score_stable": true,
+    "max_length": 512
+  },
+  "decision": {
+    "label": "RERANKER_SUPPORTED",
+    "reason": "D strictly beats recorded A on primary (33/40 vs 30/40, net +3) without catastrophic exact-match destruction (rank-1 destructions=0, A≤3-out-of-10=0).",
+    "caveat": "Bootstrap 95% CI on strict delta includes 0 ([0.0, 0.175]); McNemar p=0.25. Label follows the net-positive-strict mapping, not statistical significance."
+  },
+  "runtime_seconds": 228.2,
+  "per_case": [
+    {
+      "case_id": "GOLD-B001-01",
+      "a_full_recorded": true,
+      "a_full_rematerialized": true,
+      "d_full": true,
+      "pool_size": 97,
+      "all_spans_in_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_56e46425d7d8661df363a65c2d96e08291bdf8d1",
+          "version_id": "ver_d9ba3ab0d872dd86047c7ed6dc783235",
+          "section_path": [
+            "How to implement computer use",
+            "Tool parameters"
+          ],
+          "a_rank_stored": 2,
+          "a_doc_rank_stored": 2,
+          "a_rank_rematerialized": 2,
+          "a_rank": 2,
+          "a_score": 0.028021349599695006,
+          "ce_score": 1.533562183380127,
+          "ce_rank": 2,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "blend_score": 0.9718207848424889,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            "enable_zoom"
+          ],
+          "exact_match_guard_triggered": false,
+          "exact_match_guard_note": "SYSTEM-D is score_blend; the EXP-016 clamp/guard is not applied. identifier_overlap is recorded only as a diagnostic.",
+          "would_have_been_clamp_protected": true,
+          "ce_pair_truncated": false,
+          "a_in_top_10_stored": true,
+          "d_in_top_10": true,
+          "excerpt": "### Tool parameters | Parameter | Required | Description | | ------------------- | -------- | -----------------------------------------------------------------------------------------------------------------------------…"
+        }
+      ],
+      "n_identifier_overlap_in_pool": 4,
+      "latency_ms": {
+        "system_a_retrieval": 442.59,
+        "cross_encoder": 5407.0,
+        "total": 5934.62
+      }
+    },
+    {
+      "case_id": "GOLD-B001-03",
+      "a_full_recorded": false,
+      "a_full_rematerialized": false,
+      "d_full": true,
+      "pool_size": 88,
+      "all_spans_in_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_ae2d20b7dda7474cf9d3ec86d99fae0a1266d711",
+          "version_id": "ver_a7bda3595f2c124605c3228464d4ee52",
+          "section_path": [
+            "Migrating to Claude Mythos 5 and Claude Fable 5"
+          ],
+          "a_rank_stored": 11,
+          "a_doc_rank_stored": 1,
+          "a_rank_rematerialized": 11,
+          "a_rank": 11,
+          "a_score": 0.023597626752966557,
+          "ce_score": 5.62330436706543,
+          "ce_rank": 10,
+          "d_rank": 8,
+          "d_doc_rank": 1,
+          "blend_score": 0.8374271534718287,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            "claude-fable-5",
+            "claude-mythos-5",
+            "thinking"
+          ],
+          "exact_match_guard_triggered": false,
+          "exact_match_guard_note": "SYSTEM-D is score_blend; the EXP-016 clamp/guard is not applied. identifier_overlap is recorded only as a diagnostic.",
+          "would_have_been_clamp_protected": false,
+          "ce_pair_truncated": true,
+          "a_in_top_10_stored": false,
+          "d_in_top_10": true,
+          "excerpt": "## Migrating to Claude Mythos 5 and Claude Fable 5 [Claude Fable 5](https://platform.claude.com/docs/en/about-claude/models/introducing-claude-fable-5-and-claude-mythos-5) is Anthropic's most capable widely released mod…"
+        }
+      ],
+      "n_identifier_overlap_in_pool": 40,
+      "latency_ms": {
+        "system_a_retrieval": 423.19,
+        "cross_encoder": 4648.81,
+        "total": 5169.31
+      }
+    },
+    {
+      "case_id": "GOLD-B001-07",
+      "a_full_recorded": true,
+      "a_full_rematerialized": true,
+      "d_full": true,
+      "pool_size": 89,
+      "all_spans_in_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_07f0431749a3c4c9d063a3d39f90388a8876014e",
+          "version_id": "ver_77fbe47b4b7db32ee46b972b2f611d0e",
+          "section_path": [
+            "Mid-conversation tool changes"
+          ],
+          "a_rank_stored": 1,
+          "a_doc_rank_stored": 1,
+          "a_rank_rematerialized": 1,
+          "a_rank": 1,
+          "a_score": 0.03278688524590164,
+          "ce_score": 7.294500350952148,
+          "ce_rank": 1,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "blend_score": 1.0,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            "mid-conversation",
+            "tools"
+          ],
+          "exact_match_guard_triggered": false,
+          "exact_match_guard_note": "SYSTEM-D is score_blend; the EXP-016 clamp/guard is not applied. identifier_overlap is recorded only as a diagnostic.",
+          "would_have_been_clamp_protected": true,
+          "ce_pair_truncated": true,
+          "a_in_top_10_stored": true,
+          "d_in_top_10": true,
+          "excerpt": "## Mid-conversation tool changes The `tools` array sits even earlier in the hashed request prefix than the top-level `system` field, so editing it invalidates the [prompt cache](https://platform.claude.com/docs/en/build…"
+        }
+      ],
+      "n_identifier_overlap_in_pool": 28,
+      "latency_ms": {
+        "system_a_retrieval": 644.92,
+        "cross_encoder": 4925.78,
+        "total": 5687.85
+      }
+    },
+    {
+      "case_id": "GOLD-B001-10",
+      "a_full_recorded": true,
+      "a_full_rematerialized": true,
+      "d_full": true,
+      "pool_size": 93,
+      "all_spans_in_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_2124487ad93d57da3e8d3afbc695294fa50f608d",
+          "version_id": "ver_f30a6447e4df2ab76e4c1475f353109c",
+          "section_path": [
+            "OpenAI TypeScript and JavaScript API Library",
+            "Usage",
+            "Multi-turn conversations"
+          ],
+          "a_rank_stored": 1,
+          "a_doc_rank_stored": 1,
+          "a_rank_rematerialized": 1,
+          "a_rank": 1,
+          "a_score": 0.03278688524590164,
+          "ce_score": 6.444435119628906,
+          "ce_rank": 1,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "blend_score": 1.0,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            "API",
+            "response.output"
+          ],
+          "exact_match_guard_triggered": false,
+          "exact_match_guard_note": "SYSTEM-D is score_blend; the EXP-016 clamp/guard is not applied. identifier_overlap is recorded only as a diagnostic.",
+          "would_have_been_clamp_protected": true,
+          "ce_pair_truncated": false,
+          "a_in_top_10_stored": true,
+          "d_in_top_10": true,
+          "excerpt": "### Multi-turn conversations When you manage Responses API conversation history manually, preserve output items in order. Filtering `response.output` to messages can drop required reasoning or tool-call items and cause …"
+        }
+      ],
+      "n_identifier_overlap_in_pool": 29,
+      "latency_ms": {
+        "system_a_retrieval": 427.17,
+        "cross_encoder": 5076.72,
+        "total": 5572.98
+      }
+    },
+    {
+      "case_id": "GOLD-B002-01",
+      "a_full_recorded": true,
+      "a_full_rematerialized": true,
+      "d_full": true,
+      "pool_size": 93,
+      "all_spans_in_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_d99c6b3bf495f44a11ddd3f304854b3f177db36d",
+          "version_id": "ver_1c53b961e1f5da8124a1e7e8eb92c941",
+          "section_path": [
+            "Client-side compaction (SDK)",
+            "Configuration options"
+          ],
+          "a_rank_stored": 2,
+          "a_doc_rank_stored": 1,
+          "a_rank_rematerialized": 2,
+          "a_rank": 2,
+          "a_score": 0.02803921568627451,
+          "ce_score": 0.08612716943025589,
+          "ce_rank": 17,
+          "d_rank": 4,
+          "d_doc_rank": 2,
+          "blend_score": 0.8002287213734721,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            "summary_prompt"
+          ],
+          "exact_match_guard_triggered": false,
+          "exact_match_guard_note": "SYSTEM-D is score_blend; the EXP-016 clamp/guard is not applied. identifier_overlap is recorded only as a diagnostic.",
+          "would_have_been_clamp_protected": true,
+          "ce_pair_truncated": false,
+          "a_in_top_10_stored": true,
+          "d_in_top_10": true,
+          "excerpt": "### Configuration options | Parameter | Type | Required | Default | Description | | ------------------------- | ------- | -------- | --------------------------------------------------------------------------------------…"
+        }
+      ],
+      "n_identifier_overlap_in_pool": 3,
+      "latency_ms": {
+        "system_a_retrieval": 429.34,
+        "cross_encoder": 6258.06,
+        "total": 6761.35
+      }
+    },
+    {
+      "case_id": "GOLD-B002-02",
+      "a_full_recorded": false,
+      "a_full_rematerialized": false,
+      "d_full": false,
+      "pool_size": 90,
+      "all_spans_in_pool": false,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": null,
+          "version_id": "ver_279d37a3a0cc4e8a9209e01f16f9df88",
+          "section_path": [
+            "MCP server configuration",
+            "Field descriptions"
+          ],
+          "a_rank_stored": null,
+          "a_doc_rank_stored": 2,
+          "a_rank_rematerialized": null,
+          "a_rank": null,
+          "a_score": null,
+          "ce_score": null,
+          "ce_rank": null,
+          "d_rank": null,
+          "d_doc_rank": 4,
+          "blend_score": null,
+          "identifier_overlap": false,
+          "overlap_tokens": [],
+          "exact_match_guard_triggered": false,
+          "exact_match_guard_note": "SYSTEM-D is score_blend; the EXP-016 clamp/guard is not applied. identifier_overlap is recorded only as a diagnostic.",
+          "would_have_been_clamp_protected": false,
+          "ce_pair_truncated": false,
+          "a_in_top_10_stored": false,
+          "d_in_top_10": false,
+          "excerpt": null
+        }
+      ],
+      "n_identifier_overlap_in_pool": 65,
+      "latency_ms": {
+        "system_a_retrieval": 413.71,
+        "cross_encoder": 5084.64,
+        "total": 5551.58
+      }
+    },
+    {
+      "case_id": "GOLD-B002-07",
+      "a_full_recorded": false,
+      "a_full_rematerialized": false,
+      "d_full": true,
+      "pool_size": 98,
+      "all_spans_in_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_dbba4dd3b9158e45d326d715e2e7170b90d7bbf6",
+          "version_id": "ver_c60f7418b69b6610bd20e974b92cdd8c",
+          "section_path": [
+            "Parameters"
+          ],
+          "a_rank_stored": 24,
+          "a_doc_rank_stored": 1,
+          "a_rank_rematerialized": 24,
+          "a_rank": 24,
+          "a_score": 0.013888888888888888,
+          "ce_score": 3.329503059387207,
+          "ce_rank": 7,
+          "d_rank": 7,
+          "d_doc_rank": 1,
+          "blend_score": 0.6453119452412627,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            "pause_after_compaction"
+          ],
+          "exact_match_guard_triggered": false,
+          "exact_match_guard_note": "SYSTEM-D is score_blend; the EXP-016 clamp/guard is not applied. identifier_overlap is recorded only as a diagnostic.",
+          "would_have_been_clamp_protected": false,
+          "ce_pair_truncated": false,
+          "a_in_top_10_stored": false,
+          "d_in_top_10": true,
+          "excerpt": "## Parameters | Parameter | Type | Default | Description | | ------------------------ | ------- | ------------------------------------------- | ---------------------------------------------------------------------------…"
+        }
+      ],
+      "n_identifier_overlap_in_pool": 9,
+      "latency_ms": {
+        "system_a_retrieval": 338.67,
+        "cross_encoder": 5514.98,
+        "total": 5911.19
+      }
+    },
+    {
+      "case_id": "GOLD-B002-10",
+      "a_full_recorded": true,
+      "a_full_rematerialized": true,
+      "d_full": true,
+      "pool_size": 91,
+      "all_spans_in_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_6c43f80384e28b51321d7a8a5720468d98e1715d",
+          "version_id": "ver_0865c9612dfe97d8f30dd870dd12e53e",
+          "section_path": [
+            "JSON outputs",
+            "Working with JSON outputs in SDKs",
+            "SDK-specific methods"
+          ],
+          "a_rank_stored": 1,
+          "a_doc_rank_stored": 1,
+          "a_rank_rematerialized": 1,
+          "a_rank": 1,
+          "a_score": 0.03278688524590164,
+          "ce_score": 7.99785041809082,
+          "ce_rank": 1,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "blend_score": 1.0,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            "parse()"
+          ],
+          "exact_match_guard_triggered": false,
+          "exact_match_guard_note": "SYSTEM-D is score_blend; the EXP-016 clamp/guard is not applied. identifier_overlap is recorded only as a diagnostic.",
+          "would_have_been_clamp_protected": true,
+          "ce_pair_truncated": false,
+          "a_in_top_10_stored": true,
+          "d_in_top_10": true,
+          "excerpt": "</Tab> <Tab title=\"Python\"> **`client.messages.parse()` (Recommended)** The `parse()` method automatically transforms your Pydantic model, validates the response, and returns a `parsed_output` attribute."
+        }
+      ],
+      "n_identifier_overlap_in_pool": 3,
+      "latency_ms": {
+        "system_a_retrieval": 476.3,
+        "cross_encoder": 5119.08,
+        "total": 5651.38
+      }
+    },
+    {
+      "case_id": "GOLD-B002-18",
+      "a_full_recorded": true,
+      "a_full_rematerialized": true,
+      "d_full": true,
+      "pool_size": 89,
+      "all_spans_in_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_999930d88301a940f1d0e4bc870c1524f51e0dde",
+          "version_id": "ver_fa78e1feb6289d6bcb22305e61bbbfc3",
+          "section_path": [
+            "Server-side fallback",
+            "Naming your own fallback models"
+          ],
+          "a_rank_stored": 1,
+          "a_doc_rank_stored": 1,
+          "a_rank_rematerialized": 1,
+          "a_rank": 1,
+          "a_score": 0.031544957774465976,
+          "ce_score": 2.440722703933716,
+          "ce_rank": 1,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "blend_score": 1.0,
+          "identifier_overlap": false,
+          "overlap_tokens": [],
+          "exact_match_guard_triggered": false,
+          "exact_match_guard_note": "SYSTEM-D is score_blend; the EXP-016 clamp/guard is not applied. identifier_overlap is recorded only as a diagnostic.",
+          "would_have_been_clamp_protected": false,
+          "ce_pair_truncated": false,
+          "a_in_top_10_stored": true,
+          "d_in_top_10": true,
+          "excerpt": "</CodeGroup> A few rules apply to the `fallbacks` list: * Entries are tried in order. Each must be distinct from the other entries and from the requested model. * Each entry must be one of the requested model's permitte…"
+        }
+      ],
+      "n_identifier_overlap_in_pool": 18,
+      "latency_ms": {
+        "system_a_retrieval": 391.29,
+        "cross_encoder": 4843.96,
+        "total": 5350.8
+      }
+    },
+    {
+      "case_id": "GOLD-B003-02",
+      "a_full_recorded": true,
+      "a_full_rematerialized": true,
+      "d_full": true,
+      "pool_size": 93,
+      "all_spans_in_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_165cb30e358e61a3f1d70a889c650b42959d6c70",
+          "version_id": "ver_90de89ac7da393e4d9056cf12204d046",
+          "section_path": [
+            "Skill structure",
+            "Writing effective descriptions"
+          ],
+          "a_rank_stored": 2,
+          "a_doc_rank_stored": 2,
+          "a_rank_rematerialized": 2,
+          "a_rank": 2,
+          "a_score": 0.03225806451612903,
+          "ce_score": 7.472160339355469,
+          "ce_rank": 1,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "blend_score": 0.9998913426427444,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            "description"
+          ],
+          "exact_match_guard_triggered": false,
+          "exact_match_guard_note": "SYSTEM-D is score_blend; the EXP-016 clamp/guard is not applied. identifier_overlap is recorded only as a diagnostic.",
+          "would_have_been_clamp_protected": true,
+          "ce_pair_truncated": false,
+          "a_in_top_10_stored": true,
+          "d_in_top_10": true,
+          "excerpt": "### Writing effective descriptions The `description` field enables Skill discovery and should include both what the Skill does and when to use it. <Warning> **Always write in third person**. The description is injected …"
+        }
+      ],
+      "n_identifier_overlap_in_pool": 9,
+      "latency_ms": {
+        "system_a_retrieval": 478.49,
+        "cross_encoder": 5425.42,
+        "total": 5976.67
+      }
+    },
+    {
+      "case_id": "GOLD-B003-08",
+      "a_full_recorded": true,
+      "a_full_rematerialized": true,
+      "d_full": true,
+      "pool_size": 95,
+      "all_spans_in_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_7681ff2b4c5f16e8f5e398c4648b509f1501f1c4",
+          "version_id": "ver_72833144cee232446fa450e9e040995a",
+          "section_path": [
+            "Use the text editor tool",
+            "Text editor tool commands",
+            "str\\_replace"
+          ],
+          "a_rank_stored": 4,
+          "a_doc_rank_stored": 4,
+          "a_rank_rematerialized": 4,
+          "a_rank": 4,
+          "a_score": 0.028693528693528692,
+          "ce_score": 3.712207317352295,
+          "ce_rank": 2,
+          "d_rank": 2,
+          "d_doc_rank": 2,
+          "blend_score": 0.8120495199474077,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            "old_str"
+          ],
+          "exact_match_guard_triggered": false,
+          "exact_match_guard_note": "SYSTEM-D is score_blend; the EXP-016 clamp/guard is not applied. identifier_overlap is recorded only as a diagnostic.",
+          "would_have_been_clamp_protected": false,
+          "ce_pair_truncated": false,
+          "a_in_top_10_stored": true,
+          "d_in_top_10": true,
+          "excerpt": "#### str\\_replace The `str_replace` command allows Claude to replace a specific string in a file with a new string. This is used for making precise edits. Parameters: * `command`: Must be \"str\\_replace\" * `path`: The pa…"
+        }
+      ],
+      "n_identifier_overlap_in_pool": 12,
+      "latency_ms": {
+        "system_a_retrieval": 376.25,
+        "cross_encoder": 5297.61,
+        "total": 5725.25
+      }
+    },
+    {
+      "case_id": "GOLD-B003-11",
+      "a_full_recorded": true,
+      "a_full_rematerialized": true,
+      "d_full": true,
+      "pool_size": 82,
+      "all_spans_in_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_1d5a3ad5b7b9f587ae681fd223f25e97f7cf42d1",
+          "version_id": "ver_a7bda3595f2c124605c3228464d4ee52",
+          "section_path": [
+            "Opus migration",
+            "Breaking changes"
+          ],
+          "a_rank_stored": 1,
+          "a_doc_rank_stored": 1,
+          "a_rank_rematerialized": 1,
+          "a_rank": 1,
+          "a_score": 0.032266458495966696,
+          "ce_score": 6.536500930786133,
+          "ce_rank": 5,
+          "d_rank": 2,
+          "d_doc_rank": 2,
+          "blend_score": 0.9580643905664556,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            "4.7",
+            "budget_tokens",
+            "thinking: {type: \"enabled\", budget_tokens: N",
+            "thinking: {type: \"enabled\", budget_tokens: N}"
+          ],
+          "exact_match_guard_triggered": false,
+          "exact_match_guard_note": "SYSTEM-D is score_blend; the EXP-016 clamp/guard is not applied. identifier_overlap is recorded only as a diagnostic.",
+          "would_have_been_clamp_protected": true,
+          "ce_pair_truncated": false,
+          "a_in_top_10_stored": true,
+          "d_in_top_10": true,
+          "excerpt": "#### Breaking changes 1. **Extended thinking removed:** `thinking: {type: \"enabled\", budget_tokens: N}` is no longer supported on Claude Opus 4.7 or later models and returns a 400 error. Switch to [adaptive thinking](ht…"
+        }
+      ],
+      "n_identifier_overlap_in_pool": 59,
+      "latency_ms": {
+        "system_a_retrieval": 533.12,
+        "cross_encoder": 4419.63,
+        "total": 5038.0
+      }
+    },
+    {
+      "case_id": "GOLD-B003-15",
+      "a_full_recorded": true,
+      "a_full_rematerialized": true,
+      "d_full": true,
+      "pool_size": 98,
+      "all_spans_in_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_a606ee868c51cf03412461867f6338116f84e13f",
+          "version_id": "ver_35cac5e98c151a17f941a6142d74709f",
+          "section_path": [
+            "Agents",
+            "Tool use behavior"
+          ],
+          "a_rank_stored": 1,
+          "a_doc_rank_stored": 1,
+          "a_rank_rematerialized": 1,
+          "a_rank": 1,
+          "a_score": 0.03278688524590164,
+          "ce_score": 7.059637069702148,
+          "ce_rank": 1,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "blend_score": 1.0,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            "ToolsToFinalOutputFunction"
+          ],
+          "exact_match_guard_triggered": false,
+          "exact_match_guard_note": "SYSTEM-D is score_blend; the EXP-016 clamp/guard is not applied. identifier_overlap is recorded only as a diagnostic.",
+          "would_have_been_clamp_protected": true,
+          "ce_pair_truncated": false,
+          "a_in_top_10_stored": true,
+          "d_in_top_10": true,
+          "excerpt": "- `ToolsToFinalOutputFunction`: A custom function that processes tool results and decides whether to end the run with a final output or continue processing with the LLM."
+        }
+      ],
+      "n_identifier_overlap_in_pool": 1,
+      "latency_ms": {
+        "system_a_retrieval": 372.5,
+        "cross_encoder": 5579.77,
+        "total": 6006.29
+      }
+    },
+    {
+      "case_id": "GOLD-B003-18",
+      "a_full_recorded": true,
+      "a_full_rematerialized": true,
+      "d_full": true,
+      "pool_size": 86,
+      "all_spans_in_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_b3792274647effec04c5a81b5658d02c96ef4012",
+          "version_id": "ver_1c77f33b04ffffa285ea7e61c2a89653",
+          "section_path": [
+            "(1)!",
+            "Customizing handoffs via the `handoff()` function"
+          ],
+          "a_rank_stored": 1,
+          "a_doc_rank_stored": 1,
+          "a_rank_rematerialized": 1,
+          "a_rank": 1,
+          "a_score": 0.03278688524590164,
+          "ce_score": 6.571270942687988,
+          "ce_rank": 1,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "blend_score": 1.0,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            "handoff()",
+            "tool_description_override",
+            "tool_name_override"
+          ],
+          "exact_match_guard_triggered": false,
+          "exact_match_guard_note": "SYSTEM-D is score_blend; the EXP-016 clamp/guard is not applied. identifier_overlap is recorded only as a diagnostic.",
+          "would_have_been_clamp_protected": true,
+          "ce_pair_truncated": false,
+          "a_in_top_10_stored": true,
+          "d_in_top_10": true,
+          "excerpt": "### Customizing handoffs via the `handoff()` function The [`handoff()`][agents.handoffs.handoff] function lets you customize things. - `agent`: This is the agent to which things will be handed off. - `tool_name_override…"
+        },
+        {
+          "span_index": 1,
+          "chunk_id": "chk_b3792274647effec04c5a81b5658d02c96ef4012",
+          "version_id": "ver_1c77f33b04ffffa285ea7e61c2a89653",
+          "section_path": [
+            "(1)!",
+            "Customizing handoffs via the `handoff()` function"
+          ],
+          "a_rank_stored": 1,
+          "a_doc_rank_stored": 1,
+          "a_rank_rematerialized": 1,
+          "a_rank": 1,
+          "a_score": 0.03278688524590164,
+          "ce_score": 6.571270942687988,
+          "ce_rank": 1,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "blend_score": 1.0,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            "handoff()",
+            "tool_description_override",
+            "tool_name_override"
+          ],
+          "exact_match_guard_triggered": false,
+          "exact_match_guard_note": "SYSTEM-D is score_blend; the EXP-016 clamp/guard is not applied. identifier_overlap is recorded only as a diagnostic.",
+          "would_have_been_clamp_protected": true,
+          "ce_pair_truncated": false,
+          "a_in_top_10_stored": true,
+          "d_in_top_10": true,
+          "excerpt": "### Customizing handoffs via the `handoff()` function The [`handoff()`][agents.handoffs.handoff] function lets you customize things. - `agent`: This is the agent to which things will be handed off. - `tool_name_override…"
+        }
+      ],
+      "n_identifier_overlap_in_pool": 5,
+      "latency_ms": {
+        "system_a_retrieval": 590.2,
+        "cross_encoder": 5494.01,
+        "total": 6169.48
+      }
+    },
+    {
+      "case_id": "GOLD-B004-04",
+      "a_full_recorded": true,
+      "a_full_rematerialized": true,
+      "d_full": true,
+      "pool_size": 74,
+      "all_spans_in_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_3015928b34af6eb8959f16bcd0186fe00ffb2dd6",
+          "version_id": "ver_012b734775e7edb2649d3a9ddfd93070",
+          "section_path": [
+            "Thinking and the context window"
+          ],
+          "a_rank_stored": 9,
+          "a_doc_rank_stored": 9,
+          "a_rank_rematerialized": 9,
+          "a_rank": 9,
+          "a_score": 0.027820121951219513,
+          "ce_score": 7.940518856048584,
+          "ce_rank": 2,
+          "d_rank": 2,
+          "d_doc_rank": 2,
+          "blend_score": 0.903000570417972,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            "4.5",
+            "max_tokens"
+          ],
+          "exact_match_guard_triggered": false,
+          "exact_match_guard_note": "SYSTEM-D is score_blend; the EXP-016 clamp/guard is not applied. identifier_overlap is recorded only as a diagnostic.",
+          "would_have_been_clamp_protected": false,
+          "ce_pair_truncated": true,
+          "a_in_top_10_stored": true,
+          "d_in_top_10": true,
+          "excerpt": "## Thinking and the context window `max_tokens`, which includes all thinking Claude generates in the current turn, is enforced as a strict limit. On Claude 4.5 models and newer, if input tokens plus `max_tokens` exceeds…"
+        }
+      ],
+      "n_identifier_overlap_in_pool": 41,
+      "latency_ms": {
+        "system_a_retrieval": 595.43,
+        "cross_encoder": 3907.89,
+        "total": 4573.61
+      }
+    },
+    {
+      "case_id": "GOLD-B004-10",
+      "a_full_recorded": true,
+      "a_full_rematerialized": true,
+      "d_full": true,
+      "pool_size": 89,
+      "all_spans_in_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_51676544f6f5e5c6597321fad6e861743c0d0bc7",
+          "version_id": "ver_14a2187cf2216b9d56c213b520a28479",
+          "section_path": [
+            "Realtime agents guide",
+            "Session lifecycle"
+          ],
+          "a_rank_stored": 1,
+          "a_doc_rank_stored": 1,
+          "a_rank_rematerialized": 1,
+          "a_rank": 1,
+          "a_score": 0.03128054740957967,
+          "ce_score": 2.5646848678588867,
+          "ce_rank": 3,
+          "d_rank": 3,
+          "d_doc_rank": 3,
+          "blend_score": 0.8414589617540713,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            "OpenAIRealtimeWebSocketModel",
+            "RealtimeModel",
+            "RealtimeRunner"
+          ],
+          "exact_match_guard_triggered": false,
+          "exact_match_guard_note": "SYSTEM-D is score_blend; the EXP-016 clamp/guard is not applied. identifier_overlap is recorded only as a diagnostic.",
+          "would_have_been_clamp_protected": true,
+          "ce_pair_truncated": false,
+          "a_in_top_10_stored": true,
+          "d_in_top_10": true,
+          "excerpt": "## Session lifecycle A typical realtime session looks like this: 1. Create one or more `RealtimeAgent`s. 2. Create a `RealtimeRunner` with the starting agent. 3. Call `await runner.run()` to get a `RealtimeSession`. 4. …"
+        }
+      ],
+      "n_identifier_overlap_in_pool": 20,
+      "latency_ms": {
+        "system_a_retrieval": 321.72,
+        "cross_encoder": 4896.36,
+        "total": 5281.63
+      }
+    },
+    {
+      "case_id": "GOLD-B004-12",
+      "a_full_recorded": true,
+      "a_full_rematerialized": true,
+      "d_full": true,
+      "pool_size": 93,
+      "all_spans_in_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_a652fa838849020e2730a4b1684c34c1a689755f",
+          "version_id": "ver_12004469f7a5592cd1e6cab936117fce",
+          "section_path": [
+            "Streaming",
+            "Cancel streaming after the current turn"
+          ],
+          "a_rank_stored": 1,
+          "a_doc_rank_stored": 1,
+          "a_rank_rematerialized": 1,
+          "a_rank": 1,
+          "a_score": 0.03278688524590164,
+          "ce_score": 5.044676780700684,
+          "ce_rank": 1,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "blend_score": 1.0,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            "after_turn",
+            "cancel(mode=\"after_turn\"",
+            "cancel(mode=\"after_turn\")",
+            "result.to_input_list",
+            "result.to_input_list(mode=\"normalized\"",
+            "result.to_input_list(mode=\"normalized\")"
+          ],
+          "exact_match_guard_triggered": false,
+          "exact_match_guard_note": "SYSTEM-D is score_blend; the EXP-016 clamp/guard is not applied. identifier_overlap is recorded only as a diagnostic.",
+          "would_have_been_clamp_protected": true,
+          "ce_pair_truncated": false,
+          "a_in_top_10_stored": true,
+          "d_in_top_10": true,
+          "excerpt": "## Cancel streaming after the current turn If you need to stop a streaming run in the middle, call [`result.cancel()`][agents.result.RunResultStreaming.cancel]. By default this stops the run immediately. To let the curr…"
+        }
+      ],
+      "n_identifier_overlap_in_pool": 6,
+      "latency_ms": {
+        "system_a_retrieval": 466.31,
+        "cross_encoder": 5021.96,
+        "total": 5559.89
+      }
+    },
+    {
+      "case_id": "GOLD-B004-14",
+      "a_full_recorded": true,
+      "a_full_rematerialized": true,
+      "d_full": true,
+      "pool_size": 91,
+      "all_spans_in_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_b3792274647effec04c5a81b5658d02c96ef4012",
+          "version_id": "ver_1c77f33b04ffffa285ea7e61c2a89653",
+          "section_path": [
+            "(1)!",
+            "Customizing handoffs via the `handoff()` function"
+          ],
+          "a_rank_stored": 4,
+          "a_doc_rank_stored": 2,
+          "a_rank_rematerialized": 4,
+          "a_rank": 4,
+          "a_score": 0.029437229437229435,
+          "ce_score": 4.972515106201172,
+          "ce_rank": 3,
+          "d_rank": 3,
+          "d_doc_rank": 1,
+          "blend_score": 0.9079292675727869,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            "handoff()",
+            "input_filter"
+          ],
+          "exact_match_guard_triggered": false,
+          "exact_match_guard_note": "SYSTEM-D is score_blend; the EXP-016 clamp/guard is not applied. identifier_overlap is recorded only as a diagnostic.",
+          "would_have_been_clamp_protected": false,
+          "ce_pair_truncated": false,
+          "a_in_top_10_stored": true,
+          "d_in_top_10": true,
+          "excerpt": "### Customizing handoffs via the `handoff()` function The [`handoff()`][agents.handoffs.handoff] function lets you customize things. - `agent`: This is the agent to which things will be handed off. - `tool_name_override…"
+        },
+        {
+          "span_index": 1,
+          "chunk_id": "chk_b3792274647effec04c5a81b5658d02c96ef4012",
+          "version_id": "ver_1c77f33b04ffffa285ea7e61c2a89653",
+          "section_path": [
+            "(1)!",
+            "Customizing handoffs via the `handoff()` function"
+          ],
+          "a_rank_stored": 4,
+          "a_doc_rank_stored": 2,
+          "a_rank_rematerialized": 4,
+          "a_rank": 4,
+          "a_score": 0.029437229437229435,
+          "ce_score": 4.972515106201172,
+          "ce_rank": 3,
+          "d_rank": 3,
+          "d_doc_rank": 1,
+          "blend_score": 0.9079292675727869,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            "handoff()",
+            "input_filter"
+          ],
+          "exact_match_guard_triggered": false,
+          "exact_match_guard_note": "SYSTEM-D is score_blend; the EXP-016 clamp/guard is not applied. identifier_overlap is recorded only as a diagnostic.",
+          "would_have_been_clamp_protected": false,
+          "ce_pair_truncated": false,
+          "a_in_top_10_stored": true,
+          "d_in_top_10": true,
+          "excerpt": "### Customizing handoffs via the `handoff()` function The [`handoff()`][agents.handoffs.handoff] function lets you customize things. - `agent`: This is the agent to which things will be handed off. - `tool_name_override…"
+        }
+      ],
+      "n_identifier_overlap_in_pool": 7,
+      "latency_ms": {
+        "system_a_retrieval": 383.09,
+        "cross_encoder": 5219.03,
+        "total": 5694.65
+      }
+    },
+    {
+      "case_id": "GOLD-B005-09",
+      "a_full_recorded": true,
+      "a_full_rematerialized": true,
+      "d_full": true,
+      "pool_size": 98,
+      "all_spans_in_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_15c1a5ddd54293c0cc720b0b08d7da51fc1c1d9d",
+          "version_id": "ver_ae3bfcc42c733c5051abda30f0f6db07",
+          "section_path": [
+            "Human-in-the-loop",
+            "Marking tools that need approval"
+          ],
+          "a_rank_stored": 3,
+          "a_doc_rank_stored": 3,
+          "a_rank_rematerialized": 3,
+          "a_rank": 3,
+          "a_score": 0.01639344262295082,
+          "ce_score": 5.990063667297363,
+          "ce_rank": 1,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "blend_score": 0.8095799916736707,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            "-Infinity",
+            "Infinity",
+            "JSON",
+            "NaN",
+            "non-standard",
+            "null"
+          ],
+          "exact_match_guard_triggered": false,
+          "exact_match_guard_note": "SYSTEM-D is score_blend; the EXP-016 clamp/guard is not applied. identifier_overlap is recorded only as a diagnostic.",
+          "would_have_been_clamp_protected": true,
+          "ce_pair_truncated": false,
+          "a_in_top_10_stored": true,
+          "d_in_top_10": true,
+          "excerpt": "## Marking tools that need approval Set `needs_approval` to `True` to always require approval or provide an async function that decides per call. The callable receives the run context, parsed tool parameters, and the to…"
+        }
+      ],
+      "n_identifier_overlap_in_pool": 24,
+      "latency_ms": {
+        "system_a_retrieval": 698.74,
+        "cross_encoder": 7408.22,
+        "total": 8178.89
+      }
+    },
+    {
+      "case_id": "GOLD-B005-15",
+      "a_full_recorded": true,
+      "a_full_rematerialized": true,
+      "d_full": true,
+      "pool_size": 92,
+      "all_spans_in_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_15c2cd244a4003b5c5977a39113065a7d7c9f082",
+          "version_id": "ver_cbeb36b7cf9a5e241940a011629b6f1b",
+          "section_path": [
+            "Tools",
+            "Local runtime tools",
+            "ComputerTool and the Responses computer tool"
+          ],
+          "a_rank_stored": 2,
+          "a_doc_rank_stored": 2,
+          "a_rank_rematerialized": 2,
+          "a_rank": 2,
+          "a_score": 0.02946236559139785,
+          "ce_score": 5.044229030609131,
+          "ce_rank": 1,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "blend_score": 0.9579103266382634,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            "\"computer_use\"",
+            "\"computer_use_preview\"",
+            "ComputerTool",
+            "computer_use",
+            "computer_use_preview",
+            "tool_choice",
+            "tool_choice=\"computer\""
+          ],
+          "exact_match_guard_triggered": false,
+          "exact_match_guard_note": "SYSTEM-D is score_blend; the EXP-016 clamp/guard is not applied. identifier_overlap is recorded only as a diagnostic.",
+          "would_have_been_clamp_protected": true,
+          "ce_pair_truncated": true,
+          "a_in_top_10_stored": true,
+          "d_in_top_10": true,
+          "excerpt": "### ComputerTool and the Responses computer tool `ComputerTool` is still a local harness: you provide a [`Computer`][agents.computer.Computer] or [`AsyncComputer`][agents.computer.AsyncComputer] implementation, and the …"
+        }
+      ],
+      "n_identifier_overlap_in_pool": 13,
+      "latency_ms": {
+        "system_a_retrieval": 424.44,
+        "cross_encoder": 4694.28,
+        "total": 5226.35
+      }
+    },
+    {
+      "case_id": "GOLD-B005-17",
+      "a_full_recorded": true,
+      "a_full_rematerialized": true,
+      "d_full": true,
+      "pool_size": 98,
+      "all_spans_in_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_54f24b235eee08c3f04656ce79c5baf889005a84",
+          "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+          "section_path": [
+            "Running agents",
+            "Runner lifecycle and configuration",
+            "The agent loop"
+          ],
+          "a_rank_stored": 3,
+          "a_doc_rank_stored": 1,
+          "a_rank_rematerialized": 3,
+          "a_rank": 3,
+          "a_score": 0.01639344262295082,
+          "ce_score": 2.4644248485565186,
+          "ce_rank": 4,
+          "d_rank": 3,
+          "d_doc_rank": 2,
+          "blend_score": 0.7612269782497247,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            "max_turns"
+          ],
+          "exact_match_guard_triggered": false,
+          "exact_match_guard_note": "SYSTEM-D is score_blend; the EXP-016 clamp/guard is not applied. identifier_overlap is recorded only as a diagnostic.",
+          "would_have_been_clamp_protected": true,
+          "ce_pair_truncated": false,
+          "a_in_top_10_stored": true,
+          "d_in_top_10": true,
+          "excerpt": "### The agent loop When you call any of the three `Runner` methods above, you pass in a starting agent and input. The input can be: - a string (treated as a user message), - a list of input items in the OpenAI Responses…"
+        }
+      ],
+      "n_identifier_overlap_in_pool": 7,
+      "latency_ms": {
+        "system_a_retrieval": 344.27,
+        "cross_encoder": 5293.54,
+        "total": 5706.44
+      }
+    },
+    {
+      "case_id": "GOLD-B005-19",
+      "a_full_recorded": true,
+      "a_full_rematerialized": true,
+      "d_full": true,
+      "pool_size": 98,
+      "all_spans_in_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_54006b7f8b94adace97a13e8d2aff0b2063406de",
+          "version_id": "ver_e8a7b17b5af64679cadea33cd8f6d250",
+          "section_path": [
+            "Migration guide",
+            "Breaking changes",
+            "Removed `httpAgent` in favor of `fetchOptions`"
+          ],
+          "a_rank_stored": 1,
+          "a_doc_rank_stored": 1,
+          "a_rank_rematerialized": 1,
+          "a_rank": 1,
+          "a_score": 0.031054405392392875,
+          "ce_score": 4.976891994476318,
+          "ce_rank": 1,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "blend_score": 1.0,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            "httpAgent"
+          ],
+          "exact_match_guard_triggered": false,
+          "exact_match_guard_note": "SYSTEM-D is score_blend; the EXP-016 clamp/guard is not applied. identifier_overlap is recorded only as a diagnostic.",
+          "would_have_been_clamp_protected": true,
+          "ce_pair_truncated": false,
+          "a_in_top_10_stored": true,
+          "d_in_top_10": true,
+          "excerpt": "### Removed `httpAgent` in favor of `fetchOptions` The `httpAgent` client option has been removed in favor of a [platform-specific `fetchOptions` property](https://github.com/openai/openai-node#fetch-options). This chan…"
+        }
+      ],
+      "n_identifier_overlap_in_pool": 2,
+      "latency_ms": {
+        "system_a_retrieval": 293.49,
+        "cross_encoder": 5996.16,
+        "total": 6328.76
+      }
+    },
+    {
+      "case_id": "GOLD-B006-03",
+      "a_full_recorded": false,
+      "a_full_rematerialized": false,
+      "d_full": false,
+      "pool_size": 86,
+      "all_spans_in_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_0fc166dbfa8a2094c749b75ca01f26e45573afa2",
+          "version_id": "ver_f65938c74d40ac1e288f169d3d0435b7",
+          "section_path": [
+            "Model compatibility"
+          ],
+          "a_rank_stored": 22,
+          "a_doc_rank_stored": 13,
+          "a_rank_rematerialized": 22,
+          "a_rank": 22,
+          "a_score": 0.014492753623188406,
+          "ce_score": 2.5582940578460693,
+          "ce_rank": 14,
+          "d_rank": 18,
+          "d_doc_rank": 4,
+          "blend_score": 0.6347721442369948,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            "4.5"
+          ],
+          "exact_match_guard_triggered": false,
+          "exact_match_guard_note": "SYSTEM-D is score_blend; the EXP-016 clamp/guard is not applied. identifier_overlap is recorded only as a diagnostic.",
+          "would_have_been_clamp_protected": false,
+          "ce_pair_truncated": true,
+          "a_in_top_10_stored": false,
+          "d_in_top_10": false,
+          "excerpt": "## Model compatibility The code execution tool is available on the following models: | Model | Tool versions | | ---------------------------------------------- | ---------------------------------------------------------…"
+        }
+      ],
+      "n_identifier_overlap_in_pool": 45,
+      "latency_ms": {
+        "system_a_retrieval": 447.04,
+        "cross_encoder": 4706.57,
+        "total": 5229.69
+      }
+    },
+    {
+      "case_id": "GOLD-B006-04",
+      "a_full_recorded": true,
+      "a_full_rematerialized": true,
+      "d_full": true,
+      "pool_size": 85,
+      "all_spans_in_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_637dd0da1f102d7a1b7e3be4de64f3729aa5d601",
+          "version_id": "ver_238961530ce62a75c61bdeead5ccb10d",
+          "section_path": [
+            "How effort works",
+            "Recommended effort levels for Claude Sonnet 5"
+          ],
+          "a_rank_stored": 1,
+          "a_doc_rank_stored": 1,
+          "a_rank_rematerialized": 1,
+          "a_rank": 1,
+          "a_score": 0.032018442622950824,
+          "ce_score": 9.629470825195312,
+          "ce_rank": 1,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "blend_score": 1.0,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            "5",
+            "API"
+          ],
+          "exact_match_guard_triggered": false,
+          "exact_match_guard_note": "SYSTEM-D is score_blend; the EXP-016 clamp/guard is not applied. identifier_overlap is recorded only as a diagnostic.",
+          "would_have_been_clamp_protected": true,
+          "ce_pair_truncated": false,
+          "a_in_top_10_stored": true,
+          "d_in_top_10": true,
+          "excerpt": "### Recommended effort levels for Claude Sonnet 5 Claude Sonnet 5 defaults to `high` effort on the Claude API and Claude Code. * **High effort (default):** Suitable for complex reasoning, coding, and agentic tasks where…"
+        }
+      ],
+      "n_identifier_overlap_in_pool": 62,
+      "latency_ms": {
+        "system_a_retrieval": 572.44,
+        "cross_encoder": 4533.6,
+        "total": 5175.11
+      }
+    },
+    {
+      "case_id": "HA-07",
+      "a_full_recorded": false,
+      "a_full_rematerialized": false,
+      "d_full": false,
+      "pool_size": 90,
+      "all_spans_in_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_9e9cb342bd309c132d55e2003754887d2faa2c9e",
+          "version_id": "ver_e818e78755f8e2a71b458c743ce52db1",
+          "section_path": [
+            "Realtime transport",
+            "Server-side WebSocket is the default Python path",
+            "Low-level WebSocket tuning"
+          ],
+          "a_rank_stored": 12,
+          "a_doc_rank_stored": 1,
+          "a_rank_rematerialized": 12,
+          "a_rank": 12,
+          "a_score": 0.016129032258064516,
+          "ce_score": -4.7431135177612305,
+          "ce_rank": 81,
+          "d_rank": 70,
+          "d_doc_rank": 1,
+          "blend_score": 0.41146820949543883,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            "OpenAIRealtimeWebSocketModel",
+            "transport_config"
+          ],
+          "exact_match_guard_triggered": false,
+          "exact_match_guard_note": "SYSTEM-D is score_blend; the EXP-016 clamp/guard is not applied. identifier_overlap is recorded only as a diagnostic.",
+          "would_have_been_clamp_protected": false,
+          "ce_pair_truncated": false,
+          "a_in_top_10_stored": false,
+          "d_in_top_10": false,
+          "excerpt": "### Low-level WebSocket tuning Pass `transport_config` to `OpenAIRealtimeWebSocketModel` when you need to tune the underlying server-side WebSocket connection:"
+        },
+        {
+          "span_index": 1,
+          "chunk_id": "chk_0b5c227d373c9e8a9cb290372e1dce9ef897b5a0",
+          "version_id": "ver_e818e78755f8e2a71b458c743ce52db1",
+          "section_path": [
+            "Realtime transport",
+            "Server-side WebSocket is the default Python path",
+            "Low-level WebSocket tuning"
+          ],
+          "a_rank_stored": 23,
+          "a_doc_rank_stored": 1,
+          "a_rank_rematerialized": 23,
+          "a_rank": 23,
+          "a_score": 0.014285714285714285,
+          "ce_score": -1.400468111038208,
+          "ce_rank": 52,
+          "d_rank": 47,
+          "d_doc_rank": 1,
+          "blend_score": 0.5410517872708407,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            "SDK",
+            "max_size"
+          ],
+          "exact_match_guard_triggered": false,
+          "exact_match_guard_note": "SYSTEM-D is score_blend; the EXP-016 clamp/guard is not applied. identifier_overlap is recorded only as a diagnostic.",
+          "would_have_been_clamp_protected": false,
+          "ce_pair_truncated": false,
+          "a_in_top_10_stored": false,
+          "d_in_top_10": false,
+          "excerpt": "The supported options are: - `ping_interval`: Seconds between client keepalive pings. Set `None` to disable pings. - `ping_timeout`: Seconds to wait for a pong before disconnecting. Set `None` to tolerate delayed pongs …"
+        }
+      ],
+      "n_identifier_overlap_in_pool": 60,
+      "latency_ms": {
+        "system_a_retrieval": 709.81,
+        "cross_encoder": 5450.84,
+        "total": 6220.02
+      }
+    },
+    {
+      "case_id": "HA-08",
+      "a_full_recorded": true,
+      "a_full_rematerialized": true,
+      "d_full": true,
+      "pool_size": 91,
+      "all_spans_in_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_73fa6f201ebe4d053467e93912876caa5dcc9533",
+          "version_id": "ver_f15e1a531d680bb98179238f80355058",
+          "section_path": [
+            "Configuration",
+            "Configuration objects and dictionaries"
+          ],
+          "a_rank_stored": 1,
+          "a_doc_rank_stored": 1,
+          "a_rank_rematerialized": 1,
+          "a_rank": 1,
+          "a_score": 0.030886196246139225,
+          "ce_score": 4.239155292510986,
+          "ce_rank": 1,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "blend_score": 1.0,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            "SDK"
+          ],
+          "exact_match_guard_triggered": false,
+          "exact_match_guard_note": "SYSTEM-D is score_blend; the EXP-016 clamp/guard is not applied. identifier_overlap is recorded only as a diagnostic.",
+          "would_have_been_clamp_protected": true,
+          "ce_pair_truncated": false,
+          "a_in_top_10_stored": true,
+          "d_in_top_10": true,
+          "excerpt": "The SDK normalizes these dictionaries into the corresponding settings objects. Unknown fields in dataclass configuration types defined by the SDK raise `TypeError`, which helps catch misspelled option names early. Check…"
+        }
+      ],
+      "n_identifier_overlap_in_pool": 54,
+      "latency_ms": {
+        "system_a_retrieval": 659.28,
+        "cross_encoder": 5279.55,
+        "total": 5996.36
+      }
+    },
+    {
+      "case_id": "HA-10",
+      "a_full_recorded": true,
+      "a_full_rematerialized": true,
+      "d_full": true,
+      "pool_size": 80,
+      "all_spans_in_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_9fce033fa3e586e30733c833b6fdc857f4ec67d4",
+          "version_id": "ver_f15e1a531d680bb98179238f80355058",
+          "section_path": [
+            "Configuration",
+            "Tracing"
+          ],
+          "a_rank_stored": 1,
+          "a_doc_rank_stored": 1,
+          "a_rank_rematerialized": 1,
+          "a_rank": 1,
+          "a_score": 0.03252247488101534,
+          "ce_score": 6.616453647613525,
+          "ce_rank": 1,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "blend_score": 1.0,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            "OpenAI"
+          ],
+          "exact_match_guard_triggered": false,
+          "exact_match_guard_note": "SYSTEM-D is score_blend; the EXP-016 clamp/guard is not applied. identifier_overlap is recorded only as a diagnostic.",
+          "would_have_been_clamp_protected": true,
+          "ce_pair_truncated": false,
+          "a_in_top_10_stored": true,
+          "d_in_top_10": true,
+          "excerpt": "If your model traffic uses one key or client but tracing should use a different OpenAI key, pass `use_for_tracing=False` when setting the default key or client, then configure tracing separately. The same pattern works …"
+        }
+      ],
+      "n_identifier_overlap_in_pool": 54,
+      "latency_ms": {
+        "system_a_retrieval": 684.12,
+        "cross_encoder": 4383.18,
+        "total": 5120.6
+      }
+    },
+    {
+      "case_id": "HA-12",
+      "a_full_recorded": true,
+      "a_full_rematerialized": true,
+      "d_full": true,
+      "pool_size": 83,
+      "all_spans_in_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_b17099fe75c44006e954e286fa820bb2685015c4",
+          "version_id": "ver_f22fbd5c504fa28a4e70440337e4a495",
+          "section_path": [
+            "Guardrails",
+            "Tripwires"
+          ],
+          "a_rank_stored": 2,
+          "a_doc_rank_stored": 1,
+          "a_rank_rematerialized": 2,
+          "a_rank": 2,
+          "a_score": 0.03252247488101534,
+          "ce_score": 2.870448589324951,
+          "ce_rank": 1,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "blend_score": 1.0,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            "agent-level"
+          ],
+          "exact_match_guard_triggered": false,
+          "exact_match_guard_note": "SYSTEM-D is score_blend; the EXP-016 clamp/guard is not applied. identifier_overlap is recorded only as a diagnostic.",
+          "would_have_been_clamp_protected": true,
+          "ce_pair_truncated": false,
+          "a_in_top_10_stored": true,
+          "d_in_top_10": true,
+          "excerpt": "## Tripwires If an agent input or output fails a guardrail, the guardrail can signal this with a tripwire. The runner immediately raises an `InputGuardrailTripwireTriggered` or `OutputGuardrailTripwireTriggered` excepti…"
+        }
+      ],
+      "n_identifier_overlap_in_pool": 47,
+      "latency_ms": {
+        "system_a_retrieval": 545.19,
+        "cross_encoder": 4660.76,
+        "total": 5269.12
+      }
+    },
+    {
+      "case_id": "HA-15",
+      "a_full_recorded": true,
+      "a_full_rematerialized": true,
+      "d_full": true,
+      "pool_size": 93,
+      "all_spans_in_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_3103771531694781f439051781da0bad51eee0ba",
+          "version_id": "ver_1c77f33b04ffffa285ea7e61c2a89653",
+          "section_path": [
+            "(1)!",
+            "Handoff inputs"
+          ],
+          "a_rank_stored": 1,
+          "a_doc_rank_stored": 1,
+          "a_rank_rematerialized": 1,
+          "a_rank": 1,
+          "a_score": 0.03278688524590164,
+          "ce_score": 6.158742904663086,
+          "ce_rank": 1,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "blend_score": 1.0,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            "JSON",
+            "SDK",
+            "input_type"
+          ],
+          "exact_match_guard_triggered": false,
+          "exact_match_guard_note": "SYSTEM-D is score_blend; the EXP-016 clamp/guard is not applied. identifier_overlap is recorded only as a diagnostic.",
+          "would_have_been_clamp_protected": true,
+          "ce_pair_truncated": false,
+          "a_in_top_10_stored": true,
+          "d_in_top_10": true,
+          "excerpt": "`input_type` describes the arguments for the handoff tool call itself. The SDK exposes that schema to the model as the handoff tool's `parameters`, validates the returned JSON locally, and passes the parsed value to `on…"
+        }
+      ],
+      "n_identifier_overlap_in_pool": 71,
+      "latency_ms": {
+        "system_a_retrieval": 583.24,
+        "cross_encoder": 5110.34,
+        "total": 5757.89
+      }
+    },
+    {
+      "case_id": "HA-18",
+      "a_full_recorded": true,
+      "a_full_rematerialized": true,
+      "d_full": true,
+      "pool_size": 89,
+      "all_spans_in_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_91b59aa08660b93d3aa57ac22f7367bb361d3794",
+          "version_id": "ver_ae3bfcc42c733c5051abda30f0f6db07",
+          "section_path": [
+            "Human-in-the-loop",
+            "How the approval flow works"
+          ],
+          "a_rank_stored": 10,
+          "a_doc_rank_stored": 10,
+          "a_rank_rematerialized": 10,
+          "a_rank": 10,
+          "a_score": 0.020416666666666666,
+          "ce_score": 2.2658040523529053,
+          "ce_rank": 3,
+          "d_rank": 4,
+          "d_doc_rank": 4,
+          "blend_score": 0.842587797253276,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            "SDK"
+          ],
+          "exact_match_guard_triggered": false,
+          "exact_match_guard_note": "SYSTEM-D is score_blend; the EXP-016 clamp/guard is not applied. identifier_overlap is recorded only as a diagnostic.",
+          "would_have_been_clamp_protected": false,
+          "ce_pair_truncated": true,
+          "a_in_top_10_stored": true,
+          "d_in_top_10": true,
+          "excerpt": "## How the approval flow works 1. When the model emits a tool call, the runner evaluates its approval rule (`needs_approval`, `require_approval`, or the hosted MCP equivalent). 2. If an approval decision for that tool c…"
+        }
+      ],
+      "n_identifier_overlap_in_pool": 57,
+      "latency_ms": {
+        "system_a_retrieval": 534.93,
+        "cross_encoder": 4926.25,
+        "total": 5515.9
+      }
+    },
+    {
+      "case_id": "HA-29",
+      "a_full_recorded": false,
+      "a_full_rematerialized": false,
+      "d_full": false,
+      "pool_size": 82,
+      "all_spans_in_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_b81a9e7e718403f09b36f77539bec32ba5abd938",
+          "version_id": "ver_f15e1a531d680bb98179238f80355058",
+          "section_path": [
+            "Configuration",
+            "API keys and clients",
+            "Custom HTTP clients with `openai` v3"
+          ],
+          "a_rank_stored": 31,
+          "a_doc_rank_stored": 2,
+          "a_rank_rematerialized": 31,
+          "a_rank": 31,
+          "a_score": 0.013333333333333334,
+          "ce_score": 5.831306457519531,
+          "ce_rank": 9,
+          "d_rank": 19,
+          "d_doc_rank": 1,
+          "blend_score": 0.6292162561868384,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            "API",
+            "OpenAI"
+          ],
+          "exact_match_guard_triggered": false,
+          "exact_match_guard_note": "SYSTEM-D is score_blend; the EXP-016 clamp/guard is not applied. identifier_overlap is recorded only as a diagnostic.",
+          "would_have_been_clamp_protected": false,
+          "ce_pair_truncated": false,
+          "a_in_top_10_stored": false,
+          "d_in_top_10": false,
+          "excerpt": "Finally, you can also customize the OpenAI API that is used. By default, we use the OpenAI Responses API. You can override this to use the Chat Completions API by using the [set_default_openai_api()][agents.set_default_…"
+        }
+      ],
+      "n_identifier_overlap_in_pool": 55,
+      "latency_ms": {
+        "system_a_retrieval": 610.86,
+        "cross_encoder": 4758.07,
+        "total": 5404.53
+      }
+    },
+    {
+      "case_id": "HA-32",
+      "a_full_recorded": true,
+      "a_full_rematerialized": true,
+      "d_full": true,
+      "pool_size": 79,
+      "all_spans_in_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_560d301ea4cdcc24ce9c7d269b14a6e0bc4f5953",
+          "version_id": "ver_f15e1a531d680bb98179238f80355058",
+          "section_path": [
+            "Configuration",
+            "Debug logging"
+          ],
+          "a_rank_stored": 1,
+          "a_doc_rank_stored": 1,
+          "a_rank_rematerialized": 1,
+          "a_rank": 1,
+          "a_score": 0.03278688524590164,
+          "ce_score": 8.038390159606934,
+          "ce_rank": 1,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "blend_score": 1.0,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            "SDK",
+            "openai.agents",
+            "openai.agents.tracing"
+          ],
+          "exact_match_guard_triggered": false,
+          "exact_match_guard_note": "SYSTEM-D is score_blend; the EXP-016 clamp/guard is not applied. identifier_overlap is recorded only as a diagnostic.",
+          "would_have_been_clamp_protected": true,
+          "ce_pair_truncated": false,
+          "a_in_top_10_stored": true,
+          "d_in_top_10": true,
+          "excerpt": "## Debug logging The SDK defines two Python loggers (`openai.agents` and `openai.agents.tracing`) and does not attach handlers by default. Logs follow your application's Python logging configuration. To enable verbose l…"
+        }
+      ],
+      "n_identifier_overlap_in_pool": 55,
+      "latency_ms": {
+        "system_a_retrieval": 703.59,
+        "cross_encoder": 5123.19,
+        "total": 5868.13
+      }
+    },
+    {
+      "case_id": "HA-36",
+      "a_full_recorded": true,
+      "a_full_rematerialized": true,
+      "d_full": true,
+      "pool_size": 87,
+      "all_spans_in_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_c3e405a5d766f89e5c02d04e02169c115dd4cb73",
+          "version_id": "ver_fef74b4dda29e84a533c3e83f753effd",
+          "section_path": [
+            "Context management",
+            "Local context"
+          ],
+          "a_rank_stored": 6,
+          "a_doc_rank_stored": 6,
+          "a_rank_rematerialized": 6,
+          "a_rank": 6,
+          "a_score": 0.0251661918328585,
+          "ce_score": 3.3210270404815674,
+          "ce_rank": 3,
+          "d_rank": 2,
+          "d_doc_rank": 2,
+          "blend_score": 0.8865166356265575,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            "SDK"
+          ],
+          "exact_match_guard_triggered": false,
+          "exact_match_guard_note": "SYSTEM-D is score_blend; the EXP-016 clamp/guard is not applied. identifier_overlap is recorded only as a diagnostic.",
+          "would_have_been_clamp_protected": false,
+          "ce_pair_truncated": false,
+          "a_in_top_10_stored": true,
+          "d_in_top_10": true,
+          "excerpt": "## Local context This is represented via the [`RunContextWrapper`][agents.run_context.RunContextWrapper] class and the [`context`][agents.run_context.RunContextWrapper.context] property within it. The way this works is:…"
+        }
+      ],
+      "n_identifier_overlap_in_pool": 60,
+      "latency_ms": {
+        "system_a_retrieval": 668.71,
+        "cross_encoder": 5302.88,
+        "total": 6042.52
+      }
+    },
+    {
+      "case_id": "HA-40",
+      "a_full_recorded": false,
+      "a_full_rematerialized": false,
+      "d_full": false,
+      "pool_size": 87,
+      "all_spans_in_pool": false,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": null,
+          "version_id": "ver_e818e78755f8e2a71b458c743ce52db1",
+          "section_path": [
+            "Realtime transport",
+            "Server-side WebSocket is the default Python path",
+            "Low-level WebSocket tuning"
+          ],
+          "a_rank_stored": null,
+          "a_doc_rank_stored": 5,
+          "a_rank_rematerialized": null,
+          "a_rank": null,
+          "a_score": null,
+          "ce_score": null,
+          "ce_rank": null,
+          "d_rank": null,
+          "d_doc_rank": 2,
+          "blend_score": null,
+          "identifier_overlap": false,
+          "overlap_tokens": [],
+          "exact_match_guard_triggered": false,
+          "exact_match_guard_note": "SYSTEM-D is score_blend; the EXP-016 clamp/guard is not applied. identifier_overlap is recorded only as a diagnostic.",
+          "would_have_been_clamp_protected": false,
+          "ce_pair_truncated": false,
+          "a_in_top_10_stored": false,
+          "d_in_top_10": false,
+          "excerpt": null
+        },
+        {
+          "span_index": 1,
+          "chunk_id": "chk_0b5c227d373c9e8a9cb290372e1dce9ef897b5a0",
+          "version_id": "ver_e818e78755f8e2a71b458c743ce52db1",
+          "section_path": [
+            "Realtime transport",
+            "Server-side WebSocket is the default Python path",
+            "Low-level WebSocket tuning"
+          ],
+          "a_rank_stored": 14,
+          "a_doc_rank_stored": 5,
+          "a_rank_rematerialized": 14,
+          "a_rank": 14,
+          "a_score": 0.01639344262295082,
+          "ce_score": -0.45763400197029114,
+          "ce_rank": 27,
+          "d_rank": 24,
+          "d_doc_rank": 2,
+          "blend_score": 0.5187806539202883,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            "SDK"
+          ],
+          "exact_match_guard_triggered": false,
+          "exact_match_guard_note": "SYSTEM-D is score_blend; the EXP-016 clamp/guard is not applied. identifier_overlap is recorded only as a diagnostic.",
+          "would_have_been_clamp_protected": false,
+          "ce_pair_truncated": false,
+          "a_in_top_10_stored": false,
+          "d_in_top_10": false,
+          "excerpt": "The supported options are: - `ping_interval`: Seconds between client keepalive pings. Set `None` to disable pings. - `ping_timeout`: Seconds to wait for a pong before disconnecting. Set `None` to tolerate delayed pongs …"
+        }
+      ],
+      "n_identifier_overlap_in_pool": 72,
+      "latency_ms": {
+        "system_a_retrieval": 550.08,
+        "cross_encoder": 5285.32,
+        "total": 5885.99
+      }
+    },
+    {
+      "case_id": "HA-41",
+      "a_full_recorded": false,
+      "a_full_rematerialized": false,
+      "d_full": false,
+      "pool_size": 90,
+      "all_spans_in_pool": false,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": null,
+          "version_id": "ver_e818e78755f8e2a71b458c743ce52db1",
+          "section_path": [
+            "Realtime transport",
+            "Server-side WebSocket is the default Python path",
+            "Low-level WebSocket tuning"
+          ],
+          "a_rank_stored": null,
+          "a_doc_rank_stored": 4,
+          "a_rank_rematerialized": null,
+          "a_rank": null,
+          "a_score": null,
+          "ce_score": null,
+          "ce_rank": null,
+          "d_rank": null,
+          "d_doc_rank": 1,
+          "blend_score": null,
+          "identifier_overlap": false,
+          "overlap_tokens": [],
+          "exact_match_guard_triggered": false,
+          "exact_match_guard_note": "SYSTEM-D is score_blend; the EXP-016 clamp/guard is not applied. identifier_overlap is recorded only as a diagnostic.",
+          "would_have_been_clamp_protected": false,
+          "ce_pair_truncated": false,
+          "a_in_top_10_stored": false,
+          "d_in_top_10": false,
+          "excerpt": null
+        },
+        {
+          "span_index": 1,
+          "chunk_id": null,
+          "version_id": "ver_e818e78755f8e2a71b458c743ce52db1",
+          "section_path": [
+            "Realtime transport",
+            "Server-side WebSocket is the default Python path",
+            "Low-level WebSocket tuning"
+          ],
+          "a_rank_stored": null,
+          "a_doc_rank_stored": 4,
+          "a_rank_rematerialized": null,
+          "a_rank": null,
+          "a_score": null,
+          "ce_score": null,
+          "ce_rank": null,
+          "d_rank": null,
+          "d_doc_rank": 1,
+          "blend_score": null,
+          "identifier_overlap": false,
+          "overlap_tokens": [],
+          "exact_match_guard_triggered": false,
+          "exact_match_guard_note": "SYSTEM-D is score_blend; the EXP-016 clamp/guard is not applied. identifier_overlap is recorded only as a diagnostic.",
+          "would_have_been_clamp_protected": false,
+          "ce_pair_truncated": false,
+          "a_in_top_10_stored": false,
+          "d_in_top_10": false,
+          "excerpt": null
+        }
+      ],
+      "n_identifier_overlap_in_pool": 67,
+      "latency_ms": {
+        "system_a_retrieval": 434.5,
+        "cross_encoder": 5055.46,
+        "total": 5542.77
+      }
+    },
+    {
+      "case_id": "HA-42",
+      "a_full_recorded": false,
+      "a_full_rematerialized": false,
+      "d_full": false,
+      "pool_size": 90,
+      "all_spans_in_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_9e9cb342bd309c132d55e2003754887d2faa2c9e",
+          "version_id": "ver_e818e78755f8e2a71b458c743ce52db1",
+          "section_path": [
+            "Realtime transport",
+            "Server-side WebSocket is the default Python path",
+            "Low-level WebSocket tuning"
+          ],
+          "a_rank_stored": 73,
+          "a_doc_rank_stored": 4,
+          "a_rank_rematerialized": 73,
+          "a_rank": 73,
+          "a_score": 0.009900990099009901,
+          "ce_score": -3.973207473754883,
+          "ce_rank": 67,
+          "d_rank": 72,
+          "d_doc_rank": 3,
+          "blend_score": 0.3648296524306791,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            "OpenAIRealtimeWebSocketModel"
+          ],
+          "exact_match_guard_triggered": false,
+          "exact_match_guard_note": "SYSTEM-D is score_blend; the EXP-016 clamp/guard is not applied. identifier_overlap is recorded only as a diagnostic.",
+          "would_have_been_clamp_protected": false,
+          "ce_pair_truncated": false,
+          "a_in_top_10_stored": false,
+          "d_in_top_10": false,
+          "excerpt": "### Low-level WebSocket tuning Pass `transport_config` to `OpenAIRealtimeWebSocketModel` when you need to tune the underlying server-side WebSocket connection:"
+        },
+        {
+          "span_index": 1,
+          "chunk_id": "chk_0b5c227d373c9e8a9cb290372e1dce9ef897b5a0",
+          "version_id": "ver_e818e78755f8e2a71b458c743ce52db1",
+          "section_path": [
+            "Realtime transport",
+            "Server-side WebSocket is the default Python path",
+            "Low-level WebSocket tuning"
+          ],
+          "a_rank_stored": 25,
+          "a_doc_rank_stored": 4,
+          "a_rank_rematerialized": 25,
+          "a_rank": 25,
+          "a_score": 0.014084507042253521,
+          "ce_score": -0.7706763744354248,
+          "ce_rank": 32,
+          "d_rank": 29,
+          "d_doc_rank": 3,
+          "blend_score": 0.574640124043254,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            "SDK"
+          ],
+          "exact_match_guard_triggered": false,
+          "exact_match_guard_note": "SYSTEM-D is score_blend; the EXP-016 clamp/guard is not applied. identifier_overlap is recorded only as a diagnostic.",
+          "would_have_been_clamp_protected": false,
+          "ce_pair_truncated": false,
+          "a_in_top_10_stored": false,
+          "d_in_top_10": false,
+          "excerpt": "The supported options are: - `ping_interval`: Seconds between client keepalive pings. Set `None` to disable pings. - `ping_timeout`: Seconds to wait for a pong before disconnecting. Set `None` to tolerate delayed pongs …"
+        }
+      ],
+      "n_identifier_overlap_in_pool": 73,
+      "latency_ms": {
+        "system_a_retrieval": 553.65,
+        "cross_encoder": 4915.44,
+        "total": 5538.72
+      }
+    },
+    {
+      "case_id": "HA-44",
+      "a_full_recorded": false,
+      "a_full_rematerialized": false,
+      "d_full": true,
+      "pool_size": 91,
+      "all_spans_in_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_ddacc7aafcf9a596a5302fac95ac286957de4c5c",
+          "version_id": "ver_1c77f33b04ffffa285ea7e61c2a89653",
+          "section_path": [
+            "(1)!",
+            "Input filters"
+          ],
+          "a_rank_stored": 14,
+          "a_doc_rank_stored": 1,
+          "a_rank_rematerialized": 14,
+          "a_rank": 14,
+          "a_score": 0.015625,
+          "ce_score": 3.452221393585205,
+          "ce_rank": 1,
+          "d_rank": 3,
+          "d_doc_rank": 1,
+          "blend_score": 0.7827240566037735,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            "RunConfig.handoff_input_filter",
+            "input_filter"
+          ],
+          "exact_match_guard_triggered": false,
+          "exact_match_guard_note": "SYSTEM-D is score_blend; the EXP-016 clamp/guard is not applied. identifier_overlap is recorded only as a diagnostic.",
+          "would_have_been_clamp_protected": false,
+          "ce_pair_truncated": true,
+          "a_in_top_10_stored": false,
+          "d_in_top_10": true,
+          "excerpt": "## Input filters When a handoff occurs, it's as though the new agent takes over the conversation, and gets to see the entire previous conversation history. If you want to change this, you can set an [`input_filter`][age…"
+        }
+      ],
+      "n_identifier_overlap_in_pool": 57,
+      "latency_ms": {
+        "system_a_retrieval": 552.49,
+        "cross_encoder": 4906.78,
+        "total": 5532.28
+      }
+    },
+    {
+      "case_id": "HA-47",
+      "a_full_recorded": true,
+      "a_full_rematerialized": true,
+      "d_full": true,
+      "pool_size": 85,
+      "all_spans_in_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_3103771531694781f439051781da0bad51eee0ba",
+          "version_id": "ver_1c77f33b04ffffa285ea7e61c2a89653",
+          "section_path": [
+            "(1)!",
+            "Handoff inputs"
+          ],
+          "a_rank_stored": 1,
+          "a_doc_rank_stored": 1,
+          "a_rank_rematerialized": 1,
+          "a_rank": 1,
+          "a_score": 0.03278688524590164,
+          "ce_score": 6.827807426452637,
+          "ce_rank": 1,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "blend_score": 1.0,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            "SDK",
+            "input_type"
+          ],
+          "exact_match_guard_triggered": false,
+          "exact_match_guard_note": "SYSTEM-D is score_blend; the EXP-016 clamp/guard is not applied. identifier_overlap is recorded only as a diagnostic.",
+          "would_have_been_clamp_protected": true,
+          "ce_pair_truncated": false,
+          "a_in_top_10_stored": true,
+          "d_in_top_10": true,
+          "excerpt": "`input_type` describes the arguments for the handoff tool call itself. The SDK exposes that schema to the model as the handoff tool's `parameters`, validates the returned JSON locally, and passes the parsed value to `on…"
+        }
+      ],
+      "n_identifier_overlap_in_pool": 46,
+      "latency_ms": {
+        "system_a_retrieval": 745.8,
+        "cross_encoder": 4751.96,
+        "total": 5556.14
+      }
+    },
+    {
+      "case_id": "HA-49",
+      "a_full_recorded": true,
+      "a_full_rematerialized": true,
+      "d_full": true,
+      "pool_size": 84,
+      "all_spans_in_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_11ecb8c67ad089f7f5d7efa58ecfd8651cb66db9",
+          "version_id": "ver_f22fbd5c504fa28a4e70440337e4a495",
+          "section_path": [
+            "Guardrails",
+            "Tool guardrails"
+          ],
+          "a_rank_stored": 1,
+          "a_doc_rank_stored": 1,
+          "a_rank_rematerialized": 1,
+          "a_rank": 1,
+          "a_score": 0.03278688524590164,
+          "ce_score": 5.543015956878662,
+          "ce_rank": 1,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "blend_score": 1.0,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            "SDK",
+            "function-tool"
+          ],
+          "exact_match_guard_triggered": false,
+          "exact_match_guard_note": "SYSTEM-D is score_blend; the EXP-016 clamp/guard is not applied. identifier_overlap is recorded only as a diagnostic.",
+          "would_have_been_clamp_protected": true,
+          "ce_pair_truncated": false,
+          "a_in_top_10_stored": true,
+          "d_in_top_10": true,
+          "excerpt": "## Tool guardrails Tool guardrails wrap **`FunctionTool` instances** and let you validate or block calls to those tools before and after execution. They are configured on the tool itself and run every time that tool is …"
+        }
+      ],
+      "n_identifier_overlap_in_pool": 50,
+      "latency_ms": {
+        "system_a_retrieval": 508.21,
+        "cross_encoder": 4504.69,
+        "total": 5080.91
+      }
+    },
+    {
+      "case_id": "HA-59",
+      "a_full_recorded": true,
+      "a_full_rematerialized": true,
+      "d_full": true,
+      "pool_size": 86,
+      "all_spans_in_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_4803c9c39d64fd0c4b27351273f4ebc8b0ed26a0",
+          "version_id": "ver_ae909bf8b4bbbe1d1a11119447f7ac94",
+          "section_path": [
+            "Models",
+            "Runner-managed retries",
+            "Runner and agent merge behavior"
+          ],
+          "a_rank_stored": 1,
+          "a_doc_rank_stored": 1,
+          "a_rank_rematerialized": 1,
+          "a_rank": 1,
+          "a_score": 0.03278688524590164,
+          "ce_score": 7.0678558349609375,
+          "ce_rank": 1,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "blend_score": 1.0,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            "retry.max_retries"
+          ],
+          "exact_match_guard_triggered": false,
+          "exact_match_guard_note": "SYSTEM-D is score_blend; the EXP-016 clamp/guard is not applied. identifier_overlap is recorded only as a diagnostic.",
+          "would_have_been_clamp_protected": true,
+          "ce_pair_truncated": false,
+          "a_in_top_10_stored": true,
+          "d_in_top_10": true,
+          "excerpt": "##### Runner and agent merge behavior `retry` is deep-merged between runner-level and agent-level `ModelSettings`: - An agent can override only `retry.max_retries` and still inherit the runner's `policy`. - An agent can…"
+        },
+        {
+          "span_index": 1,
+          "chunk_id": "chk_4803c9c39d64fd0c4b27351273f4ebc8b0ed26a0",
+          "version_id": "ver_ae909bf8b4bbbe1d1a11119447f7ac94",
+          "section_path": [
+            "Models",
+            "Runner-managed retries",
+            "Runner and agent merge behavior"
+          ],
+          "a_rank_stored": 1,
+          "a_doc_rank_stored": 1,
+          "a_rank_rematerialized": 1,
+          "a_rank": 1,
+          "a_score": 0.03278688524590164,
+          "ce_score": 7.0678558349609375,
+          "ce_rank": 1,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "blend_score": 1.0,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            "retry.max_retries"
+          ],
+          "exact_match_guard_triggered": false,
+          "exact_match_guard_note": "SYSTEM-D is score_blend; the EXP-016 clamp/guard is not applied. identifier_overlap is recorded only as a diagnostic.",
+          "would_have_been_clamp_protected": true,
+          "ce_pair_truncated": false,
+          "a_in_top_10_stored": true,
+          "d_in_top_10": true,
+          "excerpt": "##### Runner and agent merge behavior `retry` is deep-merged between runner-level and agent-level `ModelSettings`: - An agent can override only `retry.max_retries` and still inherit the runner's `policy`. - An agent can…"
+        }
+      ],
+      "n_identifier_overlap_in_pool": 56,
+      "latency_ms": {
+        "system_a_retrieval": 587.04,
+        "cross_encoder": 4763.6,
+        "total": 5414.79
+      }
+    }
+  ]
+}

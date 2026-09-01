@@ -1,6 +1,6 @@
 # CORPUS-002 — restoration of the verified frozen corpus
 
-**SUCCEEDED** — generated 2026-08-31T22:09:11Z.
+**SUCCEEDED** — generated 2026-08-31T23:53:16Z.
 
 The frozen corpus was restored from the verified recovery archive into a fresh isolated database, and its identity was recomputed rather than asserted. No retrieval was run.
 
@@ -81,11 +81,11 @@ This is a source-integrity check. No query was run, nothing was ranked, and no r
 | | |
 | --- | --- |
 | restoration database | `corpus002_restore` |
-| postgresql | PostgreSQL 16.13 (Ubuntu 16.13-0ubuntu0.24.04.1) on x86_64-pc-linux-gnu |
-| pgvector | 0.6.0 |
+| postgresql | PostgreSQL 16.15 (Debian 16.15-1.pgdg12+2) on x86_64-pc-linux-gnu |
+| pgvector | 0.8.6 |
 | python | 3.11.15 |
 | parser version | `v1.0` |
-| git commit | `0bf4a884ef20` |
+| git commit | `` |
 | retrieval tables | {'chunk_embedding': 0, 'query_trace': 0, 'retrieval_cache': 0, 'embedding_model': 0} |
 
 **Migration order.** V1 was ingested before chunk sets existed; sql/002_chunk_sets.sql adopts those rows into cs_v1_control. Applying 002 before ingesting fails on a NOT NULL chunk_set_id, so the historical order is reproduced deliberately.

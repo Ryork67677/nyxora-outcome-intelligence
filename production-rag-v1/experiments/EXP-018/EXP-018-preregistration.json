@@ -1,0 +1,148 @@
+{
+  "document": "EXP-018-preregistration",
+  "generated_at": "2026-09-01T01:23:45Z",
+  "generated_at_et": "2026-08-31T21:23:45-0400",
+  "status": "PREREGISTERED_BEFORE_ANY_EXP018_SCORES",
+  "chatgpt_approval": "v2 experiment 1 (2026-08-31 ~21:19 ET) after Grok rejected EXP-017-chunking-first",
+  "trained_on_gold": false,
+  "swept": false,
+  "knobs_frozen_before_retrieval": true,
+  "validation_loaded": false,
+  "holdout_loaded": false,
+  "holdout_access_log_bytes_at_preregistration": 235,
+  "holdout_access_log_sha256_at_preregistration": "45b83a77f6f332174d641956f076dd0c0cae44fe48f4f2892ac7030a4c0143b3",
+  "holdout_lock_sha256": "fc9ac96082cbf0aa3df82df017e19af9f49eed5506c5c281858b3de405cde294",
+  "holdout_lock_frozen": true,
+  "hypothesis": "Additive within-document candidate expansion (union of SYSTEM-A pool-100 with RRF-fused top W=20 chunks from each of parent_n=10 SYSTEM-A fused top-10 documents), then frozen D 0.7/0.3 CE+A blend on the larger pool, raises candidate evidence recall without regressing strict Recall@10 versus frozen SYSTEM-D. Opposite of DOC-C: never a document gate.",
+  "ceiling_risk_accepted": "EXP-016 D is 20/20 strict Recall@10 and 23/23 spans@10 on this development split; candidate evidence recall may already be 1.0. Valid outcome is CEILING_ON_DEV. Do not load holdout or validation. Do not retune.",
+  "control": {
+    "name": "SYSTEM-D-GUARD-BLEND",
+    "config_hash": "d77b54ba3be0197d6bc1363883aefb0b3399117ee8c65800a38f8196d236ca3a",
+    "freeze_files": [
+      "experiments/EXP-016/SYSTEM-D-GUARD.json",
+      "experiments/EVAL-HOLDOUT-001/SYSTEM-D-RELEASE.json"
+    ],
+    "freeze_files_read_only": true,
+    "system_a_config_hash": "9afcb5b7c58ebacff0b4c3711dd9618a2e727f4195dd1787a5da81e478ee0b38",
+    "expected_development_strict_recall_at_10": "20/20",
+    "expected_development_spans_at_10": "23/23",
+    "expected_development_mrr": 0.8239,
+    "expected_development_document_recall": 1.0,
+    "expected_latency_ms_mean": 5774.4,
+    "do_not_retune": true
+  },
+  "system_e": {
+    "name": "SYSTEM-E-WITHIN-DOC",
+    "role": "new v2 system; not a D edit; not a release freeze",
+    "parent_n": 10,
+    "parent_source": "unique version_ids among SYSTEM-A fused top_k=10",
+    "parent_n_rationale": "documents the global system already identified; expansion happens inside them; not chosen from holdout",
+    "W": 20,
+    "rrf_k": 60,
+    "pool_per_retriever": 50,
+    "system_a_candidate_pool": 100,
+    "top_k": 10,
+    "query": "raw user question, verbatim",
+    "query_rewriting": false,
+    "metadata_filtering": false,
+    "bm25": {
+      "k1": 1.2,
+      "b": 0.75,
+      "ts_config": "simple",
+      "idf": "full-corpus never recomputed inside document"
+    },
+    "dense": {
+      "retriever": "transformer_cosine_exact",
+      "model_id": "emb_e7d4183fd6eb878ae2fdf080efb6861e",
+      "fingerprint": "bd95feaeacf98559"
+    },
+    "union": "A pool-100 UNION within-doc top-W per parent; dedupe by chunk_id; never drop an A-pool-100 chunk even if version_id is not a parent",
+    "anti_doc_c": true,
+    "blend_weights": [
+      0.7,
+      0.3
+    ],
+    "minmax_scope_E": "within each query UNION pool",
+    "minmax_scope_rematerialized_D": "within each query A pool-100 (frozen D)",
+    "minmax_degenerate": 0.5,
+    "absent_from_A_pool": {
+      "a_score": 0.0,
+      "a_rank": 1000000000
+    },
+    "tie_break": "blend desc, SYSTEM-A fused rank asc, chunk_id asc",
+    "weight_search": false
+  },
+  "cross_encoder": {
+    "name": "cross-encoder/ms-marco-MiniLM-L6-v2",
+    "revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a",
+    "artifact": "experiments/EXP-015/models/cross-encoder-ms-marco-MiniLM-L6-v2/233902d25c440f23af6f7d6e94d2946bac0bee0a/onnx/model.onnx",
+    "artifact_sha256": "5d3e70fd0c9ff14b9b5169a51e957b7a9c74897afd0a35ce4bd318150c1d4d4a"
+  },
+  "corpus": {
+    "snapshot": "snap_689e336380a054d8039dc35b2c09cd0a",
+    "chunk_set": "cs_v1_control",
+    "chunks": 14209,
+    "embeddings": 14209,
+    "cs_v1_control_immutable": true
+  },
+  "split": {
+    "path": "evals/splits/gold150-v1/development.json",
+    "projection": "experiments/EXP-015/development.jsonl",
+    "n": 20,
+    "do_not_load_validation": true,
+    "do_not_load_holdout": true,
+    "do_not_enumerate_holdout_ids": true,
+    "do_not_open_holdout_json": true
+  },
+  "metrics": {
+    "primary_chatgpt": "candidate evidence recall (fraction of gold spans present in candidate pool)",
+    "also": [
+      "strict Recall@10 E vs D vs A",
+      "macro span recall",
+      "spans found@10 / total",
+      "MRR",
+      "document recall",
+      "pool size mean/max",
+      "additive integrity",
+      "rescues/regressions vs D",
+      "rank-1 destruction",
+      "latency mean vs D"
+    ],
+    "required_traces": [
+      "GOLD-B005-11",
+      "HA-22",
+      "HA-24",
+      "any case that differs"
+    ]
+  },
+  "decision_rule": {
+    "QUALIFIES_FOR_VAL_CONSIDERATION": "strict Recall@10 >= D AND net rescues vs D >= 0 AND no new rank-1 destruction AND additive integrity holds",
+    "MECHANISM_SUPPORTED": "candidate evidence recall_E > candidate evidence recall_D",
+    "CEILING_ON_DEV": "D already has candidate evidence recall=1 AND Recall@10=20/20 AND E does not regress; still QUALIFIES_FOR_VAL_CONSIDERATION; do not claim a retrieval win; development cannot measure the holdout-motivated pool-miss hypothesis",
+    "REJECT_AT_DEV": "E regresses vs D on strict Recall@10 OR additive integrity fails",
+    "no_system_e_release_freeze": true,
+    "no_validation": true,
+    "no_holdout": true,
+    "leave_freeze_or_val_to_chatgpt": true,
+    "no_post_score_retune": true
+  },
+  "forbidden": [
+    "holdout",
+    "validation",
+    "D edit",
+    "knob search",
+    "using 11 holdout misses to choose knobs",
+    "DOC-C document gate",
+    "new passages into cs_v1_control",
+    "re-embed cs_v1_control",
+    "live doc fetch",
+    "git clone/commit/push",
+    "touch user Windows tree",
+    "SYSTEM-E release freeze"
+  ],
+  "environment_known_drift": {
+    "postgres": "16.15",
+    "pgvector": "0.8.6",
+    "recorded_historically": "16.13 / pgvector 0.6.0"
+  }
+}

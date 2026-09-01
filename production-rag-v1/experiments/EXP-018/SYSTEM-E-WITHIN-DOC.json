@@ -1,0 +1,88 @@
+{
+  "name": "SYSTEM-E-WITHIN-DOC",
+  "status": "DEVELOPMENT_CONFIG_NOT_A_RELEASE_FREEZE",
+  "release_freeze": false,
+  "generated_at": "2026-09-01T01:37:13Z",
+  "config": {
+    "name": "SYSTEM-E-WITHIN-DOC",
+    "control_system_a": "9afcb5b7c58ebacff0b4c3711dd9618a2e727f4195dd1787a5da81e478ee0b38",
+    "control_system_d": "d77b54ba3be0197d6bc1363883aefb0b3399117ee8c65800a38f8196d236ca3a",
+    "parent_n": 10,
+    "parent_source": "TOP 10 unique version_ids from SYSTEM-A fused ranking (ChatGPT option B)",
+    "local_retrieval": "BM25_ONLY",
+    "within_doc_dense": false,
+    "W": 20,
+    "union": "A pool-100 UNION per-parent local BM25 top-W; dedupe chunk_id; never drop A-pool chunk",
+    "merge_rrf": "rrf_fuse_labelled k=60 over system_a + local_bm25:<version_id>; top_k=union size",
+    "anti_doc_c": true,
+    "idf": "full-corpus never recomputed inside document",
+    "weights": [
+      0.7,
+      0.3
+    ],
+    "minmax_degenerate": 0.5,
+    "a_channel": "merge-RRF score/rank",
+    "ce_sha256": "5d3e70fd0c9ff14b9b5169a51e957b7a9c74897afd0a35ce4bd318150c1d4d4a",
+    "tie_break": "blend desc, merge-RRF rank, chunk_id",
+    "snapshot": "snap_689e336380a054d8039dc35b2c09cd0a",
+    "chunk_set": "cs_v1_control",
+    "rrf_k": 60,
+    "pool_per_retriever": 50,
+    "top_k": 10,
+    "amendment": "experiments/EXP-018/EXP-018-preregistration-amendment.md"
+  },
+  "config_hash": "7f3a1caa0350cc7e0fda0d9f2d7efb23fd08d7f79bc94f140a29f4247774adbe",
+  "system_a_config_hash": "9afcb5b7c58ebacff0b4c3711dd9618a2e727f4195dd1787a5da81e478ee0b38",
+  "system_d_config_hash": "d77b54ba3be0197d6bc1363883aefb0b3399117ee8c65800a38f8196d236ca3a",
+  "snapshot": "snap_689e336380a054d8039dc35b2c09cd0a",
+  "chunk_set": "cs_v1_control",
+  "encoder": {
+    "model_id": "emb_e7d4183fd6eb878ae2fdf080efb6861e",
+    "fingerprint": "bd95feaeacf98559",
+    "max_seq_length": 512
+  },
+  "cross_encoder": {
+    "name": "cross-encoder/ms-marco-MiniLM-L6-v2",
+    "revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a",
+    "artifact": "experiments/EXP-015/models/cross-encoder-ms-marco-MiniLM-L6-v2/233902d25c440f23af6f7d6e94d2946bac0bee0a/onnx/model.onnx",
+    "artifact_sha256": "5d3e70fd0c9ff14b9b5169a51e957b7a9c74897afd0a35ce4bd318150c1d4d4a",
+    "runtime": "onnxruntime + HuggingFace tokenizers",
+    "precision": "fp32",
+    "max_length": 512,
+    "pair_formatting": "[CLS] query [SEP] passage [SEP]",
+    "truncation": "longest_first",
+    "scoring": "raw sequence-classification logit (Identity); higher=more relevant"
+  },
+  "blend": {
+    "weights_CE": 0.7,
+    "weights_A_channel": 0.3,
+    "A_channel": "merge-RRF on A-pool-100 UNION local BM25",
+    "minmax_degenerate": 0.5
+  },
+  "parent_n": 10,
+  "W": 20,
+  "local_retrieval": "BM25_ONLY",
+  "development_metrics": {
+    "source": "SYSTEM-E-WITHIN-DOC amended local-BM25 union + merge RRF + frozen D blend",
+    "config_hash": "7f3a1caa0350cc7e0fda0d9f2d7efb23fd08d7f79bc94f140a29f4247774adbe",
+    "macro_span_recall": 1.0,
+    "cases_fully_recalled": 20,
+    "cases_total": 20,
+    "strict_recall_at_10": "20/20",
+    "spans_found_at_10": 23,
+    "spans_total": 23,
+    "document_recall": 1.0,
+    "mrr": 0.8269,
+    "candidate_evidence_recall": 1.0,
+    "candidate_evidence_spans": "23/23",
+    "pool_size_mean": 185.25,
+    "pool_size_max": 243,
+    "new_union_members_mean": 93.9,
+    "latency_ms_mean": 19421.3
+  },
+  "decision_labels": [
+    "QUALIFIES_FOR_VAL_CONSIDERATION",
+    "CEILING_ON_DEV"
+  ],
+  "note": "Config + hash only. Not a v2 release freeze. Validation and holdout were not run. Freeze-or-val is a ChatGPT decision."
+}

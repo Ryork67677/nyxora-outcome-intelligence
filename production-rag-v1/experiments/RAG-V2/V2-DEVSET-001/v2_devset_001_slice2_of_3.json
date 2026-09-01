@@ -1,0 +1,1918 @@
+{
+  "task": "V2-DEVSET-001",
+  "batch": 101,
+  "id_prefix": "V2D-",
+  "schema_version": "v2-devset-001/1.0",
+  "generated_at": "2026-09-01T02:20:09Z",
+  "generated_at_et": "2026-08-31 22:20 ET",
+  "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a",
+  "selection_seed": 20260901,
+  "preregistration": "experiments/RAG-V2/V2-DEVSET-001-preregistration.md",
+  "system_e_config_hash": "7f3a1caa0350cc7e0fda0d9f2d7efb23fd08d7f79bc94f140a29f4247774adbe",
+  "system_e_hash_unchanged": true,
+  "candidate_pool_size": 50,
+  "raw_mined_authored": 87,
+  "candidates": 18,
+  "by_provider": {
+    "anthropic": 13,
+    "openai": 5
+  },
+  "by_evidence_kind": {
+    "short_normative": 8,
+    "long_technical_section": 4,
+    "definition_bullet": 1,
+    "parameter_table_row": 2,
+    "lifecycle_statement": 1,
+    "constraint_statement": 2
+  },
+  "by_reasoning_type": {
+    "exact_lookup": 12,
+    "configuration_interaction": 2,
+    "error_behavior": 3,
+    "lifecycle_compatibility_migration": 1
+  },
+  "by_stress_type": {
+    "short_evidence_unit": 10,
+    "correct_document_difficult_passage": 12,
+    "identifier_vs_semantic_distractor": 15,
+    "lexical_query_shape": 8,
+    "paraphrase_query_shape": 4,
+    "version_model_discrimination": 4,
+    "long_technical_section": 4,
+    "parameter_error_literal_lookup": 8,
+    "same_document_passage_discrimination": 3
+  },
+  "by_confidence": {
+    "medium": 13,
+    "high": 5
+  },
+  "gold001_ids_excluded": [
+    "GOLD-B001-01",
+    "GOLD-B001-02",
+    "GOLD-B001-03",
+    "GOLD-B001-04",
+    "GOLD-B001-05",
+    "GOLD-B001-06",
+    "GOLD-B001-07",
+    "GOLD-B001-08",
+    "GOLD-B001-09",
+    "GOLD-B001-10",
+    "GOLD-B001-11",
+    "GOLD-B001-12",
+    "GOLD-B001-13",
+    "GOLD-B001-14",
+    "GOLD-B001-17",
+    "GOLD-B001-18",
+    "GOLD-B002-01",
+    "GOLD-B002-02",
+    "GOLD-B002-03",
+    "GOLD-B002-04",
+    "GOLD-B002-05",
+    "GOLD-B002-06",
+    "GOLD-B002-07",
+    "GOLD-B002-08",
+    "GOLD-B002-09",
+    "GOLD-B002-10",
+    "GOLD-B002-11",
+    "GOLD-B002-13",
+    "GOLD-B002-14",
+    "GOLD-B002-15",
+    "GOLD-B002-16",
+    "GOLD-B002-17",
+    "GOLD-B002-18",
+    "GOLD-B003-01",
+    "GOLD-B003-02",
+    "GOLD-B003-03",
+    "GOLD-B003-04",
+    "GOLD-B003-05",
+    "GOLD-B003-06",
+    "GOLD-B003-07",
+    "GOLD-B003-08",
+    "GOLD-B003-09",
+    "GOLD-B003-10",
+    "GOLD-B003-11",
+    "GOLD-B003-12",
+    "GOLD-B003-13",
+    "GOLD-B003-14",
+    "GOLD-B003-15",
+    "GOLD-B003-16",
+    "GOLD-B003-17",
+    "GOLD-B003-18",
+    "GOLD-B003-19",
+    "GOLD-B003-20",
+    "GOLD-B004-01",
+    "GOLD-B004-02",
+    "GOLD-B004-03",
+    "GOLD-B004-04",
+    "GOLD-B004-05",
+    "GOLD-B004-06",
+    "GOLD-B004-07",
+    "GOLD-B004-09",
+    "GOLD-B004-10",
+    "GOLD-B004-11",
+    "GOLD-B004-12",
+    "GOLD-B004-13",
+    "GOLD-B004-14",
+    "GOLD-B004-15",
+    "GOLD-B005-02",
+    "GOLD-B005-03",
+    "GOLD-B005-04",
+    "GOLD-B005-05",
+    "GOLD-B005-07",
+    "GOLD-B005-08",
+    "GOLD-B005-09",
+    "GOLD-B005-11",
+    "GOLD-B005-12",
+    "GOLD-B005-14",
+    "GOLD-B005-15",
+    "GOLD-B005-16",
+    "GOLD-B005-17",
+    "GOLD-B005-18",
+    "GOLD-B005-19",
+    "GOLD-B006-01",
+    "GOLD-B006-02",
+    "GOLD-B006-03",
+    "GOLD-B006-04",
+    "GOLD-B006-05",
+    "GOLD-B006-07",
+    "GOLD-B006-08",
+    "GOLD-B006-09",
+    "HA-01",
+    "HA-02",
+    "HA-03",
+    "HA-04",
+    "HA-05",
+    "HA-06",
+    "HA-07",
+    "HA-08",
+    "HA-09",
+    "HA-10",
+    "HA-11",
+    "HA-12",
+    "HA-13",
+    "HA-14",
+    "HA-15",
+    "HA-16",
+    "HA-17",
+    "HA-18",
+    "HA-19",
+    "HA-20",
+    "HA-21",
+    "HA-22",
+    "HA-23",
+    "HA-24",
+    "HA-25",
+    "HA-26",
+    "HA-27",
+    "HA-28",
+    "HA-29",
+    "HA-30",
+    "HA-31",
+    "HA-32",
+    "HA-33",
+    "HA-34",
+    "HA-35",
+    "HA-36",
+    "HA-37",
+    "HA-38",
+    "HA-39",
+    "HA-40",
+    "HA-41",
+    "HA-42",
+    "HA-43",
+    "HA-44",
+    "HA-45",
+    "HA-46",
+    "HA-47",
+    "HA-48",
+    "HA-49",
+    "HA-50",
+    "HA-51",
+    "HA-52",
+    "HA-53",
+    "HA-54",
+    "HA-55",
+    "HA-56",
+    "HA-57",
+    "HA-58",
+    "HA-59",
+    "HA-60"
+  ],
+  "gold001_id_count": 150,
+  "gold001_admitted_questions_loaded": 222,
+  "gold001_admitted_spans_loaded": 254,
+  "gold001_ids_seen_in_sources": [
+    "AN-001",
+    "AN-002",
+    "AN-003",
+    "AN-004",
+    "AN-005",
+    "AN-006",
+    "AN-007",
+    "AN-008",
+    "AN-009",
+    "AN-010",
+    "AN-011",
+    "AN-012",
+    "GOLD-B001-01",
+    "GOLD-B001-02",
+    "GOLD-B001-03",
+    "GOLD-B001-04",
+    "GOLD-B001-05",
+    "GOLD-B001-06",
+    "GOLD-B001-07",
+    "GOLD-B001-08",
+    "GOLD-B001-09",
+    "GOLD-B001-10",
+    "GOLD-B001-11",
+    "GOLD-B001-12",
+    "GOLD-B001-13",
+    "GOLD-B001-14",
+    "GOLD-B001-17",
+    "GOLD-B001-18",
+    "GOLD-B002-01",
+    "GOLD-B002-02",
+    "GOLD-B002-03",
+    "GOLD-B002-04",
+    "GOLD-B002-05",
+    "GOLD-B002-06",
+    "GOLD-B002-07",
+    "GOLD-B002-08",
+    "GOLD-B002-09",
+    "GOLD-B002-10",
+    "GOLD-B002-11",
+    "GOLD-B002-13",
+    "GOLD-B002-14",
+    "GOLD-B002-15",
+    "GOLD-B002-16",
+    "GOLD-B002-17",
+    "GOLD-B002-18",
+    "GOLD-B003-01",
+    "GOLD-B003-02",
+    "GOLD-B003-03",
+    "GOLD-B003-04",
+    "GOLD-B003-05",
+    "GOLD-B003-06",
+    "GOLD-B003-07",
+    "GOLD-B003-08",
+    "GOLD-B003-09",
+    "GOLD-B003-10",
+    "GOLD-B003-11",
+    "GOLD-B003-12",
+    "GOLD-B003-13",
+    "GOLD-B003-14",
+    "GOLD-B003-15",
+    "GOLD-B003-16",
+    "GOLD-B003-17",
+    "GOLD-B003-18",
+    "GOLD-B003-19",
+    "GOLD-B003-20",
+    "GOLD-B004-01",
+    "GOLD-B004-02",
+    "GOLD-B004-03",
+    "GOLD-B004-04",
+    "GOLD-B004-05",
+    "GOLD-B004-06",
+    "GOLD-B004-07",
+    "GOLD-B004-09",
+    "GOLD-B004-10",
+    "GOLD-B004-11",
+    "GOLD-B004-12",
+    "GOLD-B004-13",
+    "GOLD-B004-14",
+    "GOLD-B004-15",
+    "GOLD-B005-02",
+    "GOLD-B005-03",
+    "GOLD-B005-04",
+    "GOLD-B005-05",
+    "GOLD-B005-07",
+    "GOLD-B005-08",
+    "GOLD-B005-09",
+    "GOLD-B005-11",
+    "GOLD-B005-12",
+    "GOLD-B005-14",
+    "GOLD-B005-15",
+    "GOLD-B005-16",
+    "GOLD-B005-17",
+    "GOLD-B005-18",
+    "GOLD-B005-19",
+    "GOLD-B006-01",
+    "GOLD-B006-02",
+    "GOLD-B006-03",
+    "GOLD-B006-04",
+    "GOLD-B006-05",
+    "GOLD-B006-07",
+    "GOLD-B006-08",
+    "GOLD-B006-09",
+    "HA-01",
+    "HA-02",
+    "HA-03",
+    "HA-04",
+    "HA-05",
+    "HA-06",
+    "HA-07",
+    "HA-08",
+    "HA-09",
+    "HA-10",
+    "HA-11",
+    "HA-12",
+    "HA-13",
+    "HA-14",
+    "HA-15",
+    "HA-16",
+    "HA-17",
+    "HA-18",
+    "HA-19",
+    "HA-20",
+    "HA-21",
+    "HA-22",
+    "HA-23",
+    "HA-24",
+    "HA-25",
+    "HA-26",
+    "HA-27",
+    "HA-28",
+    "HA-29",
+    "HA-30",
+    "HA-31",
+    "HA-32",
+    "HA-33",
+    "HA-34",
+    "HA-35",
+    "HA-36",
+    "HA-37",
+    "HA-38",
+    "HA-39",
+    "HA-40",
+    "HA-41",
+    "HA-42",
+    "HA-43",
+    "HA-44",
+    "HA-45",
+    "HA-46",
+    "HA-47",
+    "HA-48",
+    "HA-49",
+    "HA-50",
+    "HA-51",
+    "HA-52",
+    "HA-53",
+    "HA-54",
+    "HA-55",
+    "HA-56",
+    "HA-57",
+    "HA-58",
+    "HA-59",
+    "HA-60",
+    "MI-001",
+    "MI-002",
+    "OA-001",
+    "OA-002",
+    "OA-003",
+    "OA-004",
+    "OA-005",
+    "OA-006",
+    "OA-007",
+    "OA-008"
+  ],
+  "collisions_dropped": {
+    "exact_question": 34,
+    "interaction_relabelled_exact_lookup": 10,
+    "exact_span": 16,
+    "subject_mismatch_flagged": 7,
+    "bare_definition_scope": 19,
+    "generic_identifier": 9,
+    "critical_anaphora": 1,
+    "low_value_flagged": 9,
+    "unauthorable": 1,
+    "dangling_reference": 2,
+    "markdown_junk": 2
+  },
+  "ingest_notes": {
+    "skipped_non_admitted_id": 9
+  },
+  "docs_attempted": 81,
+  "docs_completed": 81,
+  "docs_skipped_timeout": [],
+  "mine_progress": "experiments/RAG-V2/V2-DEVSET-001/mine-progress-plus4.jsonl",
+  "holdout_json_opened": false,
+  "holdout_miss_ids_used_as_templates": false,
+  "holdout_miss_template_ids_excluded": [
+    "GOLD-B001-02",
+    "GOLD-B001-09",
+    "GOLD-B002-06",
+    "GOLD-B003-04",
+    "GOLD-B005-07",
+    "GOLD-B006-02",
+    "HA-20",
+    "HA-21",
+    "HA-37",
+    "HA-43",
+    "HA-58"
+  ],
+  "retrieval_was_not_run": true,
+  "systems_executed": [],
+  "live_docs_fetched": false,
+  "verification_status": "candidate_unverified — nothing in this file is gold",
+  "v1_exposed_regression_40_note": "gold150-v1 validation is conceptually V1-EXPOSED-REGRESSION-40; split files were not renamed or moved.",
+  "next_step": "independent ChatGPT verification, then Russell human QC, then freeze",
+  "records": [
+    {
+      "candidate_id": "V2D-19",
+      "provider": "anthropic",
+      "document_title": "Using Agent Skills with the API",
+      "version_id": "ver_5a15a8f543d432ef91eb6e2997f51225",
+      "source_url": "https://platform.claude.com/docs/en/build-with-claude/skills-guide",
+      "captured_at": "2026-08-17 04:46:19+00:00",
+      "section_path": [
+        "Managing custom Skills",
+        "Creating a Skill"
+      ],
+      "char_start": 72650,
+      "char_end": 72735,
+      "evidence_text": "The Python SDK also provides a `files_from_dir` helper that accepts a directory path.",
+      "evidence_hash": "dcf16d18e94cb433a7aa16e08368cde0eaafaf15f6738dc5db9363ca67bf9f3a",
+      "evidence_char_length": 85,
+      "context_before": "m\",\n          skill_id: \"skill_01AbCdEfGhIjKlMnOpQrStUv\",\n          version: \"latest\"\n        }\n      ]\n    },\n    messages: [\n      { role: \"user\", content: \"Analyze sales data and create a presentation\" }\n    ],\n    tools: [\n      { type: \"code_execution_20250825\", name: \"code_execution\" }\n    ]\n  )\n  puts message\n  ```\n</CodeGroup>\n\n***\n\n## Managing custom Skills\n\n### Creating a Skill\n\nA Skill bundle is a directory containing a `SKILL.md` file at the top level with `name` and `description` YAML frontmatter, plus any supporting scripts or resources. See [Get started with Agent Skills in the API](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/quickstart) to author one, and the **Requirements** list following the examples for the full constraints.\n\nUpload your custom Skill to make it available in your workspace. You can upload a zip archive or individual file objects. ",
+      "context_after": "\n\nFiles are identified by the filename you attach. Per-file uploads must keep a common top-level directory in their paths (the `;filename=` suffix in the cURL example and the filename arguments in the SDK examples). A zip archive must contain the skill directory as its single top-level entry. For the walkthrough's skill, create one with `zip -r financial_skill.zip financial_skill/` and substitute it for the `example_skill.zip` placeholder in the zip-upload options.\n\n<CodeGroup defaultLanguage=\"CLI\">\n  ```bash cURL\n  curl -X POST \"https://api.anthropic.com/v1/skills\" \\\n    -H \"x-api-key: $ANTHROPIC_API_KEY\" \\\n    -H \"anthropic-version: 2023-06-01\" \\\n    -H \"anthropic-beta: skills-2025-10-02\" \\\n    -F \"files[]=@financial_skill/SKILL.md;filename=financial_skill/SKILL.md\" \\\n    -F \"files[]=@financial_skill/analyze.py;filename=financial_skill/analyze.py\"\n  ```\n\n  ```bash CLI\n  ant beta:skills",
+      "expected_evidence": [
+        {
+          "evidence_id": "E1",
+          "version_id": "ver_5a15a8f543d432ef91eb6e2997f51225",
+          "section_path": [
+            "Managing custom Skills",
+            "Creating a Skill"
+          ],
+          "char_start": 72650,
+          "char_end": 72735,
+          "evidence_text": "The Python SDK also provides a `files_from_dir` helper that accepts a directory path.",
+          "evidence_hash": "dcf16d18e94cb433a7aa16e08368cde0eaafaf15f6738dc5db9363ca67bf9f3a",
+          "evidence_char_length": 85,
+          "critical_strings": [
+            "files_from_dir"
+          ]
+        }
+      ],
+      "proposed_category": "exact_lookup",
+      "reasoning_type": "exact_lookup",
+      "secondary_category": "accepts",
+      "proposed_question": "What does the Python SDK also provides a `files_from_dir` helper that accept?",
+      "proposed_answer": "The Python SDK also provides a `files_from_dir` helper that accepts a directory path.",
+      "proposed_atomic_claims": [
+        "The Python SDK also provides a `files_from_dir` helper that accepts a directory path."
+      ],
+      "question": "What does the Python SDK also provides a `files_from_dir` helper that accept?",
+      "answer": "The Python SDK also provides a `files_from_dir` helper that accepts a directory path.",
+      "atomic_claims": [
+        "The Python SDK also provides a `files_from_dir` helper that accepts a directory path."
+      ],
+      "critical_strings": [
+        "files_from_dir"
+      ],
+      "evidence_kind": "short_normative",
+      "binding": "structural-or-subject-window",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "generator_confidence": "medium",
+      "generator_notes": "",
+      "needs_human_interpretation": false,
+      "candidate_type": "supported",
+      "verification_status": "candidate_unverified",
+      "claude_proposed": true,
+      "chatgpt_verified": null,
+      "retrieval_was_not_run": true,
+      "schema_version": "v2-devset-001/1.0",
+      "question_subject": "The Python SDK also provides a `files_from_dir` helper that",
+      "question_relation": "accepts",
+      "question_object": "a directory path",
+      "revisions": [],
+      "stress_types": [
+        "short_evidence_unit",
+        "correct_document_difficult_passage",
+        "identifier_vs_semantic_distractor",
+        "lexical_query_shape"
+      ],
+      "source_subject": "The Python SDK also provides a `files_from_dir` helper that",
+      "source_relation": "accepts",
+      "source_object": "a directory path.",
+      "source_sentence": "The Python SDK also provides a `files_from_dir` helper that accepts a directory path.",
+      "source_triple_derivation": "named relation"
+    },
+    {
+      "candidate_id": "V2D-20",
+      "provider": "anthropic",
+      "document_title": "Claude Platform on AWS",
+      "version_id": "ver_5ebdc722f9bedb1e2e8cbd3f29ff6805",
+      "source_url": "https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws",
+      "captured_at": "2026-08-17 04:46:19+00:00",
+      "section_path": [
+        "Data residency"
+      ],
+      "char_start": 47753,
+      "char_end": 47880,
+      "evidence_text": "If you omit `inference_geo`, the request uses the workspace's `default_inference_geo` if one is configured, otherwise `global`.",
+      "evidence_hash": "44d2362efd094347f32c7b43701ebb2e21a23b6473a4503a9ebe3b6a5c8feeea",
+      "evidence_char_length": 127,
+      "context_before": "mEnv())\n          .build();\n\n      Message message = client.messages().create(\n          MessageCreateParams.builder()\n              .model(Model.CLAUDE_SONNET_5)\n              .maxTokens(1024)\n              .inferenceGeo(\"us\")\n              .addUserMessage(\"Hello!\")\n              .build()\n      );\n\n      IO.println(message);\n  }\n  ```\n\n  ```php PHP\n  use Anthropic\\Aws\\Client;\n\n  $client = new Client();\n\n  $message = $client->messages->create(\n      model: 'claude-sonnet-5',\n      maxTokens: 1024,\n      inferenceGeo: 'us',\n      messages: [['role' => 'user', 'content' => 'Hello!']],\n  );\n\n  echo $message;\n  ```\n\n  ```ruby Ruby\n  require \"anthropic\"\n\n  client = Anthropic::AWSClient.new\n\n  message = client.messages.create(\n    model: \"claude-sonnet-5\",\n    max_tokens: 1024,\n    inference_geo: \"us\",\n    messages: [{ role: \"user\", content: \"Hello!\" }]\n  )\n\n  puts message\n  ```\n</CodeGroup>\n\n",
+      "context_after": "\n\nWorkspace-level inference geography controls (`allowed_inference_geos` and `default_inference_geo`) are also available on Claude Platform on AWS. See [Workspace-level restrictions](https://platform.claude.com/docs/en/manage-claude/data-residency#workspace-level-restrictions).\n\n## Workspaces\n\nInference and resource requests on Claude Platform on AWS target a workspace. You pass the workspace's ID in the `anthropic-workspace-id` header on these API calls. Workspace IDs use the tagged format `wrkspc_` followed by an alphanumeric identifier (for example, `wrkspc_01AbCdEf23GhIj`). See [Obtain your workspace ID](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws#obtain-your-workspace-id) if you don't have it yet.\n\n### Workspace scoping\n\nWorkspaces are bound to a single AWS region. A workspace created in `us-west-2` can only be accessed through the `us-west-2` endpoi",
+      "expected_evidence": [
+        {
+          "evidence_id": "E1",
+          "version_id": "ver_5ebdc722f9bedb1e2e8cbd3f29ff6805",
+          "section_path": [
+            "Data residency"
+          ],
+          "char_start": 47753,
+          "char_end": 47880,
+          "evidence_text": "If you omit `inference_geo`, the request uses the workspace's `default_inference_geo` if one is configured, otherwise `global`.",
+          "evidence_hash": "44d2362efd094347f32c7b43701ebb2e21a23b6473a4503a9ebe3b6a5c8feeea",
+          "evidence_char_length": 127,
+          "critical_strings": [
+            "inference_geo",
+            "default_inference_geo",
+            "global"
+          ]
+        }
+      ],
+      "proposed_category": "configuration_interaction",
+      "reasoning_type": "configuration_interaction",
+      "secondary_category": "conditional_behavior",
+      "proposed_question": "What happens if you omit `inference_geo`?",
+      "proposed_answer": "The request uses the workspace's `default_inference_geo` if one is configured, otherwise `global`.",
+      "proposed_atomic_claims": [
+        "If you omit `inference_geo`, the request uses the workspace's `default_inference_geo` if one is configured, otherwise `global`."
+      ],
+      "question": "What happens if you omit `inference_geo`?",
+      "answer": "The request uses the workspace's `default_inference_geo` if one is configured, otherwise `global`.",
+      "atomic_claims": [
+        "If you omit `inference_geo`, the request uses the workspace's `default_inference_geo` if one is configured, otherwise `global`."
+      ],
+      "critical_strings": [
+        "inference_geo",
+        "default_inference_geo",
+        "global"
+      ],
+      "evidence_kind": "short_normative",
+      "binding": "structural-or-subject-window",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "generator_confidence": "medium",
+      "generator_notes": "",
+      "needs_human_interpretation": false,
+      "candidate_type": "supported",
+      "verification_status": "candidate_unverified",
+      "claude_proposed": true,
+      "chatgpt_verified": null,
+      "retrieval_was_not_run": true,
+      "schema_version": "v2-devset-001/1.0",
+      "question_subject": "`inference_geo`",
+      "question_relation": null,
+      "question_object": null,
+      "revisions": [],
+      "stress_types": [
+        "short_evidence_unit",
+        "correct_document_difficult_passage",
+        "identifier_vs_semantic_distractor",
+        "lexical_query_shape",
+        "paraphrase_query_shape"
+      ],
+      "source_subject": "If you omit `inference_geo`, the request",
+      "source_relation": "uses",
+      "source_object": "the workspace's `default_inference_geo` if one is configured, otherwise `global`.",
+      "source_sentence": "If you omit `inference_geo`, the request uses the workspace's `default_inference_geo` if one is configured, otherwise `global`.",
+      "source_triple_derivation": "generic predicate split"
+    },
+    {
+      "candidate_id": "V2D-21",
+      "provider": "anthropic",
+      "document_title": "Memory tool",
+      "version_id": "ver_96d1698a3864f79451e8576f87a07004",
+      "source_url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool",
+      "captured_at": "2026-08-17 04:46:19+00:00",
+      "section_path": [
+        "Security considerations",
+        "File storage size"
+      ],
+      "char_start": 34903,
+      "char_end": 35023,
+      "evidence_text": "Consider capping how many characters the `view` command returns, and let Claude page through the rest with `view_range`.",
+      "evidence_hash": "829b4270435161f75e29c18c666d040ecac6c5820aeea5bc33c8c65c9b51092b",
+      "evidence_char_length": 120,
+      "context_before": "to repeat that instruction. If Claude still creates cluttered memory files, you can reinforce it in your prompt:\n\n```text wrap\nNote: when editing your memory folder, always try to keep its content up-to-date, coherent and organized. You can rename or delete files that are no longer relevant. Do not create new files unless necessary.\n```\n\nYou can also guide what Claude writes to memory. For example: \"Only write down information relevant to \\<topic> in your memory system.\"\n\n## Security considerations\n\nYour application executes every file operation Claude requests, so these safeguards are your responsibility:\n\n### Sensitive information\n\nClaude usually refuses to write sensitive information to memory files. For stronger guarantees, add validation that strips sensitive data before your handler writes the file.\n\n### File storage size\n\nTrack memory file sizes and cap how large a file can grow. ",
+      "context_after": "\n\n### Memory expiration\n\nPeriodically delete memory files that haven't been accessed in a long time.\n\n### Path traversal protection\n\n<Warning>\n  A malicious path such as `/memories/../../secrets.env` can reach files outside the `/memories` directory. Your implementation must validate every path in every command to prevent directory traversal attacks.\n</Warning>\n\nConsider these safeguards:\n\n* Validate that all paths start with `/memories`\n* Resolve paths to their canonical form and verify they remain within the memory directory\n* Reject paths containing sequences such as `../`, `..\\\\`, or other traversal patterns\n* Watch for URL-encoded traversal sequences (`%2e%2e%2f`)\n* Use your language's built-in path security utilities (for example, Python's `pathlib.Path.resolve()` and `relative_to()`)\n\n## Error handling\n\nThe memory tool uses similar error-handling patterns to the [text editor tool]",
+      "expected_evidence": [
+        {
+          "evidence_id": "E1",
+          "version_id": "ver_96d1698a3864f79451e8576f87a07004",
+          "section_path": [
+            "Security considerations",
+            "File storage size"
+          ],
+          "char_start": 34903,
+          "char_end": 35023,
+          "evidence_text": "Consider capping how many characters the `view` command returns, and let Claude page through the rest with `view_range`.",
+          "evidence_hash": "829b4270435161f75e29c18c666d040ecac6c5820aeea5bc33c8c65c9b51092b",
+          "evidence_char_length": 120,
+          "critical_strings": [
+            "view",
+            "view_range"
+          ]
+        }
+      ],
+      "proposed_category": "error_behavior",
+      "reasoning_type": "error_behavior",
+      "secondary_category": "returns",
+      "proposed_question": "What does Consider capping how many characters the `view` command return?",
+      "proposed_answer": "Consider capping how many characters the `view` command returns, and let Claude page through the rest with `view_range`.",
+      "proposed_atomic_claims": [
+        "Consider capping how many characters the `view` command returns, and let Claude page through the rest with `view_range`."
+      ],
+      "question": "What does Consider capping how many characters the `view` command return?",
+      "answer": "Consider capping how many characters the `view` command returns, and let Claude page through the rest with `view_range`.",
+      "atomic_claims": [
+        "Consider capping how many characters the `view` command returns, and let Claude page through the rest with `view_range`."
+      ],
+      "critical_strings": [
+        "view",
+        "view_range"
+      ],
+      "evidence_kind": "short_normative",
+      "binding": "structural-or-subject-window",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "generator_confidence": "medium",
+      "generator_notes": "",
+      "needs_human_interpretation": false,
+      "candidate_type": "supported",
+      "verification_status": "candidate_unverified",
+      "claude_proposed": true,
+      "chatgpt_verified": null,
+      "retrieval_was_not_run": true,
+      "schema_version": "v2-devset-001/1.0",
+      "question_subject": "Consider capping how many characters the `view` command",
+      "question_relation": "returns",
+      "question_object": ", and let Claude page through the rest with `view_range`",
+      "revisions": [],
+      "stress_types": [
+        "short_evidence_unit",
+        "correct_document_difficult_passage",
+        "version_model_discrimination",
+        "identifier_vs_semantic_distractor"
+      ],
+      "source_subject": "Consider capping how many characters the `view` command",
+      "source_relation": "returns",
+      "source_object": ", and let Claude page through the rest with `view_range`.",
+      "source_sentence": "Consider capping how many characters the `view` command returns, and let Claude page through the rest with `view_range`.",
+      "source_triple_derivation": "named relation"
+    },
+    {
+      "candidate_id": "V2D-22",
+      "provider": "anthropic",
+      "document_title": "Tool runner (SDK)",
+      "version_id": "ver_96d5aba3c4e7771cabd4f3d4f5a3fff1",
+      "source_url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-runner",
+      "captured_at": "2026-08-17 04:46:19+00:00",
+      "section_path": [
+        "Advanced usage",
+        "Taking over message history"
+      ],
+      "char_start": 38316,
+      "char_end": 38425,
+      "evidence_text": "By the time `next_message` returns, the assistant message and tool result for that turn are already appended.",
+      "evidence_hash": "cc4be65021e4ea3f13b4ad9ce60d23942d2d0ec76c0c46663fd82d8025ee4224",
+      "evidence_char_length": 109,
+      "context_before": " === BetaStopReason::MAX_TOKENS->value) {\n            $current = $runner->getParams()['maxTokens'];\n\n            if ($current >= $maxTokenCeiling) {\n                echo \"Hit ceiling ({$maxTokenCeiling}), accepting truncated response.\\n\";\n                break;\n            }\n\n            $doubled = min($current * 2, $maxTokenCeiling);\n            echo \"Response truncated at {$current} tokens, retrying with {$doubled}.\\n\";\n\n            // Calling setMessagesParams() inside the loop tells the runner to skip\n            // its automatic append. The truncated message is discarded; the next\n            // iteration retries with the larger budget.\n            // Keys are camelCase, matching the toolRunner() named parameters.\n            $runner->setMessagesParams(['maxTokens' => $doubled]);\n        }\n    }\n    ```\n  </Tab>\n\n  <Tab title=\"Ruby\">\n    Use `next_message` for step-by-step control. ",
+      "context_after": " Use `feed_messages` to inject follow-up messages between turns, and `runner.params.update(...)` to change request parameters in place.\n\n    You take over message history when, from inside an `each_message` or `each_streaming` block, you reassign `runner.params[:messages]` or call `feed_messages`. The following pattern calls `feed_messages` between `next_message` calls, which does not take over.\n\n    ```ruby\n    runner = client.beta.messages.tool_runner(\n      model: \"claude-opus-5\",\n      max_tokens: 1024,\n      max_iterations: 10,\n      tools: [GetWeather.new],\n      messages: [{role: \"user\", content: \"What's the weather in San Francisco?\"}]\n    )\n\n    # Step the runner once. The assistant message and tool result are appended\n    # to runner.params[:messages] before next_message returns.\n    message = runner.next_message\n    puts message.content\n\n    # Inject a follow-up before continu",
+      "expected_evidence": [
+        {
+          "evidence_id": "E1",
+          "version_id": "ver_96d5aba3c4e7771cabd4f3d4f5a3fff1",
+          "section_path": [
+            "Advanced usage",
+            "Taking over message history"
+          ],
+          "char_start": 38316,
+          "char_end": 38425,
+          "evidence_text": "By the time `next_message` returns, the assistant message and tool result for that turn are already appended.",
+          "evidence_hash": "cc4be65021e4ea3f13b4ad9ce60d23942d2d0ec76c0c46663fd82d8025ee4224",
+          "evidence_char_length": 109,
+          "critical_strings": [
+            "next_message"
+          ]
+        }
+      ],
+      "proposed_category": "error_behavior",
+      "reasoning_type": "error_behavior",
+      "secondary_category": "returns",
+      "proposed_question": "What does By the time `next_message` return?",
+      "proposed_answer": "By the time `next_message` returns, the assistant message and tool result for that turn are already appended.",
+      "proposed_atomic_claims": [
+        "By the time `next_message` returns, the assistant message and tool result for that turn are already appended."
+      ],
+      "question": "What does By the time `next_message` return?",
+      "answer": "By the time `next_message` returns, the assistant message and tool result for that turn are already appended.",
+      "atomic_claims": [
+        "By the time `next_message` returns, the assistant message and tool result for that turn are already appended."
+      ],
+      "critical_strings": [
+        "next_message"
+      ],
+      "evidence_kind": "short_normative",
+      "binding": "structural-or-subject-window",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "generator_confidence": "medium",
+      "generator_notes": "",
+      "needs_human_interpretation": false,
+      "candidate_type": "supported",
+      "verification_status": "candidate_unverified",
+      "claude_proposed": true,
+      "chatgpt_verified": null,
+      "retrieval_was_not_run": true,
+      "schema_version": "v2-devset-001/1.0",
+      "question_subject": "By the time `next_message`",
+      "question_relation": "returns",
+      "question_object": ", the assistant message and tool result for that turn are already appended",
+      "revisions": [],
+      "stress_types": [
+        "short_evidence_unit",
+        "correct_document_difficult_passage",
+        "identifier_vs_semantic_distractor",
+        "lexical_query_shape"
+      ],
+      "source_subject": "By the time `next_message`",
+      "source_relation": "returns",
+      "source_object": ", the assistant message and tool result for that turn are already appended.",
+      "source_sentence": "By the time `next_message` returns, the assistant message and tool result for that turn are already appended.",
+      "source_triple_derivation": "named relation"
+    },
+    {
+      "candidate_id": "V2D-23",
+      "provider": "openai",
+      "document_title": "Sandbox clients",
+      "version_id": "ver_3d4b8881962381cbfba18ade50c598e1",
+      "source_url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/sandbox/clients.md",
+      "captured_at": "2026-08-17 04:46:19+00:00",
+      "section_path": [
+        "Sandbox clients",
+        "Supported hosted platforms",
+        "Size Modal sandboxes"
+      ],
+      "char_start": 10824,
+      "char_end": 11465,
+      "evidence_text": "Credentialless `rclone` mounts are limited to S3, GCS, R2, and Azure Blob. An in-container Box mount requires a non-interactive authentication source and the acknowledgement that matches that source. `FuseMountPattern` requires broad acknowledgement because `blobfuse2` discovers ambient Azure authority, even when no inline credential is configured. `S3FilesMountPattern` likewise requires broad acknowledgement because `mount.s3files` uses ambient IAM authority. These requirements also apply when Docker is the backend; the check marks below indicate that Docker can execute the mount after the applicable authority boundary is satisfied.",
+      "evidence_hash": "b97014844240948026e9df02c8b13569c24b56a95ddfab31721fb318fdd150a1",
+      "evidence_char_length": 641,
+      "context_before": "BlobMount`, and `BoxMount`. |\n| `VercelSandboxClient` | Supports create-time-only S3 and S3-compatible bucket mounts by pairing `VercelCloudBucketMountStrategy` with an `S3Mount` entry; mounted sessions cannot be resumed, and inline credentials require `allow_s3_credential_exposure=True`. |\n\n</div>\n\nThe mount tables describe which storage types each backend can execute. A check mark does not bypass the credential boundary for a mount helper that runs inside a model-controlled sandbox, and it does not mean that every strategy can operate without credentials. The Agents SDK accepts an in-container mount without an acknowledgement only when the selected helper can operate without protected authority. It rejects a mount that requires protected authority before starting the sandbox or mount helper unless trusted application code explicitly acknowledges the exposure for the exact mount path.\n\n",
+      "context_after": "\n\nFor a mount entry named `\"data\"`, retain the copied `Manifest` returned by the acknowledgement that matches the configured authority:\n\n```python\n# Mount-scoped values such as inline access keys.\nmanifest = manifest.with_in_container_mount_credential_exposure_acknowledged(\"data\")\n\n# Broader authority such as managed or workload identity and external credential files.\nmanifest = manifest.with_in_container_mount_broad_credential_exposure_acknowledged(\"data\")\n```\n\nPass every exact mount path that needs the acknowledgement. A mount that uses both authority classes requires both acknowledgements. The acknowledgements are runtime-only, are not serialized, and permit the helper to receive credentials without confining credential use to the mounted path. Prefer an external or provider-native strategy when available, and otherwise use sandbox-scoped, short-lived, least-privilege credentials.\n\n`V",
+      "expected_evidence": [
+        {
+          "evidence_id": "E1",
+          "version_id": "ver_3d4b8881962381cbfba18ade50c598e1",
+          "section_path": [
+            "Sandbox clients",
+            "Supported hosted platforms",
+            "Size Modal sandboxes"
+          ],
+          "char_start": 10824,
+          "char_end": 11465,
+          "evidence_text": "Credentialless `rclone` mounts are limited to S3, GCS, R2, and Azure Blob. An in-container Box mount requires a non-interactive authentication source and the acknowledgement that matches that source. `FuseMountPattern` requires broad acknowledgement because `blobfuse2` discovers ambient Azure authority, even when no inline credential is configured. `S3FilesMountPattern` likewise requires broad acknowledgement because `mount.s3files` uses ambient IAM authority. These requirements also apply when Docker is the backend; the check marks below indicate that Docker can execute the mount after the applicable authority boundary is satisfied.",
+          "evidence_hash": "b97014844240948026e9df02c8b13569c24b56a95ddfab31721fb318fdd150a1",
+          "evidence_char_length": 641,
+          "critical_strings": [
+            "rclone",
+            "FuseMountPattern",
+            "blobfuse2"
+          ]
+        }
+      ],
+      "proposed_category": "exact_lookup",
+      "reasoning_type": "exact_lookup",
+      "secondary_category": "is_limited_to",
+      "proposed_question": "What is Credentialless `rclone` mounts limited to?",
+      "proposed_answer": "Credentialless `rclone` mounts are limited to S3, GCS, R2, and Azure Blob.",
+      "proposed_atomic_claims": [
+        "Credentialless `rclone` mounts are limited to S3, GCS, R2, and Azure Blob."
+      ],
+      "question": "What is Credentialless `rclone` mounts limited to?",
+      "answer": "Credentialless `rclone` mounts are limited to S3, GCS, R2, and Azure Blob.",
+      "atomic_claims": [
+        "Credentialless `rclone` mounts are limited to S3, GCS, R2, and Azure Blob."
+      ],
+      "critical_strings": [
+        "rclone",
+        "FuseMountPattern",
+        "blobfuse2"
+      ],
+      "evidence_kind": "long_technical_section",
+      "binding": "structural-or-subject-window",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "generator_confidence": "medium",
+      "generator_notes": "",
+      "needs_human_interpretation": false,
+      "candidate_type": "supported",
+      "verification_status": "candidate_unverified",
+      "claude_proposed": true,
+      "chatgpt_verified": null,
+      "retrieval_was_not_run": true,
+      "schema_version": "v2-devset-001/1.0",
+      "question_subject": "Credentialless `rclone` mounts",
+      "question_relation": "is_limited_to",
+      "question_object": "S3, GCS, R2, and Azure Blob",
+      "revisions": [],
+      "stress_types": [
+        "long_technical_section",
+        "correct_document_difficult_passage",
+        "identifier_vs_semantic_distractor"
+      ],
+      "source_subject": "Credentialless `rclone` mounts",
+      "source_relation": "is_limited_to",
+      "source_object": "S3, GCS, R2, and Azure Blob",
+      "source_sentence": "Credentialless `rclone` mounts are limited to S3, GCS, R2, and Azure Blob",
+      "source_triple_derivation": "named relation"
+    },
+    {
+      "candidate_id": "V2D-24",
+      "provider": "anthropic",
+      "document_title": "Migration guide",
+      "version_id": "ver_a7bda3595f2c124605c3228464d4ee52",
+      "source_url": "https://platform.claude.com/docs/en/about-claude/models/migration-guide",
+      "captured_at": "2026-08-17 04:46:19+00:00",
+      "section_path": [
+        "Opus migration",
+        "What changed"
+      ],
+      "char_start": 54954,
+      "char_end": 55610,
+      "evidence_text": "5. **Mid-conversation system messages:** Claude Opus 5 accepts `role: \"system\"` messages immediately after a user turn in the `messages` array (subject to [placement rules](https://platform.claude.com/docs/en/build-with-claude/mid-conversation-system-messages#limitations)). Use the top-level `system` field for instructions that apply from the start. Claude Opus 4.7 rejects `role: \"system\"` in `messages` with a 400 error. If you maintain code paths that rebuild the full message history to update instructions, you can simplify them and preserve [prompt cache](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) hits on earlier turns.",
+      "evidence_hash": "47f0ae4b3a03eda2241ca4ce66067e218b04759efe4786cc90316fd7009250ff",
+      "evidence_char_length": 656,
+      "context_before": "ll set of effort levels (`low`, `medium`, `high`, `xhigh`, `max`). Run a fresh effort sweep on your own evals rather than carrying over a setting tuned for Claude Opus 4.7. `low` and `medium` effort are worth testing as cost and latency controls, and test `max` effort where maximum capability matters more than token spend. If you run at `xhigh` or `max` effort, set a large `max_tokens` so the model has room to think and act; start at 64k tokens and tune from there. See [Effort](https://platform.claude.com/docs/en/build-with-claude/effort).\n\n4. **1M context window is the default:** Claude Opus 5 serves the full 1M token [context window](https://platform.claude.com/docs/en/build-with-claude/context-windows) by default with no beta header and no long-context premium. If your client passes a context-window beta header for compatibility with older models, you can remove it on Claude Opus 5.\n\n",
+      "context_after": "\n\n6. **Refusal stop details:** The `stop_details` object on refusal responses (available since Claude Opus 4.7) is now publicly documented. When the model declines a request, it identifies the category of refusal, in addition to the existing `refusal` stop reason. No beta header is required, and there is no opt-out. See [Handling stop reasons](https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons).\n\n7. **Lower prompt caching minimum:** The minimum cacheable prompt length on Claude Opus 5 is 512 tokens, lower than on Claude Opus 4.7. Prompts that were too short to cache on Claude Opus 4.7 can now create cache entries, with no code changes required. See [Prompt caching](https://platform.claude.com/docs/en/build-with-claude/prompt-caching#cache-limitations) for per-model minimums.\n\n8. **Fast mode:** Claude Opus 5 supports [fast mode](https://platform.claude.com/docs/en",
+      "expected_evidence": [
+        {
+          "evidence_id": "E1",
+          "version_id": "ver_a7bda3595f2c124605c3228464d4ee52",
+          "section_path": [
+            "Opus migration",
+            "What changed"
+          ],
+          "char_start": 54954,
+          "char_end": 55610,
+          "evidence_text": "5. **Mid-conversation system messages:** Claude Opus 5 accepts `role: \"system\"` messages immediately after a user turn in the `messages` array (subject to [placement rules](https://platform.claude.com/docs/en/build-with-claude/mid-conversation-system-messages#limitations)). Use the top-level `system` field for instructions that apply from the start. Claude Opus 4.7 rejects `role: \"system\"` in `messages` with a 400 error. If you maintain code paths that rebuild the full message history to update instructions, you can simplify them and preserve [prompt cache](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) hits on earlier turns.",
+          "evidence_hash": "47f0ae4b3a03eda2241ca4ce66067e218b04759efe4786cc90316fd7009250ff",
+          "evidence_char_length": 656,
+          "critical_strings": [
+            "messages",
+            "system"
+          ]
+        }
+      ],
+      "proposed_category": "error_behavior",
+      "reasoning_type": "error_behavior",
+      "secondary_category": "rejects",
+      "proposed_question": "What does Claude Opus 4.7 reject?",
+      "proposed_answer": "Claude Opus 4.7 rejects `role: \"system\"` in `messages` with a 400 error.",
+      "proposed_atomic_claims": [
+        "Claude Opus 4.7 rejects `role: \"system\"` in `messages` with a 400 error."
+      ],
+      "question": "What does Claude Opus 4.7 reject?",
+      "answer": "Claude Opus 4.7 rejects `role: \"system\"` in `messages` with a 400 error.",
+      "atomic_claims": [
+        "Claude Opus 4.7 rejects `role: \"system\"` in `messages` with a 400 error."
+      ],
+      "critical_strings": [
+        "messages",
+        "system"
+      ],
+      "evidence_kind": "long_technical_section",
+      "binding": "structural-or-subject-window",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "generator_confidence": "medium",
+      "generator_notes": "",
+      "needs_human_interpretation": false,
+      "candidate_type": "supported",
+      "verification_status": "candidate_unverified",
+      "claude_proposed": true,
+      "chatgpt_verified": null,
+      "retrieval_was_not_run": true,
+      "schema_version": "v2-devset-001/1.0",
+      "question_subject": "Claude Opus 4.7",
+      "question_relation": "rejects",
+      "question_object": "`role: \"system\"` in `messages` with a 400 error",
+      "revisions": [],
+      "stress_types": [
+        "long_technical_section",
+        "correct_document_difficult_passage",
+        "version_model_discrimination",
+        "parameter_error_literal_lookup",
+        "same_document_passage_discrimination"
+      ],
+      "source_subject": "Claude Opus 4.7",
+      "source_relation": "rejects",
+      "source_object": "`role: \"system\"` in `messages` with a 400 error",
+      "source_sentence": "Claude Opus 4.7 rejects `role: \"system\"` in `messages` with a 400 error",
+      "source_triple_derivation": "named relation"
+    },
+    {
+      "candidate_id": "V2D-25",
+      "provider": "anthropic",
+      "document_title": "Admin",
+      "version_id": "ver_c299b58fe1f5a4d3a081b550334a7df6",
+      "source_url": "https://platform.claude.com/docs/en/api/admin",
+      "captured_at": "2026-08-17 04:46:19+00:00",
+      "section_path": [
+        "Service Accounts",
+        "Create Service Account"
+      ],
+      "char_start": 441490,
+      "char_end": 442046,
+      "evidence_text": "A service account is a named workload identity that federation rules\ntarget. `organization_role` is `developer` (default) or `admin`; a rule\nmay only be created or retargeted to grant `org:admin` scope when the\ntarget's `organization_role` is `admin`. Requires an OAuth bearer (user\nor WIF-minted service account token) or a Console session; Admin API\nkeys are not accepted. Creating an `admin`-role service account requires\nan interactive credential (a user OAuth token or a Console session) — a\nworkload may only create `developer`-role service accounts.",
+      "evidence_hash": "81389e37ebfd652456dc740e7b434acb38c5ac732d3d29ee60e2ecce49d0fa12",
+      "evidence_char_length": 556,
+      "context_before": "`\"skills\"`\n\n      - `\"token_count\"`\n\n      - `\"web_search\"`\n\n    - `limits: array of object { type, value }`\n\n      The limiter values that apply to this group.\n\n      - `type: string`\n\n        The limiter type (for example, `requests_per_minute` or `input_tokens_per_minute`).\n\n      - `value: number`\n\n        The configured limit value for this limiter type.\n\n    - `models: array of string or null`\n\n      Model names this entry's limits apply to, including aliases. `null` when `group_type` is not `\"model_group\"`.\n\n    - `type: \"rate_limit\"`\n\n      Object type. Always `rate_limit` for organization rate-limit entries.\n\n      - `\"rate_limit\"`\n\n  - `next_page: string or null`\n\n    Token to provide in as `page` in the subsequent request to retrieve the next page of data.\n\n# Service Accounts\n\n## Create Service Account\n\n**post** `/v1/organizations/service_accounts`\n\nCreate a service account.\n\n",
+      "context_after": "\n\n### Header Parameters\n\n- `\"anthropic-beta\": optional array of string`\n\n  Optional header to specify the beta version(s) you want to use.\n\n  To use multiple betas, use a comma separated list like `beta1,beta2` or specify the header multiple times for each beta.\n\n### Body Parameters\n\n- `name: string`\n\n  Slug identifier (lowercase, digits, hyphens). Unique within the organization; a duplicate name returns 409.\n\n- `description: optional string or null`\n\n  Optional free-text description.\n\n- `organization_role: optional \"admin\" or \"developer\"`\n\n  Org-level role. Defaults to `developer`.\n\n  - `\"admin\"`\n\n  - `\"developer\"`\n\n### Returns\n\n- `ServiceAccount object { id, archived_at, archived_by_actor_id, 8 more }`\n\n  Named non-human identity within the caller's organization.\n\n  A service account is a pure identity: name + org. Authorization lives on\n  whatever references it (federation rules).\n\n  ",
+      "expected_evidence": [
+        {
+          "evidence_id": "E1",
+          "version_id": "ver_c299b58fe1f5a4d3a081b550334a7df6",
+          "section_path": [
+            "Service Accounts",
+            "Create Service Account"
+          ],
+          "char_start": 441490,
+          "char_end": 442046,
+          "evidence_text": "A service account is a named workload identity that federation rules\ntarget. `organization_role` is `developer` (default) or `admin`; a rule\nmay only be created or retargeted to grant `org:admin` scope when the\ntarget's `organization_role` is `admin`. Requires an OAuth bearer (user\nor WIF-minted service account token) or a Console session; Admin API\nkeys are not accepted. Creating an `admin`-role service account requires\nan interactive credential (a user OAuth token or a Console session) — a\nworkload may only create `developer`-role service accounts.",
+          "evidence_hash": "81389e37ebfd652456dc740e7b434acb38c5ac732d3d29ee60e2ecce49d0fa12",
+          "evidence_char_length": 556,
+          "critical_strings": [
+            "organization_role",
+            "developer",
+            "admin"
+          ]
+        }
+      ],
+      "proposed_category": "configuration_interaction",
+      "reasoning_type": "configuration_interaction",
+      "secondary_category": "requires",
+      "proposed_question": "What does Creating an `admin`-role service account require?",
+      "proposed_answer": "Creating an `admin`-role service account requires an interactive credential (a user OAuth token or a Console session) — a workload may only create `developer`-role service accounts.",
+      "proposed_atomic_claims": [
+        "Creating an `admin`-role service account requires an interactive credential (a user OAuth token or a Console session) — a workload may only create `developer`-role service accounts."
+      ],
+      "question": "What does Creating an `admin`-role service account require?",
+      "answer": "Creating an `admin`-role service account requires an interactive credential (a user OAuth token or a Console session) — a workload may only create `developer`-role service accounts.",
+      "atomic_claims": [
+        "Creating an `admin`-role service account requires an interactive credential (a user OAuth token or a Console session) — a workload may only create `developer`-role service accounts."
+      ],
+      "critical_strings": [
+        "organization_role",
+        "developer",
+        "admin"
+      ],
+      "evidence_kind": "long_technical_section",
+      "binding": "structural-or-subject-window",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "generator_confidence": "medium",
+      "generator_notes": "",
+      "needs_human_interpretation": false,
+      "candidate_type": "supported",
+      "verification_status": "candidate_unverified",
+      "claude_proposed": true,
+      "chatgpt_verified": null,
+      "retrieval_was_not_run": true,
+      "schema_version": "v2-devset-001/1.0",
+      "question_subject": "Creating an `admin`-role service account",
+      "question_relation": "requires",
+      "question_object": "an interactive credential (a user OAuth token or a Console session) — a workload may only create `developer`-role service accounts",
+      "revisions": [],
+      "stress_types": [
+        "long_technical_section",
+        "correct_document_difficult_passage",
+        "identifier_vs_semantic_distractor"
+      ],
+      "source_subject": "Creating an `admin`-role service account",
+      "source_relation": "requires",
+      "source_object": "an interactive credential (a user OAuth token or a Console session) — a workload may only create `developer`-role service accounts.",
+      "source_sentence": "Creating an `admin`-role service account requires an interactive credential (a user OAuth token or a Console session) — a workload may only create `developer`-role service accounts.",
+      "source_triple_derivation": "named relation"
+    },
+    {
+      "candidate_id": "V2D-26",
+      "provider": "anthropic",
+      "document_title": "Code execution tool",
+      "version_id": "ver_f65938c74d40ac1e288f169d3d0435b7",
+      "source_url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool",
+      "captured_at": "2026-08-17 04:46:19+00:00",
+      "section_path": [
+        "Model compatibility"
+      ],
+      "char_start": 3697,
+      "char_end": 4899,
+      "evidence_text": "* `code_execution_20250825` supports Bash commands and file operations.\n* `code_execution_20260120` adds REPL state persistence and [programmatic tool calling](https://platform.claude.com/docs/en/agents-and-tools/tool-use/programmatic-tool-calling) from within the sandbox. Claude Haiku 4.5 accepts the `code_execution_20260120` and `code_execution_20260521` tool types, but programmatic tool calling and the REPL state persistence that depends on it aren't available on it, so the newer versions behave like `code_execution_20250825` there.\n* `code_execution_20260521` is the same runtime as `code_execution_20260120`. The difference is that the tool description tells Claude about the 90-second wall-clock limit on each Python cell in programmatic tool calling, so Claude can budget long-running cells. A cell that exceeds the limit returns a normal code execution result with a non-zero `return_code` and a `detection_timeout` status message in its output. This is separate from the `execution_time_exceeded` [error code](https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool#errors), which the API returns when a whole tool invocation exceeds the maximum execution time.",
+      "evidence_hash": "9cea4902ecd5c88731db55f35040c0d383bc69d570dc64b352eba255d3e54f11",
+      "evidence_char_length": 1202,
+      "context_before": "code_execution_20260120`, `code_execution_20260521` |\n| Claude Opus 4.7 (claude-opus-4-7)              | `code_execution_20250825`, `code_execution_20260120`, `code_execution_20260521` |\n| Claude Opus 4.6 (claude-opus-4-6)              | `code_execution_20250825`, `code_execution_20260120`, `code_execution_20260521` |\n| Claude Sonnet 4.6 (claude-sonnet-4-6)          | `code_execution_20250825`, `code_execution_20260120`, `code_execution_20260521` |\n| Claude Opus 4.5 (claude-opus-4-5-20251101)     | `code_execution_20250825`, `code_execution_20260120`, `code_execution_20260521` |\n| Claude Sonnet 4.5 (claude-sonnet-4-5-20250929) | `code_execution_20250825`, `code_execution_20260120`, `code_execution_20260521` |\n| Claude Haiku 4.5 (claude-haiku-4-5-20251001)   | `code_execution_20250825`, `code_execution_20260120`, `code_execution_20260521` |\n\nEach tool version builds on the previous one:\n\n",
+      "context_after": "\n\nAll three tool versions are generally available and don't require an `anthropic-beta` header. The legacy code execution beta headers remain valid opt-ins.\n\nThe examples on this page use `code_execution_20250825`, which covers the Bash and file operations they demonstrate and behaves the same way on every model in the table; use `code_execution_20260120` or later when you need programmatic tool calling or REPL state persistence. The current [web search](https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool) and [web fetch](https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-fetch-tool) tools (`web_search_20260209`, `web_fetch_20260209`, and later) require `code_execution_20260120` or later as their code execution version.\n\n<Note>\n  If you're still using the legacy `code_execution_20250522` (Python only), see [Upgrade to latest tool version](https://",
+      "expected_evidence": [
+        {
+          "evidence_id": "E1",
+          "version_id": "ver_f65938c74d40ac1e288f169d3d0435b7",
+          "section_path": [
+            "Model compatibility"
+          ],
+          "char_start": 3697,
+          "char_end": 4899,
+          "evidence_text": "* `code_execution_20250825` supports Bash commands and file operations.\n* `code_execution_20260120` adds REPL state persistence and [programmatic tool calling](https://platform.claude.com/docs/en/agents-and-tools/tool-use/programmatic-tool-calling) from within the sandbox. Claude Haiku 4.5 accepts the `code_execution_20260120` and `code_execution_20260521` tool types, but programmatic tool calling and the REPL state persistence that depends on it aren't available on it, so the newer versions behave like `code_execution_20250825` there.\n* `code_execution_20260521` is the same runtime as `code_execution_20260120`. The difference is that the tool description tells Claude about the 90-second wall-clock limit on each Python cell in programmatic tool calling, so Claude can budget long-running cells. A cell that exceeds the limit returns a normal code execution result with a non-zero `return_code` and a `detection_timeout` status message in its output. This is separate from the `execution_time_exceeded` [error code](https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool#errors), which the API returns when a whole tool invocation exceeds the maximum execution time.",
+          "evidence_hash": "9cea4902ecd5c88731db55f35040c0d383bc69d570dc64b352eba255d3e54f11",
+          "evidence_char_length": 1202,
+          "critical_strings": [
+            "code_execution_20250825",
+            "code_execution_20260120",
+            "code_execution_20260521"
+          ]
+        }
+      ],
+      "proposed_category": "exact_lookup",
+      "reasoning_type": "exact_lookup",
+      "secondary_category": "accepts",
+      "proposed_question": "What does Claude Haiku 4.5 accept?",
+      "proposed_answer": "Claude Haiku 4.5 accepts the `code_execution_20260120` and `code_execution_20260521` tool types, but programmatic tool calling and the REPL state persistence that depends on it aren't available on it, so the newer versions behave like `code_execution_20250825` there.",
+      "proposed_atomic_claims": [
+        "Claude Haiku 4.5 accepts the `code_execution_20260120` and `code_execution_20260521` tool types, but programmatic tool calling and the REPL state persistence that depends on it aren't available on it, so the newer versions behave like `code_execution_20250825` there."
+      ],
+      "question": "What does Claude Haiku 4.5 accept?",
+      "answer": "Claude Haiku 4.5 accepts the `code_execution_20260120` and `code_execution_20260521` tool types, but programmatic tool calling and the REPL state persistence that depends on it aren't available on it, so the newer versions behave like `code_execution_20250825` there.",
+      "atomic_claims": [
+        "Claude Haiku 4.5 accepts the `code_execution_20260120` and `code_execution_20260521` tool types, but programmatic tool calling and the REPL state persistence that depends on it aren't available on it, so the newer versions behave like `code_execution_20250825` there."
+      ],
+      "critical_strings": [
+        "code_execution_20250825",
+        "code_execution_20260120",
+        "code_execution_20260521"
+      ],
+      "evidence_kind": "long_technical_section",
+      "binding": "structural-or-subject-window",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "generator_confidence": "medium",
+      "generator_notes": "",
+      "needs_human_interpretation": false,
+      "candidate_type": "supported",
+      "verification_status": "candidate_unverified",
+      "claude_proposed": true,
+      "chatgpt_verified": null,
+      "retrieval_was_not_run": true,
+      "schema_version": "v2-devset-001/1.0",
+      "question_subject": "Claude Haiku 4.5",
+      "question_relation": "accepts",
+      "question_object": "the `code_execution_20260120` and `code_execution_20260521` tool types, but programmatic tool calling and the REPL state persistence that depends on it aren't available on it, so the newer versions behave like `code_execution_20250825` there",
+      "revisions": [],
+      "stress_types": [
+        "long_technical_section",
+        "version_model_discrimination",
+        "parameter_error_literal_lookup"
+      ],
+      "source_subject": "Claude Haiku 4.5",
+      "source_relation": "accepts",
+      "source_object": "the `code_execution_20260120` and `code_execution_20260521` tool types, but programmatic tool calling and the REPL state persistence that depends on it aren't available on it, so the newer versions behave like `code_execution_20250825` there",
+      "source_sentence": "Claude Haiku 4.5 accepts the `code_execution_20260120` and `code_execution_20260521` tool types, but programmatic tool calling and the REPL state persistence that depends on it aren't available on it, so the newer versions behave like `code_execution_20250825` there",
+      "source_triple_derivation": "named relation"
+    },
+    {
+      "candidate_id": "V2D-27",
+      "provider": "openai",
+      "document_title": "Handoffs",
+      "version_id": "ver_1c77f33b04ffffa285ea7e61c2a89653",
+      "source_url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/handoffs.md",
+      "captured_at": "2026-08-17 04:46:19+00:00",
+      "section_path": [
+        "(1)!",
+        "Customizing handoffs via the `handoff()` function"
+      ],
+      "char_start": 2733,
+      "char_end": 2924,
+      "evidence_text": "-   `nest_handoff_history`: Optional per-handoff override for the RunConfig-level `nest_handoff_history` setting. If `None`, the value defined in the active run configuration is used instead.",
+      "evidence_hash": "dc3876a7a33fdb1b166f9b1b78a40ba13f479f776215de7018f0c04d4f46d29e",
+      "evidence_char_length": 191,
+      "context_before": "ransfer_to_<agent_name>`. You can override this.\n-   `tool_description_override`: Override the default tool description from `Handoff.default_tool_description()`\n-   `on_handoff`: A callback function executed when the handoff is invoked. This is useful for things like kicking off some data fetching as soon as you know a handoff is being invoked. This function receives the agent context, and can optionally also receive LLM generated input. The input data is controlled by the `input_type` param.\n-   `input_type`: The schema for the handoff tool-call arguments. When set, the parsed payload is passed to `on_handoff`.\n-   `input_filter`: This lets you filter the input received by the next agent. See below for more.\n-   `is_enabled`: Whether the handoff is enabled. This can be a boolean or a function that returns a boolean, allowing you to dynamically enable or disable the handoff at runtime.\n",
+      "context_after": "\n\nThe [`handoff()`][agents.handoffs.handoff] helper always transfers control to the specific `agent` you passed in. If you have multiple possible destinations, register one handoff per destination and let the model choose among them. Use a custom [`Handoff`][agents.handoffs.Handoff] only when your own handoff code must decide which agent to return at invocation time.\n\n```python\nfrom agents import Agent, handoff, RunContextWrapper\n\ndef on_handoff(ctx: RunContextWrapper[None]):\n    print(\"Handoff called\")\n\nagent = Agent(name=\"My agent\")\n\nhandoff_obj = handoff(\n    agent=agent,\n    on_handoff=on_handoff,\n    tool_name_override=\"custom_handoff_tool\",\n    tool_description_override=\"Custom description\",\n)\n```\n\n## Handoff inputs\n\nIn certain situations, you want the LLM to provide some data when it calls a handoff. For example, imagine a handoff to an \"Escalation agent\". You might want the model",
+      "expected_evidence": [
+        {
+          "evidence_id": "E1",
+          "version_id": "ver_1c77f33b04ffffa285ea7e61c2a89653",
+          "section_path": [
+            "(1)!",
+            "Customizing handoffs via the `handoff()` function"
+          ],
+          "char_start": 2733,
+          "char_end": 2924,
+          "evidence_text": "-   `nest_handoff_history`: Optional per-handoff override for the RunConfig-level `nest_handoff_history` setting. If `None`, the value defined in the active run configuration is used instead.",
+          "evidence_hash": "dc3876a7a33fdb1b166f9b1b78a40ba13f479f776215de7018f0c04d4f46d29e",
+          "evidence_char_length": 191,
+          "critical_strings": [
+            "nest_handoff_history",
+            "Optional per-handoff override for the RunConfig-level `nest"
+          ]
+        }
+      ],
+      "proposed_category": "exact_constraint",
+      "reasoning_type": "exact_lookup",
+      "proposed_question": "What is the `nest_handoff_history` option?",
+      "proposed_answer": "Optional per-handoff override for the RunConfig-level `nest_handoff_history` setting. If `None`, the value defined in the active run configuration is used instead.",
+      "proposed_atomic_claims": [
+        "`nest_handoff_history`: Optional per-handoff override for the RunConfig-level `nest_handoff_history` setting. If `None`, the value defined in the active run configuration is used instead."
+      ],
+      "question": "What is the `nest_handoff_history` option?",
+      "answer": "Optional per-handoff override for the RunConfig-level `nest_handoff_history` setting. If `None`, the value defined in the active run configuration is used instead.",
+      "atomic_claims": [
+        "`nest_handoff_history`: Optional per-handoff override for the RunConfig-level `nest_handoff_history` setting. If `None`, the value defined in the active run configuration is used instead."
+      ],
+      "critical_strings": [
+        "nest_handoff_history",
+        "Optional per-handoff override for the RunConfig-level `nest"
+      ],
+      "evidence_kind": "definition_bullet",
+      "binding": "template-captured-groups",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "generator_confidence": "high",
+      "generator_notes": "",
+      "needs_human_interpretation": false,
+      "candidate_type": "supported",
+      "verification_status": "candidate_unverified",
+      "claude_proposed": true,
+      "chatgpt_verified": null,
+      "retrieval_was_not_run": true,
+      "schema_version": "v2-devset-001/1.0",
+      "revisions": [],
+      "stress_types": [
+        "parameter_error_literal_lookup",
+        "identifier_vs_semantic_distractor",
+        "lexical_query_shape"
+      ],
+      "question_subject": "`nest_handoff_history`",
+      "question_relation": null,
+      "question_object": null,
+      "source_subject": null,
+      "source_relation": null,
+      "source_object": null,
+      "source_sentence": null,
+      "source_triple_derivation": "not derivable from the evidence"
+    },
+    {
+      "candidate_id": "V2D-28",
+      "provider": "anthropic",
+      "document_title": "MCP connector",
+      "version_id": "ver_279d37a3a0cc4e8a9209e01f16f9df88",
+      "source_url": "https://platform.claude.com/docs/en/agents-and-tools/mcp-connector",
+      "captured_at": "2026-08-17 04:46:19+00:00",
+      "section_path": [
+        "MCP server configuration",
+        "Field descriptions"
+      ],
+      "char_start": 12037,
+      "char_end": 12395,
+      "evidence_text": "| `authorization_token` | string | No       | OAuth authorization token if required by the MCP server. See [Authentication](https://platform.claude.com/docs/en/agents-and-tools/mcp-connector#authentication) for how to obtain one, or the [MCP specification](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization) for protocol details. |",
+      "evidence_hash": "f9e6a94fee46649f7544664048f00e2bc5062e6ab2476766015ae9e1abef428c",
+      "evidence_char_length": 358,
+      "context_before": "                                                                                                                                                                                    |\n| `url`                 | string | Yes      | The URL of the MCP server. Must start with https\\://.                                                                                                                                                                                                                                                                  |\n| `name`                | string | Yes      | A unique identifier for this MCP server. Must be referenced by exactly one MCPToolset in the `tools` array.                                                                                                                                                                                                            |\n",
+      "context_after": "\n\n## MCP toolset configuration\n\nThe MCPToolset lives in the `tools` array and configures which tools from the MCP server are enabled and how they should be configured.\n\n### Basic structure\n\n```json\n{\n  \"type\": \"mcp_toolset\",\n  \"mcp_server_name\": \"example-mcp\",\n  \"default_config\": {\n    \"enabled\": true,\n    \"defer_loading\": false\n  },\n  \"configs\": {\n    \"specific_tool_name\": {\n      \"enabled\": true,\n      \"defer_loading\": true\n    }\n  }\n}\n```\n\n### Field descriptions\n\n| Property          | Type   | Required | Description                                                                                                                             |\n| ----------------- | ------ | -------- | --------------------------------------------------------------------------------------------------------------------------------------- |\n| `type`            | string | Yes      | Must be \"mcp\\_toolset\".    ",
+      "expected_evidence": [
+        {
+          "evidence_id": "E1",
+          "version_id": "ver_279d37a3a0cc4e8a9209e01f16f9df88",
+          "section_path": [
+            "MCP server configuration",
+            "Field descriptions"
+          ],
+          "char_start": 12037,
+          "char_end": 12395,
+          "evidence_text": "| `authorization_token` | string | No       | OAuth authorization token if required by the MCP server. See [Authentication](https://platform.claude.com/docs/en/agents-and-tools/mcp-connector#authentication) for how to obtain one, or the [MCP specification](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization) for protocol details. |",
+          "evidence_hash": "f9e6a94fee46649f7544664048f00e2bc5062e6ab2476766015ae9e1abef428c",
+          "evidence_char_length": 358,
+          "critical_strings": [
+            "authorization_token",
+            "No"
+          ]
+        }
+      ],
+      "proposed_category": "exact_lookup",
+      "reasoning_type": "exact_lookup",
+      "proposed_question": "Is the `authorization_token` parameter required?",
+      "proposed_answer": "No, it is optional.",
+      "proposed_atomic_claims": [
+        "`authorization_token` is optional."
+      ],
+      "question": "Is the `authorization_token` parameter required?",
+      "answer": "No, it is optional.",
+      "atomic_claims": [
+        "`authorization_token` is optional."
+      ],
+      "critical_strings": [
+        "authorization_token",
+        "No"
+      ],
+      "evidence_kind": "parameter_table_row",
+      "binding": "structural: parameter is the row's first cell, requiredness is column 2 of the same row",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "generator_confidence": "high",
+      "generator_notes": "Row-scoped association, so the state cannot belong to a different parameter. Reviewer should confirm the table is a parameter table and that the column header means what it appears to mean.",
+      "needs_human_interpretation": false,
+      "candidate_type": "supported",
+      "verification_status": "candidate_unverified",
+      "claude_proposed": true,
+      "chatgpt_verified": null,
+      "retrieval_was_not_run": true,
+      "schema_version": "v2-devset-001/1.0",
+      "revisions": [],
+      "stress_types": [
+        "parameter_error_literal_lookup",
+        "identifier_vs_semantic_distractor",
+        "lexical_query_shape"
+      ],
+      "question_subject": "`authorization_token`",
+      "question_relation": null,
+      "question_object": null,
+      "source_subject": null,
+      "source_relation": null,
+      "source_object": null,
+      "source_sentence": null,
+      "source_triple_derivation": "not derivable from the evidence"
+    },
+    {
+      "candidate_id": "V2D-29",
+      "provider": "anthropic",
+      "document_title": "Migration guide",
+      "version_id": "ver_a7bda3595f2c124605c3228464d4ee52",
+      "source_url": "https://platform.claude.com/docs/en/about-claude/models/migration-guide",
+      "captured_at": "2026-08-17 04:46:19+00:00",
+      "section_path": [
+        "Sonnet migration",
+        "Migrating to Claude Sonnet 5 from Claude Sonnet 4.5 and earlier Sonnet models",
+        "Breaking changes",
+        "When migrating from Sonnet 4.5"
+      ],
+      "char_start": 145238,
+      "char_end": 145433,
+      "evidence_text": "**Extended thinking changes:** `budget_tokens` configurations from Claude Sonnet 4.5 (`thinking: {type: \"enabled\", budget_tokens: N}`) are not supported on Claude Sonnet 5 and return a 400 error.",
+      "evidence_hash": "de9ec2b8500126128446817587db58f782b25e94cdf3ee308f7ac5217340221c",
+      "evidence_char_length": 195,
+      "context_before": "', 'Based on...', etc.\"\n\n   * **Avoiding bad refusals:** Claude is much better at appropriate refusals now. Clear prompting in the user message without prefill should be sufficient.\n\n   * **Continuations** (resuming interrupted responses): Move the continuation to the user message: \"Your previous response was interrupted and ended with `[previous_response]`. Continue from where you left off.\"\n\n   * **Context hydration / role consistency** (refreshing context in long conversations): Inject what were previously prefilled-assistant reminders into the user turn instead.\n\n2. **Tool parameter JSON escaping may differ**\n\n   <Warning>\n     This is a breaking change when migrating from Sonnet 4.5 or earlier.\n   </Warning>\n\n   JSON string escaping in tool parameters may differ from previous models. Standard JSON parsers handle this automatically, but custom string-based parsing may need updates.\n\n",
+      "context_after": " Adaptive thinking is on by default, so most workloads need no `thinking` configuration at all; use the [effort parameter](https://platform.claude.com/docs/en/build-with-claude/effort) to control thinking depth. If you ran Claude Sonnet 4.5 without extended thinking, pass `thinking: {type: \"disabled\"}` to preserve that behavior.\n\n##### When migrating from Claude 3.x\n\n3. **Remove sampling parameters**\n\n   <Warning>\n     This is a breaking change when migrating from Claude 3.x models.\n   </Warning>\n\n   Sampling parameters (`temperature`, `top_p`, `top_k`) set to a non-default value return a 400 error on Claude Sonnet 5. Remove them from requests, and use prompting to guide the model's behavior instead.\n\n4. **Update tool versions**\n\n   <Warning>\n     This is a breaking change when migrating from Claude 3.x models.\n   </Warning>\n\n   Update to the latest tool versions (`text_editor_20250728`,",
+      "expected_evidence": [
+        {
+          "evidence_id": "E1",
+          "version_id": "ver_a7bda3595f2c124605c3228464d4ee52",
+          "section_path": [
+            "Sonnet migration",
+            "Migrating to Claude Sonnet 5 from Claude Sonnet 4.5 and earlier Sonnet models",
+            "Breaking changes",
+            "When migrating from Sonnet 4.5"
+          ],
+          "char_start": 145238,
+          "char_end": 145433,
+          "evidence_text": "**Extended thinking changes:** `budget_tokens` configurations from Claude Sonnet 4.5 (`thinking: {type: \"enabled\", budget_tokens: N}`) are not supported on Claude Sonnet 5 and return a 400 error.",
+          "evidence_hash": "de9ec2b8500126128446817587db58f782b25e94cdf3ee308f7ac5217340221c",
+          "evidence_char_length": 195,
+          "critical_strings": [
+            "budget_tokens"
+          ]
+        }
+      ],
+      "proposed_category": "lifecycle_compatibility_migration",
+      "reasoning_type": "lifecycle_compatibility_migration",
+      "secondary_category": "compatibility",
+      "proposed_question": "Is `budget_tokens` supported on Claude Sonnet 5?",
+      "proposed_answer": "**Extended thinking changes:** `budget_tokens` configurations from Claude Sonnet 4.5 (`thinking: {type: \"enabled\", budget_tokens: N}`) are not supported on Claude Sonnet 5 and return a 400 error.",
+      "proposed_atomic_claims": [
+        "**Extended thinking changes:** `budget_tokens` configurations from Claude Sonnet 4.5 (`thinking: {type: \"enabled\", budget_tokens: N}`) are not supported on Claude Sonnet 5 and return a 400 error."
+      ],
+      "question": "Is `budget_tokens` supported on Claude Sonnet 5?",
+      "answer": "**Extended thinking changes:** `budget_tokens` configurations from Claude Sonnet 4.5 (`thinking: {type: \"enabled\", budget_tokens: N}`) are not supported on Claude Sonnet 5 and return a 400 error.",
+      "atomic_claims": [
+        "**Extended thinking changes:** `budget_tokens` configurations from Claude Sonnet 4.5 (`thinking: {type: \"enabled\", budget_tokens: N}`) are not supported on Claude Sonnet 5 and return a 400 error."
+      ],
+      "critical_strings": [
+        "budget_tokens"
+      ],
+      "evidence_kind": "lifecycle_statement",
+      "binding": "structural-or-subject-window",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "generator_confidence": "medium",
+      "generator_notes": "",
+      "needs_human_interpretation": false,
+      "candidate_type": "supported",
+      "verification_status": "candidate_unverified",
+      "claude_proposed": true,
+      "chatgpt_verified": null,
+      "retrieval_was_not_run": true,
+      "schema_version": "v2-devset-001/1.0",
+      "question_subject": "`budget_tokens`",
+      "question_relation": "is_not_supported_on",
+      "question_object": "Claude Sonnet 5",
+      "revisions": [],
+      "stress_types": [
+        "correct_document_difficult_passage",
+        "version_model_discrimination",
+        "parameter_error_literal_lookup",
+        "identifier_vs_semantic_distractor",
+        "lexical_query_shape",
+        "same_document_passage_discrimination"
+      ],
+      "source_subject": "**Extended thinking changes:** `budget_tokens` configurations from Claude Sonnet 4.5 (`thinking: {type: \"enabled\", budget_tokens: N}`)",
+      "source_relation": "is_not_supported_on",
+      "source_object": "Claude Sonnet 5 and return a 400 error.",
+      "source_sentence": "**Extended thinking changes:** `budget_tokens` configurations from Claude Sonnet 4.5 (`thinking: {type: \"enabled\", budget_tokens: N}`) are not supported on Claude Sonnet 5 and return a 400 error.",
+      "source_triple_derivation": "named relation"
+    },
+    {
+      "candidate_id": "V2D-30",
+      "provider": "anthropic",
+      "document_title": "Structured outputs",
+      "version_id": "ver_0865c9612dfe97d8f30dd870dd12e53e",
+      "source_url": "https://platform.claude.com/docs/en/build-with-claude/structured-outputs",
+      "captured_at": "2026-08-17 04:46:19+00:00",
+      "section_path": [
+        "JSON outputs",
+        "Working with JSON outputs in SDKs",
+        "SDK-specific methods"
+      ],
+      "char_start": 29387,
+      "char_end": 29591,
+      "evidence_text": "    The C# SDK accepts raw JSON schemas built programmatically with `JsonSerializer.SerializeToElement`, as shown here, or derives the schema from a plain C# class with the generic `Create<T>()` overload.",
+      "evidence_hash": "ae1c3cc2f4fbd61f52a9658cbad5ff23fe538c261e8db072d19a31c060162e8e",
+      "evidence_char_length": 204,
+      "context_before": "nse.parsed_output is typed as { name: string; email: string; planInterest: string } | null\n    console.log(response.parsed_output!.email);\n    ```\n\n    **Type inference requires `as const`.** Use a literal object expression with a `const` assertion so TypeScript can narrow the property types. Without `as const`, the inferred type collapses to `unknown`.\n\n    **Schema transformation.** By default, the helper transforms the schema the same way `zodOutputFormat()` does: removing unsupported constraints, adding `additionalProperties: false` to objects, and filtering string formats. Pass `jsonSchemaOutputFormat(schema, { transform: false })` to send your schema to the API unchanged. See [How SDK transformation works](https://platform.claude.com/docs/en/build-with-claude/structured-outputs#how-sdk-transformation-works).\n  </Tab>\n\n  <Tab title=\"C#\">\n    **JSON schemas through `OutputConfig`**\n\n",
+      "context_after": " Deserialize the response JSON with `JsonSerializer.Deserialize`.\n\n    ```csharp\n    using System.Text.Json;\n    using Anthropic;\n    using Anthropic.Models.Messages;\n\n    var client = new AnthropicClient();\n\n    var response = await client.Messages.Create(new MessageCreateParams\n    {\n        Model = Model.ClaudeOpus5,\n        MaxTokens = 1024,\n        Messages = [new() {\n            Role = Role.User,\n            Content = \"Extract the key information from this email: John Smith (john@example.com) is interested in our Enterprise plan.\"\n        }],\n        OutputConfig = new OutputConfig\n        {\n            Format = new JsonOutputFormat\n            {\n                Schema = new Dictionary<string, JsonElement>\n                {\n                    [\"type\"] = JsonSerializer.SerializeToElement(\"object\"),\n                    [\"properties\"] = JsonSerializer.SerializeToElement(new\n         ",
+      "expected_evidence": [
+        {
+          "evidence_id": "E1",
+          "version_id": "ver_0865c9612dfe97d8f30dd870dd12e53e",
+          "section_path": [
+            "JSON outputs",
+            "Working with JSON outputs in SDKs",
+            "SDK-specific methods"
+          ],
+          "char_start": 29387,
+          "char_end": 29591,
+          "evidence_text": "    The C# SDK accepts raw JSON schemas built programmatically with `JsonSerializer.SerializeToElement`, as shown here, or derives the schema from a plain C# class with the generic `Create<T>()` overload.",
+          "evidence_hash": "ae1c3cc2f4fbd61f52a9658cbad5ff23fe538c261e8db072d19a31c060162e8e",
+          "evidence_char_length": 204,
+          "critical_strings": [
+            "JsonSerializer.SerializeToElement"
+          ]
+        }
+      ],
+      "proposed_category": "exact_lookup",
+      "reasoning_type": "exact_lookup",
+      "secondary_category": "accepts",
+      "proposed_question": "What does the C# SDK accept?",
+      "proposed_answer": "The C# SDK accepts raw JSON schemas built programmatically with `JsonSerializer.SerializeToElement`, as shown here, or derives the schema from a plain C# class with the generic `Create<T>()` overload.",
+      "proposed_atomic_claims": [
+        "The C# SDK accepts raw JSON schemas built programmatically with `JsonSerializer.SerializeToElement`, as shown here, or derives the schema from a plain C# class with the generic `Create<T>()` overload."
+      ],
+      "question": "What does the C# SDK accept?",
+      "answer": "The C# SDK accepts raw JSON schemas built programmatically with `JsonSerializer.SerializeToElement`, as shown here, or derives the schema from a plain C# class with the generic `Create<T>()` overload.",
+      "atomic_claims": [
+        "The C# SDK accepts raw JSON schemas built programmatically with `JsonSerializer.SerializeToElement`, as shown here, or derives the schema from a plain C# class with the generic `Create<T>()` overload."
+      ],
+      "critical_strings": [
+        "JsonSerializer.SerializeToElement"
+      ],
+      "evidence_kind": "short_normative",
+      "binding": "structural-or-subject-window",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "generator_confidence": "medium",
+      "generator_notes": "",
+      "needs_human_interpretation": false,
+      "candidate_type": "supported",
+      "verification_status": "candidate_unverified",
+      "claude_proposed": true,
+      "chatgpt_verified": null,
+      "retrieval_was_not_run": true,
+      "schema_version": "v2-devset-001/1.0",
+      "question_subject": "The C# SDK",
+      "question_relation": "accepts",
+      "question_object": "raw JSON schemas built programmatically with `JsonSerializer.SerializeToElement`, as shown here, or derives the schema from a plain C# class with the generic `Create<T>()` overload",
+      "revisions": [],
+      "stress_types": [
+        "correct_document_difficult_passage"
+      ],
+      "source_subject": "The C# SDK",
+      "source_relation": "accepts",
+      "source_object": "raw JSON schemas built programmatically with `JsonSerializer.SerializeToElement`, as shown here, or derives the schema from a plain C# class with the generic `Create<T>()` overload.",
+      "source_sentence": "The C# SDK accepts raw JSON schemas built programmatically with `JsonSerializer.SerializeToElement`, as shown here, or derives the schema from a plain C# class with the generic `Create<T>()` overload.",
+      "source_triple_derivation": "named relation"
+    },
+    {
+      "candidate_id": "V2D-31",
+      "provider": "openai",
+      "document_title": "Agent memory",
+      "version_id": "ver_20a999d310bdb42a2eaa743e061ba109",
+      "source_url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/sandbox/memory.md",
+      "captured_at": "2026-08-17 04:46:19+00:00",
+      "section_path": [
+        "Agent memory",
+        "Generate memory"
+      ],
+      "char_start": 6111,
+      "char_end": 6278,
+      "evidence_text": "If recent raw memories exceed `max_raw_memories_for_consolidation` (defaults to 256), Phase 2 keeps only memories from the newest conversations and removes older ones.",
+      "evidence_hash": "0b2654299175c5791f8b50474b4eeaf518c8e53df721e70e2f20d30a9f0b4d64",
+      "evidence_char_length": 167,
+      "context_before": "pace layout is:\n\n```text\nworkspace/\n├── sessions/\n│   └── <rollout-id>.jsonl\n└── memories/\n    ├── memory_summary.md\n    ├── MEMORY.md\n    ├── raw_memories.md (intermediate)\n    ├── phase_two_selection.json (intermediate)\n    ├── raw_memories/ (intermediate)\n    │   └── <rollout-id>.md\n    ├── rollout_summaries/\n    │   └── <rollout-id>_<slug>.md\n    └── skills/\n```\n\nYou can configure memory generation with `MemoryGenerateConfig`:\n\n```python\nfrom agents.sandbox import MemoryGenerateConfig\nfrom agents.sandbox.capabilities import Memory\n\nmemory = Memory(\n    generate=MemoryGenerateConfig(\n        max_raw_memories_for_consolidation=128,\n        extra_prompt=\"Pay extra attention to what made the customer more satisfied or annoyed\",\n    ),\n)\n```\n\nUse `extra_prompt` to tell the memory generator which signals matter most for your use case, such as customer and company details for a GTM agent.\n\n",
+      "context_after": " Recency is based on the last time the conversation is updated. This forgetting mechanism helps memories reflect the newest environment.\n\n## Multi-turn conversations\n\nFor multi-turn sandbox chats, use the normal SDK `Session` together with the same live sandbox session:\n\n```python\nfrom agents import Runner, SQLiteSession\nfrom agents.run import RunConfig\nfrom agents.sandbox import SandboxRunConfig\n\nconversation_session = SQLiteSession(\"gtm-q2-pipeline-review\")\nsandbox = await client.create(manifest=agent.default_manifest)\n\nasync with sandbox:\n    run_config = RunConfig(\n        sandbox=SandboxRunConfig(session=sandbox),\n        workflow_name=\"GTM memory example\",\n    )\n    await Runner.run(\n        agent,\n        \"Analyze data/leads.csv and identify one promising GTM segment.\",\n        session=conversation_session,\n        run_config=run_config,\n    )\n    await Runner.run(\n        agent,\n",
+      "expected_evidence": [
+        {
+          "evidence_id": "E1",
+          "version_id": "ver_20a999d310bdb42a2eaa743e061ba109",
+          "section_path": [
+            "Agent memory",
+            "Generate memory"
+          ],
+          "char_start": 6111,
+          "char_end": 6278,
+          "evidence_text": "If recent raw memories exceed `max_raw_memories_for_consolidation` (defaults to 256), Phase 2 keeps only memories from the newest conversations and removes older ones.",
+          "evidence_hash": "0b2654299175c5791f8b50474b4eeaf518c8e53df721e70e2f20d30a9f0b4d64",
+          "evidence_char_length": 167,
+          "critical_strings": [
+            "max_raw_memories_for_consolidation"
+          ]
+        }
+      ],
+      "proposed_category": "exact_lookup",
+      "reasoning_type": "exact_lookup",
+      "secondary_category": "conditional_behavior",
+      "proposed_question": "What happens if recent raw memories exceed `max_raw_memories_for_consolidation` (defaults to 256)?",
+      "proposed_answer": "Phase 2 keeps only memories from the newest conversations and removes older ones.",
+      "proposed_atomic_claims": [
+        "If recent raw memories exceed `max_raw_memories_for_consolidation` (defaults to 256), Phase 2 keeps only memories from the newest conversations and removes older ones."
+      ],
+      "question": "What happens if recent raw memories exceed `max_raw_memories_for_consolidation` (defaults to 256)?",
+      "answer": "Phase 2 keeps only memories from the newest conversations and removes older ones.",
+      "atomic_claims": [
+        "If recent raw memories exceed `max_raw_memories_for_consolidation` (defaults to 256), Phase 2 keeps only memories from the newest conversations and removes older ones."
+      ],
+      "critical_strings": [
+        "max_raw_memories_for_consolidation"
+      ],
+      "evidence_kind": "short_normative",
+      "binding": "structural-or-subject-window",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "generator_confidence": "medium",
+      "generator_notes": "",
+      "needs_human_interpretation": true,
+      "candidate_type": "supported",
+      "verification_status": "candidate_unverified",
+      "claude_proposed": true,
+      "chatgpt_verified": null,
+      "retrieval_was_not_run": true,
+      "schema_version": "v2-devset-001/1.0",
+      "question_subject": "`max_raw_memories_for_consolidation`",
+      "question_relation": null,
+      "question_object": null,
+      "revisions": [],
+      "stress_types": [
+        "short_evidence_unit",
+        "correct_document_difficult_passage",
+        "identifier_vs_semantic_distractor",
+        "lexical_query_shape",
+        "paraphrase_query_shape"
+      ],
+      "source_subject": "If recent raw memories exceed `max_raw_memories_for_consolidation` (",
+      "source_relation": "defaults",
+      "source_object": "to 256), Phase 2 keeps only memories from the newest conversations and removes older ones.",
+      "source_sentence": "If recent raw memories exceed `max_raw_memories_for_consolidation` (defaults to 256), Phase 2 keeps only memories from the newest conversations and removes older ones.",
+      "source_triple_derivation": "generic predicate split"
+    },
+    {
+      "candidate_id": "V2D-32",
+      "provider": "anthropic",
+      "document_title": "MCP tunnels quickstart",
+      "version_id": "ver_067b3bfdc28f24500ea19b97bf3e80b1",
+      "source_url": "https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/quickstart",
+      "captured_at": "2026-08-17 04:46:19+00:00",
+      "section_path": [
+        "What you need"
+      ],
+      "char_start": 1857,
+      "char_end": 1989,
+      "evidence_text": "Preinstalled on macOS and most Linux distributions; on Windows, install it separately (the `openssl` binary must be on your `PATH`).",
+      "evidence_hash": "a73bb959f95532e95f81c5b7ca24d8e14fa3a92af229fc7e0305755d80dedd37",
+      "evidence_char_length": 132,
+      "context_before": "m.claude.com/docs/en/agents-and-tools/mcp-tunnels/concepts#components) (the [proxy](https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/concepts#components) and [cloudflared](https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/concepts#components)) plus a sample MCP server running alongside it. When everything is running, the sample server is reachable from Claude at `https://echo.<your-tunnel-domain>/mcp` even though nothing is listening on a public port.\n\n## What you need\n\n* [Docker and Docker Compose](https://docs.docker.com/get-docker/) on a machine with outbound internet access.\n* A role in the [Claude Console](https://platform.claude.com) that can manage MCP tunnels. See the [Console guide prerequisites](https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/console#prerequisites).\n* [OpenSSL](https://openssl-library.org/source/) 1.1.1 or later. ",
+      "context_after": "\n\n<Steps>\n  <Step title=\"Create a tunnel\">\n    In the Claude Console sidebar, go to **Manage > MCP tunnels** and click **New tunnel**. Give it a name. Leave **Set up programmatic access** off; this quickstart uses manual credential provisioning.\n\n    After it's created, open the tunnel. Copy two values from the **Connection** section:\n\n    * **Domain** (looks like `abcd1234.tunnel.anthropic.com`)\n    * **Token** (click the eye icon, then copy)\n  </Step>\n\n  <Step title=\"Set up the deployment directory\">\n    <Tabs>\n      <Tab title=\"macOS / Linux\">\n        ```bash\n        mkdir -p mcp-tunnel/{config,data}\n        cd mcp-tunnel\n        export TUNNEL_DOMAIN=YOUR_TUNNEL_DOMAIN_HERE   # from step 1\n        export TUNNEL_TOKEN='eyJ...'            # from step 1\n        ```\n      </Tab>\n\n      <Tab title=\"Windows (PowerShell)\">\n        ```powershell\n        New-Item -ItemType Directory -Force -Pa",
+      "expected_evidence": [
+        {
+          "evidence_id": "E1",
+          "version_id": "ver_067b3bfdc28f24500ea19b97bf3e80b1",
+          "section_path": [
+            "What you need"
+          ],
+          "char_start": 1857,
+          "char_end": 1989,
+          "evidence_text": "Preinstalled on macOS and most Linux distributions; on Windows, install it separately (the `openssl` binary must be on your `PATH`).",
+          "evidence_hash": "a73bb959f95532e95f81c5b7ca24d8e14fa3a92af229fc7e0305755d80dedd37",
+          "evidence_char_length": 132,
+          "critical_strings": [
+            "openssl",
+            "PATH"
+          ]
+        }
+      ],
+      "proposed_category": "exact_lookup",
+      "reasoning_type": "exact_lookup",
+      "secondary_category": "constraint_required_value",
+      "proposed_question": "What must `openssl` be?",
+      "proposed_answer": "Preinstalled on macOS and most Linux distributions; on Windows, install it separately (the `openssl` binary must be on your `PATH`).",
+      "proposed_atomic_claims": [
+        "Preinstalled on macOS and most Linux distributions; on Windows, install it separately (the `openssl` binary must be on your `PATH`)."
+      ],
+      "question": "What must `openssl` be?",
+      "answer": "Preinstalled on macOS and most Linux distributions; on Windows, install it separately (the `openssl` binary must be on your `PATH`).",
+      "atomic_claims": [
+        "Preinstalled on macOS and most Linux distributions; on Windows, install it separately (the `openssl` binary must be on your `PATH`)."
+      ],
+      "critical_strings": [
+        "openssl",
+        "PATH"
+      ],
+      "evidence_kind": "constraint_statement",
+      "binding": "structural-or-subject-window",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "generator_confidence": "high",
+      "generator_notes": "",
+      "needs_human_interpretation": false,
+      "candidate_type": "supported",
+      "verification_status": "candidate_unverified",
+      "claude_proposed": true,
+      "chatgpt_verified": null,
+      "retrieval_was_not_run": true,
+      "schema_version": "v2-devset-001/1.0",
+      "question_subject": "`openssl`",
+      "question_relation": "constraint_required_value",
+      "question_object": null,
+      "revisions": [],
+      "stress_types": [
+        "short_evidence_unit",
+        "parameter_error_literal_lookup",
+        "identifier_vs_semantic_distractor"
+      ],
+      "source_subject": "Preinstalled on macOS and most Linux distributions; on Windows, install it separately (the `openssl` binary",
+      "source_relation": "must",
+      "source_object": "be on your `PATH`).",
+      "source_sentence": "Preinstalled on macOS and most Linux distributions; on Windows, install it separately (the `openssl` binary must be on your `PATH`).",
+      "source_triple_derivation": "generic predicate split"
+    },
+    {
+      "candidate_id": "V2D-33",
+      "provider": "openai",
+      "document_title": "Running agents",
+      "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+      "source_url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/running_agents.md",
+      "captured_at": "2026-08-17 04:46:19+00:00",
+      "section_path": [
+        "Running agents",
+        "Runner lifecycle and configuration",
+        "The agent loop"
+      ],
+      "char_start": 1039,
+      "char_end": 1133,
+      "evidence_text": "When you call any of the three `Runner` methods above, you pass in a starting agent and input.",
+      "evidence_hash": "81aad2cf94487959520dc00de693cf7bfe8d949944ce1ca33ff88e899bc7d926",
+      "evidence_char_length": 94,
+      "context_before": "r.run], which runs async and returns a [`RunResult`][agents.result.RunResult].\n2. [`Runner.run_sync()`][agents.run.Runner.run_sync], which is a sync method and just runs `.run()` under the hood.\n3. [`Runner.run_streamed()`][agents.run.Runner.run_streamed], which runs async and returns a [`RunResultStreaming`][agents.result.RunResultStreaming]. It calls the LLM in streaming mode, and streams those events to you as they are received.\n\n```python\nfrom agents import Agent, Runner\n\nasync def main():\n    agent = Agent(name=\"Assistant\", instructions=\"You are a helpful assistant\")\n\n    result = await Runner.run(agent, \"Write a haiku about recursion in programming.\")\n    print(result.final_output)\n    # Code within the code,\n    # Functions calling themselves,\n    # Infinite loop's dance\n```\n\nRead more in the [results guide](results.md).\n\n## Runner lifecycle and configuration\n\n### The agent loop\n\n",
+      "context_after": " The input can be:\n\n-   a string (treated as a user message),\n-   a list of input items in the OpenAI Responses API format, or\n-   a [`RunState`][agents.run_state.RunState] when resuming a paused run or a run stopped with `cancel(mode=\"after_turn\")`. The state can also carry [input staged for the next resumed model call](results.md#add-input-before-resuming).\n\nThe runner then runs a loop:\n\n1. We call the LLM for the current agent, with the current input.\n2. The LLM produces its output.\n    1. If the runner classifies the LLM's output as final output, the loop ends and we return the result.\n    2. If the LLM requests a handoff, we update the current agent and input, and re-run the loop.\n    3. If the LLM produces tool calls, we run those tool calls, append the results, and re-run the loop.\n3. If we exceed the `max_turns` passed, we raise a [`MaxTurnsExceeded`][agents.exceptions.MaxTurnsEx",
+      "expected_evidence": [
+        {
+          "evidence_id": "E1",
+          "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+          "section_path": [
+            "Running agents",
+            "Runner lifecycle and configuration",
+            "The agent loop"
+          ],
+          "char_start": 1039,
+          "char_end": 1133,
+          "evidence_text": "When you call any of the three `Runner` methods above, you pass in a starting agent and input.",
+          "evidence_hash": "81aad2cf94487959520dc00de693cf7bfe8d949944ce1ca33ff88e899bc7d926",
+          "evidence_char_length": 94,
+          "critical_strings": [
+            "Runner"
+          ]
+        }
+      ],
+      "proposed_category": "exact_lookup",
+      "reasoning_type": "exact_lookup",
+      "secondary_category": "conditional_behavior",
+      "proposed_question": "What happens when you call any of the three `Runner` methods above?",
+      "proposed_answer": "You pass in a starting agent and input.",
+      "proposed_atomic_claims": [
+        "When you call any of the three `Runner` methods above, you pass in a starting agent and input."
+      ],
+      "question": "What happens when you call any of the three `Runner` methods above?",
+      "answer": "You pass in a starting agent and input.",
+      "atomic_claims": [
+        "When you call any of the three `Runner` methods above, you pass in a starting agent and input."
+      ],
+      "critical_strings": [
+        "Runner"
+      ],
+      "evidence_kind": "short_normative",
+      "binding": "structural-or-subject-window",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "generator_confidence": "medium",
+      "generator_notes": "",
+      "needs_human_interpretation": true,
+      "candidate_type": "supported",
+      "verification_status": "candidate_unverified",
+      "claude_proposed": true,
+      "chatgpt_verified": null,
+      "retrieval_was_not_run": true,
+      "schema_version": "v2-devset-001/1.0",
+      "question_subject": "`Runner`",
+      "question_relation": null,
+      "question_object": null,
+      "revisions": [],
+      "stress_types": [
+        "short_evidence_unit",
+        "identifier_vs_semantic_distractor",
+        "paraphrase_query_shape"
+      ],
+      "source_subject": null,
+      "source_relation": null,
+      "source_object": null,
+      "source_sentence": null,
+      "source_triple_derivation": "not derivable from the evidence"
+    },
+    {
+      "candidate_id": "V2D-34",
+      "provider": "anthropic",
+      "document_title": "Embeddings",
+      "version_id": "ver_26f61f56d6ff7124cfa38152f7baef3d",
+      "source_url": "https://platform.claude.com/docs/en/build-with-claude/embeddings",
+      "captured_at": "2026-08-17 04:46:19+00:00",
+      "section_path": [
+        "and cosine similarity are the same.",
+        "FAQ"
+      ],
+      "char_start": 17895,
+      "char_end": 18001,
+      "evidence_text": "When using the `input_type` parameter, special prompts are prepended to the input text prior to embedding.",
+      "evidence_hash": "0977226e832171ae3425333395cad09d1fae827f9f10549aa5da7c2bbafd3413",
+      "evidence_char_length": 106,
+      "context_before": "dings are normalized to length 1, which means that:\n\n    * Cosine similarity is equivalent to dot-product similarity, while the latter can be computed more quickly.\n    * Cosine similarity and Euclidean distance result in identical rankings.\n  </Accordion>\n\n  <Accordion title=\"What is the relationship between characters, words, and tokens?\">\n    See the [Voyage tokenization guide](https://docs.voyageai.com/docs/tokenization?ref=anthropic).\n  </Accordion>\n\n  <Accordion title=\"When and how should I use the input_type parameter?\">\n    For all retrieval tasks and use cases (for example, RAG), use the `input_type` parameter to specify whether the input text is a query or document. Do not omit `input_type` or set `input_type=None`. Specifying whether input text is a query or document can create better dense vector representations for retrieval, which can lead to better retrieval quality.\n\n    ",
+      "context_after": " Specifically:\n\n    > 📘 **Prompts associated with `input_type`**\n    >\n    > * For a query, the prompt is “Represent the query for retrieving supporting documents: “.\n    >\n    > * For a document, the prompt is “Represent the document for retrieval: “.\n    >\n    > * Example\n    >\n    >   * When `input_type=\"query\"`, a query like \"When is Apple's conference call scheduled?\" will become \"**Represent the query for retrieving supporting documents:** When is Apple's conference call scheduled?\"\n    >\n    >   * When `input_type=\"document\"`, a query like \"Apple's conference call to discuss fourth fiscal quarter results and business updates is scheduled for Thursday, November 2, 2023 at 2p.m. PT / 5p.m. ET.\" will become \"**Represent the document for retrieval:** Apple's conference call to discuss fourth fiscal quarter results and business updates is scheduled for Thursday, November 2, 2023 at 2p.",
+      "expected_evidence": [
+        {
+          "evidence_id": "E1",
+          "version_id": "ver_26f61f56d6ff7124cfa38152f7baef3d",
+          "section_path": [
+            "and cosine similarity are the same.",
+            "FAQ"
+          ],
+          "char_start": 17895,
+          "char_end": 18001,
+          "evidence_text": "When using the `input_type` parameter, special prompts are prepended to the input text prior to embedding.",
+          "evidence_hash": "0977226e832171ae3425333395cad09d1fae827f9f10549aa5da7c2bbafd3413",
+          "evidence_char_length": 106,
+          "critical_strings": [
+            "input_type"
+          ]
+        }
+      ],
+      "proposed_category": "exact_lookup",
+      "reasoning_type": "exact_lookup",
+      "secondary_category": "conditional_behavior",
+      "proposed_question": "What happens when using the `input_type` parameter?",
+      "proposed_answer": "Special prompts are prepended to the input text prior to embedding.",
+      "proposed_atomic_claims": [
+        "When using the `input_type` parameter, special prompts are prepended to the input text prior to embedding."
+      ],
+      "question": "What happens when using the `input_type` parameter?",
+      "answer": "Special prompts are prepended to the input text prior to embedding.",
+      "atomic_claims": [
+        "When using the `input_type` parameter, special prompts are prepended to the input text prior to embedding."
+      ],
+      "critical_strings": [
+        "input_type"
+      ],
+      "evidence_kind": "short_normative",
+      "binding": "structural-or-subject-window",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "generator_confidence": "medium",
+      "generator_notes": "",
+      "needs_human_interpretation": true,
+      "candidate_type": "supported",
+      "verification_status": "candidate_unverified",
+      "claude_proposed": true,
+      "chatgpt_verified": null,
+      "retrieval_was_not_run": true,
+      "schema_version": "v2-devset-001/1.0",
+      "question_subject": "`input_type`",
+      "question_relation": null,
+      "question_object": null,
+      "revisions": [],
+      "stress_types": [
+        "short_evidence_unit",
+        "correct_document_difficult_passage",
+        "identifier_vs_semantic_distractor",
+        "lexical_query_shape",
+        "paraphrase_query_shape"
+      ],
+      "source_subject": "When using the `input_type` parameter, special prompts",
+      "source_relation": "are",
+      "source_object": "prepended to the input text prior to embedding.",
+      "source_sentence": "When using the `input_type` parameter, special prompts are prepended to the input text prior to embedding.",
+      "source_triple_derivation": "generic predicate split"
+    },
+    {
+      "candidate_id": "V2D-35",
+      "provider": "openai",
+      "document_title": "OpenAI Python API library",
+      "version_id": "ver_9247e3ce4df6f79d9cadc44e1a3bbd0c",
+      "source_url": "https://github.com/openai/openai-python/blob/10ee3f0da2ac6f93345c1204bd7bb1a2faa79ff2/README.md",
+      "captured_at": "2026-08-17 04:46:19+00:00",
+      "section_path": [
+        "Remove `await` for non-async usage.",
+        "Webhook Verification",
+        "Verifying webhook payloads directly"
+      ],
+      "char_start": 16257,
+      "char_end": 16361,
+      "evidence_text": "Note that the `body` parameter must be the raw JSON string sent from the server (do not parse it first).",
+      "evidence_hash": "b41d372109411e73c998b149e835500374947a5d3f2f0fa5b228609bc60fd911",
+      "evidence_char_length": 104,
+      "context_before": ")\n\n    try:\n        event = client.webhooks.unwrap(request_body, request.headers)\n\n        if event.type == \"response.completed\":\n            print(\"Response completed:\", event.data)\n        elif event.type == \"response.failed\":\n            print(\"Response failed:\", event.data)\n        else:\n            print(\"Unhandled event type:\", event.type)\n\n        return \"ok\"\n    except Exception as e:\n        print(\"Invalid signature:\", e)\n        return \"Invalid signature\", 400\n\n\nif __name__ == \"__main__\":\n    app.run(port=8000)\n```\n\n### Verifying webhook payloads directly\n\nIn some cases, you may want to verify the webhook separately from parsing the payload. If you prefer to handle these steps separately, we provide the method `client.webhooks.verify_signature()` to _only verify_ the signature of a webhook request. Like `.unwrap()`, this method will raise an error if the signature is invalid.\n\n",
+      "context_after": " You will then need to parse the body after verifying the signature.\n\n```python\nimport json\nfrom openai import OpenAI\nfrom flask import Flask, request\n\napp = Flask(__name__)\nclient = OpenAI()  # OPENAI_WEBHOOK_SECRET environment variable is used by default\n\n\n@app.route(\"/webhook\", methods=[\"POST\"])\ndef webhook():\n    request_body = request.get_data(as_text=True)\n\n    try:\n        client.webhooks.verify_signature(request_body, request.headers)\n\n        # Parse the body after verification\n        event = json.loads(request_body)\n        print(\"Verified event:\", event)\n\n        return \"ok\"\n    except Exception as e:\n        print(\"Invalid signature:\", e)\n        return \"Invalid signature\", 400\n\n\nif __name__ == \"__main__\":\n    app.run(port=8000)\n```\n\n## Handling errors\n\nWhen the library is unable to connect to the API (for example, due to network connection problems or a timeout), a subclass",
+      "expected_evidence": [
+        {
+          "evidence_id": "E1",
+          "version_id": "ver_9247e3ce4df6f79d9cadc44e1a3bbd0c",
+          "section_path": [
+            "Remove `await` for non-async usage.",
+            "Webhook Verification",
+            "Verifying webhook payloads directly"
+          ],
+          "char_start": 16257,
+          "char_end": 16361,
+          "evidence_text": "Note that the `body` parameter must be the raw JSON string sent from the server (do not parse it first).",
+          "evidence_hash": "b41d372109411e73c998b149e835500374947a5d3f2f0fa5b228609bc60fd911",
+          "evidence_char_length": 104,
+          "critical_strings": [
+            "body"
+          ]
+        }
+      ],
+      "proposed_category": "exact_lookup",
+      "reasoning_type": "exact_lookup",
+      "secondary_category": "constraint_required_value",
+      "proposed_question": "What must `body` be?",
+      "proposed_answer": "Note that the `body` parameter must be the raw JSON string sent from the server (do not parse it first).",
+      "proposed_atomic_claims": [
+        "Note that the `body` parameter must be the raw JSON string sent from the server (do not parse it first)."
+      ],
+      "question": "What must `body` be?",
+      "answer": "Note that the `body` parameter must be the raw JSON string sent from the server (do not parse it first).",
+      "atomic_claims": [
+        "Note that the `body` parameter must be the raw JSON string sent from the server (do not parse it first)."
+      ],
+      "critical_strings": [
+        "body"
+      ],
+      "evidence_kind": "constraint_statement",
+      "binding": "structural-or-subject-window",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "generator_confidence": "high",
+      "generator_notes": "",
+      "needs_human_interpretation": false,
+      "candidate_type": "supported",
+      "verification_status": "candidate_unverified",
+      "claude_proposed": true,
+      "chatgpt_verified": null,
+      "retrieval_was_not_run": true,
+      "schema_version": "v2-devset-001/1.0",
+      "question_subject": "`body`",
+      "question_relation": "constraint_required_value",
+      "question_object": null,
+      "revisions": [],
+      "stress_types": [
+        "short_evidence_unit",
+        "correct_document_difficult_passage",
+        "parameter_error_literal_lookup",
+        "identifier_vs_semantic_distractor",
+        "same_document_passage_discrimination"
+      ],
+      "source_subject": "Note that the `body` parameter",
+      "source_relation": "must",
+      "source_object": "be the raw JSON string sent from the server (do not parse it first).",
+      "source_sentence": "Note that the `body` parameter must be the raw JSON string sent from the server (do not parse it first).",
+      "source_triple_derivation": "generic predicate split"
+    },
+    {
+      "candidate_id": "V2D-36",
+      "provider": "anthropic",
+      "document_title": "Search results",
+      "version_id": "ver_42a4f3d941b664a285883aaf6ff90373",
+      "source_url": "https://platform.claude.com/docs/en/build-with-claude/search-results",
+      "captured_at": "2026-08-17 04:46:19+00:00",
+      "section_path": [
+        "How it works",
+        "Required fields"
+      ],
+      "char_start": 2518,
+      "char_end": 2655,
+      "evidence_text": "| `title`   | string | A descriptive title for the search result                                                                        |",
+      "evidence_hash": "2f4dc41ed17b240cae706d3372e656706271e16aaa17da2d59ea119cd36bd44b",
+      "evidence_char_length": 137,
+      "context_before": "le Title\", // Required: Title of the result\n  \"content\": [\n    // Required: Array of text blocks\n    {\n      \"type\": \"text\",\n      \"text\": \"The actual content of the search result...\"\n    }\n  ],\n  \"citations\": {\n    // Optional: Citation configuration\n    \"enabled\": true // Enable/disable citations for this result\n  }\n}\n```\n\n### Required fields\n\n| Field     | Type   | Description                                                                                                      |\n| --------- | ------ | ---------------------------------------------------------------------------------------------------------------- |\n| `type`    | string | Must be `\"search_result\"`                                                                                        |\n| `source`  | string | The source of the content. Any stable string works: a URL, or an internal identifier such as `kb://article-1234` |\n",
+      "context_after": "\n| `content` | array  | An array of text blocks containing the actual content                                                            |\n\n### Optional fields\n\n| Field           | Type   | Description                                                                                                                                                                                                                                                                                                                     |\n| --------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| `citations`     | object | Citation",
+      "expected_evidence": [
+        {
+          "evidence_id": "E1",
+          "version_id": "ver_42a4f3d941b664a285883aaf6ff90373",
+          "section_path": [
+            "How it works",
+            "Required fields"
+          ],
+          "char_start": 2518,
+          "char_end": 2655,
+          "evidence_text": "| `title`   | string | A descriptive title for the search result                                                                        |",
+          "evidence_hash": "2f4dc41ed17b240cae706d3372e656706271e16aaa17da2d59ea119cd36bd44b",
+          "evidence_char_length": 137,
+          "critical_strings": [
+            "title",
+            "string"
+          ]
+        }
+      ],
+      "proposed_category": "exact_lookup",
+      "reasoning_type": "exact_lookup",
+      "proposed_question": "What type does the `title` parameter take?",
+      "proposed_answer": "`string`",
+      "proposed_atomic_claims": [
+        "`title` is of type string."
+      ],
+      "question": "What type does the `title` parameter take?",
+      "answer": "`string`",
+      "atomic_claims": [
+        "`title` is of type string."
+      ],
+      "critical_strings": [
+        "title",
+        "string"
+      ],
+      "evidence_kind": "parameter_table_row",
+      "binding": "structural: parameter is the row's first cell, type is another cell of the same row",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "generator_confidence": "high",
+      "generator_notes": "Row-scoped association. Reviewer should confirm the table is a parameter table and that the column header means the parameter's own type rather than, say, a return type. FLAG_LOW_VALUE",
+      "needs_human_interpretation": true,
+      "candidate_type": "supported",
+      "verification_status": "candidate_unverified",
+      "claude_proposed": true,
+      "chatgpt_verified": null,
+      "retrieval_was_not_run": true,
+      "schema_version": "v2-devset-001/1.0",
+      "revisions": [],
+      "stress_types": [
+        "short_evidence_unit",
+        "parameter_error_literal_lookup",
+        "identifier_vs_semantic_distractor"
+      ],
+      "question_subject": "`title`",
+      "question_relation": null,
+      "question_object": null,
+      "source_subject": null,
+      "source_relation": null,
+      "source_object": null,
+      "source_sentence": null,
+      "source_triple_derivation": "not derivable from the evidence"
+    }
+  ],
+  "owner_requested_n": 50,
+  "owner_requested_by": "Russell York",
+  "prior_owner_accepted_n": 46,
+  "plus4_early_stop": true,
+  "plus4_recovered_leftover": 0,
+  "original_46_unchanged": true,
+  "slice": "slice2_of_3",
+  "slice_range": [
+    "V2D-19",
+    "V2D-36"
+  ],
+  "batch_sha256": "49cc60c6e216050f7663d00d6c4c31c62e1462887982036267416fd59892bb2e"
+}

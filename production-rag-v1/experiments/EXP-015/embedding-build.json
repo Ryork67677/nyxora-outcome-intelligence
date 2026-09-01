@@ -1,0 +1,50 @@
+{
+  "chunk_set_id": "cs_v1_control",
+  "model_id": "emb_e7d4183fd6eb878ae2fdf080efb6861e",
+  "model_card": {
+    "provider": "onnx-sentence-transformers",
+    "model_identifier": "sentence-transformers/all-MiniLM-L6-v2",
+    "origin": "Microsoft MiniLM-L6 distilled, contrastively fine-tuned by UKPLab on ~1B sentence pairs for semantic search",
+    "distribution": "https://chroma-onnx-models.s3.amazonaws.com/all-MiniLM-L6-v2/onnx.tar.gz",
+    "revision": "onnx bundle sha256 913d7300ceae3b2dbc2c50d1de4baacab4be7b9380491c27fab7418616a16ec3",
+    "model_sha256": "4f148ba8ae9c2c7fbee4af2b132db8d06c6a6545b47fc83bbb98c3d22b8393e6",
+    "tokenizer_sha256": "da0e79933b9ed51798a3ae27893d3c5fa4a201126cef75586296df9b4d2c62a0",
+    "architecture": "BertModel, 6 layers, hidden 384, 12 heads, intermediate 1536",
+    "precision": "fp32 (unquantized)",
+    "vocabulary": 30522,
+    "dimension": 384,
+    "max_seq_length": 512,
+    "tokenizer": "BertTokenizer WordPiece, do_lower_case=true",
+    "pooling": "attention-mask-weighted mean over last_hidden_state",
+    "normalization": "L2 on the pooled vector",
+    "distance_metric": "cosine",
+    "query_prefix": null,
+    "document_prefix": null,
+    "contextual": true,
+    "corpus_fitted": false,
+    "provenance_verified_against_publisher": false
+  },
+  "model_version_fingerprint": "bd95feaeacf98559",
+  "chunks": 14209,
+  "embeddings_stored": 14209,
+  "cache_hits": 0,
+  "cache_misses": 14209,
+  "all_zero_embeddings": 0,
+  "truncation": {
+    "texts_seen": 14209,
+    "texts_truncated": 3300,
+    "truncation_rate": 0.2322,
+    "tokens_seen": 4097597,
+    "tokens_kept": 3118154,
+    "token_coverage": 0.761,
+    "max_seq_length": 512
+  },
+  "chunk_char_length": {
+    "mean": 1097.2,
+    "median": 508,
+    "max": 16096
+  },
+  "storage_size": "21 MB",
+  "embed_seconds": 885.5,
+  "total_seconds": 886.0
+}

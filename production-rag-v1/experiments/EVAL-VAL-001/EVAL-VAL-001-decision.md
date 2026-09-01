@@ -1,28 +1,27 @@
-# EVAL-VAL-001 — project decision
+# EVAL-VAL-001 decision
 
-**`SYSTEM_B_PROMOTION = REJECTED`**
+**REPLICATION_REJECTS_B.** SYSTEM-B must not be promoted. SYSTEM-A remains the retrieval control.
 
-**`SYSTEM_A_CONTROL = RETAINED`**
+Recorded at git commit `5082123e8c406ab162349d23003b1173afd697ac` (archive `5082123`). This document classifies the already-measured validation replication; it does not rewrite `EVAL-VAL-001-report.md` and it does not change any system.
 
-Decided 2026-08-31T23:01:41Z on the EVAL-VAL-001 result (`REPLICATION_REJECTS_B`).
+## Measurement this decision rests on
 
-## Why
+On the frozen gold150-v1 validation split (n=40, previously unseen):
 
-DOC-C did not replicate on independent validation. Its Stage-1 routing discarded a required document in 12 of 40 cases, and every one of the 11 regressions has the same signature: SYSTEM-A found the span at rank 1-9 and SYSTEM-B did not retrieve it at all.
+| | strict full-case recall@10 |
+| --- | ---: |
+| SYSTEM-A-GLOBAL | **30/40** (75.0%) |
+| SYSTEM-B-DOC-C | **21/40** (52.5%) |
+| delta (B−A) | **-0.225** (−9 cases) |
 
-| | SYSTEM-A | SYSTEM-B |
-| --- | --- | --- |
-| strict full-case recall@10 | 30/40 | 21/40 |
-| paired movement | — | 2 rescues, 11 regressions, net -9 |
-| bootstrap macro delta | — | -0.225 95% CI [-0.375, -0.075] |
-| McNemar exact p | — | 0.0225 |
+Paired movement: **2 rescues / 11 regressions** (net −9). Bootstrap 95% CI on the per-case delta: **[-0.375, -0.075]** (seed `20250818`, 10000 resamples). McNemar exact: 13 discordant pairs (2 B-only, 11 A-only), **p = 0.0225**.
 
-## SYSTEM-B is preserved, not deleted
+**12** of B's failures are `DOCUMENT_ROUTING_FAILURE`: a required document never reached Stage 2. Stage-1 routing discards evidence that the global system ranks successfully.
 
-A rejected intervention with a clean causal explanation is a result. Deleting it would leave the project unable to say why routing was tried and what it cost.
+The development result (15/20 vs 17/20, +2 / 0) did not replicate. SYSTEM-B is not eligible for promotion. SYSTEM-A-GLOBAL (`9afcb5b7c58ebacff0b4c3711dd9618a2e727f4195dd1787a5da81e478ee0b38`) remains the frozen retrieval control. SYSTEM-B-DOC-C (`304c350940b83733df6043ae3a8abdcbcde33d16950730127aa9f1f39494388b`) stays a measured, rejected alternative.
 
-Its frozen configuration hash `304c350940b83733…` and every artifact of the run remain in the repository.
+## What this is not
 
-## Holdout
-
-Untouched: 90 cases, `holdout_runs = 0`, `holdout_frozen = true`.
+- Not a holdout run. holdout_runs = 0.
+- Not a change to BM25, MiniLM, RRF, chunking, or SYSTEM-A.
+- Not a rewrite of the EVAL-VAL-001 report.

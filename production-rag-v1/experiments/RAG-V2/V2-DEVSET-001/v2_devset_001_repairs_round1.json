@@ -1,0 +1,2219 @@
+{
+  "task": "V2-DEVSET-001",
+  "round": 1,
+  "schema_version": "v2-devset-001/1.0",
+  "generated_at": "2026-09-01T02:45:03Z",
+  "generated_at_et": "2026-08-31 22:45 ET",
+  "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a",
+  "source_packet": "evals/review/v2_devset_001_batch_001.json",
+  "verdicts_file": "experiments/RAG-V2/V2-DEVSET-001/chatgpt-verdicts-round1.json",
+  "n_repaired": 16,
+  "n_pass_untouched": 34,
+  "n_fail": 0,
+  "fix_ids": [
+    "V2D-03",
+    "V2D-05",
+    "V2D-06",
+    "V2D-08",
+    "V2D-13",
+    "V2D-18",
+    "V2D-19",
+    "V2D-21",
+    "V2D-22",
+    "V2D-23",
+    "V2D-32",
+    "V2D-33",
+    "V2D-37",
+    "V2D-38",
+    "V2D-44",
+    "V2D-50"
+  ],
+  "pass_ids_not_imported_as_gold": [
+    "V2D-01",
+    "V2D-02",
+    "V2D-04",
+    "V2D-07",
+    "V2D-09",
+    "V2D-10",
+    "V2D-11",
+    "V2D-12",
+    "V2D-14",
+    "V2D-15",
+    "V2D-16",
+    "V2D-17",
+    "V2D-20",
+    "V2D-24",
+    "V2D-25",
+    "V2D-26",
+    "V2D-27",
+    "V2D-28",
+    "V2D-29",
+    "V2D-30",
+    "V2D-31",
+    "V2D-34",
+    "V2D-35",
+    "V2D-36",
+    "V2D-39",
+    "V2D-40",
+    "V2D-41",
+    "V2D-42",
+    "V2D-43",
+    "V2D-45",
+    "V2D-46",
+    "V2D-47",
+    "V2D-48",
+    "V2D-49"
+  ],
+  "status_after_fix": "candidate_unverified_after_fix",
+  "frozen": false,
+  "holdout_json_opened": false,
+  "retrieval_was_not_run": true,
+  "systems_executed": [],
+  "live_docs_fetched": false,
+  "pass_imported_as_frozen_gold": false,
+  "original_packet_mutated": false,
+  "repair_warnings": {
+    "V2D-03": [],
+    "V2D-05": [],
+    "V2D-06": [],
+    "V2D-08": [],
+    "V2D-13": [],
+    "V2D-18": [],
+    "V2D-19": [],
+    "V2D-21": [],
+    "V2D-22": [],
+    "V2D-23": [],
+    "V2D-32": [],
+    "V2D-33": [],
+    "V2D-37": [],
+    "V2D-38": [
+      "CRITICAL anaphora: refers to 'the model' with no antecedent in the span"
+    ],
+    "V2D-44": [],
+    "V2D-50": []
+  },
+  "records": [
+    {
+      "candidate_id": "V2D-03",
+      "provider": "anthropic",
+      "document_title": "Compliance API",
+      "version_id": "ver_1d58a563501b073d898977de6bc2a823",
+      "source_url": "https://platform.claude.com/docs/en/api/compliance",
+      "captured_at": "2026-08-17 04:46:19+00:00",
+      "section_path": [
+        "Chats",
+        "List chats",
+        "Query Parameters"
+      ],
+      "char_start": 4640364,
+      "char_end": 4640538,
+      "evidence_text": "For org-wide queries, any time filter must match the sort key: `created_at.*` filters require `order_by=created_at`, and `updated_at.*` filters require `order_by=updated_at`.",
+      "evidence_hash": "c8a02c427ca5f0eeb935c95bc9dc780e1e3d3c86be46519f89d65214de50948f",
+      "evidence_char_length": 174,
+      "context_before": "e from the most recent response. Clients should treat this value as an opaque string and not attempt to parse or interpret its contents, as the format may change without notice.\n\n- `created_at: optional object { gt, gte, lt, lte }`\n\n  - `gt: optional string`\n\n    Filter chats created after this time (RFC 3339 format)\n\n  - `gte: optional string`\n\n    Filter chats created at or after this time (RFC 3339 format)\n\n  - `lt: optional string`\n\n    Filter chats created before this time (RFC 3339 format)\n\n  - `lte: optional string`\n\n    Filter chats created at or before this time (RFC 3339 format)\n\n- `limit: optional number`\n\n  Maximum results (default: 100, max: 1000)\n\n- `order_by: optional \"created_at\" or \"updated_at\"`\n\n  Sort key for results. `created_at` (default) sorts by chat creation time. `updated_at` sorts by last update time and is only supported for org-wide queries (omit user_ids[]). ",
+      "context_after": "\n\n  - `\"created_at\"`\n\n  - `\"updated_at\"`\n\n- `organization_ids: optional array of string`\n\n  Filter by organization IDs (accepts `org_...` or organization UUID). Enumerate IDs via `GET /v1/compliance/organizations`.\n\n- `project_ids: optional array of string`\n\n  Filter by project IDs (accepts `claude_proj_...`). Enumerate IDs via `GET /v1/compliance/apps/projects`. Requires user_ids[]; not supported for org-wide queries.\n\n- `updated_at: optional object { gt, gte, lt, lte }`\n\n  - `gt: optional string`\n\n    Filter chats updated after this time (RFC 3339 format)\n\n  - `gte: optional string`\n\n    Filter chats updated at or after this time (RFC 3339 format)\n\n  - `lt: optional string`\n\n    Filter chats updated before this time (RFC 3339 format)\n\n  - `lte: optional string`\n\n    Filter chats updated at or before this time (RFC 3339 format)\n\n- `user_ids: optional array of string`\n\n  Filter to chats ",
+      "expected_evidence": [
+        {
+          "evidence_id": "E1",
+          "version_id": "ver_1d58a563501b073d898977de6bc2a823",
+          "section_path": [
+            "Chats",
+            "List chats",
+            "Query Parameters"
+          ],
+          "char_start": 4640364,
+          "char_end": 4640538,
+          "evidence_text": "For org-wide queries, any time filter must match the sort key: `created_at.*` filters require `order_by=created_at`, and `updated_at.*` filters require `order_by=updated_at`.",
+          "evidence_hash": "c8a02c427ca5f0eeb935c95bc9dc780e1e3d3c86be46519f89d65214de50948f",
+          "evidence_char_length": 174,
+          "critical_strings": [
+            "created_at.*",
+            "order_by=created_at",
+            "updated_at.*",
+            "order_by=updated_at"
+          ]
+        }
+      ],
+      "proposed_category": "configuration_interaction",
+      "reasoning_type": "configuration_interaction",
+      "secondary_category": "requires",
+      "proposed_question": "For org-wide queries, what must any time filter match?",
+      "proposed_answer": "The sort key: `created_at.*` filters require `order_by=created_at`, and `updated_at.*` filters require `order_by=updated_at`.",
+      "proposed_atomic_claims": [
+        "For org-wide queries, any time filter must match the sort key: `created_at.*` filters require `order_by=created_at`, and `updated_at.*` filters require `order_by=updated_at`."
+      ],
+      "question": "For org-wide queries, what must any time filter match?",
+      "answer": "The sort key: `created_at.*` filters require `order_by=created_at`, and `updated_at.*` filters require `order_by=updated_at`.",
+      "atomic_claims": [
+        "For org-wide queries, any time filter must match the sort key: `created_at.*` filters require `order_by=created_at`, and `updated_at.*` filters require `order_by=updated_at`."
+      ],
+      "critical_strings": [
+        "created_at.*",
+        "order_by=created_at",
+        "updated_at.*",
+        "order_by=updated_at"
+      ],
+      "evidence_kind": "configuration_interaction",
+      "binding": "structural-or-subject-window",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "generator_confidence": "high",
+      "generator_notes": "round1 repair: Rewrote the question so it asks about `created_at.*` filters on org-wide queries rather than what `created_at` itself requires. Narrowed the answer/claim to the created_at rule; did not mash in the separate `updated_at.*` rule. Span unchanged (ChatGPT evidence_boundary_complete=true; the full matching-sort-key sentence was already in the span).",
+      "needs_human_interpretation": false,
+      "candidate_type": "supported",
+      "verification_status": "candidate_unverified_after_fix",
+      "claude_proposed": true,
+      "chatgpt_verified": false,
+      "retrieval_was_not_run": true,
+      "schema_version": "v2-devset-001/1.0",
+      "question_subject": "any time filter on org-wide queries",
+      "question_relation": "must_match",
+      "question_object": "the sort key",
+      "revisions": [
+        {
+          "revision": 1,
+          "round": 1,
+          "reason": "chatgpt_round1_FIX_REQUIRED",
+          "chatgpt_reason": "The evidence supports the full rule, but the question incorrectly asks what created_at itself requires; specifically created_at.* filters on org-wide queries require order_by=created_at, while the answer also adds the separate updated_at rule.",
+          "evidence_boundary_complete": true,
+          "old_question": "What does `created_at` require?",
+          "old_proposed_question": "What does `created_at` require?",
+          "old_answer": "For org-wide queries, any time filter must match the sort key: `created_at.*` filters require `order_by=created_at`, and `updated_at.*` filters require `order_by=updated_at`.",
+          "old_atomic_claims": [
+            "For org-wide queries, any time filter must match the sort key: `created_at.*` filters require `order_by=created_at`, and `updated_at.*` filters require `order_by=updated_at`."
+          ],
+          "old_char_start": 4640364,
+          "old_char_end": 4640538,
+          "old_evidence_text": "For org-wide queries, any time filter must match the sort key: `created_at.*` filters require `order_by=created_at`, and `updated_at.*` filters require `order_by=updated_at`.",
+          "old_evidence_hash": "c8a02c427ca5f0eeb935c95bc9dc780e1e3d3c86be46519f89d65214de50948f",
+          "old_question_subject": "`created_at`",
+          "old_question_relation": "requires",
+          "old_question_object": "`order_by`",
+          "new_question": "For org-wide queries, what must any time filter match?",
+          "new_answer": "The sort key: `created_at.*` filters require `order_by=created_at`, and `updated_at.*` filters require `order_by=updated_at`.",
+          "new_char_start": 4640364,
+          "new_char_end": 4640538,
+          "new_evidence_hash": "c8a02c427ca5f0eeb935c95bc9dc780e1e3d3c86be46519f89d65214de50948f",
+          "span_expanded": false,
+          "characters_added_before": 0,
+          "characters_added_after": 0,
+          "author": "claude",
+          "directed_by": "ChatGPT round-1 FIX_REQUIRED + owner apply",
+          "timestamp": "2026-09-01T02:45:03Z",
+          "timestamp_et": "2026-08-31 22:45 ET",
+          "what_changed": "Rewrote around the org-wide time-filter/sort-key rule rather than what `created_at` itself requires. The existing span already stated the full rule (created_at.* and updated_at.*), so the boundary was not expanded."
+        }
+      ],
+      "stress_types": [
+        "short_evidence_unit",
+        "correct_document_difficult_passage",
+        "identifier_vs_semantic_distractor",
+        "lexical_query_shape"
+      ],
+      "source_subject": null,
+      "source_relation": null,
+      "source_object": null,
+      "source_sentence": null,
+      "source_triple_derivation": "not derivable from the evidence",
+      "round1_verdict": "FIX_REQUIRED",
+      "round1_reason": "The evidence supports the full rule, but the question incorrectly asks what created_at itself requires; specifically created_at.* filters on org-wide queries require order_by=created_at, while the answer also adds the separate updated_at rule.",
+      "repaired_at": "2026-09-01T02:45:03Z",
+      "repaired_at_et": "2026-08-31 22:45 ET",
+      "frozen": false,
+      "human_verified": false,
+      "anaphora_check": {
+        "status": "NO_ANAPHORA",
+        "blocking": false,
+        "finding": null,
+        "phrase": null
+      },
+      "relation_direction_check": "NOT_CHECKABLE",
+      "repair_warnings": []
+    },
+    {
+      "candidate_id": "V2D-05",
+      "provider": "anthropic",
+      "document_title": "Admin",
+      "version_id": "ver_c299b58fe1f5a4d3a081b550334a7df6",
+      "source_url": "https://platform.claude.com/docs/en/api/admin",
+      "captured_at": "2026-08-17 04:46:19+00:00",
+      "section_path": [
+        "Usage Report",
+        "Get Messages Usage Report",
+        "Query Parameters"
+      ],
+      "char_start": 145736,
+      "char_end": 145804,
+      "evidence_text": "Grouping by `speed` requires the `fast-mode-2026-02-01` beta header.",
+      "evidence_hash": "68696c806a8d47853c355ddb31e022ccde229994dda89ac214f51755d8b12e59",
+      "evidence_char_length": 68,
+      "context_before": "\n  Time buckets that start on or after this RFC 3339 timestamp will be returned.\n  Each time bucket will be snapped to the start of the minute/hour/day in UTC.\n\n- `account_ids: optional array of string`\n\n  Restrict usage returned to the specified user account ID(s).\n\n- `api_key_ids: optional array of string`\n\n  Restrict usage returned to the specified API key ID(s).\n\n- `bucket_width: optional \"1d\" or \"1h\" or \"1m\"`\n\n  Time granularity of the response data.\n\n  - `\"1d\"`\n\n  - `\"1h\"`\n\n  - `\"1m\"`\n\n- `context_window: optional array of \"0-200k\" or \"200k-1M\"`\n\n  Restrict usage returned to the specified context window(s).\n\n  - `\"0-200k\"`\n\n  - `\"200k-1M\"`\n\n- `ending_at: optional string`\n\n  Time buckets that end before this RFC 3339 timestamp will be returned.\n\n- `group_by: optional array of \"account_id\" or \"api_key_id\" or \"context_window\" or 6 more`\n\n  Group by any subset of the available options. ",
+      "context_after": "\n\n  - `\"account_id\"`\n\n  - `\"api_key_id\"`\n\n  - `\"context_window\"`\n\n  - `\"inference_geo\"`\n\n  - `\"model\"`\n\n  - `\"service_account_id\"`\n\n  - `\"service_tier\"`\n\n  - `\"speed\"`\n\n  - `\"workspace_id\"`\n\n- `inference_geos: optional array of \"global\" or \"not_available\" or \"us\"`\n\n  Restrict usage returned to the specified inference geo(s). Use `not_available` for models that do not support specifying `inference_geo`.\n\n  - `\"global\"`\n\n  - `\"not_available\"`\n\n  - `\"us\"`\n\n- `limit: optional number`\n\n  Maximum number of time buckets to return in the response.\n\n  The default and max limits depend on `bucket_width`:\n  • `\"1d\"`: Default of 7 days, maximum of 31 days\n  • `\"1h\"`: Default of 24 hours, maximum of 168 hours\n  • `\"1m\"`: Default of 60 minutes, maximum of 1440 minutes\n\n- `models: optional array of string`\n\n  Restrict usage returned to the specified model(s).\n\n- `page: optional string`\n\n  Optionally se",
+      "expected_evidence": [
+        {
+          "evidence_id": "E1",
+          "version_id": "ver_c299b58fe1f5a4d3a081b550334a7df6",
+          "section_path": [
+            "Usage Report",
+            "Get Messages Usage Report",
+            "Query Parameters"
+          ],
+          "char_start": 145736,
+          "char_end": 145804,
+          "evidence_text": "Grouping by `speed` requires the `fast-mode-2026-02-01` beta header.",
+          "evidence_hash": "68696c806a8d47853c355ddb31e022ccde229994dda89ac214f51755d8b12e59",
+          "evidence_char_length": 68,
+          "critical_strings": [
+            "speed",
+            "fast-mode-2026-02-01"
+          ]
+        }
+      ],
+      "proposed_category": "configuration_interaction",
+      "reasoning_type": "configuration_interaction",
+      "proposed_question": "What does grouping by `speed` require?",
+      "proposed_answer": "The `fast-mode-2026-02-01` beta header.",
+      "proposed_atomic_claims": [
+        "Grouping by `speed` requires the `fast-mode-2026-02-01` beta header."
+      ],
+      "question": "What does grouping by `speed` require?",
+      "answer": "The `fast-mode-2026-02-01` beta header.",
+      "atomic_claims": [
+        "Grouping by `speed` requires the `fast-mode-2026-02-01` beta header."
+      ],
+      "critical_strings": [
+        "speed",
+        "fast-mode-2026-02-01"
+      ],
+      "evidence_kind": "normative_statement",
+      "binding": "template-captured-groups",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "generator_confidence": "high",
+      "generator_notes": "round1 repair: Rewrote question and claim to preserve the grouping condition. Does not say that `speed` generally requires the beta header. Span unchanged.",
+      "needs_human_interpretation": false,
+      "candidate_type": "supported",
+      "verification_status": "candidate_unverified_after_fix",
+      "claude_proposed": true,
+      "chatgpt_verified": false,
+      "retrieval_was_not_run": true,
+      "schema_version": "v2-devset-001/1.0",
+      "revisions": [
+        {
+          "revision": 1,
+          "round": 1,
+          "reason": "chatgpt_round1_FIX_REQUIRED",
+          "chatgpt_reason": "The source says grouping by speed requires the beta header; it does not state that speed generally requires it. Rewrite the question and claim to preserve the grouping condition.",
+          "evidence_boundary_complete": true,
+          "old_question": "What does `speed` require?",
+          "old_proposed_question": "What does `speed` require?",
+          "old_answer": "The `fast-mode-2026-02-01` beta header.",
+          "old_atomic_claims": [
+            "`speed` requires the `fast-mode-2026-02-01` beta header."
+          ],
+          "old_char_start": 145736,
+          "old_char_end": 145804,
+          "old_evidence_text": "Grouping by `speed` requires the `fast-mode-2026-02-01` beta header.",
+          "old_evidence_hash": "68696c806a8d47853c355ddb31e022ccde229994dda89ac214f51755d8b12e59",
+          "old_question_subject": "`speed`",
+          "old_question_relation": null,
+          "old_question_object": null,
+          "new_question": "What does grouping by `speed` require?",
+          "new_answer": "The `fast-mode-2026-02-01` beta header.",
+          "new_char_start": 145736,
+          "new_char_end": 145804,
+          "new_evidence_hash": "68696c806a8d47853c355ddb31e022ccde229994dda89ac214f51755d8b12e59",
+          "span_expanded": false,
+          "characters_added_before": 0,
+          "characters_added_after": 0,
+          "author": "claude",
+          "directed_by": "ChatGPT round-1 FIX_REQUIRED + owner apply",
+          "timestamp": "2026-09-01T02:45:03Z",
+          "timestamp_et": "2026-08-31 22:45 ET",
+          "what_changed": "Rewrote question and claim so grouping by `speed` (not `speed` generally) requires the `fast-mode-2026-02-01` beta header. Span unchanged."
+        }
+      ],
+      "stress_types": [
+        "short_evidence_unit",
+        "identifier_vs_semantic_distractor"
+      ],
+      "question_subject": "grouping by `speed`",
+      "question_relation": "requires",
+      "question_object": "the `fast-mode-2026-02-01` beta header",
+      "source_subject": "Grouping by `speed`",
+      "source_relation": "requires",
+      "source_object": "the `fast-mode-2026-02-01` beta header.",
+      "source_sentence": "Grouping by `speed` requires the `fast-mode-2026-02-01` beta header.",
+      "source_triple_derivation": "named relation",
+      "round1_verdict": "FIX_REQUIRED",
+      "round1_reason": "The source says grouping by speed requires the beta header; it does not state that speed generally requires it. Rewrite the question and claim to preserve the grouping condition.",
+      "repaired_at": "2026-09-01T02:45:03Z",
+      "repaired_at_et": "2026-08-31 22:45 ET",
+      "frozen": false,
+      "human_verified": false,
+      "anaphora_check": {
+        "status": "NO_ANAPHORA",
+        "blocking": false,
+        "finding": null,
+        "phrase": null
+      },
+      "relation_direction_check": "AGREES",
+      "repair_warnings": []
+    },
+    {
+      "candidate_id": "V2D-06",
+      "provider": "anthropic",
+      "document_title": "Fast mode (research preview)",
+      "version_id": "ver_cc7d6ed2a636d74fc7aca7885ba9ce60",
+      "source_url": "https://platform.claude.com/docs/en/build-with-claude/fast-mode",
+      "captured_at": "2026-08-17 04:46:19+00:00",
+      "section_path": [
+        "Checking which speed was used"
+      ],
+      "char_start": 9863,
+      "char_end": 10222,
+      "evidence_text": "When a request with `speed: \"fast\"` succeeds, `usage.speed` is `\"fast\"`. If you are using Claude Opus 4.6 and request fast mode, its behavior is unique. Instead of returning an error like other models that don't support fast mode, it silently switches to standard speed. Though there is no error with Opus 4.6, the `speed` field accurately shows `\"standard\"`.",
+      "evidence_hash": "1ae25e4479c1961c3ac649534d70309e9fc4f29a776e49115c2c7e0209f536b4",
+      "evidence_char_length": 359,
+      "context_before": "opic-fast-input-tokens-reset`      | Time when the fast mode input token limit resets  |\n| `anthropic-fast-output-tokens-limit`     | Maximum fast mode output tokens per minute        |\n| `anthropic-fast-output-tokens-remaining` | Remaining fast mode output tokens                 |\n| `anthropic-fast-output-tokens-reset`     | Time when the fast mode output token limit resets |\n\nFor tier-specific rate limits, see the [Rate limits](https://platform.claude.com/docs/en/api/rate-limits) page.\n\n## Checking which speed was used\n\nThe response `usage` object includes a `speed` field that indicates which speed was used, either `\"fast\"` or `\"standard\"`. Requesting `speed: \"fast\"` on a [model that doesn't support fast mode](https://platform.claude.com/docs/en/build-with-claude/fast-mode#supported-models) returns an error, and so does exceeding fast mode's rate limits or capacity (a `429` or `529`). ",
+      "context_after": "\n\n<CodeGroup>\n  ```bash cURL\n  curl https://api.anthropic.com/v1/messages \\\n    -H \"x-api-key: $ANTHROPIC_API_KEY\" \\\n    -H \"anthropic-version: 2023-06-01\" \\\n    -H \"anthropic-beta: fast-mode-2026-02-01\" \\\n    -H \"content-type: application/json\" \\\n    -d '{\n      \"model\": \"claude-opus-5\",\n      \"max_tokens\": 1024,\n      \"speed\": \"fast\",\n      \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}]\n    }'\n  ```\n\n  ```bash CLI\n  ant beta:messages create \\\n    --beta fast-mode-2026-02-01 \\\n    --transform usage.speed \\\n    --raw-output <<'YAML'\n  model: claude-opus-5\n  max_tokens: 1024\n  speed: fast\n  messages:\n    - role: user\n      content: Hello\n  YAML\n  ```\n\n  ```python Python\n  client = anthropic.Anthropic()\n\n  response = client.beta.messages.create(\n      model=\"claude-opus-5\",\n      max_tokens=1024,\n      speed=\"fast\",\n      betas=[\"fast-mode-2026-02-01\"],\n      messages=[{\"role\": \"user\",",
+      "expected_evidence": [
+        {
+          "evidence_id": "E1",
+          "version_id": "ver_cc7d6ed2a636d74fc7aca7885ba9ce60",
+          "section_path": [
+            "Checking which speed was used"
+          ],
+          "char_start": 9863,
+          "char_end": 10222,
+          "evidence_text": "When a request with `speed: \"fast\"` succeeds, `usage.speed` is `\"fast\"`. If you are using Claude Opus 4.6 and request fast mode, its behavior is unique. Instead of returning an error like other models that don't support fast mode, it silently switches to standard speed. Though there is no error with Opus 4.6, the `speed` field accurately shows `\"standard\"`.",
+          "evidence_hash": "1ae25e4479c1961c3ac649534d70309e9fc4f29a776e49115c2c7e0209f536b4",
+          "evidence_char_length": 359,
+          "critical_strings": [
+            "usage.speed",
+            "Claude Opus 4.6",
+            "standard"
+          ]
+        }
+      ],
+      "proposed_category": "configuration_interaction",
+      "reasoning_type": "configuration_interaction",
+      "secondary_category": "conditional_behavior",
+      "proposed_question": "What is `usage.speed` when a request with `speed: \"fast\"` succeeds, including on Claude Opus 4.6?",
+      "proposed_answer": "It is `\"fast\"`. Claude Opus 4.6 is an exception: requesting fast mode can succeed while the `speed` field shows `\"standard\"`.",
+      "proposed_atomic_claims": [
+        "When a request with `speed: \"fast\"` succeeds, `usage.speed` is `\"fast\"`.",
+        "If you are using Claude Opus 4.6 and request fast mode, it silently switches to standard speed and the `speed` field accurately shows `\"standard\"`."
+      ],
+      "question": "What is `usage.speed` when a request with `speed: \"fast\"` succeeds, including on Claude Opus 4.6?",
+      "answer": "It is `\"fast\"`. Claude Opus 4.6 is an exception: requesting fast mode can succeed while the `speed` field shows `\"standard\"`.",
+      "atomic_claims": [
+        "When a request with `speed: \"fast\"` succeeds, `usage.speed` is `\"fast\"`.",
+        "If you are using Claude Opus 4.6 and request fast mode, it silently switches to standard speed and the `speed` field accurately shows `\"standard\"`."
+      ],
+      "critical_strings": [
+        "usage.speed",
+        "Claude Opus 4.6",
+        "standard"
+      ],
+      "evidence_kind": "short_normative",
+      "binding": "structural-or-subject-window",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "generator_confidence": "medium",
+      "generator_notes": "round1 repair: Included the Claude Opus 4.6 exception in the question, answer, and claims. Expanded the evidence boundary forward to that following exception (speed=fast can succeed while usage.speed is standard).",
+      "needs_human_interpretation": false,
+      "candidate_type": "supported",
+      "verification_status": "candidate_unverified_after_fix",
+      "claude_proposed": true,
+      "chatgpt_verified": false,
+      "retrieval_was_not_run": true,
+      "schema_version": "v2-devset-001/1.0",
+      "question_subject": "`speed: \"fast\"`",
+      "question_relation": null,
+      "question_object": null,
+      "revisions": [
+        {
+          "revision": 1,
+          "round": 1,
+          "reason": "chatgpt_round1_FIX_REQUIRED",
+          "chatgpt_reason": "The selected sentence is qualified by the immediately following Claude Opus 4.6 exception, where a speed=fast request can succeed while usage.speed is standard. The candidate needs that scope or exception.",
+          "evidence_boundary_complete": false,
+          "old_question": "What happens when a request with `speed: \"fast\"` succeeds?",
+          "old_proposed_question": "What happens when a request with `speed: \"fast\"` succeeds?",
+          "old_answer": "`usage.speed` is `\"fast\"`.",
+          "old_atomic_claims": [
+            "When a request with `speed: \"fast\"` succeeds, `usage.speed` is `\"fast\"`."
+          ],
+          "old_char_start": 9863,
+          "old_char_end": 9935,
+          "old_evidence_text": "When a request with `speed: \"fast\"` succeeds, `usage.speed` is `\"fast\"`.",
+          "old_evidence_hash": "2d30e610b6255b61fbff2e6e3331557eb3fc865d50dcec703c0e859a24c1fb3a",
+          "old_question_subject": "`speed: \"fast\"`",
+          "old_question_relation": null,
+          "old_question_object": null,
+          "new_question": "What is `usage.speed` when a request with `speed: \"fast\"` succeeds, including on Claude Opus 4.6?",
+          "new_answer": "It is `\"fast\"`. Claude Opus 4.6 is an exception: requesting fast mode can succeed while the `speed` field shows `\"standard\"`.",
+          "new_char_start": 9863,
+          "new_char_end": 10222,
+          "new_evidence_hash": "1ae25e4479c1961c3ac649534d70309e9fc4f29a776e49115c2c7e0209f536b4",
+          "span_expanded": true,
+          "characters_added_before": 0,
+          "characters_added_after": 287,
+          "author": "claude",
+          "directed_by": "ChatGPT round-1 FIX_REQUIRED + owner apply",
+          "timestamp": "2026-09-01T02:43:11Z",
+          "timestamp_et": "2026-08-31 22:43 ET",
+          "what_changed": "Included the Claude Opus 4.6 exception in the question, answer, and claims. Expanded the evidence boundary forward to that following exception (speed=fast can succeed while usage.speed is standard).",
+          "expansion_why": "Extended forward to the Claude Opus 4.6 exception that qualifies the selected sentence (a speed=fast request can succeed while usage.speed is standard)."
+        }
+      ],
+      "stress_types": [
+        "short_evidence_unit",
+        "correct_document_difficult_passage",
+        "identifier_vs_semantic_distractor",
+        "paraphrase_query_shape"
+      ],
+      "source_subject": "When a request with `speed: \"fast\"` succeeds, `usage.speed`",
+      "source_relation": "is",
+      "source_object": "`\"fast\"`",
+      "source_sentence": "When a request with `speed: \"fast\"` succeeds, `usage.speed` is `\"fast\"`",
+      "source_triple_derivation": "generic predicate split",
+      "round1_verdict": "FIX_REQUIRED",
+      "round1_reason": "The selected sentence is qualified by the immediately following Claude Opus 4.6 exception, where a speed=fast request can succeed while usage.speed is standard. The candidate needs that scope or exception.",
+      "repaired_at": "2026-09-01T02:43:11Z",
+      "repaired_at_et": "2026-08-31 22:43 ET",
+      "frozen": false,
+      "human_verified": false,
+      "anaphora_check": {
+        "status": "NO_ANAPHORA",
+        "blocking": false,
+        "finding": null,
+        "phrase": null
+      },
+      "repair_warnings": []
+    },
+    {
+      "candidate_id": "V2D-08",
+      "provider": "anthropic",
+      "document_title": "Beta",
+      "version_id": "ver_de7f74230c8f10d30aea5d037a3bd0a5",
+      "source_url": "https://platform.claude.com/docs/en/api/beta",
+      "captured_at": "2026-08-17 04:46:19+00:00",
+      "section_path": [
+        "Models",
+        "List Models",
+        "Returns"
+      ],
+      "char_start": 8804,
+      "char_end": 8937,
+      "evidence_text": "  - `allowed_fallback_models: array of string or null`\n\n    Model IDs this model accepts as `fallbacks[i].model` on the Messages API.",
+      "evidence_hash": "a71662214aeb083e40ff4eed5dc1eec7fe7cb4ea3925ff888836afefcb19386c",
+      "evidence_char_length": 133,
+      "context_before": "`\"interleaved-thinking-2025-05-14\"`\n\n    - `\"code-execution-2025-05-22\"`\n\n    - `\"extended-cache-ttl-2025-04-11\"`\n\n    - `\"context-1m-2025-08-07\"`\n\n    - `\"context-management-2025-06-27\"`\n\n    - `\"model-context-window-exceeded-2025-08-26\"`\n\n    - `\"skills-2025-10-02\"`\n\n    - `\"fast-mode-2026-02-01\"`\n\n    - `\"output-300k-2026-03-24\"`\n\n    - `\"user-profiles-2026-03-24\"`\n\n    - `\"advisor-tool-2026-03-01\"`\n\n    - `\"managed-agents-2026-04-01\"`\n\n    - `\"cache-diagnosis-2026-04-07\"`\n\n    - `\"dreaming-2026-04-21\"`\n\n    - `\"thinking-token-count-2026-05-13\"`\n\n    - `\"server-side-fallback-2026-06-01\"`\n\n    - `\"server-side-fallback-2026-07-01\"`\n\n    - `\"fallback-credit-2026-06-01\"`\n\n    - `\"fallback-credit-2026-07-01\"`\n\n    - `\"agent-memory-2026-07-22\"`\n\n    - `\"mid-conversation-tool-changes-2026-07-01\"`\n\n### Returns\n\n- `data: array of BetaModelInfo`\n\n  - `id: string`\n\n    Unique model identifier.\n\n",
+      "context_after": " An empty list means the `fallbacks` parameter is not supported for this model as primary.\n\n  - `capabilities: BetaModelCapabilities or null`\n\n    Model capability information.\n\n    - `batch: BetaCapabilitySupport`\n\n      Whether the model supports the Batch API.\n\n      - `supported: boolean`\n\n        Whether this capability is supported by the model.\n\n    - `citations: BetaCapabilitySupport`\n\n      Whether the model supports citation generation.\n\n    - `code_execution: BetaCapabilitySupport`\n\n      Whether the model supports code execution tools.\n\n    - `context_management: BetaContextManagementCapability`\n\n      Context management support and available strategies.\n\n      - `clear_thinking_20251015: BetaCapabilitySupport or null`\n\n        Indicates whether a capability is supported.\n\n      - `clear_tool_uses_20250919: BetaCapabilitySupport or null`\n\n        Indicates whether a capabilit",
+      "expected_evidence": [
+        {
+          "evidence_id": "E1",
+          "version_id": "ver_de7f74230c8f10d30aea5d037a3bd0a5",
+          "section_path": [
+            "Models",
+            "List Models",
+            "Returns"
+          ],
+          "char_start": 8804,
+          "char_end": 8937,
+          "evidence_text": "  - `allowed_fallback_models: array of string or null`\n\n    Model IDs this model accepts as `fallbacks[i].model` on the Messages API.",
+          "evidence_hash": "a71662214aeb083e40ff4eed5dc1eec7fe7cb4ea3925ff888836afefcb19386c",
+          "evidence_char_length": 133,
+          "critical_strings": [
+            "allowed_fallback_models",
+            "fallbacks[i].model"
+          ]
+        }
+      ],
+      "proposed_category": "exact_lookup",
+      "reasoning_type": "exact_lookup",
+      "secondary_category": "accepts",
+      "proposed_question": "What does `allowed_fallback_models` contain?",
+      "proposed_answer": "Model IDs this model accepts as `fallbacks[i].model` on the Messages API.",
+      "proposed_atomic_claims": [
+        "`allowed_fallback_models` contains model IDs this model accepts as `fallbacks[i].model` on the Messages API."
+      ],
+      "question": "What does `allowed_fallback_models` contain?",
+      "answer": "Model IDs this model accepts as `fallbacks[i].model` on the Messages API.",
+      "atomic_claims": [
+        "`allowed_fallback_models` contains model IDs this model accepts as `fallbacks[i].model` on the Messages API."
+      ],
+      "critical_strings": [
+        "allowed_fallback_models",
+        "fallbacks[i].model"
+      ],
+      "evidence_kind": "short_normative",
+      "binding": "structural-or-subject-window",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "generator_confidence": "medium",
+      "generator_notes": "round1 repair: Named the omitted field `allowed_fallback_models` in the question. Expanded the evidence boundary backwards to the field name.",
+      "needs_human_interpretation": false,
+      "candidate_type": "supported",
+      "verification_status": "candidate_unverified_after_fix",
+      "claude_proposed": true,
+      "chatgpt_verified": false,
+      "retrieval_was_not_run": true,
+      "schema_version": "v2-devset-001/1.0",
+      "question_subject": "`allowed_fallback_models`",
+      "question_relation": null,
+      "question_object": "model IDs this model accepts as `fallbacks[i].model` on the Messages API",
+      "revisions": [
+        {
+          "revision": 1,
+          "round": 1,
+          "reason": "chatgpt_round1_FIX_REQUIRED",
+          "chatgpt_reason": "The factual description is supported, but the question is malformed and omits the field being defined, allowed_fallback_models. The field name is needed to bind the description to the correct return value.",
+          "evidence_boundary_complete": false,
+          "old_question": "What does Model IDs this model accept?",
+          "old_proposed_question": "What does Model IDs this model accept?",
+          "old_answer": "Model IDs this model accepts as `fallbacks[i].model` on the Messages API.",
+          "old_atomic_claims": [
+            "Model IDs this model accepts as `fallbacks[i].model` on the Messages API."
+          ],
+          "old_char_start": 8860,
+          "old_char_end": 8937,
+          "old_evidence_text": "    Model IDs this model accepts as `fallbacks[i].model` on the Messages API.",
+          "old_evidence_hash": "95982f914e9d0e93a07148156b3808869ecfaf8c4d28544d5aaee396d016d88b",
+          "old_question_subject": "Model IDs this model",
+          "old_question_relation": "accepts",
+          "old_question_object": "as `fallbacks[i].model` on the Messages API",
+          "new_question": "What does `allowed_fallback_models` contain?",
+          "new_answer": "Model IDs this model accepts as `fallbacks[i].model` on the Messages API.",
+          "new_char_start": 8804,
+          "new_char_end": 8937,
+          "new_evidence_hash": "a71662214aeb083e40ff4eed5dc1eec7fe7cb4ea3925ff888836afefcb19386c",
+          "span_expanded": true,
+          "characters_added_before": 56,
+          "characters_added_after": 0,
+          "author": "claude",
+          "directed_by": "ChatGPT round-1 FIX_REQUIRED + owner apply",
+          "timestamp": "2026-09-01T02:43:11Z",
+          "timestamp_et": "2026-08-31 22:43 ET",
+          "what_changed": "Named the omitted field `allowed_fallback_models` in the question. Expanded the evidence boundary backwards to the field name.",
+          "expansion_why": "Extended backwards to the Returns field name `allowed_fallback_models` so the description is bound to the identifier it defines."
+        }
+      ],
+      "stress_types": [
+        "short_evidence_unit"
+      ],
+      "source_subject": "- `allowed_fallback_models: array of string or null` Model IDs this model",
+      "source_relation": "accepts",
+      "source_object": "as `fallbacks[i].model` on the Messages API.",
+      "source_sentence": "- `allowed_fallback_models: array of string or null` Model IDs this model accepts as `fallbacks[i].model` on the Messages API.",
+      "source_triple_derivation": "generic predicate split",
+      "round1_verdict": "FIX_REQUIRED",
+      "round1_reason": "The factual description is supported, but the question is malformed and omits the field being defined, allowed_fallback_models. The field name is needed to bind the description to the correct return value.",
+      "repaired_at": "2026-09-01T02:43:11Z",
+      "repaired_at_et": "2026-08-31 22:43 ET",
+      "frozen": false,
+      "human_verified": false,
+      "anaphora_check": {
+        "status": "NO_ANAPHORA",
+        "blocking": false,
+        "finding": null,
+        "phrase": null
+      },
+      "repair_warnings": []
+    },
+    {
+      "candidate_id": "V2D-13",
+      "provider": "openai",
+      "document_title": "Models",
+      "version_id": "ver_ae909bf8b4bbbe1d1a11119447f7ac94",
+      "source_url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/models/index.md",
+      "captured_at": "2026-08-17 04:46:19+00:00",
+      "section_path": [
+        "Models",
+        "OpenAI models",
+        "Hosted multi-agent (experimental)",
+        "Current limitations"
+      ],
+      "char_start": 19331,
+      "char_end": 19456,
+      "evidence_text": "The experimental model rejects `reasoning.summary`, `max_tool_calls`, and caller-supplied `multi_agent` or `betas` overrides.",
+      "evidence_hash": "540a39028df8184945b1d598976982b6092e1c52dbb919d3c009f6d5df2ccad0",
+      "evidence_char_length": 125,
+      "context_before": "ll is ready, then resumes that same provider response after the Runner produces an output. Use `get_hosted_agent_metadata()` with a raw hosted item or a `ToolContext` to identify the hosted agent to which the item or tool call is attributed.\n\n#### Relationship to SDK orchestration\n\nHosted multi-agent is separate from SDK handoffs and agents-as-tools:\n\n-   Hosted multi-agent creates subagents on the OpenAI service. Your application does not create or schedule those subagents.\n-   SDK handoffs change the active local SDK `Agent`. They are rejected when this experimental model is used because every hosted agent receives the same handoff tools, which would create conflicting ownership.\n-   Agents-as-tools remain available, but using them creates nested client-side and server-side orchestration. Evaluate the additional latency, cost, and tool exposure deliberately.\n\n#### Current limitations\n\n",
+      "context_after": " The Responses `/compact` endpoint is not supported by the beta, although an explicit `context_management.compact_threshold` may be used because the service automatically compacts each hosted agent context independently.\n\nOne `OpenAIHostedMultiAgentModel` instance owns at most one active hosted response at a time. If a run is abandoned while waiting for local function output, call `await model.close()` to release its WebSocket. Restoring an in-flight hosted response in a different process or event loop is not currently supported.\n\nSee the [OpenAI Multi-agent guide](https://developers.openai.com/api/docs/guides/tools-multi-agent) for the underlying Responses API beta behavior. See [`examples/agent_patterns/hosted_multi_agent_beta.py`](https://github.com/openai/openai-agents-python/tree/main/examples/agent_patterns/hosted_multi_agent_beta.py) for non-streaming and streaming SDK usage.\n\n## ",
+      "expected_evidence": [
+        {
+          "evidence_id": "E1",
+          "version_id": "ver_ae909bf8b4bbbe1d1a11119447f7ac94",
+          "section_path": [
+            "Models",
+            "OpenAI models",
+            "Hosted multi-agent (experimental)",
+            "Current limitations"
+          ],
+          "char_start": 19331,
+          "char_end": 19456,
+          "evidence_text": "The experimental model rejects `reasoning.summary`, `max_tool_calls`, and caller-supplied `multi_agent` or `betas` overrides.",
+          "evidence_hash": "540a39028df8184945b1d598976982b6092e1c52dbb919d3c009f6d5df2ccad0",
+          "evidence_char_length": 125,
+          "critical_strings": [
+            "betas",
+            "reasoning.summary",
+            "max_tool_calls"
+          ]
+        }
+      ],
+      "proposed_category": "configuration_interaction",
+      "reasoning_type": "configuration_interaction",
+      "secondary_category": "overrides",
+      "proposed_question": "What does the experimental model reject?",
+      "proposed_answer": "`reasoning.summary`, `max_tool_calls`, and caller-supplied `multi_agent` or `betas` overrides.",
+      "proposed_atomic_claims": [
+        "The experimental model rejects `reasoning.summary`, `max_tool_calls`, and caller-supplied `multi_agent` or `betas` overrides."
+      ],
+      "question": "What does the experimental model reject?",
+      "answer": "`reasoning.summary`, `max_tool_calls`, and caller-supplied `multi_agent` or `betas` overrides.",
+      "atomic_claims": [
+        "The experimental model rejects `reasoning.summary`, `max_tool_calls`, and caller-supplied `multi_agent` or `betas` overrides."
+      ],
+      "critical_strings": [
+        "betas",
+        "reasoning.summary",
+        "max_tool_calls"
+      ],
+      "evidence_kind": "configuration_interaction",
+      "binding": "structural-or-subject-window",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "generator_confidence": "high",
+      "generator_notes": "round1 repair: RELATION_DIRECTION fix: the question no longer asks what `betas` override. Subject is the experimental model; relation is rejects; object is the listed overrides. Span unchanged.",
+      "needs_human_interpretation": false,
+      "candidate_type": "supported",
+      "verification_status": "candidate_unverified_after_fix",
+      "claude_proposed": true,
+      "chatgpt_verified": false,
+      "retrieval_was_not_run": true,
+      "schema_version": "v2-devset-001/1.0",
+      "question_subject": "the experimental model",
+      "question_relation": "rejects",
+      "question_object": "`reasoning.summary`, `max_tool_calls`, and caller-supplied `multi_agent` or `betas` overrides",
+      "revisions": [
+        {
+          "revision": 1,
+          "round": 1,
+          "reason": "chatgpt_round1_FIX_REQUIRED",
+          "chatgpt_reason": "The answer is supported, but the question 'What does betas override?' misstates the relation. The source says the model rejects caller-supplied betas overrides along with reasoning.summary and max_tool_calls.",
+          "evidence_boundary_complete": true,
+          "old_question": "What does `betas` override?",
+          "old_proposed_question": "What does `betas` override?",
+          "old_answer": "The experimental model rejects `reasoning.summary`, `max_tool_calls`, and caller-supplied `multi_agent` or `betas` overrides.",
+          "old_atomic_claims": [
+            "The experimental model rejects `reasoning.summary`, `max_tool_calls`, and caller-supplied `multi_agent` or `betas` overrides."
+          ],
+          "old_char_start": 19331,
+          "old_char_end": 19456,
+          "old_evidence_text": "The experimental model rejects `reasoning.summary`, `max_tool_calls`, and caller-supplied `multi_agent` or `betas` overrides.",
+          "old_evidence_hash": "540a39028df8184945b1d598976982b6092e1c52dbb919d3c009f6d5df2ccad0",
+          "old_question_subject": "`betas`",
+          "old_question_relation": "overrides",
+          "old_question_object": "`reasoning.summary`",
+          "new_question": "What does the experimental model reject?",
+          "new_answer": "`reasoning.summary`, `max_tool_calls`, and caller-supplied `multi_agent` or `betas` overrides.",
+          "new_char_start": 19331,
+          "new_char_end": 19456,
+          "new_evidence_hash": "540a39028df8184945b1d598976982b6092e1c52dbb919d3c009f6d5df2ccad0",
+          "span_expanded": false,
+          "characters_added_before": 0,
+          "characters_added_after": 0,
+          "author": "claude",
+          "directed_by": "ChatGPT round-1 FIX_REQUIRED + owner apply",
+          "timestamp": "2026-09-01T02:43:11Z",
+          "timestamp_et": "2026-08-31 22:43 ET",
+          "what_changed": "RELATION_DIRECTION fix: the question no longer asks what `betas` override. Subject is the experimental model; relation is rejects; object is the listed overrides. Span unchanged."
+        }
+      ],
+      "stress_types": [
+        "short_evidence_unit",
+        "correct_document_difficult_passage",
+        "identifier_vs_semantic_distractor"
+      ],
+      "source_subject": "The experimental model",
+      "source_relation": "rejects",
+      "source_object": "`reasoning.summary`, `max_tool_calls`, and caller-supplied `multi_agent` or `betas` overrides.",
+      "source_sentence": "The experimental model rejects `reasoning.summary`, `max_tool_calls`, and caller-supplied `multi_agent` or `betas` overrides.",
+      "source_triple_derivation": "named relation",
+      "round1_verdict": "FIX_REQUIRED",
+      "round1_reason": "The answer is supported, but the question 'What does betas override?' misstates the relation. The source says the model rejects caller-supplied betas overrides along with reasoning.summary and max_tool_calls.",
+      "repaired_at": "2026-09-01T02:43:11Z",
+      "repaired_at_et": "2026-08-31 22:43 ET",
+      "frozen": false,
+      "human_verified": false,
+      "anaphora_check": {
+        "status": "NO_ANAPHORA",
+        "blocking": false,
+        "finding": null,
+        "phrase": null
+      },
+      "relation_direction_check": "AGREES",
+      "repair_warnings": []
+    },
+    {
+      "candidate_id": "V2D-18",
+      "provider": "openai",
+      "document_title": "Testing",
+      "version_id": "ver_d2295786320b2815477eb963eb1f5e8a",
+      "source_url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/testing.md",
+      "captured_at": "2026-08-17 04:46:19+00:00",
+      "section_path": [
+        "Testing",
+        "Agent workflow recipes",
+        "Inject model failures"
+      ],
+      "char_start": 9219,
+      "char_end": 9850,
+      "evidence_text": "Use `ModelStep.raise_error()` to fail one model call. Optional retry advice belongs to that exact scripted error:\n\n```python\nfrom agents import ModelRetryAdvice\nfrom agents.testing import ModelStep\n\n\nstep = ModelStep.raise_error(\n    RuntimeError(\"temporary failure\"),\n    retry_advice=ModelRetryAdvice(suggested=True, replay_safety=\"safe\"),\n)\n```\n\nThe runner's retry policy decides whether advice causes another attempt. Each retry is another model call and consumes the next scripted step. The Python helper accepts a fixed `ModelRetryAdvice` value; use a custom `Model` when retry advice itself must vary dynamically by attempt.",
+      "evidence_hash": "5eaa435ade77face5566e2a959ab20237247f93384c38b64c1f79cdf4cea24d3",
+      "evidence_char_length": 631,
+      "context_before": "rmalized start, delta, item-completion, and terminal response events. The terminal response carries the complete output and usage.\n\nUse `ModelStep.stream()` only when the exact normalized `TResponseStreamEvent` sequence is part of the behavior under test:\n\n```python\nstep = ModelStep.stream(\n    events,\n    output=[assistant_message(\"The terminal output used by the runner.\")],\n)\n```\n\n`events` may be a fixed sequence or an async factory that receives the recorded `ModelCall`. The optional `output` is the response returned if the same step is used in a non-streaming call. Exact stream events are SDK-normalized events, not Responses API or Chat Completions wire chunks.\n\nAutomatic streaming rejects normalized output-item kinds whose incremental lifecycle is not implemented. Use `ModelStep.stream(...)` for those items instead of relying on a partial event sequence.\n\n### Inject model failures\n\n",
+      "context_after": "\n\n### Detect workflow drift\n\nTreat the scripted calls as the expected workflow shape. An extra model request raises `UnexpectedModelCall`; an early exit leaves steps for `assert_complete()` to report.\n\nWhen your test framework supports teardown or finalizers, place `assert_complete()` there if you also want unconsumed steps reported after another assertion fails. Do not catch mismatch errors in a normal regression test.\n\n| Error | Structured fields | Meaning |\n| --- | --- | --- |\n| `InvalidModelStep` | `reason`, `input_index` | A step is malformed and is rejected before entering the queue |\n| `UnexpectedModelCall` | `call`, `call_index` | The workflow made another model call after the script ended |\n| `UnconsumedModelSteps` | `remaining_steps` | The workflow ended before using every step |\n\n## Sandbox Agent recipes\n\n### Test a Sandbox Agent workflow\n\nCombine `ScriptedModel` with `scripte",
+      "expected_evidence": [
+        {
+          "evidence_id": "E1",
+          "version_id": "ver_d2295786320b2815477eb963eb1f5e8a",
+          "section_path": [
+            "Testing",
+            "Agent workflow recipes",
+            "Inject model failures"
+          ],
+          "char_start": 9219,
+          "char_end": 9850,
+          "evidence_text": "Use `ModelStep.raise_error()` to fail one model call. Optional retry advice belongs to that exact scripted error:\n\n```python\nfrom agents import ModelRetryAdvice\nfrom agents.testing import ModelStep\n\n\nstep = ModelStep.raise_error(\n    RuntimeError(\"temporary failure\"),\n    retry_advice=ModelRetryAdvice(suggested=True, replay_safety=\"safe\"),\n)\n```\n\nThe runner's retry policy decides whether advice causes another attempt. Each retry is another model call and consumes the next scripted step. The Python helper accepts a fixed `ModelRetryAdvice` value; use a custom `Model` when retry advice itself must vary dynamically by attempt.",
+          "evidence_hash": "5eaa435ade77face5566e2a959ab20237247f93384c38b64c1f79cdf4cea24d3",
+          "evidence_char_length": 631,
+          "critical_strings": [
+            "ModelStep.raise_error",
+            "ModelRetryAdvice"
+          ]
+        }
+      ],
+      "proposed_category": "exact_lookup",
+      "reasoning_type": "exact_lookup",
+      "secondary_category": "accepts",
+      "proposed_question": "What does `ModelStep.raise_error` accept?",
+      "proposed_answer": "A fixed `ModelRetryAdvice` value; use a custom `Model` when retry advice itself must vary dynamically by attempt.",
+      "proposed_atomic_claims": [
+        "`ModelStep.raise_error` accepts a fixed `ModelRetryAdvice` value; use a custom `Model` when retry advice itself must vary dynamically by attempt."
+      ],
+      "question": "What does `ModelStep.raise_error` accept?",
+      "answer": "A fixed `ModelRetryAdvice` value; use a custom `Model` when retry advice itself must vary dynamically by attempt.",
+      "atomic_claims": [
+        "`ModelStep.raise_error` accepts a fixed `ModelRetryAdvice` value; use a custom `Model` when retry advice itself must vary dynamically by attempt."
+      ],
+      "critical_strings": [
+        "ModelStep.raise_error",
+        "ModelRetryAdvice"
+      ],
+      "evidence_kind": "short_normative",
+      "binding": "structural-or-subject-window",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "generator_confidence": "medium",
+      "generator_notes": "round1 repair: Replaced 'the Python helper' with `ModelStep.raise_error`. Expanded the evidence boundary backwards so the helper name is inside the span.",
+      "needs_human_interpretation": false,
+      "candidate_type": "supported",
+      "verification_status": "candidate_unverified_after_fix",
+      "claude_proposed": true,
+      "chatgpt_verified": false,
+      "retrieval_was_not_run": true,
+      "schema_version": "v2-devset-001/1.0",
+      "question_subject": "`ModelStep.raise_error`",
+      "question_relation": "accepts",
+      "question_object": "a fixed `ModelRetryAdvice` value",
+      "revisions": [
+        {
+          "revision": 1,
+          "round": 1,
+          "reason": "chatgpt_round1_FIX_REQUIRED",
+          "chatgpt_reason": "The factual statement is supported, but 'the Python helper' is not identified in the question or selected evidence. The surrounding section indicates ModelStep.raise_error; name that helper explicitly.",
+          "evidence_boundary_complete": false,
+          "old_question": "What does the Python helper accept?",
+          "old_proposed_question": "What does the Python helper accept?",
+          "old_answer": "The Python helper accepts a fixed `ModelRetryAdvice` value; use a custom `Model` when retry advice itself must vary dynamically by attempt.",
+          "old_atomic_claims": [
+            "The Python helper accepts a fixed `ModelRetryAdvice` value; use a custom `Model` when retry advice itself must vary dynamically by attempt."
+          ],
+          "old_char_start": 9711,
+          "old_char_end": 9850,
+          "old_evidence_text": "The Python helper accepts a fixed `ModelRetryAdvice` value; use a custom `Model` when retry advice itself must vary dynamically by attempt.",
+          "old_evidence_hash": "98f949d187d774cf689478066c3b8933a2327a701129539680d5ae21bd9af9c6",
+          "old_question_subject": "The Python helper",
+          "old_question_relation": "accepts",
+          "old_question_object": "a fixed `ModelRetryAdvice` value; use a custom `Model` when retry advice itself must vary dynamically by attempt",
+          "new_question": "What does `ModelStep.raise_error` accept?",
+          "new_answer": "A fixed `ModelRetryAdvice` value; use a custom `Model` when retry advice itself must vary dynamically by attempt.",
+          "new_char_start": 9219,
+          "new_char_end": 9850,
+          "new_evidence_hash": "5eaa435ade77face5566e2a959ab20237247f93384c38b64c1f79cdf4cea24d3",
+          "span_expanded": true,
+          "characters_added_before": 492,
+          "characters_added_after": 0,
+          "author": "claude",
+          "directed_by": "ChatGPT round-1 FIX_REQUIRED + owner apply",
+          "timestamp": "2026-09-01T02:43:11Z",
+          "timestamp_et": "2026-08-31 22:43 ET",
+          "what_changed": "Replaced 'the Python helper' with `ModelStep.raise_error`. Expanded the evidence boundary backwards so the helper name is inside the span.",
+          "expansion_why": "Extended backwards to the sentence that names `ModelStep.raise_error`, so 'the Python helper' is identified inside the span."
+        }
+      ],
+      "stress_types": [
+        "short_evidence_unit",
+        "correct_document_difficult_passage"
+      ],
+      "source_subject": null,
+      "source_relation": null,
+      "source_object": null,
+      "source_sentence": null,
+      "source_triple_derivation": "not derivable from the evidence",
+      "round1_verdict": "FIX_REQUIRED",
+      "round1_reason": "The factual statement is supported, but 'the Python helper' is not identified in the question or selected evidence. The surrounding section indicates ModelStep.raise_error; name that helper explicitly.",
+      "repaired_at": "2026-09-01T02:43:11Z",
+      "repaired_at_et": "2026-08-31 22:43 ET",
+      "frozen": false,
+      "human_verified": false,
+      "anaphora_check": {
+        "status": "NO_ANAPHORA",
+        "blocking": false,
+        "finding": null,
+        "phrase": null
+      },
+      "relation_direction_check": "NOT_CHECKABLE",
+      "repair_warnings": []
+    },
+    {
+      "candidate_id": "V2D-19",
+      "provider": "anthropic",
+      "document_title": "Using Agent Skills with the API",
+      "version_id": "ver_5a15a8f543d432ef91eb6e2997f51225",
+      "source_url": "https://platform.claude.com/docs/en/build-with-claude/skills-guide",
+      "captured_at": "2026-08-17 04:46:19+00:00",
+      "section_path": [
+        "Managing custom Skills",
+        "Creating a Skill"
+      ],
+      "char_start": 72650,
+      "char_end": 72735,
+      "evidence_text": "The Python SDK also provides a `files_from_dir` helper that accepts a directory path.",
+      "evidence_hash": "dcf16d18e94cb433a7aa16e08368cde0eaafaf15f6738dc5db9363ca67bf9f3a",
+      "evidence_char_length": 85,
+      "context_before": "m\",\n          skill_id: \"skill_01AbCdEfGhIjKlMnOpQrStUv\",\n          version: \"latest\"\n        }\n      ]\n    },\n    messages: [\n      { role: \"user\", content: \"Analyze sales data and create a presentation\" }\n    ],\n    tools: [\n      { type: \"code_execution_20250825\", name: \"code_execution\" }\n    ]\n  )\n  puts message\n  ```\n</CodeGroup>\n\n***\n\n## Managing custom Skills\n\n### Creating a Skill\n\nA Skill bundle is a directory containing a `SKILL.md` file at the top level with `name` and `description` YAML frontmatter, plus any supporting scripts or resources. See [Get started with Agent Skills in the API](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/quickstart) to author one, and the **Requirements** list following the examples for the full constraints.\n\nUpload your custom Skill to make it available in your workspace. You can upload a zip archive or individual file objects. ",
+      "context_after": "\n\nFiles are identified by the filename you attach. Per-file uploads must keep a common top-level directory in their paths (the `;filename=` suffix in the cURL example and the filename arguments in the SDK examples). A zip archive must contain the skill directory as its single top-level entry. For the walkthrough's skill, create one with `zip -r financial_skill.zip financial_skill/` and substitute it for the `example_skill.zip` placeholder in the zip-upload options.\n\n<CodeGroup defaultLanguage=\"CLI\">\n  ```bash cURL\n  curl -X POST \"https://api.anthropic.com/v1/skills\" \\\n    -H \"x-api-key: $ANTHROPIC_API_KEY\" \\\n    -H \"anthropic-version: 2023-06-01\" \\\n    -H \"anthropic-beta: skills-2025-10-02\" \\\n    -F \"files[]=@financial_skill/SKILL.md;filename=financial_skill/SKILL.md\" \\\n    -F \"files[]=@financial_skill/analyze.py;filename=financial_skill/analyze.py\"\n  ```\n\n  ```bash CLI\n  ant beta:skills",
+      "expected_evidence": [
+        {
+          "evidence_id": "E1",
+          "version_id": "ver_5a15a8f543d432ef91eb6e2997f51225",
+          "section_path": [
+            "Managing custom Skills",
+            "Creating a Skill"
+          ],
+          "char_start": 72650,
+          "char_end": 72735,
+          "evidence_text": "The Python SDK also provides a `files_from_dir` helper that accepts a directory path.",
+          "evidence_hash": "dcf16d18e94cb433a7aa16e08368cde0eaafaf15f6738dc5db9363ca67bf9f3a",
+          "evidence_char_length": 85,
+          "critical_strings": [
+            "files_from_dir"
+          ]
+        }
+      ],
+      "proposed_category": "exact_lookup",
+      "reasoning_type": "exact_lookup",
+      "secondary_category": "accepts",
+      "proposed_question": "What argument does `files_from_dir` accept?",
+      "proposed_answer": "A directory path.",
+      "proposed_atomic_claims": [
+        "The Python SDK `files_from_dir` helper accepts a directory path."
+      ],
+      "question": "What argument does `files_from_dir` accept?",
+      "answer": "A directory path.",
+      "atomic_claims": [
+        "The Python SDK `files_from_dir` helper accepts a directory path."
+      ],
+      "critical_strings": [
+        "files_from_dir"
+      ],
+      "evidence_kind": "short_normative",
+      "binding": "structural-or-subject-window",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "generator_confidence": "medium",
+      "generator_notes": "round1 repair: Grammatical rewrite: the question now asks what argument `files_from_dir` accepts. Span unchanged.",
+      "needs_human_interpretation": false,
+      "candidate_type": "supported",
+      "verification_status": "candidate_unverified_after_fix",
+      "claude_proposed": true,
+      "chatgpt_verified": false,
+      "retrieval_was_not_run": true,
+      "schema_version": "v2-devset-001/1.0",
+      "question_subject": "`files_from_dir`",
+      "question_relation": "accepts",
+      "question_object": "a directory path",
+      "revisions": [
+        {
+          "revision": 1,
+          "round": 1,
+          "reason": "chatgpt_round1_FIX_REQUIRED",
+          "chatgpt_reason": "The underlying files_from_dir fact is supported, but the proposed question is grammatically malformed. Rewrite it as what argument files_from_dir accepts.",
+          "evidence_boundary_complete": true,
+          "old_question": "What does the Python SDK also provides a `files_from_dir` helper that accept?",
+          "old_proposed_question": "What does the Python SDK also provides a `files_from_dir` helper that accept?",
+          "old_answer": "The Python SDK also provides a `files_from_dir` helper that accepts a directory path.",
+          "old_atomic_claims": [
+            "The Python SDK also provides a `files_from_dir` helper that accepts a directory path."
+          ],
+          "old_char_start": 72650,
+          "old_char_end": 72735,
+          "old_evidence_text": "The Python SDK also provides a `files_from_dir` helper that accepts a directory path.",
+          "old_evidence_hash": "dcf16d18e94cb433a7aa16e08368cde0eaafaf15f6738dc5db9363ca67bf9f3a",
+          "old_question_subject": "The Python SDK also provides a `files_from_dir` helper that",
+          "old_question_relation": "accepts",
+          "old_question_object": "a directory path",
+          "new_question": "What argument does `files_from_dir` accept?",
+          "new_answer": "A directory path.",
+          "new_char_start": 72650,
+          "new_char_end": 72735,
+          "new_evidence_hash": "dcf16d18e94cb433a7aa16e08368cde0eaafaf15f6738dc5db9363ca67bf9f3a",
+          "span_expanded": false,
+          "characters_added_before": 0,
+          "characters_added_after": 0,
+          "author": "claude",
+          "directed_by": "ChatGPT round-1 FIX_REQUIRED + owner apply",
+          "timestamp": "2026-09-01T02:43:11Z",
+          "timestamp_et": "2026-08-31 22:43 ET",
+          "what_changed": "Grammatical rewrite: the question now asks what argument `files_from_dir` accepts. Span unchanged."
+        }
+      ],
+      "stress_types": [
+        "short_evidence_unit",
+        "correct_document_difficult_passage",
+        "identifier_vs_semantic_distractor",
+        "lexical_query_shape"
+      ],
+      "source_subject": "The Python SDK also provides a `files_from_dir` helper that",
+      "source_relation": "accepts",
+      "source_object": "a directory path.",
+      "source_sentence": "The Python SDK also provides a `files_from_dir` helper that accepts a directory path.",
+      "source_triple_derivation": "named relation",
+      "round1_verdict": "FIX_REQUIRED",
+      "round1_reason": "The underlying files_from_dir fact is supported, but the proposed question is grammatically malformed. Rewrite it as what argument files_from_dir accepts.",
+      "repaired_at": "2026-09-01T02:43:11Z",
+      "repaired_at_et": "2026-08-31 22:43 ET",
+      "frozen": false,
+      "human_verified": false,
+      "anaphora_check": {
+        "status": "NO_ANAPHORA",
+        "blocking": false,
+        "finding": null,
+        "phrase": null
+      },
+      "relation_direction_check": "AGREES",
+      "repair_warnings": []
+    },
+    {
+      "candidate_id": "V2D-21",
+      "provider": "anthropic",
+      "document_title": "Memory tool",
+      "version_id": "ver_96d1698a3864f79451e8576f87a07004",
+      "source_url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool",
+      "captured_at": "2026-08-17 04:46:19+00:00",
+      "section_path": [
+        "Security considerations",
+        "File storage size"
+      ],
+      "char_start": 34903,
+      "char_end": 35023,
+      "evidence_text": "Consider capping how many characters the `view` command returns, and let Claude page through the rest with `view_range`.",
+      "evidence_hash": "829b4270435161f75e29c18c666d040ecac6c5820aeea5bc33c8c65c9b51092b",
+      "evidence_char_length": 120,
+      "context_before": "to repeat that instruction. If Claude still creates cluttered memory files, you can reinforce it in your prompt:\n\n```text wrap\nNote: when editing your memory folder, always try to keep its content up-to-date, coherent and organized. You can rename or delete files that are no longer relevant. Do not create new files unless necessary.\n```\n\nYou can also guide what Claude writes to memory. For example: \"Only write down information relevant to \\<topic> in your memory system.\"\n\n## Security considerations\n\nYour application executes every file operation Claude requests, so these safeguards are your responsibility:\n\n### Sensitive information\n\nClaude usually refuses to write sensitive information to memory files. For stronger guarantees, add validation that strips sensitive data before your handler writes the file.\n\n### File storage size\n\nTrack memory file sizes and cap how large a file can grow. ",
+      "context_after": "\n\n### Memory expiration\n\nPeriodically delete memory files that haven't been accessed in a long time.\n\n### Path traversal protection\n\n<Warning>\n  A malicious path such as `/memories/../../secrets.env` can reach files outside the `/memories` directory. Your implementation must validate every path in every command to prevent directory traversal attacks.\n</Warning>\n\nConsider these safeguards:\n\n* Validate that all paths start with `/memories`\n* Resolve paths to their canonical form and verify they remain within the memory directory\n* Reject paths containing sequences such as `../`, `..\\\\`, or other traversal patterns\n* Watch for URL-encoded traversal sequences (`%2e%2e%2f`)\n* Use your language's built-in path security utilities (for example, Python's `pathlib.Path.resolve()` and `relative_to()`)\n\n## Error handling\n\nThe memory tool uses similar error-handling patterns to the [text editor tool]",
+      "expected_evidence": [
+        {
+          "evidence_id": "E1",
+          "version_id": "ver_96d1698a3864f79451e8576f87a07004",
+          "section_path": [
+            "Security considerations",
+            "File storage size"
+          ],
+          "char_start": 34903,
+          "char_end": 35023,
+          "evidence_text": "Consider capping how many characters the `view` command returns, and let Claude page through the rest with `view_range`.",
+          "evidence_hash": "829b4270435161f75e29c18c666d040ecac6c5820aeea5bc33c8c65c9b51092b",
+          "evidence_char_length": 120,
+          "critical_strings": [
+            "view",
+            "view_range"
+          ]
+        }
+      ],
+      "proposed_category": "error_behavior",
+      "reasoning_type": "error_behavior",
+      "secondary_category": "returns",
+      "proposed_question": "How should large `view` output be limited, and how can Claude page through the rest with `view_range`?",
+      "proposed_answer": "Cap how many characters the `view` command returns, and let Claude page through the rest with `view_range`.",
+      "proposed_atomic_claims": [
+        "Consider capping how many characters the `view` command returns, and let Claude page through the rest with `view_range`."
+      ],
+      "question": "How should large `view` output be limited, and how can Claude page through the rest with `view_range`?",
+      "answer": "Cap how many characters the `view` command returns, and let Claude page through the rest with `view_range`.",
+      "atomic_claims": [
+        "Consider capping how many characters the `view` command returns, and let Claude page through the rest with `view_range`."
+      ],
+      "critical_strings": [
+        "view",
+        "view_range"
+      ],
+      "evidence_kind": "short_normative",
+      "binding": "structural-or-subject-window",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "generator_confidence": "medium",
+      "generator_notes": "round1 repair: Rewrote the malformed question to ask what safeguard is recommended for large `view` output. Span unchanged.",
+      "needs_human_interpretation": false,
+      "candidate_type": "supported",
+      "verification_status": "candidate_unverified_after_fix",
+      "claude_proposed": true,
+      "chatgpt_verified": false,
+      "retrieval_was_not_run": true,
+      "schema_version": "v2-devset-001/1.0",
+      "question_subject": "large `view` output",
+      "question_relation": null,
+      "question_object": null,
+      "revisions": [
+        {
+          "revision": 1,
+          "round": 1,
+          "reason": "chatgpt_round1_FIX_REQUIRED",
+          "chatgpt_reason": "The recommendation is supported, but the proposed question is malformed. Ask how to handle large view output or what safeguard is recommended for the view command.",
+          "evidence_boundary_complete": true,
+          "old_question": "What does Consider capping how many characters the `view` command return?",
+          "old_proposed_question": "What does Consider capping how many characters the `view` command return?",
+          "old_answer": "Consider capping how many characters the `view` command returns, and let Claude page through the rest with `view_range`.",
+          "old_atomic_claims": [
+            "Consider capping how many characters the `view` command returns, and let Claude page through the rest with `view_range`."
+          ],
+          "old_char_start": 34903,
+          "old_char_end": 35023,
+          "old_evidence_text": "Consider capping how many characters the `view` command returns, and let Claude page through the rest with `view_range`.",
+          "old_evidence_hash": "829b4270435161f75e29c18c666d040ecac6c5820aeea5bc33c8c65c9b51092b",
+          "old_question_subject": "Consider capping how many characters the `view` command",
+          "old_question_relation": "returns",
+          "old_question_object": ", and let Claude page through the rest with `view_range`",
+          "new_question": "How should large `view` output be limited, and how can Claude page through the rest with `view_range`?",
+          "new_answer": "Cap how many characters the `view` command returns, and let Claude page through the rest with `view_range`.",
+          "new_char_start": 34903,
+          "new_char_end": 35023,
+          "new_evidence_hash": "829b4270435161f75e29c18c666d040ecac6c5820aeea5bc33c8c65c9b51092b",
+          "span_expanded": false,
+          "characters_added_before": 0,
+          "characters_added_after": 0,
+          "author": "claude",
+          "directed_by": "ChatGPT round-1 FIX_REQUIRED + owner apply",
+          "timestamp": "2026-09-01T02:45:03Z",
+          "timestamp_et": "2026-08-31 22:45 ET",
+          "what_changed": "Rewrote the malformed question as the recommended safeguard: limit `view` output and page through the rest with `view_range`. Span unchanged."
+        }
+      ],
+      "stress_types": [
+        "short_evidence_unit",
+        "correct_document_difficult_passage",
+        "version_model_discrimination",
+        "identifier_vs_semantic_distractor"
+      ],
+      "source_subject": null,
+      "source_relation": null,
+      "source_object": null,
+      "source_sentence": null,
+      "source_triple_derivation": "not derivable from the evidence",
+      "round1_verdict": "FIX_REQUIRED",
+      "round1_reason": "The recommendation is supported, but the proposed question is malformed. Ask how to handle large view output or what safeguard is recommended for the view command.",
+      "repaired_at": "2026-09-01T02:45:03Z",
+      "repaired_at_et": "2026-08-31 22:45 ET",
+      "frozen": false,
+      "human_verified": false,
+      "anaphora_check": {
+        "status": "NO_ANAPHORA",
+        "blocking": false,
+        "finding": null,
+        "phrase": null
+      },
+      "repair_warnings": []
+    },
+    {
+      "candidate_id": "V2D-22",
+      "provider": "anthropic",
+      "document_title": "Tool runner (SDK)",
+      "version_id": "ver_96d5aba3c4e7771cabd4f3d4f5a3fff1",
+      "source_url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-runner",
+      "captured_at": "2026-08-17 04:46:19+00:00",
+      "section_path": [
+        "Advanced usage",
+        "Taking over message history"
+      ],
+      "char_start": 38316,
+      "char_end": 38425,
+      "evidence_text": "By the time `next_message` returns, the assistant message and tool result for that turn are already appended.",
+      "evidence_hash": "cc4be65021e4ea3f13b4ad9ce60d23942d2d0ec76c0c46663fd82d8025ee4224",
+      "evidence_char_length": 109,
+      "context_before": " === BetaStopReason::MAX_TOKENS->value) {\n            $current = $runner->getParams()['maxTokens'];\n\n            if ($current >= $maxTokenCeiling) {\n                echo \"Hit ceiling ({$maxTokenCeiling}), accepting truncated response.\\n\";\n                break;\n            }\n\n            $doubled = min($current * 2, $maxTokenCeiling);\n            echo \"Response truncated at {$current} tokens, retrying with {$doubled}.\\n\";\n\n            // Calling setMessagesParams() inside the loop tells the runner to skip\n            // its automatic append. The truncated message is discarded; the next\n            // iteration retries with the larger budget.\n            // Keys are camelCase, matching the toolRunner() named parameters.\n            $runner->setMessagesParams(['maxTokens' => $doubled]);\n        }\n    }\n    ```\n  </Tab>\n\n  <Tab title=\"Ruby\">\n    Use `next_message` for step-by-step control. ",
+      "context_after": " Use `feed_messages` to inject follow-up messages between turns, and `runner.params.update(...)` to change request parameters in place.\n\n    You take over message history when, from inside an `each_message` or `each_streaming` block, you reassign `runner.params[:messages]` or call `feed_messages`. The following pattern calls `feed_messages` between `next_message` calls, which does not take over.\n\n    ```ruby\n    runner = client.beta.messages.tool_runner(\n      model: \"claude-opus-5\",\n      max_tokens: 1024,\n      max_iterations: 10,\n      tools: [GetWeather.new],\n      messages: [{role: \"user\", content: \"What's the weather in San Francisco?\"}]\n    )\n\n    # Step the runner once. The assistant message and tool result are appended\n    # to runner.params[:messages] before next_message returns.\n    message = runner.next_message\n    puts message.content\n\n    # Inject a follow-up before continu",
+      "expected_evidence": [
+        {
+          "evidence_id": "E1",
+          "version_id": "ver_96d5aba3c4e7771cabd4f3d4f5a3fff1",
+          "section_path": [
+            "Advanced usage",
+            "Taking over message history"
+          ],
+          "char_start": 38316,
+          "char_end": 38425,
+          "evidence_text": "By the time `next_message` returns, the assistant message and tool result for that turn are already appended.",
+          "evidence_hash": "cc4be65021e4ea3f13b4ad9ce60d23942d2d0ec76c0c46663fd82d8025ee4224",
+          "evidence_char_length": 109,
+          "critical_strings": [
+            "next_message"
+          ]
+        }
+      ],
+      "proposed_category": "error_behavior",
+      "reasoning_type": "error_behavior",
+      "secondary_category": "returns",
+      "proposed_question": "What has already been appended by the time `next_message` returns?",
+      "proposed_answer": "The assistant message and tool result for that turn.",
+      "proposed_atomic_claims": [
+        "By the time `next_message` returns, the assistant message and tool result for that turn are already appended."
+      ],
+      "question": "What has already been appended by the time `next_message` returns?",
+      "answer": "The assistant message and tool result for that turn.",
+      "atomic_claims": [
+        "By the time `next_message` returns, the assistant message and tool result for that turn are already appended."
+      ],
+      "critical_strings": [
+        "next_message"
+      ],
+      "evidence_kind": "short_normative",
+      "binding": "structural-or-subject-window",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "generator_confidence": "medium",
+      "generator_notes": "round1 repair: Rewrote the malformed question to 'What has already been appended by the time `next_message` returns?'. Span unchanged.",
+      "needs_human_interpretation": false,
+      "candidate_type": "supported",
+      "verification_status": "candidate_unverified_after_fix",
+      "claude_proposed": true,
+      "chatgpt_verified": false,
+      "retrieval_was_not_run": true,
+      "schema_version": "v2-devset-001/1.0",
+      "question_subject": "`next_message`",
+      "question_relation": "returns",
+      "question_object": null,
+      "revisions": [
+        {
+          "revision": 1,
+          "round": 1,
+          "reason": "chatgpt_round1_FIX_REQUIRED",
+          "chatgpt_reason": "The statement about next_message is supported, but the question is malformed. Rewrite as 'What has already been appended by the time next_message returns?'",
+          "evidence_boundary_complete": true,
+          "old_question": "What does By the time `next_message` return?",
+          "old_proposed_question": "What does By the time `next_message` return?",
+          "old_answer": "By the time `next_message` returns, the assistant message and tool result for that turn are already appended.",
+          "old_atomic_claims": [
+            "By the time `next_message` returns, the assistant message and tool result for that turn are already appended."
+          ],
+          "old_char_start": 38316,
+          "old_char_end": 38425,
+          "old_evidence_text": "By the time `next_message` returns, the assistant message and tool result for that turn are already appended.",
+          "old_evidence_hash": "cc4be65021e4ea3f13b4ad9ce60d23942d2d0ec76c0c46663fd82d8025ee4224",
+          "old_question_subject": "By the time `next_message`",
+          "old_question_relation": "returns",
+          "old_question_object": ", the assistant message and tool result for that turn are already appended",
+          "new_question": "What has already been appended by the time `next_message` returns?",
+          "new_answer": "The assistant message and tool result for that turn.",
+          "new_char_start": 38316,
+          "new_char_end": 38425,
+          "new_evidence_hash": "cc4be65021e4ea3f13b4ad9ce60d23942d2d0ec76c0c46663fd82d8025ee4224",
+          "span_expanded": false,
+          "characters_added_before": 0,
+          "characters_added_after": 0,
+          "author": "claude",
+          "directed_by": "ChatGPT round-1 FIX_REQUIRED + owner apply",
+          "timestamp": "2026-09-01T02:43:11Z",
+          "timestamp_et": "2026-08-31 22:43 ET",
+          "what_changed": "Rewrote the malformed question to 'What has already been appended by the time `next_message` returns?'. Span unchanged."
+        }
+      ],
+      "stress_types": [
+        "short_evidence_unit",
+        "correct_document_difficult_passage",
+        "identifier_vs_semantic_distractor",
+        "lexical_query_shape"
+      ],
+      "source_subject": "By the time `next_message`",
+      "source_relation": "returns",
+      "source_object": ", the assistant message and tool result for that turn are already appended.",
+      "source_sentence": "By the time `next_message` returns, the assistant message and tool result for that turn are already appended.",
+      "source_triple_derivation": "named relation",
+      "round1_verdict": "FIX_REQUIRED",
+      "round1_reason": "The statement about next_message is supported, but the question is malformed. Rewrite as 'What has already been appended by the time next_message returns?'",
+      "repaired_at": "2026-09-01T02:43:11Z",
+      "repaired_at_et": "2026-08-31 22:43 ET",
+      "frozen": false,
+      "human_verified": false,
+      "anaphora_check": {
+        "status": "NO_ANAPHORA",
+        "blocking": false,
+        "finding": null,
+        "phrase": null
+      },
+      "relation_direction_check": "AGREES",
+      "repair_warnings": []
+    },
+    {
+      "candidate_id": "V2D-23",
+      "provider": "openai",
+      "document_title": "Sandbox clients",
+      "version_id": "ver_3d4b8881962381cbfba18ade50c598e1",
+      "source_url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/sandbox/clients.md",
+      "captured_at": "2026-08-17 04:46:19+00:00",
+      "section_path": [
+        "Sandbox clients",
+        "Supported hosted platforms",
+        "Size Modal sandboxes"
+      ],
+      "char_start": 10824,
+      "char_end": 11465,
+      "evidence_text": "Credentialless `rclone` mounts are limited to S3, GCS, R2, and Azure Blob. An in-container Box mount requires a non-interactive authentication source and the acknowledgement that matches that source. `FuseMountPattern` requires broad acknowledgement because `blobfuse2` discovers ambient Azure authority, even when no inline credential is configured. `S3FilesMountPattern` likewise requires broad acknowledgement because `mount.s3files` uses ambient IAM authority. These requirements also apply when Docker is the backend; the check marks below indicate that Docker can execute the mount after the applicable authority boundary is satisfied.",
+      "evidence_hash": "b97014844240948026e9df02c8b13569c24b56a95ddfab31721fb318fdd150a1",
+      "evidence_char_length": 641,
+      "context_before": "BlobMount`, and `BoxMount`. |\n| `VercelSandboxClient` | Supports create-time-only S3 and S3-compatible bucket mounts by pairing `VercelCloudBucketMountStrategy` with an `S3Mount` entry; mounted sessions cannot be resumed, and inline credentials require `allow_s3_credential_exposure=True`. |\n\n</div>\n\nThe mount tables describe which storage types each backend can execute. A check mark does not bypass the credential boundary for a mount helper that runs inside a model-controlled sandbox, and it does not mean that every strategy can operate without credentials. The Agents SDK accepts an in-container mount without an acknowledgement only when the selected helper can operate without protected authority. It rejects a mount that requires protected authority before starting the sandbox or mount helper unless trusted application code explicitly acknowledges the exposure for the exact mount path.\n\n",
+      "context_after": "\n\nFor a mount entry named `\"data\"`, retain the copied `Manifest` returned by the acknowledgement that matches the configured authority:\n\n```python\n# Mount-scoped values such as inline access keys.\nmanifest = manifest.with_in_container_mount_credential_exposure_acknowledged(\"data\")\n\n# Broader authority such as managed or workload identity and external credential files.\nmanifest = manifest.with_in_container_mount_broad_credential_exposure_acknowledged(\"data\")\n```\n\nPass every exact mount path that needs the acknowledgement. A mount that uses both authority classes requires both acknowledgements. The acknowledgements are runtime-only, are not serialized, and permit the helper to receive credentials without confining credential use to the mounted path. Prefer an external or provider-native strategy when available, and otherwise use sandbox-scoped, short-lived, least-privilege credentials.\n\n`V",
+      "expected_evidence": [
+        {
+          "evidence_id": "E1",
+          "version_id": "ver_3d4b8881962381cbfba18ade50c598e1",
+          "section_path": [
+            "Sandbox clients",
+            "Supported hosted platforms",
+            "Size Modal sandboxes"
+          ],
+          "char_start": 10824,
+          "char_end": 11465,
+          "evidence_text": "Credentialless `rclone` mounts are limited to S3, GCS, R2, and Azure Blob. An in-container Box mount requires a non-interactive authentication source and the acknowledgement that matches that source. `FuseMountPattern` requires broad acknowledgement because `blobfuse2` discovers ambient Azure authority, even when no inline credential is configured. `S3FilesMountPattern` likewise requires broad acknowledgement because `mount.s3files` uses ambient IAM authority. These requirements also apply when Docker is the backend; the check marks below indicate that Docker can execute the mount after the applicable authority boundary is satisfied.",
+          "evidence_hash": "b97014844240948026e9df02c8b13569c24b56a95ddfab31721fb318fdd150a1",
+          "evidence_char_length": 641,
+          "critical_strings": [
+            "rclone",
+            "FuseMountPattern",
+            "blobfuse2"
+          ]
+        }
+      ],
+      "proposed_category": "exact_lookup",
+      "reasoning_type": "exact_lookup",
+      "secondary_category": "is_limited_to",
+      "proposed_question": "What are credentialless `rclone` mounts limited to?",
+      "proposed_answer": "S3, GCS, R2, and Azure Blob.",
+      "proposed_atomic_claims": [
+        "Credentialless `rclone` mounts are limited to S3, GCS, R2, and Azure Blob."
+      ],
+      "question": "What are credentialless `rclone` mounts limited to?",
+      "answer": "S3, GCS, R2, and Azure Blob.",
+      "atomic_claims": [
+        "Credentialless `rclone` mounts are limited to S3, GCS, R2, and Azure Blob."
+      ],
+      "critical_strings": [
+        "rclone",
+        "FuseMountPattern",
+        "blobfuse2"
+      ],
+      "evidence_kind": "long_technical_section",
+      "binding": "structural-or-subject-window",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "generator_confidence": "medium",
+      "generator_notes": "round1 repair: Grammar only: 'What are credentialless `rclone` mounts limited to?'. No factual change. Span unchanged.",
+      "needs_human_interpretation": false,
+      "candidate_type": "supported",
+      "verification_status": "candidate_unverified_after_fix",
+      "claude_proposed": true,
+      "chatgpt_verified": false,
+      "retrieval_was_not_run": true,
+      "schema_version": "v2-devset-001/1.0",
+      "question_subject": "credentialless `rclone` mounts",
+      "question_relation": "is_limited_to",
+      "question_object": "S3, GCS, R2, and Azure Blob",
+      "revisions": [
+        {
+          "revision": 1,
+          "round": 1,
+          "reason": "chatgpt_round1_FIX_REQUIRED",
+          "chatgpt_reason": "The answer is exactly supported, but the question should be grammatically corrected to 'What are credentialless rclone mounts limited to?' No factual change is needed.",
+          "evidence_boundary_complete": true,
+          "old_question": "What is Credentialless `rclone` mounts limited to?",
+          "old_proposed_question": "What is Credentialless `rclone` mounts limited to?",
+          "old_answer": "Credentialless `rclone` mounts are limited to S3, GCS, R2, and Azure Blob.",
+          "old_atomic_claims": [
+            "Credentialless `rclone` mounts are limited to S3, GCS, R2, and Azure Blob."
+          ],
+          "old_char_start": 10824,
+          "old_char_end": 11465,
+          "old_evidence_text": "Credentialless `rclone` mounts are limited to S3, GCS, R2, and Azure Blob. An in-container Box mount requires a non-interactive authentication source and the acknowledgement that matches that source. `FuseMountPattern` requires broad acknowledgement because `blobfuse2` discovers ambient Azure authority, even when no inline credential is configured. `S3FilesMountPattern` likewise requires broad acknowledgement because `mount.s3files` uses ambient IAM authority. These requirements also apply when Docker is the backend; the check marks below indicate that Docker can execute the mount after the applicable authority boundary is satisfied.",
+          "old_evidence_hash": "b97014844240948026e9df02c8b13569c24b56a95ddfab31721fb318fdd150a1",
+          "old_question_subject": "Credentialless `rclone` mounts",
+          "old_question_relation": "is_limited_to",
+          "old_question_object": "S3, GCS, R2, and Azure Blob",
+          "new_question": "What are credentialless `rclone` mounts limited to?",
+          "new_answer": "S3, GCS, R2, and Azure Blob.",
+          "new_char_start": 10824,
+          "new_char_end": 11465,
+          "new_evidence_hash": "b97014844240948026e9df02c8b13569c24b56a95ddfab31721fb318fdd150a1",
+          "span_expanded": false,
+          "characters_added_before": 0,
+          "characters_added_after": 0,
+          "author": "claude",
+          "directed_by": "ChatGPT round-1 FIX_REQUIRED + owner apply",
+          "timestamp": "2026-09-01T02:43:11Z",
+          "timestamp_et": "2026-08-31 22:43 ET",
+          "what_changed": "Grammar only: 'What are credentialless `rclone` mounts limited to?'. No factual change. Span unchanged."
+        }
+      ],
+      "stress_types": [
+        "long_technical_section",
+        "correct_document_difficult_passage",
+        "identifier_vs_semantic_distractor"
+      ],
+      "source_subject": "Credentialless `rclone` mounts",
+      "source_relation": "is_limited_to",
+      "source_object": "S3, GCS, R2, and Azure Blob",
+      "source_sentence": "Credentialless `rclone` mounts are limited to S3, GCS, R2, and Azure Blob",
+      "source_triple_derivation": "named relation",
+      "round1_verdict": "FIX_REQUIRED",
+      "round1_reason": "The answer is exactly supported, but the question should be grammatically corrected to 'What are credentialless rclone mounts limited to?' No factual change is needed.",
+      "repaired_at": "2026-09-01T02:43:11Z",
+      "repaired_at_et": "2026-08-31 22:43 ET",
+      "frozen": false,
+      "human_verified": false,
+      "anaphora_check": {
+        "status": "NO_ANAPHORA",
+        "blocking": false,
+        "finding": null,
+        "phrase": null
+      },
+      "relation_direction_check": "AGREES",
+      "repair_warnings": []
+    },
+    {
+      "candidate_id": "V2D-32",
+      "provider": "anthropic",
+      "document_title": "MCP tunnels quickstart",
+      "version_id": "ver_067b3bfdc28f24500ea19b97bf3e80b1",
+      "source_url": "https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/quickstart",
+      "captured_at": "2026-08-17 04:46:19+00:00",
+      "section_path": [
+        "What you need"
+      ],
+      "char_start": 1792,
+      "char_end": 1989,
+      "evidence_text": "* [OpenSSL](https://openssl-library.org/source/) 1.1.1 or later. Preinstalled on macOS and most Linux distributions; on Windows, install it separately (the `openssl` binary must be on your `PATH`).",
+      "evidence_hash": "64a21c31843c3819f9bbf9e1f235df92d9bd00f21a0df635c4c8c8bf9814082e",
+      "evidence_char_length": 197,
+      "context_before": "What you'll build\n\nA two-container [tunnel stack](https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/concepts#components) (the [proxy](https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/concepts#components) and [cloudflared](https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/concepts#components)) plus a sample MCP server running alongside it. When everything is running, the sample server is reachable from Claude at `https://echo.<your-tunnel-domain>/mcp` even though nothing is listening on a public port.\n\n## What you need\n\n* [Docker and Docker Compose](https://docs.docker.com/get-docker/) on a machine with outbound internet access.\n* A role in the [Claude Console](https://platform.claude.com) that can manage MCP tunnels. See the [Console guide prerequisites](https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/console#prerequisites).\n",
+      "context_after": "\n\n<Steps>\n  <Step title=\"Create a tunnel\">\n    In the Claude Console sidebar, go to **Manage > MCP tunnels** and click **New tunnel**. Give it a name. Leave **Set up programmatic access** off; this quickstart uses manual credential provisioning.\n\n    After it's created, open the tunnel. Copy two values from the **Connection** section:\n\n    * **Domain** (looks like `abcd1234.tunnel.anthropic.com`)\n    * **Token** (click the eye icon, then copy)\n  </Step>\n\n  <Step title=\"Set up the deployment directory\">\n    <Tabs>\n      <Tab title=\"macOS / Linux\">\n        ```bash\n        mkdir -p mcp-tunnel/{config,data}\n        cd mcp-tunnel\n        export TUNNEL_DOMAIN=YOUR_TUNNEL_DOMAIN_HERE   # from step 1\n        export TUNNEL_TOKEN='eyJ...'            # from step 1\n        ```\n      </Tab>\n\n      <Tab title=\"Windows (PowerShell)\">\n        ```powershell\n        New-Item -ItemType Directory -Force -Pa",
+      "expected_evidence": [
+        {
+          "evidence_id": "E1",
+          "version_id": "ver_067b3bfdc28f24500ea19b97bf3e80b1",
+          "section_path": [
+            "What you need"
+          ],
+          "char_start": 1792,
+          "char_end": 1989,
+          "evidence_text": "* [OpenSSL](https://openssl-library.org/source/) 1.1.1 or later. Preinstalled on macOS and most Linux distributions; on Windows, install it separately (the `openssl` binary must be on your `PATH`).",
+          "evidence_hash": "64a21c31843c3819f9bbf9e1f235df92d9bd00f21a0df635c4c8c8bf9814082e",
+          "evidence_char_length": 197,
+          "critical_strings": [
+            "OpenSSL",
+            "1.1.1",
+            "openssl",
+            "PATH"
+          ]
+        }
+      ],
+      "proposed_category": "exact_lookup",
+      "reasoning_type": "exact_lookup",
+      "secondary_category": "constraint_required_value",
+      "proposed_question": "What OpenSSL version is required, and what is required of the `openssl` binary on Windows?",
+      "proposed_answer": "OpenSSL 1.1.1 or later. On Windows, install it separately (the `openssl` binary must be on your `PATH`).",
+      "proposed_atomic_claims": [
+        "OpenSSL 1.1.1 or later is required.",
+        "On Windows, install OpenSSL separately (the `openssl` binary must be on your `PATH`)."
+      ],
+      "question": "What OpenSSL version is required, and what is required of the `openssl` binary on Windows?",
+      "answer": "OpenSSL 1.1.1 or later. On Windows, install it separately (the `openssl` binary must be on your `PATH`).",
+      "atomic_claims": [
+        "OpenSSL 1.1.1 or later is required.",
+        "On Windows, install OpenSSL separately (the `openssl` binary must be on your `PATH`)."
+      ],
+      "critical_strings": [
+        "OpenSSL",
+        "1.1.1",
+        "openssl",
+        "PATH"
+      ],
+      "evidence_kind": "constraint_statement",
+      "binding": "structural-or-subject-window",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "generator_confidence": "high",
+      "generator_notes": "round1 repair: Included the adjacent OpenSSL 1.1.1 or later version requirement and narrowed the Windows part to install/PATH. Expanded the evidence boundary backwards to the start of that bullet.",
+      "needs_human_interpretation": false,
+      "candidate_type": "supported",
+      "verification_status": "candidate_unverified_after_fix",
+      "claude_proposed": true,
+      "chatgpt_verified": false,
+      "retrieval_was_not_run": true,
+      "schema_version": "v2-devset-001/1.0",
+      "question_subject": "OpenSSL",
+      "question_relation": null,
+      "question_object": null,
+      "revisions": [
+        {
+          "revision": 1,
+          "round": 1,
+          "reason": "chatgpt_round1_FIX_REQUIRED",
+          "chatgpt_reason": "The proposed answer is supported as an installation/PATH statement, but the broad question 'What must openssl be?' omits the adjacent requirement that OpenSSL be version 1.1.1 or later. Narrow the question to Windows installation/PATH or include the version requirement.",
+          "evidence_boundary_complete": false,
+          "old_question": "What must `openssl` be?",
+          "old_proposed_question": "What must `openssl` be?",
+          "old_answer": "Preinstalled on macOS and most Linux distributions; on Windows, install it separately (the `openssl` binary must be on your `PATH`).",
+          "old_atomic_claims": [
+            "Preinstalled on macOS and most Linux distributions; on Windows, install it separately (the `openssl` binary must be on your `PATH`)."
+          ],
+          "old_char_start": 1857,
+          "old_char_end": 1989,
+          "old_evidence_text": "Preinstalled on macOS and most Linux distributions; on Windows, install it separately (the `openssl` binary must be on your `PATH`).",
+          "old_evidence_hash": "a73bb959f95532e95f81c5b7ca24d8e14fa3a92af229fc7e0305755d80dedd37",
+          "old_question_subject": "`openssl`",
+          "old_question_relation": "constraint_required_value",
+          "old_question_object": null,
+          "new_question": "What OpenSSL version is required, and what is required of the `openssl` binary on Windows?",
+          "new_answer": "OpenSSL 1.1.1 or later. On Windows, install it separately (the `openssl` binary must be on your `PATH`).",
+          "new_char_start": 1792,
+          "new_char_end": 1989,
+          "new_evidence_hash": "64a21c31843c3819f9bbf9e1f235df92d9bd00f21a0df635c4c8c8bf9814082e",
+          "span_expanded": true,
+          "characters_added_before": 65,
+          "characters_added_after": 0,
+          "author": "claude",
+          "directed_by": "ChatGPT round-1 FIX_REQUIRED + owner apply",
+          "timestamp": "2026-09-01T02:43:11Z",
+          "timestamp_et": "2026-08-31 22:43 ET",
+          "what_changed": "Included the adjacent OpenSSL 1.1.1 or later version requirement and narrowed the Windows part to install/PATH. Expanded the evidence boundary backwards to the start of that bullet.",
+          "expansion_why": "Extended backwards to include the OpenSSL 1.1.1+ version requirement that sits in the same bullet as the Windows PATH/install statement."
+        }
+      ],
+      "stress_types": [
+        "short_evidence_unit",
+        "parameter_error_literal_lookup",
+        "identifier_vs_semantic_distractor"
+      ],
+      "source_subject": "Preinstalled on macOS and most Linux distributions; on Windows, install it separately (the `openssl` binary",
+      "source_relation": "must",
+      "source_object": "be on your `PATH`).",
+      "source_sentence": "Preinstalled on macOS and most Linux distributions; on Windows, install it separately (the `openssl` binary must be on your `PATH`).",
+      "source_triple_derivation": "generic predicate split",
+      "round1_verdict": "FIX_REQUIRED",
+      "round1_reason": "The proposed answer is supported as an installation/PATH statement, but the broad question 'What must openssl be?' omits the adjacent requirement that OpenSSL be version 1.1.1 or later. Narrow the question to Windows installation/PATH or include the version requirement.",
+      "repaired_at": "2026-09-01T02:43:11Z",
+      "repaired_at_et": "2026-08-31 22:43 ET",
+      "frozen": false,
+      "human_verified": false,
+      "anaphora_check": {
+        "status": "NO_ANAPHORA",
+        "blocking": false,
+        "finding": null,
+        "phrase": null
+      },
+      "repair_warnings": []
+    },
+    {
+      "candidate_id": "V2D-33",
+      "provider": "openai",
+      "document_title": "Running agents",
+      "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+      "source_url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/running_agents.md",
+      "captured_at": "2026-08-17 04:46:19+00:00",
+      "section_path": [
+        "Running agents",
+        "Runner lifecycle and configuration",
+        "The agent loop"
+      ],
+      "char_start": 82,
+      "char_end": 1133,
+      "evidence_text": "You have 3 options:\n\n1. [`Runner.run()`][agents.run.Runner.run], which runs async and returns a [`RunResult`][agents.result.RunResult].\n2. [`Runner.run_sync()`][agents.run.Runner.run_sync], which is a sync method and just runs `.run()` under the hood.\n3. [`Runner.run_streamed()`][agents.run.Runner.run_streamed], which runs async and returns a [`RunResultStreaming`][agents.result.RunResultStreaming]. It calls the LLM in streaming mode, and streams those events to you as they are received.\n\n```python\nfrom agents import Agent, Runner\n\nasync def main():\n    agent = Agent(name=\"Assistant\", instructions=\"You are a helpful assistant\")\n\n    result = await Runner.run(agent, \"Write a haiku about recursion in programming.\")\n    print(result.final_output)\n    # Code within the code,\n    # Functions calling themselves,\n    # Infinite loop's dance\n```\n\nRead more in the [results guide](results.md).\n\n## Runner lifecycle and configuration\n\n### The agent loop\n\nWhen you call any of the three `Runner` methods above, you pass in a starting agent and input.",
+      "evidence_hash": "8dcd14030925dca2775dd03788cf65e7c62691ba478dcbf4bfffcd9fb8555efe",
+      "evidence_char_length": 1051,
+      "context_before": "# Running agents\n\nYou can run agents via the [`Runner`][agents.run.Runner] class. ",
+      "context_after": " The input can be:\n\n-   a string (treated as a user message),\n-   a list of input items in the OpenAI Responses API format, or\n-   a [`RunState`][agents.run_state.RunState] when resuming a paused run or a run stopped with `cancel(mode=\"after_turn\")`. The state can also carry [input staged for the next resumed model call](results.md#add-input-before-resuming).\n\nThe runner then runs a loop:\n\n1. We call the LLM for the current agent, with the current input.\n2. The LLM produces its output.\n    1. If the runner classifies the LLM's output as final output, the loop ends and we return the result.\n    2. If the LLM requests a handoff, we update the current agent and input, and re-run the loop.\n    3. If the LLM produces tool calls, we run those tool calls, append the results, and re-run the loop.\n3. If we exceed the `max_turns` passed, we raise a [`MaxTurnsExceeded`][agents.exceptions.MaxTurnsEx",
+      "expected_evidence": [
+        {
+          "evidence_id": "E1",
+          "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+          "section_path": [
+            "Running agents",
+            "Runner lifecycle and configuration",
+            "The agent loop"
+          ],
+          "char_start": 82,
+          "char_end": 1133,
+          "evidence_text": "You have 3 options:\n\n1. [`Runner.run()`][agents.run.Runner.run], which runs async and returns a [`RunResult`][agents.result.RunResult].\n2. [`Runner.run_sync()`][agents.run.Runner.run_sync], which is a sync method and just runs `.run()` under the hood.\n3. [`Runner.run_streamed()`][agents.run.Runner.run_streamed], which runs async and returns a [`RunResultStreaming`][agents.result.RunResultStreaming]. It calls the LLM in streaming mode, and streams those events to you as they are received.\n\n```python\nfrom agents import Agent, Runner\n\nasync def main():\n    agent = Agent(name=\"Assistant\", instructions=\"You are a helpful assistant\")\n\n    result = await Runner.run(agent, \"Write a haiku about recursion in programming.\")\n    print(result.final_output)\n    # Code within the code,\n    # Functions calling themselves,\n    # Infinite loop's dance\n```\n\nRead more in the [results guide](results.md).\n\n## Runner lifecycle and configuration\n\n### The agent loop\n\nWhen you call any of the three `Runner` methods above, you pass in a starting agent and input.",
+          "evidence_hash": "8dcd14030925dca2775dd03788cf65e7c62691ba478dcbf4bfffcd9fb8555efe",
+          "evidence_char_length": 1051,
+          "critical_strings": [
+            "Runner.run",
+            "Runner.run_sync",
+            "Runner.run_streamed",
+            "Runner"
+          ]
+        }
+      ],
+      "proposed_category": "exact_lookup",
+      "reasoning_type": "exact_lookup",
+      "secondary_category": "conditional_behavior",
+      "proposed_question": "What do you pass in when you call `Runner.run`, `Runner.run_sync`, or `Runner.run_streamed`?",
+      "proposed_answer": "A starting agent and input.",
+      "proposed_atomic_claims": [
+        "When you call `Runner.run`, `Runner.run_sync`, or `Runner.run_streamed`, you pass in a starting agent and input."
+      ],
+      "question": "What do you pass in when you call `Runner.run`, `Runner.run_sync`, or `Runner.run_streamed`?",
+      "answer": "A starting agent and input.",
+      "atomic_claims": [
+        "When you call `Runner.run`, `Runner.run_sync`, or `Runner.run_streamed`, you pass in a starting agent and input."
+      ],
+      "critical_strings": [
+        "Runner.run",
+        "Runner.run_sync",
+        "Runner.run_streamed",
+        "Runner"
+      ],
+      "evidence_kind": "short_normative",
+      "binding": "structural-or-subject-window",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "generator_confidence": "medium",
+      "generator_notes": "round1 repair: Replaced 'the three Runner methods above' with `Runner.run`, `Runner.run_sync`, and `Runner.run_streamed`. Expanded the evidence boundary backwards to the list that names those methods.",
+      "needs_human_interpretation": true,
+      "candidate_type": "supported",
+      "verification_status": "candidate_unverified_after_fix",
+      "claude_proposed": true,
+      "chatgpt_verified": false,
+      "retrieval_was_not_run": true,
+      "schema_version": "v2-devset-001/1.0",
+      "question_subject": "`Runner.run` / `Runner.run_sync` / `Runner.run_streamed`",
+      "question_relation": null,
+      "question_object": "a starting agent and input",
+      "revisions": [
+        {
+          "revision": 1,
+          "round": 1,
+          "reason": "chatgpt_round1_FIX_REQUIRED",
+          "chatgpt_reason": "The fact is supported, but 'the three Runner methods above' is a deictic dependency on preceding text. Name Runner.run, Runner.run_sync, and Runner.run_streamed or otherwise make the question self-contained.",
+          "evidence_boundary_complete": false,
+          "old_question": "What happens when you call any of the three `Runner` methods above?",
+          "old_proposed_question": "What happens when you call any of the three `Runner` methods above?",
+          "old_answer": "You pass in a starting agent and input.",
+          "old_atomic_claims": [
+            "When you call any of the three `Runner` methods above, you pass in a starting agent and input."
+          ],
+          "old_char_start": 1039,
+          "old_char_end": 1133,
+          "old_evidence_text": "When you call any of the three `Runner` methods above, you pass in a starting agent and input.",
+          "old_evidence_hash": "81aad2cf94487959520dc00de693cf7bfe8d949944ce1ca33ff88e899bc7d926",
+          "old_question_subject": "`Runner`",
+          "old_question_relation": null,
+          "old_question_object": null,
+          "new_question": "What do you pass in when you call `Runner.run`, `Runner.run_sync`, or `Runner.run_streamed`?",
+          "new_answer": "A starting agent and input.",
+          "new_char_start": 82,
+          "new_char_end": 1133,
+          "new_evidence_hash": "8dcd14030925dca2775dd03788cf65e7c62691ba478dcbf4bfffcd9fb8555efe",
+          "span_expanded": true,
+          "characters_added_before": 957,
+          "characters_added_after": 0,
+          "author": "claude",
+          "directed_by": "ChatGPT round-1 FIX_REQUIRED + owner apply",
+          "timestamp": "2026-09-01T02:43:11Z",
+          "timestamp_et": "2026-08-31 22:43 ET",
+          "what_changed": "Replaced 'the three Runner methods above' with `Runner.run`, `Runner.run_sync`, and `Runner.run_streamed`. Expanded the evidence boundary backwards to the list that names those methods.",
+          "expansion_why": "Extended backwards to the list that names `Runner.run`, `Runner.run_sync`, and `Runner.run_streamed`, resolving 'the three Runner methods above'."
+        }
+      ],
+      "stress_types": [
+        "short_evidence_unit",
+        "identifier_vs_semantic_distractor",
+        "paraphrase_query_shape"
+      ],
+      "source_subject": null,
+      "source_relation": null,
+      "source_object": null,
+      "source_sentence": null,
+      "source_triple_derivation": "not derivable from the evidence",
+      "round1_verdict": "FIX_REQUIRED",
+      "round1_reason": "The fact is supported, but 'the three Runner methods above' is a deictic dependency on preceding text. Name Runner.run, Runner.run_sync, and Runner.run_streamed or otherwise make the question self-contained.",
+      "repaired_at": "2026-09-01T02:43:11Z",
+      "repaired_at_et": "2026-08-31 22:43 ET",
+      "frozen": false,
+      "human_verified": false,
+      "anaphora_check": {
+        "status": "NO_ANAPHORA",
+        "blocking": false,
+        "finding": null,
+        "phrase": null
+      },
+      "repair_warnings": []
+    },
+    {
+      "candidate_id": "V2D-37",
+      "provider": "openai",
+      "document_title": "OpenAI Python API library",
+      "version_id": "ver_9247e3ce4df6f79d9cadc44e1a3bbd0c",
+      "source_url": "https://github.com/openai/openai-python/blob/10ee3f0da2ac6f93345c1204bd7bb1a2faa79ff2/README.md",
+      "captured_at": "2026-08-17 04:46:19+00:00",
+      "section_path": [
+        "Remove `await` for non-async usage.",
+        "File uploads"
+      ],
+      "char_start": 14118,
+      "char_end": 14318,
+      "evidence_text": "The async client uses the exact same interface. If you pass a [`PathLike`](https://docs.python.org/3/library/os.html#os.PathLike) instance, the file contents will be read asynchronously automatically.",
+      "evidence_hash": "21ffcc2671568c84ca6000e864412e9b44513168e97b389e665b6d7d266660c4",
+      "evidence_char_length": 200,
+      "context_before": "sor: {first_page.after}\")  # => \"next page cursor: ...\"\nfor job in first_page.data:\n    print(job.id)\n\n# Remove `await` for non-async usage.\n```\n\n## Nested params\n\nNested parameters are dictionaries, typed using `TypedDict`, for example:\n\n```python\nfrom openai import OpenAI\n\nclient = OpenAI()\n\nresponse = client.responses.create(\n    input=[\n        {\n            \"role\": \"user\",\n            \"content\": \"How much ?\",\n        }\n    ],\n    model=\"gpt-5.5\",\n    text={\"format\": {\"type\": \"json_object\"}},\n)\n```\n\n## File uploads\n\nRequest parameters that correspond to file uploads can be passed as `bytes`, or a [`PathLike`](https://docs.python.org/3/library/os.html#os.PathLike) instance or a tuple of `(filename, contents, media type)`.\n\n```python\nfrom pathlib import Path\nfrom openai import OpenAI\n\nclient = OpenAI()\n\nclient.files.create(\n    file=Path(\"input.jsonl\"),\n    purpose=\"fine-tune\",\n)\n```\n\n",
+      "context_after": "\n\n## Webhook Verification\n\nVerifying webhook signatures is _optional but encouraged_.\n\nFor more information about webhooks, see [the API docs](https://platform.openai.com/docs/guides/webhooks).\n\n### Parsing webhook payloads\n\nFor most use cases, you will likely want to verify the webhook and parse the payload at the same time. To achieve this, we provide the method `client.webhooks.unwrap()`, which parses a webhook request and verifies that it was sent by OpenAI. This method will raise an error if the signature is invalid.\n\nNote that the `body` parameter must be the raw JSON string sent from the server (do not parse it first). The `.unwrap()` method will parse this JSON for you into an event object after verifying the webhook was sent from OpenAI.\n\n```python\nfrom openai import OpenAI\nfrom flask import Flask, request\n\napp = Flask(__name__)\nclient = OpenAI()  # OPENAI_WEBHOOK_SECRET environ",
+      "expected_evidence": [
+        {
+          "evidence_id": "E1",
+          "version_id": "ver_9247e3ce4df6f79d9cadc44e1a3bbd0c",
+          "section_path": [
+            "Remove `await` for non-async usage.",
+            "File uploads"
+          ],
+          "char_start": 14118,
+          "char_end": 14318,
+          "evidence_text": "The async client uses the exact same interface. If you pass a [`PathLike`](https://docs.python.org/3/library/os.html#os.PathLike) instance, the file contents will be read asynchronously automatically.",
+          "evidence_hash": "21ffcc2671568c84ca6000e864412e9b44513168e97b389e665b6d7d266660c4",
+          "evidence_char_length": 200,
+          "critical_strings": [
+            "PathLike",
+            "async client"
+          ]
+        }
+      ],
+      "proposed_category": "exact_lookup",
+      "reasoning_type": "exact_lookup",
+      "secondary_category": "conditional_behavior",
+      "proposed_question": "What happens if you pass a `PathLike` instance to the async client?",
+      "proposed_answer": "The file contents will be read asynchronously automatically.",
+      "proposed_atomic_claims": [
+        "If you pass a PathLike instance to the async client, the file contents will be read asynchronously automatically."
+      ],
+      "question": "What happens if you pass a `PathLike` instance to the async client?",
+      "answer": "The file contents will be read asynchronously automatically.",
+      "atomic_claims": [
+        "If you pass a PathLike instance to the async client, the file contents will be read asynchronously automatically."
+      ],
+      "critical_strings": [
+        "PathLike",
+        "async client"
+      ],
+      "evidence_kind": "short_normative",
+      "binding": "structural-or-subject-window",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "generator_confidence": "medium",
+      "generator_notes": "round1 repair: Scoped PathLike async file-reading to the async client. Expanded the evidence boundary backwards to the sentence that names the async client.",
+      "needs_human_interpretation": true,
+      "candidate_type": "supported",
+      "verification_status": "candidate_unverified_after_fix",
+      "claude_proposed": true,
+      "chatgpt_verified": false,
+      "retrieval_was_not_run": true,
+      "schema_version": "v2-devset-001/1.0",
+      "question_subject": "`PathLike` on the async client",
+      "question_relation": null,
+      "question_object": null,
+      "revisions": [
+        {
+          "revision": 1,
+          "round": 1,
+          "reason": "chatgpt_round1_FIX_REQUIRED",
+          "chatgpt_reason": "The surrounding sentence establishes that this asynchronous file-reading behavior is for the async client. The proposed question omits that scope and therefore overgeneralizes PathLike behavior.",
+          "evidence_boundary_complete": false,
+          "old_question": "What happens if you pass a `PathLike` instance?",
+          "old_proposed_question": "What happens if you pass a `PathLike` instance?",
+          "old_answer": "The file contents will be read asynchronously automatically.",
+          "old_atomic_claims": [
+            "If you pass a [`PathLike`](https://docs.python.org/3/library/os.html#os.PathLike) instance, the file contents will be read asynchronously automatically."
+          ],
+          "old_char_start": 14166,
+          "old_char_end": 14318,
+          "old_evidence_text": "If you pass a [`PathLike`](https://docs.python.org/3/library/os.html#os.PathLike) instance, the file contents will be read asynchronously automatically.",
+          "old_evidence_hash": "c7de0d42f68c2ceb6a1330b77e0017d9ab086e08594d5fa83b86ffb3dcd8f616",
+          "old_question_subject": "`PathLike`",
+          "old_question_relation": null,
+          "old_question_object": null,
+          "new_question": "What happens if you pass a `PathLike` instance to the async client?",
+          "new_answer": "The file contents will be read asynchronously automatically.",
+          "new_char_start": 14118,
+          "new_char_end": 14318,
+          "new_evidence_hash": "21ffcc2671568c84ca6000e864412e9b44513168e97b389e665b6d7d266660c4",
+          "span_expanded": true,
+          "characters_added_before": 48,
+          "characters_added_after": 0,
+          "author": "claude",
+          "directed_by": "ChatGPT round-1 FIX_REQUIRED + owner apply",
+          "timestamp": "2026-09-01T02:43:11Z",
+          "timestamp_et": "2026-08-31 22:43 ET",
+          "what_changed": "Scoped PathLike async file-reading to the async client. Expanded the evidence boundary backwards to the sentence that names the async client.",
+          "expansion_why": "Extended backwards to the sentence that scopes PathLike async file-reading to the async client."
+        }
+      ],
+      "stress_types": [
+        "short_evidence_unit",
+        "correct_document_difficult_passage",
+        "identifier_vs_semantic_distractor",
+        "paraphrase_query_shape",
+        "same_document_passage_discrimination"
+      ],
+      "source_subject": null,
+      "source_relation": null,
+      "source_object": null,
+      "source_sentence": null,
+      "source_triple_derivation": "not derivable from the evidence",
+      "round1_verdict": "FIX_REQUIRED",
+      "round1_reason": "The surrounding sentence establishes that this asynchronous file-reading behavior is for the async client. The proposed question omits that scope and therefore overgeneralizes PathLike behavior.",
+      "repaired_at": "2026-09-01T02:43:11Z",
+      "repaired_at_et": "2026-08-31 22:43 ET",
+      "frozen": false,
+      "human_verified": false,
+      "anaphora_check": {
+        "status": "NO_ANAPHORA",
+        "blocking": false,
+        "finding": null,
+        "phrase": null
+      },
+      "repair_warnings": []
+    },
+    {
+      "candidate_id": "V2D-38",
+      "provider": "anthropic",
+      "document_title": "Prompting Claude Opus 4.8",
+      "version_id": "ver_997f51c850a46243a541d4f4ec4175ce",
+      "source_url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-4-8",
+      "captured_at": "2026-08-17 04:46:19+00:00",
+      "section_path": [
+        "Design and frontend defaults"
+      ],
+      "char_start": 10667,
+      "char_end": 11143,
+      "evidence_text": "**2. Have the model propose options before building.** This breaks the default and gives users control. If you previously relied on `temperature` for design variety, use this approach; it produces meaningfully different directions across runs. Example prompt:\n\n```text wrap\nBefore building, propose 4 distinct visual directions tailored to this brief (each as: bg hex / accent hex / typeface — one-line rationale). Ask the user to pick one, then implement only that direction.",
+      "evidence_hash": "09f3c3638c60eeec22566369ef433f2115e9129d79ba3f009561c626dea03d0e",
+      "evidence_char_length": 476,
+      "context_before": "tter spacing than usual, especially in headings and navigation, so the text feels more engineered and less compressed. Headline text can be large and uppercase, while supporting copy remains short and sparse. The sub texts should be written with Alumni Sans SC in 4-6px like tiny little texts on corners bottom centre like that.\n\nFor the structure, start with a hero section containing a strong product statement, one short supporting paragraph, and a clean product placeholder or packshot frame. Below that, add a benefit grid with three or four blocks, then a formulation or ingredients section, and finally a cta.\n\nButtons should be flat and precise, with subtle hover changes using transition: all 160ms ease out where brightness and border contrast shift slightly rather than using dramatic motion.\n\nColor palette should stay within this range:\n#E9ECEC, #C9D2D4, #8C9A9E, #44545B, #11171B.\n```\n\n",
+      "context_after": "\n```\n\nAdditionally, Claude Opus 4.8 requires less frontend design prompting than previous models to avoid generic patterns that users call the \"AI slop\" aesthetic. With earlier models, Anthropic recommended a lengthier prompt snippet in the [frontend-design skill](https://github.com/anthropics/claude-code/blob/main/plugins/frontend-design/skills/frontend-design/SKILL.md). However, Claude Opus 4.8 generates distinctive, creative frontends with more minimal prompting guidance. This prompt snippet works well with the preceding prompting advice for variety:\n\n```text wrap\n<frontend_aesthetics>\nNEVER use generic AI-generated aesthetics like overused font families (Inter, Roboto, Arial, system fonts), cliched color schemes (particularly purple gradients on white or dark backgrounds), predictable layouts and component patterns, and cookie-cutter design that lacks context-specific character. Use ",
+      "expected_evidence": [
+        {
+          "evidence_id": "E1",
+          "version_id": "ver_997f51c850a46243a541d4f4ec4175ce",
+          "section_path": [
+            "Design and frontend defaults"
+          ],
+          "char_start": 10667,
+          "char_end": 11143,
+          "evidence_text": "**2. Have the model propose options before building.** This breaks the default and gives users control. If you previously relied on `temperature` for design variety, use this approach; it produces meaningfully different directions across runs. Example prompt:\n\n```text wrap\nBefore building, propose 4 distinct visual directions tailored to this brief (each as: bg hex / accent hex / typeface — one-line rationale). Ask the user to pick one, then implement only that direction.",
+          "evidence_hash": "09f3c3638c60eeec22566369ef433f2115e9129d79ba3f009561c626dea03d0e",
+          "evidence_char_length": 476,
+          "critical_strings": [
+            "temperature",
+            "distinct visual directions"
+          ]
+        }
+      ],
+      "proposed_category": "exact_lookup",
+      "reasoning_type": "exact_lookup",
+      "secondary_category": "conditional_behavior",
+      "proposed_question": "If you previously relied on `temperature` for design variety, what approach should you use?",
+      "proposed_answer": "Have the model propose distinct visual directions before building; it produces meaningfully different directions across runs.",
+      "proposed_atomic_claims": [
+        "If you previously relied on `temperature` for design variety, have the model propose distinct visual directions before building; it produces meaningfully different directions across runs."
+      ],
+      "question": "If you previously relied on `temperature` for design variety, what approach should you use?",
+      "answer": "Have the model propose distinct visual directions before building; it produces meaningfully different directions across runs.",
+      "atomic_claims": [
+        "If you previously relied on `temperature` for design variety, have the model propose distinct visual directions before building; it produces meaningfully different directions across runs."
+      ],
+      "critical_strings": [
+        "temperature",
+        "distinct visual directions"
+      ],
+      "evidence_kind": "short_normative",
+      "binding": "structural-or-subject-window",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "generator_confidence": "medium",
+      "generator_notes": "round1 repair: Replaced 'this approach' with the explicit approach from the preceding heading: have the model propose options before building. Expanded the evidence boundary backwards to that heading.",
+      "needs_human_interpretation": true,
+      "candidate_type": "supported",
+      "verification_status": "candidate_unverified_after_fix",
+      "claude_proposed": true,
+      "chatgpt_verified": false,
+      "retrieval_was_not_run": true,
+      "schema_version": "v2-devset-001/1.0",
+      "question_subject": "`temperature` for design variety",
+      "question_relation": null,
+      "question_object": "have the model propose distinct visual directions before building",
+      "revisions": [
+        {
+          "revision": 1,
+          "round": 1,
+          "reason": "chatgpt_round1_FIX_REQUIRED",
+          "chatgpt_reason": "The claim is supported in context, but both evidence and answer rely on the unresolved phrase 'this approach,' which refers to having the model propose visual options before building. State that approach explicitly.",
+          "evidence_boundary_complete": false,
+          "old_question": "What happens if you previously relied on `temperature` for design variety?",
+          "old_proposed_question": "What happens if you previously relied on `temperature` for design variety?",
+          "old_answer": "Use this approach; it produces meaningfully different directions across runs.",
+          "old_atomic_claims": [
+            "If you previously relied on `temperature` for design variety, use this approach; it produces meaningfully different directions across runs."
+          ],
+          "old_char_start": 10771,
+          "old_char_end": 10910,
+          "old_evidence_text": "If you previously relied on `temperature` for design variety, use this approach; it produces meaningfully different directions across runs.",
+          "old_evidence_hash": "7c2fd69c00251dc123c3e60ad91560edb0c223b0bc9b752fea3a71656310c284",
+          "old_question_subject": "`temperature`",
+          "old_question_relation": null,
+          "old_question_object": null,
+          "new_question": "If you previously relied on `temperature` for design variety, what approach should you use?",
+          "new_answer": "Have the model propose distinct visual directions before building; it produces meaningfully different directions across runs.",
+          "new_char_start": 10667,
+          "new_char_end": 11143,
+          "new_evidence_hash": "09f3c3638c60eeec22566369ef433f2115e9129d79ba3f009561c626dea03d0e",
+          "span_expanded": true,
+          "characters_added_before": 104,
+          "characters_added_after": 233,
+          "author": "claude",
+          "directed_by": "ChatGPT round-1 FIX_REQUIRED + owner apply",
+          "timestamp": "2026-09-01T02:45:03Z",
+          "timestamp_et": "2026-08-31 22:45 ET",
+          "what_changed": "Replaced 'this approach' with the explicit approach: having the model propose distinct visual directions before building. Expanded the evidence boundary to the heading that names the approach and the following example prompt that states 'distinct visual directions'.",
+          "expansion_why": "Extended backwards to the heading that names the approach ('have the model propose options before building'), resolving 'this approach'."
+        }
+      ],
+      "stress_types": [
+        "short_evidence_unit",
+        "correct_document_difficult_passage",
+        "identifier_vs_semantic_distractor",
+        "paraphrase_query_shape"
+      ],
+      "source_subject": "If you previously relied on `temperature` for design variety,",
+      "source_relation": "use",
+      "source_object": "this approach; it produces meaningfully different directions across runs.",
+      "source_sentence": "If you previously relied on `temperature` for design variety, use this approach; it produces meaningfully different directions across runs.",
+      "source_triple_derivation": "generic predicate split",
+      "round1_verdict": "FIX_REQUIRED",
+      "round1_reason": "The claim is supported in context, but both evidence and answer rely on the unresolved phrase 'this approach,' which refers to having the model propose visual options before building. State that approach explicitly.",
+      "repaired_at": "2026-09-01T02:45:03Z",
+      "repaired_at_et": "2026-08-31 22:45 ET",
+      "frozen": false,
+      "human_verified": false,
+      "anaphora_check": {
+        "status": "CRITICAL_ANAPHORA",
+        "blocking": true,
+        "finding": "refers to 'the model' with no antecedent in the span",
+        "phrase": "the model"
+      },
+      "repair_warnings": []
+    },
+    {
+      "candidate_id": "V2D-44",
+      "provider": "openai",
+      "document_title": "Usage",
+      "version_id": "ver_f8002fe268b970eaea8d640f9dd91fb3",
+      "source_url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/usage.md",
+      "captured_at": "2026-08-17 04:46:19+00:00",
+      "section_path": [
+        "Usage",
+        "Preserving provider usage payloads"
+      ],
+      "char_start": 4145,
+      "char_end": 4269,
+      "evidence_text": "When a streaming Chat Completions provider requires an explicit usage request, also set `ModelSettings(include_usage=True)`.",
+      "evidence_hash": "aa1600091e56a6fb15309b79c17b992e67cc4085d7646a6efee636dcd1233185",
+      "evidence_char_length": 124,
+      "context_before": "field from a provider-reported zero:\n\n```python\nfrom agents import Agent, ModelSettings, Runner\n\nagent = Agent(\n    name=\"Assistant\",\n    model_settings=ModelSettings(preserve_raw_usage=True),\n)\nresult = await Runner.run(agent, \"What's the weather in Tokyo?\")\n\nfor response in result.raw_responses:\n    print(response.raw_usage)\n```\n\nThe Agents SDK stores each [`ModelResponse.raw_usage`][agents.items.ModelResponse.raw_usage] value as a detached, JSON-compatible snapshot of the provider payload for that model call. The Agents SDK does not aggregate `raw_usage` across the run. The value remains `None` when preservation is disabled, the provider returns no usage payload, or an upstream adapter has already discarded the original field-presence information.\n\n`preserve_raw_usage` preserves only a usage payload that reaches the model adapter; the setting does not request usage from the provider. ",
+      "context_after": "\n\n`LitellmModel` does not currently populate `ModelResponse.raw_usage` in either streaming or non-streaming runs, so `preserve_raw_usage=True` has no effect with that adapter. Continue to use the normalized [`Usage`][agents.usage.Usage] fields when using `LitellmModel`, or choose an adapter that supports raw usage preservation when provider-specific field presence is required.\n\n## Accessing usage with sessions\n\nWhen you use a `Session` (e.g., `SQLiteSession`), each call to `Runner.run(...)` returns usage for that specific run. Sessions maintain conversation history for context, but each run's usage is independent.\n\n```python\nsession = SQLiteSession(\"my_conversation\")\n\nfirst = await Runner.run(agent, \"Hi!\", session=session)\nprint(first.context_wrapper.usage.total_tokens)  # Usage for first run\n\nsecond = await Runner.run(agent, \"Can you elaborate?\", session=session)\nprint(second.context_wr",
+      "expected_evidence": [
+        {
+          "evidence_id": "E1",
+          "version_id": "ver_f8002fe268b970eaea8d640f9dd91fb3",
+          "section_path": [
+            "Usage",
+            "Preserving provider usage payloads"
+          ],
+          "char_start": 4145,
+          "char_end": 4269,
+          "evidence_text": "When a streaming Chat Completions provider requires an explicit usage request, also set `ModelSettings(include_usage=True)`.",
+          "evidence_hash": "aa1600091e56a6fb15309b79c17b992e67cc4085d7646a6efee636dcd1233185",
+          "evidence_char_length": 124,
+          "critical_strings": [
+            "include_usage"
+          ]
+        }
+      ],
+      "proposed_category": "exact_lookup",
+      "reasoning_type": "exact_lookup",
+      "secondary_category": "requires",
+      "proposed_question": "What setting should you add when a streaming Chat Completions provider requires an explicit usage request?",
+      "proposed_answer": "`ModelSettings(include_usage=True)`.",
+      "proposed_atomic_claims": [
+        "When a streaming Chat Completions provider requires an explicit usage request, also set `ModelSettings(include_usage=True)`."
+      ],
+      "question": "What setting should you add when a streaming Chat Completions provider requires an explicit usage request?",
+      "answer": "`ModelSettings(include_usage=True)`.",
+      "atomic_claims": [
+        "When a streaming Chat Completions provider requires an explicit usage request, also set `ModelSettings(include_usage=True)`."
+      ],
+      "critical_strings": [
+        "include_usage"
+      ],
+      "evidence_kind": "short_normative",
+      "binding": "structural-or-subject-window",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "generator_confidence": "medium",
+      "generator_notes": "round1 repair: Rewrote the malformed question to ask what setting to add when a streaming Chat Completions provider requires an explicit usage request. Span unchanged.",
+      "needs_human_interpretation": true,
+      "candidate_type": "supported",
+      "verification_status": "candidate_unverified_after_fix",
+      "claude_proposed": true,
+      "chatgpt_verified": false,
+      "retrieval_was_not_run": true,
+      "schema_version": "v2-devset-001/1.0",
+      "question_subject": "a streaming Chat Completions provider that requires an explicit usage request",
+      "question_relation": null,
+      "question_object": "`ModelSettings(include_usage=True)`",
+      "revisions": [
+        {
+          "revision": 1,
+          "round": 1,
+          "reason": "chatgpt_round1_FIX_REQUIRED",
+          "chatgpt_reason": "The include_usage requirement is supported, but the proposed question is grammatically malformed. Rewrite it to ask what setting to add when a streaming Chat Completions provider requires an explicit usage request.",
+          "evidence_boundary_complete": true,
+          "old_question": "What does When a streaming Chat Completions provider require?",
+          "old_proposed_question": "What does When a streaming Chat Completions provider require?",
+          "old_answer": "When a streaming Chat Completions provider requires an explicit usage request, also set `ModelSettings(include_usage=True)`.",
+          "old_atomic_claims": [
+            "When a streaming Chat Completions provider requires an explicit usage request, also set `ModelSettings(include_usage=True)`."
+          ],
+          "old_char_start": 4145,
+          "old_char_end": 4269,
+          "old_evidence_text": "When a streaming Chat Completions provider requires an explicit usage request, also set `ModelSettings(include_usage=True)`.",
+          "old_evidence_hash": "aa1600091e56a6fb15309b79c17b992e67cc4085d7646a6efee636dcd1233185",
+          "old_question_subject": "When a streaming Chat Completions provider",
+          "old_question_relation": "requires",
+          "old_question_object": "an explicit usage request, also set `ModelSettings(include_usage=True)`",
+          "new_question": "What setting should you add when a streaming Chat Completions provider requires an explicit usage request?",
+          "new_answer": "`ModelSettings(include_usage=True)`.",
+          "new_char_start": 4145,
+          "new_char_end": 4269,
+          "new_evidence_hash": "aa1600091e56a6fb15309b79c17b992e67cc4085d7646a6efee636dcd1233185",
+          "span_expanded": false,
+          "characters_added_before": 0,
+          "characters_added_after": 0,
+          "author": "claude",
+          "directed_by": "ChatGPT round-1 FIX_REQUIRED + owner apply",
+          "timestamp": "2026-09-01T02:43:11Z",
+          "timestamp_et": "2026-08-31 22:43 ET",
+          "what_changed": "Rewrote the malformed question to ask what setting to add when a streaming Chat Completions provider requires an explicit usage request. Span unchanged."
+        }
+      ],
+      "stress_types": [
+        "short_evidence_unit",
+        "correct_document_difficult_passage",
+        "paraphrase_query_shape"
+      ],
+      "source_subject": null,
+      "source_relation": null,
+      "source_object": null,
+      "source_sentence": null,
+      "source_triple_derivation": "not derivable from the evidence",
+      "round1_verdict": "FIX_REQUIRED",
+      "round1_reason": "The include_usage requirement is supported, but the proposed question is grammatically malformed. Rewrite it to ask what setting to add when a streaming Chat Completions provider requires an explicit usage request.",
+      "repaired_at": "2026-09-01T02:43:11Z",
+      "repaired_at_et": "2026-08-31 22:43 ET",
+      "frozen": false,
+      "human_verified": false,
+      "anaphora_check": {
+        "status": "NO_ANAPHORA",
+        "blocking": false,
+        "finding": null,
+        "phrase": null
+      },
+      "repair_warnings": []
+    },
+    {
+      "candidate_id": "V2D-50",
+      "provider": "openai",
+      "document_title": "Models",
+      "version_id": "ver_ae909bf8b4bbbe1d1a11119447f7ac94",
+      "source_url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/models/index.md",
+      "captured_at": "2026-08-17 04:46:19+00:00",
+      "section_path": [
+        "Models",
+        "OpenAI models",
+        "Default model",
+        "GPT-5 models"
+      ],
+      "char_start": 2486,
+      "char_end": 3375,
+      "evidence_text": "If you want to switch to other models like `gpt-5.6-sol`, there are two ways to configure your agents.\n\n### Default model\n\nFirst, if you want to consistently use a specific model for all agents that do not set a custom model, set the `OPENAI_DEFAULT_MODEL` environment variable before running your agents.\n\n```bash\nexport OPENAI_DEFAULT_MODEL=gpt-5.6-sol\npython3 my_awesome_agent.py\n```\n\nSecond, you can set a default model for a run via `RunConfig`. If you don't set a model for an agent, this run's model will be used.\n\n```python\nfrom agents import Agent, RunConfig, Runner\n\nagent = Agent(\n    name=\"Assistant\",\n    instructions=\"You're a helpful agent.\",\n)\n\nresult = await Runner.run(\n    agent,\n    \"Hello\",\n    run_config=RunConfig(model=\"gpt-5.6-sol\"),\n)\n```\n\n#### GPT-5 models\n\nWhen you use any GPT-5 model such as `gpt-5.6-sol` in this way, the SDK applies default `ModelSettings`.",
+      "evidence_hash": "3e90577101dbe3584f6f6f92526744d5e3647d579b627f00d30006d04cd7db81",
+      "evidence_char_length": 889,
+      "context_before": " OpenAI Responses path | [Advanced OpenAI Responses settings](#advanced-openai-responses-settings) |\n| Use a third-party adapter for non-OpenAI or mixed-provider routing | Compare the supported beta adapters and validate the provider path you plan to ship | [Third-party adapters](#third-party-adapters) |\n\n## OpenAI models\n\nFor most OpenAI-only apps, the recommended path is to use string model names with the default OpenAI provider and stay on the Responses model path.\n\nWhen an [`Agent`][agents.agent.Agent] does not specify a model, the Agents SDK uses [`gpt-5.6-luna`](https://developers.openai.com/api/docs/models/gpt-5.6-luna) with `reasoning.effort=\"none\"` and `verbosity=\"low\"` by default for cost-sensitive, high-volume agent workflows. Applications that need frontier capability can explicitly set `model=\"gpt-5.6-sol\"` and choose `model_settings` that are appropriate for the workload.\n\n",
+      "context_after": " It sets the ones that work the best for most use cases. To adjust the reasoning effort for the default model, pass your own `ModelSettings`:\n\n```python\nfrom openai.types.shared import Reasoning\nfrom agents import Agent, ModelSettings\n\nmy_agent = Agent(\n    name=\"My Agent\",\n    instructions=\"You're a helpful agent.\",\n    # If OPENAI_DEFAULT_MODEL=gpt-5.6-sol is set, passing only model_settings works.\n    # It's also fine to pass a GPT-5 model name explicitly:\n    model=\"gpt-5.6-sol\",\n    model_settings=ModelSettings(reasoning=Reasoning(effort=\"high\"), verbosity=\"low\")\n)\n```\n\nFor lower latency, using `reasoning.effort=\"none\"` with GPT-5 models is recommended.\n\nGPT-5.6 also supports reasoning mode, reasoning context carried across conversation turns, and the `\"max\"` effort level through the existing `reasoning` setting. These controls are available on the Responses API path:\n\n```python\nfro",
+      "expected_evidence": [
+        {
+          "evidence_id": "E1",
+          "version_id": "ver_ae909bf8b4bbbe1d1a11119447f7ac94",
+          "section_path": [
+            "Models",
+            "OpenAI models",
+            "Default model",
+            "GPT-5 models"
+          ],
+          "char_start": 2486,
+          "char_end": 3375,
+          "evidence_text": "If you want to switch to other models like `gpt-5.6-sol`, there are two ways to configure your agents.\n\n### Default model\n\nFirst, if you want to consistently use a specific model for all agents that do not set a custom model, set the `OPENAI_DEFAULT_MODEL` environment variable before running your agents.\n\n```bash\nexport OPENAI_DEFAULT_MODEL=gpt-5.6-sol\npython3 my_awesome_agent.py\n```\n\nSecond, you can set a default model for a run via `RunConfig`. If you don't set a model for an agent, this run's model will be used.\n\n```python\nfrom agents import Agent, RunConfig, Runner\n\nagent = Agent(\n    name=\"Assistant\",\n    instructions=\"You're a helpful agent.\",\n)\n\nresult = await Runner.run(\n    agent,\n    \"Hello\",\n    run_config=RunConfig(model=\"gpt-5.6-sol\"),\n)\n```\n\n#### GPT-5 models\n\nWhen you use any GPT-5 model such as `gpt-5.6-sol` in this way, the SDK applies default `ModelSettings`.",
+          "evidence_hash": "3e90577101dbe3584f6f6f92526744d5e3647d579b627f00d30006d04cd7db81",
+          "evidence_char_length": 889,
+          "critical_strings": [
+            "gpt-5.6-sol",
+            "OPENAI_DEFAULT_MODEL",
+            "RunConfig",
+            "ModelSettings"
+          ]
+        }
+      ],
+      "proposed_category": "configuration_interaction",
+      "reasoning_type": "configuration_interaction",
+      "secondary_category": "conditional_behavior",
+      "proposed_question": "What happens when you use any GPT-5 model such as `gpt-5.6-sol` as the default model via `OPENAI_DEFAULT_MODEL` or `RunConfig`?",
+      "proposed_answer": "The SDK applies default `ModelSettings`.",
+      "proposed_atomic_claims": [
+        "When you use any GPT-5 model such as `gpt-5.6-sol` as the default model via `OPENAI_DEFAULT_MODEL` or `RunConfig`, the SDK applies default `ModelSettings`."
+      ],
+      "question": "What happens when you use any GPT-5 model such as `gpt-5.6-sol` as the default model via `OPENAI_DEFAULT_MODEL` or `RunConfig`?",
+      "answer": "The SDK applies default `ModelSettings`.",
+      "atomic_claims": [
+        "When you use any GPT-5 model such as `gpt-5.6-sol` as the default model via `OPENAI_DEFAULT_MODEL` or `RunConfig`, the SDK applies default `ModelSettings`."
+      ],
+      "critical_strings": [
+        "gpt-5.6-sol",
+        "OPENAI_DEFAULT_MODEL",
+        "RunConfig",
+        "ModelSettings"
+      ],
+      "evidence_kind": "short_normative",
+      "binding": "structural-or-subject-window",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "generator_confidence": "medium",
+      "generator_notes": "FLAG_SUBJECT_MISMATCH | round1 repair: Replaced 'in this way' with the explicit default-model / `RunConfig` configuration path. Expanded the evidence boundary backwards to that path.",
+      "needs_human_interpretation": true,
+      "candidate_type": "supported",
+      "verification_status": "candidate_unverified_after_fix",
+      "claude_proposed": true,
+      "chatgpt_verified": false,
+      "retrieval_was_not_run": true,
+      "schema_version": "v2-devset-001/1.0",
+      "question_subject": "any GPT-5 model such as `gpt-5.6-sol` used as the default via `OPENAI_DEFAULT_MODEL` or `RunConfig`",
+      "question_relation": null,
+      "question_object": "default `ModelSettings`",
+      "revisions": [
+        {
+          "revision": 1,
+          "round": 1,
+          "reason": "chatgpt_round1_FIX_REQUIRED",
+          "chatgpt_reason": "The claim is supported in its section, but 'in this way' is not self-contained and depends on the preceding default-model/RunConfig setup. Rewrite the question to state the configuration path explicitly.",
+          "evidence_boundary_complete": false,
+          "old_question": "What happens when you use any GPT-5 model such as `gpt-5.6-sol` in this way?",
+          "old_proposed_question": "What happens when you use any GPT-5 model such as `gpt-5.6-sol` in this way?",
+          "old_answer": "The SDK applies default `ModelSettings`.",
+          "old_atomic_claims": [
+            "When you use any GPT-5 model such as `gpt-5.6-sol` in this way, the SDK applies default `ModelSettings`."
+          ],
+          "old_char_start": 3271,
+          "old_char_end": 3375,
+          "old_evidence_text": "When you use any GPT-5 model such as `gpt-5.6-sol` in this way, the SDK applies default `ModelSettings`.",
+          "old_evidence_hash": "90191bc8cb47183770e60952c57e4dd9b388d30ff0fdebb418a7942a8a17ba2b",
+          "old_question_subject": "`gpt-5.6-sol`",
+          "old_question_relation": null,
+          "old_question_object": null,
+          "new_question": "What happens when you use any GPT-5 model such as `gpt-5.6-sol` as the default model via `OPENAI_DEFAULT_MODEL` or `RunConfig`?",
+          "new_answer": "The SDK applies default `ModelSettings`.",
+          "new_char_start": 2486,
+          "new_char_end": 3375,
+          "new_evidence_hash": "3e90577101dbe3584f6f6f92526744d5e3647d579b627f00d30006d04cd7db81",
+          "span_expanded": true,
+          "characters_added_before": 785,
+          "characters_added_after": 0,
+          "author": "claude",
+          "directed_by": "ChatGPT round-1 FIX_REQUIRED + owner apply",
+          "timestamp": "2026-09-01T02:43:11Z",
+          "timestamp_et": "2026-08-31 22:43 ET",
+          "what_changed": "Replaced 'in this way' with the explicit default-model / `RunConfig` configuration path. Expanded the evidence boundary backwards to that path.",
+          "expansion_why": "Extended backwards to the default-model configuration path (`OPENAI_DEFAULT_MODEL` and `RunConfig`), resolving 'in this way'."
+        }
+      ],
+      "stress_types": [
+        "short_evidence_unit",
+        "version_model_discrimination",
+        "identifier_vs_semantic_distractor",
+        "paraphrase_query_shape"
+      ],
+      "source_subject": null,
+      "source_relation": null,
+      "source_object": null,
+      "source_sentence": null,
+      "source_triple_derivation": "not derivable from the evidence",
+      "round1_verdict": "FIX_REQUIRED",
+      "round1_reason": "The claim is supported in its section, but 'in this way' is not self-contained and depends on the preceding default-model/RunConfig setup. Rewrite the question to state the configuration path explicitly.",
+      "repaired_at": "2026-09-01T02:43:11Z",
+      "repaired_at_et": "2026-08-31 22:43 ET",
+      "frozen": false,
+      "human_verified": false,
+      "anaphora_check": {
+        "status": "NO_ANAPHORA",
+        "blocking": false,
+        "finding": null,
+        "phrase": null
+      },
+      "repair_warnings": []
+    }
+  ],
+  "official_filenames": {
+    "repair_report": "experiments/RAG-V2/V2-DEVSET-001/V2-DEVSET-001-repair-report.md",
+    "repaired_candidates_jsonl": "experiments/RAG-V2/V2-DEVSET-001/V2-DEVSET-001-repaired-candidates.jsonl",
+    "chatgpt_review_md": "evals/review/v2_devset_001_repairs_round1.md"
+  }
+}
