@@ -1,0 +1,154 @@
+{
+  "document": "EXP-015 — reranker ceiling analysis",
+  "generated_at": "2026-08-31T23:01:41Z",
+  "method": "Arithmetic over SYSTEM-A's stored candidate ranks. A perfect reranker over a pool of P promotes any span already inside the top P; it can do nothing for a span outside it. No retrieval was re-run and no model was involved.",
+  "baseline": {
+    "system": "SYSTEM-A-GLOBAL",
+    "strict_full_case": 30,
+    "cases": 40,
+    "span_recall": 0.75,
+    "spans_found": 33,
+    "spans_total": 47
+  },
+  "ceilings": {
+    "30": {
+      "pool": 30,
+      "max_strict_full_case_recall": 35,
+      "max_strict_pct": 87.5,
+      "max_span_recall_at_10": 0.8723,
+      "spans_reachable": 41,
+      "spans_total": 47,
+      "cases_unreachable": 5,
+      "spans_unreachable": 6,
+      "unreachable_detail": [
+        {
+          "case_id": "GOLD-B002-02",
+          "span_ranks": [
+            null
+          ],
+          "reason": "evidence absent from candidate generation entirely"
+        },
+        {
+          "case_id": "HA-29",
+          "span_ranks": [
+            31
+          ],
+          "reason": "evidence ranked beyond pool 30"
+        },
+        {
+          "case_id": "HA-40",
+          "span_ranks": [
+            null,
+            14
+          ],
+          "reason": "evidence absent from candidate generation entirely"
+        },
+        {
+          "case_id": "HA-41",
+          "span_ranks": [
+            null,
+            null
+          ],
+          "reason": "evidence absent from candidate generation entirely"
+        },
+        {
+          "case_id": "HA-42",
+          "span_ranks": [
+            73,
+            25
+          ],
+          "reason": "evidence ranked beyond pool 30"
+        }
+      ]
+    },
+    "50": {
+      "pool": 50,
+      "max_strict_full_case_recall": 36,
+      "max_strict_pct": 90.0,
+      "max_span_recall_at_10": 0.8936,
+      "spans_reachable": 42,
+      "spans_total": 47,
+      "cases_unreachable": 4,
+      "spans_unreachable": 5,
+      "unreachable_detail": [
+        {
+          "case_id": "GOLD-B002-02",
+          "span_ranks": [
+            null
+          ],
+          "reason": "evidence absent from candidate generation entirely"
+        },
+        {
+          "case_id": "HA-40",
+          "span_ranks": [
+            null,
+            14
+          ],
+          "reason": "evidence absent from candidate generation entirely"
+        },
+        {
+          "case_id": "HA-41",
+          "span_ranks": [
+            null,
+            null
+          ],
+          "reason": "evidence absent from candidate generation entirely"
+        },
+        {
+          "case_id": "HA-42",
+          "span_ranks": [
+            73,
+            25
+          ],
+          "reason": "evidence ranked beyond pool 50"
+        }
+      ]
+    },
+    "100": {
+      "pool": 100,
+      "max_strict_full_case_recall": 37,
+      "max_strict_pct": 92.5,
+      "max_span_recall_at_10": 0.9149,
+      "spans_reachable": 43,
+      "spans_total": 47,
+      "cases_unreachable": 3,
+      "spans_unreachable": 4,
+      "unreachable_detail": [
+        {
+          "case_id": "GOLD-B002-02",
+          "span_ranks": [
+            null
+          ],
+          "reason": "evidence absent from candidate generation entirely"
+        },
+        {
+          "case_id": "HA-40",
+          "span_ranks": [
+            null,
+            14
+          ],
+          "reason": "evidence absent from candidate generation entirely"
+        },
+        {
+          "case_id": "HA-41",
+          "span_ranks": [
+            null,
+            null
+          ],
+          "reason": "evidence absent from candidate generation entirely"
+        }
+      ]
+    }
+  },
+  "headroom": {
+    "30": 5,
+    "50": 6,
+    "100": 7
+  },
+  "candidate_generation_limit": {
+    "spans_never_retrieved": 4,
+    "note": "These spans are outside every pool. No reranker can reach them; they are a candidate-generation problem, not a ranking one."
+  },
+  "system_a_hash": "9afcb5b7c58ebacff0b4c3711dd9618a2e727f4195dd1787a5da81e478ee0b38",
+  "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a"
+}

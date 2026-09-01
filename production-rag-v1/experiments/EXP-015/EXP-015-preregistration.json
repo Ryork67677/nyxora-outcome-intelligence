@@ -1,0 +1,139 @@
+{
+  "document": "EXP-015 — cross-encoder reranking of SYSTEM-A: preregistration",
+  "written_at": "2026-08-31T23:01:41Z",
+  "status": "PREREGISTERED — written before any reranker was selected or run",
+  "hypothesis": "SYSTEM-A's validation failures are dominated by WITHIN_DOCUMENT_PASSAGE_FAILURE, not by document routing: document recall is 0.975 while span recall is 0.750. If that gap is a ranking problem, a pretrained cross-encoder reranking SYSTEM-A's own candidates should close part of it without changing retrieval.",
+  "control": {
+    "system": "SYSTEM-A-GLOBAL",
+    "config_hash": "9afcb5b7c58ebacff0b4c3711dd9618a2e727f4195dd1787a5da81e478ee0b38",
+    "unchanged": true,
+    "validation_baseline": {
+      "strict_full_case": 30,
+      "cases": 40,
+      "macro_span_recall": 0.75,
+      "document_recall": 0.975,
+      "mrr": 0.5283
+    }
+  },
+  "experimental_system": {
+    "name": "SYSTEM-C-RERANK",
+    "pipeline": [
+      "SYSTEM-A candidate retrieval (unchanged)",
+      "cross-encoder rerank of those candidates only",
+      "take top 10"
+    ],
+    "may": [
+      "reorder candidates SYSTEM-A already retrieved"
+    ],
+    "may_not": [
+      "invent candidates",
+      "run another retrieval method",
+      "change the query",
+      "change chunks",
+      "change BM25",
+      "change dense retrieval",
+      "change RRF",
+      "change the corpus"
+    ]
+  },
+  "candidate_pool": {
+    "size": 100,
+    "rationale": "Validation diagnostics place missed SYSTEM-A evidence at ranks 11, 12, 14, 14, 22, 23, 24, 25, 31 and 73. A pool of 10 cannot test reranking at all, and 100 covers every observed rank while remaining below the point where top-k becomes the metric.",
+    "frozen_before_selection": true,
+    "sweeping_forbidden": "The pool is not swept on validation."
+  },
+  "model_policy": {
+    "must_be": [
+      "genuinely pretrained for relevance or ranking",
+      "zero-shot for this experiment",
+      "reproducible from a pinned artifact"
+    ],
+    "must_not_be": [
+      "trained on GOLD",
+      "fine-tuned on GOLD",
+      "fitted to GOLD answers or thresholds",
+      "trained on synthetic labels derived from GOLD",
+      "selected on validation performance"
+    ],
+    "selection_split": "development (20 cases) only"
+  },
+  "qualification_rule": {
+    "split": "development",
+    "primary": "strict full-case recall@10",
+    "proceed_to_validation_only_if": [
+      "positive net rescues on development",
+      "no catastrophic regression pattern",
+      "measured candidate headroom exists",
+      "implementation and reproducibility checks pass"
+    ],
+    "case_by_case_tuning": "forbidden"
+  },
+  "freeze_before_validation": [
+    "complete SYSTEM-C config and its hash",
+    "reranker model fingerprint",
+    "candidate pool",
+    "input formatting",
+    "truncation policy",
+    "score transformation",
+    "tie-breaking",
+    "top-k",
+    "dependency fingerprint"
+  ],
+  "validation_protocol": {
+    "split": "validation (40 cases, the same set EVAL-VAL-001 used)",
+    "runs": "exactly one, after the freeze",
+    "baseline": "the stored SYSTEM-A result; SYSTEM-A is not re-run",
+    "statistics": {
+      "paired_bootstrap_resamples": 10000,
+      "seed": 20250818,
+      "ci": "95%",
+      "tests": [
+        "paired bootstrap on strict delta and macro span recall delta",
+        "McNemar exact"
+      ]
+    }
+  },
+  "promotion_rule": {
+    "RERANKER_SUPPORTED": [
+      "C strict recall > A",
+      "positive net rescues",
+      "no critical gate meaningfully regresses",
+      "gains attributable to reranking"
+    ],
+    "RERANKER_NEUTRAL": [
+      "difference small or mixed"
+    ],
+    "RERANKER_REJECTED": [
+      "C worse",
+      "regressions outweigh rescues",
+      "substantial exact-match damage"
+    ],
+    "note": "No promotion happens in this experiment; the classification is returned to the owner."
+  },
+  "corpus": {
+    "snapshot": "snap_689e336380a054d8039dc35b2c09cd0a",
+    "manifest_hash": "452479294cbbbe702b15d2df3f5a268023247dcd630782aaad5e17690cee7b17",
+    "chunk_set": "cs_v1_control",
+    "control_chunks": 14209,
+    "anthropic": 12028,
+    "openai": 2181
+  },
+  "holdout": {
+    "runs": 0,
+    "frozen": true,
+    "count": 90,
+    "rule": "not loaded, not enumerated, not run — in this experiment or any part of it"
+  },
+  "validation_set_usage": "EVAL-VAL-001 opened the 40 validation cases for system comparison and failure analysis. EXP-015 may use them once more, for this preregistered one-shot frozen comparison, and for nothing iterative. Every final claim must still come from the untouched 90-case holdout.",
+  "ceiling_analysis": {
+    "computed_before_model_selection": true,
+    "headroom": {
+      "30": 5,
+      "50": 6,
+      "100": 7
+    },
+    "pool_100_ceiling": 37,
+    "baseline": 30,
+    "note": "Computed from stored candidate ranks only. It establishes that reranking has enough headroom to be worth testing, before any model was inventoried."
+  }
+}

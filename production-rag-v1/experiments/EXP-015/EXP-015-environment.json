@@ -1,0 +1,122 @@
+{
+  "experiment": "EXP-015",
+  "generated_at": "2026-08-31T23:01:41Z",
+  "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a",
+  "manifest_hash": "452479294cbbbe702b15d2df3f5a268023247dcd630782aaad5e17690cee7b17",
+  "chunk_set": "cs_v1_control",
+  "system_a_hash": "9afcb5b7c58ebacff0b4c3711dd9618a2e727f4195dd1787a5da81e478ee0b38",
+  "system_b_hash": "304c350940b83733df6043ae3a8abdcbcde33d16950730127aa9f1f39494388b",
+  "system_a_config": {
+    "name": "SYSTEM-A-GLOBAL",
+    "description": "global BM25 + transformer RRF over all control chunks",
+    "stage_1": null,
+    "stage_2": {
+      "query": "raw user question, verbatim",
+      "lexical": {
+        "retriever": "bm25",
+        "k1": 1.2,
+        "b": 0.75,
+        "ts_config": "simple",
+        "statistics": "full corpus — never recomputed inside routed documents"
+      },
+      "dense": {
+        "retriever": "transformer_cosine",
+        "model_id": "emb_e7d4183fd6eb878ae2fdf080efb6861e",
+        "fingerprint": "bd95feaeacf98559",
+        "max_seq_length": 512,
+        "exact_search": true,
+        "ann_index": false
+      },
+      "fusion": {
+        "method": "rrf",
+        "rrf_k": 60,
+        "pool_per_retriever": 50
+      },
+      "top_k": 10,
+      "reranker": null,
+      "cross_encoder": null,
+      "query_rewriting": false,
+      "enrichment": null,
+      "metadata_filtering": false
+    },
+    "snapshot": "snap_689e336380a054d8039dc35b2c09cd0a",
+    "chunk_set": "cs_v1_control",
+    "development_metrics": {
+      "macro_span_recall": 0.775,
+      "cases_fully_recalled": 15,
+      "spans_found_at_10": 17,
+      "document_recall": 0.925,
+      "mrr": 0.449
+    }
+  },
+  "bootstrap_seed": 20250818,
+  "python": "3.11.15",
+  "git_commit": "5082123e8c406ab162349d23003b1173afd697ac",
+  "dependencies": {
+    "numpy": "2.4.6",
+    "onnxruntime": "1.29.0",
+    "pgvector": "0.5.0",
+    "psycopg": "3.3.4",
+    "pytest": "8.4.2",
+    "ruff": "0.16.3",
+    "tokenizers": "0.23.1"
+  },
+  "acquisition": {
+    "document": "EXP-015 — reranker acquisition survey",
+    "surveyed_at": "2026-08-31T23:01:41Z",
+    "requirement": "a genuinely pretrained cross-encoder, runnable offline",
+    "local_inventory": {
+      "cached_models": [
+        "data/cache/models/exp009/onnx (all-MiniLM-L6-v2 bi-encoder, used by SYSTEM-A)",
+        "data/cache/models/fasttext-wiki-news-subwords-300.gz",
+        "data/cache/embedders/lsa-*.joblib"
+      ],
+      "cross_encoder_present": false,
+      "runtime_available": "onnxruntime 1.29.0",
+      "torch_or_transformers_installed": false
+    },
+    "hosts": [
+      {
+        "host": "huggingface.co",
+        "result": "CONNECT 403",
+        "verdict": "BLOCKED by egress policy",
+        "evidence": "proxy status lists huggingface.co:443 under recentRelayFailures as connect_rejected / gateway answered 403 to CONNECT"
+      },
+      {
+        "host": "cdn.jsdelivr.net",
+        "result": "CONNECT 403",
+        "verdict": "BLOCKED by egress policy",
+        "evidence": "same proxy failure record"
+      },
+      {
+        "host": "github.com / objects.githubusercontent.com",
+        "result": "400 / 403",
+        "verdict": "release assets not retrievable"
+      },
+      {
+        "host": "chroma-onnx-models.s3.amazonaws.com",
+        "result": "200 for the EXP-009 bi-encoder bundle; 403 for every cross-encoder key tried",
+        "verdict": "REACHABLE but hosts no cross-encoder",
+        "evidence": "all-MiniLM-L6-v2/onnx.tar.gz returns 200, so the host is not blocked; ms-marco-MiniLM-L-6-v2 and bge-reranker keys return 403 (no such key)"
+      },
+      {
+        "host": "storage.googleapis.com/qdrant-fastembed",
+        "result": "403 for concrete reranker objects",
+        "verdict": "not retrievable"
+      },
+      {
+        "host": "pypi.org / files.pythonhosted.org",
+        "result": "200",
+        "verdict": "REACHABLE — but no PyPI wheel bundles cross-encoder weights; flashrank and fastembed both resolve their weights from huggingface.co, which is blocked"
+      }
+    ],
+    "conclusion": "NO_PRETRAINED_CROSS_ENCODER_AVAILABLE",
+    "consequence": "EXP-015 cannot proceed past model selection. Sections 13 through 20 — development qualification, the SYSTEM-C freeze, the one-shot validation, the regression audit and the promotion classification — are not executable and were not attempted.",
+    "what_was_not_done_instead": "No substitute was used. A hand-written lexical or heuristic rescorer is not a pretrained cross-encoder, and tuning one against the development set would be the GOLD fitting section 12 forbids. Reporting the blocker is the correct outcome, not a workaround.",
+    "unblocking_options": [
+      "Allow huggingface.co through the egress policy for this environment.",
+      "Side-load a cross-encoder ONNX bundle (for example cross-encoder/ms-marco-MiniLM-L-6-v2) into data/cache/models/ the way the EXP-009 bi-encoder bundle was supplied.",
+      "Publish the bundle to a reachable object store; chroma-onnx-models.s3.amazonaws.com is reachable and already serves the project's bi-encoder."
+    ]
+  }
+}

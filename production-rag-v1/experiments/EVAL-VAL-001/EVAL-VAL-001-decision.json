@@ -1,0 +1,42 @@
+{
+  "document": "EVAL-VAL-001 — project decision",
+  "decided_at": "2026-08-31T23:01:41Z",
+  "SYSTEM_B_PROMOTION": "REJECTED",
+  "SYSTEM_A_CONTROL": "RETAINED",
+  "classification": "REPLICATION_REJECTS_B",
+  "evidence": {
+    "system_a_strict": "30/40",
+    "system_b_strict": "21/40",
+    "rescues": 2,
+    "regressions": 11,
+    "net_cases": -9,
+    "bootstrap_macro_delta": {
+      "point_estimate": -0.225,
+      "ci95": [
+        -0.375,
+        -0.075
+      ]
+    },
+    "mcnemar_p": 0.0225,
+    "document_routing_failures": 12,
+    "cases": 40
+  },
+  "reason": "DOC-C did not replicate on independent validation. Its Stage-1 routing discarded a required document in 12 of 40 cases, and every one of the 11 regressions has the same signature: SYSTEM-A found the span at rank 1-9 and SYSTEM-B did not retrieve it at all.",
+  "system_b_disposition": {
+    "deleted": false,
+    "status": "PRESERVED as a measured negative experiment",
+    "config_hash": "304c350940b83733df6043ae3a8abdcbcde33d16950730127aa9f1f39494388b",
+    "why_preserved": "A rejected intervention with a clean causal explanation is a result. Deleting it would leave the project unable to say why routing was tried and what it cost."
+  },
+  "system_a_disposition": {
+    "status": "RETAINED as the retrieval control",
+    "config_hash": "9afcb5b7c58ebacff0b4c3711dd9618a2e727f4195dd1787a5da81e478ee0b38",
+    "unchanged": true
+  },
+  "holdout": {
+    "runs": 0,
+    "frozen": true,
+    "count": 90,
+    "membership_unchanged": true
+  }
+}
