@@ -20,7 +20,7 @@ MEASUREMENTS = json.loads((AUDIT / "PERF-001-measurements.json").read_text())
 
 def test_audit_artifacts_exist():
     for name in ("PERF-001-report.md", "PERF-001-measurements.json",
-                 "PERF-001-proposed.patch"):
+                 "PERF-001-proposed.patch", "PERF-001-report.pdf"):
         assert (AUDIT / name).is_file(), name
 
 
@@ -65,6 +65,19 @@ def test_no_experiment_was_started_or_touched():
         assert forbidden not in experiments
 
 
+def _audit_text(path: Path) -> str:
+    """Every audit artifact as text, including the rendered PDF.
+
+    The PDF is the deliverable people actually circulate, so scanning only the
+    Markdown would check the wrong document.
+    """
+    if path.suffix != ".pdf":
+        return path.read_text()
+    from pypdf import PdfReader
+
+    return "\n".join(page.extract_text() for page in PdfReader(path).pages)
+
+
 def test_no_case_identifier_leaked_into_the_audit():
     """The audit is about code, not about cases, so it should name almost none.
 
@@ -72,7 +85,7 @@ def test_no_case_identifier_leaked_into_the_audit():
     reading it to prove you did not read it is self-defeating. Scanning for the
     identifier *shape* is sufficient and costs no holdout access.
     """
-    blob = "\n".join((AUDIT / p.name).read_text() for p in sorted(AUDIT.iterdir()))
+    blob = "\n".join(_audit_text(p) for p in sorted(AUDIT.iterdir()))
     found = set(re.findall(r"\b(?:GOLD-B\d{3}-\d{2}|HA-\d{2}|V2D-\d+)\b", blob))
     # The four EXP-018 pool rescues are disclosed in the handoff as diagnostic
     # only, and are cited here to name what a bad optimization would break.
