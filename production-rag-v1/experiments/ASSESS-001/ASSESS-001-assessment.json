@@ -1,0 +1,154 @@
+{
+ "assessment_id": "ASSESS-001",
+ "kind": "engineering_assessment",
+ "nature": "judgement grounded in artifacts, not a new measurement",
+ "measurements_run_for_this": 0,
+ "sources": {
+  "v1_holdout": "experiments/EVAL-HOLDOUT-001 (reported in handoff; results not opened)",
+  "exp016": "grok/v2-dev:experiments/EXP-016/EXP-016-development-results.json",
+  "exp018b": "grok/v2-dev:experiments/EXP-018B/EXP-018B-results.json",
+  "exp015": "grok/v2-dev:experiments/EXP-015/RERANKER_REJECTED-at-dev.json"
+ },
+ "v1_holdout": {
+  "system": "SYSTEM-D-GUARD-BLEND",
+  "config_hash": "d77b54ba3be0197d6bc1363883aefb0b3399117ee8c65800a38f8196d236ca3a",
+  "n": 90,
+  "strict_recall_at_10": "79/90",
+  "strict_pct": 0.878,
+  "span_recall": 0.8833,
+  "document_recall": 0.9778,
+  "mrr": 0.7055
+ },
+ "exp016_development_n20": [
+  {
+   "v": "A",
+   "what": "no cross-encoder",
+   "strict": "19/20",
+   "cases": 19,
+   "mrr": 0.8309,
+   "latency_ms": 500.8,
+   "net_rescues": 0
+  },
+  {
+   "v": "B",
+   "what": "CE rerank (EXP-015 control)",
+   "strict": "18/20",
+   "cases": 18,
+   "mrr": 0.803,
+   "latency_ms": 5780.2,
+   "net_rescues": -1
+  },
+  {
+   "v": "C",
+   "what": "guard",
+   "strict": "20/20",
+   "cases": 20,
+   "mrr": 0.8072,
+   "latency_ms": 5774.4,
+   "net_rescues": 1
+  },
+  {
+   "v": "D",
+   "what": "guard + 0.7/0.3 blend (shipped)",
+   "strict": "20/20",
+   "cases": 20,
+   "mrr": 0.8239,
+   "latency_ms": 5774.4,
+   "net_rescues": 1
+  }
+ ],
+ "ce_cost": {
+  "latency_multiplier_vs_A": 11.53,
+  "cases_gained_n20": 1,
+  "mrr_delta_vs_A": -0.007,
+  "share_of_e_l10_runtime": 0.915
+ },
+ "ce_rejected_at_dev": {
+  "status": "RERANKER_REJECTED-at-dev",
+  "net": -1,
+  "rescues": [
+   "GOLD-B005-11"
+  ],
+  "regressions": [
+   "HA-22",
+   "HA-24"
+  ],
+  "rule": "net = rescues - regressions > 0 on strict Recall@10"
+ },
+ "guard_evidence": [
+  {
+   "case": "HA-24",
+   "a_rank": 1,
+   "ce_rank": 18,
+   "d_rank": 3,
+   "clamped": true
+  },
+  {
+   "case": "HA-22",
+   "a_rank": 2,
+   "ce_rank": 21,
+   "d_rank": 6,
+   "clamped": true
+  }
+ ],
+ "v2_devset_n50": {
+  "D_strict": "38/50",
+  "E_L10_strict": "40/50",
+  "E_L10_mrr": 0.5956,
+  "ce_ms": 5903.9,
+  "total_ms": 6454.8
+ },
+ "corpus": {
+  "documents": 202,
+  "chunks": 14209,
+  "snapshot": "snap_689e336380a054d8039dc35b2c09cd0a"
+ },
+ "verified_process_strengths": [
+  "preregistration written before any scores exist",
+  "frozen system config hashes; a changed field changes the hash",
+  "corpus snapshot reproduces to an exact manifest hash",
+  "contamination-aware split, not random; holdout access-logged",
+  "EVAL-VAL-001 rejected SYSTEM-B when it failed to replicate",
+  "EXP-015 refused to substitute a hand-rolled reranker rather than fake a result",
+  "EXP-018B Track 1 proved score-preservation bitwise, not by tolerance"
+ ],
+ "concerns_ranked": [
+  {
+   "id": "C1",
+   "severity": "high",
+   "concern": "the cross-encoder is probably not paying for itself",
+   "evidence": "+1 case of 20 at 11.5x latency, and MRR falls 0.8309 -> 0.8239",
+   "missing": "D vs D-without-CE on V2-DEVSET-001 (n=50). EXP-016's comparison is n=20."
+  },
+  {
+   "id": "C2",
+   "severity": "high",
+   "concern": "n is too small for the decisions being made on it",
+   "evidence": "EXP-018 is +2 cases on n=50; EXP-016 is +1 on n=20; systems.py itself notes six of the last seven experiments turned on one or two cases"
+  },
+  {
+   "id": "C3",
+   "severity": "medium",
+   "concern": "the benchmark is source-anchored",
+   "evidence": "cases mined from the corpus then reviewed; favours extractive lexical retrieval and likely explains the recurring 'answer is visible but does not rank' finding"
+  },
+  {
+   "id": "C4",
+   "severity": "medium",
+   "concern": "latency is not shippable",
+   "evidence": "6454.8 ms retrieval before generation; ~3360 ms after PERF-002 D1; ~550 ms without the CE"
+  },
+  {
+   "id": "C5",
+   "severity": "low",
+   "concern": "small corpus limits transfer",
+   "evidence": "202 documents / 14209 chunks; BM25 IDF and routing conclusions may not hold at 100x"
+  }
+ ],
+ "recommended_next": [
+  "run the CE ablation on V2-DEVSET-001 before spending more on CE latency",
+  "get real unmined questions, even 30, from actual usage",
+  "treat ~6.4 s retrieval-before-generation as not shippable"
+ ],
+ "verdict": "The discipline is excellent and the V1 holdout number is real. The risk is not sloppiness - it is that the rigour is being spent on differences too small to be real, and that the most expensive component has the weakest evidence behind it."
+}
