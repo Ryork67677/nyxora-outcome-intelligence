@@ -1,0 +1,129 @@
+{
+  "audit_id": "PERF-001",
+  "kind": "read_only_performance_audit",
+  "patch_applied": false,
+  "constraints_observed": {
+    "retrieval_run": false,
+    "system_d_run": false,
+    "system_e_run": false,
+    "cap_variants_run": false,
+    "v2_devset_scored": false,
+    "v1_holdout_opened": false,
+    "bm25_semantics_changed": false,
+    "ce_changed": false,
+    "blend_weights_changed": false,
+    "rrf_changed": false,
+    "exp018b_artifacts_touched": false,
+    "src_modified": false
+  },
+  "what_was_executed": [
+    "EXPLAIN without ANALYZE (plan/cost estimates only; query not executed)",
+    "catalog inspection (\\d, pg_class, pg_relation_size)",
+    "corpus-statistic aggregates (count/sum/avg of chunk length) - no query, no ranking, no score",
+    "pure-Python microbenchmarks: DB connection open/close, pydantic model_copy"
+  ],
+  "repository_state": {
+    "head": "aa247f1",
+    "highest_experiment_present": "EXP-015",
+    "system_d_guard_blend_present": false,
+    "system_e_within_doc_present": false,
+    "v2_devset_001_present": false,
+    "exp018_artifacts_present": false,
+    "cross_encoder_implementation_present": false,
+    "note": "systems.py freezes SYSTEM-A-GLOBAL and SYSTEM-B-DOC-C only and sets cross_encoder=None; EXP-015 concluded NO_PRETRAINED_CROSS_ENCODER_AVAILABLE. The audit targets the code SYSTEM-E is built from: retrieval.py _LEXICAL_SQL / lexical_search, hierarchical.py, run_exp012.py."
+  },
+  "corpus": {
+    "snapshot_id": "snap_689e336380a054d8039dc35b2c09cd0a",
+    "chunk_set_id": "cs_v1_control",
+    "chunks": 14209,
+    "documents": 202,
+    "chunks_per_document": {"mean": 70.3, "median": 27.0, "min": 1, "max": 2351},
+    "search_text_null_count": 14209,
+    "search_text_null_note": "coalesce(search_text, text) always resolves to the TOASTed text column",
+    "heap_size": "310 MB",
+    "toast_size": "142 MB",
+    "gin_search_vector_index_size": "37 MB",
+    "shared_buffers": "128 MB",
+    "max_parallel_workers_per_gather": 2
+  },
+  "plan_costs_single_parent_local_bm25": {
+    "method": "EXPLAIN (no ANALYZE)",
+    "total_4_terms": 29699.78,
+    "corpus_cte_count_and_avg_len": 29040.80,
+    "corpus_cte_count_only": 536.85,
+    "avg_len_marginal_cost": 28503.95,
+    "avg_len_share_of_single_parent_query": 0.96,
+    "df_lateral_per_term": 625.66,
+    "local_candidate_scan_single_parent": 54.08,
+    "local_candidate_scan_ten_parents_batched": 155.28,
+    "local_work_share_of_single_parent_query": 0.0015,
+    "corpus_cte_evaluated_once_per_call": true,
+    "corpus_cte_once_per_call_evidence": "planner places the 29010 aggregate in the nested loop's STARTUP cost (29012.82..29074.01), not multiplied across outer rows"
+  },
+  "query_term_counts": {
+    "source": "53 existing V1 gold questions tokenized with query_terms() (string tokenization only; no DB, no V2 devset)",
+    "min": 4, "p50": 11, "p90": 19, "max": 26
+  },
+  "per_query_projection_10_parents_11_terms": {
+    "current_plan_cost": 359760,
+    "after_hoist_and_batch": 36078,
+    "after_avg_len_materialized": 7574,
+    "after_df_cache_warm": 155,
+    "cold_speedup_local_stage": 47.3,
+    "db_connections_current": 20,
+    "db_connections_after": 1
+  },
+  "microbenchmarks": {
+    "connect_register_vector_close_ms": {"median": 20.6, "min": 18.5, "max": 40.1, "n": 12},
+    "connections_per_lexical_search": 2,
+    "connection_overhead_per_query_ms": 412,
+    "searchhit_model_copy_deep_us": 10.6,
+    "searchhit_model_copy_shallow_us": 1.8,
+    "fusion_deep_copy_cost_at_pool_176_8_ms": 1.87,
+    "fusion_deep_copy_share_of_E_latency": 0.0001
+  },
+  "avg_len_equivalence_proof": {
+    "n": 14209,
+    "sum_length": 15590038,
+    "avg_direct_float8": 1097.194594975016,
+    "avg_from_exact_sum_float8": 1097.194594975016,
+    "float8send_bitwise_identical": true,
+    "why_deterministic": "length() returns integer and avg(integer) accumulates in numeric (exact), so the current value is already order-independent; caching it cannot change it"
+  },
+  "bottlenecks_ranked": [
+    {"rank": 1, "what": "corpus CTE avg_len recomputed once per parent", "location": "src/rag_v1/retrieval.py:76-82", "relative_cost": 0.96, "parent_dependent": false, "query_dependent": false},
+    {"rank": 2, "what": "per-term df LATERAL recomputed once per parent", "location": "src/rag_v1/retrieval.py:83-98", "relative_cost": 0.19, "parent_dependent": false, "query_dependent": true},
+    {"rank": 3, "what": "two DB connections per lexical_search, no pool", "location": "src/rag_v1/retrieval.py:142-154, src/rag_v1/db.py:9-16", "cost_ms_per_query": 412},
+    {"rank": 4, "what": "actual per-parent candidate scan", "location": "src/rag_v1/retrieval.py:99-116", "relative_cost": 0.0015},
+    {"rank": 5, "what": "pydantic deep copies in fusion", "location": "src/rag_v1/retrieval.py:216-417", "cost_ms_per_query": 1.87, "verdict": "negligible - do not optimize"}
+  ],
+  "unanswerable_here": [
+    {
+      "question": "6 - CE batching overhead caused by the enlarged union",
+      "reason": "no cross-encoder exists in this repository (systems.py sets cross_encoder=None; EXP-015 = NO_PRETRAINED_CROSS_ENCODER_AVAILABLE)",
+      "what_can_be_said": "pool grows 94.1 -> 176.8 (+87.9%); if CE cost is linear in pool size its contribution to the 10780 ms local-stage delta scales ~1.88x, but batch size, sequence length and backend are not visible here",
+      "recommendation": "profile the SYSTEM-E CE stage directly before committing to Track 1 scope; if CE dominates, BM25 optimization alone will not reach the latency target"
+    }
+  ],
+  "highest_risk_false_optimization": {
+    "id": "G1",
+    "what": "deriving per-parent local top-W from SYSTEM-A's already-materialized global pool",
+    "why_tempting": "local scores are provably identical to global scores by construction",
+    "why_wrong": "A returns a globally ranked top-k; a chunk ranked 500th globally can be 3rd within its parent. Selecting from A's pool truncates to what A already found, which is exactly the set SYSTEM-E exists to go beyond.",
+    "predicted_damage": "eliminates most of the 82.7 new union members/query and very likely un-rescues V2D-11, V2D-33, V2D-34, V2D-43",
+    "caught_by": "equivalence test 1 (ordered per-parent candidate identity)"
+  },
+  "implementation_order": [
+    "1. cache snapshot_chunk_set + thread connection (no SQL change, no score risk)",
+    "2. batched per-parent window query (largest win ~10x; full equivalence gate)",
+    "3. materialize (n, sum_len) via sql/005_bm25_corpus_stats.sql (~5x on the remainder)",
+    "4. df cache (smallest win, only cross-query state, goes last)",
+    "5. only then Track 2 caps L=10/20/40 - they change which candidates survive, steps 1-4 must be proven not to"
+  ],
+  "equivalence_gate_properties": [
+    "float8 bit comparison, not tolerance",
+    "ordered lists, not sets",
+    "exact metric reproduction, not within-noise",
+    "run tests 1-5 on V1 development questions so proving the code costs zero V2-DEVSET-001 exposure"
+  ]
+}

@@ -1,0 +1,241 @@
+PERF-001 proposed optimization — NOT APPLIED.
+
+This file is documentation, not a patch to run. It is deliberately not a
+`git apply`-able diff against a specific line range, because the SYSTEM-E
+call site it must integrate with is not present in this repository. It shows
+the intended shape so the change can be written quickly once EXP-018B closes.
+
+Equivalence contract: the `terms`, `corpus` and `weighted` CTEs below are
+copied BYTE-IDENTICALLY from _LEXICAL_SQL (src/rag_v1/retrieval.py:71-98).
+Any reviewer should diff them mechanically, not read them.
+
+================================================================================
+STEP 1 — cache snapshot_chunk_set and stop opening a second connection
+================================================================================
+
+--- a/src/rag_v1/retrieval.py
++++ b/src/rag_v1/retrieval.py
+@@
++_CHUNK_SET_CACHE: dict[str, str] = {}
++
++
+-def snapshot_chunk_set(snapshot_id: str) -> str:
++def snapshot_chunk_set(snapshot_id: str, conn=None) -> str:
+     """Resolve which chunking a snapshot pins.
++
++    A snapshot row is written once and never updated, so the mapping cannot go
++    stale inside a run and is memoised. ``conn`` lets a caller that already holds
++    a connection reuse it: this lookup used to open a second, concurrent
++    connection from inside ``lexical_search``'s own ``with`` block, which cost a
++    measured ~20.6 ms per call and doubled the connection count of every
++    per-parent loop.
+     """
+     from rag_v1.db import connect
+ 
+-    with connect() as conn, conn.cursor() as cur:
+-        cur.execute("SELECT chunk_set_id FROM corpus_snapshot WHERE snapshot_id=%s", (snapshot_id,))
+-        row = cur.fetchone()
++    if snapshot_id in _CHUNK_SET_CACHE:
++        return _CHUNK_SET_CACHE[snapshot_id]
++    if conn is not None:
++        with conn.cursor() as cur:
++            cur.execute("SELECT chunk_set_id FROM corpus_snapshot WHERE snapshot_id=%s",
++                        (snapshot_id,))
++            row = cur.fetchone()
++    else:
++        with connect() as own, own.cursor() as cur:
++            cur.execute("SELECT chunk_set_id FROM corpus_snapshot WHERE snapshot_id=%s",
++                        (snapshot_id,))
++            row = cur.fetchone()
+     if not row:
+         raise ValueError(f"Unknown snapshot: {snapshot_id}")
+-    return row[0]
++    _CHUNK_SET_CACHE[snapshot_id] = row[0]
++    return row[0]
+
+The same one-line change (`snapshot_chunk_set(snapshot_id, conn)`) applies at
+retrieval.py:148 (lexical_search), :204 (dense_search) and :274
+(exact_identifier_search). Note the call must be moved to *inside* the `with`
+body rather than left in the argument dict, so `conn` is bound first.
+
+================================================================================
+STEP 2 — one batched per-parent query replacing the per-parent loop
+================================================================================
+
+--- a/src/rag_v1/retrieval.py
++++ b/src/rag_v1/retrieval.py
+@@
++_LOCAL_BATCH_SQL = """
++WITH terms AS (
++    SELECT DISTINCT t, phraseto_tsquery('simple', t) AS tq
++    FROM unnest(%(terms)s::text[]) AS t
++    WHERE phraseto_tsquery('simple', t)::text <> ''
++),
++corpus AS (
++    SELECT count(*)::float8 AS n, avg(length(coalesce(c.search_text, c.text)))::float8 AS avg_len
++    FROM chunk c
++    JOIN corpus_snapshot_version sv ON sv.version_id = c.version_id
++    WHERE sv.snapshot_id = %(snapshot_id)s
++      AND c.chunk_set_id = %(chunk_set_id)s
++),
++weighted AS (
++    SELECT terms.tq,
++           ln(1 + (corpus.n - stat.df + 0.5) / (stat.df + 0.5)) AS idf,
++           corpus.avg_len
++    FROM terms
++    CROSS JOIN corpus
++    CROSS JOIN LATERAL (
++        SELECT count(*)::float8 AS df
++        FROM chunk c
++        JOIN corpus_snapshot_version sv ON sv.version_id = c.version_id
++        WHERE sv.snapshot_id = %(snapshot_id)s
++          AND c.chunk_set_id = %(chunk_set_id)s
++          AND c.search_vector @@ terms.tq
++    ) AS stat
++    WHERE stat.df > 0
++),
++-- Everything above is byte-identical to _LEXICAL_SQL and still full-corpus.
++-- The ONLY change is below: all parents are scored in one pass, and the
++-- per-parent "top W" that used to come from a per-parent LIMIT now comes from
++-- a window over the same total order.
++scored AS (
++    SELECT c.chunk_id, c.version_id, c.section_path, c.char_start, c.char_end, c.text,
++           sum(
++               w.idf * (%(k1)s + 1)
++               / (1 + %(k1)s * (1 - %(b)s + %(b)s * length(coalesce(c.search_text, c.text)) / w.avg_len))
++           ) AS score
++    FROM chunk c
++    JOIN corpus_snapshot_version sv ON sv.version_id = c.version_id
++    JOIN weighted w ON c.search_vector @@ w.tq
++    WHERE sv.snapshot_id = %(snapshot_id)s
++      AND c.chunk_set_id = %(chunk_set_id)s
++      AND c.version_id = ANY(%(version_ids)s::text[])
++    GROUP BY c.chunk_id, c.version_id, c.section_path, c.char_start, c.char_end, c.text
++),
++ranked AS (
++    SELECT scored.*,
++           row_number() OVER (
++               PARTITION BY scored.version_id
++               -- Character-for-character the ORDER BY at _LEXICAL_SQL:122.
++               -- Do not "simplify" to ORDER BY score DESC: BM25 ties are common
++               -- and the rounding is what makes them resolve on chunk_id.
++               ORDER BY round(scored.score::numeric, 9) DESC, scored.chunk_id
++           ) AS local_rank
++    FROM scored
++)
++SELECT chunk_id, version_id, section_path, char_start, char_end, text, score, local_rank
++FROM ranked
++WHERE local_rank <= %(w)s
++ORDER BY version_id, local_rank
++"""
++
++
++def local_lexical_search_batch(
++    query: str, snapshot_id: str, version_ids: list[str], w: int
++) -> dict[str, list[SearchHit]]:
++    """Top-``w`` BM25 hits *within each* parent, in a single statement.
++
++    Exactly equivalent to calling ``lexical_search(query, snapshot_id, w, [v])``
++    once per ``v`` — same candidates, same order, same float8 scores — because
++    the term statistics are unchanged and still full-corpus, and ``row_number()``
++    applies the same total order the per-parent ``LIMIT`` applied.
++
++    What changes is only how often the query-level work is paid for. The
++    ``corpus`` CTE (``n``, ``avg_len``) and the per-term ``df`` are constants of
++    the frozen snapshot: they do not depend on the parent, and computing them
++    once per parent was ~99.85% of the loop's cost (see experiments/PERF-001).
++    """
++    from rag_v1.db import connect
++
++    terms = query_terms(query)
++    if not terms or not version_ids:
++        return {v: [] for v in version_ids}
++    with connect() as conn, conn.cursor() as cur:
++        chunk_set_id = snapshot_chunk_set(snapshot_id, conn)
++        cur.execute(_LOCAL_BATCH_SQL, {
++            "terms": terms,
++            "snapshot_id": snapshot_id,
++            "chunk_set_id": chunk_set_id,
++            "w": w,
++            "k1": BM25_K1,
++            "b": BM25_B,
++            "version_ids": version_ids,
++        })
++        rows = cur.fetchall()
++    # Parents with no matching chunk stay present and empty, as the per-parent
++    # LIMIT path produced.
++    out: dict[str, list[SearchHit]] = {v: [] for v in version_ids}
++    for r in rows:
++        out[r[1]].append(SearchHit(
++            chunk_id=r[0], version_id=r[1], section_path=r[2], char_start=r[3],
++            char_end=r[4], text=r[5], score=float(r[6]), rank=r[7], retriever="lexical",
++        ))
++    return out
+
+================================================================================
+STEP 3 — materialize the corpus statistics  (sql/005_bm25_corpus_stats.sql)
+================================================================================
+
+CREATE TABLE IF NOT EXISTS bm25_corpus_stats (
+    snapshot_id   text   NOT NULL REFERENCES corpus_snapshot(snapshot_id) ON DELETE CASCADE,
+    chunk_set_id  text   NOT NULL REFERENCES chunk_set(chunk_set_id),
+    n             bigint NOT NULL,
+    -- The EXACT integer sum, never a float. avg(integer) accumulates in numeric,
+    -- so sum/count reproduces avg(length(...))::float8 bit-for-bit; storing the
+    -- float directly would risk losing the last bit through any round trip.
+    sum_len       bigint NOT NULL,
+    computed_at   timestamptz NOT NULL DEFAULT now(),
+    PRIMARY KEY (snapshot_id, chunk_set_id)
+);
+
+INSERT INTO bm25_corpus_stats (snapshot_id, chunk_set_id, n, sum_len)
+SELECT sv.snapshot_id, c.chunk_set_id,
+       count(*)::bigint,
+       sum(length(coalesce(c.search_text, c.text)))::bigint
+FROM chunk c
+JOIN corpus_snapshot_version sv ON sv.version_id = c.version_id
+JOIN corpus_snapshot cs ON cs.snapshot_id = sv.snapshot_id
+                       AND cs.chunk_set_id = c.chunk_set_id
+GROUP BY sv.snapshot_id, c.chunk_set_id
+ON CONFLICT DO NOTHING;
+
+-- Equivalence gate. This must return zero rows or the migration is wrong.
+-- Verified once by hand for snap_689e336380a054d8039dc35b2c09cd0a /
+-- cs_v1_control: n=14209, sum_len=15590038, avg_len=1097.194594975016, bitwise t.
+SELECT s.snapshot_id, s.chunk_set_id
+FROM bm25_corpus_stats s
+CROSS JOIN LATERAL (
+    SELECT count(*)::float8 AS n_live,
+           avg(length(coalesce(c.search_text, c.text)))::float8 AS avg_live
+    FROM chunk c
+    JOIN corpus_snapshot_version sv ON sv.version_id = c.version_id
+    WHERE sv.snapshot_id = s.snapshot_id AND c.chunk_set_id = s.chunk_set_id
+) live
+WHERE float8send(live.avg_live)
+   <> float8send((s.sum_len::numeric / s.n::numeric)::float8)
+   OR live.n_live <> s.n::float8;
+
+Then the `corpus` CTE becomes a lookup, and NOTHING else in the SQL changes:
+
+ corpus AS (
+-    SELECT count(*)::float8 AS n, avg(length(coalesce(c.search_text, c.text)))::float8 AS avg_len
+-    FROM chunk c
+-    JOIN corpus_snapshot_version sv ON sv.version_id = c.version_id
+-    WHERE sv.snapshot_id = %(snapshot_id)s
+-      AND c.chunk_set_id = %(chunk_set_id)s
++    SELECT n::float8 AS n, (sum_len::numeric / n::numeric)::float8 AS avg_len
++    FROM bm25_corpus_stats
++    WHERE snapshot_id = %(snapshot_id)s AND chunk_set_id = %(chunk_set_id)s
+ ),
+
+================================================================================
+STEP 4 — df cache (process-level, mirroring src/rag_v1/query_cache.py)
+================================================================================
+
+Key on (snapshot_id, chunk_set_id, tsquery_text) — the NORMALIZED tsquery, not
+the raw term, so two raw terms that normalize together share one entry and
+cannot diverge. Values are exact integer counts over a frozen snapshot, so a
+hit is bit-identical to a recomputation by construction.
+
+Ship this last: it is the smallest win and the only one carrying state across
+queries, so a failure here is easiest to attribute when nothing else is moving.
