@@ -1,0 +1,310 @@
+{
+ "audit_id": "PERF-002",
+ "kind": "read_only_ce_latency_audit",
+ "patch_applied": false,
+ "status": "STOP for ChatGPT / Grok review",
+ "source": {
+  "branch": "grok/ce-latency-handoff",
+  "commit": "7661ac5",
+  "inspected_via": "detached git worktree; no file on that branch modified"
+ },
+ "constraints_observed": {
+  "patch_applied": false,
+  "e_l10_validated": false,
+  "e_l10_frozen": false,
+  "holdout_opened": false,
+  "system_d_changed": false,
+  "ce_model_changed": false,
+  "ce_scoring_semantics_changed": false,
+  "blend_weights_changed": false,
+  "rrf_changed": false,
+  "exp017_run": false,
+  "exp019_run": false,
+  "v2_devset_scored": false,
+  "timers_added_to_frozen_path": false,
+  "handoff_branch_modified": false
+ },
+ "ce_artifact": {
+  "name": "cross-encoder/ms-marco-MiniLM-L6-v2",
+  "sha256_verified": "5d3e70fd0c9ff14b9b5169a51e957b7a9c74897afd0a35ce4bd318150c1d4d4a",
+  "architectures": [
+   "BertForSequenceClassification"
+  ],
+  "output": "logits [batch,1]",
+  "num_hidden_layers": 6,
+  "hidden_size": 384,
+  "num_attention_heads": 12,
+  "intermediate_size": 1536,
+  "max_position_embeddings": 512
+ },
+ "audit_host": {
+  "cores": 4,
+  "cpu": "Intel Xeon @2.80GHz",
+  "isa": "AVX-512 + VNNI",
+  "onnxruntime": "1.29.0",
+  "tokenizers": "0.23.1",
+  "slower_than_exp018b_box_by": 1.551,
+  "warning": "absolute ms are NOT comparable to EXP-018B; only ratios transfer"
+ },
+ "sequence_lengths": {
+  "source": "400 cs_v1_control passages, synthetic 19-token query",
+  "mean": 237.8,
+  "p50": 172,
+  "p90": 512,
+  "max": 512,
+  "fraction_at_512": 0.2625,
+  "pad_slot_waste_at_fixed_512": 0.5356,
+  "independently_reproduces_grok": {
+   "grok_mean": 237,
+   "grok_fraction_at_512": 0.263
+  }
+ },
+ "decomposition_104_pairs": {
+  "construct_ms": 858.7,
+  "runs": [
+   {
+    "label": "BASELINE pad=512 b16 t4",
+    "total_ms": 9190.5,
+    "pre_tokenize_ms": 0.0,
+    "tokenize_ms": 94.3,
+    "numpy_pack_ms": 8.6,
+    "onnx_ms": 9087.0,
+    "post_ms": 0.4,
+    "loop_ms": 0.2,
+    "widths": [
+     512,
+     512,
+     512,
+     512,
+     512,
+     512,
+     512
+    ]
+   },
+   {
+    "label": "BUCKETED pad=batch b16 t4",
+    "total_ms": 5568.6,
+    "pre_tokenize_ms": 49.8,
+    "tokenize_ms": 104.1,
+    "numpy_pack_ms": 5.9,
+    "onnx_ms": 5408.3,
+    "post_ms": 0.4,
+    "loop_ms": 0.2,
+    "widths": [
+     34,
+     86,
+     168,
+     310,
+     512,
+     512,
+     512
+    ]
+   }
+  ]
+ },
+ "timing_104_pairs": {
+  "cores": 4,
+  "rows": [
+   {
+    "config": "baseline pad=512 b16 t4",
+    "ms": 8638.3,
+    "speedup": 1.0,
+    "bitwise_identical": true
+   },
+   {
+    "config": "pad=512 b1  t4",
+    "ms": 7942.0,
+    "speedup": 1.088,
+    "bitwise_identical": true
+   },
+   {
+    "config": "pad=batch unsorted b16 t4",
+    "ms": 8161.2,
+    "speedup": 1.058,
+    "bitwise_identical": true
+   },
+   {
+    "config": "pad=batch BUCKETED b16 t4",
+    "ms": 4168.2,
+    "speedup": 2.072,
+    "bitwise_identical": true
+   },
+   {
+    "config": "pad=batch BUCKETED b1  t4",
+    "ms": 3680.7,
+    "speedup": 2.347,
+    "bitwise_identical": true
+   },
+   {
+    "config": "threads=8 pad=512 b16",
+    "ms": 12686.1,
+    "speedup": 0.681,
+    "bitwise_identical": true
+   },
+   {
+    "config": "fast=True (t8+batch+bucket)",
+    "ms": 7095.7,
+    "speedup": 1.217,
+    "bitwise_identical": true
+   }
+  ]
+ },
+ "equivalence_matrix": [
+  {
+   "config": "batch 1   (pad=512, t4)",
+   "bitwise_identical": true,
+   "max_abs_diff": 0.0,
+   "ranks_identical": true,
+   "ms": 2231.1
+  },
+  {
+   "config": "batch 32  (pad=512, t4)",
+   "bitwise_identical": true,
+   "max_abs_diff": 0.0,
+   "ranks_identical": true,
+   "ms": 3189.5
+  },
+  {
+   "config": "threads=8 (pad=512, b16)",
+   "bitwise_identical": true,
+   "max_abs_diff": 0.0,
+   "ranks_identical": true,
+   "ms": 6226.6
+  },
+  {
+   "config": "threads=1 (pad=512, b16)",
+   "bitwise_identical": true,
+   "max_abs_diff": 0.0,
+   "ranks_identical": true,
+   "ms": 14435.2
+  },
+  {
+   "config": "pad=batch unsorted (t4, b16)",
+   "bitwise_identical": true,
+   "max_abs_diff": 0.0,
+   "ranks_identical": true,
+   "ms": 4812.5
+  },
+  {
+   "config": "pad=batch bucketed (t4, b16)",
+   "bitwise_identical": true,
+   "max_abs_diff": 0.0,
+   "ranks_identical": true,
+   "ms": 2705.6
+  },
+  {
+   "config": "pad=batch bucketed b1 (t4)",
+   "bitwise_identical": true,
+   "max_abs_diff": 0.0,
+   "ranks_identical": true,
+   "ms": 1335.9
+  },
+  {
+   "config": "fast=True (t8, pad=batch, bucketed)",
+   "bitwise_identical": true,
+   "max_abs_diff": 0.0,
+   "ranks_identical": true,
+   "ms": 4476.6
+  },
+  {
+   "config": "pad width 24 vs 512 (8 shortest pairs)",
+   "bitwise_identical": true,
+   "max_abs_diff": 0.0,
+   "ranks_identical": true,
+   "source": "prof3 run; the sharpest available padding test"
+  }
+ ],
+ "dominant_bottleneck": {
+  "component": "ONNX inference on padded tokens",
+  "share_of_ce_time": 0.9887,
+  "why": "53.6% of token slots are [PAD]; attention is O(n^2) in width",
+  "non_levers_combined_share": 0.0112,
+  "non_levers": [
+   "tokenization",
+   "numpy tensor pack",
+   "postprocess",
+   "loop overhead",
+   "query-side token cache",
+   "candidate-side token cache"
+  ]
+ },
+ "key_findings": [
+  {
+   "id": "F1",
+   "finding": "bitwise logit identity holds across every lever tested",
+   "detail": "11/11 configs, max_abs_diff 0.0 on exact bit patterns, including width 24 vs 512",
+   "consequence": "equivalence criterion is bitwise, not tolerance; ranks identical by construction",
+   "corrects": "my own prior that pad width and thread count could not be bitwise-preserving"
+  },
+  {
+   "id": "F2",
+   "finding": "fast=True is the wrong bundle",
+   "detail": "couples machine-independent bucketing with threads=8, which regresses on 4 cores",
+   "measured_bucketing_only_speedup": 2.07,
+   "measured_threads8_only_speedup": 0.68,
+   "measured_fast_true_speedup": 1.22,
+   "consequence": "ship bucketing; set threads from the deployment host's real core count"
+  },
+  {
+   "id": "F3",
+   "finding": "E-L10 CE 5903.9 ms is interpolated, not measured",
+   "location": "run_exp018b.py:697",
+   "consequence": "all downstream projections inherit its error"
+  },
+  {
+   "id": "F4",
+   "finding": "the two-call CE structure caps bucketing",
+   "location": "run_exp018b.py:391 and :409",
+   "consequence": "94 and 10 are bucketed separately; merging raises the bucketing ceiling"
+  },
+  {
+   "id": "F5",
+   "finding": "batch_size=1 with bucketing was a further 14% here",
+   "measured_speedup": 2.35,
+   "note": "untested by Grok; may be an artifact of this box's cache"
+  }
+ ],
+ "projections_ratios_only": {
+  "stored": {
+   "ce_ms": 5903.9,
+   "total_ms": 6454.8
+  },
+  "D1_bucketing_only": {
+   "ce_ms": 2810,
+   "total_ms": 3360,
+   "machine_dependent": false,
+   "basis": "2.07x measured here; ~2.16x derived from Grok's 5571/3728/1729 triple"
+  },
+  "D1_plus_merged_call": {
+   "ce_ms": 2600,
+   "total_ms": 3150,
+   "machine_dependent": false
+  },
+  "D1_plus_threads_on_true_8_core": {
+   "ce_ms": [
+    1750,
+    1850
+   ],
+   "total_ms": [
+    2300,
+    2400
+   ],
+   "machine_dependent": true,
+   "agrees_with_grok_estimate_ms": 2380
+  },
+  "fast_true_on_4_core_host": {
+   "ce_ms": 4840,
+   "total_ms": 5390,
+   "note": "the trap"
+  }
+ },
+ "recommendation": "D1 alone: CE ~5904 -> ~2810 ms, E-L10 ~6455 -> ~3360 ms (~1.9x), bitwise identical, machine-independent. Treat threads as a separate host-measured decision.",
+ "gate_before_flipping": [
+  "bitwise logit identity on >=104 real E-L10 pairs (bit patterns, not isclose)",
+  "ordered candidate identity after un-permutation",
+  "final top-10 rank identity",
+  "exact metric identity 44/50, 40/50, .8000, .5956, .9200, union 104.1",
+  "determinism in-process and cross-process",
+  "re-run the gate on the deployment host"
+ ]
+}
