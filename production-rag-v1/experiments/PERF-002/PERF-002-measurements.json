@@ -6,7 +6,21 @@
  "source": {
   "branch": "grok/ce-latency-handoff",
   "commit": "7661ac5",
-  "inspected_via": "detached git worktree; no file on that branch modified"
+  "inspected_via": "detached git worktree; no file on that branch modified",
+  "verified_against_full_tree": {
+   "branch": "grok/v2-dev",
+   "commit": "b044b41",
+   "files_byte_identical": [
+    "experiments/EXP-015/scripts/cross_encoder.py",
+    "experiments/EXP-018B/scripts/run_exp018b.py",
+    "experiments/EXP-018B/scripts/local_bm25_batched.py",
+    "experiments/EXP-018B/EXP-018B-results.json",
+    "CE onnx/model.onnx",
+    "CE config.json",
+    "CE tokenizer.json"
+   ],
+   "consequence": "the audit does not rest on the handoff pack being a faithful copy"
+  }
  },
  "constraints_observed": {
   "patch_applied": false,
@@ -243,7 +257,9 @@
    "measured_bucketing_only_speedup": 2.07,
    "measured_threads8_only_speedup": 0.68,
    "measured_fast_true_speedup": 1.22,
-   "consequence": "ship bucketing; set threads from the deployment host's real core count"
+   "consequence": "ship bucketing; set threads from the deployment host's real core count",
+   "correction": "my first pass said no artifact substantiated Grok's 8 cores; ce-latency-microbench.json records cpu_count=8. I looked in EXP-018B-results.json's environment block, which does not record it. The finding survives: threads=8 is validated for that host and regresses 32% on this 4-CPU one, so it stays a per-host setting rather than a portable default.",
+   "grok_host_cpu_count": 8
   },
   {
    "id": "F3",
@@ -262,6 +278,22 @@
    "finding": "batch_size=1 with bucketing was a further 14% here",
    "measured_speedup": 2.35,
    "note": "untested by Grok; may be an artifact of this box's cache"
+  },
+  {
+   "id": "F6",
+   "finding": "seven callers share CrossEncoderReranker() defaults, two already-frozen evals",
+   "visible_only_in": "grok/v2-dev (full tree)",
+   "call_sites": [
+    "run_exp015_development.py:355",
+    "run_exp016_development.py:420",
+    "run_exp018_development.py:231",
+    "run_exp018_v2devset001.py:164",
+    "run_exp018b.py:341",
+    "run_eval_val_002.py:526",
+    "run_eval_holdout_001.py:582"
+   ],
+   "consequence": "changing the class default would silently re-path EVAL-VAL-002 and EVAL-HOLDOUT-001; bitwise identity keeps the numbers but breaks provenance. Enable per call site; do not change the class defaults.",
+   "note": "EVAL-HOLDOUT-001 results were not opened; only the constructor line was read."
   }
  ],
  "projections_ratios_only": {

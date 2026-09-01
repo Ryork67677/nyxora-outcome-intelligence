@@ -3,7 +3,12 @@
 **Read-only. No patch applied. No E-L10 validation, no freeze, no holdout.**
 
 Source audited: `grok/ce-latency-handoff` @ **7661ac5**, inspected in a detached
-worktree. CE artifact sha256 re-verified against the preregistered value:
+worktree, and **re-verified byte-identical against the full tree
+`grok/v2-dev` @ b044b41** — `cross_encoder.py`, `run_exp018b.py`,
+`local_bm25_batched.py`, `EXP-018B-results.json` and all three CE model files
+have identical blob hashes on both branches, so nothing here rests on the
+handoff pack being a faithful copy. CE artifact sha256 re-verified against the
+preregistered value:
 `5d3e70fd…c1d4d4a` ✓. Model confirmed `BertForSequenceClassification`,
 `logits [batch, 1]`, 6 layers / hidden 384 / 12 heads / FFN 1536 — MiniLM-**L6**,
 settling H3 as the handoff states.
@@ -273,14 +278,40 @@ on the deployment host.** This is the single most important residual risk, and
 it is cheap to close.
 
 **G2 — `threads` is machine-dependent and `fast=True` hides that.** Measured
-0.68× on 4 cores, 1.49× on Grok's 8. The `EXP-018B-results.json` `environment`
-block records OS, Python and library versions but **not core count**, so no
-stored artifact substantiates "8-core". Anyone reading `fast=True` as "the fast
-option" will ship a regression on a smaller host.
+0.68× on 4 CPUs here, 1.49× on Grok's box.
+
+> **Correction (added after `grok/v2-dev` landed).** My first pass said no stored
+> artifact substantiated "8-core", because `EXP-018B-results.json`'s
+> `environment` block does not record it. It is recorded — in
+> `experiments/EXP-018B/ce-latency-microbench.json`, as `cpu_count: 8`. Grok's
+> thread choice is substantiated for Grok's machine. I looked in the wrong file.
+
+The finding survives the correction and gets sharper: `threads=8` is *validated
+on the 8-CPU host that produced EXP-018B* and is a 32% regression on this 4-CPU
+one. It remains a per-host setting, not a portable default. Two caveats worth
+carrying: `os.cpu_count()` reports logical CPUs, so an 8-thread / 4-core host
+would also report 8; and anyone reading `fast=True` as "the fast option" will
+ship a regression on a smaller box.
 
 **G3 — D1's benefit depends on the length distribution and will shrink as
 candidates get longer.** 26.2% of pairs are already at 512 and can never be
 bucketed cheaper. If V2 chunking changes, re-measure; the gain is not a constant.
+
+**G3b — seven callers share `CrossEncoderReranker()` defaults, two of them
+already-frozen evaluations.** Visible only once the full tree landed. The full
+inventory of default constructions: `run_exp015_development.py:355`,
+`run_exp016_development.py:420`, `run_exp018_development.py:231`,
+`run_exp018_v2devset001.py:164`, `run_exp018b.py:341`,
+`run_eval_val_002.py:526`, and `run_eval_holdout_001.py:582`.
+
+**Changing the class default would silently re-path EVAL-VAL-002 and
+EVAL-HOLDOUT-001**, whose numbers are already frozen. Because the change is
+bitwise-identical the scores would not move — but the code path that produced a
+frozen result would no longer be the code path a re-run executes, and that is a
+provenance break even when it is not a numerical one. §F1 is therefore a
+**call-site** change and must stay one: `CrossEncoderReranker`'s defaults must
+not change. (EVAL-HOLDOUT-001's results were not opened for this audit; only the
+constructor line was read.)
 
 **G4 — bucketing reorders work but not results.** `_score_bucketed` un-permutes
 via `order`, verified bitwise. The residual risk is a future edit breaking the
