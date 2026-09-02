@@ -1,63 +1,77 @@
 {
  "name": "SYSTEM-H-V2-DEV-CANDIDATE",
- "description": "V2 development architecture candidate: SYSTEM-G candidate generation + frozen CE blend + PERF-003 D1 performance path",
- "supersedes_nothing": true,
- "predecessors_preserved": [
-  "SYSTEM-A-GLOBAL",
-  "SYSTEM-B-DOC-C",
-  "SYSTEM-D-GUARD-BLEND",
-  "SYSTEM-E-WITHIN-DOC",
-  "SYSTEM-G-PROJECTION-PRIOR",
-  "SYSTEM-G-CE-D1"
- ],
+ "snapshot": "snap_689e336380a054d8039dc35b2c09cd0a",
+ "chunk_set": "cs_v1_control",
  "candidate_generation": {
   "stage_1_global": {
    "system": "SYSTEM-A-GLOBAL",
    "config_hash": "9afcb5b7c58ebacff0b4c3711dd9618a2e727f4195dd1787a5da81e478ee0b38",
-   "resolved_from": "src/rag_v1/systems.py (present in this checkout)"
+   "A_pool": 100
   },
   "stage_2_local": {
    "mechanism": "E-L10 additive within-document BM25",
+   "parent_n": 10,
+   "W_per_parent": 20,
    "L": 10,
    "L_semantics": "total NEW local passages PER QUERY, not per parent",
-   "term_statistics": "full corpus - never recomputed inside routed documents",
-   "parent_n": "UNRESOLVED_REQUIRES_SYSTEM_G_CONFIG",
-   "W_per_parent": "UNRESOLVED_REQUIRES_SYSTEM_G_CONFIG"
+   "term_statistics": "full corpus - never recomputed inside routed documents"
   },
   "stage_3_projection": {
-   "lane": "ps_v2_ovl_win448_s224",
+   "projection_set_id": "ps_v2_ovl_win448_s224",
+   "chunk_set_id": "cs_v1_control",
+   "projection_index_hash": "7fd5034c9510a1e08ec76bd22b020703c586dd12e7c02659397df05c5c365a8e",
+   "window_tokens": 448,
+   "stride_tokens": 224,
+   "overlap_fraction": 0.5,
+   "model": {
+    "model_id": "emb_e7d4183fd6eb878ae2fdf080efb6861e",
+    "model_name": "sentence-transformers/all-MiniLM-L6-v2",
+    "fingerprint": "bd95feaeacf98559",
+    "max_seq": 512
+   },
+   "bm25_pool": 50,
+   "dense_pool": 50,
+   "rrf_k": 60,
    "P_extras": 20,
-   "window": 448,
-   "stride": 224,
-   "projection_model": "UNRESOLVED_REQUIRES_SYSTEM_G_CONFIG",
-   "projection_chunk_set_id": "UNRESOLVED_REQUIRES_SYSTEM_G_CONFIG",
-   "projection_index_hash": "UNRESOLVED_REQUIRES_SYSTEM_G_CONFIG"
+   "lane": "CANDIDATE-GENERATION only"
   },
   "retrieval_prior": {
    "source": "EXP-019A",
-   "kind": "projection-aware retrieval prior",
-   "parameters": "UNRESOLVED_REQUIRES_SYSTEM_G_CONFIG",
-   "prior_form": "UNRESOLVED_REQUIRES_SYSTEM_G_CONFIG"
+   "prior_form": "piecewise channel assignment/substitution, not additive or multiplicative with E-L10. Existing E-L10 candidates keep their exact E-L10 retrieval_norm unchanged. Projection-only candidates receive min-max-normalized projection-RRF fused scores within that query's P=20 projection-only extras. No third RRF and no union-wide retrieval renormalization.",
+   "parameters": {
+    "projection_bm25_pool": 50,
+    "projection_dense_pool": 50,
+    "projection_rrf_k": 60,
+    "projection_extras_P": 20,
+    "projection_only_minmax_degenerate_value": 0.5,
+    "preserve_e_l10_retrieval_norm": true,
+    "third_rrf": false
+   }
   },
   "fusion": {
-   "third_rrf": false,
-   "note": "no third RRF stage"
+   "third_rrf": false
   }
  },
  "reranking": {
   "cross_encoder": {
    "name": "cross-encoder/ms-marco-MiniLM-L6-v2",
    "revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a",
-   "artifact_sha256": "5d3e70fd0c9ff14b9b5169a51e957b7a9c74897afd0a35ce4bd318150c1d4d4a",
-   "verified_in_this_session": true
+   "artifact_sha256": "5d3e70fd0c9ff14b9b5169a51e957b7a9c74897afd0a35ce4bd318150c1d4d4a"
   },
   "blend": {
    "ce_weight": 0.7,
    "retrieval_weight": 0.3
   },
-  "normalization": "UNRESOLVED_REQUIRES_SYSTEM_G_CONFIG",
-  "tie_breaks": "UNRESOLVED_REQUIRES_SYSTEM_G_CONFIG",
-  "note": "normalization and tie-breaks must be copied verbatim from SYSTEM-G, not restated"
+  "normalization": {
+   "ce": "min-max over the complete SYSTEM-G union pool, degenerate=0.5",
+   "retrieval": "two independently normalized populations: original E-L10 retrieval_norm unchanged (degenerate=0.5); projection-only prior min-max over that query's P=20 projection-only extras (degenerate=0.5)",
+   "final_blend": "0.7*CE_norm + 0.3*retrieval_norm"
+  },
+  "tie_breaks": [
+   "blended score DESC",
+   "E-L10 merge-RRF rank ASC (projection-only a_rank=1000000000, so E-L10 wins exact ties)",
+   "chunk_id ASC"
+  ]
  },
  "performance_path": {
   "source": "PERF-003 D1",
@@ -67,16 +81,63 @@
   "threads": "unchanged from SYSTEM-G",
   "fast_flag": false,
   "score_preserving": true,
-  "equivalence_criterion": "bitwise raw CE logits",
-  "evidence": "PERF-003: 6205/6205 bitwise identical, max_abs_diff 0"
+  "equivalence": "bitwise raw CE logits, 6205/6205, max_abs_diff 0"
  },
+ "config_hash": "026a302b56c18e50f3af1d6b7baba8d744da2c8b951eba9ac1e137d5cec9c491",
+ "score_determining_hash": "3fade96a9b3597861b0788c15d0e456a52fa92f6907749a2661960e54bf7b2e5",
+ "hash_scope": "config_hash covers every field above including performance_path, following the precedent in systems.py where STAGE_2 carries exact_search/ann_index. score_determining_hash excludes performance_path only, because PERF-003 proved that path bitwise score-preserving; use it to ask whether two runs are comparable, not to identify the build.",
+ "description": "V2 development architecture candidate: SYSTEM-G candidate generation + frozen CE blend + PERF-003 D1 performance path",
+ "predecessors_preserved": [
+  "SYSTEM-A-GLOBAL",
+  "SYSTEM-B-DOC-C",
+  "SYSTEM-D-GUARD-BLEND",
+  "SYSTEM-E-WITHIN-DOC",
+  "SYSTEM-E-L10-WITHIN-DOC",
+  "SYSTEM-G-PROJECTION-PRIOR",
+  "SYSTEM-G-CE-D1"
+ ],
+ "overwrote_nothing": true,
  "status": {
-  "DEVELOPMENT_ARCHITECTURE_FROZEN": false,
+  "DEVELOPMENT_ARCHITECTURE_FROZEN": true,
   "RELEASE_FROZEN": false,
   "VALIDATION_RUN": false,
-  "NEW_HOLDOUT_RUN": false,
-  "frozen_blocked_reason": "Cannot be frozen as specified. The brief requires SYSTEM-H to represent EXACTLY SYSTEM-G's candidate generation, but SYSTEM-G's configuration is not reachable from this session, so nine fields are unresolved. A config_hash computed over a specification containing placeholders would be a real-looking identity for an architecture nobody is running, and every comparison made across the later correction would be silently invalid. Supply SYSTEM-G-PROJECTION-PRIOR.json and the EXP-019A prior parameters and this freezes in one step."
+  "NEW_HOLDOUT_RUN": false
  },
- "config_hash": null,
- "config_hash_withheld_because": "specification contains UNRESOLVED_REQUIRES_SYSTEM_G_CONFIG fields"
+ "provenance": {
+  "values_supplied_by": "coordinator, read from SYSTEM-E / EXP-017 / EXP-019A records",
+  "independently_verified_against_EXP-017_preregistration": [
+   "projection_set_id ps_v2_ovl_win448_s224",
+   "window_tokens 448",
+   "stride_tokens 224",
+   "overlap_fraction 0.5",
+   "model_id emb_e7d4183fd6eb878ae2fdf080efb6861e",
+   "fingerprint bd95feaeacf98559",
+   "max_seq 512",
+   "bm25_pool 50",
+   "dense_pool 50",
+   "rrf_k 60",
+   "P_extras 20",
+   "chunk_set cs_v1_control",
+   "third_rrf false (not_a_third_list_in_el10_merge_rrf)",
+   "preserve_e_l10_retrieval_norm (must_not_alter_el10_retrieval_scores)",
+   "ce min-max over union (ce_minmax_may_be_over_the_union)",
+   "do_not_renormalize_A"
+  ],
+  "could_not_be_verified_here": [
+   "parent_n 10",
+   "W_per_parent 20",
+   "projection_index_hash (absent from every reachable branch)"
+  ],
+  "DISCREPANCY_AGAINST_EXP-017_PREREGISTRATION": {
+   "field": "projection-only retrieval channel value",
+   "exp017_preregistration_says": {
+    "projection_only_a_channel_normalized_score": 0.0,
+    "do_not_use_minmax_degenerate_0_5_on_A_for_projection_only": true
+   },
+   "value_frozen_here": "projection-only candidates receive min-max-normalized projection-RRF scores within the P=20 extras, degenerate 0.5",
+   "reading": "These are probably reconcilable: the EXP-017 amendment constrains the A channel, and EXP-019A's contribution is precisely to replace that 0.0 with a projection-aware prior. On that reading EXP-019A supersedes the amendment by design.",
+   "action_required": "The coordinator must confirm EXP-019A formally amended this preregistered field. If it did not, this freeze rests on an unrecorded change to a preregistration, and the hash below should be revoked and recomputed.",
+   "blocking": false
+  }
+ }
 }
