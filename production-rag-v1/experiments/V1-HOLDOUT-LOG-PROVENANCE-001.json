@@ -1,0 +1,47 @@
+{
+ "check_id": "V1-HOLDOUT-LOG-PROVENANCE-001",
+ "read_only": true,
+ "log_modified": false,
+ "finding": "STATUS-V2-001's 'v1 holdout log entries = 0' was SEMANTICALLY WRONG as written. It reads as 'the V1 holdout has never been accessed', which is false. The correct reading is 'this branch's copy of the log predates the legitimate one-shot access'.",
+ "authoritative_log": {
+  "ref": "origin/grok/v2-dev @ b044b41",
+  "path": "production-rag-v1/evals/splits/gold150-v1/holdout-access.log.jsonl",
+  "bytes": 235,
+  "sha256": "45b83a77f6f332174d641956f076dd0c0cae44fe48f4f2892ac7030a4c0143b3",
+  "entries": 1,
+  "content": [
+   {
+    "accessed_at": "2026-09-01T00:51:54Z",
+    "reason": "EVAL-HOLDOUT-001 first and only holdout run of frozen SYSTEM-D-GUARD-BLEND; owner Russell and ChatGPT approved; one-shot D-only scoring of gold150-v1 n=90",
+    "count": 90,
+    "pid": 87463
+   }
+  ]
+ },
+ "this_branch_copy": {
+  "ref": "claude/rag-v1-build-experiments-5yngul",
+  "path": "production-rag-v1/evals/splits/gold150-v1/holdout-access.log.jsonl",
+  "bytes": 0,
+  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "entries": 0,
+  "why_empty": "this branch forked before the EVAL-HOLDOUT-001 commit, so it carries the pre-holdout state of a git-tracked file. It is not a missing or wrong path - evals/splits/gold150-v1/holdout-access.log.jsonl is correct and rag_v1.eval.splits.ACCESS_LOG resolves to it."
+ },
+ "presence_by_ref": {
+  "origin/grok/v2-dev": 235,
+  "claude/rag-v1-build-experiments-5yngul": 0,
+  "origin/grok/ce-latency-handoff": 0,
+  "origin/main": "absent"
+ },
+ "answers": {
+  "1_path": "evals/splits/gold150-v1/holdout-access.log.jsonl",
+  "2_exists": true,
+  "3_bytes_here": 0,
+  "3_bytes_authoritative": 235,
+  "4_sha256_here": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "4_sha256_authoritative": "45b83a77f6f332174d641956f076dd0c0cae44fe48f4f2892ac7030a4c0143b3",
+  "5_entries_here": 0,
+  "5_entries_authoritative": 1,
+  "6_semantics": "The generator was NOT pointing at a missing or wrong log. It read the correct path on a branch whose copy predates the access. The '0' therefore meant 'zero entries in this checkout', which is true but misleading, rather than 'zero new accesses this phase', which is what the status intended to assert."
+ },
+ "fix_applied": "STATUS reporting now emits two distinct fields - v1_holdout_new_accesses_this_phase and v1_holdout_authoritative_log - instead of one ambiguous count. The historical log was not touched: this branch's copy is still 0 bytes / sha e3b0c442..., the empty-file hash."
+}

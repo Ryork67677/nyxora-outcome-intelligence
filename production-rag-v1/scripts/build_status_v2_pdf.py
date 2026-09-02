@@ -121,7 +121,7 @@ def build_html(d: dict) -> str:
                       for k, v in d["artifact_hashes"].items()])
     gap_rows = rows([(f"<code>{esc(m)}</code>", "<span class='hot'>absent from every ref</span>",
                       "<code>verified_here = false</code>") for m in gp["missing"]])
-    con_rows = rows([(k.replace("_", " "), f"<strong>{v}</strong>" if not isinstance(v, bool)
+    con_rows = rows([(k.replace("_", " "), f"<strong>{esc(v)}</strong>" if not isinstance(v, bool)
                       else ("<span class='hot'>true</span>" if v else "false"))
                      for k, v in d["constraints"].items()], ("", "num"))
 
@@ -290,8 +290,15 @@ def main() -> int:
     for k, v in d["constraints"].items():
         if isinstance(v, bool) and v:
             raise SystemExit(f"refusing to build: constraint {k} is true")
-    if d["constraints"]["v1_holdout_log_entries"] != 0:
-        raise SystemExit("refusing to build: the V1 holdout access log is no longer empty")
+    # The V1 holdout log is a two-part fact and one number cannot carry it: this
+    # branch forked before EVAL-HOLDOUT-001, so its copy is empty while the
+    # authoritative log holds the single legitimate access. Report both.
+    if d["constraints"].get("v1_holdout_new_accesses_this_phase") != 0:
+        raise SystemExit("refusing to build: a new V1 holdout access was recorded this phase")
+    if d["constraints"].get("v1_holdout_log_modified_here") is not False:
+        raise SystemExit("refusing to build: the historical V1 holdout log was modified")
+    if "v1_holdout_log_entries" in d["constraints"]:
+        raise SystemExit("refusing to build: the ambiguous v1_holdout_log_entries field is back")
 
     # 2. SYSTEM-H must still be frozen, and only as a development architecture.
     st = d["system_h"]["status"]

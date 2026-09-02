@@ -88,5 +88,19 @@
   "reasoning_type": "procedural lookup with a device-dependent caveat",
   "ambiguity_notes": "None material; the question is provider-identifiable from 'computer use'.",
   "verifier_notes": "Answers the real intent (does screen size matter) rather than the literal phrasing (recommended resolution). The span supports the rescaling requirement; it does not state a recommended pixel size, so the answer does not claim one."
+ },
+ {
+  "case": "C12",
+  "question": "max_tokens deprecated in favor of max_completion_tokens?",
+  "support_status": "REJECT",
+  "rejection_reason": "UNSUPPORTED - the identifier max_completion_tokens does not occur anywhere in the frozen corpus (0 occurrences across all 202 documents, case-sensitive and case-insensitive). The question asks whether one parameter deprecates another; the corpus contains no text about the second parameter at all, so it cannot answer it either way.",
+  "provider": null,
+  "version_id": null,
+  "evidence": [],
+  "atomic_claims": [],
+  "critical_strings": [],
+  "evidence_shape": null,
+  "ambiguity_notes": "Not ambiguous - simply outside the frozen corpus's coverage.",
+  "verifier_notes": "Deliberately NOT rewritten. The tempting save is to reframe it as an Anthropic max_tokens question, which the corpus does cover - but that changes the question's meaning to fit the corpus, which is exactly the source-anchoring this benchmark exists to remove. Rejected and left for replacement by an independent question. This is the first REJECT and it came from the identifier sweep, not from the Stage-2 triage, which had rated C12 as answerable on token coverage."
  }
 ]

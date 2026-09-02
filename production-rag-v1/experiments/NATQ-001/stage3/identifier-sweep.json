@@ -1,0 +1,145 @@
+[
+ {
+  "case": "A02",
+  "q": "tool_choice required vs any \u2014 whats the difference",
+  "identifiers": [
+   "tool_choice"
+  ],
+  "absent": []
+ },
+ {
+  "case": "A06",
+  "q": "migrating from functions/function_call to tools/tool_choice, what actually changes in the request body",
+  "identifiers": [
+   "function_call",
+   "tool_choice"
+  ],
+  "absent": []
+ },
+ {
+  "case": "A12",
+  "q": "what do i send back after a tool_use block",
+  "identifiers": [
+   "tool_use"
+  ],
+  "absent": []
+ },
+ {
+  "case": "B09",
+  "q": "overloaded_error keeps happening at peak hours. is that a 429 or a 529",
+  "identifiers": [
+   "overloaded_error"
+  ],
+  "absent": []
+ },
+ {
+  "case": "B19",
+  "q": "content_block_delta with input_json_delta \u2014 how do i assemble tool arguments from that",
+  "identifiers": [
+   "content_block_delta",
+   "input_json_delta"
+  ],
+  "absent": []
+ },
+ {
+  "case": "B26",
+  "q": "400 invalid_request_error but the message doesnt say which field. how do i find it",
+  "identifiers": [
+   "invalid_request_error"
+  ],
+  "absent": []
+ },
+ {
+  "case": "C02",
+  "q": "what happens if I set both temperature and top_p at the same time",
+  "identifiers": [
+   "top_p"
+  ],
+  "absent": []
+ },
+ {
+  "case": "C03",
+  "q": "my output just stops mid sentence, is that max_tokens or something else",
+  "identifiers": [
+   "max_tokens"
+  ],
+  "absent": []
+ },
+ {
+  "case": "C11",
+  "q": "max_tokens vs context window \u2014 are these the same thing",
+  "identifiers": [
+   "max_tokens"
+  ],
+  "absent": []
+ },
+ {
+  "case": "C12",
+  "q": "max_tokens deprecated in favor of max_completion_tokens?",
+  "identifiers": [
+   "max_tokens",
+   "max_completion_tokens"
+  ],
+  "absent": [
+   "max_completion_tokens"
+  ]
+ },
+ {
+  "case": "D10",
+  "q": "Runner.run vs Runner.run_sync difference",
+  "identifiers": [
+   "Runner.run",
+   "Runner.run_sync"
+  ],
+  "absent": []
+ },
+ {
+  "case": "D18",
+  "q": "i set OPENAI_ORG_ID but its still billing the wrong org",
+  "identifiers": [
+   "OPENAI_ORG_ID"
+  ],
+  "absent": []
+ },
+ {
+  "case": "D28",
+  "q": "max_turns exceeded \u2014 what does that actually count",
+  "identifiers": [
+   "max_turns"
+  ],
+  "absent": []
+ },
+ {
+  "case": "E05",
+  "q": "cache_creation_input_tokens vs cache_read_input_tokens which one am i billed full price for",
+  "identifiers": [
+   "cache_creation_input_tokens",
+   "cache_read_input_tokens"
+  ],
+  "absent": []
+ },
+ {
+  "case": "E15",
+  "q": "count_tokens endpoint \u2014 does it include the tools i define in the request",
+  "identifiers": [
+   "count_tokens"
+  ],
+  "absent": []
+ },
+ {
+  "case": "E28",
+  "q": "batch job stuck in in_progress for 20 hours, what do i do",
+  "identifiers": [
+   "in_progress"
+  ],
+  "absent": []
+ },
+ {
+  "case": "E30",
+  "q": "trying to cache tool definitions + a long system prompt, where exactly do i put the cache_control marker",
+  "identifiers": [
+   "cache_control"
+  ],
+  "absent": []
+ }
+]
