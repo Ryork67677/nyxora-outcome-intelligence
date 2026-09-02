@@ -105,6 +105,7 @@ def rows(items, classes=()) -> str:
 
 def build_html(d: dict) -> str:
     sh, pf, gp, nq = d["system_h"], d["perf003"], d["gap"], d["natq"]
+    lg = d["v1_holdout_log"]
     tri, st = nq["triage"], sh["status"]
 
     status_rows = rows([
@@ -115,8 +116,11 @@ def build_html(d: dict) -> str:
     pkt_rows = rows([
         (f"<code>{esc(p['case'])}</code>", ticks(p["q"]),
          f"{esc(p['provider'])} &middot; {esc(p['doc'])}",
-         f"{p['spans']}", f"{p['claims']}", "<strong>PASS</strong>")
+         f"{p['spans']}", f"{p['claims']}",
+         "<strong>PASS</strong>" if p["verdict"] == "PASS"
+         else "<span class='hot'><strong>REJECT</strong></span>")
         for p in nq["packets"]], ("", "", "dim", "num", "num", "num"))
+    sw = nq["sweep"]
     hash_rows = rows([(ticks(k), f"<code>{v[:32]}&hellip;</code>")
                       for k, v in d["artifact_hashes"].items()])
     gap_rows = rows([(f"<code>{esc(m)}</code>", "<span class='hot'>absent from every ref</span>",
@@ -237,6 +241,8 @@ conservatively: coverage means a document holds the vocabulary, not that it
 answers the question.</p>
 
 <h3>Stage 3 &mdash; in progress, {nq['stage3_done']} of {nq['raw']}</h3>
+<p><strong>{nq['stage3_pass']} PASS &middot; {nq['stage3_fix']} FIX_REQUIRED &middot;
+{nq['stage3_reject']} REJECT</strong>, {nq['stage3_remaining']} not yet verified.</p>
 <table><thead><tr><th>case</th><th>question</th><th>source</th>
 <th class="num">spans</th><th class="num">claims</th><th class="num">verdict</th>
 </tr></thead><tbody>{pkt_rows}</tbody></table>
@@ -263,6 +269,52 @@ answers the question.</p>
 probing where the locator misses, reading, exact offsets, and claims scoped to
 what the span actually supports. Stage 4 &mdash; the 40/60 cluster-safe split,
 the hashes, the NATQ holdout lock &mdash; has not started.</p>
+
+<div class="callout warn">
+  <div class="label">First REJECT &mdash; and it came from reading, not from triage</div>
+  <p>An identifier sweep over all {nq['raw']} questions extracted every snake_case and
+  dotted token and checked it against the full corpus text.
+  <strong>{sw['questions_with_identifiers']} questions name identifiers; exactly
+  {sw['questions_naming_absent_identifiers']} names something absent.</strong></p>
+  <p><code>C12</code> asks whether <code>max_tokens</code> is deprecated in favour of
+  <code>max_completion_tokens</code>, and that second identifier occurs <strong>zero
+  times across all 202 documents</strong>. Rejected as UNSUPPORTED.</p>
+  <p><strong>It was deliberately not rewritten.</strong> The tempting save is to reframe
+  it as an Anthropic <code>max_tokens</code> question, which the corpus does cover
+  &mdash; but that changes the question's meaning to fit the corpus, which is the
+  source-anchoring this benchmark exists to remove. Note that Stage-2 triage had rated
+  C12 answerable on token coverage; the rejection came from reading, which is the
+  argument for Stage 3 existing at all.</p>
+</div>
+
+<h2>5 &mdash; V1 holdout log: a reporting defect, corrected</h2>
+<p>The previous status published <code>v1 holdout log entries = 0</code>. That was
+<strong>semantically wrong</strong> and the coordinator was right to question it.
+Read-only verification; the historical log was not touched.</p>
+<table><thead><tr><th>copy</th><th class="num">bytes</th><th>sha256</th>
+<th class="num">entries</th></tr></thead><tbody>
+<tr><td>this branch</td><td class="num">{lg['this_branch']['bytes']}</td>
+<td><code>{esc(lg['this_branch']['sha256'][:32])}&hellip;</code></td>
+<td class="num">{lg['this_branch']['entries']}</td></tr>
+<tr><td><strong>authoritative</strong> &mdash; {esc(lg['authoritative']['ref'])}</td>
+<td class="num"><strong>{lg['authoritative']['bytes']}</strong></td>
+<td><code>{esc(lg['authoritative']['sha256'][:32])}&hellip;</code></td>
+<td class="num"><strong>{lg['authoritative']['entries']}</strong></td></tr>
+</tbody></table>
+<p>The generator was <strong>not</strong> pointing at a missing or wrong path. It read
+the correct path on a branch that forked before the EVAL-HOLDOUT-001 commit, so it
+carries the pre-holdout state of a git-tracked file. The <code>0</code> was true of this
+checkout and misleading as published: it reads as &ldquo;the V1 holdout has never been
+accessed&rdquo;, when the single legitimate one-shot access is on record &mdash;
+<code>{esc(lg['authoritative']['access']['accessed_at'])}</code>, count
+{lg['authoritative']['access']['count']}.</p>
+<div class="callout win">
+  <div class="label">Fixed in the reporting only</div>
+  <p>The one ambiguous count is replaced by three explicit fields &mdash; new accesses
+  this phase, the authoritative log state, and whether this branch modified it &mdash;
+  and a build gate now refuses to publish if the ambiguous field ever returns. This
+  branch's copy is still 0 bytes at the empty-file hash; nothing wrote to it.</p>
+</div>
 
 <h2>Artifact hashes</h2>
 <table><thead><tr><th>artifact</th><th>sha256</th></tr></thead>
@@ -327,6 +379,11 @@ def main() -> int:
     # 6. The page must keep the confidence levels apart, not average them.
     if "recorded, not reproduced" not in flat or "in progress" not in flat:
         raise SystemExit("refusing to build: the page flattens the confidence levels")
+    # 7. The corrected holdout-log semantics must survive; a bare "0" must not return.
+    if d["v1_holdout_log"]["log_modified"] is not False:
+        raise SystemExit("refusing to build: the historical V1 holdout log was modified")
+    if str(d["v1_holdout_log"]["authoritative"]["bytes"]) not in flat:
+        raise SystemExit("refusing to build: the authoritative holdout log state is not shown")
 
     chrome = next((c for c in CHROME_CANDIDATES if Path(c).exists()), None)
     if chrome is None:

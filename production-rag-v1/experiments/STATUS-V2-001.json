@@ -1,7 +1,7 @@
 {
  "report_id": "STATUS-V2-001",
  "kind": "phase_status",
- "head": "1e14e9e",
+ "head": "14c448c",
  "system_h": {
   "config_hash": "026a302b56c18e50f3af1d6b7baba8d744da2c8b951eba9ac1e137d5cec9c491",
   "score_determining_hash": "3fade96a9b3597861b0788c15d0e456a52fa92f6907749a2661960e54bf7b2e5",
@@ -113,60 +113,75 @@
    "author_saw_retrieval_results": false,
    "author_saw_v1_holdout": false
   },
-  "stage3_done": 3,
-  "stage3_remaining": 147,
+  "stage3_done": 4,
+  "stage3_remaining": 146,
   "packets": [
    {
     "case": "A09",
     "q": "does the model ever call two tools in one response",
     "provider": "anthropic",
     "doc": "Messages",
-    "shape": "single_span_api_reference",
     "spans": 1,
     "claims": 2,
-    "crit": [
-     "disable_parallel_tool_use",
-     "at most one tool use"
-    ],
-    "note": "This exact block repeats at several offsets in the Messages document (35447, 128521, 482189, 624212...). The first canonical occurrence is anchored. Note the corpus distinguishes 'at most one' (auto) from 'exactly one' (any/tool) 130 chars later - the answer states both rather than flattening them. "
+    "verdict": "PASS",
+    "reason": ""
    },
    {
     "case": "A04",
     "q": "what happens if my json schema has additionalProperties true with strict mode on",
     "provider": "anthropic",
     "doc": "Structured outputs",
-    "shape": "single_span_constraint_list",
     "spans": 1,
     "claims": 3,
-    "crit": [
-     "additionalProperties",
-     "must be set to `false` for objects"
-    ],
-    "note": "The corpus states the requirement but does not state the error surface produced when it is violated. The answer is scoped to what the span supports and does not assert an error code."
+    "verdict": "PASS",
+    "reason": ""
    },
    {
     "case": "A05",
     "q": "screenshot resolution for computer use \u2014 does it matter what size my screen is",
     "provider": "anthropic",
     "doc": "Coordinates and bounding boxes",
-    "shape": "single_span_procedure",
     "spans": 1,
     "claims": 4,
-    "crit": [
-     "per-axis linear rescale",
-     "display scale factor"
-    ],
-    "note": "Answers the real intent (does screen size matter) rather than the literal phrasing (recommended resolution). The span supports the rescaling requirement; it does not state a recommended pixel size, so the answer does not claim one."
+    "verdict": "PASS",
+    "reason": ""
+   },
+   {
+    "case": "C12",
+    "q": "max_tokens deprecated in favor of max_completion_tokens?",
+    "provider": "\u2014",
+    "doc": "\u2014",
+    "spans": 0,
+    "claims": 0,
+    "verdict": "REJECT",
+    "reason": "UNSUPPORTED - the identifier max_completion_tokens does not occur anywhere in the frozen corpus (0 occurrences across all 202 documents, case-sensitive and case-insensitive). The question asks whether one parameter deprecates another; the corpus contains no text about the second parameter at all, so it cannot answer it either way."
    }
-  ]
+  ],
+  "stage3_pass": 3,
+  "stage3_fix": 0,
+  "stage3_reject": 1,
+  "sweep": {
+   "questions_with_identifiers": 17,
+   "questions_naming_absent_identifiers": 1,
+   "absent": [
+    {
+     "case": "C12",
+     "tokens": [
+      "max_completion_tokens"
+     ]
+    }
+   ]
+  }
  },
  "artifact_hashes": {
   "SYSTEM-H json": "ecbc35e730cc70cd2bb4c04452290b4fab3d3ac737f79fde85e9e21cd3ed1d55",
   "PERF-003 closure": "d1048c3005235c1baeaf9764e386868cd25907ec2a14bc8429a780754050aa1d",
   "PROVENANCE-GAP-001": "a561c887f21928c52329a5d274763b8f863ad9d94337f8aaeec9e69f433e8cc6",
   "NATQ manifest": "b167854268b334d3c601bcea5a82123b9c80895509544052a2f7dec88f8dd671",
-  "NATQ stage3 packets": "aba8473ec08ed796bc7410dea84ad42cc7d8d65a37e588f49b629cd7599acb8b",
-  "natq_evidence.py": "86502d53f3e70fe1662b4a6ed27dbd6cc350c6f4ebd6a6c2ec1039f4ae602181"
+  "NATQ stage3 packets": "3a8a2934d5619ba00a958a2d316c638b6ec9ebe2fa24710d81d472fbf5db8c4d",
+  "natq_evidence.py": "86502d53f3e70fe1662b4a6ed27dbd6cc350c6f4ebd6a6c2ec1039f4ae602181",
+  "NATQ identifier sweep": "1971ccfb32f43569c78872aebda6d2ad0132d6f12cda0275e6cb2ccdd55e2ff6",
+  "V1 holdout log provenance": "14df841d2515a489724bb2cd97a5d0e59ff77e990b24e3e67e1f814e5af34f14"
  },
  "constraints": {
   "system_h_scored": false,
@@ -178,5 +193,28 @@
   "v1_holdout_new_accesses_this_phase": 0,
   "v1_holdout_authoritative_log": "235 bytes / 1 entry on grok/v2-dev; this branch predates it",
   "v1_holdout_log_modified_here": false
+ },
+ "v1_holdout_log": {
+  "path": "evals/splits/gold150-v1/holdout-access.log.jsonl",
+  "this_branch": {
+   "bytes": 0,
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "entries": 0
+  },
+  "authoritative": {
+   "ref": "origin/grok/v2-dev @ b044b41",
+   "bytes": 235,
+   "sha256": "45b83a77f6f332174d641956f076dd0c0cae44fe48f4f2892ac7030a4c0143b3",
+   "entries": 1,
+   "access": {
+    "accessed_at": "2026-09-01T00:51:54Z",
+    "reason": "EVAL-HOLDOUT-001 first and only holdout run of frozen SYSTEM-D-GUARD-BLEND; owner Russell and ChatGPT approved; one-shot D-only scoring of gold150-v1 n=90",
+    "count": 90,
+    "pid": 87463
+   }
+  },
+  "semantics": "The generator was NOT pointing at a missing or wrong log. It read the correct path on a branch whose copy predates the access. The '0' therefore meant 'zero entries in this checkout', which is true but misleading, rather than 'zero new accesses this phase', which is what the status intended to assert.",
+  "fix": "STATUS reporting now emits two distinct fields - v1_holdout_new_accesses_this_phase and v1_holdout_authoritative_log - instead of one ambiguous count. The historical log was not touched: this branch's copy is still 0 bytes / sha e3b0c442..., the empty-file hash.",
+  "log_modified": false
  }
 }
