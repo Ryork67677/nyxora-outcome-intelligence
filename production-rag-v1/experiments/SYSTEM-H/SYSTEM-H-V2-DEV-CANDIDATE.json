@@ -128,16 +128,32 @@
    "W_per_parent 20",
    "projection_index_hash (absent from every reachable branch)"
   ],
-  "DISCREPANCY_AGAINST_EXP-017_PREREGISTRATION": {
-   "field": "projection-only retrieval channel value",
-   "exp017_preregistration_says": {
+  "EXP-017_a_norm_field_RESOLVED": {
+   "status": "RESOLVED - EXP-019A formally supersedes the EXP-017 field",
+   "exp017_preregistered": {
     "projection_only_a_channel_normalized_score": 0.0,
-    "do_not_use_minmax_degenerate_0_5_on_A_for_projection_only": true
+    "do_not_use_minmax_degenerate_0_5_on_A_for_projection_only": true,
+    "now_characterised_as": "historical SYSTEM-F behaviour"
    },
-   "value_frozen_here": "projection-only candidates receive min-max-normalized projection-RRF scores within the P=20 extras, degenerate 0.5",
-   "reading": "These are probably reconcilable: the EXP-017 amendment constrains the A channel, and EXP-019A's contribution is precisely to replace that 0.0 with a projection-aware prior. On that reading EXP-019A supersedes the amendment by design.",
-   "action_required": "The coordinator must confirm EXP-019A formally amended this preregistered field. If it did not, this freeze rests on an unrecorded change to a preregistration, and the hash below should be revoked and recomputed.",
-   "blocking": false
+   "exp019a_supersedes_with": "projection-only members: replace a_norm=0.0 with min-max over that query's P projection-only fused scores; degenerate/constant -> 0.5. E-L10 members keep their existing a_norm exactly. No third RRF, no candidate membership change, blend stays 0.7/0.3.",
+   "exp019a_preregistration_sha256": "f14001eff07b63c7916d7e27567d15ccd1e53b52918ae66f0d24ca37abb54cf3",
+   "exp019a_result_as_reported": {
+    "strict_recall_at_10": "41/50",
+    "vs_exp017": "40/50",
+    "candidate_recall_at_100": "46/50",
+    "span": 0.82,
+    "mrr": 0.6009,
+    "document_recall": 0.9,
+    "regressions": 0,
+    "rank1_destructions": 0
+   },
+   "corroboration": "PERF-003 reconstructed SYSTEM-G under this same minmax(projection_fused) rule and reproduced 46/50, 41/50, .82, .6009, .90 with 6205/6205 CE logits bitwise identical.",
+   "authoritative_system_g_config_hash": "563a7b790564fa1efb96257e988c4b1ccfab45146825d2a366b2fee0ca5d5790",
+   "resolution_source": "coordinator, citing EXP-019A-report.md and PERF-003-report.md",
+   "verified_here": false,
+   "verification_note": "EXP-019A-report.md and PERF-003-report.md are not present on any ref reachable from this session. The resolution is accepted on the coordinator's authority and recorded as such, not independently reproduced.",
+   "effect_on_freeze": "None. The value frozen in this file was ALREADY minmax/0.5, which is the EXP-019A behaviour. Twelve content checks confirm it. config_hash is unchanged because provenance is not part of the hashed configuration; only file_sha256 moves.",
+   "prior_note_replaced": "The coordinator must confirm EXP-019A formally amended this preregistered field. If it did not, this freeze rests on an unrecorded change to a preregistration, and the hash below should be revoked and recomputed."
   }
  }
 }

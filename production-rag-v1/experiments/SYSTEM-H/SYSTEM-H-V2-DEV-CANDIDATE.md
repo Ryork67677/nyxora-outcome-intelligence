@@ -48,32 +48,40 @@ Three could not be verified here and are recorded as supplied: `parent_n = 10`,
 `W_per_parent = 20`, and `projection_index_hash` — which appears on no reachable
 branch.
 
-## One discrepancy the coordinator must resolve
+## The EXP-017 a_norm field — RESOLVED, freeze kept
 
-**Not blocking, and the freeze proceeded — but it must be confirmed.**
+EXP-017's preregistration set projection-only `a_norm = 0.0` with
+`do_not_use_minmax_degenerate_0_5_on_A_for_projection_only: true`. **EXP-019A
+formally superseded that field**; the 0.0 rule is now characterised as historical
+SYSTEM-F behaviour.
 
-EXP-017's preregistration contains this amendment:
+EXP-019A's authorised change: projection-only members get min-max over that
+query's P projection-only fused scores, degenerate/constant → 0.5, while E-L10
+members keep their existing `a_norm` exactly. No third RRF, no membership change,
+blend stays 0.7/0.3. Reported result 41/50 strict R@10 against EXP-017's 40/50,
+candidate R@100 46/50 unchanged, span .82, MRR .6009, doc recall .90, **zero
+regressions and zero rank-1 destructions**. EXP-019A prereg SHA256
+`f14001ef…b54cf3`. PERF-003 then reconstructed SYSTEM-G under the same rule and
+reproduced all five metrics with 6205/6205 CE logits bitwise identical.
 
-```json
-"projection_only_a_channel_normalized_score": 0.0,
-"do_not_use_minmax_degenerate_0_5_on_A_for_projection_only": true
-```
+**Effect on this freeze: none.** The value frozen here was already minmax/0.5 —
+the EXP-019A behaviour, not the EXP-017 one. Twelve content checks confirm it:
 
-The value frozen here is the opposite: projection-only candidates receive
-**min-max-normalized projection-RRF scores within the P=20 extras, degenerate
-0.5**.
+`projection-only norm = min-max over P` · `degenerate = 0.5` ·
+`a_norm is not 0.0` · `E-L10 a_norm unchanged` · `blend 0.7/0.3` ·
+`no third RRF` · `P=20` · `ps_v2_ovl_win448_s224` · `CE D1 dynamic padding` ·
+`batch_size 16` · `threads unchanged` · `fast=False` — **all PASS**, and both
+hashes recompute from the file.
 
-These are probably reconcilable. The EXP-017 amendment constrains the **A
-channel**, and EXP-019A's entire contribution is a *projection-aware retrieval
-prior* — which is precisely the change from "projection-only gets 0.0" to
-"projection-only gets a normalized projection score." On that reading EXP-019A
-supersedes the amendment by design, and the prereg text is simply older.
+`config_hash` is therefore **unchanged at `026a302b…`**. Recording the resolution
+touched only the provenance block, which is not part of the hashed
+configuration, so `file_sha256` moved from `d5199332…` to `ecbc35e7…` while the
+architecture identity did not.
 
-**But I cannot see EXP-019A, so I cannot confirm it.** If EXP-019A did not
-formally amend that preregistered field, this freeze rests on an unrecorded
-change to a preregistration, and `config_hash` above should be revoked and
-recomputed. That is a one-line check for whoever holds the EXP-019A records, and
-it should happen before SYSTEM-H is scored on anything.
+One limitation, stated for the record: `EXP-019A-report.md` and
+`PERF-003-report.md` are not present on any ref reachable from this session. The
+resolution is accepted on the coordinator's authority and recorded as such
+(`verified_here: false`), not independently reproduced.
 
 ## Resolved configuration
 
