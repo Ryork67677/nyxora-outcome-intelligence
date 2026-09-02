@@ -1,0 +1,48 @@
+{
+ "experiment_id": "PERF-003",
+ "status": "PERF-003_SUPPORTED",
+ "recorded_by": "Claude",
+ "provenance": "VALUES_AS_REPORTED_BY_COORDINATOR",
+ "verified_here": false,
+ "verification_note": "PERF-003, SYSTEM-G and EXP-019A do not exist on any branch reachable from this session (checked grok/v2-dev @ b044b41, grok/ce-latency-handoff @ 7661ac5, main). Neither given config hash appears anywhere in those trees. These values are therefore RECORDED AS REPORTED and were not independently reproduced.",
+ "preregistration_sha256": "dc01713eafc56347a9eba0711d0947f13fccbc8ba784dfa034e22280ec23c880",
+ "baseline": {
+  "system": "SYSTEM-G-PROJECTION-PRIOR",
+  "config_hash": "563a7b790564fa1efb96257e988c4b1ccfab45146825d2a366b2fee0ca5d5790"
+ },
+ "artifact": {
+  "system": "SYSTEM-G-CE-D1",
+  "config_hash": "6d108568f3131bad87d8617f5c2fb88ea14428e397d59ff54ff8e11cc4647b7d",
+  "file_sha256": "cf0c985c5f7738e7fc5422039fd6940621d8dcd8f91de41abe3784ac53a6a7ec"
+ },
+ "equivalence": {
+  "raw_ce_logits_compared": 6205,
+  "bitwise_identical": 6205,
+  "max_abs_diff": 0,
+  "criterion": "bitwise, not tolerance"
+ },
+ "metrics_preserved": {
+  "candidate_recall_at_100": "46/50",
+  "strict_recall_at_10": "41/50",
+  "span_recall_at_10": 0.82,
+  "mrr": 0.6009,
+  "document_recall": 0.9
+ },
+ "timing_same_host_only": {
+  "old_ce_mean_ms": 6791.2,
+  "d1_ce_mean_ms": 2117.6,
+  "speedup": 3.207,
+  "old_system_g_total_estimate_ms": 7802.6,
+  "d1_system_g_total_estimate_ms": 3129.0,
+  "WARNING": "same-host only; NOT valid for cross-host comparison"
+ },
+ "host": {
+  "cpu": "Intel Xeon",
+  "cores": 8,
+  "onnxruntime": "1.29.0",
+  "provider": "CPUExecutionProvider",
+  "intra_op": 4,
+  "inter_op": 1
+ },
+ "relationship_to_PERF_002": "PERF-002 recommended length-bucketed pad=batch with threads left as a separate per-host decision, and measured 2.07x for that lever alone on a 4-CPU host. PERF-003 reports 3.207x on an 8-CPU host. Both are consistent with bucketing being the machine-independent win."
+}

@@ -1,0 +1,62 @@
+{
+ "benchmark_id": "NATQ-001",
+ "stage": "1_of_4_AUTHORED_AND_TRIAGED",
+ "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a",
+ "chunk_set": "cs_v1_control",
+ "raw_authored": 150,
+ "target_verified": 100,
+ "authoring": {
+  "method": "five isolated cold-context agents, domain prompts only",
+  "tool_uses_per_agent": 0,
+  "author_saw_corpus": false,
+  "author_saw_prior_questions": false,
+  "author_saw_retrieval_results": false,
+  "author_saw_v1_holdout": false
+ },
+ "triage": {
+  "STRONG": 134,
+  "PROBABLE": 13,
+  "REVIEW": 3,
+  "LIKELY_UNSUPPORTED": 0,
+  "method": "literal per-document token-coverage inspection",
+  "is_retrieval": false,
+  "is_verification": false,
+  "note": "coverage means the document holds the vocabulary, not that it answers the question"
+ },
+ "provider_of_best_doc": {
+  "anthropic": 121,
+  "openai": 26
+ },
+ "author_flagged_ambiguous": 5,
+ "not_yet_done": [
+  "evidence packets with exact source offsets",
+  "atomic claims",
+  "critical strings",
+  "coordinator review",
+  "40/60 cluster-safe split",
+  "NATQ-001 holdout lock and access log"
+ ],
+ "confirmations": {
+  "retrieval_run_against_natq": false,
+  "system_h_scored": false,
+  "validation_run": false,
+  "new_holdout_run": false,
+  "any_tuning": false,
+  "v1_holdout_opened": false,
+  "v1_holdout_access_log": {
+   "path": "evals/splits/gold150-v1/holdout-access.log.jsonl",
+   "exists": true,
+   "bytes": 0,
+   "entries": 0
+  }
+ },
+ "file_hashes": {
+  "experiments/NATQ-001/authoring/raw-slice-A.json": "299351e39373f35b485ddbce81c061a4adf1cd54c2c6ec1f2af8d2d6e26c952b",
+  "experiments/NATQ-001/authoring/raw-slice-B.json": "6f765a9b7d56a21e4f90d5c0cbf298fe85d06a24ad7e7b434de43014314a6c41",
+  "experiments/NATQ-001/authoring/raw-slice-C.json": "16a34ac8f065fc076fe8f9826bb05c93e562bb4c4ad1cc02ede6081580518f14",
+  "experiments/NATQ-001/authoring/raw-slice-D.json": "1618da10d2b3d223fcaac157161ea15d5d7b6bd9c7446b678e98d64eaca0285e",
+  "experiments/NATQ-001/authoring/raw-slice-E.json": "f1f06a56e19f4b71440a10a1a68d8021790befdbe06a2351581fb3637bb4a562",
+  "experiments/NATQ-001/authoring/verification-pass1.json": "1391de3bd89b4fdcb2b6e0151c7ddb67df77c50db4d2282c31d6488cecfb01c0",
+  "experiments/NATQ-001/NATQ-001-protocol.md": "103b81e05b8368bb38477d9d374f22e3032df0b1f2b497eab978f8313e12af73"
+ }
+}

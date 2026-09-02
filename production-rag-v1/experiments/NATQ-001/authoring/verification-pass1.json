@@ -1,0 +1,3650 @@
+[
+ {
+  "case": "A01",
+  "slice": "A",
+  "q": "how do I stop claude from calling the same tool over and over",
+  "intent": "Preventing repeated/looping tool calls in a multi-turn agent loop",
+  "style": [
+   "conversational"
+  ],
+  "guess_provider": "anthropic",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 4,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_0a5b292d4854b92db0a9e025b4949123",
+   "provider": "anthropic",
+   "title": "Prompting best practices",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices"
+  },
+  "docs_at_top_coverage": 36,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "A02",
+  "slice": "A",
+  "q": "tool_choice required vs any \u2014 whats the difference",
+  "intent": "Compare the forced-tool settings across the two providers' naming",
+  "style": [
+   "abbreviations",
+   "exact-identifier"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 4,
+  "best_doc_coverage": 0.75,
+  "best_doc": {
+   "version_id": "ver_0a5b292d4854b92db0a9e025b4949123",
+   "provider": "anthropic",
+   "title": "Prompting best practices",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices"
+  },
+  "docs_at_top_coverage": 9,
+  "tokens_missing_from_best_doc": [
+   "tool_choice"
+  ],
+  "second_best_coverage": 0.75,
+  "triage": "PROBABLE"
+ },
+ {
+  "case": "A03",
+  "slice": "A",
+  "q": "I want the model to return ONLY valid json no preamble text",
+  "intent": "How to guarantee pure JSON output without prose wrapper",
+  "style": [
+   "task-oriented"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 6,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_012b734775e7edb2649d3a9ddfd93070",
+   "provider": "anthropic",
+   "title": "Thinking",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/thinking"
+  },
+  "docs_at_top_coverage": 5,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "A04",
+  "slice": "A",
+  "q": "what happens if my json schema has additionalProperties true with strict mode on",
+  "intent": "Whether strict structured outputs rejects open-ended objects",
+  "style": [
+   "what-happens-if",
+   "error-oriented"
+  ],
+  "guess_provider": "openai",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 8,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_96d5aba3c4e7771cabd4f3d4f5a3fff1",
+   "provider": "anthropic",
+   "title": "Tool runner (SDK)",
+   "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-runner"
+  },
+  "docs_at_top_coverage": 1,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 0.875,
+  "triage": "STRONG"
+ },
+ {
+  "case": "A05",
+  "slice": "A",
+  "q": "screenshot resolution for computer use \u2014 does it matter what size my screen is",
+  "intent": "Recommended display dimensions / scaling for computer use",
+  "style": [
+   "conversational"
+  ],
+  "guess_provider": "anthropic",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 6,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_a7bda3595f2c124605c3228464d4ee52",
+   "provider": "anthropic",
+   "title": "Migration guide",
+   "url": "https://platform.claude.com/docs/en/about-claude/models/migration-guide"
+  },
+  "docs_at_top_coverage": 2,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "A06",
+  "slice": "A",
+  "q": "migrating from functions/function_call to tools/tool_choice, what actually changes in the request body",
+  "intent": "Deprecated functions param vs modern tools param migration",
+  "style": [
+   "migration"
+  ],
+  "guess_provider": "openai",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 8,
+  "best_doc_coverage": 0.75,
+  "best_doc": {
+   "version_id": "ver_de7f74230c8f10d30aea5d037a3bd0a5",
+   "provider": "anthropic",
+   "title": "Beta",
+   "url": "https://platform.claude.com/docs/en/api/beta"
+  },
+  "docs_at_top_coverage": 1,
+  "tokens_missing_from_best_doc": [
+   "migrating",
+   "function_call"
+  ],
+  "second_best_coverage": 0.625,
+  "triage": "PROBABLE"
+ },
+ {
+  "case": "A07",
+  "slice": "A",
+  "q": "agents sdk handoff vs just giving it a tool that calls the other agent",
+  "intent": "When to use handoffs vs agent-as-tool in the Agents SDK",
+  "style": [
+   "conversational"
+  ],
+  "guess_provider": "openai",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 7,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_46f8ac47ff4cd52c9382f986727e0672",
+   "provider": "openai",
+   "title": "Concepts",
+   "url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/sandbox/guide.md"
+  },
+  "docs_at_top_coverage": 1,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 0.857,
+  "triage": "STRONG"
+ },
+ {
+  "case": "A08",
+  "slice": "A",
+  "q": "getting an error that my schema root must be an object",
+  "intent": "Why top-level arrays/primitives are rejected in structured outputs",
+  "style": [
+   "error-oriented"
+  ],
+  "guess_provider": "openai",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 5,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_230e768df99a0d66d42878d853797cc2",
+   "provider": "anthropic",
+   "title": "Prompting Claude Fable 5",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-fable-5"
+  },
+  "docs_at_top_coverage": 8,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "A09",
+  "slice": "A",
+  "q": "does the model ever call two tools in one response",
+  "intent": "Parallel tool calls \u2014 whether multiple calls come back at once",
+  "style": [
+   "what-happens-if"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 5,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_012b734775e7edb2649d3a9ddfd93070",
+   "provider": "anthropic",
+   "title": "Thinking",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/thinking"
+  },
+  "docs_at_top_coverage": 102,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "A10",
+  "slice": "A",
+  "q": "how do i turn off parallel tool calls",
+  "intent": "The flag that disables multiple simultaneous tool invocations",
+  "style": [
+   "task-oriented",
+   "lowercase"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 5,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_02c06cea4a4bbffd4d01ee202f124a75",
+   "provider": "openai",
+   "title": "OpenAI Agents SDK",
+   "url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/index.md"
+  },
+  "docs_at_top_coverage": 29,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "A11",
+  "slice": "A",
+  "q": "claude keeps saying \"I'll use the tool\" in text before actually calling it, can I suppress that",
+  "intent": "Controlling preamble text alongside tool_use blocks",
+  "style": [
+   "conversational"
+  ],
+  "guess_provider": "anthropic",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 7,
+  "best_doc_coverage": 0.857,
+  "best_doc": {
+   "version_id": "ver_96d5aba3c4e7771cabd4f3d4f5a3fff1",
+   "provider": "anthropic",
+   "title": "Tool runner (SDK)",
+   "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-runner"
+  },
+  "docs_at_top_coverage": 1,
+  "tokens_missing_from_best_doc": [
+   "saying"
+  ],
+  "second_best_coverage": 0.714,
+  "triage": "STRONG"
+ },
+ {
+  "case": "A12",
+  "slice": "A",
+  "q": "what do i send back after a tool_use block",
+  "intent": "Shape of the tool_result message in the next user turn",
+  "style": [
+   "exact-identifier"
+  ],
+  "guess_provider": "anthropic",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 5,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_012b734775e7edb2649d3a9ddfd93070",
+   "provider": "anthropic",
+   "title": "Thinking",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/thinking"
+  },
+  "docs_at_top_coverage": 28,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "A13",
+  "slice": "A",
+  "q": "tool result error \u2014 how to tell the model the tool failed instead of just returning text",
+  "intent": "is_error flag / signaling tool failure back to the model",
+  "style": [
+   "task-oriented",
+   "error-oriented"
+  ],
+  "guess_provider": "anthropic",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 9,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_1d58a563501b073d898977de6bc2a823",
+   "provider": "anthropic",
+   "title": "Compliance API",
+   "url": "https://platform.claude.com/docs/en/api/compliance"
+  },
+  "docs_at_top_coverage": 5,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "A14",
+  "slice": "A",
+  "q": "max token limit hit in the middle of a tool call, what do i get back",
+  "intent": "Truncated tool call behavior and stop reason handling",
+  "style": [
+   "what-happens-if"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 8,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_012b734775e7edb2649d3a9ddfd93070",
+   "provider": "anthropic",
+   "title": "Thinking",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/thinking"
+  },
+  "docs_at_top_coverage": 5,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "A15",
+  "slice": "A",
+  "q": "CU model clicking wrong coordinates on retina display",
+  "intent": "Coordinate scaling mismatch in computer use screenshots",
+  "style": [
+   "abbreviations",
+   "error-oriented"
+  ],
+  "guess_provider": "anthropic",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 6,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_d9ba3ab0d872dd86047c7ed6dc783235",
+   "provider": "anthropic",
+   "title": "Computer use tool",
+   "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool"
+  },
+  "docs_at_top_coverage": 1,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 0.667,
+  "triage": "STRONG"
+ },
+ {
+  "case": "A16",
+  "slice": "A",
+  "q": "is there a way to make one specific tool always be the first thing it calls",
+  "intent": "Forcing a named tool via tool_choice",
+  "style": [
+   "conversational"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 5,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_012b734775e7edb2649d3a9ddfd93070",
+   "provider": "anthropic",
+   "title": "Thinking",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/thinking"
+  },
+  "docs_at_top_coverage": 42,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "A17",
+  "slice": "A",
+  "q": "pydantic model as the response format, does it work with optional fields",
+  "intent": "Optional/nullable fields in strict structured output schemas",
+  "style": [
+   "task-oriented"
+  ],
+  "guess_provider": "openai",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 7,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_0865c9612dfe97d8f30dd870dd12e53e",
+   "provider": "anthropic",
+   "title": "Structured outputs",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/structured-outputs"
+  },
+  "docs_at_top_coverage": 5,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "A18",
+  "slice": "A",
+  "q": "what's the max number of tools i can define",
+  "intent": "Practical/hard limits on tool definitions per request",
+  "style": [
+   "conversational"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 4,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_080cad658d87b45b377e08b488fc1ea9",
+   "provider": "anthropic",
+   "title": "Fine-grained tool streaming",
+   "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/fine-grained-tool-streaming"
+  },
+  "docs_at_top_coverage": 30,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "A19",
+  "slice": "A",
+  "q": "bash tool and text editor tool \u2014 do i have to implement them myself",
+  "intent": "Whether server-defined/built-in tools still require client execution",
+  "style": [
+   "exact-identifier"
+  ],
+  "guess_provider": "anthropic",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 7,
+  "best_doc_coverage": 0.857,
+  "best_doc": {
+   "version_id": "ver_4286534d2732b3eef5579a5c227d8704",
+   "provider": "anthropic",
+   "title": "Claude on Amazon Bedrock (Opus 4.6 and earlier)",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/claude-on-amazon-bedrock-legacy"
+  },
+  "docs_at_top_coverage": 10,
+  "tokens_missing_from_best_doc": [
+   "myself"
+  ],
+  "second_best_coverage": 0.857,
+  "triage": "STRONG"
+ },
+ {
+  "case": "A20",
+  "slice": "A",
+  "q": "refusal field in the response, when does that show up",
+  "intent": "Handling refusals in structured outputs responses",
+  "style": [
+   "exact-identifier"
+  ],
+  "guess_provider": "openai",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 4,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_012b734775e7edb2649d3a9ddfd93070",
+   "provider": "anthropic",
+   "title": "Thinking",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/thinking"
+  },
+  "docs_at_top_coverage": 20,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "A21",
+  "slice": "A",
+  "q": "streaming + tool calls = arguments come in fragments?",
+  "intent": "Accumulating partial JSON argument deltas while streaming",
+  "style": [
+   "conversational",
+   "abbreviations"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 6,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_d2295786320b2815477eb963eb1f5e8a",
+   "provider": "openai",
+   "title": "Testing",
+   "url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/testing.md"
+  },
+  "docs_at_top_coverage": 1,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 0.833,
+  "triage": "STRONG"
+ },
+ {
+  "case": "A22",
+  "slice": "A",
+  "q": "how do i validate the args the model gives me before running the function, does it guarantee they match my schema",
+  "intent": "Whether tool input is schema-guaranteed or needs client validation",
+  "style": [
+   "conversational"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 9,
+  "best_doc_coverage": 0.889,
+  "best_doc": {
+   "version_id": "ver_0a5b292d4854b92db0a9e025b4949123",
+   "provider": "anthropic",
+   "title": "Prompting best practices",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices"
+  },
+  "docs_at_top_coverage": 8,
+  "tokens_missing_from_best_doc": [
+   "args"
+  ],
+  "second_best_coverage": 0.889,
+  "triage": "STRONG"
+ },
+ {
+  "case": "A23",
+  "slice": "A",
+  "q": "enum in schema not being respected",
+  "intent": "Enforcing enum constraints in tool inputs / structured output",
+  "style": [
+   "error-oriented"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 4,
+  "best_doc_coverage": 0.75,
+  "best_doc": {
+   "version_id": "ver_0a5b292d4854b92db0a9e025b4949123",
+   "provider": "anthropic",
+   "title": "Prompting best practices",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices"
+  },
+  "docs_at_top_coverage": 10,
+  "tokens_missing_from_best_doc": [
+   "respected"
+  ],
+  "second_best_coverage": 0.75,
+  "triage": "PROBABLE"
+ },
+ {
+  "case": "A24",
+  "slice": "A",
+  "q": "guardrails in the agents sdk \u2014 can one block the run before the model even sees input",
+  "intent": "Input guardrails and tripwire behavior in the Agents SDK",
+  "style": [
+   "configuration-interaction"
+  ],
+  "guess_provider": "openai",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 9,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_a7bda3595f2c124605c3228464d4ee52",
+   "provider": "anthropic",
+   "title": "Migration guide",
+   "url": "https://platform.claude.com/docs/en/about-claude/models/migration-guide"
+  },
+  "docs_at_top_coverage": 2,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "A25",
+  "slice": "A",
+  "q": "recursive schema (tree of nodes) supported?",
+  "intent": "Self-referencing/$ref recursive schemas in structured outputs",
+  "style": [
+   "what-happens-if"
+  ],
+  "guess_provider": "openai",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 5,
+  "best_doc_coverage": 0.8,
+  "best_doc": {
+   "version_id": "ver_0865c9612dfe97d8f30dd870dd12e53e",
+   "provider": "anthropic",
+   "title": "Structured outputs",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/structured-outputs"
+  },
+  "docs_at_top_coverage": 2,
+  "tokens_missing_from_best_doc": [
+   "nodes"
+  ],
+  "second_best_coverage": 0.8,
+  "triage": "STRONG"
+ },
+ {
+  "case": "A26",
+  "slice": "A",
+  "q": "if i set temperature 0 and also force a tool does the tool input become deterministic",
+  "intent": "Interaction of sampling params with forced tool use",
+  "style": [
+   "configuration-interaction"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 7,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_6c07efaa403850860c0012307a7d71b0",
+   "provider": "anthropic",
+   "title": "Glossary",
+   "url": "https://platform.claude.com/docs/en/about-claude/glossary"
+  },
+  "docs_at_top_coverage": 2,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "A27",
+  "slice": "A",
+  "q": "prefilling assistant turn with { to force json \u2014 is that still a thing",
+  "intent": "Assistant prefill trick for JSON vs native structured output support",
+  "style": [
+   "conversational"
+  ],
+  "guess_provider": "anthropic",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 5,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_0774ca0093ff4a846753577c9a4a39d5",
+   "provider": "anthropic",
+   "title": "Claude API errors",
+   "url": "https://platform.claude.com/docs/en/api/errors"
+  },
+  "docs_at_top_coverage": 3,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "A28",
+  "slice": "A",
+  "q": "computer use in docker, do i need a real browser and X server",
+  "intent": "Reference environment/container setup for computer use demos",
+  "style": [
+   "task-oriented"
+  ],
+  "guess_provider": "anthropic",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 5,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_d9ba3ab0d872dd86047c7ed6dc783235",
+   "provider": "anthropic",
+   "title": "Computer use tool",
+   "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool"
+  },
+  "docs_at_top_coverage": 1,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 0.8,
+  "triage": "STRONG"
+ },
+ {
+  "case": "A29",
+  "slice": "A",
+  "q": "we call it function calling internally but the docs say tool use, are they literally the same feature",
+  "intent": "Terminology equivalence between function calling and tool use",
+  "style": [
+   "mistaken-terminology"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 9,
+  "best_doc_coverage": 0.889,
+  "best_doc": {
+   "version_id": "ver_0a5b292d4854b92db0a9e025b4949123",
+   "provider": "anthropic",
+   "title": "Prompting best practices",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices"
+  },
+  "docs_at_top_coverage": 2,
+  "tokens_missing_from_best_doc": [
+   "literally"
+  ],
+  "second_best_coverage": 0.889,
+  "triage": "STRONG"
+ },
+ {
+  "case": "A30",
+  "slice": "A",
+  "q": "how do i log every tool call an agent makes for debugging without wrapping each function",
+  "intent": "Tracing/hooks for observing tool invocations in the Agents SDK",
+  "style": [
+   "task-oriented"
+  ],
+  "guess_provider": "openai",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 8,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_96d5aba3c4e7771cabd4f3d4f5a3fff1",
+   "provider": "anthropic",
+   "title": "Tool runner (SDK)",
+   "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-runner"
+  },
+  "docs_at_top_coverage": 2,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "B01",
+  "slice": "B",
+  "q": "why does my stream just stop halfway through with no error",
+  "intent": "diagnose silently truncated streaming responses and how to detect them",
+  "style": [
+   "conversational",
+   "error-oriented"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 4,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_012b734775e7edb2649d3a9ddfd93070",
+   "provider": "anthropic",
+   "title": "Thinking",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/thinking"
+  },
+  "docs_at_top_coverage": 1,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 0.75,
+  "triage": "STRONG"
+ },
+ {
+  "case": "B02",
+  "slice": "B",
+  "q": "what's the first thing that comes back when you stream? the chunk with the id in it",
+  "intent": "identify the initial event emitted at the start of a stream",
+  "style": [
+   "incomplete-terminology",
+   "conversational"
+  ],
+  "guess_provider": "anthropic",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 5,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_012b734775e7edb2649d3a9ddfd93070",
+   "provider": "anthropic",
+   "title": "Thinking",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/thinking"
+  },
+  "docs_at_top_coverage": 7,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "B03",
+  "slice": "B",
+  "q": "claude sse event names list",
+  "intent": "enumerate the server-sent event types in Anthropic streaming",
+  "style": [
+   "exact-identifier",
+   "terse"
+  ],
+  "guess_provider": "anthropic",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 5,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_012b734775e7edb2649d3a9ddfd93070",
+   "provider": "anthropic",
+   "title": "Thinking",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/thinking"
+  },
+  "docs_at_top_coverage": 31,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "B04",
+  "slice": "B",
+  "q": "getting 429 even though im way under my limit, whats going on",
+  "intent": "understand why rate limits trigger below expected quota",
+  "style": [
+   "error-oriented",
+   "conversational",
+   "typos"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 5,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_9c5166b670bf43589ee63d0dbe8b93d2",
+   "provider": "anthropic",
+   "title": "Prompting Claude Sonnet 5",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-sonnet-5"
+  },
+  "docs_at_top_coverage": 1,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 0.8,
+  "triage": "STRONG"
+ },
+ {
+  "case": "B05",
+  "slice": "B",
+  "q": "how do I read the remaining requests header so I can back off before I get throttled",
+  "intent": "find the rate limit headers returned on responses",
+  "style": [
+   "task-oriented",
+   "exact-identifier"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 8,
+  "best_doc_coverage": 0.875,
+  "best_doc": {
+   "version_id": "ver_1c53b961e1f5da8124a1e7e8eb92c941",
+   "provider": "anthropic",
+   "title": "Context editing",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/context-editing"
+  },
+  "docs_at_top_coverage": 11,
+  "tokens_missing_from_best_doc": [
+   "throttled"
+  ],
+  "second_best_coverage": 0.875,
+  "triage": "STRONG"
+ },
+ {
+  "case": "B06",
+  "slice": "B",
+  "q": "I need to show tokens as they arrive in a react app, what's the least painful way",
+  "intent": "implement client-side incremental rendering of a streamed completion",
+  "style": [
+   "task-oriented",
+   "conversational"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 7,
+  "best_doc_coverage": 0.857,
+  "best_doc": {
+   "version_id": "ver_b8b18cda9b875d51a2ce979a1bf4e909",
+   "provider": "anthropic",
+   "title": "Advisor tool",
+   "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/advisor-tool"
+  },
+  "docs_at_top_coverage": 1,
+  "tokens_missing_from_best_doc": [
+   "painful"
+  ],
+  "second_best_coverage": 0.714,
+  "triage": "STRONG"
+ },
+ {
+  "case": "B07",
+  "slice": "B",
+  "q": "does retry-after come back as seconds or a date",
+  "intent": "interpret the Retry-After header format for throttled requests",
+  "style": [
+   "exact-identifier",
+   "terse"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 5,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_ae909bf8b4bbbe1d1a11119447f7ac94",
+   "provider": "openai",
+   "title": "Models",
+   "url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/models/index.md"
+  },
+  "docs_at_top_coverage": 1,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 0.8,
+  "triage": "STRONG"
+ },
+ {
+  "case": "B08",
+  "slice": "B",
+  "q": "what happens if the client disconnects mid-stream \u2014 do I still get billed for the whole thing",
+  "intent": "billing and server behavior when a streaming connection is dropped early",
+  "style": [
+   "what-happens-if"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 6,
+  "best_doc_coverage": 0.667,
+  "best_doc": {
+   "version_id": "ver_0e1e2173035af0ad0c98640a78504513",
+   "provider": "anthropic",
+   "title": "Steering thinking",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/thinking-steering-and-cost"
+  },
+  "docs_at_top_coverage": 5,
+  "tokens_missing_from_best_doc": [
+   "disconnects",
+   "mid-stream"
+  ],
+  "second_best_coverage": 0.667,
+  "triage": "PROBABLE"
+ },
+ {
+  "case": "B09",
+  "slice": "B",
+  "q": "overloaded_error keeps happening at peak hours. is that a 429 or a 529",
+  "intent": "distinguish overload errors from rate limit errors and their status codes",
+  "style": [
+   "error-oriented",
+   "exact-identifier"
+  ],
+  "guess_provider": "anthropic",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 4,
+  "best_doc_coverage": 0.5,
+  "best_doc": {
+   "version_id": "ver_5ebdc722f9bedb1e2e8cbd3f29ff6805",
+   "provider": "anthropic",
+   "title": "Claude Platform on AWS",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws"
+  },
+  "docs_at_top_coverage": 2,
+  "tokens_missing_from_best_doc": [
+   "overloaded_error",
+   "happening"
+  ],
+  "second_best_coverage": 0.5,
+  "triage": "REVIEW"
+ },
+ {
+  "case": "B10",
+  "slice": "B",
+  "q": "moving from the old chat completions streaming to the responses api, what changes in the event format",
+  "intent": "migration differences in streaming payloads between OpenAI APIs",
+  "style": [
+   "migration"
+  ],
+  "guess_provider": "openai",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 10,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_5ebdc722f9bedb1e2e8cbd3f29ff6805",
+   "provider": "anthropic",
+   "title": "Claude Platform on AWS",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws"
+  },
+  "docs_at_top_coverage": 2,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "B11",
+  "slice": "B",
+  "q": "how do i know the model stopped because it hit max tokens vs finished normally when streaming",
+  "intent": "read stop reason / finish reason from a stream",
+  "style": [
+   "conversational",
+   "exact-identifier"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 10,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_4d14aec24504f4b8f6f28938b84587dc",
+   "provider": "anthropic",
+   "title": "Stop reasons and fallback",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons"
+  },
+  "docs_at_top_coverage": 2,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "B12",
+  "slice": "B",
+  "q": "realtime api websocket keeps closing after a while, is there a session time limit",
+  "intent": "max session duration and reconnect behavior for the realtime voice API",
+  "style": [
+   "error-oriented",
+   "realtime"
+  ],
+  "guess_provider": "openai",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 9,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_d2295786320b2815477eb963eb1f5e8a",
+   "provider": "openai",
+   "title": "Testing",
+   "url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/testing.md"
+  },
+  "docs_at_top_coverage": 1,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 0.889,
+  "triage": "STRONG"
+ },
+ {
+  "case": "B13",
+  "slice": "B",
+  "q": "webrtc vs websocket for realtime voice - which one should a browser client use",
+  "intent": "choose the right transport for realtime audio from a browser",
+  "style": [
+   "conversational",
+   "configuration"
+  ],
+  "guess_provider": "openai",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 6,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_14a2187cf2216b9d56c213b520a28479",
+   "provider": "openai",
+   "title": "Realtime agents guide",
+   "url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/realtime/guide.md"
+  },
+  "docs_at_top_coverage": 1,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 0.833,
+  "triage": "STRONG"
+ },
+ {
+  "case": "B14",
+  "slice": "B",
+  "q": "how do i interrupt the model while it's talking in realtime",
+  "intent": "cancel/barge-in on in-progress audio response in realtime API",
+  "style": [
+   "task-oriented",
+   "realtime"
+  ],
+  "guess_provider": "openai",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 5,
+  "best_doc_coverage": 0.8,
+  "best_doc": {
+   "version_id": "ver_14a2187cf2216b9d56c213b520a28479",
+   "provider": "openai",
+   "title": "Realtime agents guide",
+   "url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/realtime/guide.md"
+  },
+  "docs_at_top_coverage": 5,
+  "tokens_missing_from_best_doc": [
+   "talking"
+  ],
+  "second_best_coverage": 0.8,
+  "triage": "STRONG"
+ },
+ {
+  "case": "B15",
+  "slice": "B",
+  "q": "what audio format does the realtime socket expect, pcm16 at what sample rate?",
+  "intent": "required audio encoding and sample rate for realtime input",
+  "style": [
+   "exact-identifier",
+   "realtime"
+  ],
+  "guess_provider": "openai",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 8,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_d2295786320b2815477eb963eb1f5e8a",
+   "provider": "openai",
+   "title": "Testing",
+   "url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/testing.md"
+  },
+  "docs_at_top_coverage": 1,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 0.875,
+  "triage": "STRONG"
+ },
+ {
+  "case": "B16",
+  "slice": "B",
+  "q": "long request without streaming times out \u2014 is there a max non-streaming duration",
+  "intent": "the non-streaming duration limit and when streaming becomes mandatory",
+  "style": [
+   "configuration",
+   "error-oriented"
+  ],
+  "guess_provider": "anthropic",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 9,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_3ffd9e2c70c81653b2f65cb7833e8340",
+   "provider": "anthropic",
+   "title": "Build an orchestration mode",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/mid-conversation-effort-example"
+  },
+  "docs_at_top_coverage": 2,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "B17",
+  "slice": "B",
+  "q": "sdk timeout setting vs streaming, does the timeout apply to the whole stream or between chunks",
+  "intent": "how client timeouts interact with long streaming responses",
+  "style": [
+   "configuration"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 9,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_012b734775e7edb2649d3a9ddfd93070",
+   "provider": "anthropic",
+   "title": "Thinking",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/thinking"
+  },
+  "docs_at_top_coverage": 1,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 0.889,
+  "triage": "STRONG"
+ },
+ {
+  "case": "B18",
+  "slice": "B",
+  "q": "is there a heartbeat/keepalive on the sse connection or do i need my own",
+  "intent": "ping events sent to keep idle streaming connections alive",
+  "style": [
+   "conversational",
+   "exact-identifier"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 4,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+   "provider": "openai",
+   "title": "Running agents",
+   "url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/running_agents.md"
+  },
+  "docs_at_top_coverage": 3,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "B19",
+  "slice": "B",
+  "q": "content_block_delta with input_json_delta \u2014 how do i assemble tool arguments from that",
+  "intent": "accumulate partial JSON for tool use across streamed deltas",
+  "style": [
+   "exact-identifier",
+   "task-oriented"
+  ],
+  "guess_provider": "anthropic",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 5,
+  "best_doc_coverage": 0.8,
+  "best_doc": {
+   "version_id": "ver_080cad658d87b45b377e08b488fc1ea9",
+   "provider": "anthropic",
+   "title": "Fine-grained tool streaming",
+   "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/fine-grained-tool-streaming"
+  },
+  "docs_at_top_coverage": 4,
+  "tokens_missing_from_best_doc": [
+   "arguments"
+  ],
+  "second_best_coverage": 0.8,
+  "triage": "STRONG"
+ },
+ {
+  "case": "B20",
+  "slice": "B",
+  "q": "streaming tool calls in openai, the index field on the tool call deltas confuses me",
+  "intent": "reassemble parallel streamed tool calls using the index field",
+  "style": [
+   "exact-identifier",
+   "conversational"
+  ],
+  "guess_provider": "openai",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 9,
+  "best_doc_coverage": 0.889,
+  "best_doc": {
+   "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+   "provider": "openai",
+   "title": "Running agents",
+   "url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/running_agents.md"
+  },
+  "docs_at_top_coverage": 2,
+  "tokens_missing_from_best_doc": [
+   "confuses"
+  ],
+  "second_best_coverage": 0.889,
+  "triage": "STRONG"
+ },
+ {
+  "case": "B21",
+  "slice": "B",
+  "q": "how do i get token usage numbers when the response is streamed",
+  "intent": "obtain usage/token counts for streaming requests",
+  "style": [
+   "task-oriented"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 5,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_a7bda3595f2c124605c3228464d4ee52",
+   "provider": "anthropic",
+   "title": "Migration guide",
+   "url": "https://platform.claude.com/docs/en/about-claude/models/migration-guide"
+  },
+  "docs_at_top_coverage": 2,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "B22",
+  "slice": "B",
+  "q": "does [DONE] still get sent at the end",
+  "intent": "terminal sentinel in the SSE stream and whether to rely on it",
+  "style": [
+   "exact-identifier",
+   "terse"
+  ],
+  "guess_provider": "openai",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 3,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_0a5b292d4854b92db0a9e025b4949123",
+   "provider": "anthropic",
+   "title": "Prompting best practices",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices"
+  },
+  "docs_at_top_coverage": 26,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "B23",
+  "slice": "B",
+  "q": "which http errors are safe to retry automatically and which ones will just burn quota",
+  "intent": "retryable vs non-retryable status codes",
+  "style": [
+   "conversational",
+   "error-oriented"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 8,
+  "best_doc_coverage": 0.75,
+  "best_doc": {
+   "version_id": "ver_0a5b292d4854b92db0a9e025b4949123",
+   "provider": "anthropic",
+   "title": "Prompting best practices",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices"
+  },
+  "docs_at_top_coverage": 5,
+  "tokens_missing_from_best_doc": [
+   "burn",
+   "quota"
+  ],
+  "second_best_coverage": 0.75,
+  "triage": "PROBABLE"
+ },
+ {
+  "case": "B24",
+  "slice": "B",
+  "q": "does the official sdk already retry for me or do i need to wrap calls in my own backoff",
+  "intent": "built-in retry behavior and defaults in the SDKs",
+  "style": [
+   "configuration"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 7,
+  "best_doc_coverage": 0.857,
+  "best_doc": {
+   "version_id": "ver_0774ca0093ff4a846753577c9a4a39d5",
+   "provider": "anthropic",
+   "title": "Claude API errors",
+   "url": "https://platform.claude.com/docs/en/api/errors"
+  },
+  "docs_at_top_coverage": 7,
+  "tokens_missing_from_best_doc": [
+   "calls"
+  ],
+  "second_best_coverage": 0.857,
+  "triage": "STRONG"
+ },
+ {
+  "case": "B25",
+  "slice": "B",
+  "q": "error in the middle of an sse stream \u2014 status was already 200 so how is the error delivered",
+  "intent": "mid-stream error events after headers have been sent",
+  "style": [
+   "what-happens-if",
+   "error-oriented"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 7,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_7746dc094c7490eb180bfd60c936a345",
+   "provider": "anthropic",
+   "title": "Fallback credit",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/fallback-credit"
+  },
+  "docs_at_top_coverage": 2,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "B26",
+  "slice": "B",
+  "q": "400 invalid_request_error but the message doesnt say which field. how do i find it",
+  "intent": "structure of error response bodies and locating the offending parameter",
+  "style": [
+   "error-oriented",
+   "typos"
+  ],
+  "guess_provider": "anthropic",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 6,
+  "best_doc_coverage": 0.833,
+  "best_doc": {
+   "version_id": "ver_ae909bf8b4bbbe1d1a11119447f7ac94",
+   "provider": "openai",
+   "title": "Models",
+   "url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/models/index.md"
+  },
+  "docs_at_top_coverage": 2,
+  "tokens_missing_from_best_doc": [
+   "doesnt"
+  ],
+  "second_best_coverage": 0.833,
+  "triage": "STRONG"
+ },
+ {
+  "case": "B27",
+  "slice": "B",
+  "q": "can i resume a stream after a network blip or do i have to start the whole request over",
+  "intent": "resumability of interrupted streams",
+  "style": [
+   "what-happens-if"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 10,
+  "best_doc_coverage": 0.9,
+  "best_doc": {
+   "version_id": "ver_1d58a563501b073d898977de6bc2a823",
+   "provider": "anthropic",
+   "title": "Compliance API",
+   "url": "https://platform.claude.com/docs/en/api/compliance"
+  },
+  "docs_at_top_coverage": 1,
+  "tokens_missing_from_best_doc": [
+   "blip"
+  ],
+  "second_best_coverage": 0.8,
+  "triage": "STRONG"
+ },
+ {
+  "case": "B28",
+  "slice": "B",
+  "q": "server side voice agent - how do i handle turn detection instead of doing VAD myself",
+  "intent": "built-in turn detection/VAD configuration in realtime sessions",
+  "style": [
+   "task-oriented",
+   "realtime"
+  ],
+  "guess_provider": "openai",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 11,
+  "best_doc_coverage": 0.818,
+  "best_doc": {
+   "version_id": "ver_14a2187cf2216b9d56c213b520a28479",
+   "provider": "openai",
+   "title": "Realtime agents guide",
+   "url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/realtime/guide.md"
+  },
+  "docs_at_top_coverage": 1,
+  "tokens_missing_from_best_doc": [
+   "doing",
+   "myself"
+  ],
+  "second_best_coverage": 0.727,
+  "triage": "STRONG"
+ },
+ {
+  "case": "B29",
+  "slice": "B",
+  "q": "what's the header for the request id, need it for support tickets when things fail",
+  "intent": "the response header carrying a request identifier for debugging",
+  "style": [
+   "exact-identifier",
+   "task-oriented"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 5,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_0774ca0093ff4a846753577c9a4a39d5",
+   "provider": "anthropic",
+   "title": "Claude API errors",
+   "url": "https://platform.claude.com/docs/en/api/errors"
+  },
+  "docs_at_top_coverage": 2,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "B30",
+  "slice": "B",
+  "q": "batch requests plus rate limits \u2014 do queued batch jobs count against my normal per minute limits",
+  "intent": "interaction between batch processing and standard rate limit buckets",
+  "style": [
+   "configuration"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 12,
+  "best_doc_coverage": 0.917,
+  "best_doc": {
+   "version_id": "ver_83f5681ee38e2d11ab15e49c90a16e2e",
+   "provider": "anthropic",
+   "title": "Optimizing for cost and intelligence",
+   "url": "https://platform.claude.com/docs/en/about-claude/models/optimizing-for-cost-and-intelligence"
+  },
+  "docs_at_top_coverage": 3,
+  "tokens_missing_from_best_doc": [
+   "queued"
+  ],
+  "second_best_coverage": 0.917,
+  "triage": "STRONG"
+ },
+ {
+  "case": "C01",
+  "slice": "C",
+  "q": "the setting that makes the model less random",
+  "intent": "wants to know temperature (and top_p) controls randomness/determinism",
+  "style": [
+   "incomplete-terminology"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 4,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_7947433dfde6b3b8eccd0faa597c3c9a",
+   "provider": "anthropic",
+   "title": "Prompt caching",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-caching"
+  },
+  "docs_at_top_coverage": 4,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "C02",
+  "slice": "C",
+  "q": "what happens if I set both temperature and top_p at the same time",
+  "intent": "how the two sampling params interact and whether one should be left at default",
+  "style": [
+   "config-interaction",
+   "what-happens-if"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 6,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+   "provider": "openai",
+   "title": "Running agents",
+   "url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/running_agents.md"
+  },
+  "docs_at_top_coverage": 1,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 0.833,
+  "triage": "STRONG"
+ },
+ {
+  "case": "C03",
+  "slice": "C",
+  "q": "my output just stops mid sentence, is that max_tokens or something else",
+  "intent": "diagnosing truncated completions via stop reason vs max output tokens",
+  "style": [
+   "conversational",
+   "error-oriented"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 6,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_0a5b292d4854b92db0a9e025b4949123",
+   "provider": "anthropic",
+   "title": "Prompting best practices",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices"
+  },
+  "docs_at_top_coverage": 3,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "C04",
+  "slice": "C",
+  "q": "how do i tell if a response was cut off because of length vs a stop sequence",
+  "intent": "reading stop_reason / finish_reason values to distinguish truncation causes",
+  "style": [
+   "conversational",
+   "exact-identifier"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 7,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_18c692f4d28bd01c0a5cac553fcf01a7",
+   "provider": "anthropic",
+   "title": "Messages",
+   "url": "https://platform.claude.com/docs/en/api/messages"
+  },
+  "docs_at_top_coverage": 8,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "C05",
+  "slice": "C",
+  "q": "claude system prompt \u2014 is it a separate field or just the first message?",
+  "intent": "system prompt is a top-level param, not a message role, in the Messages API",
+  "style": [
+   "exact-identifier"
+  ],
+  "guess_provider": "anthropic",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 7,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_012b734775e7edb2649d3a9ddfd93070",
+   "provider": "anthropic",
+   "title": "Thinking",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/thinking"
+  },
+  "docs_at_top_coverage": 29,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "C06",
+  "slice": "C",
+  "q": "openai moved system to developer role? do i need to change my code",
+  "intent": "system vs developer role in newer OpenAI models/APIs and migration impact",
+  "style": [
+   "migration",
+   "conversational"
+  ],
+  "guess_provider": "openai",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 7,
+  "best_doc_coverage": 0.857,
+  "best_doc": {
+   "version_id": "ver_1d58a563501b073d898977de6bc2a823",
+   "provider": "anthropic",
+   "title": "Compliance API",
+   "url": "https://platform.claude.com/docs/en/api/compliance"
+  },
+  "docs_at_top_coverage": 11,
+  "tokens_missing_from_best_doc": [
+   "openai"
+  ],
+  "second_best_coverage": 0.857,
+  "triage": "STRONG"
+ },
+ {
+  "case": "C07",
+  "slice": "C",
+  "q": "i want to cache a big system prompt across calls so i stop paying for it every time",
+  "intent": "prompt caching setup and how cached tokens are billed",
+  "style": [
+   "task-oriented"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 8,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_83f5681ee38e2d11ab15e49c90a16e2e",
+   "provider": "anthropic",
+   "title": "Optimizing for cost and intelligence",
+   "url": "https://platform.claude.com/docs/en/about-claude/models/optimizing-for-cost-and-intelligence"
+  },
+  "docs_at_top_coverage": 1,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 0.875,
+  "triage": "STRONG"
+ },
+ {
+  "case": "C08",
+  "slice": "C",
+  "q": "how long does a prompt cache entry stay alive",
+  "intent": "cache TTL / expiry behavior and refresh on hit",
+  "style": [
+   "short"
+  ],
+  "guess_provider": "anthropic",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 6,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_7947433dfde6b3b8eccd0faa597c3c9a",
+   "provider": "anthropic",
+   "title": "Prompt caching",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-caching"
+  },
+  "docs_at_top_coverage": 2,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "C09",
+  "slice": "C",
+  "q": "does caching work if i change one word at the end of my system prompt",
+  "intent": "prefix matching semantics of caching and what invalidates it",
+  "style": [
+   "config-interaction",
+   "conversational"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 7,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_012b734775e7edb2649d3a9ddfd93070",
+   "provider": "anthropic",
+   "title": "Thinking",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/thinking"
+  },
+  "docs_at_top_coverage": 11,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "C10",
+  "slice": "C",
+  "q": "getting an error that my input is too long but i counted the tokens and it fits",
+  "intent": "context window includes output reservation plus tokenizer counting differences",
+  "style": [
+   "error-oriented",
+   "config-interaction"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 6,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_012b734775e7edb2649d3a9ddfd93070",
+   "provider": "anthropic",
+   "title": "Thinking",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/thinking"
+  },
+  "docs_at_top_coverage": 1,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 0.833,
+  "triage": "STRONG"
+ },
+ {
+  "case": "C11",
+  "slice": "C",
+  "q": "max_tokens vs context window \u2014 are these the same thing",
+  "intent": "clarifying output cap vs total ctx budget",
+  "style": [
+   "mistaken-terminology"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 3,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_012b734775e7edb2649d3a9ddfd93070",
+   "provider": "anthropic",
+   "title": "Thinking",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/thinking"
+  },
+  "docs_at_top_coverage": 49,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "C12",
+  "slice": "C",
+  "q": "max_tokens deprecated in favor of max_completion_tokens?",
+  "intent": "OpenAI param rename and which endpoints/models require the new one",
+  "style": [
+   "exact-identifier",
+   "migration"
+  ],
+  "guess_provider": "openai",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 4,
+  "best_doc_coverage": 0.75,
+  "best_doc": {
+   "version_id": "ver_96d5aba3c4e7771cabd4f3d4f5a3fff1",
+   "provider": "anthropic",
+   "title": "Tool runner (SDK)",
+   "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-runner"
+  },
+  "docs_at_top_coverage": 2,
+  "tokens_missing_from_best_doc": [
+   "max_completion_tokens"
+  ],
+  "second_best_coverage": 0.75,
+  "triage": "PROBABLE"
+ },
+ {
+  "case": "C13",
+  "slice": "C",
+  "q": "whats the biggest ctx i can actually use on sonnet right now",
+  "intent": "context window size per Claude model and any beta/opt-in for extended context",
+  "style": [
+   "abbreviations",
+   "short"
+  ],
+  "guess_provider": "anthropic",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 6,
+  "best_doc_coverage": 0.833,
+  "best_doc": {
+   "version_id": "ver_0a5b292d4854b92db0a9e025b4949123",
+   "provider": "anthropic",
+   "title": "Prompting best practices",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices"
+  },
+  "docs_at_top_coverage": 1,
+  "tokens_missing_from_best_doc": [
+   "biggest"
+  ],
+  "second_best_coverage": 0.667,
+  "triage": "STRONG"
+ },
+ {
+  "case": "C14",
+  "slice": "C",
+  "q": "is there a header i need to send to enable the 1m token context thing",
+  "intent": "beta header required for extended context window",
+  "style": [
+   "exact-identifier"
+  ],
+  "guess_provider": "anthropic",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 5,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_012b734775e7edb2649d3a9ddfd93070",
+   "provider": "anthropic",
+   "title": "Thinking",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/thinking"
+  },
+  "docs_at_top_coverage": 42,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "C15",
+  "slice": "C",
+  "q": "How should I handle a conversation that keeps growing past the model's limit? I'm currently just dropping the oldest messages and it feels wrong.",
+  "intent": "strategies for long conversations: truncation, summarization, context editing",
+  "style": [
+   "conversational",
+   "task-oriented"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 12,
+  "best_doc_coverage": 0.667,
+  "best_doc": {
+   "version_id": "ver_1d58a563501b073d898977de6bc2a823",
+   "provider": "anthropic",
+   "title": "Compliance API",
+   "url": "https://platform.claude.com/docs/en/api/compliance"
+  },
+  "docs_at_top_coverage": 2,
+  "tokens_missing_from_best_doc": [
+   "growing",
+   "dropping",
+   "feels",
+   "wrong."
+  ],
+  "second_best_coverage": 0.667,
+  "triage": "PROBABLE"
+ },
+ {
+  "case": "C16",
+  "slice": "C",
+  "q": "count tokens before sending, is there an endpoint for that",
+  "intent": "token counting API vs local tokenizer libraries",
+  "style": [
+   "task-oriented",
+   "short"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 5,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_0774ca0093ff4a846753577c9a4a39d5",
+   "provider": "anthropic",
+   "title": "Claude API errors",
+   "url": "https://platform.claude.com/docs/en/api/errors"
+  },
+  "docs_at_top_coverage": 16,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "C17",
+  "slice": "C",
+  "q": "stop sequences \u2014 is the stop string included in what i get back?",
+  "intent": "whether stop sequence text appears in output and how it's reported",
+  "style": [
+   "exact-identifier",
+   "config-interaction"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 4,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_18c692f4d28bd01c0a5cac553fcf01a7",
+   "provider": "anthropic",
+   "title": "Messages",
+   "url": "https://platform.claude.com/docs/en/api/messages"
+  },
+  "docs_at_top_coverage": 6,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "C18",
+  "slice": "C",
+  "q": "how many stop sequences am i allowed to pass",
+  "intent": "limit on number/length of stop entries",
+  "style": [
+   "short"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 4,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_18c692f4d28bd01c0a5cac553fcf01a7",
+   "provider": "anthropic",
+   "title": "Messages",
+   "url": "https://platform.claude.com/docs/en/api/messages"
+  },
+  "docs_at_top_coverage": 7,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "C19",
+  "slice": "C",
+  "q": "temperature range for claude vs gpt, i think theyre different",
+  "intent": "valid temperature bounds differ between providers",
+  "style": [
+   "config-interaction",
+   "conversational"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 7,
+  "best_doc_coverage": 0.714,
+  "best_doc": {
+   "version_id": "ver_012b734775e7edb2649d3a9ddfd93070",
+   "provider": "anthropic",
+   "title": "Thinking",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/thinking"
+  },
+  "docs_at_top_coverage": 11,
+  "tokens_missing_from_best_doc": [
+   "gpt",
+   "theyre"
+  ],
+  "second_best_coverage": 0.714,
+  "triage": "PROBABLE"
+ },
+ {
+  "case": "C20",
+  "slice": "C",
+  "q": "i set temperature 0 and still get different answers every run, why",
+  "intent": "determinism is not guaranteed even at temp 0",
+  "style": [
+   "error-oriented",
+   "conversational"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 5,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_012b734775e7edb2649d3a9ddfd93070",
+   "provider": "anthropic",
+   "title": "Thinking",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/thinking"
+  },
+  "docs_at_top_coverage": 6,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "C21",
+  "slice": "C",
+  "q": "does seed actually give reproducible outputs",
+  "intent": "seed param semantics and best-effort determinism",
+  "style": [
+   "exact-identifier"
+  ],
+  "guess_provider": "openai",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 3,
+  "best_doc_coverage": 0.667,
+  "best_doc": {
+   "version_id": "ver_4c8080ebe566273e171b49c803949f77",
+   "provider": "openai",
+   "title": "How to run gpt-oss with vLLM",
+   "url": "https://github.com/openai/openai-cookbook/blob/aa2c1e8867b83f73cdf8eedf94ebb6db41d69402/articles/gpt-oss/run-vllm.md"
+  },
+  "docs_at_top_coverage": 1,
+  "tokens_missing_from_best_doc": [
+   "reproducible"
+  ],
+  "second_best_coverage": 0.333,
+  "triage": "PROBABLE"
+ },
+ {
+  "case": "C22",
+  "slice": "C",
+  "q": "reasoning models complain when i send temperature",
+  "intent": "unsupported sampling params on reasoning/thinking models",
+  "style": [
+   "error-oriented",
+   "config-interaction"
+  ],
+  "guess_provider": "openai",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 5,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_37550866ae58346cd15d129899347e6a",
+   "provider": "anthropic",
+   "title": "Ticket routing",
+   "url": "https://platform.claude.com/docs/en/about-claude/use-case-guides/ticket-routing"
+  },
+  "docs_at_top_coverage": 1,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 0.8,
+  "triage": "STRONG"
+ },
+ {
+  "case": "C23",
+  "slice": "C",
+  "q": "can i use temperature together with extended thinking on claude",
+  "intent": "thinking mode constrains temperature/top_p and requires budget_tokens",
+  "style": [
+   "config-interaction"
+  ],
+  "guess_provider": "anthropic",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 5,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_18c692f4d28bd01c0a5cac553fcf01a7",
+   "provider": "anthropic",
+   "title": "Messages",
+   "url": "https://platform.claude.com/docs/en/api/messages"
+  },
+  "docs_at_top_coverage": 5,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "C24",
+  "slice": "C",
+  "q": "thinking budget vs max tokens, which one wins",
+  "intent": "relationship between budget_tokens and max_tokens when thinking is enabled",
+  "style": [
+   "config-interaction",
+   "short"
+  ],
+  "guess_provider": "anthropic",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 5,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_83f5681ee38e2d11ab15e49c90a16e2e",
+   "provider": "anthropic",
+   "title": "Optimizing for cost and intelligence",
+   "url": "https://platform.claude.com/docs/en/about-claude/models/optimizing-for-cost-and-intelligence"
+  },
+  "docs_at_top_coverage": 2,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "C25",
+  "slice": "C",
+  "q": "moving from 3.5 sonnet to a newer claude, what actually breaks in my code",
+  "intent": "model migration checklist",
+  "style": [
+   "migration",
+   "conversational"
+  ],
+  "guess_provider": "anthropic",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 6,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_0a5b292d4854b92db0a9e025b4949123",
+   "provider": "anthropic",
+   "title": "Prompting best practices",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices"
+  },
+  "docs_at_top_coverage": 2,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "C26",
+  "slice": "C",
+  "q": "how much warning do you get before a model gets retired",
+  "intent": "deprecation policy, retirement timelines, notification channels",
+  "style": [
+   "migration"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 6,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_7947433dfde6b3b8eccd0faa597c3c9a",
+   "provider": "anthropic",
+   "title": "Prompt caching",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-caching"
+  },
+  "docs_at_top_coverage": 1,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 0.833,
+  "triage": "STRONG"
+ },
+ {
+  "case": "C27",
+  "slice": "C",
+  "q": "is there a list of which model snapshots are dead already",
+  "intent": "deprecated/retired model list and recommended replacements",
+  "style": [
+   "migration",
+   "short"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 5,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_de7f74230c8f10d30aea5d037a3bd0a5",
+   "provider": "anthropic",
+   "title": "Beta",
+   "url": "https://platform.claude.com/docs/en/api/beta"
+  },
+  "docs_at_top_coverage": 1,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 0.8,
+  "triage": "STRONG"
+ },
+ {
+  "case": "C28",
+  "slice": "C",
+  "q": "should i pin a dated model name or use the alias like -latest",
+  "intent": "tradeoffs of alias vs pinned snapshot ids for stability",
+  "style": [
+   "migration",
+   "exact-identifier"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 7,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_1d58a563501b073d898977de6bc2a823",
+   "provider": "anthropic",
+   "title": "Compliance API",
+   "url": "https://platform.claude.com/docs/en/api/compliance"
+  },
+  "docs_at_top_coverage": 6,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "C29",
+  "slice": "C",
+  "q": "whats the anthropic-version header for and can i just leave it off",
+  "intent": "required API version header and how versioning works",
+  "style": [
+   "exact-identifier"
+  ],
+  "guess_provider": "anthropic",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 5,
+  "best_doc_coverage": 0.8,
+  "best_doc": {
+   "version_id": "ver_012b734775e7edb2649d3a9ddfd93070",
+   "provider": "anthropic",
+   "title": "Thinking",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/thinking"
+  },
+  "docs_at_top_coverage": 19,
+  "tokens_missing_from_best_doc": [
+   "whats"
+  ],
+  "second_best_coverage": 0.8,
+  "triage": "STRONG"
+ },
+ {
+  "case": "C30",
+  "slice": "C",
+  "q": "responses api vs chat completions, do i have to migrate",
+  "intent": "differences between OpenAI Responses API and Chat Completions",
+  "style": [
+   "migration",
+   "conversational"
+  ],
+  "guess_provider": "openai",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 6,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_5ebdc722f9bedb1e2e8cbd3f29ff6805",
+   "provider": "anthropic",
+   "title": "Claude Platform on AWS",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws"
+  },
+  "docs_at_top_coverage": 2,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "D01",
+  "slice": "D",
+  "q": "whats the thing that passes control from one agent to another called",
+  "intent": "identify handoffs as the mechanism for transferring a conversation between agents",
+  "style": [
+   "incomplete-terminology",
+   "conversational"
+  ],
+  "guess_provider": "openai",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 6,
+  "best_doc_coverage": 0.833,
+  "best_doc": {
+   "version_id": "ver_1c77f33b04ffffa285ea7e61c2a89653",
+   "provider": "openai",
+   "title": "Handoffs",
+   "url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/handoffs.md"
+  },
+  "docs_at_top_coverage": 4,
+  "tokens_missing_from_best_doc": [
+   "whats"
+  ],
+  "second_best_coverage": 0.833,
+  "triage": "STRONG"
+ },
+ {
+  "case": "D02",
+  "slice": "D",
+  "q": "can I reuse one client across requests or do I need a new one each time",
+  "intent": "whether SDK client instances are safe/intended to be reused and shared",
+  "style": [
+   "conversational"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 6,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_18c692f4d28bd01c0a5cac553fcf01a7",
+   "provider": "anthropic",
+   "title": "Messages",
+   "url": "https://platform.claude.com/docs/en/api/messages"
+  },
+  "docs_at_top_coverage": 21,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "D03",
+  "slice": "D",
+  "q": "per-request timeout without constructing a new client",
+  "intent": "how to override timeout on a single call rather than at client construction",
+  "style": [
+   "task-oriented"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 6,
+  "best_doc_coverage": 0.833,
+  "best_doc": {
+   "version_id": "ver_0774ca0093ff4a846753577c9a4a39d5",
+   "provider": "anthropic",
+   "title": "Claude API errors",
+   "url": "https://platform.claude.com/docs/en/api/errors"
+  },
+  "docs_at_top_coverage": 6,
+  "tokens_missing_from_best_doc": [
+   "constructing"
+  ],
+  "second_best_coverage": 0.833,
+  "triage": "STRONG"
+ },
+ {
+  "case": "D04",
+  "slice": "D",
+  "q": "401 from the sdk but the same key works fine in curl, what am I missing",
+  "intent": "diagnose auth failures caused by env var pickup, wrong header, or org/project scoping",
+  "style": [
+   "error-oriented",
+   "conversational"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 6,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_012b734775e7edb2649d3a9ddfd93070",
+   "provider": "anthropic",
+   "title": "Thinking",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/thinking"
+  },
+  "docs_at_top_coverage": 5,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "D05",
+  "slice": "D",
+  "q": "what env var does the anthropic python client read the key from",
+  "intent": "exact env var name for Anthropic API key",
+  "style": [
+   "exact-identifier"
+  ],
+  "guess_provider": "anthropic",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 7,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_012b734775e7edb2649d3a9ddfd93070",
+   "provider": "anthropic",
+   "title": "Thinking",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/thinking"
+  },
+  "docs_at_top_coverage": 58,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "D06",
+  "slice": "D",
+  "q": "does the sdk retry on its own and how many times",
+  "intent": "default automatic retry behavior and which status codes are retried",
+  "style": [
+   "conversational"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 4,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_0865c9612dfe97d8f30dd870dd12e53e",
+   "provider": "anthropic",
+   "title": "Structured outputs",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/structured-outputs"
+  },
+  "docs_at_top_coverage": 8,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "D07",
+  "slice": "D",
+  "q": "how do I turn off retries completely",
+  "intent": "setting max retries to zero at client or request level",
+  "style": [
+   "task-oriented"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 4,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_cbeb36b7cf9a5e241940a011629b6f1b",
+   "provider": "openai",
+   "title": "Tools",
+   "url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/tools.md"
+  },
+  "docs_at_top_coverage": 1,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 0.75,
+  "triage": "STRONG"
+ },
+ {
+  "case": "D08",
+  "slice": "D",
+  "q": "I want to set up delegation between a triage agent and two specialist agents",
+  "intent": "configuring handoffs (user calls them delegation) from a triage agent",
+  "style": [
+   "mistaken-terminology",
+   "task-oriented"
+  ],
+  "guess_provider": "openai",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 7,
+  "best_doc_coverage": 0.857,
+  "best_doc": {
+   "version_id": "ver_14a2187cf2216b9d56c213b520a28479",
+   "provider": "openai",
+   "title": "Realtime agents guide",
+   "url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/realtime/guide.md"
+  },
+  "docs_at_top_coverage": 6,
+  "tokens_missing_from_best_doc": [
+   "delegation"
+  ],
+  "second_best_coverage": 0.857,
+  "triage": "STRONG"
+ },
+ {
+  "case": "D09",
+  "slice": "D",
+  "q": "what happens if two agents keep handing off to each other in a loop",
+  "intent": "loop protection / max turns behavior in the agent runner",
+  "style": [
+   "what-happens-if"
+  ],
+  "guess_provider": "openai",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 5,
+  "best_doc_coverage": 0.8,
+  "best_doc": {
+   "version_id": "ver_02c06cea4a4bbffd4d01ee202f124a75",
+   "provider": "openai",
+   "title": "OpenAI Agents SDK",
+   "url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/index.md"
+  },
+  "docs_at_top_coverage": 13,
+  "tokens_missing_from_best_doc": [
+   "handing"
+  ],
+  "second_best_coverage": 0.8,
+  "triage": "STRONG"
+ },
+ {
+  "case": "D10",
+  "slice": "D",
+  "q": "Runner.run vs Runner.run_sync difference",
+  "intent": "async vs sync entrypoints on the runner",
+  "style": [
+   "exact-identifier"
+  ],
+  "guess_provider": "openai",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 3,
+  "best_doc_coverage": 0.667,
+  "best_doc": {
+   "version_id": "ver_02c06cea4a4bbffd4d01ee202f124a75",
+   "provider": "openai",
+   "title": "OpenAI Agents SDK",
+   "url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/index.md"
+  },
+  "docs_at_top_coverage": 10,
+  "tokens_missing_from_best_doc": [
+   "difference"
+  ],
+  "second_best_coverage": 0.667,
+  "triage": "PROBABLE"
+ },
+ {
+  "case": "D11",
+  "slice": "D",
+  "q": "how do i keep conversation history between runs, do i have to pass the whole message list back",
+  "intent": "sessions / conversation memory in the Agents SDK",
+  "style": [
+   "conversational"
+  ],
+  "guess_provider": "openai",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 10,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_012b734775e7edb2649d3a9ddfd93070",
+   "provider": "anthropic",
+   "title": "Thinking",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/thinking"
+  },
+  "docs_at_top_coverage": 5,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "D12",
+  "slice": "D",
+  "q": "input guardrail that blocks off topic questions before the model runs",
+  "intent": "how input guardrails work and where they execute in the pipeline",
+  "style": [
+   "task-oriented"
+  ],
+  "guess_provider": "openai",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 9,
+  "best_doc_coverage": 0.889,
+  "best_doc": {
+   "version_id": "ver_0a5b292d4854b92db0a9e025b4949123",
+   "provider": "anthropic",
+   "title": "Prompting best practices",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices"
+  },
+  "docs_at_top_coverage": 4,
+  "tokens_missing_from_best_doc": [
+   "guardrail"
+  ],
+  "second_best_coverage": 0.889,
+  "triage": "STRONG"
+ },
+ {
+  "case": "D13",
+  "slice": "D",
+  "q": "what exception gets raised when a guardrail trips",
+  "intent": "the specific tripwire exception type raised on guardrail failure",
+  "style": [
+   "exact-identifier"
+  ],
+  "guess_provider": "openai",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 5,
+  "best_doc_coverage": 0.8,
+  "best_doc": {
+   "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+   "provider": "openai",
+   "title": "Running agents",
+   "url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/running_agents.md"
+  },
+  "docs_at_top_coverage": 5,
+  "tokens_missing_from_best_doc": [
+   "gets"
+  ],
+  "second_best_coverage": 0.8,
+  "triage": "STRONG"
+ },
+ {
+  "case": "D14",
+  "slice": "D",
+  "q": "how to disable tracing, we cant send data to a third party",
+  "intent": "opting out of tracing, env var or run config flag",
+  "style": [
+   "task-oriented",
+   "conversational"
+  ],
+  "guess_provider": "openai",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 7,
+  "best_doc_coverage": 0.857,
+  "best_doc": {
+   "version_id": "ver_6b90217721b841b1329f51ec1caab139",
+   "provider": "openai",
+   "title": "Tracing",
+   "url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/tracing.md"
+  },
+  "docs_at_top_coverage": 2,
+  "tokens_missing_from_best_doc": [
+   "cant"
+  ],
+  "second_best_coverage": 0.857,
+  "triage": "STRONG"
+ },
+ {
+  "case": "D15",
+  "slice": "D",
+  "q": "moving from raw chat completions calls to the agents sdk \u2014 whats the minimal rewrite",
+  "intent": "migration path from direct API calls to Agents SDK primitives",
+  "style": [
+   "migration"
+  ],
+  "guess_provider": "openai",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 10,
+  "best_doc_coverage": 0.8,
+  "best_doc": {
+   "version_id": "ver_5ebdc722f9bedb1e2e8cbd3f29ff6805",
+   "provider": "anthropic",
+   "title": "Claude Platform on AWS",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws"
+  },
+  "docs_at_top_coverage": 1,
+  "tokens_missing_from_best_doc": [
+   "whats",
+   "minimal"
+  ],
+  "second_best_coverage": 0.7,
+  "triage": "STRONG"
+ },
+ {
+  "case": "D16",
+  "slice": "D",
+  "q": "list all my api keys via api?",
+  "intent": "whether keys can be enumerated/managed programmatically vs dashboard only",
+  "style": [
+   "conversational",
+   "task-oriented"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 4,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_1d58a563501b073d898977de6bc2a823",
+   "provider": "anthropic",
+   "title": "Compliance API",
+   "url": "https://platform.claude.com/docs/en/api/compliance"
+  },
+  "docs_at_top_coverage": 8,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "D17",
+  "slice": "D",
+  "q": "difference between an org level key and a project scoped key, and does the project header still matter if the key is already scoped",
+  "intent": "interaction between key scope and org/project headers",
+  "style": [
+   "configuration-interaction"
+  ],
+  "guess_provider": "openai",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 10,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_a7bda3595f2c124605c3228464d4ee52",
+   "provider": "anthropic",
+   "title": "Migration guide",
+   "url": "https://platform.claude.com/docs/en/about-claude/models/migration-guide"
+  },
+  "docs_at_top_coverage": 1,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 0.9,
+  "triage": "STRONG"
+ },
+ {
+  "case": "D18",
+  "slice": "D",
+  "q": "i set OPENAI_ORG_ID but its still billing the wrong org",
+  "intent": "correct env var name for organization and how org selection resolves",
+  "style": [
+   "mistaken-terminology",
+   "error-oriented"
+  ],
+  "guess_provider": "openai",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 5,
+  "best_doc_coverage": 0.8,
+  "best_doc": {
+   "version_id": "ver_90de89ac7da393e4d9056cf12204d046",
+   "provider": "anthropic",
+   "title": "Skill authoring best practices",
+   "url": "https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices"
+  },
+  "docs_at_top_coverage": 4,
+  "tokens_missing_from_best_doc": [
+   "openai_org_id"
+  ],
+  "second_best_coverage": 0.8,
+  "triage": "STRONG"
+ },
+ {
+  "case": "D19",
+  "slice": "D",
+  "q": "admin key vs regular api key what can each do",
+  "intent": "permission difference between admin API keys and standard keys",
+  "style": [
+   "conversational"
+  ],
+  "guess_provider": "openai",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 4,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_53da2f78e855c75ec755089c13d44c28",
+   "provider": "anthropic",
+   "title": "Web search tool",
+   "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool"
+  },
+  "docs_at_top_coverage": 5,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "D20",
+  "slice": "D",
+  "q": "pagination \u2014 does the list helper auto fetch the next page when i iterate it",
+  "intent": "auto-pagination behavior when iterating list responses",
+  "style": [
+   "conversational",
+   "exact-identifier"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 8,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_9247e3ce4df6f79d9cadc44e1a3bbd0c",
+   "provider": "openai",
+   "title": "OpenAI Python API library",
+   "url": "https://github.com/openai/openai-python/blob/10ee3f0da2ac6f93345c1204bd7bb1a2faa79ff2/README.md"
+  },
+  "docs_at_top_coverage": 3,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "D21",
+  "slice": "D",
+  "q": "async client name in the anthropic python package",
+  "intent": "the exact async client class name",
+  "style": [
+   "exact-identifier"
+  ],
+  "guess_provider": "anthropic",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 6,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_279d37a3a0cc4e8a9209e01f16f9df88",
+   "provider": "anthropic",
+   "title": "MCP connector",
+   "url": "https://platform.claude.com/docs/en/agents-and-tools/mcp-connector"
+  },
+  "docs_at_top_coverage": 11,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "D22",
+  "slice": "D",
+  "q": "how do i see the raw http request the sdk sent, headers and all",
+  "intent": "debug logging / raw response access for inspecting requests",
+  "style": [
+   "task-oriented"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 7,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_012b734775e7edb2649d3a9ddfd93070",
+   "provider": "anthropic",
+   "title": "Thinking",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/thinking"
+  },
+  "docs_at_top_coverage": 22,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "D23",
+  "slice": "D",
+  "q": "getting request id for a failed call so support can look it up",
+  "intent": "extracting the request id from a response or error object",
+  "style": [
+   "task-oriented"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 5,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_1c53b961e1f5da8124a1e7e8eb92c941",
+   "provider": "anthropic",
+   "title": "Context editing",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/context-editing"
+  },
+  "docs_at_top_coverage": 12,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "D24",
+  "slice": "D",
+  "q": "typed responses \u2014 are the model objects pydantic or just dicts",
+  "intent": "typing model of SDK response objects",
+  "style": [
+   "conversational"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 6,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_cbeb36b7cf9a5e241940a011629b6f1b",
+   "provider": "openai",
+   "title": "Tools",
+   "url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/tools.md"
+  },
+  "docs_at_top_coverage": 1,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 0.833,
+  "triage": "STRONG"
+ },
+ {
+  "case": "D25",
+  "slice": "D",
+  "q": "can a tool call trigger a handoff or are those separate things",
+  "intent": "relationship between tools and handoffs in the Agents SDK",
+  "style": [
+   "conversational"
+  ],
+  "guess_provider": "openai",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 5,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_14a2187cf2216b9d56c213b520a28479",
+   "provider": "openai",
+   "title": "Realtime agents guide",
+   "url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/realtime/guide.md"
+  },
+  "docs_at_top_coverage": 5,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "D26",
+  "slice": "D",
+  "q": "using an agent as a tool instead of handing off \u2014 when would i pick one over the other",
+  "intent": "agents-as-tools vs handoffs tradeoff",
+  "style": [
+   "conversational"
+  ],
+  "guess_provider": "openai",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 7,
+  "best_doc_coverage": 0.857,
+  "best_doc": {
+   "version_id": "ver_012b734775e7edb2649d3a9ddfd93070",
+   "provider": "anthropic",
+   "title": "Thinking",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/thinking"
+  },
+  "docs_at_top_coverage": 34,
+  "tokens_missing_from_best_doc": [
+   "handing"
+  ],
+  "second_best_coverage": 0.857,
+  "triage": "STRONG"
+ },
+ {
+  "case": "D27",
+  "slice": "D",
+  "q": "point the openai sdk at a local proxy / self hosted endpoint",
+  "intent": "overriding base URL for the client",
+  "style": [
+   "task-oriented"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 8,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_ae909bf8b4bbbe1d1a11119447f7ac94",
+   "provider": "openai",
+   "title": "Models",
+   "url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/models/index.md"
+  },
+  "docs_at_top_coverage": 1,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 0.875,
+  "triage": "STRONG"
+ },
+ {
+  "case": "D28",
+  "slice": "D",
+  "q": "max_turns exceeded \u2014 what does that actually count",
+  "intent": "what counts as a turn in the runner's max turns limit",
+  "style": [
+   "error-oriented",
+   "exact-identifier"
+  ],
+  "guess_provider": "openai",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 3,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_b8b18cda9b875d51a2ce979a1bf4e909",
+   "provider": "anthropic",
+   "title": "Advisor tool",
+   "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/advisor-tool"
+  },
+  "docs_at_top_coverage": 2,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "D29",
+  "slice": "D",
+  "q": "if i set both a client wide timeout and retries, does the timeout apply per attempt or to the whole thing",
+  "intent": "how timeout and retry settings interact",
+  "style": [
+   "configuration-interaction"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 10,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_de7f74230c8f10d30aea5d037a3bd0a5",
+   "provider": "anthropic",
+   "title": "Beta",
+   "url": "https://platform.claude.com/docs/en/api/beta"
+  },
+  "docs_at_top_coverage": 1,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 0.9,
+  "triage": "STRONG"
+ },
+ {
+  "case": "D30",
+  "slice": "D",
+  "q": "revoked a leaked key, how long till it stops working",
+  "intent": "propagation/effect of deleting or rotating an API key",
+  "style": [
+   "conversational",
+   "error-oriented"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 6,
+  "best_doc_coverage": 0.833,
+  "best_doc": {
+   "version_id": "ver_1d58a563501b073d898977de6bc2a823",
+   "provider": "anthropic",
+   "title": "Compliance API",
+   "url": "https://platform.claude.com/docs/en/api/compliance"
+  },
+  "docs_at_top_coverage": 1,
+  "tokens_missing_from_best_doc": [
+   "leaked"
+  ],
+  "second_best_coverage": 0.667,
+  "triage": "STRONG"
+ },
+ {
+  "case": "E01",
+  "slice": "E",
+  "q": "does prompt caching work when i stream the response",
+  "intent": "whether cache_control breakpoints and cache hit reporting behave normally with streaming enabled",
+  "style": [
+   "config-interaction",
+   "conversational"
+  ],
+  "guess_provider": "anthropic",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 5,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_012b734775e7edb2649d3a9ddfd93070",
+   "provider": "anthropic",
+   "title": "Thinking",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/thinking"
+  },
+  "docs_at_top_coverage": 49,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "E02",
+  "slice": "E",
+  "q": "counting tokens for an image before i send it \u2014 is there a formula or do i have to call the api",
+  "intent": "how to estimate image token cost ahead of a request",
+  "style": [
+   "config-interaction",
+   "task-oriented"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 9,
+  "best_doc_coverage": 0.889,
+  "best_doc": {
+   "version_id": "ver_012b734775e7edb2649d3a9ddfd93070",
+   "provider": "anthropic",
+   "title": "Thinking",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/thinking"
+  },
+  "docs_at_top_coverage": 16,
+  "tokens_missing_from_best_doc": [
+   "formula"
+  ],
+  "second_best_coverage": 0.889,
+  "triage": "STRONG"
+ },
+ {
+  "case": "E03",
+  "slice": "E",
+  "q": "can i use tools inside a batch request or is that only for the normal endpoint",
+  "intent": "whether tool use is supported in batch/async processing",
+  "style": [
+   "config-interaction"
+  ],
+  "guess_provider": "anthropic",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 6,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_1d58a563501b073d898977de6bc2a823",
+   "provider": "anthropic",
+   "title": "Compliance API",
+   "url": "https://platform.claude.com/docs/en/api/compliance"
+  },
+  "docs_at_top_coverage": 4,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "E04",
+  "slice": "E",
+  "q": "what's the max number of requests in one batch job and how long till results expire",
+  "intent": "batch size limits and result retention window",
+  "style": [
+   "exact-identifier",
+   "task-oriented"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": true,
+  "n_tokens": 9,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_7947433dfde6b3b8eccd0faa597c3c9a",
+   "provider": "anthropic",
+   "title": "Prompt caching",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-caching"
+  },
+  "docs_at_top_coverage": 4,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "E05",
+  "slice": "E",
+  "q": "cache_creation_input_tokens vs cache_read_input_tokens which one am i billed full price for",
+  "intent": "how cached vs written tokens are priced in the usage object",
+  "style": [
+   "exact-identifier",
+   "billing"
+  ],
+  "guess_provider": "anthropic",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 5,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_18c692f4d28bd01c0a5cac553fcf01a7",
+   "provider": "anthropic",
+   "title": "Messages",
+   "url": "https://platform.claude.com/docs/en/api/messages"
+  },
+  "docs_at_top_coverage": 11,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "E06",
+  "slice": "E",
+  "q": "im sending a pdf as a document block, do the pages count as image tokens or text tokens",
+  "intent": "how PDF input is tokenized and billed",
+  "style": [
+   "config-interaction",
+   "billing"
+  ],
+  "guess_provider": "anthropic",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 9,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_4f8c7b2939ec104f110004dfe05a342b",
+   "provider": "anthropic",
+   "title": "Vision",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/vision"
+  },
+  "docs_at_top_coverage": 3,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "E07",
+  "slice": "E",
+  "q": "cheapest embedding model for like 40 million chunks",
+  "intent": "embedding model cost comparison at scale",
+  "style": [
+   "billing",
+   "conversational"
+  ],
+  "guess_provider": "openai",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 6,
+  "best_doc_coverage": 0.667,
+  "best_doc": {
+   "version_id": "ver_2ff7336ddbba3879188abf3afdf6a229",
+   "provider": "openai",
+   "title": "Text comparison examples",
+   "url": "https://github.com/openai/openai-cookbook/blob/aa2c1e8867b83f73cdf8eedf94ebb6db41d69402/articles/text_comparison_examples.md"
+  },
+  "docs_at_top_coverage": 5,
+  "tokens_missing_from_best_doc": [
+   "cheapest",
+   "million"
+  ],
+  "second_best_coverage": 0.667,
+  "triage": "PROBABLE"
+ },
+ {
+  "case": "E08",
+  "slice": "E",
+  "q": "how do i shrink embedding vectors to save space in pgvector",
+  "intent": "reducing embedding dimensionality",
+  "style": [
+   "task-oriented"
+  ],
+  "guess_provider": "openai",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 6,
+  "best_doc_coverage": 0.5,
+  "best_doc": {
+   "version_id": "ver_0dbd0d6268fcabfcfce88bb80a126181",
+   "provider": "openai",
+   "title": "Shared",
+   "url": "https://github.com/openai/openai-node/blob/cc7dbfa9b9dd6fe0ff72141e9c0c3d82b18ba9aa/api.md"
+  },
+  "docs_at_top_coverage": 8,
+  "tokens_missing_from_best_doc": [
+   "shrink",
+   "save",
+   "pgvector"
+  ],
+  "second_best_coverage": 0.5,
+  "triage": "REVIEW"
+ },
+ {
+  "case": "E09",
+  "slice": "E",
+  "q": "moderation endpoint \u2014 can it take images or is it text only now",
+  "intent": "multimodal input support for the moderation API",
+  "style": [
+   "exact-identifier"
+  ],
+  "guess_provider": "openai",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 5,
+  "best_doc_coverage": 0.8,
+  "best_doc": {
+   "version_id": "ver_099b2710b117f534b43be4be2a4c84ab",
+   "provider": "anthropic",
+   "title": "Agent Skills",
+   "url": "https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview"
+  },
+  "docs_at_top_coverage": 15,
+  "tokens_missing_from_best_doc": [
+   "moderation"
+  ],
+  "second_best_coverage": 0.8,
+  "triage": "STRONG"
+ },
+ {
+  "case": "E10",
+  "slice": "E",
+  "q": "my cache keeps missing even though the system prompt is identical, what invalidates it",
+  "intent": "causes of prompt cache invalidation",
+  "style": [
+   "error-oriented",
+   "config-interaction"
+  ],
+  "guess_provider": "anthropic",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 7,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_012b734775e7edb2649d3a9ddfd93070",
+   "provider": "anthropic",
+   "title": "Thinking",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/thinking"
+  },
+  "docs_at_top_coverage": 1,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 0.857,
+  "triage": "STRONG"
+ },
+ {
+  "case": "E11",
+  "slice": "E",
+  "q": "is there a way to see cost per request in the response headers",
+  "intent": "whether cost/usage is exposed per-request via headers or only in usage body",
+  "style": [
+   "billing",
+   "exact-identifier"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": true,
+  "n_tokens": 6,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_012b734775e7edb2649d3a9ddfd93070",
+   "provider": "anthropic",
+   "title": "Thinking",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/thinking"
+  },
+  "docs_at_top_coverage": 27,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "E12",
+  "slice": "E",
+  "q": "batch discount 50% \u2014 does that stack with prompt caching discounts",
+  "intent": "whether batch pricing and cache read pricing compound",
+  "style": [
+   "config-interaction",
+   "billing"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 6,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_5ebdc722f9bedb1e2e8cbd3f29ff6805",
+   "provider": "anthropic",
+   "title": "Claude Platform on AWS",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws"
+  },
+  "docs_at_top_coverage": 3,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "E13",
+  "slice": "E",
+  "q": "resize images before sending? whats the point where it stops helping",
+  "intent": "optimal image dimensions for cost/quality tradeoff",
+  "style": [
+   "task-oriented",
+   "conversational"
+  ],
+  "guess_provider": "anthropic",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 7,
+  "best_doc_coverage": 0.714,
+  "best_doc": {
+   "version_id": "ver_0a5b292d4854b92db0a9e025b4949123",
+   "provider": "anthropic",
+   "title": "Prompting best practices",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices"
+  },
+  "docs_at_top_coverage": 6,
+  "tokens_missing_from_best_doc": [
+   "resize",
+   "helping"
+  ],
+  "second_best_coverage": 0.714,
+  "triage": "PROBABLE"
+ },
+ {
+  "case": "E14",
+  "slice": "E",
+  "q": "how do i pass an image by url instead of base64",
+  "intent": "URL-based image source support and constraints",
+  "style": [
+   "task-oriented"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": true,
+  "n_tokens": 5,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_18c692f4d28bd01c0a5cac553fcf01a7",
+   "provider": "anthropic",
+   "title": "Messages",
+   "url": "https://platform.claude.com/docs/en/api/messages"
+  },
+  "docs_at_top_coverage": 14,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "E15",
+  "slice": "E",
+  "q": "count_tokens endpoint \u2014 does it include the tools i define in the request",
+  "intent": "whether tool definitions are counted by the token counting endpoint",
+  "style": [
+   "config-interaction",
+   "exact-identifier"
+  ],
+  "guess_provider": "anthropic",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 6,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_18c692f4d28bd01c0a5cac553fcf01a7",
+   "provider": "anthropic",
+   "title": "Messages",
+   "url": "https://platform.claude.com/docs/en/api/messages"
+  },
+  "docs_at_top_coverage": 5,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "E16",
+  "slice": "E",
+  "q": "getting 429 on batches but my normal requests are fine, are the limits separate",
+  "intent": "whether batch API has its own rate limit pool",
+  "style": [
+   "error-oriented"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 6,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_18c692f4d28bd01c0a5cac553fcf01a7",
+   "provider": "anthropic",
+   "title": "Messages",
+   "url": "https://platform.claude.com/docs/en/api/messages"
+  },
+  "docs_at_top_coverage": 7,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "E17",
+  "slice": "E",
+  "q": "whats the minimum prompt length before caching actually kicks in",
+  "intent": "minimum cacheable token threshold, varies by model",
+  "style": [
+   "exact-identifier"
+  ],
+  "guess_provider": "anthropic",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 7,
+  "best_doc_coverage": 0.857,
+  "best_doc": {
+   "version_id": "ver_b0e991d125c07d10232fddc0668650a1",
+   "provider": "anthropic",
+   "title": "What's new in Claude Opus 5",
+   "url": "https://platform.claude.com/docs/en/about-claude/models/whats-new-opus-5"
+  },
+  "docs_at_top_coverage": 1,
+  "tokens_missing_from_best_doc": [
+   "kicks"
+  ],
+  "second_best_coverage": 0.714,
+  "triage": "STRONG"
+ },
+ {
+  "case": "E18",
+  "slice": "E",
+  "q": "moving from ada-002 to text-embedding-3, do i have to reindex everything",
+  "intent": "embedding model migration and vector compatibility",
+  "style": [
+   "migration"
+  ],
+  "guess_provider": "openai",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 6,
+  "best_doc_coverage": 0.5,
+  "best_doc": {
+   "version_id": "ver_0a5b292d4854b92db0a9e025b4949123",
+   "provider": "anthropic",
+   "title": "Prompting best practices",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices"
+  },
+  "docs_at_top_coverage": 7,
+  "tokens_missing_from_best_doc": [
+   "ada-002",
+   "text-embedding-3",
+   "reindex"
+  ],
+  "second_best_coverage": 0.5,
+  "triage": "REVIEW"
+ },
+ {
+  "case": "E19",
+  "slice": "E",
+  "q": "what happens if one request in my batch fails, does the whole job die",
+  "intent": "per-request error isolation in batch jobs",
+  "style": [
+   "what-happens-if"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 7,
+  "best_doc_coverage": 0.857,
+  "best_doc": {
+   "version_id": "ver_83f5681ee38e2d11ab15e49c90a16e2e",
+   "provider": "anthropic",
+   "title": "Optimizing for cost and intelligence",
+   "url": "https://platform.claude.com/docs/en/about-claude/models/optimizing-for-cost-and-intelligence"
+  },
+  "docs_at_top_coverage": 2,
+  "tokens_missing_from_best_doc": [
+   "die"
+  ],
+  "second_best_coverage": 0.857,
+  "triage": "STRONG"
+ },
+ {
+  "case": "E20",
+  "slice": "E",
+  "q": "can i cache a big image so i dont pay for it every turn",
+  "intent": "whether image blocks are cacheable content",
+  "style": [
+   "config-interaction"
+  ],
+  "guess_provider": "anthropic",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 6,
+  "best_doc_coverage": 0.833,
+  "best_doc": {
+   "version_id": "ver_7947433dfde6b3b8eccd0faa597c3c9a",
+   "provider": "anthropic",
+   "title": "Prompt caching",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-caching"
+  },
+  "docs_at_top_coverage": 2,
+  "tokens_missing_from_best_doc": [
+   "dont"
+  ],
+  "second_best_coverage": 0.833,
+  "triage": "STRONG"
+ },
+ {
+  "case": "E21",
+  "slice": "E",
+  "q": "1 hour cache ttl how much extra does it cost vs the default",
+  "intent": "extended cache TTL pricing multiplier",
+  "style": [
+   "billing",
+   "exact-identifier"
+  ],
+  "guess_provider": "anthropic",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 7,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_7947433dfde6b3b8eccd0faa597c3c9a",
+   "provider": "anthropic",
+   "title": "Prompt caching",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-caching"
+  },
+  "docs_at_top_coverage": 3,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "E22",
+  "slice": "E",
+  "q": "spend limits per api key possible?",
+  "intent": "per-key budget controls in the console/org settings",
+  "style": [
+   "billing",
+   "terse"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": true,
+  "n_tokens": 6,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_0a5b292d4854b92db0a9e025b4949123",
+   "provider": "anthropic",
+   "title": "Prompting best practices",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices"
+  },
+  "docs_at_top_coverage": 6,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "E23",
+  "slice": "E",
+  "q": "we need to run 200k classification jobs overnight and dont care about latency. batch or just parallel normal calls with retries?",
+  "intent": "choosing between batch API and concurrent sync requests for bulk work",
+  "style": [
+   "task-oriented",
+   "two-sentence"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 12,
+  "best_doc_coverage": 0.667,
+  "best_doc": {
+   "version_id": "ver_0a5b292d4854b92db0a9e025b4949123",
+   "provider": "anthropic",
+   "title": "Prompting best practices",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices"
+  },
+  "docs_at_top_coverage": 1,
+  "tokens_missing_from_best_doc": [
+   "jobs",
+   "overnight",
+   "dont",
+   "batch"
+  ],
+  "second_best_coverage": 0.583,
+  "triage": "PROBABLE"
+ },
+ {
+  "case": "E24",
+  "slice": "E",
+  "q": "usage numbers in a streaming response \u2014 are input tokens in the first event or the last one",
+  "intent": "where usage appears across streaming events",
+  "style": [
+   "config-interaction"
+  ],
+  "guess_provider": "anthropic",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 9,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_0865c9612dfe97d8f30dd870dd12e53e",
+   "provider": "anthropic",
+   "title": "Structured outputs",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/structured-outputs"
+  },
+  "docs_at_top_coverage": 4,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "E25",
+  "slice": "E",
+  "q": "do i get charged for output tokens if i abort the stream halfway",
+  "intent": "billing behavior on client-side stream cancellation",
+  "style": [
+   "what-happens-if",
+   "billing"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 6,
+  "best_doc_coverage": 0.833,
+  "best_doc": {
+   "version_id": "ver_012b734775e7edb2649d3a9ddfd93070",
+   "provider": "anthropic",
+   "title": "Thinking",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/thinking"
+  },
+  "docs_at_top_coverage": 1,
+  "tokens_missing_from_best_doc": [
+   "abort"
+  ],
+  "second_best_coverage": 0.667,
+  "triage": "STRONG"
+ },
+ {
+  "case": "E26",
+  "slice": "E",
+  "q": "embeddings on anthropic?",
+  "intent": "whether Anthropic offers an embeddings endpoint and what to use instead",
+  "style": [
+   "terse",
+   "mistaken-terminology"
+  ],
+  "guess_provider": "anthropic",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 2,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_26f61f56d6ff7124cfa38152f7baef3d",
+   "provider": "anthropic",
+   "title": "Embeddings",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/embeddings"
+  },
+  "docs_at_top_coverage": 6,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "E27",
+  "slice": "E",
+  "q": "is there a content filter i can turn on for user input before it hits the model",
+  "intent": "pre-request moderation/safety filtering options",
+  "style": [
+   "task-oriented",
+   "mistaken-terminology"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": true,
+  "n_tokens": 8,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_012b734775e7edb2649d3a9ddfd93070",
+   "provider": "anthropic",
+   "title": "Thinking",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/thinking"
+  },
+  "docs_at_top_coverage": 6,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "E28",
+  "slice": "E",
+  "q": "batch job stuck in in_progress for 20 hours, what do i do",
+  "intent": "batch processing SLA, expiry, and cancellation",
+  "style": [
+   "error-oriented",
+   "exact-identifier"
+  ],
+  "guess_provider": "either",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 5,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_de7f74230c8f10d30aea5d037a3bd0a5",
+   "provider": "anthropic",
+   "title": "Beta",
+   "url": "https://platform.claude.com/docs/en/api/beta"
+  },
+  "docs_at_top_coverage": 1,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 0.8,
+  "triage": "STRONG"
+ },
+ {
+  "case": "E29",
+  "slice": "E",
+  "q": "how many images can go in a single message and is there a size cap per image",
+  "intent": "per-request image count and file size limits",
+  "style": [
+   "exact-identifier"
+  ],
+  "guess_provider": "anthropic",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 8,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_012b734775e7edb2649d3a9ddfd93070",
+   "provider": "anthropic",
+   "title": "Thinking",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/thinking"
+  },
+  "docs_at_top_coverage": 12,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 1.0,
+  "triage": "STRONG"
+ },
+ {
+  "case": "E30",
+  "slice": "E",
+  "q": "trying to cache tool definitions + a long system prompt, where exactly do i put the cache_control marker",
+  "intent": "cache breakpoint placement across tools and system blocks",
+  "style": [
+   "config-interaction",
+   "exact-identifier"
+  ],
+  "guess_provider": "anthropic",
+  "author_flagged_ambiguous": false,
+  "n_tokens": 11,
+  "best_doc_coverage": 1.0,
+  "best_doc": {
+   "version_id": "ver_de7f74230c8f10d30aea5d037a3bd0a5",
+   "provider": "anthropic",
+   "title": "Beta",
+   "url": "https://platform.claude.com/docs/en/api/beta"
+  },
+  "docs_at_top_coverage": 1,
+  "tokens_missing_from_best_doc": [],
+  "second_best_coverage": 0.909,
+  "triage": "STRONG"
+ }
+]

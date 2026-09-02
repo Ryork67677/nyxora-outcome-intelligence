@@ -1,0 +1,82 @@
+{
+ "name": "SYSTEM-H-V2-DEV-CANDIDATE",
+ "description": "V2 development architecture candidate: SYSTEM-G candidate generation + frozen CE blend + PERF-003 D1 performance path",
+ "supersedes_nothing": true,
+ "predecessors_preserved": [
+  "SYSTEM-A-GLOBAL",
+  "SYSTEM-B-DOC-C",
+  "SYSTEM-D-GUARD-BLEND",
+  "SYSTEM-E-WITHIN-DOC",
+  "SYSTEM-G-PROJECTION-PRIOR",
+  "SYSTEM-G-CE-D1"
+ ],
+ "candidate_generation": {
+  "stage_1_global": {
+   "system": "SYSTEM-A-GLOBAL",
+   "config_hash": "9afcb5b7c58ebacff0b4c3711dd9618a2e727f4195dd1787a5da81e478ee0b38",
+   "resolved_from": "src/rag_v1/systems.py (present in this checkout)"
+  },
+  "stage_2_local": {
+   "mechanism": "E-L10 additive within-document BM25",
+   "L": 10,
+   "L_semantics": "total NEW local passages PER QUERY, not per parent",
+   "term_statistics": "full corpus - never recomputed inside routed documents",
+   "parent_n": "UNRESOLVED_REQUIRES_SYSTEM_G_CONFIG",
+   "W_per_parent": "UNRESOLVED_REQUIRES_SYSTEM_G_CONFIG"
+  },
+  "stage_3_projection": {
+   "lane": "ps_v2_ovl_win448_s224",
+   "P_extras": 20,
+   "window": 448,
+   "stride": 224,
+   "projection_model": "UNRESOLVED_REQUIRES_SYSTEM_G_CONFIG",
+   "projection_chunk_set_id": "UNRESOLVED_REQUIRES_SYSTEM_G_CONFIG",
+   "projection_index_hash": "UNRESOLVED_REQUIRES_SYSTEM_G_CONFIG"
+  },
+  "retrieval_prior": {
+   "source": "EXP-019A",
+   "kind": "projection-aware retrieval prior",
+   "parameters": "UNRESOLVED_REQUIRES_SYSTEM_G_CONFIG",
+   "prior_form": "UNRESOLVED_REQUIRES_SYSTEM_G_CONFIG"
+  },
+  "fusion": {
+   "third_rrf": false,
+   "note": "no third RRF stage"
+  }
+ },
+ "reranking": {
+  "cross_encoder": {
+   "name": "cross-encoder/ms-marco-MiniLM-L6-v2",
+   "revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a",
+   "artifact_sha256": "5d3e70fd0c9ff14b9b5169a51e957b7a9c74897afd0a35ce4bd318150c1d4d4a",
+   "verified_in_this_session": true
+  },
+  "blend": {
+   "ce_weight": 0.7,
+   "retrieval_weight": 0.3
+  },
+  "normalization": "UNRESOLVED_REQUIRES_SYSTEM_G_CONFIG",
+  "tie_breaks": "UNRESOLVED_REQUIRES_SYSTEM_G_CONFIG",
+  "note": "normalization and tie-breaks must be copied verbatim from SYSTEM-G, not restated"
+ },
+ "performance_path": {
+  "source": "PERF-003 D1",
+  "pad": "batch",
+  "bucket_by_length": true,
+  "batch_size": 16,
+  "threads": "unchanged from SYSTEM-G",
+  "fast_flag": false,
+  "score_preserving": true,
+  "equivalence_criterion": "bitwise raw CE logits",
+  "evidence": "PERF-003: 6205/6205 bitwise identical, max_abs_diff 0"
+ },
+ "status": {
+  "DEVELOPMENT_ARCHITECTURE_FROZEN": false,
+  "RELEASE_FROZEN": false,
+  "VALIDATION_RUN": false,
+  "NEW_HOLDOUT_RUN": false,
+  "frozen_blocked_reason": "Cannot be frozen as specified. The brief requires SYSTEM-H to represent EXACTLY SYSTEM-G's candidate generation, but SYSTEM-G's configuration is not reachable from this session, so nine fields are unresolved. A config_hash computed over a specification containing placeholders would be a real-looking identity for an architecture nobody is running, and every comparison made across the later correction would be silently invalid. Supply SYSTEM-G-PROJECTION-PRIOR.json and the EXP-019A prior parameters and this freezes in one step."
+ },
+ "config_hash": null,
+ "config_hash_withheld_because": "specification contains UNRESOLVED_REQUIRES_SYSTEM_G_CONFIG fields"
+}
