@@ -1,0 +1,61 @@
+{
+ "record_id": "PROVENANCE-GAP-001",
+ "informational_only": true,
+ "blocks_nothing": true,
+ "as_of_reconciliation_commit": "9dc0899",
+ "statement": "Original artifacts for the items below are not present on ANY git ref fetched from origin. They are recorded in this project only as values relayed through conversation.",
+ "refs_checked": {
+  "claude/rag-v1-build-experiments-5yngul": "f289fb8 (at reconciliation)",
+  "grok/v2-dev": "b044b41",
+  "grok/ce-latency-handoff": "7661ac5",
+  "main": "7d26c89"
+ },
+ "missing_artifacts": [
+  {
+   "id": "EXP-019A",
+   "expected_files": [
+    "EXP-019A-report.md",
+    "EXP-019A preregistration"
+   ],
+   "refs_containing": [],
+   "verified_here": false,
+   "relied_on_for": "supersession of EXP-017 projection-only a_norm=0.0; 41/50 strict R@10",
+   "prereg_sha256_as_relayed": "f14001eff07b63c7916d7e27567d15ccd1e53b52918ae66f0d24ca37abb54cf3"
+  },
+  {
+   "id": "EXP-019B",
+   "expected_files": [
+    "EXP-019B artifacts"
+   ],
+   "refs_containing": [],
+   "verified_here": false,
+   "relied_on_for": "not currently relied on"
+  },
+  {
+   "id": "SYSTEM-G",
+   "expected_files": [
+    "SYSTEM-G-PROJECTION-PRIOR.json",
+    "SYSTEM-G-CE-D1.json"
+   ],
+   "refs_containing": [],
+   "verified_here": false,
+   "relied_on_for": "the nine SYSTEM-H fields; config hashes 563a7b79\u2026 and 6d108568\u2026"
+  },
+  {
+   "id": "PERF-003 (Grok)",
+   "expected_files": [
+    "PERF-003-report.md"
+   ],
+   "refs_containing": [],
+   "verified_here": false,
+   "relied_on_for": "6205/6205 bitwise CE equivalence; 3.207x speedup; preserved metrics",
+   "note": "experiments/PERF-003/PERF-003-closure.json on the Claude branch is MY closure record of relayed values, not Grok's report. Do not conflate them."
+  }
+ ],
+ "rules": [
+  "Do not reconstruct these artifacts from conversational summaries.",
+  "Do not mark any of them verified_here=true until the original files are recovered or pushed.",
+  "Values relayed through conversation stay labelled as relayed."
+ ],
+ "clears_when": "the branch carrying these artifacts is pushed and fetched; then re-verify and flip the flags"
+}

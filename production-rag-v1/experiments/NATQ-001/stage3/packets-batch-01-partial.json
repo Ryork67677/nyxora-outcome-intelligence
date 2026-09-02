@@ -1,0 +1,92 @@
+[
+ {
+  "case": "A09",
+  "question": "does the model ever call two tools in one response",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_18c692f4d28bd01c0a5cac553fcf01a7",
+  "document_title": "Messages",
+  "content_hash": "740d6dab47889293f412ae5f2afe85897d0e2227935081d372724a6e773bb3ff",
+  "supported_answer": "Yes. Parallel tool use is the default: disable_parallel_tool_use defaults to false, and setting it to true is what restricts the model to a single tool use. Under tool_choice auto that cap is 'at most one tool use'; under any/tool it is 'exactly one'.",
+  "evidence": [
+   {
+    "char_start": 35392,
+    "char_end": 35574,
+    "quote": "- `disable_parallel_tool_use: optional boolean`\n\n      Whether to disable parallel tool use.\n\n      Defaults to `false`. If set to `true`, the model will output at most one tool use."
+   }
+  ],
+  "atomic_claims": [
+   "disable_parallel_tool_use defaults to false",
+   "setting disable_parallel_tool_use to true makes the model output at most one tool use under tool_choice auto"
+  ],
+  "critical_strings": [
+   "disable_parallel_tool_use",
+   "at most one tool use"
+  ],
+  "evidence_shape": "single_span_api_reference",
+  "reasoning_type": "default-value inference from a parameter description",
+  "ambiguity_notes": "The question does not name a provider. Answered from Anthropic because the asked-about behaviour is documented there; an OpenAI-scoped reading would need separate evidence.",
+  "verifier_notes": "This exact block repeats at several offsets in the Messages document (35447, 128521, 482189, 624212...). The first canonical occurrence is anchored. Note the corpus distinguishes 'at most one' (auto) from 'exactly one' (any/tool) 130 chars later - the answer states both rather than flattening them. Span extended backwards from 35447 to the parameter declaration at 35392 after the integrity check found the snake_case identifier absent: the original span carried only the prose 'parallel tool use'."
+ },
+ {
+  "case": "A04",
+  "question": "what happens if my json schema has additionalProperties true with strict mode on",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_0865c9612dfe97d8f30dd870dd12e53e",
+  "document_title": "Structured outputs",
+  "content_hash": "1440ba74d6eb67920a9748b13c5e6abb42fda52e0609c6fe848b1c75b20d4f2a",
+  "supported_answer": "additionalProperties must be set to false for objects. The corpus states the constraint as a requirement of supported JSON Schema for both JSON outputs and strict tool use, so a schema setting it true is outside what structured outputs supports.",
+  "evidence": [
+   {
+    "char_start": 98576,
+    "char_end": 99351,
+    "quote": "### JSON Schema limitations\n\nStructured outputs support standard JSON Schema with some limitations. Both JSON outputs and strict tool use share these limitations.\n\n<Accordion title=\"Supported features\">\n  * All basic types: object, array, string, integer, number, boolean, null\n  * `enum` (strings, numbers, bools, or nulls only - no complex types; see [Invalid outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs#invalid-outputs) for a capitalization caveat)\n  * `const`\n  * `anyOf` and `allOf` (with limitations - `allOf` with `$ref` not supported)\n  * `$ref`, `$def`, and `definitions` (external `$ref` not supported)\n  * `default` property for all supported types\n  * `required` and `additionalProperties` (must be set to `false` for objects"
+   }
+  ],
+  "atomic_claims": [
+   "structured outputs support standard JSON Schema with limitations",
+   "the limitations apply to both JSON outputs and strict tool use",
+   "additionalProperties must be set to false for objects"
+  ],
+  "critical_strings": [
+   "additionalProperties",
+   "must be set to `false` for objects"
+  ],
+  "evidence_shape": "single_span_constraint_list",
+  "reasoning_type": "constraint lookup",
+  "ambiguity_notes": "The author guessed OpenAI; the frozen corpus answers it for Anthropic. Provider is recorded from the evidence, not from the author's guess.",
+  "verifier_notes": "The corpus states the requirement but does not state the error surface produced when it is violated. The answer is scoped to what the span supports and does not assert an error code."
+ },
+ {
+  "case": "A05",
+  "question": "screenshot resolution for computer use \u2014 does it matter what size my screen is",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_95095158f47d20a4d346b8ddf3110713",
+  "document_title": "Coordinates and bounding boxes",
+  "content_hash": "353199d346065edad97ed0e2f99fc92f5bc00d0dfb0f8272104e1638a44b3c9c",
+  "supported_answer": "Yes. Returned coordinates are relative and must be rescaled to whatever surface you act on; padding is applied only to the bottom and right edges so the origin does not shift and a per-axis linear rescale suffices. On HiDPI displays, where screenshot pixels differ from logical coordinates, you must additionally divide by the display scale factor.",
+  "evidence": [
+   {
+    "char_start": 28714,
+    "char_end": 29441,
+    "quote": "Padding is applied only to the bottom and right edges, so the origin doesn't shift and a per-axis linear rescale is sufficient. Clamp returned coordinates to the resized dimensions before rescaling, so a point slightly outside the image can't map outside your original.\n\nThe relative coordinates multiply against whatever surface you act on: the original image, a full-resolution scan, or a screen. When you act on a screen and screenshot pixels differ from logical coordinates (HiDPI displays), also divide by the display scale factor. The [Computer use tool's scaling guidance](https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool#handle-coordinate-scaling-for-higher-resolutions) covers that patte"
+   }
+  ],
+  "atomic_claims": [
+   "padding is applied only to the bottom and right edges so the origin does not shift",
+   "a per-axis linear rescale is sufficient",
+   "coordinates should be clamped to the resized dimensions before rescaling",
+   "on HiDPI displays you must also divide by the display scale factor"
+  ],
+  "critical_strings": [
+   "per-axis linear rescale",
+   "display scale factor"
+  ],
+  "evidence_shape": "single_span_procedure",
+  "reasoning_type": "procedural lookup with a device-dependent caveat",
+  "ambiguity_notes": "None material; the question is provider-identifiable from 'computer use'.",
+  "verifier_notes": "Answers the real intent (does screen size matter) rather than the literal phrasing (recommended resolution). The span supports the rescaling requirement; it does not state a recommended pixel size, so the answer does not claim one."
+ }
+]
