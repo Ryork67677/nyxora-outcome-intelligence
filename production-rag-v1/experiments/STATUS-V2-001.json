@@ -1,0 +1,180 @@
+{
+ "report_id": "STATUS-V2-001",
+ "kind": "phase_status",
+ "head": "1e14e9e",
+ "system_h": {
+  "config_hash": "026a302b56c18e50f3af1d6b7baba8d744da2c8b951eba9ac1e137d5cec9c491",
+  "score_determining_hash": "3fade96a9b3597861b0788c15d0e456a52fa92f6907749a2661960e54bf7b2e5",
+  "file_sha256": "ecbc35e730cc70cd2bb4c04452290b4fab3d3ac737f79fde85e9e21cd3ed1d55",
+  "file_sha256_superseded": "d5199332c2f89d579a009ea77a984f9e2853f8e70fb21268106a7f4563771bf0",
+  "status": {
+   "DEVELOPMENT_ARCHITECTURE_FROZEN": true,
+   "RELEASE_FROZEN": false,
+   "VALIDATION_RUN": false,
+   "NEW_HOLDOUT_RUN": false
+  },
+  "verified_fields": 16,
+  "unverified_fields": [
+   "parent_n 10",
+   "W_per_parent 20",
+   "projection_index_hash (absent from every reachable branch)"
+  ],
+  "exp019a": {
+   "status": "RESOLVED - EXP-019A formally supersedes the EXP-017 field",
+   "exp017_preregistered": {
+    "projection_only_a_channel_normalized_score": 0.0,
+    "do_not_use_minmax_degenerate_0_5_on_A_for_projection_only": true,
+    "now_characterised_as": "historical SYSTEM-F behaviour"
+   },
+   "exp019a_supersedes_with": "projection-only members: replace a_norm=0.0 with min-max over that query's P projection-only fused scores; degenerate/constant -> 0.5. E-L10 members keep their existing a_norm exactly. No third RRF, no candidate membership change, blend stays 0.7/0.3.",
+   "exp019a_preregistration_sha256": "f14001eff07b63c7916d7e27567d15ccd1e53b52918ae66f0d24ca37abb54cf3",
+   "exp019a_result_as_reported": {
+    "strict_recall_at_10": "41/50",
+    "vs_exp017": "40/50",
+    "candidate_recall_at_100": "46/50",
+    "span": 0.82,
+    "mrr": 0.6009,
+    "document_recall": 0.9,
+    "regressions": 0,
+    "rank1_destructions": 0
+   },
+   "corroboration": "PERF-003 reconstructed SYSTEM-G under this same minmax(projection_fused) rule and reproduced 46/50, 41/50, .82, .6009, .90 with 6205/6205 CE logits bitwise identical.",
+   "authoritative_system_g_config_hash": "563a7b790564fa1efb96257e988c4b1ccfab45146825d2a366b2fee0ca5d5790",
+   "resolution_source": "coordinator, citing EXP-019A-report.md and PERF-003-report.md",
+   "verified_here": false,
+   "verification_note": "EXP-019A-report.md and PERF-003-report.md are not present on any ref reachable from this session. The resolution is accepted on the coordinator's authority and recorded as such, not independently reproduced.",
+   "effect_on_freeze": "None. The value frozen in this file was ALREADY minmax/0.5, which is the EXP-019A behaviour. Twelve content checks confirm it. config_hash is unchanged because provenance is not part of the hashed configuration; only file_sha256 moves.",
+   "prior_note_replaced": "The coordinator must confirm EXP-019A formally amended this preregistered field. If it did not, this freeze rests on an unrecorded change to a preregistration, and the hash below should be revoked and recomputed."
+  }
+ },
+ "perf003": {
+  "status": "PERF-003_SUPPORTED",
+  "verified_here": false,
+  "metrics": {
+   "candidate_recall_at_100": "46/50",
+   "strict_recall_at_10": "41/50",
+   "span_recall_at_10": 0.82,
+   "mrr": 0.6009,
+   "document_recall": 0.9
+  },
+  "equivalence": {
+   "raw_ce_logits_compared": 6205,
+   "bitwise_identical": 6205,
+   "max_abs_diff": 0,
+   "criterion": "bitwise, not tolerance"
+  },
+  "timing": {
+   "old_ce_mean_ms": 6791.2,
+   "d1_ce_mean_ms": 2117.6,
+   "speedup": 3.207,
+   "old_system_g_total_estimate_ms": 7802.6,
+   "d1_system_g_total_estimate_ms": 3129.0,
+   "WARNING": "same-host only; NOT valid for cross-host comparison"
+  }
+ },
+ "gap": {
+  "missing": [
+   "EXP-019A",
+   "EXP-019B",
+   "SYSTEM-G",
+   "PERF-003 (Grok)"
+  ],
+  "as_of": "9dc0899",
+  "refs": {
+   "claude/rag-v1-build-experiments-5yngul": "f289fb8 (at reconciliation)",
+   "grok/v2-dev": "b044b41",
+   "grok/ce-latency-handoff": "7661ac5",
+   "main": "7d26c89"
+  }
+ },
+ "natq": {
+  "raw": 150,
+  "target": 100,
+  "triage": {
+   "STRONG": 134,
+   "PROBABLE": 13,
+   "REVIEW": 3,
+   "LIKELY_UNSUPPORTED": 0,
+   "method": "literal per-document token-coverage inspection",
+   "is_retrieval": false,
+   "is_verification": false,
+   "note": "coverage means the document holds the vocabulary, not that it answers the question"
+  },
+  "provider": {
+   "anthropic": 121,
+   "openai": 26
+  },
+  "ambiguous": 5,
+  "authoring": {
+   "method": "five isolated cold-context agents, domain prompts only",
+   "tool_uses_per_agent": 0,
+   "author_saw_corpus": false,
+   "author_saw_prior_questions": false,
+   "author_saw_retrieval_results": false,
+   "author_saw_v1_holdout": false
+  },
+  "stage3_done": 3,
+  "stage3_remaining": 147,
+  "packets": [
+   {
+    "case": "A09",
+    "q": "does the model ever call two tools in one response",
+    "provider": "anthropic",
+    "doc": "Messages",
+    "shape": "single_span_api_reference",
+    "spans": 1,
+    "claims": 2,
+    "crit": [
+     "disable_parallel_tool_use",
+     "at most one tool use"
+    ],
+    "note": "This exact block repeats at several offsets in the Messages document (35447, 128521, 482189, 624212...). The first canonical occurrence is anchored. Note the corpus distinguishes 'at most one' (auto) from 'exactly one' (any/tool) 130 chars later - the answer states both rather than flattening them. "
+   },
+   {
+    "case": "A04",
+    "q": "what happens if my json schema has additionalProperties true with strict mode on",
+    "provider": "anthropic",
+    "doc": "Structured outputs",
+    "shape": "single_span_constraint_list",
+    "spans": 1,
+    "claims": 3,
+    "crit": [
+     "additionalProperties",
+     "must be set to `false` for objects"
+    ],
+    "note": "The corpus states the requirement but does not state the error surface produced when it is violated. The answer is scoped to what the span supports and does not assert an error code."
+   },
+   {
+    "case": "A05",
+    "q": "screenshot resolution for computer use \u2014 does it matter what size my screen is",
+    "provider": "anthropic",
+    "doc": "Coordinates and bounding boxes",
+    "shape": "single_span_procedure",
+    "spans": 1,
+    "claims": 4,
+    "crit": [
+     "per-axis linear rescale",
+     "display scale factor"
+    ],
+    "note": "Answers the real intent (does screen size matter) rather than the literal phrasing (recommended resolution). The span supports the rescaling requirement; it does not state a recommended pixel size, so the answer does not claim one."
+   }
+  ]
+ },
+ "artifact_hashes": {
+  "SYSTEM-H json": "ecbc35e730cc70cd2bb4c04452290b4fab3d3ac737f79fde85e9e21cd3ed1d55",
+  "PERF-003 closure": "d1048c3005235c1baeaf9764e386868cd25907ec2a14bc8429a780754050aa1d",
+  "PROVENANCE-GAP-001": "a561c887f21928c52329a5d274763b8f863ad9d94337f8aaeec9e69f433e8cc6",
+  "NATQ manifest": "b167854268b334d3c601bcea5a82123b9c80895509544052a2f7dec88f8dd671",
+  "NATQ stage3 packets": "aba8473ec08ed796bc7410dea84ad42cc7d8d65a37e588f49b629cd7599acb8b",
+  "natq_evidence.py": "86502d53f3e70fe1662b4a6ed27dbd6cc350c6f4ebd6a6c2ec1039f4ae602181"
+ },
+ "constraints": {
+  "system_h_scored": false,
+  "natq_scored": false,
+  "retrieval_run": false,
+  "validation_run": false,
+  "split_created": false,
+  "holdout_opened": false,
+  "v1_holdout_log_entries": 0
+ }
+}
