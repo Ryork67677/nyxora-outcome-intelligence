@@ -1,0 +1,99 @@
+{
+  "record_id": "RELAYED-LINEAGE-RECEIPT-001",
+  "recorded_utc": "2026-09-03",
+  "recorded_by": "claude-code cloud session",
+  "recorded_at_commit": "0f77682",
+
+  "what_this_is": "A receipt for upstream artifacts the operator pasted into chat because this cloud session cannot read C:\\ paths. It is an index and a corroboration note. It is NOT a copy of those artifacts and must not be used as one.",
+
+  "what_this_is_not": [
+    "Not a reconstruction of the upstream artifact files. Their bytes were not written into this repository.",
+    "Not a verification. Nothing here was recomputed, re-hashed, or re-run in this session.",
+    "Not a substitute for the originals when those experiments are cited."
+  ],
+
+  "verified_here": false,
+  "byte_verified": false,
+
+  "artifacts_relayed": [
+    "METRIC-DEFS-V2.json",
+    "METRIC-DEFS-V2-RECONCILIATION.md",
+    "EXP-025A-REPORT.md",
+    "EXP-025A-RESULTS.json",
+    "EXP-026A-REPORT.md",
+    "EXP-026A-RESULTS.json",
+    "NATQ-DIAG-002-REPORT.md",
+    "NATQ-DIAG-002-STOP.json",
+    "NATQ-DIAG-002-aggregate.json",
+    "NATQ-DIAG-002-target-population.canonical.json",
+    "NATQ-DIAG-002-per-span.jsonl",
+    "EXP-027A-REPORT.md",
+    "EXP-027A-RESULTS.json",
+    "EXP-028A-REPORT.md",
+    "EXP-028A-RESULTS.json",
+    "EXP-028A-preregistration.json",
+    "SYSTEM-N-DOC-LISTWISE-RECOGNIZER.json"
+  ],
+
+  "relayed_headline_values": {
+    "transcribed_from": "operator chat paste, relayed into this record after a context compaction rather than re-read from the source files",
+    "byte_verified": false,
+    "use": "orientation only; re-read from the originals before citing in any report",
+    "values": {
+      "EXP-025A": {"system": "BAAI/bge-reranker-v2-m3 on frozen SYSTEM-J", "cases": "20/40", "spans": "27/53", "supported": false},
+      "EXP-026A": {"system": "all-pointwise oracle", "cases": "25/40", "spans": "34/53", "supported": false},
+      "NATQ-DIAG-002": {"locked_spans": 16, "dominant_failure_mode": "DOC_FOUND_PASSAGE_MISSELECTED", "dominant_failure_count": "12/16"},
+      "EXP-027A": {"system": "SYSTEM-M", "cases": "18/40", "rescues": 0, "supported": false},
+      "EXP-028A": {"cases": "11/40", "spans": "17/53", "invalid_output_rate": "14.7%", "supported": false}
+    }
+  },
+
+  "corroboration_with_work_verified_in_this_repository": [
+    {
+      "claim": "METRIC-DEFS-V2 canonical definitions match the EXP-024A Phase 0 reconciliation performed independently in this session.",
+      "agreement": [
+        "MRR is micro over the 53 gold spans.",
+        "Multi-span population is 12 cases / 25 spans, with NATQ-C-170 the tag-only case.",
+        "exact_identifier_lookup population is 17 cases / 21 spans."
+      ],
+      "note": "The definitions agree exactly. The FILES differ: the copy in this repository hashes to 813c913833a5f33c2e71dec92f1d3bb1a5fbceb8cc321d30f31719d56753203e, the coordinator's authoritative copy to a9efbbb255912c705f0d5e9dfa1db063e224bd2726bea2ce1695b52126ee225e. Definition agreement is not file identity.",
+      "verified_here": true
+    },
+    {
+      "claim": "EXP-026A cites artifacts produced and hashed in this session as its inputs.",
+      "cited": {
+        "D_facet_logits": "3f04999b22e974e2456d5820e9f63268a8f75f974a3a7b190783b9bc9463e434",
+        "D_frozen_facets": "d8ab86ee1018a0c68f830e2002951c8448b6bcd9b29ea18cf58b5d6cc727f8b9",
+        "D_facet_prereg": "220326e0..."
+      },
+      "verified_here": true,
+      "note": "The first two hashes match files committed here at 0f77682. This confirms the upstream chain consumed this session's outputs; it does not verify EXP-026A's own results."
+    },
+    {
+      "claim": "METRIC-DEFS-V2 credits this session's EXP-023A artifacts.",
+      "cited": {
+        "EXP-023A_preregistration_sha256": "c00a8110ad07bd74f00b93746f7f796278316c5f42b604fa7c9a12ab0c0724c5",
+        "EXP-023A_raw_logit_sha256": "107ae27bb8ddc3c514faa11bdc74a1849ab328e6faae6186e2d1c4cfedfdb9bb",
+        "EXP-023A_analyze": "cee2a5f:production-rag-v1/scripts/analyze_exp023a.py"
+      },
+      "verified_here": true
+    }
+  ],
+
+  "chain_state": {
+    "note": "Every link relayed is a negative result. The direction of each is unambiguous; the counts above are transcribed, not verified.",
+    "sequence": [
+      "EXP-023A SUPPORTED=false (verified in this repository)",
+      "EXP-024A SUPPORTED=false (accepted by the coordinator; oracle analysis stopped mid-run here)",
+      "EXP-025A SUPPORTED=false (relayed)",
+      "EXP-026A SUPPORTED=false (relayed)",
+      "NATQ-DIAG-002 diagnostic, no SUPPORTED value (relayed)",
+      "EXP-027A SUPPORTED=false (relayed)",
+      "EXP-028A SUPPORTED=false (relayed)",
+      "EXP-029A no result — measurement artifact does not exist"
+    ]
+  },
+
+  "supersedes_nothing": true,
+  "provenance_gap_note": "PROVENANCE-GAP-001 is unchanged. EXP-019A, EXP-019B, SYSTEM-G and Grok PERF-003 remain verified_here=false pending recovery of their original artifacts."
+}

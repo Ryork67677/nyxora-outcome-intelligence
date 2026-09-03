@@ -1,0 +1,56 @@
+{
+  "experiment_id": "EXP-029A",
+  "title": "Coherent section-context joint recognizability (Phi-4-mini, CUDA)",
+  "status": "CANNOT_EXECUTE",
+  "recorded_utc": "2026-09-03",
+  "recorded_by": "claude-code cloud session",
+  "recorded_at_commit": "0f77682",
+
+  "why": [
+    "The measurement artifact does not exist. The operator confirmed in writing: 'EXP-029A raw JSONL does not exist on this machine. There is no EXP-029A-raw-outputs.jsonl anywhere on the Windows box or the coordinator host.' The generation half of EXP-029A has therefore never been run by anyone.",
+    "This container cannot run it either. The EXP-029A specification pins CUDA / RTX 3060 / float16 and microsoft/Phi-4-mini-instruct at revision cfbefacb99257ffa30c83adab238a50856ac3083. This session has no GPU, no torch, no transformers, and huggingface.co is unreachable through the agent proxy (CONNECT tunnel failed, response 403). The same two blockers previously stopped EXP-025A.",
+    "No score may be produced from either side. Inventing, estimating, or back-deriving EXP-029A numbers from the upstream comparators is explicitly out of bounds and would be unfalsifiable."
+  ],
+
+  "scores_emitted": null,
+  "scores_emitted_note": "Deliberately null. Nothing in this record is a measurement of EXP-029A.",
+
+  "blocking_inputs": {
+    "EXP-029A-raw-outputs.jsonl": {
+      "exists": false,
+      "confirmed_by": "operator statement, 2026-09-03",
+      "searched_locations_reported_by_operator": ["Windows box", "coordinator host"]
+    }
+  },
+
+  "environment_capability_check": {
+    "cuda_available": false,
+    "torch_installed": false,
+    "transformers_installed": false,
+    "huggingface_co_reachable": false,
+    "huggingface_failure_mode": "CONNECT tunnel failed, response 403",
+    "verified_here": true
+  },
+
+  "what_is_ready_on_this_side": {
+    "note": "The analysis half of EXP-029A is fully specified and unblocked. It can be completed in one pass the moment the raw JSONL exists. Nothing below has been executed.",
+    "ready": [
+      "All 23 STOP-condition checks from the EXP-029A specification.",
+      "The ten preregistered gate conditions.",
+      "The locked-16 recovery table against the NATQ-DIAG-002 locked span set.",
+      "Preservation check against the EXP-026A all-pointwise oracle recognized-span set.",
+      "The canonical multi-span diagnosis under METRIC-DEFS-V2 (12 cases / 25 spans).",
+      "Micro-MRR over the canonical 53 gold spans."
+    ]
+  },
+
+  "unblock_condition": "A completed EXP-029A generation run on a CUDA host producing EXP-029A-raw-outputs.jsonl, delivered with its SHA256. Until that file exists and its hash is recorded, EXP-029A has no result and no SUPPORTED value.",
+
+  "constraints_honored": [
+    "Did not invent EXP-029A scores.",
+    "Did not open evals/splits/natq-001/holdout.json or evals/splits/gold150-v1/holdout.json.",
+    "Did not overwrite SYSTEM-H, SYSTEM-I, SYSTEM-J, SYSTEM-K, SYSTEM-L, SYSTEM-M or SYSTEM-N.",
+    "Did not edit the frozen Windows checkout at e65912a.",
+    "Did not run EXP-024B, EXP-025B or EXP-028B."
+  ]
+}
