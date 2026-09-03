@@ -1,0 +1,314 @@
+{
+  "experiment_id": "EXP-022A",
+  "title": "SYSTEM-J CE RECOGNIZABILITY DIAGNOSTIC",
+  "status": "AUTHORIZED_SINGLE_DEVELOPMENT_DIAGNOSTIC",
+  "phase": "preregistration_before_computing_any_aggregate_J_CE_only_metrics",
+  "chatgpt_authorization": "EXP-022A AUTHORIZED after EXP-021B_SUPPORTED=false",
+  "protocol_copy": "/workspace/NATQ-001-post/EXP-022A-ASSIGNMENT.md",
+  "chatgpt_source": "/workspace/chatgpt-after-exp-021b.txt",
+  "preregistered_at_utc": "2026-09-03T05:13:27Z",
+  "preregistered_at_et": "2026-09-03T01:13:27-0400",
+  "scored_before_prereg_hash": false,
+  "tuned_after_seeing_scores": false,
+  "n_evals": 1,
+  "second_run_forbidden": true,
+  "retune_forbidden": true,
+  "holdout_run_forbidden": true,
+  "release_freeze_forbidden": true,
+  "do_not_modify_SYSTEM_H": true,
+  "do_not_modify_SYSTEM_I": true,
+  "do_not_modify_SYSTEM_J": true,
+  "do_not_modify_SYSTEM_K": true,
+  "do_not_overwrite_SYSTEM_G": true,
+  "do_not_overwrite_SYSTEM_E": true,
+  "do_not_run_SYSTEM_K": true,
+  "do_not_invent_retrieval_prior_for_W20_extras": true,
+  "do_not_alter_SYSTEM_H_0_7_0_3_blend": true,
+  "do_not_run_coverage_aware_selection": true,
+  "do_not_open_holdout_json": true,
+  "do_not_rerun_CE_on_SYSTEM_H_candidates": true,
+  "stop_if_stored_H_raw_CE_logits_incomplete": true,
+  "this_is_not_a_release_architecture": true,
+  "do_not_create_new_SYSTEM_identity_unless_scoring_actually_runs": true,
+  "natq_validation_status": "DEVELOPMENT / MODEL-SELECTION DATA; not independent validation",
+  "environment_drift_note": "PostgreSQL 16.15 / pgvector 0.8.6 vs historical PostgreSQL 16.13 / pgvector 0.6.0. Do not silently treat environments as identical.",
+  "hypothesis": {
+    "statement": "The additional candidates recovered by SYSTEM-J-LOCAL-W20-UNION over SYSTEM-H are recognizable as relevant by the frozen MiniLM cross-encoder: CE-only ranking of the SYSTEM-J pool (stored H logits + new logits on J_EXTRAS only) improves strict full-case Recall@10 and evidence-span Recall@10 versus CE-only ranking of the SYSTEM-H pool, with at most one strict regression.",
+    "question": "Are the additional candidates recovered by SYSTEM-J recognizable as relevant by the frozen cross-encoder?",
+    "this_is_a_reranker_recognizability_diagnostic": true,
+    "this_is_not_a_release_architecture": true,
+    "one_mechanism_only": true,
+    "no_new_retrieval_prior": true,
+    "no_coverage_aware_selection": true,
+    "no_SYSTEM_K": true,
+    "no_blend": true,
+    "no_BM25_in_ranking": true,
+    "no_projection_in_ranking": true,
+    "no_a_norm": true,
+    "no_retrieval_norm": true,
+    "no_named_case_handling": true,
+    "no_second_variant": true
+  },
+  "arms": {
+    "ranking_key": [
+      "raw frozen CE logit DESC",
+      "canonical chunk_id ASC"
+    ],
+    "ARM_H": {
+      "name": "SYSTEM-H candidate pool ranked CE-only",
+      "pool": "exact stored system_h_union_ids from EXP-021A-pools.jsonl",
+      "logits": "raw CE logits ALREADY STORED from EVAL-NATQ-VAL-001",
+      "do_not_rerun_CE": true,
+      "n_H_candidates_expected": 4753
+    },
+    "ARM_J": {
+      "name": "SYSTEM-J candidate pool ranked CE-only",
+      "pool": "exact stored system_j_union_ids from EXP-021A-pools.jsonl",
+      "J_EXTRAS": "J set minus H set per query (stored added_w20 / EXP-021A-pools)",
+      "new_CE_only_on_J_EXTRAS": true,
+      "combine": "stored raw H CE logits + new raw CE logits for J_EXTRAS",
+      "do_not_score_any_candidate_not_in_SYSTEM_J": true
+    }
+  },
+  "HARD_STOP_RULE": {
+    "verify_before_scoring_J": true,
+    "required": [
+      "every SYSTEM-H candidate chunk_id (EXP-021A-pools.jsonl system_h_union_ids; 4753 total across 40 queries) has a stored RAW CE logit for that query",
+      "query/candidate association intact",
+      "CE model fingerprint matches frozen reranker sha 5d3e70fd0c9ff14b9b5169a51e957b7a9c74897afd0a35ce4bd318150c1d4d4a",
+      "no missing or duplicate logits"
+    ],
+    "search": [
+      "experiments/RAG-V2/EVAL-NATQ-VAL-001/logs/EVAL-NATQ-VAL-001-pools.jsonl",
+      "EVAL-NATQ-VAL-001-REPORT.json per_case",
+      "any jsonl/json under experiments/RAG-V2/EVAL-NATQ-VAL-001 and /workspace with ce_score/ce_logit for NATQ validation"
+    ],
+    "if_missing_or_incomplete": "STOP. Do NOT silently rerun H. Do NOT score J extras with CE. Write STOP report. That is a successful completion.",
+    "blend_score_is_not_raw_CE_logit": true
+  },
+  "frozen_identities": {
+    "SYSTEM-H-V2-DEV-CANDIDATE": {
+      "config_hash": "7599eb3c3bb4798230a722e6a7c96b046dc36cc0332b584ec55339896b2d717a",
+      "file_sha256": "7cd3a5f3d5fcf9c66561c9e9cbfbc213f49e6efa0fdf0005869b085c3eafe475",
+      "path": "experiments/RAG-V2/SYSTEM-H-V2-DEV-CANDIDATE/SYSTEM-H-V2-DEV-CANDIDATE.json"
+    },
+    "SYSTEM-J-LOCAL-W20-UNION": {
+      "config_hash": "b6d60649dc5cbb379154146143282afd718281b6d4fe0e5ec59bf5c71f43d787",
+      "file_sha256": "70acac77f33dbe1f7fc0f2e9b81f8a995c7fd0e9f47bab662f03f12cdecc0fdd",
+      "path": "experiments/RAG-V2/SYSTEM-J-LOCAL-W20-UNION/SYSTEM-J-LOCAL-W20-UNION.json"
+    },
+    "SYSTEM-K-W20-SECTION-COMPRESS": {
+      "config_hash": "eef589c085ea7e88fdc729d83021b311e2927310fc6368b54a87f374859bdec8",
+      "file_sha256": "20d967e2f56fed88f617d1c18474abc86b9f984f32a30cc195f42d6fef03ad7e",
+      "path": "experiments/RAG-V2/SYSTEM-K-W20-SECTION-COMPRESS/SYSTEM-K-W20-SECTION-COMPRESS.json",
+      "not_tested": true
+    }
+  },
+  "cross_encoder": {
+    "name": "cross-encoder/ms-marco-MiniLM-L6-v2",
+    "artifact_sha256": "5d3e70fd0c9ff14b9b5169a51e957b7a9c74897afd0a35ce4bd318150c1d4d4a",
+    "constructor": "CrossEncoderReranker(pad='batch', bucket_by_length=True)",
+    "fast": false,
+    "threads": 4,
+    "pad": "batch",
+    "bucket_by_length": true,
+    "batch_size": 16,
+    "max_length": 512,
+    "truncation": "longest_first",
+    "padding": "PERF-003 D1 dynamic padding"
+  },
+  "dataset": {
+    "name": "NATQ-001",
+    "split": "validation",
+    "role": "DEVELOPMENT / MODEL-SELECTION DATA",
+    "not_independent_validation": true,
+    "n": 40,
+    "path": "evals/splits/natq-001/validation.jsonl",
+    "validation_sha256": "a240958eb6b77b293bd70f717ee60476d2d09b510458057fd927d67359331ad6",
+    "holdout_sha256_recorded_file_not_opened": "6a7cf781c7538106605e8c85607405cd3dee2db37fdbb556aaadc913b3141dd3",
+    "holdout_lock_sha256": "03e0d5749e61e73e6b9582109a74a4a9672610b7bf794daf25f46999e5ad40b2",
+    "snapshot": "snap_689e336380a054d8039dc35b2c09cd0a",
+    "chunk_set": "cs_v1_control",
+    "load_only_validation_jsonl": true,
+    "do_not_open_natq_holdout_json": true,
+    "do_not_open_v1_holdout_json": true,
+    "stored_H_J_pools": "experiments/RAG-V2/EXP-021A/logs/EXP-021A-pools.jsonl",
+    "stored_EVAL": "experiments/RAG-V2/EVAL-NATQ-VAL-001/"
+  },
+  "closed_results_not_modified": {
+    "EXP-021A_SUPPORTED": true,
+    "EXP-021B_SUPPORTED": false,
+    "SYSTEM_H_candidate_ceiling": {
+      "cases": "34/40",
+      "spans": "46/53",
+      "mean_pool": 118.83
+    },
+    "SYSTEM_J_candidate_ceiling": {
+      "cases": "37/40",
+      "spans": "50/53",
+      "mean_pool": 187.12
+    },
+    "SYSTEM_K_candidate_ceiling": {
+      "cases": "35/40",
+      "spans": "48/53",
+      "mean_pool": 146.78
+    }
+  },
+  "PRIMARY": {
+    "metric": "strict_full_case_Recall@10",
+    "definition": "A case succeeds iff ALL gold evidence spans have at least one covering canonical chunk in the CE-only top-10 (same overlap rule as EXP-017 span_in_hits / EVAL-NATQ-VAL-001). Ranking is raw frozen CE logit DESC, then canonical chunk_id ASC. No BM25, projection, a_norm, retrieval_norm, or 0.7/0.3 blend.",
+    "comparison": "H CE-only vs J CE-only",
+    "report": "numerator/40"
+  },
+  "SECONDARY": [
+    {
+      "metric": "evidence_span_Recall@10",
+      "report": "numerator/53"
+    },
+    {
+      "metric": "MRR",
+      "definition": "mean of 1/rank of first gold span, 0 if none (same definition as prior evals)"
+    },
+    {
+      "metric": "document_Recall@10",
+      "definition": "cases with all gold version_ids in CE-only top-10; also mean document recall"
+    },
+    {
+      "metric": "multi_span_strict_Recall@10",
+      "definition": "same 12-case def as EXP-021A: n_gold_spans>1 or tag multi_span"
+    },
+    {
+      "metric": "multi_span_span_Recall@10"
+    },
+    {
+      "metric": "OpenAI_strict_and_span"
+    },
+    {
+      "metric": "Anthropic_strict_and_span"
+    },
+    {
+      "metric": "added_W20_candidate_CE_rank_distribution",
+      "definition": "ranks of J_EXTRAS in the J CE-only list"
+    },
+    {
+      "metric": "CE_latency_for_J_EXTRAS_only"
+    },
+    {
+      "metric": "total_newly_scored_pairs"
+    }
+  ],
+  "PAIRED": {
+    "per_case": [
+      "H CE-only strict PASS/FAIL",
+      "J CE-only strict PASS/FAIL"
+    ],
+    "aggregate": [
+      "J rescues over H",
+      "J regressions vs H",
+      "both pass",
+      "both fail"
+    ],
+    "mcnemar_exact_p": "diagnostic; n01=J success H fail, n10=J fail H success; no significance claim required"
+  },
+  "MECHANISM_GATE": {
+    "label": "EXP-022A_CE_RECOGNIZABILITY_SUPPORTED",
+    "do_not_change_after_seeing_results": true,
+    "this_is_a_mechanism_gate_not_a_release_gate": true,
+    "EXP-022A_CE_RECOGNIZABILITY_SUPPORTED_iff_ALL": [
+      "J CE-only strict R@10 improves over H CE-only by >= 2 cases",
+      "J CE-only span R@10 improves over H CE-only by >= 2 spans",
+      "J strict regressions vs H <= 1",
+      "no integrity/provenance failure"
+    ],
+    "not_evaluated_if_STOPPED_MISSING_STORED_H_CE_LOGITS": true
+  },
+  "diagnostics_after_aggregates": {
+    "four_SYSTEM_J_recovered_spans": [
+      {
+        "case_id": "NATQ-C-004",
+        "span_index": 0
+      },
+      {
+        "case_id": "NATQ-C-005",
+        "span_index": 1
+      },
+      {
+        "case_id": "NATQ-C-044",
+        "span_index": 0
+      },
+      {
+        "case_id": "NATQ-C-044",
+        "span_index": 1
+      }
+    ],
+    "report_per_span": [
+      "raw CE logit",
+      "CE-only rank in SYSTEM-J",
+      "whether it enters top10",
+      "n higher-ranked candidates from same version_id",
+      "n higher-ranked candidates from same section_path"
+    ],
+    "diagnostic_only": true,
+    "no_named_case_handling": true
+  },
+  "MULTI_SPAN_ANALYSIS": {
+    "per_multi_span_case": [
+      "required span count",
+      "spans in SYSTEM-J pool",
+      "spans in J CE-only top10",
+      "final CE-only rank of each in-pool gold span",
+      "unique version_ids in J CE-only top10",
+      "unique section_paths in J CE-only top10",
+      "redundant top10 count by version_id/section_path"
+    ]
+  },
+  "LATENCY": {
+    "measure": [
+      "number of J_EXTRAS CE pairs (measured)",
+      "CE wall time for new pairs (measured)",
+      "estimated complete J CE workload (H stored pairs + extras; do not run H CE)",
+      "mean/median estimated per-query J CE cost"
+    ],
+    "distinguish_measured_incremental_vs_estimated_full_pool": true,
+    "no_cross_machine_architecture_claim": true
+  },
+  "anti_overfit": {
+    "do_not_run_SYSTEM_K": true,
+    "do_not_try_another_candidate_budget": true,
+    "do_not_alter_W": true,
+    "do_not_alter_L": true,
+    "do_not_alter_P": true,
+    "do_not_add_adjacency": true,
+    "do_not_add_MMR": true,
+    "do_not_add_diversity_penalty": true,
+    "do_not_add_section_bonus": true,
+    "do_not_add_set_aware_selection": true,
+    "do_not_alter_CE_model": true,
+    "do_not_alter_CE_weights": true,
+    "do_not_create_a_retrieval_prior_for_W20_extras": true,
+    "do_not_alter_0_7_0_3_blend": true,
+    "do_not_silently_rerun_H_CE": true
+  },
+  "holdout_protection": {
+    "natq_holdout_access_log_before": {
+      "path": "evals/splits/natq-001/holdout-access.log.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "natq_holdout_access_log_after_must_equal_before": true,
+    "v1_holdout_access_log": {
+      "path": "evals/splits/gold150-v1/holdout-access.log.jsonl",
+      "bytes": 235,
+      "sha256": "45b83a77f6f332174d641956f076dd0c0cae44fe48f4f2892ac7030a4c0143b3"
+    },
+    "do_not_open_natq_holdout_json": true,
+    "do_not_open_v1_holdout_json": true
+  },
+  "STOP": {
+    "after": "EXP-022A CE-recognizability diagnostic REPORT (or STOP report if stored H logits missing)",
+    "do_not_run_coverage_aware_selector": true,
+    "do_not_run_another_compression_scheme": true,
+    "do_not_alter_scoring": true,
+    "return_to_coordinator_ChatGPT": true
+  }
+}

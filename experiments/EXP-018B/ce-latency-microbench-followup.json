@@ -1,0 +1,116 @@
+{
+  "length_dist_400": {
+    "n": 400,
+    "mean": 236.9,
+    "p50": 170,
+    "p90": 512,
+    "frac_ge_512": 0.263,
+    "n_short_le_160": 195
+  },
+  "identity": [
+    {
+      "label": "short16_batchpad_vs_fixed512",
+      "n": 16,
+      "exact": true,
+      "max_abs": 0.0,
+      "mean_abs": 0.0,
+      "rank_identical": true,
+      "top10_identical": true
+    },
+    {
+      "label": "short1_batchpad_vs_fixed512",
+      "n": 1,
+      "exact": true,
+      "max_abs": 0.0,
+      "mean_abs": 0.0,
+      "rank_identical": true,
+      "top10_identical": true
+    },
+    {
+      "label": "mixed16_batchpad_vs_fixed",
+      "n": 16,
+      "exact": true,
+      "max_abs": 0.0,
+      "mean_abs": 0.0,
+      "rank_identical": true,
+      "top10_identical": true
+    },
+    {
+      "label": "bucket16_batchpad_vs_fixed104",
+      "n": 104,
+      "exact": true,
+      "max_abs": 0.0,
+      "mean_abs": 0.0,
+      "rank_identical": true,
+      "top10_identical": true
+    }
+  ],
+  "bucket_widths_b16": [
+    33,
+    85,
+    164,
+    309,
+    512,
+    512,
+    512
+  ],
+  "timed": {
+    "fixed_b16_t4": {
+      "ms": [
+        5648.29,
+        5690.47
+      ],
+      "mean": 5669.38
+    },
+    "fixed_b16_t8": {
+      "ms": [
+        4302.86,
+        4273.4
+      ],
+      "mean": 4288.13
+    },
+    "fixed_b1_t8": {
+      "ms": [
+        4377.19,
+        3698.24
+      ],
+      "mean": 4037.72
+    },
+    "fixed_b8_t8": {
+      "ms": [
+        3641.49,
+        3754.1
+      ],
+      "mean": 3697.79
+    },
+    "bucket_batchpad_b16_t8": {
+      "ms": [
+        1639.09,
+        1818.9
+      ],
+      "mean": 1729.0
+    },
+    "bucket_batchpad_b8_t8": {
+      "ms": [
+        2192.37,
+        2102.0
+      ],
+      "mean": 2147.19
+    },
+    "bucket_batchpad_b8_t4": {
+      "ms": [
+        2288.81,
+        2262.03
+      ],
+      "mean": 2275.42
+    },
+    "fixed_b16_t8_repeat": {
+      "ms": [
+        3668.21,
+        3858.33
+      ],
+      "mean": 3763.27
+    }
+  },
+  "holdout_sha": "45b83a77f6f332174d641956f076dd0c0cae44fe48f4f2892ac7030a4c0143b3"
+}

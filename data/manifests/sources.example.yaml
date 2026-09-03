@@ -1,0 +1,10 @@
+# V1 intentionally ingests local snapshots. Do not commit provider documentation to a public repo.
+# Verify each provider's terms and robots policy before using an automated fetcher.
+sources:
+  - provider: synthetic
+    title: Widget API v2
+    canonical_url: https://example.invalid/widget/v2
+    local_path: ../../tests/fixtures/docs/widget_v2.md
+    authority_class: official_docs
+    authority_rank: 100
+    captured_at: "2026-08-17T00:00:00Z"

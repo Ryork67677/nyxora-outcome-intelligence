@@ -1,0 +1,122 @@
+{
+  "batch": 2,
+  "source_batch_sha256": "b108d925a09c539de26cb2f7a3e8b96a0fbf3462d0c0f6b95e1a86e82df07736",
+  "reviewer": "project_owner",
+  "reviewed_at": null,
+  "allowed_decisions": [
+    "APPROVE",
+    "REJECT",
+    "NEEDS_EDIT"
+  ],
+  "instructions": "Set decision to APPROVE, REJECT or NEEDS_EDIT for each candidate, then run scripts/import_human_decisions.py. Only APPROVE produces human_verified. Leaving a decision null leaves the candidate out of gold.",
+  "decisions": [
+    {
+      "candidate_id": "GOLD-B002-01",
+      "decision": "APPROVE",
+      "notes": "APPROVE as revised in gold_batch_002_qc.md.",
+      "approves_evidence_hash": "4bcfd667e1e607737bf0184ba9ae6c38c55901596263af9910aff44ffe857c14"
+    },
+    {
+      "candidate_id": "GOLD-B002-03",
+      "decision": "APPROVE",
+      "notes": "APPROVE as revised in gold_batch_002_qc.md.",
+      "approves_evidence_hash": "5368be02d4beae2374838cc277695191b43b91bf4f099b3bffbdf1d8b0a856f7"
+    },
+    {
+      "candidate_id": "GOLD-B002-04",
+      "decision": "APPROVE",
+      "notes": "APPROVE as revised in gold_batch_002_qc.md.",
+      "approves_evidence_hash": "7e393ec3bf702a944bcf3a5c7f31452b8f19e06764f1584cc3e2a94878423cd9"
+    },
+    {
+      "candidate_id": "GOLD-B002-05",
+      "decision": "APPROVE",
+      "notes": "APPROVE as revised in gold_batch_002_qc.md.",
+      "approves_evidence_hash": "a0aa27b1c1f05377d146ebf70ff1b56b3966497f0fde1a547a9ed9578f3c9044"
+    },
+    {
+      "candidate_id": "GOLD-B002-06",
+      "decision": "APPROVE",
+      "notes": "APPROVE as revised in gold_batch_002_qc.md.",
+      "approves_evidence_hash": "d2dd49438ce16e5b9f9ba575c2c63f34ddb1b0b20569f891c5261f72d21e3046"
+    },
+    {
+      "candidate_id": "GOLD-B002-07",
+      "decision": "APPROVE",
+      "notes": "APPROVE as revised in gold_batch_002_qc.md.",
+      "approves_evidence_hash": "3dc311a8dcb1e09a11ce53c6e0b86e5d95abb99d28c59de16053ff4ee269e090"
+    },
+    {
+      "candidate_id": "GOLD-B002-08",
+      "decision": "APPROVE",
+      "notes": "APPROVE as revised in gold_batch_002_qc.md.",
+      "approves_evidence_hash": "08bde1a6bcc80fb723b61f2a895db6045a1643c0d9534d427ca377e88e587d0f"
+    },
+    {
+      "candidate_id": "GOLD-B002-09",
+      "decision": "APPROVE",
+      "notes": "APPROVE as revised in gold_batch_002_qc.md.",
+      "approves_evidence_hash": "d40e824bd901a423486c55c4093e5f80b879fa7a62a0172e31f62cb5ce47ff5b"
+    },
+    {
+      "candidate_id": "GOLD-B002-10",
+      "decision": "APPROVE",
+      "notes": "APPROVE as revised in gold_batch_002_qc.md.",
+      "approves_evidence_hash": "19c025f578eef5b96e2371865a7bdfb7bc1736a165c83a78687b2400592cfe4d"
+    },
+    {
+      "candidate_id": "GOLD-B002-11",
+      "decision": "APPROVE",
+      "notes": "APPROVE as revised in gold_batch_002_qc.md.",
+      "approves_evidence_hash": "996e12e80cd4a4543e3ec678555b8ca6e562fcc4630e783e0d773ff13d991f4f"
+    },
+    {
+      "candidate_id": "GOLD-B002-12",
+      "decision": "REJECT",
+      "notes": "REJECT — OVERSIZED_EVIDENCE_ANCHOR / EVIDENCE_PRECISION_COST. The documentation is correct and the fact is real. Making the anchor self-contained required expanding it from ~70 to ~1,430 characters, taking in the complete per-model cache-length list. That evidence unit is disproportionate to the fact under test and would make retrieval artificially easier. Preserved for audit history; no further automatic salvage attempted in batch 002. A future candidate may test this fact from a naturally smaller self-contained span."
+    },
+    {
+      "candidate_id": "GOLD-B002-13",
+      "decision": "APPROVE",
+      "notes": "APPROVE as revised in gold_batch_002_qc.md.",
+      "approves_evidence_hash": "7fc8662a80faa78665b372bcd2e42a7bdb81f115356af0954065e3632f452399"
+    },
+    {
+      "candidate_id": "GOLD-B002-14",
+      "decision": "APPROVE",
+      "notes": "APPROVE as revised in gold_batch_002_qc.md.",
+      "approves_evidence_hash": "f8ccc077e09433a0ea6ff181125d66bdf740712ff81dd002cfb90183ba5079e1"
+    },
+    {
+      "candidate_id": "GOLD-B002-15",
+      "decision": "APPROVE",
+      "notes": "APPROVE as revised in gold_batch_002_qc.md.",
+      "approves_evidence_hash": "4e49b02f88712c6bc25df0a0922fee678f35cda505a6566acd07e3ef79744c55"
+    },
+    {
+      "candidate_id": "GOLD-B002-16",
+      "decision": "APPROVE",
+      "notes": "APPROVE as revised in gold_batch_002_qc.md.",
+      "approves_evidence_hash": "ac3e89163be1107c3d35db15f53bcb85db1947213bc3984263c7785d6ddd05ee"
+    },
+    {
+      "candidate_id": "GOLD-B002-17",
+      "decision": "APPROVE",
+      "notes": "APPROVE as revised in gold_batch_002_qc.md.",
+      "approves_evidence_hash": "ce96064e0fb9f17d8dd88451aeaf1f97f587089ebc43dbbd79b70501924014be"
+    },
+    {
+      "candidate_id": "GOLD-B002-18",
+      "decision": "APPROVE",
+      "notes": "APPROVE as revised in gold_batch_002_qc.md.",
+      "approves_evidence_hash": "0d3851e614b9ed909eed9c8d808773e3a548ca0e557c370c6c183c11c663c9cd",
+      "approves_anchor_revision": 1
+    },
+    {
+      "candidate_id": "GOLD-B002-02",
+      "decision": "APPROVE",
+      "notes": "APPROVE as revised in gold_batch_002_qc.md.",
+      "approves_evidence_hash": "1902239b249b9d3162ab9f0c19da21a1087bceb5b19714d57ab918d3f15e7cc5"
+    }
+  ]
+}

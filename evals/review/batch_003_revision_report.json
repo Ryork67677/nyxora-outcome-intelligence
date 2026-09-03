@@ -1,0 +1,447 @@
+{
+  "batch": 3,
+  "applied_at": "2026-08-20T19:46:01Z",
+  "reviewer": "independent_review",
+  "source_batch_sha256": "89d2360d60df71aa88e4db217ea68c844fb8000ec7e09a01d4bcd5d6c0c2f7a9",
+  "outcomes": {
+    "clean": 7,
+    "revised": 13
+  },
+  "defect_classes": {
+    "QUESTION_SCOPE": 7,
+    "CLAIM_SCOPE": 6,
+    "EVIDENCE_BOUNDARY": 5,
+    "CATEGORY_MISCLASSIFICATION": 4
+  },
+  "anchor_revisions": [
+    "GOLD-B003-04",
+    "GOLD-B003-06",
+    "GOLD-B003-16",
+    "GOLD-B003-17",
+    "GOLD-B003-19"
+  ],
+  "by_reasoning_type": {
+    "configuration_interaction": 4,
+    "error_behavior": 4,
+    "exact_lookup": 10,
+    "lifecycle": 2
+  },
+  "by_evidence_shape": {
+    "single_span": 15,
+    "multi_span": 5
+  },
+  "genuine_multi_hop": 0,
+  "genuine_multi_hop_target": "3–4",
+  "genuine_multi_hop_note": "Two independent facts retrieved from two spans is a multi-span retrieval test, not multi-hop reasoning: the answer is the two facts, not a third derived from them. These four keep their value as retrieval tests and none of them counts toward the project's genuine multi-hop target, which stands at zero.",
+  "precheck_holdout_ready": 19,
+  "precheck_blocked": [
+    "GOLD-B003-04"
+  ],
+  "retrieval_was_not_run": true,
+  "applied": [
+    {
+      "candidate_id": "GOLD-B003-01",
+      "outcome": "clean",
+      "defect_classes": [],
+      "fields_revised": 0,
+      "anchor_revision": null,
+      "reasoning_type": "configuration_interaction",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "precheck_holdout_ready": true,
+      "precheck_failures": []
+    },
+    {
+      "candidate_id": "GOLD-B003-02",
+      "outcome": "revised",
+      "defect_classes": [
+        "QUESTION_SCOPE",
+        "CLAIM_SCOPE"
+      ],
+      "fields_revised": 4,
+      "anchor_revision": null,
+      "reasoning_type": "configuration_interaction",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "precheck_holdout_ready": true,
+      "precheck_failures": []
+    },
+    {
+      "candidate_id": "GOLD-B003-03",
+      "outcome": "clean",
+      "defect_classes": [],
+      "fields_revised": 0,
+      "anchor_revision": null,
+      "reasoning_type": "error_behavior",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "precheck_holdout_ready": true,
+      "precheck_failures": []
+    },
+    {
+      "candidate_id": "GOLD-B003-04",
+      "outcome": "revised",
+      "defect_classes": [
+        "EVIDENCE_BOUNDARY",
+        "QUESTION_SCOPE"
+      ],
+      "fields_revised": 4,
+      "anchor_revision": {
+        "revision": 1,
+        "reason": "ANAPHORIC_SCOPE_COMPLETION",
+        "why": "\"pair\" is defined 3,838 characters earlier, with a model-compatibility table in between, so a contiguous extension would pull in the whole table. Two precise spans are the sanctioned alternative to one giant one: the definition of a valid pair, and the failure behaviour.",
+        "old_spans": [
+          {
+            "char_start": 92785,
+            "char_end": 92898,
+            "evidence_hash": "1591ea4b2fc1d87d21cf20cfcad5388e059bdec54fe54ec1da99c644eb6a2a44"
+          }
+        ],
+        "new_spans": [
+          {
+            "char_start": 88971,
+            "char_end": 89112,
+            "evidence_hash": "a147d3f035dd177a051a5cc5c4636e048cfb4467c171f0f0f23672f6beb7279d",
+            "evidence_char_length": 141
+          },
+          {
+            "char_start": 92785,
+            "char_end": 92898,
+            "evidence_hash": "1591ea4b2fc1d87d21cf20cfcad5388e059bdec54fe54ec1da99c644eb6a2a44",
+            "evidence_char_length": 113
+          }
+        ],
+        "author": "claude",
+        "directed_by": "independent_review",
+        "timestamp": "2026-08-20T19:46:01Z"
+      },
+      "reasoning_type": "error_behavior",
+      "evidence_shape": "multi_span",
+      "requires_all_evidence": true,
+      "precheck_holdout_ready": false,
+      "precheck_failures": [
+        "unresolved anaphora: refers to 'the tool' with no antecedent in the span"
+      ]
+    },
+    {
+      "candidate_id": "GOLD-B003-05",
+      "outcome": "clean",
+      "defect_classes": [],
+      "fields_revised": 0,
+      "anchor_revision": null,
+      "reasoning_type": "error_behavior",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "precheck_holdout_ready": true,
+      "precheck_failures": []
+    },
+    {
+      "candidate_id": "GOLD-B003-06",
+      "outcome": "revised",
+      "defect_classes": [
+        "EVIDENCE_BOUNDARY",
+        "QUESTION_SCOPE",
+        "CLAIM_SCOPE"
+      ],
+      "fields_revised": 4,
+      "anchor_revision": {
+        "revision": 1,
+        "reason": "MODEL_SCOPE_COMPLETION",
+        "why": "The nearest occurrence of \"Claude Sonnet 5\" is 384 characters earlier, in the adjacent \"Adaptive thinking on by default\" subsection. The extension is 470 characters and under the soft cap, but it drags in a subsection about thinking that the claim does not use. This is a real trade and the owner should confirm it rather than have it made quietly.",
+        "old_spans": [
+          {
+            "char_start": 2207,
+            "char_end": 2293,
+            "evidence_hash": "eab7ee79eef8446cbe584411a9f4e6b48aabc6295641037016e3fcaf965008e2"
+          }
+        ],
+        "new_spans": [
+          {
+            "char_start": 1820,
+            "char_end": 2293,
+            "evidence_hash": "fbd40033fb7a571e8d5469e0d55335018504e83d8cabdb2f3b68025595f14eef",
+            "evidence_char_length": 473
+          }
+        ],
+        "author": "claude",
+        "directed_by": "independent_review",
+        "timestamp": "2026-08-20T19:46:01Z"
+      },
+      "reasoning_type": "error_behavior",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "precheck_holdout_ready": true,
+      "precheck_failures": []
+    },
+    {
+      "candidate_id": "GOLD-B003-07",
+      "outcome": "clean",
+      "defect_classes": [],
+      "fields_revised": 0,
+      "anchor_revision": null,
+      "reasoning_type": "exact_lookup",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "precheck_holdout_ready": true,
+      "precheck_failures": []
+    },
+    {
+      "candidate_id": "GOLD-B003-08",
+      "outcome": "clean",
+      "defect_classes": [],
+      "fields_revised": 0,
+      "anchor_revision": null,
+      "reasoning_type": "exact_lookup",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "precheck_holdout_ready": true,
+      "precheck_failures": []
+    },
+    {
+      "candidate_id": "GOLD-B003-09",
+      "outcome": "clean",
+      "defect_classes": [],
+      "fields_revised": 0,
+      "anchor_revision": null,
+      "reasoning_type": "exact_lookup",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "precheck_holdout_ready": true,
+      "precheck_failures": []
+    },
+    {
+      "candidate_id": "GOLD-B003-10",
+      "outcome": "revised",
+      "defect_classes": [
+        "CLAIM_SCOPE"
+      ],
+      "fields_revised": 3,
+      "anchor_revision": null,
+      "reasoning_type": "lifecycle",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "precheck_holdout_ready": true,
+      "precheck_failures": []
+    },
+    {
+      "candidate_id": "GOLD-B003-11",
+      "outcome": "revised",
+      "defect_classes": [
+        "CLAIM_SCOPE"
+      ],
+      "fields_revised": 4,
+      "anchor_revision": null,
+      "reasoning_type": "lifecycle",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "precheck_holdout_ready": true,
+      "precheck_failures": []
+    },
+    {
+      "candidate_id": "GOLD-B003-12",
+      "outcome": "revised",
+      "defect_classes": [
+        "CATEGORY_MISCLASSIFICATION"
+      ],
+      "fields_revised": 0,
+      "anchor_revision": null,
+      "reasoning_type": "exact_lookup",
+      "evidence_shape": "multi_span",
+      "requires_all_evidence": true,
+      "precheck_holdout_ready": true,
+      "precheck_failures": []
+    },
+    {
+      "candidate_id": "GOLD-B003-13",
+      "outcome": "revised",
+      "defect_classes": [
+        "QUESTION_SCOPE",
+        "CLAIM_SCOPE"
+      ],
+      "fields_revised": 4,
+      "anchor_revision": null,
+      "reasoning_type": "configuration_interaction",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "precheck_holdout_ready": true,
+      "precheck_failures": []
+    },
+    {
+      "candidate_id": "GOLD-B003-14",
+      "outcome": "revised",
+      "defect_classes": [
+        "QUESTION_SCOPE",
+        "CLAIM_SCOPE"
+      ],
+      "fields_revised": 4,
+      "anchor_revision": null,
+      "reasoning_type": "configuration_interaction",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "precheck_holdout_ready": true,
+      "precheck_failures": []
+    },
+    {
+      "candidate_id": "GOLD-B003-15",
+      "outcome": "clean",
+      "defect_classes": [],
+      "fields_revised": 0,
+      "anchor_revision": null,
+      "reasoning_type": "exact_lookup",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "precheck_holdout_ready": true,
+      "precheck_failures": []
+    },
+    {
+      "candidate_id": "GOLD-B003-16",
+      "outcome": "revised",
+      "defect_classes": [
+        "EVIDENCE_BOUNDARY",
+        "QUESTION_SCOPE"
+      ],
+      "fields_revised": 3,
+      "anchor_revision": {
+        "revision": 1,
+        "reason": "EVENT_TYPE_SCOPE_COMPLETION",
+        "why": "Adds the event-type heading that scopes the field, 85 characters.",
+        "old_spans": [
+          {
+            "char_start": 5603,
+            "char_end": 5672,
+            "evidence_hash": "f13394b4a4561189602615505bf3805211e0b53465ae8a0cb23b0dbb713da1fc"
+          }
+        ],
+        "new_spans": [
+          {
+            "char_start": 5518,
+            "char_end": 5672,
+            "evidence_hash": "e06211303ca4c18bcde7d0ff55b0f4ee061028ba58386fcec49b2f42594a3c2d",
+            "evidence_char_length": 154
+          }
+        ],
+        "author": "claude",
+        "directed_by": "independent_review",
+        "timestamp": "2026-08-20T19:46:01Z"
+      },
+      "reasoning_type": "exact_lookup",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "precheck_holdout_ready": true,
+      "precheck_failures": []
+    },
+    {
+      "candidate_id": "GOLD-B003-17",
+      "outcome": "revised",
+      "defect_classes": [
+        "EVIDENCE_BOUNDARY",
+        "QUESTION_SCOPE"
+      ],
+      "fields_revised": 4,
+      "anchor_revision": {
+        "revision": 1,
+        "reason": "EVENT_TYPE_SCOPE_COMPLETION",
+        "why": "Adds the event-type heading and the sibling fields, 259 characters. `parsed` appears on several event types with different meanings, so the event type is the claim.",
+        "old_spans": [
+          {
+            "char_start": 5944,
+            "char_end": 6000,
+            "evidence_hash": "a02a17c174d7178d5bf898d59679c0395d296a1b7c1df04e2051351929b45367"
+          }
+        ],
+        "new_spans": [
+          {
+            "char_start": 5741,
+            "char_end": 6000,
+            "evidence_hash": "f3a7e4d49ba92f2c66d4421fc1b8e56c6c1da2a7607df39db8ca0794efbac3d9",
+            "evidence_char_length": 259
+          }
+        ],
+        "author": "claude",
+        "directed_by": "independent_review",
+        "timestamp": "2026-08-20T19:46:01Z"
+      },
+      "reasoning_type": "exact_lookup",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "precheck_holdout_ready": true,
+      "precheck_failures": []
+    },
+    {
+      "candidate_id": "GOLD-B003-18",
+      "outcome": "revised",
+      "defect_classes": [
+        "CATEGORY_MISCLASSIFICATION"
+      ],
+      "fields_revised": 0,
+      "anchor_revision": null,
+      "reasoning_type": "exact_lookup",
+      "evidence_shape": "multi_span",
+      "requires_all_evidence": true,
+      "precheck_holdout_ready": true,
+      "precheck_failures": []
+    },
+    {
+      "candidate_id": "GOLD-B003-19",
+      "outcome": "revised",
+      "defect_classes": [
+        "EVIDENCE_BOUNDARY",
+        "CATEGORY_MISCLASSIFICATION"
+      ],
+      "fields_revised": 0,
+      "anchor_revision": {
+        "revision": 1,
+        "reason": "OWNER_TYPE_SCOPE_COMPLETION",
+        "why": "The first span grows 99 characters upward to the line naming `ToolErrorFormatterArgs`, so the fields have an owner inside the evidence. The second field span is unchanged.",
+        "old_spans": [
+          {
+            "char_start": 15366,
+            "char_end": 15450,
+            "evidence_hash": "66c10c152e829a91560c0261f85055982554064105e911b1300c8f98599a55c6"
+          },
+          {
+            "char_start": 15451,
+            "char_end": 15557,
+            "evidence_hash": "e90002b1fef99b3275a7b55b4dbef56e0db8ff827bd3661e7120f21edd08987b"
+          }
+        ],
+        "new_spans": [
+          {
+            "char_start": 15267,
+            "char_end": 15450,
+            "evidence_hash": "9edfa438aab0b1be7075143e68f70b290cfe3ceea5b7219f8b63880770c98838",
+            "evidence_char_length": 183
+          },
+          {
+            "char_start": 15451,
+            "char_end": 15557,
+            "evidence_hash": "e90002b1fef99b3275a7b55b4dbef56e0db8ff827bd3661e7120f21edd08987b",
+            "evidence_char_length": 106
+          }
+        ],
+        "author": "claude",
+        "directed_by": "independent_review",
+        "timestamp": "2026-08-20T19:46:01Z"
+      },
+      "reasoning_type": "exact_lookup",
+      "evidence_shape": "multi_span",
+      "requires_all_evidence": true,
+      "precheck_holdout_ready": true,
+      "precheck_failures": []
+    },
+    {
+      "candidate_id": "GOLD-B003-20",
+      "outcome": "revised",
+      "defect_classes": [
+        "CATEGORY_MISCLASSIFICATION"
+      ],
+      "fields_revised": 0,
+      "anchor_revision": null,
+      "reasoning_type": "exact_lookup",
+      "evidence_shape": "multi_span",
+      "requires_all_evidence": true,
+      "precheck_holdout_ready": true,
+      "precheck_failures": []
+    }
+  ]
+}

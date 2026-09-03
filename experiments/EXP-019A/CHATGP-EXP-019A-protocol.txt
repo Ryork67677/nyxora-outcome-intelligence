@@ -1,0 +1,57 @@
+Run ChatGPT-authorized EXP-019A. Russell pasted the protocol. Follow it exactly. Do not open holdout.json. Do not load validation. Do not modify SYSTEM-D, SYSTEM-E-WITHIN-DOC, SYSTEM-E-L10-WITHIN-DOC, cs_v1_control, or the projection set ps_v2_ovl_win448_s224. Do not change candidate generation, CE model, CE logits, 0.7/0.3 weights, no weight sweep, no extra variants after scores, no query rewrite. Do not freeze a release.
+
+WORK TREE: /workspace/rag-v1/repo/production-rag-v1
+venv: .venv/bin/python
+Protocol also write to experiments/EXP-019A/CHATGP-EXP-019A-protocol.txt (the user paste).
+
+EXP-017 baseline (frozen development):
+cand R@100 46/50, strict R@10 40/50, span 0.80, MRR 0.597, doc 0.92, 0 regressions vs E-L10, 0 rank-1 destructions.
+Projection set ps_v2_ovl_win448_s224 n=18057.
+EXP-017 prereg sha 053a6bf14df088ca9e2283bc3e8dfb0769848a48c54c51a77fbe045795a80cc6
+Artifacts: experiments/EXP-017/EXP-017-results.json (per_case has C_P as chunk_id lists, span ranks, pool sizes — may NOT store CE logits / a_norm / projection RRF). scripts/run_exp017.py blend_union keeps E-L10 a_norm exact, projection-only a_norm=0.0, CE minmax over union, blend 0.7/0.3.
+E-L10 hash bae1c05b5c47c179dc5cd7972a14bd23d102a4d513b674667eb469e17cd85e89
+Holdout log must stay 235 bytes sha 45b83a77f6f332174d641956f076dd0c0cae44fe48f4f2892ac7030a4c0143b3.
+
+============================================================
+STEP 0 — CLOSE EXP-017 / SYSTEM-F-PROJECTION
+============================================================
+Create NEW development identity SYSTEM-F-PROJECTION for the EXACT EXP-017 system. Do not overwrite earlier artifacts.
+Write experiments/EXP-017/SYSTEM-F-PROJECTION.json + .md using rag_v1.ids.config_hash on the frozen config dict (exclude observed metrics). Record parent hashes (A, D, E, E-L10, EXP-017 prereg, projection set id/hash). Status DEVELOPMENT CANDIDATE, NOT_FROZEN, VALIDATION_NOT_RUN, HOLDOUT_UNTOUCHED. Observed metrics labeled DEVELOPMENT_ONLY.
+Also experiments/EXP-017/EXP-017-CLOSURE.md: EXP-017=MECHANISM_SUPPORTED.
+
+============================================================
+STEP 1 — PREREG EXP-019A BEFORE ANY NEW RANKS
+============================================================
+Write experiments/EXP-019A/EXP-019A-preregistration.md + .json and hash the json BEFORE computing new final ranks.
+Hypothesis: replacing projection-only a_norm 0.0 with minmax(projection-RRF) improves ranking.
+ONE CHANGE ONLY:
+- E-L10 members: keep existing E-L10 a_norm EXACTLY. Do not renormalize them. Do not combine E-L10 and projection scores for them.
+- Projection-only members: take stored projection-RRF fused score, minmax with the SAME minmax_norm used by the retrieval channel (system_e.minmax_norm / degenerate 0.5 if hi==lo). Use that as retrieval-channel value instead of 0.0.
+- Minmax of projection scores is over the projection-only extras in that query (not mixed with E-L10 a scores). If the protocol's 'same existing min-max implementation' is ambiguous, preregister: minmax over the P projection-only fused scores for that query, degenerate 0.5 if constant; do not retune after scores.
+- No third RRF list. No candidate membership change.
+- Blend still 0.7*CE_norm + 0.3*retrieval_norm. CE_norm: keep the stored EXP-017 CE minmax values EXACTLY (do not re-minmax CE because a_norm changed). Tie-break unchanged: blend desc, E-L10 merge-RRF rank (projection-only after those with RRF ranks), chunk_id.
+PRIMARY: strict R@10. Baseline SYSTEM-F / EXP-017 = 40/50.
+SECONDARY: cand R@100, span R@10, MRR, doc recall, rescues, regressions, rank-1 destructions, rank movements, latency of rescoring.
+Candidate membership MUST be identical to EXP-017 so cand R@100 stays 46/50. If not, implementation drift, STOP.
+Decision RERANK_MECHANISM_SUPPORTED iff: strict R@10 > 40/50 AND 0 strict R@10 regressions vs frozen EXP-017 AND 0 rank-1 destructions vs frozen EXP-017 AND cand R@100 exactly 46/50. Else NOT_SUPPORTED. No named-case gate. V2D-33, V2D-36 DIAGNOSTIC_ONLY.
+
+============================================================
+STEP 2 — REUSE STORED ARTIFACTS
+============================================================
+Prefer stored EXP-017 candidate pools, E-L10 retrieval scores, projection RRF scores, frozen CE logits.
+Search run_exp017.py / logs for a pools dump. If logits/a_norm/proj RRF are NOT stored, rematerialize ONCE with the frozen EXP-017 code ONLY to recover those scores, then VERIFY candidate identities match EXP-017-results.json per_case (C_P sets, pool sizes, in_x_pool / x_rank for gold). If membership drifts, STOP and report. Do not change generation knobs. After recovery, apply 019A scoring in memory; do not call CE again for the 019A ranks.
+Verify hashes before scoring (prereg, F config, E-L10, projection set, holdout log).
+
+============================================================
+STEP 3 — ONE RESCORE ON V2-DEVSET-001 n=50
+============================================================
+No second variant. Report all fields in the protocol. Write:
+- experiments/EXP-019A/EXP-019A-preregistration.md + .json (hashed first)
+- experiments/EXP-019A/EXP-019A-results.json
+- experiments/EXP-019A/EXP-019A-report.md
+- confirmation pool identity-equivalent
+- rescoring timing
+Holdout log unchanged.
+Do not post to ChatGPT.
+
+Return: SYSTEM-F hash, cand R@100 (must 46/50), baseline vs 019A strict R@10, regressions, rank-1 destructions, decision, diagnostic fates of V2D-33/36, whether stored logits existed or rematerialized, file paths.

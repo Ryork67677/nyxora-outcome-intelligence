@@ -1,0 +1,1190 @@
+{
+  "experiment_id": "EVAL-VAL-002",
+  "phase": "validation",
+  "split": "gold150-v1/validation",
+  "split_path": "evals/splits/gold150-v1/validation.json",
+  "projection_path": "evals/splits/gold150-v1/validation.jsonl",
+  "timestamp": "2026-09-01T00:42:09Z",
+  "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a",
+  "chunk_set": "cs_v1_control",
+  "system_a_config_hash": "9afcb5b7c58ebacff0b4c3711dd9618a2e727f4195dd1787a5da81e478ee0b38",
+  "system_d_config_hash": "d77b54ba3be0197d6bc1363883aefb0b3399117ee8c65800a38f8196d236ca3a",
+  "system_d_config_hash_matched_freeze_before_scoring": true,
+  "freeze_path": "experiments/EXP-016/SYSTEM-D-GUARD.json",
+  "freeze_untouched": true,
+  "tuned_after_seeing_scores": false,
+  "validation_loaded": true,
+  "holdout_loaded": false,
+  "holdout_ids_enumerated": false,
+  "holdout_question_text_loaded": false,
+  "holdout_access_log_bytes": 0,
+  "holdout_runs": 0,
+  "live_docs_fetched": false,
+  "trained": false,
+  "cases_scored": 40,
+  "d_runs": 1,
+  "embedding": {
+    "chunk_set": "cs_v1_control",
+    "chunks": 14209,
+    "embedding_rows": 14209,
+    "model_id": "emb_e7d4183fd6eb878ae2fdf080efb6861e",
+    "fingerprint_min": "bd95feaeacf98559",
+    "fingerprint_max": "bd95feaeacf98559",
+    "fingerprint_expected": "bd95feaeacf98559",
+    "complete": true
+  },
+  "recorded_system_a": {
+    "source": "experiments/EVAL-VAL-001/EVAL-VAL-001-results.json",
+    "not_a_new_A_evaluation": true,
+    "strict_recall_at_10": "30/40",
+    "cases_fully_recalled": 30,
+    "macro_span_recall": 0.75,
+    "document_recall": 0.975,
+    "mrr": 0.5283,
+    "spans_found_at_10": 33,
+    "spans_total": 47
+  },
+  "rematerialized_A_for_D_candidates_only": {
+    "note": "SYSTEM-A top-100 was retrieved on the 40 val cases as candidate generation for D, not as a new A evaluation. Primary comparison is against recorded EVAL-VAL-001 A metrics and per-case ranks.",
+    "gold_span_rank_mismatches_vs_recorded": [],
+    "mismatch_count": 0,
+    "rematerialized_strict_fully_recalled": 30
+  },
+  "system_d": {
+    "system": "SYSTEM-D-GUARD-BLEND",
+    "config_hash": "d77b54ba3be0197d6bc1363883aefb0b3399117ee8c65800a38f8196d236ca3a",
+    "macro_span_recall": 0.825,
+    "cases_fully_recalled": 33,
+    "cases_total": 40,
+    "strict_recall_at_10": "33/40",
+    "spans_found_at_10": 36,
+    "spans_total": 47,
+    "document_recall": 1.0,
+    "mrr": 0.5887,
+    "spans_absent_from_top": {
+      "10": 11,
+      "20": 9,
+      "30": 7,
+      "50": 6,
+      "100": 4,
+      "300": 4
+    },
+    "cases": {
+      "GOLD-B001-01": {
+        "case_id": "GOLD-B001-01",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_56e46425d7d8661df363a65c2d96e08291bdf8d1",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "GOLD-B001-03": {
+        "case_id": "GOLD-B001-03",
+        "spans": [
+          {
+            "rank": 8,
+            "doc_rank": 1,
+            "chunk_id": "chk_ae2d20b7dda7474cf9d3ec86d99fae0a1266d711",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "GOLD-B001-07": {
+        "case_id": "GOLD-B001-07",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_07f0431749a3c4c9d063a3d39f90388a8876014e",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "GOLD-B001-10": {
+        "case_id": "GOLD-B001-10",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_2124487ad93d57da3e8d3afbc695294fa50f608d",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "GOLD-B002-01": {
+        "case_id": "GOLD-B002-01",
+        "spans": [
+          {
+            "rank": 4,
+            "doc_rank": 2,
+            "chunk_id": "chk_d99c6b3bf495f44a11ddd3f304854b3f177db36d",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "GOLD-B002-02": {
+        "case_id": "GOLD-B002-02",
+        "spans": [
+          {
+            "rank": null,
+            "doc_rank": 4,
+            "chunk_id": null,
+            "within": {
+              "10": false,
+              "20": false,
+              "30": false,
+              "50": false,
+              "100": false,
+              "300": false
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 0.0,
+        "fully_recalled": false,
+        "doc_recall": 1.0
+      },
+      "GOLD-B002-07": {
+        "case_id": "GOLD-B002-07",
+        "spans": [
+          {
+            "rank": 7,
+            "doc_rank": 1,
+            "chunk_id": "chk_dbba4dd3b9158e45d326d715e2e7170b90d7bbf6",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "GOLD-B002-10": {
+        "case_id": "GOLD-B002-10",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_6c43f80384e28b51321d7a8a5720468d98e1715d",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "GOLD-B002-18": {
+        "case_id": "GOLD-B002-18",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_999930d88301a940f1d0e4bc870c1524f51e0dde",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "GOLD-B003-02": {
+        "case_id": "GOLD-B003-02",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_165cb30e358e61a3f1d70a889c650b42959d6c70",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "GOLD-B003-08": {
+        "case_id": "GOLD-B003-08",
+        "spans": [
+          {
+            "rank": 2,
+            "doc_rank": 2,
+            "chunk_id": "chk_7681ff2b4c5f16e8f5e398c4648b509f1501f1c4",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "GOLD-B003-11": {
+        "case_id": "GOLD-B003-11",
+        "spans": [
+          {
+            "rank": 2,
+            "doc_rank": 2,
+            "chunk_id": "chk_1d5a3ad5b7b9f587ae681fd223f25e97f7cf42d1",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "GOLD-B003-15": {
+        "case_id": "GOLD-B003-15",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_a606ee868c51cf03412461867f6338116f84e13f",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "GOLD-B003-18": {
+        "case_id": "GOLD-B003-18",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_b3792274647effec04c5a81b5658d02c96ef4012",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          },
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_b3792274647effec04c5a81b5658d02c96ef4012",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "GOLD-B004-04": {
+        "case_id": "GOLD-B004-04",
+        "spans": [
+          {
+            "rank": 2,
+            "doc_rank": 2,
+            "chunk_id": "chk_3015928b34af6eb8959f16bcd0186fe00ffb2dd6",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "GOLD-B004-10": {
+        "case_id": "GOLD-B004-10",
+        "spans": [
+          {
+            "rank": 3,
+            "doc_rank": 3,
+            "chunk_id": "chk_51676544f6f5e5c6597321fad6e861743c0d0bc7",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "GOLD-B004-12": {
+        "case_id": "GOLD-B004-12",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_a652fa838849020e2730a4b1684c34c1a689755f",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "GOLD-B004-14": {
+        "case_id": "GOLD-B004-14",
+        "spans": [
+          {
+            "rank": 3,
+            "doc_rank": 1,
+            "chunk_id": "chk_b3792274647effec04c5a81b5658d02c96ef4012",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          },
+          {
+            "rank": 3,
+            "doc_rank": 1,
+            "chunk_id": "chk_b3792274647effec04c5a81b5658d02c96ef4012",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "GOLD-B005-09": {
+        "case_id": "GOLD-B005-09",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_15c1a5ddd54293c0cc720b0b08d7da51fc1c1d9d",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "GOLD-B005-15": {
+        "case_id": "GOLD-B005-15",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_15c2cd244a4003b5c5977a39113065a7d7c9f082",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "GOLD-B005-17": {
+        "case_id": "GOLD-B005-17",
+        "spans": [
+          {
+            "rank": 3,
+            "doc_rank": 2,
+            "chunk_id": "chk_54f24b235eee08c3f04656ce79c5baf889005a84",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "GOLD-B005-19": {
+        "case_id": "GOLD-B005-19",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_54006b7f8b94adace97a13e8d2aff0b2063406de",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "GOLD-B006-03": {
+        "case_id": "GOLD-B006-03",
+        "spans": [
+          {
+            "rank": 18,
+            "doc_rank": 4,
+            "chunk_id": "chk_0fc166dbfa8a2094c749b75ca01f26e45573afa2",
+            "within": {
+              "10": false,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 0.0,
+        "fully_recalled": false,
+        "doc_recall": 1.0
+      },
+      "GOLD-B006-04": {
+        "case_id": "GOLD-B006-04",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_637dd0da1f102d7a1b7e3be4de64f3729aa5d601",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "HA-07": {
+        "case_id": "HA-07",
+        "spans": [
+          {
+            "rank": 70,
+            "doc_rank": 1,
+            "chunk_id": "chk_9e9cb342bd309c132d55e2003754887d2faa2c9e",
+            "within": {
+              "10": false,
+              "20": false,
+              "30": false,
+              "50": false,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          },
+          {
+            "rank": 47,
+            "doc_rank": 1,
+            "chunk_id": "chk_0b5c227d373c9e8a9cb290372e1dce9ef897b5a0",
+            "within": {
+              "10": false,
+              "20": false,
+              "30": false,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 0.0,
+        "fully_recalled": false,
+        "doc_recall": 1.0
+      },
+      "HA-08": {
+        "case_id": "HA-08",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_73fa6f201ebe4d053467e93912876caa5dcc9533",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "HA-10": {
+        "case_id": "HA-10",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_9fce033fa3e586e30733c833b6fdc857f4ec67d4",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "HA-12": {
+        "case_id": "HA-12",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_b17099fe75c44006e954e286fa820bb2685015c4",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "HA-15": {
+        "case_id": "HA-15",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_3103771531694781f439051781da0bad51eee0ba",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "HA-18": {
+        "case_id": "HA-18",
+        "spans": [
+          {
+            "rank": 4,
+            "doc_rank": 4,
+            "chunk_id": "chk_91b59aa08660b93d3aa57ac22f7367bb361d3794",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "HA-29": {
+        "case_id": "HA-29",
+        "spans": [
+          {
+            "rank": 19,
+            "doc_rank": 1,
+            "chunk_id": "chk_b81a9e7e718403f09b36f77539bec32ba5abd938",
+            "within": {
+              "10": false,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 0.0,
+        "fully_recalled": false,
+        "doc_recall": 1.0
+      },
+      "HA-32": {
+        "case_id": "HA-32",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_560d301ea4cdcc24ce9c7d269b14a6e0bc4f5953",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "HA-36": {
+        "case_id": "HA-36",
+        "spans": [
+          {
+            "rank": 2,
+            "doc_rank": 2,
+            "chunk_id": "chk_c3e405a5d766f89e5c02d04e02169c115dd4cb73",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "HA-40": {
+        "case_id": "HA-40",
+        "spans": [
+          {
+            "rank": null,
+            "doc_rank": 2,
+            "chunk_id": null,
+            "within": {
+              "10": false,
+              "20": false,
+              "30": false,
+              "50": false,
+              "100": false,
+              "300": false
+            },
+            "doc_within_10": true
+          },
+          {
+            "rank": 24,
+            "doc_rank": 2,
+            "chunk_id": "chk_0b5c227d373c9e8a9cb290372e1dce9ef897b5a0",
+            "within": {
+              "10": false,
+              "20": false,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 0.0,
+        "fully_recalled": false,
+        "doc_recall": 1.0
+      },
+      "HA-41": {
+        "case_id": "HA-41",
+        "spans": [
+          {
+            "rank": null,
+            "doc_rank": 1,
+            "chunk_id": null,
+            "within": {
+              "10": false,
+              "20": false,
+              "30": false,
+              "50": false,
+              "100": false,
+              "300": false
+            },
+            "doc_within_10": true
+          },
+          {
+            "rank": null,
+            "doc_rank": 1,
+            "chunk_id": null,
+            "within": {
+              "10": false,
+              "20": false,
+              "30": false,
+              "50": false,
+              "100": false,
+              "300": false
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 0.0,
+        "fully_recalled": false,
+        "doc_recall": 1.0
+      },
+      "HA-42": {
+        "case_id": "HA-42",
+        "spans": [
+          {
+            "rank": 72,
+            "doc_rank": 3,
+            "chunk_id": "chk_9e9cb342bd309c132d55e2003754887d2faa2c9e",
+            "within": {
+              "10": false,
+              "20": false,
+              "30": false,
+              "50": false,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          },
+          {
+            "rank": 29,
+            "doc_rank": 3,
+            "chunk_id": "chk_0b5c227d373c9e8a9cb290372e1dce9ef897b5a0",
+            "within": {
+              "10": false,
+              "20": false,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 0.0,
+        "fully_recalled": false,
+        "doc_recall": 1.0
+      },
+      "HA-44": {
+        "case_id": "HA-44",
+        "spans": [
+          {
+            "rank": 3,
+            "doc_rank": 1,
+            "chunk_id": "chk_ddacc7aafcf9a596a5302fac95ac286957de4c5c",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "HA-47": {
+        "case_id": "HA-47",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_3103771531694781f439051781da0bad51eee0ba",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "HA-49": {
+        "case_id": "HA-49",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_11ecb8c67ad089f7f5d7efa58ecfd8651cb66db9",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "HA-59": {
+        "case_id": "HA-59",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_4803c9c39d64fd0c4b27351273f4ebc8b0ed26a0",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          },
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_4803c9c39d64fd0c4b27351273f4ebc8b0ed26a0",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      }
+    }
+  },
+  "latency_ms": {
+    "A_retrieval_mean": 512.9,
+    "CE_mean": 5098.8,
+    "D_total_mean": 5680.2,
+    "A_retrieval_median": 520.7,
+    "CE_median": 5066.1,
+    "D_total_median": 5566.4
+  },
+  "named_case_audit": {
+    "HA-22": {
+      "in_validation": false,
+      "in_development": true,
+      "looked_up_in_holdout": false,
+      "status": "development-only; not in validation; not looked up in holdout"
+    },
+    "HA-24": {
+      "in_validation": false,
+      "in_development": true,
+      "looked_up_in_holdout": false,
+      "status": "development-only; not in validation; not looked up in holdout"
+    },
+    "GOLD-B005-11": {
+      "in_validation": false,
+      "in_development": true,
+      "looked_up_in_holdout": false,
+      "status": "development-only; not in validation; not looked up in holdout"
+    }
+  },
+  "cross_encoder": {
+    "name": "cross-encoder/ms-marco-MiniLM-L6-v2",
+    "revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a",
+    "artifact_sha256": "5d3e70fd0c9ff14b9b5169a51e957b7a9c74897afd0a35ce4bd318150c1d4d4a",
+    "pair_score_stable": true,
+    "max_length": 512
+  },
+  "decision": {
+    "label": "RERANKER_SUPPORTED",
+    "reason": "D strictly beats recorded A on primary (33/40 vs 30/40, net +3) without catastrophic exact-match destruction (rank-1 destructions=0, A≤3-out-of-10=0).",
+    "caveat": "Bootstrap 95% CI on strict delta includes 0 ([0.0, 0.175]); McNemar p=0.25. Label follows the net-positive-strict mapping, not statistical significance."
+  },
+  "runtime_seconds": 228.2,
+  "per_case_path": "experiments/EVAL-VAL-002/EVAL-VAL-002-results.json",
+  "paired": {
+    "rescues": [
+      "GOLD-B001-03",
+      "GOLD-B002-07",
+      "HA-44"
+    ],
+    "regressions": [],
+    "net": 3,
+    "both_pass": [
+      "GOLD-B001-01",
+      "GOLD-B001-07",
+      "GOLD-B001-10",
+      "GOLD-B002-01",
+      "GOLD-B002-10",
+      "GOLD-B002-18",
+      "GOLD-B003-02",
+      "GOLD-B003-08",
+      "GOLD-B003-11",
+      "GOLD-B003-15",
+      "GOLD-B003-18",
+      "GOLD-B004-04",
+      "GOLD-B004-10",
+      "GOLD-B004-12",
+      "GOLD-B004-14",
+      "GOLD-B005-09",
+      "GOLD-B005-15",
+      "GOLD-B005-17",
+      "GOLD-B005-19",
+      "GOLD-B006-04",
+      "HA-08",
+      "HA-10",
+      "HA-12",
+      "HA-15",
+      "HA-18",
+      "HA-32",
+      "HA-36",
+      "HA-47",
+      "HA-49",
+      "HA-59"
+    ],
+    "both_fail": [
+      "GOLD-B002-02",
+      "GOLD-B006-03",
+      "HA-07",
+      "HA-29",
+      "HA-40",
+      "HA-41",
+      "HA-42"
+    ],
+    "n_rescues": 3,
+    "n_regressions": 0,
+    "n_both_pass": 30,
+    "n_both_fail": 7,
+    "recorded_A_strict": "30/40",
+    "D_strict": "33/40",
+    "delta_strict_cases": 3,
+    "bootstrap": {
+      "seed": 20250818,
+      "samples": 10000,
+      "n_questions": 40,
+      "unit": "paired cases (questions), not spans",
+      "macro_recall_delta": {
+        "point_estimate": 0.075,
+        "ci95": [
+          0.0,
+          0.175
+        ]
+      },
+      "fully_recalled_delta_per_case": {
+        "point_estimate": 0.075,
+        "ci95": [
+          0.0,
+          0.175
+        ],
+        "note": "paired bootstrap on the 40 paired strict 0/1 outcomes (D−A)"
+      }
+    },
+    "mcnemar": {
+      "discordant_pairs": 3,
+      "d_only": 3,
+      "a_only": 0,
+      "p_value": 0.25,
+      "note": "exact binomial McNemar on discordant strict fully-recalled outcomes"
+    },
+    "rank_destruction": {
+      "a_rank_le_3_out_of_top_10": [],
+      "rank1_destroyed": [],
+      "count_head": 0,
+      "count_rank1": 0
+    },
+    "decision": {
+      "label": "RERANKER_SUPPORTED",
+      "reason": "D strictly beats recorded A on primary (33/40 vs 30/40, net +3) without catastrophic exact-match destruction (rank-1 destructions=0, A≤3-out-of-10=0)."
+    }
+  }
+}

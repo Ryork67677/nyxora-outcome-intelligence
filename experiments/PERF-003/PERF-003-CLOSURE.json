@@ -1,0 +1,66 @@
+{
+  "experiment_id": "PERF-003",
+  "decision": "PERF-003_SUPPORTED",
+  "accepted_by": "ChatGPT",
+  "accepted_at_et": "2026-09-01T01:48:00-04:00",
+  "accepted_at_et_approx": "~01:48 ET 2026-09-01",
+  "closed_at": "2026-09-01T05:51:33Z",
+  "closed_at_et": "2026-09-01T01:51:33-04:00",
+  "re_run": false,
+  "prereg_sha256": "dc01713eafc56347a9eba0711d0947f13fccbc8ba784dfa034e22280ec23c880",
+  "SYSTEM-G-PROJECTION-PRIOR_config_hash": "563a7b790564fa1efb96257e988c4b1ccfab45146825d2a366b2fee0ca5d5790",
+  "SYSTEM-G-CE-D1_config_hash": "6d108568f3131bad87d8617f5c2fb88ea14428e397d59ff54ff8e11cc4647b7d",
+  "SYSTEM-G-CE-D1_file_sha256_protocol": "cf0c985c5f7738e7fc5422039fd6940621d8dcd8f91de41abe3784ac53a6a7ec",
+  "SYSTEM-G-CE-D1_file_sha256_verified": "cf0c985c5f7738e7fc5422039fd6940621d8dcd8f91de41abe3784ac53a6a7ec",
+  "SYSTEM-G-CE-D1_file_sha256_match": true,
+  "equivalence": {
+    "n_pairs": 6205,
+    "identical": "6205/6205",
+    "max_abs_diff": 0,
+    "bitwise_identical_raw_ce_logits": true
+  },
+  "metrics": {
+    "candidate_R@100": "46/50",
+    "strict_R@10": "41/50",
+    "span": 0.82,
+    "MRR": 0.6009,
+    "document_recall": 0.9
+  },
+  "timing_this_host_only": {
+    "do_not_present_as_cross_host": true,
+    "old_CE_mean_ms": 6791.2,
+    "D1_CE_mean_ms": 2117.6,
+    "CE_speedup": "3.207x",
+    "old_SYSTEM-G_total_ms": 7802.6,
+    "D1_total_ms": 3129.0,
+    "corroboration_from_PERF-003-results.json": {
+      "old_ce_total_ms_mean": 6791.1651,
+      "new_ce_total_ms_mean": 2117.5741,
+      "ce_speedup": 3.207,
+      "system_g_total_old_ms": 7802.5651,
+      "system_g_total_new_ms": 3128.9741
+    },
+    "cpu": "Intel Xeon 8 cores",
+    "ort": "1.29.0",
+    "provider": "CPUExecutionProvider",
+    "intra_op": 4,
+    "inter_op": 1
+  },
+  "corroboration_files": {
+    "PERF-003-report.md": {
+      "path": "experiments/PERF-003/PERF-003-report.md",
+      "bytes": 3819,
+      "sha256": "0807e45004167af5387ce238567dcc2f832cd2d861c015957679250df8720e75"
+    },
+    "PERF-003-results.json": {
+      "path": "experiments/PERF-003/PERF-003-results.json",
+      "bytes": 46384,
+      "sha256": "3d0d07474d3fe94b62011143970eac910fcc53fa702e3cabdd0e6f934bcd408d"
+    }
+  },
+  "SYSTEM-G_overwritten": false,
+  "SYSTEM-G-CE-D1_overwritten": false,
+  "holdout_json_opened": false,
+  "validation_run": false,
+  "follow_on": "SYSTEM-H-V2-DEV-CANDIDATE identity freeze; V2-DEVSET-001 CLOSED for architecture changes; NATQ-001 next"
+}

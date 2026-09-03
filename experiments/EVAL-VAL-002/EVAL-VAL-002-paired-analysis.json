@@ -1,0 +1,96 @@
+{
+  "rescues": [
+    "GOLD-B001-03",
+    "GOLD-B002-07",
+    "HA-44"
+  ],
+  "regressions": [],
+  "net": 3,
+  "both_pass": [
+    "GOLD-B001-01",
+    "GOLD-B001-07",
+    "GOLD-B001-10",
+    "GOLD-B002-01",
+    "GOLD-B002-10",
+    "GOLD-B002-18",
+    "GOLD-B003-02",
+    "GOLD-B003-08",
+    "GOLD-B003-11",
+    "GOLD-B003-15",
+    "GOLD-B003-18",
+    "GOLD-B004-04",
+    "GOLD-B004-10",
+    "GOLD-B004-12",
+    "GOLD-B004-14",
+    "GOLD-B005-09",
+    "GOLD-B005-15",
+    "GOLD-B005-17",
+    "GOLD-B005-19",
+    "GOLD-B006-04",
+    "HA-08",
+    "HA-10",
+    "HA-12",
+    "HA-15",
+    "HA-18",
+    "HA-32",
+    "HA-36",
+    "HA-47",
+    "HA-49",
+    "HA-59"
+  ],
+  "both_fail": [
+    "GOLD-B002-02",
+    "GOLD-B006-03",
+    "HA-07",
+    "HA-29",
+    "HA-40",
+    "HA-41",
+    "HA-42"
+  ],
+  "n_rescues": 3,
+  "n_regressions": 0,
+  "n_both_pass": 30,
+  "n_both_fail": 7,
+  "recorded_A_strict": "30/40",
+  "D_strict": "33/40",
+  "delta_strict_cases": 3,
+  "bootstrap": {
+    "seed": 20250818,
+    "samples": 10000,
+    "n_questions": 40,
+    "unit": "paired cases (questions), not spans",
+    "macro_recall_delta": {
+      "point_estimate": 0.075,
+      "ci95": [
+        0.0,
+        0.175
+      ]
+    },
+    "fully_recalled_delta_per_case": {
+      "point_estimate": 0.075,
+      "ci95": [
+        0.0,
+        0.175
+      ],
+      "note": "paired bootstrap on the 40 paired strict 0/1 outcomes (D−A)"
+    }
+  },
+  "mcnemar": {
+    "discordant_pairs": 3,
+    "d_only": 3,
+    "a_only": 0,
+    "p_value": 0.25,
+    "note": "exact binomial McNemar on discordant strict fully-recalled outcomes"
+  },
+  "rank_destruction": {
+    "a_rank_le_3_out_of_top_10": [],
+    "rank1_destroyed": [],
+    "count_head": 0,
+    "count_rank1": 0
+  },
+  "decision": {
+    "label": "RERANKER_SUPPORTED",
+    "reason": "D strictly beats recorded A on primary (33/40 vs 30/40, net +3) without catastrophic exact-match destruction (rank-1 destructions=0, A≤3-out-of-10=0).",
+    "caveat": "Bootstrap 95% CI on strict delta includes 0 ([0.0, 0.175]); McNemar p=0.25. Label follows the net-positive-strict mapping, not statistical significance."
+  }
+}

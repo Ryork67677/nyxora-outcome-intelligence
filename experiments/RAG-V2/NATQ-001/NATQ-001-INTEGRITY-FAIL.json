@@ -1,0 +1,189 @@
+{
+  "generated_at_utc": "2026-09-02T18:27:16Z",
+  "generated_at_et": "2026-09-02T14:27:16-0400",
+  "snapshot": "snap_689e336380a054d8039dc35b2c09cd0a",
+  "n_gold_would_be": 100,
+  "n_unchanged": 84,
+  "n_round2": 16,
+  "n_spans_checked": 122,
+  "span_postgres_match": true,
+  "evidence_hash_match": true,
+  "questions_byte_for_byte": true,
+  "versions_in_snapshot": true,
+  "n_claims": 251,
+  "n_claims_pass": 242,
+  "n_claims_fail": 9,
+  "claim_method": "distinctive_identifier_token_v3: concatenate all expected_evidence.evidence_text; markdown-unescape (backslash-escaped punctuation unescaped; strip backtick characters). From each atomic claim extract: (a) backtick-quoted spans; (b) identifiers containing '_' or a digit; (c) dotted identifiers like foo.bar; (d) CamelCase with an INTERNAL capital ([a-z][A-Z]). Skip ellipsis and abbreviations e.g./i.e./etc. Each extracted token must appear as a casefold substring in unescaped evidence. Dotted identifiers pass if the full string appears OR every component appears. Light inflection: if token missing, accept stem stripping trailing s/es/ed/ing (stem len>=4).",
+  "claim_fail": [
+    {
+      "candidate_id": "NATQ-C-008",
+      "round2": false,
+      "claim": "Default failure_error_function runs default_tool_error_function which tells the LLM an error occurred.",
+      "missing": [
+        {
+          "kind": "ident",
+          "token": "failure_error_function"
+        }
+      ],
+      "section_path": [
+        "Annotated form",
+        "Handling errors in function tools"
+      ]
+    },
+    {
+      "candidate_id": "NATQ-C-022",
+      "round2": false,
+      "claim": "PDFs are provided as a URL, as a base64-encoded PDF in document content blocks, or by file_id.",
+      "missing": [
+        {
+          "kind": "ident",
+          "token": "file_id"
+        }
+      ],
+      "section_path": [
+        "Process PDFs with Claude",
+        "Send your first PDF request"
+      ]
+    },
+    {
+      "candidate_id": "NATQ-C-032",
+      "round2": false,
+      "claim": "Example sets parallel_tool_calls=False on ModelSettings.",
+      "missing": [
+        {
+          "kind": "ident",
+          "token": "ModelSettings"
+        }
+      ],
+      "section_path": [
+        "Models",
+        "Advanced OpenAI Responses settings",
+        "Common advanced `ModelSettings` options"
+      ]
+    },
+    {
+      "candidate_id": "NATQ-C-069",
+      "round2": false,
+      "claim": "`top_k` is recommended for advanced use cases only, not removed in favor of `top_p` only.",
+      "missing": [
+        {
+          "kind": "backtick",
+          "token": "top_p"
+        },
+        {
+          "kind": "ident",
+          "token": "top_p"
+        }
+      ],
+      "section_path": [
+        "Create a Message",
+        "Body Parameters"
+      ]
+    },
+    {
+      "candidate_id": "NATQ-C-087",
+      "round2": false,
+      "claim": "`stop_reason` can be `\"refusal\"`.",
+      "missing": [
+        {
+          "kind": "backtick",
+          "token": "stop_reason"
+        },
+        {
+          "kind": "ident",
+          "token": "stop_reason"
+        }
+      ],
+      "section_path": [
+        "Messages",
+        "Create a Message",
+        "Returns"
+      ]
+    },
+    {
+      "candidate_id": "NATQ-C-131",
+      "round2": false,
+      "claim": "chat.completions.parse() returns a completion whose message may have parsed content or a refusal.",
+      "missing": [
+        {
+          "kind": "dotted",
+          "token": "chat.completions.parse"
+        }
+      ],
+      "section_path": [
+        "Structured Outputs Parsing Helpers",
+        "Auto-parsing response content with Pydantic models"
+      ]
+    },
+    {
+      "candidate_id": "NATQ-C-167",
+      "round2": false,
+      "claim": "tool_result content is optional string or array of TextBlockParam or ImageBlockParam (and others).",
+      "missing": [
+        {
+          "kind": "ident",
+          "token": "tool_result"
+        }
+      ],
+      "section_path": [
+        "Messages",
+        "Create a Message",
+        "Body Parameters"
+      ]
+    },
+    {
+      "candidate_id": "NATQ-C-179",
+      "round2": false,
+      "claim": "The array form is TextBlockParam blocks (text/type, optional cache_control).",
+      "missing": [
+        {
+          "kind": "ident",
+          "token": "cache_control"
+        }
+      ],
+      "section_path": [
+        "Messages",
+        "Create a Message",
+        "Body Parameters"
+      ]
+    },
+    {
+      "candidate_id": "NATQ-C-189",
+      "round2": false,
+      "claim": "Basic actions include screenshot, left_click, type, key, and mouse_move.",
+      "missing": [
+        {
+          "kind": "ident",
+          "token": "mouse_move"
+        }
+      ],
+      "section_path": [
+        "How to implement computer use",
+        "Available actions"
+      ]
+    }
+  ],
+  "n_critical_string_fail": 1,
+  "critical_string_fail": [
+    {
+      "candidate_id": "NATQ-C-016",
+      "level": "packet",
+      "string": "role\": \"system\"",
+      "round2": true
+    }
+  ],
+  "critical_string_method": "exact substring OR markdown-unescape (backticks/backslash) OR dotted-path components all present",
+  "n_clusters": 63,
+  "n_validation": 40,
+  "n_holdout": 60,
+  "straddle": [],
+  "provider_distribution": {
+    "openai": 40,
+    "anthropic": 60
+  },
+  "duplicate_ids": false,
+  "SYSTEM_H_was_not_run": true,
+  "historical_v1_holdout_json_opened": false,
+  "historical_v1_access_log_bytes": 235,
+  "historical_v1_access_log_sha256": "45b83a77f6f332174d641956f076dd0c0cae44fe48f4f2892ac7030a4c0143b3"
+}

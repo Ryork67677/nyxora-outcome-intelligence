@@ -1,0 +1,2636 @@
+{
+  "experiment_id": "EXP-016",
+  "phase": "development_qualification",
+  "split": "gold150-v1/development",
+  "split_path": "evals/splits/gold150-v1/development.json",
+  "projection_path": "experiments/EXP-015/development.jsonl",
+  "preregistration": [
+    "experiments/EXP-016/EXP-016-preregistration.md",
+    "experiments/EXP-016/EXP-016-preregistration.json"
+  ],
+  "timestamp": "2026-09-01T00:28:01Z",
+  "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a",
+  "chunk_set": "cs_v1_control",
+  "system_a_config_hash": "9afcb5b7c58ebacff0b4c3711dd9618a2e727f4195dd1787a5da81e478ee0b38",
+  "tuned_after_seeing_scores": false,
+  "validation_loaded": false,
+  "holdout_loaded": false,
+  "holdout_access_log_bytes": 0,
+  "embedding": {
+    "chunk_set": "cs_v1_control",
+    "chunks": 14209,
+    "embedding_rows": 14209,
+    "model_id": "emb_e7d4183fd6eb878ae2fdf080efb6861e",
+    "fingerprint_min": "bd95feaeacf98559",
+    "fingerprint_max": "bd95feaeacf98559",
+    "fingerprint_expected": "bd95feaeacf98559",
+    "complete": true
+  },
+  "rematerialize_reproduced_exp015": {
+    "passed": true,
+    "mismatches": []
+  },
+  "ha24_diagnostic": {
+    "case_id": "HA-24",
+    "query": "In the OpenAI Agents SDK for Python, under what condition can `ToolContext` also expose `.tool_input`?",
+    "gold_chunk_id": "chk_300debbdfdd33f994da8367b173f4986666146c1",
+    "gold_a_rank": 1,
+    "gold_ce_score": 1.2992358207702637,
+    "gold_ce_rank": 18,
+    "top_a_chunk_id": "chk_300debbdfdd33f994da8367b173f4986666146c1",
+    "top_a_ce_score": 1.2992358207702637,
+    "top_c_chunk_id": "chk_c24c1a9df2502d944a1be63f49b7fa265f343d11",
+    "top_c_ce_score": 4.036510467529297,
+    "top_c_a_rank": 2,
+    "ce_preferred_more_general_explanation": true,
+    "conclusion": "YES \u2014 CE preferred a more general / higher-logit non-gold passage over the exact A-rank-1 gold answer.",
+    "written_before_C_or_D_scoring": true,
+    "path": "experiments/EXP-016/EXP-016-HA24-diagnostic.md"
+  },
+  "variants": {
+    "A": {
+      "source": "EXP-015 stored SYSTEM-A ranks (not retuned)",
+      "strict_recall_at_10": "19/20",
+      "cases_fully_recalled": 19,
+      "macro_span_recall": 0.95,
+      "mrr": 0.8309,
+      "document_recall": 1.0,
+      "spans_found_at_10": 22,
+      "spans_total": 23,
+      "rescues_vs_A": [],
+      "regressions_vs_A": [],
+      "net_rescues": 0,
+      "rank_destruction_events": 0,
+      "rank1_destroyed": [],
+      "latency_ms_mean": 500.8
+    },
+    "B": {
+      "source": "EXP-015 stored SYSTEM-C (already-rejected CE-only control)",
+      "strict_recall_at_10": "18/20",
+      "cases_fully_recalled": 18,
+      "macro_span_recall": 0.9,
+      "mrr": 0.803,
+      "document_recall": 0.95,
+      "spans_found_at_10": 21,
+      "spans_total": 23,
+      "rescues_vs_A": [
+        "GOLD-B005-11"
+      ],
+      "regressions_vs_A": [
+        "HA-22",
+        "HA-24"
+      ],
+      "net_rescues": -1,
+      "rank_destruction_events": 2,
+      "rank1_destroyed": [
+        {
+          "case_id": "HA-24",
+          "chunk_id": "chk_300debbdfdd33f994da8367b173f4986666146c1",
+          "a_rank": 1,
+          "variant_rank": 18
+        }
+      ],
+      "latency_ms_mean": 5780.2,
+      "already_rejected": true
+    },
+    "C": {
+      "source": "EXP-016 exact-match protected rerank on rematerialized EXP-015 logits",
+      "strict_recall_at_10": "20/20",
+      "cases_fully_recalled": 20,
+      "macro_span_recall": 1.0,
+      "mrr": 0.8072,
+      "document_recall": 1.0,
+      "spans_found_at_10": 23,
+      "spans_total": 23,
+      "rescues_vs_A": [
+        "GOLD-B005-11"
+      ],
+      "regressions_vs_A": [],
+      "net_rescues": 1,
+      "rank_destruction_events": 0,
+      "rank1_destroyed": [],
+      "latency_ms_mean": 5774.4,
+      "qualifies": {
+        "strict_ge_A": true,
+        "net_rescues_ge_0": true,
+        "no_new_rank1_destruction": true,
+        "qualifies": true
+      }
+    },
+    "D": {
+      "source": "EXP-016 0.7/0.3 CE+A blend on rematerialized EXP-015 logits",
+      "strict_recall_at_10": "20/20",
+      "cases_fully_recalled": 20,
+      "macro_span_recall": 1.0,
+      "mrr": 0.8239,
+      "document_recall": 1.0,
+      "spans_found_at_10": 23,
+      "spans_total": 23,
+      "rescues_vs_A": [
+        "GOLD-B005-11"
+      ],
+      "regressions_vs_A": [],
+      "net_rescues": 1,
+      "rank_destruction_events": 0,
+      "rank1_destroyed": [],
+      "latency_ms_mean": 5774.4,
+      "qualifies": {
+        "strict_ge_A": true,
+        "net_rescues_ge_0": true,
+        "no_new_rank1_destruction": true,
+        "qualifies": true
+      }
+    }
+  },
+  "system_c_guard": {
+    "system": "SYSTEM-D-GUARD-CLAMP",
+    "config_hash": "f47d0e3eab17d1f5a78f9e27c7b5581ce6dad7ae64a58e2ca9877d509bbd43dc",
+    "macro_span_recall": 1.0,
+    "cases_fully_recalled": 20,
+    "cases_total": 20,
+    "strict_recall_at_10": "20/20",
+    "spans_found_at_10": 23,
+    "spans_total": 23,
+    "document_recall": 1.0,
+    "mrr": 0.8072,
+    "spans_absent_from_top": {
+      "10": 0,
+      "20": 0,
+      "30": 0,
+      "50": 0,
+      "100": 0,
+      "300": 0
+    },
+    "cases": {
+      "GOLD-B001-13": {
+        "case_id": "GOLD-B001-13",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_9ffbe1398c74e6a310b3d6e8ea71a27c480be00f",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "GOLD-B001-14": {
+        "case_id": "GOLD-B001-14",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_2ca6d5ddd8a5f24f650436c0a8df8adbaa791a9b",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "GOLD-B002-05": {
+        "case_id": "GOLD-B002-05",
+        "spans": [
+          {
+            "rank": 2,
+            "doc_rank": 2,
+            "chunk_id": "chk_70cc26843ca90c7ce4b140397ad3f9c84cafd18b",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "GOLD-B002-16": {
+        "case_id": "GOLD-B002-16",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_9ffbe1398c74e6a310b3d6e8ea71a27c480be00f",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "GOLD-B003-01": {
+        "case_id": "GOLD-B003-01",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_1b565f807869326a9361b25f87bc3474024e1c85",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "GOLD-B003-05": {
+        "case_id": "GOLD-B003-05",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_a32eed0840cba995c3745c34b5df21ed800b9d21",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "GOLD-B003-20": {
+        "case_id": "GOLD-B003-20",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_48b6d9f733d5dcdd61eeb00d3b0c9e2474e69ece",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          },
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_48b6d9f733d5dcdd61eeb00d3b0c9e2474e69ece",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "GOLD-B004-02": {
+        "case_id": "GOLD-B004-02",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_c201ebd62a69a63f798ccb5771caaf06ddb7ca4e",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "GOLD-B004-13": {
+        "case_id": "GOLD-B004-13",
+        "spans": [
+          {
+            "rank": 5,
+            "doc_rank": 5,
+            "chunk_id": "chk_b3792274647effec04c5a81b5658d02c96ef4012",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "GOLD-B005-11": {
+        "case_id": "GOLD-B005-11",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_99cafb680130e5c1110b94721443d9a70b07e3d0",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "GOLD-B005-18": {
+        "case_id": "GOLD-B005-18",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_f2122f4ce98920de579b0cb17c51929e4211757b",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "GOLD-B006-08": {
+        "case_id": "GOLD-B006-08",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_08921683b5712d2d1f12ebfaef555813c44c0bf8",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "HA-11": {
+        "case_id": "HA-11",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_b17099fe75c44006e954e286fa820bb2685015c4",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "HA-13": {
+        "case_id": "HA-13",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_b17099fe75c44006e954e286fa820bb2685015c4",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "HA-22": {
+        "case_id": "HA-22",
+        "spans": [
+          {
+            "rank": 10,
+            "doc_rank": 10,
+            "chunk_id": "chk_d6e10a755991e31ad9e3d2770f5142f2cd0f9040",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "HA-24": {
+        "case_id": "HA-24",
+        "spans": [
+          {
+            "rank": 10,
+            "doc_rank": 10,
+            "chunk_id": "chk_300debbdfdd33f994da8367b173f4986666146c1",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "HA-51": {
+        "case_id": "HA-51",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_9760adae5919603098857a825a475f8443b8aa7c",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          },
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_9760adae5919603098857a825a475f8443b8aa7c",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "HA-52": {
+        "case_id": "HA-52",
+        "spans": [
+          {
+            "rank": 3,
+            "doc_rank": 3,
+            "chunk_id": "chk_9760adae5919603098857a825a475f8443b8aa7c",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          },
+          {
+            "rank": 3,
+            "doc_rank": 3,
+            "chunk_id": "chk_9760adae5919603098857a825a475f8443b8aa7c",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "HA-57": {
+        "case_id": "HA-57",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_6e8c2ae3d10d25fb47d647b925de69b5abe8115f",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "HA-60": {
+        "case_id": "HA-60",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_4803c9c39d64fd0c4b27351273f4ebc8b0ed26a0",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      }
+    }
+  },
+  "system_d_blend": {
+    "system": "SYSTEM-D-GUARD-BLEND",
+    "config_hash": "d77b54ba3be0197d6bc1363883aefb0b3399117ee8c65800a38f8196d236ca3a",
+    "macro_span_recall": 1.0,
+    "cases_fully_recalled": 20,
+    "cases_total": 20,
+    "strict_recall_at_10": "20/20",
+    "spans_found_at_10": 23,
+    "spans_total": 23,
+    "document_recall": 1.0,
+    "mrr": 0.8239,
+    "spans_absent_from_top": {
+      "10": 0,
+      "20": 0,
+      "30": 0,
+      "50": 0,
+      "100": 0,
+      "300": 0
+    },
+    "cases": {
+      "GOLD-B001-13": {
+        "case_id": "GOLD-B001-13",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_9ffbe1398c74e6a310b3d6e8ea71a27c480be00f",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "GOLD-B001-14": {
+        "case_id": "GOLD-B001-14",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_2ca6d5ddd8a5f24f650436c0a8df8adbaa791a9b",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "GOLD-B002-05": {
+        "case_id": "GOLD-B002-05",
+        "spans": [
+          {
+            "rank": 2,
+            "doc_rank": 2,
+            "chunk_id": "chk_70cc26843ca90c7ce4b140397ad3f9c84cafd18b",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "GOLD-B002-16": {
+        "case_id": "GOLD-B002-16",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_9ffbe1398c74e6a310b3d6e8ea71a27c480be00f",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "GOLD-B003-01": {
+        "case_id": "GOLD-B003-01",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_1b565f807869326a9361b25f87bc3474024e1c85",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "GOLD-B003-05": {
+        "case_id": "GOLD-B003-05",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_a32eed0840cba995c3745c34b5df21ed800b9d21",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "GOLD-B003-20": {
+        "case_id": "GOLD-B003-20",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_48b6d9f733d5dcdd61eeb00d3b0c9e2474e69ece",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          },
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_48b6d9f733d5dcdd61eeb00d3b0c9e2474e69ece",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "GOLD-B004-02": {
+        "case_id": "GOLD-B004-02",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_c201ebd62a69a63f798ccb5771caaf06ddb7ca4e",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "GOLD-B004-13": {
+        "case_id": "GOLD-B004-13",
+        "spans": [
+          {
+            "rank": 4,
+            "doc_rank": 4,
+            "chunk_id": "chk_b3792274647effec04c5a81b5658d02c96ef4012",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "GOLD-B005-11": {
+        "case_id": "GOLD-B005-11",
+        "spans": [
+          {
+            "rank": 5,
+            "doc_rank": 5,
+            "chunk_id": "chk_99cafb680130e5c1110b94721443d9a70b07e3d0",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "GOLD-B005-18": {
+        "case_id": "GOLD-B005-18",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_f2122f4ce98920de579b0cb17c51929e4211757b",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "GOLD-B006-08": {
+        "case_id": "GOLD-B006-08",
+        "spans": [
+          {
+            "rank": 2,
+            "doc_rank": 2,
+            "chunk_id": "chk_08921683b5712d2d1f12ebfaef555813c44c0bf8",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "HA-11": {
+        "case_id": "HA-11",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_b17099fe75c44006e954e286fa820bb2685015c4",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "HA-13": {
+        "case_id": "HA-13",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_b17099fe75c44006e954e286fa820bb2685015c4",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "HA-22": {
+        "case_id": "HA-22",
+        "spans": [
+          {
+            "rank": 6,
+            "doc_rank": 6,
+            "chunk_id": "chk_d6e10a755991e31ad9e3d2770f5142f2cd0f9040",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "HA-24": {
+        "case_id": "HA-24",
+        "spans": [
+          {
+            "rank": 3,
+            "doc_rank": 3,
+            "chunk_id": "chk_300debbdfdd33f994da8367b173f4986666146c1",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "HA-51": {
+        "case_id": "HA-51",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_9760adae5919603098857a825a475f8443b8aa7c",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          },
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_9760adae5919603098857a825a475f8443b8aa7c",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "HA-52": {
+        "case_id": "HA-52",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_9760adae5919603098857a825a475f8443b8aa7c",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          },
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_9760adae5919603098857a825a475f8443b8aa7c",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "HA-57": {
+        "case_id": "HA-57",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_6e8c2ae3d10d25fb47d647b925de69b5abe8115f",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      },
+      "HA-60": {
+        "case_id": "HA-60",
+        "spans": [
+          {
+            "rank": 1,
+            "doc_rank": 1,
+            "chunk_id": "chk_4803c9c39d64fd0c4b27351273f4ebc8b0ed26a0",
+            "within": {
+              "10": true,
+              "20": true,
+              "30": true,
+              "50": true,
+              "100": true,
+              "300": true
+            },
+            "doc_within_10": true
+          }
+        ],
+        "recall": 1.0,
+        "fully_recalled": true,
+        "doc_recall": 1.0
+      }
+    }
+  },
+  "paired": {
+    "B": {
+      "rescues": [
+        "GOLD-B005-11"
+      ],
+      "regressions": [
+        "HA-22",
+        "HA-24"
+      ],
+      "net": -1,
+      "both_correct": [
+        "GOLD-B001-13",
+        "GOLD-B001-14",
+        "GOLD-B002-05",
+        "GOLD-B002-16",
+        "GOLD-B003-01",
+        "GOLD-B003-05",
+        "GOLD-B003-20",
+        "GOLD-B004-02",
+        "GOLD-B004-13",
+        "GOLD-B005-18",
+        "GOLD-B006-08",
+        "HA-11",
+        "HA-13",
+        "HA-51",
+        "HA-52",
+        "HA-57",
+        "HA-60"
+      ],
+      "neither": []
+    },
+    "C": {
+      "rescues": [
+        "GOLD-B005-11"
+      ],
+      "regressions": [],
+      "net": 1,
+      "both_correct": [
+        "GOLD-B001-13",
+        "GOLD-B001-14",
+        "GOLD-B002-05",
+        "GOLD-B002-16",
+        "GOLD-B003-01",
+        "GOLD-B003-05",
+        "GOLD-B003-20",
+        "GOLD-B004-02",
+        "GOLD-B004-13",
+        "GOLD-B005-18",
+        "GOLD-B006-08",
+        "HA-11",
+        "HA-13",
+        "HA-22",
+        "HA-24",
+        "HA-51",
+        "HA-52",
+        "HA-57",
+        "HA-60"
+      ],
+      "neither": []
+    },
+    "D": {
+      "rescues": [
+        "GOLD-B005-11"
+      ],
+      "regressions": [],
+      "net": 1,
+      "both_correct": [
+        "GOLD-B001-13",
+        "GOLD-B001-14",
+        "GOLD-B002-05",
+        "GOLD-B002-16",
+        "GOLD-B003-01",
+        "GOLD-B003-05",
+        "GOLD-B003-20",
+        "GOLD-B004-02",
+        "GOLD-B004-13",
+        "GOLD-B005-18",
+        "GOLD-B006-08",
+        "HA-11",
+        "HA-13",
+        "HA-22",
+        "HA-24",
+        "HA-51",
+        "HA-52",
+        "HA-57",
+        "HA-60"
+      ],
+      "neither": []
+    }
+  },
+  "rank_destruction": {
+    "B": {
+      "events": [
+        {
+          "case_id": "HA-22",
+          "chunk_id": "chk_d6e10a755991e31ad9e3d2770f5142f2cd0f9040",
+          "a_rank": 2,
+          "variant_rank": 21
+        },
+        {
+          "case_id": "HA-24",
+          "chunk_id": "chk_300debbdfdd33f994da8367b173f4986666146c1",
+          "a_rank": 1,
+          "variant_rank": 18
+        }
+      ],
+      "count": 2,
+      "rank1_destroyed": [
+        {
+          "case_id": "HA-24",
+          "chunk_id": "chk_300debbdfdd33f994da8367b173f4986666146c1",
+          "a_rank": 1,
+          "variant_rank": 18
+        }
+      ]
+    },
+    "C": {
+      "events": [],
+      "count": 0,
+      "rank1_destroyed": []
+    },
+    "D": {
+      "events": [],
+      "count": 0,
+      "rank1_destroyed": []
+    }
+  },
+  "named_case_traces": {
+    "GOLD-B005-11": {
+      "case_id": "GOLD-B005-11",
+      "a_full": false,
+      "b_full": true,
+      "c_full": true,
+      "d_full": true,
+      "pool_size": 91,
+      "all_spans_in_pool": true,
+      "n_protected": 1,
+      "n_clamped": 0,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_99cafb680130e5c1110b94721443d9a70b07e3d0",
+          "a_rank_stored": null,
+          "a_rank": 13,
+          "pool_rank": 13,
+          "a_score": 0.015873015873015872,
+          "ce_score": 4.939337253570557,
+          "ce_rank": 1,
+          "b_rank_stored": 1,
+          "c_rank": 1,
+          "d_rank": 5,
+          "protected": false,
+          "clamped": false,
+          "blend_score": 0.7888053636733035,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            "AWS_BEDROCK_BASE_URL"
+          ],
+          "a_in_top_10": false,
+          "b_in_top_10": true,
+          "c_in_top_10": true,
+          "d_in_top_10": true
+        }
+      ],
+      "rank_destruction": {
+        "B": [],
+        "C": [],
+        "D": []
+      },
+      "latency_ms": {
+        "system_a_retrieval": 395.19,
+        "cross_encoder": 5023.79,
+        "fusion_guard_is_cpu_microseconds": true,
+        "stored_A_from_EXP015": 423.14,
+        "stored_B_from_EXP015": 5687.22
+      }
+    },
+    "HA-22": {
+      "case_id": "HA-22",
+      "a_full": true,
+      "b_full": false,
+      "c_full": true,
+      "d_full": true,
+      "pool_size": 91,
+      "all_spans_in_pool": true,
+      "n_protected": 3,
+      "n_clamped": 1,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_d6e10a755991e31ad9e3d2770f5142f2cd0f9040",
+          "a_rank_stored": 2,
+          "a_rank": 2,
+          "pool_rank": 2,
+          "a_score": 0.030886196246139225,
+          "ce_score": 0.49365749955177307,
+          "ce_rank": 21,
+          "b_rank_stored": 21,
+          "c_rank": 10,
+          "d_rank": 6,
+          "protected": true,
+          "clamped": true,
+          "blend_score": 0.7615400406321594,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            "RunState"
+          ],
+          "a_in_top_10": true,
+          "b_in_top_10": false,
+          "c_in_top_10": true,
+          "d_in_top_10": true
+        }
+      ],
+      "rank_destruction": {
+        "B": [
+          {
+            "span_index": 0,
+            "chunk_id": "chk_d6e10a755991e31ad9e3d2770f5142f2cd0f9040",
+            "a_rank_stored": 2,
+            "a_rank": 2,
+            "pool_rank": 2,
+            "a_score": 0.030886196246139225,
+            "ce_score": 0.49365749955177307,
+            "ce_rank": 21,
+            "b_rank_stored": 21,
+            "c_rank": 10,
+            "d_rank": 6,
+            "protected": true,
+            "clamped": true,
+            "blend_score": 0.7615400406321594,
+            "identifier_overlap": true,
+            "overlap_tokens": [
+              "RunState"
+            ],
+            "a_in_top_10": true,
+            "b_in_top_10": false,
+            "c_in_top_10": true,
+            "d_in_top_10": true
+          }
+        ],
+        "C": [],
+        "D": []
+      },
+      "latency_ms": {
+        "system_a_retrieval": 607.8,
+        "cross_encoder": 5057.29,
+        "fusion_guard_is_cpu_microseconds": true,
+        "stored_A_from_EXP015": 649.41,
+        "stored_B_from_EXP015": 5573.21
+      }
+    },
+    "HA-24": {
+      "case_id": "HA-24",
+      "a_full": true,
+      "b_full": false,
+      "c_full": true,
+      "d_full": true,
+      "pool_size": 90,
+      "all_spans_in_pool": true,
+      "n_protected": 3,
+      "n_clamped": 1,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_300debbdfdd33f994da8367b173f4986666146c1",
+          "a_rank_stored": 1,
+          "a_rank": 1,
+          "pool_rank": 1,
+          "a_score": 0.03177805800756621,
+          "ce_score": 1.2992358207702637,
+          "ce_rank": 18,
+          "b_rank_stored": 18,
+          "c_rank": 10,
+          "d_rank": 3,
+          "protected": true,
+          "clamped": true,
+          "blend_score": 0.8735008780532276,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            ".tool_input",
+            "ToolContext",
+            "tool_input"
+          ],
+          "a_in_top_10": true,
+          "b_in_top_10": false,
+          "c_in_top_10": true,
+          "d_in_top_10": true
+        }
+      ],
+      "rank_destruction": {
+        "B": [
+          {
+            "span_index": 0,
+            "chunk_id": "chk_300debbdfdd33f994da8367b173f4986666146c1",
+            "a_rank_stored": 1,
+            "a_rank": 1,
+            "pool_rank": 1,
+            "a_score": 0.03177805800756621,
+            "ce_score": 1.2992358207702637,
+            "ce_rank": 18,
+            "b_rank_stored": 18,
+            "c_rank": 10,
+            "d_rank": 3,
+            "protected": true,
+            "clamped": true,
+            "blend_score": 0.8735008780532276,
+            "identifier_overlap": true,
+            "overlap_tokens": [
+              ".tool_input",
+              "ToolContext",
+              "tool_input"
+            ],
+            "a_in_top_10": true,
+            "b_in_top_10": false,
+            "c_in_top_10": true,
+            "d_in_top_10": true
+          }
+        ],
+        "C": [],
+        "D": []
+      },
+      "latency_ms": {
+        "system_a_retrieval": 471.14,
+        "cross_encoder": 4927.81,
+        "fusion_guard_is_cpu_microseconds": true,
+        "stored_A_from_EXP015": 466.26,
+        "stored_B_from_EXP015": 5398.17
+      }
+    }
+  },
+  "per_case": [
+    {
+      "case_id": "GOLD-B001-13",
+      "a_full": true,
+      "b_full": true,
+      "c_full": true,
+      "d_full": true,
+      "pool_size": 90,
+      "all_spans_in_pool": true,
+      "n_protected": 1,
+      "n_clamped": 0,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_9ffbe1398c74e6a310b3d6e8ea71a27c480be00f",
+          "a_rank_stored": 1,
+          "a_rank": 1,
+          "pool_rank": 1,
+          "a_score": 0.03278688524590164,
+          "ce_score": 4.920444965362549,
+          "ce_rank": 1,
+          "b_rank_stored": 1,
+          "c_rank": 1,
+          "d_rank": 1,
+          "protected": true,
+          "clamped": false,
+          "blend_score": 1.0,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            "anthropic_version"
+          ],
+          "a_in_top_10": true,
+          "b_in_top_10": true,
+          "c_in_top_10": true,
+          "d_in_top_10": true
+        }
+      ],
+      "rank_destruction": {
+        "B": [],
+        "C": [],
+        "D": []
+      },
+      "latency_ms": {
+        "system_a_retrieval": 518.4,
+        "cross_encoder": 5697.53,
+        "fusion_guard_is_cpu_microseconds": true,
+        "stored_A_from_EXP015": 503.02,
+        "stored_B_from_EXP015": 5664.12
+      }
+    },
+    {
+      "case_id": "GOLD-B001-14",
+      "a_full": true,
+      "b_full": true,
+      "c_full": true,
+      "d_full": true,
+      "pool_size": 96,
+      "all_spans_in_pool": true,
+      "n_protected": 3,
+      "n_clamped": 0,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_2ca6d5ddd8a5f24f650436c0a8df8adbaa791a9b",
+          "a_rank_stored": 1,
+          "a_rank": 1,
+          "pool_rank": 1,
+          "a_score": 0.03278688524590164,
+          "ce_score": 7.012065887451172,
+          "ce_rank": 1,
+          "b_rank_stored": 1,
+          "c_rank": 1,
+          "d_rank": 1,
+          "protected": true,
+          "clamped": false,
+          "blend_score": 1.0,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            "4.6"
+          ],
+          "a_in_top_10": true,
+          "b_in_top_10": true,
+          "c_in_top_10": true,
+          "d_in_top_10": true
+        }
+      ],
+      "rank_destruction": {
+        "B": [],
+        "C": [],
+        "D": []
+      },
+      "latency_ms": {
+        "system_a_retrieval": 539.36,
+        "cross_encoder": 5885.48,
+        "fusion_guard_is_cpu_microseconds": true,
+        "stored_A_from_EXP015": 530.34,
+        "stored_B_from_EXP015": 7292.08
+      }
+    },
+    {
+      "case_id": "GOLD-B002-05",
+      "a_full": true,
+      "b_full": true,
+      "c_full": true,
+      "d_full": true,
+      "pool_size": 92,
+      "all_spans_in_pool": true,
+      "n_protected": 2,
+      "n_clamped": 0,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_70cc26843ca90c7ce4b140397ad3f9c84cafd18b",
+          "a_rank_stored": 2,
+          "a_rank": 2,
+          "pool_rank": 2,
+          "a_score": 0.03125763125763126,
+          "ce_score": 6.318758964538574,
+          "ce_rank": 2,
+          "b_rank_stored": 2,
+          "c_rank": 2,
+          "d_rank": 2,
+          "protected": true,
+          "clamped": false,
+          "blend_score": 0.9813919588702618,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            "restart",
+            "true"
+          ],
+          "a_in_top_10": true,
+          "b_in_top_10": true,
+          "c_in_top_10": true,
+          "d_in_top_10": true
+        }
+      ],
+      "rank_destruction": {
+        "B": [],
+        "C": [],
+        "D": []
+      },
+      "latency_ms": {
+        "system_a_retrieval": 505.38,
+        "cross_encoder": 5177.91,
+        "fusion_guard_is_cpu_microseconds": true,
+        "stored_A_from_EXP015": 500.51,
+        "stored_B_from_EXP015": 5600.95
+      }
+    },
+    {
+      "case_id": "GOLD-B002-16",
+      "a_full": true,
+      "b_full": true,
+      "c_full": true,
+      "d_full": true,
+      "pool_size": 94,
+      "all_spans_in_pool": true,
+      "n_protected": 1,
+      "n_clamped": 0,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_9ffbe1398c74e6a310b3d6e8ea71a27c480be00f",
+          "a_rank_stored": 1,
+          "a_rank": 1,
+          "pool_rank": 1,
+          "a_score": 0.03278688524590164,
+          "ce_score": 2.8614652156829834,
+          "ce_rank": 1,
+          "b_rank_stored": 1,
+          "c_rank": 1,
+          "d_rank": 1,
+          "protected": true,
+          "clamped": false,
+          "blend_score": 1.0,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            "anthropic_version"
+          ],
+          "a_in_top_10": true,
+          "b_in_top_10": true,
+          "c_in_top_10": true,
+          "d_in_top_10": true
+        }
+      ],
+      "rank_destruction": {
+        "B": [],
+        "C": [],
+        "D": []
+      },
+      "latency_ms": {
+        "system_a_retrieval": 557.73,
+        "cross_encoder": 5676.07,
+        "fusion_guard_is_cpu_microseconds": true,
+        "stored_A_from_EXP015": 490.76,
+        "stored_B_from_EXP015": 6168.14
+      }
+    },
+    {
+      "case_id": "GOLD-B003-01",
+      "a_full": true,
+      "b_full": true,
+      "c_full": true,
+      "d_full": true,
+      "pool_size": 97,
+      "all_spans_in_pool": true,
+      "n_protected": 2,
+      "n_clamped": 1,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_1b565f807869326a9361b25f87bc3474024e1c85",
+          "a_rank_stored": 1,
+          "a_rank": 1,
+          "pool_rank": 1,
+          "a_score": 0.032018442622950824,
+          "ce_score": 8.09290885925293,
+          "ce_rank": 1,
+          "b_rank_stored": 1,
+          "c_rank": 1,
+          "d_rank": 1,
+          "protected": true,
+          "clamped": false,
+          "blend_score": 1.0,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            "citations.enabled",
+            "true"
+          ],
+          "a_in_top_10": true,
+          "b_in_top_10": true,
+          "c_in_top_10": true,
+          "d_in_top_10": true
+        }
+      ],
+      "rank_destruction": {
+        "B": [],
+        "C": [],
+        "D": []
+      },
+      "latency_ms": {
+        "system_a_retrieval": 420.3,
+        "cross_encoder": 5935.77,
+        "fusion_guard_is_cpu_microseconds": true,
+        "stored_A_from_EXP015": 412.72,
+        "stored_B_from_EXP015": 6793.84
+      }
+    },
+    {
+      "case_id": "GOLD-B003-05",
+      "a_full": true,
+      "b_full": true,
+      "c_full": true,
+      "d_full": true,
+      "pool_size": 96,
+      "all_spans_in_pool": true,
+      "n_protected": 2,
+      "n_clamped": 0,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_a32eed0840cba995c3745c34b5df21ed800b9d21",
+          "a_rank_stored": 1,
+          "a_rank": 1,
+          "pool_rank": 1,
+          "a_score": 0.03252247488101534,
+          "ce_score": 8.56963062286377,
+          "ce_rank": 1,
+          "b_rank_stored": 1,
+          "c_rank": 1,
+          "d_rank": 1,
+          "protected": true,
+          "clamped": false,
+          "blend_score": 1.0,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            "4"
+          ],
+          "a_in_top_10": true,
+          "b_in_top_10": true,
+          "c_in_top_10": true,
+          "d_in_top_10": true
+        }
+      ],
+      "rank_destruction": {
+        "B": [],
+        "C": [],
+        "D": []
+      },
+      "latency_ms": {
+        "system_a_retrieval": 338.9,
+        "cross_encoder": 5605.85,
+        "fusion_guard_is_cpu_microseconds": true,
+        "stored_A_from_EXP015": 397.0,
+        "stored_B_from_EXP015": 6347.83
+      }
+    },
+    {
+      "case_id": "GOLD-B003-20",
+      "a_full": true,
+      "b_full": true,
+      "c_full": true,
+      "d_full": true,
+      "pool_size": 88,
+      "all_spans_in_pool": true,
+      "n_protected": 2,
+      "n_clamped": 0,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_48b6d9f733d5dcdd61eeb00d3b0c9e2474e69ece",
+          "a_rank_stored": 1,
+          "a_rank": 1,
+          "pool_rank": 1,
+          "a_score": 0.03278688524590164,
+          "ce_score": 6.472479343414307,
+          "ce_rank": 1,
+          "b_rank_stored": 1,
+          "c_rank": 1,
+          "d_rank": 1,
+          "protected": true,
+          "clamped": false,
+          "blend_score": 1.0,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            "trace_id",
+            "workflow_name"
+          ],
+          "a_in_top_10": true,
+          "b_in_top_10": true,
+          "c_in_top_10": true,
+          "d_in_top_10": true
+        },
+        {
+          "span_index": 1,
+          "chunk_id": "chk_48b6d9f733d5dcdd61eeb00d3b0c9e2474e69ece",
+          "a_rank_stored": 1,
+          "a_rank": 1,
+          "pool_rank": 1,
+          "a_score": 0.03278688524590164,
+          "ce_score": 6.472479343414307,
+          "ce_rank": 1,
+          "b_rank_stored": 1,
+          "c_rank": 1,
+          "d_rank": 1,
+          "protected": true,
+          "clamped": false,
+          "blend_score": 1.0,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            "trace_id",
+            "workflow_name"
+          ],
+          "a_in_top_10": true,
+          "b_in_top_10": true,
+          "c_in_top_10": true,
+          "d_in_top_10": true
+        }
+      ],
+      "rank_destruction": {
+        "B": [],
+        "C": [],
+        "D": []
+      },
+      "latency_ms": {
+        "system_a_retrieval": 440.88,
+        "cross_encoder": 5042.13,
+        "fusion_guard_is_cpu_microseconds": true,
+        "stored_A_from_EXP015": 448.15,
+        "stored_B_from_EXP015": 5846.56
+      }
+    },
+    {
+      "case_id": "GOLD-B004-02",
+      "a_full": true,
+      "b_full": true,
+      "c_full": true,
+      "d_full": true,
+      "pool_size": 84,
+      "all_spans_in_pool": true,
+      "n_protected": 0,
+      "n_clamped": 0,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_c201ebd62a69a63f798ccb5771caaf06ddb7ca4e",
+          "a_rank_stored": 3,
+          "a_rank": 3,
+          "pool_rank": 3,
+          "a_score": 0.031544957774465976,
+          "ce_score": 8.508487701416016,
+          "ce_rank": 1,
+          "b_rank_stored": 1,
+          "c_rank": 1,
+          "d_rank": 1,
+          "protected": false,
+          "clamped": false,
+          "blend_score": 0.9972324050565783,
+          "identifier_overlap": false,
+          "overlap_tokens": [],
+          "a_in_top_10": true,
+          "b_in_top_10": true,
+          "c_in_top_10": true,
+          "d_in_top_10": true
+        }
+      ],
+      "rank_destruction": {
+        "B": [],
+        "C": [],
+        "D": []
+      },
+      "latency_ms": {
+        "system_a_retrieval": 659.5,
+        "cross_encoder": 4897.92,
+        "fusion_guard_is_cpu_microseconds": true,
+        "stored_A_from_EXP015": 698.85,
+        "stored_B_from_EXP015": 5479.72
+      }
+    },
+    {
+      "case_id": "GOLD-B004-13",
+      "a_full": true,
+      "b_full": true,
+      "c_full": true,
+      "d_full": true,
+      "pool_size": 90,
+      "all_spans_in_pool": true,
+      "n_protected": 2,
+      "n_clamped": 0,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_b3792274647effec04c5a81b5658d02c96ef4012",
+          "a_rank_stored": 5,
+          "a_rank": 5,
+          "pool_rank": 5,
+          "a_score": 0.028484848484848488,
+          "ce_score": 2.6058144569396973,
+          "ce_rank": 5,
+          "b_rank_stored": 5,
+          "c_rank": 5,
+          "d_rank": 4,
+          "protected": false,
+          "clamped": false,
+          "blend_score": 0.7785338423771945,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            "input_type"
+          ],
+          "a_in_top_10": true,
+          "b_in_top_10": true,
+          "c_in_top_10": true,
+          "d_in_top_10": true
+        }
+      ],
+      "rank_destruction": {
+        "B": [],
+        "C": [],
+        "D": []
+      },
+      "latency_ms": {
+        "system_a_retrieval": 386.18,
+        "cross_encoder": 5111.5,
+        "fusion_guard_is_cpu_microseconds": true,
+        "stored_A_from_EXP015": 411.38,
+        "stored_B_from_EXP015": 5586.96
+      }
+    },
+    {
+      "case_id": "GOLD-B005-11",
+      "a_full": false,
+      "b_full": true,
+      "c_full": true,
+      "d_full": true,
+      "pool_size": 91,
+      "all_spans_in_pool": true,
+      "n_protected": 1,
+      "n_clamped": 0,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_99cafb680130e5c1110b94721443d9a70b07e3d0",
+          "a_rank_stored": null,
+          "a_rank": 13,
+          "pool_rank": 13,
+          "a_score": 0.015873015873015872,
+          "ce_score": 4.939337253570557,
+          "ce_rank": 1,
+          "b_rank_stored": 1,
+          "c_rank": 1,
+          "d_rank": 5,
+          "protected": false,
+          "clamped": false,
+          "blend_score": 0.7888053636733035,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            "AWS_BEDROCK_BASE_URL"
+          ],
+          "a_in_top_10": false,
+          "b_in_top_10": true,
+          "c_in_top_10": true,
+          "d_in_top_10": true
+        }
+      ],
+      "rank_destruction": {
+        "B": [],
+        "C": [],
+        "D": []
+      },
+      "latency_ms": {
+        "system_a_retrieval": 395.19,
+        "cross_encoder": 5023.79,
+        "fusion_guard_is_cpu_microseconds": true,
+        "stored_A_from_EXP015": 423.14,
+        "stored_B_from_EXP015": 5687.22
+      }
+    },
+    {
+      "case_id": "GOLD-B005-18",
+      "a_full": true,
+      "b_full": true,
+      "c_full": true,
+      "d_full": true,
+      "pool_size": 96,
+      "all_spans_in_pool": true,
+      "n_protected": 1,
+      "n_clamped": 0,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_f2122f4ce98920de579b0cb17c51929e4211757b",
+          "a_rank_stored": 1,
+          "a_rank": 1,
+          "pool_rank": 1,
+          "a_score": 0.03278688524590164,
+          "ce_score": 9.581811904907227,
+          "ce_rank": 1,
+          "b_rank_stored": 1,
+          "c_rank": 1,
+          "d_rank": 1,
+          "protected": true,
+          "clamped": false,
+          "blend_score": 1.0,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            "Undici-specific",
+            "dispatcher"
+          ],
+          "a_in_top_10": true,
+          "b_in_top_10": true,
+          "c_in_top_10": true,
+          "d_in_top_10": true
+        }
+      ],
+      "rank_destruction": {
+        "B": [],
+        "C": [],
+        "D": []
+      },
+      "latency_ms": {
+        "system_a_retrieval": 336.17,
+        "cross_encoder": 5219.92,
+        "fusion_guard_is_cpu_microseconds": true,
+        "stored_A_from_EXP015": 340.18,
+        "stored_B_from_EXP015": 5673.41
+      }
+    },
+    {
+      "case_id": "GOLD-B006-08",
+      "a_full": true,
+      "b_full": true,
+      "c_full": true,
+      "d_full": true,
+      "pool_size": 89,
+      "all_spans_in_pool": true,
+      "n_protected": 3,
+      "n_clamped": 0,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_08921683b5712d2d1f12ebfaef555813c44c0bf8",
+          "a_rank_stored": 2,
+          "a_rank": 2,
+          "pool_rank": 2,
+          "a_score": 0.03177805800756621,
+          "ce_score": 5.945214748382568,
+          "ce_rank": 1,
+          "b_rank_stored": 1,
+          "c_rank": 1,
+          "d_rank": 2,
+          "protected": true,
+          "clamped": false,
+          "blend_score": 0.9904350049950049,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            "OpenAI",
+            "SDK",
+            "legacy-client"
+          ],
+          "a_in_top_10": true,
+          "b_in_top_10": true,
+          "c_in_top_10": true,
+          "d_in_top_10": true
+        }
+      ],
+      "rank_destruction": {
+        "B": [],
+        "C": [],
+        "D": []
+      },
+      "latency_ms": {
+        "system_a_retrieval": 469.66,
+        "cross_encoder": 5397.9,
+        "fusion_guard_is_cpu_microseconds": true,
+        "stored_A_from_EXP015": 467.69,
+        "stored_B_from_EXP015": 5358.28
+      }
+    },
+    {
+      "case_id": "HA-11",
+      "a_full": true,
+      "b_full": true,
+      "c_full": true,
+      "d_full": true,
+      "pool_size": 91,
+      "all_spans_in_pool": true,
+      "n_protected": 1,
+      "n_clamped": 1,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_b17099fe75c44006e954e286fa820bb2685015c4",
+          "a_rank_stored": 1,
+          "a_rank": 1,
+          "pool_rank": 1,
+          "a_score": 0.032266458495966696,
+          "ce_score": 3.64932918548584,
+          "ce_rank": 1,
+          "b_rank_stored": 1,
+          "c_rank": 1,
+          "d_rank": 1,
+          "protected": false,
+          "clamped": false,
+          "blend_score": 1.0,
+          "identifier_overlap": false,
+          "overlap_tokens": [],
+          "a_in_top_10": true,
+          "b_in_top_10": true,
+          "c_in_top_10": true,
+          "d_in_top_10": true
+        }
+      ],
+      "rank_destruction": {
+        "B": [],
+        "C": [],
+        "D": []
+      },
+      "latency_ms": {
+        "system_a_retrieval": 496.27,
+        "cross_encoder": 5032.42,
+        "fusion_guard_is_cpu_microseconds": true,
+        "stored_A_from_EXP015": 486.52,
+        "stored_B_from_EXP015": 5500.59
+      }
+    },
+    {
+      "case_id": "HA-13",
+      "a_full": true,
+      "b_full": true,
+      "c_full": true,
+      "d_full": true,
+      "pool_size": 93,
+      "all_spans_in_pool": true,
+      "n_protected": 2,
+      "n_clamped": 0,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_b17099fe75c44006e954e286fa820bb2685015c4",
+          "a_rank_stored": 1,
+          "a_rank": 1,
+          "pool_rank": 1,
+          "a_score": 0.03278688524590164,
+          "ce_score": 3.5105013847351074,
+          "ce_rank": 1,
+          "b_rank_stored": 1,
+          "c_rank": 1,
+          "d_rank": 1,
+          "protected": true,
+          "clamped": false,
+          "blend_score": 1.0,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            "exception.run_data.input_guardrail_results"
+          ],
+          "a_in_top_10": true,
+          "b_in_top_10": true,
+          "c_in_top_10": true,
+          "d_in_top_10": true
+        }
+      ],
+      "rank_destruction": {
+        "B": [],
+        "C": [],
+        "D": []
+      },
+      "latency_ms": {
+        "system_a_retrieval": 499.08,
+        "cross_encoder": 5017.06,
+        "fusion_guard_is_cpu_microseconds": true,
+        "stored_A_from_EXP015": 520.97,
+        "stored_B_from_EXP015": 5582.23
+      }
+    },
+    {
+      "case_id": "HA-22",
+      "a_full": true,
+      "b_full": false,
+      "c_full": true,
+      "d_full": true,
+      "pool_size": 91,
+      "all_spans_in_pool": true,
+      "n_protected": 3,
+      "n_clamped": 1,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_d6e10a755991e31ad9e3d2770f5142f2cd0f9040",
+          "a_rank_stored": 2,
+          "a_rank": 2,
+          "pool_rank": 2,
+          "a_score": 0.030886196246139225,
+          "ce_score": 0.49365749955177307,
+          "ce_rank": 21,
+          "b_rank_stored": 21,
+          "c_rank": 10,
+          "d_rank": 6,
+          "protected": true,
+          "clamped": true,
+          "blend_score": 0.7615400406321594,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            "RunState"
+          ],
+          "a_in_top_10": true,
+          "b_in_top_10": false,
+          "c_in_top_10": true,
+          "d_in_top_10": true
+        }
+      ],
+      "rank_destruction": {
+        "B": [
+          {
+            "span_index": 0,
+            "chunk_id": "chk_d6e10a755991e31ad9e3d2770f5142f2cd0f9040",
+            "a_rank_stored": 2,
+            "a_rank": 2,
+            "pool_rank": 2,
+            "a_score": 0.030886196246139225,
+            "ce_score": 0.49365749955177307,
+            "ce_rank": 21,
+            "b_rank_stored": 21,
+            "c_rank": 10,
+            "d_rank": 6,
+            "protected": true,
+            "clamped": true,
+            "blend_score": 0.7615400406321594,
+            "identifier_overlap": true,
+            "overlap_tokens": [
+              "RunState"
+            ],
+            "a_in_top_10": true,
+            "b_in_top_10": false,
+            "c_in_top_10": true,
+            "d_in_top_10": true
+          }
+        ],
+        "C": [],
+        "D": []
+      },
+      "latency_ms": {
+        "system_a_retrieval": 607.8,
+        "cross_encoder": 5057.29,
+        "fusion_guard_is_cpu_microseconds": true,
+        "stored_A_from_EXP015": 649.41,
+        "stored_B_from_EXP015": 5573.21
+      }
+    },
+    {
+      "case_id": "HA-24",
+      "a_full": true,
+      "b_full": false,
+      "c_full": true,
+      "d_full": true,
+      "pool_size": 90,
+      "all_spans_in_pool": true,
+      "n_protected": 3,
+      "n_clamped": 1,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_300debbdfdd33f994da8367b173f4986666146c1",
+          "a_rank_stored": 1,
+          "a_rank": 1,
+          "pool_rank": 1,
+          "a_score": 0.03177805800756621,
+          "ce_score": 1.2992358207702637,
+          "ce_rank": 18,
+          "b_rank_stored": 18,
+          "c_rank": 10,
+          "d_rank": 3,
+          "protected": true,
+          "clamped": true,
+          "blend_score": 0.8735008780532276,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            ".tool_input",
+            "ToolContext",
+            "tool_input"
+          ],
+          "a_in_top_10": true,
+          "b_in_top_10": false,
+          "c_in_top_10": true,
+          "d_in_top_10": true
+        }
+      ],
+      "rank_destruction": {
+        "B": [
+          {
+            "span_index": 0,
+            "chunk_id": "chk_300debbdfdd33f994da8367b173f4986666146c1",
+            "a_rank_stored": 1,
+            "a_rank": 1,
+            "pool_rank": 1,
+            "a_score": 0.03177805800756621,
+            "ce_score": 1.2992358207702637,
+            "ce_rank": 18,
+            "b_rank_stored": 18,
+            "c_rank": 10,
+            "d_rank": 3,
+            "protected": true,
+            "clamped": true,
+            "blend_score": 0.8735008780532276,
+            "identifier_overlap": true,
+            "overlap_tokens": [
+              ".tool_input",
+              "ToolContext",
+              "tool_input"
+            ],
+            "a_in_top_10": true,
+            "b_in_top_10": false,
+            "c_in_top_10": true,
+            "d_in_top_10": true
+          }
+        ],
+        "C": [],
+        "D": []
+      },
+      "latency_ms": {
+        "system_a_retrieval": 471.14,
+        "cross_encoder": 4927.81,
+        "fusion_guard_is_cpu_microseconds": true,
+        "stored_A_from_EXP015": 466.26,
+        "stored_B_from_EXP015": 5398.17
+      }
+    },
+    {
+      "case_id": "HA-51",
+      "a_full": true,
+      "b_full": true,
+      "c_full": true,
+      "d_full": true,
+      "pool_size": 91,
+      "all_spans_in_pool": true,
+      "n_protected": 2,
+      "n_clamped": 1,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_9760adae5919603098857a825a475f8443b8aa7c",
+          "a_rank_stored": 1,
+          "a_rank": 1,
+          "pool_rank": 1,
+          "a_score": 0.03278688524590164,
+          "ce_score": 3.219179630279541,
+          "ce_rank": 1,
+          "b_rank_stored": 1,
+          "c_rank": 1,
+          "d_rank": 1,
+          "protected": true,
+          "clamped": false,
+          "blend_score": 1.0,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            "RunState",
+            "context_override"
+          ],
+          "a_in_top_10": true,
+          "b_in_top_10": true,
+          "c_in_top_10": true,
+          "d_in_top_10": true
+        },
+        {
+          "span_index": 1,
+          "chunk_id": "chk_9760adae5919603098857a825a475f8443b8aa7c",
+          "a_rank_stored": 1,
+          "a_rank": 1,
+          "pool_rank": 1,
+          "a_score": 0.03278688524590164,
+          "ce_score": 3.219179630279541,
+          "ce_rank": 1,
+          "b_rank_stored": 1,
+          "c_rank": 1,
+          "d_rank": 1,
+          "protected": true,
+          "clamped": false,
+          "blend_score": 1.0,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            "RunState",
+            "context_override"
+          ],
+          "a_in_top_10": true,
+          "b_in_top_10": true,
+          "c_in_top_10": true,
+          "d_in_top_10": true
+        }
+      ],
+      "rank_destruction": {
+        "B": [],
+        "C": [],
+        "D": []
+      },
+      "latency_ms": {
+        "system_a_retrieval": 566.33,
+        "cross_encoder": 5395.4,
+        "fusion_guard_is_cpu_microseconds": true,
+        "stored_A_from_EXP015": 580.94,
+        "stored_B_from_EXP015": 5572.74
+      }
+    },
+    {
+      "case_id": "HA-52",
+      "a_full": true,
+      "b_full": true,
+      "c_full": true,
+      "d_full": true,
+      "pool_size": 96,
+      "all_spans_in_pool": true,
+      "n_protected": 3,
+      "n_clamped": 2,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_9760adae5919603098857a825a475f8443b8aa7c",
+          "a_rank_stored": 1,
+          "a_rank": 1,
+          "pool_rank": 1,
+          "a_score": 0.032018442622950824,
+          "ce_score": 2.56024169921875,
+          "ce_rank": 3,
+          "b_rank_stored": 3,
+          "c_rank": 3,
+          "d_rank": 1,
+          "protected": true,
+          "clamped": false,
+          "blend_score": 0.9624299227852737,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            "RunState",
+            "non-mapping",
+            "strict_context",
+            "strict_context=True"
+          ],
+          "a_in_top_10": true,
+          "b_in_top_10": true,
+          "c_in_top_10": true,
+          "d_in_top_10": true
+        },
+        {
+          "span_index": 1,
+          "chunk_id": "chk_9760adae5919603098857a825a475f8443b8aa7c",
+          "a_rank_stored": 1,
+          "a_rank": 1,
+          "pool_rank": 1,
+          "a_score": 0.032018442622950824,
+          "ce_score": 2.56024169921875,
+          "ce_rank": 3,
+          "b_rank_stored": 3,
+          "c_rank": 3,
+          "d_rank": 1,
+          "protected": true,
+          "clamped": false,
+          "blend_score": 0.9624299227852737,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            "RunState",
+            "non-mapping",
+            "strict_context",
+            "strict_context=True"
+          ],
+          "a_in_top_10": true,
+          "b_in_top_10": true,
+          "c_in_top_10": true,
+          "d_in_top_10": true
+        }
+      ],
+      "rank_destruction": {
+        "B": [],
+        "C": [],
+        "D": []
+      },
+      "latency_ms": {
+        "system_a_retrieval": 602.57,
+        "cross_encoder": 6069.37,
+        "fusion_guard_is_cpu_microseconds": true,
+        "stored_A_from_EXP015": 613.09,
+        "stored_B_from_EXP015": 5913.24
+      }
+    },
+    {
+      "case_id": "HA-57",
+      "a_full": true,
+      "b_full": true,
+      "c_full": true,
+      "d_full": true,
+      "pool_size": 86,
+      "all_spans_in_pool": true,
+      "n_protected": 3,
+      "n_clamped": 1,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_6e8c2ae3d10d25fb47d647b925de69b5abe8115f",
+          "a_rank_stored": 1,
+          "a_rank": 1,
+          "pool_rank": 1,
+          "a_score": 0.03278688524590164,
+          "ce_score": 2.7300240993499756,
+          "ce_rank": 1,
+          "b_rank_stored": 1,
+          "c_rank": 1,
+          "d_rank": 1,
+          "protected": true,
+          "clamped": false,
+          "blend_score": 1.0,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            "approve_unsafe_replay",
+            "approve_unsafe_replay=True"
+          ],
+          "a_in_top_10": true,
+          "b_in_top_10": true,
+          "c_in_top_10": true,
+          "d_in_top_10": true
+        }
+      ],
+      "rank_destruction": {
+        "B": [],
+        "C": [],
+        "D": []
+      },
+      "latency_ms": {
+        "system_a_retrieval": 521.06,
+        "cross_encoder": 4839.9,
+        "fusion_guard_is_cpu_microseconds": true,
+        "stored_A_from_EXP015": 524.87,
+        "stored_B_from_EXP015": 5254.0
+      }
+    },
+    {
+      "case_id": "HA-60",
+      "a_full": true,
+      "b_full": true,
+      "c_full": true,
+      "d_full": true,
+      "pool_size": 86,
+      "all_spans_in_pool": true,
+      "n_protected": 3,
+      "n_clamped": 1,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_4803c9c39d64fd0c4b27351273f4ebc8b0ed26a0",
+          "a_rank_stored": 1,
+          "a_rank": 1,
+          "pool_rank": 1,
+          "a_score": 0.03278688524590164,
+          "ce_score": 4.411445617675781,
+          "ce_rank": 1,
+          "b_rank_stored": 1,
+          "c_rank": 1,
+          "d_rank": 1,
+          "protected": true,
+          "clamped": false,
+          "blend_score": 1.0,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            "ModelSettings"
+          ],
+          "a_in_top_10": true,
+          "b_in_top_10": true,
+          "c_in_top_10": true,
+          "d_in_top_10": true
+        }
+      ],
+      "rank_destruction": {
+        "B": [],
+        "C": [],
+        "D": []
+      },
+      "latency_ms": {
+        "system_a_retrieval": 583.21,
+        "cross_encoder": 4561.44,
+        "fusion_guard_is_cpu_microseconds": true,
+        "stored_A_from_EXP015": 550.18,
+        "stored_B_from_EXP015": 5310.65
+      }
+    }
+  ],
+  "latency_ms": {
+    "A_mean_stored": 500.8,
+    "B_mean_stored": 5780.2,
+    "CE_mean_rematerialized": 5278.6,
+    "A_mean_rematerialized": 495.8,
+    "C_D_mean_retrieval_plus_ce": 5774.4
+  },
+  "decision": {
+    "code": "SYSTEM_D_FROZEN",
+    "text": "SYSTEM_D_FROZEN_STOP_FOR_VALIDATION_APPROVAL",
+    "C_qualifies": {
+      "strict_ge_A": true,
+      "net_rescues_ge_0": true,
+      "no_new_rank1_destruction": true,
+      "qualifies": true
+    },
+    "D_qualifies": {
+      "strict_ge_A": true,
+      "net_rescues_ge_0": true,
+      "no_new_rank1_destruction": true,
+      "qualifies": true
+    },
+    "winner": "D",
+    "frozen": true,
+    "freeze_path": "experiments/EXP-016/SYSTEM-D-GUARD.json"
+  },
+  "cross_encoder": {
+    "name": "cross-encoder/ms-marco-MiniLM-L6-v2",
+    "revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a",
+    "artifact_sha256": "5d3e70fd0c9ff14b9b5169a51e957b7a9c74897afd0a35ce4bd318150c1d4d4a",
+    "pair_score_stable": true
+  },
+  "runtime_seconds": 117.4
+}

@@ -1,0 +1,323 @@
+{
+  "batch": 2,
+  "reviewer": "independent_review",
+  "source_batch_sha256": "b108d925a09c539de26cb2f7a3e8b96a0fbf3462d0c0f6b95e1a86e82df07736",
+  "summary": {
+    "candidates": 18,
+    "outright_rejects": 0,
+    "question_authoring_only": 16,
+    "evidence_boundary_repair": 2
+  },
+  "all_fix_required_because": "No candidate is independently rejected. Every one is FIX_REQUIRED at the import stage because none should reach human approval carrying the proposal the miner exported. That is a statement about the exported proposals, not a verdict on the evidence.",
+  "defect_classes": {
+    "MINER_QUESTION_HEADER_DEPENDENCY": "MINER_QUESTION_HEADER_DEPENDENCY: the anchored row is sound evidence, but the miner's exported question asked about a column whose meaning (Yes/No, string, integer) lives in a table header outside the row. The question is re-authored around a fact stated inside the row itself; the anchor does not move.",
+    "QUESTION_AUTHORING_REQUIRED": "QUESTION_AUTHORING_REQUIRED: the span is self-contained and the reviewer authors the question, answer and claims, exactly as the prose miner is designed to work. No defect.",
+    "MINER_EVIDENCE_DEFECT": "MINER_EVIDENCE_DEFECT: the anchor does not contain what its claim depends on and must be extended."
+  },
+  "class_note": "The review named two classes. The nine structural candidates fit neither cleanly: the miner did export a question and it was wrong, but the evidence itself is sound, so folding them into MINER_EVIDENCE_DEFECT would overstate the problem and folding them into QUESTION_AUTHORING_REQUIRED would hide a real generator defect. They are recorded as a third class rather than forced into either.",
+  "repairs": [
+    {
+      "candidate_id": "GOLD-B002-01",
+      "verdict": "FIX_REQUIRED",
+      "defect_class": "MINER_QUESTION_HEADER_DEPENDENCY",
+      "defect_note": "MINER_QUESTION_HEADER_DEPENDENCY: the anchored row is sound evidence, but the miner's exported question asked about a column whose meaning (Yes/No, string, integer) lives in a table header outside the row. The question is re-authored around a fact stated inside the row itself; the anchor does not move.",
+      "question": "What is the `summary_prompt` parameter used for?",
+      "answer": "It specifies a custom prompt for summary generation.",
+      "atomic_claims": [
+        "`summary_prompt` is used to provide a custom prompt for summary generation."
+      ],
+      "critical_strings": [
+        "summary_prompt",
+        "Custom prompt for summary generation"
+      ]
+    },
+    {
+      "candidate_id": "GOLD-B002-02",
+      "verdict": "FIX_REQUIRED",
+      "defect_class": "MINER_QUESTION_HEADER_DEPENDENCY",
+      "defect_note": "MINER_QUESTION_HEADER_DEPENDENCY: the anchored row is sound evidence, but the miner's exported question asked about a column whose meaning (Yes/No, string, integer) lives in a table header outside the row. The question is re-authored around a fact stated inside the row itself; the anchor does not move. READER NOTE: the span writes the scheme as `https\\://` — a markdown escape of the colon. The claim writes `https://`. Same fact, different literal form, so the critical string checked by the validator is `Must start with https` rather than the full scheme. The scheme is now asserted directly: `Must start with https://` is checked against the source's `https\\://` through the documented Markdown-escape normalisation, so the case enforces the fact rather than working around it.",
+      "question": "What URL scheme must the MCP connector's `url` value start with?",
+      "answer": "`https://`",
+      "atomic_claims": [
+        "The MCP server `url` must start with `https://`."
+      ],
+      "critical_strings": [
+        "url",
+        "The URL of the MCP server",
+        "Must start with https://"
+      ]
+    },
+    {
+      "candidate_id": "GOLD-B002-03",
+      "verdict": "FIX_REQUIRED",
+      "defect_class": "MINER_QUESTION_HEADER_DEPENDENCY",
+      "defect_note": "MINER_QUESTION_HEADER_DEPENDENCY: the anchored row is sound evidence, but the miner's exported question asked about a column whose meaning (Yes/No, string, integer) lives in a table header outside the row. The question is re-authored around a fact stated inside the row itself; the anchor does not move.",
+      "question": "What kinds of values can an agent's `prompt` configuration accept?",
+      "answer": "A static prompt object or a function.",
+      "atomic_claims": [
+        "The agent `prompt` configuration accepts either a static prompt object or a function."
+      ],
+      "critical_strings": [
+        "prompt",
+        "Accepts a static prompt object or a function"
+      ]
+    },
+    {
+      "candidate_id": "GOLD-B002-04",
+      "verdict": "FIX_REQUIRED",
+      "defect_class": "MINER_QUESTION_HEADER_DEPENDENCY",
+      "defect_note": "MINER_QUESTION_HEADER_DEPENDENCY: the anchored row is sound evidence, but the miner's exported question asked about a column whose meaning (Yes/No, string, integer) lives in a table header outside the row. The question is re-authored around a fact stated inside the row itself; the anchor does not move.",
+      "question": "What kinds of values can the `source` field of a search result contain?",
+      "answer": "Any stable string, such as a URL or an internal identifier.",
+      "atomic_claims": [
+        "The search-result `source` field can be any stable string, including a URL or internal identifier."
+      ],
+      "critical_strings": [
+        "source",
+        "Any stable string works",
+        "a URL, or an internal identifier"
+      ]
+    },
+    {
+      "candidate_id": "GOLD-B002-05",
+      "verdict": "FIX_REQUIRED",
+      "defect_class": "MINER_QUESTION_HEADER_DEPENDENCY",
+      "defect_note": "MINER_QUESTION_HEADER_DEPENDENCY: the anchored row is sound evidence, but the miner's exported question asked about a column whose meaning (Yes/No, string, integer) lives in a table header outside the row. The question is re-authored around a fact stated inside the row itself; the anchor does not move.",
+      "question": "What does setting `restart` to `true` do for the Bash tool?",
+      "answer": "It restarts the bash session.",
+      "atomic_claims": [
+        "Setting `restart` to `true` restarts the bash session."
+      ],
+      "critical_strings": [
+        "restart",
+        "Set to `true` to restart the bash session"
+      ]
+    },
+    {
+      "candidate_id": "GOLD-B002-06",
+      "verdict": "FIX_REQUIRED",
+      "defect_class": "MINER_QUESTION_HEADER_DEPENDENCY",
+      "defect_note": "MINER_QUESTION_HEADER_DEPENDENCY: the anchored row is sound evidence, but the miner's exported question asked about a column whose meaning (Yes/No, string, integer) lives in a table header outside the row. The question is re-authored around a fact stated inside the row itself; the anchor does not move.",
+      "question": "What is the minimum allowed `max_tokens` value for the advisor tool?",
+      "answer": "1024.",
+      "atomic_claims": [
+        "The advisor tool's `max_tokens` value has a minimum of 1024."
+      ],
+      "critical_strings": [
+        "max_tokens",
+        "Minimum 1024"
+      ]
+    },
+    {
+      "candidate_id": "GOLD-B002-07",
+      "verdict": "FIX_REQUIRED",
+      "defect_class": "MINER_QUESTION_HEADER_DEPENDENCY",
+      "defect_note": "MINER_QUESTION_HEADER_DEPENDENCY: the anchored row is sound evidence, but the miner's exported question asked about a column whose meaning (Yes/No, string, integer) lives in a table header outside the row. The question is re-authored around a fact stated inside the row itself; the anchor does not move.",
+      "question": "What does the `pause_after_compaction` parameter control?",
+      "answer": "Whether to pause after generating the compaction summary.",
+      "atomic_claims": [
+        "`pause_after_compaction` controls whether execution pauses after the compaction summary is generated."
+      ],
+      "critical_strings": [
+        "pause_after_compaction",
+        "Whether to pause after generating the compaction summary"
+      ]
+    },
+    {
+      "candidate_id": "GOLD-B002-08",
+      "verdict": "FIX_REQUIRED",
+      "defect_class": "MINER_QUESTION_HEADER_DEPENDENCY",
+      "defect_note": "MINER_QUESTION_HEADER_DEPENDENCY: the anchored row is sound evidence, but the miner's exported question asked about a column whose meaning (Yes/No, string, integer) lives in a table header outside the row. The question is re-authored around a fact stated inside the row itself; the anchor does not move.",
+      "question": "What is the maximum length of the `text` field when triggering a routine through the API?",
+      "answer": "65,536 characters.",
+      "atomic_claims": [
+        "The routine-trigger `text` field has a maximum length of 65,536 characters."
+      ],
+      "critical_strings": [
+        "text",
+        "Maximum 65,536 characters"
+      ]
+    },
+    {
+      "candidate_id": "GOLD-B002-09",
+      "verdict": "FIX_REQUIRED",
+      "defect_class": "MINER_QUESTION_HEADER_DEPENDENCY",
+      "defect_note": "MINER_QUESTION_HEADER_DEPENDENCY: the anchored row is sound evidence, but the miner's exported question asked about a column whose meaning (Yes/No, string, integer) lives in a table header outside the row. The question is re-authored around a fact stated inside the row itself; the anchor does not move.",
+      "question": "What does `display_height_px` specify for the computer use tool?",
+      "answer": "The display height in pixels.",
+      "atomic_claims": [
+        "`display_height_px` specifies the display height in pixels."
+      ],
+      "critical_strings": [
+        "display_height_px",
+        "Display height in pixels"
+      ]
+    },
+    {
+      "candidate_id": "GOLD-B002-10",
+      "verdict": "FIX_REQUIRED",
+      "defect_class": "QUESTION_AUTHORING_REQUIRED",
+      "defect_note": "QUESTION_AUTHORING_REQUIRED: the span is self-contained and the reviewer authors the question, answer and claims, exactly as the prose miner is designed to work. No defect.",
+      "question": "What attribute does the `parse()` method return after transforming the Pydantic model and validating the response?",
+      "answer": "`parsed_output`",
+      "atomic_claims": [
+        "The `parse()` method transforms the Pydantic model, validates the response, and returns a `parsed_output` attribute."
+      ],
+      "critical_strings": [
+        "parse()",
+        "validates the response",
+        "parsed_output"
+      ]
+    },
+    {
+      "candidate_id": "GOLD-B002-11",
+      "verdict": "FIX_REQUIRED",
+      "defect_class": "QUESTION_AUTHORING_REQUIRED",
+      "defect_note": "QUESTION_AUTHORING_REQUIRED: the span is self-contained and the reviewer authors the question, answer and claims, exactly as the prose miner is designed to work. No defect.",
+      "question": "What happens in Claude Sonnet 5 if `temperature`, `top_p`, or `top_k` is set to a non-default value?",
+      "answer": "The request returns a 400 error.",
+      "atomic_claims": [
+        "Claude Sonnet 5 returns a 400 error when `temperature`, `top_p`, or `top_k` is set to a non-default value."
+      ],
+      "critical_strings": [
+        "Claude Sonnet 5",
+        "temperature",
+        "top_p",
+        "top_k",
+        "non-default values returns a 400 error"
+      ]
+    },
+    {
+      "candidate_id": "GOLD-B002-12",
+      "verdict": "FIX_REQUIRED",
+      "defect_class": "MINER_EVIDENCE_DEFECT",
+      "defect_note": "MINER_EVIDENCE_DEFECT: the anchor does not contain what its claim depends on and must be extended.",
+      "question": "Can a prompt below the applicable minimum cacheable length be cached simply by marking it with `cache_control`?",
+      "answer": "No.",
+      "atomic_claims": [
+        "A prompt below the applicable minimum cacheable length cannot be cached even when marked with `cache_control`."
+      ],
+      "critical_strings": [
+        "minimum cacheable prompt length",
+        "Shorter prompts cannot be cached",
+        "cache_control"
+      ],
+      "anchor": {
+        "locate_head": "On the Claude API, [Claude Platform on AWS]",
+        "locate_tail": "even if marked with `cache_control`.",
+        "what_changed": "Extended backwards 1,360 characters to the sentence that introduces the per-model minimum cacheable prompt length, and the list of those minimums.",
+        "why_complete": "The claim turns on \"the applicable minimum cacheable length\", and that phrase appears nowhere in the original span. A smaller extension is available and was rejected: starting at \"These minimums apply on every platform…\" costs only 71 extra characters but leaves the anchor opening on \"These minimums\", which is the same anaphoric defect one sentence further up. See the size warning below.",
+        "size_warning": "1,430 characters is a large anchor and does make the case easier to retrieve. The alternative 141-character anchor is recorded in the packet; choosing it means also weakening the claim to something the smaller span can support."
+      }
+    },
+    {
+      "candidate_id": "GOLD-B002-13",
+      "verdict": "FIX_REQUIRED",
+      "defect_class": "QUESTION_AUTHORING_REQUIRED",
+      "defect_note": "QUESTION_AUTHORING_REQUIRED: the span is self-contained and the reviewer authors the question, answer and claims, exactly as the prose miner is designed to work. No defect.",
+      "question": "Why must `TUNNEL_TOKEN` be exported again in every fresh shell and after a reboot for this Docker Compose deployment?",
+      "answer": "Because the compose file reads it from the host environment and has no default.",
+      "atomic_claims": [
+        "The compose file reads `TUNNEL_TOKEN` from the host environment with no default, so the export must be repeated in every fresh shell and after a reboot."
+      ],
+      "critical_strings": [
+        "TUNNEL_TOKEN",
+        "from the host environment with no default",
+        "every fresh shell and after a reboot"
+      ]
+    },
+    {
+      "candidate_id": "GOLD-B002-14",
+      "verdict": "FIX_REQUIRED",
+      "defect_class": "QUESTION_AUTHORING_REQUIRED",
+      "defect_note": "QUESTION_AUTHORING_REQUIRED: the span is self-contained and the reviewer authors the question, answer and claims, exactly as the prose miner is designed to work. No defect.",
+      "question": "What `max_tokens` cap does the `output-300k-2026-03-24` beta header enable for supported Message Batch requests?",
+      "answer": "300,000 tokens.",
+      "atomic_claims": [
+        "The `output-300k-2026-03-24` beta header raises the `max_tokens` cap to 300,000 for the supported Message Batch models listed in the evidence."
+      ],
+      "critical_strings": [
+        "output-300k-2026-03-24",
+        "max_tokens",
+        "300,000"
+      ]
+    },
+    {
+      "candidate_id": "GOLD-B002-15",
+      "verdict": "FIX_REQUIRED",
+      "defect_class": "QUESTION_AUTHORING_REQUIRED",
+      "defect_note": "QUESTION_AUTHORING_REQUIRED: the span is self-contained and the reviewer authors the question, answer and claims, exactly as the prose miner is designed to work. No defect.",
+      "question": "When does `ScriptedModel` record a model call relative to resolving or raising the selected step?",
+      "answer": "Before resolving or raising the selected step.",
+      "atomic_claims": [
+        "`ScriptedModel` records each call before it resolves or raises the selected step."
+      ],
+      "critical_strings": [
+        "ScriptedModel",
+        "records each call before it resolves or raises the selected step"
+      ]
+    },
+    {
+      "candidate_id": "GOLD-B002-16",
+      "verdict": "FIX_REQUIRED",
+      "defect_class": "QUESTION_AUTHORING_REQUIRED",
+      "defect_note": "QUESTION_AUTHORING_REQUIRED: the span is self-contained and the reviewer authors the question, answer and claims, exactly as the prose miner is designed to work. No defect.",
+      "question": "On Google Cloud Agent Platform, where is `anthropic_version` supplied and what value must it have?",
+      "answer": "It is passed in the request body and must be `vertex-2023-10-16`.",
+      "atomic_claims": [
+        "On Agent Platform, `anthropic_version` is passed in the request body rather than as a header.",
+        "It must be set to `vertex-2023-10-16`."
+      ],
+      "critical_strings": [
+        "anthropic_version",
+        "passed in the request body",
+        "rather than as a header",
+        "vertex-2023-10-16"
+      ]
+    },
+    {
+      "candidate_id": "GOLD-B002-17",
+      "verdict": "FIX_REQUIRED",
+      "defect_class": "QUESTION_AUTHORING_REQUIRED",
+      "defect_note": "QUESTION_AUTHORING_REQUIRED: the span is self-contained and the reviewer authors the question, answer and claims, exactly as the prose miner is designed to work. No defect. READER NOTE: the span says \"only the _last_ path parameter is positional\" without naming it. That the last one is `child_id` follows from the path `/v1/parents/{parent_id}/children/{child_id}` in the same span, but it is read off the path rather than stated outright.",
+      "question": "For a method calling `/v1/parents/{parent_id}/children/{child_id}`, which path parameter remains positional and how must the other be passed?",
+      "answer": "`child_id` remains positional; `parent_id` must be passed as a named argument.",
+      "atomic_claims": [
+        "The last path parameter, `child_id`, is positional in the example.",
+        "`parent_id` must be passed as a named argument."
+      ],
+      "critical_strings": [
+        "parent_id",
+        "child_id",
+        "only the _last_ path parameter is positional",
+        "must be passed as named arguments"
+      ]
+    },
+    {
+      "candidate_id": "GOLD-B002-18",
+      "verdict": "FIX_REQUIRED",
+      "defect_class": "MINER_EVIDENCE_DEFECT",
+      "defect_note": "MINER_EVIDENCE_DEFECT: the anchor does not contain what its claim depends on and must be extended.",
+      "question": "For an explicit server-side fallback entry, which per-attempt settings can be overridden?",
+      "answer": "`max_tokens`, `thinking`, `output_config`, and `speed`.",
+      "atomic_claims": [
+        "Each explicit fallback entry can override `max_tokens`, `thinking`, `output_config`, and `speed` for that attempt only."
+      ],
+      "critical_strings": [
+        "fallbacks",
+        "max_tokens",
+        "thinking",
+        "output_config",
+        "speed",
+        "for that attempt only"
+      ],
+      "anchor": {
+        "locate_head": "A few rules apply to the `fallbacks` list:",
+        "locate_tail": "valid as a direct request to every model named.",
+        "what_changed": "Extended backwards 218 characters to the line that names the `fallbacks` list, so \"Each entry\" has something to refer to.",
+        "why_complete": "The original span opened on \"With the beta header set, that list…\" and then said \"Each entry…\" — both referring to the `fallbacks` list, which was outside the anchor. The repaired span states what the list is before making rules about its entries.",
+        "size_warning": null
+      }
+    }
+  ]
+}

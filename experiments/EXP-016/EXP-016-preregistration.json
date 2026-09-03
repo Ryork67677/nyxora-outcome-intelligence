@@ -1,0 +1,166 @@
+{
+  "document": "EXP-016-preregistration",
+  "generated_at": "2026-09-01T00:23:59Z",
+  "status": "PREREGISTERED_BEFORE_ANY_EXP016_SCORES",
+  "trained_on_gold": false,
+  "swept": false,
+  "validation_loaded": false,
+  "holdout_loaded": false,
+  "holdout_access_log_bytes_at_preregistration": 0,
+  "hypothesis": "A frozen exact-match guard (C) or frozen CE/A score blend (D) on the same SYSTEM-A pool-100 and same EXP-015 CE logits can raise or hold strict Recall@10 versus SYSTEM-A without destroying exact-match head items.",
+  "prior": {
+    "EXP-015_decision": "RERANKER_REJECTED_AT_DEV",
+    "SYSTEM-C_frozen": false,
+    "development_n": 20,
+    "A": "19/20",
+    "C": "18/20",
+    "rescue": "GOLD-B005-11 (13\u21921)",
+    "regressions": [
+      "HA-22 (2\u219221)",
+      "HA-24 (1\u219218)"
+    ]
+  },
+  "control": {
+    "variant": "A",
+    "name": "SYSTEM-A-GLOBAL",
+    "config_hash": "9afcb5b7c58ebacff0b4c3711dd9618a2e727f4195dd1787a5da81e478ee0b38",
+    "expected_strict_recall_at_10": "19/20",
+    "re_report_from_stored_A_ranks": true,
+    "do_not_retune": true,
+    "encoder_fingerprint": "bd95feaeacf98559",
+    "snapshot": "snap_689e336380a054d8039dc35b2c09cd0a",
+    "chunk_set": "cs_v1_control",
+    "candidate_pool": 100,
+    "pool_per_retriever": 50,
+    "rrf_k": 60,
+    "top_k": 10,
+    "reranker": null,
+    "cross_encoder": null
+  },
+  "variants": {
+    "A": {
+      "name": "SYSTEM-A-GLOBAL",
+      "role": "frozen baseline",
+      "source": "EXP-015 stored A ranks / summary"
+    },
+    "B": {
+      "name": "SYSTEM-C-RERANK",
+      "role": "already-rejected CE-only control",
+      "source": "EXP-015 stored C ranks / summary (18/20)",
+      "rerun_only_to_attach_traces": true,
+      "frozen": false,
+      "tie_break": "ce_score desc, system_a_rank asc, chunk_id asc"
+    },
+    "C": {
+      "name": "SYSTEM-D-GUARD-CLAMP",
+      "role": "exact-match protected reranking",
+      "same_pool_100": true,
+      "same_ce_logits": true,
+      "protection": {
+        "identifier_overlap": true,
+        "system_a_rank_max": 3,
+        "cannot_place_worse_than": 10,
+        "clamp": "need_floor = protected with CE rank > 10; take first (10-|need_floor|) CE-ordered non-floor items; append need_floor in CE order; append the rest in CE order"
+      },
+      "identifier_matcher": {
+        "from_project_term_handling": [
+          "rag_v1.query_views.identifiers",
+          "rag_v1.query_views._TOKEN_RE",
+          "retrieval.exact_identifier_search underscore/dot/hyphen tokens"
+        ],
+        "not_used_as_identifiers": [
+          "bare capitalized product words (is_protected true, not identifier-shaped)",
+          "FILLER / ordinary English"
+        ],
+        "quoted_backtick_spans": true,
+        "shapes": [
+          "CamelCase/camelCase",
+          "snake_case",
+          "dotted API",
+          "[A-Z0-9_]{3,}",
+          "version-like v?\\d",
+          "hyphenated code/error string length>=5"
+        ],
+        "overlap": "non-empty exact case-sensitive set intersection of identifier tokens"
+      },
+      "no_extra_knobs": true
+    },
+    "D": {
+      "name": "SYSTEM-D-GUARD-BLEND",
+      "role": "score blend",
+      "same_pool_100": true,
+      "same_ce_logits": true,
+      "formula": "0.7 * minmax_norm(CE) + 0.3 * minmax_norm(SYSTEM-A fused RRF score)",
+      "minmax_scope": "within each query pool",
+      "minmax_degenerate": 0.5,
+      "weights_frozen": [
+        0.7,
+        0.3
+      ],
+      "weight_search": false,
+      "tie_break": "blended desc, system_a_rank asc, chunk_id asc",
+      "no_extra_knobs": true
+    }
+  },
+  "variant_count": 3,
+  "variant_count_note": "B, C, D versus frozen A baseline. No extra knobs.",
+  "cross_encoder": {
+    "name": "cross-encoder/ms-marco-MiniLM-L6-v2",
+    "revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a",
+    "artifact": "experiments/EXP-015/models/cross-encoder-ms-marco-MiniLM-L6-v2/233902d25c440f23af6f7d6e94d2946bac0bee0a/onnx/model.onnx",
+    "artifact_sha256": "5d3e70fd0c9ff14b9b5169a51e957b7a9c74897afd0a35ce4bd318150c1d4d4a",
+    "scoring": "raw sequence-classification logit (Identity)",
+    "max_length": 512,
+    "pair_formatting": "[CLS] query [SEP] passage [SEP]",
+    "truncation": "longest_first"
+  },
+  "split": {
+    "path": "evals/splits/gold150-v1/development.json",
+    "projection": "experiments/EXP-015/development.jsonl",
+    "n": 20,
+    "do_not_load_validation": true,
+    "do_not_load_holdout": true,
+    "do_not_enumerate_holdout_ids": true
+  },
+  "ha24_diagnostic_before_scoring_C_or_D": true,
+  "ha24_diagnostic_path": "experiments/EXP-016/EXP-016-HA24-diagnostic.md",
+  "metrics": [
+    "strict Recall@10",
+    "span recall",
+    "MRR",
+    "rescues vs A",
+    "regressions vs A",
+    "latency",
+    "rank-destruction events (A rank<=3 dropped out of top 10)"
+  ],
+  "required_traces": [
+    "HA-22",
+    "HA-24",
+    "GOLD-B005-11"
+  ],
+  "decision_rule": {
+    "qualify_if": [
+      "strict Recall@10 >= A (19/20)",
+      "net rescues vs A >= 0",
+      "no new rank-1 destruction (no A-rank-1 gold span leaves top 10)"
+    ],
+    "if_qualify": "freeze winner as SYSTEM-D-GUARD.json; STOP; do not run validation",
+    "winner_tie_break": "higher strict, then higher MRR, then fewer rank-destructions, then C over D",
+    "if_neither": "RERANKER_DIRECTION_REJECTED; do not freeze SYSTEM-D",
+    "no_post_score_retune": true,
+    "no_EXP-017": true
+  },
+  "forbidden": [
+    "validation",
+    "holdout",
+    "holdout question text",
+    "holdout ID enumeration",
+    "live doc fetch",
+    "train on GOLD",
+    "sweep",
+    "weight search",
+    "matcher retune after scores",
+    "clone",
+    "touch user Windows files"
+  ]
+}

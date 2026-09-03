@@ -1,0 +1,5627 @@
+{
+  "experiment_id": "EVAL-HOLDOUT-001",
+  "system": "SYSTEM-D-GUARD-BLEND",
+  "n": 90,
+  "question_text_included": false,
+  "metadata": {
+    "GOLD-B001-02": {
+      "case_id": "GOLD-B001-02",
+      "span_count": 1,
+      "category": "normal",
+      "group": "001",
+      "provider": "openai",
+      "reasoning_type": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "document_title": "Agents"
+    },
+    "GOLD-B001-04": {
+      "case_id": "GOLD-B001-04",
+      "span_count": 1,
+      "category": "normal",
+      "group": "001",
+      "provider": "openai",
+      "reasoning_type": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "document_title": "Guardrails"
+    },
+    "GOLD-B001-05": {
+      "case_id": "GOLD-B001-05",
+      "span_count": 1,
+      "category": "normal",
+      "group": "001",
+      "provider": "anthropic",
+      "reasoning_type": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "document_title": "Context windows"
+    },
+    "GOLD-B001-06": {
+      "case_id": "GOLD-B001-06",
+      "span_count": 1,
+      "category": "normal",
+      "group": "001",
+      "provider": "openai",
+      "reasoning_type": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "document_title": "OpenAI Python API library"
+    },
+    "GOLD-B001-08": {
+      "case_id": "GOLD-B001-08",
+      "span_count": 1,
+      "category": "normal",
+      "group": "001",
+      "provider": "openai",
+      "reasoning_type": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "document_title": "Node.js Version Support Policy"
+    },
+    "GOLD-B001-09": {
+      "case_id": "GOLD-B001-09",
+      "span_count": 1,
+      "category": "normal",
+      "group": "001",
+      "provider": "anthropic",
+      "reasoning_type": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "document_title": "Tool runner (SDK)"
+    },
+    "GOLD-B001-11": {
+      "case_id": "GOLD-B001-11",
+      "span_count": 1,
+      "category": "normal",
+      "group": "001",
+      "provider": "anthropic",
+      "reasoning_type": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "document_title": "Tutorial: Build a tool-using agent"
+    },
+    "GOLD-B001-12": {
+      "case_id": "GOLD-B001-12",
+      "span_count": 1,
+      "category": "normal",
+      "group": "001",
+      "provider": "openai",
+      "reasoning_type": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "document_title": "Handoffs"
+    },
+    "GOLD-B001-17": {
+      "case_id": "GOLD-B001-17",
+      "span_count": 1,
+      "category": "normal",
+      "group": "001",
+      "provider": "anthropic",
+      "reasoning_type": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "document_title": "Files API"
+    },
+    "GOLD-B001-18": {
+      "case_id": "GOLD-B001-18",
+      "span_count": 1,
+      "category": "normal",
+      "group": "001",
+      "provider": "anthropic",
+      "reasoning_type": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "document_title": "Tool reference"
+    },
+    "GOLD-B002-03": {
+      "case_id": "GOLD-B002-03",
+      "span_count": 1,
+      "category": "normal",
+      "group": "002",
+      "provider": "openai",
+      "reasoning_type": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "document_title": "Agents"
+    },
+    "GOLD-B002-04": {
+      "case_id": "GOLD-B002-04",
+      "span_count": 1,
+      "category": "normal",
+      "group": "002",
+      "provider": "anthropic",
+      "reasoning_type": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "document_title": "Search results"
+    },
+    "GOLD-B002-06": {
+      "case_id": "GOLD-B002-06",
+      "span_count": 1,
+      "category": "normal",
+      "group": "002",
+      "provider": "anthropic",
+      "reasoning_type": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "document_title": "Advisor tool"
+    },
+    "GOLD-B002-08": {
+      "case_id": "GOLD-B002-08",
+      "span_count": 1,
+      "category": "normal",
+      "group": "002",
+      "provider": "anthropic",
+      "reasoning_type": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "document_title": "Trigger a routine through the API"
+    },
+    "GOLD-B002-09": {
+      "case_id": "GOLD-B002-09",
+      "span_count": 1,
+      "category": "normal",
+      "group": "002",
+      "provider": "anthropic",
+      "reasoning_type": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "document_title": "Computer use tool"
+    },
+    "GOLD-B002-11": {
+      "case_id": "GOLD-B002-11",
+      "span_count": 1,
+      "category": "normal",
+      "group": "002",
+      "provider": "anthropic",
+      "reasoning_type": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "document_title": "What's new in Claude Sonnet 5"
+    },
+    "GOLD-B002-13": {
+      "case_id": "GOLD-B002-13",
+      "span_count": 1,
+      "category": "normal",
+      "group": "002",
+      "provider": "anthropic",
+      "reasoning_type": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "document_title": "Deploy MCP tunnels with Docker Compose"
+    },
+    "GOLD-B002-14": {
+      "case_id": "GOLD-B002-14",
+      "span_count": 1,
+      "category": "normal",
+      "group": "002",
+      "provider": "anthropic",
+      "reasoning_type": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "document_title": "Batch processing"
+    },
+    "GOLD-B002-15": {
+      "case_id": "GOLD-B002-15",
+      "span_count": 1,
+      "category": "normal",
+      "group": "002",
+      "provider": "openai",
+      "reasoning_type": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "document_title": "Testing"
+    },
+    "GOLD-B002-17": {
+      "case_id": "GOLD-B002-17",
+      "span_count": 1,
+      "category": "normal",
+      "group": "002",
+      "provider": "openai",
+      "reasoning_type": null,
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "document_title": "Migration guide"
+    },
+    "GOLD-B003-03": {
+      "case_id": "GOLD-B003-03",
+      "span_count": 1,
+      "category": "normal",
+      "group": "003",
+      "provider": "anthropic",
+      "reasoning_type": "error_behavior",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "document_title": "Advisor tool"
+    },
+    "GOLD-B003-04": {
+      "case_id": "GOLD-B003-04",
+      "span_count": 2,
+      "category": "normal",
+      "group": "003",
+      "provider": "anthropic",
+      "reasoning_type": "error_behavior",
+      "secondary_category": null,
+      "evidence_shape": "multi_span",
+      "document_title": "Advisor tool"
+    },
+    "GOLD-B003-06": {
+      "case_id": "GOLD-B003-06",
+      "span_count": 1,
+      "category": "normal",
+      "group": "003",
+      "provider": "anthropic",
+      "reasoning_type": "error_behavior",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "document_title": "What's new in Claude Sonnet 5"
+    },
+    "GOLD-B003-07": {
+      "case_id": "GOLD-B003-07",
+      "span_count": 1,
+      "category": "exact_lookup",
+      "group": "003",
+      "provider": "anthropic",
+      "reasoning_type": "exact_lookup",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "document_title": "Context editing"
+    },
+    "GOLD-B003-09": {
+      "case_id": "GOLD-B003-09",
+      "span_count": 1,
+      "category": "exact_lookup",
+      "group": "003",
+      "provider": "anthropic",
+      "reasoning_type": "exact_lookup",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "document_title": "Text editor tool"
+    },
+    "GOLD-B003-10": {
+      "case_id": "GOLD-B003-10",
+      "span_count": 1,
+      "category": "normal",
+      "group": "003",
+      "provider": "anthropic",
+      "reasoning_type": "lifecycle",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "document_title": "Extended thinking"
+    },
+    "GOLD-B003-12": {
+      "case_id": "GOLD-B003-12",
+      "span_count": 2,
+      "category": "exact_lookup",
+      "group": "003",
+      "provider": "anthropic",
+      "reasoning_type": "exact_lookup",
+      "secondary_category": null,
+      "evidence_shape": "multi_span",
+      "document_title": "Web search tool"
+    },
+    "GOLD-B003-13": {
+      "case_id": "GOLD-B003-13",
+      "span_count": 1,
+      "category": "normal",
+      "group": "003",
+      "provider": "openai",
+      "reasoning_type": "configuration_interaction",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "document_title": "Human-in-the-loop"
+    },
+    "GOLD-B003-14": {
+      "case_id": "GOLD-B003-14",
+      "span_count": 1,
+      "category": "normal",
+      "group": "003",
+      "provider": "openai",
+      "reasoning_type": "configuration_interaction",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "document_title": "OpenAI Python API library"
+    },
+    "GOLD-B003-16": {
+      "case_id": "GOLD-B003-16",
+      "span_count": 1,
+      "category": "exact_lookup",
+      "group": "003",
+      "provider": "openai",
+      "reasoning_type": "exact_lookup",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "document_title": "Structured Outputs Parsing Helpers"
+    },
+    "GOLD-B003-17": {
+      "case_id": "GOLD-B003-17",
+      "span_count": 1,
+      "category": "exact_lookup",
+      "group": "003",
+      "provider": "openai",
+      "reasoning_type": "exact_lookup",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "document_title": "Structured Outputs Parsing Helpers"
+    },
+    "GOLD-B003-19": {
+      "case_id": "GOLD-B003-19",
+      "span_count": 2,
+      "category": "exact_lookup",
+      "group": "003",
+      "provider": "openai",
+      "reasoning_type": "exact_lookup",
+      "secondary_category": null,
+      "evidence_shape": "multi_span",
+      "document_title": "Running agents"
+    },
+    "GOLD-B004-01": {
+      "case_id": "GOLD-B004-01",
+      "span_count": 1,
+      "category": "normal",
+      "group": "004",
+      "provider": "anthropic",
+      "reasoning_type": "error_behavior",
+      "secondary_category": "conditional_behavior",
+      "evidence_shape": "single_span",
+      "document_title": "Stop reasons and fallback"
+    },
+    "GOLD-B004-03": {
+      "case_id": "GOLD-B004-03",
+      "span_count": 1,
+      "category": "normal",
+      "group": "004",
+      "provider": "anthropic",
+      "reasoning_type": "error_behavior",
+      "secondary_category": "conditional_behavior",
+      "evidence_shape": "single_span",
+      "document_title": "Claude API errors"
+    },
+    "GOLD-B004-05": {
+      "case_id": "GOLD-B004-05",
+      "span_count": 1,
+      "category": "normal",
+      "group": "004",
+      "provider": "anthropic",
+      "reasoning_type": "error_behavior",
+      "secondary_category": "conditional_behavior",
+      "evidence_shape": "single_span",
+      "document_title": "Web search tool"
+    },
+    "GOLD-B004-06": {
+      "case_id": "GOLD-B004-06",
+      "span_count": 1,
+      "category": "exact_lookup",
+      "group": "004",
+      "provider": "anthropic",
+      "reasoning_type": "exact_lookup",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "document_title": "Web search tool"
+    },
+    "GOLD-B004-07": {
+      "case_id": "GOLD-B004-07",
+      "span_count": 1,
+      "category": "normal",
+      "group": "004",
+      "provider": "anthropic",
+      "reasoning_type": "lifecycle_compatibility_migration",
+      "secondary_category": "conditional_behavior",
+      "evidence_shape": "single_span",
+      "document_title": "Prompting best practices"
+    },
+    "GOLD-B004-09": {
+      "case_id": "GOLD-B004-09",
+      "span_count": 2,
+      "category": "ambiguous",
+      "group": "004",
+      "provider": "openai",
+      "reasoning_type": "ambiguity_disambiguation",
+      "secondary_category": null,
+      "evidence_shape": "multi_span",
+      "document_title": "Structured Outputs Parsing Helpers"
+    },
+    "GOLD-B004-11": {
+      "case_id": "GOLD-B004-11",
+      "span_count": 1,
+      "category": "normal",
+      "group": "004",
+      "provider": "openai",
+      "reasoning_type": "error_behavior",
+      "secondary_category": "conditional_behavior",
+      "evidence_shape": "single_span",
+      "document_title": "Streaming"
+    },
+    "GOLD-B004-15": {
+      "case_id": "GOLD-B004-15",
+      "span_count": 2,
+      "category": "multi_hop",
+      "group": "004",
+      "provider": "openai",
+      "reasoning_type": "genuine_multi_hop",
+      "secondary_category": null,
+      "evidence_shape": "multi_document",
+      "document_title": "Human-in-the-loop"
+    },
+    "GOLD-B005-02": {
+      "case_id": "GOLD-B005-02",
+      "span_count": 1,
+      "category": "normal",
+      "group": "005",
+      "provider": "anthropic",
+      "reasoning_type": "configuration_interaction",
+      "secondary_category": "conditional_behavior",
+      "evidence_shape": "single_span",
+      "document_title": "Admin"
+    },
+    "GOLD-B005-03": {
+      "case_id": "GOLD-B005-03",
+      "span_count": 1,
+      "category": "normal",
+      "group": "005",
+      "provider": "anthropic",
+      "reasoning_type": "error_behavior",
+      "secondary_category": "normative_statement",
+      "evidence_shape": "single_span",
+      "document_title": "Beta"
+    },
+    "GOLD-B005-04": {
+      "case_id": "GOLD-B005-04",
+      "span_count": 1,
+      "category": "normal",
+      "group": "005",
+      "provider": "anthropic",
+      "reasoning_type": "error_behavior",
+      "secondary_category": "conditional_behavior",
+      "evidence_shape": "single_span",
+      "document_title": "Web search tool"
+    },
+    "GOLD-B005-05": {
+      "case_id": "GOLD-B005-05",
+      "span_count": 1,
+      "category": "exact_lookup",
+      "group": "005",
+      "provider": "anthropic",
+      "reasoning_type": "exact_lookup",
+      "secondary_category": "constraint_required_value",
+      "evidence_shape": "single_span",
+      "document_title": "Server tools"
+    },
+    "GOLD-B005-07": {
+      "case_id": "GOLD-B005-07",
+      "span_count": 1,
+      "category": "normal",
+      "group": "005",
+      "provider": "anthropic",
+      "reasoning_type": "lifecycle_compatibility_migration",
+      "secondary_category": "deprecation",
+      "evidence_shape": "single_span",
+      "document_title": "Context editing"
+    },
+    "GOLD-B005-08": {
+      "case_id": "GOLD-B005-08",
+      "span_count": 1,
+      "category": "normal",
+      "group": "005",
+      "provider": "anthropic",
+      "reasoning_type": "lifecycle_compatibility_migration",
+      "secondary_category": "compatibility",
+      "evidence_shape": "single_span",
+      "document_title": "Prompting Claude Sonnet 5"
+    },
+    "GOLD-B005-12": {
+      "case_id": "GOLD-B005-12",
+      "span_count": 1,
+      "category": "normal",
+      "group": "005",
+      "provider": "openai",
+      "reasoning_type": "configuration_interaction",
+      "secondary_category": "requires",
+      "evidence_shape": "single_span",
+      "document_title": "Sandbox clients"
+    },
+    "GOLD-B005-14": {
+      "case_id": "GOLD-B005-14",
+      "span_count": 1,
+      "category": "normal",
+      "group": "005",
+      "provider": "openai",
+      "reasoning_type": "configuration_interaction",
+      "secondary_category": "requires",
+      "evidence_shape": "single_span",
+      "document_title": "Tools"
+    },
+    "GOLD-B005-16": {
+      "case_id": "GOLD-B005-16",
+      "span_count": 1,
+      "category": "normal",
+      "group": "005",
+      "provider": "openai",
+      "reasoning_type": "configuration_interaction",
+      "secondary_category": "conditional_behavior",
+      "evidence_shape": "single_span",
+      "document_title": "Usage"
+    },
+    "GOLD-B006-01": {
+      "case_id": "GOLD-B006-01",
+      "span_count": 1,
+      "category": "exact_lookup",
+      "group": "006",
+      "provider": "anthropic",
+      "reasoning_type": "exact_lookup",
+      "secondary_category": "requirement_constraint",
+      "evidence_shape": "single_span",
+      "document_title": "Admin"
+    },
+    "GOLD-B006-02": {
+      "case_id": "GOLD-B006-02",
+      "span_count": 1,
+      "category": "normal",
+      "group": "006",
+      "provider": "anthropic",
+      "reasoning_type": "error_behavior",
+      "secondary_category": "rejects",
+      "evidence_shape": "single_span",
+      "document_title": "Migration guide"
+    },
+    "GOLD-B006-05": {
+      "case_id": "GOLD-B006-05",
+      "span_count": 1,
+      "category": "exact_lookup",
+      "group": "006",
+      "provider": "anthropic",
+      "reasoning_type": "exact_lookup",
+      "secondary_category": "defaults_to",
+      "evidence_shape": "single_span",
+      "document_title": "Migration guide"
+    },
+    "GOLD-B006-07": {
+      "case_id": "GOLD-B006-07",
+      "span_count": 1,
+      "category": "normal",
+      "group": "006",
+      "provider": "openai",
+      "reasoning_type": "configuration_interaction",
+      "secondary_category": "disables",
+      "evidence_shape": "single_span",
+      "document_title": "Realtime agents guide"
+    },
+    "GOLD-B006-09": {
+      "case_id": "GOLD-B006-09",
+      "span_count": 1,
+      "category": "exact_lookup",
+      "group": "006",
+      "provider": "openai",
+      "reasoning_type": "exact_lookup",
+      "secondary_category": "defaults_to",
+      "evidence_shape": "single_span",
+      "document_title": "Running agents"
+    },
+    "HA-01": {
+      "case_id": "HA-01",
+      "span_count": 1,
+      "category": "normal",
+      "group": "HA",
+      "provider": "openai",
+      "reasoning_type": "configuration_interaction",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "document_title": "Sessions"
+    },
+    "HA-02": {
+      "case_id": "HA-02",
+      "span_count": 1,
+      "category": "normal",
+      "group": "HA",
+      "provider": "openai",
+      "reasoning_type": "lifecycle_compatibility_migration",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "document_title": "Configuration"
+    },
+    "HA-03": {
+      "case_id": "HA-03",
+      "span_count": 1,
+      "category": "normal",
+      "group": "HA",
+      "provider": "openai",
+      "reasoning_type": "configuration_interaction",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "document_title": "Configuration"
+    },
+    "HA-04": {
+      "case_id": "HA-04",
+      "span_count": 1,
+      "category": "normal",
+      "group": "HA",
+      "provider": "openai",
+      "reasoning_type": "configuration_interaction",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "document_title": "Guardrails"
+    },
+    "HA-05": {
+      "case_id": "HA-05",
+      "span_count": 2,
+      "category": "normal",
+      "group": "HA",
+      "provider": "openai",
+      "reasoning_type": "error_behavior",
+      "secondary_category": null,
+      "evidence_shape": "multi_span_same_fact",
+      "document_title": "Models"
+    },
+    "HA-06": {
+      "case_id": "HA-06",
+      "span_count": 1,
+      "category": "normal",
+      "group": "HA",
+      "provider": "openai",
+      "reasoning_type": "lifecycle_compatibility_migration",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "document_title": "Model context protocol (MCP)"
+    },
+    "HA-09": {
+      "case_id": "HA-09",
+      "span_count": 1,
+      "category": "normal",
+      "group": "HA",
+      "provider": "openai",
+      "reasoning_type": "configuration_interaction",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "document_title": "Configuration"
+    },
+    "HA-14": {
+      "case_id": "HA-14",
+      "span_count": 2,
+      "category": "normal",
+      "group": "HA",
+      "provider": "openai",
+      "reasoning_type": "error_behavior",
+      "secondary_category": null,
+      "evidence_shape": "multi_span_same_fact",
+      "document_title": "Guardrails"
+    },
+    "HA-16": {
+      "case_id": "HA-16",
+      "span_count": 2,
+      "category": "normal",
+      "group": "HA",
+      "provider": "openai",
+      "reasoning_type": "configuration_interaction",
+      "secondary_category": null,
+      "evidence_shape": "multi_span_same_fact",
+      "document_title": "Handoffs"
+    },
+    "HA-17": {
+      "case_id": "HA-17",
+      "span_count": 1,
+      "category": "normal",
+      "group": "HA",
+      "provider": "openai",
+      "reasoning_type": "request_response",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "document_title": "Human-in-the-loop"
+    },
+    "HA-19": {
+      "case_id": "HA-19",
+      "span_count": 1,
+      "category": "normal",
+      "group": "HA",
+      "provider": "openai",
+      "reasoning_type": "configuration_interaction",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "document_title": "Human-in-the-loop"
+    },
+    "HA-20": {
+      "case_id": "HA-20",
+      "span_count": 1,
+      "category": "normal",
+      "group": "HA",
+      "provider": "openai",
+      "reasoning_type": "configuration_interaction",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "document_title": "Human-in-the-loop"
+    },
+    "HA-21": {
+      "case_id": "HA-21",
+      "span_count": 1,
+      "category": "normal",
+      "group": "HA",
+      "provider": "openai",
+      "reasoning_type": "request_response",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "document_title": "Human-in-the-loop"
+    },
+    "HA-23": {
+      "case_id": "HA-23",
+      "span_count": 2,
+      "category": "normal",
+      "group": "HA",
+      "provider": "openai",
+      "reasoning_type": "request_response",
+      "secondary_category": null,
+      "evidence_shape": "multi_span_same_fact",
+      "document_title": "Handoffs"
+    },
+    "HA-25": {
+      "case_id": "HA-25",
+      "span_count": 1,
+      "category": "exact_lookup",
+      "group": "HA",
+      "provider": "openai",
+      "reasoning_type": "exact_lookup",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "document_title": "Configuration"
+    },
+    "HA-26": {
+      "case_id": "HA-26",
+      "span_count": 1,
+      "category": "exact_lookup",
+      "group": "HA",
+      "provider": "openai",
+      "reasoning_type": "exact_lookup",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "document_title": "Configuration"
+    },
+    "HA-27": {
+      "case_id": "HA-27",
+      "span_count": 1,
+      "category": "exact_lookup",
+      "group": "HA",
+      "provider": "openai",
+      "reasoning_type": "exact_lookup",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "document_title": "Configuration"
+    },
+    "HA-28": {
+      "case_id": "HA-28",
+      "span_count": 1,
+      "category": "exact_lookup",
+      "group": "HA",
+      "provider": "openai",
+      "reasoning_type": "exact_lookup",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "document_title": "Configuration"
+    },
+    "HA-30": {
+      "case_id": "HA-30",
+      "span_count": 1,
+      "category": "exact_lookup",
+      "group": "HA",
+      "provider": "openai",
+      "reasoning_type": "exact_lookup",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "document_title": "Configuration"
+    },
+    "HA-31": {
+      "case_id": "HA-31",
+      "span_count": 1,
+      "category": "exact_lookup",
+      "group": "HA",
+      "provider": "openai",
+      "reasoning_type": "exact_lookup",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "document_title": "Configuration"
+    },
+    "HA-33": {
+      "case_id": "HA-33",
+      "span_count": 1,
+      "category": "exact_lookup",
+      "group": "HA",
+      "provider": "openai",
+      "reasoning_type": "exact_lookup",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "document_title": "Configuration"
+    },
+    "HA-34": {
+      "case_id": "HA-34",
+      "span_count": 1,
+      "category": "exact_lookup",
+      "group": "HA",
+      "provider": "openai",
+      "reasoning_type": "exact_lookup",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "document_title": "Context management"
+    },
+    "HA-35": {
+      "case_id": "HA-35",
+      "span_count": 1,
+      "category": "exact_lookup",
+      "group": "HA",
+      "provider": "openai",
+      "reasoning_type": "exact_lookup",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "document_title": "Context management"
+    },
+    "HA-37": {
+      "case_id": "HA-37",
+      "span_count": 1,
+      "category": "exact_lookup",
+      "group": "HA",
+      "provider": "openai",
+      "reasoning_type": "exact_lookup",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "document_title": "Context management"
+    },
+    "HA-38": {
+      "case_id": "HA-38",
+      "span_count": 2,
+      "category": "exact_lookup",
+      "group": "HA",
+      "provider": "openai",
+      "reasoning_type": "exact_lookup",
+      "secondary_category": null,
+      "evidence_shape": "multi_span_same_fact",
+      "document_title": "Context management"
+    },
+    "HA-39": {
+      "case_id": "HA-39",
+      "span_count": 2,
+      "category": "exact_lookup",
+      "group": "HA",
+      "provider": "openai",
+      "reasoning_type": "exact_lookup",
+      "secondary_category": null,
+      "evidence_shape": "multi_span_same_fact",
+      "document_title": "Context management"
+    },
+    "HA-43": {
+      "case_id": "HA-43",
+      "span_count": 2,
+      "category": "exact_lookup",
+      "group": "HA",
+      "provider": "openai",
+      "reasoning_type": "exact_lookup",
+      "secondary_category": null,
+      "evidence_shape": "multi_span_same_fact",
+      "document_title": "Realtime transport"
+    },
+    "HA-45": {
+      "case_id": "HA-45",
+      "span_count": 1,
+      "category": "exact_lookup",
+      "group": "HA",
+      "provider": "openai",
+      "reasoning_type": "exact_lookup",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "document_title": "Handoffs"
+    },
+    "HA-46": {
+      "case_id": "HA-46",
+      "span_count": 1,
+      "category": "exact_lookup",
+      "group": "HA",
+      "provider": "openai",
+      "reasoning_type": "exact_lookup",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "document_title": "Handoffs"
+    },
+    "HA-48": {
+      "case_id": "HA-48",
+      "span_count": 1,
+      "category": "exact_lookup",
+      "group": "HA",
+      "provider": "openai",
+      "reasoning_type": "exact_lookup",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "document_title": "Guardrails"
+    },
+    "HA-50": {
+      "case_id": "HA-50",
+      "span_count": 2,
+      "category": "exact_lookup",
+      "group": "HA",
+      "provider": "openai",
+      "reasoning_type": "exact_lookup",
+      "secondary_category": null,
+      "evidence_shape": "multi_span_same_fact",
+      "document_title": "Human-in-the-loop"
+    },
+    "HA-53": {
+      "case_id": "HA-53",
+      "span_count": 1,
+      "category": "exact_lookup",
+      "group": "HA",
+      "provider": "openai",
+      "reasoning_type": "exact_lookup",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "document_title": "Models"
+    },
+    "HA-54": {
+      "case_id": "HA-54",
+      "span_count": 1,
+      "category": "exact_lookup",
+      "group": "HA",
+      "provider": "openai",
+      "reasoning_type": "exact_lookup",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "document_title": "Models"
+    },
+    "HA-55": {
+      "case_id": "HA-55",
+      "span_count": 1,
+      "category": "exact_lookup",
+      "group": "HA",
+      "provider": "openai",
+      "reasoning_type": "exact_lookup",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "document_title": "Models"
+    },
+    "HA-56": {
+      "case_id": "HA-56",
+      "span_count": 2,
+      "category": "exact_lookup",
+      "group": "HA",
+      "provider": "openai",
+      "reasoning_type": "exact_lookup",
+      "secondary_category": null,
+      "evidence_shape": "multi_span_same_fact",
+      "document_title": "Models"
+    },
+    "HA-58": {
+      "case_id": "HA-58",
+      "span_count": 1,
+      "category": "exact_lookup",
+      "group": "HA",
+      "provider": "openai",
+      "reasoning_type": "exact_lookup",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "document_title": "Models"
+    }
+  },
+  "cases": {
+    "GOLD-B001-02": {
+      "case_id": "GOLD-B001-02",
+      "fully_recalled": false,
+      "recall": 0.0,
+      "doc_recall": 1.0,
+      "pool_size": 98,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_4473c14a44b77dd08fbe8d5e4585c5164760330f",
+          "version_id": "ver_35cac5e98c151a17f941a6142d74709f",
+          "section_path": [
+            "Agents",
+            "Basic configuration"
+          ],
+          "char_start": 3571,
+          "char_end": 3725,
+          "candidate_a_rank": 5,
+          "candidate_a_score": 0.016129032258064516,
+          "ce_score": -10.337916374206543,
+          "blend_score": 0.1959061922634731,
+          "d_rank": 63,
+          "d_doc_rank": 1,
+          "d_in_top_10": false,
+          "in_candidate_pool": true,
+          "within": {
+            "10": false,
+            "20": false,
+            "30": false,
+            "50": false,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 447.82,
+        "cross_encoder": 6365.44,
+        "total": 6813.86
+      },
+      "provider": "openai",
+      "reasoning_type": null,
+      "evidence_shape": "single_span",
+      "group": "001",
+      "span_count": 1
+    },
+    "GOLD-B001-04": {
+      "case_id": "GOLD-B001-04",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 83,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_163adc12af33472b0767afd7cd46770433f40828",
+          "version_id": "ver_f22fbd5c504fa28a4e70440337e4a495",
+          "section_path": [
+            "Guardrails",
+            "Input guardrails"
+          ],
+          "char_start": 1496,
+          "char_end": 2119,
+          "candidate_a_rank": 1,
+          "candidate_a_score": 0.03252247488101534,
+          "ce_score": 5.7315673828125,
+          "blend_score": 0.9716209644493181,
+          "d_rank": 2,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 427.97,
+        "cross_encoder": 5131.64,
+        "total": 5560.18
+      },
+      "provider": "openai",
+      "reasoning_type": null,
+      "evidence_shape": "single_span",
+      "group": "001",
+      "span_count": 1
+    },
+    "GOLD-B001-05": {
+      "case_id": "GOLD-B001-05",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 87,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_30c9e22cb56bf922ce440a9ed93a5efecb797f6e",
+          "version_id": "ver_b42814c2d273210095c8e5844612933e",
+          "section_path": [
+            "Context window overflow behavior"
+          ],
+          "char_start": 14083,
+          "char_end": 14230,
+          "candidate_a_rank": 1,
+          "candidate_a_score": 0.03278688524590164,
+          "ce_score": 9.386833190917969,
+          "blend_score": 1.0,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 502.52,
+        "cross_encoder": 5225.9,
+        "total": 5729.04
+      },
+      "provider": "anthropic",
+      "reasoning_type": null,
+      "evidence_shape": "single_span",
+      "group": "001",
+      "span_count": 1
+    },
+    "GOLD-B001-06": {
+      "case_id": "GOLD-B001-06",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 89,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_5373545ceb6530f7adc0e4ebf6f4ce1a9c88118a",
+          "version_id": "ver_9247e3ce4df6f79d9cadc44e1a3bbd0c",
+          "section_path": [
+            "Remove `await` for non-async usage.",
+            "Webhook Verification",
+            "Parsing webhook payloads"
+          ],
+          "char_start": 14847,
+          "char_end": 14951,
+          "candidate_a_rank": 2,
+          "candidate_a_score": 0.03225806451612903,
+          "ce_score": 6.368087291717529,
+          "blend_score": 0.9933049300060863,
+          "d_rank": 2,
+          "d_doc_rank": 2,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 410.91,
+        "cross_encoder": 6037.63,
+        "total": 6449.18
+      },
+      "provider": "openai",
+      "reasoning_type": null,
+      "evidence_shape": "single_span",
+      "group": "001",
+      "span_count": 1
+    },
+    "GOLD-B001-08": {
+      "case_id": "GOLD-B001-08",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 90,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_aa7cd258d432aea70948c391d95bb8dbf75d4a72",
+          "version_id": "ver_0699973a131d91f270d69f81ba7a0da0",
+          "section_path": [
+            "Node.js Version Support Policy",
+            "Release and packaging rules"
+          ],
+          "char_start": 1250,
+          "char_end": 1371,
+          "candidate_a_rank": 1,
+          "candidate_a_score": 0.03278688524590164,
+          "ce_score": 7.600578784942627,
+          "blend_score": 1.0,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 521.46,
+        "cross_encoder": 5008.55,
+        "total": 5530.64
+      },
+      "provider": "openai",
+      "reasoning_type": null,
+      "evidence_shape": "single_span",
+      "group": "001",
+      "span_count": 1
+    },
+    "GOLD-B001-09": {
+      "case_id": "GOLD-B001-09",
+      "fully_recalled": false,
+      "recall": 0.0,
+      "doc_recall": 1.0,
+      "pool_size": 93,
+      "all_spans_in_candidate_pool": false,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": null,
+          "version_id": "ver_96d5aba3c4e7771cabd4f3d4f5a3fff1",
+          "section_path": [
+            "Iterating over the tool runner"
+          ],
+          "char_start": 19885,
+          "char_end": 20004,
+          "candidate_a_rank": null,
+          "candidate_a_score": null,
+          "ce_score": null,
+          "blend_score": null,
+          "d_rank": null,
+          "d_doc_rank": 2,
+          "d_in_top_10": false,
+          "in_candidate_pool": false,
+          "within": {
+            "10": false,
+            "20": false,
+            "30": false,
+            "50": false,
+            "100": false,
+            "300": false
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 435.79,
+        "cross_encoder": 5179.63,
+        "total": 5616.05
+      },
+      "provider": "anthropic",
+      "reasoning_type": null,
+      "evidence_shape": "single_span",
+      "group": "001",
+      "span_count": 1
+    },
+    "GOLD-B001-11": {
+      "case_id": "GOLD-B001-11",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 91,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_b64c1986170b2ddd2e436e833adec2b69a040a7e",
+          "version_id": "ver_fc127d394b32ba1f136356d746c083e5",
+          "section_path": [
+            "Ring 4: Error handling"
+          ],
+          "char_start": 103289,
+          "char_end": 103388,
+          "candidate_a_rank": 38,
+          "candidate_a_score": 0.012658227848101266,
+          "ce_score": 5.5426225662231445,
+          "blend_score": 0.7458418917771457,
+          "d_rank": 8,
+          "d_doc_rank": 2,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 411.02,
+        "cross_encoder": 5163.54,
+        "total": 5575.22
+      },
+      "provider": "anthropic",
+      "reasoning_type": null,
+      "evidence_shape": "single_span",
+      "group": "001",
+      "span_count": 1
+    },
+    "GOLD-B001-12": {
+      "case_id": "GOLD-B001-12",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 87,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_b3792274647effec04c5a81b5658d02c96ef4012",
+          "version_id": "ver_1c77f33b04ffffa285ea7e61c2a89653",
+          "section_path": [
+            "(1)!",
+            "Customizing handoffs via the `handoff()` function"
+          ],
+          "char_start": 2603,
+          "char_end": 2846,
+          "candidate_a_rank": 2,
+          "candidate_a_score": 0.03125763125763126,
+          "ce_score": 6.225277900695801,
+          "blend_score": 0.9806390674315202,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 366.9,
+        "cross_encoder": 4670.13,
+        "total": 5037.67
+      },
+      "provider": "openai",
+      "reasoning_type": null,
+      "evidence_shape": "single_span",
+      "group": "001",
+      "span_count": 1
+    },
+    "GOLD-B001-17": {
+      "case_id": "GOLD-B001-17",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 94,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_1ee0f1be510fd99c143f3bdf6674b4e2a2c1fa2a",
+          "version_id": "ver_ab9e2c2bf4c17bf70ce1b94355d01729",
+          "section_path": [
+            "Error handling"
+          ],
+          "char_start": 29787,
+          "char_end": 30171,
+          "candidate_a_rank": 1,
+          "candidate_a_score": 0.03252247488101534,
+          "ce_score": 5.033299922943115,
+          "blend_score": 1.0,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 480.4,
+        "cross_encoder": 5276.9,
+        "total": 5757.93
+      },
+      "provider": "anthropic",
+      "reasoning_type": null,
+      "evidence_shape": "single_span",
+      "group": "001",
+      "span_count": 1
+    },
+    "GOLD-B001-18": {
+      "case_id": "GOLD-B001-18",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 89,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_6fff71bd3b28eae1b06c073febe4bc2615e3010f",
+          "version_id": "ver_5f5df502fc725ffcca9d893fef90fe3f",
+          "section_path": [
+            "Tool definition properties",
+            "`defer_loading` and prompt caching"
+          ],
+          "char_start": 11593,
+          "char_end": 11779,
+          "candidate_a_rank": 4,
+          "candidate_a_score": 0.031099324975891997,
+          "ce_score": 8.001994132995605,
+          "blend_score": 0.9944566628313758,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 546.11,
+        "cross_encoder": 5219.86,
+        "total": 5766.63
+      },
+      "provider": "anthropic",
+      "reasoning_type": null,
+      "evidence_shape": "single_span",
+      "group": "001",
+      "span_count": 1
+    },
+    "GOLD-B002-03": {
+      "case_id": "GOLD-B002-03",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 99,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_4473c14a44b77dd08fbe8d5e4585c5164760330f",
+          "version_id": "ver_35cac5e98c151a17f941a6142d74709f",
+          "section_path": [
+            "Agents",
+            "Basic configuration"
+          ],
+          "char_start": 2057,
+          "char_end": 2208,
+          "candidate_a_rank": 48,
+          "candidate_a_score": 0.011904761904761904,
+          "ce_score": 2.8565988540649414,
+          "blend_score": 0.7822014051522248,
+          "d_rank": 2,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 416.69,
+        "cross_encoder": 6254.98,
+        "total": 6672.37
+      },
+      "provider": "openai",
+      "reasoning_type": null,
+      "evidence_shape": "single_span",
+      "group": "002",
+      "span_count": 1
+    },
+    "GOLD-B002-04": {
+      "case_id": "GOLD-B002-04",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 86,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_182e25f75c9cc0fb9113b53595f888d1751f44dc",
+          "version_id": "ver_42a4f3d941b664a285883aaf6ff90373",
+          "section_path": [
+            "How it works",
+            "Required fields"
+          ],
+          "char_start": 2380,
+          "char_end": 2517,
+          "candidate_a_rank": 4,
+          "candidate_a_score": 0.02690100430416069,
+          "ce_score": 0.1535235345363617,
+          "blend_score": 0.8193606778019027,
+          "d_rank": 6,
+          "d_doc_rank": 5,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 501.01,
+        "cross_encoder": 5033.25,
+        "total": 5535.27
+      },
+      "provider": "anthropic",
+      "reasoning_type": null,
+      "evidence_shape": "single_span",
+      "group": "002",
+      "span_count": 1
+    },
+    "GOLD-B002-06": {
+      "case_id": "GOLD-B002-06",
+      "fully_recalled": false,
+      "recall": 0.0,
+      "doc_recall": 1.0,
+      "pool_size": 93,
+      "all_spans_in_candidate_pool": false,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": null,
+          "version_id": "ver_b8b18cda9b875d51a2ce979a1bf4e909",
+          "section_path": [
+            "Tool parameters"
+          ],
+          "char_start": 13205,
+          "char_end": 13710,
+          "candidate_a_rank": null,
+          "candidate_a_score": null,
+          "ce_score": null,
+          "blend_score": null,
+          "d_rank": null,
+          "d_doc_rank": 1,
+          "d_in_top_10": false,
+          "in_candidate_pool": false,
+          "within": {
+            "10": false,
+            "20": false,
+            "30": false,
+            "50": false,
+            "100": false,
+            "300": false
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 653.27,
+        "cross_encoder": 5009.72,
+        "total": 5663.67
+      },
+      "provider": "anthropic",
+      "reasoning_type": null,
+      "evidence_shape": "single_span",
+      "group": "002",
+      "span_count": 1
+    },
+    "GOLD-B002-08": {
+      "case_id": "GOLD-B002-08",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 93,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_57aee91c0f4394e8c4e843dc911cc2592d12ad51",
+          "version_id": "ver_d81ee605bd8bbb880deea432e51462ac",
+          "section_path": [
+            "Trigger a routine",
+            "Request body"
+          ],
+          "char_start": 8144,
+          "char_end": 8480,
+          "candidate_a_rank": 1,
+          "candidate_a_score": 0.030621785881252923,
+          "ce_score": -2.203716516494751,
+          "blend_score": 0.8596341655584856,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 533.12,
+        "cross_encoder": 4914.32,
+        "total": 5448.15
+      },
+      "provider": "anthropic",
+      "reasoning_type": null,
+      "evidence_shape": "single_span",
+      "group": "002",
+      "span_count": 1
+    },
+    "GOLD-B002-09": {
+      "case_id": "GOLD-B002-09",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 91,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_56e46425d7d8661df363a65c2d96e08291bdf8d1",
+          "version_id": "ver_d9ba3ab0d872dd86047c7ed6dc783235",
+          "section_path": [
+            "How to implement computer use",
+            "Tool parameters"
+          ],
+          "char_start": 33443,
+          "char_end": 33611,
+          "candidate_a_rank": 1,
+          "candidate_a_score": 0.02976190476190476,
+          "ce_score": 2.637341022491455,
+          "blend_score": 0.872270399177334,
+          "d_rank": 5,
+          "d_doc_rank": 5,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 449.61,
+        "cross_encoder": 5127.19,
+        "total": 5577.44
+      },
+      "provider": "anthropic",
+      "reasoning_type": null,
+      "evidence_shape": "single_span",
+      "group": "002",
+      "span_count": 1
+    },
+    "GOLD-B002-11": {
+      "case_id": "GOLD-B002-11",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 82,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_58b3955c7f0f62bbe916781447112c03c7116d22",
+          "version_id": "ver_6c0983aad96f198367a0de369b3bb86c",
+          "section_path": [
+            "Preamble"
+          ],
+          "char_start": 205,
+          "char_end": 656,
+          "candidate_a_rank": 3,
+          "candidate_a_score": 0.03125763125763126,
+          "ce_score": 3.4667439460754395,
+          "blend_score": 0.8064078768838879,
+          "d_rank": 7,
+          "d_doc_rank": 2,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 528.71,
+        "cross_encoder": 4588.09,
+        "total": 5117.44
+      },
+      "provider": "anthropic",
+      "reasoning_type": null,
+      "evidence_shape": "single_span",
+      "group": "002",
+      "span_count": 1
+    },
+    "GOLD-B002-13": {
+      "case_id": "GOLD-B002-13",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 78,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_c4a863b62cf990f14a38a0e3238be0be2fc35e7c",
+          "version_id": "ver_b05e105d93045aff4c7ce998b198ae79",
+          "section_path": [
+            "Install"
+          ],
+          "char_start": 17854,
+          "char_end": 18006,
+          "candidate_a_rank": 1,
+          "candidate_a_score": 0.03278688524590164,
+          "ce_score": 7.955388069152832,
+          "blend_score": 1.0,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 480.62,
+        "cross_encoder": 4316.33,
+        "total": 4797.52
+      },
+      "provider": "anthropic",
+      "reasoning_type": null,
+      "evidence_shape": "single_span",
+      "group": "002",
+      "span_count": 1
+    },
+    "GOLD-B002-14": {
+      "case_id": "GOLD-B002-14",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 91,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_c818f6c5cb30e9bc85fc54d705e897bac38273c4",
+          "version_id": "ver_cec813c3bb15b76dcf16e7a0c2231ef1",
+          "section_path": [
+            "Message Batches API",
+            "How to use the Message Batches API",
+            "Extended output (beta)"
+          ],
+          "char_start": 59581,
+          "char_end": 59790,
+          "candidate_a_rank": 1,
+          "candidate_a_score": 0.03278688524590164,
+          "ce_score": 7.966062545776367,
+          "blend_score": 1.0,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 446.31,
+        "cross_encoder": 5233.52,
+        "total": 5680.47
+      },
+      "provider": "anthropic",
+      "reasoning_type": null,
+      "evidence_shape": "single_span",
+      "group": "002",
+      "span_count": 1
+    },
+    "GOLD-B002-15": {
+      "case_id": "GOLD-B002-15",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 92,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_09e95774955eab4143964ed1998592a3355c6ce8",
+          "version_id": "ver_d2295786320b2815477eb963eb1f5e8a",
+          "section_path": [
+            "Testing",
+            "Agent workflow recipes",
+            "Inspect model calls"
+          ],
+          "char_start": 7031,
+          "char_end": 7112,
+          "candidate_a_rank": 1,
+          "candidate_a_score": 0.032266458495966696,
+          "ce_score": 6.106940269470215,
+          "blend_score": 1.0,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 525.32,
+        "cross_encoder": 5176.55,
+        "total": 5702.65
+      },
+      "provider": "openai",
+      "reasoning_type": null,
+      "evidence_shape": "single_span",
+      "group": "002",
+      "span_count": 1
+    },
+    "GOLD-B002-17": {
+      "case_id": "GOLD-B002-17",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 99,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_d46221d40f457b3fe9e9037778d6e29cf6f68658",
+          "version_id": "ver_e8a7b17b5af64679cadea33cd8f6d250",
+          "section_path": [
+            "Migration guide",
+            "Breaking changes",
+            "Named path parameters"
+          ],
+          "char_start": 1813,
+          "char_end": 2009,
+          "candidate_a_rank": 1,
+          "candidate_a_score": 0.03278688524590164,
+          "ce_score": 6.704584121704102,
+          "blend_score": 1.0,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 482.0,
+        "cross_encoder": 7469.14,
+        "total": 7951.84
+      },
+      "provider": "openai",
+      "reasoning_type": null,
+      "evidence_shape": "single_span",
+      "group": "002",
+      "span_count": 1
+    },
+    "GOLD-B003-03": {
+      "case_id": "GOLD-B003-03",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 87,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_0d80b830698d1147df81b01c65345c366c8309ed",
+          "version_id": "ver_b8b18cda9b875d51a2ce979a1bf4e909",
+          "section_path": [
+            "Best practices",
+            "Capping advisor output"
+          ],
+          "char_start": 85181,
+          "char_end": 85263,
+          "candidate_a_rank": 4,
+          "candidate_a_score": 0.0315136476426799,
+          "ce_score": 7.976938247680664,
+          "blend_score": 0.993394906876065,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 428.85,
+        "cross_encoder": 4509.61,
+        "total": 4939.14
+      },
+      "provider": "anthropic",
+      "reasoning_type": "error_behavior",
+      "evidence_shape": "single_span",
+      "group": "003",
+      "span_count": 1
+    },
+    "GOLD-B003-04": {
+      "case_id": "GOLD-B003-04",
+      "fully_recalled": false,
+      "recall": 0.5,
+      "doc_recall": 1.0,
+      "pool_size": 82,
+      "all_spans_in_candidate_pool": false,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_cafda13a0d6e3358aa55aad291f0a8d728bba7cd",
+          "version_id": "ver_b8b18cda9b875d51a2ce979a1bf4e909",
+          "section_path": [
+            "Model compatibility"
+          ],
+          "char_start": 88971,
+          "char_end": 89112,
+          "candidate_a_rank": 1,
+          "candidate_a_score": 0.03278688524590164,
+          "ce_score": 5.823912620544434,
+          "blend_score": 1.0,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        },
+        {
+          "span_index": 1,
+          "chunk_id": null,
+          "version_id": "ver_b8b18cda9b875d51a2ce979a1bf4e909",
+          "section_path": [
+            "Model compatibility"
+          ],
+          "char_start": 92785,
+          "char_end": 92898,
+          "candidate_a_rank": null,
+          "candidate_a_score": null,
+          "ce_score": null,
+          "blend_score": null,
+          "d_rank": null,
+          "d_doc_rank": 1,
+          "d_in_top_10": false,
+          "in_candidate_pool": false,
+          "within": {
+            "10": false,
+            "20": false,
+            "30": false,
+            "50": false,
+            "100": false,
+            "300": false
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 605.28,
+        "cross_encoder": 4372.94,
+        "total": 4978.97
+      },
+      "provider": "anthropic",
+      "reasoning_type": "error_behavior",
+      "evidence_shape": "multi_span",
+      "group": "003",
+      "span_count": 2
+    },
+    "GOLD-B003-06": {
+      "case_id": "GOLD-B003-06",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 82,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_8962ed7b316c30b82f1b2ece2279b37f25bd642f",
+          "version_id": "ver_6c0983aad96f198367a0de369b3bb86c",
+          "section_path": [
+            "Behavior changes",
+            "Sampling parameters not accepted"
+          ],
+          "char_start": 1820,
+          "char_end": 2293,
+          "candidate_a_rank": 2,
+          "candidate_a_score": 0.03225806451612903,
+          "ce_score": 5.732761859893799,
+          "blend_score": 0.9067913819638131,
+          "d_rank": 3,
+          "d_doc_rank": 3,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 511.57,
+        "cross_encoder": 4676.45,
+        "total": 5188.91
+      },
+      "provider": "anthropic",
+      "reasoning_type": "error_behavior",
+      "evidence_shape": "single_span",
+      "group": "003",
+      "span_count": 1
+    },
+    "GOLD-B003-07": {
+      "case_id": "GOLD-B003-07",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 99,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_63dad9012258b6cfa728eb7c0c20ce8654bfade4",
+          "version_id": "ver_1c53b961e1f5da8124a1e7e8eb92c941",
+          "section_path": [
+            "Configuration options for tool result clearing"
+          ],
+          "char_start": 56502,
+          "char_end": 56797,
+          "candidate_a_rank": 11,
+          "candidate_a_score": 0.015151515151515152,
+          "ce_score": -0.3553599715232849,
+          "blend_score": 0.568451909300054,
+          "d_rank": 10,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 337.74,
+        "cross_encoder": 5637.61,
+        "total": 5976.04
+      },
+      "provider": "anthropic",
+      "reasoning_type": "exact_lookup",
+      "evidence_shape": "single_span",
+      "group": "003",
+      "span_count": 1
+    },
+    "GOLD-B003-09": {
+      "case_id": "GOLD-B003-09",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 96,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_7681ff2b4c5f16e8f5e398c4648b509f1501f1c4",
+          "version_id": "ver_72833144cee232446fa450e9e040995a",
+          "section_path": [
+            "Use the text editor tool",
+            "Text editor tool commands",
+            "str\\_replace"
+          ],
+          "char_start": 9811,
+          "char_end": 9871,
+          "candidate_a_rank": 2,
+          "candidate_a_score": 0.0315136476426799,
+          "ce_score": 4.434876441955566,
+          "blend_score": 0.8559343212464361,
+          "d_rank": 2,
+          "d_doc_rank": 2,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 375.07,
+        "cross_encoder": 5337.73,
+        "total": 5713.48
+      },
+      "provider": "anthropic",
+      "reasoning_type": "exact_lookup",
+      "evidence_shape": "single_span",
+      "group": "003",
+      "span_count": 1
+    },
+    "GOLD-B003-10": {
+      "case_id": "GOLD-B003-10",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 89,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_fb8cec32d5f1b7219584e25abf17ab115180f811",
+          "version_id": "ver_3acba29982fd40528ac6498dd0d5fe18",
+          "section_path": [
+            "Migrating to adaptive thinking"
+          ],
+          "char_start": 19000,
+          "char_end": 19251,
+          "candidate_a_rank": 14,
+          "candidate_a_score": 0.015625,
+          "ce_score": 4.481025695800781,
+          "blend_score": 0.7138208870103049,
+          "d_rank": 9,
+          "d_doc_rank": 9,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 587.24,
+        "cross_encoder": 5118.42,
+        "total": 5706.39
+      },
+      "provider": "anthropic",
+      "reasoning_type": "lifecycle",
+      "evidence_shape": "single_span",
+      "group": "003",
+      "span_count": 1
+    },
+    "GOLD-B003-12": {
+      "case_id": "GOLD-B003-12",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 97,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_d45a155577b6dd104aae5c052fe4df1bf027f7e6",
+          "version_id": "ver_53da2f78e855c75ec755089c13d44c28",
+          "section_path": [
+            "Tool definition",
+            "Localization"
+          ],
+          "char_start": 16460,
+          "char_end": 16514,
+          "candidate_a_rank": 1,
+          "candidate_a_score": 0.03252247488101534,
+          "ce_score": 5.613581657409668,
+          "blend_score": 1.0,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        },
+        {
+          "span_index": 1,
+          "chunk_id": "chk_d45a155577b6dd104aae5c052fe4df1bf027f7e6",
+          "version_id": "ver_53da2f78e855c75ec755089c13d44c28",
+          "section_path": [
+            "Tool definition",
+            "Localization"
+          ],
+          "char_start": 16571,
+          "char_end": 16743,
+          "candidate_a_rank": 1,
+          "candidate_a_score": 0.03252247488101534,
+          "ce_score": 5.613581657409668,
+          "blend_score": 1.0,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 495.84,
+        "cross_encoder": 6246.82,
+        "total": 6743.4
+      },
+      "provider": "anthropic",
+      "reasoning_type": "exact_lookup",
+      "evidence_shape": "multi_span",
+      "group": "003",
+      "span_count": 2
+    },
+    "GOLD-B003-13": {
+      "case_id": "GOLD-B003-13",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 97,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_52866c84e212a472d923a5601579039e2daf0582",
+          "version_id": "ver_ae3bfcc42c733c5051abda30f0f6db07",
+          "section_path": [
+            "Human-in-the-loop",
+            "Custom rejection messages"
+          ],
+          "char_start": 6226,
+          "char_end": 6326,
+          "candidate_a_rank": 1,
+          "candidate_a_score": 0.03278688524590164,
+          "ce_score": 6.813810348510742,
+          "blend_score": 1.0,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 504.24,
+        "cross_encoder": 6816.61,
+        "total": 7322.08
+      },
+      "provider": "openai",
+      "reasoning_type": "configuration_interaction",
+      "evidence_shape": "single_span",
+      "group": "003",
+      "span_count": 1
+    },
+    "GOLD-B003-14": {
+      "case_id": "GOLD-B003-14",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 97,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_3a13ad54f63252586be4c51fcf14e7f591355b2b",
+          "version_id": "ver_9247e3ce4df6f79d9cadc44e1a3bbd0c",
+          "section_path": [
+            "configured through AWS_REGION, AWS_DEFAULT_REGION, or your AWS profile."
+          ],
+          "char_start": 34622,
+          "char_end": 34765,
+          "candidate_a_rank": 1,
+          "candidate_a_score": 0.032266458495966696,
+          "ce_score": 8.418947219848633,
+          "blend_score": 1.0,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 292.0,
+        "cross_encoder": 5856.79,
+        "total": 6149.52
+      },
+      "provider": "openai",
+      "reasoning_type": "configuration_interaction",
+      "evidence_shape": "single_span",
+      "group": "003",
+      "span_count": 1
+    },
+    "GOLD-B003-16": {
+      "case_id": "GOLD-B003-16",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 91,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_33c57d9933819d5387c1efb6a939d73d222bea8d",
+          "version_id": "ver_57e26a49b0a3714f3e90376d014d7f52",
+          "section_path": [
+            "Streaming Helpers",
+            "Chat Completions API",
+            "Chat Completions Events",
+            "ChunkEvent"
+          ],
+          "char_start": 5518,
+          "char_end": 5672,
+          "candidate_a_rank": 1,
+          "candidate_a_score": 0.03278688524590164,
+          "ce_score": 4.461399078369141,
+          "blend_score": 1.0,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 396.57,
+        "cross_encoder": 4955.25,
+        "total": 5352.5
+      },
+      "provider": "openai",
+      "reasoning_type": "exact_lookup",
+      "evidence_shape": "single_span",
+      "group": "003",
+      "span_count": 1
+    },
+    "GOLD-B003-17": {
+      "case_id": "GOLD-B003-17",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 92,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_c5cf89ccf4de21794e5297d03f81b0b588f45533",
+          "version_id": "ver_57e26a49b0a3714f3e90376d014d7f52",
+          "section_path": [
+            "Streaming Helpers",
+            "Chat Completions API",
+            "Chat Completions Events",
+            "ContentDeltaEvent"
+          ],
+          "char_start": 5741,
+          "char_end": 6000,
+          "candidate_a_rank": 1,
+          "candidate_a_score": 0.032266458495966696,
+          "ce_score": 1.3934051990509033,
+          "blend_score": 0.9357748362281468,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 389.54,
+        "cross_encoder": 5145.26,
+        "total": 5535.49
+      },
+      "provider": "openai",
+      "reasoning_type": "exact_lookup",
+      "evidence_shape": "single_span",
+      "group": "003",
+      "span_count": 1
+    },
+    "GOLD-B003-19": {
+      "case_id": "GOLD-B003-19",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 97,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_723d13e45cb7a0f90949ffac1ea3f1ef395e2167",
+          "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+          "section_path": [
+            "Running agents",
+            "Runner lifecycle and configuration",
+            "Run config",
+            "Run config details",
+            "`tool_error_formatter`"
+          ],
+          "char_start": 15267,
+          "char_end": 15450,
+          "candidate_a_rank": 1,
+          "candidate_a_score": 0.03252247488101534,
+          "ce_score": 6.821854591369629,
+          "blend_score": 1.0,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        },
+        {
+          "span_index": 1,
+          "chunk_id": "chk_723d13e45cb7a0f90949ffac1ea3f1ef395e2167",
+          "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+          "section_path": [
+            "Running agents",
+            "Runner lifecycle and configuration",
+            "Run config",
+            "Run config details",
+            "`tool_error_formatter`"
+          ],
+          "char_start": 15451,
+          "char_end": 15557,
+          "candidate_a_rank": 1,
+          "candidate_a_score": 0.03252247488101534,
+          "ce_score": 6.821854591369629,
+          "blend_score": 1.0,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 450.3,
+        "cross_encoder": 6045.63,
+        "total": 6496.73
+      },
+      "provider": "openai",
+      "reasoning_type": "exact_lookup",
+      "evidence_shape": "multi_span",
+      "group": "003",
+      "span_count": 2
+    },
+    "GOLD-B004-01": {
+      "case_id": "GOLD-B004-01",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 76,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_55c6a6890cf965f0c89b45b6e3fbd5868e7b7442",
+          "version_id": "ver_4d14aec24504f4b8f6f28938b84587dc",
+          "section_path": [
+            "Best practices for handling stop reasons",
+            "Implement retry logic for pause\\_turn"
+          ],
+          "char_start": 80272,
+          "char_end": 80481,
+          "candidate_a_rank": 1,
+          "candidate_a_score": 0.03252247488101534,
+          "ce_score": 8.496826171875,
+          "blend_score": 1.0,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 492.91,
+        "cross_encoder": 4219.71,
+        "total": 4713.24
+      },
+      "provider": "anthropic",
+      "reasoning_type": "error_behavior",
+      "evidence_shape": "single_span",
+      "group": "004",
+      "span_count": 1
+    },
+    "GOLD-B004-03": {
+      "case_id": "GOLD-B004-03",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 87,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_5436cb8f56dc069978876d483e91bb6f71ae9e0c",
+          "version_id": "ver_0774ca0093ff4a846753577c9a4a39d5",
+          "section_path": [
+            "Common validation errors",
+            "Thinking blocks cannot be modified"
+          ],
+          "char_start": 19838,
+          "char_end": 20070,
+          "candidate_a_rank": 1,
+          "candidate_a_score": 0.03278688524590164,
+          "ce_score": 8.342606544494629,
+          "blend_score": 1.0,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 621.53,
+        "cross_encoder": 4477.4,
+        "total": 5099.92
+      },
+      "provider": "anthropic",
+      "reasoning_type": "error_behavior",
+      "evidence_shape": "single_span",
+      "group": "004",
+      "span_count": 1
+    },
+    "GOLD-B004-05": {
+      "case_id": "GOLD-B004-05",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 91,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_8cedec802c3d4b75097d384b2afdd3deaf79d128",
+          "version_id": "ver_53da2f78e855c75ec755089c13d44c28",
+          "section_path": [
+            "Tool definition",
+            "Max uses"
+          ],
+          "char_start": 15475,
+          "char_end": 15603,
+          "candidate_a_rank": 1,
+          "candidate_a_score": 0.03252247488101534,
+          "ce_score": 8.234681129455566,
+          "blend_score": 1.0,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 350.24,
+        "cross_encoder": 5176.05,
+        "total": 5527.01
+      },
+      "provider": "anthropic",
+      "reasoning_type": "error_behavior",
+      "evidence_shape": "single_span",
+      "group": "004",
+      "span_count": 1
+    },
+    "GOLD-B004-06": {
+      "case_id": "GOLD-B004-06",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 89,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_d45a155577b6dd104aae5c052fe4df1bf027f7e6",
+          "version_id": "ver_53da2f78e855c75ec755089c13d44c28",
+          "section_path": [
+            "Tool definition",
+            "Localization"
+          ],
+          "char_start": 16295,
+          "char_end": 16843,
+          "candidate_a_rank": 2,
+          "candidate_a_score": 0.032266458495966696,
+          "ce_score": 4.495139122009277,
+          "blend_score": 1.0,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 356.44,
+        "cross_encoder": 4776.12,
+        "total": 5133.21
+      },
+      "provider": "anthropic",
+      "reasoning_type": "exact_lookup",
+      "evidence_shape": "single_span",
+      "group": "004",
+      "span_count": 1
+    },
+    "GOLD-B004-07": {
+      "case_id": "GOLD-B004-07",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 82,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_c3a9fbfa09c80879864e61349570b4d21486b65c",
+          "version_id": "ver_0a5b292d4854b92db0a9e025b4949123",
+          "section_path": [
+            "Thinking and reasoning",
+            "Overthinking and excessive thoroughness"
+          ],
+          "char_start": 27270,
+          "char_end": 27426,
+          "candidate_a_rank": 1,
+          "candidate_a_score": 0.03278688524590164,
+          "ce_score": 6.4230475425720215,
+          "blend_score": 1.0,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 621.83,
+        "cross_encoder": 4174.57,
+        "total": 4797.04
+      },
+      "provider": "anthropic",
+      "reasoning_type": "lifecycle_compatibility_migration",
+      "evidence_shape": "single_span",
+      "group": "004",
+      "span_count": 1
+    },
+    "GOLD-B004-09": {
+      "case_id": "GOLD-B004-09",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 96,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_ab328b9bf181b78f532a93463b4bc533a6d405fd",
+          "version_id": "ver_57e26a49b0a3714f3e90376d014d7f52",
+          "section_path": [
+            "Streaming Helpers",
+            "Chat Completions API",
+            "Chat Completions Events",
+            "FunctionToolCallArgumentsDeltaEvent"
+          ],
+          "char_start": 6627,
+          "char_end": 6997,
+          "candidate_a_rank": 1,
+          "candidate_a_score": 0.03278688524590164,
+          "ce_score": 4.400516986846924,
+          "blend_score": 1.0,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        },
+        {
+          "span_index": 1,
+          "chunk_id": "chk_81bbb26b44ac26895d4c348d704df8fa89d9c796",
+          "version_id": "ver_57e26a49b0a3714f3e90376d014d7f52",
+          "section_path": [
+            "Streaming Helpers",
+            "Chat Completions API",
+            "Chat Completions Events",
+            "FunctionToolCallArgumentsDoneEvent"
+          ],
+          "char_start": 7072,
+          "char_end": 7509,
+          "candidate_a_rank": 2,
+          "candidate_a_score": 0.03225806451612903,
+          "ce_score": 3.2175393104553223,
+          "blend_score": 0.93944057335483,
+          "d_rank": 2,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 512.08,
+        "cross_encoder": 5224.01,
+        "total": 5736.8
+      },
+      "provider": "openai",
+      "reasoning_type": "ambiguity_disambiguation",
+      "evidence_shape": "multi_span",
+      "group": "004",
+      "span_count": 2
+    },
+    "GOLD-B004-11": {
+      "case_id": "GOLD-B004-11",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 80,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_28e7f9982f93420ff1617da505ddb03f3dee23f2",
+          "version_id": "ver_12004469f7a5592cd1e6cab936117fce",
+          "section_path": [
+            "Streaming",
+            "Streaming and approvals"
+          ],
+          "char_start": 2472,
+          "char_end": 2657,
+          "candidate_a_rank": 1,
+          "candidate_a_score": 0.03278688524590164,
+          "ce_score": 6.986564636230469,
+          "blend_score": 1.0,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 348.12,
+        "cross_encoder": 4487.52,
+        "total": 4836.33
+      },
+      "provider": "openai",
+      "reasoning_type": "error_behavior",
+      "evidence_shape": "single_span",
+      "group": "004",
+      "span_count": 1
+    },
+    "GOLD-B004-15": {
+      "case_id": "GOLD-B004-15",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 88,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_15c1a5ddd54293c0cc720b0b08d7da51fc1c1d9d",
+          "version_id": "ver_ae3bfcc42c733c5051abda30f0f6db07",
+          "section_path": [
+            "Human-in-the-loop",
+            "Marking tools that need approval"
+          ],
+          "char_start": 1327,
+          "char_end": 1436,
+          "candidate_a_rank": 3,
+          "candidate_a_score": 0.03128054740957967,
+          "ce_score": 4.945804119110107,
+          "blend_score": 0.9344101921568269,
+          "d_rank": 3,
+          "d_doc_rank": 2,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        },
+        {
+          "span_index": 1,
+          "chunk_id": "chk_077e9504b8df3ca7e4f429685e929df5927615f6",
+          "version_id": "ver_ae909bf8b4bbbe1d1a11119447f7ac94",
+          "section_path": [
+            "Models",
+            "OpenAI models",
+            "Hosted multi-agent (experimental)",
+            "Local function tools"
+          ],
+          "char_start": 16313,
+          "char_end": 16910,
+          "candidate_a_rank": 1,
+          "candidate_a_score": 0.032266458495966696,
+          "ce_score": 6.0127105712890625,
+          "blend_score": 1.0,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 465.36,
+        "cross_encoder": 5207.65,
+        "total": 5673.67
+      },
+      "provider": "openai",
+      "reasoning_type": "genuine_multi_hop",
+      "evidence_shape": "multi_document",
+      "group": "004",
+      "span_count": 2
+    },
+    "GOLD-B005-02": {
+      "case_id": "GOLD-B005-02",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 86,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_904b4ecd00271a663200618f859618f1829f5683",
+          "version_id": "ver_c299b58fe1f5a4d3a081b550334a7df6",
+          "section_path": [
+            "Federation Issuers",
+            "Create Federation Issuer"
+          ],
+          "char_start": 469462,
+          "char_end": 469739,
+          "candidate_a_rank": 1,
+          "candidate_a_score": 0.03252247488101534,
+          "ce_score": 6.235546112060547,
+          "blend_score": 1.0,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 420.34,
+        "cross_encoder": 4820.76,
+        "total": 5241.78
+      },
+      "provider": "anthropic",
+      "reasoning_type": "configuration_interaction",
+      "evidence_shape": "single_span",
+      "group": "005",
+      "span_count": 1
+    },
+    "GOLD-B005-03": {
+      "case_id": "GOLD-B005-03",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 83,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_f7d6b723784bb49021268439c8098bb6046f37ef",
+          "version_id": "ver_de7f74230c8f10d30aea5d037a3bd0a5",
+          "section_path": [
+            "Deployment Runs",
+            "List Deployment Runs",
+            "Query Parameters"
+          ],
+          "char_start": 2711799,
+          "char_end": 2711869,
+          "candidate_a_rank": 1,
+          "candidate_a_score": 0.031099324975891997,
+          "ce_score": 3.433688163757324,
+          "blend_score": 1.0,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 342.01,
+        "cross_encoder": 4393.64,
+        "total": 4736.32
+      },
+      "provider": "anthropic",
+      "reasoning_type": "error_behavior",
+      "evidence_shape": "single_span",
+      "group": "005",
+      "span_count": 1
+    },
+    "GOLD-B005-04": {
+      "case_id": "GOLD-B005-04",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 97,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_bb3f04b46b6c14182c858d5db8ecbbcbb1b557ea",
+          "version_id": "ver_53da2f78e855c75ec755089c13d44c28",
+          "section_path": [
+            "Response",
+            "Search results"
+          ],
+          "char_start": 20614,
+          "char_end": 20707,
+          "candidate_a_rank": 1,
+          "candidate_a_score": 0.03278688524590164,
+          "ce_score": 8.187902450561523,
+          "blend_score": 1.0,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 418.37,
+        "cross_encoder": 5598.23,
+        "total": 6017.64
+      },
+      "provider": "anthropic",
+      "reasoning_type": "error_behavior",
+      "evidence_shape": "single_span",
+      "group": "005",
+      "span_count": 1
+    },
+    "GOLD-B005-05": {
+      "case_id": "GOLD-B005-05",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 98,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_b0b34bcf764aff0cb7a8b704e79fac91fec85f42",
+          "version_id": "ver_8d2a22e3827c98e0b9d4e1ef411e5353",
+          "section_path": [
+            "Domain filtering"
+          ],
+          "char_start": 40135,
+          "char_end": 40286,
+          "candidate_a_rank": 1,
+          "candidate_a_score": 0.030834914611005692,
+          "ce_score": 3.2262279987335205,
+          "blend_score": 1.0,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 328.14,
+        "cross_encoder": 5327.71,
+        "total": 5656.6
+      },
+      "provider": "anthropic",
+      "reasoning_type": "exact_lookup",
+      "evidence_shape": "single_span",
+      "group": "005",
+      "span_count": 1
+    },
+    "GOLD-B005-07": {
+      "case_id": "GOLD-B005-07",
+      "fully_recalled": false,
+      "recall": 0.0,
+      "doc_recall": 1.0,
+      "pool_size": 99,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_4e24ec5e67a63aa6cb59ee01cb795a91510f09d9",
+          "version_id": "ver_1c53b961e1f5da8124a1e7e8eb92c941",
+          "section_path": [
+            "Client-side compaction (SDK)"
+          ],
+          "char_start": 75250,
+          "char_end": 75380,
+          "candidate_a_rank": 51,
+          "candidate_a_score": 0.011627906976744186,
+          "ce_score": 1.379705548286438,
+          "blend_score": 0.5687887076353505,
+          "d_rank": 14,
+          "d_doc_rank": 1,
+          "d_in_top_10": false,
+          "in_candidate_pool": true,
+          "within": {
+            "10": false,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 308.44,
+        "cross_encoder": 5890.27,
+        "total": 6200.0
+      },
+      "provider": "anthropic",
+      "reasoning_type": "lifecycle_compatibility_migration",
+      "evidence_shape": "single_span",
+      "group": "005",
+      "span_count": 1
+    },
+    "GOLD-B005-08": {
+      "case_id": "GOLD-B005-08",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 77,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_55418dd839b07ae67af55eda04d485d9de005832",
+          "version_id": "ver_9c5166b670bf43589ee63d0dbe8b93d2",
+          "section_path": [
+            "Calibrating effort and thinking depth"
+          ],
+          "char_start": 5356,
+          "char_end": 5491,
+          "candidate_a_rank": 4,
+          "candidate_a_score": 0.029877369007803793,
+          "ce_score": 9.292708396911621,
+          "blend_score": 0.9690740083903918,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 539.4,
+        "cross_encoder": 4401.02,
+        "total": 4941.11
+      },
+      "provider": "anthropic",
+      "reasoning_type": "lifecycle_compatibility_migration",
+      "evidence_shape": "single_span",
+      "group": "005",
+      "span_count": 1
+    },
+    "GOLD-B005-12": {
+      "case_id": "GOLD-B005-12",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 98,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_cb72e7007fe57c89e62abbe4dc819002cbf369f5",
+          "version_id": "ver_3d4b8881962381cbfba18ade50c598e1",
+          "section_path": [
+            "Sandbox clients",
+            "Supported hosted platforms",
+            "Size Modal sandboxes"
+          ],
+          "char_start": 11024,
+          "char_end": 11174,
+          "candidate_a_rank": 2,
+          "candidate_a_score": 0.02813852813852814,
+          "ce_score": -5.449237823486328,
+          "blend_score": 0.6005305244290748,
+          "d_rank": 2,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 242.01,
+        "cross_encoder": 5202.87,
+        "total": 5446.02
+      },
+      "provider": "openai",
+      "reasoning_type": "configuration_interaction",
+      "evidence_shape": "single_span",
+      "group": "005",
+      "span_count": 1
+    },
+    "GOLD-B005-14": {
+      "case_id": "GOLD-B005-14",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 96,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_8e27a471f0efa76e3a1745884f146351d1086d36",
+          "version_id": "ver_cbeb36b7cf9a5e241940a011629b6f1b",
+          "section_path": [
+            "Tools",
+            "Local runtime tools"
+          ],
+          "char_start": 14491,
+          "char_end": 14581,
+          "candidate_a_rank": 1,
+          "candidate_a_score": 0.03125,
+          "ce_score": 5.944425106048584,
+          "blend_score": 1.0,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 236.54,
+        "cross_encoder": 5110.08,
+        "total": 5347.39
+      },
+      "provider": "openai",
+      "reasoning_type": "configuration_interaction",
+      "evidence_shape": "single_span",
+      "group": "005",
+      "span_count": 1
+    },
+    "GOLD-B005-16": {
+      "case_id": "GOLD-B005-16",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 89,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_96b5d697ae82d0571ece42d889df4f71896fcaff",
+          "version_id": "ver_f8002fe268b970eaea8d640f9dd91fb3",
+          "section_path": [
+            "Usage",
+            "Accessing usage with sessions"
+          ],
+          "char_start": 4684,
+          "char_end": 4801,
+          "candidate_a_rank": 1,
+          "candidate_a_score": 0.03278688524590164,
+          "ce_score": 7.8668646812438965,
+          "blend_score": 1.0,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 471.29,
+        "cross_encoder": 5122.22,
+        "total": 5594.31
+      },
+      "provider": "openai",
+      "reasoning_type": "configuration_interaction",
+      "evidence_shape": "single_span",
+      "group": "005",
+      "span_count": 1
+    },
+    "GOLD-B006-01": {
+      "case_id": "GOLD-B006-01",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 93,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_127c0a7c4a2011d4d25cee3bff06163126963808",
+          "version_id": "ver_c299b58fe1f5a4d3a081b550334a7df6",
+          "section_path": [
+            "Service Accounts",
+            "Create Service Account"
+          ],
+          "char_start": 441865,
+          "char_end": 442046,
+          "candidate_a_rank": 1,
+          "candidate_a_score": 0.03278688524590164,
+          "ce_score": 7.859552383422852,
+          "blend_score": 1.0,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 605.47,
+        "cross_encoder": 5202.39,
+        "total": 5808.58
+      },
+      "provider": "anthropic",
+      "reasoning_type": "exact_lookup",
+      "evidence_shape": "single_span",
+      "group": "006",
+      "span_count": 1
+    },
+    "GOLD-B006-02": {
+      "case_id": "GOLD-B006-02",
+      "fully_recalled": false,
+      "recall": 0.0,
+      "doc_recall": 1.0,
+      "pool_size": 98,
+      "all_spans_in_candidate_pool": false,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": null,
+          "version_id": "ver_a7bda3595f2c124605c3228464d4ee52",
+          "section_path": [
+            "Opus migration",
+            "What changed"
+          ],
+          "char_start": 55306,
+          "char_end": 55378,
+          "candidate_a_rank": null,
+          "candidate_a_score": null,
+          "ce_score": null,
+          "blend_score": null,
+          "d_rank": null,
+          "d_doc_rank": 7,
+          "d_in_top_10": false,
+          "in_candidate_pool": false,
+          "within": {
+            "10": false,
+            "20": false,
+            "30": false,
+            "50": false,
+            "100": false,
+            "300": false
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 504.82,
+        "cross_encoder": 5938.71,
+        "total": 6444.29
+      },
+      "provider": "anthropic",
+      "reasoning_type": "error_behavior",
+      "evidence_shape": "single_span",
+      "group": "006",
+      "span_count": 1
+    },
+    "GOLD-B006-05": {
+      "case_id": "GOLD-B006-05",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 92,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_32b4feb39a826f910fe73572c0bf8772056a6964",
+          "version_id": "ver_a7bda3595f2c124605c3228464d4ee52",
+          "section_path": [
+            "Or, for the generally available model with the same capabilities:",
+            "Migration checklist"
+          ],
+          "char_start": 15155,
+          "char_end": 15337,
+          "candidate_a_rank": 4,
+          "candidate_a_score": 0.027972027972027972,
+          "ce_score": 5.719549655914307,
+          "blend_score": 0.8669135381372888,
+          "d_rank": 4,
+          "d_doc_rank": 2,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 416.67,
+        "cross_encoder": 5814.4,
+        "total": 6232.07
+      },
+      "provider": "anthropic",
+      "reasoning_type": "exact_lookup",
+      "evidence_shape": "single_span",
+      "group": "006",
+      "span_count": 1
+    },
+    "GOLD-B006-07": {
+      "case_id": "GOLD-B006-07",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 98,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_bcad2f08c6431070fb56b0dd09b8a856f2d896ac",
+          "version_id": "ver_14a2187cf2216b9d56c213b520a28479",
+          "section_path": [
+            "Realtime agents guide",
+            "Agent and session configuration",
+            "Input transcription settings"
+          ],
+          "char_start": 7318,
+          "char_end": 7399,
+          "candidate_a_rank": 1,
+          "candidate_a_score": 0.027757078986587184,
+          "ce_score": 6.572044372558594,
+          "blend_score": 1.0,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 311.98,
+        "cross_encoder": 5519.81,
+        "total": 5832.5
+      },
+      "provider": "openai",
+      "reasoning_type": "configuration_interaction",
+      "evidence_shape": "single_span",
+      "group": "006",
+      "span_count": 1
+    },
+    "GOLD-B006-09": {
+      "case_id": "GOLD-B006-09",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 99,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_91f2d9278c38182475314f64d471587ce5a3799f",
+          "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+          "section_path": [
+            "Running agents",
+            "Errors and recovery",
+            "Error handlers"
+          ],
+          "char_start": 29933,
+          "char_end": 29995,
+          "candidate_a_rank": 1,
+          "candidate_a_score": 0.03278688524590164,
+          "ce_score": 7.933586120605469,
+          "blend_score": 1.0,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 329.08,
+        "cross_encoder": 5425.39,
+        "total": 5755.23
+      },
+      "provider": "openai",
+      "reasoning_type": "exact_lookup",
+      "evidence_shape": "single_span",
+      "group": "006",
+      "span_count": 1
+    },
+    "HA-01": {
+      "case_id": "HA-01",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 94,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_4ccf6749c55e02c777d319b7dfc1f823b4334c37",
+          "version_id": "ver_b275f1db2ff0a82e2654391774f8e398",
+          "section_path": [
+            "Also works with synchronous runner",
+            "Limiting retrieved history"
+          ],
+          "char_start": 5348,
+          "char_end": 5516,
+          "candidate_a_rank": 1,
+          "candidate_a_score": 0.032018442622950824,
+          "ce_score": 5.0965576171875,
+          "blend_score": 1.0,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 577.98,
+        "cross_encoder": 5834.13,
+        "total": 6412.82
+      },
+      "provider": "openai",
+      "reasoning_type": "configuration_interaction",
+      "evidence_shape": "single_span",
+      "group": "HA",
+      "span_count": 1
+    },
+    "HA-02": {
+      "case_id": "HA-02",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 76,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_c9ec19ea18fa7a53d8652f69d419386f791d0722",
+          "version_id": "ver_f15e1a531d680bb98179238f80355058",
+          "section_path": [
+            "Configuration",
+            "API keys and clients",
+            "Custom HTTP clients with `openai` v3"
+          ],
+          "char_start": 3763,
+          "char_end": 3838,
+          "candidate_a_rank": 1,
+          "candidate_a_score": 0.03252247488101534,
+          "ce_score": 10.256452560424805,
+          "blend_score": 1.0,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 471.33,
+        "cross_encoder": 4809.18,
+        "total": 5281.13
+      },
+      "provider": "openai",
+      "reasoning_type": "lifecycle_compatibility_migration",
+      "evidence_shape": "single_span",
+      "group": "HA",
+      "span_count": 1
+    },
+    "HA-03": {
+      "case_id": "HA-03",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 86,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_2753d95cafe4c30008abb9446b826ed49433fcbd",
+          "version_id": "ver_f15e1a531d680bb98179238f80355058",
+          "section_path": [
+            "Configuration",
+            "OpenAI provider defaults"
+          ],
+          "char_start": 6364,
+          "char_end": 6518,
+          "candidate_a_rank": 1,
+          "candidate_a_score": 0.03278688524590164,
+          "ce_score": 6.415964126586914,
+          "blend_score": 1.0,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 656.07,
+        "cross_encoder": 5060.48,
+        "total": 5717.28
+      },
+      "provider": "openai",
+      "reasoning_type": "configuration_interaction",
+      "evidence_shape": "single_span",
+      "group": "HA",
+      "span_count": 1
+    },
+    "HA-04": {
+      "case_id": "HA-04",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 90,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_18d3ef3e53a42b81e3a6896ca334e4c1b4b1d89f",
+          "version_id": "ver_f22fbd5c504fa28a4e70440337e4a495",
+          "section_path": [
+            "Guardrails",
+            "Output guardrails"
+          ],
+          "char_start": 4256,
+          "char_end": 4366,
+          "candidate_a_rank": 2,
+          "candidate_a_score": 0.03125763125763126,
+          "ce_score": 3.413106679916382,
+          "blend_score": 0.9535806167974786,
+          "d_rank": 2,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 505.35,
+        "cross_encoder": 5102.53,
+        "total": 5608.55
+      },
+      "provider": "openai",
+      "reasoning_type": "configuration_interaction",
+      "evidence_shape": "single_span",
+      "group": "HA",
+      "span_count": 1
+    },
+    "HA-05": {
+      "case_id": "HA-05",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 87,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_62e6c4b4e66a3804aef086cc6330b1b5e0c0d1f5",
+          "version_id": "ver_ae909bf8b4bbbe1d1a11119447f7ac94",
+          "section_path": [
+            "Models",
+            "Model-call timeouts"
+          ],
+          "char_start": 31038,
+          "char_end": 31376,
+          "candidate_a_rank": 1,
+          "candidate_a_score": 0.03252247488101534,
+          "ce_score": 1.7599329948425293,
+          "blend_score": 0.8837072443206058,
+          "d_rank": 3,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        },
+        {
+          "span_index": 1,
+          "chunk_id": "chk_ae7468bafae8964e857a2715b958ddb840a58972",
+          "version_id": "ver_ae909bf8b4bbbe1d1a11119447f7ac94",
+          "section_path": [
+            "Models",
+            "Model-call timeouts"
+          ],
+          "char_start": 31521,
+          "char_end": 31692,
+          "candidate_a_rank": 2,
+          "candidate_a_score": 0.03252247488101534,
+          "ce_score": 4.17860746383667,
+          "blend_score": 1.0,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 487.26,
+        "cross_encoder": 4727.29,
+        "total": 5215.36
+      },
+      "provider": "openai",
+      "reasoning_type": "error_behavior",
+      "evidence_shape": "multi_span_same_fact",
+      "group": "HA",
+      "span_count": 2
+    },
+    "HA-06": {
+      "case_id": "HA-06",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 91,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_f6e47363164568496357b6005e8f42ad3b3af77a",
+          "version_id": "ver_f4be547b9adbe8f607eae8c2422c6985",
+          "section_path": [
+            "Model context protocol (MCP)",
+            "MCP Python SDK v1 and v2"
+          ],
+          "char_start": 3004,
+          "char_end": 3488,
+          "candidate_a_rank": 1,
+          "candidate_a_score": 0.03278688524590164,
+          "ce_score": 6.779313087463379,
+          "blend_score": 1.0,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 677.68,
+        "cross_encoder": 4935.25,
+        "total": 5613.61
+      },
+      "provider": "openai",
+      "reasoning_type": "lifecycle_compatibility_migration",
+      "evidence_shape": "single_span",
+      "group": "HA",
+      "span_count": 1
+    },
+    "HA-09": {
+      "case_id": "HA-09",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 73,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_c9ec19ea18fa7a53d8652f69d419386f791d0722",
+          "version_id": "ver_f15e1a531d680bb98179238f80355058",
+          "section_path": [
+            "Configuration",
+            "API keys and clients",
+            "Custom HTTP clients with `openai` v3"
+          ],
+          "char_start": 4259,
+          "char_end": 4502,
+          "candidate_a_rank": 6,
+          "candidate_a_score": 0.0287391216352965,
+          "ce_score": 3.9260075092315674,
+          "blend_score": 0.9123714767546725,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 506.74,
+        "cross_encoder": 3986.98,
+        "total": 4494.36
+      },
+      "provider": "openai",
+      "reasoning_type": "configuration_interaction",
+      "evidence_shape": "single_span",
+      "group": "HA",
+      "span_count": 1
+    },
+    "HA-14": {
+      "case_id": "HA-14",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 91,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_b17099fe75c44006e954e286fa820bb2685015c4",
+          "version_id": "ver_f22fbd5c504fa28a4e70440337e4a495",
+          "section_path": [
+            "Guardrails",
+            "Tripwires"
+          ],
+          "char_start": 7942,
+          "char_end": 8267,
+          "candidate_a_rank": 1,
+          "candidate_a_score": 0.03278688524590164,
+          "ce_score": 2.7147128582000732,
+          "blend_score": 1.0,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        },
+        {
+          "span_index": 1,
+          "chunk_id": "chk_b17099fe75c44006e954e286fa820bb2685015c4",
+          "version_id": "ver_f22fbd5c504fa28a4e70440337e4a495",
+          "section_path": [
+            "Guardrails",
+            "Tripwires"
+          ],
+          "char_start": 8268,
+          "char_end": 8389,
+          "candidate_a_rank": 1,
+          "candidate_a_score": 0.03278688524590164,
+          "ce_score": 2.7147128582000732,
+          "blend_score": 1.0,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 491.26,
+        "cross_encoder": 6648.47,
+        "total": 7140.41
+      },
+      "provider": "openai",
+      "reasoning_type": "error_behavior",
+      "evidence_shape": "multi_span_same_fact",
+      "group": "HA",
+      "span_count": 2
+    },
+    "HA-16": {
+      "case_id": "HA-16",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 87,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_ddacc7aafcf9a596a5302fac95ac286957de4c5c",
+          "version_id": "ver_1c77f33b04ffffa285ea7e61c2a89653",
+          "section_path": [
+            "(1)!",
+            "Input filters"
+          ],
+          "char_start": 7535,
+          "char_end": 7883,
+          "candidate_a_rank": 3,
+          "candidate_a_score": 0.028404512489927477,
+          "ce_score": 3.7210617065429688,
+          "blend_score": 0.97901111176436,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        },
+        {
+          "span_index": 1,
+          "chunk_id": "chk_ddacc7aafcf9a596a5302fac95ac286957de4c5c",
+          "version_id": "ver_1c77f33b04ffffa285ea7e61c2a89653",
+          "section_path": [
+            "(1)!",
+            "Input filters"
+          ],
+          "char_start": 8501,
+          "char_end": 8769,
+          "candidate_a_rank": 3,
+          "candidate_a_score": 0.028404512489927477,
+          "ce_score": 3.7210617065429688,
+          "blend_score": 0.97901111176436,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 737.54,
+        "cross_encoder": 4605.32,
+        "total": 5343.5
+      },
+      "provider": "openai",
+      "reasoning_type": "configuration_interaction",
+      "evidence_shape": "multi_span_same_fact",
+      "group": "HA",
+      "span_count": 2
+    },
+    "HA-17": {
+      "case_id": "HA-17",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 87,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_842ec8e93cccd421b4c351a49d9d194910b5d645",
+          "version_id": "ver_ae3bfcc42c733c5051abda30f0f6db07",
+          "section_path": [
+            "Human-in-the-loop"
+          ],
+          "char_start": 586,
+          "char_end": 764,
+          "candidate_a_rank": 1,
+          "candidate_a_score": 0.03278688524590164,
+          "ce_score": 3.1174204349517822,
+          "blend_score": 1.0,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 576.58,
+        "cross_encoder": 4757.46,
+        "total": 5334.72
+      },
+      "provider": "openai",
+      "reasoning_type": "request_response",
+      "evidence_shape": "single_span",
+      "group": "HA",
+      "span_count": 1
+    },
+    "HA-19": {
+      "case_id": "HA-19",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 85,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_91b59aa08660b93d3aa57ac22f7367bb361d3794",
+          "version_id": "ver_ae3bfcc42c733c5051abda30f0f6db07",
+          "section_path": [
+            "Human-in-the-loop",
+            "How the approval flow works"
+          ],
+          "char_start": 4621,
+          "char_end": 4884,
+          "candidate_a_rank": 1,
+          "candidate_a_score": 0.032018442622950824,
+          "ce_score": 4.096064567565918,
+          "blend_score": 1.0,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 500.82,
+        "cross_encoder": 6230.76,
+        "total": 6732.25
+      },
+      "provider": "openai",
+      "reasoning_type": "configuration_interaction",
+      "evidence_shape": "single_span",
+      "group": "HA",
+      "span_count": 1
+    },
+    "HA-20": {
+      "case_id": "HA-20",
+      "fully_recalled": false,
+      "recall": 0.0,
+      "doc_recall": 0.0,
+      "pool_size": 82,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_91b59aa08660b93d3aa57ac22f7367bb361d3794",
+          "version_id": "ver_ae3bfcc42c733c5051abda30f0f6db07",
+          "section_path": [
+            "Human-in-the-loop",
+            "How the approval flow works"
+          ],
+          "char_start": 4886,
+          "char_end": 5194,
+          "candidate_a_rank": 21,
+          "candidate_a_score": 0.015873015873015872,
+          "ce_score": 2.658156633377075,
+          "blend_score": 0.7199265956496398,
+          "d_rank": 15,
+          "d_doc_rank": 15,
+          "d_in_top_10": false,
+          "in_candidate_pool": true,
+          "within": {
+            "10": false,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 728.97,
+        "cross_encoder": 4854.68,
+        "total": 5584.32
+      },
+      "provider": "openai",
+      "reasoning_type": "configuration_interaction",
+      "evidence_shape": "single_span",
+      "group": "HA",
+      "span_count": 1
+    },
+    "HA-21": {
+      "case_id": "HA-21",
+      "fully_recalled": false,
+      "recall": 0.0,
+      "doc_recall": 1.0,
+      "pool_size": 92,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_91b59aa08660b93d3aa57ac22f7367bb361d3794",
+          "version_id": "ver_ae3bfcc42c733c5051abda30f0f6db07",
+          "section_path": [
+            "Human-in-the-loop",
+            "How the approval flow works"
+          ],
+          "char_start": 5538,
+          "char_end": 5703,
+          "candidate_a_rank": 14,
+          "candidate_a_score": 0.015625,
+          "ce_score": -2.5936572551727295,
+          "blend_score": 0.5571693182262512,
+          "d_rank": 29,
+          "d_doc_rank": 7,
+          "d_in_top_10": false,
+          "in_candidate_pool": true,
+          "within": {
+            "10": false,
+            "20": false,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 516.13,
+        "cross_encoder": 5203.97,
+        "total": 5721.11
+      },
+      "provider": "openai",
+      "reasoning_type": "request_response",
+      "evidence_shape": "single_span",
+      "group": "HA",
+      "span_count": 1
+    },
+    "HA-23": {
+      "case_id": "HA-23",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 89,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_ddacc7aafcf9a596a5302fac95ac286957de4c5c",
+          "version_id": "ver_1c77f33b04ffffa285ea7e61c2a89653",
+          "section_path": [
+            "(1)!",
+            "Input filters"
+          ],
+          "char_start": 7535,
+          "char_end": 7883,
+          "candidate_a_rank": 3,
+          "candidate_a_score": 0.030834914611005692,
+          "ce_score": 4.149054050445557,
+          "blend_score": 0.9934690051537024,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        },
+        {
+          "span_index": 1,
+          "chunk_id": "chk_ddacc7aafcf9a596a5302fac95ac286957de4c5c",
+          "version_id": "ver_1c77f33b04ffffa285ea7e61c2a89653",
+          "section_path": [
+            "(1)!",
+            "Input filters"
+          ],
+          "char_start": 8054,
+          "char_end": 8269,
+          "candidate_a_rank": 3,
+          "candidate_a_score": 0.030834914611005692,
+          "ce_score": 4.149054050445557,
+          "blend_score": 0.9934690051537024,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 584.38,
+        "cross_encoder": 6327.84,
+        "total": 6912.92
+      },
+      "provider": "openai",
+      "reasoning_type": "request_response",
+      "evidence_shape": "multi_span_same_fact",
+      "group": "HA",
+      "span_count": 2
+    },
+    "HA-25": {
+      "case_id": "HA-25",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 82,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_92fa440a7d4555008d2fd5c2ca71f2679d4cc9af",
+          "version_id": "ver_f15e1a531d680bb98179238f80355058",
+          "section_path": [
+            "Configuration",
+            "API keys and clients"
+          ],
+          "char_start": 1889,
+          "char_end": 2134,
+          "candidate_a_rank": 2,
+          "candidate_a_score": 0.030886196246139225,
+          "ce_score": 7.248045444488525,
+          "blend_score": 0.9790503291645107,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 540.08,
+        "cross_encoder": 5299.43,
+        "total": 5840.16
+      },
+      "provider": "openai",
+      "reasoning_type": "exact_lookup",
+      "evidence_shape": "single_span",
+      "group": "HA",
+      "span_count": 1
+    },
+    "HA-26": {
+      "case_id": "HA-26",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 77,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_3acba94ce61625e55c0363d82594b78d6866a023",
+          "version_id": "ver_f15e1a531d680bb98179238f80355058",
+          "section_path": [
+            "Configuration",
+            "API keys and clients"
+          ],
+          "char_start": 2468,
+          "char_end": 2600,
+          "candidate_a_rank": 1,
+          "candidate_a_score": 0.032018442622950824,
+          "ce_score": 8.450014114379883,
+          "blend_score": 1.0,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 545.33,
+        "cross_encoder": 4337.14,
+        "total": 4883.06
+      },
+      "provider": "openai",
+      "reasoning_type": "exact_lookup",
+      "evidence_shape": "single_span",
+      "group": "HA",
+      "span_count": 1
+    },
+    "HA-27": {
+      "case_id": "HA-27",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 83,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_2b9b43e71efb00d37c29c6a71ee5d1cde21a802a",
+          "version_id": "ver_f15e1a531d680bb98179238f80355058",
+          "section_path": [
+            "Configuration",
+            "API keys and clients",
+            "Custom HTTP clients with `openai` v3"
+          ],
+          "char_start": 2943,
+          "char_end": 2986,
+          "candidate_a_rank": 19,
+          "candidate_a_score": 0.016129032258064516,
+          "ce_score": 3.8826446533203125,
+          "blend_score": 0.6373647098764762,
+          "d_rank": 7,
+          "d_doc_rank": 7,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 462.95,
+        "cross_encoder": 5555.49,
+        "total": 6019.1
+      },
+      "provider": "openai",
+      "reasoning_type": "exact_lookup",
+      "evidence_shape": "single_span",
+      "group": "HA",
+      "span_count": 1
+    },
+    "HA-28": {
+      "case_id": "HA-28",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 82,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_c9ec19ea18fa7a53d8652f69d419386f791d0722",
+          "version_id": "ver_f15e1a531d680bb98179238f80355058",
+          "section_path": [
+            "Configuration",
+            "API keys and clients",
+            "Custom HTTP clients with `openai` v3"
+          ],
+          "char_start": 4016,
+          "char_end": 4257,
+          "candidate_a_rank": 1,
+          "candidate_a_score": 0.03278688524590164,
+          "ce_score": 7.9640421867370605,
+          "blend_score": 1.0,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 545.73,
+        "cross_encoder": 4493.52,
+        "total": 5040.23
+      },
+      "provider": "openai",
+      "reasoning_type": "exact_lookup",
+      "evidence_shape": "single_span",
+      "group": "HA",
+      "span_count": 1
+    },
+    "HA-30": {
+      "case_id": "HA-30",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 86,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_2753d95cafe4c30008abb9446b826ed49433fcbd",
+          "version_id": "ver_f15e1a531d680bb98179238f80355058",
+          "section_path": [
+            "Configuration",
+            "OpenAI provider defaults"
+          ],
+          "char_start": 6229,
+          "char_end": 6363,
+          "candidate_a_rank": 1,
+          "candidate_a_score": 0.03278688524590164,
+          "ce_score": 8.048444747924805,
+          "blend_score": 1.0,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 648.27,
+        "cross_encoder": 5053.12,
+        "total": 5702.06
+      },
+      "provider": "openai",
+      "reasoning_type": "exact_lookup",
+      "evidence_shape": "single_span",
+      "group": "HA",
+      "span_count": 1
+    },
+    "HA-31": {
+      "case_id": "HA-31",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 79,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_86e5c156666b81592213a0346f2e72ecb4e32d0d",
+          "version_id": "ver_f15e1a531d680bb98179238f80355058",
+          "section_path": [
+            "Configuration",
+            "Tracing"
+          ],
+          "char_start": 8327,
+          "char_end": 8542,
+          "candidate_a_rank": 1,
+          "candidate_a_score": 0.03278688524590164,
+          "ce_score": 4.435847282409668,
+          "blend_score": 1.0,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 582.13,
+        "cross_encoder": 4349.94,
+        "total": 4932.73
+      },
+      "provider": "openai",
+      "reasoning_type": "exact_lookup",
+      "evidence_shape": "single_span",
+      "group": "HA",
+      "span_count": 1
+    },
+    "HA-33": {
+      "case_id": "HA-33",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 92,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_e4da4c55bcb97a02ff62bf66464d3af61468fe0f",
+          "version_id": "ver_f15e1a531d680bb98179238f80355058",
+          "section_path": [
+            "You can customize this as needed, but this will output to `stderr` by default",
+            "Sensitive data in logs and diagnostics"
+          ],
+          "char_start": 10674,
+          "char_end": 10846,
+          "candidate_a_rank": 10,
+          "candidate_a_score": 0.01639344262295082,
+          "ce_score": 3.9008126258850098,
+          "blend_score": 0.7967004281090111,
+          "d_rank": 3,
+          "d_doc_rank": 3,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 550.59,
+        "cross_encoder": 5480.22,
+        "total": 6031.8
+      },
+      "provider": "openai",
+      "reasoning_type": "exact_lookup",
+      "evidence_shape": "single_span",
+      "group": "HA",
+      "span_count": 1
+    },
+    "HA-34": {
+      "case_id": "HA-34",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 89,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_c3e405a5d766f89e5c02d04e02169c115dd4cb73",
+          "version_id": "ver_fef74b4dda29e84a533c3e83f753effd",
+          "section_path": [
+            "Context management",
+            "Local context"
+          ],
+          "char_start": 1827,
+          "char_end": 2103,
+          "candidate_a_rank": 4,
+          "candidate_a_score": 0.02889344262295082,
+          "ce_score": 3.171029567718506,
+          "blend_score": 0.9645741150442477,
+          "d_rank": 2,
+          "d_doc_rank": 2,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 589.94,
+        "cross_encoder": 5242.96,
+        "total": 5834.08
+      },
+      "provider": "openai",
+      "reasoning_type": "exact_lookup",
+      "evidence_shape": "single_span",
+      "group": "HA",
+      "span_count": 1
+    },
+    "HA-35": {
+      "case_id": "HA-35",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 88,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_c3e405a5d766f89e5c02d04e02169c115dd4cb73",
+          "version_id": "ver_fef74b4dda29e84a533c3e83f753effd",
+          "section_path": [
+            "Context management",
+            "Local context"
+          ],
+          "char_start": 1694,
+          "char_end": 1825,
+          "candidate_a_rank": 1,
+          "candidate_a_score": 0.030309988518943745,
+          "ce_score": 3.754110813140869,
+          "blend_score": 0.9642141314286763,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 582.38,
+        "cross_encoder": 4753.38,
+        "total": 5336.41
+      },
+      "provider": "openai",
+      "reasoning_type": "exact_lookup",
+      "evidence_shape": "single_span",
+      "group": "HA",
+      "span_count": 1
+    },
+    "HA-37": {
+      "case_id": "HA-37",
+      "fully_recalled": false,
+      "recall": 0.0,
+      "doc_recall": 1.0,
+      "pool_size": 95,
+      "all_spans_in_candidate_pool": false,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": null,
+          "version_id": "ver_fef74b4dda29e84a533c3e83f753effd",
+          "section_path": [
+            "Context management",
+            "Local context",
+            "What `RunContextWrapper` exposes"
+          ],
+          "char_start": 2417,
+          "char_end": 2541,
+          "candidate_a_rank": null,
+          "candidate_a_score": null,
+          "ce_score": null,
+          "blend_score": null,
+          "d_rank": null,
+          "d_doc_rank": 10,
+          "d_in_top_10": false,
+          "in_candidate_pool": false,
+          "within": {
+            "10": false,
+            "20": false,
+            "30": false,
+            "50": false,
+            "100": false,
+            "300": false
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 435.77,
+        "cross_encoder": 5193.37,
+        "total": 5629.86
+      },
+      "provider": "openai",
+      "reasoning_type": "exact_lookup",
+      "evidence_shape": "single_span",
+      "group": "HA",
+      "span_count": 1
+    },
+    "HA-38": {
+      "case_id": "HA-38",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 92,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_300debbdfdd33f994da8367b173f4986666146c1",
+          "version_id": "ver_fef74b4dda29e84a533c3e83f753effd",
+          "section_path": [
+            "Context management",
+            "Local context",
+            "Advanced: `ToolContext`"
+          ],
+          "char_start": 6297,
+          "char_end": 6432,
+          "candidate_a_rank": 2,
+          "candidate_a_score": 0.03225806451612903,
+          "ce_score": 3.876415729522705,
+          "blend_score": 0.9933049300060863,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        },
+        {
+          "span_index": 1,
+          "chunk_id": "chk_300debbdfdd33f994da8367b173f4986666146c1",
+          "version_id": "ver_fef74b4dda29e84a533c3e83f753effd",
+          "section_path": [
+            "Context management",
+            "Local context",
+            "Advanced: `ToolContext`"
+          ],
+          "char_start": 6549,
+          "char_end": 6610,
+          "candidate_a_rank": 2,
+          "candidate_a_score": 0.03225806451612903,
+          "ce_score": 3.876415729522705,
+          "blend_score": 0.9933049300060863,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 580.58,
+        "cross_encoder": 5332.39,
+        "total": 5913.68
+      },
+      "provider": "openai",
+      "reasoning_type": "exact_lookup",
+      "evidence_shape": "multi_span_same_fact",
+      "group": "HA",
+      "span_count": 2
+    },
+    "HA-39": {
+      "case_id": "HA-39",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 89,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_300debbdfdd33f994da8367b173f4986666146c1",
+          "version_id": "ver_fef74b4dda29e84a533c3e83f753effd",
+          "section_path": [
+            "Context management",
+            "Local context",
+            "Advanced: `ToolContext`"
+          ],
+          "char_start": 6297,
+          "char_end": 6432,
+          "candidate_a_rank": 5,
+          "candidate_a_score": 0.028021349599695006,
+          "ce_score": 3.8915534019470215,
+          "blend_score": 0.9294095334776324,
+          "d_rank": 2,
+          "d_doc_rank": 2,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        },
+        {
+          "span_index": 1,
+          "chunk_id": "chk_300debbdfdd33f994da8367b173f4986666146c1",
+          "version_id": "ver_fef74b4dda29e84a533c3e83f753effd",
+          "section_path": [
+            "Context management",
+            "Local context",
+            "Advanced: `ToolContext`"
+          ],
+          "char_start": 6763,
+          "char_end": 6851,
+          "candidate_a_rank": 5,
+          "candidate_a_score": 0.028021349599695006,
+          "ce_score": 3.8915534019470215,
+          "blend_score": 0.9294095334776324,
+          "d_rank": 2,
+          "d_doc_rank": 2,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 545.03,
+        "cross_encoder": 4883.86,
+        "total": 5429.72
+      },
+      "provider": "openai",
+      "reasoning_type": "exact_lookup",
+      "evidence_shape": "multi_span_same_fact",
+      "group": "HA",
+      "span_count": 2
+    },
+    "HA-43": {
+      "case_id": "HA-43",
+      "fully_recalled": false,
+      "recall": 0.0,
+      "doc_recall": 0.0,
+      "pool_size": 89,
+      "all_spans_in_candidate_pool": false,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": null,
+          "version_id": "ver_e818e78755f8e2a71b458c743ce52db1",
+          "section_path": [
+            "Realtime transport",
+            "Custom endpoints and attach points"
+          ],
+          "char_start": 5215,
+          "char_end": 5371,
+          "candidate_a_rank": null,
+          "candidate_a_score": null,
+          "ce_score": null,
+          "blend_score": null,
+          "d_rank": null,
+          "d_doc_rank": 12,
+          "d_in_top_10": false,
+          "in_candidate_pool": false,
+          "within": {
+            "10": false,
+            "20": false,
+            "30": false,
+            "50": false,
+            "100": false,
+            "300": false
+          }
+        },
+        {
+          "span_index": 1,
+          "chunk_id": null,
+          "version_id": "ver_e818e78755f8e2a71b458c743ce52db1",
+          "section_path": [
+            "Realtime transport",
+            "Custom endpoints and attach points"
+          ],
+          "char_start": 5646,
+          "char_end": 5723,
+          "candidate_a_rank": null,
+          "candidate_a_score": null,
+          "ce_score": null,
+          "blend_score": null,
+          "d_rank": null,
+          "d_doc_rank": 12,
+          "d_in_top_10": false,
+          "in_candidate_pool": false,
+          "within": {
+            "10": false,
+            "20": false,
+            "30": false,
+            "50": false,
+            "100": false,
+            "300": false
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 577.97,
+        "cross_encoder": 5026.58,
+        "total": 5605.27
+      },
+      "provider": "openai",
+      "reasoning_type": "exact_lookup",
+      "evidence_shape": "multi_span_same_fact",
+      "group": "HA",
+      "span_count": 2
+    },
+    "HA-45": {
+      "case_id": "HA-45",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 82,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_ddacc7aafcf9a596a5302fac95ac286957de4c5c",
+          "version_id": "ver_1c77f33b04ffffa285ea7e61c2a89653",
+          "section_path": [
+            "(1)!",
+            "Input filters"
+          ],
+          "char_start": 7535,
+          "char_end": 7638,
+          "candidate_a_rank": 12,
+          "candidate_a_score": 0.02368937482478273,
+          "ce_score": 3.6985888481140137,
+          "blend_score": 0.8848220850458342,
+          "d_rank": 2,
+          "d_doc_rank": 2,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 549.19,
+        "cross_encoder": 4489.54,
+        "total": 5039.41
+      },
+      "provider": "openai",
+      "reasoning_type": "exact_lookup",
+      "evidence_shape": "single_span",
+      "group": "HA",
+      "span_count": 1
+    },
+    "HA-46": {
+      "case_id": "HA-46",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 91,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_ddacc7aafcf9a596a5302fac95ac286957de4c5c",
+          "version_id": "ver_1c77f33b04ffffa285ea7e61c2a89653",
+          "section_path": [
+            "(1)!",
+            "Input filters"
+          ],
+          "char_start": 9017,
+          "char_end": 9378,
+          "candidate_a_rank": 2,
+          "candidate_a_score": 0.025793650793650792,
+          "ce_score": 3.450655698776245,
+          "blend_score": 0.9898644384419255,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 484.84,
+        "cross_encoder": 4872.6,
+        "total": 5358.14
+      },
+      "provider": "openai",
+      "reasoning_type": "exact_lookup",
+      "evidence_shape": "single_span",
+      "group": "HA",
+      "span_count": 1
+    },
+    "HA-48": {
+      "case_id": "HA-48",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 84,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_11ecb8c67ad089f7f5d7efa58ecfd8651cb66db9",
+          "version_id": "ver_f22fbd5c504fa28a4e70440337e4a495",
+          "section_path": [
+            "Guardrails",
+            "Tool guardrails"
+          ],
+          "char_start": 5965,
+          "char_end": 6454,
+          "candidate_a_rank": 2,
+          "candidate_a_score": 0.032266458495966696,
+          "ce_score": 3.8470544815063477,
+          "blend_score": 0.9967221603454677,
+          "d_rank": 2,
+          "d_doc_rank": 2,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 511.99,
+        "cross_encoder": 4775.96,
+        "total": 5288.95
+      },
+      "provider": "openai",
+      "reasoning_type": "exact_lookup",
+      "evidence_shape": "single_span",
+      "group": "HA",
+      "span_count": 1
+    },
+    "HA-50": {
+      "case_id": "HA-50",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 92,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_91b59aa08660b93d3aa57ac22f7367bb361d3794",
+          "version_id": "ver_ae3bfcc42c733c5051abda30f0f6db07",
+          "section_path": [
+            "Human-in-the-loop",
+            "How the approval flow works"
+          ],
+          "char_start": 4886,
+          "char_end": 5059,
+          "candidate_a_rank": 4,
+          "candidate_a_score": 0.02610218048702849,
+          "ce_score": -1.6765048503875732,
+          "blend_score": 0.7210354534948467,
+          "d_rank": 9,
+          "d_doc_rank": 9,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        },
+        {
+          "span_index": 1,
+          "chunk_id": "chk_91b59aa08660b93d3aa57ac22f7367bb361d3794",
+          "version_id": "ver_ae3bfcc42c733c5051abda30f0f6db07",
+          "section_path": [
+            "Human-in-the-loop",
+            "How the approval flow works"
+          ],
+          "char_start": 5195,
+          "char_end": 5345,
+          "candidate_a_rank": 4,
+          "candidate_a_score": 0.02610218048702849,
+          "ce_score": -1.6765048503875732,
+          "blend_score": 0.7210354534948467,
+          "d_rank": 9,
+          "d_doc_rank": 9,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 585.01,
+        "cross_encoder": 4966.71,
+        "total": 5552.42
+      },
+      "provider": "openai",
+      "reasoning_type": "exact_lookup",
+      "evidence_shape": "multi_span_same_fact",
+      "group": "HA",
+      "span_count": 2
+    },
+    "HA-53": {
+      "case_id": "HA-53",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 87,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_62e6c4b4e66a3804aef086cc6330b1b5e0c0d1f5",
+          "version_id": "ver_ae909bf8b4bbbe1d1a11119447f7ac94",
+          "section_path": [
+            "Models",
+            "Model-call timeouts"
+          ],
+          "char_start": 31038,
+          "char_end": 31376,
+          "candidate_a_rank": 1,
+          "candidate_a_score": 0.03278688524590164,
+          "ce_score": 2.951695680618286,
+          "blend_score": 0.9293019301559615,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 568.6,
+        "cross_encoder": 4876.44,
+        "total": 5446.0
+      },
+      "provider": "openai",
+      "reasoning_type": "exact_lookup",
+      "evidence_shape": "single_span",
+      "group": "HA",
+      "span_count": 1
+    },
+    "HA-54": {
+      "case_id": "HA-54",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 86,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_b6977f5dd7cd25f837e0d5702f326dbb6785691a",
+          "version_id": "ver_ae909bf8b4bbbe1d1a11119447f7ac94",
+          "section_path": [
+            "Models",
+            "Runner-managed retries"
+          ],
+          "char_start": 32093,
+          "char_end": 32257,
+          "candidate_a_rank": 3,
+          "candidate_a_score": 0.026151315789473682,
+          "ce_score": 2.389643430709839,
+          "blend_score": 0.8542157934957944,
+          "d_rank": 3,
+          "d_doc_rank": 3,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 586.75,
+        "cross_encoder": 4775.66,
+        "total": 5363.09
+      },
+      "provider": "openai",
+      "reasoning_type": "exact_lookup",
+      "evidence_shape": "single_span",
+      "group": "HA",
+      "span_count": 1
+    },
+    "HA-55": {
+      "case_id": "HA-55",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 78,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_b6977f5dd7cd25f837e0d5702f326dbb6785691a",
+          "version_id": "ver_ae909bf8b4bbbe1d1a11119447f7ac94",
+          "section_path": [
+            "Models",
+            "Runner-managed retries"
+          ],
+          "char_start": 32259,
+          "char_end": 32638,
+          "candidate_a_rank": 1,
+          "candidate_a_score": 0.032018442622950824,
+          "ce_score": 3.006000518798828,
+          "blend_score": 0.9426157714107162,
+          "d_rank": 1,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 532.95,
+        "cross_encoder": 4222.17,
+        "total": 4755.81
+      },
+      "provider": "openai",
+      "reasoning_type": "exact_lookup",
+      "evidence_shape": "single_span",
+      "group": "HA",
+      "span_count": 1
+    },
+    "HA-56": {
+      "case_id": "HA-56",
+      "fully_recalled": true,
+      "recall": 1.0,
+      "doc_recall": 1.0,
+      "pool_size": 89,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_d3adf340dac0c83190ce0bdbbc8ac68d1a3fe2ab",
+          "version_id": "ver_ae909bf8b4bbbe1d1a11119447f7ac94",
+          "section_path": [
+            "Models",
+            "Runner-managed retries"
+          ],
+          "char_start": 33366,
+          "char_end": 33404,
+          "candidate_a_rank": 1,
+          "candidate_a_score": 0.032018442622950824,
+          "ce_score": 2.7418766021728516,
+          "blend_score": 0.9385149454529009,
+          "d_rank": 2,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        },
+        {
+          "span_index": 1,
+          "chunk_id": "chk_d3adf340dac0c83190ce0bdbbc8ac68d1a3fe2ab",
+          "version_id": "ver_ae909bf8b4bbbe1d1a11119447f7ac94",
+          "section_path": [
+            "Models",
+            "Runner-managed retries"
+          ],
+          "char_start": 33644,
+          "char_end": 33861,
+          "candidate_a_rank": 1,
+          "candidate_a_score": 0.032018442622950824,
+          "ce_score": 2.7418766021728516,
+          "blend_score": 0.9385149454529009,
+          "d_rank": 2,
+          "d_doc_rank": 1,
+          "d_in_top_10": true,
+          "in_candidate_pool": true,
+          "within": {
+            "10": true,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 530.11,
+        "cross_encoder": 4777.18,
+        "total": 5307.93
+      },
+      "provider": "openai",
+      "reasoning_type": "exact_lookup",
+      "evidence_shape": "multi_span_same_fact",
+      "group": "HA",
+      "span_count": 2
+    },
+    "HA-58": {
+      "case_id": "HA-58",
+      "fully_recalled": false,
+      "recall": 0.0,
+      "doc_recall": 1.0,
+      "pool_size": 86,
+      "all_spans_in_candidate_pool": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_6e8c2ae3d10d25fb47d647b925de69b5abe8115f",
+          "version_id": "ver_ae909bf8b4bbbe1d1a11119447f7ac94",
+          "section_path": [
+            "Models",
+            "Runner-managed retries",
+            "Safety boundaries"
+          ],
+          "char_start": 36894,
+          "char_end": 37138,
+          "candidate_a_rank": 1,
+          "candidate_a_score": 0.03278688524590164,
+          "ce_score": -3.508114814758301,
+          "blend_score": 0.6699635989837351,
+          "d_rank": 19,
+          "d_doc_rank": 5,
+          "d_in_top_10": false,
+          "in_candidate_pool": true,
+          "within": {
+            "10": false,
+            "20": true,
+            "30": true,
+            "50": true,
+            "100": true,
+            "300": true
+          }
+        }
+      ],
+      "latency_ms": {
+        "system_a_retrieval_candidate_gen": 610.18,
+        "cross_encoder": 4734.81,
+        "total": 5346.03
+      },
+      "provider": "openai",
+      "reasoning_type": "exact_lookup",
+      "evidence_shape": "single_span",
+      "group": "HA",
+      "span_count": 1
+    }
+  }
+}

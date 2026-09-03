@@ -1,0 +1,194 @@
+{
+  "experiment_id": "EXP-021A",
+  "title": "FULL LOCAL-W20 CANDIDATE EXPOSURE",
+  "status": "AUTHORIZED_SINGLE_DEVELOPMENT_RUN",
+  "phase": "preregistration_before_examining_new_candidate_ranks",
+  "chatgpt_authorization": "EXP-021A AUTHORIZED after EXP-020A_SUPPORTED=false",
+  "protocol_copy": "/workspace/NATQ-001-post/EXP-021A-ASSIGNMENT.md",
+  "preregistered_at_utc": "2026-09-03T04:40:34Z",
+  "preregistered_at_et": "2026-09-03T00:40:34-04:00",
+  "scored_before_prereg_hash": false,
+  "tuned_after_seeing_scores": false,
+  "n_evals": 1,
+  "second_run_forbidden": true,
+  "retune_forbidden": true,
+  "holdout_run_forbidden": true,
+  "release_freeze_forbidden": true,
+  "do_not_modify_SYSTEM_H": true,
+  "do_not_modify_SYSTEM_I": true,
+  "do_not_overwrite_SYSTEM_G": true,
+  "do_not_overwrite_SYSTEM_E": true,
+  "do_not_run_CE": true,
+  "do_not_run_final_ranking": true,
+  "do_not_run_EXP-020B": true,
+  "do_not_include_EXP020A_parent_balanced_projection": true,
+  "do_not_increase_W": true,
+  "do_not_increase_L": true,
+  "do_not_increase_P": true,
+  "natq_validation_status": "DEVELOPMENT / MODEL-SELECTION DATA; not independent validation",
+  "hypothesis": {
+    "statement": "Existing parent-local BM25 W=20 lists already contain useful gold evidence that SYSTEM-H's global L=10 promotion discards. Exposing the full existing W=20 lists (unioned with the frozen SYSTEM-H candidate pool, additive only) improves candidate evidence coverage versus SYSTEM-H on NATQ-001 validation n=40 (development / model-selection data).",
+    "one_mechanism_only": true,
+    "no_ce_change": true,
+    "no_blend_change": true,
+    "no_L_P_W_parent_count_change": true,
+    "no_coverage_selector": true,
+    "no_mmr": true,
+    "no_adjacency_expansion": true,
+    "no_section_bonus": true,
+    "no_query_rewriting": true,
+    "no_second_variant": true,
+    "no_named_case_handling": true,
+    "no_parent_balanced_projection": true,
+    "diagnostic_expectation_37_40_and_50_53_is_NOT_a_gate": true
+  },
+  "system": {
+    "name": "SYSTEM-J-LOCAL-W20-UNION",
+    "config_hash": "b6d60649dc5cbb379154146143282afd718281b6d4fe0e5ec59bf5c71f43d787",
+    "path": "experiments/RAG-V2/SYSTEM-J-LOCAL-W20-UNION/SYSTEM-J-LOCAL-W20-UNION.json",
+    "parent_SYSTEM_H_config_hash": "7599eb3c3bb4798230a722e6a7c96b046dc36cc0332b584ec55339896b2d717a",
+    "parent_SYSTEM_H_file_sha256": "7cd3a5f3d5fcf9c66561c9e9cbfbc213f49e6efa0fdf0005869b085c3eafe475",
+    "does_not_overwrite_SYSTEM_I_config_hash": "9103a51eaaebcbc581df452279ea06c880abb7524053606428dfd77649d4b3d6",
+    "pipeline": {
+      "reuse_SYSTEM_H_candidate_generation": "A pool-100 + E-L10 L=10 + projection C_P P=20, exact existing code. Recompute because stored EVAL-NATQ-VAL-001 pools.jsonl lacks full union member ids. Reuse stored parent lists after identical recomputation check. No CE.",
+      "additive_full_local_w20": "After existing parent-local W=20 lists are computed via local_bm25_per_parent_batched (cs_v1_control, full-corpus IDF, same tokenizer, W=20, ORDER BY round(score numeric 9) DESC, chunk_id ASC) for exact SYSTEM-H parents only: UNION every unique canonical chunk_id from every selected parent's existing W=20 list into the SYSTEM-H candidate union. Deduplicate by canonical chunk_id. Never remove SYSTEM-H candidates. Does not increase W. Does not run a different BM25 search. Full W=20 lists were not serialized in EVAL-NATQ-VAL-001 or EXP-020A (EXP-020A stored top-1 only), so they are recomputed with identical E-L10 semantics.",
+      "union": "SYSTEM-H existing union (C_E UNION C_P) UNION all unique canonical chunk_ids from every selected parent's existing W=20 list; dedupe canonical chunk_id; never remove SYSTEM-H candidate. Exact superset or equal set vs SYSTEM-H for every query.",
+      "unchanged_global_lanes": "E-L10 global L=10 intact. Frozen SYSTEM-H global P=20 projection lane unchanged. EXP-020A parent-balanced projection top-1 is NOT included."
+    }
+  },
+  "dataset": {
+    "name": "NATQ-001",
+    "split": "validation",
+    "role": "DEVELOPMENT / MODEL-SELECTION DATA",
+    "not_independent_validation": true,
+    "n": 40,
+    "path": "evals/splits/natq-001/validation.jsonl",
+    "validation_sha256": "a240958eb6b77b293bd70f717ee60476d2d09b510458057fd927d67359331ad6",
+    "holdout_sha256_recorded_file_not_opened": "6a7cf781c7538106605e8c85607405cd3dee2db37fdbb556aaadc913b3141dd3",
+    "holdout_lock_sha256": "03e0d5749e61e73e6b9582109a74a4a9672610b7bf794daf25f46999e5ad40b2",
+    "snapshot": "snap_689e336380a054d8039dc35b2c09cd0a",
+    "load_only_validation_jsonl": true,
+    "do_not_open_natq_holdout_json": true,
+    "do_not_open_v1_holdout_json": true,
+    "do_not_open_evals_splits_natq-001_holdout.json": true,
+    "do_not_open_evals_splits_gold150-v1_holdout.json": true
+  },
+  "baseline_SYSTEM_H_EVAL_NATQ_VAL_001": {
+    "label": "DEVELOPMENT / MODEL-SELECTION DATA after exposure; not independent validation",
+    "candidate_full_case_Recall_at_pool": "34/40",
+    "candidate_span_micro": "46/53",
+    "source": "experiments/RAG-V2/EVAL-NATQ-VAL-001/EVAL-NATQ-VAL-001-REPORT.json",
+    "SYSTEM_H_config_hash": "7599eb3c3bb4798230a722e6a7c96b046dc36cc0332b584ec55339896b2d717a",
+    "candidate_generation_latency_ms_mean_from_stages": {
+      "system_a": 438.3,
+      "e_l10": 218.3,
+      "projection": 657.9,
+      "sum_candidate_generation_excluding_CE": 1314.5
+    },
+    "EXP-020A_SUPPORTED": false,
+    "EXP-020A_result": "34/40 and 46/53; 0 recovered spans"
+  },
+  "PRIMARY": {
+    "metric": "candidate_full_case_Recall@pool",
+    "definition": "A case succeeds iff EVERY gold evidence span overlaps at least one canonical chunk in the SYSTEM-J candidate union (same overlap rule as EXP-017 span_in_hits / EVAL-NATQ-VAL-001 in_pool). No top-10 ranking.",
+    "baseline": "34/40",
+    "report": "numerator/40"
+  },
+  "SECONDARY": [
+    {
+      "metric": "candidate_gold_span_micro_recall",
+      "baseline": "46/53"
+    },
+    {
+      "metric": "per_provider_candidate_recall"
+    },
+    {
+      "metric": "multi_span_candidate_ceiling",
+      "definition": "same multi-span subset as EVAL-NATQ-VAL-001 (n_gold_spans>1 or tag multi_span); all-gold-in-pool n/12"
+    },
+    {
+      "metric": "mean_median_p95_pool_size"
+    },
+    {
+      "metric": "mean_median_W20_additions_after_dedup"
+    },
+    {
+      "metric": "candidate_generation_latency",
+      "definition": "SYSTEM-J candidate-generation wall time vs stored SYSTEM-H A+E-L10+projection (no CE)"
+    },
+    {
+      "metric": "parent_count_distribution"
+    },
+    {
+      "metric": "fraction_of_new_union_contributed_by_local_W20"
+    },
+    {
+      "metric": "exact_superset_check_against_SYSTEM_H"
+    },
+    {
+      "metric": "pool_growth",
+      "definition": "SYSTEM-H mean pool, SYSTEM-J mean pool, absolute increase, percentage increase, largest per-query increase, estimated CE pairs if full union were reranked (do NOT run CE)"
+    }
+  ],
+  "MECHANISM_GATE": {
+    "label": "EXP-021A_SUPPORTED",
+    "do_not_change_after_seeing_results": true,
+    "do_not_lower_gate": true,
+    "EXP-021A_SUPPORTED_iff_ALL": [
+      "candidate full-case recall >= 36/40",
+      "candidate span recall > 46/53",
+      "every original SYSTEM-H candidate remains present",
+      "no integrity/provenance failure"
+    ],
+    "diagnostic_expectation_approx_37_40_and_50_53_is_NOT_a_gate": true,
+    "do_not_reject_support_solely_because_pool_grows": true,
+    "report_descriptively_even_if_gate_fails": true,
+    "this_is_not_independent_validation": true,
+    "this_is_not_a_claim_of_statistical_significance": true
+  },
+  "diagnostics_after_aggregates": {
+    "seven_previously_missing_gold_spans_from_NATQ_DIAG_001": true,
+    "report": "recovered yes/no; local BM25 rank; whether covering canonical entered SYSTEM-J; resulting candidate position if defined",
+    "diagnostic_only": true,
+    "no_named_case_handling": true,
+    "also_inspect_ALL_40_cases_for_newly_recovered_gold": true,
+    "identities_come_from_stored_SYSTEM_H_in_pool_flags_not_from_EXP-021A_tuning": true
+  },
+  "anti_overfit": {
+    "do_not_increase_W": true,
+    "do_not_increase_L_P": true,
+    "do_not_alter_parent_count": true,
+    "do_not_alter_BM25_weights": true,
+    "do_not_alter_CE": true,
+    "do_not_add_adjacency_expansion": true,
+    "do_not_add_section_expansion": true,
+    "do_not_add_coverage_aware_selector": true,
+    "do_not_add_query_rewriting": true,
+    "do_not_create_a_second_variant": true,
+    "do_not_include_EXP020A_parent_balanced_projection": true,
+    "one_mechanism_one_variant_one_run": true
+  },
+  "holdout_protection": {
+    "natq_holdout_access_log_before": {
+      "path": "evals/splits/natq-001/holdout-access.log.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "natq_holdout_access_log_after_must_equal_before": true,
+    "v1_holdout_access_log": {
+      "path": "evals/splits/gold150-v1/holdout-access.log.jsonl",
+      "bytes": 235,
+      "sha256": "45b83a77f6f332174d641956f076dd0c0cae44fe48f4f2892ac7030a4c0143b3"
+    },
+    "do_not_open_natq_holdout_json": true,
+    "do_not_open_v1_holdout_json": true
+  },
+  "STOP": {
+    "after": "EXP-021A candidate-generation run and REPORT",
+    "do_not_run_final_ranking": true,
+    "do_not_run_EXP-020B": true,
+    "do_not_run_CE": true,
+    "do_not_run_another_variant": true,
+    "return_to_coordinator_ChatGPT": true
+  }
+}

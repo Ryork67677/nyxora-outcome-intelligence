@@ -1,0 +1,202 @@
+{
+  "batch": 5,
+  "prepared_at": "2026-08-23T16:43:37Z",
+  "source_batch_sha256": "37bf3509a9205637588730760dc14bf2dcaed19e03e4ed6bcd4ba7580e501af3",
+  "instructions": "Record one decision per candidate. decision must be APPROVE, REJECT or NEEDS_EDIT — a null decision is an undecided candidate and the batch cannot close while one remains. For a repaired candidate, set approves_evidence_hash to the evidence_hash of each span you are approving; the importer refuses an approval that quotes the pre-repair hash, so a repair cannot be approved by someone who only saw the original.",
+  "decided_by": "project_owner",
+  "decisions": [
+    {
+      "candidate_id": "GOLD-B005-01",
+      "decision": "REJECT",
+      "internal_review_status": "REJECT_RECOMMENDED",
+      "was_repaired": false,
+      "approves_evidence_hash": null,
+      "notes": "Rejected: BENCHMARK_QUALITY / TAXONOMY_MISCLASSIFICATION / SCOPE_DEFECT. `invalid_tool_input` is the same semantic concept in both sources — the tool input is invalid — and the examples differ by tool (a malformed or non-HTTP(S) URL; a malformed or over-length regex) without creating meaningful disambiguation. The spans are bare definition bullets that rely on document and section scope outside themselves. Not salvaged as two exact lookups to preserve count. Preserved as an audit example."
+    },
+    {
+      "candidate_id": "GOLD-B005-02",
+      "decision": "APPROVE",
+      "internal_review_status": "READY_FOR_OWNER_REVIEW",
+      "was_repaired": false,
+      "approves_evidence_hash": [
+        "a2602d47d43f5d8dd96abef379a50a1cfd6144349d27e7082f1ae8a69862d873"
+      ],
+      "notes": null
+    },
+    {
+      "candidate_id": "GOLD-B005-03",
+      "decision": "APPROVE",
+      "internal_review_status": "READY_FOR_OWNER_REVIEW",
+      "was_repaired": false,
+      "approves_evidence_hash": [
+        "892ee8dfcbdd186e6454dbbed9e5f70ba5c5f353b262c62c1749656a6d93bd63"
+      ],
+      "notes": "Approved as written. The exact evidence does not name the endpoint, but the scored fact is self-contained: filtering by a non-existent `deployment_id` returns 200 with empty data. The NONCRITICAL_SCOPE finding is retained rather than deleted.",
+      "human_scope_override": true,
+      "override_reviewer": "project_owner",
+      "scope_status": "NONCRITICAL_SCOPE"
+    },
+    {
+      "candidate_id": "GOLD-B005-04",
+      "decision": "APPROVE",
+      "internal_review_status": "READY_FOR_OWNER_REVIEW",
+      "was_repaired": false,
+      "approves_evidence_hash": [
+        "bf645608c00bf09471aa9890464ff50f4ed0500135209a9ceab88a6e0b9d29db"
+      ],
+      "notes": "Approved as written. The evidence does not restate that `encrypted_content` belongs to web-search results, but the scored conditional and its result are self-contained. The NONCRITICAL_SCOPE finding is retained rather than deleted.",
+      "human_scope_override": true,
+      "override_reviewer": "project_owner",
+      "scope_status": "NONCRITICAL_SCOPE"
+    },
+    {
+      "candidate_id": "GOLD-B005-05",
+      "decision": "APPROVE",
+      "internal_review_status": "NEEDS_REPAIR",
+      "was_repaired": true,
+      "approves_evidence_hash": [
+        "e46486f298067b5585bf926b4dffbf606adc0fabe989a04f569377183b1da3a5"
+      ],
+      "notes": "Approved on the revised question. No evidence movement was required; the qualifier 'request-level' is in the span."
+    },
+    {
+      "candidate_id": "GOLD-B005-06",
+      "decision": "REJECT",
+      "internal_review_status": "REJECT_RECOMMENDED",
+      "was_repaired": false,
+      "approves_evidence_hash": null,
+      "notes": "Rejected: UNANSWERABLE_AS_ASKED / CATEGORY_MISCLASSIFICATION. The evidence is a schema description of what model IDs may appear in `fallbacks[i].model` and what an empty list means. It does not answer 'Where is fallbacks supported?', and it is not a lifecycle statement merely because the phrase 'not supported' appears in a schema description. The question is not to be rewritten into a different fact under this candidate ID. Preserved as an audit example."
+    },
+    {
+      "candidate_id": "GOLD-B005-07",
+      "decision": "APPROVE",
+      "internal_review_status": "READY_FOR_OWNER_REVIEW",
+      "was_repaired": false,
+      "approves_evidence_hash": [
+        "b2f29d24dba4045e411f87f438b77bc9271fe24588f500c999d148195d44736a"
+      ],
+      "notes": null
+    },
+    {
+      "candidate_id": "GOLD-B005-08",
+      "decision": "APPROVE",
+      "internal_review_status": "NEEDS_REPAIR",
+      "was_repaired": true,
+      "approves_evidence_hash": [
+        "58fbedd718a3c5c6487312de617ed46995249883d398207176d61663dda9dbbe"
+      ],
+      "notes": "Approved on the revised question, scoped to Claude Sonnet 5. The result is not to be generalized beyond the model scope the evidence states."
+    },
+    {
+      "candidate_id": "GOLD-B005-09",
+      "decision": "APPROVE",
+      "internal_review_status": "NEEDS_REPAIR",
+      "was_repaired": true,
+      "approves_evidence_hash": [
+        "d4a15c400fe14c77b39eb20fda908baeb1827d2ae89d4610af0994eee5b6fe7d"
+      ],
+      "notes": "Approved on the repaired evidence boundary and the relabelled reasoning type (error_behavior). The final evidence carries both halves: that callable approval rules fail closed when arguments cannot be safely inspected, and the three documented bad-input classes with their outcome."
+    },
+    {
+      "candidate_id": "GOLD-B005-10",
+      "decision": "REJECT",
+      "internal_review_status": "REJECT_RECOMMENDED",
+      "was_repaired": false,
+      "approves_evidence_hash": null,
+      "notes": "Rejected: RELATION_DIRECTION / UNRECOVERABLE_SCOPE. The evidence says the experimental model rejects caller-supplied `betas` overrides; it does not say `betas` overrides anything, so the generated question reverses the documented relation. Rewriting around the true subject would require identifying the experimental model, whose identity is outside the exact evidence and cannot be recovered by a minimal valid expansion. Not salvaged."
+    },
+    {
+      "candidate_id": "GOLD-B005-11",
+      "decision": "APPROVE",
+      "internal_review_status": "NEEDS_REPAIR",
+      "was_repaired": true,
+      "approves_evidence_hash": [
+        "d48685e50739421736a63a780d66187b87e069d5b77514a0efa840fb92b35f55"
+      ],
+      "notes": "Approved on the revised question. The parser observation stands — the record's section_path contains prose misidentified as a heading — and that metadata defect affects neither the approved evidence nor the approved claim. Historical parser output is not fixed in place."
+    },
+    {
+      "candidate_id": "GOLD-B005-12",
+      "decision": "APPROVE",
+      "internal_review_status": "READY_FOR_OWNER_REVIEW",
+      "was_repaired": false,
+      "approves_evidence_hash": [
+        "6d34d63eb16fc99d04e20f8b9f024eff75fe086315cadca54dc94b3b88878a73"
+      ],
+      "notes": null
+    },
+    {
+      "candidate_id": "GOLD-B005-13",
+      "decision": "REJECT",
+      "internal_review_status": "REJECT_RECOMMENDED",
+      "was_repaired": false,
+      "approves_evidence_hash": null,
+      "notes": "Rejected: DUPLICATE_RELATION / BENCHMARK_REDUNDANCY. The fact is supported — `S3FilesMountPattern` requires broad acknowledgement because `mount.s3files` uses ambient IAM authority — but it is the adjacent sibling of GOLD-B005-12 and tests the same relation: mount pattern requires broad acknowledgement because ambient cloud authority is discovered. GOLD-B005-12 is kept; benchmark capacity is not spent on an adjacent duplicate. Preserved for audit history."
+    },
+    {
+      "candidate_id": "GOLD-B005-14",
+      "decision": "APPROVE",
+      "internal_review_status": "READY_FOR_OWNER_REVIEW",
+      "was_repaired": false,
+      "approves_evidence_hash": [
+        "b99555629d4f3bc24af3d059ad3a0b08f1eb616106369557e8228d4a115359fc"
+      ],
+      "notes": null
+    },
+    {
+      "candidate_id": "GOLD-B005-15",
+      "decision": "APPROVE",
+      "internal_review_status": "NEEDS_REPAIR",
+      "was_repaired": true,
+      "approves_evidence_hash": [
+        "821cedbcd91b12d3dda4b832920ad3cc5756f02525eb06a621776aa1d97b85c7"
+      ],
+      "notes": "Approved on the revised, scoped question. The generator's markdown-reference leak is preserved as a recorded finding; the approved question contains no documentation-link plumbing."
+    },
+    {
+      "candidate_id": "GOLD-B005-16",
+      "decision": "APPROVE",
+      "internal_review_status": "NEEDS_REPAIR",
+      "was_repaired": true,
+      "approves_evidence_hash": [
+        "40b53a39a3051bb1c73d88719255085ef89a539e53d19db5f6c5e7303eb61dcb"
+      ],
+      "notes": "Approved. The question is not to be broadened into generic Session behaviour."
+    },
+    {
+      "candidate_id": "GOLD-B005-17",
+      "decision": "APPROVE",
+      "internal_review_status": "READY_FOR_OWNER_REVIEW",
+      "was_repaired": false,
+      "approves_evidence_hash": [
+        "f1011d934522b2fe05de267455898faddd037e2ef0af581c5d11a7dd7571ea38"
+      ],
+      "notes": null
+    },
+    {
+      "candidate_id": "GOLD-B005-18",
+      "decision": "APPROVE",
+      "internal_review_status": "NEEDS_REPAIR",
+      "was_repaired": true,
+      "approves_evidence_hash": [
+        "36d9e40ac1ce3cc82a00c5db4d11c8c00c3758313df7d54a8485e5759ad9f73c"
+      ],
+      "notes": "Approved. This is a pairing requirement, not a request for the value of `dispatcher`."
+    },
+    {
+      "candidate_id": "GOLD-B005-19",
+      "decision": "APPROVE",
+      "internal_review_status": "READY_FOR_OWNER_REVIEW",
+      "was_repaired": false,
+      "approves_evidence_hash": [
+        "50dce494bcf32c01963ddfabd2ddf4eecbe4659b793fcf5a7c5f5dbc95543201"
+      ],
+      "notes": null
+    }
+  ],
+  "reviewer": "project_owner",
+  "reviewed_at": "2026-08-24T04:52:11Z",
+  "reviewed_state": "evals/review/gold_review_batch_005_final.json",
+  "reviewed_state_sha256": "c9077e4f1519a99a4b0723e3db3ed98b6f2b2a6069b8f4d84c9638ae3e99a279",
+  "approval_scope": "Every approval applies to the final reviewed revision in the batch-005 QC packet, not to the original generated version."
+}

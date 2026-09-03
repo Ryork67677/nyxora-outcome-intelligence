@@ -1,0 +1,40 @@
+{"candidate_id": "NATQ-C-151", "decision": "SUPPORT", "reject_reason": null, "version_id": "ver_18c692f4d28bd01c0a5cac553fcf01a7"}
+{"candidate_id": "NATQ-C-152", "decision": "SUPPORT", "reject_reason": null, "version_id": "ver_18c692f4d28bd01c0a5cac553fcf01a7"}
+{"candidate_id": "NATQ-C-153", "decision": "SUPPORT", "reject_reason": null, "version_id": "ver_0774ca0093ff4a846753577c9a4a39d5"}
+{"candidate_id": "NATQ-C-154", "decision": "SUPPORT", "reject_reason": null, "version_id": "ver_18c692f4d28bd01c0a5cac553fcf01a7"}
+{"candidate_id": "NATQ-C-155", "decision": "SUPPORT", "reject_reason": null, "version_id": "ver_7947433dfde6b3b8eccd0faa597c3c9a"}
+{"candidate_id": "NATQ-C-156", "decision": "REJECT", "reject_reason": "First-pass cache_control+tools hits were schema fields, not last-tool-prefix caching. Extra ['cache_control','tools array'] on Prompt caching n=0.", "version_id": null}
+{"candidate_id": "NATQ-C-157", "decision": "REJECT", "reject_reason": "Hits/extra only listed interleaved-thinking-2025-05-14 in the beta-header enum; no passage saying whether interleaved thinking needs that header vs thinking enabled.", "version_id": null}
+{"candidate_id": "NATQ-C-158", "decision": "REJECT", "reject_reason": "Hits/extra only listed context-1m-2025-08-07 in the beta-header enum; no passage saying 1M on Sonnet is that header vs model id.", "version_id": null}
+{"candidate_id": "NATQ-C-159", "decision": "SUPPORT", "reject_reason": null, "version_id": "ver_18c692f4d28bd01c0a5cac553fcf01a7"}
+{"candidate_id": "NATQ-C-160", "decision": "SUPPORT", "reject_reason": null, "version_id": "ver_de7f74230c8f10d30aea5d037a3bd0a5"}
+{"candidate_id": "NATQ-C-161", "decision": "SUPPORT", "reject_reason": null, "version_id": "ver_31cd12f6d13c8ac47666eb1a55874e5d"}
+{"candidate_id": "NATQ-C-162", "decision": "SUPPORT", "reject_reason": null, "version_id": "ver_cec813c3bb15b76dcf16e7a0c2231ef1"}
+{"candidate_id": "NATQ-C-163", "decision": "SUPPORT", "reject_reason": null, "version_id": "ver_18c692f4d28bd01c0a5cac553fcf01a7"}
+{"candidate_id": "NATQ-C-164", "decision": "SUPPORT", "reject_reason": null, "version_id": "ver_c8b2c7130cb18508fed4f864d4c3d7a3"}
+{"candidate_id": "NATQ-C-165", "decision": "SUPPORT", "reject_reason": null, "version_id": "ver_0774ca0093ff4a846753577c9a4a39d5"}
+{"candidate_id": "NATQ-C-166", "decision": "SUPPORT", "reject_reason": null, "version_id": "ver_18c692f4d28bd01c0a5cac553fcf01a7"}
+{"candidate_id": "NATQ-C-167", "decision": "SUPPORT", "reject_reason": null, "version_id": "ver_18c692f4d28bd01c0a5cac553fcf01a7"}
+{"candidate_id": "NATQ-C-168", "decision": "REJECT", "reject_reason": "is_error is an optional boolean on tool_result; no passage that setting it true auto-retries the same tool. Extra is_error+tool_result did not add retry semantics.", "version_id": null}
+{"candidate_id": "NATQ-C-169", "decision": "REJECT", "reject_reason": "Hits show temperature and thinking together in examples/params; extra Thinking-title hits were tool-roundtrip samples. No 400-vs-ignore rule for temperature 0.7 with extended thinking.", "version_id": null}
+{"candidate_id": "NATQ-C-170", "decision": "SUPPORT", "reject_reason": null, "version_id": "ver_18c692f4d28bd01c0a5cac553fcf01a7"}
+{"candidate_id": "NATQ-C-171", "decision": "REJECT", "reject_reason": "Hits only deprecate dated snapshot claude-sonnet-4-20250514. Extra alias+claude-sonnet-4 did not identify which of claude-sonnet-4-0 vs claude-4-sonnet is the moving alias.", "version_id": null}
+{"candidate_id": "NATQ-C-172", "decision": "SUPPORT", "reject_reason": null, "version_id": "ver_d9ba3ab0d872dd86047c7ed6dc783235"}
+{"candidate_id": "NATQ-C-173", "decision": "REJECT", "reject_reason": "stop_reason max_tokens is 'exceeded requested max_tokens or the model maximum'; extra stop_reason+thinking did not discriminate output cap vs thinking budget.", "version_id": null}
+{"candidate_id": "NATQ-C-174", "decision": "REJECT", "reject_reason": "Only fast-mode docs say SDKs retry 429 up to 2 times via max_retries. Extra max_retries+default did not state a general default or that 529 overloaded is retried.", "version_id": null}
+{"candidate_id": "NATQ-C-175", "decision": "SUPPORT", "reject_reason": null, "version_id": "ver_18c692f4d28bd01c0a5cac553fcf01a7"}
+{"candidate_id": "NATQ-C-176", "decision": "SUPPORT", "reject_reason": null, "version_id": "ver_f65938c74d40ac1e288f169d3d0435b7"}
+{"candidate_id": "NATQ-C-177", "decision": "SUPPORT", "reject_reason": null, "version_id": "ver_d9ba3ab0d872dd86047c7ed6dc783235"}
+{"candidate_id": "NATQ-C-178", "decision": "REJECT", "reject_reason": "Anthropic Messages combine consecutive user turns; extra consecutive+messages on openai n=0. Question asks both providers; OpenAI side unsupported.", "version_id": null}
+{"candidate_id": "NATQ-C-179", "decision": "SUPPORT", "reject_reason": null, "version_id": "ver_18c692f4d28bd01c0a5cac553fcf01a7"}
+{"candidate_id": "NATQ-C-180", "decision": "REJECT", "reject_reason": "Hits are messages.stream() examples only. Extra stream=True was tool_runner, not a comparison of event objects vs create(stream=True).", "version_id": null}
+{"candidate_id": "NATQ-C-181", "decision": "SUPPORT", "reject_reason": null, "version_id": "ver_7947433dfde6b3b8eccd0faa597c3c9a"}
+{"candidate_id": "NATQ-C-182", "decision": "SUPPORT", "reject_reason": null, "version_id": "ver_ef5f9dacc17f99c298faf449e756ae90"}
+{"candidate_id": "NATQ-C-183", "decision": "REJECT", "reject_reason": "First-pass empty+text hits were memory/compaction, not Messages/Chat empty text blocks. Extra empty+text block on errors n=0. Not shown as 400 on both APIs.", "version_id": null}
+{"candidate_id": "NATQ-C-184", "decision": "REJECT", "reject_reason": "First-pass mcp_servers hits were Agents/Environments, not Messages hosted MCP. Extra mcp_servers with Messages title n=0; tool-type vs top-level field on Messages unanswered.", "version_id": null}
+{"candidate_id": "NATQ-C-185", "decision": "SUPPORT", "reject_reason": null, "version_id": "ver_83f5681ee38e2d11ab15e49c90a16e2e"}
+{"candidate_id": "NATQ-C-186", "decision": "SUPPORT", "reject_reason": null, "version_id": "ver_18c692f4d28bd01c0a5cac553fcf01a7"}
+{"candidate_id": "NATQ-C-187", "decision": "SUPPORT", "reject_reason": null, "version_id": "ver_61b47461370755f2d32a2e0e77ab18e3"}
+{"candidate_id": "NATQ-C-188", "decision": "SUPPORT", "reject_reason": null, "version_id": "ver_18c692f4d28bd01c0a5cac553fcf01a7"}
+{"candidate_id": "NATQ-C-189", "decision": "SUPPORT", "reject_reason": null, "version_id": "ver_d9ba3ab0d872dd86047c7ed6dc783235"}
+{"candidate_id": "NATQ-C-190", "decision": "REJECT", "reject_reason": "Docs require unmodified thinking round-trip and 400 if blocks are modified/filtered. Extra troubleshooting says send the entire assistant message back; no recovery path of dropping thinking or starting a new thread after an already-invalid signature.", "version_id": null}

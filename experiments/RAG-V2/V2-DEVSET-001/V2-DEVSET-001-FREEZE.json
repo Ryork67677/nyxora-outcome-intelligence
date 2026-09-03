@@ -1,0 +1,2734 @@
+{
+  "document": "V2-DEVSET-001-FREEZE",
+  "status": "FROZEN",
+  "n": 50,
+  "frozen_at": "2026-09-01T02:54:52Z",
+  "frozen_at_et_note": "UTC; America/New_York is UTC-4 on this date",
+  "split": "v2-devset-001/development",
+  "split_path": "evals/splits/v2-devset-001/development.json",
+  "gold_path": "evals/gold/v2-devset-001.jsonl",
+  "gold_split_copy_path": "evals/splits/v2-devset-001/development.jsonl",
+  "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a",
+  "chunk_set": "cs_v1_control",
+  "chunk_set_mutated": false,
+  "system_a_config_hash": "9afcb5b7c58ebacff0b4c3711dd9618a2e727f4195dd1787a5da81e478ee0b38",
+  "system_d_config_hash": "d77b54ba3be0197d6bc1363883aefb0b3399117ee8c65800a38f8196d236ca3a",
+  "system_e_config_hash": "7f3a1caa0350cc7e0fda0d9f2d7efb23fd08d7f79bc94f140a29f4247774adbe",
+  "system_e_knobs_changed": false,
+  "ce_onnx_sha256": "5d3e70fd0c9ff14b9b5169a51e957b7a9c74897afd0a35ce4bd318150c1d4d4a",
+  "retrieval_was_not_run": true,
+  "holdout_json_opened": false,
+  "live_docs_fetched": false,
+  "gold150_v1_renamed": false,
+  "tuned_e": false,
+  "cs_v1_control_mutated": false,
+  "system_d_guard_mutated": false,
+  "system_d_release_mutated": false,
+  "chatgpt_verified": true,
+  "chatgpt_verified_all_50": true,
+  "chatgpt_verification": {
+    "round1_PASS": [
+      "V2D-01",
+      "V2D-02",
+      "V2D-04",
+      "V2D-07",
+      "V2D-09",
+      "V2D-10",
+      "V2D-11",
+      "V2D-12",
+      "V2D-14",
+      "V2D-15",
+      "V2D-16",
+      "V2D-17",
+      "V2D-20",
+      "V2D-24",
+      "V2D-25",
+      "V2D-26",
+      "V2D-27",
+      "V2D-28",
+      "V2D-29",
+      "V2D-30",
+      "V2D-31",
+      "V2D-34",
+      "V2D-35",
+      "V2D-36",
+      "V2D-39",
+      "V2D-40",
+      "V2D-41",
+      "V2D-42",
+      "V2D-43",
+      "V2D-45",
+      "V2D-46",
+      "V2D-47",
+      "V2D-48",
+      "V2D-49"
+    ],
+    "round1_PASS_n": 34,
+    "round2_PASS": [
+      "V2D-03",
+      "V2D-05",
+      "V2D-08",
+      "V2D-13",
+      "V2D-18",
+      "V2D-19",
+      "V2D-21",
+      "V2D-22",
+      "V2D-23",
+      "V2D-32",
+      "V2D-33",
+      "V2D-37",
+      "V2D-38",
+      "V2D-44",
+      "V2D-50"
+    ],
+    "round2_PASS_n": 15,
+    "round3_PASS": [
+      "V2D-06"
+    ],
+    "round3_PASS_n": 1,
+    "all_50_chatgpt_verified": true,
+    "note": "Independent ChatGPT review: round1 34 PASS + round2 15 PASS + round3 V2D-06 PASS."
+  },
+  "human_verified": true,
+  "human_verified_attestation": "ChatGPT (Build Spec for RAG) instructed: after all 16 pass, mark all 50 human-verified, freeze, hash, then D-vs-E. Russell's standing order is to follow that loop. human_verified=true records that instruction being executed. Russell did not personally QC each of the 50 cases.",
+  "pass34_source": "evals/review/v2_devset_001_batch_001.json — original packet question/answer/span kept for the 34 round-1 PASS IDs",
+  "repair16_source": "experiments/RAG-V2/V2-DEVSET-001/V2-DEVSET-001-repaired-candidates.jsonl — repaired question/answer/span/hash for 16 IDs; V2D-06 uses the ROUND-2 answer after the later python rewrite (starts with 'Normally usage.speed')",
+  "v2d06": {
+    "answer": "Normally `usage.speed` is `\"fast\"`. Claude Opus 4.6 is the exception: a successful `speed: \"fast\"` request can report `\"standard\"`.",
+    "answer_starts_with_normally_usage_speed": true,
+    "normal_case_plus_opus_46_exception": true,
+    "char_start": 9863,
+    "char_end": 10222,
+    "evidence_hash": "1ae25e4479c1961c3ac649534d70309e9fc4f29a776e49115c2c7e0209f536b4",
+    "chatgpt_round": 3
+  },
+  "holdout_access_log_at_freeze": {
+    "log_bytes": 235,
+    "log_sha256": "45b83a77f6f332174d641956f076dd0c0cae44fe48f4f2892ac7030a4c0143b3"
+  },
+  "immutable_file_sha256_at_freeze": {
+    "SYSTEM-D-GUARD.json": "e9267f5581404e9885598979204c08762cd33f362703e526b20f4d3430c35a82",
+    "SYSTEM-D-RELEASE.json": "1f097b4b8dd353ecb4812228477338c05769faaede37d52ec6a07f27de729e40"
+  },
+  "case_ids": [
+    "V2D-01",
+    "V2D-02",
+    "V2D-03",
+    "V2D-04",
+    "V2D-05",
+    "V2D-06",
+    "V2D-07",
+    "V2D-08",
+    "V2D-09",
+    "V2D-10",
+    "V2D-11",
+    "V2D-12",
+    "V2D-13",
+    "V2D-14",
+    "V2D-15",
+    "V2D-16",
+    "V2D-17",
+    "V2D-18",
+    "V2D-19",
+    "V2D-20",
+    "V2D-21",
+    "V2D-22",
+    "V2D-23",
+    "V2D-24",
+    "V2D-25",
+    "V2D-26",
+    "V2D-27",
+    "V2D-28",
+    "V2D-29",
+    "V2D-30",
+    "V2D-31",
+    "V2D-32",
+    "V2D-33",
+    "V2D-34",
+    "V2D-35",
+    "V2D-36",
+    "V2D-37",
+    "V2D-38",
+    "V2D-39",
+    "V2D-40",
+    "V2D-41",
+    "V2D-42",
+    "V2D-43",
+    "V2D-44",
+    "V2D-45",
+    "V2D-46",
+    "V2D-47",
+    "V2D-48",
+    "V2D-49",
+    "V2D-50"
+  ],
+  "cases": [
+    {
+      "case_id": "V2D-01",
+      "source": "original_packet_round1_PASS",
+      "chatgpt_verified": true,
+      "chatgpt_verified_round": 1,
+      "human_verified": true,
+      "frozen": true,
+      "retrieval_was_not_run": true,
+      "provider": "anthropic",
+      "document_title": "Context editing",
+      "version_id": "ver_1c53b961e1f5da8124a1e7e8eb92c941",
+      "source_url": "https://platform.claude.com/docs/en/build-with-claude/context-editing",
+      "section_path": [
+        "Client-side compaction (SDK)",
+        "Configuration options"
+      ],
+      "char_start": 82891,
+      "char_end": 83109,
+      "question": "Is the `enabled` parameter required?",
+      "answer": "Yes, it is required.",
+      "atomic_claims": [
+        "`enabled` is required."
+      ],
+      "critical_strings": [
+        "enabled",
+        "Yes"
+      ],
+      "evidence_text": "| `enabled`                 | boolean | Yes      | -                                                                                                                          | Whether to enable automatic compaction   |",
+      "evidence_hash": "58ff96baa79e1a5a5ca428712dc27e8644c02d3a3f696b047028cd628e79d63a",
+      "evidence_char_length": 218,
+      "expected_evidence": [
+        {
+          "version_id": "ver_1c53b961e1f5da8124a1e7e8eb92c941",
+          "section_path": [
+            "Client-side compaction (SDK)",
+            "Configuration options"
+          ],
+          "char_start": 82891,
+          "char_end": 83109
+        }
+      ],
+      "reasoning_type": "exact_lookup",
+      "evidence_kind": "parameter_table_row",
+      "stress_types": [
+        "correct_document_difficult_passage",
+        "parameter_error_literal_lookup",
+        "identifier_vs_semantic_distractor",
+        "same_document_passage_discrimination"
+      ],
+      "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a"
+    },
+    {
+      "case_id": "V2D-02",
+      "source": "original_packet_round1_PASS",
+      "chatgpt_verified": true,
+      "chatgpt_verified_round": 1,
+      "human_verified": true,
+      "frozen": true,
+      "retrieval_was_not_run": true,
+      "provider": "anthropic",
+      "document_title": "Context editing",
+      "version_id": "ver_1c53b961e1f5da8124a1e7e8eb92c941",
+      "source_url": "https://platform.claude.com/docs/en/build-with-claude/context-editing",
+      "section_path": [
+        "Client-side compaction (SDK)",
+        "Configuration options"
+      ],
+      "char_start": 83110,
+      "char_end": 83328,
+      "question": "Is the `context_token_threshold` parameter required?",
+      "answer": "No, it is optional.",
+      "atomic_claims": [
+        "`context_token_threshold` is optional."
+      ],
+      "critical_strings": [
+        "context_token_threshold",
+        "No"
+      ],
+      "evidence_text": "| `context_token_threshold` | number  | No       | 100,000                                                                                                                    | Token count at which compaction triggers |",
+      "evidence_hash": "a8126af82dee9bd17f38053421274042cb446d40ff766e35bceda5050d5b45cc",
+      "evidence_char_length": 218,
+      "expected_evidence": [
+        {
+          "version_id": "ver_1c53b961e1f5da8124a1e7e8eb92c941",
+          "section_path": [
+            "Client-side compaction (SDK)",
+            "Configuration options"
+          ],
+          "char_start": 83110,
+          "char_end": 83328
+        }
+      ],
+      "reasoning_type": "exact_lookup",
+      "evidence_kind": "parameter_table_row",
+      "stress_types": [
+        "correct_document_difficult_passage",
+        "parameter_error_literal_lookup",
+        "identifier_vs_semantic_distractor",
+        "lexical_query_shape",
+        "same_document_passage_discrimination"
+      ],
+      "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a"
+    },
+    {
+      "case_id": "V2D-03",
+      "source": "repaired_candidates_jsonl",
+      "chatgpt_verified": true,
+      "chatgpt_verified_round": 2,
+      "human_verified": true,
+      "frozen": true,
+      "retrieval_was_not_run": true,
+      "provider": "anthropic",
+      "document_title": "Compliance API",
+      "version_id": "ver_1d58a563501b073d898977de6bc2a823",
+      "source_url": "https://platform.claude.com/docs/en/api/compliance",
+      "section_path": [
+        "Chats",
+        "List chats",
+        "Query Parameters"
+      ],
+      "char_start": 4640364,
+      "char_end": 4640538,
+      "question": "For org-wide queries, what must any time filter match?",
+      "answer": "The sort key: `created_at.*` filters require `order_by=created_at`, and `updated_at.*` filters require `order_by=updated_at`.",
+      "atomic_claims": [
+        "For org-wide queries, any time filter must match the sort key: `created_at.*` filters require `order_by=created_at`, and `updated_at.*` filters require `order_by=updated_at`."
+      ],
+      "critical_strings": [
+        "created_at.*",
+        "order_by=created_at",
+        "updated_at.*",
+        "order_by=updated_at"
+      ],
+      "evidence_text": "For org-wide queries, any time filter must match the sort key: `created_at.*` filters require `order_by=created_at`, and `updated_at.*` filters require `order_by=updated_at`.",
+      "evidence_hash": "c8a02c427ca5f0eeb935c95bc9dc780e1e3d3c86be46519f89d65214de50948f",
+      "evidence_char_length": 174,
+      "expected_evidence": [
+        {
+          "version_id": "ver_1d58a563501b073d898977de6bc2a823",
+          "section_path": [
+            "Chats",
+            "List chats",
+            "Query Parameters"
+          ],
+          "char_start": 4640364,
+          "char_end": 4640538
+        }
+      ],
+      "reasoning_type": "configuration_interaction",
+      "evidence_kind": "configuration_interaction",
+      "stress_types": [
+        "short_evidence_unit",
+        "correct_document_difficult_passage",
+        "identifier_vs_semantic_distractor",
+        "lexical_query_shape"
+      ],
+      "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a"
+    },
+    {
+      "case_id": "V2D-04",
+      "source": "original_packet_round1_PASS",
+      "chatgpt_verified": true,
+      "chatgpt_verified_round": 1,
+      "human_verified": true,
+      "frozen": true,
+      "retrieval_was_not_run": true,
+      "provider": "anthropic",
+      "document_title": "Handle streaming refusals",
+      "version_id": "ver_93d1f239133ba85f0e9f7725859fea08",
+      "source_url": "https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/handle-streaming-refusals",
+      "section_path": [
+        "Reset context after refusal"
+      ],
+      "char_start": 2220,
+      "char_end": 2325,
+      "question": "What happens when you receive **`stop_reason`: `refusal`**?",
+      "answer": "You must reset the conversation context before continuing.",
+      "atomic_claims": [
+        "When you receive **`stop_reason`: `refusal`**, you must reset the conversation context before continuing."
+      ],
+      "critical_strings": [
+        "stop_reason",
+        "refusal"
+      ],
+      "evidence_text": "When you receive **`stop_reason`: `refusal`**, you must reset the conversation context before continuing.",
+      "evidence_hash": "82a5b65ca2cea41f38b5da7727aa36ce579c96fa36c594c515d7627e8e637d53",
+      "evidence_char_length": 105,
+      "expected_evidence": [
+        {
+          "version_id": "ver_93d1f239133ba85f0e9f7725859fea08",
+          "section_path": [
+            "Reset context after refusal"
+          ],
+          "char_start": 2220,
+          "char_end": 2325
+        }
+      ],
+      "reasoning_type": "configuration_interaction",
+      "evidence_kind": "short_normative",
+      "stress_types": [
+        "short_evidence_unit",
+        "parameter_error_literal_lookup",
+        "identifier_vs_semantic_distractor",
+        "lexical_query_shape"
+      ],
+      "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a"
+    },
+    {
+      "case_id": "V2D-05",
+      "source": "repaired_candidates_jsonl",
+      "chatgpt_verified": true,
+      "chatgpt_verified_round": 2,
+      "human_verified": true,
+      "frozen": true,
+      "retrieval_was_not_run": true,
+      "provider": "anthropic",
+      "document_title": "Admin",
+      "version_id": "ver_c299b58fe1f5a4d3a081b550334a7df6",
+      "source_url": "https://platform.claude.com/docs/en/api/admin",
+      "section_path": [
+        "Usage Report",
+        "Get Messages Usage Report",
+        "Query Parameters"
+      ],
+      "char_start": 145736,
+      "char_end": 145804,
+      "question": "What does grouping by `speed` require?",
+      "answer": "The `fast-mode-2026-02-01` beta header.",
+      "atomic_claims": [
+        "Grouping by `speed` requires the `fast-mode-2026-02-01` beta header."
+      ],
+      "critical_strings": [
+        "speed",
+        "fast-mode-2026-02-01"
+      ],
+      "evidence_text": "Grouping by `speed` requires the `fast-mode-2026-02-01` beta header.",
+      "evidence_hash": "68696c806a8d47853c355ddb31e022ccde229994dda89ac214f51755d8b12e59",
+      "evidence_char_length": 68,
+      "expected_evidence": [
+        {
+          "version_id": "ver_c299b58fe1f5a4d3a081b550334a7df6",
+          "section_path": [
+            "Usage Report",
+            "Get Messages Usage Report",
+            "Query Parameters"
+          ],
+          "char_start": 145736,
+          "char_end": 145804
+        }
+      ],
+      "reasoning_type": "configuration_interaction",
+      "evidence_kind": "normative_statement",
+      "stress_types": [
+        "short_evidence_unit",
+        "identifier_vs_semantic_distractor"
+      ],
+      "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a"
+    },
+    {
+      "case_id": "V2D-06",
+      "source": "repaired_candidates_jsonl",
+      "chatgpt_verified": true,
+      "chatgpt_verified_round": 3,
+      "human_verified": true,
+      "frozen": true,
+      "retrieval_was_not_run": true,
+      "provider": "anthropic",
+      "document_title": "Fast mode (research preview)",
+      "version_id": "ver_cc7d6ed2a636d74fc7aca7885ba9ce60",
+      "source_url": "https://platform.claude.com/docs/en/build-with-claude/fast-mode",
+      "section_path": [
+        "Checking which speed was used"
+      ],
+      "char_start": 9863,
+      "char_end": 10222,
+      "question": "What is `usage.speed` when a request with `speed: \"fast\"` succeeds, including on Claude Opus 4.6?",
+      "answer": "Normally `usage.speed` is `\"fast\"`. Claude Opus 4.6 is the exception: a successful `speed: \"fast\"` request can report `\"standard\"`.",
+      "atomic_claims": [
+        "In the normal case, when a request with `speed: \"fast\"` succeeds, `usage.speed` is `\"fast\"`.",
+        "Claude Opus 4.6 is an exception: requesting fast mode can succeed while the `speed` field shows `\"standard\"`."
+      ],
+      "critical_strings": [
+        "usage.speed",
+        "Claude Opus 4.6",
+        "standard"
+      ],
+      "evidence_text": "When a request with `speed: \"fast\"` succeeds, `usage.speed` is `\"fast\"`. If you are using Claude Opus 4.6 and request fast mode, its behavior is unique. Instead of returning an error like other models that don't support fast mode, it silently switches to standard speed. Though there is no error with Opus 4.6, the `speed` field accurately shows `\"standard\"`.",
+      "evidence_hash": "1ae25e4479c1961c3ac649534d70309e9fc4f29a776e49115c2c7e0209f536b4",
+      "evidence_char_length": 359,
+      "expected_evidence": [
+        {
+          "version_id": "ver_cc7d6ed2a636d74fc7aca7885ba9ce60",
+          "section_path": [
+            "Checking which speed was used"
+          ],
+          "char_start": 9863,
+          "char_end": 10222
+        }
+      ],
+      "reasoning_type": "configuration_interaction",
+      "evidence_kind": "short_normative",
+      "stress_types": [
+        "short_evidence_unit",
+        "correct_document_difficult_passage",
+        "identifier_vs_semantic_distractor",
+        "paraphrase_query_shape"
+      ],
+      "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a"
+    },
+    {
+      "case_id": "V2D-07",
+      "source": "original_packet_round1_PASS",
+      "chatgpt_verified": true,
+      "chatgpt_verified_round": 1,
+      "human_verified": true,
+      "frozen": true,
+      "retrieval_was_not_run": true,
+      "provider": "anthropic",
+      "document_title": "Computer use tool",
+      "version_id": "ver_d9ba3ab0d872dd86047c7ed6dc783235",
+      "source_url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool",
+      "section_path": [
+        "How to implement computer use",
+        "Tool parameters"
+      ],
+      "char_start": 33274,
+      "char_end": 33442,
+      "question": "Is the `display_width_px` parameter required?",
+      "answer": "Yes, it is required.",
+      "atomic_claims": [
+        "`display_width_px` is required."
+      ],
+      "critical_strings": [
+        "display_width_px",
+        "Yes"
+      ],
+      "evidence_text": "| `display_width_px`  | Yes      | Display width in pixels                                                                                                             |",
+      "evidence_hash": "7906c9aaf36ac236717e99494ae77e400df51718d07732aa64fbaa9897d8d80b",
+      "evidence_char_length": 168,
+      "expected_evidence": [
+        {
+          "version_id": "ver_d9ba3ab0d872dd86047c7ed6dc783235",
+          "section_path": [
+            "How to implement computer use",
+            "Tool parameters"
+          ],
+          "char_start": 33274,
+          "char_end": 33442
+        }
+      ],
+      "reasoning_type": "exact_lookup",
+      "evidence_kind": "parameter_table_row",
+      "stress_types": [
+        "short_evidence_unit",
+        "correct_document_difficult_passage",
+        "parameter_error_literal_lookup",
+        "identifier_vs_semantic_distractor",
+        "lexical_query_shape"
+      ],
+      "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a"
+    },
+    {
+      "case_id": "V2D-08",
+      "source": "repaired_candidates_jsonl",
+      "chatgpt_verified": true,
+      "chatgpt_verified_round": 2,
+      "human_verified": true,
+      "frozen": true,
+      "retrieval_was_not_run": true,
+      "provider": "anthropic",
+      "document_title": "Beta",
+      "version_id": "ver_de7f74230c8f10d30aea5d037a3bd0a5",
+      "source_url": "https://platform.claude.com/docs/en/api/beta",
+      "section_path": [
+        "Models",
+        "List Models",
+        "Returns"
+      ],
+      "char_start": 8804,
+      "char_end": 8937,
+      "question": "What does `allowed_fallback_models` contain?",
+      "answer": "Model IDs this model accepts as `fallbacks[i].model` on the Messages API.",
+      "atomic_claims": [
+        "`allowed_fallback_models` contains model IDs this model accepts as `fallbacks[i].model` on the Messages API."
+      ],
+      "critical_strings": [
+        "allowed_fallback_models",
+        "fallbacks[i].model"
+      ],
+      "evidence_text": "  - `allowed_fallback_models: array of string or null`\n\n    Model IDs this model accepts as `fallbacks[i].model` on the Messages API.",
+      "evidence_hash": "a71662214aeb083e40ff4eed5dc1eec7fe7cb4ea3925ff888836afefcb19386c",
+      "evidence_char_length": 133,
+      "expected_evidence": [
+        {
+          "version_id": "ver_de7f74230c8f10d30aea5d037a3bd0a5",
+          "section_path": [
+            "Models",
+            "List Models",
+            "Returns"
+          ],
+          "char_start": 8804,
+          "char_end": 8937
+        }
+      ],
+      "reasoning_type": "exact_lookup",
+      "evidence_kind": "short_normative",
+      "stress_types": [
+        "short_evidence_unit"
+      ],
+      "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a"
+    },
+    {
+      "case_id": "V2D-09",
+      "source": "original_packet_round1_PASS",
+      "chatgpt_verified": true,
+      "chatgpt_verified_round": 1,
+      "human_verified": true,
+      "frozen": true,
+      "retrieval_was_not_run": true,
+      "provider": "openai",
+      "document_title": "Handoffs",
+      "version_id": "ver_1c77f33b04ffffa285ea7e61c2a89653",
+      "source_url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/handoffs.md",
+      "section_path": [
+        "Handoffs",
+        "Creating a handoff"
+      ],
+      "char_start": 638,
+      "char_end": 800,
+      "question": "What happens if you pass plain `Agent` instances?",
+      "answer": "Their `handoff_description` (when set) is appended to the default tool description.",
+      "atomic_claims": [
+        "If you pass plain `Agent` instances, their [`handoff_description`][agents.agent.Agent.handoff_description] (when set) is appended to the default tool description."
+      ],
+      "critical_strings": [
+        "Agent",
+        "handoff_description"
+      ],
+      "evidence_text": "If you pass plain `Agent` instances, their [`handoff_description`][agents.agent.Agent.handoff_description] (when set) is appended to the default tool description.",
+      "evidence_hash": "cb68ebf63dd9202680f68267ae03f44fd268f8c79785e6f6f5ed143e95c3d472",
+      "evidence_char_length": 162,
+      "expected_evidence": [
+        {
+          "version_id": "ver_1c77f33b04ffffa285ea7e61c2a89653",
+          "section_path": [
+            "Handoffs",
+            "Creating a handoff"
+          ],
+          "char_start": 638,
+          "char_end": 800
+        }
+      ],
+      "reasoning_type": "configuration_interaction",
+      "evidence_kind": "short_normative",
+      "stress_types": [
+        "short_evidence_unit",
+        "identifier_vs_semantic_distractor",
+        "paraphrase_query_shape"
+      ],
+      "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a"
+    },
+    {
+      "case_id": "V2D-10",
+      "source": "original_packet_round1_PASS",
+      "chatgpt_verified": true,
+      "chatgpt_verified_round": 1,
+      "human_verified": true,
+      "frozen": true,
+      "retrieval_was_not_run": true,
+      "provider": "openai",
+      "document_title": "Running agents",
+      "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+      "source_url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/running_agents.md",
+      "section_path": [
+        "Running agents",
+        "Runner lifecycle and configuration",
+        "Streaming",
+        "Responses WebSocket transport (optional helper)",
+        "Pattern 1: No session helper (works)"
+      ],
+      "char_start": 3840,
+      "char_end": 3995,
+      "question": "What happens if you call `Runner.run()` / `Runner.run_streamed()` repeatedly?",
+      "answer": "Each run may reconnect unless you manually reuse the same `RunConfig` / provider instance.",
+      "atomic_claims": [
+        "If you call `Runner.run()` / `Runner.run_streamed()` repeatedly, each run may reconnect unless you manually reuse the same `RunConfig` / provider instance."
+      ],
+      "critical_strings": [
+        "run_streamed",
+        "RunConfig"
+      ],
+      "evidence_text": "If you call `Runner.run()` / `Runner.run_streamed()` repeatedly, each run may reconnect unless you manually reuse the same `RunConfig` / provider instance.",
+      "evidence_hash": "8f35618b0730452d66209f33c251398920571ef20c3a3f7f3cc12af18ce5c14f",
+      "evidence_char_length": 155,
+      "expected_evidence": [
+        {
+          "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+          "section_path": [
+            "Running agents",
+            "Runner lifecycle and configuration",
+            "Streaming",
+            "Responses WebSocket transport (optional helper)",
+            "Pattern 1: No session helper (works)"
+          ],
+          "char_start": 3840,
+          "char_end": 3995
+        }
+      ],
+      "reasoning_type": "configuration_interaction",
+      "evidence_kind": "short_normative",
+      "stress_types": [
+        "short_evidence_unit",
+        "identifier_vs_semantic_distractor",
+        "lexical_query_shape"
+      ],
+      "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a"
+    },
+    {
+      "case_id": "V2D-11",
+      "source": "original_packet_round1_PASS",
+      "chatgpt_verified": true,
+      "chatgpt_verified_round": 1,
+      "human_verified": true,
+      "frozen": true,
+      "retrieval_was_not_run": true,
+      "provider": "openai",
+      "document_title": "Agents",
+      "version_id": "ver_35cac5e98c151a17f941a6142d74709f",
+      "source_url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/agents.md",
+      "section_path": [
+        "Agents",
+        "Basic configuration"
+      ],
+      "char_start": 1910,
+      "char_end": 2056,
+      "question": "Is the `instructions` parameter required?",
+      "answer": "No, it is optional.",
+      "atomic_claims": [
+        "`instructions` is optional."
+      ],
+      "critical_strings": [
+        "instructions",
+        "no"
+      ],
+      "evidence_text": "| `instructions` | no | System prompt or dynamic instructions callback. Strongly recommended. See [Dynamic instructions](#dynamic-instructions). |",
+      "evidence_hash": "82cea7b95770ca4bc0e7b1cfa96ad691632701ff82f235d510c5a2d989f9f984",
+      "evidence_char_length": 146,
+      "expected_evidence": [
+        {
+          "version_id": "ver_35cac5e98c151a17f941a6142d74709f",
+          "section_path": [
+            "Agents",
+            "Basic configuration"
+          ],
+          "char_start": 1910,
+          "char_end": 2056
+        }
+      ],
+      "reasoning_type": "exact_lookup",
+      "evidence_kind": "parameter_table_row",
+      "stress_types": [
+        "short_evidence_unit",
+        "parameter_error_literal_lookup",
+        "identifier_vs_semantic_distractor"
+      ],
+      "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a"
+    },
+    {
+      "case_id": "V2D-12",
+      "source": "original_packet_round1_PASS",
+      "chatgpt_verified": true,
+      "chatgpt_verified_round": 1,
+      "human_verified": true,
+      "frozen": true,
+      "retrieval_was_not_run": true,
+      "provider": "openai",
+      "document_title": "Sandbox clients",
+      "version_id": "ver_3d4b8881962381cbfba18ade50c598e1",
+      "source_url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/sandbox/clients.md",
+      "section_path": [
+        "Sandbox clients",
+        "Supported hosted platforms",
+        "Size Modal sandboxes"
+      ],
+      "char_start": 11175,
+      "char_end": 11288,
+      "question": "What does `S3FilesMountPattern` require?",
+      "answer": "`S3FilesMountPattern` likewise requires broad acknowledgement because `mount.s3files` uses ambient IAM authority.",
+      "atomic_claims": [
+        "`S3FilesMountPattern` likewise requires broad acknowledgement because `mount.s3files` uses ambient IAM authority."
+      ],
+      "critical_strings": [
+        "S3FilesMountPattern",
+        "mount.s3files"
+      ],
+      "evidence_text": "`S3FilesMountPattern` likewise requires broad acknowledgement because `mount.s3files` uses ambient IAM authority.",
+      "evidence_hash": "b7cd45d15c27feeafd00ab13cda6f7664f164f3864fb5a9e0cb377e4f5f58c95",
+      "evidence_char_length": 113,
+      "expected_evidence": [
+        {
+          "version_id": "ver_3d4b8881962381cbfba18ade50c598e1",
+          "section_path": [
+            "Sandbox clients",
+            "Supported hosted platforms",
+            "Size Modal sandboxes"
+          ],
+          "char_start": 11175,
+          "char_end": 11288
+        }
+      ],
+      "reasoning_type": "configuration_interaction",
+      "evidence_kind": "configuration_interaction",
+      "stress_types": [
+        "short_evidence_unit",
+        "correct_document_difficult_passage",
+        "identifier_vs_semantic_distractor"
+      ],
+      "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a"
+    },
+    {
+      "case_id": "V2D-13",
+      "source": "repaired_candidates_jsonl",
+      "chatgpt_verified": true,
+      "chatgpt_verified_round": 2,
+      "human_verified": true,
+      "frozen": true,
+      "retrieval_was_not_run": true,
+      "provider": "openai",
+      "document_title": "Models",
+      "version_id": "ver_ae909bf8b4bbbe1d1a11119447f7ac94",
+      "source_url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/models/index.md",
+      "section_path": [
+        "Models",
+        "OpenAI models",
+        "Hosted multi-agent (experimental)",
+        "Current limitations"
+      ],
+      "char_start": 19331,
+      "char_end": 19456,
+      "question": "What does the experimental model reject?",
+      "answer": "`reasoning.summary`, `max_tool_calls`, and caller-supplied `multi_agent` or `betas` overrides.",
+      "atomic_claims": [
+        "The experimental model rejects `reasoning.summary`, `max_tool_calls`, and caller-supplied `multi_agent` or `betas` overrides."
+      ],
+      "critical_strings": [
+        "betas",
+        "reasoning.summary",
+        "max_tool_calls"
+      ],
+      "evidence_text": "The experimental model rejects `reasoning.summary`, `max_tool_calls`, and caller-supplied `multi_agent` or `betas` overrides.",
+      "evidence_hash": "540a39028df8184945b1d598976982b6092e1c52dbb919d3c009f6d5df2ccad0",
+      "evidence_char_length": 125,
+      "expected_evidence": [
+        {
+          "version_id": "ver_ae909bf8b4bbbe1d1a11119447f7ac94",
+          "section_path": [
+            "Models",
+            "OpenAI models",
+            "Hosted multi-agent (experimental)",
+            "Current limitations"
+          ],
+          "char_start": 19331,
+          "char_end": 19456
+        }
+      ],
+      "reasoning_type": "configuration_interaction",
+      "evidence_kind": "configuration_interaction",
+      "stress_types": [
+        "short_evidence_unit",
+        "correct_document_difficult_passage",
+        "identifier_vs_semantic_distractor"
+      ],
+      "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a"
+    },
+    {
+      "case_id": "V2D-14",
+      "source": "original_packet_round1_PASS",
+      "chatgpt_verified": true,
+      "chatgpt_verified_round": 1,
+      "human_verified": true,
+      "frozen": true,
+      "retrieval_was_not_run": true,
+      "provider": "openai",
+      "document_title": "Testing",
+      "version_id": "ver_d2295786320b2815477eb963eb1f5e8a",
+      "source_url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/testing.md",
+      "section_path": [
+        "Testing",
+        "Agent workflow recipes",
+        "Derive a response from the request"
+      ],
+      "char_start": 6729,
+      "char_end": 6866,
+      "question": "What does `ScriptedModel` accept?",
+      "answer": "`ScriptedModel` accepts `ModelStep`, the equivalent dictionary form, `ModelResponse`, a normalized output-item sequence, or an exception.",
+      "atomic_claims": [
+        "`ScriptedModel` accepts `ModelStep`, the equivalent dictionary form, `ModelResponse`, a normalized output-item sequence, or an exception."
+      ],
+      "critical_strings": [
+        "ScriptedModel",
+        "ModelStep",
+        "ModelResponse"
+      ],
+      "evidence_text": "`ScriptedModel` accepts `ModelStep`, the equivalent dictionary form, `ModelResponse`, a normalized output-item sequence, or an exception.",
+      "evidence_hash": "ff6b6dac88107bfaca79afc441a21391e89ea2fcc0d3b1261af395ce79c5b537",
+      "evidence_char_length": 137,
+      "expected_evidence": [
+        {
+          "version_id": "ver_d2295786320b2815477eb963eb1f5e8a",
+          "section_path": [
+            "Testing",
+            "Agent workflow recipes",
+            "Derive a response from the request"
+          ],
+          "char_start": 6729,
+          "char_end": 6866
+        }
+      ],
+      "reasoning_type": "exact_lookup",
+      "evidence_kind": "error_statement",
+      "stress_types": [
+        "short_evidence_unit",
+        "parameter_error_literal_lookup",
+        "identifier_vs_semantic_distractor"
+      ],
+      "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a"
+    },
+    {
+      "case_id": "V2D-15",
+      "source": "original_packet_round1_PASS",
+      "chatgpt_verified": true,
+      "chatgpt_verified_round": 1,
+      "human_verified": true,
+      "frozen": true,
+      "retrieval_was_not_run": true,
+      "provider": "openai",
+      "document_title": "OpenAI TypeScript and JavaScript API Library",
+      "version_id": "ver_f30a6447e4df2ab76e4c1475f353109c",
+      "source_url": "https://github.com/openai/openai-node/blob/cc7dbfa9b9dd6fe0ff72141e9c0c3d82b18ba9aa/README.md",
+      "section_path": [
+        "OpenAI TypeScript and JavaScript API Library",
+        "Amazon Bedrock"
+      ],
+      "char_start": 17117,
+      "char_end": 17323,
+      "question": "What does `AWS_BEDROCK_BASE_URL` override?",
+      "answer": "This uses the regional `https://bedrock-mantle.<region>.api.aws/openai/v1` endpoint. The region can also come from `AWS_REGION` or `AWS_DEFAULT_REGION`, and `AWS_BEDROCK_BASE_URL` can override the endpoint.",
+      "atomic_claims": [
+        "This uses the regional `https://bedrock-mantle.<region>.api.aws/openai/v1` endpoint. The region can also come from `AWS_REGION` or `AWS_DEFAULT_REGION`, and `AWS_BEDROCK_BASE_URL` can override the endpoint."
+      ],
+      "critical_strings": [
+        "AWS_BEDROCK_BASE_URL",
+        "AWS_REGION",
+        "AWS_DEFAULT_REGION"
+      ],
+      "evidence_text": "This uses the regional `https://bedrock-mantle.<region>.api.aws/openai/v1` endpoint. The region can also come from `AWS_REGION` or `AWS_DEFAULT_REGION`, and `AWS_BEDROCK_BASE_URL` can override the endpoint.",
+      "evidence_hash": "ebe19ef32b204e03ada1970d7b6266188f378ce00152fd3bc0a2fdd385371dc4",
+      "evidence_char_length": 206,
+      "expected_evidence": [
+        {
+          "version_id": "ver_f30a6447e4df2ab76e4c1475f353109c",
+          "section_path": [
+            "OpenAI TypeScript and JavaScript API Library",
+            "Amazon Bedrock"
+          ],
+          "char_start": 17117,
+          "char_end": 17323
+        }
+      ],
+      "reasoning_type": "configuration_interaction",
+      "evidence_kind": "configuration_interaction",
+      "stress_types": [
+        "correct_document_difficult_passage",
+        "identifier_vs_semantic_distractor",
+        "lexical_query_shape"
+      ],
+      "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a"
+    },
+    {
+      "case_id": "V2D-16",
+      "source": "original_packet_round1_PASS",
+      "chatgpt_verified": true,
+      "chatgpt_verified_round": 1,
+      "human_verified": true,
+      "frozen": true,
+      "retrieval_was_not_run": true,
+      "provider": "openai",
+      "document_title": "Realtime agents guide",
+      "version_id": "ver_14a2187cf2216b9d56c213b520a28479",
+      "source_url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/realtime/guide.md",
+      "section_path": [
+        "Realtime agents guide",
+        "Agent and session configuration",
+        "Input transcription settings"
+      ],
+      "char_start": 6569,
+      "char_end": 6644,
+      "question": "What does the `delay` setting accept?",
+      "answer": "The `delay` setting accepts `minimal`, `low`, `medium`, `high`, or `xhigh`.",
+      "atomic_claims": [
+        "The `delay` setting accepts `minimal`, `low`, `medium`, `high`, or `xhigh`."
+      ],
+      "critical_strings": [
+        "delay",
+        "minimal",
+        "low"
+      ],
+      "evidence_text": "The `delay` setting accepts `minimal`, `low`, `medium`, `high`, or `xhigh`.",
+      "evidence_hash": "710d3803ff9ad91f3b621be564053d21f729cbb9613f8c92cf1f5357006f499f",
+      "evidence_char_length": 75,
+      "expected_evidence": [
+        {
+          "version_id": "ver_14a2187cf2216b9d56c213b520a28479",
+          "section_path": [
+            "Realtime agents guide",
+            "Agent and session configuration",
+            "Input transcription settings"
+          ],
+          "char_start": 6569,
+          "char_end": 6644
+        }
+      ],
+      "reasoning_type": "exact_lookup",
+      "evidence_kind": "short_normative",
+      "stress_types": [
+        "short_evidence_unit",
+        "correct_document_difficult_passage",
+        "identifier_vs_semantic_distractor"
+      ],
+      "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a"
+    },
+    {
+      "case_id": "V2D-17",
+      "source": "original_packet_round1_PASS",
+      "chatgpt_verified": true,
+      "chatgpt_verified_round": 1,
+      "human_verified": true,
+      "frozen": true,
+      "retrieval_was_not_run": true,
+      "provider": "anthropic",
+      "document_title": "Thinking",
+      "version_id": "ver_012b734775e7edb2649d3a9ddfd93070",
+      "source_url": "https://platform.claude.com/docs/en/build-with-claude/thinking",
+      "section_path": [
+        "Reading thinking output",
+        "Summarized thinking"
+      ],
+      "char_start": 19697,
+      "char_end": 19845,
+      "question": "What happens when `display` is `\"summarized\"`?",
+      "answer": "The thinking text you receive is a summary of Claude's full thinking process rather than the raw chain of thought.",
+      "atomic_claims": [
+        "When `display` is `\"summarized\"`, the thinking text you receive is a summary of Claude's full thinking process rather than the raw chain of thought."
+      ],
+      "critical_strings": [
+        "display"
+      ],
+      "evidence_text": "When `display` is `\"summarized\"`, the thinking text you receive is a summary of Claude's full thinking process rather than the raw chain of thought.",
+      "evidence_hash": "8542afab39ec13b2bee6f9411862578098ffe220f8ed83c303fed1ddb8da2b79",
+      "evidence_char_length": 148,
+      "expected_evidence": [
+        {
+          "version_id": "ver_012b734775e7edb2649d3a9ddfd93070",
+          "section_path": [
+            "Reading thinking output",
+            "Summarized thinking"
+          ],
+          "char_start": 19697,
+          "char_end": 19845
+        }
+      ],
+      "reasoning_type": "configuration_interaction",
+      "evidence_kind": "short_normative",
+      "stress_types": [
+        "short_evidence_unit",
+        "correct_document_difficult_passage",
+        "identifier_vs_semantic_distractor",
+        "lexical_query_shape"
+      ],
+      "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a"
+    },
+    {
+      "case_id": "V2D-18",
+      "source": "repaired_candidates_jsonl",
+      "chatgpt_verified": true,
+      "chatgpt_verified_round": 2,
+      "human_verified": true,
+      "frozen": true,
+      "retrieval_was_not_run": true,
+      "provider": "openai",
+      "document_title": "Testing",
+      "version_id": "ver_d2295786320b2815477eb963eb1f5e8a",
+      "source_url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/testing.md",
+      "section_path": [
+        "Testing",
+        "Agent workflow recipes",
+        "Inject model failures"
+      ],
+      "char_start": 9219,
+      "char_end": 9850,
+      "question": "What does `ModelStep.raise_error` accept?",
+      "answer": "A fixed `ModelRetryAdvice` value; use a custom `Model` when retry advice itself must vary dynamically by attempt.",
+      "atomic_claims": [
+        "`ModelStep.raise_error` accepts a fixed `ModelRetryAdvice` value; use a custom `Model` when retry advice itself must vary dynamically by attempt."
+      ],
+      "critical_strings": [
+        "ModelStep.raise_error",
+        "ModelRetryAdvice"
+      ],
+      "evidence_text": "Use `ModelStep.raise_error()` to fail one model call. Optional retry advice belongs to that exact scripted error:\n\n```python\nfrom agents import ModelRetryAdvice\nfrom agents.testing import ModelStep\n\n\nstep = ModelStep.raise_error(\n    RuntimeError(\"temporary failure\"),\n    retry_advice=ModelRetryAdvice(suggested=True, replay_safety=\"safe\"),\n)\n```\n\nThe runner's retry policy decides whether advice causes another attempt. Each retry is another model call and consumes the next scripted step. The Python helper accepts a fixed `ModelRetryAdvice` value; use a custom `Model` when retry advice itself must vary dynamically by attempt.",
+      "evidence_hash": "5eaa435ade77face5566e2a959ab20237247f93384c38b64c1f79cdf4cea24d3",
+      "evidence_char_length": 631,
+      "expected_evidence": [
+        {
+          "version_id": "ver_d2295786320b2815477eb963eb1f5e8a",
+          "section_path": [
+            "Testing",
+            "Agent workflow recipes",
+            "Inject model failures"
+          ],
+          "char_start": 9219,
+          "char_end": 9850
+        }
+      ],
+      "reasoning_type": "exact_lookup",
+      "evidence_kind": "short_normative",
+      "stress_types": [
+        "short_evidence_unit",
+        "correct_document_difficult_passage"
+      ],
+      "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a"
+    },
+    {
+      "case_id": "V2D-19",
+      "source": "repaired_candidates_jsonl",
+      "chatgpt_verified": true,
+      "chatgpt_verified_round": 2,
+      "human_verified": true,
+      "frozen": true,
+      "retrieval_was_not_run": true,
+      "provider": "anthropic",
+      "document_title": "Using Agent Skills with the API",
+      "version_id": "ver_5a15a8f543d432ef91eb6e2997f51225",
+      "source_url": "https://platform.claude.com/docs/en/build-with-claude/skills-guide",
+      "section_path": [
+        "Managing custom Skills",
+        "Creating a Skill"
+      ],
+      "char_start": 72650,
+      "char_end": 72735,
+      "question": "What argument does `files_from_dir` accept?",
+      "answer": "A directory path.",
+      "atomic_claims": [
+        "The Python SDK `files_from_dir` helper accepts a directory path."
+      ],
+      "critical_strings": [
+        "files_from_dir"
+      ],
+      "evidence_text": "The Python SDK also provides a `files_from_dir` helper that accepts a directory path.",
+      "evidence_hash": "dcf16d18e94cb433a7aa16e08368cde0eaafaf15f6738dc5db9363ca67bf9f3a",
+      "evidence_char_length": 85,
+      "expected_evidence": [
+        {
+          "version_id": "ver_5a15a8f543d432ef91eb6e2997f51225",
+          "section_path": [
+            "Managing custom Skills",
+            "Creating a Skill"
+          ],
+          "char_start": 72650,
+          "char_end": 72735
+        }
+      ],
+      "reasoning_type": "exact_lookup",
+      "evidence_kind": "short_normative",
+      "stress_types": [
+        "short_evidence_unit",
+        "correct_document_difficult_passage",
+        "identifier_vs_semantic_distractor",
+        "lexical_query_shape"
+      ],
+      "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a"
+    },
+    {
+      "case_id": "V2D-20",
+      "source": "original_packet_round1_PASS",
+      "chatgpt_verified": true,
+      "chatgpt_verified_round": 1,
+      "human_verified": true,
+      "frozen": true,
+      "retrieval_was_not_run": true,
+      "provider": "anthropic",
+      "document_title": "Claude Platform on AWS",
+      "version_id": "ver_5ebdc722f9bedb1e2e8cbd3f29ff6805",
+      "source_url": "https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws",
+      "section_path": [
+        "Data residency"
+      ],
+      "char_start": 47753,
+      "char_end": 47880,
+      "question": "What happens if you omit `inference_geo`?",
+      "answer": "The request uses the workspace's `default_inference_geo` if one is configured, otherwise `global`.",
+      "atomic_claims": [
+        "If you omit `inference_geo`, the request uses the workspace's `default_inference_geo` if one is configured, otherwise `global`."
+      ],
+      "critical_strings": [
+        "inference_geo",
+        "default_inference_geo",
+        "global"
+      ],
+      "evidence_text": "If you omit `inference_geo`, the request uses the workspace's `default_inference_geo` if one is configured, otherwise `global`.",
+      "evidence_hash": "44d2362efd094347f32c7b43701ebb2e21a23b6473a4503a9ebe3b6a5c8feeea",
+      "evidence_char_length": 127,
+      "expected_evidence": [
+        {
+          "version_id": "ver_5ebdc722f9bedb1e2e8cbd3f29ff6805",
+          "section_path": [
+            "Data residency"
+          ],
+          "char_start": 47753,
+          "char_end": 47880
+        }
+      ],
+      "reasoning_type": "configuration_interaction",
+      "evidence_kind": "short_normative",
+      "stress_types": [
+        "short_evidence_unit",
+        "correct_document_difficult_passage",
+        "identifier_vs_semantic_distractor",
+        "lexical_query_shape",
+        "paraphrase_query_shape"
+      ],
+      "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a"
+    },
+    {
+      "case_id": "V2D-21",
+      "source": "repaired_candidates_jsonl",
+      "chatgpt_verified": true,
+      "chatgpt_verified_round": 2,
+      "human_verified": true,
+      "frozen": true,
+      "retrieval_was_not_run": true,
+      "provider": "anthropic",
+      "document_title": "Memory tool",
+      "version_id": "ver_96d1698a3864f79451e8576f87a07004",
+      "source_url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool",
+      "section_path": [
+        "Security considerations",
+        "File storage size"
+      ],
+      "char_start": 34903,
+      "char_end": 35023,
+      "question": "How should large `view` output be limited, and how can Claude page through the rest with `view_range`?",
+      "answer": "Cap how many characters the `view` command returns, and let Claude page through the rest with `view_range`.",
+      "atomic_claims": [
+        "Consider capping how many characters the `view` command returns, and let Claude page through the rest with `view_range`."
+      ],
+      "critical_strings": [
+        "view",
+        "view_range"
+      ],
+      "evidence_text": "Consider capping how many characters the `view` command returns, and let Claude page through the rest with `view_range`.",
+      "evidence_hash": "829b4270435161f75e29c18c666d040ecac6c5820aeea5bc33c8c65c9b51092b",
+      "evidence_char_length": 120,
+      "expected_evidence": [
+        {
+          "version_id": "ver_96d1698a3864f79451e8576f87a07004",
+          "section_path": [
+            "Security considerations",
+            "File storage size"
+          ],
+          "char_start": 34903,
+          "char_end": 35023
+        }
+      ],
+      "reasoning_type": "error_behavior",
+      "evidence_kind": "short_normative",
+      "stress_types": [
+        "short_evidence_unit",
+        "correct_document_difficult_passage",
+        "version_model_discrimination",
+        "identifier_vs_semantic_distractor"
+      ],
+      "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a"
+    },
+    {
+      "case_id": "V2D-22",
+      "source": "repaired_candidates_jsonl",
+      "chatgpt_verified": true,
+      "chatgpt_verified_round": 2,
+      "human_verified": true,
+      "frozen": true,
+      "retrieval_was_not_run": true,
+      "provider": "anthropic",
+      "document_title": "Tool runner (SDK)",
+      "version_id": "ver_96d5aba3c4e7771cabd4f3d4f5a3fff1",
+      "source_url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-runner",
+      "section_path": [
+        "Advanced usage",
+        "Taking over message history"
+      ],
+      "char_start": 38316,
+      "char_end": 38425,
+      "question": "What has already been appended by the time `next_message` returns?",
+      "answer": "The assistant message and tool result for that turn.",
+      "atomic_claims": [
+        "By the time `next_message` returns, the assistant message and tool result for that turn are already appended."
+      ],
+      "critical_strings": [
+        "next_message"
+      ],
+      "evidence_text": "By the time `next_message` returns, the assistant message and tool result for that turn are already appended.",
+      "evidence_hash": "cc4be65021e4ea3f13b4ad9ce60d23942d2d0ec76c0c46663fd82d8025ee4224",
+      "evidence_char_length": 109,
+      "expected_evidence": [
+        {
+          "version_id": "ver_96d5aba3c4e7771cabd4f3d4f5a3fff1",
+          "section_path": [
+            "Advanced usage",
+            "Taking over message history"
+          ],
+          "char_start": 38316,
+          "char_end": 38425
+        }
+      ],
+      "reasoning_type": "error_behavior",
+      "evidence_kind": "short_normative",
+      "stress_types": [
+        "short_evidence_unit",
+        "correct_document_difficult_passage",
+        "identifier_vs_semantic_distractor",
+        "lexical_query_shape"
+      ],
+      "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a"
+    },
+    {
+      "case_id": "V2D-23",
+      "source": "repaired_candidates_jsonl",
+      "chatgpt_verified": true,
+      "chatgpt_verified_round": 2,
+      "human_verified": true,
+      "frozen": true,
+      "retrieval_was_not_run": true,
+      "provider": "openai",
+      "document_title": "Sandbox clients",
+      "version_id": "ver_3d4b8881962381cbfba18ade50c598e1",
+      "source_url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/sandbox/clients.md",
+      "section_path": [
+        "Sandbox clients",
+        "Supported hosted platforms",
+        "Size Modal sandboxes"
+      ],
+      "char_start": 10824,
+      "char_end": 11465,
+      "question": "What are credentialless `rclone` mounts limited to?",
+      "answer": "S3, GCS, R2, and Azure Blob.",
+      "atomic_claims": [
+        "Credentialless `rclone` mounts are limited to S3, GCS, R2, and Azure Blob."
+      ],
+      "critical_strings": [
+        "rclone",
+        "FuseMountPattern",
+        "blobfuse2"
+      ],
+      "evidence_text": "Credentialless `rclone` mounts are limited to S3, GCS, R2, and Azure Blob. An in-container Box mount requires a non-interactive authentication source and the acknowledgement that matches that source. `FuseMountPattern` requires broad acknowledgement because `blobfuse2` discovers ambient Azure authority, even when no inline credential is configured. `S3FilesMountPattern` likewise requires broad acknowledgement because `mount.s3files` uses ambient IAM authority. These requirements also apply when Docker is the backend; the check marks below indicate that Docker can execute the mount after the applicable authority boundary is satisfied.",
+      "evidence_hash": "b97014844240948026e9df02c8b13569c24b56a95ddfab31721fb318fdd150a1",
+      "evidence_char_length": 641,
+      "expected_evidence": [
+        {
+          "version_id": "ver_3d4b8881962381cbfba18ade50c598e1",
+          "section_path": [
+            "Sandbox clients",
+            "Supported hosted platforms",
+            "Size Modal sandboxes"
+          ],
+          "char_start": 10824,
+          "char_end": 11465
+        }
+      ],
+      "reasoning_type": "exact_lookup",
+      "evidence_kind": "long_technical_section",
+      "stress_types": [
+        "long_technical_section",
+        "correct_document_difficult_passage",
+        "identifier_vs_semantic_distractor"
+      ],
+      "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a"
+    },
+    {
+      "case_id": "V2D-24",
+      "source": "original_packet_round1_PASS",
+      "chatgpt_verified": true,
+      "chatgpt_verified_round": 1,
+      "human_verified": true,
+      "frozen": true,
+      "retrieval_was_not_run": true,
+      "provider": "anthropic",
+      "document_title": "Migration guide",
+      "version_id": "ver_a7bda3595f2c124605c3228464d4ee52",
+      "source_url": "https://platform.claude.com/docs/en/about-claude/models/migration-guide",
+      "section_path": [
+        "Opus migration",
+        "What changed"
+      ],
+      "char_start": 54954,
+      "char_end": 55610,
+      "question": "What does Claude Opus 4.7 reject?",
+      "answer": "Claude Opus 4.7 rejects `role: \"system\"` in `messages` with a 400 error.",
+      "atomic_claims": [
+        "Claude Opus 4.7 rejects `role: \"system\"` in `messages` with a 400 error."
+      ],
+      "critical_strings": [
+        "messages",
+        "system"
+      ],
+      "evidence_text": "5. **Mid-conversation system messages:** Claude Opus 5 accepts `role: \"system\"` messages immediately after a user turn in the `messages` array (subject to [placement rules](https://platform.claude.com/docs/en/build-with-claude/mid-conversation-system-messages#limitations)). Use the top-level `system` field for instructions that apply from the start. Claude Opus 4.7 rejects `role: \"system\"` in `messages` with a 400 error. If you maintain code paths that rebuild the full message history to update instructions, you can simplify them and preserve [prompt cache](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) hits on earlier turns.",
+      "evidence_hash": "47f0ae4b3a03eda2241ca4ce66067e218b04759efe4786cc90316fd7009250ff",
+      "evidence_char_length": 656,
+      "expected_evidence": [
+        {
+          "version_id": "ver_a7bda3595f2c124605c3228464d4ee52",
+          "section_path": [
+            "Opus migration",
+            "What changed"
+          ],
+          "char_start": 54954,
+          "char_end": 55610
+        }
+      ],
+      "reasoning_type": "error_behavior",
+      "evidence_kind": "long_technical_section",
+      "stress_types": [
+        "long_technical_section",
+        "correct_document_difficult_passage",
+        "version_model_discrimination",
+        "parameter_error_literal_lookup",
+        "same_document_passage_discrimination"
+      ],
+      "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a"
+    },
+    {
+      "case_id": "V2D-25",
+      "source": "original_packet_round1_PASS",
+      "chatgpt_verified": true,
+      "chatgpt_verified_round": 1,
+      "human_verified": true,
+      "frozen": true,
+      "retrieval_was_not_run": true,
+      "provider": "anthropic",
+      "document_title": "Admin",
+      "version_id": "ver_c299b58fe1f5a4d3a081b550334a7df6",
+      "source_url": "https://platform.claude.com/docs/en/api/admin",
+      "section_path": [
+        "Service Accounts",
+        "Create Service Account"
+      ],
+      "char_start": 441490,
+      "char_end": 442046,
+      "question": "What does Creating an `admin`-role service account require?",
+      "answer": "Creating an `admin`-role service account requires an interactive credential (a user OAuth token or a Console session) — a workload may only create `developer`-role service accounts.",
+      "atomic_claims": [
+        "Creating an `admin`-role service account requires an interactive credential (a user OAuth token or a Console session) — a workload may only create `developer`-role service accounts."
+      ],
+      "critical_strings": [
+        "organization_role",
+        "developer",
+        "admin"
+      ],
+      "evidence_text": "A service account is a named workload identity that federation rules\ntarget. `organization_role` is `developer` (default) or `admin`; a rule\nmay only be created or retargeted to grant `org:admin` scope when the\ntarget's `organization_role` is `admin`. Requires an OAuth bearer (user\nor WIF-minted service account token) or a Console session; Admin API\nkeys are not accepted. Creating an `admin`-role service account requires\nan interactive credential (a user OAuth token or a Console session) — a\nworkload may only create `developer`-role service accounts.",
+      "evidence_hash": "81389e37ebfd652456dc740e7b434acb38c5ac732d3d29ee60e2ecce49d0fa12",
+      "evidence_char_length": 556,
+      "expected_evidence": [
+        {
+          "version_id": "ver_c299b58fe1f5a4d3a081b550334a7df6",
+          "section_path": [
+            "Service Accounts",
+            "Create Service Account"
+          ],
+          "char_start": 441490,
+          "char_end": 442046
+        }
+      ],
+      "reasoning_type": "configuration_interaction",
+      "evidence_kind": "long_technical_section",
+      "stress_types": [
+        "long_technical_section",
+        "correct_document_difficult_passage",
+        "identifier_vs_semantic_distractor"
+      ],
+      "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a"
+    },
+    {
+      "case_id": "V2D-26",
+      "source": "original_packet_round1_PASS",
+      "chatgpt_verified": true,
+      "chatgpt_verified_round": 1,
+      "human_verified": true,
+      "frozen": true,
+      "retrieval_was_not_run": true,
+      "provider": "anthropic",
+      "document_title": "Code execution tool",
+      "version_id": "ver_f65938c74d40ac1e288f169d3d0435b7",
+      "source_url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool",
+      "section_path": [
+        "Model compatibility"
+      ],
+      "char_start": 3697,
+      "char_end": 4899,
+      "question": "What does Claude Haiku 4.5 accept?",
+      "answer": "Claude Haiku 4.5 accepts the `code_execution_20260120` and `code_execution_20260521` tool types, but programmatic tool calling and the REPL state persistence that depends on it aren't available on it, so the newer versions behave like `code_execution_20250825` there.",
+      "atomic_claims": [
+        "Claude Haiku 4.5 accepts the `code_execution_20260120` and `code_execution_20260521` tool types, but programmatic tool calling and the REPL state persistence that depends on it aren't available on it, so the newer versions behave like `code_execution_20250825` there."
+      ],
+      "critical_strings": [
+        "code_execution_20250825",
+        "code_execution_20260120",
+        "code_execution_20260521"
+      ],
+      "evidence_text": "* `code_execution_20250825` supports Bash commands and file operations.\n* `code_execution_20260120` adds REPL state persistence and [programmatic tool calling](https://platform.claude.com/docs/en/agents-and-tools/tool-use/programmatic-tool-calling) from within the sandbox. Claude Haiku 4.5 accepts the `code_execution_20260120` and `code_execution_20260521` tool types, but programmatic tool calling and the REPL state persistence that depends on it aren't available on it, so the newer versions behave like `code_execution_20250825` there.\n* `code_execution_20260521` is the same runtime as `code_execution_20260120`. The difference is that the tool description tells Claude about the 90-second wall-clock limit on each Python cell in programmatic tool calling, so Claude can budget long-running cells. A cell that exceeds the limit returns a normal code execution result with a non-zero `return_code` and a `detection_timeout` status message in its output. This is separate from the `execution_time_exceeded` [error code](https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool#errors), which the API returns when a whole tool invocation exceeds the maximum execution time.",
+      "evidence_hash": "9cea4902ecd5c88731db55f35040c0d383bc69d570dc64b352eba255d3e54f11",
+      "evidence_char_length": 1202,
+      "expected_evidence": [
+        {
+          "version_id": "ver_f65938c74d40ac1e288f169d3d0435b7",
+          "section_path": [
+            "Model compatibility"
+          ],
+          "char_start": 3697,
+          "char_end": 4899
+        }
+      ],
+      "reasoning_type": "exact_lookup",
+      "evidence_kind": "long_technical_section",
+      "stress_types": [
+        "long_technical_section",
+        "version_model_discrimination",
+        "parameter_error_literal_lookup"
+      ],
+      "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a"
+    },
+    {
+      "case_id": "V2D-27",
+      "source": "original_packet_round1_PASS",
+      "chatgpt_verified": true,
+      "chatgpt_verified_round": 1,
+      "human_verified": true,
+      "frozen": true,
+      "retrieval_was_not_run": true,
+      "provider": "openai",
+      "document_title": "Handoffs",
+      "version_id": "ver_1c77f33b04ffffa285ea7e61c2a89653",
+      "source_url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/handoffs.md",
+      "section_path": [
+        "(1)!",
+        "Customizing handoffs via the `handoff()` function"
+      ],
+      "char_start": 2733,
+      "char_end": 2924,
+      "question": "What is the `nest_handoff_history` option?",
+      "answer": "Optional per-handoff override for the RunConfig-level `nest_handoff_history` setting. If `None`, the value defined in the active run configuration is used instead.",
+      "atomic_claims": [
+        "`nest_handoff_history`: Optional per-handoff override for the RunConfig-level `nest_handoff_history` setting. If `None`, the value defined in the active run configuration is used instead."
+      ],
+      "critical_strings": [
+        "nest_handoff_history",
+        "Optional per-handoff override for the RunConfig-level `nest"
+      ],
+      "evidence_text": "-   `nest_handoff_history`: Optional per-handoff override for the RunConfig-level `nest_handoff_history` setting. If `None`, the value defined in the active run configuration is used instead.",
+      "evidence_hash": "dc3876a7a33fdb1b166f9b1b78a40ba13f479f776215de7018f0c04d4f46d29e",
+      "evidence_char_length": 191,
+      "expected_evidence": [
+        {
+          "version_id": "ver_1c77f33b04ffffa285ea7e61c2a89653",
+          "section_path": [
+            "(1)!",
+            "Customizing handoffs via the `handoff()` function"
+          ],
+          "char_start": 2733,
+          "char_end": 2924
+        }
+      ],
+      "reasoning_type": "exact_lookup",
+      "evidence_kind": "definition_bullet",
+      "stress_types": [
+        "parameter_error_literal_lookup",
+        "identifier_vs_semantic_distractor",
+        "lexical_query_shape"
+      ],
+      "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a"
+    },
+    {
+      "case_id": "V2D-28",
+      "source": "original_packet_round1_PASS",
+      "chatgpt_verified": true,
+      "chatgpt_verified_round": 1,
+      "human_verified": true,
+      "frozen": true,
+      "retrieval_was_not_run": true,
+      "provider": "anthropic",
+      "document_title": "MCP connector",
+      "version_id": "ver_279d37a3a0cc4e8a9209e01f16f9df88",
+      "source_url": "https://platform.claude.com/docs/en/agents-and-tools/mcp-connector",
+      "section_path": [
+        "MCP server configuration",
+        "Field descriptions"
+      ],
+      "char_start": 12037,
+      "char_end": 12395,
+      "question": "Is the `authorization_token` parameter required?",
+      "answer": "No, it is optional.",
+      "atomic_claims": [
+        "`authorization_token` is optional."
+      ],
+      "critical_strings": [
+        "authorization_token",
+        "No"
+      ],
+      "evidence_text": "| `authorization_token` | string | No       | OAuth authorization token if required by the MCP server. See [Authentication](https://platform.claude.com/docs/en/agents-and-tools/mcp-connector#authentication) for how to obtain one, or the [MCP specification](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization) for protocol details. |",
+      "evidence_hash": "f9e6a94fee46649f7544664048f00e2bc5062e6ab2476766015ae9e1abef428c",
+      "evidence_char_length": 358,
+      "expected_evidence": [
+        {
+          "version_id": "ver_279d37a3a0cc4e8a9209e01f16f9df88",
+          "section_path": [
+            "MCP server configuration",
+            "Field descriptions"
+          ],
+          "char_start": 12037,
+          "char_end": 12395
+        }
+      ],
+      "reasoning_type": "exact_lookup",
+      "evidence_kind": "parameter_table_row",
+      "stress_types": [
+        "parameter_error_literal_lookup",
+        "identifier_vs_semantic_distractor",
+        "lexical_query_shape"
+      ],
+      "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a"
+    },
+    {
+      "case_id": "V2D-29",
+      "source": "original_packet_round1_PASS",
+      "chatgpt_verified": true,
+      "chatgpt_verified_round": 1,
+      "human_verified": true,
+      "frozen": true,
+      "retrieval_was_not_run": true,
+      "provider": "anthropic",
+      "document_title": "Migration guide",
+      "version_id": "ver_a7bda3595f2c124605c3228464d4ee52",
+      "source_url": "https://platform.claude.com/docs/en/about-claude/models/migration-guide",
+      "section_path": [
+        "Sonnet migration",
+        "Migrating to Claude Sonnet 5 from Claude Sonnet 4.5 and earlier Sonnet models",
+        "Breaking changes",
+        "When migrating from Sonnet 4.5"
+      ],
+      "char_start": 145238,
+      "char_end": 145433,
+      "question": "Is `budget_tokens` supported on Claude Sonnet 5?",
+      "answer": "**Extended thinking changes:** `budget_tokens` configurations from Claude Sonnet 4.5 (`thinking: {type: \"enabled\", budget_tokens: N}`) are not supported on Claude Sonnet 5 and return a 400 error.",
+      "atomic_claims": [
+        "**Extended thinking changes:** `budget_tokens` configurations from Claude Sonnet 4.5 (`thinking: {type: \"enabled\", budget_tokens: N}`) are not supported on Claude Sonnet 5 and return a 400 error."
+      ],
+      "critical_strings": [
+        "budget_tokens"
+      ],
+      "evidence_text": "**Extended thinking changes:** `budget_tokens` configurations from Claude Sonnet 4.5 (`thinking: {type: \"enabled\", budget_tokens: N}`) are not supported on Claude Sonnet 5 and return a 400 error.",
+      "evidence_hash": "de9ec2b8500126128446817587db58f782b25e94cdf3ee308f7ac5217340221c",
+      "evidence_char_length": 195,
+      "expected_evidence": [
+        {
+          "version_id": "ver_a7bda3595f2c124605c3228464d4ee52",
+          "section_path": [
+            "Sonnet migration",
+            "Migrating to Claude Sonnet 5 from Claude Sonnet 4.5 and earlier Sonnet models",
+            "Breaking changes",
+            "When migrating from Sonnet 4.5"
+          ],
+          "char_start": 145238,
+          "char_end": 145433
+        }
+      ],
+      "reasoning_type": "lifecycle_compatibility_migration",
+      "evidence_kind": "lifecycle_statement",
+      "stress_types": [
+        "correct_document_difficult_passage",
+        "version_model_discrimination",
+        "parameter_error_literal_lookup",
+        "identifier_vs_semantic_distractor",
+        "lexical_query_shape",
+        "same_document_passage_discrimination"
+      ],
+      "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a"
+    },
+    {
+      "case_id": "V2D-30",
+      "source": "original_packet_round1_PASS",
+      "chatgpt_verified": true,
+      "chatgpt_verified_round": 1,
+      "human_verified": true,
+      "frozen": true,
+      "retrieval_was_not_run": true,
+      "provider": "anthropic",
+      "document_title": "Structured outputs",
+      "version_id": "ver_0865c9612dfe97d8f30dd870dd12e53e",
+      "source_url": "https://platform.claude.com/docs/en/build-with-claude/structured-outputs",
+      "section_path": [
+        "JSON outputs",
+        "Working with JSON outputs in SDKs",
+        "SDK-specific methods"
+      ],
+      "char_start": 29387,
+      "char_end": 29591,
+      "question": "What does the C# SDK accept?",
+      "answer": "The C# SDK accepts raw JSON schemas built programmatically with `JsonSerializer.SerializeToElement`, as shown here, or derives the schema from a plain C# class with the generic `Create<T>()` overload.",
+      "atomic_claims": [
+        "The C# SDK accepts raw JSON schemas built programmatically with `JsonSerializer.SerializeToElement`, as shown here, or derives the schema from a plain C# class with the generic `Create<T>()` overload."
+      ],
+      "critical_strings": [
+        "JsonSerializer.SerializeToElement"
+      ],
+      "evidence_text": "    The C# SDK accepts raw JSON schemas built programmatically with `JsonSerializer.SerializeToElement`, as shown here, or derives the schema from a plain C# class with the generic `Create<T>()` overload.",
+      "evidence_hash": "ae1c3cc2f4fbd61f52a9658cbad5ff23fe538c261e8db072d19a31c060162e8e",
+      "evidence_char_length": 204,
+      "expected_evidence": [
+        {
+          "version_id": "ver_0865c9612dfe97d8f30dd870dd12e53e",
+          "section_path": [
+            "JSON outputs",
+            "Working with JSON outputs in SDKs",
+            "SDK-specific methods"
+          ],
+          "char_start": 29387,
+          "char_end": 29591
+        }
+      ],
+      "reasoning_type": "exact_lookup",
+      "evidence_kind": "short_normative",
+      "stress_types": [
+        "correct_document_difficult_passage"
+      ],
+      "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a"
+    },
+    {
+      "case_id": "V2D-31",
+      "source": "original_packet_round1_PASS",
+      "chatgpt_verified": true,
+      "chatgpt_verified_round": 1,
+      "human_verified": true,
+      "frozen": true,
+      "retrieval_was_not_run": true,
+      "provider": "openai",
+      "document_title": "Agent memory",
+      "version_id": "ver_20a999d310bdb42a2eaa743e061ba109",
+      "source_url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/sandbox/memory.md",
+      "section_path": [
+        "Agent memory",
+        "Generate memory"
+      ],
+      "char_start": 6111,
+      "char_end": 6278,
+      "question": "What happens if recent raw memories exceed `max_raw_memories_for_consolidation` (defaults to 256)?",
+      "answer": "Phase 2 keeps only memories from the newest conversations and removes older ones.",
+      "atomic_claims": [
+        "If recent raw memories exceed `max_raw_memories_for_consolidation` (defaults to 256), Phase 2 keeps only memories from the newest conversations and removes older ones."
+      ],
+      "critical_strings": [
+        "max_raw_memories_for_consolidation"
+      ],
+      "evidence_text": "If recent raw memories exceed `max_raw_memories_for_consolidation` (defaults to 256), Phase 2 keeps only memories from the newest conversations and removes older ones.",
+      "evidence_hash": "0b2654299175c5791f8b50474b4eeaf518c8e53df721e70e2f20d30a9f0b4d64",
+      "evidence_char_length": 167,
+      "expected_evidence": [
+        {
+          "version_id": "ver_20a999d310bdb42a2eaa743e061ba109",
+          "section_path": [
+            "Agent memory",
+            "Generate memory"
+          ],
+          "char_start": 6111,
+          "char_end": 6278
+        }
+      ],
+      "reasoning_type": "exact_lookup",
+      "evidence_kind": "short_normative",
+      "stress_types": [
+        "short_evidence_unit",
+        "correct_document_difficult_passage",
+        "identifier_vs_semantic_distractor",
+        "lexical_query_shape",
+        "paraphrase_query_shape"
+      ],
+      "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a"
+    },
+    {
+      "case_id": "V2D-32",
+      "source": "repaired_candidates_jsonl",
+      "chatgpt_verified": true,
+      "chatgpt_verified_round": 2,
+      "human_verified": true,
+      "frozen": true,
+      "retrieval_was_not_run": true,
+      "provider": "anthropic",
+      "document_title": "MCP tunnels quickstart",
+      "version_id": "ver_067b3bfdc28f24500ea19b97bf3e80b1",
+      "source_url": "https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/quickstart",
+      "section_path": [
+        "What you need"
+      ],
+      "char_start": 1792,
+      "char_end": 1989,
+      "question": "What OpenSSL version is required, and what is required of the `openssl` binary on Windows?",
+      "answer": "OpenSSL 1.1.1 or later. On Windows, install it separately (the `openssl` binary must be on your `PATH`).",
+      "atomic_claims": [
+        "OpenSSL 1.1.1 or later is required.",
+        "On Windows, install OpenSSL separately (the `openssl` binary must be on your `PATH`)."
+      ],
+      "critical_strings": [
+        "OpenSSL",
+        "1.1.1",
+        "openssl",
+        "PATH"
+      ],
+      "evidence_text": "* [OpenSSL](https://openssl-library.org/source/) 1.1.1 or later. Preinstalled on macOS and most Linux distributions; on Windows, install it separately (the `openssl` binary must be on your `PATH`).",
+      "evidence_hash": "64a21c31843c3819f9bbf9e1f235df92d9bd00f21a0df635c4c8c8bf9814082e",
+      "evidence_char_length": 197,
+      "expected_evidence": [
+        {
+          "version_id": "ver_067b3bfdc28f24500ea19b97bf3e80b1",
+          "section_path": [
+            "What you need"
+          ],
+          "char_start": 1792,
+          "char_end": 1989
+        }
+      ],
+      "reasoning_type": "exact_lookup",
+      "evidence_kind": "constraint_statement",
+      "stress_types": [
+        "short_evidence_unit",
+        "parameter_error_literal_lookup",
+        "identifier_vs_semantic_distractor"
+      ],
+      "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a"
+    },
+    {
+      "case_id": "V2D-33",
+      "source": "repaired_candidates_jsonl",
+      "chatgpt_verified": true,
+      "chatgpt_verified_round": 2,
+      "human_verified": true,
+      "frozen": true,
+      "retrieval_was_not_run": true,
+      "provider": "openai",
+      "document_title": "Running agents",
+      "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+      "source_url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/running_agents.md",
+      "section_path": [
+        "Running agents",
+        "Runner lifecycle and configuration",
+        "The agent loop"
+      ],
+      "char_start": 82,
+      "char_end": 1133,
+      "question": "What do you pass in when you call `Runner.run`, `Runner.run_sync`, or `Runner.run_streamed`?",
+      "answer": "A starting agent and input.",
+      "atomic_claims": [
+        "When you call `Runner.run`, `Runner.run_sync`, or `Runner.run_streamed`, you pass in a starting agent and input."
+      ],
+      "critical_strings": [
+        "Runner.run",
+        "Runner.run_sync",
+        "Runner.run_streamed",
+        "Runner"
+      ],
+      "evidence_text": "You have 3 options:\n\n1. [`Runner.run()`][agents.run.Runner.run], which runs async and returns a [`RunResult`][agents.result.RunResult].\n2. [`Runner.run_sync()`][agents.run.Runner.run_sync], which is a sync method and just runs `.run()` under the hood.\n3. [`Runner.run_streamed()`][agents.run.Runner.run_streamed], which runs async and returns a [`RunResultStreaming`][agents.result.RunResultStreaming]. It calls the LLM in streaming mode, and streams those events to you as they are received.\n\n```python\nfrom agents import Agent, Runner\n\nasync def main():\n    agent = Agent(name=\"Assistant\", instructions=\"You are a helpful assistant\")\n\n    result = await Runner.run(agent, \"Write a haiku about recursion in programming.\")\n    print(result.final_output)\n    # Code within the code,\n    # Functions calling themselves,\n    # Infinite loop's dance\n```\n\nRead more in the [results guide](results.md).\n\n## Runner lifecycle and configuration\n\n### The agent loop\n\nWhen you call any of the three `Runner` methods above, you pass in a starting agent and input.",
+      "evidence_hash": "8dcd14030925dca2775dd03788cf65e7c62691ba478dcbf4bfffcd9fb8555efe",
+      "evidence_char_length": 1051,
+      "expected_evidence": [
+        {
+          "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+          "section_path": [
+            "Running agents",
+            "Runner lifecycle and configuration",
+            "The agent loop"
+          ],
+          "char_start": 82,
+          "char_end": 1133
+        }
+      ],
+      "reasoning_type": "exact_lookup",
+      "evidence_kind": "short_normative",
+      "stress_types": [
+        "short_evidence_unit",
+        "identifier_vs_semantic_distractor",
+        "paraphrase_query_shape"
+      ],
+      "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a"
+    },
+    {
+      "case_id": "V2D-34",
+      "source": "original_packet_round1_PASS",
+      "chatgpt_verified": true,
+      "chatgpt_verified_round": 1,
+      "human_verified": true,
+      "frozen": true,
+      "retrieval_was_not_run": true,
+      "provider": "anthropic",
+      "document_title": "Embeddings",
+      "version_id": "ver_26f61f56d6ff7124cfa38152f7baef3d",
+      "source_url": "https://platform.claude.com/docs/en/build-with-claude/embeddings",
+      "section_path": [
+        "and cosine similarity are the same.",
+        "FAQ"
+      ],
+      "char_start": 17895,
+      "char_end": 18001,
+      "question": "What happens when using the `input_type` parameter?",
+      "answer": "Special prompts are prepended to the input text prior to embedding.",
+      "atomic_claims": [
+        "When using the `input_type` parameter, special prompts are prepended to the input text prior to embedding."
+      ],
+      "critical_strings": [
+        "input_type"
+      ],
+      "evidence_text": "When using the `input_type` parameter, special prompts are prepended to the input text prior to embedding.",
+      "evidence_hash": "0977226e832171ae3425333395cad09d1fae827f9f10549aa5da7c2bbafd3413",
+      "evidence_char_length": 106,
+      "expected_evidence": [
+        {
+          "version_id": "ver_26f61f56d6ff7124cfa38152f7baef3d",
+          "section_path": [
+            "and cosine similarity are the same.",
+            "FAQ"
+          ],
+          "char_start": 17895,
+          "char_end": 18001
+        }
+      ],
+      "reasoning_type": "exact_lookup",
+      "evidence_kind": "short_normative",
+      "stress_types": [
+        "short_evidence_unit",
+        "correct_document_difficult_passage",
+        "identifier_vs_semantic_distractor",
+        "lexical_query_shape",
+        "paraphrase_query_shape"
+      ],
+      "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a"
+    },
+    {
+      "case_id": "V2D-35",
+      "source": "original_packet_round1_PASS",
+      "chatgpt_verified": true,
+      "chatgpt_verified_round": 1,
+      "human_verified": true,
+      "frozen": true,
+      "retrieval_was_not_run": true,
+      "provider": "openai",
+      "document_title": "OpenAI Python API library",
+      "version_id": "ver_9247e3ce4df6f79d9cadc44e1a3bbd0c",
+      "source_url": "https://github.com/openai/openai-python/blob/10ee3f0da2ac6f93345c1204bd7bb1a2faa79ff2/README.md",
+      "section_path": [
+        "Remove `await` for non-async usage.",
+        "Webhook Verification",
+        "Verifying webhook payloads directly"
+      ],
+      "char_start": 16257,
+      "char_end": 16361,
+      "question": "What must `body` be?",
+      "answer": "Note that the `body` parameter must be the raw JSON string sent from the server (do not parse it first).",
+      "atomic_claims": [
+        "Note that the `body` parameter must be the raw JSON string sent from the server (do not parse it first)."
+      ],
+      "critical_strings": [
+        "body"
+      ],
+      "evidence_text": "Note that the `body` parameter must be the raw JSON string sent from the server (do not parse it first).",
+      "evidence_hash": "b41d372109411e73c998b149e835500374947a5d3f2f0fa5b228609bc60fd911",
+      "evidence_char_length": 104,
+      "expected_evidence": [
+        {
+          "version_id": "ver_9247e3ce4df6f79d9cadc44e1a3bbd0c",
+          "section_path": [
+            "Remove `await` for non-async usage.",
+            "Webhook Verification",
+            "Verifying webhook payloads directly"
+          ],
+          "char_start": 16257,
+          "char_end": 16361
+        }
+      ],
+      "reasoning_type": "exact_lookup",
+      "evidence_kind": "constraint_statement",
+      "stress_types": [
+        "short_evidence_unit",
+        "correct_document_difficult_passage",
+        "parameter_error_literal_lookup",
+        "identifier_vs_semantic_distractor",
+        "same_document_passage_discrimination"
+      ],
+      "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a"
+    },
+    {
+      "case_id": "V2D-36",
+      "source": "original_packet_round1_PASS",
+      "chatgpt_verified": true,
+      "chatgpt_verified_round": 1,
+      "human_verified": true,
+      "frozen": true,
+      "retrieval_was_not_run": true,
+      "provider": "anthropic",
+      "document_title": "Search results",
+      "version_id": "ver_42a4f3d941b664a285883aaf6ff90373",
+      "source_url": "https://platform.claude.com/docs/en/build-with-claude/search-results",
+      "section_path": [
+        "How it works",
+        "Required fields"
+      ],
+      "char_start": 2518,
+      "char_end": 2655,
+      "question": "What type does the `title` parameter take?",
+      "answer": "`string`",
+      "atomic_claims": [
+        "`title` is of type string."
+      ],
+      "critical_strings": [
+        "title",
+        "string"
+      ],
+      "evidence_text": "| `title`   | string | A descriptive title for the search result                                                                        |",
+      "evidence_hash": "2f4dc41ed17b240cae706d3372e656706271e16aaa17da2d59ea119cd36bd44b",
+      "evidence_char_length": 137,
+      "expected_evidence": [
+        {
+          "version_id": "ver_42a4f3d941b664a285883aaf6ff90373",
+          "section_path": [
+            "How it works",
+            "Required fields"
+          ],
+          "char_start": 2518,
+          "char_end": 2655
+        }
+      ],
+      "reasoning_type": "exact_lookup",
+      "evidence_kind": "parameter_table_row",
+      "stress_types": [
+        "short_evidence_unit",
+        "parameter_error_literal_lookup",
+        "identifier_vs_semantic_distractor"
+      ],
+      "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a"
+    },
+    {
+      "case_id": "V2D-37",
+      "source": "repaired_candidates_jsonl",
+      "chatgpt_verified": true,
+      "chatgpt_verified_round": 2,
+      "human_verified": true,
+      "frozen": true,
+      "retrieval_was_not_run": true,
+      "provider": "openai",
+      "document_title": "OpenAI Python API library",
+      "version_id": "ver_9247e3ce4df6f79d9cadc44e1a3bbd0c",
+      "source_url": "https://github.com/openai/openai-python/blob/10ee3f0da2ac6f93345c1204bd7bb1a2faa79ff2/README.md",
+      "section_path": [
+        "Remove `await` for non-async usage.",
+        "File uploads"
+      ],
+      "char_start": 14118,
+      "char_end": 14318,
+      "question": "What happens if you pass a `PathLike` instance to the async client?",
+      "answer": "The file contents will be read asynchronously automatically.",
+      "atomic_claims": [
+        "If you pass a PathLike instance to the async client, the file contents will be read asynchronously automatically."
+      ],
+      "critical_strings": [
+        "PathLike",
+        "async client"
+      ],
+      "evidence_text": "The async client uses the exact same interface. If you pass a [`PathLike`](https://docs.python.org/3/library/os.html#os.PathLike) instance, the file contents will be read asynchronously automatically.",
+      "evidence_hash": "21ffcc2671568c84ca6000e864412e9b44513168e97b389e665b6d7d266660c4",
+      "evidence_char_length": 200,
+      "expected_evidence": [
+        {
+          "version_id": "ver_9247e3ce4df6f79d9cadc44e1a3bbd0c",
+          "section_path": [
+            "Remove `await` for non-async usage.",
+            "File uploads"
+          ],
+          "char_start": 14118,
+          "char_end": 14318
+        }
+      ],
+      "reasoning_type": "exact_lookup",
+      "evidence_kind": "short_normative",
+      "stress_types": [
+        "short_evidence_unit",
+        "correct_document_difficult_passage",
+        "identifier_vs_semantic_distractor",
+        "paraphrase_query_shape",
+        "same_document_passage_discrimination"
+      ],
+      "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a"
+    },
+    {
+      "case_id": "V2D-38",
+      "source": "repaired_candidates_jsonl",
+      "chatgpt_verified": true,
+      "chatgpt_verified_round": 2,
+      "human_verified": true,
+      "frozen": true,
+      "retrieval_was_not_run": true,
+      "provider": "anthropic",
+      "document_title": "Prompting Claude Opus 4.8",
+      "version_id": "ver_997f51c850a46243a541d4f4ec4175ce",
+      "source_url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-4-8",
+      "section_path": [
+        "Design and frontend defaults"
+      ],
+      "char_start": 10667,
+      "char_end": 11143,
+      "question": "If you previously relied on `temperature` for design variety, what approach should you use?",
+      "answer": "Have the model propose distinct visual directions before building; it produces meaningfully different directions across runs.",
+      "atomic_claims": [
+        "If you previously relied on `temperature` for design variety, have the model propose distinct visual directions before building; it produces meaningfully different directions across runs."
+      ],
+      "critical_strings": [
+        "temperature",
+        "distinct visual directions"
+      ],
+      "evidence_text": "**2. Have the model propose options before building.** This breaks the default and gives users control. If you previously relied on `temperature` for design variety, use this approach; it produces meaningfully different directions across runs. Example prompt:\n\n```text wrap\nBefore building, propose 4 distinct visual directions tailored to this brief (each as: bg hex / accent hex / typeface — one-line rationale). Ask the user to pick one, then implement only that direction.",
+      "evidence_hash": "09f3c3638c60eeec22566369ef433f2115e9129d79ba3f009561c626dea03d0e",
+      "evidence_char_length": 476,
+      "expected_evidence": [
+        {
+          "version_id": "ver_997f51c850a46243a541d4f4ec4175ce",
+          "section_path": [
+            "Design and frontend defaults"
+          ],
+          "char_start": 10667,
+          "char_end": 11143
+        }
+      ],
+      "reasoning_type": "exact_lookup",
+      "evidence_kind": "short_normative",
+      "stress_types": [
+        "short_evidence_unit",
+        "correct_document_difficult_passage",
+        "identifier_vs_semantic_distractor",
+        "paraphrase_query_shape"
+      ],
+      "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a"
+    },
+    {
+      "case_id": "V2D-39",
+      "source": "original_packet_round1_PASS",
+      "chatgpt_verified": true,
+      "chatgpt_verified_round": 1,
+      "human_verified": true,
+      "frozen": true,
+      "retrieval_was_not_run": true,
+      "provider": "anthropic",
+      "document_title": "Compaction",
+      "version_id": "ver_c60f7418b69b6610bd20e974b92cdd8c",
+      "source_url": "https://platform.claude.com/docs/en/build-with-claude/compaction",
+      "section_path": [
+        "Parameters"
+      ],
+      "char_start": 9649,
+      "char_end": 9854,
+      "question": "What type does the `instructions` parameter take?",
+      "answer": "`string`",
+      "atomic_claims": [
+        "`instructions` is of type string."
+      ],
+      "critical_strings": [
+        "instructions",
+        "string"
+      ],
+      "evidence_text": "| `instructions`           | string  | `null`                                      | Custom summarization prompt. Completely replaces the default prompt when provided.                                     |",
+      "evidence_hash": "9f9b8324df15d3af73d8dbb98a96af708d880e5db2382541ef26aac2bafe97cf",
+      "evidence_char_length": 205,
+      "expected_evidence": [
+        {
+          "version_id": "ver_c60f7418b69b6610bd20e974b92cdd8c",
+          "section_path": [
+            "Parameters"
+          ],
+          "char_start": 9649,
+          "char_end": 9854
+        }
+      ],
+      "reasoning_type": "exact_lookup",
+      "evidence_kind": "parameter_table_row",
+      "stress_types": [
+        "parameter_error_literal_lookup",
+        "identifier_vs_semantic_distractor",
+        "same_document_passage_discrimination"
+      ],
+      "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a"
+    },
+    {
+      "case_id": "V2D-40",
+      "source": "original_packet_round1_PASS",
+      "chatgpt_verified": true,
+      "chatgpt_verified_round": 1,
+      "human_verified": true,
+      "frozen": true,
+      "retrieval_was_not_run": true,
+      "provider": "anthropic",
+      "document_title": "Trigger a routine through the API",
+      "version_id": "ver_d81ee605bd8bbb880deea432e51462ac",
+      "source_url": "https://platform.claude.com/docs/en/api/claude-code/routines-fire",
+      "section_path": [
+        "Trigger a routine",
+        "Response"
+      ],
+      "char_start": 9300,
+      "char_end": 9461,
+      "question": "What type does the `claude_code_session_id` parameter take?",
+      "answer": "`string`",
+      "atomic_claims": [
+        "`claude_code_session_id` is of type string."
+      ],
+      "critical_strings": [
+        "claude_code_session_id",
+        "string"
+      ],
+      "evidence_text": "| `claude_code_session_id`  | string | The ID of the Claude Code session created for this run.                                                                  |",
+      "evidence_hash": "6fc84fb57bf1faad255eae45ddfe1fee7d22db059dac7a2e482580ad4af7aa57",
+      "evidence_char_length": 161,
+      "expected_evidence": [
+        {
+          "version_id": "ver_d81ee605bd8bbb880deea432e51462ac",
+          "section_path": [
+            "Trigger a routine",
+            "Response"
+          ],
+          "char_start": 9300,
+          "char_end": 9461
+        }
+      ],
+      "reasoning_type": "exact_lookup",
+      "evidence_kind": "parameter_table_row",
+      "stress_types": [
+        "short_evidence_unit",
+        "correct_document_difficult_passage",
+        "version_model_discrimination",
+        "parameter_error_literal_lookup",
+        "identifier_vs_semantic_distractor",
+        "lexical_query_shape"
+      ],
+      "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a"
+    },
+    {
+      "case_id": "V2D-41",
+      "source": "original_packet_round1_PASS",
+      "chatgpt_verified": true,
+      "chatgpt_verified_round": 1,
+      "human_verified": true,
+      "frozen": true,
+      "retrieval_was_not_run": true,
+      "provider": "openai",
+      "document_title": "Release process/changelog",
+      "version_id": "ver_de67d790db9792b2f6c5c7418a507764",
+      "source_url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/release.md",
+      "section_path": [
+        "Release process/changelog",
+        "Breaking change changelog",
+        "0.21.0"
+      ],
+      "char_start": 745,
+      "char_end": 843,
+      "question": "What does Version 0.21.0 require?",
+      "answer": "Version 0.21.0 requires `openai` v3 and moves the Agents SDK's OpenAI HTTP integrations to HTTPX2.",
+      "atomic_claims": [
+        "Version 0.21.0 requires `openai` v3 and moves the Agents SDK's OpenAI HTTP integrations to HTTPX2."
+      ],
+      "critical_strings": [
+        "openai"
+      ],
+      "evidence_text": "Version 0.21.0 requires `openai` v3 and moves the Agents SDK's OpenAI HTTP integrations to HTTPX2.",
+      "evidence_hash": "3fd0bfd40ca4fc7048cc484e233f4d4dd569f454e992057b4300306e52baf198",
+      "evidence_char_length": 98,
+      "expected_evidence": [
+        {
+          "version_id": "ver_de67d790db9792b2f6c5c7418a507764",
+          "section_path": [
+            "Release process/changelog",
+            "Breaking change changelog",
+            "0.21.0"
+          ],
+          "char_start": 745,
+          "char_end": 843
+        }
+      ],
+      "reasoning_type": "exact_lookup",
+      "evidence_kind": "short_normative",
+      "stress_types": [
+        "short_evidence_unit",
+        "version_model_discrimination",
+        "same_document_passage_discrimination"
+      ],
+      "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a"
+    },
+    {
+      "case_id": "V2D-42",
+      "source": "original_packet_round1_PASS",
+      "chatgpt_verified": true,
+      "chatgpt_verified_round": 1,
+      "human_verified": true,
+      "frozen": true,
+      "retrieval_was_not_run": true,
+      "provider": "anthropic",
+      "document_title": "Get started with Claude",
+      "version_id": "ver_e207dcf70119ccde7d6f7f9b9ab55676",
+      "source_url": "https://platform.claude.com/docs/en/get-started",
+      "section_path": [
+        "Call the API"
+      ],
+      "char_start": 2866,
+      "char_end": 2964,
+      "question": "What happens when `ANTHROPIC_API_KEY` is set in your environment?",
+      "answer": "It takes precedence over the login credentials.",
+      "atomic_claims": [
+        "When `ANTHROPIC_API_KEY` is set in your environment, it takes precedence over the login credentials."
+      ],
+      "critical_strings": [
+        "ANTHROPIC_API_KEY"
+      ],
+      "evidence_text": "If `ANTHROPIC_API_KEY` is set in your environment, it takes precedence over the login credentials.",
+      "evidence_hash": "29fce2c334b8a4ecd000f2acf4d16e500b24ec1771e81f0202bb4faad9e5f49d",
+      "evidence_char_length": 98,
+      "expected_evidence": [
+        {
+          "version_id": "ver_e207dcf70119ccde7d6f7f9b9ab55676",
+          "section_path": [
+            "Call the API"
+          ],
+          "char_start": 2866,
+          "char_end": 2964
+        }
+      ],
+      "reasoning_type": "exact_lookup",
+      "evidence_kind": "normative_statement",
+      "stress_types": [
+        "short_evidence_unit",
+        "identifier_vs_semantic_distractor",
+        "lexical_query_shape",
+        "paraphrase_query_shape"
+      ],
+      "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a"
+    },
+    {
+      "case_id": "V2D-43",
+      "source": "original_packet_round1_PASS",
+      "chatgpt_verified": true,
+      "chatgpt_verified_round": 1,
+      "human_verified": true,
+      "frozen": true,
+      "retrieval_was_not_run": true,
+      "provider": "openai",
+      "document_title": "Release process/changelog",
+      "version_id": "ver_de67d790db9792b2f6c5c7418a507764",
+      "source_url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/release.md",
+      "section_path": [
+        "Release process/changelog",
+        "Breaking change changelog",
+        "0.20.0"
+      ],
+      "char_start": 3830,
+      "char_end": 3917,
+      "question": "What does `audio.input.turn_detection=None` disable?",
+      "answer": "Automatic turn detection.",
+      "atomic_claims": [
+        "`audio.input.turn_detection=None` disables automatic turn detection."
+      ],
+      "critical_strings": [
+        "audio.input.turn_detection=None"
+      ],
+      "evidence_text": "Setting `audio.input.turn_detection=None` explicitly disables automatic turn detection.",
+      "evidence_hash": "c6cb7a177bf11adf76b83d28360a269c4cee9f33643039b11288a8d2ab5d6170",
+      "evidence_char_length": 87,
+      "expected_evidence": [
+        {
+          "version_id": "ver_de67d790db9792b2f6c5c7418a507764",
+          "section_path": [
+            "Release process/changelog",
+            "Breaking change changelog",
+            "0.20.0"
+          ],
+          "char_start": 3830,
+          "char_end": 3917
+        }
+      ],
+      "reasoning_type": "exact_lookup",
+      "evidence_kind": "normative_statement",
+      "stress_types": [
+        "short_evidence_unit",
+        "identifier_vs_semantic_distractor",
+        "same_document_passage_discrimination"
+      ],
+      "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a"
+    },
+    {
+      "case_id": "V2D-44",
+      "source": "repaired_candidates_jsonl",
+      "chatgpt_verified": true,
+      "chatgpt_verified_round": 2,
+      "human_verified": true,
+      "frozen": true,
+      "retrieval_was_not_run": true,
+      "provider": "openai",
+      "document_title": "Usage",
+      "version_id": "ver_f8002fe268b970eaea8d640f9dd91fb3",
+      "source_url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/usage.md",
+      "section_path": [
+        "Usage",
+        "Preserving provider usage payloads"
+      ],
+      "char_start": 4145,
+      "char_end": 4269,
+      "question": "What setting should you add when a streaming Chat Completions provider requires an explicit usage request?",
+      "answer": "`ModelSettings(include_usage=True)`.",
+      "atomic_claims": [
+        "When a streaming Chat Completions provider requires an explicit usage request, also set `ModelSettings(include_usage=True)`."
+      ],
+      "critical_strings": [
+        "include_usage"
+      ],
+      "evidence_text": "When a streaming Chat Completions provider requires an explicit usage request, also set `ModelSettings(include_usage=True)`.",
+      "evidence_hash": "aa1600091e56a6fb15309b79c17b992e67cc4085d7646a6efee636dcd1233185",
+      "evidence_char_length": 124,
+      "expected_evidence": [
+        {
+          "version_id": "ver_f8002fe268b970eaea8d640f9dd91fb3",
+          "section_path": [
+            "Usage",
+            "Preserving provider usage payloads"
+          ],
+          "char_start": 4145,
+          "char_end": 4269
+        }
+      ],
+      "reasoning_type": "exact_lookup",
+      "evidence_kind": "short_normative",
+      "stress_types": [
+        "short_evidence_unit",
+        "correct_document_difficult_passage",
+        "paraphrase_query_shape"
+      ],
+      "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a"
+    },
+    {
+      "case_id": "V2D-45",
+      "source": "original_packet_round1_PASS",
+      "chatgpt_verified": true,
+      "chatgpt_verified_round": 1,
+      "human_verified": true,
+      "frozen": true,
+      "retrieval_was_not_run": true,
+      "provider": "anthropic",
+      "document_title": "Advisor tool",
+      "version_id": "ver_b8b18cda9b875d51a2ce979a1bf4e909",
+      "source_url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/advisor-tool",
+      "section_path": [
+        "How it works"
+      ],
+      "char_start": 8738,
+      "char_end": 8858,
+      "question": "What happens when you add the advisor tool to your `tools` array?",
+      "answer": "The executor model determines when to call it, like any other tool.",
+      "atomic_claims": [
+        "When you add the advisor tool to your `tools` array, the executor model determines when to call it, like any other tool."
+      ],
+      "critical_strings": [
+        "tools"
+      ],
+      "evidence_text": "When you add the advisor tool to your `tools` array, the executor model determines when to call it, like any other tool.",
+      "evidence_hash": "cc704171126b00b0edd62fb57aa8540daec0c6084d63820948e8813044ca68ca",
+      "evidence_char_length": 120,
+      "expected_evidence": [
+        {
+          "version_id": "ver_b8b18cda9b875d51a2ce979a1bf4e909",
+          "section_path": [
+            "How it works"
+          ],
+          "char_start": 8738,
+          "char_end": 8858
+        }
+      ],
+      "reasoning_type": "exact_lookup",
+      "evidence_kind": "short_normative",
+      "stress_types": [
+        "short_evidence_unit",
+        "identifier_vs_semantic_distractor",
+        "paraphrase_query_shape"
+      ],
+      "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a"
+    },
+    {
+      "case_id": "V2D-46",
+      "source": "original_packet_round1_PASS",
+      "chatgpt_verified": true,
+      "chatgpt_verified_round": 1,
+      "human_verified": true,
+      "frozen": true,
+      "retrieval_was_not_run": true,
+      "provider": "anthropic",
+      "document_title": "Compaction",
+      "version_id": "ver_c60f7418b69b6610bd20e974b92cdd8c",
+      "source_url": "https://platform.claude.com/docs/en/build-with-claude/compaction",
+      "section_path": [
+        "Working with compaction blocks",
+        "Passing compaction blocks back"
+      ],
+      "char_start": 53108,
+      "char_end": 53193,
+      "question": "What happens when the API receives a `compaction` block?",
+      "answer": "All content blocks before it are ignored.",
+      "atomic_claims": [
+        "When the API receives a `compaction` block, all content blocks before it are ignored."
+      ],
+      "critical_strings": [
+        "compaction"
+      ],
+      "evidence_text": "When the API receives a `compaction` block, all content blocks before it are ignored.",
+      "evidence_hash": "d7a977f61bc823a0f93932aaf83998addbfec5adf4dbbaac66b91f1263a20f14",
+      "evidence_char_length": 85,
+      "expected_evidence": [
+        {
+          "version_id": "ver_c60f7418b69b6610bd20e974b92cdd8c",
+          "section_path": [
+            "Working with compaction blocks",
+            "Passing compaction blocks back"
+          ],
+          "char_start": 53108,
+          "char_end": 53193
+        }
+      ],
+      "reasoning_type": "exact_lookup",
+      "evidence_kind": "short_normative",
+      "stress_types": [
+        "short_evidence_unit",
+        "correct_document_difficult_passage",
+        "identifier_vs_semantic_distractor",
+        "paraphrase_query_shape",
+        "same_document_passage_discrimination"
+      ],
+      "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a"
+    },
+    {
+      "case_id": "V2D-47",
+      "source": "original_packet_round1_PASS",
+      "chatgpt_verified": true,
+      "chatgpt_verified_round": 1,
+      "human_verified": true,
+      "frozen": true,
+      "retrieval_was_not_run": true,
+      "provider": "anthropic",
+      "document_title": "Structured outputs",
+      "version_id": "ver_0865c9612dfe97d8f30dd870dd12e53e",
+      "source_url": "https://platform.claude.com/docs/en/build-with-claude/structured-outputs",
+      "section_path": [
+        "JSON outputs",
+        "Working with JSON outputs in SDKs",
+        "SDK-specific methods"
+      ],
+      "char_start": 41479,
+      "char_end": 41565,
+      "question": "What happens if you use `@JsonProperty(required = false)`?",
+      "answer": "The SDK ignores the `false` value.",
+      "atomic_claims": [
+        "If you use `@JsonProperty(required = false)`, the SDK ignores the `false` value."
+      ],
+      "critical_strings": [
+        "false"
+      ],
+      "evidence_text": "      If you use `@JsonProperty(required = false)`, the SDK ignores the `false` value.",
+      "evidence_hash": "a6a6b4e7bcf0674b22efe7c58e743a9a986ab7a1ef6271f98cfb2348314cb890",
+      "evidence_char_length": 86,
+      "expected_evidence": [
+        {
+          "version_id": "ver_0865c9612dfe97d8f30dd870dd12e53e",
+          "section_path": [
+            "JSON outputs",
+            "Working with JSON outputs in SDKs",
+            "SDK-specific methods"
+          ],
+          "char_start": 41479,
+          "char_end": 41565
+        }
+      ],
+      "reasoning_type": "configuration_interaction",
+      "evidence_kind": "short_normative",
+      "stress_types": [
+        "short_evidence_unit",
+        "correct_document_difficult_passage",
+        "identifier_vs_semantic_distractor",
+        "paraphrase_query_shape"
+      ],
+      "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a"
+    },
+    {
+      "case_id": "V2D-48",
+      "source": "original_packet_round1_PASS",
+      "chatgpt_verified": true,
+      "chatgpt_verified_round": 1,
+      "human_verified": true,
+      "frozen": true,
+      "retrieval_was_not_run": true,
+      "provider": "anthropic",
+      "document_title": "Messages",
+      "version_id": "ver_18c692f4d28bd01c0a5cac553fcf01a7",
+      "source_url": "https://platform.claude.com/docs/en/api/messages",
+      "section_path": [
+        "Messages",
+        "Create a Message",
+        "Body Parameters"
+      ],
+      "char_start": 1892,
+      "char_end": 2020,
+      "question": "What happens if the final message uses the `assistant` role?",
+      "answer": "The response content will continue immediately from the content in that message.",
+      "atomic_claims": [
+        "If the final message uses the `assistant` role, the response content will continue immediately from the content in that message."
+      ],
+      "critical_strings": [
+        "assistant"
+      ],
+      "evidence_text": "If the final message uses the `assistant` role, the response content will continue immediately from the content in that message.",
+      "evidence_hash": "5b76cb0087e5e2af07390da4bb5fb28208bf68c14ff262a4f7b54b59bff108d1",
+      "evidence_char_length": 128,
+      "expected_evidence": [
+        {
+          "version_id": "ver_18c692f4d28bd01c0a5cac553fcf01a7",
+          "section_path": [
+            "Messages",
+            "Create a Message",
+            "Body Parameters"
+          ],
+          "char_start": 1892,
+          "char_end": 2020
+        }
+      ],
+      "reasoning_type": "exact_lookup",
+      "evidence_kind": "short_normative",
+      "stress_types": [
+        "short_evidence_unit",
+        "identifier_vs_semantic_distractor",
+        "paraphrase_query_shape"
+      ],
+      "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a"
+    },
+    {
+      "case_id": "V2D-49",
+      "source": "original_packet_round1_PASS",
+      "chatgpt_verified": true,
+      "chatgpt_verified_round": 1,
+      "human_verified": true,
+      "frozen": true,
+      "retrieval_was_not_run": true,
+      "provider": "openai",
+      "document_title": "How to run gpt-oss with Hugging Face Transformers",
+      "version_id": "ver_6b3ff8e63de5417e301da5fa5adf415e",
+      "source_url": "https://github.com/openai/openai-cookbook/blob/aa2c1e8867b83f73cdf8eedf94ebb6db41d69402/articles/gpt-oss/run-transformers.md",
+      "section_path": [
+        "How to run gpt-oss with Hugging Face Transformers",
+        "Pick your model"
+      ],
+      "char_start": 1588,
+      "char_end": 1700,
+      "question": "What happens if you use `bfloat16` instead of MXFP4?",
+      "answer": "Memory consumption will be larger (\\~48 GB for the 20b parameter model).",
+      "atomic_claims": [
+        "If you use `bfloat16` instead of MXFP4, memory consumption will be larger (\\~48 GB for the 20b parameter model)."
+      ],
+      "critical_strings": [
+        "bfloat16"
+      ],
+      "evidence_text": "If you use `bfloat16` instead of MXFP4, memory consumption will be larger (\\~48 GB for the 20b parameter model).",
+      "evidence_hash": "b4c6edf26e0150a233cf4b74eab88c0db126b5924cd825fc83d2cda50ff0ff98",
+      "evidence_char_length": 112,
+      "expected_evidence": [
+        {
+          "version_id": "ver_6b3ff8e63de5417e301da5fa5adf415e",
+          "section_path": [
+            "How to run gpt-oss with Hugging Face Transformers",
+            "Pick your model"
+          ],
+          "char_start": 1588,
+          "char_end": 1700
+        }
+      ],
+      "reasoning_type": "exact_lookup",
+      "evidence_kind": "short_normative",
+      "stress_types": [
+        "short_evidence_unit",
+        "identifier_vs_semantic_distractor",
+        "paraphrase_query_shape"
+      ],
+      "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a"
+    },
+    {
+      "case_id": "V2D-50",
+      "source": "repaired_candidates_jsonl",
+      "chatgpt_verified": true,
+      "chatgpt_verified_round": 2,
+      "human_verified": true,
+      "frozen": true,
+      "retrieval_was_not_run": true,
+      "provider": "openai",
+      "document_title": "Models",
+      "version_id": "ver_ae909bf8b4bbbe1d1a11119447f7ac94",
+      "source_url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/models/index.md",
+      "section_path": [
+        "Models",
+        "OpenAI models",
+        "Default model",
+        "GPT-5 models"
+      ],
+      "char_start": 2486,
+      "char_end": 3375,
+      "question": "What happens when you use any GPT-5 model such as `gpt-5.6-sol` as the default model via `OPENAI_DEFAULT_MODEL` or `RunConfig`?",
+      "answer": "The SDK applies default `ModelSettings`.",
+      "atomic_claims": [
+        "When you use any GPT-5 model such as `gpt-5.6-sol` as the default model via `OPENAI_DEFAULT_MODEL` or `RunConfig`, the SDK applies default `ModelSettings`."
+      ],
+      "critical_strings": [
+        "gpt-5.6-sol",
+        "OPENAI_DEFAULT_MODEL",
+        "RunConfig",
+        "ModelSettings"
+      ],
+      "evidence_text": "If you want to switch to other models like `gpt-5.6-sol`, there are two ways to configure your agents.\n\n### Default model\n\nFirst, if you want to consistently use a specific model for all agents that do not set a custom model, set the `OPENAI_DEFAULT_MODEL` environment variable before running your agents.\n\n```bash\nexport OPENAI_DEFAULT_MODEL=gpt-5.6-sol\npython3 my_awesome_agent.py\n```\n\nSecond, you can set a default model for a run via `RunConfig`. If you don't set a model for an agent, this run's model will be used.\n\n```python\nfrom agents import Agent, RunConfig, Runner\n\nagent = Agent(\n    name=\"Assistant\",\n    instructions=\"You're a helpful agent.\",\n)\n\nresult = await Runner.run(\n    agent,\n    \"Hello\",\n    run_config=RunConfig(model=\"gpt-5.6-sol\"),\n)\n```\n\n#### GPT-5 models\n\nWhen you use any GPT-5 model such as `gpt-5.6-sol` in this way, the SDK applies default `ModelSettings`.",
+      "evidence_hash": "3e90577101dbe3584f6f6f92526744d5e3647d579b627f00d30006d04cd7db81",
+      "evidence_char_length": 889,
+      "expected_evidence": [
+        {
+          "version_id": "ver_ae909bf8b4bbbe1d1a11119447f7ac94",
+          "section_path": [
+            "Models",
+            "OpenAI models",
+            "Default model",
+            "GPT-5 models"
+          ],
+          "char_start": 2486,
+          "char_end": 3375
+        }
+      ],
+      "reasoning_type": "configuration_interaction",
+      "evidence_kind": "short_normative",
+      "stress_types": [
+        "short_evidence_unit",
+        "version_model_discrimination",
+        "identifier_vs_semantic_distractor",
+        "paraphrase_query_shape"
+      ],
+      "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a"
+    }
+  ],
+  "artifact_hashes": {
+    "gold_jsonl": "cb687f3cc88b38d4beed7ad4bc829296a30518aaaf45cce0677ec568b1bf77e5",
+    "split_file": "6b0c49c9040c215fde6134697c35a1f28458ba7d72ef012c0840feb7f9c3eb17",
+    "gold_split_copy_jsonl": "cb687f3cc88b38d4beed7ad4bc829296a30518aaaf45cce0677ec568b1bf77e5"
+  }
+}

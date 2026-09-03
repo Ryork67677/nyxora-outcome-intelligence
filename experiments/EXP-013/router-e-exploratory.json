@@ -1,0 +1,564 @@
+{
+  "status": "EXPLORATORY \u2014 run after routers A-D were frozen; does not replace them",
+  "method": "mean of stored normalised chunk embeddings per document, renormalised, cosine",
+  "documents": 202,
+  "dimension": 384,
+  "build_seconds": 0.11,
+  "top_documents": 5,
+  "doc_embedding_only": {
+    "mean_document_recall": {
+      "1": 0.375,
+      "3": 0.725,
+      "5": 0.825,
+      "10": 1.0
+    },
+    "cases_all_expected_routed": 16,
+    "cases_missing": [
+      "AN-001",
+      "AN-003",
+      "AN-006",
+      "AN-012"
+    ]
+  },
+  "hybrid_with_chunk_routing": {
+    "mean_document_recall": {
+      "1": 0.675,
+      "3": 0.875,
+      "5": 0.9,
+      "10": 0.95
+    },
+    "cases_all_expected_routed": 18,
+    "cases_missing": [
+      "AN-001",
+      "OA-004"
+    ]
+  },
+  "per_case": [
+    {
+      "case_id": "AN-001",
+      "expected_documents": [
+        "ver_db8326d3bafce3a535c3e3bfc3de7519"
+      ],
+      "doc_embedding_rank": {
+        "ver_db8326d3bafce3a535c3e3bfc3de7519": 8
+      },
+      "doc_embedding_all_routed": false,
+      "hybrid_rank": {
+        "ver_db8326d3bafce3a535c3e3bfc3de7519": 34
+      },
+      "hybrid_all_routed": false,
+      "recall_doc_embedding": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 1.0
+      },
+      "recall_hybrid": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 0.0
+      }
+    },
+    {
+      "case_id": "AN-002",
+      "expected_documents": [
+        "ver_0774ca0093ff4a846753577c9a4a39d5"
+      ],
+      "doc_embedding_rank": {
+        "ver_0774ca0093ff4a846753577c9a4a39d5": 2
+      },
+      "doc_embedding_all_routed": true,
+      "hybrid_rank": {
+        "ver_0774ca0093ff4a846753577c9a4a39d5": 1
+      },
+      "hybrid_all_routed": true,
+      "recall_doc_embedding": {
+        "1": 0.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "recall_hybrid": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      }
+    },
+    {
+      "case_id": "AN-003",
+      "expected_documents": [
+        "ver_ef5f9dacc17f99c298faf449e756ae90"
+      ],
+      "doc_embedding_rank": {
+        "ver_ef5f9dacc17f99c298faf449e756ae90": 7
+      },
+      "doc_embedding_all_routed": false,
+      "hybrid_rank": {
+        "ver_ef5f9dacc17f99c298faf449e756ae90": 2
+      },
+      "hybrid_all_routed": true,
+      "recall_doc_embedding": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 1.0
+      },
+      "recall_hybrid": {
+        "1": 0.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      }
+    },
+    {
+      "case_id": "AN-004",
+      "expected_documents": [
+        "ver_7947433dfde6b3b8eccd0faa597c3c9a"
+      ],
+      "doc_embedding_rank": {
+        "ver_7947433dfde6b3b8eccd0faa597c3c9a": 3
+      },
+      "doc_embedding_all_routed": true,
+      "hybrid_rank": {
+        "ver_7947433dfde6b3b8eccd0faa597c3c9a": 1
+      },
+      "hybrid_all_routed": true,
+      "recall_doc_embedding": {
+        "1": 0.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "recall_hybrid": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      }
+    },
+    {
+      "case_id": "AN-005",
+      "expected_documents": [
+        "ver_1c53b961e1f5da8124a1e7e8eb92c941"
+      ],
+      "doc_embedding_rank": {
+        "ver_1c53b961e1f5da8124a1e7e8eb92c941": 3
+      },
+      "doc_embedding_all_routed": true,
+      "hybrid_rank": {
+        "ver_1c53b961e1f5da8124a1e7e8eb92c941": 1
+      },
+      "hybrid_all_routed": true,
+      "recall_doc_embedding": {
+        "1": 0.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "recall_hybrid": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      }
+    },
+    {
+      "case_id": "AN-006",
+      "expected_documents": [
+        "ver_f65938c74d40ac1e288f169d3d0435b7"
+      ],
+      "doc_embedding_rank": {
+        "ver_f65938c74d40ac1e288f169d3d0435b7": 8
+      },
+      "doc_embedding_all_routed": false,
+      "hybrid_rank": {
+        "ver_f65938c74d40ac1e288f169d3d0435b7": 2
+      },
+      "hybrid_all_routed": true,
+      "recall_doc_embedding": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 1.0
+      },
+      "recall_hybrid": {
+        "1": 0.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      }
+    },
+    {
+      "case_id": "AN-007",
+      "expected_documents": [
+        "ver_0774ca0093ff4a846753577c9a4a39d5"
+      ],
+      "doc_embedding_rank": {
+        "ver_0774ca0093ff4a846753577c9a4a39d5": 2
+      },
+      "doc_embedding_all_routed": true,
+      "hybrid_rank": {
+        "ver_0774ca0093ff4a846753577c9a4a39d5": 1
+      },
+      "hybrid_all_routed": true,
+      "recall_doc_embedding": {
+        "1": 0.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "recall_hybrid": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      }
+    },
+    {
+      "case_id": "AN-008",
+      "expected_documents": [
+        "ver_db8326d3bafce3a535c3e3bfc3de7519"
+      ],
+      "doc_embedding_rank": {
+        "ver_db8326d3bafce3a535c3e3bfc3de7519": 1
+      },
+      "doc_embedding_all_routed": true,
+      "hybrid_rank": {
+        "ver_db8326d3bafce3a535c3e3bfc3de7519": 1
+      },
+      "hybrid_all_routed": true,
+      "recall_doc_embedding": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "recall_hybrid": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      }
+    },
+    {
+      "case_id": "AN-009",
+      "expected_documents": [
+        "ver_795b67a3865ed717b915a2c9c9e5746c"
+      ],
+      "doc_embedding_rank": {
+        "ver_795b67a3865ed717b915a2c9c9e5746c": 1
+      },
+      "doc_embedding_all_routed": true,
+      "hybrid_rank": {
+        "ver_795b67a3865ed717b915a2c9c9e5746c": 1
+      },
+      "hybrid_all_routed": true,
+      "recall_doc_embedding": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "recall_hybrid": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      }
+    },
+    {
+      "case_id": "AN-010",
+      "expected_documents": [
+        "ver_b57691291ac216e12d311d60db579b43"
+      ],
+      "doc_embedding_rank": {
+        "ver_b57691291ac216e12d311d60db579b43": 1
+      },
+      "doc_embedding_all_routed": true,
+      "hybrid_rank": {
+        "ver_b57691291ac216e12d311d60db579b43": 1
+      },
+      "hybrid_all_routed": true,
+      "recall_doc_embedding": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "recall_hybrid": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      }
+    },
+    {
+      "case_id": "AN-011",
+      "expected_documents": [
+        "ver_c8b2c7130cb18508fed4f864d4c3d7a3"
+      ],
+      "doc_embedding_rank": {
+        "ver_c8b2c7130cb18508fed4f864d4c3d7a3": 1
+      },
+      "doc_embedding_all_routed": true,
+      "hybrid_rank": {
+        "ver_c8b2c7130cb18508fed4f864d4c3d7a3": 1
+      },
+      "hybrid_all_routed": true,
+      "recall_doc_embedding": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "recall_hybrid": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      }
+    },
+    {
+      "case_id": "AN-012",
+      "expected_documents": [
+        "ver_0774ca0093ff4a846753577c9a4a39d5",
+        "ver_c8b2c7130cb18508fed4f864d4c3d7a3"
+      ],
+      "doc_embedding_rank": {
+        "ver_0774ca0093ff4a846753577c9a4a39d5": 3,
+        "ver_c8b2c7130cb18508fed4f864d4c3d7a3": 9
+      },
+      "doc_embedding_all_routed": false,
+      "hybrid_rank": {
+        "ver_0774ca0093ff4a846753577c9a4a39d5": 2,
+        "ver_c8b2c7130cb18508fed4f864d4c3d7a3": 5
+      },
+      "hybrid_all_routed": true,
+      "recall_doc_embedding": {
+        "1": 0.0,
+        "3": 0.5,
+        "5": 0.5,
+        "10": 1.0
+      },
+      "recall_hybrid": {
+        "1": 0.0,
+        "3": 0.5,
+        "5": 1.0,
+        "10": 1.0
+      }
+    },
+    {
+      "case_id": "OA-001",
+      "expected_documents": [
+        "ver_6b90217721b841b1329f51ec1caab139"
+      ],
+      "doc_embedding_rank": {
+        "ver_6b90217721b841b1329f51ec1caab139": 2
+      },
+      "doc_embedding_all_routed": true,
+      "hybrid_rank": {
+        "ver_6b90217721b841b1329f51ec1caab139": 2
+      },
+      "hybrid_all_routed": true,
+      "recall_doc_embedding": {
+        "1": 0.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "recall_hybrid": {
+        "1": 0.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      }
+    },
+    {
+      "case_id": "OA-002",
+      "expected_documents": [
+        "ver_2c60e99cfd929a738910b893fd6f1a40"
+      ],
+      "doc_embedding_rank": {
+        "ver_2c60e99cfd929a738910b893fd6f1a40": 5
+      },
+      "doc_embedding_all_routed": true,
+      "hybrid_rank": {
+        "ver_2c60e99cfd929a738910b893fd6f1a40": 1
+      },
+      "hybrid_all_routed": true,
+      "recall_doc_embedding": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "recall_hybrid": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      }
+    },
+    {
+      "case_id": "OA-003",
+      "expected_documents": [
+        "ver_f22fbd5c504fa28a4e70440337e4a495"
+      ],
+      "doc_embedding_rank": {
+        "ver_f22fbd5c504fa28a4e70440337e4a495": 1
+      },
+      "doc_embedding_all_routed": true,
+      "hybrid_rank": {
+        "ver_f22fbd5c504fa28a4e70440337e4a495": 1
+      },
+      "hybrid_all_routed": true,
+      "recall_doc_embedding": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "recall_hybrid": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      }
+    },
+    {
+      "case_id": "OA-004",
+      "expected_documents": [
+        "ver_2c60e99cfd929a738910b893fd6f1a40"
+      ],
+      "doc_embedding_rank": {
+        "ver_2c60e99cfd929a738910b893fd6f1a40": 5
+      },
+      "doc_embedding_all_routed": true,
+      "hybrid_rank": {
+        "ver_2c60e99cfd929a738910b893fd6f1a40": 6
+      },
+      "hybrid_all_routed": false,
+      "recall_doc_embedding": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "recall_hybrid": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 1.0
+      }
+    },
+    {
+      "case_id": "OA-005",
+      "expected_documents": [
+        "ver_f15e1a531d680bb98179238f80355058"
+      ],
+      "doc_embedding_rank": {
+        "ver_f15e1a531d680bb98179238f80355058": 1
+      },
+      "doc_embedding_all_routed": true,
+      "hybrid_rank": {
+        "ver_f15e1a531d680bb98179238f80355058": 1
+      },
+      "hybrid_all_routed": true,
+      "recall_doc_embedding": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "recall_hybrid": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      }
+    },
+    {
+      "case_id": "OA-006",
+      "expected_documents": [
+        "ver_6b90217721b841b1329f51ec1caab139",
+        "ver_f15e1a531d680bb98179238f80355058"
+      ],
+      "doc_embedding_rank": {
+        "ver_6b90217721b841b1329f51ec1caab139": 2,
+        "ver_f15e1a531d680bb98179238f80355058": 1
+      },
+      "doc_embedding_all_routed": true,
+      "hybrid_rank": {
+        "ver_6b90217721b841b1329f51ec1caab139": 1,
+        "ver_f15e1a531d680bb98179238f80355058": 2
+      },
+      "hybrid_all_routed": true,
+      "recall_doc_embedding": {
+        "1": 0.5,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "recall_hybrid": {
+        "1": 0.5,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      }
+    },
+    {
+      "case_id": "OA-007",
+      "expected_documents": [
+        "ver_b275f1db2ff0a82e2654391774f8e398"
+      ],
+      "doc_embedding_rank": {
+        "ver_b275f1db2ff0a82e2654391774f8e398": 2
+      },
+      "doc_embedding_all_routed": true,
+      "hybrid_rank": {
+        "ver_b275f1db2ff0a82e2654391774f8e398": 1
+      },
+      "hybrid_all_routed": true,
+      "recall_doc_embedding": {
+        "1": 0.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "recall_hybrid": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      }
+    },
+    {
+      "case_id": "OA-008",
+      "expected_documents": [
+        "ver_ae909bf8b4bbbe1d1a11119447f7ac94"
+      ],
+      "doc_embedding_rank": {
+        "ver_ae909bf8b4bbbe1d1a11119447f7ac94": 1
+      },
+      "doc_embedding_all_routed": true,
+      "hybrid_rank": {
+        "ver_ae909bf8b4bbbe1d1a11119447f7ac94": 1
+      },
+      "hybrid_all_routed": true,
+      "recall_doc_embedding": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "recall_hybrid": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      }
+    }
+  ]
+}

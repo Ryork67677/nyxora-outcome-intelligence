@@ -1,0 +1,56 @@
+{
+  "document": "EXP-015-interruption-reconciliation",
+  "generated_at": "2026-08-31T23:50:12Z",
+  "state": "A_NOT_STARTED",
+  "state_label": "STATE A \u2014 NOT STARTED",
+  "authoritative_ref": {
+    "remote_branch": "origin/claude/rag-v1-build-experiments-5yngul",
+    "commit": "5082123e8c406ab162349d23003b1173afd697ac",
+    "commit_short": "5082123",
+    "source": "git archive rag-5082123.zip on the box; not cloned from GitHub this session"
+  },
+  "stale_local_windows_checkout": {
+    "commit": "e65912a",
+    "note": "Local Windows checkout was stale at e65912a and is not the work surface. This session unpacks 5082123 on the Linux box and does not touch the user worktree."
+  },
+  "exp015_at_authoritative_ref": {
+    "EXP-015_directory_present_in_archive": false,
+    "SYSTEM-C_in_systems_py": false,
+    "SYSTEM-C_files_found": [],
+    "note": "No EXP-015/ or SYSTEM-C files at commit 5082123."
+  },
+  "holdout": {
+    "holdout_frozen": true,
+    "frozen_at": "2026-08-31T22:30:29Z",
+    "holdout_count": 90,
+    "holdout_sha256_from_lock": "756a3a9bc74ce3e2dd3a7924c4048984a0ae5e74237bc8053e18b6fec202d914",
+    "split_artifact_sha256_holdout": "756a3a9bc74ce3e2dd3a7924c4048984a0ae5e74237bc8053e18b6fec202d914",
+    "lock_matches_split_manifest": true,
+    "access_log_path": "evals/splits/gold150-v1/holdout-access.log.jsonl",
+    "access_log_bytes": 0,
+    "holdout_runs": 0,
+    "holdout_json_question_text_loaded": false
+  },
+  "hashes_intact": {
+    "SYSTEM-A-GLOBAL": "9afcb5b7c58ebacff0b4c3711dd9618a2e727f4195dd1787a5da81e478ee0b38",
+    "SYSTEM-B-DOC-C": "304c350940b83733df6043ae3a8abdcbcde33d16950730127aa9f1f39494388b",
+    "snapshot": "snap_689e336380a054d8039dc35b2c09cd0a",
+    "manifest_hash": "452479294cbbbe702b15d2df3f5a268023247dcd630782aaad5e17690cee7b17",
+    "split_artifact_sha256": {
+      "development": "e62670f38a0afaad132a196c6015ee3d0bae8679eb565f9075d65371547e7c5d",
+      "validation": "451963bdf379cef146bfb75e73932d7c0e54ce3b2ffdf32cd9d33f7c6a93356b",
+      "holdout": "756a3a9bc74ce3e2dd3a7924c4048984a0ae5e74237bc8053e18b6fec202d914"
+    },
+    "holdout_lock_file_sha256": "fc9ac96082cbf0aa3df82df017e19af9f49eed5506c5c281858b3de405cde294",
+    "match": true
+  },
+  "stage2_frozen": {
+    "reranker": null,
+    "cross_encoder": null,
+    "rrf_k": 60,
+    "pool_per_retriever": 50,
+    "top_k": 10,
+    "snapshot": "snap_689e336380a054d8039dc35b2c09cd0a",
+    "chunk_set": "cs_v1_control"
+  }
+}

@@ -1,0 +1,786 @@
+{
+  "document": "GOLD-001 batch 007 — preregistered fixes E/F/G implemented; calibration pilot BLOCKED",
+  "status": "FIXES IMPLEMENTED AND VERIFIED — CORPUS RECOVERY EXHAUSTED AND FAILED — SAFEGUARDS ADDED — PILOT NOT RUN — STOPPED FOR INDEPENDENT REVIEW",
+  "written_at": "2026-08-30T03:58:20Z",
+  "git_commit": "c65d5204901e38e5187552c006f79892b4c9e83c",
+  "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a",
+  "preregistration_followed": [
+    "experiments/GOLD-001/GOLD-001-batch-007-preregistration.md",
+    "experiments/GOLD-001/GOLD-001-batch-007-preregistration.json"
+  ],
+  "state_verified_before_any_change": {
+    "human_verified": 90,
+    "holdout_eligible": 90,
+    "human_rejected": 9,
+    "genuine_multi_hop": 1,
+    "candidates": 99,
+    "closure_sha256_recomputed": "7ff5596c755a01fc57cf59b04cafdb77bd86a9f97f49cfdb58ff1782e07f68a2",
+    "closure_sha256_matches_record": true,
+    "retrieval_was_not_run": true,
+    "systems_executed": [],
+    "holdout_frozen": false,
+    "frozen_systems_verified": {
+      "SYSTEM-A-GLOBAL": "9afcb5b7c58ebacff0b4c3711dd9618a2e727f4195dd1787a5da81e478ee0b38",
+      "SYSTEM-B-DOC-C": "304c350940b83733df6043ae3a8abdcbcde33d16950730127aa9f1f39494388b",
+      "unchanged": true
+    },
+    "no_batch_007_artifact_existed": true,
+    "no_pilot_artifact_existed": true
+  },
+  "fixes_implemented": [
+    {
+      "id": "E",
+      "defect": "cross-library duplicate facts are invisible to duplicate control",
+      "implemented_in": "src/rag_v1/gold/factidentity.py",
+      "behaviour": "compares the normalised (subject, relation, object) triple in addition to text and offsets; flags, never drops; reports 'not_comparable' when no triple can be read",
+      "verified_against": "the real GOLD-B005-11 / GOLD-B006-06 pair the owner caught",
+      "result": {
+        "pair_detected": true,
+        "shared_triple": [
+          "aws_bedrock_base_url",
+          "override",
+          "endpoint"
+        ],
+        "false_positives_within_batch_006": 0
+      }
+    },
+    {
+      "id": "F",
+      "defect": "compound single-span facts are labelled by their first verb",
+      "implemented_in": "src/rag_v1/gold/reasoningtype.py",
+      "behaviour": "classifies from the whole sentence; lifecycle first whatever the verb; configuration_interaction requires an interaction verb, so one requirement naming two identifiers is a lookup",
+      "verified_against": "all nine batch-006 candidates against the owner's labels",
+      "result": {
+        "agreement_with_owner": "9/9",
+        "relabelled_cases_now_correct": 3,
+        "per_candidate": [
+          {
+            "candidate_id": "GOLD-B006-01",
+            "generated_label": "configuration_interaction",
+            "owner_label": "exact_lookup",
+            "derived_label": "exact_lookup",
+            "agrees_with_owner": true,
+            "was_relabelled_by_owner": true
+          },
+          {
+            "candidate_id": "GOLD-B006-02",
+            "generated_label": "error_behavior",
+            "owner_label": "error_behavior",
+            "derived_label": "error_behavior",
+            "agrees_with_owner": true,
+            "was_relabelled_by_owner": false
+          },
+          {
+            "candidate_id": "GOLD-B006-03",
+            "generated_label": "exact_lookup",
+            "owner_label": "lifecycle_compatibility_migration",
+            "derived_label": "lifecycle_compatibility_migration",
+            "agrees_with_owner": true,
+            "was_relabelled_by_owner": true
+          },
+          {
+            "candidate_id": "GOLD-B006-04",
+            "generated_label": "exact_lookup",
+            "owner_label": "exact_lookup",
+            "derived_label": "exact_lookup",
+            "agrees_with_owner": true,
+            "was_relabelled_by_owner": false
+          },
+          {
+            "candidate_id": "GOLD-B006-05",
+            "generated_label": "exact_lookup",
+            "owner_label": "exact_lookup",
+            "derived_label": "exact_lookup",
+            "agrees_with_owner": true,
+            "was_relabelled_by_owner": false
+          },
+          {
+            "candidate_id": "GOLD-B006-06",
+            "generated_label": "configuration_interaction",
+            "owner_label": "configuration_interaction",
+            "derived_label": "configuration_interaction",
+            "agrees_with_owner": true,
+            "was_relabelled_by_owner": false
+          },
+          {
+            "candidate_id": "GOLD-B006-07",
+            "generated_label": "configuration_interaction",
+            "owner_label": "configuration_interaction",
+            "derived_label": "configuration_interaction",
+            "agrees_with_owner": true,
+            "was_relabelled_by_owner": false
+          },
+          {
+            "candidate_id": "GOLD-B006-08",
+            "generated_label": "configuration_interaction",
+            "owner_label": "lifecycle_compatibility_migration",
+            "derived_label": "lifecycle_compatibility_migration",
+            "agrees_with_owner": true,
+            "was_relabelled_by_owner": true
+          },
+          {
+            "candidate_id": "GOLD-B006-09",
+            "generated_label": "exact_lookup",
+            "owner_label": "exact_lookup",
+            "derived_label": "exact_lookup",
+            "agrees_with_owner": true,
+            "was_relabelled_by_owner": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "G",
+      "defect": "questions inherit the breadth of their frame, not of their evidence",
+      "implemented_in": "src/rag_v1/gold/questionscope.py",
+      "behaviour": "a scope qualifier in the evidence must appear in the question AND in the critical strings, else the candidate does not export; a comparative aside is not a scope",
+      "verified_against": "the three rescoped candidates as generated and as approved",
+      "result": {
+        "as_generated_correctly_dropped": {
+          "GOLD-B006-02": "SCOPE_MISSING_FROM_CRITICAL_STRINGS",
+          "GOLD-B006-04": "SCOPE_MISSING_FROM_QUESTION",
+          "GOLD-B006-05": "SCOPE_MISSING_FROM_QUESTION"
+        },
+        "as_approved_pass": {
+          "GOLD-B006-01": "UNSCOPED_SOURCE",
+          "GOLD-B006-02": "SCOPED",
+          "GOLD-B006-03": "SCOPED",
+          "GOLD-B006-04": "SCOPED",
+          "GOLD-B006-05": "SCOPED",
+          "GOLD-B006-06": "UNSCOPED_SOURCE",
+          "GOLD-B006-07": "UNSCOPED_SOURCE",
+          "GOLD-B006-08": "SCOPE_MISSING_FROM_CRITICAL_STRINGS",
+          "GOLD-B006-09": "UNSCOPED_SOURCE"
+        }
+      }
+    }
+  ],
+  "finding_for_reviewer": {
+    "id": "G-STRICTER-THAN-BATCH-006",
+    "candidate": "GOLD-B006-08",
+    "detail": "The preregistered rule requires the scope qualifier in the question AND in the critical strings. GOLD-B006-08 carries 'OpenAI Python SDK' in its question but not in its critical strings, and the owner approved it. Implemented as preregistered rather than loosened; recorded so the reviewer can decide whether batch 007 should hold to the stricter rule.",
+    "status": "recorded as a passing test, not tuned away"
+  },
+  "independent_automated_review": {
+    "label": "INDEPENDENT AUTOMATED-REVIEW RECOMMENDATION — NOT PROJECT-OWNER APPROVAL",
+    "is_project_owner_approval": false,
+    "authority": "A recommendation only. It does not approve, verify or close anything, does not set human_verified, and does not alter the preregistration. Only the project owner may approve, and the preregistration is amended only by the owner.",
+    "recorded_at": "2026-08-30T04:04:55Z",
+    "concerns": "finding G-STRICTER-THAN-BATCH-006",
+    "recommendation": [
+      {
+        "id": "R1",
+        "text": "Keep Gate G exactly as preregistered for batch 007.",
+        "rationale": "The preregistered rule requires the scope qualifier in the question AND in the critical strings. The second condition is the one that has effect: a qualifier appearing only in the question is read by no check, which is how two of batch 006's three rescoped candidates passed with the qualifier absent from the critical strings entirely. Loosening the gate to match what batch 006 accepted would remove the part that does the work, and a rule relaxed after seeing which candidates it would drop is a rule fitted to the output — the precise failure preregistration exists to prevent."
+      },
+      {
+        "id": "R2",
+        "text": "Grandfather GOLD-B006-08 under the closed batch-006 standard. Do not rewrite it, do not relabel it, do not re-open it.",
+        "rationale": "GOLD-B006-08 was authored, reviewed and approved by the owner under the rule in force for batch 006, and batch 006 is closed and hash-covered. A closed batch is a historical artifact: the standing constraint is that it is never edited, and an erratum, audit or versioned overlay is the only admissible instrument. A stricter rule preregistered for batch 007 governs batch 007. Applying it backwards would rewrite an approved record to satisfy a rule that did not exist when the owner approved it, and would break the closure hash that covers it."
+      }
+    ],
+    "consequence_accepted": "Gate G will drop batch-007 candidates that batch 006 would have accepted. That is the intended effect of the stricter rule, not a regression, and the drop count belongs in the batch-007 generation report so the cost is visible.",
+    "what_this_changes_in_the_code": "Nothing. Gate G is already implemented as preregistered.",
+    "status_of_finding_after_this_recommendation": "Still open for the project owner. The recommendation is recorded, not applied as a decision."
+  },
+  "calibration_pilot": {
+    "required_by_preregistration": true,
+    "size": 10,
+    "run": false,
+    "status": "BLOCKED — the frozen evidence the pilot must draw from is not present in this environment",
+    "why": [
+      {
+        "finding": "the NO_BUILDER/UNBUILDABLE set was counted, never persisted",
+        "evidence": "batch 006 recorded removed.unbuildable = 2482 as an integer; scripts/export_batch_006.py:733 increments the counter and returns, discarding the fact's identity. No artifact records which spans they were."
+      },
+      {
+        "finding": "the corpus text exists only in Postgres, and this container has no corpus",
+        "evidence": "load_docs() reads document_version.normalized_text joined to corpus_snapshot_version. The local cluster starts but holds only postgres/template0/template1 — there is no 'rag' database and no snapshot."
+      },
+      {
+        "finding": "the raw documents are not in the repository",
+        "evidence": "data/raw/ contains only .gitkeep and is gitignored by design; data/cache/ is empty."
+      },
+      {
+        "finding": "re-fetching would not reproduce the frozen snapshot",
+        "evidence": "data/manifests/v1-openai-anthropic.yaml lists 202 documents captured 2026-08-17 with no text and no content hashes. Re-fetching returns the documentation as it stands today, so offsets and evidence hashes would not match snap_689e336380a054d8039dc35b2c09cd0a, and the evidence would not be the frozen evidence."
+      }
+    ],
+    "what_was_not_done_and_why": "No pilot case was authored. Authoring 10 cases against invented or re-fetched evidence would produce exactly what the preregistration exists to prevent — a benchmark testing what its author imagined rather than what the documentation says — and the pilot's four thresholds would measure nothing.",
+    "thresholds_not_measurable": {
+      "independently_judged_factually_sound": {
+        "threshold": ">= 8 of 10",
+        "measured": null
+      },
+      "unsupported_claims": {
+        "threshold": "0",
+        "measured": null
+      },
+      "relation_direction_reversals": {
+        "threshold": "0",
+        "measured": null
+      },
+      "scope_broadening": {
+        "threshold": "0",
+        "measured": null
+      }
+    },
+    "to_unblock": "Restore the corpus snapshot into Postgres (or restore data/raw/ and re-ingest), then re-run batch 006's miners to re-derive the spans that reach no builder and take the pilot's 10 from that set."
+  },
+  "recovery_search": {
+    "performed_at": "2026-08-30T10:59:40Z",
+    "question": "Can the exact frozen corpus snapshot snap_689e336380a054d8039dc35b2c09cd0a, captured 2026-08-17T04:46:19Z, be recovered non-destructively from anything reachable in this session?",
+    "conclusion": "NO — exhausted; the frozen snapshot is not present in any reachable location. A certified recovery attempt (certified_recovery_attempt) then recovered the OpenAI half outright — 63 of 63 from pinned commits, 14 of 14 persisted version_ids matching — but could not recover the Anthropic 139: no versioned asset, no Last-Modified or ETag, no source repository, and every web-archive host blocked at the egress proxy. The assembled 202 is rejected.",
+    "constraints_observed": [
+      "No current live URL was fetched.",
+      "No toy or fixture data was used or accepted as corpus.",
+      "SYSTEM-A and SYSTEM-B were not run.",
+      "Validation and holdout were not inspected.",
+      "Fingerprint proof was required before any corpus would have been accepted; none was offered because none was found."
+    ],
+    "paths_searched": [
+      {
+        "path": "git history — all refs, all commits",
+        "method": "git log --all --diff-filter=A over data/raw/*; git rev-list --all with ls-tree for every path ever present; search of every added path for dump/archive/backup extensions",
+        "result": "Only data/raw/.gitkeep was ever tracked (added in 185bc3a). No database dump, archive or corpus file has ever been committed on any branch."
+      },
+      {
+        "path": "tracked repository artifacts",
+        "method": "scanned every evals/, experiments/ and docs/ JSON and JSONL for document or chunk body text",
+        "result": "The largest carrier, experiments/EXP-011/results.json, holds 9858 characters of query-result snippets across 0 identifiable version ids. Closed records reference offsets up to character 2711869, so the corpus is at least ~2.7M characters: the artifacts hold under 0.4% of it, with no version ids and no offsets into normalized_text. Reconstruction is impossible and would in any case be the prohibited hand-reconstruction."
+      },
+      {
+        "path": "prior-session artifacts, manifests, logs and reports",
+        "method": "searched the whole filesystem for any file naming the snapshot id",
+        "result": "The only file outside the repository naming snap_689e336380a054d8039dc35b2c09cd0a is this session's own transcript at /root/.claude/projects/. No prior-session artifact carries corpus text."
+      },
+      {
+        "path": "database dump or backup locations named by project documentation",
+        "method": "grep across all Markdown, Python, YAML and the Makefile for pg_dump, pg_restore, backup, .dump and restore instructions",
+        "result": "The project documentation names no backup or dump location anywhere. There is no documented restore path; the corpus was only ever produced by scripts/fetch_corpus.py into gitignored data/raw/ and ingested from there."
+      },
+      {
+        "path": "Docker volumes (docker-compose.yml declares rag_pgdata)",
+        "method": "inspected /var/lib/docker/volumes and the Docker daemon",
+        "result": "/var/lib/docker/volumes does not exist and no Docker daemon is running. The rag_pgdata volume has never existed in this container."
+      },
+      {
+        "path": "PostgreSQL data directories",
+        "method": "pg_lsclusters; started the 16/main cluster; enumerated databases, user tables and WAL",
+        "result": "One cluster, initdb'd 2026-03-31 at image build. It holds only postgres, template0 and template1, zero user tables, and a single WAL segment 000000010000000000000001 — it has never held project data. A second finding: the pgvector extension is not available in this cluster at all (0 rows in pg_available_extensions, no extension files on disk), so the expected schema cannot even be created here, let alone populated, because sql/001_init.sql requires the VECTOR type."
+      },
+      {
+        "path": "persistent Claude workspace and mounted volumes",
+        "method": "findmnt for non-overlay mounts; listed /home/user, /mnt/user-data, /mnt/attach, /srv, /root/.claude/backups and /root/.claude/projects",
+        "result": "All empty of corpus. /mnt/user-data/working, /mnt/attach and /srv are empty directories; /root/.claude/backups holds only Claude configuration backups."
+      },
+      {
+        "path": "filesystem-wide archive sweep",
+        "method": "find / -xdev for *.dump, *.pgdump, *.sql.gz, *.tar, *.tar.gz, *.tgz, *.bak and *backup* over 100KB, excluding system and package directories",
+        "result": "No candidate found. No provider documentation exists anywhere outside the repository."
+      }
+    ],
+    "remaining_external_artifact_required": {
+      "summary": "One of two artifacts, neither of which exists in this environment. Both must reproduce the frozen fingerprint; nothing else is admissible.",
+      "option_a": {
+        "artifact": "A PostgreSQL dump of the `rag` database as it stood on or after 2026-08-17.",
+        "must_contain": [
+          "document_source rows for all 202 documents",
+          "document_version rows carrying normalized_text and content_hash",
+          "corpus_snapshot and corpus_snapshot_version rows for snap_689e336380a054d8039dc35b2c09cd0a"
+        ],
+        "produced_by": "pg_dump of the machine that ran batches 001-006"
+      },
+      "option_b": {
+        "artifact": "The 202 raw Markdown files that were under data/raw/, as captured 2026-08-17T04:46:19Z.",
+        "must_contain": [
+          "the files at the local_path values in data/manifests/v1-openai-anthropic.yaml",
+          "byte-identical to the capture, since content_hash is taken over the ingested text"
+        ],
+        "produced_by": "the gitignored data/raw/ tree on the machine that ran scripts/fetch_corpus.py",
+        "note": "Re-running fetch_corpus.py today does NOT produce this: it fetches current documentation."
+      },
+      "environment_prerequisite": "The target PostgreSQL must have the pgvector extension available. This container does not, so sql/001_init.sql cannot create the schema here even given the data.",
+      "acceptance_test": "scripts/rederive_unbuildable.py refuses unless the restored corpus hashes to snap_689e336380a054d8039dc35b2c09cd0a, every closed span re-hashes at its recorded offsets, and the re-derived unbuildable count reproduces 2482. Passing all three is the proof; a snapshot row saying so is not."
+    }
+  },
+  "host_side_recovery_evidence": {
+    "label": "EXTERNAL AUTOMATED SEARCH EVIDENCE — NOT PROJECT-OWNER APPROVAL",
+    "is_project_owner_approval": false,
+    "authority": "An independent automated host-side search, reported to this session. It approves nothing, verifies nothing about the benchmark, and does not set human_verified. Only the project owner may approve.",
+    "provenance": "Performed on the owner's host machine and relayed to this session as a result. It was NOT performed or independently confirmed from inside this container: this session cannot see the host filesystem, so these findings are recorded as reported, not as verified. They are consistent with, and extend to the host, the in-session search recorded under recovery_search.",
+    "recorded_at": "2026-08-30T11:06:02Z",
+    "scope": "read-only searches; nothing on the host was modified",
+    "locations_searched": [
+      "C:\\Users\\yorkr\\Documents",
+      "C:\\Users\\yorkr\\Downloads",
+      "OneDrive",
+      "projects",
+      "Claude",
+      ".claude",
+      "nyxora-recovery"
+    ],
+    "artifacts_looked_for": [
+      "a RAG corpus dump",
+      "a PostgreSQL backup",
+      "a byte-identical raw capture",
+      "the snapshot ID snap_689e336380a054d8039dc35b2c09cd0a",
+      "a corpus_snapshot_version artifact"
+    ],
+    "findings": [
+      {
+        "area": "user document, download, OneDrive, project and Claude directories",
+        "result": "No RAG corpus dump, PostgreSQL backup, byte-identical raw capture, snapshot ID or corpus_snapshot_version artifact was found outside the repository."
+      },
+      {
+        "area": "Claude local application data",
+        "result": "No matching persisted corpus was found."
+      },
+      {
+        "area": "Docker Desktop",
+        "result": "Stopped. Its only docker_data.vhdx was last modified 2026-07-15, which is before the 2026-08-17 frozen capture, so it cannot contain that snapshot.",
+        "inference": "A disk image whose last write precedes the capture date cannot hold the captured corpus. This rules the image out on its timestamp alone, without needing to mount or inspect it."
+      },
+      {
+        "area": "local PostgreSQL service",
+        "result": "None exists on the host."
+      },
+      {
+        "area": "matches returned",
+        "result": "The only matches were repository schemas and reports already covered by the in-session search — no new artifact."
+      }
+    ],
+    "conclusion": "NO — the host-side search found no copy of the frozen corpus. Together with the in-session search this closes the reachable search space known to the project: the container has no copy and the owner's host has no copy.",
+    "what_this_does_not_establish": "It does not prove the corpus is gone everywhere. It was not searched for on the machine that actually ran batches 001-006 if that is a different machine, nor in any off-host backup, external drive or cloud snapshot of it. The external artifact named in recovery_search.remaining_external_artifact_required is still what is required, and is still outstanding."
+  },
+  "published_results_evidence": {
+    "label": "PRIMARY PROJECT EVIDENCE — assessed by this session",
+    "artifact": "Production RAG v1 — Measured Results, 2026-08-17, generated from experiments/summary.json by scripts/build_report_pdf.py",
+    "assessed_at": "2026-08-30T11:49:13Z",
+    "what_it_confirms": {
+      "snapshot_id": "snap_689e336380a054d8039dc35b2c09cd0a",
+      "documents": 202,
+      "chunks": 14209,
+      "documents_by_provider": {
+        "anthropic": 139,
+        "openai": 63
+      },
+      "chunks_by_provider": {
+        "anthropic": 12028,
+        "openai": 2181
+      },
+      "v1_evidence_spans": 22,
+      "embedding_model": "emb_205f51a2d4db0273e121527cb5c6ff83",
+      "evidence_anchoring": "(version_id, section_path, char_start, char_end) — never chunk_id",
+      "arithmetic_checked_here": "139 + 63 = 202 documents and 12,028 + 2,181 = 14,209 chunks: the figures are internally consistent."
+    },
+    "why_it_cannot_recover_the_corpus": "The document states it directly: \"Raw provider documentation is not redistributed; published results carry evidence anchors, ranks and scores with retrieved text replaced by a content hash.\" It is a results report, not a corpus. It carries no document text at all.",
+    "references_chased": [
+      {
+        "reference": "experiments/summary.json",
+        "found": "present, 12KB",
+        "carries": "aggregate metrics and per_case_recall only. Zero occurrences of content_hash, version_id, snap_, local_path or raw_snapshot."
+      },
+      {
+        "reference": "scripts/build_report_pdf.py",
+        "found": "present, 19KB",
+        "carries": "the report builder. Its 'retrieved text replaced by a content hash' line is a static footer stating a redaction policy — it is not a field the pipeline ever wrote, and no such hash exists in any artifact."
+      },
+      {
+        "reference": "per-case experiment artifacts (EXP-000 … EXP-014R)",
+        "found": "present",
+        "carries": "version_ids for documents that reached top-k, and ranks and scores. Zero content_hash, text_hash, chunk_hash or retrieved_text_hash fields across every artifact scanned."
+      },
+      {
+        "reference": "source manifests",
+        "found": "data/manifests/v1-openai-anthropic.yaml",
+        "carries": "202 entries with canonical_url, local_path and captured_at. No document text and no content hashes. Its local_path values point into data/raw/, which is gitignored and empty."
+      },
+      {
+        "reference": "document_version / content_hash records",
+        "found": "none",
+        "carries": "no artifact in the repository carries a document content_hash. The only file mentioning the field name is this recovery report."
+      },
+      {
+        "reference": "raw_snapshot_path / local_path fields",
+        "found": "local_path in the manifests only",
+        "carries": "paths into the empty gitignored data/raw/. raw_snapshot_path does not exist."
+      },
+      {
+        "reference": "corpus_snapshot_version rows",
+        "found": "none",
+        "carries": "no artifact carries these rows; they exist only in the PostgreSQL database, which this container does not have."
+      }
+    ],
+    "coverage_measured_here": {
+      "artifact_files_scanned": 155,
+      "distinct_version_ids_persisted": 131,
+      "distinct_version_ids_from_closed_gold": 29,
+      "corpus_documents": 202,
+      "document_content_hashes_persisted": 0,
+      "verdict": "131 of 202 version ids are recoverable from artifacts and 0 of 202 content hashes are. The snapshot fingerprint is a hash over (version_id, content_hash) for all 202 current versions, so it cannot be assembled from artifacts — and no artifact carries a single character of document text, so nothing can be reconstructed even in principle."
+    },
+    "what_it_does_make_possible": {
+      "summary": "The attachment does not recover the corpus, but it is not inert: it independently corroborates the shape a restore must have, which sharpens the acceptance test.",
+      "implemented": "provenance.FROZEN_CAPTURE_SHAPE and verify_corpus_shape() record 202 documents and 14,209 chunks as a cheap fail-closed rejection that runs before the fingerprint in scripts/rederive_unbuildable.py.",
+      "explicitly_not_identity": "A corpus can have the right counts and be the wrong corpus. Shape is necessary, never sufficient; the fingerprint remains the identity check and still runs.",
+      "note_on_the_fingerprint": "The 202 content hashes are not needed in advance: a restored database supplies them, and the fingerprint is computed from the restore and compared to the snapshot id this document confirms."
+    },
+    "conclusion": "INSUFFICIENT FOR RECOVERY — the pilot remains blocked. The attachment confirms the target and strengthens the acceptance test; it supplies no corpus text and no content hashes.",
+    "narrowest_remaining_artifact": {
+      "narrowed_from": "a full pg_dump of the rag database, or the complete data/raw/ tree",
+      "narrowed_to": "three tables: document_version (version_id, normalized_text, content_hash, status), document_source (provider, title, canonical_url) and corpus_snapshot_version for snap_689e336380a054d8039dc35b2c09cd0a — or, equivalently, the 202 raw Markdown files at the manifest's local_path values, byte-identical to the 2026-08-17 capture.",
+      "why_this_is_enough": "scripts/export_batch_006.py's load_docs() reads only version_id, normalized_text, provider, title, canonical_url and captured_at, and the fingerprint needs content_hash. The pilot runs no retrieval, so the chunk, embedding and search tables are not required at all.",
+      "why_nothing_narrower_works": "The unbuildable set is defined by mining every document, so a subset of documents would produce a different set and fail the 2482 reproduction check. Partial evidence cannot substitute: 131 known version ids carry no text.",
+      "environment_prerequisite": "a PostgreSQL with pgvector, which this container lacks, if restoring via the schema"
+    }
+  },
+  "chatgpt_project_archive_evidence": {
+    "label": "EXTERNAL AUTOMATED CHATGPT-PROJECT ARCHIVE EVIDENCE — NOT PROJECT-OWNER APPROVAL",
+    "is_project_owner_approval": false,
+    "authority": "A read-only archive audit performed in a ChatGPT project and reported to this session. It approves nothing and sets no human_verified. Only the project owner may approve.",
+    "provenance": "Performed project-side and relayed here. It was NOT performed or independently confirmed inside this Claude container: this session cannot reach the sandbox path or hash the archive, so the audit's findings are recorded as reported, not as verified.",
+    "recorded_at": "2026-08-30T11:54:02Z",
+    "lead": "the August 17 archive production-rag-v1.zip in the Engineering rag system project",
+    "archive": {
+      "path": "sandbox:/workspace/scratch/ff7d44533203/recovery/Engineering rag system/production-rag-v1.zip",
+      "size_bytes": 62874,
+      "sha256": "99e7c13e84052ea57dcb6106636d7923f9b4f163a2f90a8f5271e5ddea99495e",
+      "root": "production-rag-v1/",
+      "top_level": [
+        "CODE_TOOL_HANDOFF.md",
+        "Makefile",
+        "README.md",
+        "docker-compose.yml",
+        "pyproject.toml",
+        "data/",
+        "docs/",
+        "evals/",
+        "experiments/",
+        "scripts/",
+        "sql/",
+        "src/",
+        "tests/"
+      ]
+    },
+    "audit_findings": [
+      "data/raw contains only an empty placeholder",
+      "no provider-document files",
+      "no pg_dump or backup",
+      "no populated corpus_snapshot_version rows",
+      "no document_version normalized_text records",
+      "no populated content hashes",
+      "no real corpus manifest",
+      "the exact snapshot ID does not appear",
+      "sources.example.yaml has only one synthetic Widget API fixture"
+    ],
+    "audit_constraints": [
+      "no retrieval ran",
+      "no project artifact was modified"
+    ],
+    "corroborated_in_session": [
+      {
+        "check": "the archive is far too small to contain the corpus",
+        "method": "compared the reported archive size against the corpus floor implied by closed GOLD offsets, which reach character 2,711,869 across 202 documents",
+        "result": "62,874 bytes against a corpus of at least 2,711,869 characters. Even at a generous 4x Markdown compression the corpus floor is about 678,000 bytes, roughly 11 times the archive's entire size. Scaffold-only is arithmetically consistent; a corpus could not fit.",
+        "note": "This is an inference from the reported size, not verification of the archive itself, which this session cannot read."
+      },
+      {
+        "check": "the synthetic Widget fixture matches what this repository carries",
+        "method": "read data/manifests/sources.example.yaml in this checkout",
+        "result": "It holds exactly one entry — Widget API v2, canonical_url https://example.invalid/widget/v2, local_path pointing at tests/fixtures/docs/widget_v2.md — matching the audit's description and matching the synthetic fixture found in the earlier in-session search."
+      }
+    ],
+    "conclusion": "LEAD CLOSED — the archive is the early scaffold. It contains no corpus text, no populated corpus rows and no content hashes, so it does not make recovery possible. The narrowest remaining artifact is unchanged.",
+    "architecture_packet": {
+      "artifact": "the supplied August 17 architecture packet",
+      "finding": "It defines raw_snapshot_path only as proposed schema and contains no populated paths and no corpus rows.",
+      "verdict": "Not a recovery artifact. A field defined in a schema proposal carries no data; it names a place a path could have been stored, not a path."
+    },
+    "what_this_does_not_establish": "It closes this archive as a lead. It does not prove no other copy exists — the machine that ran batches 001-006 and any off-host backup of it remain unsearched."
+  },
+  "rehydration_feasibility": {
+    "label": "REHYDRATION FEASIBILITY ANALYSIS — performed and tested in this session",
+    "assessed_at": "2026-08-30T12:03:50Z",
+    "question": "Could a quarantine rehydration from the 202 saved canonical URLs ever be proven byte/content-identical to snap_689e336380a054d8039dc35b2c09cd0a?",
+    "mathematical_finding": {
+      "verdict": "CERTIFICATION IS MATHEMATICALLY POSSIBLE — the snapshot id is content-derived, not random.",
+      "chain_read_from_code": [
+        "src_id_i       = stable_id('src', provider_i.lower(), canonical_url_i)   [rag_v1/ingest.py:23]",
+        "content_hash_i = sha256(normalized_text_i)                                [rag_v1/ingest.py:24]",
+        "version_id_i   = stable_id('ver', src_id_i, content_hash_i)               [rag_v1/ingest.py:25]",
+        "manifest_hash  = sha256(json({'versions':[{version_id, content_hash} x202]}))  [rag_v1/snapshot.py]",
+        "snapshot_id    = stable_id('snap', name, manifest_hash, PARSER_VERSION, chunking_hash)"
+      ],
+      "no_nondeterminism": "No uuid, sequence, or clock enters any id. captured_at is stored on the document_version row but is not an input to version_id or to the snapshot id, so a later re-fetch is not doomed by the clock. rag_v1/parsing.py contains no datetime, random or uuid: normalized_text is a pure function of the fetched bytes.",
+      "inputs_persisted": {
+        "provider": "manifest (202/202)",
+        "canonical_url": "manifest (202/202)",
+        "PARSER_VERSION": "code = 'v1.0'",
+        "max_chunk_chars": "settings = 3500 (corroborated by the published results' 3,500 budget)",
+        "min_chunk_chars": "settings = 200",
+        "snapshot_name": "not persisted; CLI default is 'v1-seed'. A free parameter, not a weakness: candidates are searched, and a match is a 256-bit coincidence whichever name produced it.",
+        "normalized_text": "NOT persisted — this is exactly what a rehydration would supply"
+      },
+      "consequence": "snap_689e336380a054d8039dc35b2c09cd0a is a complete authoritative digest over all 202 normalized texts simultaneously. Reproducing it would certify the entire corpus cryptographically — not by matching counts, and not by the 137 sampled closed spans. This is the certification instrument the rule requires, so fetching the saved official URLs became permitted.",
+      "src_id_check_run_here": "src_id is computable now, from persisted fields alone, for 202/202 sources."
+    },
+    "empirical_finding": {
+      "verdict": "NOT CERTIFIED — rehydration from live pages cannot reproduce the frozen corpus.",
+      "method": "scripts/rehydrate_quarantine.py fetched only the exact URLs saved in the manifest, into a quarantine directory outside the repository, recomputed every content_hash and version_id, and recomputed the snapshot id under each candidate name.",
+      "attempted": 202,
+      "fetched_ok": 139,
+      "fetch_failures": 63,
+      "why_it_fails": [
+        {
+          "reason": "63 of 202 documents are unfetchable",
+          "detail": "Every OpenAI source is a github.com blob URL pinned to commit 39327d7c5d04c120bf47f1ee9696c078e1f55441 and returns HTTP 403 Forbidden through this environment. All 139 Anthropic pages fetched; all 63 OpenAI ones failed. The snapshot id hashes all 202 together, so 139 of 202 certifies nothing."
+        },
+        {
+          "reason": "the reachable documents have already drifted",
+          "detail": "A targeted drift probe re-fetched the 14 reachable Anthropic documents that closed GOLD records anchor to and checked the recorded evidence_hash at the recorded offsets. 12 of 14 documents differ from the 2026-08-17 capture, and only 2 of 21 spans reproduce their recorded hash. Certification needs all 202 byte-identical; an 86% drift rate on the reachable sample settles it independently of the 403s."
+        }
+      ],
+      "fail_closed_behaviour": "Nothing was accepted. The quarantine was discarded, no database was touched, nothing under data/ was written, and no project artifact changed. A partial crawl is refused before any comparison, so 139 of 202 could not read as a near miss.",
+      "not_recovered_data": "The 139 fetched documents are current live pages, not the frozen capture. They were discarded and are not recorded as recovery."
+    },
+    "conclusion": "POSSIBLE IN PRINCIPLE, REFUTED IN PRACTICE. The snapshot id is a content-derived digest, so a byte-identical rehydration would certify — the route is not closed by mathematics. It is closed by the corpus: 63 documents are unreachable and the reachable ones have drifted. The narrowest remaining artifact is unchanged, and it is still a copy of the 2026-08-17 bytes rather than anything derivable from live pages.",
+    "what_would_change_this": "Byte-identical 2026-08-17 documents from any source — including, for the OpenAI half, the pinned GitHub commit 39327d7c5d04c120bf47f1ee9696c078e1f55441, which is immutable and would reproduce if it could be fetched. That still leaves the 139 Anthropic pages, which have drifted and have no pinned equivalent.",
+    "implemented": {
+      "verifier": "scripts/rehydrate_quarantine.py",
+      "tests": "tests/test_gold001_rehydration.py",
+      "properties_pinned": [
+        "the id chain is content-derived and captured_at is not an input",
+        "the snapshot id changes if any one document changes",
+        "a missing document changes it",
+        "synthetic input never reproduces the frozen target",
+        "a quarantine inside the repository is refused",
+        "a partial crawl is refused before any comparison",
+        "diagnostics are never treated as certification"
+      ]
+    }
+  },
+  "certified_recovery_attempt": {
+    "label": "CERTIFIED RECOVERY ATTEMPT — performed and tested in this session",
+    "assessed_at": "2026-08-30T12:13:59Z",
+    "outcome": "PARTIAL — the OpenAI half is cryptographically recovered and the Anthropic half is not. The assembled 202 is REJECTED.",
+    "openai_half": {
+      "verdict": "RECOVERED AND CERTIFIED — 63 of 63.",
+      "method": "Every saved OpenAI URL is a github.com blob pinned to a full 40-hex commit across four repositories. Each was rewritten to its raw.githubusercontent.com form preserving owner, repo, commit and path verbatim, and fetched into quarantine. A redirect that dropped or changed the commit would have been refused; none occurred.",
+      "commits": {
+        "openai/openai-agents-python": "39327d7c5d04c120bf47f1ee9696c078e1f55441 (37 docs)",
+        "openai/openai-python": "10ee3f0da2ac... (6 docs)",
+        "openai/openai-node": "cc7dbfa9b9dd... (5 docs)",
+        "openai/openai-cookbook": "aa2c1e8867b8... (15 docs)"
+      },
+      "fetched": 63,
+      "failed": 0,
+      "unsafe_redirects": 0,
+      "identity_verification": {
+        "persisted_version_ids_available": 14,
+        "version_ids_matched": 14,
+        "evidence_spans_checkable": 27,
+        "evidence_hashes_reproduced": 27,
+        "meaning": "version_id is stable_id('ver', src_id, sha256(normalized_text)), so a matching version_id is cryptographic proof that the re-fetched document is byte-identical to the frozen one. 14 of 14 matched and every one of the 27 checkable evidence hashes reproduced at its recorded offsets."
+      },
+      "durability": "This half is solved permanently and reproducibly: a commit SHA names the same bytes forever, so anyone can re-derive these 63 documents at any time from the manifest alone."
+    },
+    "anthropic_half": {
+      "verdict": "NOT RECOVERED — no reproducible historical source is reachable.",
+      "live_fetch": {
+        "fetched": 139,
+        "failed": 0,
+        "checkable_against_persisted_identity": 14,
+        "matching_the_frozen_version_id": 1,
+        "provably_drifted": 13,
+        "unverifiable_individually": 125,
+        "note": "125 documents have no persisted per-document identity, so they can only ever be verified through the all-202 snapshot fingerprint. This is why 13 known-wrong documents settle the result: the fingerprint needs every one of the 202 to be right."
+      },
+      "historical_sources_attempted": [
+        {
+          "source": "official versioned or static assets",
+          "result": "platform.claude.com exposes no versioned or dated paths. Its sitemap lists 2,973 URLs with zero lastmod entries, and llms.txt carries no version references."
+        },
+        {
+          "source": "response metadata that could identify a past version",
+          "result": "Document responses carry no Last-Modified and no ETag, and are served Cache-Control: private, no-store. There is no handle by which a past version could be identified or requested."
+        },
+        {
+          "source": "source repositories",
+          "result": "The manifest names none for the Anthropic half — its retrieval_method is https_markdown_rendering, not a pinned clone, which is exactly the difference from the OpenAI half."
+        },
+        {
+          "source": "read-only web-archive captures at or before captured_at",
+          "result": "Unavailable from this environment: web.archive.org, archive.org/wayback/available and timetravel.mementoweb.org all return 403 Tunnel connection failed at the egress proxy. This is a reachability finding, not a finding that no capture exists."
+        }
+      ],
+      "smallest_blocking_set": {
+        "provably_mismatched": [
+          "https://platform.claude.com/docs/en/about-claude/models/migration-guide",
+          "https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool",
+          "https://platform.claude.com/docs/en/agents-and-tools/tool-use/server-tools",
+          "https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-fetch-tool",
+          "https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool",
+          "https://platform.claude.com/docs/en/api/admin",
+          "https://platform.claude.com/docs/en/api/beta",
+          "https://platform.claude.com/docs/en/api/errors",
+          "https://platform.claude.com/docs/en/build-with-claude/context-editing",
+          "https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons",
+          "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
+          "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-sonnet-5",
+          "https://platform.claude.com/docs/en/build-with-claude/thinking"
+        ],
+        "count_provably_mismatched": 13,
+        "unverifiable": 125,
+        "still_matching": [
+          "https://platform.claude.com/docs/en/build-with-claude/effort"
+        ]
+      }
+    },
+    "acceptance_test": {
+      "assembled": 202,
+      "computed_snapshot_ids": {
+        "v1-seed": "snap_b2b5c7c095ea4bd0ecbb02944717aeb3",
+        "v1": "snap_bf9cda78eb2d8e4b545449ad45496b91",
+        "v1-openai-anthropic": "snap_32487720b1894dbde5e859defc24d5d7",
+        "production-rag-v1": "snap_8a66230e6b06d7afc89abc7a679371a2",
+        "seed": "snap_b9725cd3bc7e01ad66ac3243fa1a794c"
+      },
+      "target": "snap_689e336380a054d8039dc35b2c09cd0a",
+      "certified": false,
+      "verdict": "REJECTED. All 202 were assembled in quarantine and the full content-derived chain recomputed; no candidate snapshot name reproduces the frozen fingerprint. Per the acceptance rule an incomplete or mismatched set stays rejected, so nothing was restored and no pilot case was created."
+    },
+    "fail_closed": "Everything was assembled only in quarantine outside the repository. The quarantine was discarded; data/raw still holds only .gitkeep; no database was created; no authoritative record changed; no retrieval ran. The 139 live Anthropic pages are current documents and are not recorded as recovery.",
+    "what_this_changes": "The required artifact is now materially narrower. It was 202 documents; it is now 139 — only the Anthropic half. The OpenAI 63 need never be supplied again, since they are reproducible from pinned commits on demand.",
+    "implemented": {
+      "module": "src/rag_v1/gold/rehydration.py",
+      "tests": "tests/test_gold001_rehydration_sources.py"
+    }
+  },
+  "blocker_recovery_checklist": {
+    "purpose": "The ordered, precise steps that unblock the calibration pilot. Nothing here has been performed; the pilot remains not run.",
+    "hard_prohibitions": [
+      "Do NOT substitute the current live contents of the manifest URLs. The documentation has moved on from the capture date, so offsets and evidence hashes would not match the frozen snapshot and the evidence would not be the frozen evidence.",
+      "Do NOT substitute toy, synthetic or fixture data. tests/fixtures/docs/widget_v2.md is a synthetic document for unit tests and is not corpus.",
+      "Do NOT reconstruct spans by hand from quotations in closed batch records.",
+      "Do NOT run any retrieval system at any step; SYSTEM-A and SYSTEM-B stay frozen."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Restore the exact frozen source-corpus snapshot into the expected PostgreSQL schema.",
+        "detail": "Create the `rag` database and role and apply sql/001_init.sql, sql/002_chunk_sets.sql, sql/003_search_text.sql and sql/004_embedding_cache.sql, then restore the corpus from a backup of the snapshot — or restore data/raw/ (gitignored, 202 documents) and re-ingest it. The snapshot must be the one captured 2026-08-17T04:46:19Z, not a re-fetch.",
+        "expected": "document_source, document_version and corpus_snapshot_version populated; snapshot_id snap_689e336380a054d8039dc35b2c09cd0a present.",
+        "done_when": "scripts/export_batch_006.py's load_docs() returns 202 documents."
+      },
+      {
+        "step": 2,
+        "action": "Verify the restored corpus is the frozen one, by fingerprint, before using it.",
+        "detail": "Identity is not the snapshot id — that is a label anyone can write. Re-read each closed batch-006 span from the restored corpus at its recorded (version_id, char_start, char_end) and re-hash it; every evidence_hash must reproduce exactly. Batch 006's nine records give nine independent checks against text that cannot have drifted, and batches 001-005 give more. Also confirm rag_v1.systems.FROZEN_HASHES still equals SYSTEM-A 9afcb5b7… and SYSTEM-B 304c3509….",
+        "expected": "every re-hash matches its recorded evidence_hash; document count 202.",
+        "done_when": "zero hash mismatches. A single mismatch means the restored corpus is not the frozen snapshot — stop, do not proceed to step 3."
+      },
+      {
+        "step": 3,
+        "action": "Deterministically re-derive the batch-006 NO_BUILDER / UNBUILDABLE span set.",
+        "detail": "The set was counted, never persisted: scripts/export_batch_006.py:733 increments removed['unbuildable'] and returns, discarding the fact. Re-run batch 006's miners against the restored snapshot at the same commit and record, for each fact where the builder returns None, its (version_id, char_start, char_end, evidence_text) rather than only a count. Do not change any builder while doing this: the set is defined by the builders as they were.",
+        "expected": "the recorded count reproduces exactly: 2482 unbuildable facts.",
+        "done_when": "the re-derived count equals 2482. A different count means the derivation is not reproducing batch 006's conditions — diagnose before selecting anything."
+      },
+      {
+        "step": 4,
+        "action": "Select the preregistered 10 pilot cases from that set, and only from it.",
+        "detail": "Take 10 spans that failed batch 006 ONLY because no builder could express them. Exclude any span that failed a semantic gate — those failed for reasons paraphrasing does not fix — and exclude any span already spent by a closed batch. Record the selection basis for each so the choice is auditable and not a convenience sample.",
+        "expected": "10 spans, each traceable to the step-3 set.",
+        "done_when": "each of the 10 carries its version_id, offsets and selection basis."
+      },
+      {
+        "step": 5,
+        "action": "Run the calibration pilot and measure the four preregistered thresholds.",
+        "detail": "Author in the preregistered order — frozen evidence, literal source fact, subject/relation/object, atomic claims, and only then the paraphrased question — never the forbidden order. Record all eight required fields on every case. Run the A-G entailment self-check, where any failure is a DROP with no flag-and-continue branch, then every retained gate including the new E, F and G. No retrieval is run on the pilot.",
+        "expected": "factually sound >= 8 of 10; unsupported claims 0; relation-direction reversals 0; scope broadening 0. Wording cleanup does not count against the criterion.",
+        "done_when": "the pilot is independently reviewed against those four thresholds. If it fails, do not scale the lane: revise the authoring contract and re-pilot."
+      }
+    ]
+  },
+  "reproducibility_safeguards_added": {
+    "why": "The blocker is not only that the corpus is missing. It is that batch 006 recorded a count instead of identities, so even a restored corpus needs a re-derivation step that batch 006 made necessary. These safeguards mean a future batch does not repeat that.",
+    "implemented_in": "src/rag_v1/gold/provenance.py",
+    "tested_in": "tests/test_gold001_provenance.py",
+    "safeguards": [
+      {
+        "id": "S1",
+        "need": "future generation persists the unbuildable-span identities",
+        "provides": "UnbuildableLog records (version_id, char_start, char_end, evidence_text, evidence_hash, reason) for every fact a builder declines, and writes a manifest. NO_BUILDER is kept distinct from SEMANTIC_GATE, because the pilot may draw only from the former.",
+        "verified_by": "identity is kept not just counted; the same span twice is one entry; the two reasons stay distinguishable; the manifest carries the entries"
+      },
+      {
+        "id": "S2",
+        "need": "corpus snapshot fingerprint",
+        "provides": "fingerprint() reproduces the snapshot-id construction of rag_v1.snapshot.create_snapshot without a database, and verify_fingerprint() answers whether a corpus hashes to the id it claims. chunking_config_from_settings() builds the hashed config so a caller cannot silently mis-key it.",
+        "verified_by": "construction matches rag_v1.ids primitives exactly; one changed content hash changes the id; a missing document changes the id; a corpus claiming an id it does not hash to is rejected"
+      },
+      {
+        "id": "S3",
+        "need": "restore verifier",
+        "provides": "verify_restored_corpus() re-reads every closed span at its recorded offsets and re-hashes it against evidence_hash, reporting mismatches and missing versions rather than a bare boolean.",
+        "verified_by": "all 137 closed spans across batches 003-006 satisfy sha256(evidence_text) == evidence_hash; a correct restore verifies; a single changed character fails; an offset shifted by one fails; a missing document is reported, not skipped"
+      },
+      {
+        "id": "S4",
+        "need": "deterministic pilot-selection manifest",
+        "provides": "select_pilot_cases() orders by span identity and records a selection basis per case, so the same input returns the same ten. Semantic-gate failures and spans already spent by a closed batch are excluded; a short pool is reported short rather than padded.",
+        "verified_by": "selection is order-independent; takes the preregistered ten; never selects a semantic-gate failure; excludes spent spans; records why each was chosen; reports a short pool"
+      },
+      {
+        "id": "S5",
+        "need": "a guard so no report can call an unrun pilot passed",
+        "provides": "pilot_thresholds_unmet() returns which of the four preregistered thresholds a result fails. An absent result fails all four, because unmeasured is not met.",
+        "verified_by": "an unrun pilot fails all four; a passing pilot meets all four; one unsupported claim fails; seven of ten sound fails"
+      },
+      {
+        "id": "S6",
+        "need": "reject a wrongly-shaped restore before the expensive checks",
+        "provides": "FROZEN_CAPTURE_SHAPE and verify_corpus_shape() hold the 202 documents and 14,209 chunks the published results record, checked in the harness before the fingerprint. Chunk count is optional, since the pilot needs only document text.",
+        "verified_by": "the published shape is internally consistent (139+63=202, 12028+2181=14209); a correct shape passes; one document short is rejected; a wrong chunk count is rejected; shape is never treated as identity"
+      }
+    ],
+    "harness": {
+      "script": "scripts/rederive_unbuildable.py",
+      "purpose": "Recovers the identities batch 006 discarded, by re-running batch 006's own miners and builders imported unmodified. The unbuildable set is defined by those builders as they were, so re-deriving it with a changed builder would answer a different question.",
+      "does_not_modify": "scripts/export_batch_006.py is imported, never edited. Editing it would break the very re-derivation the recovery checklist depends on.",
+      "refuses_unless": [
+        "the corpus is reachable",
+        "it hashes to the frozen snapshot id",
+        "every closed span re-reads and re-hashes correctly",
+        "the re-derived count reproduces the count batch 006 recorded"
+      ],
+      "verified_now": "Run in this environment it refuses at the first check and writes nothing, both with PostgreSQL stopped and with it running but empty."
+    }
+  },
+  "invariants_held": {
+    "retrieval_was_not_run": true,
+    "systems_executed": [],
+    "closed_batches_modified": 0,
+    "dataset_records_modified": 0,
+    "eligibility_state_modified": false,
+    "human_verified_set_by_this_work": 0,
+    "validation_or_holdout_inspected": false,
+    "files_added": [
+      "src/rag_v1/gold/factidentity.py",
+      "src/rag_v1/gold/reasoningtype.py",
+      "src/rag_v1/gold/questionscope.py",
+      "tests/test_gold001_b007_fixes.py",
+      "src/rag_v1/gold/provenance.py",
+      "tests/test_gold001_provenance.py",
+      "scripts/rederive_unbuildable.py",
+      "scripts/rehydrate_quarantine.py",
+      "tests/test_gold001_rehydration.py",
+      "src/rag_v1/gold/rehydration.py",
+      "tests/test_gold001_rehydration_sources.py"
+    ],
+    "files_modified": [],
+    "live_pages_fetched": "Yes — only the exact URLs saved in the manifest, only after establishing that the snapshot id is a content-derived digest capable of certifying the result, and only into a quarantine outside the repository. Nothing fetched was accepted, retained, or recorded as recovery; the quarantine was discarded."
+  },
+  "next_step": "The OpenAI half is recovered and reproducible from pinned commits; the outstanding artifact is now only the 139 Anthropic documents as they stood on 2026-08-17, of which 13 are provably drifted and 125 are unverifiable without the frozen fingerprint. Reachable routes are exhausted here: a web-archive lookup would be the next thing to try from an environment where archive.org is not blocked at the proxy. Failing that, the artifact remains a copy of the 2026-08-17 bytes from the machine that ran batches 001-006 or a backup of it. The pilot stays blocked; the G-STRICTER finding remains open for the project owner; no AI review is owner approval."
+}

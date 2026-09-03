@@ -1,0 +1,427 @@
+{
+  "audit_id": "EXP-017-corpus-structure-audit",
+  "generated_at_utc": "2026-09-01T03:49:47Z",
+  "scope": "label-independent corpus structure only",
+  "forbidden_loaded": {
+    "gold_labels": false,
+    "v2_devset_cases": false,
+    "gold150_v1_holdout_json": false,
+    "gold150_v1_development": false,
+    "validation": false,
+    "bm25_or_dense_or_ce_on_eval_queries": false
+  },
+  "snapshot": "snap_689e336380a054d8039dc35b2c09cd0a",
+  "chunk_set": "cs_v1_control",
+  "dsn_database": "corpus002_restore",
+  "read_only": true,
+  "postgres": {
+    "read_only": "off",
+    "version": "PostgreSQL 16.15 (Debian 16.15-1.pgdg12+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14+deb12u1) 12.2.0, 64-bit",
+    "read_only_intent": "Audit scripts issued BEGIN READ ONLY / SET default_transaction_read_only=on. No INSERT/UPDATE/DELETE were executed. current_setting may still show off outside a transaction."
+  },
+  "snapshot_row": {
+    "snapshot_id": "snap_689e336380a054d8039dc35b2c09cd0a",
+    "name": "v1-openai-anthropic",
+    "chunk_set_id": "cs_v1_control",
+    "status": "frozen",
+    "manifest_hash": "452479294cbbbe702b15d2df3f5a268023247dcd630782aaad5e17690cee7b17",
+    "parser_version": "v1.0",
+    "chunking_config_hash": "bbc874e4f27a7e6826d5106e33510942fd76cb28cf55b5c3333f014e2a6fd916"
+  },
+  "chunk_set_row": {
+    "chunk_set_id": "cs_v1_control",
+    "chunker_name": "chunker_v1_control",
+    "chunker_version": "1.0",
+    "config_hash": "v1-control-as-shipped",
+    "config": {
+      "max_chunk_chars": 3500,
+      "min_chunk_chars": 200,
+      "enforces_hard_limit": false
+    },
+    "parser_version": "v1.0",
+    "notes": "Chunking as shipped in V1. Frozen: EXP-000..EXP-003 were measured against this set.",
+    "derived_from_chunk_set_id": null,
+    "enrichment_config": {}
+  },
+  "counts": {
+    "n": 14209,
+    "n_versions": 202,
+    "n_sources": 202
+  },
+  "embeddings": {
+    "embedding_rows": 14209,
+    "minilm_rows": 14209,
+    "fp_min": "bd95feaeacf98559",
+    "fp_max": "bd95feaeacf98559"
+  },
+  "search_text_vs_canonical": {
+    "search_text_null": 14209,
+    "search_text_set": 0,
+    "context_header_null": 14209,
+    "context_header_set": 0
+  },
+  "by_chunk_type": [
+    {
+      "chunk_type": "prose",
+      "n": 9488,
+      "mean_span": 1246.5558600337267,
+      "mean_text_len": 1246.5558600337267,
+      "median_text_len": 519.0,
+      "min_text_len": 1,
+      "max_text_len": 16096
+    },
+    {
+      "chunk_type": "code",
+      "n": 4432,
+      "mean_span": 721.4605144404333,
+      "mean_text_len": 721.4605144404333,
+      "median_text_len": 466.5,
+      "min_text_len": 7,
+      "max_text_len": 6495
+    },
+    {
+      "chunk_type": "table",
+      "n": 289,
+      "mean_span": 1955.719723183391,
+      "mean_text_len": 1955.719723183391,
+      "median_text_len": 1584.0,
+      "min_text_len": 61,
+      "max_text_len": 12341
+    }
+  ],
+  "chunk_text_length_chars": {
+    "n": 14209,
+    "min": 1,
+    "p10": 39,
+    "p25": 175,
+    "median": 508,
+    "p75": 1517,
+    "p90": 3466,
+    "p95": 3485,
+    "p99": 3500,
+    "max": 16096,
+    "mean": 1097.19
+  },
+  "chunk_source_span_chars": {
+    "n": 14209,
+    "min": 1,
+    "p10": 39,
+    "p25": 175,
+    "median": 508,
+    "p75": 1517,
+    "p90": 3466,
+    "p95": 3485,
+    "p99": 3500,
+    "max": 16096,
+    "mean": 1097.19
+  },
+  "tiny_chunks": {
+    "lt_50": 1629,
+    "lt_100": 2531,
+    "lt_200": 3927,
+    "lt_300": 5216,
+    "lt_400": 6217
+  },
+  "long_chunks": {
+    "ge_1500": 3698,
+    "ge_1700": 3332,
+    "ge_2000": 3069,
+    "ge_3000": 2543,
+    "ge_3500": 150,
+    "ge_4000": 73,
+    "ge_8000": 6
+  },
+  "span_vs_text": {
+    "n_span_ne_text_len": 0,
+    "note": "char_end-char_start vs length(text); control strip should make them equal"
+  },
+  "section_path_on_chunks": {
+    "empty_path": 0,
+    "depth_hist": {
+      "1": 3102,
+      "2": 4315,
+      "3": 6004,
+      "4": 752,
+      "5": 36
+    },
+    "max_depth": 5,
+    "all_have_path": true
+  },
+  "by_provider": [
+    {
+      "provider": "anthropic",
+      "chunks": 12028,
+      "versions": 139,
+      "mean_chars": 1207.1672763551712,
+      "max_chars": 12341
+    },
+    {
+      "provider": "openai",
+      "chunks": 2181,
+      "versions": 63,
+      "mean_chars": 490.7060981201284,
+      "max_chars": 16096
+    }
+  ],
+  "documents": {
+    "n_versions": 202,
+    "mean_doc_chars": 77461.35643564357,
+    "median_doc_chars": 19484.5,
+    "min_doc_chars": 244,
+    "max_doc_chars": 4768444,
+    "mean_section_count": 29.683168316831683,
+    "median_section_count": 12.0,
+    "min_section_count": 1,
+    "max_section_count": 1447
+  },
+  "chunk_sets_present": {
+    "n_chunk_sets": 1
+  },
+  "all_chunk_sets": [
+    {
+      "chunk_set_id": "cs_v1_control",
+      "chunker_name": "chunker_v1_control",
+      "chunker_version": "1.0"
+    }
+  ],
+  "cs_v1_control_identity": {
+    "n": 14209,
+    "chunk_id_agg_sha256": "394a76b1569f0b46d4151442d5dba0fdf615beb2fc75355df743e0ea0979d93e",
+    "span_hash_sha256": "44563cbb5abb4f9a6917b2398dca7b55df60d7359d368b9873b675c78937873b",
+    "n_must_equal": 14209
+  },
+  "storage": {
+    "chunk_table": "37 MB",
+    "chunk_embedding_table": "31 MB",
+    "minilm_embedding_payload": "21 MB"
+  },
+  "sections_reconstructed_from_chunks": {
+    "n_sections": 5933,
+    "span_chars": {
+      "n": 5933,
+      "min": 5,
+      "p10": 75,
+      "p25": 226,
+      "median": 586,
+      "p75": 1465,
+      "p90": 3470,
+      "p95": 7560,
+      "p99": 38137,
+      "max": 2249957,
+      "mean": 3645.39
+    },
+    "sum_chunk_text_chars": {
+      "n": 5933,
+      "min": 5,
+      "p10": 72,
+      "p25": 221,
+      "median": 579,
+      "p75": 1443,
+      "p90": 3278,
+      "p95": 6894,
+      "p99": 27107,
+      "max": 2243531,
+      "mean": 2627.68
+    },
+    "chunks_per_section": {
+      "n": 5933,
+      "min": 1,
+      "p10": 1,
+      "p25": 1,
+      "median": 1,
+      "p75": 2,
+      "p90": 3,
+      "p95": 9,
+      "p99": 19,
+      "max": 649,
+      "mean": 2.39
+    },
+    "n_single_chunk_sections": 4057,
+    "n_multi_chunk_sections": 1876,
+    "n_sections_ge_1700": 1163,
+    "n_sections_ge_3500": 592,
+    "n_sections_lt_200": 1309,
+    "n_sections_lt_850": 3616,
+    "has_code": 1595,
+    "has_table": 269,
+    "has_table_row": 0,
+    "empty_path_sections": 0,
+    "path_depth_hist": {
+      "1": 1380,
+      "2": 1628,
+      "3": 2517,
+      "4": 390,
+      "5": 18
+    },
+    "note": "section span = max(char_end)-min(char_start) over chunks sharing (version_id, section_path); includes inter-chunk gaps inside the section"
+  },
+  "headings": {
+    "sections_with_nonempty_path": 5933,
+    "sections_with_empty_path": 0,
+    "unique_leaf_headings": 3553,
+    "note": "Headings live in section_path[]; canonical chunk.text is source body (EXP-006 search_text unused on cs_v1_control)."
+  },
+  "adjacency": {
+    "n_consecutive_pairs": 14007,
+    "same_section_pairs": 8215,
+    "cross_section_pairs": 5792,
+    "ordinal_not_plus_one": 0,
+    "char_overlap_pairs": 0,
+    "char_abut_pairs": 42,
+    "char_gap_pairs": 13965,
+    "gap_chars_when_positive": {
+      "n": 13965,
+      "min": 1,
+      "p10": 2,
+      "p25": 2,
+      "median": 2,
+      "p75": 4,
+      "p90": 10,
+      "p95": 12,
+      "p99": 16,
+      "max": 26,
+      "mean": 4.08
+    },
+    "gap_all_including_zero_and_negative": {
+      "n": 14007,
+      "min": 0,
+      "p10": 2,
+      "p25": 2,
+      "median": 2,
+      "p75": 4,
+      "p90": 10,
+      "p95": 12,
+      "p99": 16,
+      "max": 26,
+      "mean": 4.07
+    },
+    "note": "Control chunker is paragraph-aware with NO fixed overlap (chunking.py). Positive gaps are typically stripped whitespace between adjacent chunks."
+  },
+  "projection_count_estimates": {
+    "method_character_windows": {
+      "window_chars": 1702,
+      "stride_chars": 851,
+      "hard_cap_chars": 1824,
+      "derivation": {
+        "exp009_control_tokens_seen": 4097597,
+        "exp009_control_chunks": 14209,
+        "exp009_mean_chars": 1097.2,
+        "chars_per_wordpiece_token": 3.8,
+        "encoder_target_payload_tokens": 448,
+        "encoder_hard_payload_tokens": 480,
+        "overlap_fraction": 0.5,
+        "label_independent": true
+      },
+      "n_projections_if_one_window_min_per_section": 26575,
+      "n_sections_with_gt1_window": 1160,
+      "n_sections_exactly_one_window": 4773,
+      "n_single_chunk_sections_eq_one_window": 3650,
+      "n_projections_if_skip_exact_single_canonical_chunk_span": 22925,
+      "windows_per_section": {
+        "n": 5933,
+        "min": 1,
+        "p10": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 1,
+        "p90": 4,
+        "p95": 8,
+        "p99": 44,
+        "max": 2643,
+        "mean": 4.48
+      },
+      "ratio_vs_14209": 1.87
+    },
+    "method_adjacent_chunk_bridges_NOT_SELECTED": {
+      "same_section_pairs": 8215,
+      "all_consecutive_pairs_including_cross_section": 14007,
+      "reason_not_selected": "Full concat of adjacent control chunks often exceeds the MiniLM 512-token window (mean chunk 1097 chars; p90 3466). Overlapping section windows address both no-overlap boundaries and long-section localization with encoder-budgeted window size."
+    },
+    "method_contextualized_canonical_NOT_SELECTED": {
+      "n_would_equal_14209": 14209,
+      "reason_not_selected": "Prepending section_path (EXP-006-style) does not create a new localization unit for long-chunk tails or straddling boundaries; EXP-006 already tested structural prefixes as a replacement index text."
+    },
+    "method_overlapping_canonical_coverage_windows_SELECTED": {
+      "window_payload_tokens": 448,
+      "stride_tokens": 224,
+      "char_equivalent_window": 1702,
+      "char_equivalent_stride": 851,
+      "n_projections_concat_chunk_text_char_estimate": 18221,
+      "n_projections_full_doc_normalized_text_char_estimate": 18280,
+      "ratio_vs_14209": 1.282,
+      "windows_boundary_straddle_char_sim": 12313,
+      "windows_long_intra_chunk_char_sim": 5905,
+      "windows_skip_if_exact_single_short_chunk_char_sim": 3,
+      "per_doc_windows_char_sim": {
+        "n_docs": 202,
+        "mean": 90.2,
+        "median": 22,
+        "p90": 98,
+        "p99": 686,
+        "max": 5587
+      },
+      "two_largest_docs_share_of_windows": 0.508,
+      "note": "Character simulation of the token algorithm using 3.80 chars/token from EXP-009 control token/char ratio. Implementation MUST tokenize with frozen MiniLM WordPiece (448/224), not these char counts. Exact projection cardinality is produced at build time and recorded then."
+    }
+  },
+  "cost_estimates": {
+    "baseline_control_embed_seconds_exp009": 1251.3,
+    "baseline_control_embed_storage": "21 MB",
+    "seconds_per_control_chunk_exp009": 0.0881,
+    "projected_extra_embed_seconds_if_n_proj": 2340.3,
+    "projected_extra_storage_mb_if_linear": 39.3,
+    "n_projections_used_for_estimate": 26575,
+    "el10_total_ms": 6454.8,
+    "el10_ce_ms": 5903.9,
+    "el10_a_ms": 358.5,
+    "el10_local_bm25_ms": 192.4,
+    "el10_union_mean": 104.1,
+    "approx_ce_ms_per_candidate": 56.7,
+    "proposed_additive_P": 20,
+    "approx_extra_ce_ms_if_P20": 1134.0,
+    "approx_extra_retrieval_ms_projection_lane": 358,
+    "approx_total_ms_el10_plus_P20": 7947.0,
+    "note": "Projection-lane retrieval assumed similar to SYSTEM-A global BM25+dense (~358 ms). CE assumed linear in union size. Estimates only; not measured.",
+    "selected_n_proj_char_estimate": 18221,
+    "projected_extra_embed_seconds_selected": 1604.6,
+    "projected_extra_storage_mb_selected": 26.9
+  },
+  "control_chunker_facts": {
+    "max_chunk_chars_grouping_target": 3500,
+    "min_chunk_chars": 200,
+    "enforces_hard_limit": false,
+    "overlap": "none (paragraph-aware, no fixed overlap)",
+    "citation": "src/rag_v1/chunking.py _split_prose_spans; src/rag_v1/chunkers/control.py",
+    "encoder_truncation_on_control_exp009": {
+      "texts_truncated": 3300,
+      "truncation_rate": 0.2322,
+      "token_coverage": 0.761,
+      "max_seq_length": 512,
+      "source": "experiments/EXP-009/embedding-build-512.json",
+      "label_independent": true
+    }
+  },
+  "section_path_contiguity": {
+    "finding": "Grouping chunks by (version_id, section_path) is NOT a contiguous source span. The same path can wrap child sections (example: Beta ['Versions'] two chunks, span 1.53e6 chars, sum(text)=20). Envelope windowing of a section_path would ingest other sections' bodies.",
+    "consequence_for_EXP017": "First projection strategy windows each document's canonical coverage (ordinal-sorted control chunks, including observed inter-chunk whitespace gaps of 1\u201326 chars), not section_path envelopes.",
+    "longest_true_content_docs": [
+      {
+        "version_id": "ver_1d58a563501b073d898977de6bc2a823",
+        "title": "Compliance API",
+        "provider": "anthropic",
+        "n_chunks": 1703,
+        "sum_chunk_chars": 4754623,
+        "doc_chars": 4768444
+      },
+      {
+        "version_id": "ver_de7f74230c8f10d30aea5d037a3bd0a5",
+        "title": "Beta",
+        "provider": "anthropic",
+        "n_chunks": 2351,
+        "sum_chunk_chars": 3123936,
+        "doc_chars": 3134337
+      }
+    ],
+    "label_independent": true
+  }
+}

@@ -1,0 +1,238 @@
+{
+  "_note": "Internal source-integrity review of batch 005, written by the authoring model against the frozen evidence. This is NOT independent verification and NOT human approval: every candidate remains candidate_unverified, and only an explicit project-owner APPROVE can produce human_verified. Repairs recorded here are proposals the owner accepts by quoting the evidence hash.",
+  "_reviewer": "claude (internal authoring review)",
+  "_status_vocabulary": ["READY_FOR_OWNER_REVIEW", "NEEDS_REPAIR", "REJECT_RECOMMENDED"],
+  "candidates": {
+    "GOLD-B005-01": {
+      "status": "REJECT_RECOMMENDED",
+      "findings": [
+        "NOT_A_FIELD: `invalid_tool_input` is a value of the `error_code` field, not a field. The question's noun is wrong before anything else is considered.",
+        "NOT_AMBIGUITY: the two readings are the same concept — 'the input you gave this tool was invalid' — with tool-specific examples (a malformed URL for web fetch, a malformed regex or an over-length pattern for tool search). §12 asks for a term whose semantics differ by scope; an error code whose examples differ by tool is one meaning documented twice.",
+        "SCOPE_IN_HEADING: neither span mentions its tool. E1 reads '* `invalid_tool_input`: Invalid tool input, such as a malformed URL…' and E2 '* `invalid_tool_input`: the search input was invalid…'; 'Web fetch tool' and 'Tool search tool' come from the document titles. This is the bare-definition-bullet defect the generator drops elsewhere — it did not fire here because the rule only inspects single-span records, which is a generator bug recorded below.",
+        "§3 is explicit that ambiguity must not be preserved because the batch has only one such case."
+      ],
+      "evidence_unchanged": true,
+      "reason": "recommended for rejection: an error-code value documented twice, presented as scoped ambiguity"
+    },
+    "GOLD-B005-02": {
+      "status": "READY_FOR_OWNER_REVIEW",
+      "findings": [
+        "The anchor carries all three parts §5 asks for: `jwks.type` is `discovery`, no `discovery_base` is set, and the resulting requirement. No boundary repair is needed."
+      ],
+      "interaction": {
+        "setting_or_state_A": "`jwks.type` set to `discovery`",
+        "setting_or_state_B": "`discovery_base` absent",
+        "documented_relation": "with A selected and B unset, the issuer URL must be publicly reachable over HTTPS so the discovery document can be fetched; under `explicit_url` and `inline` the URL is matched as the `iss` claim and never fetched"
+      },
+      "evidence_unchanged": true
+    },
+    "GOLD-B005-03": {
+      "status": "READY_FOR_OWNER_REVIEW",
+      "findings": [
+        "Condition and result are both inside the anchor, as §6 requires.",
+        "NONCRITICAL_SCOPE: the span does not name the endpoint whose list behaviour this is. The question is answerable without it, so the anchor stands; an owner who wants the endpoint named should choose NEEDS_EDIT."
+      ],
+      "evidence_unchanged": true
+    },
+    "GOLD-B005-04": {
+      "status": "READY_FOR_OWNER_REVIEW",
+      "findings": [
+        "Condition and result are both inside the anchor.",
+        "NONCRITICAL_SCOPE: the span does not say that `encrypted_content` belongs to the web search tool's results. The fact is answerable as asked."
+      ],
+      "evidence_unchanged": true
+    },
+    "GOLD-B005-05": {
+      "status": "NEEDS_REPAIR",
+      "findings": [
+        "QUESTION_SCOPE: 'What must `allowed_domains` be?' drops the qualifier the evidence itself supplies. The span constrains a *request-level* `allowed_domains` list relative to the organization-level list; asked unscoped, the question implies a rule about the parameter in general.",
+        "The scope word is inside the anchor, so this is a question repair and the evidence does not move."
+      ],
+      "question": "What constraint does a request-level `allowed_domains` list have to satisfy?",
+      "evidence_unchanged": true,
+      "reason": "question_scope_completion using the source's own term 'request-level'"
+    },
+    "GOLD-B005-06": {
+      "status": "REJECT_RECOMMENDED",
+      "findings": [
+        "NOT_A_LIFECYCLE_STATEMENT: the span is a schema field description from a List Models response — 'Model IDs this model accepts as `fallbacks[i].model` on the Messages API' — not a statement about support status. It was mined as lifecycle because its second sentence contains 'not supported'.",
+        "UNANSWERABLE_AS_ASKED: 'Where is `fallbacks` supported?' asks for a set of models. The span says only that an empty list means the parameter is unsupported for that model as primary, which does not answer it.",
+        "A repair would have to rewrite the question into a different fact; the honest outcome is rejection."
+      ],
+      "evidence_unchanged": true,
+      "reason": "recommended for rejection: a schema field description mined as a lifecycle statement"
+    },
+    "GOLD-B005-07": {
+      "status": "READY_FOR_OWNER_REVIEW",
+      "findings": [
+        "Self-contained: names the parameter, the three SDKs, the deprecation, and the future removal. Narrowest accurate type is deprecation, which is what the secondary category records."
+      ],
+      "evidence_unchanged": true
+    },
+    "GOLD-B005-08": {
+      "status": "NEEDS_REPAIR",
+      "findings": [
+        "QUESTION_FORM: 'Where is `budget_tokens` supported?' asks for the set of places it works. The evidence states one place it does not — manual extended thinking is not supported on Claude Sonnet 5 and returns a 400. A question asking for the positive set cannot be answered from a single negative.",
+        "The model scope is inside the anchor, so only the question changes."
+      ],
+      "question": "Is manual extended thinking with `budget_tokens` supported on Claude Sonnet 5?",
+      "evidence_unchanged": true,
+      "reason": "question_form_correction: ask what the evidence answers"
+    },
+    "GOLD-B005-09": {
+      "status": "NEEDS_REPAIR",
+      "findings": [
+        "§9 satisfied on the conditions: all three — malformed JSON, valid JSON that is not an object, and non-standard constants — are disjuncts of a single conditional with one stated result, so nothing needs splitting or narrowing.",
+        "CATEGORY: labelled configuration_interaction, but §4's three fields cannot be filled. The critical strings are `null`, `NaN` and `Infinity`, which are values rather than settings, and no second setting interacts with a first. Relabelled to error_behavior.",
+        "CRITICAL_ANAPHORA: the answer's subject is 'the callable', whose antecedent — 'Callable approval rules fail closed when the SDK cannot safely inspect the arguments' — sits immediately before the anchor. Without it a reader cannot tell which callable is not invoked."
+      ],
+      "evidence_repairs": [
+        {"evidence_id": "E1", "new_char_start": 1523, "new_char_end": 1855,
+         "reason": "evidence_boundary_completion"}
+      ],
+      "reasoning_type": "error_behavior",
+      "reasoning_type_was": "configuration_interaction",
+      "secondary_category": "fail_closed_behavior",
+      "atomic_claims": [
+        "Callable approval rules fail closed when the SDK cannot safely inspect the arguments.",
+        "If the arguments are malformed JSON, are valid JSON but not an object (for example, `null` or a list), or contain non-standard constants such as `NaN`, `Infinity`, or `-Infinity`, the callable is not invoked and the call requires manual approval."
+      ],
+      "critical_strings": ["Callable approval rules fail closed", "NaN", "manual approval"],
+      "reason": "evidence_boundary_completion and taxonomy correction; the antecedent of 'the callable' must be inside the anchor"
+    },
+    "GOLD-B005-10": {
+      "status": "REJECT_RECOMMENDED",
+      "findings": [
+        "RELATION_DIRECTION: §10's suspicion is confirmed. The source says 'The experimental model rejects `reasoning.summary`, `max_tool_calls`, and caller-supplied `multi_agent` or `betas` overrides.' `betas` is the object of the rejection, not the subject of an override. The question asks what `betas` overrides, which the source never says.",
+        "SCOPE_IN_HEADING: rewriting around the true subject would make the question about 'the experimental model', which the span identifies only by that phrase. The model's name sits in the section heading and, further down, after the span. There is no minimal outward expansion that brings the identity inside the anchor.",
+        "Both defects would have to be repaired at once, and the second has no honest repair, so the candidate is recommended for rejection rather than rewritten."
+      ],
+      "evidence_unchanged": true,
+      "reason": "recommended for rejection: reversed relation, and the subject's identity is outside the anchor"
+    },
+    "GOLD-B005-11": {
+      "status": "NEEDS_REPAIR",
+      "findings": [
+        "DIRECTION_CORRECT: unlike B005-10 the source does put the environment variable on the acting side — 'set `AWS_BEDROCK_BASE_URL` to override the derived … endpoint'.",
+        "MISSING_CONDITION: §11's warning applies. What is overridden is the endpoint *derived* from the region configuration, and the span says so; the question as asked implies an unconditional override. The provider that derives it, `bedrock(...)`, is named in the span.",
+        "SECTION_PATH_ARTEFACT: the record's section_path is 'configured through AWS_REGION, AWS_DEFAULT_REGION, or your AWS profile.', which is prose the parser mistook for a heading. It is metadata only — no claim rests on it — but a reviewer should not read it as a real section."
+      ],
+      "question": "When using the `bedrock(...)` provider, what does setting `AWS_BEDROCK_BASE_URL` change?",
+      "interaction": {
+        "setting_or_state_A": "`AWS_BEDROCK_BASE_URL`, or `base_url` passed to `bedrock(...)`",
+        "setting_or_state_B": "the endpoint derived from the configured AWS region",
+        "documented_relation": "A overrides B"
+      },
+      "evidence_unchanged": true,
+      "reason": "question_scope_completion: name the provider and the derived endpoint the override replaces"
+    },
+    "GOLD-B005-12": {
+      "status": "READY_FOR_OWNER_REVIEW",
+      "findings": [
+        "§12 satisfied: `FuseMountPattern` is the grammatical subject of the requirement, the span states a requirement rather than a definition, and the reason — `blobfuse2` discovering ambient Azure authority — is inside the anchor."
+      ],
+      "interaction": {
+        "setting_or_state_A": "`FuseMountPattern`",
+        "setting_or_state_B": "broad acknowledgement of the authority exposure",
+        "documented_relation": "A requires B, because `blobfuse2` discovers ambient Azure authority even with no inline credential"
+      },
+      "evidence_unchanged": true
+    },
+    "GOLD-B005-13": {
+      "status": "REJECT_RECOMMENDED",
+      "findings": [
+        "DUPLICATE_RELATION: this is the sentence immediately after B005-12's, stating the same relation about a sibling mount pattern. §26 rejects 'the same configuration relation reworded', and two adjacent sentences from one paragraph are not two facts worth two benchmark cases.",
+        "ANAPHORA: the span opens '`S3FilesMountPattern` likewise requires…', and 'likewise' refers to the FuseMountPattern sentence outside the anchor. The requirement is stated in full regardless, so this is noncritical — but combined with the duplication there is no reason to keep it.",
+        "Keeping B005-12 and dropping this one is the choice; they are interchangeable."
+      ],
+      "evidence_unchanged": true,
+      "reason": "recommended for rejection: the same relation as B005-12, from the adjacent sentence"
+    },
+    "GOLD-B005-14": {
+      "status": "READY_FOR_OWNER_REVIEW",
+      "findings": [
+        "§12 satisfied: `ApplyPatchTool` is a subject of the requirement (compound with `ComputerTool`), the span states a requirement, and 'local implementations that you provide' is operationally meaningful."
+      ],
+      "interaction": {
+        "setting_or_state_A": "`ComputerTool` and `ApplyPatchTool`",
+        "setting_or_state_B": "a local implementation supplied by the application",
+        "documented_relation": "A always requires B"
+      },
+      "evidence_unchanged": true
+    },
+    "GOLD-B005-15": {
+      "status": "NEEDS_REPAIR",
+      "findings": [
+        "QUESTION_BREADTH: §13's concern. 'What happens when a `ComputerTool` is present?' invites any consequence; the span supports exactly one — three `tool_choice` strings are accepted and normalised to the selector matching the effective model.",
+        "LINK_MARKUP: the question carries a raw markdown reference, '[`ComputerTool`][agents.tool.ComputerTool]', which the generator's link stripper did not reach. A question is not a place for documentation plumbing."
+      ],
+      "question": "When a `ComputerTool` is present, how are `tool_choice=\"computer\"`, `\"computer_use\"` and `\"computer_use_preview\"` treated?",
+      "answer": "All three are accepted and normalized to the built-in selector that matches the effective request model.",
+      "interaction": {
+        "setting_or_state_A": "the presence of a `ComputerTool`",
+        "setting_or_state_B": "the `tool_choice` value",
+        "documented_relation": "A changes how B is interpreted: three otherwise-distinct strings are normalised to one built-in selector"
+      },
+      "evidence_unchanged": true,
+      "reason": "question_narrowing to the single documented consequence, and link markup removed"
+    },
+    "GOLD-B005-16": {
+      "status": "NEEDS_REPAIR",
+      "findings": [
+        "QUESTION_BREADTH: §14's concern. 'What happens when you use a `Session`?' is broader than the span, which establishes one specific effect on usage accounting.",
+        "The condition is preserved in the rewrite; only the consequence being asked about is named."
+      ],
+      "question": "When you use a `Session` such as `SQLiteSession`, what usage does each call to `Runner.run(...)` return?",
+      "answer": "Usage for that specific run.",
+      "interaction": {
+        "setting_or_state_A": "using a `Session` (for example `SQLiteSession`)",
+        "setting_or_state_B": "the usage returned by each `Runner.run(...)` call",
+        "documented_relation": "A scopes B to the individual run rather than to the accumulated session"
+      },
+      "evidence_unchanged": true,
+      "reason": "question_narrowing to the documented effect"
+    },
+    "GOLD-B005-17": {
+      "status": "READY_FOR_OWNER_REVIEW",
+      "findings": [
+        "§6 satisfied: the condition (exceeding the `max_turns` passed) and the result (a `MaxTurnsExceeded` exception) are both inside the anchor, with no antecedent outside it."
+      ],
+      "evidence_unchanged": true
+    },
+    "GOLD-B005-18": {
+      "status": "NEEDS_REPAIR",
+      "findings": [
+        "QUESTION_FORM: 'What must `dispatcher` be?' asks for a value. The span states a pairing requirement — an Undici-specific option must accompany the matching `fetch` implementation — so the question asks for something the evidence does not give.",
+        "SCOPE: 'Undici-specific' is inside the anchor and belongs in the question; the section heading is not needed."
+      ],
+      "question": "What must an Undici-specific option like `dispatcher` be paired with?",
+      "answer": "The matching `fetch` implementation.",
+      "evidence_unchanged": true,
+      "reason": "question_form_correction: ask for the pairing the evidence states"
+    },
+    "GOLD-B005-19": {
+      "status": "READY_FOR_OWNER_REVIEW",
+      "findings": [
+        "Self-contained removal statement naming both the removed option and its replacement. Narrowest accurate type is removal, which the secondary category records."
+      ],
+      "evidence_unchanged": true
+    }
+  },
+  "generator_defects_found": [
+    {
+      "defect": "the bare-definition-bullet rule only inspects single-span records",
+      "seen_in": "GOLD-B005-01",
+      "detail": "The generation self-review drops a candidate whose single span is a bare '- `field`: description' bullet, because its scope lives in the heading. B005-01 is two such bullets in a multi-span record, and the rule's `len(spans) == 1` guard let it through. Recorded rather than patched: batch 005's generation artifact is not being regenerated, and a fix belongs in batch 006's preregistration."
+    },
+    {
+      "defect": "markdown reference links survive into questions built from conditional sentences",
+      "seen_in": "GOLD-B005-15",
+      "detail": "The link stripper runs on the composed question, but a reference-style link whose label is itself backticked was not matched. Repaired here by hand; the pattern should be fixed before batch 006."
+    },
+    {
+      "defect": "prose mistaken for a section heading by the parser",
+      "seen_in": "GOLD-B005-11",
+      "detail": "section_path reads 'configured through AWS_REGION, AWS_DEFAULT_REGION, or your AWS profile.' No claim depends on it, and closed batches must not be touched, so this is recorded as a parser observation for a future audit."
+    }
+  ]
+}

@@ -1,0 +1,347 @@
+{
+  "batch": 4,
+  "reviewed_at": "2026-08-21T16:41:19Z",
+  "reviewer": "claude (internal authoring review)",
+  "status_counts": {
+    "NEEDS_REPAIR": 10,
+    "READY_FOR_OWNER_REVIEW": 4,
+    "REJECT_RECOMMENDED": 1
+  },
+  "repaired_candidates": 10,
+  "human_verified": 0,
+  "holdout_eligible": 0,
+  "precheck_holdout_ready_before_review": 15,
+  "precheck_holdout_ready_after_repairs": 10,
+  "multi_hop_semantic_review": {
+    "candidate_id": "GOLD-B004-15",
+    "note": "§3 of the review brief: the mechanical PASS is not to be trusted on its own. The composition check proves that neither span carries the other hop's critical strings. It says nothing about whether the two documents mean the same thing by `needs_approval`, or whether span 1 establishes the state span 2 tests. Those are the questions below.",
+    "questions": [
+      {
+        "id": "A",
+        "question": "Does span 1 establish the exact state tested by span 2?",
+        "answer": "Yes, and only after the repair.",
+        "reasoning": "Span 2 tests `needs_approval` being not `False`. Span 1 sets it to `True`. The state span 1 establishes is a member of the set span 2 tests, so the chain closes. What span 1 does not establish — and what the unrepaired candidate silently assumed — is that span 2's rule applies at all. That scope now sits inside span 2's anchor."
+      },
+      {
+        "id": "B",
+        "question": "Does setting `needs_approval=True` satisfy '`needs_approval` is not `False`' without unsupported inference?",
+        "answer": "Yes.",
+        "reasoning": "`True` is not `False` is an identity, not an inference about the API. Span 1 also documents a second permitted value — an async callable — and span 2's rule covers that too, since a callable is likewise not `False`. The composed claim is stated for `True` only, which is the narrower and therefore safer reading."
+      },
+      {
+        "id": "C",
+        "question": "Does span 1 come from the same SDK/tool concept as span 2?",
+        "answer": "Same SDK, different execution surface — and this was the defect.",
+        "reasoning": "Both spans are openai-agents-python. Span 1 is the general human-in-the-loop page; span 2 is the hosted multi-agent (experimental) surface, where the SDK's approval interruption mechanism is not available. The setting is the same setting; the surfaces are not the same surface. As generated, the question was unqualified, which made the composed answer false in the ordinary Runner flow — where `needs_approval = True` does exactly what span 1 says and pauses for approval. The repair puts 'hosted agents' into both the question and the anchor."
+      },
+      {
+        "id": "D",
+        "question": "Are the two documents referring to compatible meanings of `needs_approval`?",
+        "answer": "Yes.",
+        "reasoning": "Both refer to the per-tool `needs_approval` setting on a function tool, with the same value domain (`True`, `False`, or a callable). Span 2's phrase 'any function tool whose `needs_approval` setting' matches span 1's subject exactly. This is not the `max_tokens` equivocation found among the near-miss pairs, where one span meant a request parameter and the other a stop_reason value."
+      },
+      {
+        "id": "E",
+        "question": "Is neither span alone sufficient to answer the final question?",
+        "answer": "Yes — and span 1 alone is worse than insufficient.",
+        "reasoning": "A reader holding only span 1 concludes the run pauses for approval, which is the opposite of the outcome on this surface. A reader holding only span 2 knows tools are rejected but not that `True` is the value a person would have set or what they were trying to achieve. This is the property batch 003's four candidates lacked: there, either span answered on its own."
+      },
+      {
+        "id": "F",
+        "question": "Does the composed answer follow directly?",
+        "answer": "Yes, once the scope is inside the evidence. No, as originally generated.",
+        "reasoning": "Repaired, the chain is: on the hosted-agent surface (span 2), a function tool whose `needs_approval` is not `False` is rejected before the request is sent; `True` is such a value (span 1); therefore a tool set to `True` is rejected there. Every step is stated in the evidence and nothing is assumed. Unrepaired, step one required the unstated assumption that the reader was on the hosted-agent surface, which is precisely the 'unstated compatibility assumption' §3 says to mark NEEDS_REPAIR for."
+      }
+    ],
+    "verdict": "NEEDS_REPAIR, repaired; genuine_multi_hop preserved",
+    "labels_preserved": {
+      "reasoning_type": "genuine_multi_hop",
+      "evidence_shape": "multi_document",
+      "requires_all_evidence": true
+    },
+    "what_the_mechanical_check_still_cannot_see": "The composition check tests textual overlap between each hop's critical strings and the other span. It cannot detect equivocation (one string naming two things), it cannot detect a scope carried by a heading, and it cannot tell whether span 1's state is the state span 2 tests. All three had to be judged by reading. A reviewer who disagrees with any of them should reject this candidate rather than trusting the PASS."
+  },
+  "candidates": {
+    "GOLD-B004-01": {
+      "status": "NEEDS_REPAIR",
+      "findings": [
+        "QUESTION_SCOPE: 'What happens when using server tools?' is far broader than its evidence. The span answers one conditional fact — what the API may return when the server-side sampling loop reaches its iteration limit — and a reader could give a dozen true answers to the question as asked.",
+        "CATEGORY: the source states one direct conditional fact, not an interaction between two settings. §8 says relabel rather than inflate reasoning complexity."
+      ],
+      "evidence_unchanged": true,
+      "question": "When using server tools, what does the API return if the server-side sampling loop reaches its iteration limit?",
+      "answer": "The API may return `pause_turn`.",
+      "reasoning_type": "error_behavior",
+      "reasoning_type_was": "configuration_interaction",
+      "reason": "question_scope_completion; taxonomy correction to a named stop behaviour"
+    },
+    "GOLD-B004-02": {
+      "status": "READY_FOR_OWNER_REVIEW",
+      "findings": [
+        "NONCRITICAL_ANAPHORA: the span says the API returns tool_use 'instead', and what it is instead of — the pause_turn behaviour — sits in the preceding paragraph, outside the span. The fact is answerable without resolving it, so this is noncritical, but §2B requires an explicit human override rather than a silent pass."
+      ],
+      "evidence_unchanged": true,
+      "reason": null
+    },
+    "GOLD-B004-03": {
+      "status": "READY_FOR_OWNER_REVIEW",
+      "findings": [],
+      "evidence_unchanged": true,
+      "reason": null
+    },
+    "GOLD-B004-04": {
+      "status": "NEEDS_REPAIR",
+      "findings": [
+        "CRITICAL_ANAPHORA: 'If generation then reaches the context window limit' — 'then' refers to the preceding sentence, which is outside the span.",
+        "MODEL_SCOPE: the antecedent is 'On Claude 4.5 models and newer, if input tokens plus max_tokens exceeds the context window size, the API accepts the request.' The very next sentence in the source says earlier models return a validation error instead, so the claim as anchored over-generalises across models."
+      ],
+      "evidence_repairs": [
+        {
+          "evidence_id": "E1",
+          "new_char_start": 47953,
+          "new_char_end": 48225,
+          "reason": "evidence_boundary_completion"
+        }
+      ],
+      "question": "On Claude 4.5 models and newer, if input tokens plus `max_tokens` exceed the context window size, what happens when generation reaches the context window limit?",
+      "answer": "The API accepts the request, and generation stops with `stop_reason: \"model_context_window_exceeded\"` instead of returning an error.",
+      "atomic_claims": [
+        "On Claude 4.5 models and newer, if input tokens plus `max_tokens` exceeds the context window size, the API accepts the request.",
+        "If generation then reaches the context window limit, it stops with `stop_reason: \"model_context_window_exceeded\"` instead of returning an error."
+      ],
+      "critical_strings": [
+        "Claude 4.5 models and newer",
+        "max_tokens",
+        "stop_reason",
+        "model_context_window_exceeded"
+      ],
+      "reason": "evidence_boundary_completion; the antecedent of 'then' also carries the model scope"
+    },
+    "GOLD-B004-05": {
+      "status": "READY_FOR_OWNER_REVIEW",
+      "findings": [
+        "NONCRITICAL_DEPENDENCY: 'more searches than allowed' does not name the parameter that sets the limit (`max_uses`), which is defined in the preceding sentence. The question is answerable without it, so the anchor stands; an owner who wants the parameter named should choose NEEDS_EDIT and the span can be extended backwards by 60 characters."
+      ],
+      "evidence_unchanged": true,
+      "reason": null
+    },
+    "GOLD-B004-06": {
+      "status": "NEEDS_REPAIR",
+      "findings": [
+        "CLAIM_SCOPE: the span is a bare definition bullet. The parent that gives `timezone` its meaning — the `user_location` parameter — is in the section heading and the list stem, both outside the span. §2D forbids relying on a header outside the exact evidence.",
+        "GENERIC_IDENTIFIER: 'What is the `timezone` option?' names an identifier that exists in many APIs (§6).",
+        "CRITICAL_STRING: one critical string was a 60-character truncation of a markdown link — 'The [IANA timezone ID](https://en.wikipedia.org/wiki/List_of' — which is not a meaningful checkable string."
+      ],
+      "evidence_repairs": [
+        {
+          "evidence_id": "E1",
+          "new_char_start": 16295,
+          "new_char_end": 16843,
+          "reason": "evidence_scope_completion"
+        }
+      ],
+      "question": "Within the `user_location` parameter, what value does the `timezone` field take?",
+      "answer": "The IANA timezone ID.",
+      "atomic_claims": [
+        "The `user_location` parameter allows you to localize search results based on a user's location.",
+        "`timezone`: The [IANA timezone ID](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)."
+      ],
+      "critical_strings": [
+        "user_location",
+        "timezone",
+        "IANA timezone ID"
+      ],
+      "reason": "evidence_scope_completion; the parent parameter must be inside the anchor, not in the heading"
+    },
+    "GOLD-B004-07": {
+      "status": "NEEDS_REPAIR",
+      "findings": [
+        "QUESTION_FORM: 'What happens if you need a hard ceiling on thinking costs?' asks what happens when a person has a requirement, which is not a behaviour the documentation can answer. The evidence states a support status, so the question should ask for one."
+      ],
+      "evidence_unchanged": true,
+      "question": "If I need a hard ceiling on thinking costs, what is the support status of extended thinking with a `budget_tokens` cap on Opus 4.6 and Sonnet 4.6?",
+      "answer": "It is still functional but deprecated.",
+      "critical_strings": [
+        "budget_tokens",
+        "Opus 4.6",
+        "deprecated"
+      ],
+      "reason": "question_form_correction"
+    },
+    "GOLD-B004-08": {
+      "status": "REJECT_RECOMMENDED",
+      "findings": [
+        "NOT_AMBIGUITY: `type` on `ContentDeltaEvent` and `ContentDoneEvent` is a discriminator constant. A tagged union whose tag differs per member is not a case where a developer must select a scope to resolve a meaning — it is two literal lookups, and §7 says to relabel rather than keep the label to hit a category target.",
+        "CLAIM_SCOPE: both spans are 27 and 26 characters and contain neither event-type name, so the question's scope lives entirely in headings outside the evidence (§2D). This part is repairable — expanding each span to its `#### EventName` heading costs only ~100 characters — but repairing the scope does not make the case a disambiguation.",
+        "CEILING: relabelling to `exact_lookup` would take that category to 4 against the §5 maximum of 3."
+      ],
+      "evidence_unchanged": true,
+      "reason": "recommended for rejection: two independent discriminator lookups presented as disambiguation"
+    },
+    "GOLD-B004-09": {
+      "status": "NEEDS_REPAIR",
+      "findings": [
+        "AMBIGUITY_CONFIRMED: `parsed_arguments` genuinely means different things on the two events — a partially parsed object mid-stream, a fully parsed object (a pydantic model instance where `openai.pydantic_function_tool()` was used) when complete. A developer holding one event and reading the other's documentation would be wrong, which is the realistic confusion §11 asks for.",
+        "CLAIM_SCOPE: as anchored, neither span contains its event-type name, so the scope the question names is in a heading outside the evidence (§2D)."
+      ],
+      "evidence_repairs": [
+        {
+          "evidence_id": "E1",
+          "new_char_start": 6627,
+          "new_char_end": 6997,
+          "reason": "evidence_scope_completion"
+        },
+        {
+          "evidence_id": "E2",
+          "new_char_start": 7072,
+          "new_char_end": 7509,
+          "reason": "evidence_scope_completion"
+        }
+      ],
+      "critical_strings_by_span": {
+        "E1": [
+          "FunctionToolCallArgumentsDeltaEvent",
+          "parsed_arguments",
+          "The partially parsed arguments object"
+        ],
+        "E2": [
+          "FunctionToolCallArgumentsDoneEvent",
+          "parsed_arguments",
+          "The fully parsed arguments object"
+        ]
+      },
+      "reason": "evidence_scope_completion; each reading's event type must be inside its own span"
+    },
+    "GOLD-B004-10": {
+      "status": "NEEDS_REPAIR",
+      "findings": [
+        "COMPARATIVE_ANAPHORA: 'a different `RealtimeModel`' is different from a default the span does not name. The default — `OpenAIRealtimeWebSocketModel` — is established in the preceding sentence, outside the anchor.",
+        "CATEGORY: with the default inside the anchor this is a real configuration interaction (which transport model is used changes connection mechanics while leaving the session lifecycle alone), so the label stands once the scope does."
+      ],
+      "evidence_repairs": [
+        {
+          "evidence_id": "E1",
+          "new_char_start": 1827,
+          "new_char_end": 2121,
+          "reason": "evidence_boundary_completion"
+        }
+      ],
+      "question": "`RealtimeRunner` uses `OpenAIRealtimeWebSocketModel` by default. What happens if I pass a different `RealtimeModel`?",
+      "answer": "The same session lifecycle and agent features still apply, while the connection mechanics can change.",
+      "atomic_claims": [
+        "By default, `RealtimeRunner` uses `OpenAIRealtimeWebSocketModel`, so the default Python path is a server-side WebSocket connection to the Realtime API.",
+        "If you pass a different `RealtimeModel`, the same session lifecycle and agent features still apply, while the connection mechanics can change."
+      ],
+      "critical_strings": [
+        "RealtimeRunner",
+        "OpenAIRealtimeWebSocketModel",
+        "RealtimeModel"
+      ],
+      "reason": "evidence_boundary_completion; 'a different model' needs the default it differs from"
+    },
+    "GOLD-B004-11": {
+      "status": "NEEDS_REPAIR",
+      "findings": [
+        "QUESTION_SCOPE: 'What happens if a tool requires approval?' is generic across SDKs and run modes. The evidence is about a streamed run — it names `result.stream_events()` — so the question can carry that scope without adding anything the span does not say.",
+        "CATEGORY: one direct conditional fact about run behaviour, not an interaction between two settings (§8)."
+      ],
+      "evidence_unchanged": true,
+      "question": "In a streamed run, what happens if a tool requires approval?",
+      "reasoning_type": "error_behavior",
+      "reasoning_type_was": "configuration_interaction",
+      "reason": "question_scope_completion; taxonomy correction to a named stop behaviour"
+    },
+    "GOLD-B004-12": {
+      "status": "READY_FOR_OWNER_REVIEW",
+      "findings": [
+        "The question is long, because the source's condition has two parts and both matter. Shortening it would drop a condition the answer depends on, so it stands as written."
+      ],
+      "evidence_unchanged": true,
+      "reason": null
+    },
+    "GOLD-B004-13": {
+      "status": "NEEDS_REPAIR",
+      "findings": [
+        "GENERIC_IDENTIFIER: 'What is the `input_type` option?' does not say what it is an option of (§6). Unlike B004-06 and B004-14 the span itself says 'the handoff tool-call arguments', so the scope can be added to the question without touching the evidence.",
+        "CRITICAL_STRING: one critical string was a 60-character truncation — 'The schema for the handoff tool-call arguments. When set, th'."
+      ],
+      "evidence_unchanged": true,
+      "question": "For a handoff, what does the `input_type` option specify?",
+      "critical_strings": [
+        "input_type",
+        "The schema for the handoff tool-call arguments",
+        "on_handoff"
+      ],
+      "reason": "question_scope_completion; critical string repaired to a whole phrase"
+    },
+    "GOLD-B004-14": {
+      "status": "NEEDS_REPAIR",
+      "findings": [
+        "CLAIM_SCOPE: the span reads '`input_filter`: This lets you filter the input received by the next agent.' and contains no mention of handoffs. The scope is entirely in the section heading and the list stem, both outside the evidence (§2D).",
+        "REPAIR_SHAPE: a contiguous expansion back to the list stem would swallow five unrelated field definitions and produce a 976-character anchor. §16 asks for precise spans, so the stem is added as its own span instead."
+      ],
+      "evidence_repairs": [
+        {
+          "evidence_id": "E0",
+          "action": "add_scope_span",
+          "version_id": "ver_1c77f33b04ffffa285ea7e61c2a89653",
+          "new_char_start": 1576,
+          "new_char_end": 1654,
+          "critical_strings": [
+            "handoff()"
+          ],
+          "reason": "evidence_scope_completion"
+        }
+      ],
+      "question": "In the `handoff()` function, what does the `input_filter` option do?",
+      "answer": "It filters the input received by the next agent.",
+      "atomic_claims": [
+        "The [`handoff()`][agents.handoffs.handoff] function lets you customize things.",
+        "`input_filter`: This lets you filter the input received by the next agent."
+      ],
+      "reason": "evidence_scope_completion; the stem naming handoff() is added as a second precise span"
+    },
+    "GOLD-B004-15": {
+      "status": "NEEDS_REPAIR",
+      "findings": [
+        "UNSUPPORTED_GENERALIZATION: span 2 comes from 'Models > OpenAI models > Hosted multi-agent (experimental) > Local function tools'. Its rejection rule holds on that surface, not in the ordinary Runner flow, where `needs_approval = True` correctly pauses for approval. The question as written is unqualified, so the composed answer is false in the default path.",
+        "SCOPE_IN_HEADING: the qualification lives in the section heading, which §2D forbids relying on. It has to be inside the anchor or the case cannot carry it.",
+        "MULTI_HOP_STANDS: with the scope inside span 2 the chain is real — see the semantic review in the internal review document.",
+        "CLAIM_SET: the scope sentence 'All hosted agents share the model and tools configured for the request.' is inside the repaired span but is deliberately NOT an atomic claim. Quoting it would put 'the model' — whose antecedent is outside the span — into scored text, which turns a noncritical anaphora into a critical one. The span establishes the hosted-agent scope; the claims do not need to restate it."
+      ],
+      "evidence_repairs": [
+        {
+          "evidence_id": "E2",
+          "new_char_start": 16313,
+          "new_char_end": 16910,
+          "reason": "evidence_scope_completion"
+        }
+      ],
+      "question": "If I set `needs_approval` to `True` on a function tool used with hosted agents, what happens?",
+      "answer": "The tool requires approval, but SDK tool-approval interruptions are not supported there, so a function tool whose `needs_approval` is not `False` is rejected before the request is sent.",
+      "atomic_claims": [
+        "Set `needs_approval` to `True` to always require approval or provide an async function that decides per call.",
+        "SDK tool approval interruptions are not supported: any function tool whose `needs_approval` setting is not `False` is rejected before the request is sent."
+      ],
+      "composed_claim": "For hosted agents, a function tool with `needs_approval` set to `True` has a value that is not `False`, so it is rejected before the request is sent rather than pausing for approval.",
+      "critical_strings_by_span": {
+        "E1": [
+          "needs_approval",
+          "True"
+        ],
+        "E2": [
+          "hosted agents",
+          "needs_approval",
+          "False"
+        ]
+      },
+      "reason": "evidence_scope_completion; the composed claim holds only on the hosted-agent surface and must say so",
+      "bridge_relationship": "Span 1 sets `needs_approval` to `True`; span 2 makes rejection conditional on `needs_approval` not being `False`. The chain runs through the value: `True` is not `False`, so the tool span 1 configures is the tool span 2 rejects.",
+      "why_span_1_alone_is_insufficient": "Span 1 says a tool set to `True` always requires approval, and read alone it implies the run pauses for that approval — the opposite of what happens. It mentions neither hosted agents nor rejection, so a reader holding only span 1 answers the question wrongly rather than incompletely.",
+      "why_span_2_alone_is_insufficient": "Span 2 says a function tool whose `needs_approval` is not `False` is rejected before the request is sent, but never says that `True` is a value anyone would set or what setting it is meant to achieve. A reader holding only span 2 knows an outcome without knowing the configuration that triggers it.",
+      "composed_answer": "For hosted agents, a function tool with `needs_approval` set to `True` has a value that is not `False`, so it is rejected before the request is sent rather than pausing for approval."
+    }
+  },
+  "retrieval_was_not_run": true,
+  "systems_executed": []
+}

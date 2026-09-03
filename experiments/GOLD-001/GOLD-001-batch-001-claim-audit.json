@@ -1,0 +1,1190 @@
+{
+  "batch": 1,
+  "audited_at": "2026-08-20T18:27:05Z",
+  "auditor": "claude",
+  "audit_rule_version": 2,
+  "rule_change": "Version 2: content-word coverage is blocking only where the case carries no critical strings. Where it does, the critical strings are the deterministic check and coverage is advisory. Vocabulary is also compared with light suffix stripping, so 'setting/set' and 'restarts/restart' count as the same word. Version 1 blocked on coverage regardless, which flagged five well-supported batch-002 claims as possible paraphrases. A boundary defect is now a claim resting on something outside its span; anaphoric phrasing no claim depends on is an advisory and does not block.",
+  "anaphoric_span_advisories": [
+    "GOLD-B001-03",
+    "GOLD-B001-05",
+    "GOLD-B001-12",
+    "GOLD-B001-13"
+  ],
+  "is_an_overlay": "This file describes the closed batch; it does not change it. No record was modified and the closure hash was not recomputed.",
+  "source_batch_sha256": "a3fe9242e33fb2dff8be78f4c5f1baffc8037066b09445a936a2e3dc9f11ea73",
+  "closure_sha256": "d6f92e8d1a7e77eae760d8a866b0353603aeefaec3c2309817e64f19a3a39f97",
+  "cases_audited": 16,
+  "claims_audited": 24,
+  "status_counts": {
+    "SUPPORTED": 12,
+    "NEEDS_REVIEW": 3,
+    "UNSUPPORTED": 1
+  },
+  "holdout_eligible_count": 3,
+  "holdout_eligible": [
+    "GOLD-B001-03",
+    "GOLD-B001-04",
+    "GOLD-B001-14"
+  ],
+  "retrieval_was_not_run": true,
+  "method": "Mechanical screen: every code identifier, number, quoted value and product name asserted by a claim must appear inside the approved span, plus a content-word coverage measure. Not a semantic proof.",
+  "cases": [
+    {
+      "candidate_id": "GOLD-B001-01",
+      "status": "SUPPORTED",
+      "human_verified": true,
+      "approved_revision": 0,
+      "atomic_claims": [
+        "enable_zoom defaults to false"
+      ],
+      "critical_strings": [],
+      "critical_string_count": 0,
+      "each_critical_string_present_in_raw_evidence": true,
+      "critical_strings_outside_evidence": [],
+      "all_atomic_claims_have_deterministic_check": false,
+      "evidence_hash_valid": true,
+      "scope_self_contained": true,
+      "boundary_defect": false,
+      "boundary_defect_detail": null,
+      "anaphoric_span_advisory": null,
+      "holdout_eligible_verdict": {
+        "candidate_id": "GOLD-B001-01",
+        "holdout_eligible": false,
+        "conditions_checked": [
+          "human_verified",
+          "every_claim_has_a_deterministic_check",
+          "critical_strings_present_in_evidence",
+          "evidence_hash_valid",
+          "no_unresolved_scope_defect"
+        ],
+        "failures": [
+          {
+            "condition": "every_claim_has_a_deterministic_check",
+            "detail": "no critical strings, so the claim-in-evidence gate passes this case without checking anything about its claims"
+          }
+        ],
+        "note": "human_verified is unaffected by this result. Eligibility is a property of the case's current metadata, not a judgement on the person's approval."
+      },
+      "notes": "Comparison uses documented Markdown-escape normalisation only; the stored evidence and its hash are the raw source form.",
+      "approved_evidence_hash": "cbc58014a907362462bde388e06308d8bc705e9be69cc30f09d79b54e55224f4",
+      "approved_evidence_hash_recomputes": true,
+      "approval_pinned_hash": "cbc58014a907362462bde388e06308d8bc705e9be69cc30f09d79b54e55224f4",
+      "approved_question": "What is the default value of enable_zoom?",
+      "approved_answer": "false",
+      "approved_atomic_claims": [
+        "enable_zoom defaults to false"
+      ],
+      "has_critical_strings": false,
+      "evidence_boundary_dependency": [],
+      "claims": [
+        {
+          "claim": "enable_zoom defaults to false",
+          "status": "SUPPORTED",
+          "reason": "every asserted term is inside the span and 100% of the claim's content words appear there",
+          "terms_missing_from_span": [],
+          "terms_only_in_provenance": [],
+          "content_word_coverage": 1.0,
+          "content_words_absent": []
+        }
+      ],
+      "holdout_eligible": false
+    },
+    {
+      "candidate_id": "GOLD-B001-02",
+      "status": "SUPPORTED",
+      "human_verified": true,
+      "approved_revision": 0,
+      "atomic_claims": [
+        "reset_tool_choice defaults to True"
+      ],
+      "critical_strings": [],
+      "critical_string_count": 0,
+      "each_critical_string_present_in_raw_evidence": true,
+      "critical_strings_outside_evidence": [],
+      "all_atomic_claims_have_deterministic_check": false,
+      "evidence_hash_valid": true,
+      "scope_self_contained": true,
+      "boundary_defect": false,
+      "boundary_defect_detail": null,
+      "anaphoric_span_advisory": null,
+      "holdout_eligible_verdict": {
+        "candidate_id": "GOLD-B001-02",
+        "holdout_eligible": false,
+        "conditions_checked": [
+          "human_verified",
+          "every_claim_has_a_deterministic_check",
+          "critical_strings_present_in_evidence",
+          "evidence_hash_valid",
+          "no_unresolved_scope_defect"
+        ],
+        "failures": [
+          {
+            "condition": "every_claim_has_a_deterministic_check",
+            "detail": "no critical strings, so the claim-in-evidence gate passes this case without checking anything about its claims"
+          }
+        ],
+        "note": "human_verified is unaffected by this result. Eligibility is a property of the case's current metadata, not a judgement on the person's approval."
+      },
+      "notes": "Comparison uses documented Markdown-escape normalisation only; the stored evidence and its hash are the raw source form.",
+      "approved_evidence_hash": "ccfe6f93ac677faab71307cd0a7e18fa3d0582a38221742e553284c8aaad21c4",
+      "approved_evidence_hash_recomputes": true,
+      "approval_pinned_hash": null,
+      "approved_question": "What is the default value of reset_tool_choice?",
+      "approved_answer": "True",
+      "approved_atomic_claims": [
+        "reset_tool_choice defaults to True"
+      ],
+      "has_critical_strings": false,
+      "evidence_boundary_dependency": [],
+      "claims": [
+        {
+          "claim": "reset_tool_choice defaults to True",
+          "status": "SUPPORTED",
+          "reason": "every asserted term is inside the span and 100% of the claim's content words appear there",
+          "terms_missing_from_span": [],
+          "terms_only_in_provenance": [],
+          "content_word_coverage": 1.0,
+          "content_words_absent": []
+        }
+      ],
+      "holdout_eligible": false
+    },
+    {
+      "candidate_id": "GOLD-B001-03",
+      "status": "SUPPORTED",
+      "human_verified": true,
+      "approved_revision": 1,
+      "atomic_claims": [
+        "`claude-fable-5` and `claude-mythos-5` share a baseline setting of adaptive thinking, which is always on.",
+        "No `thinking` configuration is required for `claude-fable-5` and `claude-mythos-5`."
+      ],
+      "critical_strings": [
+        "claude-fable-5",
+        "claude-mythos-5",
+        "is always on",
+        "no `thinking` configuration is required"
+      ],
+      "critical_string_count": 4,
+      "each_critical_string_present_in_raw_evidence": true,
+      "critical_strings_outside_evidence": [],
+      "all_atomic_claims_have_deterministic_check": true,
+      "evidence_hash_valid": true,
+      "scope_self_contained": true,
+      "boundary_defect": false,
+      "boundary_defect_detail": null,
+      "anaphoric_span_advisory": "refers to 'The model' with no antecedent in the span",
+      "holdout_eligible_verdict": {
+        "candidate_id": "GOLD-B001-03",
+        "holdout_eligible": true,
+        "conditions_checked": [
+          "human_verified",
+          "every_claim_has_a_deterministic_check",
+          "critical_strings_present_in_evidence",
+          "evidence_hash_valid",
+          "no_unresolved_scope_defect"
+        ],
+        "failures": [],
+        "note": "human_verified is unaffected by this result. Eligibility is a property of the case's current metadata, not a judgement on the person's approval."
+      },
+      "notes": "Comparison uses documented Markdown-escape normalisation only; the stored evidence and its hash are the raw source form.",
+      "approved_evidence_hash": "54f4b6a0802f04ab207e720c571b5f4b342a2e9a4db858371a17da4ff3dc5665",
+      "approved_evidence_hash_recomputes": true,
+      "approval_pinned_hash": "54f4b6a0802f04ab207e720c571b5f4b342a2e9a4db858371a17da4ff3dc5665",
+      "approved_question": "For `claude-fable-5` and `claude-mythos-5`, is a `thinking` configuration required?",
+      "approved_answer": "No. Adaptive thinking is always on for those models, so no `thinking` configuration is required.",
+      "approved_atomic_claims": [
+        "`claude-fable-5` and `claude-mythos-5` share a baseline setting of adaptive thinking, which is always on.",
+        "No `thinking` configuration is required for `claude-fable-5` and `claude-mythos-5`."
+      ],
+      "has_critical_strings": true,
+      "evidence_boundary_dependency": [],
+      "claims": [
+        {
+          "claim": "`claude-fable-5` and `claude-mythos-5` share a baseline setting of adaptive thinking, which is always on.",
+          "status": "SUPPORTED",
+          "reason": "every asserted term is inside the span and 78% of the claim's content words appear there",
+          "terms_missing_from_span": [],
+          "terms_only_in_provenance": [],
+          "content_word_coverage": 0.778,
+          "content_words_absent": [
+            "sett",
+            "share"
+          ]
+        },
+        {
+          "claim": "No `thinking` configuration is required for `claude-fable-5` and `claude-mythos-5`.",
+          "status": "SUPPORTED",
+          "reason": "every asserted term is inside the span and 80% of the claim's content words appear there",
+          "terms_missing_from_span": [],
+          "terms_only_in_provenance": [],
+          "content_word_coverage": 0.8,
+          "content_words_absent": [
+            "requir"
+          ]
+        }
+      ],
+      "holdout_eligible": true
+    },
+    {
+      "candidate_id": "GOLD-B001-04",
+      "status": "SUPPORTED",
+      "human_verified": true,
+      "approved_revision": 1,
+      "atomic_claims": [
+        "If an input guardrail's `.tripwire_triggered` value is true, an `InputGuardrailTripwireTriggered` exception is raised."
+      ],
+      "critical_strings": [
+        "input guardrails",
+        ".tripwire_triggered",
+        "inputguardrailtripwiretriggered",
+        "exception is raised"
+      ],
+      "critical_string_count": 4,
+      "each_critical_string_present_in_raw_evidence": true,
+      "critical_strings_outside_evidence": [],
+      "all_atomic_claims_have_deterministic_check": true,
+      "evidence_hash_valid": true,
+      "scope_self_contained": true,
+      "boundary_defect": false,
+      "boundary_defect_detail": null,
+      "anaphoric_span_advisory": null,
+      "holdout_eligible_verdict": {
+        "candidate_id": "GOLD-B001-04",
+        "holdout_eligible": true,
+        "conditions_checked": [
+          "human_verified",
+          "every_claim_has_a_deterministic_check",
+          "critical_strings_present_in_evidence",
+          "evidence_hash_valid",
+          "no_unresolved_scope_defect"
+        ],
+        "failures": [],
+        "note": "human_verified is unaffected by this result. Eligibility is a property of the case's current metadata, not a judgement on the person's approval."
+      },
+      "notes": "Comparison uses documented Markdown-escape normalisation only; the stored evidence and its hash are the raw source form.",
+      "approved_evidence_hash": "f54443978632400969965418b871831dcfe67fc173b41826c857de06bbed20f8",
+      "approved_evidence_hash_recomputes": true,
+      "approval_pinned_hash": "f54443978632400969965418b871831dcfe67fc173b41826c857de06bbed20f8",
+      "approved_question": "What happens when an input guardrail's `.tripwire_triggered` value is true?",
+      "approved_answer": "An `InputGuardrailTripwireTriggered` exception is raised.",
+      "approved_atomic_claims": [
+        "If an input guardrail's `.tripwire_triggered` value is true, an `InputGuardrailTripwireTriggered` exception is raised."
+      ],
+      "has_critical_strings": true,
+      "evidence_boundary_dependency": [],
+      "claims": [
+        {
+          "claim": "If an input guardrail's `.tripwire_triggered` value is true, an `InputGuardrailTripwireTriggered` exception is raised.",
+          "status": "SUPPORTED",
+          "reason": "every asserted term is inside the span and 75% of the claim's content words appear there",
+          "terms_missing_from_span": [],
+          "terms_only_in_provenance": [],
+          "content_word_coverage": 0.75,
+          "content_words_absent": [
+            "raised.",
+            "value"
+          ]
+        }
+      ],
+      "holdout_eligible": true
+    },
+    {
+      "candidate_id": "GOLD-B001-05",
+      "status": "SUPPORTED",
+      "human_verified": true,
+      "approved_revision": 0,
+      "atomic_claims": [
+        "If the input alone exceeds the model's context window, the API returns a 400 `invalid_request_error`.",
+        "The error message is `prompt is too long`."
+      ],
+      "critical_strings": [],
+      "critical_string_count": 0,
+      "each_critical_string_present_in_raw_evidence": true,
+      "critical_strings_outside_evidence": [],
+      "all_atomic_claims_have_deterministic_check": false,
+      "evidence_hash_valid": true,
+      "scope_self_contained": true,
+      "boundary_defect": false,
+      "boundary_defect_detail": null,
+      "anaphoric_span_advisory": "refers to 'the model' with no antecedent in the span",
+      "holdout_eligible_verdict": {
+        "candidate_id": "GOLD-B001-05",
+        "holdout_eligible": false,
+        "conditions_checked": [
+          "human_verified",
+          "every_claim_has_a_deterministic_check",
+          "critical_strings_present_in_evidence",
+          "evidence_hash_valid",
+          "no_unresolved_scope_defect"
+        ],
+        "failures": [
+          {
+            "condition": "every_claim_has_a_deterministic_check",
+            "detail": "no critical strings, so the claim-in-evidence gate passes this case without checking anything about its claims"
+          }
+        ],
+        "note": "human_verified is unaffected by this result. Eligibility is a property of the case's current metadata, not a judgement on the person's approval."
+      },
+      "notes": "Comparison uses documented Markdown-escape normalisation only; the stored evidence and its hash are the raw source form.",
+      "approved_evidence_hash": "3e6d9ef631e77b3c4fbfc9c3ab3a510c4bbe9e7e791b3248915b95bfdfa82174",
+      "approved_evidence_hash_recomputes": true,
+      "approval_pinned_hash": null,
+      "approved_question": "What does the Claude API return if the input alone already exceeds the model's context window?",
+      "approved_answer": "A 400 `invalid_request_error` with the message `prompt is too long`.",
+      "approved_atomic_claims": [
+        "If the input alone exceeds the model's context window, the API returns a 400 `invalid_request_error`.",
+        "The error message is `prompt is too long`."
+      ],
+      "has_critical_strings": false,
+      "evidence_boundary_dependency": [],
+      "claims": [
+        {
+          "claim": "If the input alone exceeds the model's context window, the API returns a 400 `invalid_request_error`.",
+          "status": "SUPPORTED",
+          "reason": "every asserted term is inside the span and 100% of the claim's content words appear there",
+          "terms_missing_from_span": [],
+          "terms_only_in_provenance": [],
+          "content_word_coverage": 1.0,
+          "content_words_absent": []
+        },
+        {
+          "claim": "The error message is `prompt is too long`.",
+          "status": "SUPPORTED",
+          "reason": "every asserted term is inside the span and 60% of the claim's content words appear there",
+          "terms_missing_from_span": [],
+          "terms_only_in_provenance": [],
+          "content_word_coverage": 0.6,
+          "content_words_absent": [
+            "error",
+            "message"
+          ]
+        }
+      ],
+      "holdout_eligible": false
+    },
+    {
+      "candidate_id": "GOLD-B001-06",
+      "status": "NEEDS_REVIEW",
+      "human_verified": true,
+      "approved_revision": 0,
+      "atomic_claims": [
+        "The `body` parameter must be the raw JSON string sent from the server.",
+        "The body should not be parsed before being passed to the webhook parsing/verification method."
+      ],
+      "critical_strings": [],
+      "critical_string_count": 0,
+      "each_critical_string_present_in_raw_evidence": true,
+      "critical_strings_outside_evidence": [],
+      "all_atomic_claims_have_deterministic_check": false,
+      "evidence_hash_valid": true,
+      "scope_self_contained": true,
+      "boundary_defect": false,
+      "boundary_defect_detail": null,
+      "anaphoric_span_advisory": null,
+      "holdout_eligible_verdict": {
+        "candidate_id": "GOLD-B001-06",
+        "holdout_eligible": false,
+        "conditions_checked": [
+          "human_verified",
+          "every_claim_has_a_deterministic_check",
+          "critical_strings_present_in_evidence",
+          "evidence_hash_valid",
+          "no_unresolved_scope_defect"
+        ],
+        "failures": [
+          {
+            "condition": "every_claim_has_a_deterministic_check",
+            "detail": "no critical strings, so the claim-in-evidence gate passes this case without checking anything about its claims"
+          }
+        ],
+        "note": "human_verified is unaffected by this result. Eligibility is a property of the case's current metadata, not a judgement on the person's approval."
+      },
+      "notes": "Comparison uses documented Markdown-escape normalisation only; the stored evidence and its hash are the raw source form.",
+      "approved_evidence_hash": "b41d372109411e73c998b149e835500374947a5d3f2f0fa5b228609bc60fd911",
+      "approved_evidence_hash_recomputes": true,
+      "approval_pinned_hash": null,
+      "approved_question": "When parsing an OpenAI webhook payload, what must the `body` parameter contain?",
+      "approved_answer": "The raw JSON string sent from the server; it should not be parsed first.",
+      "approved_atomic_claims": [
+        "The `body` parameter must be the raw JSON string sent from the server.",
+        "The body should not be parsed before being passed to the webhook parsing/verification method."
+      ],
+      "has_critical_strings": false,
+      "evidence_boundary_dependency": [],
+      "claims": [
+        {
+          "claim": "The `body` parameter must be the raw JSON string sent from the server.",
+          "status": "SUPPORTED",
+          "reason": "every asserted term is inside the span and 86% of the claim's content words appear there",
+          "terms_missing_from_span": [],
+          "terms_only_in_provenance": [],
+          "content_word_coverage": 0.857,
+          "content_words_absent": [
+            "server."
+          ]
+        },
+        {
+          "claim": "The body should not be parsed before being passed to the webhook parsing/verification method.",
+          "status": "NEEDS_REVIEW",
+          "reason": "only 12% of the claim's content words appear in the span, and the case carries no critical strings, so nothing else checks it",
+          "terms_missing_from_span": [],
+          "terms_only_in_provenance": [],
+          "content_word_coverage": 0.125,
+          "content_words_absent": [
+            "before",
+            "being",
+            "method.",
+            "pars",
+            "pass",
+            "verification",
+            "webhook"
+          ]
+        }
+      ],
+      "holdout_eligible": false
+    },
+    {
+      "candidate_id": "GOLD-B001-07",
+      "status": "SUPPORTED",
+      "human_verified": true,
+      "approved_revision": 0,
+      "atomic_claims": [
+        "Referencing a tool name that is not declared in `tools` returns a 400 error."
+      ],
+      "critical_strings": [],
+      "critical_string_count": 0,
+      "each_critical_string_present_in_raw_evidence": true,
+      "critical_strings_outside_evidence": [],
+      "all_atomic_claims_have_deterministic_check": false,
+      "evidence_hash_valid": true,
+      "scope_self_contained": true,
+      "boundary_defect": false,
+      "boundary_defect_detail": null,
+      "anaphoric_span_advisory": null,
+      "holdout_eligible_verdict": {
+        "candidate_id": "GOLD-B001-07",
+        "holdout_eligible": false,
+        "conditions_checked": [
+          "human_verified",
+          "every_claim_has_a_deterministic_check",
+          "critical_strings_present_in_evidence",
+          "evidence_hash_valid",
+          "no_unresolved_scope_defect"
+        ],
+        "failures": [
+          {
+            "condition": "every_claim_has_a_deterministic_check",
+            "detail": "no critical strings, so the claim-in-evidence gate passes this case without checking anything about its claims"
+          }
+        ],
+        "note": "human_verified is unaffected by this result. Eligibility is a property of the case's current metadata, not a judgement on the person's approval."
+      },
+      "notes": "Comparison uses documented Markdown-escape normalisation only; the stored evidence and its hash are the raw source form.",
+      "approved_evidence_hash": "470054e785b3210c2ff7a0ffe28915e4d7bcd5d850a1c76c80efc11b47e35553",
+      "approved_evidence_hash_recomputes": true,
+      "approval_pinned_hash": null,
+      "approved_question": "What happens if a mid-conversation tool change references a tool name that was not declared in the request's `tools` array?",
+      "approved_answer": "The request returns a 400 error.",
+      "approved_atomic_claims": [
+        "Referencing a tool name that is not declared in `tools` returns a 400 error."
+      ],
+      "has_critical_strings": false,
+      "evidence_boundary_dependency": [],
+      "claims": [
+        {
+          "claim": "Referencing a tool name that is not declared in `tools` returns a 400 error.",
+          "status": "SUPPORTED",
+          "reason": "every asserted term is inside the span and 100% of the claim's content words appear there",
+          "terms_missing_from_span": [],
+          "terms_only_in_provenance": [],
+          "content_word_coverage": 1.0,
+          "content_words_absent": []
+        }
+      ],
+      "holdout_eligible": false
+    },
+    {
+      "candidate_id": "GOLD-B001-08",
+      "status": "SUPPORTED",
+      "human_verified": true,
+      "approved_revision": 0,
+      "atomic_claims": [
+        "Raising `engines.node`, emitted JavaScript syntax, or required runtime APIs ships in an SDK major release by default."
+      ],
+      "critical_strings": [],
+      "critical_string_count": 0,
+      "each_critical_string_present_in_raw_evidence": true,
+      "critical_strings_outside_evidence": [],
+      "all_atomic_claims_have_deterministic_check": false,
+      "evidence_hash_valid": true,
+      "scope_self_contained": true,
+      "boundary_defect": false,
+      "boundary_defect_detail": null,
+      "anaphoric_span_advisory": null,
+      "holdout_eligible_verdict": {
+        "candidate_id": "GOLD-B001-08",
+        "holdout_eligible": false,
+        "conditions_checked": [
+          "human_verified",
+          "every_claim_has_a_deterministic_check",
+          "critical_strings_present_in_evidence",
+          "evidence_hash_valid",
+          "no_unresolved_scope_defect"
+        ],
+        "failures": [
+          {
+            "condition": "every_claim_has_a_deterministic_check",
+            "detail": "no critical strings, so the claim-in-evidence gate passes this case without checking anything about its claims"
+          }
+        ],
+        "note": "human_verified is unaffected by this result. Eligibility is a property of the case's current metadata, not a judgement on the person's approval."
+      },
+      "notes": "Comparison uses documented Markdown-escape normalisation only; the stored evidence and its hash are the raw source form.",
+      "approved_evidence_hash": "25c4c111c21182582529b9659bd54deaf21ca4882b6e033468870bb7031e4b3f",
+      "approved_evidence_hash_recomputes": true,
+      "approval_pinned_hash": null,
+      "approved_question": "By default, what kind of SDK release is used when `engines.node`, emitted JavaScript syntax, or required runtime APIs are raised?",
+      "approved_answer": "An SDK major release.",
+      "approved_atomic_claims": [
+        "Raising `engines.node`, emitted JavaScript syntax, or required runtime APIs ships in an SDK major release by default."
+      ],
+      "has_critical_strings": false,
+      "evidence_boundary_dependency": [],
+      "claims": [
+        {
+          "claim": "Raising `engines.node`, emitted JavaScript syntax, or required runtime APIs ships in an SDK major release by default.",
+          "status": "SUPPORTED",
+          "reason": "every asserted term is inside the span and 100% of the claim's content words appear there",
+          "terms_missing_from_span": [],
+          "terms_only_in_provenance": [],
+          "content_word_coverage": 1.0,
+          "content_words_absent": []
+        }
+      ],
+      "holdout_eligible": false
+    },
+    {
+      "candidate_id": "GOLD-B001-09",
+      "status": "NEEDS_REVIEW",
+      "human_verified": true,
+      "approved_revision": 0,
+      "atomic_claims": [
+        "The tool runner stops when Claude returns a message without a tool use.",
+        "If `max_iterations` is set, the tool runner also stops when that limit is reached."
+      ],
+      "critical_strings": [],
+      "critical_string_count": 0,
+      "each_critical_string_present_in_raw_evidence": true,
+      "critical_strings_outside_evidence": [],
+      "all_atomic_claims_have_deterministic_check": false,
+      "evidence_hash_valid": true,
+      "scope_self_contained": true,
+      "boundary_defect": false,
+      "boundary_defect_detail": null,
+      "anaphoric_span_advisory": null,
+      "holdout_eligible_verdict": {
+        "candidate_id": "GOLD-B001-09",
+        "holdout_eligible": false,
+        "conditions_checked": [
+          "human_verified",
+          "every_claim_has_a_deterministic_check",
+          "critical_strings_present_in_evidence",
+          "evidence_hash_valid",
+          "no_unresolved_scope_defect"
+        ],
+        "failures": [
+          {
+            "condition": "every_claim_has_a_deterministic_check",
+            "detail": "no critical strings, so the claim-in-evidence gate passes this case without checking anything about its claims"
+          }
+        ],
+        "note": "human_verified is unaffected by this result. Eligibility is a property of the case's current metadata, not a judgement on the person's approval."
+      },
+      "notes": "Comparison uses documented Markdown-escape normalisation only; the stored evidence and its hash are the raw source form.",
+      "approved_evidence_hash": "a385ffd27c124f8949711aae7c8da7943c4bcff1ba7eff01fad64583c21ff3aa",
+      "approved_evidence_hash_recomputes": true,
+      "approval_pinned_hash": null,
+      "approved_question": "When does the Anthropic SDK tool runner stop looping?",
+      "approved_answer": "When Claude returns a message without a tool use, or when the runner reaches `max_iterations` if that limit was set.",
+      "approved_atomic_claims": [
+        "The tool runner stops when Claude returns a message without a tool use.",
+        "If `max_iterations` is set, the tool runner also stops when that limit is reached."
+      ],
+      "has_critical_strings": false,
+      "evidence_boundary_dependency": [],
+      "claims": [
+        {
+          "claim": "The tool runner stops when Claude returns a message without a tool use.",
+          "status": "SUPPORTED",
+          "reason": "every asserted term is inside the span and 75% of the claim's content words appear there",
+          "terms_missing_from_span": [],
+          "terms_only_in_provenance": [],
+          "content_word_coverage": 0.75,
+          "content_words_absent": [
+            "stop",
+            "use."
+          ]
+        },
+        {
+          "claim": "If `max_iterations` is set, the tool runner also stops when that limit is reached.",
+          "status": "NEEDS_REVIEW",
+          "reason": "only 50% of the claim's content words appear in the span, and the case carries no critical strings, so nothing else checks it",
+          "terms_missing_from_span": [],
+          "terms_only_in_provenance": [],
+          "content_word_coverage": 0.5,
+          "content_words_absent": [
+            "limit",
+            "reached.",
+            "stop"
+          ]
+        }
+      ],
+      "holdout_eligible": false
+    },
+    {
+      "candidate_id": "GOLD-B001-10",
+      "status": "SUPPORTED",
+      "human_verified": true,
+      "approved_revision": 0,
+      "atomic_claims": [
+        "Filtering `response.output` to message items can remove required reasoning or tool-call items.",
+        "Dropping those required items can cause the next request to fail."
+      ],
+      "critical_strings": [],
+      "critical_string_count": 0,
+      "each_critical_string_present_in_raw_evidence": true,
+      "critical_strings_outside_evidence": [],
+      "all_atomic_claims_have_deterministic_check": false,
+      "evidence_hash_valid": true,
+      "scope_self_contained": true,
+      "boundary_defect": false,
+      "boundary_defect_detail": null,
+      "anaphoric_span_advisory": null,
+      "holdout_eligible_verdict": {
+        "candidate_id": "GOLD-B001-10",
+        "holdout_eligible": false,
+        "conditions_checked": [
+          "human_verified",
+          "every_claim_has_a_deterministic_check",
+          "critical_strings_present_in_evidence",
+          "evidence_hash_valid",
+          "no_unresolved_scope_defect"
+        ],
+        "failures": [
+          {
+            "condition": "every_claim_has_a_deterministic_check",
+            "detail": "no critical strings, so the claim-in-evidence gate passes this case without checking anything about its claims"
+          }
+        ],
+        "note": "human_verified is unaffected by this result. Eligibility is a property of the case's current metadata, not a judgement on the person's approval."
+      },
+      "notes": "Comparison uses documented Markdown-escape normalisation only; the stored evidence and its hash are the raw source form.",
+      "approved_evidence_hash": "c82bd812c3918f280af16d6e4cd487c659850756582a9a0b3237df027132d08a",
+      "approved_evidence_hash_recomputes": true,
+      "approval_pinned_hash": null,
+      "approved_question": "Why should you avoid filtering `response.output` down to only message items when manually carrying Responses API conversation history forward?",
+      "approved_answer": "Because doing so can drop required reasoning or tool-call items and cause the next request to fail.",
+      "approved_atomic_claims": [
+        "Filtering `response.output` to message items can remove required reasoning or tool-call items.",
+        "Dropping those required items can cause the next request to fail."
+      ],
+      "has_critical_strings": false,
+      "evidence_boundary_dependency": [],
+      "claims": [
+        {
+          "claim": "Filtering `response.output` to message items can remove required reasoning or tool-call items.",
+          "status": "SUPPORTED",
+          "reason": "every asserted term is inside the span and 67% of the claim's content words appear there",
+          "terms_missing_from_span": [],
+          "terms_only_in_provenance": [],
+          "content_word_coverage": 0.667,
+          "content_words_absent": [
+            "items.",
+            "message",
+            "remove"
+          ]
+        },
+        {
+          "claim": "Dropping those required items can cause the next request to fail.",
+          "status": "SUPPORTED",
+          "reason": "every asserted term is inside the span and 86% of the claim's content words appear there",
+          "terms_missing_from_span": [],
+          "terms_only_in_provenance": [],
+          "content_word_coverage": 0.857,
+          "content_words_absent": [
+            "dropp"
+          ]
+        }
+      ],
+      "holdout_eligible": false
+    },
+    {
+      "candidate_id": "GOLD-B001-11",
+      "status": "SUPPORTED",
+      "human_verified": true,
+      "approved_revision": 0,
+      "atomic_claims": [
+        "When a tool raises an error, the tool result should return the error message with `is_error: true` rather than crashing."
+      ],
+      "critical_strings": [],
+      "critical_string_count": 0,
+      "each_critical_string_present_in_raw_evidence": true,
+      "critical_strings_outside_evidence": [],
+      "all_atomic_claims_have_deterministic_check": false,
+      "evidence_hash_valid": true,
+      "scope_self_contained": true,
+      "boundary_defect": false,
+      "boundary_defect_detail": null,
+      "anaphoric_span_advisory": null,
+      "holdout_eligible_verdict": {
+        "candidate_id": "GOLD-B001-11",
+        "holdout_eligible": false,
+        "conditions_checked": [
+          "human_verified",
+          "every_claim_has_a_deterministic_check",
+          "critical_strings_present_in_evidence",
+          "evidence_hash_valid",
+          "no_unresolved_scope_defect"
+        ],
+        "failures": [
+          {
+            "condition": "every_claim_has_a_deterministic_check",
+            "detail": "no critical strings, so the claim-in-evidence gate passes this case without checking anything about its claims"
+          }
+        ],
+        "note": "human_verified is unaffected by this result. Eligibility is a property of the case's current metadata, not a judgement on the person's approval."
+      },
+      "notes": "Comparison uses documented Markdown-escape normalisation only; the stored evidence and its hash are the raw source form.",
+      "approved_evidence_hash": "6e8940663d1635baabd1a001161b3c2a9573269e92d19d9bcde089fa9c1297e4",
+      "approved_evidence_hash_recomputes": true,
+      "approval_pinned_hash": null,
+      "approved_question": "How should a tool-using Claude agent handle an error raised by a tool?",
+      "approved_answer": "Send the error message back with `is_error: true` instead of crashing.",
+      "approved_atomic_claims": [
+        "When a tool raises an error, the tool result should return the error message with `is_error: true` rather than crashing."
+      ],
+      "has_critical_strings": false,
+      "evidence_boundary_dependency": [],
+      "claims": [
+        {
+          "claim": "When a tool raises an error, the tool result should return the error message with `is_error: true` rather than crashing.",
+          "status": "SUPPORTED",
+          "reason": "every asserted term is inside the span and 70% of the claim's content words appear there",
+          "terms_missing_from_span": [],
+          "terms_only_in_provenance": [],
+          "content_word_coverage": 0.7,
+          "content_words_absent": [
+            "rather",
+            "result",
+            "return"
+          ]
+        }
+      ],
+      "holdout_eligible": false
+    },
+    {
+      "candidate_id": "GOLD-B001-12",
+      "status": "SUPPORTED",
+      "human_verified": true,
+      "approved_revision": 0,
+      "atomic_claims": [
+        "`nest_handoff_history` is an optional per-handoff override for the RunConfig-level `nest_handoff_history` setting."
+      ],
+      "critical_strings": [],
+      "critical_string_count": 0,
+      "each_critical_string_present_in_raw_evidence": true,
+      "critical_strings_outside_evidence": [],
+      "all_atomic_claims_have_deterministic_check": false,
+      "evidence_hash_valid": true,
+      "scope_self_contained": true,
+      "boundary_defect": false,
+      "boundary_defect_detail": null,
+      "anaphoric_span_advisory": "opens on a reference: 'This can be a boolean or a funct'",
+      "holdout_eligible_verdict": {
+        "candidate_id": "GOLD-B001-12",
+        "holdout_eligible": false,
+        "conditions_checked": [
+          "human_verified",
+          "every_claim_has_a_deterministic_check",
+          "critical_strings_present_in_evidence",
+          "evidence_hash_valid",
+          "no_unresolved_scope_defect"
+        ],
+        "failures": [
+          {
+            "condition": "every_claim_has_a_deterministic_check",
+            "detail": "no critical strings, so the claim-in-evidence gate passes this case without checking anything about its claims"
+          }
+        ],
+        "note": "human_verified is unaffected by this result. Eligibility is a property of the case's current metadata, not a judgement on the person's approval."
+      },
+      "notes": "Comparison uses documented Markdown-escape normalisation only; the stored evidence and its hash are the raw source form.",
+      "approved_evidence_hash": "76aaa903928075a23e3098296adf5c444417ae8138a94312e0446d4c4d0ffb4d",
+      "approved_evidence_hash_recomputes": true,
+      "approval_pinned_hash": null,
+      "approved_question": "What does the `nest_handoff_history` option on `handoff()` override?",
+      "approved_answer": "It is an optional per-handoff override for the RunConfig-level `nest_handoff_history` setting.",
+      "approved_atomic_claims": [
+        "`nest_handoff_history` is an optional per-handoff override for the RunConfig-level `nest_handoff_history` setting."
+      ],
+      "has_critical_strings": false,
+      "evidence_boundary_dependency": [],
+      "claims": [
+        {
+          "claim": "`nest_handoff_history` is an optional per-handoff override for the RunConfig-level `nest_handoff_history` setting.",
+          "status": "SUPPORTED",
+          "reason": "every asserted term is inside the span and 100% of the claim's content words appear there",
+          "terms_missing_from_span": [],
+          "terms_only_in_provenance": [],
+          "content_word_coverage": 1.0,
+          "content_words_absent": []
+        }
+      ],
+      "holdout_eligible": false
+    },
+    {
+      "candidate_id": "GOLD-B001-13",
+      "status": "UNSUPPORTED",
+      "human_verified": true,
+      "approved_revision": 0,
+      "atomic_claims": [
+        "On Google Cloud Agent Platform, `anthropic_version` is passed in the request body and must be set to `vertex-2023-10-16`."
+      ],
+      "critical_strings": [],
+      "critical_string_count": 0,
+      "each_critical_string_present_in_raw_evidence": true,
+      "critical_strings_outside_evidence": [],
+      "all_atomic_claims_have_deterministic_check": false,
+      "evidence_hash_valid": true,
+      "scope_self_contained": false,
+      "boundary_defect": true,
+      "boundary_defect_detail": "claims assert ['Google Cloud Agent Platform'], absent from the span",
+      "anaphoric_span_advisory": "opens on a reference: 'Instead, it is specified in the '",
+      "holdout_eligible_verdict": {
+        "candidate_id": "GOLD-B001-13",
+        "holdout_eligible": false,
+        "conditions_checked": [
+          "human_verified",
+          "every_claim_has_a_deterministic_check",
+          "critical_strings_present_in_evidence",
+          "evidence_hash_valid",
+          "no_unresolved_scope_defect"
+        ],
+        "failures": [
+          {
+            "condition": "every_claim_has_a_deterministic_check",
+            "detail": "no critical strings, so the claim-in-evidence gate passes this case without checking anything about its claims"
+          },
+          {
+            "condition": "no_unresolved_scope_defect",
+            "detail": "claim asserts ['Google Cloud Agent Platform']"
+          }
+        ],
+        "note": "human_verified is unaffected by this result. Eligibility is a property of the case's current metadata, not a judgement on the person's approval."
+      },
+      "notes": "Comparison uses documented Markdown-escape normalisation only; the stored evidence and its hash are the raw source form.",
+      "approved_evidence_hash": "39c03eda7465a346b7a8caab9f0aec8de7e19d515c78f3d15b9468a9db06c279",
+      "approved_evidence_hash_recomputes": true,
+      "approval_pinned_hash": null,
+      "approved_question": "What value must `anthropic_version` be set to when using Claude on Google Cloud's Agent Platform?",
+      "approved_answer": "`vertex-2023-10-16`.",
+      "approved_atomic_claims": [
+        "On Google Cloud Agent Platform, `anthropic_version` is passed in the request body and must be set to `vertex-2023-10-16`."
+      ],
+      "has_critical_strings": false,
+      "evidence_boundary_dependency": [
+        "Google Cloud Agent Platform"
+      ],
+      "claims": [
+        {
+          "claim": "On Google Cloud Agent Platform, `anthropic_version` is passed in the request body and must be set to `vertex-2023-10-16`.",
+          "status": "UNSUPPORTED",
+          "reason": "the claim asserts `Google Cloud Agent Platform`, which the approved span does not contain",
+          "terms_missing_from_span": [
+            "Google Cloud Agent Platform"
+          ],
+          "terms_only_in_provenance": [],
+          "content_word_coverage": 1.0,
+          "content_words_absent": []
+        }
+      ],
+      "holdout_eligible": false
+    },
+    {
+      "candidate_id": "GOLD-B001-14",
+      "status": "SUPPORTED",
+      "human_verified": true,
+      "approved_revision": 1,
+      "atomic_claims": [
+        "Claude 4.6 and later models and Claude Mythos Preview do not support prefilling assistant messages.",
+        "Sending a request with a prefilled last assistant message to those models returns a 400 `invalid_request_error`."
+      ],
+      "critical_strings": [
+        "claude 4.6 and later models",
+        "claude mythos preview",
+        "do not support prefilling assistant messages",
+        "400 `invalid_request_error`"
+      ],
+      "critical_string_count": 4,
+      "each_critical_string_present_in_raw_evidence": true,
+      "critical_strings_outside_evidence": [],
+      "all_atomic_claims_have_deterministic_check": true,
+      "evidence_hash_valid": true,
+      "scope_self_contained": true,
+      "boundary_defect": false,
+      "boundary_defect_detail": null,
+      "anaphoric_span_advisory": null,
+      "holdout_eligible_verdict": {
+        "candidate_id": "GOLD-B001-14",
+        "holdout_eligible": true,
+        "conditions_checked": [
+          "human_verified",
+          "every_claim_has_a_deterministic_check",
+          "critical_strings_present_in_evidence",
+          "evidence_hash_valid",
+          "no_unresolved_scope_defect"
+        ],
+        "failures": [],
+        "note": "human_verified is unaffected by this result. Eligibility is a property of the case's current metadata, not a judgement on the person's approval."
+      },
+      "notes": "Comparison uses documented Markdown-escape normalisation only; the stored evidence and its hash are the raw source form.",
+      "approved_evidence_hash": "9e8be2c9734a4b12b3b026d72710b12672592d9f394dfcc6a427bea8274c1948",
+      "approved_evidence_hash_recomputes": true,
+      "approval_pinned_hash": "9e8be2c9734a4b12b3b026d72710b12672592d9f394dfcc6a427bea8274c1948",
+      "approved_question": "What happens if a request sends a prefilled last assistant message to Claude 4.6 and later models or Claude Mythos Preview?",
+      "approved_answer": "The request returns a 400 `invalid_request_error`.",
+      "approved_atomic_claims": [
+        "Claude 4.6 and later models and Claude Mythos Preview do not support prefilling assistant messages.",
+        "Sending a request with a prefilled last assistant message to those models returns a 400 `invalid_request_error`."
+      ],
+      "has_critical_strings": true,
+      "evidence_boundary_dependency": [],
+      "claims": [
+        {
+          "claim": "Claude 4.6 and later models and Claude Mythos Preview do not support prefilling assistant messages.",
+          "status": "SUPPORTED",
+          "reason": "every asserted term is inside the span and 100% of the claim's content words appear there",
+          "terms_missing_from_span": [],
+          "terms_only_in_provenance": [],
+          "content_word_coverage": 1.0,
+          "content_words_absent": []
+        },
+        {
+          "claim": "Sending a request with a prefilled last assistant message to those models returns a 400 `invalid_request_error`.",
+          "status": "SUPPORTED",
+          "reason": "every asserted term is inside the span and 100% of the claim's content words appear there",
+          "terms_missing_from_span": [],
+          "terms_only_in_provenance": [],
+          "content_word_coverage": 1.0,
+          "content_words_absent": []
+        }
+      ],
+      "holdout_eligible": true
+    },
+    {
+      "candidate_id": "GOLD-B001-17",
+      "status": "NEEDS_REVIEW",
+      "human_verified": true,
+      "approved_revision": 0,
+      "atomic_claims": [
+        "A Files API `File not found` error uses HTTP 404.",
+        "It indicates that the specified `file_id` does not exist or the caller does not have access to it."
+      ],
+      "critical_strings": [],
+      "critical_string_count": 0,
+      "each_critical_string_present_in_raw_evidence": true,
+      "critical_strings_outside_evidence": [],
+      "all_atomic_claims_have_deterministic_check": false,
+      "evidence_hash_valid": true,
+      "scope_self_contained": true,
+      "boundary_defect": false,
+      "boundary_defect_detail": null,
+      "anaphoric_span_advisory": null,
+      "holdout_eligible_verdict": {
+        "candidate_id": "GOLD-B001-17",
+        "holdout_eligible": false,
+        "conditions_checked": [
+          "human_verified",
+          "every_claim_has_a_deterministic_check",
+          "critical_strings_present_in_evidence",
+          "evidence_hash_valid",
+          "no_unresolved_scope_defect"
+        ],
+        "failures": [
+          {
+            "condition": "every_claim_has_a_deterministic_check",
+            "detail": "no critical strings, so the claim-in-evidence gate passes this case without checking anything about its claims"
+          }
+        ],
+        "note": "human_verified is unaffected by this result. Eligibility is a property of the case's current metadata, not a judgement on the person's approval."
+      },
+      "notes": "Comparison uses documented Markdown-escape normalisation only; the stored evidence and its hash are the raw source form.",
+      "approved_evidence_hash": "83e5abb14c4495a64a146a526cb3e89f9b6dad82697170511a2f8fa0fcf1a4f3",
+      "approved_evidence_hash_recomputes": true,
+      "approval_pinned_hash": null,
+      "approved_question": "What does a 404 `File not found` error mean in the Anthropic Files API?",
+      "approved_answer": "The specified `file_id` does not exist or you do not have access to it.",
+      "approved_atomic_claims": [
+        "A Files API `File not found` error uses HTTP 404.",
+        "It indicates that the specified `file_id` does not exist or the caller does not have access to it."
+      ],
+      "has_critical_strings": false,
+      "evidence_boundary_dependency": [
+        "Files API"
+      ],
+      "claims": [
+        {
+          "claim": "A Files API `File not found` error uses HTTP 404.",
+          "status": "NEEDS_REVIEW",
+          "reason": "the claim asserts `Files API`, which appears in the document title or section path but not in the span itself",
+          "terms_missing_from_span": [],
+          "terms_only_in_provenance": [
+            "Files API"
+          ],
+          "content_word_coverage": 0.5,
+          "content_words_absent": [
+            "api",
+            "error",
+            "http"
+          ]
+        },
+        {
+          "claim": "It indicates that the specified `file_id` does not exist or the caller does not have access to it.",
+          "status": "NEEDS_REVIEW",
+          "reason": "only 57% of the claim's content words appear in the span, and the case carries no critical strings, so nothing else checks it",
+          "terms_missing_from_span": [],
+          "terms_only_in_provenance": [],
+          "content_word_coverage": 0.571,
+          "content_words_absent": [
+            "caller",
+            "indicat",
+            "it."
+          ]
+        }
+      ],
+      "holdout_eligible": false
+    },
+    {
+      "candidate_id": "GOLD-B001-18",
+      "status": "SUPPORTED",
+      "human_verified": true,
+      "approved_revision": 0,
+      "atomic_claims": [
+        "When a deferred tool is discovered and returned as a `tool_reference`, its full definition is expanded inline in the conversation body.",
+        "The full definition is not expanded in the prompt prefix."
+      ],
+      "critical_strings": [],
+      "critical_string_count": 0,
+      "each_critical_string_present_in_raw_evidence": true,
+      "critical_strings_outside_evidence": [],
+      "all_atomic_claims_have_deterministic_check": false,
+      "evidence_hash_valid": true,
+      "scope_self_contained": true,
+      "boundary_defect": false,
+      "boundary_defect_detail": null,
+      "anaphoric_span_advisory": null,
+      "holdout_eligible_verdict": {
+        "candidate_id": "GOLD-B001-18",
+        "holdout_eligible": false,
+        "conditions_checked": [
+          "human_verified",
+          "every_claim_has_a_deterministic_check",
+          "critical_strings_present_in_evidence",
+          "evidence_hash_valid",
+          "no_unresolved_scope_defect"
+        ],
+        "failures": [
+          {
+            "condition": "every_claim_has_a_deterministic_check",
+            "detail": "no critical strings, so the claim-in-evidence gate passes this case without checking anything about its claims"
+          }
+        ],
+        "note": "human_verified is unaffected by this result. Eligibility is a property of the case's current metadata, not a judgement on the person's approval."
+      },
+      "notes": "Comparison uses documented Markdown-escape normalisation only; the stored evidence and its hash are the raw source form.",
+      "approved_evidence_hash": "d9166324157cd373bbe32fa4768e5cfab2417678b1c6341677f4d917df4ead2a",
+      "approved_evidence_hash_recomputes": true,
+      "approval_pinned_hash": null,
+      "approved_question": "When tool search discovers a deferred tool and returns a `tool_reference`, where is the tool's full definition expanded?",
+      "approved_answer": "Inline at that point in the conversation body, not in the prompt prefix.",
+      "approved_atomic_claims": [
+        "When a deferred tool is discovered and returned as a `tool_reference`, its full definition is expanded inline in the conversation body.",
+        "The full definition is not expanded in the prompt prefix."
+      ],
+      "has_critical_strings": false,
+      "evidence_boundary_dependency": [],
+      "claims": [
+        {
+          "claim": "When a deferred tool is discovered and returned as a `tool_reference`, its full definition is expanded inline in the conversation body.",
+          "status": "SUPPORTED",
+          "reason": "every asserted term is inside the span and 91% of the claim's content words appear there",
+          "terms_missing_from_span": [],
+          "terms_only_in_provenance": [],
+          "content_word_coverage": 0.909,
+          "content_words_absent": [
+            "body."
+          ]
+        },
+        {
+          "claim": "The full definition is not expanded in the prompt prefix.",
+          "status": "SUPPORTED",
+          "reason": "every asserted term is inside the span and 80% of the claim's content words appear there",
+          "terms_missing_from_span": [],
+          "terms_only_in_provenance": [],
+          "content_word_coverage": 0.8,
+          "content_words_absent": [
+            "prompt"
+          ]
+        }
+      ],
+      "holdout_eligible": false
+    }
+  ],
+  "proposed_v2": {
+    "status": "PROPOSED — not applied, and no batch 001 record was modified",
+    "requires": "explicit project-owner approval before anything is written",
+    "cases_needing_claim_repair": [
+      {
+        "candidate_id": "GOLD-B001-06",
+        "status": "NEEDS_REVIEW",
+        "why": [
+          "only 12% of the claim's content words appear in the span, and the case carries no critical strings, so nothing else checks it"
+        ]
+      },
+      {
+        "candidate_id": "GOLD-B001-09",
+        "status": "NEEDS_REVIEW",
+        "why": [
+          "only 50% of the claim's content words appear in the span, and the case carries no critical strings, so nothing else checks it"
+        ]
+      },
+      {
+        "candidate_id": "GOLD-B001-13",
+        "status": "UNSUPPORTED",
+        "why": [
+          "the claim asserts `Google Cloud Agent Platform`, which the approved span does not contain"
+        ]
+      },
+      {
+        "candidate_id": "GOLD-B001-17",
+        "status": "NEEDS_REVIEW",
+        "why": [
+          "the claim asserts `Files API`, which appears in the document title or section path but not in the span itself",
+          "only 57% of the claim's content words appear in the span, and the case carries no critical strings, so nothing else checks it"
+        ]
+      }
+    ],
+    "cases_needing_critical_strings_only": [
+      "GOLD-B001-01",
+      "GOLD-B001-02",
+      "GOLD-B001-05",
+      "GOLD-B001-07",
+      "GOLD-B001-08",
+      "GOLD-B001-10",
+      "GOLD-B001-11",
+      "GOLD-B001-12",
+      "GOLD-B001-18"
+    ],
+    "note": "A case in the second list is not wrong — its claims are traceable to its span. It simply carries no literal critical string, so the validator cannot check it, and a holdout built from it would be gated on nothing."
+  }
+}

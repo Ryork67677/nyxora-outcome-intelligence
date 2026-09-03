@@ -1,0 +1,45 @@
+{
+  "semantic_contribution_analysis": {
+    "note": "Classification of why dense retrieval changed each outcome.",
+    "dense_rescues": {
+      "AN-002": {
+        "bm25_rank": 27,
+        "dense_rank": 1,
+        "lexical_overlap": "12/13",
+        "mechanism": "topical_coherence_not_vocabulary_gap",
+        "explanation": "Query terms were already present in the chunk. BM25 ranked it 27th because BM25 length normalization penalizes a 3,327-char chunk. Dense matched the chunk's overall topic (a list of HTTP error codes) to the query's topic."
+      },
+      "AN-007": {
+        "bm25_rank": 18,
+        "dense_rank": 2,
+        "lexical_overlap": "11/12",
+        "mechanism": "topical_coherence_not_vocabulary_gap",
+        "explanation": "Same chunk and same mechanism as AN-002."
+      }
+    },
+    "dense_regressions": {
+      "AN-005": {
+        "bm25_rank": 4,
+        "dense_rank": null,
+        "lexical_overlap": "3/7",
+        "mechanism": "exact_identifier_lookup",
+        "explanation": "Evidence is a short 325-char chunk whose value is the literal identifier 'context-management-2025-06-27'. Static word vectors carry no useful representation for such a token, and mean pooling over a short chunk gives no topical signal either."
+      },
+      "OA-004": {
+        "bm25_rank": 5,
+        "dense_rank": 73,
+        "lexical_overlap": "11/14",
+        "mechanism": "pooled_vector_dilution",
+        "explanation": "Terms were present but the pooled vector of a 1,251-char loop description does not resemble the query's phrasing about disabling a turn limit."
+      }
+    },
+    "canonical_case_AN003": {
+      "bm25_rank": null,
+      "dense_rank": null,
+      "dense_doc_rank": 1,
+      "mechanism": "topically_heterogeneous_chunk",
+      "explanation": "Dense placed the correct document at rank 1 and its top five hits were all 'Create a Message Batch' chunks at similarity 0.9417, so the model did semantically associate the query with the right material. The answer-bearing chunk is 3,449 characters of heterogeneous parameter documentation, and its mean-pooled vector is dominated by unrelated parameters. Dense failed for a representation reason, not a vocabulary reason."
+    },
+    "headline": "No dense rescue was a vocabulary-mismatch rescue. Both rescued spans already had >=92% of their query terms present in the chunk; dense corrected a BM25 ranking failure, not a lexical coverage failure. The one genuine vocabulary-mismatch case, AN-003, was not rescued."
+  }
+}

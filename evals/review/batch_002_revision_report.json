@@ -1,0 +1,184 @@
+{
+  "batch": 2,
+  "applied_at": "2026-08-20T07:23:19Z",
+  "reviewer": "independent_review",
+  "source_batch_sha256": "b108d925a09c539de26cb2f7a3e8b96a0fbf3462d0c0f6b95e1a86e82df07736",
+  "candidates": 18,
+  "defect_classes": {
+    "MINER_QUESTION_HEADER_DEPENDENCY": 9,
+    "QUESTION_AUTHORING_REQUIRED": 7,
+    "MINER_EVIDENCE_DEFECT": 2
+  },
+  "anchor_revisions": 2,
+  "all_critical_strings_inside_their_span": true,
+  "status_counts": {
+    "needs_human_review": 18
+  },
+  "nothing_is_gold": "Every candidate is needs_human_review. Only an explicit owner APPROVE imported by scripts/import_human_decisions.py can produce human_verified.",
+  "applied": [
+    {
+      "candidate_id": "GOLD-B002-01",
+      "defect_class": "MINER_QUESTION_HEADER_DEPENDENCY",
+      "fields_revised": 3,
+      "anchor_revision": null,
+      "unsupported_critical_strings": []
+    },
+    {
+      "candidate_id": "GOLD-B002-02",
+      "defect_class": "MINER_QUESTION_HEADER_DEPENDENCY",
+      "fields_revised": 3,
+      "anchor_revision": null,
+      "unsupported_critical_strings": []
+    },
+    {
+      "candidate_id": "GOLD-B002-03",
+      "defect_class": "MINER_QUESTION_HEADER_DEPENDENCY",
+      "fields_revised": 3,
+      "anchor_revision": null,
+      "unsupported_critical_strings": []
+    },
+    {
+      "candidate_id": "GOLD-B002-04",
+      "defect_class": "MINER_QUESTION_HEADER_DEPENDENCY",
+      "fields_revised": 3,
+      "anchor_revision": null,
+      "unsupported_critical_strings": []
+    },
+    {
+      "candidate_id": "GOLD-B002-05",
+      "defect_class": "MINER_QUESTION_HEADER_DEPENDENCY",
+      "fields_revised": 3,
+      "anchor_revision": null,
+      "unsupported_critical_strings": []
+    },
+    {
+      "candidate_id": "GOLD-B002-06",
+      "defect_class": "MINER_QUESTION_HEADER_DEPENDENCY",
+      "fields_revised": 3,
+      "anchor_revision": null,
+      "unsupported_critical_strings": []
+    },
+    {
+      "candidate_id": "GOLD-B002-07",
+      "defect_class": "MINER_QUESTION_HEADER_DEPENDENCY",
+      "fields_revised": 3,
+      "anchor_revision": null,
+      "unsupported_critical_strings": []
+    },
+    {
+      "candidate_id": "GOLD-B002-08",
+      "defect_class": "MINER_QUESTION_HEADER_DEPENDENCY",
+      "fields_revised": 3,
+      "anchor_revision": null,
+      "unsupported_critical_strings": []
+    },
+    {
+      "candidate_id": "GOLD-B002-09",
+      "defect_class": "MINER_QUESTION_HEADER_DEPENDENCY",
+      "fields_revised": 3,
+      "anchor_revision": null,
+      "unsupported_critical_strings": []
+    },
+    {
+      "candidate_id": "GOLD-B002-10",
+      "defect_class": "QUESTION_AUTHORING_REQUIRED",
+      "fields_revised": 3,
+      "anchor_revision": null,
+      "unsupported_critical_strings": []
+    },
+    {
+      "candidate_id": "GOLD-B002-11",
+      "defect_class": "QUESTION_AUTHORING_REQUIRED",
+      "fields_revised": 3,
+      "anchor_revision": null,
+      "unsupported_critical_strings": []
+    },
+    {
+      "candidate_id": "GOLD-B002-12",
+      "defect_class": "MINER_EVIDENCE_DEFECT",
+      "fields_revised": 3,
+      "anchor_revision": {
+        "revision": 1,
+        "reason": "evidence_boundary_completion",
+        "old_char_start": 31104,
+        "old_char_end": 31174,
+        "old_evidence_hash": "69cd87fb0e58c5a9fa404c3c52bf4aefbe04f459e57ecb622cbd47a0d9710d6f",
+        "old_evidence_text": "Shorter prompts cannot be cached, even if marked with `cache_control`.",
+        "new_char_start": 29744,
+        "new_char_end": 31174,
+        "new_evidence_hash": "6cc24e6e6b65f438091a92d67001b08fe2c2ffd1b7ba20567aff964b6f61c290",
+        "new_evidence_text": "On the Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws), [Google Cloud](https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai), and [Microsoft Foundry](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry), the minimum cacheable prompt length is:\n\n* 512 tokens for Claude Opus 5, Claude Fable 5, and [Claude Mythos 5](https://anthropic.com/glasswing)\n* 2,048 tokens for [Claude Mythos Preview](https://anthropic.com/glasswing) and Claude Opus 4.7\n* 4,096 tokens for Claude Opus 4.6 and Claude Opus 4.5\n* 1,024 tokens for Claude Opus 4.8, Claude Sonnet 5, Claude Sonnet 4.6, Claude Sonnet 4.5, Claude Opus 4.1 ([retired, except on Bedrock and Google Cloud](https://platform.claude.com/docs/en/about-claude/model-deprecations)), Claude Opus 4 ([retired, except on Google Cloud](https://platform.claude.com/docs/en/about-claude/model-deprecations)), and Claude Sonnet 4 ([retired, except on Bedrock and Google Cloud](https://platform.claude.com/docs/en/about-claude/model-deprecations))\n* 4,096 tokens for Claude Haiku 4.5\n* 2,048 tokens for Claude Haiku 3.5 ([retired, except on Bedrock and Google Cloud](https://platform.claude.com/docs/en/about-claude/model-deprecations))\n\nThese minimums apply on every platform where each model is available.\n\nShorter prompts cannot be cached, even if marked with `cache_control`.",
+        "characters_added_before": 1360,
+        "characters_added_after": 0,
+        "what_changed": "Extended backwards 1,360 characters to the sentence that introduces the per-model minimum cacheable prompt length, and the list of those minimums.",
+        "why_complete": "The claim turns on \"the applicable minimum cacheable length\", and that phrase appears nowhere in the original span. A smaller extension is available and was rejected: starting at \"These minimums apply on every platform…\" costs only 71 extra characters but leaves the anchor opening on \"These minimums\", which is the same anaphoric defect one sentence further up. See the size warning below.",
+        "size_warning": "1,430 characters is a large anchor and does make the case easier to retrieve. The alternative 141-character anchor is recorded in the packet; choosing it means also weakening the claim to something the smaller span can support.",
+        "author": "claude",
+        "directed_by": "independent_review",
+        "timestamp": "2026-08-20T07:23:19Z"
+      },
+      "unsupported_critical_strings": []
+    },
+    {
+      "candidate_id": "GOLD-B002-13",
+      "defect_class": "QUESTION_AUTHORING_REQUIRED",
+      "fields_revised": 3,
+      "anchor_revision": null,
+      "unsupported_critical_strings": []
+    },
+    {
+      "candidate_id": "GOLD-B002-14",
+      "defect_class": "QUESTION_AUTHORING_REQUIRED",
+      "fields_revised": 3,
+      "anchor_revision": null,
+      "unsupported_critical_strings": []
+    },
+    {
+      "candidate_id": "GOLD-B002-15",
+      "defect_class": "QUESTION_AUTHORING_REQUIRED",
+      "fields_revised": 3,
+      "anchor_revision": null,
+      "unsupported_critical_strings": []
+    },
+    {
+      "candidate_id": "GOLD-B002-16",
+      "defect_class": "QUESTION_AUTHORING_REQUIRED",
+      "fields_revised": 3,
+      "anchor_revision": null,
+      "unsupported_critical_strings": []
+    },
+    {
+      "candidate_id": "GOLD-B002-17",
+      "defect_class": "QUESTION_AUTHORING_REQUIRED",
+      "fields_revised": 3,
+      "anchor_revision": null,
+      "unsupported_critical_strings": []
+    },
+    {
+      "candidate_id": "GOLD-B002-18",
+      "defect_class": "MINER_EVIDENCE_DEFECT",
+      "fields_revised": 3,
+      "anchor_revision": {
+        "revision": 1,
+        "reason": "evidence_boundary_completion",
+        "old_char_start": 25565,
+        "old_char_end": 25931,
+        "old_evidence_hash": "bf1170489ee5a850170efac3e0d42b41fcbe86932bef88b6f56d686ec122911a",
+        "old_evidence_text": "With the beta header set, that list is published as `allowed_fallback_models` on the model's entry in the [Models API](https://platform.claude.com/docs/en/api/models/list).\n* Each entry names a `model` and can override `max_tokens`, `thinking`, `output_config`, and `speed` for that attempt only.\n* The request must be valid as a direct request to every model named.",
+        "new_char_start": 25347,
+        "new_char_end": 25931,
+        "new_evidence_hash": "0d3851e614b9ed909eed9c8d808773e3a548ca0e557c370c6c183c11c663c9cd",
+        "new_evidence_text": "A few rules apply to the `fallbacks` list:\n\n* Entries are tried in order. Each must be distinct from the other entries and from the requested model.\n* Each entry must be one of the requested model's permitted targets. With the beta header set, that list is published as `allowed_fallback_models` on the model's entry in the [Models API](https://platform.claude.com/docs/en/api/models/list).\n* Each entry names a `model` and can override `max_tokens`, `thinking`, `output_config`, and `speed` for that attempt only.\n* The request must be valid as a direct request to every model named.",
+        "characters_added_before": 218,
+        "characters_added_after": 0,
+        "what_changed": "Extended backwards 218 characters to the line that names the `fallbacks` list, so \"Each entry\" has something to refer to.",
+        "why_complete": "The original span opened on \"With the beta header set, that list…\" and then said \"Each entry…\" — both referring to the `fallbacks` list, which was outside the anchor. The repaired span states what the list is before making rules about its entries.",
+        "size_warning": null,
+        "author": "claude",
+        "directed_by": "independent_review",
+        "timestamp": "2026-08-20T07:23:19Z"
+      },
+      "unsupported_critical_strings": []
+    }
+  ]
+}

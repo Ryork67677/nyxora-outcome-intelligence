@@ -1,0 +1,146 @@
+{
+  "batch": 1,
+  "closed_at": "2026-08-20T06:21:04Z",
+  "closed_by": "project_owner",
+  "source_batch_sha256": "a3fe9242e33fb2dff8be78f4c5f1baffc8037066b09445a936a2e3dc9f11ea73",
+  "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a",
+  "schema_version": "1.0",
+  "git_commit": "67de5563f46910931787452de7bba96b09f105b7",
+  "totals": {
+    "candidates": 18,
+    "human_verified": 16,
+    "human_rejected": 2,
+    "needs_human_review": 0,
+    "outstanding_decisions": 0,
+    "acceptance_rate": 0.8889
+  },
+  "status_counts": {
+    "human_verified": 16,
+    "human_rejected": 2
+  },
+  "human_verified_ids": [
+    "GOLD-B001-01",
+    "GOLD-B001-02",
+    "GOLD-B001-03",
+    "GOLD-B001-04",
+    "GOLD-B001-05",
+    "GOLD-B001-06",
+    "GOLD-B001-07",
+    "GOLD-B001-08",
+    "GOLD-B001-09",
+    "GOLD-B001-10",
+    "GOLD-B001-11",
+    "GOLD-B001-12",
+    "GOLD-B001-13",
+    "GOLD-B001-14",
+    "GOLD-B001-17",
+    "GOLD-B001-18"
+  ],
+  "rejected": [
+    {
+      "candidate_id": "GOLD-B001-15",
+      "defects": [
+        "D3"
+      ],
+      "reason": "REJECT — code/example false binding. `required: [\"location\"]` belongs to the tool input schema in the example request and does not establish a general requirement on `tool_choice`.",
+      "independent_verdict": "FAIL",
+      "preserved_as": "negative audit example - the record is kept, not deleted"
+    },
+    {
+      "candidate_id": "GOLD-B001-16",
+      "defects": [
+        "D3"
+      ],
+      "reason": "REJECT — concerns the implementation behaviour of a local example helper function rather than an externally meaningful API or documentation fact. Stronger benchmark material is preferred.",
+      "independent_verdict": "FIX_REQUIRED",
+      "preserved_as": "negative audit example - the record is kept, not deleted"
+    }
+  ],
+  "repaired": [
+    {
+      "candidate_id": "GOLD-B001-03",
+      "reason": "evidence_boundary_completion",
+      "old_span": [
+        2410,
+        2519
+      ],
+      "new_span": [
+        2223,
+        2519
+      ],
+      "old_evidence_hash": "85dd3cb0dd55e21aa941a2cfb4cde5742be207bae3904be0477f0e95d7b2cae6",
+      "new_evidence_hash": "54f4b6a0802f04ab207e720c571b5f4b342a2e9a4db858371a17da4ff3dc5665",
+      "approval_pinned_to": "54f4b6a0802f04ab207e720c571b5f4b342a2e9a4db858371a17da4ff3dc5665"
+    },
+    {
+      "candidate_id": "GOLD-B001-04",
+      "reason": "evidence_boundary_completion",
+      "old_span": [
+        1930,
+        2119
+      ],
+      "new_span": [
+        1496,
+        2119
+      ],
+      "old_evidence_hash": "c700d2b8e7c2cc4e6465224b51637c34ea28ddd8621fc4f6912cce37263fcfcc",
+      "new_evidence_hash": "f54443978632400969965418b871831dcfe67fc173b41826c857de06bbed20f8",
+      "approval_pinned_to": "f54443978632400969965418b871831dcfe67fc173b41826c857de06bbed20f8"
+    },
+    {
+      "candidate_id": "GOLD-B001-14",
+      "reason": "evidence_boundary_completion",
+      "old_span": [
+        19189,
+        19308
+      ],
+      "new_span": [
+        19054,
+        19308
+      ],
+      "old_evidence_hash": "96a1b300f611627511a3893562f8dedab2125af7110cebc7e7b09675da512694",
+      "new_evidence_hash": "9e8be2c9734a4b12b3b026d72710b12672592d9f394dfcc6a427bea8274c1948",
+      "approval_pinned_to": "9e8be2c9734a4b12b3b026d72710b12672592d9f394dfcc6a427bea8274c1948"
+    }
+  ],
+  "defect_taxonomy": {
+    "D1": {
+      "name": "anaphoric anchor",
+      "description": "The span opens on, or silently depends on, a referent outside itself — 'If true', 'any of these models'. The claim cannot be checked against the anchor alone."
+    },
+    "D2": {
+      "name": "wrong relation label",
+      "description": "The miner matched a trigger word and labelled the candidate with a relation the sentence does not express. The evidence is usually fine; the label aims the reviewer at the wrong question."
+    },
+    "D3": {
+      "name": "example-code false binding",
+      "description": "An identifier matched inside a fenced code block or JSON literal and was framed as a documented rule. A sample configuration is not a rule."
+    }
+  },
+  "defects_seen": {
+    "D1": 3,
+    "D2": 4,
+    "D3": 2
+  },
+  "validation": {
+    "validator": "scripts/validate_golden.py",
+    "projection": "evals/review/batch_001_approved_projection.jsonl",
+    "cases": 16,
+    "failures": 0,
+    "passed": true,
+    "require_human": "validation",
+    "caveat": "The claim-in-evidence check only fires on claims marked critical. Only the three repaired cases carry literal critical strings, so for the other 13 this pass says nothing about claim support. That gap must be closed before any of these enters a frozen holdout."
+  },
+  "retrieval": {
+    "retrieval_was_not_run": true,
+    "systems_run_against_these_candidates": [],
+    "statement": "No retrieval system was run against any candidate in this batch at any point. SYSTEM-A and SYSTEM-B remain frozen and were not executed. Candidate selection could not be influenced by what either system succeeds or fails on, which is what keeps a future holdout honest."
+  },
+  "not_yet_done": [
+    "No split has been assigned; the projection's split is a placeholder.",
+    "No holdout is frozen.",
+    "Critical claim strings exist for 3 of 16 verified cases; the rest are not claim-checked.",
+    "OA-002 remains a recorded defect in development/v1 with an unapplied development/v2 correction proposal."
+  ],
+  "closure_sha256": "d6f92e8d1a7e77eae760d8a866b0353603aeefaec3c2309817e64f19a3a39f97"
+}

@@ -1,0 +1,730 @@
+{
+  "experiment_id": "EXP-010",
+  "window": 512,
+  "question": "Did alignment help where truncation actually was, and leave the rest alone?",
+  "truncation_driven": {
+    "spans": 7,
+    "movement": {
+      "worsened": 4,
+      "improved": 3
+    },
+    "detail": [
+      {
+        "case_id": "AN-002",
+        "span_index": 0,
+        "section_path": [
+          "HTTP errors"
+        ],
+        "span": [
+          1636,
+          1721
+        ],
+        "control_chunks": 1,
+        "control_payload_tokens": [
+          848
+        ],
+        "control_truncated": true,
+        "answer_token_offset_in_control_chunk": 346,
+        "answer_visible_in_control_window": true,
+        "aligned_chunks": 1,
+        "aligned_payload_tokens": [
+          426
+        ],
+        "aligned_truncated": false,
+        "evidence_split_across_aligned_chunks": false,
+        "rank_B_control": 18,
+        "rank_D_aligned": 26,
+        "cosine_B": 0.549668,
+        "cosine_D": 0.535016,
+        "rank_C_fused": 9,
+        "rank_E_fused": 7,
+        "movement": "worsened"
+      },
+      {
+        "case_id": "AN-003",
+        "span_index": 0,
+        "section_path": [
+          "Batches",
+          "Create a Message Batch",
+          "Body Parameters"
+        ],
+        "span": [
+          4554,
+          4611
+        ],
+        "control_chunks": 1,
+        "control_payload_tokens": [
+          801
+        ],
+        "control_truncated": true,
+        "answer_token_offset_in_control_chunk": 118,
+        "answer_visible_in_control_window": true,
+        "aligned_chunks": 1,
+        "aligned_payload_tokens": [
+          442
+        ],
+        "aligned_truncated": false,
+        "evidence_split_across_aligned_chunks": false,
+        "rank_B_control": 299,
+        "rank_D_aligned": 193,
+        "cosine_B": 0.404803,
+        "cosine_D": 0.448248,
+        "rank_C_fused": null,
+        "rank_E_fused": null,
+        "movement": "improved"
+      },
+      {
+        "case_id": "AN-004",
+        "span_index": 0,
+        "section_path": [
+          "Explicit cache breakpoints",
+          "Structuring your prompt",
+          "How automatic prefix checking works"
+        ],
+        "span": [
+          25537,
+          25690
+        ],
+        "control_chunks": 1,
+        "control_payload_tokens": [
+          796
+        ],
+        "control_truncated": true,
+        "answer_token_offset_in_control_chunk": 235,
+        "answer_visible_in_control_window": true,
+        "aligned_chunks": 1,
+        "aligned_payload_tokens": [
+          422
+        ],
+        "aligned_truncated": false,
+        "evidence_split_across_aligned_chunks": false,
+        "rank_B_control": 2,
+        "rank_D_aligned": 3,
+        "cosine_B": 0.585418,
+        "cosine_D": 0.563213,
+        "rank_C_fused": 3,
+        "rank_E_fused": 2,
+        "movement": "worsened"
+      },
+      {
+        "case_id": "AN-007",
+        "span_index": 0,
+        "section_path": [
+          "HTTP errors"
+        ],
+        "span": [
+          2459,
+          2533
+        ],
+        "control_chunks": 1,
+        "control_payload_tokens": [
+          848
+        ],
+        "control_truncated": true,
+        "answer_token_offset_in_control_chunk": 588,
+        "answer_visible_in_control_window": false,
+        "aligned_chunks": 1,
+        "aligned_payload_tokens": [
+          424
+        ],
+        "aligned_truncated": false,
+        "evidence_split_across_aligned_chunks": false,
+        "rank_B_control": 16,
+        "rank_D_aligned": 28,
+        "cosine_B": 0.553558,
+        "cosine_D": 0.520036,
+        "rank_C_fused": 8,
+        "rank_E_fused": 8,
+        "movement": "worsened"
+      },
+      {
+        "case_id": "AN-010",
+        "span_index": 0,
+        "section_path": [
+          "Model status"
+        ],
+        "span": [
+          5671,
+          5769
+        ],
+        "control_chunks": 1,
+        "control_payload_tokens": [
+          671
+        ],
+        "control_truncated": true,
+        "answer_token_offset_in_control_chunk": 397,
+        "answer_visible_in_control_window": true,
+        "aligned_chunks": 1,
+        "aligned_payload_tokens": [
+          415
+        ],
+        "aligned_truncated": false,
+        "evidence_split_across_aligned_chunks": false,
+        "rank_B_control": 49,
+        "rank_D_aligned": 127,
+        "cosine_B": 0.475452,
+        "cosine_D": 0.431329,
+        "rank_C_fused": 3,
+        "rank_E_fused": 3,
+        "movement": "worsened"
+      },
+      {
+        "case_id": "AN-012",
+        "span_index": 0,
+        "section_path": [
+          "HTTP errors"
+        ],
+        "span": [
+          1840,
+          1904
+        ],
+        "control_chunks": 1,
+        "control_payload_tokens": [
+          848
+        ],
+        "control_truncated": true,
+        "answer_token_offset_in_control_chunk": 407,
+        "answer_visible_in_control_window": true,
+        "aligned_chunks": 2,
+        "aligned_payload_tokens": [
+          426,
+          424
+        ],
+        "aligned_truncated": false,
+        "evidence_split_across_aligned_chunks": true,
+        "rank_B_control": 8,
+        "rank_D_aligned": 6,
+        "cosine_B": 0.5849,
+        "cosine_D": 0.635204,
+        "rank_C_fused": 3,
+        "rank_E_fused": 3,
+        "movement": "improved"
+      },
+      {
+        "case_id": "OA-002",
+        "span_index": 0,
+        "section_path": [
+          "Running agents",
+          "Exceptions"
+        ],
+        "span": [
+          33598,
+          33793
+        ],
+        "control_chunks": 1,
+        "control_payload_tokens": [
+          620
+        ],
+        "control_truncated": true,
+        "answer_token_offset_in_control_chunk": 102,
+        "answer_visible_in_control_window": true,
+        "aligned_chunks": 1,
+        "aligned_payload_tokens": [
+          428
+        ],
+        "aligned_truncated": false,
+        "evidence_split_across_aligned_chunks": false,
+        "rank_B_control": 7,
+        "rank_D_aligned": 2,
+        "cosine_B": 0.593022,
+        "cosine_D": 0.625452,
+        "rank_C_fused": 1,
+        "rank_E_fused": 1,
+        "movement": "improved"
+      }
+    ]
+  },
+  "already_fitting": {
+    "spans": 15,
+    "movement": {
+      "still_unreachable": 1,
+      "worsened": 5,
+      "unchanged": 9
+    },
+    "note": "Alignment had nothing to fix here. Any 'worsened' row is fragmentation of context that already fitted \u2014 the EXP-008 failure mode.",
+    "detail": [
+      {
+        "case_id": "AN-001",
+        "span_index": 0,
+        "section_path": [
+          "Preamble"
+        ],
+        "span": [
+          116,
+          227
+        ],
+        "control_chunks": 1,
+        "control_payload_tokens": [
+          214
+        ],
+        "control_truncated": false,
+        "answer_token_offset_in_control_chunk": 36,
+        "answer_visible_in_control_window": true,
+        "aligned_chunks": 1,
+        "aligned_payload_tokens": [
+          214
+        ],
+        "aligned_truncated": false,
+        "evidence_split_across_aligned_chunks": false,
+        "rank_B_control": null,
+        "rank_D_aligned": null,
+        "cosine_B": null,
+        "cosine_D": null,
+        "rank_C_fused": 38,
+        "rank_E_fused": 37,
+        "movement": "still_unreachable"
+      },
+      {
+        "case_id": "AN-005",
+        "span_index": 0,
+        "section_path": [
+          "Server-side strategies"
+        ],
+        "span": [
+          4055,
+          4106
+        ],
+        "control_chunks": 1,
+        "control_payload_tokens": [
+          91
+        ],
+        "control_truncated": false,
+        "answer_token_offset_in_control_chunk": 29,
+        "answer_visible_in_control_window": true,
+        "aligned_chunks": 1,
+        "aligned_payload_tokens": [
+          91
+        ],
+        "aligned_truncated": false,
+        "evidence_split_across_aligned_chunks": false,
+        "rank_B_control": 8,
+        "rank_D_aligned": 10,
+        "cosine_B": 0.48285,
+        "cosine_D": 0.48285,
+        "rank_C_fused": 2,
+        "rank_E_fused": 2,
+        "movement": "worsened"
+      },
+      {
+        "case_id": "AN-006",
+        "span_index": 0,
+        "section_path": [
+          "Upgrade to latest tool version",
+          "What's changed"
+        ],
+        "span": [
+          58361,
+          58388
+        ],
+        "control_chunks": 1,
+        "control_payload_tokens": [
+          222
+        ],
+        "control_truncated": false,
+        "answer_token_offset_in_control_chunk": 130,
+        "answer_visible_in_control_window": true,
+        "aligned_chunks": 1,
+        "aligned_payload_tokens": [
+          222
+        ],
+        "aligned_truncated": false,
+        "evidence_split_across_aligned_chunks": false,
+        "rank_B_control": 185,
+        "rank_D_aligned": 258,
+        "cosine_B": 0.435139,
+        "cosine_D": 0.435139,
+        "rank_C_fused": 57,
+        "rank_E_fused": 56,
+        "movement": "worsened"
+      },
+      {
+        "case_id": "AN-008",
+        "span_index": 0,
+        "section_path": [
+          "Preamble"
+        ],
+        "span": [
+          361,
+          496
+        ],
+        "control_chunks": 1,
+        "control_payload_tokens": [
+          214
+        ],
+        "control_truncated": false,
+        "answer_token_offset_in_control_chunk": 118,
+        "answer_visible_in_control_window": true,
+        "aligned_chunks": 1,
+        "aligned_payload_tokens": [
+          214
+        ],
+        "aligned_truncated": false,
+        "evidence_split_across_aligned_chunks": false,
+        "rank_B_control": 1,
+        "rank_D_aligned": 1,
+        "cosine_B": 0.647807,
+        "cosine_D": 0.647807,
+        "rank_C_fused": 1,
+        "rank_E_fused": 1,
+        "movement": "unchanged"
+      },
+      {
+        "case_id": "AN-009",
+        "span_index": 0,
+        "section_path": [
+          "Preamble"
+        ],
+        "span": [
+          246,
+          318
+        ],
+        "control_chunks": 1,
+        "control_payload_tokens": [
+          204
+        ],
+        "control_truncated": false,
+        "answer_token_offset_in_control_chunk": 64,
+        "answer_visible_in_control_window": true,
+        "aligned_chunks": 1,
+        "aligned_payload_tokens": [
+          204
+        ],
+        "aligned_truncated": false,
+        "evidence_split_across_aligned_chunks": false,
+        "rank_B_control": 1,
+        "rank_D_aligned": 1,
+        "cosine_B": 0.632614,
+        "cosine_D": 0.632614,
+        "rank_C_fused": 1,
+        "rank_E_fused": 1,
+        "movement": "unchanged"
+      },
+      {
+        "case_id": "AN-011",
+        "span_index": 0,
+        "section_path": [
+          "About rate limits"
+        ],
+        "span": [
+          1672,
+          1849
+        ],
+        "control_chunks": 1,
+        "control_payload_tokens": [
+          380
+        ],
+        "control_truncated": false,
+        "answer_token_offset_in_control_chunk": 26,
+        "answer_visible_in_control_window": true,
+        "aligned_chunks": 1,
+        "aligned_payload_tokens": [
+          380
+        ],
+        "aligned_truncated": false,
+        "evidence_split_across_aligned_chunks": false,
+        "rank_B_control": 8,
+        "rank_D_aligned": 8,
+        "cosine_B": 0.57668,
+        "cosine_D": 0.57668,
+        "rank_C_fused": 21,
+        "rank_E_fused": 19,
+        "movement": "unchanged"
+      },
+      {
+        "case_id": "AN-012",
+        "span_index": 1,
+        "section_path": [
+          "About rate limits"
+        ],
+        "span": [
+          1672,
+          1849
+        ],
+        "control_chunks": 1,
+        "control_payload_tokens": [
+          380
+        ],
+        "control_truncated": false,
+        "answer_token_offset_in_control_chunk": 26,
+        "answer_visible_in_control_window": true,
+        "aligned_chunks": 1,
+        "aligned_payload_tokens": [
+          380
+        ],
+        "aligned_truncated": false,
+        "evidence_split_across_aligned_chunks": false,
+        "rank_B_control": 123,
+        "rank_D_aligned": 141,
+        "cosine_B": 0.429929,
+        "cosine_D": 0.429929,
+        "rank_C_fused": null,
+        "rank_E_fused": null,
+        "movement": "worsened"
+      },
+      {
+        "case_id": "OA-001",
+        "span_index": 0,
+        "section_path": [
+          "Tracing"
+        ],
+        "span": [
+          512,
+          553
+        ],
+        "control_chunks": 1,
+        "control_payload_tokens": [
+          230
+        ],
+        "control_truncated": false,
+        "answer_token_offset_in_control_chunk": 121,
+        "answer_visible_in_control_window": true,
+        "aligned_chunks": 1,
+        "aligned_payload_tokens": [
+          230
+        ],
+        "aligned_truncated": false,
+        "evidence_split_across_aligned_chunks": false,
+        "rank_B_control": 1,
+        "rank_D_aligned": 1,
+        "cosine_B": 0.776565,
+        "cosine_D": 0.776565,
+        "rank_C_fused": 1,
+        "rank_E_fused": 1,
+        "movement": "unchanged"
+      },
+      {
+        "case_id": "OA-003",
+        "span_index": 0,
+        "section_path": [
+          "Guardrails",
+          "Tripwires"
+        ],
+        "span": [
+          7225,
+          7381
+        ],
+        "control_chunks": 1,
+        "control_payload_tokens": [
+          344
+        ],
+        "control_truncated": false,
+        "answer_token_offset_in_control_chunk": 27,
+        "answer_visible_in_control_window": true,
+        "aligned_chunks": 1,
+        "aligned_payload_tokens": [
+          344
+        ],
+        "aligned_truncated": false,
+        "evidence_split_across_aligned_chunks": false,
+        "rank_B_control": 2,
+        "rank_D_aligned": 3,
+        "cosine_B": 0.63284,
+        "cosine_D": 0.63284,
+        "rank_C_fused": 3,
+        "rank_E_fused": 3,
+        "movement": "worsened"
+      },
+      {
+        "case_id": "OA-004",
+        "span_index": 0,
+        "section_path": [
+          "Running agents",
+          "Runner lifecycle and configuration",
+          "The agent loop"
+        ],
+        "span": [
+          2052,
+          2101
+        ],
+        "control_chunks": 1,
+        "control_payload_tokens": [
+          337
+        ],
+        "control_truncated": false,
+        "answer_token_offset_in_control_chunk": 284,
+        "answer_visible_in_control_window": true,
+        "aligned_chunks": 1,
+        "aligned_payload_tokens": [
+          337
+        ],
+        "aligned_truncated": false,
+        "evidence_split_across_aligned_chunks": false,
+        "rank_B_control": 24,
+        "rank_D_aligned": 26,
+        "cosine_B": 0.540295,
+        "cosine_D": 0.540295,
+        "rank_C_fused": 8,
+        "rank_E_fused": 8,
+        "movement": "worsened"
+      },
+      {
+        "case_id": "OA-005",
+        "span_index": 0,
+        "section_path": [
+          "Configuration",
+          "API keys and clients"
+        ],
+        "span": [
+          2227,
+          2308
+        ],
+        "control_chunks": 1,
+        "control_payload_tokens": [
+          110
+        ],
+        "control_truncated": false,
+        "answer_token_offset_in_control_chunk": 81,
+        "answer_visible_in_control_window": true,
+        "aligned_chunks": 1,
+        "aligned_payload_tokens": [
+          110
+        ],
+        "aligned_truncated": false,
+        "evidence_split_across_aligned_chunks": false,
+        "rank_B_control": 3,
+        "rank_D_aligned": 3,
+        "cosine_B": 0.754847,
+        "cosine_D": 0.754847,
+        "rank_C_fused": 2,
+        "rank_E_fused": 2,
+        "movement": "unchanged"
+      },
+      {
+        "case_id": "OA-006",
+        "span_index": 0,
+        "section_path": [
+          "Tracing"
+        ],
+        "span": [
+          512,
+          553
+        ],
+        "control_chunks": 1,
+        "control_payload_tokens": [
+          230
+        ],
+        "control_truncated": false,
+        "answer_token_offset_in_control_chunk": 121,
+        "answer_visible_in_control_window": true,
+        "aligned_chunks": 1,
+        "aligned_payload_tokens": [
+          230
+        ],
+        "aligned_truncated": false,
+        "evidence_split_across_aligned_chunks": false,
+        "rank_B_control": 1,
+        "rank_D_aligned": 1,
+        "cosine_B": 0.829241,
+        "cosine_D": 0.829241,
+        "rank_C_fused": 1,
+        "rank_E_fused": 1,
+        "movement": "unchanged"
+      },
+      {
+        "case_id": "OA-006",
+        "span_index": 1,
+        "section_path": [
+          "Configuration",
+          "Tracing"
+        ],
+        "span": [
+          8126,
+          8242
+        ],
+        "control_chunks": 1,
+        "control_payload_tokens": [
+          32
+        ],
+        "control_truncated": false,
+        "answer_token_offset_in_control_chunk": 0,
+        "answer_visible_in_control_window": true,
+        "aligned_chunks": 1,
+        "aligned_payload_tokens": [
+          32
+        ],
+        "aligned_truncated": false,
+        "evidence_split_across_aligned_chunks": false,
+        "rank_B_control": 3,
+        "rank_D_aligned": 3,
+        "cosine_B": 0.71716,
+        "cosine_D": 0.71716,
+        "rank_C_fused": 10,
+        "rank_E_fused": 8,
+        "movement": "unchanged"
+      },
+      {
+        "case_id": "OA-007",
+        "span_index": 0,
+        "section_path": [
+          "Sessions"
+        ],
+        "span": [
+          12,
+          259
+        ],
+        "control_chunks": 1,
+        "control_payload_tokens": [
+          169
+        ],
+        "control_truncated": false,
+        "answer_token_offset_in_control_chunk": 2,
+        "answer_visible_in_control_window": true,
+        "aligned_chunks": 1,
+        "aligned_payload_tokens": [
+          169
+        ],
+        "aligned_truncated": false,
+        "evidence_split_across_aligned_chunks": false,
+        "rank_B_control": 1,
+        "rank_D_aligned": 1,
+        "cosine_B": 0.742358,
+        "cosine_D": 0.742358,
+        "rank_C_fused": 1,
+        "rank_E_fused": 1,
+        "movement": "unchanged"
+      },
+      {
+        "case_id": "OA-008",
+        "span_index": 0,
+        "section_path": [
+          "Models",
+          "OpenAI models"
+        ],
+        "span": [
+          2098,
+          2233
+        ],
+        "control_chunks": 1,
+        "control_payload_tokens": [
+          204
+        ],
+        "control_truncated": false,
+        "answer_token_offset_in_control_chunk": 50,
+        "answer_visible_in_control_window": true,
+        "aligned_chunks": 1,
+        "aligned_payload_tokens": [
+          204
+        ],
+        "aligned_truncated": false,
+        "evidence_split_across_aligned_chunks": false,
+        "rank_B_control": 13,
+        "rank_D_aligned": 13,
+        "cosine_B": 0.687637,
+        "cosine_D": 0.687637,
+        "rank_C_fused": 1,
+        "rank_E_fused": 1,
+        "movement": "unchanged"
+      }
+    ]
+  },
+  "evidence_now_split_across_chunks": [
+    {
+      "case_id": "AN-012",
+      "span_index": 0,
+      "aligned_chunks": 2,
+      "movement": "improved",
+      "rank_B_control": 8,
+      "rank_D_aligned": 6
+    }
+  ]
+}

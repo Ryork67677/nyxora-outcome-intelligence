@@ -1,0 +1,3685 @@
+{
+  "experiment_id": "EXP-018B",
+  "phase": "track1_batched_local_bm25_plus_track2_additive_cap",
+  "split": "v2-devset-001/development",
+  "n": 50,
+  "timestamp": "2026-09-01T03:38:00Z",
+  "preregistration_json_sha256": "c48068ec5dfa06683eaa2b0763508e9c7457d1ede2f23c3394c3c6bd6192ce8c",
+  "chatgpt_approved_revision_timestamp_et": "2026-08-31T23:22:00-04:00",
+  "SCORE_PRESERVING": true,
+  "track_2_run": true,
+  "system_a_config_hash": "9afcb5b7c58ebacff0b4c3711dd9618a2e727f4195dd1787a5da81e478ee0b38",
+  "system_d_config_hash": "d77b54ba3be0197d6bc1363883aefb0b3399117ee8c65800a38f8196d236ca3a",
+  "system_e_config_hash": "7f3a1caa0350cc7e0fda0d9f2d7efb23fd08d7f79bc94f140a29f4247774adbe",
+  "L_values": [
+    10,
+    20,
+    40
+  ],
+  "tuned_after_seeing_scores": false,
+  "validation_loaded": false,
+  "holdout_loaded": false,
+  "holdout_json_opened": false,
+  "holdout_access_log_before": {
+    "log_bytes": 235,
+    "log_sha256": "45b83a77f6f332174d641956f076dd0c0cae44fe48f4f2892ac7030a4c0143b3",
+    "lock_bytes": 698,
+    "lock_sha256": "fc9ac96082cbf0aa3df82df017e19af9f49eed5506c5c281858b3de405cde294",
+    "lock_frozen": true
+  },
+  "holdout_access_log_after": {
+    "log_bytes": 235,
+    "log_sha256": "45b83a77f6f332174d641956f076dd0c0cae44fe48f4f2892ac7030a4c0143b3",
+    "lock_bytes": 698,
+    "lock_sha256": "fc9ac96082cbf0aa3df82df017e19af9f49eed5506c5c281858b3de405cde294",
+    "lock_frozen": true
+  },
+  "holdout_log_unchanged": true,
+  "embedding": {
+    "postgres_version": "PostgreSQL 16.15 (Debian 16.15-1.pgdg12+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14+deb12u1) 12.2.0, 64-bit",
+    "pgvector_extversion": "0.8.6",
+    "chunk_set": "cs_v1_control",
+    "chunks": 14209,
+    "embedding_rows": 14209,
+    "model_id": "emb_e7d4183fd6eb878ae2fdf080efb6861e",
+    "fingerprint_min": "bd95feaeacf98559",
+    "fingerprint_max": "bd95feaeacf98559",
+    "fingerprint_expected": "bd95feaeacf98559",
+    "complete": true,
+    "known_drift": "Postgres 16.15 / pgvector 0.8.6 vs recorded 16.13 / 0.6.0"
+  },
+  "environment": {
+    "host": {
+      "os": "Linux-6.12.94+-x86_64-with-glibc2.41",
+      "python": "3.11.15",
+      "executable": "/workspace/rag-v1/repo/production-rag-v1/.venv/bin/python"
+    },
+    "postgres_version": "PostgreSQL 16.15 (Debian 16.15-1.pgdg12+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14+deb12u1) 12.2.0, 64-bit",
+    "pgvector_extversion": "0.8.6",
+    "known_drift": "Postgres 16.15 / pgvector 0.8.6 vs recorded 16.13 / 0.6.0",
+    "dependencies": {
+      "numpy": "2.4.6",
+      "onnxruntime": "1.29.0",
+      "pgvector": "unknown",
+      "psycopg": "3.3.5",
+      "pydantic": "2.13.5",
+      "tokenizers": "0.23.1"
+    },
+    "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a",
+    "chunk_set": "cs_v1_control",
+    "transformer_model": "emb_e7d4183fd6eb878ae2fdf080efb6861e",
+    "transformer_fingerprint": "bd95feaeacf98559"
+  },
+  "cross_encoder": {
+    "name": "cross-encoder/ms-marco-MiniLM-L6-v2",
+    "revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a",
+    "artifact_sha256": "5d3e70fd0c9ff14b9b5169a51e957b7a9c74897afd0a35ce4bd318150c1d4d4a",
+    "pair_score_stable": true
+  },
+  "track1": {
+    "SCORE_PRESERVING": true,
+    "latency_ms": {
+      "A_retrieval_mean": 358.5,
+      "local_bm25_mean": 192.4,
+      "CE_D_pool_mean": 5354.9,
+      "CE_E_union_mean": 9913.6,
+      "D_total_mean": 5717.4,
+      "E_total_mean": 10469.4,
+      "stored_E_total_mean": 16604.3,
+      "stored_local_bm25_mean": 6077.6
+    },
+    "metrics_E": {
+      "source": "Track-1 batched-local SYSTEM-E-WITHIN-DOC",
+      "config_hash": "7f3a1caa0350cc7e0fda0d9f2d7efb23fd08d7f79bc94f140a29f4247774adbe",
+      "macro_span_recall": 0.8,
+      "cases_fully_recalled": 40,
+      "cases_total": 50,
+      "strict_recall_at_10": "40/50",
+      "spans_found_at_10": 40,
+      "spans_total": 50,
+      "document_recall": 0.92,
+      "mrr": 0.5969,
+      "candidate_evidence_recall": 0.9,
+      "candidate_evidence_spans": "45/50",
+      "candidate_evidence_n": 45,
+      "candidate_evidence_d": 50,
+      "pool_size_mean": 176.76,
+      "pool_size_max": 269,
+      "latency_ms_mean": 10469.4,
+      "new_union_members_mean": 82.66
+    },
+    "metrics_D": {
+      "source": "rematerialized frozen SYSTEM-D-GUARD-BLEND on A-pool-100",
+      "config_hash": "d77b54ba3be0197d6bc1363883aefb0b3399117ee8c65800a38f8196d236ca3a",
+      "macro_span_recall": 0.76,
+      "cases_fully_recalled": 38,
+      "cases_total": 50,
+      "strict_recall_at_10": "38/50",
+      "spans_found_at_10": 38,
+      "spans_total": 50,
+      "document_recall": 0.9,
+      "mrr": 0.565,
+      "candidate_evidence_recall": 0.82,
+      "candidate_evidence_spans": "41/50",
+      "candidate_evidence_n": 41,
+      "candidate_evidence_d": 50,
+      "pool_size_mean": 94.1,
+      "pool_size_max": 100,
+      "latency_ms_mean": 5717.4
+    },
+    "equivalence": {
+      "SCORE_PRESERVING": true,
+      "n": 50,
+      "union_membership_ok": 50,
+      "parents_ok": 50,
+      "e_top10_ok": 50,
+      "gold_e_rank_ok": 50,
+      "local_order_proxy_ok": 50,
+      "local_order_note": "stored EXP-018 did not persist per-parent ordered local lists; within-parent order is round(BM25,9) DESC, chunk_id ASC from _LEXICAL_SQL; batched path uses the same ORDER BY then first W per parent. Proxy: union extras identity + e_top10 (RRF consumes per-parent ranks).",
+      "metric_mismatches": []
+    }
+  },
+  "D_baseline": {
+    "source": "rematerialized frozen SYSTEM-D-GUARD-BLEND on A-pool-100",
+    "config_hash": "d77b54ba3be0197d6bc1363883aefb0b3399117ee8c65800a38f8196d236ca3a",
+    "macro_span_recall": 0.76,
+    "cases_fully_recalled": 38,
+    "cases_total": 50,
+    "strict_recall_at_10": "38/50",
+    "spans_found_at_10": 38,
+    "spans_total": 50,
+    "document_recall": 0.9,
+    "mrr": 0.565,
+    "candidate_evidence_recall": 0.82,
+    "candidate_evidence_spans": "41/50",
+    "candidate_evidence_n": 41,
+    "candidate_evidence_d": 50,
+    "pool_size_mean": 94.1,
+    "pool_size_max": 100,
+    "latency_ms_mean": 5717.4
+  },
+  "E_uncapped_track1": {
+    "source": "Track-1 batched-local SYSTEM-E-WITHIN-DOC",
+    "config_hash": "7f3a1caa0350cc7e0fda0d9f2d7efb23fd08d7f79bc94f140a29f4247774adbe",
+    "macro_span_recall": 0.8,
+    "cases_fully_recalled": 40,
+    "cases_total": 50,
+    "strict_recall_at_10": "40/50",
+    "spans_found_at_10": 40,
+    "spans_total": 50,
+    "document_recall": 0.92,
+    "mrr": 0.5969,
+    "candidate_evidence_recall": 0.9,
+    "candidate_evidence_spans": "45/50",
+    "candidate_evidence_n": 45,
+    "candidate_evidence_d": 50,
+    "pool_size_mean": 176.76,
+    "pool_size_max": 269,
+    "latency_ms_mean": 10469.4,
+    "new_union_members_mean": 82.66
+  },
+  "L": {
+    "10": {
+      "L": 10,
+      "L_means": "additive local passages per query after dedupe excluding A-pool-100",
+      "primary": {
+        "candidate_gold_span_recall_at_100": "44/50",
+        "n": 44,
+        "d": 50
+      },
+      "secondary": {
+        "strict_recall_at_10": "40/50",
+        "span_recall_at_10": 0.8,
+        "mrr": 0.5956,
+        "document_recall": 0.92,
+        "rescues_vs_D": [
+          "V2D-43",
+          "V2D-48"
+        ],
+        "regressions_vs_D": [],
+        "rank1_destructions": [],
+        "rank1_destruction_count": 0,
+        "mean_additive_count": 10,
+        "mean_union_size": 104.1,
+        "A_global_latency_ms": 358.5,
+        "local_BM25_latency_ms": 192.4,
+        "CE_latency_ms": 5903.9,
+        "total_latency_ms": 6454.8,
+        "CE_latency_note": "CE scores reused from Track 1 (capped union is a subset). CE latency estimated per query as CE_D + (CE_E-CE_D)*(n_additive_L/n_additive_E)."
+      },
+      "metrics": {
+        "source": "EXP-018B Track-2 L=10 additive cap",
+        "config_hash": "7f3a1caa0350cc7e0fda0d9f2d7efb23fd08d7f79bc94f140a29f4247774adbe",
+        "macro_span_recall": 0.8,
+        "cases_fully_recalled": 40,
+        "cases_total": 50,
+        "strict_recall_at_10": "40/50",
+        "spans_found_at_10": 40,
+        "spans_total": 50,
+        "document_recall": 0.92,
+        "mrr": 0.5956,
+        "candidate_evidence_recall": 0.88,
+        "candidate_evidence_spans": "44/50",
+        "candidate_evidence_n": 44,
+        "candidate_evidence_d": 50,
+        "pool_size_mean": 104.1,
+        "pool_size_max": 110,
+        "latency_ms_mean": 6454.8,
+        "new_union_members_mean": 10,
+        "additive_count_mean": 10
+      },
+      "qualifies": true,
+      "diagnostic_only": {
+        "V2D-11": {
+          "DIAGNOSTIC_ONLY": true,
+          "in_pool": true,
+          "blend_rank": 31,
+          "pool_rank": 28,
+          "additive_extra_index_0based": 9,
+          "selected_by_L": true,
+          "covering_chunk_ids": [
+            "chk_4473c14a44b77dd08fbe8d5e4585c5164760330f"
+          ]
+        },
+        "V2D-33": {
+          "DIAGNOSTIC_ONLY": true,
+          "in_pool": false,
+          "blend_rank": null,
+          "pool_rank": null,
+          "additive_extra_index_0based": 16,
+          "selected_by_L": false,
+          "covering_chunk_ids": [
+            "chk_54f24b235eee08c3f04656ce79c5baf889005a84"
+          ]
+        },
+        "V2D-34": {
+          "DIAGNOSTIC_ONLY": true,
+          "in_pool": true,
+          "blend_rank": 39,
+          "pool_rank": 24,
+          "additive_extra_index_0based": 0,
+          "selected_by_L": true,
+          "covering_chunk_ids": [
+            "chk_bfc384e7db85911876b53d6e2f21a948f5f1e1de"
+          ]
+        },
+        "V2D-43": {
+          "DIAGNOSTIC_ONLY": true,
+          "in_pool": true,
+          "blend_rank": 10,
+          "pool_rank": 18,
+          "additive_extra_index_0based": 3,
+          "selected_by_L": true,
+          "covering_chunk_ids": [
+            "chk_b844ec5af4410d8152bbe419dc3bd8ff4dcf95fc"
+          ]
+        }
+      },
+      "paired_vs_D": {
+        "rescues": [
+          "V2D-43",
+          "V2D-48"
+        ],
+        "regressions": [],
+        "net": 2,
+        "both_correct": [
+          "V2D-02",
+          "V2D-03",
+          "V2D-04",
+          "V2D-05",
+          "V2D-06",
+          "V2D-07",
+          "V2D-08",
+          "V2D-09",
+          "V2D-10",
+          "V2D-12",
+          "V2D-13",
+          "V2D-14",
+          "V2D-15",
+          "V2D-16",
+          "V2D-17",
+          "V2D-18",
+          "V2D-19",
+          "V2D-20",
+          "V2D-21",
+          "V2D-22",
+          "V2D-23",
+          "V2D-25",
+          "V2D-27",
+          "V2D-28",
+          "V2D-31",
+          "V2D-32",
+          "V2D-35",
+          "V2D-37",
+          "V2D-38",
+          "V2D-40",
+          "V2D-41",
+          "V2D-42",
+          "V2D-44",
+          "V2D-45",
+          "V2D-46",
+          "V2D-47",
+          "V2D-49",
+          "V2D-50"
+        ],
+        "neither": [
+          "V2D-01",
+          "V2D-11",
+          "V2D-24",
+          "V2D-26",
+          "V2D-29",
+          "V2D-30",
+          "V2D-33",
+          "V2D-34",
+          "V2D-36",
+          "V2D-39"
+        ]
+      },
+      "n_cases": 50
+    },
+    "20": {
+      "L": 20,
+      "L_means": "additive local passages per query after dedupe excluding A-pool-100",
+      "primary": {
+        "candidate_gold_span_recall_at_100": "45/50",
+        "n": 45,
+        "d": 50
+      },
+      "secondary": {
+        "strict_recall_at_10": "40/50",
+        "span_recall_at_10": 0.8,
+        "mrr": 0.5972,
+        "document_recall": 0.92,
+        "rescues_vs_D": [
+          "V2D-43",
+          "V2D-48"
+        ],
+        "regressions_vs_D": [],
+        "rank1_destructions": [],
+        "rank1_destruction_count": 0,
+        "mean_additive_count": 19.94,
+        "mean_union_size": 114.04,
+        "A_global_latency_ms": 358.5,
+        "local_BM25_latency_ms": 192.4,
+        "CE_latency_ms": 6449.8,
+        "total_latency_ms": 7000.6,
+        "CE_latency_note": "CE scores reused from Track 1 (capped union is a subset). CE latency estimated per query as CE_D + (CE_E-CE_D)*(n_additive_L/n_additive_E)."
+      },
+      "metrics": {
+        "source": "EXP-018B Track-2 L=20 additive cap",
+        "config_hash": "7f3a1caa0350cc7e0fda0d9f2d7efb23fd08d7f79bc94f140a29f4247774adbe",
+        "macro_span_recall": 0.8,
+        "cases_fully_recalled": 40,
+        "cases_total": 50,
+        "strict_recall_at_10": "40/50",
+        "spans_found_at_10": 40,
+        "spans_total": 50,
+        "document_recall": 0.92,
+        "mrr": 0.5972,
+        "candidate_evidence_recall": 0.9,
+        "candidate_evidence_spans": "45/50",
+        "candidate_evidence_n": 45,
+        "candidate_evidence_d": 50,
+        "pool_size_mean": 114.04,
+        "pool_size_max": 120,
+        "latency_ms_mean": 7000.6,
+        "new_union_members_mean": 19.94,
+        "additive_count_mean": 19.94
+      },
+      "qualifies": true,
+      "diagnostic_only": {
+        "V2D-11": {
+          "DIAGNOSTIC_ONLY": true,
+          "in_pool": true,
+          "blend_rank": 32,
+          "pool_rank": 36,
+          "additive_extra_index_0based": 9,
+          "selected_by_L": true,
+          "covering_chunk_ids": [
+            "chk_4473c14a44b77dd08fbe8d5e4585c5164760330f"
+          ]
+        },
+        "V2D-33": {
+          "DIAGNOSTIC_ONLY": true,
+          "in_pool": true,
+          "blend_rank": 12,
+          "pool_rank": 51,
+          "additive_extra_index_0based": 16,
+          "selected_by_L": true,
+          "covering_chunk_ids": [
+            "chk_54f24b235eee08c3f04656ce79c5baf889005a84"
+          ]
+        },
+        "V2D-34": {
+          "DIAGNOSTIC_ONLY": true,
+          "in_pool": true,
+          "blend_rank": 41,
+          "pool_rank": 31,
+          "additive_extra_index_0based": 0,
+          "selected_by_L": true,
+          "covering_chunk_ids": [
+            "chk_bfc384e7db85911876b53d6e2f21a948f5f1e1de"
+          ]
+        },
+        "V2D-43": {
+          "DIAGNOSTIC_ONLY": true,
+          "in_pool": true,
+          "blend_rank": 10,
+          "pool_rank": 19,
+          "additive_extra_index_0based": 3,
+          "selected_by_L": true,
+          "covering_chunk_ids": [
+            "chk_b844ec5af4410d8152bbe419dc3bd8ff4dcf95fc"
+          ]
+        }
+      },
+      "paired_vs_D": {
+        "rescues": [
+          "V2D-43",
+          "V2D-48"
+        ],
+        "regressions": [],
+        "net": 2,
+        "both_correct": [
+          "V2D-02",
+          "V2D-03",
+          "V2D-04",
+          "V2D-05",
+          "V2D-06",
+          "V2D-07",
+          "V2D-08",
+          "V2D-09",
+          "V2D-10",
+          "V2D-12",
+          "V2D-13",
+          "V2D-14",
+          "V2D-15",
+          "V2D-16",
+          "V2D-17",
+          "V2D-18",
+          "V2D-19",
+          "V2D-20",
+          "V2D-21",
+          "V2D-22",
+          "V2D-23",
+          "V2D-25",
+          "V2D-27",
+          "V2D-28",
+          "V2D-31",
+          "V2D-32",
+          "V2D-35",
+          "V2D-37",
+          "V2D-38",
+          "V2D-40",
+          "V2D-41",
+          "V2D-42",
+          "V2D-44",
+          "V2D-45",
+          "V2D-46",
+          "V2D-47",
+          "V2D-49",
+          "V2D-50"
+        ],
+        "neither": [
+          "V2D-01",
+          "V2D-11",
+          "V2D-24",
+          "V2D-26",
+          "V2D-29",
+          "V2D-30",
+          "V2D-33",
+          "V2D-34",
+          "V2D-36",
+          "V2D-39"
+        ]
+      },
+      "n_cases": 50
+    },
+    "40": {
+      "L": 40,
+      "L_means": "additive local passages per query after dedupe excluding A-pool-100",
+      "primary": {
+        "candidate_gold_span_recall_at_100": "45/50",
+        "n": 45,
+        "d": 50
+      },
+      "secondary": {
+        "strict_recall_at_10": "40/50",
+        "span_recall_at_10": 0.8,
+        "mrr": 0.5971,
+        "document_recall": 0.92,
+        "rescues_vs_D": [
+          "V2D-43",
+          "V2D-48"
+        ],
+        "regressions_vs_D": [],
+        "rank1_destructions": [],
+        "rank1_destruction_count": 0,
+        "mean_additive_count": 38.82,
+        "mean_union_size": 132.92,
+        "A_global_latency_ms": 358.5,
+        "local_BM25_latency_ms": 192.4,
+        "CE_latency_ms": 7487.6,
+        "total_latency_ms": 8038.5,
+        "CE_latency_note": "CE scores reused from Track 1 (capped union is a subset). CE latency estimated per query as CE_D + (CE_E-CE_D)*(n_additive_L/n_additive_E)."
+      },
+      "metrics": {
+        "source": "EXP-018B Track-2 L=40 additive cap",
+        "config_hash": "7f3a1caa0350cc7e0fda0d9f2d7efb23fd08d7f79bc94f140a29f4247774adbe",
+        "macro_span_recall": 0.8,
+        "cases_fully_recalled": 40,
+        "cases_total": 50,
+        "strict_recall_at_10": "40/50",
+        "spans_found_at_10": 40,
+        "spans_total": 50,
+        "document_recall": 0.92,
+        "mrr": 0.5971,
+        "candidate_evidence_recall": 0.9,
+        "candidate_evidence_spans": "45/50",
+        "candidate_evidence_n": 45,
+        "candidate_evidence_d": 50,
+        "pool_size_mean": 132.92,
+        "pool_size_max": 140,
+        "latency_ms_mean": 8038.5,
+        "new_union_members_mean": 38.82,
+        "additive_count_mean": 38.82
+      },
+      "qualifies": true,
+      "diagnostic_only": {
+        "V2D-11": {
+          "DIAGNOSTIC_ONLY": true,
+          "in_pool": true,
+          "blend_rank": 34,
+          "pool_rank": 49,
+          "additive_extra_index_0based": 9,
+          "selected_by_L": true,
+          "covering_chunk_ids": [
+            "chk_4473c14a44b77dd08fbe8d5e4585c5164760330f"
+          ]
+        },
+        "V2D-33": {
+          "DIAGNOSTIC_ONLY": true,
+          "in_pool": true,
+          "blend_rank": 12,
+          "pool_rank": 63,
+          "additive_extra_index_0based": 16,
+          "selected_by_L": true,
+          "covering_chunk_ids": [
+            "chk_54f24b235eee08c3f04656ce79c5baf889005a84"
+          ]
+        },
+        "V2D-34": {
+          "DIAGNOSTIC_ONLY": true,
+          "in_pool": true,
+          "blend_rank": 41,
+          "pool_rank": 37,
+          "additive_extra_index_0based": 0,
+          "selected_by_L": true,
+          "covering_chunk_ids": [
+            "chk_bfc384e7db85911876b53d6e2f21a948f5f1e1de"
+          ]
+        },
+        "V2D-43": {
+          "DIAGNOSTIC_ONLY": true,
+          "in_pool": true,
+          "blend_rank": 10,
+          "pool_rank": 19,
+          "additive_extra_index_0based": 3,
+          "selected_by_L": true,
+          "covering_chunk_ids": [
+            "chk_b844ec5af4410d8152bbe419dc3bd8ff4dcf95fc"
+          ]
+        }
+      },
+      "paired_vs_D": {
+        "rescues": [
+          "V2D-43",
+          "V2D-48"
+        ],
+        "regressions": [],
+        "net": 2,
+        "both_correct": [
+          "V2D-02",
+          "V2D-03",
+          "V2D-04",
+          "V2D-05",
+          "V2D-06",
+          "V2D-07",
+          "V2D-08",
+          "V2D-09",
+          "V2D-10",
+          "V2D-12",
+          "V2D-13",
+          "V2D-14",
+          "V2D-15",
+          "V2D-16",
+          "V2D-17",
+          "V2D-18",
+          "V2D-19",
+          "V2D-20",
+          "V2D-21",
+          "V2D-22",
+          "V2D-23",
+          "V2D-25",
+          "V2D-27",
+          "V2D-28",
+          "V2D-31",
+          "V2D-32",
+          "V2D-35",
+          "V2D-37",
+          "V2D-38",
+          "V2D-40",
+          "V2D-41",
+          "V2D-42",
+          "V2D-44",
+          "V2D-45",
+          "V2D-46",
+          "V2D-47",
+          "V2D-49",
+          "V2D-50"
+        ],
+        "neither": [
+          "V2D-01",
+          "V2D-11",
+          "V2D-24",
+          "V2D-26",
+          "V2D-29",
+          "V2D-30",
+          "V2D-33",
+          "V2D-34",
+          "V2D-36",
+          "V2D-39"
+        ]
+      },
+      "n_cases": 50
+    }
+  },
+  "L_per_case": {
+    "10": [
+      {
+        "case_id": "V2D-01",
+        "d_full": false,
+        "e_full": false,
+        "n_additive": 10,
+        "union_size": 110,
+        "n_extras_available": 125,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 35,
+            "e_rank": 60,
+            "e_pool_rank": 51,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": false,
+            "e_in_top_10": false
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-02",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 10,
+        "union_size": 108,
+        "n_extras_available": 121,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 3,
+            "e_rank": 3,
+            "e_pool_rank": 2,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-03",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 10,
+        "union_size": 102,
+        "n_extras_available": 33,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 2,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-04",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 10,
+        "union_size": 96,
+        "n_extras_available": 77,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 2,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-05",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 10,
+        "union_size": 108,
+        "n_extras_available": 76,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 8,
+            "e_rank": 4,
+            "e_pool_rank": 10,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-06",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 10,
+        "union_size": 94,
+        "n_extras_available": 66,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 1,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-07",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 10,
+        "union_size": 108,
+        "n_extras_available": 95,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 1,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-08",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 10,
+        "union_size": 108,
+        "n_extras_available": 48,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 6,
+            "e_rank": 9,
+            "e_pool_rank": 40,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-09",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 10,
+        "union_size": 109,
+        "n_extras_available": 102,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 2,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-10",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 10,
+        "union_size": 96,
+        "n_extras_available": 74,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 1,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-11",
+        "d_full": false,
+        "e_full": false,
+        "n_additive": 10,
+        "union_size": 104,
+        "n_extras_available": 137,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": null,
+            "e_rank": 31,
+            "e_pool_rank": 28,
+            "in_d_pool": false,
+            "in_e_pool": true,
+            "d_in_top_10": false,
+            "e_in_top_10": false
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-12",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 10,
+        "union_size": 108,
+        "n_extras_available": 81,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 2,
+            "e_rank": 2,
+            "e_pool_rank": 1,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-13",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 10,
+        "union_size": 107,
+        "n_extras_available": 135,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 2,
+            "e_rank": 1,
+            "e_pool_rank": 23,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-14",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 10,
+        "union_size": 104,
+        "n_extras_available": 24,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 1,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-15",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 10,
+        "union_size": 109,
+        "n_extras_available": 38,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 1,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-16",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 10,
+        "union_size": 106,
+        "n_extras_available": 94,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 2,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-17",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 10,
+        "union_size": 98,
+        "n_extras_available": 55,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 2,
+            "e_pool_rank": 14,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-18",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 10,
+        "union_size": 107,
+        "n_extras_available": 75,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 1,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-19",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 10,
+        "union_size": 110,
+        "n_extras_available": 67,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 8,
+            "e_rank": 5,
+            "e_pool_rank": 66,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-20",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 10,
+        "union_size": 107,
+        "n_extras_available": 100,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 1,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-21",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 10,
+        "union_size": 107,
+        "n_extras_available": 131,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 1,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-22",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 10,
+        "union_size": 106,
+        "n_extras_available": 81,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 1,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-23",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 10,
+        "union_size": 106,
+        "n_extras_available": 54,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 3,
+            "e_rank": 4,
+            "e_pool_rank": 2,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-24",
+        "d_full": false,
+        "e_full": false,
+        "n_additive": 10,
+        "union_size": 105,
+        "n_extras_available": 44,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": null,
+            "e_rank": null,
+            "e_pool_rank": null,
+            "in_d_pool": false,
+            "in_e_pool": false,
+            "d_in_top_10": false,
+            "e_in_top_10": false
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-25",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 10,
+        "union_size": 95,
+        "n_extras_available": 17,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 1,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-26",
+        "d_full": false,
+        "e_full": false,
+        "n_additive": 10,
+        "union_size": 98,
+        "n_extras_available": 66,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": null,
+            "e_rank": null,
+            "e_pool_rank": null,
+            "in_d_pool": false,
+            "in_e_pool": false,
+            "d_in_top_10": false,
+            "e_in_top_10": false
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-27",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 10,
+        "union_size": 107,
+        "n_extras_available": 81,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 2,
+            "e_rank": 2,
+            "e_pool_rank": 2,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-28",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 10,
+        "union_size": 109,
+        "n_extras_available": 170,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 5,
+            "e_rank": 6,
+            "e_pool_rank": 18,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-29",
+        "d_full": false,
+        "e_full": false,
+        "n_additive": 10,
+        "union_size": 94,
+        "n_extras_available": 46,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 25,
+            "e_rank": 19,
+            "e_pool_rank": 31,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": false,
+            "e_in_top_10": false
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-30",
+        "d_full": false,
+        "e_full": false,
+        "n_additive": 10,
+        "union_size": 105,
+        "n_extras_available": 153,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": null,
+            "e_rank": null,
+            "e_pool_rank": null,
+            "in_d_pool": false,
+            "in_e_pool": false,
+            "d_in_top_10": false,
+            "e_in_top_10": false
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-31",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 10,
+        "union_size": 106,
+        "n_extras_available": 69,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 1,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-32",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 10,
+        "union_size": 104,
+        "n_extras_available": 60,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 3,
+            "e_rank": 2,
+            "e_pool_rank": 6,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-33",
+        "d_full": false,
+        "e_full": false,
+        "n_additive": 10,
+        "union_size": 94,
+        "n_extras_available": 110,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": null,
+            "e_rank": null,
+            "e_pool_rank": null,
+            "in_d_pool": false,
+            "in_e_pool": false,
+            "d_in_top_10": false,
+            "e_in_top_10": false
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-34",
+        "d_full": false,
+        "e_full": false,
+        "n_additive": 10,
+        "union_size": 107,
+        "n_extras_available": 143,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": null,
+            "e_rank": 39,
+            "e_pool_rank": 24,
+            "in_d_pool": false,
+            "in_e_pool": true,
+            "d_in_top_10": false,
+            "e_in_top_10": false
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-35",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 10,
+        "union_size": 103,
+        "n_extras_available": 88,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 6,
+            "e_rank": 10,
+            "e_pool_rank": 2,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-36",
+        "d_full": false,
+        "e_full": false,
+        "n_additive": 10,
+        "union_size": 109,
+        "n_extras_available": 137,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": null,
+            "e_rank": null,
+            "e_pool_rank": null,
+            "in_d_pool": false,
+            "in_e_pool": false,
+            "d_in_top_10": false,
+            "e_in_top_10": false
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-37",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 10,
+        "union_size": 105,
+        "n_extras_available": 75,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 1,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-38",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 10,
+        "union_size": 102,
+        "n_extras_available": 104,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 1,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-39",
+        "d_full": false,
+        "e_full": false,
+        "n_additive": 10,
+        "union_size": 108,
+        "n_extras_available": 142,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": null,
+            "e_rank": null,
+            "e_pool_rank": null,
+            "in_d_pool": false,
+            "in_e_pool": false,
+            "d_in_top_10": false,
+            "e_in_top_10": false
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-40",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 10,
+        "union_size": 110,
+        "n_extras_available": 103,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 3,
+            "e_rank": 2,
+            "e_pool_rank": 6,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-41",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 10,
+        "union_size": 107,
+        "n_extras_available": 36,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 3,
+            "e_rank": 2,
+            "e_pool_rank": 6,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-42",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 10,
+        "union_size": 103,
+        "n_extras_available": 47,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 7,
+            "e_rank": 1,
+            "e_pool_rank": 4,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-43",
+        "d_full": false,
+        "e_full": true,
+        "n_additive": 10,
+        "union_size": 106,
+        "n_extras_available": 49,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": null,
+            "e_rank": 10,
+            "e_pool_rank": 18,
+            "in_d_pool": false,
+            "in_e_pool": true,
+            "d_in_top_10": false,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-44",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 10,
+        "union_size": 97,
+        "n_extras_available": 35,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 1,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-45",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 10,
+        "union_size": 104,
+        "n_extras_available": 41,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 5,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-46",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 10,
+        "union_size": 96,
+        "n_extras_available": 52,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 1,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-47",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 10,
+        "union_size": 108,
+        "n_extras_available": 131,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 1,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-48",
+        "d_full": false,
+        "e_full": true,
+        "n_additive": 10,
+        "union_size": 100,
+        "n_extras_available": 93,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 11,
+            "e_rank": 7,
+            "e_pool_rank": 18,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": false,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-49",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 10,
+        "union_size": 105,
+        "n_extras_available": 114,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 1,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-50",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 10,
+        "union_size": 100,
+        "n_extras_available": 38,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 1,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      }
+    ],
+    "20": [
+      {
+        "case_id": "V2D-01",
+        "d_full": false,
+        "e_full": false,
+        "n_additive": 20,
+        "union_size": 120,
+        "n_extras_available": 125,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 35,
+            "e_rank": 69,
+            "e_pool_rank": 61,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": false,
+            "e_in_top_10": false
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-02",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 20,
+        "union_size": 118,
+        "n_extras_available": 121,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 3,
+            "e_rank": 3,
+            "e_pool_rank": 2,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-03",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 20,
+        "union_size": 112,
+        "n_extras_available": 33,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 2,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-04",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 20,
+        "union_size": 106,
+        "n_extras_available": 77,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 2,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-05",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 20,
+        "union_size": 118,
+        "n_extras_available": 76,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 8,
+            "e_rank": 4,
+            "e_pool_rank": 10,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-06",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 20,
+        "union_size": 104,
+        "n_extras_available": 66,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 1,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-07",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 20,
+        "union_size": 118,
+        "n_extras_available": 95,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 1,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-08",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 20,
+        "union_size": 118,
+        "n_extras_available": 48,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 6,
+            "e_rank": 9,
+            "e_pool_rank": 50,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-09",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 20,
+        "union_size": 119,
+        "n_extras_available": 102,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 2,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-10",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 20,
+        "union_size": 106,
+        "n_extras_available": 74,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 1,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-11",
+        "d_full": false,
+        "e_full": false,
+        "n_additive": 20,
+        "union_size": 114,
+        "n_extras_available": 137,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": null,
+            "e_rank": 32,
+            "e_pool_rank": 36,
+            "in_d_pool": false,
+            "in_e_pool": true,
+            "d_in_top_10": false,
+            "e_in_top_10": false
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-12",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 20,
+        "union_size": 118,
+        "n_extras_available": 81,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 2,
+            "e_rank": 2,
+            "e_pool_rank": 1,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-13",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 20,
+        "union_size": 117,
+        "n_extras_available": 135,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 2,
+            "e_rank": 1,
+            "e_pool_rank": 23,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-14",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 20,
+        "union_size": 114,
+        "n_extras_available": 24,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 1,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-15",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 20,
+        "union_size": 119,
+        "n_extras_available": 38,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 1,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-16",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 20,
+        "union_size": 116,
+        "n_extras_available": 94,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 2,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-17",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 20,
+        "union_size": 108,
+        "n_extras_available": 55,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 2,
+            "e_pool_rank": 14,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-18",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 20,
+        "union_size": 117,
+        "n_extras_available": 75,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 1,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-19",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 20,
+        "union_size": 120,
+        "n_extras_available": 67,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 8,
+            "e_rank": 5,
+            "e_pool_rank": 76,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-20",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 20,
+        "union_size": 117,
+        "n_extras_available": 100,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 1,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-21",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 20,
+        "union_size": 117,
+        "n_extras_available": 131,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 1,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-22",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 20,
+        "union_size": 116,
+        "n_extras_available": 81,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 1,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-23",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 20,
+        "union_size": 116,
+        "n_extras_available": 54,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 3,
+            "e_rank": 4,
+            "e_pool_rank": 2,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-24",
+        "d_full": false,
+        "e_full": false,
+        "n_additive": 20,
+        "union_size": 115,
+        "n_extras_available": 44,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": null,
+            "e_rank": null,
+            "e_pool_rank": null,
+            "in_d_pool": false,
+            "in_e_pool": false,
+            "d_in_top_10": false,
+            "e_in_top_10": false
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-25",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 17,
+        "union_size": 102,
+        "n_extras_available": 17,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 1,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-26",
+        "d_full": false,
+        "e_full": false,
+        "n_additive": 20,
+        "union_size": 108,
+        "n_extras_available": 66,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": null,
+            "e_rank": null,
+            "e_pool_rank": null,
+            "in_d_pool": false,
+            "in_e_pool": false,
+            "d_in_top_10": false,
+            "e_in_top_10": false
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-27",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 20,
+        "union_size": 117,
+        "n_extras_available": 81,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 2,
+            "e_rank": 2,
+            "e_pool_rank": 2,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-28",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 20,
+        "union_size": 119,
+        "n_extras_available": 170,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 5,
+            "e_rank": 6,
+            "e_pool_rank": 18,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-29",
+        "d_full": false,
+        "e_full": false,
+        "n_additive": 20,
+        "union_size": 104,
+        "n_extras_available": 46,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 25,
+            "e_rank": 19,
+            "e_pool_rank": 31,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": false,
+            "e_in_top_10": false
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-30",
+        "d_full": false,
+        "e_full": false,
+        "n_additive": 20,
+        "union_size": 115,
+        "n_extras_available": 153,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": null,
+            "e_rank": null,
+            "e_pool_rank": null,
+            "in_d_pool": false,
+            "in_e_pool": false,
+            "d_in_top_10": false,
+            "e_in_top_10": false
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-31",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 20,
+        "union_size": 116,
+        "n_extras_available": 69,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 1,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-32",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 20,
+        "union_size": 114,
+        "n_extras_available": 60,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 3,
+            "e_rank": 2,
+            "e_pool_rank": 6,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-33",
+        "d_full": false,
+        "e_full": false,
+        "n_additive": 20,
+        "union_size": 104,
+        "n_extras_available": 110,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": null,
+            "e_rank": 12,
+            "e_pool_rank": 51,
+            "in_d_pool": false,
+            "in_e_pool": true,
+            "d_in_top_10": false,
+            "e_in_top_10": false
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-34",
+        "d_full": false,
+        "e_full": false,
+        "n_additive": 20,
+        "union_size": 117,
+        "n_extras_available": 143,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": null,
+            "e_rank": 41,
+            "e_pool_rank": 31,
+            "in_d_pool": false,
+            "in_e_pool": true,
+            "d_in_top_10": false,
+            "e_in_top_10": false
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-35",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 20,
+        "union_size": 113,
+        "n_extras_available": 88,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 6,
+            "e_rank": 10,
+            "e_pool_rank": 2,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-36",
+        "d_full": false,
+        "e_full": false,
+        "n_additive": 20,
+        "union_size": 119,
+        "n_extras_available": 137,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": null,
+            "e_rank": null,
+            "e_pool_rank": null,
+            "in_d_pool": false,
+            "in_e_pool": false,
+            "d_in_top_10": false,
+            "e_in_top_10": false
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-37",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 20,
+        "union_size": 115,
+        "n_extras_available": 75,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 1,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-38",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 20,
+        "union_size": 112,
+        "n_extras_available": 104,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 1,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-39",
+        "d_full": false,
+        "e_full": false,
+        "n_additive": 20,
+        "union_size": 118,
+        "n_extras_available": 142,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": null,
+            "e_rank": null,
+            "e_pool_rank": null,
+            "in_d_pool": false,
+            "in_e_pool": false,
+            "d_in_top_10": false,
+            "e_in_top_10": false
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-40",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 20,
+        "union_size": 120,
+        "n_extras_available": 103,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 3,
+            "e_rank": 2,
+            "e_pool_rank": 6,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-41",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 20,
+        "union_size": 117,
+        "n_extras_available": 36,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 3,
+            "e_rank": 2,
+            "e_pool_rank": 6,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-42",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 20,
+        "union_size": 113,
+        "n_extras_available": 47,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 7,
+            "e_rank": 1,
+            "e_pool_rank": 4,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-43",
+        "d_full": false,
+        "e_full": true,
+        "n_additive": 20,
+        "union_size": 116,
+        "n_extras_available": 49,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": null,
+            "e_rank": 10,
+            "e_pool_rank": 19,
+            "in_d_pool": false,
+            "in_e_pool": true,
+            "d_in_top_10": false,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-44",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 20,
+        "union_size": 107,
+        "n_extras_available": 35,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 1,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-45",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 20,
+        "union_size": 114,
+        "n_extras_available": 41,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 5,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-46",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 20,
+        "union_size": 106,
+        "n_extras_available": 52,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 1,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-47",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 20,
+        "union_size": 118,
+        "n_extras_available": 131,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 1,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-48",
+        "d_full": false,
+        "e_full": true,
+        "n_additive": 20,
+        "union_size": 110,
+        "n_extras_available": 93,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 11,
+            "e_rank": 7,
+            "e_pool_rank": 18,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": false,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-49",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 20,
+        "union_size": 115,
+        "n_extras_available": 114,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 1,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-50",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 20,
+        "union_size": 110,
+        "n_extras_available": 38,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 1,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      }
+    ],
+    "40": [
+      {
+        "case_id": "V2D-01",
+        "d_full": false,
+        "e_full": false,
+        "n_additive": 40,
+        "union_size": 140,
+        "n_extras_available": 125,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 35,
+            "e_rank": 80,
+            "e_pool_rank": 81,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": false,
+            "e_in_top_10": false
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-02",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 40,
+        "union_size": 138,
+        "n_extras_available": 121,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 3,
+            "e_rank": 3,
+            "e_pool_rank": 2,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-03",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 33,
+        "union_size": 125,
+        "n_extras_available": 33,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 2,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-04",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 40,
+        "union_size": 126,
+        "n_extras_available": 77,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 2,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-05",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 40,
+        "union_size": 138,
+        "n_extras_available": 76,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 8,
+            "e_rank": 4,
+            "e_pool_rank": 10,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-06",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 40,
+        "union_size": 124,
+        "n_extras_available": 66,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 1,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-07",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 40,
+        "union_size": 138,
+        "n_extras_available": 95,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 1,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-08",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 40,
+        "union_size": 138,
+        "n_extras_available": 48,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 6,
+            "e_rank": 9,
+            "e_pool_rank": 70,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-09",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 40,
+        "union_size": 139,
+        "n_extras_available": 102,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 2,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-10",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 40,
+        "union_size": 126,
+        "n_extras_available": 74,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 1,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-11",
+        "d_full": false,
+        "e_full": false,
+        "n_additive": 40,
+        "union_size": 134,
+        "n_extras_available": 137,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": null,
+            "e_rank": 34,
+            "e_pool_rank": 49,
+            "in_d_pool": false,
+            "in_e_pool": true,
+            "d_in_top_10": false,
+            "e_in_top_10": false
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-12",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 40,
+        "union_size": 138,
+        "n_extras_available": 81,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 2,
+            "e_rank": 2,
+            "e_pool_rank": 1,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-13",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 40,
+        "union_size": 137,
+        "n_extras_available": 135,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 2,
+            "e_rank": 1,
+            "e_pool_rank": 23,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-14",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 24,
+        "union_size": 118,
+        "n_extras_available": 24,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 1,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-15",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 38,
+        "union_size": 137,
+        "n_extras_available": 38,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 1,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-16",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 40,
+        "union_size": 136,
+        "n_extras_available": 94,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 2,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-17",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 40,
+        "union_size": 128,
+        "n_extras_available": 55,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 2,
+            "e_pool_rank": 14,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-18",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 40,
+        "union_size": 137,
+        "n_extras_available": 75,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 1,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-19",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 40,
+        "union_size": 140,
+        "n_extras_available": 67,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 8,
+            "e_rank": 5,
+            "e_pool_rank": 96,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-20",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 40,
+        "union_size": 137,
+        "n_extras_available": 100,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 1,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-21",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 40,
+        "union_size": 137,
+        "n_extras_available": 131,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 1,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-22",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 40,
+        "union_size": 136,
+        "n_extras_available": 81,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 1,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-23",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 40,
+        "union_size": 136,
+        "n_extras_available": 54,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 3,
+            "e_rank": 4,
+            "e_pool_rank": 2,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-24",
+        "d_full": false,
+        "e_full": false,
+        "n_additive": 40,
+        "union_size": 135,
+        "n_extras_available": 44,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": null,
+            "e_rank": null,
+            "e_pool_rank": null,
+            "in_d_pool": false,
+            "in_e_pool": false,
+            "d_in_top_10": false,
+            "e_in_top_10": false
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-25",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 17,
+        "union_size": 102,
+        "n_extras_available": 17,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 1,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-26",
+        "d_full": false,
+        "e_full": false,
+        "n_additive": 40,
+        "union_size": 128,
+        "n_extras_available": 66,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": null,
+            "e_rank": null,
+            "e_pool_rank": null,
+            "in_d_pool": false,
+            "in_e_pool": false,
+            "d_in_top_10": false,
+            "e_in_top_10": false
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-27",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 40,
+        "union_size": 137,
+        "n_extras_available": 81,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 2,
+            "e_rank": 2,
+            "e_pool_rank": 2,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-28",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 40,
+        "union_size": 139,
+        "n_extras_available": 170,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 5,
+            "e_rank": 6,
+            "e_pool_rank": 18,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-29",
+        "d_full": false,
+        "e_full": false,
+        "n_additive": 40,
+        "union_size": 124,
+        "n_extras_available": 46,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 25,
+            "e_rank": 19,
+            "e_pool_rank": 31,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": false,
+            "e_in_top_10": false
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-30",
+        "d_full": false,
+        "e_full": false,
+        "n_additive": 40,
+        "union_size": 135,
+        "n_extras_available": 153,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": null,
+            "e_rank": null,
+            "e_pool_rank": null,
+            "in_d_pool": false,
+            "in_e_pool": false,
+            "d_in_top_10": false,
+            "e_in_top_10": false
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-31",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 40,
+        "union_size": 136,
+        "n_extras_available": 69,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 1,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-32",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 40,
+        "union_size": 134,
+        "n_extras_available": 60,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 3,
+            "e_rank": 2,
+            "e_pool_rank": 6,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-33",
+        "d_full": false,
+        "e_full": false,
+        "n_additive": 40,
+        "union_size": 124,
+        "n_extras_available": 110,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": null,
+            "e_rank": 12,
+            "e_pool_rank": 63,
+            "in_d_pool": false,
+            "in_e_pool": true,
+            "d_in_top_10": false,
+            "e_in_top_10": false
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-34",
+        "d_full": false,
+        "e_full": false,
+        "n_additive": 40,
+        "union_size": 137,
+        "n_extras_available": 143,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": null,
+            "e_rank": 41,
+            "e_pool_rank": 37,
+            "in_d_pool": false,
+            "in_e_pool": true,
+            "d_in_top_10": false,
+            "e_in_top_10": false
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-35",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 40,
+        "union_size": 133,
+        "n_extras_available": 88,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 6,
+            "e_rank": 10,
+            "e_pool_rank": 2,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-36",
+        "d_full": false,
+        "e_full": false,
+        "n_additive": 40,
+        "union_size": 139,
+        "n_extras_available": 137,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": null,
+            "e_rank": null,
+            "e_pool_rank": null,
+            "in_d_pool": false,
+            "in_e_pool": false,
+            "d_in_top_10": false,
+            "e_in_top_10": false
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-37",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 40,
+        "union_size": 135,
+        "n_extras_available": 75,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 1,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-38",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 40,
+        "union_size": 132,
+        "n_extras_available": 104,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 1,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-39",
+        "d_full": false,
+        "e_full": false,
+        "n_additive": 40,
+        "union_size": 138,
+        "n_extras_available": 142,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": null,
+            "e_rank": null,
+            "e_pool_rank": null,
+            "in_d_pool": false,
+            "in_e_pool": false,
+            "d_in_top_10": false,
+            "e_in_top_10": false
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-40",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 40,
+        "union_size": 140,
+        "n_extras_available": 103,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 3,
+            "e_rank": 2,
+            "e_pool_rank": 6,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-41",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 36,
+        "union_size": 133,
+        "n_extras_available": 36,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 3,
+            "e_rank": 2,
+            "e_pool_rank": 6,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-42",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 40,
+        "union_size": 133,
+        "n_extras_available": 47,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 7,
+            "e_rank": 1,
+            "e_pool_rank": 4,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-43",
+        "d_full": false,
+        "e_full": true,
+        "n_additive": 40,
+        "union_size": 136,
+        "n_extras_available": 49,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": null,
+            "e_rank": 10,
+            "e_pool_rank": 19,
+            "in_d_pool": false,
+            "in_e_pool": true,
+            "d_in_top_10": false,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-44",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 35,
+        "union_size": 122,
+        "n_extras_available": 35,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 1,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-45",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 40,
+        "union_size": 134,
+        "n_extras_available": 41,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 5,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-46",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 40,
+        "union_size": 126,
+        "n_extras_available": 52,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 1,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-47",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 40,
+        "union_size": 138,
+        "n_extras_available": 131,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 1,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-48",
+        "d_full": false,
+        "e_full": true,
+        "n_additive": 40,
+        "union_size": 130,
+        "n_extras_available": 93,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 11,
+            "e_rank": 7,
+            "e_pool_rank": 18,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": false,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-49",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 40,
+        "union_size": 135,
+        "n_extras_available": 114,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 1,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      },
+      {
+        "case_id": "V2D-50",
+        "d_full": true,
+        "e_full": true,
+        "n_additive": 38,
+        "union_size": 128,
+        "n_extras_available": 38,
+        "spans": [
+          {
+            "span_index": 0,
+            "d_rank": 1,
+            "e_rank": 1,
+            "e_pool_rank": 1,
+            "in_d_pool": true,
+            "in_e_pool": true,
+            "d_in_top_10": true,
+            "e_in_top_10": true
+          }
+        ]
+      }
+    ]
+  },
+  "selection": {
+    "selected_L": 10,
+    "rule": "smallest L in {10,20,40} with cand R@100 >= 44/50 AND 0 strict R@10 regressions vs D",
+    "threshold_provenance": ">=44/50 preregistered after seeing EXP-018 development 45/50; development-stage criterion, not independent validation",
+    "do_not_require_rescue_ids": true,
+    "do_not_require_R10_improvement_vs_D": true,
+    "if_none": "none; EXP-018 remains MECHANISM_SUPPORTED; capped variants not promoted"
+  },
+  "diagnostic_only_ids": [
+    "V2D-11",
+    "V2D-33",
+    "V2D-34",
+    "V2D-43"
+  ],
+  "freeze_files_untouched": {
+    "SYSTEM-D-GUARD.json_sha256": "e9267f5581404e9885598979204c08762cd33f362703e526b20f4d3430c35a82",
+    "SYSTEM-D-RELEASE.json_sha256": "1f097b4b8dd353ecb4812228477338c05769faaede37d52ec6a07f27de729e40",
+    "SYSTEM-E-WITHIN-DOC.json_sha256": "e228616beee1bcb13855c2eadee9fc20ec1fae3e54c77b28587114568c64d087"
+  },
+  "runtime_seconds": 525.2
+}

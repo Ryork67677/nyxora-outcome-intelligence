@@ -1,0 +1,2241 @@
+{
+  "experiment_id": "PERF-003",
+  "scored": true,
+  "engineering_performance_only": true,
+  "split": "v2-devset-001/development",
+  "n": 50,
+  "timestamp": "2026-09-01T05:38:07Z",
+  "timestamp_et": "2026-09-01T01:38:07-0400",
+  "preregistration_json_sha256": "dc01713eafc56347a9eba0711d0947f13fccbc8ba784dfa034e22280ec23c880",
+  "SYSTEM-G-PROJECTION-PRIOR_config_hash": "563a7b790564fa1efb96257e988c4b1ccfab45146825d2a366b2fee0ca5d5790",
+  "SYSTEM-G-PROJECTION-PRIOR_file_sha256": "7f4ff6db09f32e55cac820cbc00d87ce2ae91886d444c3bad20ac3e04c7f0f61",
+  "SYSTEM-G_overwritten": false,
+  "one_change": "V2 SYSTEM-G development path constructs CrossEncoderReranker(pad='batch', bucket_by_length=True); class defaults unchanged; no fast=True; threads=4",
+  "n_perf_variants": 1,
+  "tuned_after_seeing_scores": false,
+  "n_evals": 1,
+  "second_variant": false,
+  "fast_true": false,
+  "threads_8": false,
+  "batch_size_changed_to_1": false,
+  "validation_loaded": false,
+  "holdout_loaded": false,
+  "holdout_json_opened": false,
+  "RELEASE": "NOT_FROZEN",
+  "decision": "PERF-003_SUPPORTED",
+  "equivalence": {
+    "pass": true,
+    "checks": {
+      "1_same_membership": true,
+      "2_same_semantic_token_ids_before_padding": true,
+      "3_same_truncation": true,
+      "4_bitwise_identical_raw_ce_logits": true,
+      "5_same_unpermuted_candidate_logit_association": true,
+      "6_same_ce_norm": true,
+      "7_same_blend_scores_bitwise": true,
+      "8_same_final_rankings": true,
+      "9_cand_R100_46_50": true,
+      "10_strict_R10_41_50": true,
+      "11_span_0_82": true,
+      "12_mrr_0_6009": true,
+      "13_doc_recall_0_90": true,
+      "14_in_process_deterministic_repeat": true,
+      "15_fresh_process_deterministic_repeat": true,
+      "profiler_matches_class_score_pairs": true,
+      "class_defaults_unchanged": true,
+      "old_path_metrics_match_SYSTEM_G": true,
+      "d1_path_metrics_match_SYSTEM_G": true,
+      "no_fast_true": true,
+      "threads_unchanged_4": true
+    },
+    "n_pairs": 6205,
+    "n_logit_mismatch": 0,
+    "max_abs_diff": 0.0,
+    "old_metrics": {
+      "macro_span_recall": 0.82,
+      "cases_fully_recalled": 41,
+      "cases_total": 50,
+      "strict_recall_at_10": "41/50",
+      "spans_found_at_10": 41,
+      "spans_total": 50,
+      "document_recall": 0.9,
+      "mrr": 0.6009,
+      "candidate_evidence_spans": "46/50",
+      "candidate_evidence_n": 46,
+      "candidate_evidence_d": 50
+    },
+    "new_metrics": {
+      "macro_span_recall": 0.82,
+      "cases_fully_recalled": 41,
+      "cases_total": 50,
+      "strict_recall_at_10": "41/50",
+      "spans_found_at_10": 41,
+      "spans_total": 50,
+      "document_recall": 0.9,
+      "mrr": 0.6009,
+      "candidate_evidence_spans": "46/50",
+      "candidate_evidence_n": 46,
+      "candidate_evidence_d": 50
+    },
+    "fresh_old_ok": true,
+    "fresh_new_ok": true,
+    "fresh_returncode": 0
+  },
+  "timing": {
+    "old": {
+      "tokenization_ms": {
+        "mean": 21.9407,
+        "median": 21.5752,
+        "n": 50
+      },
+      "bucketing_ms": {
+        "mean": 0.0,
+        "median": 0.0,
+        "n": 50
+      },
+      "numpy_prep_ms": {
+        "mean": 6.2338,
+        "median": 6.1965,
+        "n": 50
+      },
+      "onnx_ms": {
+        "mean": 6762.1719,
+        "median": 6826.0565,
+        "n": 50
+      },
+      "unpermute_ms": {
+        "mean": 0.055,
+        "median": 0.0516,
+        "n": 50
+      },
+      "ce_total_ms": {
+        "mean": 6791.1651,
+        "median": 6857.5911,
+        "n": 50
+      }
+    },
+    "new": {
+      "tokenization_ms": {
+        "mean": 20.0683,
+        "median": 19.9178,
+        "n": 50
+      },
+      "bucketing_ms": {
+        "mean": 12.8995,
+        "median": 12.6035,
+        "n": 50
+      },
+      "numpy_prep_ms": {
+        "mean": 3.3224,
+        "median": 3.281,
+        "n": 50
+      },
+      "onnx_ms": {
+        "mean": 2080.4706,
+        "median": 2064.3397,
+        "n": 50
+      },
+      "unpermute_ms": {
+        "mean": 0.0541,
+        "median": 0.0514,
+        "n": 50
+      },
+      "ce_total_ms": {
+        "mean": 2117.5741,
+        "median": 2102.4286,
+        "n": 50
+      }
+    },
+    "stored_non_ce_ms": 1011.4,
+    "ce_speedup": 3.207,
+    "ce_improved": true,
+    "system_g_total_old_ms": 7802.5651,
+    "system_g_total_new_ms": 3128.9741
+  },
+  "artifact": {
+    "path": "experiments/PERF-003/SYSTEM-G-CE-D1.json",
+    "config_hash": "6d108568f3131bad87d8617f5c2fb88ea14428e397d59ff54ff8e11cc4647b7d",
+    "file_sha256": "cf0c985c5f7738e7fc5422039fd6940621d8dcd8f91de41abe3784ac53a6a7ec"
+  },
+  "provenance": {
+    "cpu": {
+      "model": "Intel(R) Xeon(R) Processor",
+      "cpu_count": 8,
+      "family_model_note": "Intel family 6 model 207, 8 cores, KVM; lscpu Model name=Intel(R) Xeon(R) Processor"
+    },
+    "ort_version": "1.29.0",
+    "provider": "CPUExecutionProvider",
+    "intra_op_num_threads": 4,
+    "inter_op_num_threads": 1,
+    "ce_sha256": "5d3e70fd0c9ff14b9b5169a51e957b7a9c74897afd0a35ce4bd318150c1d4d4a",
+    "tokenizer_path": "experiments/EXP-015/models/cross-encoder-ms-marco-MiniLM-L6-v2/233902d25c440f23af6f7d6e94d2946bac0bee0a/tokenizer.json",
+    "tokenizer_sha256": "d241a60d5e8f04cc1b2b3e9ef7a4921b27bf526d9f6050ab90f9267a1f9e5c66",
+    "batch_size": 16,
+    "old_padding_mode": "fixed length 512",
+    "new_padding_mode": "batch (pad to batch max seq length, max_length 512)",
+    "bucketing_rule": "sort by unpadded token length then original index; unpermute to original order",
+    "cross_encoder_py_sha256": "ad987d12747c28e75257d8d9a0a526d216052937cffe2268921f5278b51fac45",
+    "v2_wrapper_sha256": "eaa55835b7ab0157a67268d8716940a6f30fd0734b6e5ff41252fddfb6afb28e",
+    "runner_sha256": "6bfe759e46e02bd20cbab8c2512a4324f4bd77becfa7a7b595c8b7343e8a2df1",
+    "class_defaults": {
+      "threads": 4,
+      "pad": "fixed",
+      "pad_to_multiple_of": null,
+      "bucket_by_length": false,
+      "fast": false
+    },
+    "git": null,
+    "embedding": {
+      "postgres_version": "PostgreSQL 16.15 (Debian 16.15-1.pgdg12+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14+deb12u1) 12.2.0, 64-bit",
+      "pgvector_extversion": "0.8.6",
+      "chunk_set": "cs_v1_control",
+      "chunks": 14209,
+      "embedding_rows": 14209,
+      "model_id": "emb_e7d4183fd6eb878ae2fdf080efb6861e",
+      "fingerprint_min": "bd95feaeacf98559",
+      "fingerprint_max": "bd95feaeacf98559",
+      "fingerprint_expected": "bd95feaeacf98559",
+      "complete": true,
+      "known_drift": "Postgres 16.15 / pgvector 0.8.6 vs recorded 16.13 / 0.6.0"
+    }
+  },
+  "holdout_access_log_before": {
+    "log_bytes": 235,
+    "log_sha256": "45b83a77f6f332174d641956f076dd0c0cae44fe48f4f2892ac7030a4c0143b3",
+    "lock_bytes": 698,
+    "lock_sha256": "fc9ac96082cbf0aa3df82df017e19af9f49eed5506c5c281858b3de405cde294",
+    "lock_frozen": true
+  },
+  "holdout_access_log_after": {
+    "log_bytes": 235,
+    "log_sha256": "45b83a77f6f332174d641956f076dd0c0cae44fe48f4f2892ac7030a4c0143b3",
+    "lock_bytes": 698,
+    "lock_sha256": "fc9ac96082cbf0aa3df82df017e19af9f49eed5506c5c281858b3de405cde294",
+    "lock_frozen": true
+  },
+  "holdout_log_unchanged": true,
+  "per_query_timing": [
+    {
+      "case_id": "V2D-01",
+      "n": 130,
+      "old": {
+        "tokenization_ms": 23.6393,
+        "bucketing_ms": 0.0,
+        "numpy_prep_ms": 7.3119,
+        "onnx_ms": 7478.2347,
+        "unpermute_ms": 0.0668,
+        "ce_total_ms": 7510.1029
+      },
+      "new": {
+        "tokenization_ms": 26.0804,
+        "bucketing_ms": 12.6211,
+        "numpy_prep_ms": 3.8492,
+        "onnx_ms": 2394.7116,
+        "unpermute_ms": 0.0572,
+        "ce_total_ms": 2438.1012
+      },
+      "new_batch_widths": [
+        41,
+        71,
+        103,
+        148,
+        198,
+        331,
+        512,
+        512,
+        512
+      ],
+      "old_batch_widths": [
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512
+      ]
+    },
+    {
+      "case_id": "V2D-02",
+      "n": 128,
+      "old": {
+        "tokenization_ms": 20.4344,
+        "bucketing_ms": 0.0,
+        "numpy_prep_ms": 5.9615,
+        "onnx_ms": 7127.9221,
+        "unpermute_ms": 0.0507,
+        "ce_total_ms": 7155.0869
+      },
+      "new": {
+        "tokenization_ms": 20.1932,
+        "bucketing_ms": 11.4219,
+        "numpy_prep_ms": 3.0753,
+        "onnx_ms": 2056.7292,
+        "unpermute_ms": 0.0517,
+        "ce_total_ms": 2092.2332
+      },
+      "new_batch_widths": [
+        56,
+        100,
+        125,
+        152,
+        201,
+        255,
+        364,
+        512
+      ],
+      "old_batch_widths": [
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512
+      ]
+    },
+    {
+      "case_id": "V2D-03",
+      "n": 122,
+      "old": {
+        "tokenization_ms": 30.0169,
+        "bucketing_ms": 0.0,
+        "numpy_prep_ms": 6.3909,
+        "onnx_ms": 6395.3823,
+        "unpermute_ms": 0.0511,
+        "ce_total_ms": 6432.5643
+      },
+      "new": {
+        "tokenization_ms": 30.2109,
+        "bucketing_ms": 17.333,
+        "numpy_prep_ms": 4.3813,
+        "onnx_ms": 2926.2823,
+        "unpermute_ms": 0.0682,
+        "ce_total_ms": 2978.9746
+      },
+      "new_batch_widths": [
+        74,
+        142,
+        209,
+        290,
+        400,
+        512,
+        512,
+        512
+      ],
+      "old_batch_widths": [
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512
+      ]
+    },
+    {
+      "case_id": "V2D-04",
+      "n": 116,
+      "old": {
+        "tokenization_ms": 26.4592,
+        "bucketing_ms": 0.0,
+        "numpy_prep_ms": 5.6869,
+        "onnx_ms": 6108.0058,
+        "unpermute_ms": 0.0486,
+        "ce_total_ms": 6140.9198
+      },
+      "new": {
+        "tokenization_ms": 24.055,
+        "bucketing_ms": 13.6522,
+        "numpy_prep_ms": 3.4251,
+        "onnx_ms": 2278.3821,
+        "unpermute_ms": 0.0521,
+        "ce_total_ms": 2320.2833
+      },
+      "new_batch_widths": [
+        59,
+        96,
+        136,
+        230,
+        291,
+        512,
+        512,
+        512
+      ],
+      "old_batch_widths": [
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512
+      ]
+    },
+    {
+      "case_id": "V2D-05",
+      "n": 128,
+      "old": {
+        "tokenization_ms": 27.6327,
+        "bucketing_ms": 0.0,
+        "numpy_prep_ms": 6.0363,
+        "onnx_ms": 6645.5868,
+        "unpermute_ms": 0.0659,
+        "ce_total_ms": 6680.0461
+      },
+      "new": {
+        "tokenization_ms": 23.652,
+        "bucketing_ms": 19.277,
+        "numpy_prep_ms": 3.9195,
+        "onnx_ms": 2531.1788,
+        "unpermute_ms": 0.0493,
+        "ce_total_ms": 2578.7878
+      },
+      "new_batch_widths": [
+        81,
+        117,
+        150,
+        195,
+        229,
+        433,
+        512,
+        512
+      ],
+      "old_batch_widths": [
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512
+      ]
+    },
+    {
+      "case_id": "V2D-06",
+      "n": 114,
+      "old": {
+        "tokenization_ms": 20.5307,
+        "bucketing_ms": 0.0,
+        "numpy_prep_ms": 5.4839,
+        "onnx_ms": 5934.7761,
+        "unpermute_ms": 0.0603,
+        "ce_total_ms": 5961.5609
+      },
+      "new": {
+        "tokenization_ms": 22.8365,
+        "bucketing_ms": 14.4731,
+        "numpy_prep_ms": 3.1909,
+        "onnx_ms": 2355.6307,
+        "unpermute_ms": 0.0519,
+        "ce_total_ms": 2396.8755
+      },
+      "new_batch_widths": [
+        108,
+        147,
+        167,
+        210,
+        259,
+        380,
+        512,
+        512
+      ],
+      "old_batch_widths": [
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512
+      ]
+    },
+    {
+      "case_id": "V2D-07",
+      "n": 128,
+      "old": {
+        "tokenization_ms": 22.8764,
+        "bucketing_ms": 0.0,
+        "numpy_prep_ms": 6.0025,
+        "onnx_ms": 6907.0513,
+        "unpermute_ms": 0.0515,
+        "ce_total_ms": 6936.8651
+      },
+      "new": {
+        "tokenization_ms": 17.7796,
+        "bucketing_ms": 19.4897,
+        "numpy_prep_ms": 3.3534,
+        "onnx_ms": 2067.5011,
+        "unpermute_ms": 0.0494,
+        "ce_total_ms": 2108.9406
+      },
+      "new_batch_widths": [
+        52,
+        78,
+        108,
+        134,
+        232,
+        286,
+        399,
+        512
+      ],
+      "old_batch_widths": [
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512
+      ]
+    },
+    {
+      "case_id": "V2D-08",
+      "n": 128,
+      "old": {
+        "tokenization_ms": 26.2299,
+        "bucketing_ms": 0.0,
+        "numpy_prep_ms": 5.9997,
+        "onnx_ms": 6680.4015,
+        "unpermute_ms": 0.0517,
+        "ce_total_ms": 6713.3931
+      },
+      "new": {
+        "tokenization_ms": 24.6734,
+        "bucketing_ms": 17.6566,
+        "numpy_prep_ms": 4.7265,
+        "onnx_ms": 3704.5484,
+        "unpermute_ms": 0.0591,
+        "ce_total_ms": 3752.3804
+      },
+      "new_batch_widths": [
+        68,
+        111,
+        146,
+        198,
+        288,
+        391,
+        512,
+        512
+      ],
+      "old_batch_widths": [
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512
+      ]
+    },
+    {
+      "case_id": "V2D-09",
+      "n": 129,
+      "old": {
+        "tokenization_ms": 19.4498,
+        "bucketing_ms": 0.0,
+        "numpy_prep_ms": 6.3392,
+        "onnx_ms": 7112.5549,
+        "unpermute_ms": 0.0533,
+        "ce_total_ms": 7139.188
+      },
+      "new": {
+        "tokenization_ms": 18.2159,
+        "bucketing_ms": 10.3915,
+        "numpy_prep_ms": 2.8983,
+        "onnx_ms": 1707.1193,
+        "unpermute_ms": 0.0515,
+        "ce_total_ms": 1739.5192
+      },
+      "new_batch_widths": [
+        44,
+        64,
+        86,
+        124,
+        149,
+        205,
+        300,
+        512,
+        512
+      ],
+      "old_batch_widths": [
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512
+      ]
+    },
+    {
+      "case_id": "V2D-10",
+      "n": 116,
+      "old": {
+        "tokenization_ms": 21.65,
+        "bucketing_ms": 0.0,
+        "numpy_prep_ms": 5.5916,
+        "onnx_ms": 6313.4457,
+        "unpermute_ms": 0.0541,
+        "ce_total_ms": 6341.4651
+      },
+      "new": {
+        "tokenization_ms": 20.1595,
+        "bucketing_ms": 12.5859,
+        "numpy_prep_ms": 3.2354,
+        "onnx_ms": 1911.3499,
+        "unpermute_ms": 0.0524,
+        "ce_total_ms": 1948.0874
+      },
+      "new_batch_widths": [
+        68,
+        84,
+        119,
+        181,
+        245,
+        336,
+        512,
+        512
+      ],
+      "old_batch_widths": [
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512
+      ]
+    },
+    {
+      "case_id": "V2D-11",
+      "n": 124,
+      "old": {
+        "tokenization_ms": 18.2762,
+        "bucketing_ms": 0.0,
+        "numpy_prep_ms": 6.2689,
+        "onnx_ms": 6861.6776,
+        "unpermute_ms": 0.0666,
+        "ce_total_ms": 6887.0243
+      },
+      "new": {
+        "tokenization_ms": 14.4423,
+        "bucketing_ms": 9.5074,
+        "numpy_prep_ms": 2.7507,
+        "onnx_ms": 1615.1183,
+        "unpermute_ms": 0.0493,
+        "ce_total_ms": 1642.5808
+      },
+      "new_batch_widths": [
+        50,
+        79,
+        97,
+        112,
+        137,
+        216,
+        339,
+        512
+      ],
+      "old_batch_widths": [
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512
+      ]
+    },
+    {
+      "case_id": "V2D-12",
+      "n": 128,
+      "old": {
+        "tokenization_ms": 28.3662,
+        "bucketing_ms": 0.0,
+        "numpy_prep_ms": 6.466,
+        "onnx_ms": 6825.2942,
+        "unpermute_ms": 0.0515,
+        "ce_total_ms": 6861.1517
+      },
+      "new": {
+        "tokenization_ms": 22.0178,
+        "bucketing_ms": 14.1691,
+        "numpy_prep_ms": 3.5218,
+        "onnx_ms": 2395.0934,
+        "unpermute_ms": 0.0514,
+        "ce_total_ms": 2435.6837
+      },
+      "new_batch_widths": [
+        72,
+        104,
+        133,
+        171,
+        254,
+        329,
+        512,
+        512
+      ],
+      "old_batch_widths": [
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512
+      ]
+    },
+    {
+      "case_id": "V2D-13",
+      "n": 127,
+      "old": {
+        "tokenization_ms": 21.258,
+        "bucketing_ms": 0.0,
+        "numpy_prep_ms": 6.1331,
+        "onnx_ms": 7045.3576,
+        "unpermute_ms": 0.0526,
+        "ce_total_ms": 7073.5186
+      },
+      "new": {
+        "tokenization_ms": 17.1547,
+        "bucketing_ms": 10.9724,
+        "numpy_prep_ms": 3.107,
+        "onnx_ms": 1727.0293,
+        "unpermute_ms": 0.0503,
+        "ce_total_ms": 1759.0856
+      },
+      "new_batch_widths": [
+        52,
+        73,
+        103,
+        132,
+        161,
+        204,
+        313,
+        512
+      ],
+      "old_batch_widths": [
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512
+      ]
+    },
+    {
+      "case_id": "V2D-14",
+      "n": 124,
+      "old": {
+        "tokenization_ms": 26.0031,
+        "bucketing_ms": 0.0,
+        "numpy_prep_ms": 6.0659,
+        "onnx_ms": 6608.6285,
+        "unpermute_ms": 0.0522,
+        "ce_total_ms": 6641.4806
+      },
+      "new": {
+        "tokenization_ms": 21.164,
+        "bucketing_ms": 14.9713,
+        "numpy_prep_ms": 3.4594,
+        "onnx_ms": 2096.0517,
+        "unpermute_ms": 0.0486,
+        "ce_total_ms": 2136.4008
+      },
+      "new_batch_widths": [
+        53,
+        75,
+        112,
+        142,
+        185,
+        353,
+        512,
+        512
+      ],
+      "old_batch_widths": [
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512
+      ]
+    },
+    {
+      "case_id": "V2D-15",
+      "n": 129,
+      "old": {
+        "tokenization_ms": 21.5058,
+        "bucketing_ms": 0.0,
+        "numpy_prep_ms": 6.2084,
+        "onnx_ms": 7424.622,
+        "unpermute_ms": 0.0537,
+        "ce_total_ms": 7453.2069
+      },
+      "new": {
+        "tokenization_ms": 20.6306,
+        "bucketing_ms": 13.0491,
+        "numpy_prep_ms": 3.1381,
+        "onnx_ms": 1849.6621,
+        "unpermute_ms": 0.0652,
+        "ce_total_ms": 1887.4177
+      },
+      "new_batch_widths": [
+        65,
+        95,
+        125,
+        138,
+        160,
+        205,
+        272,
+        512,
+        512
+      ],
+      "old_batch_widths": [
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512
+      ]
+    },
+    {
+      "case_id": "V2D-16",
+      "n": 126,
+      "old": {
+        "tokenization_ms": 19.6776,
+        "bucketing_ms": 0.0,
+        "numpy_prep_ms": 6.067,
+        "onnx_ms": 6868.4359,
+        "unpermute_ms": 0.0631,
+        "ce_total_ms": 6895.1098
+      },
+      "new": {
+        "tokenization_ms": 17.6234,
+        "bucketing_ms": 10.6528,
+        "numpy_prep_ms": 3.0492,
+        "onnx_ms": 1973.5124,
+        "unpermute_ms": 0.0651,
+        "ce_total_ms": 2005.6953
+      },
+      "new_batch_widths": [
+        53,
+        86,
+        113,
+        135,
+        167,
+        237,
+        330,
+        512
+      ],
+      "old_batch_widths": [
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512
+      ]
+    },
+    {
+      "case_id": "V2D-17",
+      "n": 118,
+      "old": {
+        "tokenization_ms": 19.7665,
+        "bucketing_ms": 0.0,
+        "numpy_prep_ms": 5.7335,
+        "onnx_ms": 6324.7732,
+        "unpermute_ms": 0.0497,
+        "ce_total_ms": 6351.0371
+      },
+      "new": {
+        "tokenization_ms": 15.9768,
+        "bucketing_ms": 9.4245,
+        "numpy_prep_ms": 2.9773,
+        "onnx_ms": 1815.5009,
+        "unpermute_ms": 0.0698,
+        "ce_total_ms": 1844.7044
+      },
+      "new_batch_widths": [
+        42,
+        78,
+        121,
+        167,
+        205,
+        254,
+        512,
+        512
+      ],
+      "old_batch_widths": [
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512
+      ]
+    },
+    {
+      "case_id": "V2D-18",
+      "n": 127,
+      "old": {
+        "tokenization_ms": 24.8002,
+        "bucketing_ms": 0.0,
+        "numpy_prep_ms": 7.0389,
+        "onnx_ms": 6873.3674,
+        "unpermute_ms": 0.0509,
+        "ce_total_ms": 6906.1231
+      },
+      "new": {
+        "tokenization_ms": 23.5761,
+        "bucketing_ms": 17.954,
+        "numpy_prep_ms": 3.9372,
+        "onnx_ms": 2668.3539,
+        "unpermute_ms": 0.0536,
+        "ce_total_ms": 2714.6001
+      },
+      "new_batch_widths": [
+        69,
+        97,
+        128,
+        170,
+        223,
+        342,
+        512,
+        512
+      ],
+      "old_batch_widths": [
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512
+      ]
+    },
+    {
+      "case_id": "V2D-19",
+      "n": 130,
+      "old": {
+        "tokenization_ms": 18.1314,
+        "bucketing_ms": 0.0,
+        "numpy_prep_ms": 6.118,
+        "onnx_ms": 7119.3933,
+        "unpermute_ms": 0.0623,
+        "ce_total_ms": 7144.4897
+      },
+      "new": {
+        "tokenization_ms": 14.3988,
+        "bucketing_ms": 9.4844,
+        "numpy_prep_ms": 2.7009,
+        "onnx_ms": 1589.6916,
+        "unpermute_ms": 0.0657,
+        "ce_total_ms": 1617.1871
+      },
+      "new_batch_widths": [
+        34,
+        50,
+        82,
+        99,
+        132,
+        172,
+        264,
+        444,
+        512
+      ],
+      "old_batch_widths": [
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512
+      ]
+    },
+    {
+      "case_id": "V2D-20",
+      "n": 127,
+      "old": {
+        "tokenization_ms": 33.165,
+        "bucketing_ms": 0.0,
+        "numpy_prep_ms": 6.8821,
+        "onnx_ms": 6904.2996,
+        "unpermute_ms": 0.0656,
+        "ce_total_ms": 6945.375
+      },
+      "new": {
+        "tokenization_ms": 25.2292,
+        "bucketing_ms": 17.7314,
+        "numpy_prep_ms": 4.2151,
+        "onnx_ms": 2779.8598,
+        "unpermute_ms": 0.0517,
+        "ce_total_ms": 2827.9664
+      },
+      "new_batch_widths": [
+        70,
+        103,
+        143,
+        225,
+        303,
+        512,
+        512,
+        512
+      ],
+      "old_batch_widths": [
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512
+      ]
+    },
+    {
+      "case_id": "V2D-21",
+      "n": 127,
+      "old": {
+        "tokenization_ms": 19.2969,
+        "bucketing_ms": 0.0,
+        "numpy_prep_ms": 5.9342,
+        "onnx_ms": 6752.1738,
+        "unpermute_ms": 0.051,
+        "ce_total_ms": 6778.3595
+      },
+      "new": {
+        "tokenization_ms": 17.0715,
+        "bucketing_ms": 10.6611,
+        "numpy_prep_ms": 3.3138,
+        "onnx_ms": 2015.0581,
+        "unpermute_ms": 0.0494,
+        "ce_total_ms": 2046.8599
+      },
+      "new_batch_widths": [
+        71,
+        88,
+        114,
+        141,
+        171,
+        217,
+        299,
+        512
+      ],
+      "old_batch_widths": [
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512
+      ]
+    },
+    {
+      "case_id": "V2D-22",
+      "n": 126,
+      "old": {
+        "tokenization_ms": 22.5837,
+        "bucketing_ms": 0.0,
+        "numpy_prep_ms": 6.0556,
+        "onnx_ms": 6688.6022,
+        "unpermute_ms": 0.0499,
+        "ce_total_ms": 6717.9972
+      },
+      "new": {
+        "tokenization_ms": 17.3338,
+        "bucketing_ms": 13.3925,
+        "numpy_prep_ms": 3.1559,
+        "onnx_ms": 2061.1783,
+        "unpermute_ms": 0.0501,
+        "ce_total_ms": 2095.9167
+      },
+      "new_batch_widths": [
+        64,
+        107,
+        147,
+        172,
+        212,
+        262,
+        345,
+        512
+      ],
+      "old_batch_widths": [
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512
+      ]
+    },
+    {
+      "case_id": "V2D-23",
+      "n": 126,
+      "old": {
+        "tokenization_ms": 25.7898,
+        "bucketing_ms": 0.0,
+        "numpy_prep_ms": 6.2727,
+        "onnx_ms": 6718.637,
+        "unpermute_ms": 0.0516,
+        "ce_total_ms": 6751.5065
+      },
+      "new": {
+        "tokenization_ms": 20.1289,
+        "bucketing_ms": 19.6388,
+        "numpy_prep_ms": 3.7524,
+        "onnx_ms": 2482.8475,
+        "unpermute_ms": 0.0501,
+        "ce_total_ms": 2527.1282
+      },
+      "new_batch_widths": [
+        55,
+        108,
+        144,
+        178,
+        259,
+        334,
+        512,
+        512
+      ],
+      "old_batch_widths": [
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512
+      ]
+    },
+    {
+      "case_id": "V2D-24",
+      "n": 125,
+      "old": {
+        "tokenization_ms": 20.2282,
+        "bucketing_ms": 0.0,
+        "numpy_prep_ms": 6.1119,
+        "onnx_ms": 7067.8456,
+        "unpermute_ms": 0.0471,
+        "ce_total_ms": 7094.9044
+      },
+      "new": {
+        "tokenization_ms": 20.0135,
+        "bucketing_ms": 13.0136,
+        "numpy_prep_ms": 3.0445,
+        "onnx_ms": 1862.645,
+        "unpermute_ms": 0.0488,
+        "ce_total_ms": 1899.5937
+      },
+      "new_batch_widths": [
+        31,
+        62,
+        105,
+        137,
+        185,
+        260,
+        445,
+        512
+      ],
+      "old_batch_widths": [
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512
+      ]
+    },
+    {
+      "case_id": "V2D-25",
+      "n": 115,
+      "old": {
+        "tokenization_ms": 22.2712,
+        "bucketing_ms": 0.0,
+        "numpy_prep_ms": 6.1719,
+        "onnx_ms": 6220.8647,
+        "unpermute_ms": 0.0507,
+        "ce_total_ms": 6250.0764
+      },
+      "new": {
+        "tokenization_ms": 19.8221,
+        "bucketing_ms": 13.6742,
+        "numpy_prep_ms": 3.1987,
+        "onnx_ms": 1828.8391,
+        "unpermute_ms": 0.0505,
+        "ce_total_ms": 1866.3027
+      },
+      "new_batch_widths": [
+        38,
+        83,
+        126,
+        171,
+        257,
+        326,
+        512,
+        512
+      ],
+      "old_batch_widths": [
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512
+      ]
+    },
+    {
+      "case_id": "V2D-26",
+      "n": 118,
+      "old": {
+        "tokenization_ms": 22.1581,
+        "bucketing_ms": 0.0,
+        "numpy_prep_ms": 5.7358,
+        "onnx_ms": 6211.6773,
+        "unpermute_ms": 0.0499,
+        "ce_total_ms": 6240.3427
+      },
+      "new": {
+        "tokenization_ms": 26.6588,
+        "bucketing_ms": 13.0062,
+        "numpy_prep_ms": 3.3072,
+        "onnx_ms": 2183.4215,
+        "unpermute_ms": 0.0493,
+        "ce_total_ms": 2227.2067
+      },
+      "new_batch_widths": [
+        26,
+        82,
+        136,
+        174,
+        216,
+        364,
+        512,
+        512
+      ],
+      "old_batch_widths": [
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512
+      ]
+    },
+    {
+      "case_id": "V2D-27",
+      "n": 127,
+      "old": {
+        "tokenization_ms": 21.2322,
+        "bucketing_ms": 0.0,
+        "numpy_prep_ms": 6.1949,
+        "onnx_ms": 6932.6761,
+        "unpermute_ms": 0.0504,
+        "ce_total_ms": 6960.8539
+      },
+      "new": {
+        "tokenization_ms": 18.0216,
+        "bucketing_ms": 11.7365,
+        "numpy_prep_ms": 3.3704,
+        "onnx_ms": 2121.3187,
+        "unpermute_ms": 0.0537,
+        "ce_total_ms": 2155.2784
+      },
+      "new_batch_widths": [
+        65,
+        102,
+        126,
+        164,
+        202,
+        278,
+        454,
+        512
+      ],
+      "old_batch_widths": [
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512
+      ]
+    },
+    {
+      "case_id": "V2D-28",
+      "n": 129,
+      "old": {
+        "tokenization_ms": 21.5426,
+        "bucketing_ms": 0.0,
+        "numpy_prep_ms": 6.2887,
+        "onnx_ms": 7030.3037,
+        "unpermute_ms": 0.0606,
+        "ce_total_ms": 7059.0133
+      },
+      "new": {
+        "tokenization_ms": 25.7354,
+        "bucketing_ms": 12.8636,
+        "numpy_prep_ms": 3.2621,
+        "onnx_ms": 1779.2465,
+        "unpermute_ms": 0.065,
+        "ce_total_ms": 1822.1226
+      },
+      "new_batch_widths": [
+        64,
+        79,
+        86,
+        97,
+        128,
+        205,
+        306,
+        512,
+        512
+      ],
+      "old_batch_widths": [
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512
+      ]
+    },
+    {
+      "case_id": "V2D-29",
+      "n": 114,
+      "old": {
+        "tokenization_ms": 17.7993,
+        "bucketing_ms": 0.0,
+        "numpy_prep_ms": 5.5141,
+        "onnx_ms": 6267.491,
+        "unpermute_ms": 0.0497,
+        "ce_total_ms": 6291.5421
+      },
+      "new": {
+        "tokenization_ms": 16.3383,
+        "bucketing_ms": 11.8894,
+        "numpy_prep_ms": 3.5567,
+        "onnx_ms": 2378.7793,
+        "unpermute_ms": 0.0598,
+        "ce_total_ms": 2411.3423
+      },
+      "new_batch_widths": [
+        68,
+        98,
+        139,
+        195,
+        222,
+        316,
+        512,
+        512
+      ],
+      "old_batch_widths": [
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512
+      ]
+    },
+    {
+      "case_id": "V2D-30",
+      "n": 125,
+      "old": {
+        "tokenization_ms": 16.7238,
+        "bucketing_ms": 0.0,
+        "numpy_prep_ms": 6.2345,
+        "onnx_ms": 7165.6528,
+        "unpermute_ms": 0.0498,
+        "ce_total_ms": 7189.3821
+      },
+      "new": {
+        "tokenization_ms": 13.3521,
+        "bucketing_ms": 8.9919,
+        "numpy_prep_ms": 3.2088,
+        "onnx_ms": 2249.7477,
+        "unpermute_ms": 0.0704,
+        "ce_total_ms": 2276.0954
+      },
+      "new_batch_widths": [
+        45,
+        60,
+        78,
+        116,
+        139,
+        198,
+        286,
+        512
+      ],
+      "old_batch_widths": [
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512
+      ]
+    },
+    {
+      "case_id": "V2D-31",
+      "n": 126,
+      "old": {
+        "tokenization_ms": 23.4422,
+        "bucketing_ms": 0.0,
+        "numpy_prep_ms": 6.8734,
+        "onnx_ms": 7141.3249,
+        "unpermute_ms": 0.0502,
+        "ce_total_ms": 7172.4267
+      },
+      "new": {
+        "tokenization_ms": 22.4374,
+        "bucketing_ms": 14.3062,
+        "numpy_prep_ms": 3.552,
+        "onnx_ms": 2497.206,
+        "unpermute_ms": 0.0486,
+        "ce_total_ms": 2538.2631
+      },
+      "new_batch_widths": [
+        60,
+        102,
+        158,
+        203,
+        271,
+        383,
+        512,
+        512
+      ],
+      "old_batch_widths": [
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512
+      ]
+    },
+    {
+      "case_id": "V2D-32",
+      "n": 124,
+      "old": {
+        "tokenization_ms": 19.2379,
+        "bucketing_ms": 0.0,
+        "numpy_prep_ms": 5.9722,
+        "onnx_ms": 6491.5418,
+        "unpermute_ms": 0.0493,
+        "ce_total_ms": 6517.5114
+      },
+      "new": {
+        "tokenization_ms": 16.1256,
+        "bucketing_ms": 11.3919,
+        "numpy_prep_ms": 3.3946,
+        "onnx_ms": 1751.8945,
+        "unpermute_ms": 0.0502,
+        "ce_total_ms": 1783.5788
+      },
+      "new_batch_widths": [
+        52,
+        109,
+        142,
+        166,
+        201,
+        243,
+        325,
+        512
+      ],
+      "old_batch_widths": [
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512
+      ]
+    },
+    {
+      "case_id": "V2D-33",
+      "n": 114,
+      "old": {
+        "tokenization_ms": 21.9386,
+        "bucketing_ms": 0.0,
+        "numpy_prep_ms": 6.2722,
+        "onnx_ms": 5936.0472,
+        "unpermute_ms": 0.0516,
+        "ce_total_ms": 5965.0368
+      },
+      "new": {
+        "tokenization_ms": 19.181,
+        "bucketing_ms": 11.0523,
+        "numpy_prep_ms": 3.5952,
+        "onnx_ms": 2080.4932,
+        "unpermute_ms": 0.052,
+        "ce_total_ms": 2115.1058
+      },
+      "new_batch_widths": [
+        77,
+        97,
+        136,
+        189,
+        241,
+        351,
+        512,
+        512
+      ],
+      "old_batch_widths": [
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512
+      ]
+    },
+    {
+      "case_id": "V2D-34",
+      "n": 127,
+      "old": {
+        "tokenization_ms": 19.4585,
+        "bucketing_ms": 0.0,
+        "numpy_prep_ms": 6.6033,
+        "onnx_ms": 6999.2549,
+        "unpermute_ms": 0.066,
+        "ce_total_ms": 7026.0982
+      },
+      "new": {
+        "tokenization_ms": 15.0121,
+        "bucketing_ms": 9.0602,
+        "numpy_prep_ms": 2.8137,
+        "onnx_ms": 1657.0974,
+        "unpermute_ms": 0.0501,
+        "ce_total_ms": 1684.7695
+      },
+      "new_batch_widths": [
+        25,
+        52,
+        80,
+        108,
+        150,
+        208,
+        353,
+        512
+      ],
+      "old_batch_widths": [
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512
+      ]
+    },
+    {
+      "case_id": "V2D-35",
+      "n": 123,
+      "old": {
+        "tokenization_ms": 17.3931,
+        "bucketing_ms": 0.0,
+        "numpy_prep_ms": 6.1735,
+        "onnx_ms": 7003.9313,
+        "unpermute_ms": 0.0809,
+        "ce_total_ms": 7028.3319
+      },
+      "new": {
+        "tokenization_ms": 21.0246,
+        "bucketing_ms": 9.0799,
+        "numpy_prep_ms": 2.5343,
+        "onnx_ms": 1526.5807,
+        "unpermute_ms": 0.0641,
+        "ce_total_ms": 1559.9612
+      },
+      "new_batch_widths": [
+        19,
+        34,
+        66,
+        103,
+        150,
+        198,
+        336,
+        512
+      ],
+      "old_batch_widths": [
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512
+      ]
+    },
+    {
+      "case_id": "V2D-36",
+      "n": 129,
+      "old": {
+        "tokenization_ms": 20.9671,
+        "bucketing_ms": 0.0,
+        "numpy_prep_ms": 6.793,
+        "onnx_ms": 7133.1338,
+        "unpermute_ms": 0.0567,
+        "ce_total_ms": 7161.7635
+      },
+      "new": {
+        "tokenization_ms": 18.3551,
+        "bucketing_ms": 8.8959,
+        "numpy_prep_ms": 2.9632,
+        "onnx_ms": 1698.3777,
+        "unpermute_ms": 0.0502,
+        "ce_total_ms": 1729.4486
+      },
+      "new_batch_widths": [
+        26,
+        29,
+        67,
+        108,
+        135,
+        174,
+        316,
+        512,
+        512
+      ],
+      "old_batch_widths": [
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512
+      ]
+    },
+    {
+      "case_id": "V2D-37",
+      "n": 125,
+      "old": {
+        "tokenization_ms": 19.8439,
+        "bucketing_ms": 0.0,
+        "numpy_prep_ms": 6.4112,
+        "onnx_ms": 6826.8188,
+        "unpermute_ms": 0.0516,
+        "ce_total_ms": 6854.0305
+      },
+      "new": {
+        "tokenization_ms": 19.6885,
+        "bucketing_ms": 10.4143,
+        "numpy_prep_ms": 3.0467,
+        "onnx_ms": 2117.0249,
+        "unpermute_ms": 0.0508,
+        "ce_total_ms": 2151.0434
+      },
+      "new_batch_widths": [
+        60,
+        81,
+        111,
+        140,
+        182,
+        258,
+        418,
+        512
+      ],
+      "old_batch_widths": [
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512
+      ]
+    },
+    {
+      "case_id": "V2D-38",
+      "n": 122,
+      "old": {
+        "tokenization_ms": 21.6077,
+        "bucketing_ms": 0.0,
+        "numpy_prep_ms": 6.322,
+        "onnx_ms": 6893.5399,
+        "unpermute_ms": 0.0505,
+        "ce_total_ms": 6922.2392
+      },
+      "new": {
+        "tokenization_ms": 19.2427,
+        "bucketing_ms": 11.7457,
+        "numpy_prep_ms": 3.6296,
+        "onnx_ms": 1903.8384,
+        "unpermute_ms": 0.0506,
+        "ce_total_ms": 1939.2193
+      },
+      "new_batch_widths": [
+        76,
+        96,
+        125,
+        153,
+        194,
+        286,
+        394,
+        512
+      ],
+      "old_batch_widths": [
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512
+      ]
+    },
+    {
+      "case_id": "V2D-39",
+      "n": 128,
+      "old": {
+        "tokenization_ms": 23.433,
+        "bucketing_ms": 0.0,
+        "numpy_prep_ms": 6.6623,
+        "onnx_ms": 7160.4035,
+        "unpermute_ms": 0.051,
+        "ce_total_ms": 7191.2625
+      },
+      "new": {
+        "tokenization_ms": 18.7108,
+        "bucketing_ms": 12.7479,
+        "numpy_prep_ms": 3.2999,
+        "onnx_ms": 2012.6505,
+        "unpermute_ms": 0.0524,
+        "ce_total_ms": 2048.2926
+      },
+      "new_batch_widths": [
+        60,
+        82,
+        100,
+        119,
+        139,
+        225,
+        439,
+        512
+      ],
+      "old_batch_widths": [
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512
+      ]
+    },
+    {
+      "case_id": "V2D-40",
+      "n": 130,
+      "old": {
+        "tokenization_ms": 24.4961,
+        "bucketing_ms": 0.0,
+        "numpy_prep_ms": 7.2262,
+        "onnx_ms": 7164.2581,
+        "unpermute_ms": 0.0529,
+        "ce_total_ms": 7196.8281
+      },
+      "new": {
+        "tokenization_ms": 20.1876,
+        "bucketing_ms": 15.5126,
+        "numpy_prep_ms": 3.3684,
+        "onnx_ms": 2079.2649,
+        "unpermute_ms": 0.0539,
+        "ce_total_ms": 2119.3081
+      },
+      "new_batch_widths": [
+        35,
+        56,
+        94,
+        125,
+        174,
+        297,
+        414,
+        512,
+        512
+      ],
+      "old_batch_widths": [
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512
+      ]
+    },
+    {
+      "case_id": "V2D-41",
+      "n": 127,
+      "old": {
+        "tokenization_ms": 23.324,
+        "bucketing_ms": 0.0,
+        "numpy_prep_ms": 6.2966,
+        "onnx_ms": 6696.5864,
+        "unpermute_ms": 0.0551,
+        "ce_total_ms": 6726.9944
+      },
+      "new": {
+        "tokenization_ms": 21.6439,
+        "bucketing_ms": 13.4523,
+        "numpy_prep_ms": 3.3589,
+        "onnx_ms": 2129.4695,
+        "unpermute_ms": 0.0526,
+        "ce_total_ms": 2168.7002
+      },
+      "new_batch_widths": [
+        47,
+        76,
+        116,
+        138,
+        187,
+        263,
+        439,
+        512
+      ],
+      "old_batch_widths": [
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512
+      ]
+    },
+    {
+      "case_id": "V2D-42",
+      "n": 123,
+      "old": {
+        "tokenization_ms": 17.7073,
+        "bucketing_ms": 0.0,
+        "numpy_prep_ms": 6.198,
+        "onnx_ms": 6718.3414,
+        "unpermute_ms": 0.0764,
+        "ce_total_ms": 6743.0904
+      },
+      "new": {
+        "tokenization_ms": 14.8219,
+        "bucketing_ms": 7.7551,
+        "numpy_prep_ms": 2.8654,
+        "onnx_ms": 2193.7384,
+        "unpermute_ms": 0.0483,
+        "ce_total_ms": 2219.9489
+      },
+      "new_batch_widths": [
+        48,
+        84,
+        112,
+        119,
+        151,
+        194,
+        274,
+        512
+      ],
+      "old_batch_widths": [
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512
+      ]
+    },
+    {
+      "case_id": "V2D-43",
+      "n": 126,
+      "old": {
+        "tokenization_ms": 17.8505,
+        "bucketing_ms": 0.0,
+        "numpy_prep_ms": 6.3054,
+        "onnx_ms": 6669.6102,
+        "unpermute_ms": 0.05,
+        "ce_total_ms": 6694.6047
+      },
+      "new": {
+        "tokenization_ms": 22.9382,
+        "bucketing_ms": 9.0682,
+        "numpy_prep_ms": 3.2537,
+        "onnx_ms": 1791.8743,
+        "unpermute_ms": 0.0514,
+        "ce_total_ms": 1827.9834
+      },
+      "new_batch_widths": [
+        49,
+        72,
+        106,
+        142,
+        181,
+        229,
+        336,
+        512
+      ],
+      "old_batch_widths": [
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512
+      ]
+    },
+    {
+      "case_id": "V2D-44",
+      "n": 117,
+      "old": {
+        "tokenization_ms": 19.4708,
+        "bucketing_ms": 0.0,
+        "numpy_prep_ms": 6.2433,
+        "onnx_ms": 6489.5886,
+        "unpermute_ms": 0.0689,
+        "ce_total_ms": 6516.1219
+      },
+      "new": {
+        "tokenization_ms": 16.4059,
+        "bucketing_ms": 12.4741,
+        "numpy_prep_ms": 2.9204,
+        "onnx_ms": 1687.7659,
+        "unpermute_ms": 0.0502,
+        "ce_total_ms": 1720.3142
+      },
+      "new_batch_widths": [
+        58,
+        81,
+        121,
+        176,
+        217,
+        274,
+        449,
+        512
+      ],
+      "old_batch_widths": [
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512
+      ]
+    },
+    {
+      "case_id": "V2D-45",
+      "n": 124,
+      "old": {
+        "tokenization_ms": 25.239,
+        "bucketing_ms": 0.0,
+        "numpy_prep_ms": 6.0742,
+        "onnx_ms": 6575.3253,
+        "unpermute_ms": 0.0498,
+        "ce_total_ms": 6607.4341
+      },
+      "new": {
+        "tokenization_ms": 20.8498,
+        "bucketing_ms": 17.3637,
+        "numpy_prep_ms": 3.5133,
+        "onnx_ms": 2190.5295,
+        "unpermute_ms": 0.0483,
+        "ce_total_ms": 2233.0179
+      },
+      "new_batch_widths": [
+        67,
+        92,
+        129,
+        170,
+        207,
+        279,
+        512,
+        512
+      ],
+      "old_batch_widths": [
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512
+      ]
+    },
+    {
+      "case_id": "V2D-46",
+      "n": 116,
+      "old": {
+        "tokenization_ms": 22.0858,
+        "bucketing_ms": 0.0,
+        "numpy_prep_ms": 5.823,
+        "onnx_ms": 6299.7106,
+        "unpermute_ms": 0.0513,
+        "ce_total_ms": 6328.3818
+      },
+      "new": {
+        "tokenization_ms": 23.8559,
+        "bucketing_ms": 14.4515,
+        "numpy_prep_ms": 3.6729,
+        "onnx_ms": 2099.3373,
+        "unpermute_ms": 0.0506,
+        "ce_total_ms": 2142.1099
+      },
+      "new_batch_widths": [
+        68,
+        127,
+        170,
+        204,
+        260,
+        370,
+        512,
+        512
+      ],
+      "old_batch_widths": [
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512
+      ]
+    },
+    {
+      "case_id": "V2D-47",
+      "n": 128,
+      "old": {
+        "tokenization_ms": 17.1243,
+        "bucketing_ms": 0.0,
+        "numpy_prep_ms": 6.4169,
+        "onnx_ms": 7083.8037,
+        "unpermute_ms": 0.0509,
+        "ce_total_ms": 7108.0972
+      },
+      "new": {
+        "tokenization_ms": 17.1904,
+        "bucketing_ms": 9.7877,
+        "numpy_prep_ms": 2.868,
+        "onnx_ms": 1863.3708,
+        "unpermute_ms": 0.0499,
+        "ce_total_ms": 1893.9526
+      },
+      "new_batch_widths": [
+        49,
+        67,
+        104,
+        126,
+        166,
+        247,
+        356,
+        512
+      ],
+      "old_batch_widths": [
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512
+      ]
+    },
+    {
+      "case_id": "V2D-48",
+      "n": 120,
+      "old": {
+        "tokenization_ms": 17.2168,
+        "bucketing_ms": 0.0,
+        "numpy_prep_ms": 6.5186,
+        "onnx_ms": 6628.6163,
+        "unpermute_ms": 0.0519,
+        "ce_total_ms": 6653.1324
+      },
+      "new": {
+        "tokenization_ms": 19.6284,
+        "bucketing_ms": 7.8883,
+        "numpy_prep_ms": 2.6544,
+        "onnx_ms": 1437.5508,
+        "unpermute_ms": 0.052,
+        "ce_total_ms": 1468.4768
+      },
+      "new_batch_widths": [
+        43,
+        71,
+        88,
+        135,
+        189,
+        229,
+        342,
+        512
+      ],
+      "old_batch_widths": [
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512
+      ]
+    },
+    {
+      "case_id": "V2D-49",
+      "n": 125,
+      "old": {
+        "tokenization_ms": 23.6154,
+        "bucketing_ms": 0.0,
+        "numpy_prep_ms": 6.0361,
+        "onnx_ms": 7144.1488,
+        "unpermute_ms": 0.0504,
+        "ce_total_ms": 7174.6769
+      },
+      "new": {
+        "tokenization_ms": 18.0894,
+        "bucketing_ms": 9.9811,
+        "numpy_prep_ms": 2.8313,
+        "onnx_ms": 1716.4397,
+        "unpermute_ms": 0.0489,
+        "ce_total_ms": 1748.108
+      },
+      "new_batch_widths": [
+        50,
+        71,
+        97,
+        128,
+        200,
+        246,
+        352,
+        512
+      ],
+      "old_batch_widths": [
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512
+      ]
+    },
+    {
+      "case_id": "V2D-50",
+      "n": 120,
+      "old": {
+        "tokenization_ms": 22.09,
+        "bucketing_ms": 0.0,
+        "numpy_prep_ms": 6.1688,
+        "onnx_ms": 6437.4725,
+        "unpermute_ms": 0.0535,
+        "ce_total_ms": 6466.5029
+      },
+      "new": {
+        "tokenization_ms": 23.4811,
+        "bucketing_ms": 22.8605,
+        "numpy_prep_ms": 3.9037,
+        "onnx_ms": 2182.635,
+        "unpermute_ms": 0.0691,
+        "ce_total_ms": 2233.7504
+      },
+      "new_batch_widths": [
+        87,
+        121,
+        134,
+        183,
+        239,
+        281,
+        444,
+        512
+      ],
+      "old_batch_widths": [
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512
+      ]
+    }
+  ],
+  "runtime_seconds": 1361.2,
+  "metrics_correction": {
+    "note": "First metrics pass used recovered extra a_norm=0.0 (EXP-017 SYSTEM-F value stored in recovered-union compact rows). SYSTEM-G extras use minmax(projection_fused). Corrected via EXP-019A apply_blend_exp019a without re-running CE. Logits were already bitwise-identical old vs D1 (max_abs_diff=0).",
+    "ce_rerun": false,
+    "d1_untouched": true,
+    "corrected_at_utc": "2026-09-01T05:40:16Z",
+    "corrected_at_et": "2026-09-01T01:40:16-0400"
+  }
+}

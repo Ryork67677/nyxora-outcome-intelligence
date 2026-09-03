@@ -1,0 +1,279 @@
+{
+  "experiment_id": "EXP-018B",
+  "artifact": "ce-latency-microbench",
+  "timestamp": "2026-09-01T03:51:35Z",
+  "cpu_count": 8,
+  "ce_sha256": "5d3e70fd0c9ff14b9b5169a51e957b7a9c74897afd0a35ce4bd318150c1d4d4a",
+  "n_passages": 104,
+  "queries": [
+    "How does the HTTP client apply retry backoff after a 429 response?",
+    "Where is the default idle timeout configured for pooled database connections?",
+    "What happens when a webhook signature fails validation during delivery?",
+    "How are pagination cursors encoded for list endpoints that return partial pages?"
+  ],
+  "session_create_ms": [
+    345.6,
+    289.7
+  ],
+  "length_stats": {
+    "n": 104,
+    "mean": 251.0,
+    "p50": 181,
+    "p90": 512,
+    "max": 512,
+    "min": 22,
+    "frac_ge_512": 0.308,
+    "query_chars": 66,
+    "passage_chars_mean": 1195.9
+  },
+  "timed": {
+    "baseline_fixed_b16_t4": {
+      "name": "baseline_fixed_b16_t4",
+      "threads": 4,
+      "pad": "fixed",
+      "batch_size": 16,
+      "reuse": "baseline",
+      "ms_per_query": [
+        5662.07,
+        5592.83,
+        5459.15
+      ],
+      "ms_mean": 5571.35,
+      "ms_per_pair": 53.571,
+      "n_passages": 104,
+      "n_scores": 104
+    },
+    "fixed_b1_t4": {
+      "name": "fixed_b1_t4",
+      "threads": 4,
+      "pad": "fixed",
+      "batch_size": 1,
+      "reuse": "baseline",
+      "ms_per_query": [
+        5090.67,
+        5129.86,
+        5054.56
+      ],
+      "ms_mean": 5091.69,
+      "ms_per_pair": 48.959,
+      "n_passages": 104,
+      "n_scores": 104
+    },
+    "fixed_b32_t4": {
+      "name": "fixed_b32_t4",
+      "threads": 4,
+      "pad": "fixed",
+      "batch_size": 32,
+      "reuse": "baseline",
+      "ms_per_query": [
+        5475.69,
+        5486.05,
+        5430.92
+      ],
+      "ms_mean": 5464.22,
+      "ms_per_pair": 52.541,
+      "n_passages": 104,
+      "n_scores": 104
+    },
+    "fixed_b16_t8": {
+      "name": "fixed_b16_t8",
+      "threads": 8,
+      "pad": "fixed",
+      "batch_size": 16,
+      "reuse": null,
+      "session_create_ms": 351.3,
+      "ms_per_query": [
+        3745.49,
+        3816.12,
+        3622.08
+      ],
+      "ms_mean": 3727.9,
+      "ms_per_pair": 35.845,
+      "n_passages": 104,
+      "n_scores": 104
+    },
+    "batchpad_b16_t4": {
+      "name": "batchpad_b16_t4",
+      "threads": 4,
+      "pad": "batch",
+      "batch_size": 16,
+      "reuse": null,
+      "session_create_ms": 307.8,
+      "ms_per_query": [
+        5521.03,
+        5573.64,
+        5706.06
+      ],
+      "ms_mean": 5600.25,
+      "ms_per_pair": 53.849,
+      "n_passages": 104,
+      "n_scores": 104
+    },
+    "batchpad_b32_t8": {
+      "name": "batchpad_b32_t8",
+      "threads": 8,
+      "pad": "batch",
+      "batch_size": 32,
+      "reuse": null,
+      "session_create_ms": 295.1,
+      "ms_per_query": [
+        3856.2,
+        3707.44,
+        3730.77
+      ],
+      "ms_mean": 3764.81,
+      "ms_per_pair": 36.2,
+      "n_passages": 104,
+      "n_scores": 104
+    },
+    "batchpad_mod8_b32_t8": {
+      "name": "batchpad_mod8_b32_t8",
+      "threads": 8,
+      "pad": "batch",
+      "pad_to_multiple_of": 8,
+      "batch_size": 32,
+      "reuse": null,
+      "session_create_ms": 442.7,
+      "ms_per_query": [
+        3705.12,
+        4432.94,
+        4502.41
+      ],
+      "ms_mean": 4213.49,
+      "ms_per_pair": 40.514,
+      "n_passages": 104,
+      "n_scores": 104
+    },
+    "batchpad_b64_t8": {
+      "name": "batchpad_b64_t8",
+      "threads": 8,
+      "pad": "batch",
+      "batch_size": 64,
+      "reuse": null,
+      "session_create_ms": 626.3,
+      "ms_per_query": [
+        12757.1,
+        3772.37,
+        4906.51
+      ],
+      "ms_mean": 7145.32,
+      "ms_per_pair": 68.705,
+      "n_passages": 104,
+      "n_scores": 104
+    }
+  },
+  "split_fixed_b16": {
+    "tokenize_ms": 131.49,
+    "pack_numpy_ms": 14.43,
+    "infer_ms": 7793.86,
+    "n_batches": 7,
+    "seq_len_mean": 251.0,
+    "seq_len_max": 512,
+    "seq_len_min": 22,
+    "frac_at_512": 0.308,
+    "pad_width": 512
+  },
+  "split_batchpad_b32": {
+    "tokenize_ms": 28.01,
+    "pack_numpy_ms": 4.76,
+    "infer_ms": 3305.05,
+    "n_batches": 4,
+    "seq_len_mean": 251.0,
+    "seq_len_max": 512,
+    "seq_len_min": 22,
+    "frac_at_512": 0.308,
+    "pad_width": 512
+  },
+  "identity": {
+    "n_pairs": 32,
+    "query": "How does the HTTP client apply retry backoff after a 429 response?",
+    "note": "synthetic query + first 32 cs_v1_control passages; not V2-DEVSET-001",
+    "self_repeat_same_session": {
+      "n": 32,
+      "exact_equal": true,
+      "max_abs_diff": 0.0,
+      "mean_abs_diff": 0.0,
+      "allclose_1e5": true,
+      "allclose_1e4": true,
+      "rank_identical": true,
+      "top10_identical": true
+    },
+    "fixed_batch1_vs_batch16": {
+      "n": 32,
+      "exact_equal": true,
+      "max_abs_diff": 0.0,
+      "mean_abs_diff": 0.0,
+      "allclose_1e5": true,
+      "allclose_1e4": true,
+      "rank_identical": true,
+      "top10_identical": true
+    },
+    "fixed_batch32_vs_batch16": {
+      "n": 32,
+      "exact_equal": true,
+      "max_abs_diff": 0.0,
+      "mean_abs_diff": 0.0,
+      "allclose_1e5": true,
+      "allclose_1e4": true,
+      "rank_identical": true,
+      "top10_identical": true
+    },
+    "fixed_t8_vs_t4": {
+      "n": 32,
+      "exact_equal": true,
+      "max_abs_diff": 0.0,
+      "mean_abs_diff": 0.0,
+      "allclose_1e5": true,
+      "allclose_1e4": true,
+      "rank_identical": true,
+      "top10_identical": true
+    },
+    "batchpad_t4_b16_vs_fixed": {
+      "n": 32,
+      "exact_equal": true,
+      "max_abs_diff": 0.0,
+      "mean_abs_diff": 0.0,
+      "allclose_1e5": true,
+      "allclose_1e4": true,
+      "rank_identical": true,
+      "top10_identical": true
+    },
+    "batchpad_t8_b32_vs_fixed": {
+      "n": 32,
+      "exact_equal": true,
+      "max_abs_diff": 0.0,
+      "mean_abs_diff": 0.0,
+      "allclose_1e5": true,
+      "allclose_1e4": true,
+      "rank_identical": true,
+      "top10_identical": true
+    }
+  },
+  "two_call_vs_one": {
+    "two_call_ms": 5780.51,
+    "one_call_ms": 5529.08,
+    "identity": {
+      "n": 104,
+      "exact_equal": true,
+      "max_abs_diff": 0.0,
+      "mean_abs_diff": 0.0,
+      "allclose_1e5": true,
+      "allclose_1e4": true,
+      "rank_identical": true,
+      "top10_identical": true
+    },
+    "n_a": 94,
+    "n_extra": 10
+  },
+  "holdout_log_before": {
+    "bytes": 235,
+    "sha256": "45b83a77f6f332174d641956f076dd0c0cae44fe48f4f2892ac7030a4c0143b3"
+  },
+  "holdout_log_after": {
+    "bytes": 235,
+    "sha256": "45b83a77f6f332174d641956f076dd0c0cae44fe48f4f2892ac7030a4c0143b3"
+  },
+  "holdout_log_unchanged": true,
+  "v2_devset_scored": false,
+  "holdout_opened": false
+}

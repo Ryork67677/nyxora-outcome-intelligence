@@ -1,0 +1,5274 @@
+{
+  "experiment_id": "EXP-008",
+  "timestamp": "2026-08-18T05:43:07Z",
+  "git_commit": "ba8c8eeb79c0ae4cdd7e150e71177e5d0d3fce69",
+  "corpus_snapshots": {
+    "control": "snap_689e336380a054d8039dc35b2c09cd0a",
+    "bounded": "snap_95215379baa1d8460315986d9745dc0c"
+  },
+  "chunk_sets": {
+    "control": "cs_v1_control",
+    "bounded": "cs_2722bf8b72dcf3eb404336d7"
+  },
+  "embedding_model": {
+    "model_id": "emb_c11d8d9184d2ebc1ac60801a6452b884",
+    "provider": "gensim-data",
+    "model_identifier": "fasttext-wiki-news-subwords-300",
+    "origin": "facebookresearch/fastText wiki-news-300d-1M-subword",
+    "revision": "gensim-data release asset, sha256 be48d40d6c67dbebe4b3eea22ab7dd7c7efbdb977d88654010f4eb740a836552",
+    "training_corpus": "Wikipedia 2017 + UMBC webbase + statmt.org news (~16B tokens)",
+    "vocabulary": 999999,
+    "dimension": 300,
+    "pooling": "mean of L2-normalized in-vocabulary token vectors",
+    "normalization": "L2 on the pooled vector",
+    "distance_metric": "cosine",
+    "query_prefix": null,
+    "document_prefix": null,
+    "corpus_fitted": false
+  },
+  "embedding_fingerprint": "gensim-data release asset, sha256 be48d40d6c67dbebe4b3eea22ab7dd7c7efbdb977d88654010f4eb740a836552",
+  "distance_metric": "cosine (exact, no ANN index)",
+  "parser_version": "v1.0",
+  "top_k": 10,
+  "probe_depths": [
+    10,
+    20,
+    50,
+    100,
+    300
+  ],
+  "bm25_config": {
+    "k1": 1.2,
+    "b": 0.75,
+    "ts_config": "simple"
+  },
+  "retrieval_config": {
+    "reranker": null,
+    "query_rewriting": false,
+    "query_expansion": false,
+    "stemming": false,
+    "enrichment": null,
+    "pooling": "mean of L2-normalized in-vocabulary token vectors"
+  },
+  "configurations": {
+    "A_control_bm25": {
+      "description": "control chunks + BM25",
+      "snapshot_id": "snap_689e336380a054d8039dc35b2c09cd0a",
+      "chunk_set_id": "cs_v1_control",
+      "retriever": "bm25",
+      "macro_span_recall": 0.475,
+      "cases_fully_recalled": 9,
+      "cases_total": 20,
+      "spans_found_at_10": 10,
+      "spans_total": 22,
+      "document_recall": 0.825,
+      "mrr": 0.2795,
+      "mean_evidence_rank_when_found": 21,
+      "median_evidence_rank_when_found": 12,
+      "spans_absent_from_top": {
+        "10": 12,
+        "20": 8,
+        "50": 3,
+        "100": 2,
+        "300": 1
+      },
+      "median_chunk_len_reachable_at_300": 897,
+      "mean_query_ms": 383.9,
+      "cases": {
+        "AN-001": {
+          "case_id": "AN-001",
+          "category": "exact_lookup",
+          "question": "Which request header must every Claude API request send, and what value does the documentation give as the example?",
+          "spans": [
+            {
+              "section_path": [
+                "Preamble"
+              ],
+              "span": [
+                116,
+                227
+              ],
+              "rank": 19,
+              "doc_rank": 19,
+              "chunk_id": "chk_d8e8c7e599356dd09769ebd0582d3094406277e0",
+              "chunk_len": 833,
+              "similarity": 20.259183,
+              "within": {
+                "10": false,
+                "20": true,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": false
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false,
+          "doc_recall": 0.0
+        },
+        "AN-002": {
+          "case_id": "AN-002",
+          "category": "exact_lookup",
+          "question": "Which HTTP status code does the Claude API return with the request_too_large error type?",
+          "spans": [
+            {
+              "section_path": [
+                "HTTP errors"
+              ],
+              "span": [
+                1636,
+                1721
+              ],
+              "rank": 27,
+              "doc_rank": 1,
+              "chunk_id": "chk_c489a281149ad3f3dd30936ed094099a8e17999b",
+              "chunk_len": 3327,
+              "similarity": 14.047926,
+              "within": {
+                "10": false,
+                "20": false,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false,
+          "doc_recall": 1.0
+        },
+        "AN-003": {
+          "case_id": "AN-003",
+          "category": "exact_lookup",
+          "question": "How many requests can a single Message Batches create request contain at most?",
+          "spans": [
+            {
+              "section_path": [
+                "Batches",
+                "Create a Message Batch",
+                "Body Parameters"
+              ],
+              "span": [
+                4554,
+                4611
+              ],
+              "rank": null,
+              "doc_rank": 6,
+              "chunk_id": null,
+              "chunk_len": null,
+              "similarity": null,
+              "within": {
+                "10": false,
+                "20": false,
+                "50": false,
+                "100": false,
+                "300": false
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false,
+          "doc_recall": 1.0
+        },
+        "AN-004": {
+          "case_id": "AN-004",
+          "category": "exact_lookup",
+          "question": "How many blocks does the Claude prompt caching lookback window check per breakpoint?",
+          "spans": [
+            {
+              "section_path": [
+                "Explicit cache breakpoints",
+                "Structuring your prompt",
+                "How automatic prefix checking works"
+              ],
+              "span": [
+                25537,
+                25690
+              ],
+              "rank": 12,
+              "doc_rank": 1,
+              "chunk_id": "chk_384363e66444dd16a3dee38a9b52449914c66c3e",
+              "chunk_len": 3439,
+              "similarity": 17.567536,
+              "within": {
+                "10": false,
+                "20": true,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false,
+          "doc_recall": 1.0
+        },
+        "AN-005": {
+          "case_id": "AN-005",
+          "category": "exact_lookup",
+          "question": "Which anthropic-beta header value enables context editing?",
+          "spans": [
+            {
+              "section_path": [
+                "Server-side strategies"
+              ],
+              "span": [
+                4055,
+                4106
+              ],
+              "rank": 4,
+              "doc_rank": 2,
+              "chunk_id": "chk_684086c646a7ffdd31032a0a7cbf7c49c4fd19d9",
+              "chunk_len": 325,
+              "similarity": 15.779501,
+              "within": {
+                "10": true,
+                "20": true,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true,
+          "doc_recall": 1.0
+        },
+        "AN-006": {
+          "case_id": "AN-006",
+          "category": "exact_lookup",
+          "question": "Which beta header value enables the Claude code execution tool?",
+          "spans": [
+            {
+              "section_path": [
+                "Upgrade to latest tool version",
+                "What's changed"
+              ],
+              "span": [
+                58361,
+                58388
+              ],
+              "rank": 29,
+              "doc_rank": 29,
+              "chunk_id": "chk_6431e660f0a8d074124fbc2841d9458dbad0b80f",
+              "chunk_len": 733,
+              "similarity": 13.781421,
+              "within": {
+                "10": false,
+                "20": false,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": false
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false,
+          "doc_recall": 0.0
+        },
+        "AN-007": {
+          "case_id": "AN-007",
+          "category": "exact_lookup",
+          "question": "What error type does the Claude API return with HTTP status 529?",
+          "spans": [
+            {
+              "section_path": [
+                "HTTP errors"
+              ],
+              "span": [
+                2459,
+                2533
+              ],
+              "rank": 18,
+              "doc_rank": 2,
+              "chunk_id": "chk_c489a281149ad3f3dd30936ed094099a8e17999b",
+              "chunk_len": 3327,
+              "similarity": 14.306773,
+              "within": {
+                "10": false,
+                "20": true,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false,
+          "doc_recall": 1.0
+        },
+        "AN-008": {
+          "case_id": "AN-008",
+          "category": "normal",
+          "question": "What does Anthropic guarantee to preserve for a given version of the Messages API?",
+          "spans": [
+            {
+              "section_path": [
+                "Preamble"
+              ],
+              "span": [
+                361,
+                496
+              ],
+              "rank": 12,
+              "doc_rank": 12,
+              "chunk_id": "chk_d8e8c7e599356dd09769ebd0582d3094406277e0",
+              "chunk_len": 833,
+              "similarity": 14.842891,
+              "within": {
+                "10": false,
+                "20": true,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": false
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false,
+          "doc_recall": 0.0
+        },
+        "AN-009": {
+          "case_id": "AN-009",
+          "category": "version_conflict",
+          "question": "Can an organization still purchase a Priority Tier capacity commitment for the Claude API?",
+          "spans": [
+            {
+              "section_path": [
+                "Preamble"
+              ],
+              "span": [
+                246,
+                318
+              ],
+              "rank": 1,
+              "doc_rank": 1,
+              "chunk_id": "chk_3ca2ff24b047321f3f33112db03f5633835d78cd",
+              "chunk_len": 897,
+              "similarity": 36.502926,
+              "within": {
+                "10": true,
+                "20": true,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true,
+          "doc_recall": 1.0
+        },
+        "AN-010": {
+          "case_id": "AN-010",
+          "category": "version_conflict",
+          "question": "What is the current state of the claude-opus-4-1-20250805 model?",
+          "spans": [
+            {
+              "section_path": [
+                "Model status"
+              ],
+              "span": [
+                5671,
+                5769
+              ],
+              "rank": 49,
+              "doc_rank": 8,
+              "chunk_id": "chk_90cc3f1a33717988b24dd2f64a474c69e2ae399d",
+              "chunk_len": 2317,
+              "similarity": 12.18914,
+              "within": {
+                "10": false,
+                "20": false,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false,
+          "doc_recall": 1.0
+        },
+        "AN-011": {
+          "case_id": "AN-011",
+          "category": "ambiguous",
+          "question": "What is my rate limit on the Claude API?",
+          "spans": [
+            {
+              "section_path": [
+                "About rate limits"
+              ],
+              "span": [
+                1672,
+                1849
+              ],
+              "rank": 54,
+              "doc_rank": 1,
+              "chunk_id": "chk_79059eadc2995d0b914552581bb7a62c4f06cb8b",
+              "chunk_len": 1754,
+              "similarity": 10.360347,
+              "within": {
+                "10": false,
+                "20": false,
+                "50": false,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false,
+          "doc_recall": 1.0
+        },
+        "AN-012": {
+          "case_id": "AN-012",
+          "category": "multi_hop",
+          "question": "If a Claude API request fails with HTTP 429, what error type comes back and what determines the limit that was hit?",
+          "spans": [
+            {
+              "section_path": [
+                "HTTP errors"
+              ],
+              "span": [
+                1840,
+                1904
+              ],
+              "rank": 47,
+              "doc_rank": 28,
+              "chunk_id": "chk_c489a281149ad3f3dd30936ed094099a8e17999b",
+              "chunk_len": 3327,
+              "similarity": 18.707785,
+              "within": {
+                "10": false,
+                "20": false,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": false
+            },
+            {
+              "section_path": [
+                "About rate limits"
+              ],
+              "span": [
+                1672,
+                1849
+              ],
+              "rank": 117,
+              "doc_rank": 6,
+              "chunk_id": "chk_79059eadc2995d0b914552581bb7a62c4f06cb8b",
+              "chunk_len": 1754,
+              "similarity": 15.046248,
+              "within": {
+                "10": false,
+                "20": false,
+                "50": false,
+                "100": false,
+                "300": true
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false,
+          "doc_recall": 0.5
+        },
+        "OA-001": {
+          "case_id": "OA-001",
+          "category": "exact_lookup",
+          "question": "Which environment variable globally disables tracing in the OpenAI Agents SDK?",
+          "spans": [
+            {
+              "section_path": [
+                "Tracing"
+              ],
+              "span": [
+                512,
+                553
+              ],
+              "rank": 4,
+              "doc_rank": 4,
+              "chunk_id": "chk_600fe1685960a129813639141d8e6d0bd21e2f87",
+              "chunk_len": 883,
+              "similarity": 25.218056,
+              "within": {
+                "10": true,
+                "20": true,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true,
+          "doc_recall": 1.0
+        },
+        "OA-002": {
+          "case_id": "OA-002",
+          "category": "exact_lookup",
+          "question": "Which exception does the OpenAI Agents SDK raise when a run exceeds the max_turns limit?",
+          "spans": [
+            {
+              "section_path": [
+                "Running agents",
+                "Exceptions"
+              ],
+              "span": [
+                33598,
+                33793
+              ],
+              "rank": 2,
+              "doc_rank": 1,
+              "chunk_id": "chk_a3e66af0cbf3c669402fb7580ef3e132d064be19",
+              "chunk_len": 2403,
+              "similarity": 24.814782,
+              "within": {
+                "10": true,
+                "20": true,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true,
+          "doc_recall": 1.0
+        },
+        "OA-003": {
+          "case_id": "OA-003",
+          "category": "exact_lookup",
+          "question": "Which exception does the OpenAI Agents SDK runner raise when an input guardrail tripwire fires?",
+          "spans": [
+            {
+              "section_path": [
+                "Guardrails",
+                "Tripwires"
+              ],
+              "span": [
+                7225,
+                7381
+              ],
+              "rank": 6,
+              "doc_rank": 1,
+              "chunk_id": "chk_b17099fe75c44006e954e286fa820bb2685015c4",
+              "chunk_len": 1499,
+              "similarity": 23.721294,
+              "within": {
+                "10": true,
+                "20": true,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true,
+          "doc_recall": 1.0
+        },
+        "OA-004": {
+          "case_id": "OA-004",
+          "category": "exact_lookup",
+          "question": "How do you disable the agent turn limit entirely in the OpenAI Agents SDK runner?",
+          "spans": [
+            {
+              "section_path": [
+                "Running agents",
+                "Runner lifecycle and configuration",
+                "The agent loop"
+              ],
+              "span": [
+                2052,
+                2101
+              ],
+              "rank": 5,
+              "doc_rank": 5,
+              "chunk_id": "chk_54f24b235eee08c3f04656ce79c5baf889005a84",
+              "chunk_len": 1251,
+              "similarity": 22.055908,
+              "within": {
+                "10": true,
+                "20": true,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true,
+          "doc_recall": 1.0
+        },
+        "OA-005": {
+          "case_id": "OA-005",
+          "category": "exact_lookup",
+          "question": "Which OpenAI Agents SDK function sets the OpenAI API key programmatically instead of using the environment variable?",
+          "spans": [
+            {
+              "section_path": [
+                "Configuration",
+                "API keys and clients"
+              ],
+              "span": [
+                2227,
+                2308
+              ],
+              "rank": 3,
+              "doc_rank": 1,
+              "chunk_id": "chk_92fa440a7d4555008d2fd5c2ca71f2679d4cc9af",
+              "chunk_len": 444,
+              "similarity": 30.921725,
+              "within": {
+                "10": true,
+                "20": true,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true,
+          "doc_recall": 1.0
+        },
+        "OA-006": {
+          "case_id": "OA-006",
+          "category": "multi_hop",
+          "question": "What are the two documented ways to globally disable tracing in the OpenAI Agents SDK \u2014 one by environment and one in code?",
+          "spans": [
+            {
+              "section_path": [
+                "Tracing"
+              ],
+              "span": [
+                512,
+                553
+              ],
+              "rank": 1,
+              "doc_rank": 1,
+              "chunk_id": "chk_600fe1685960a129813639141d8e6d0bd21e2f87",
+              "chunk_len": 883,
+              "similarity": 42.384351,
+              "within": {
+                "10": true,
+                "20": true,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            },
+            {
+              "section_path": [
+                "Configuration",
+                "Tracing"
+              ],
+              "span": [
+                8126,
+                8242
+              ],
+              "rank": 29,
+              "doc_rank": 4,
+              "chunk_id": "chk_9425aaf386c8eaf9795d3f9df8cdad806aab8133",
+              "chunk_len": 116,
+              "similarity": 19.45848,
+              "within": {
+                "10": false,
+                "20": false,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 0.5,
+          "fully_recalled": false,
+          "doc_recall": 1.0
+        },
+        "OA-007": {
+          "case_id": "OA-007",
+          "category": "normal",
+          "question": "What problem does built-in session memory solve in the OpenAI Agents SDK?",
+          "spans": [
+            {
+              "section_path": [
+                "Sessions"
+              ],
+              "span": [
+                12,
+                259
+              ],
+              "rank": 1,
+              "doc_rank": 1,
+              "chunk_id": "chk_db82490165bc7adcbfe38dcb7b65c18edd3f15f8",
+              "chunk_len": 867,
+              "similarity": 23.798327,
+              "within": {
+                "10": true,
+                "20": true,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true,
+          "doc_recall": 1.0
+        },
+        "OA-008": {
+          "case_id": "OA-008",
+          "category": "exact_lookup",
+          "question": "Which model does the OpenAI Agents SDK use when an Agent does not specify one?",
+          "spans": [
+            {
+              "section_path": [
+                "Models",
+                "OpenAI models"
+              ],
+              "span": [
+                2098,
+                2233
+              ],
+              "rank": 1,
+              "doc_rank": 1,
+              "chunk_id": "chk_155378a014c2c411b1aba2482afed3eabddf6f28",
+              "chunk_len": 695,
+              "similarity": 30.816682,
+              "within": {
+                "10": true,
+                "20": true,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true,
+          "doc_recall": 1.0
+        }
+      }
+    },
+    "B_bounded_bm25": {
+      "description": "bounded chunks + BM25",
+      "snapshot_id": "snap_95215379baa1d8460315986d9745dc0c",
+      "chunk_set_id": "cs_2722bf8b72dcf3eb404336d7",
+      "retriever": "bm25",
+      "macro_span_recall": 0.5,
+      "cases_fully_recalled": 9,
+      "cases_total": 20,
+      "spans_found_at_10": 11,
+      "spans_total": 22,
+      "document_recall": 0.825,
+      "mrr": 0.2874,
+      "mean_evidence_rank_when_found": 37.57,
+      "median_evidence_rank_when_found": 7,
+      "spans_absent_from_top": {
+        "10": 11,
+        "20": 9,
+        "50": 5,
+        "100": 4,
+        "300": 1
+      },
+      "median_chunk_len_reachable_at_300": 883,
+      "mean_query_ms": 395.4,
+      "cases": {
+        "AN-001": {
+          "case_id": "AN-001",
+          "category": "exact_lookup",
+          "question": "Which request header must every Claude API request send, and what value does the documentation give as the example?",
+          "spans": [
+            {
+              "section_path": [
+                "Preamble"
+              ],
+              "span": [
+                116,
+                227
+              ],
+              "rank": 29,
+              "doc_rank": 29,
+              "chunk_id": "chk_2a5b8f71392b3e0becb46fb1df9aa26f5400420b",
+              "chunk_len": 833,
+              "similarity": 18.911904,
+              "within": {
+                "10": false,
+                "20": false,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": false
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false,
+          "doc_recall": 0.0
+        },
+        "AN-002": {
+          "case_id": "AN-002",
+          "category": "exact_lookup",
+          "question": "Which HTTP status code does the Claude API return with the request_too_large error type?",
+          "spans": [
+            {
+              "section_path": [
+                "HTTP errors"
+              ],
+              "span": [
+                1636,
+                1721
+              ],
+              "rank": 172,
+              "doc_rank": 1,
+              "chunk_id": "chk_cec04299237930aec8110ed96792e75962519642",
+              "chunk_len": 1121,
+              "similarity": 9.883967,
+              "within": {
+                "10": false,
+                "20": false,
+                "50": false,
+                "100": false,
+                "300": true
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false,
+          "doc_recall": 1.0
+        },
+        "AN-003": {
+          "case_id": "AN-003",
+          "category": "exact_lookup",
+          "question": "How many requests can a single Message Batches create request contain at most?",
+          "spans": [
+            {
+              "section_path": [
+                "Batches",
+                "Create a Message Batch",
+                "Body Parameters"
+              ],
+              "span": [
+                4554,
+                4611
+              ],
+              "rank": null,
+              "doc_rank": 4,
+              "chunk_id": null,
+              "chunk_len": null,
+              "similarity": null,
+              "within": {
+                "10": false,
+                "20": false,
+                "50": false,
+                "100": false,
+                "300": false
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false,
+          "doc_recall": 1.0
+        },
+        "AN-004": {
+          "case_id": "AN-004",
+          "category": "exact_lookup",
+          "question": "How many blocks does the Claude prompt caching lookback window check per breakpoint?",
+          "spans": [
+            {
+              "section_path": [
+                "Explicit cache breakpoints",
+                "Structuring your prompt",
+                "How automatic prefix checking works"
+              ],
+              "span": [
+                25537,
+                25690
+              ],
+              "rank": 11,
+              "doc_rank": 1,
+              "chunk_id": "chk_0c41e9151bcd7704683b031001f1d1048edc9030",
+              "chunk_len": 1167,
+              "similarity": 17.804708,
+              "within": {
+                "10": false,
+                "20": true,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false,
+          "doc_recall": 1.0
+        },
+        "AN-005": {
+          "case_id": "AN-005",
+          "category": "exact_lookup",
+          "question": "Which anthropic-beta header value enables context editing?",
+          "spans": [
+            {
+              "section_path": [
+                "Server-side strategies"
+              ],
+              "span": [
+                4055,
+                4106
+              ],
+              "rank": 3,
+              "doc_rank": 2,
+              "chunk_id": "chk_cd7255964cf97ca9ea27c8d6ede76e5a8c717905",
+              "chunk_len": 325,
+              "similarity": 15.847046,
+              "within": {
+                "10": true,
+                "20": true,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true,
+          "doc_recall": 1.0
+        },
+        "AN-006": {
+          "case_id": "AN-006",
+          "category": "exact_lookup",
+          "question": "Which beta header value enables the Claude code execution tool?",
+          "spans": [
+            {
+              "section_path": [
+                "Upgrade to latest tool version",
+                "What's changed"
+              ],
+              "span": [
+                58361,
+                58388
+              ],
+              "rank": 36,
+              "doc_rank": 24,
+              "chunk_id": "chk_234e5d5cf621a6bf76096661b87cef5ffaeed243",
+              "chunk_len": 713,
+              "similarity": 13.062432,
+              "within": {
+                "10": false,
+                "20": false,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": false
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false,
+          "doc_recall": 0.0
+        },
+        "AN-007": {
+          "case_id": "AN-007",
+          "category": "exact_lookup",
+          "question": "What error type does the Claude API return with HTTP status 529?",
+          "spans": [
+            {
+              "section_path": [
+                "HTTP errors"
+              ],
+              "span": [
+                2459,
+                2533
+              ],
+              "rank": 34,
+              "doc_rank": 2,
+              "chunk_id": "chk_5f3cd042e15e7574ddd8470557d0451682dd130b",
+              "chunk_len": 1050,
+              "similarity": 12.266953,
+              "within": {
+                "10": false,
+                "20": false,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false,
+          "doc_recall": 1.0
+        },
+        "AN-008": {
+          "case_id": "AN-008",
+          "category": "normal",
+          "question": "What does Anthropic guarantee to preserve for a given version of the Messages API?",
+          "spans": [
+            {
+              "section_path": [
+                "Preamble"
+              ],
+              "span": [
+                361,
+                496
+              ],
+              "rank": 11,
+              "doc_rank": 11,
+              "chunk_id": "chk_2a5b8f71392b3e0becb46fb1df9aa26f5400420b",
+              "chunk_len": 833,
+              "similarity": 14.073154,
+              "within": {
+                "10": false,
+                "20": true,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": false
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false,
+          "doc_recall": 0.0
+        },
+        "AN-009": {
+          "case_id": "AN-009",
+          "category": "version_conflict",
+          "question": "Can an organization still purchase a Priority Tier capacity commitment for the Claude API?",
+          "spans": [
+            {
+              "section_path": [
+                "Preamble"
+              ],
+              "span": [
+                246,
+                318
+              ],
+              "rank": 1,
+              "doc_rank": 1,
+              "chunk_id": "chk_7953695bbdc0268925594eae709ae1e4f96f7271",
+              "chunk_len": 897,
+              "similarity": 33.300575,
+              "within": {
+                "10": true,
+                "20": true,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true,
+          "doc_recall": 1.0
+        },
+        "AN-010": {
+          "case_id": "AN-010",
+          "category": "version_conflict",
+          "question": "What is the current state of the claude-opus-4-1-20250805 model?",
+          "spans": [
+            {
+              "section_path": [
+                "Model status"
+              ],
+              "span": [
+                5671,
+                5769
+              ],
+              "rank": 62,
+              "doc_rank": 6,
+              "chunk_id": "chk_548cdf22161e232d06c84b2ca231974481e58123",
+              "chunk_len": 1871,
+              "similarity": 10.778111,
+              "within": {
+                "10": false,
+                "20": false,
+                "50": false,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false,
+          "doc_recall": 1.0
+        },
+        "AN-011": {
+          "case_id": "AN-011",
+          "category": "ambiguous",
+          "question": "What is my rate limit on the Claude API?",
+          "spans": [
+            {
+              "section_path": [
+                "About rate limits"
+              ],
+              "span": [
+                1672,
+                1849
+              ],
+              "rank": 153,
+              "doc_rank": 1,
+              "chunk_id": "chk_207d0a3ef2f350018edaed73a3d8c278ab0614e0",
+              "chunk_len": 1732,
+              "similarity": 9.039724,
+              "within": {
+                "10": false,
+                "20": false,
+                "50": false,
+                "100": false,
+                "300": true
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false,
+          "doc_recall": 1.0
+        },
+        "AN-012": {
+          "case_id": "AN-012",
+          "category": "multi_hop",
+          "question": "If a Claude API request fails with HTTP 429, what error type comes back and what determines the limit that was hit?",
+          "spans": [
+            {
+              "section_path": [
+                "HTTP errors"
+              ],
+              "span": [
+                1840,
+                1904
+              ],
+              "rank": 6,
+              "doc_rank": 6,
+              "chunk_id": "chk_cec04299237930aec8110ed96792e75962519642",
+              "chunk_len": 1121,
+              "similarity": 24.647565,
+              "within": {
+                "10": true,
+                "20": true,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            },
+            {
+              "section_path": [
+                "About rate limits"
+              ],
+              "span": [
+                1672,
+                1849
+              ],
+              "rank": 223,
+              "doc_rank": 11,
+              "chunk_id": "chk_207d0a3ef2f350018edaed73a3d8c278ab0614e0",
+              "chunk_len": 1732,
+              "similarity": 13.35516,
+              "within": {
+                "10": false,
+                "20": false,
+                "50": false,
+                "100": false,
+                "300": true
+              },
+              "doc_within_10": false
+            }
+          ],
+          "recall": 0.5,
+          "fully_recalled": false,
+          "doc_recall": 0.5
+        },
+        "OA-001": {
+          "case_id": "OA-001",
+          "category": "exact_lookup",
+          "question": "Which environment variable globally disables tracing in the OpenAI Agents SDK?",
+          "spans": [
+            {
+              "section_path": [
+                "Tracing"
+              ],
+              "span": [
+                512,
+                553
+              ],
+              "rank": 7,
+              "doc_rank": 2,
+              "chunk_id": "chk_4032c00a85b2004bbff320afa99c5f5b6062d9c9",
+              "chunk_len": 883,
+              "similarity": 23.256382,
+              "within": {
+                "10": true,
+                "20": true,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true,
+          "doc_recall": 1.0
+        },
+        "OA-002": {
+          "case_id": "OA-002",
+          "category": "exact_lookup",
+          "question": "Which exception does the OpenAI Agents SDK raise when a run exceeds the max_turns limit?",
+          "spans": [
+            {
+              "section_path": [
+                "Running agents",
+                "Exceptions"
+              ],
+              "span": [
+                33598,
+                33793
+              ],
+              "rank": 1,
+              "doc_rank": 1,
+              "chunk_id": "chk_ae63189fb92a64acd67472240329c78792636268",
+              "chunk_len": 1049,
+              "similarity": 29.013309,
+              "within": {
+                "10": true,
+                "20": true,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true,
+          "doc_recall": 1.0
+        },
+        "OA-003": {
+          "case_id": "OA-003",
+          "category": "exact_lookup",
+          "question": "Which exception does the OpenAI Agents SDK runner raise when an input guardrail tripwire fires?",
+          "spans": [
+            {
+              "section_path": [
+                "Guardrails",
+                "Tripwires"
+              ],
+              "span": [
+                7225,
+                7381
+              ],
+              "rank": 4,
+              "doc_rank": 1,
+              "chunk_id": "chk_691b8f44bc7481ea15604b584507e7887a148bb0",
+              "chunk_len": 823,
+              "similarity": 26.098306,
+              "within": {
+                "10": true,
+                "20": true,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true,
+          "doc_recall": 1.0
+        },
+        "OA-004": {
+          "case_id": "OA-004",
+          "category": "exact_lookup",
+          "question": "How do you disable the agent turn limit entirely in the OpenAI Agents SDK runner?",
+          "spans": [
+            {
+              "section_path": [
+                "Running agents",
+                "Runner lifecycle and configuration",
+                "The agent loop"
+              ],
+              "span": [
+                2052,
+                2101
+              ],
+              "rank": 4,
+              "doc_rank": 4,
+              "chunk_id": "chk_7cf490de07242907ab4843b5a56c1888650a6e71",
+              "chunk_len": 1092,
+              "similarity": 20.925397,
+              "within": {
+                "10": true,
+                "20": true,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true,
+          "doc_recall": 1.0
+        },
+        "OA-005": {
+          "case_id": "OA-005",
+          "category": "exact_lookup",
+          "question": "Which OpenAI Agents SDK function sets the OpenAI API key programmatically instead of using the environment variable?",
+          "spans": [
+            {
+              "section_path": [
+                "Configuration",
+                "API keys and clients"
+              ],
+              "span": [
+                2227,
+                2308
+              ],
+              "rank": 3,
+              "doc_rank": 1,
+              "chunk_id": "chk_bdab4134c41350f8dd3bace065747be506cc40c8",
+              "chunk_len": 444,
+              "similarity": 30.164033,
+              "within": {
+                "10": true,
+                "20": true,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true,
+          "doc_recall": 1.0
+        },
+        "OA-006": {
+          "case_id": "OA-006",
+          "category": "multi_hop",
+          "question": "What are the two documented ways to globally disable tracing in the OpenAI Agents SDK \u2014 one by environment and one in code?",
+          "spans": [
+            {
+              "section_path": [
+                "Tracing"
+              ],
+              "span": [
+                512,
+                553
+              ],
+              "rank": 1,
+              "doc_rank": 1,
+              "chunk_id": "chk_4032c00a85b2004bbff320afa99c5f5b6062d9c9",
+              "chunk_len": 883,
+              "similarity": 38.811496,
+              "within": {
+                "10": true,
+                "20": true,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            },
+            {
+              "section_path": [
+                "Configuration",
+                "Tracing"
+              ],
+              "span": [
+                8126,
+                8242
+              ],
+              "rank": 25,
+              "doc_rank": 4,
+              "chunk_id": "chk_09da95ca7595a72a989009d1c0fef9bb06a08fe4",
+              "chunk_len": 116,
+              "similarity": 19.652106,
+              "within": {
+                "10": false,
+                "20": false,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 0.5,
+          "fully_recalled": false,
+          "doc_recall": 1.0
+        },
+        "OA-007": {
+          "case_id": "OA-007",
+          "category": "normal",
+          "question": "What problem does built-in session memory solve in the OpenAI Agents SDK?",
+          "spans": [
+            {
+              "section_path": [
+                "Sessions"
+              ],
+              "span": [
+                12,
+                259
+              ],
+              "rank": 2,
+              "doc_rank": 2,
+              "chunk_id": "chk_413da63d793240bb0776d34c35086cb51def5f7d",
+              "chunk_len": 867,
+              "similarity": 22.014739,
+              "within": {
+                "10": true,
+                "20": true,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true,
+          "doc_recall": 1.0
+        },
+        "OA-008": {
+          "case_id": "OA-008",
+          "category": "exact_lookup",
+          "question": "Which model does the OpenAI Agents SDK use when an Agent does not specify one?",
+          "spans": [
+            {
+              "section_path": [
+                "Models",
+                "OpenAI models"
+              ],
+              "span": [
+                2098,
+                2233
+              ],
+              "rank": 1,
+              "doc_rank": 1,
+              "chunk_id": "chk_062493d62b7092892b1604b528cbd87c64097548",
+              "chunk_len": 695,
+              "similarity": 28.899109,
+              "within": {
+                "10": true,
+                "20": true,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true,
+          "doc_recall": 1.0
+        }
+      }
+    },
+    "C_control_dense": {
+      "description": "control chunks + pretrained dense",
+      "snapshot_id": "snap_689e336380a054d8039dc35b2c09cd0a",
+      "chunk_set_id": "cs_v1_control",
+      "retriever": "dense",
+      "macro_span_recall": 0.425,
+      "cases_fully_recalled": 8,
+      "cases_total": 20,
+      "spans_found_at_10": 9,
+      "spans_total": 22,
+      "document_recall": 0.725,
+      "mrr": 0.3599,
+      "mean_evidence_rank_when_found": 34.12,
+      "median_evidence_rank_when_found": 10,
+      "spans_absent_from_top": {
+        "10": 13,
+        "20": 9,
+        "50": 9,
+        "100": 7,
+        "300": 5
+      },
+      "median_chunk_len_reachable_at_300": 897,
+      "mean_query_ms": 90.1,
+      "cases": {
+        "AN-001": {
+          "case_id": "AN-001",
+          "category": "exact_lookup",
+          "question": "Which request header must every Claude API request send, and what value does the documentation give as the example?",
+          "spans": [
+            {
+              "section_path": [
+                "Preamble"
+              ],
+              "span": [
+                116,
+                227
+              ],
+              "rank": 242,
+              "doc_rank": 242,
+              "chunk_id": "chk_d8e8c7e599356dd09769ebd0582d3094406277e0",
+              "chunk_len": 833,
+              "similarity": 0.95161,
+              "within": {
+                "10": false,
+                "20": false,
+                "50": false,
+                "100": false,
+                "300": true
+              },
+              "doc_within_10": false
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false,
+          "doc_recall": 0.0
+        },
+        "AN-002": {
+          "case_id": "AN-002",
+          "category": "exact_lookup",
+          "question": "Which HTTP status code does the Claude API return with the request_too_large error type?",
+          "spans": [
+            {
+              "section_path": [
+                "HTTP errors"
+              ],
+              "span": [
+                1636,
+                1721
+              ],
+              "rank": 1,
+              "doc_rank": 1,
+              "chunk_id": "chk_c489a281149ad3f3dd30936ed094099a8e17999b",
+              "chunk_len": 3327,
+              "similarity": 0.959156,
+              "within": {
+                "10": true,
+                "20": true,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true,
+          "doc_recall": 1.0
+        },
+        "AN-003": {
+          "case_id": "AN-003",
+          "category": "exact_lookup",
+          "question": "How many requests can a single Message Batches create request contain at most?",
+          "spans": [
+            {
+              "section_path": [
+                "Batches",
+                "Create a Message Batch",
+                "Body Parameters"
+              ],
+              "span": [
+                4554,
+                4611
+              ],
+              "rank": null,
+              "doc_rank": 2,
+              "chunk_id": null,
+              "chunk_len": null,
+              "similarity": null,
+              "within": {
+                "10": false,
+                "20": false,
+                "50": false,
+                "100": false,
+                "300": false
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false,
+          "doc_recall": 1.0
+        },
+        "AN-004": {
+          "case_id": "AN-004",
+          "category": "exact_lookup",
+          "question": "How many blocks does the Claude prompt caching lookback window check per breakpoint?",
+          "spans": [
+            {
+              "section_path": [
+                "Explicit cache breakpoints",
+                "Structuring your prompt",
+                "How automatic prefix checking works"
+              ],
+              "span": [
+                25537,
+                25690
+              ],
+              "rank": 17,
+              "doc_rank": 1,
+              "chunk_id": "chk_384363e66444dd16a3dee38a9b52449914c66c3e",
+              "chunk_len": 3439,
+              "similarity": 0.937607,
+              "within": {
+                "10": false,
+                "20": true,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false,
+          "doc_recall": 1.0
+        },
+        "AN-005": {
+          "case_id": "AN-005",
+          "category": "exact_lookup",
+          "question": "Which anthropic-beta header value enables context editing?",
+          "spans": [
+            {
+              "section_path": [
+                "Server-side strategies"
+              ],
+              "span": [
+                4055,
+                4106
+              ],
+              "rank": null,
+              "doc_rank": 3,
+              "chunk_id": null,
+              "chunk_len": null,
+              "similarity": null,
+              "within": {
+                "10": false,
+                "20": false,
+                "50": false,
+                "100": false,
+                "300": false
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false,
+          "doc_recall": 1.0
+        },
+        "AN-006": {
+          "case_id": "AN-006",
+          "category": "exact_lookup",
+          "question": "Which beta header value enables the Claude code execution tool?",
+          "spans": [
+            {
+              "section_path": [
+                "Upgrade to latest tool version",
+                "What's changed"
+              ],
+              "span": [
+                58361,
+                58388
+              ],
+              "rank": 63,
+              "doc_rank": 1,
+              "chunk_id": "chk_6431e660f0a8d074124fbc2841d9458dbad0b80f",
+              "chunk_len": 733,
+              "similarity": 0.932322,
+              "within": {
+                "10": false,
+                "20": false,
+                "50": false,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false,
+          "doc_recall": 1.0
+        },
+        "AN-007": {
+          "case_id": "AN-007",
+          "category": "exact_lookup",
+          "question": "What error type does the Claude API return with HTTP status 529?",
+          "spans": [
+            {
+              "section_path": [
+                "HTTP errors"
+              ],
+              "span": [
+                2459,
+                2533
+              ],
+              "rank": 2,
+              "doc_rank": 2,
+              "chunk_id": "chk_c489a281149ad3f3dd30936ed094099a8e17999b",
+              "chunk_len": 3327,
+              "similarity": 0.938915,
+              "within": {
+                "10": true,
+                "20": true,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true,
+          "doc_recall": 1.0
+        },
+        "AN-008": {
+          "case_id": "AN-008",
+          "category": "normal",
+          "question": "What does Anthropic guarantee to preserve for a given version of the Messages API?",
+          "spans": [
+            {
+              "section_path": [
+                "Preamble"
+              ],
+              "span": [
+                361,
+                496
+              ],
+              "rank": 123,
+              "doc_rank": 123,
+              "chunk_id": "chk_d8e8c7e599356dd09769ebd0582d3094406277e0",
+              "chunk_len": 833,
+              "similarity": 0.94191,
+              "within": {
+                "10": false,
+                "20": false,
+                "50": false,
+                "100": false,
+                "300": true
+              },
+              "doc_within_10": false
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false,
+          "doc_recall": 0.0
+        },
+        "AN-009": {
+          "case_id": "AN-009",
+          "category": "version_conflict",
+          "question": "Can an organization still purchase a Priority Tier capacity commitment for the Claude API?",
+          "spans": [
+            {
+              "section_path": [
+                "Preamble"
+              ],
+              "span": [
+                246,
+                318
+              ],
+              "rank": 1,
+              "doc_rank": 1,
+              "chunk_id": "chk_3ca2ff24b047321f3f33112db03f5633835d78cd",
+              "chunk_len": 897,
+              "similarity": 0.945622,
+              "within": {
+                "10": true,
+                "20": true,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true,
+          "doc_recall": 1.0
+        },
+        "AN-010": {
+          "case_id": "AN-010",
+          "category": "version_conflict",
+          "question": "What is the current state of the claude-opus-4-1-20250805 model?",
+          "spans": [
+            {
+              "section_path": [
+                "Model status"
+              ],
+              "span": [
+                5671,
+                5769
+              ],
+              "rank": null,
+              "doc_rank": null,
+              "chunk_id": null,
+              "chunk_len": null,
+              "similarity": null,
+              "within": {
+                "10": false,
+                "20": false,
+                "50": false,
+                "100": false,
+                "300": false
+              },
+              "doc_within_10": false
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false,
+          "doc_recall": 0.0
+        },
+        "AN-011": {
+          "case_id": "AN-011",
+          "category": "ambiguous",
+          "question": "What is my rate limit on the Claude API?",
+          "spans": [
+            {
+              "section_path": [
+                "About rate limits"
+              ],
+              "span": [
+                1672,
+                1849
+              ],
+              "rank": 14,
+              "doc_rank": 1,
+              "chunk_id": "chk_79059eadc2995d0b914552581bb7a62c4f06cb8b",
+              "chunk_len": 1754,
+              "similarity": 0.925736,
+              "within": {
+                "10": false,
+                "20": true,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false,
+          "doc_recall": 1.0
+        },
+        "AN-012": {
+          "case_id": "AN-012",
+          "category": "multi_hop",
+          "question": "If a Claude API request fails with HTTP 429, what error type comes back and what determines the limit that was hit?",
+          "spans": [
+            {
+              "section_path": [
+                "HTTP errors"
+              ],
+              "span": [
+                1840,
+                1904
+              ],
+              "rank": 1,
+              "doc_rank": 1,
+              "chunk_id": "chk_c489a281149ad3f3dd30936ed094099a8e17999b",
+              "chunk_len": 3327,
+              "similarity": 0.960009,
+              "within": {
+                "10": true,
+                "20": true,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            },
+            {
+              "section_path": [
+                "About rate limits"
+              ],
+              "span": [
+                1672,
+                1849
+              ],
+              "rank": null,
+              "doc_rank": 68,
+              "chunk_id": null,
+              "chunk_len": null,
+              "similarity": null,
+              "within": {
+                "10": false,
+                "20": false,
+                "50": false,
+                "100": false,
+                "300": false
+              },
+              "doc_within_10": false
+            }
+          ],
+          "recall": 0.5,
+          "fully_recalled": false,
+          "doc_recall": 0.5
+        },
+        "OA-001": {
+          "case_id": "OA-001",
+          "category": "exact_lookup",
+          "question": "Which environment variable globally disables tracing in the OpenAI Agents SDK?",
+          "spans": [
+            {
+              "section_path": [
+                "Tracing"
+              ],
+              "span": [
+                512,
+                553
+              ],
+              "rank": 1,
+              "doc_rank": 1,
+              "chunk_id": "chk_600fe1685960a129813639141d8e6d0bd21e2f87",
+              "chunk_len": 883,
+              "similarity": 0.928816,
+              "within": {
+                "10": true,
+                "20": true,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true,
+          "doc_recall": 1.0
+        },
+        "OA-002": {
+          "case_id": "OA-002",
+          "category": "exact_lookup",
+          "question": "Which exception does the OpenAI Agents SDK raise when a run exceeds the max_turns limit?",
+          "spans": [
+            {
+              "section_path": [
+                "Running agents",
+                "Exceptions"
+              ],
+              "span": [
+                33598,
+                33793
+              ],
+              "rank": 1,
+              "doc_rank": 1,
+              "chunk_id": "chk_a3e66af0cbf3c669402fb7580ef3e132d064be19",
+              "chunk_len": 2403,
+              "similarity": 0.941314,
+              "within": {
+                "10": true,
+                "20": true,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true,
+          "doc_recall": 1.0
+        },
+        "OA-003": {
+          "case_id": "OA-003",
+          "category": "exact_lookup",
+          "question": "Which exception does the OpenAI Agents SDK runner raise when an input guardrail tripwire fires?",
+          "spans": [
+            {
+              "section_path": [
+                "Guardrails",
+                "Tripwires"
+              ],
+              "span": [
+                7225,
+                7381
+              ],
+              "rank": 1,
+              "doc_rank": 1,
+              "chunk_id": "chk_b17099fe75c44006e954e286fa820bb2685015c4",
+              "chunk_len": 1499,
+              "similarity": 0.956151,
+              "within": {
+                "10": true,
+                "20": true,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true,
+          "doc_recall": 1.0
+        },
+        "OA-004": {
+          "case_id": "OA-004",
+          "category": "exact_lookup",
+          "question": "How do you disable the agent turn limit entirely in the OpenAI Agents SDK runner?",
+          "spans": [
+            {
+              "section_path": [
+                "Running agents",
+                "Runner lifecycle and configuration",
+                "The agent loop"
+              ],
+              "span": [
+                2052,
+                2101
+              ],
+              "rank": 73,
+              "doc_rank": 9,
+              "chunk_id": "chk_54f24b235eee08c3f04656ce79c5baf889005a84",
+              "chunk_len": 1251,
+              "similarity": 0.938918,
+              "within": {
+                "10": false,
+                "20": false,
+                "50": false,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false,
+          "doc_recall": 1.0
+        },
+        "OA-005": {
+          "case_id": "OA-005",
+          "category": "exact_lookup",
+          "question": "Which OpenAI Agents SDK function sets the OpenAI API key programmatically instead of using the environment variable?",
+          "spans": [
+            {
+              "section_path": [
+                "Configuration",
+                "API keys and clients"
+              ],
+              "span": [
+                2227,
+                2308
+              ],
+              "rank": 1,
+              "doc_rank": 1,
+              "chunk_id": "chk_92fa440a7d4555008d2fd5c2ca71f2679d4cc9af",
+              "chunk_len": 444,
+              "similarity": 0.957738,
+              "within": {
+                "10": true,
+                "20": true,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true,
+          "doc_recall": 1.0
+        },
+        "OA-006": {
+          "case_id": "OA-006",
+          "category": "multi_hop",
+          "question": "What are the two documented ways to globally disable tracing in the OpenAI Agents SDK \u2014 one by environment and one in code?",
+          "spans": [
+            {
+              "section_path": [
+                "Tracing"
+              ],
+              "span": [
+                512,
+                553
+              ],
+              "rank": 18,
+              "doc_rank": 18,
+              "chunk_id": "chk_600fe1685960a129813639141d8e6d0bd21e2f87",
+              "chunk_len": 883,
+              "similarity": 0.95581,
+              "within": {
+                "10": false,
+                "20": true,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": false
+            },
+            {
+              "section_path": [
+                "Configuration",
+                "Tracing"
+              ],
+              "span": [
+                8126,
+                8242
+              ],
+              "rank": null,
+              "doc_rank": 30,
+              "chunk_id": null,
+              "chunk_len": null,
+              "similarity": null,
+              "within": {
+                "10": false,
+                "20": false,
+                "50": false,
+                "100": false,
+                "300": false
+              },
+              "doc_within_10": false
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false,
+          "doc_recall": 0.0
+        },
+        "OA-007": {
+          "case_id": "OA-007",
+          "category": "normal",
+          "question": "What problem does built-in session memory solve in the OpenAI Agents SDK?",
+          "spans": [
+            {
+              "section_path": [
+                "Sessions"
+              ],
+              "span": [
+                12,
+                259
+              ],
+              "rank": 11,
+              "doc_rank": 11,
+              "chunk_id": "chk_db82490165bc7adcbfe38dcb7b65c18edd3f15f8",
+              "chunk_len": 867,
+              "similarity": 0.926114,
+              "within": {
+                "10": false,
+                "20": true,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": false
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false,
+          "doc_recall": 0.0
+        },
+        "OA-008": {
+          "case_id": "OA-008",
+          "category": "exact_lookup",
+          "question": "Which model does the OpenAI Agents SDK use when an Agent does not specify one?",
+          "spans": [
+            {
+              "section_path": [
+                "Models",
+                "OpenAI models"
+              ],
+              "span": [
+                2098,
+                2233
+              ],
+              "rank": 10,
+              "doc_rank": 1,
+              "chunk_id": "chk_155378a014c2c411b1aba2482afed3eabddf6f28",
+              "chunk_len": 695,
+              "similarity": 0.932658,
+              "within": {
+                "10": true,
+                "20": true,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true,
+          "doc_recall": 1.0
+        }
+      },
+      "evidence_chunk_length_by_reachability": {
+        "median_reachable": 897,
+        "median_unreachable": 1754,
+        "n_reachable": 17,
+        "n_unreachable": 5,
+        "unreachable_lengths": [
+          116,
+          325,
+          1754,
+          2317,
+          3449
+        ]
+      }
+    },
+    "D_bounded_dense": {
+      "description": "bounded chunks + pretrained dense",
+      "snapshot_id": "snap_95215379baa1d8460315986d9745dc0c",
+      "chunk_set_id": "cs_2722bf8b72dcf3eb404336d7",
+      "retriever": "dense",
+      "macro_span_recall": 0.4,
+      "cases_fully_recalled": 8,
+      "cases_total": 20,
+      "spans_found_at_10": 8,
+      "spans_total": 22,
+      "document_recall": 0.675,
+      "mrr": 0.2589,
+      "mean_evidence_rank_when_found": 56.53,
+      "median_evidence_rank_when_found": 11,
+      "spans_absent_from_top": {
+        "10": 14,
+        "20": 11,
+        "50": 10,
+        "100": 10,
+        "300": 5
+      },
+      "median_chunk_len_reachable_at_300": 883,
+      "mean_query_ms": 82.0,
+      "cases": {
+        "AN-001": {
+          "case_id": "AN-001",
+          "category": "exact_lookup",
+          "question": "Which request header must every Claude API request send, and what value does the documentation give as the example?",
+          "spans": [
+            {
+              "section_path": [
+                "Preamble"
+              ],
+              "span": [
+                116,
+                227
+              ],
+              "rank": 267,
+              "doc_rank": 267,
+              "chunk_id": "chk_2a5b8f71392b3e0becb46fb1df9aa26f5400420b",
+              "chunk_len": 833,
+              "similarity": 0.95161,
+              "within": {
+                "10": false,
+                "20": false,
+                "50": false,
+                "100": false,
+                "300": true
+              },
+              "doc_within_10": false
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false,
+          "doc_recall": 0.0
+        },
+        "AN-002": {
+          "case_id": "AN-002",
+          "category": "exact_lookup",
+          "question": "Which HTTP status code does the Claude API return with the request_too_large error type?",
+          "spans": [
+            {
+              "section_path": [
+                "HTTP errors"
+              ],
+              "span": [
+                1636,
+                1721
+              ],
+              "rank": 6,
+              "doc_rank": 1,
+              "chunk_id": "chk_cec04299237930aec8110ed96792e75962519642",
+              "chunk_len": 1121,
+              "similarity": 0.954197,
+              "within": {
+                "10": true,
+                "20": true,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true,
+          "doc_recall": 1.0
+        },
+        "AN-003": {
+          "case_id": "AN-003",
+          "category": "exact_lookup",
+          "question": "How many requests can a single Message Batches create request contain at most?",
+          "spans": [
+            {
+              "section_path": [
+                "Batches",
+                "Create a Message Batch",
+                "Body Parameters"
+              ],
+              "span": [
+                4554,
+                4611
+              ],
+              "rank": 119,
+              "doc_rank": 3,
+              "chunk_id": "chk_4b2fa7d2fc27c8b7491254e258d13708b5405fb4",
+              "chunk_len": 1191,
+              "similarity": 0.921394,
+              "within": {
+                "10": false,
+                "20": false,
+                "50": false,
+                "100": false,
+                "300": true
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false,
+          "doc_recall": 1.0
+        },
+        "AN-004": {
+          "case_id": "AN-004",
+          "category": "exact_lookup",
+          "question": "How many blocks does the Claude prompt caching lookback window check per breakpoint?",
+          "spans": [
+            {
+              "section_path": [
+                "Explicit cache breakpoints",
+                "Structuring your prompt",
+                "How automatic prefix checking works"
+              ],
+              "span": [
+                25537,
+                25690
+              ],
+              "rank": null,
+              "doc_rank": 2,
+              "chunk_id": null,
+              "chunk_len": null,
+              "similarity": null,
+              "within": {
+                "10": false,
+                "20": false,
+                "50": false,
+                "100": false,
+                "300": false
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false,
+          "doc_recall": 1.0
+        },
+        "AN-005": {
+          "case_id": "AN-005",
+          "category": "exact_lookup",
+          "question": "Which anthropic-beta header value enables context editing?",
+          "spans": [
+            {
+              "section_path": [
+                "Server-side strategies"
+              ],
+              "span": [
+                4055,
+                4106
+              ],
+              "rank": null,
+              "doc_rank": 4,
+              "chunk_id": null,
+              "chunk_len": null,
+              "similarity": null,
+              "within": {
+                "10": false,
+                "20": false,
+                "50": false,
+                "100": false,
+                "300": false
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false,
+          "doc_recall": 1.0
+        },
+        "AN-006": {
+          "case_id": "AN-006",
+          "category": "exact_lookup",
+          "question": "Which beta header value enables the Claude code execution tool?",
+          "spans": [
+            {
+              "section_path": [
+                "Upgrade to latest tool version",
+                "What's changed"
+              ],
+              "span": [
+                58361,
+                58388
+              ],
+              "rank": 169,
+              "doc_rank": 21,
+              "chunk_id": "chk_234e5d5cf621a6bf76096661b87cef5ffaeed243",
+              "chunk_len": 713,
+              "similarity": 0.93021,
+              "within": {
+                "10": false,
+                "20": false,
+                "50": false,
+                "100": false,
+                "300": true
+              },
+              "doc_within_10": false
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false,
+          "doc_recall": 0.0
+        },
+        "AN-007": {
+          "case_id": "AN-007",
+          "category": "exact_lookup",
+          "question": "What error type does the Claude API return with HTTP status 529?",
+          "spans": [
+            {
+              "section_path": [
+                "HTTP errors"
+              ],
+              "span": [
+                2459,
+                2533
+              ],
+              "rank": 6,
+              "doc_rank": 1,
+              "chunk_id": "chk_cec04299237930aec8110ed96792e75962519642",
+              "chunk_len": 1121,
+              "similarity": 0.930045,
+              "within": {
+                "10": true,
+                "20": true,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true,
+          "doc_recall": 1.0
+        },
+        "AN-008": {
+          "case_id": "AN-008",
+          "category": "normal",
+          "question": "What does Anthropic guarantee to preserve for a given version of the Messages API?",
+          "spans": [
+            {
+              "section_path": [
+                "Preamble"
+              ],
+              "span": [
+                361,
+                496
+              ],
+              "rank": 147,
+              "doc_rank": 147,
+              "chunk_id": "chk_2a5b8f71392b3e0becb46fb1df9aa26f5400420b",
+              "chunk_len": 833,
+              "similarity": 0.94191,
+              "within": {
+                "10": false,
+                "20": false,
+                "50": false,
+                "100": false,
+                "300": true
+              },
+              "doc_within_10": false
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false,
+          "doc_recall": 0.0
+        },
+        "AN-009": {
+          "case_id": "AN-009",
+          "category": "version_conflict",
+          "question": "Can an organization still purchase a Priority Tier capacity commitment for the Claude API?",
+          "spans": [
+            {
+              "section_path": [
+                "Preamble"
+              ],
+              "span": [
+                246,
+                318
+              ],
+              "rank": 1,
+              "doc_rank": 1,
+              "chunk_id": "chk_7953695bbdc0268925594eae709ae1e4f96f7271",
+              "chunk_len": 897,
+              "similarity": 0.945622,
+              "within": {
+                "10": true,
+                "20": true,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true,
+          "doc_recall": 1.0
+        },
+        "AN-010": {
+          "case_id": "AN-010",
+          "category": "version_conflict",
+          "question": "What is the current state of the claude-opus-4-1-20250805 model?",
+          "spans": [
+            {
+              "section_path": [
+                "Model status"
+              ],
+              "span": [
+                5671,
+                5769
+              ],
+              "rank": null,
+              "doc_rank": null,
+              "chunk_id": null,
+              "chunk_len": null,
+              "similarity": null,
+              "within": {
+                "10": false,
+                "20": false,
+                "50": false,
+                "100": false,
+                "300": false
+              },
+              "doc_within_10": false
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false,
+          "doc_recall": 0.0
+        },
+        "AN-011": {
+          "case_id": "AN-011",
+          "category": "ambiguous",
+          "question": "What is my rate limit on the Claude API?",
+          "spans": [
+            {
+              "section_path": [
+                "About rate limits"
+              ],
+              "span": [
+                1672,
+                1849
+              ],
+              "rank": 16,
+              "doc_rank": 4,
+              "chunk_id": "chk_207d0a3ef2f350018edaed73a3d8c278ab0614e0",
+              "chunk_len": 1732,
+              "similarity": 0.925171,
+              "within": {
+                "10": false,
+                "20": true,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false,
+          "doc_recall": 1.0
+        },
+        "AN-012": {
+          "case_id": "AN-012",
+          "category": "multi_hop",
+          "question": "If a Claude API request fails with HTTP 429, what error type comes back and what determines the limit that was hit?",
+          "spans": [
+            {
+              "section_path": [
+                "HTTP errors"
+              ],
+              "span": [
+                1840,
+                1904
+              ],
+              "rank": 140,
+              "doc_rank": 5,
+              "chunk_id": "chk_cec04299237930aec8110ed96792e75962519642",
+              "chunk_len": 1121,
+              "similarity": 0.951573,
+              "within": {
+                "10": false,
+                "20": false,
+                "50": false,
+                "100": false,
+                "300": true
+              },
+              "doc_within_10": true
+            },
+            {
+              "section_path": [
+                "About rate limits"
+              ],
+              "span": [
+                1672,
+                1849
+              ],
+              "rank": null,
+              "doc_rank": 56,
+              "chunk_id": null,
+              "chunk_len": null,
+              "similarity": null,
+              "within": {
+                "10": false,
+                "20": false,
+                "50": false,
+                "100": false,
+                "300": false
+              },
+              "doc_within_10": false
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false,
+          "doc_recall": 0.5
+        },
+        "OA-001": {
+          "case_id": "OA-001",
+          "category": "exact_lookup",
+          "question": "Which environment variable globally disables tracing in the OpenAI Agents SDK?",
+          "spans": [
+            {
+              "section_path": [
+                "Tracing"
+              ],
+              "span": [
+                512,
+                553
+              ],
+              "rank": 1,
+              "doc_rank": 1,
+              "chunk_id": "chk_4032c00a85b2004bbff320afa99c5f5b6062d9c9",
+              "chunk_len": 883,
+              "similarity": 0.928816,
+              "within": {
+                "10": true,
+                "20": true,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true,
+          "doc_recall": 1.0
+        },
+        "OA-002": {
+          "case_id": "OA-002",
+          "category": "exact_lookup",
+          "question": "Which exception does the OpenAI Agents SDK raise when a run exceeds the max_turns limit?",
+          "spans": [
+            {
+              "section_path": [
+                "Running agents",
+                "Exceptions"
+              ],
+              "span": [
+                33598,
+                33793
+              ],
+              "rank": 1,
+              "doc_rank": 1,
+              "chunk_id": "chk_ae63189fb92a64acd67472240329c78792636268",
+              "chunk_len": 1049,
+              "similarity": 0.944349,
+              "within": {
+                "10": true,
+                "20": true,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true,
+          "doc_recall": 1.0
+        },
+        "OA-003": {
+          "case_id": "OA-003",
+          "category": "exact_lookup",
+          "question": "Which exception does the OpenAI Agents SDK runner raise when an input guardrail tripwire fires?",
+          "spans": [
+            {
+              "section_path": [
+                "Guardrails",
+                "Tripwires"
+              ],
+              "span": [
+                7225,
+                7381
+              ],
+              "rank": 1,
+              "doc_rank": 1,
+              "chunk_id": "chk_691b8f44bc7481ea15604b584507e7887a148bb0",
+              "chunk_len": 823,
+              "similarity": 0.959656,
+              "within": {
+                "10": true,
+                "20": true,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true,
+          "doc_recall": 1.0
+        },
+        "OA-004": {
+          "case_id": "OA-004",
+          "category": "exact_lookup",
+          "question": "How do you disable the agent turn limit entirely in the OpenAI Agents SDK runner?",
+          "spans": [
+            {
+              "section_path": [
+                "Running agents",
+                "Runner lifecycle and configuration",
+                "The agent loop"
+              ],
+              "span": [
+                2052,
+                2101
+              ],
+              "rank": 47,
+              "doc_rank": 11,
+              "chunk_id": "chk_7cf490de07242907ab4843b5a56c1888650a6e71",
+              "chunk_len": 1092,
+              "similarity": 0.941179,
+              "within": {
+                "10": false,
+                "20": false,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": false
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false,
+          "doc_recall": 0.0
+        },
+        "OA-005": {
+          "case_id": "OA-005",
+          "category": "exact_lookup",
+          "question": "Which OpenAI Agents SDK function sets the OpenAI API key programmatically instead of using the environment variable?",
+          "spans": [
+            {
+              "section_path": [
+                "Configuration",
+                "API keys and clients"
+              ],
+              "span": [
+                2227,
+                2308
+              ],
+              "rank": 1,
+              "doc_rank": 1,
+              "chunk_id": "chk_bdab4134c41350f8dd3bace065747be506cc40c8",
+              "chunk_len": 444,
+              "similarity": 0.957738,
+              "within": {
+                "10": true,
+                "20": true,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true,
+          "doc_recall": 1.0
+        },
+        "OA-006": {
+          "case_id": "OA-006",
+          "category": "multi_hop",
+          "question": "What are the two documented ways to globally disable tracing in the OpenAI Agents SDK \u2014 one by environment and one in code?",
+          "spans": [
+            {
+              "section_path": [
+                "Tracing"
+              ],
+              "span": [
+                512,
+                553
+              ],
+              "rank": 18,
+              "doc_rank": 18,
+              "chunk_id": "chk_4032c00a85b2004bbff320afa99c5f5b6062d9c9",
+              "chunk_len": 883,
+              "similarity": 0.95581,
+              "within": {
+                "10": false,
+                "20": true,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": false
+            },
+            {
+              "section_path": [
+                "Configuration",
+                "Tracing"
+              ],
+              "span": [
+                8126,
+                8242
+              ],
+              "rank": null,
+              "doc_rank": 35,
+              "chunk_id": null,
+              "chunk_len": null,
+              "similarity": null,
+              "within": {
+                "10": false,
+                "20": false,
+                "50": false,
+                "100": false,
+                "300": false
+              },
+              "doc_within_10": false
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false,
+          "doc_recall": 0.0
+        },
+        "OA-007": {
+          "case_id": "OA-007",
+          "category": "normal",
+          "question": "What problem does built-in session memory solve in the OpenAI Agents SDK?",
+          "spans": [
+            {
+              "section_path": [
+                "Sessions"
+              ],
+              "span": [
+                12,
+                259
+              ],
+              "rank": 10,
+              "doc_rank": 10,
+              "chunk_id": "chk_413da63d793240bb0776d34c35086cb51def5f7d",
+              "chunk_len": 867,
+              "similarity": 0.926114,
+              "within": {
+                "10": true,
+                "20": true,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true,
+          "doc_recall": 1.0
+        },
+        "OA-008": {
+          "case_id": "OA-008",
+          "category": "exact_lookup",
+          "question": "Which model does the OpenAI Agents SDK use when an Agent does not specify one?",
+          "spans": [
+            {
+              "section_path": [
+                "Models",
+                "OpenAI models"
+              ],
+              "span": [
+                2098,
+                2233
+              ],
+              "rank": 11,
+              "doc_rank": 1,
+              "chunk_id": "chk_062493d62b7092892b1604b528cbd87c64097548",
+              "chunk_len": 695,
+              "similarity": 0.932658,
+              "within": {
+                "10": false,
+                "20": true,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false,
+          "doc_recall": 1.0
+        }
+      },
+      "evidence_chunk_length_by_reachability": {
+        "median_reachable": 883,
+        "median_unreachable": 1167,
+        "n_reachable": 17,
+        "n_unreachable": 5,
+        "unreachable_lengths": [
+          116,
+          325,
+          1167,
+          1732,
+          1871
+        ]
+      }
+    },
+    "E_bm25control_plus_boundeddense_rrf": {
+      "description": "EXPLORATORY \u2014 BM25 on control chunks fused with dense on bounded chunks",
+      "exploratory": true,
+      "rrf_config": {
+        "pool": 50,
+        "rrf_k": 60,
+        "top_k": 10,
+        "preregistered_from": "EXP-007",
+        "tuned": false
+      },
+      "macro_span_recall": 0.475,
+      "cases_fully_recalled": 9,
+      "cases_total": 20,
+      "spans_found_at_10": 10,
+      "spans_total": 22,
+      "document_recall": 0.775,
+      "mrr": 0.2781,
+      "spans_absent_from_top": {
+        "10": 12,
+        "20": 10,
+        "50": 6,
+        "100": 2,
+        "300": 2
+      },
+      "mean_query_ms": 461.3,
+      "cases": {
+        "AN-001": {
+          "case_id": "AN-001",
+          "category": "exact_lookup",
+          "question": "Which request header must every Claude API request send, and what value does the documentation give as the example?",
+          "spans": [
+            {
+              "section_path": [
+                "Preamble"
+              ],
+              "rank": 38,
+              "doc_rank": 38,
+              "chunk_len": 833,
+              "similarity": 0.012658,
+              "within": {
+                "10": false,
+                "20": false,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": false
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false,
+          "doc_recall": 0.0
+        },
+        "AN-002": {
+          "case_id": "AN-002",
+          "category": "exact_lookup",
+          "question": "Which HTTP status code does the Claude API return with the request_too_large error type?",
+          "spans": [
+            {
+              "section_path": [
+                "HTTP errors"
+              ],
+              "rank": 12,
+              "doc_rank": 1,
+              "chunk_len": 1121,
+              "similarity": 0.015152,
+              "within": {
+                "10": false,
+                "20": true,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false,
+          "doc_recall": 1.0
+        },
+        "AN-003": {
+          "case_id": "AN-003",
+          "category": "exact_lookup",
+          "question": "How many requests can a single Message Batches create request contain at most?",
+          "spans": [
+            {
+              "section_path": [
+                "Batches",
+                "Create a Message Batch",
+                "Body Parameters"
+              ],
+              "rank": null,
+              "doc_rank": 6,
+              "chunk_len": null,
+              "similarity": null,
+              "within": {
+                "10": false,
+                "20": false,
+                "50": false,
+                "100": false,
+                "300": false
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false,
+          "doc_recall": 1.0
+        },
+        "AN-004": {
+          "case_id": "AN-004",
+          "category": "exact_lookup",
+          "question": "How many blocks does the Claude prompt caching lookback window check per breakpoint?",
+          "spans": [
+            {
+              "section_path": [
+                "Explicit cache breakpoints",
+                "Structuring your prompt",
+                "How automatic prefix checking works"
+              ],
+              "rank": 24,
+              "doc_rank": 2,
+              "chunk_len": 3439,
+              "similarity": 0.013889,
+              "within": {
+                "10": false,
+                "20": false,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false,
+          "doc_recall": 1.0
+        },
+        "AN-005": {
+          "case_id": "AN-005",
+          "category": "exact_lookup",
+          "question": "Which anthropic-beta header value enables context editing?",
+          "spans": [
+            {
+              "section_path": [
+                "Server-side strategies"
+              ],
+              "rank": 7,
+              "doc_rank": 4,
+              "chunk_len": 325,
+              "similarity": 0.015625,
+              "within": {
+                "10": true,
+                "20": true,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true,
+          "doc_recall": 1.0
+        },
+        "AN-006": {
+          "case_id": "AN-006",
+          "category": "exact_lookup",
+          "question": "Which beta header value enables the Claude code execution tool?",
+          "spans": [
+            {
+              "section_path": [
+                "Upgrade to latest tool version",
+                "What's changed"
+              ],
+              "rank": 58,
+              "doc_rank": 41,
+              "chunk_len": 733,
+              "similarity": 0.011236,
+              "within": {
+                "10": false,
+                "20": false,
+                "50": false,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": false
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false,
+          "doc_recall": 0.0
+        },
+        "AN-007": {
+          "case_id": "AN-007",
+          "category": "exact_lookup",
+          "question": "What error type does the Claude API return with HTTP status 529?",
+          "spans": [
+            {
+              "section_path": [
+                "HTTP errors"
+              ],
+              "rank": 12,
+              "doc_rank": 2,
+              "chunk_len": 1121,
+              "similarity": 0.015152,
+              "within": {
+                "10": false,
+                "20": true,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false,
+          "doc_recall": 1.0
+        },
+        "AN-008": {
+          "case_id": "AN-008",
+          "category": "normal",
+          "question": "What does Anthropic guarantee to preserve for a given version of the Messages API?",
+          "spans": [
+            {
+              "section_path": [
+                "Preamble"
+              ],
+              "rank": 24,
+              "doc_rank": 24,
+              "chunk_len": 833,
+              "similarity": 0.013889,
+              "within": {
+                "10": false,
+                "20": false,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": false
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false,
+          "doc_recall": 0.0
+        },
+        "AN-009": {
+          "case_id": "AN-009",
+          "category": "version_conflict",
+          "question": "Can an organization still purchase a Priority Tier capacity commitment for the Claude API?",
+          "spans": [
+            {
+              "section_path": [
+                "Preamble"
+              ],
+              "rank": 1,
+              "doc_rank": 1,
+              "chunk_len": 897,
+              "similarity": 0.016393,
+              "within": {
+                "10": true,
+                "20": true,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true,
+          "doc_recall": 1.0
+        },
+        "AN-010": {
+          "case_id": "AN-010",
+          "category": "version_conflict",
+          "question": "What is the current state of the claude-opus-4-1-20250805 model?",
+          "spans": [
+            {
+              "section_path": [
+                "Model status"
+              ],
+              "rank": 97,
+              "doc_rank": 16,
+              "chunk_len": 2317,
+              "similarity": 0.009174,
+              "within": {
+                "10": false,
+                "20": false,
+                "50": false,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": false
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false,
+          "doc_recall": 0.0
+        },
+        "AN-011": {
+          "case_id": "AN-011",
+          "category": "ambiguous",
+          "question": "What is my rate limit on the Claude API?",
+          "spans": [
+            {
+              "section_path": [
+                "About rate limits"
+              ],
+              "rank": 31,
+              "doc_rank": 2,
+              "chunk_len": 1732,
+              "similarity": 0.013158,
+              "within": {
+                "10": false,
+                "20": false,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false,
+          "doc_recall": 1.0
+        },
+        "AN-012": {
+          "case_id": "AN-012",
+          "category": "multi_hop",
+          "question": "If a Claude API request fails with HTTP 429, what error type comes back and what determines the limit that was hit?",
+          "spans": [
+            {
+              "section_path": [
+                "HTTP errors"
+              ],
+              "rank": 94,
+              "doc_rank": 10,
+              "chunk_len": 3327,
+              "similarity": 0.009346,
+              "within": {
+                "10": false,
+                "20": false,
+                "50": false,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            },
+            {
+              "section_path": [
+                "About rate limits"
+              ],
+              "rank": null,
+              "doc_rank": 12,
+              "chunk_len": null,
+              "similarity": null,
+              "within": {
+                "10": false,
+                "20": false,
+                "50": false,
+                "100": false,
+                "300": false
+              },
+              "doc_within_10": false
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false,
+          "doc_recall": 0.5
+        },
+        "OA-001": {
+          "case_id": "OA-001",
+          "category": "exact_lookup",
+          "question": "Which environment variable globally disables tracing in the OpenAI Agents SDK?",
+          "spans": [
+            {
+              "section_path": [
+                "Tracing"
+              ],
+              "rank": 1,
+              "doc_rank": 1,
+              "chunk_len": 883,
+              "similarity": 0.016393,
+              "within": {
+                "10": true,
+                "20": true,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true,
+          "doc_recall": 1.0
+        },
+        "OA-002": {
+          "case_id": "OA-002",
+          "category": "exact_lookup",
+          "question": "Which exception does the OpenAI Agents SDK raise when a run exceeds the max_turns limit?",
+          "spans": [
+            {
+              "section_path": [
+                "Running agents",
+                "Exceptions"
+              ],
+              "rank": 2,
+              "doc_rank": 1,
+              "chunk_len": 1049,
+              "similarity": 0.016393,
+              "within": {
+                "10": true,
+                "20": true,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true,
+          "doc_recall": 1.0
+        },
+        "OA-003": {
+          "case_id": "OA-003",
+          "category": "exact_lookup",
+          "question": "Which exception does the OpenAI Agents SDK runner raise when an input guardrail tripwire fires?",
+          "spans": [
+            {
+              "section_path": [
+                "Guardrails",
+                "Tripwires"
+              ],
+              "rank": 2,
+              "doc_rank": 1,
+              "chunk_len": 823,
+              "similarity": 0.016393,
+              "within": {
+                "10": true,
+                "20": true,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true,
+          "doc_recall": 1.0
+        },
+        "OA-004": {
+          "case_id": "OA-004",
+          "category": "exact_lookup",
+          "question": "How do you disable the agent turn limit entirely in the OpenAI Agents SDK runner?",
+          "spans": [
+            {
+              "section_path": [
+                "Running agents",
+                "Runner lifecycle and configuration",
+                "The agent loop"
+              ],
+              "rank": 9,
+              "doc_rank": 9,
+              "chunk_len": 1251,
+              "similarity": 0.015385,
+              "within": {
+                "10": true,
+                "20": true,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true,
+          "doc_recall": 1.0
+        },
+        "OA-005": {
+          "case_id": "OA-005",
+          "category": "exact_lookup",
+          "question": "Which OpenAI Agents SDK function sets the OpenAI API key programmatically instead of using the environment variable?",
+          "spans": [
+            {
+              "section_path": [
+                "Configuration",
+                "API keys and clients"
+              ],
+              "rank": 2,
+              "doc_rank": 1,
+              "chunk_len": 444,
+              "similarity": 0.016393,
+              "within": {
+                "10": true,
+                "20": true,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true,
+          "doc_recall": 1.0
+        },
+        "OA-006": {
+          "case_id": "OA-006",
+          "category": "multi_hop",
+          "question": "What are the two documented ways to globally disable tracing in the OpenAI Agents SDK \u2014 one by environment and one in code?",
+          "spans": [
+            {
+              "section_path": [
+                "Tracing"
+              ],
+              "rank": 2,
+              "doc_rank": 2,
+              "chunk_len": 883,
+              "similarity": 0.016393,
+              "within": {
+                "10": true,
+                "20": true,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            },
+            {
+              "section_path": [
+                "Configuration",
+                "Tracing"
+              ],
+              "rank": 58,
+              "doc_rank": 7,
+              "chunk_len": 116,
+              "similarity": 0.011236,
+              "within": {
+                "10": false,
+                "20": false,
+                "50": false,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 0.5,
+          "fully_recalled": false,
+          "doc_recall": 1.0
+        },
+        "OA-007": {
+          "case_id": "OA-007",
+          "category": "normal",
+          "question": "What problem does built-in session memory solve in the OpenAI Agents SDK?",
+          "spans": [
+            {
+              "section_path": [
+                "Sessions"
+              ],
+              "rank": 2,
+              "doc_rank": 2,
+              "chunk_len": 867,
+              "similarity": 0.016393,
+              "within": {
+                "10": true,
+                "20": true,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true,
+          "doc_recall": 1.0
+        },
+        "OA-008": {
+          "case_id": "OA-008",
+          "category": "exact_lookup",
+          "question": "Which model does the OpenAI Agents SDK use when an Agent does not specify one?",
+          "spans": [
+            {
+              "section_path": [
+                "Models",
+                "OpenAI models"
+              ],
+              "rank": 1,
+              "doc_rank": 1,
+              "chunk_len": 695,
+              "similarity": 0.016393,
+              "within": {
+                "10": true,
+                "20": true,
+                "50": true,
+                "100": true,
+                "300": true
+              },
+              "doc_within_10": true
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true,
+          "doc_recall": 1.0
+        }
+      }
+    }
+  },
+  "paired_comparison": {
+    "A->B chunk size under BM25": {
+      "from": "A_control_bm25",
+      "to": "B_bounded_bm25",
+      "rescued": [],
+      "regressed": [],
+      "unchanged_good": [
+        "AN-005",
+        "AN-009",
+        "OA-001",
+        "OA-002",
+        "OA-003",
+        "OA-004",
+        "OA-005",
+        "OA-007",
+        "OA-008"
+      ],
+      "unchanged_bad": [
+        "AN-001",
+        "AN-002",
+        "AN-003",
+        "AN-004",
+        "AN-006",
+        "AN-007",
+        "AN-008",
+        "AN-010",
+        "AN-011",
+        "OA-006"
+      ],
+      "partial_change": [
+        "AN-012"
+      ],
+      "net_rescued": 0,
+      "macro_recall_delta": 0.025,
+      "quadrant": {
+        "both_correct": [
+          "AN-005",
+          "AN-009",
+          "OA-001",
+          "OA-002",
+          "OA-003",
+          "OA-004",
+          "OA-005",
+          "OA-007",
+          "OA-008"
+        ],
+        "only_before": [],
+        "only_after": [],
+        "neither": [
+          "AN-001",
+          "AN-002",
+          "AN-003",
+          "AN-004",
+          "AN-006",
+          "AN-007",
+          "AN-008",
+          "AN-010",
+          "AN-011",
+          "AN-012",
+          "OA-006"
+        ]
+      },
+      "span_movement_counts": {
+        "worsened_no_cross": 9,
+        "still_unreachable": 1,
+        "improved_no_cross": 7,
+        "unchanged": 4,
+        "strong_improvement": 1
+      },
+      "span_rows": [
+        {
+          "case_id": "AN-001",
+          "span_index": 0,
+          "category": "exact_lookup",
+          "section_path": [
+            "Preamble"
+          ],
+          "control_chunk_id": "chk_d8e8c7e599356dd09769ebd0582d3094406277e0",
+          "bounded_chunk_id": "chk_2a5b8f71392b3e0becb46fb1df9aa26f5400420b",
+          "control_chunk_len": 833,
+          "bounded_chunk_len": 833,
+          "rank_before": 19,
+          "rank_after": 29,
+          "similarity_before": 20.259183,
+          "similarity_after": 18.911904,
+          "doc_rank_before": 19,
+          "doc_rank_after": 29,
+          "movement": "worsened_no_cross"
+        },
+        {
+          "case_id": "AN-002",
+          "span_index": 0,
+          "category": "exact_lookup",
+          "section_path": [
+            "HTTP errors"
+          ],
+          "control_chunk_id": "chk_c489a281149ad3f3dd30936ed094099a8e17999b",
+          "bounded_chunk_id": "chk_cec04299237930aec8110ed96792e75962519642",
+          "control_chunk_len": 3327,
+          "bounded_chunk_len": 1121,
+          "rank_before": 27,
+          "rank_after": 172,
+          "similarity_before": 14.047926,
+          "similarity_after": 9.883967,
+          "doc_rank_before": 1,
+          "doc_rank_after": 1,
+          "movement": "worsened_no_cross"
+        },
+        {
+          "case_id": "AN-003",
+          "span_index": 0,
+          "category": "exact_lookup",
+          "section_path": [
+            "Batches",
+            "Create a Message Batch",
+            "Body Parameters"
+          ],
+          "control_chunk_id": "chk_25a87141c0457994cd6f5d8d0cc2dd6d7683133c",
+          "bounded_chunk_id": "chk_4b2fa7d2fc27c8b7491254e258d13708b5405fb4",
+          "control_chunk_len": 3449,
+          "bounded_chunk_len": 1191,
+          "rank_before": null,
+          "rank_after": null,
+          "similarity_before": null,
+          "similarity_after": null,
+          "doc_rank_before": 6,
+          "doc_rank_after": 4,
+          "movement": "still_unreachable"
+        },
+        {
+          "case_id": "AN-004",
+          "span_index": 0,
+          "category": "exact_lookup",
+          "section_path": [
+            "Explicit cache breakpoints",
+            "Structuring your prompt",
+            "How automatic prefix checking works"
+          ],
+          "control_chunk_id": "chk_384363e66444dd16a3dee38a9b52449914c66c3e",
+          "bounded_chunk_id": "chk_0c41e9151bcd7704683b031001f1d1048edc9030",
+          "control_chunk_len": 3439,
+          "bounded_chunk_len": 1167,
+          "rank_before": 12,
+          "rank_after": 11,
+          "similarity_before": 17.567536,
+          "similarity_after": 17.804708,
+          "doc_rank_before": 1,
+          "doc_rank_after": 1,
+          "movement": "improved_no_cross"
+        },
+        {
+          "case_id": "AN-005",
+          "span_index": 0,
+          "category": "exact_lookup",
+          "section_path": [
+            "Server-side strategies"
+          ],
+          "control_chunk_id": "chk_684086c646a7ffdd31032a0a7cbf7c49c4fd19d9",
+          "bounded_chunk_id": "chk_cd7255964cf97ca9ea27c8d6ede76e5a8c717905",
+          "control_chunk_len": 325,
+          "bounded_chunk_len": 325,
+          "rank_before": 4,
+          "rank_after": 3,
+          "similarity_before": 15.779501,
+          "similarity_after": 15.847046,
+          "doc_rank_before": 2,
+          "doc_rank_after": 2,
+          "movement": "improved_no_cross"
+        },
+        {
+          "case_id": "AN-006",
+          "span_index": 0,
+          "category": "exact_lookup",
+          "section_path": [
+            "Upgrade to latest tool version",
+            "What's changed"
+          ],
+          "control_chunk_id": "chk_6431e660f0a8d074124fbc2841d9458dbad0b80f",
+          "bounded_chunk_id": "chk_234e5d5cf621a6bf76096661b87cef5ffaeed243",
+          "control_chunk_len": 733,
+          "bounded_chunk_len": 713,
+          "rank_before": 29,
+          "rank_after": 36,
+          "similarity_before": 13.781421,
+          "similarity_after": 13.062432,
+          "doc_rank_before": 29,
+          "doc_rank_after": 24,
+          "movement": "worsened_no_cross"
+        },
+        {
+          "case_id": "AN-007",
+          "span_index": 0,
+          "category": "exact_lookup",
+          "section_path": [
+            "HTTP errors"
+          ],
+          "control_chunk_id": "chk_c489a281149ad3f3dd30936ed094099a8e17999b",
+          "bounded_chunk_id": "chk_5f3cd042e15e7574ddd8470557d0451682dd130b",
+          "control_chunk_len": 3327,
+          "bounded_chunk_len": 1050,
+          "rank_before": 18,
+          "rank_after": 34,
+          "similarity_before": 14.306773,
+          "similarity_after": 12.266953,
+          "doc_rank_before": 2,
+          "doc_rank_after": 2,
+          "movement": "worsened_no_cross"
+        },
+        {
+          "case_id": "AN-008",
+          "span_index": 0,
+          "category": "normal",
+          "section_path": [
+            "Preamble"
+          ],
+          "control_chunk_id": "chk_d8e8c7e599356dd09769ebd0582d3094406277e0",
+          "bounded_chunk_id": "chk_2a5b8f71392b3e0becb46fb1df9aa26f5400420b",
+          "control_chunk_len": 833,
+          "bounded_chunk_len": 833,
+          "rank_before": 12,
+          "rank_after": 11,
+          "similarity_before": 14.842891,
+          "similarity_after": 14.073154,
+          "doc_rank_before": 12,
+          "doc_rank_after": 11,
+          "movement": "improved_no_cross"
+        },
+        {
+          "case_id": "AN-009",
+          "span_index": 0,
+          "category": "version_conflict",
+          "section_path": [
+            "Preamble"
+          ],
+          "control_chunk_id": "chk_3ca2ff24b047321f3f33112db03f5633835d78cd",
+          "bounded_chunk_id": "chk_7953695bbdc0268925594eae709ae1e4f96f7271",
+          "control_chunk_len": 897,
+          "bounded_chunk_len": 897,
+          "rank_before": 1,
+          "rank_after": 1,
+          "similarity_before": 36.502926,
+          "similarity_after": 33.300575,
+          "doc_rank_before": 1,
+          "doc_rank_after": 1,
+          "movement": "unchanged"
+        },
+        {
+          "case_id": "AN-010",
+          "span_index": 0,
+          "category": "version_conflict",
+          "section_path": [
+            "Model status"
+          ],
+          "control_chunk_id": "chk_90cc3f1a33717988b24dd2f64a474c69e2ae399d",
+          "bounded_chunk_id": "chk_548cdf22161e232d06c84b2ca231974481e58123",
+          "control_chunk_len": 2317,
+          "bounded_chunk_len": 1871,
+          "rank_before": 49,
+          "rank_after": 62,
+          "similarity_before": 12.18914,
+          "similarity_after": 10.778111,
+          "doc_rank_before": 8,
+          "doc_rank_after": 6,
+          "movement": "worsened_no_cross"
+        },
+        {
+          "case_id": "AN-011",
+          "span_index": 0,
+          "category": "ambiguous",
+          "section_path": [
+            "About rate limits"
+          ],
+          "control_chunk_id": "chk_79059eadc2995d0b914552581bb7a62c4f06cb8b",
+          "bounded_chunk_id": "chk_207d0a3ef2f350018edaed73a3d8c278ab0614e0",
+          "control_chunk_len": 1754,
+          "bounded_chunk_len": 1732,
+          "rank_before": 54,
+          "rank_after": 153,
+          "similarity_before": 10.360347,
+          "similarity_after": 9.039724,
+          "doc_rank_before": 1,
+          "doc_rank_after": 1,
+          "movement": "worsened_no_cross"
+        },
+        {
+          "case_id": "AN-012",
+          "span_index": 0,
+          "category": "multi_hop",
+          "section_path": [
+            "HTTP errors"
+          ],
+          "control_chunk_id": "chk_c489a281149ad3f3dd30936ed094099a8e17999b",
+          "bounded_chunk_id": "chk_cec04299237930aec8110ed96792e75962519642",
+          "control_chunk_len": 3327,
+          "bounded_chunk_len": 1121,
+          "rank_before": 47,
+          "rank_after": 6,
+          "similarity_before": 18.707785,
+          "similarity_after": 24.647565,
+          "doc_rank_before": 28,
+          "doc_rank_after": 6,
+          "movement": "strong_improvement"
+        },
+        {
+          "case_id": "AN-012",
+          "span_index": 1,
+          "category": "multi_hop",
+          "section_path": [
+            "About rate limits"
+          ],
+          "control_chunk_id": "chk_79059eadc2995d0b914552581bb7a62c4f06cb8b",
+          "bounded_chunk_id": "chk_207d0a3ef2f350018edaed73a3d8c278ab0614e0",
+          "control_chunk_len": 1754,
+          "bounded_chunk_len": 1732,
+          "rank_before": 117,
+          "rank_after": 223,
+          "similarity_before": 15.046248,
+          "similarity_after": 13.35516,
+          "doc_rank_before": 6,
+          "doc_rank_after": 11,
+          "movement": "worsened_no_cross"
+        },
+        {
+          "case_id": "OA-001",
+          "span_index": 0,
+          "category": "exact_lookup",
+          "section_path": [
+            "Tracing"
+          ],
+          "control_chunk_id": "chk_600fe1685960a129813639141d8e6d0bd21e2f87",
+          "bounded_chunk_id": "chk_4032c00a85b2004bbff320afa99c5f5b6062d9c9",
+          "control_chunk_len": 883,
+          "bounded_chunk_len": 883,
+          "rank_before": 4,
+          "rank_after": 7,
+          "similarity_before": 25.218056,
+          "similarity_after": 23.256382,
+          "doc_rank_before": 4,
+          "doc_rank_after": 2,
+          "movement": "worsened_no_cross"
+        },
+        {
+          "case_id": "OA-002",
+          "span_index": 0,
+          "category": "exact_lookup",
+          "section_path": [
+            "Running agents",
+            "Exceptions"
+          ],
+          "control_chunk_id": "chk_a3e66af0cbf3c669402fb7580ef3e132d064be19",
+          "bounded_chunk_id": "chk_ae63189fb92a64acd67472240329c78792636268",
+          "control_chunk_len": 2403,
+          "bounded_chunk_len": 1049,
+          "rank_before": 2,
+          "rank_after": 1,
+          "similarity_before": 24.814782,
+          "similarity_after": 29.013309,
+          "doc_rank_before": 1,
+          "doc_rank_after": 1,
+          "movement": "improved_no_cross"
+        },
+        {
+          "case_id": "OA-003",
+          "span_index": 0,
+          "category": "exact_lookup",
+          "section_path": [
+            "Guardrails",
+            "Tripwires"
+          ],
+          "control_chunk_id": "chk_b17099fe75c44006e954e286fa820bb2685015c4",
+          "bounded_chunk_id": "chk_691b8f44bc7481ea15604b584507e7887a148bb0",
+          "control_chunk_len": 1499,
+          "bounded_chunk_len": 823,
+          "rank_before": 6,
+          "rank_after": 4,
+          "similarity_before": 23.721294,
+          "similarity_after": 26.098306,
+          "doc_rank_before": 1,
+          "doc_rank_after": 1,
+          "movement": "improved_no_cross"
+        },
+        {
+          "case_id": "OA-004",
+          "span_index": 0,
+          "category": "exact_lookup",
+          "section_path": [
+            "Running agents",
+            "Runner lifecycle and configuration",
+            "The agent loop"
+          ],
+          "control_chunk_id": "chk_54f24b235eee08c3f04656ce79c5baf889005a84",
+          "bounded_chunk_id": "chk_7cf490de07242907ab4843b5a56c1888650a6e71",
+          "control_chunk_len": 1251,
+          "bounded_chunk_len": 1092,
+          "rank_before": 5,
+          "rank_after": 4,
+          "similarity_before": 22.055908,
+          "similarity_after": 20.925397,
+          "doc_rank_before": 5,
+          "doc_rank_after": 4,
+          "movement": "improved_no_cross"
+        },
+        {
+          "case_id": "OA-005",
+          "span_index": 0,
+          "category": "exact_lookup",
+          "section_path": [
+            "Configuration",
+            "API keys and clients"
+          ],
+          "control_chunk_id": "chk_92fa440a7d4555008d2fd5c2ca71f2679d4cc9af",
+          "bounded_chunk_id": "chk_bdab4134c41350f8dd3bace065747be506cc40c8",
+          "control_chunk_len": 444,
+          "bounded_chunk_len": 444,
+          "rank_before": 3,
+          "rank_after": 3,
+          "similarity_before": 30.921725,
+          "similarity_after": 30.164033,
+          "doc_rank_before": 1,
+          "doc_rank_after": 1,
+          "movement": "unchanged"
+        },
+        {
+          "case_id": "OA-006",
+          "span_index": 0,
+          "category": "multi_hop",
+          "section_path": [
+            "Tracing"
+          ],
+          "control_chunk_id": "chk_600fe1685960a129813639141d8e6d0bd21e2f87",
+          "bounded_chunk_id": "chk_4032c00a85b2004bbff320afa99c5f5b6062d9c9",
+          "control_chunk_len": 883,
+          "bounded_chunk_len": 883,
+          "rank_before": 1,
+          "rank_after": 1,
+          "similarity_before": 42.384351,
+          "similarity_after": 38.811496,
+          "doc_rank_before": 1,
+          "doc_rank_after": 1,
+          "movement": "unchanged"
+        },
+        {
+          "case_id": "OA-006",
+          "span_index": 1,
+          "category": "multi_hop",
+          "section_path": [
+            "Configuration",
+            "Tracing"
+          ],
+          "control_chunk_id": "chk_9425aaf386c8eaf9795d3f9df8cdad806aab8133",
+          "bounded_chunk_id": "chk_09da95ca7595a72a989009d1c0fef9bb06a08fe4",
+          "control_chunk_len": 116,
+          "bounded_chunk_len": 116,
+          "rank_before": 29,
+          "rank_after": 25,
+          "similarity_before": 19.45848,
+          "similarity_after": 19.652106,
+          "doc_rank_before": 4,
+          "doc_rank_after": 4,
+          "movement": "improved_no_cross"
+        },
+        {
+          "case_id": "OA-007",
+          "span_index": 0,
+          "category": "normal",
+          "section_path": [
+            "Sessions"
+          ],
+          "control_chunk_id": "chk_db82490165bc7adcbfe38dcb7b65c18edd3f15f8",
+          "bounded_chunk_id": "chk_413da63d793240bb0776d34c35086cb51def5f7d",
+          "control_chunk_len": 867,
+          "bounded_chunk_len": 867,
+          "rank_before": 1,
+          "rank_after": 2,
+          "similarity_before": 23.798327,
+          "similarity_after": 22.014739,
+          "doc_rank_before": 1,
+          "doc_rank_after": 2,
+          "movement": "worsened_no_cross"
+        },
+        {
+          "case_id": "OA-008",
+          "span_index": 0,
+          "category": "exact_lookup",
+          "section_path": [
+            "Models",
+            "OpenAI models"
+          ],
+          "control_chunk_id": "chk_155378a014c2c411b1aba2482afed3eabddf6f28",
+          "bounded_chunk_id": "chk_062493d62b7092892b1604b528cbd87c64097548",
+          "control_chunk_len": 695,
+          "bounded_chunk_len": 695,
+          "rank_before": 1,
+          "rank_after": 1,
+          "similarity_before": 30.816682,
+          "similarity_after": 28.899109,
+          "doc_rank_before": 1,
+          "doc_rank_after": 1,
+          "movement": "unchanged"
+        }
+      ]
+    },
+    "C->D chunk size under dense": {
+      "from": "C_control_dense",
+      "to": "D_bounded_dense",
+      "rescued": [
+        "OA-007"
+      ],
+      "regressed": [
+        "OA-008"
+      ],
+      "unchanged_good": [
+        "AN-002",
+        "AN-007",
+        "AN-009",
+        "OA-001",
+        "OA-002",
+        "OA-003",
+        "OA-005"
+      ],
+      "unchanged_bad": [
+        "AN-001",
+        "AN-003",
+        "AN-004",
+        "AN-005",
+        "AN-006",
+        "AN-008",
+        "AN-010",
+        "AN-011",
+        "OA-004",
+        "OA-006"
+      ],
+      "partial_change": [
+        "AN-012"
+      ],
+      "net_rescued": 0,
+      "macro_recall_delta": -0.025,
+      "quadrant": {
+        "both_correct": [
+          "AN-002",
+          "AN-007",
+          "AN-009",
+          "OA-001",
+          "OA-002",
+          "OA-003",
+          "OA-005"
+        ],
+        "only_before": [
+          "OA-008"
+        ],
+        "only_after": [
+          "OA-007"
+        ],
+        "neither": [
+          "AN-001",
+          "AN-003",
+          "AN-004",
+          "AN-005",
+          "AN-006",
+          "AN-008",
+          "AN-010",
+          "AN-011",
+          "AN-012",
+          "OA-004",
+          "OA-006"
+        ]
+      },
+      "span_movement_counts": {
+        "worsened_no_cross": 6,
+        "newly_reachable_outside_k": 1,
+        "lost_entirely": 1,
+        "still_unreachable": 4,
+        "unchanged": 6,
+        "strong_regression": 1,
+        "improved_no_cross": 1,
+        "boundary_improvement": 1,
+        "boundary_regression": 1
+      },
+      "span_rows": [
+        {
+          "case_id": "AN-001",
+          "span_index": 0,
+          "category": "exact_lookup",
+          "section_path": [
+            "Preamble"
+          ],
+          "control_chunk_id": "chk_d8e8c7e599356dd09769ebd0582d3094406277e0",
+          "bounded_chunk_id": "chk_2a5b8f71392b3e0becb46fb1df9aa26f5400420b",
+          "control_chunk_len": 833,
+          "bounded_chunk_len": 833,
+          "rank_before": 242,
+          "rank_after": 267,
+          "similarity_before": 0.95161,
+          "similarity_after": 0.95161,
+          "doc_rank_before": 242,
+          "doc_rank_after": 267,
+          "movement": "worsened_no_cross"
+        },
+        {
+          "case_id": "AN-002",
+          "span_index": 0,
+          "category": "exact_lookup",
+          "section_path": [
+            "HTTP errors"
+          ],
+          "control_chunk_id": "chk_c489a281149ad3f3dd30936ed094099a8e17999b",
+          "bounded_chunk_id": "chk_cec04299237930aec8110ed96792e75962519642",
+          "control_chunk_len": 3327,
+          "bounded_chunk_len": 1121,
+          "rank_before": 1,
+          "rank_after": 6,
+          "similarity_before": 0.959156,
+          "similarity_after": 0.954197,
+          "doc_rank_before": 1,
+          "doc_rank_after": 1,
+          "movement": "worsened_no_cross"
+        },
+        {
+          "case_id": "AN-003",
+          "span_index": 0,
+          "category": "exact_lookup",
+          "section_path": [
+            "Batches",
+            "Create a Message Batch",
+            "Body Parameters"
+          ],
+          "control_chunk_id": "chk_25a87141c0457994cd6f5d8d0cc2dd6d7683133c",
+          "bounded_chunk_id": "chk_4b2fa7d2fc27c8b7491254e258d13708b5405fb4",
+          "control_chunk_len": 3449,
+          "bounded_chunk_len": 1191,
+          "rank_before": null,
+          "rank_after": 119,
+          "similarity_before": null,
+          "similarity_after": 0.921394,
+          "doc_rank_before": 2,
+          "doc_rank_after": 3,
+          "movement": "newly_reachable_outside_k"
+        },
+        {
+          "case_id": "AN-004",
+          "span_index": 0,
+          "category": "exact_lookup",
+          "section_path": [
+            "Explicit cache breakpoints",
+            "Structuring your prompt",
+            "How automatic prefix checking works"
+          ],
+          "control_chunk_id": "chk_384363e66444dd16a3dee38a9b52449914c66c3e",
+          "bounded_chunk_id": "chk_0c41e9151bcd7704683b031001f1d1048edc9030",
+          "control_chunk_len": 3439,
+          "bounded_chunk_len": 1167,
+          "rank_before": 17,
+          "rank_after": null,
+          "similarity_before": 0.937607,
+          "similarity_after": null,
+          "doc_rank_before": 1,
+          "doc_rank_after": 2,
+          "movement": "lost_entirely"
+        },
+        {
+          "case_id": "AN-005",
+          "span_index": 0,
+          "category": "exact_lookup",
+          "section_path": [
+            "Server-side strategies"
+          ],
+          "control_chunk_id": "chk_684086c646a7ffdd31032a0a7cbf7c49c4fd19d9",
+          "bounded_chunk_id": "chk_cd7255964cf97ca9ea27c8d6ede76e5a8c717905",
+          "control_chunk_len": 325,
+          "bounded_chunk_len": 325,
+          "rank_before": null,
+          "rank_after": null,
+          "similarity_before": null,
+          "similarity_after": null,
+          "doc_rank_before": 3,
+          "doc_rank_after": 4,
+          "movement": "still_unreachable"
+        },
+        {
+          "case_id": "AN-006",
+          "span_index": 0,
+          "category": "exact_lookup",
+          "section_path": [
+            "Upgrade to latest tool version",
+            "What's changed"
+          ],
+          "control_chunk_id": "chk_6431e660f0a8d074124fbc2841d9458dbad0b80f",
+          "bounded_chunk_id": "chk_234e5d5cf621a6bf76096661b87cef5ffaeed243",
+          "control_chunk_len": 733,
+          "bounded_chunk_len": 713,
+          "rank_before": 63,
+          "rank_after": 169,
+          "similarity_before": 0.932322,
+          "similarity_after": 0.93021,
+          "doc_rank_before": 1,
+          "doc_rank_after": 21,
+          "movement": "worsened_no_cross"
+        },
+        {
+          "case_id": "AN-007",
+          "span_index": 0,
+          "category": "exact_lookup",
+          "section_path": [
+            "HTTP errors"
+          ],
+          "control_chunk_id": "chk_c489a281149ad3f3dd30936ed094099a8e17999b",
+          "bounded_chunk_id": "chk_5f3cd042e15e7574ddd8470557d0451682dd130b",
+          "control_chunk_len": 3327,
+          "bounded_chunk_len": 1050,
+          "rank_before": 2,
+          "rank_after": 6,
+          "similarity_before": 0.938915,
+          "similarity_after": 0.930045,
+          "doc_rank_before": 2,
+          "doc_rank_after": 1,
+          "movement": "worsened_no_cross"
+        },
+        {
+          "case_id": "AN-008",
+          "span_index": 0,
+          "category": "normal",
+          "section_path": [
+            "Preamble"
+          ],
+          "control_chunk_id": "chk_d8e8c7e599356dd09769ebd0582d3094406277e0",
+          "bounded_chunk_id": "chk_2a5b8f71392b3e0becb46fb1df9aa26f5400420b",
+          "control_chunk_len": 833,
+          "bounded_chunk_len": 833,
+          "rank_before": 123,
+          "rank_after": 147,
+          "similarity_before": 0.94191,
+          "similarity_after": 0.94191,
+          "doc_rank_before": 123,
+          "doc_rank_after": 147,
+          "movement": "worsened_no_cross"
+        },
+        {
+          "case_id": "AN-009",
+          "span_index": 0,
+          "category": "version_conflict",
+          "section_path": [
+            "Preamble"
+          ],
+          "control_chunk_id": "chk_3ca2ff24b047321f3f33112db03f5633835d78cd",
+          "bounded_chunk_id": "chk_7953695bbdc0268925594eae709ae1e4f96f7271",
+          "control_chunk_len": 897,
+          "bounded_chunk_len": 897,
+          "rank_before": 1,
+          "rank_after": 1,
+          "similarity_before": 0.945622,
+          "similarity_after": 0.945622,
+          "doc_rank_before": 1,
+          "doc_rank_after": 1,
+          "movement": "unchanged"
+        },
+        {
+          "case_id": "AN-010",
+          "span_index": 0,
+          "category": "version_conflict",
+          "section_path": [
+            "Model status"
+          ],
+          "control_chunk_id": "chk_90cc3f1a33717988b24dd2f64a474c69e2ae399d",
+          "bounded_chunk_id": "chk_548cdf22161e232d06c84b2ca231974481e58123",
+          "control_chunk_len": 2317,
+          "bounded_chunk_len": 1871,
+          "rank_before": null,
+          "rank_after": null,
+          "similarity_before": null,
+          "similarity_after": null,
+          "doc_rank_before": null,
+          "doc_rank_after": null,
+          "movement": "still_unreachable"
+        },
+        {
+          "case_id": "AN-011",
+          "span_index": 0,
+          "category": "ambiguous",
+          "section_path": [
+            "About rate limits"
+          ],
+          "control_chunk_id": "chk_79059eadc2995d0b914552581bb7a62c4f06cb8b",
+          "bounded_chunk_id": "chk_207d0a3ef2f350018edaed73a3d8c278ab0614e0",
+          "control_chunk_len": 1754,
+          "bounded_chunk_len": 1732,
+          "rank_before": 14,
+          "rank_after": 16,
+          "similarity_before": 0.925736,
+          "similarity_after": 0.925171,
+          "doc_rank_before": 1,
+          "doc_rank_after": 4,
+          "movement": "worsened_no_cross"
+        },
+        {
+          "case_id": "AN-012",
+          "span_index": 0,
+          "category": "multi_hop",
+          "section_path": [
+            "HTTP errors"
+          ],
+          "control_chunk_id": "chk_c489a281149ad3f3dd30936ed094099a8e17999b",
+          "bounded_chunk_id": "chk_cec04299237930aec8110ed96792e75962519642",
+          "control_chunk_len": 3327,
+          "bounded_chunk_len": 1121,
+          "rank_before": 1,
+          "rank_after": 140,
+          "similarity_before": 0.960009,
+          "similarity_after": 0.951573,
+          "doc_rank_before": 1,
+          "doc_rank_after": 5,
+          "movement": "strong_regression"
+        },
+        {
+          "case_id": "AN-012",
+          "span_index": 1,
+          "category": "multi_hop",
+          "section_path": [
+            "About rate limits"
+          ],
+          "control_chunk_id": "chk_79059eadc2995d0b914552581bb7a62c4f06cb8b",
+          "bounded_chunk_id": "chk_207d0a3ef2f350018edaed73a3d8c278ab0614e0",
+          "control_chunk_len": 1754,
+          "bounded_chunk_len": 1732,
+          "rank_before": null,
+          "rank_after": null,
+          "similarity_before": null,
+          "similarity_after": null,
+          "doc_rank_before": 68,
+          "doc_rank_after": 56,
+          "movement": "still_unreachable"
+        },
+        {
+          "case_id": "OA-001",
+          "span_index": 0,
+          "category": "exact_lookup",
+          "section_path": [
+            "Tracing"
+          ],
+          "control_chunk_id": "chk_600fe1685960a129813639141d8e6d0bd21e2f87",
+          "bounded_chunk_id": "chk_4032c00a85b2004bbff320afa99c5f5b6062d9c9",
+          "control_chunk_len": 883,
+          "bounded_chunk_len": 883,
+          "rank_before": 1,
+          "rank_after": 1,
+          "similarity_before": 0.928816,
+          "similarity_after": 0.928816,
+          "doc_rank_before": 1,
+          "doc_rank_after": 1,
+          "movement": "unchanged"
+        },
+        {
+          "case_id": "OA-002",
+          "span_index": 0,
+          "category": "exact_lookup",
+          "section_path": [
+            "Running agents",
+            "Exceptions"
+          ],
+          "control_chunk_id": "chk_a3e66af0cbf3c669402fb7580ef3e132d064be19",
+          "bounded_chunk_id": "chk_ae63189fb92a64acd67472240329c78792636268",
+          "control_chunk_len": 2403,
+          "bounded_chunk_len": 1049,
+          "rank_before": 1,
+          "rank_after": 1,
+          "similarity_before": 0.941314,
+          "similarity_after": 0.944349,
+          "doc_rank_before": 1,
+          "doc_rank_after": 1,
+          "movement": "unchanged"
+        },
+        {
+          "case_id": "OA-003",
+          "span_index": 0,
+          "category": "exact_lookup",
+          "section_path": [
+            "Guardrails",
+            "Tripwires"
+          ],
+          "control_chunk_id": "chk_b17099fe75c44006e954e286fa820bb2685015c4",
+          "bounded_chunk_id": "chk_691b8f44bc7481ea15604b584507e7887a148bb0",
+          "control_chunk_len": 1499,
+          "bounded_chunk_len": 823,
+          "rank_before": 1,
+          "rank_after": 1,
+          "similarity_before": 0.956151,
+          "similarity_after": 0.959656,
+          "doc_rank_before": 1,
+          "doc_rank_after": 1,
+          "movement": "unchanged"
+        },
+        {
+          "case_id": "OA-004",
+          "span_index": 0,
+          "category": "exact_lookup",
+          "section_path": [
+            "Running agents",
+            "Runner lifecycle and configuration",
+            "The agent loop"
+          ],
+          "control_chunk_id": "chk_54f24b235eee08c3f04656ce79c5baf889005a84",
+          "bounded_chunk_id": "chk_7cf490de07242907ab4843b5a56c1888650a6e71",
+          "control_chunk_len": 1251,
+          "bounded_chunk_len": 1092,
+          "rank_before": 73,
+          "rank_after": 47,
+          "similarity_before": 0.938918,
+          "similarity_after": 0.941179,
+          "doc_rank_before": 9,
+          "doc_rank_after": 11,
+          "movement": "improved_no_cross"
+        },
+        {
+          "case_id": "OA-005",
+          "span_index": 0,
+          "category": "exact_lookup",
+          "section_path": [
+            "Configuration",
+            "API keys and clients"
+          ],
+          "control_chunk_id": "chk_92fa440a7d4555008d2fd5c2ca71f2679d4cc9af",
+          "bounded_chunk_id": "chk_bdab4134c41350f8dd3bace065747be506cc40c8",
+          "control_chunk_len": 444,
+          "bounded_chunk_len": 444,
+          "rank_before": 1,
+          "rank_after": 1,
+          "similarity_before": 0.957738,
+          "similarity_after": 0.957738,
+          "doc_rank_before": 1,
+          "doc_rank_after": 1,
+          "movement": "unchanged"
+        },
+        {
+          "case_id": "OA-006",
+          "span_index": 0,
+          "category": "multi_hop",
+          "section_path": [
+            "Tracing"
+          ],
+          "control_chunk_id": "chk_600fe1685960a129813639141d8e6d0bd21e2f87",
+          "bounded_chunk_id": "chk_4032c00a85b2004bbff320afa99c5f5b6062d9c9",
+          "control_chunk_len": 883,
+          "bounded_chunk_len": 883,
+          "rank_before": 18,
+          "rank_after": 18,
+          "similarity_before": 0.95581,
+          "similarity_after": 0.95581,
+          "doc_rank_before": 18,
+          "doc_rank_after": 18,
+          "movement": "unchanged"
+        },
+        {
+          "case_id": "OA-006",
+          "span_index": 1,
+          "category": "multi_hop",
+          "section_path": [
+            "Configuration",
+            "Tracing"
+          ],
+          "control_chunk_id": "chk_9425aaf386c8eaf9795d3f9df8cdad806aab8133",
+          "bounded_chunk_id": "chk_09da95ca7595a72a989009d1c0fef9bb06a08fe4",
+          "control_chunk_len": 116,
+          "bounded_chunk_len": 116,
+          "rank_before": null,
+          "rank_after": null,
+          "similarity_before": null,
+          "similarity_after": null,
+          "doc_rank_before": 30,
+          "doc_rank_after": 35,
+          "movement": "still_unreachable"
+        },
+        {
+          "case_id": "OA-007",
+          "span_index": 0,
+          "category": "normal",
+          "section_path": [
+            "Sessions"
+          ],
+          "control_chunk_id": "chk_db82490165bc7adcbfe38dcb7b65c18edd3f15f8",
+          "bounded_chunk_id": "chk_413da63d793240bb0776d34c35086cb51def5f7d",
+          "control_chunk_len": 867,
+          "bounded_chunk_len": 867,
+          "rank_before": 11,
+          "rank_after": 10,
+          "similarity_before": 0.926114,
+          "similarity_after": 0.926114,
+          "doc_rank_before": 11,
+          "doc_rank_after": 10,
+          "movement": "boundary_improvement"
+        },
+        {
+          "case_id": "OA-008",
+          "span_index": 0,
+          "category": "exact_lookup",
+          "section_path": [
+            "Models",
+            "OpenAI models"
+          ],
+          "control_chunk_id": "chk_155378a014c2c411b1aba2482afed3eabddf6f28",
+          "bounded_chunk_id": "chk_062493d62b7092892b1604b528cbd87c64097548",
+          "control_chunk_len": 695,
+          "bounded_chunk_len": 695,
+          "rank_before": 10,
+          "rank_after": 11,
+          "similarity_before": 0.932658,
+          "similarity_after": 0.932658,
+          "doc_rank_before": 1,
+          "doc_rank_after": 1,
+          "movement": "boundary_regression"
+        }
+      ]
+    },
+    "A->E fusion vs BM25 control": {
+      "from": "A_control_bm25",
+      "to": "E_bm25control_plus_boundeddense_rrf",
+      "rescued": [],
+      "regressed": [],
+      "unchanged_good": [
+        "AN-005",
+        "AN-009",
+        "OA-001",
+        "OA-002",
+        "OA-003",
+        "OA-004",
+        "OA-005",
+        "OA-007",
+        "OA-008"
+      ],
+      "unchanged_bad": [
+        "AN-001",
+        "AN-002",
+        "AN-003",
+        "AN-004",
+        "AN-006",
+        "AN-007",
+        "AN-008",
+        "AN-010",
+        "AN-011",
+        "AN-012",
+        "OA-006"
+      ],
+      "partial_change": [],
+      "net_rescued": 0,
+      "macro_recall_delta": 0.0,
+      "quadrant": {
+        "both_correct": [
+          "AN-005",
+          "AN-009",
+          "OA-001",
+          "OA-002",
+          "OA-003",
+          "OA-004",
+          "OA-005",
+          "OA-007",
+          "OA-008"
+        ],
+        "only_before": [],
+        "only_after": [],
+        "neither": [
+          "AN-001",
+          "AN-002",
+          "AN-003",
+          "AN-004",
+          "AN-006",
+          "AN-007",
+          "AN-008",
+          "AN-010",
+          "AN-011",
+          "AN-012",
+          "OA-006"
+        ]
+      },
+      "span_movement_counts": {
+        "worsened_no_cross": 11,
+        "improved_no_cross": 6,
+        "still_unreachable": 1,
+        "unchanged": 3,
+        "lost_entirely": 1
+      },
+      "span_rows": [
+        {
+          "case_id": "AN-001",
+          "span_index": 0,
+          "category": "exact_lookup",
+          "section_path": [
+            "Preamble"
+          ],
+          "control_chunk_id": "chk_d8e8c7e599356dd09769ebd0582d3094406277e0",
+          "bounded_chunk_id": "chk_2a5b8f71392b3e0becb46fb1df9aa26f5400420b",
+          "control_chunk_len": 833,
+          "bounded_chunk_len": 833,
+          "rank_before": 19,
+          "rank_after": 38,
+          "similarity_before": 20.259183,
+          "similarity_after": 0.012658,
+          "doc_rank_before": 19,
+          "doc_rank_after": 38,
+          "movement": "worsened_no_cross"
+        },
+        {
+          "case_id": "AN-002",
+          "span_index": 0,
+          "category": "exact_lookup",
+          "section_path": [
+            "HTTP errors"
+          ],
+          "control_chunk_id": "chk_c489a281149ad3f3dd30936ed094099a8e17999b",
+          "bounded_chunk_id": "chk_cec04299237930aec8110ed96792e75962519642",
+          "control_chunk_len": 3327,
+          "bounded_chunk_len": 1121,
+          "rank_before": 27,
+          "rank_after": 12,
+          "similarity_before": 14.047926,
+          "similarity_after": 0.015152,
+          "doc_rank_before": 1,
+          "doc_rank_after": 1,
+          "movement": "improved_no_cross"
+        },
+        {
+          "case_id": "AN-003",
+          "span_index": 0,
+          "category": "exact_lookup",
+          "section_path": [
+            "Batches",
+            "Create a Message Batch",
+            "Body Parameters"
+          ],
+          "control_chunk_id": "chk_25a87141c0457994cd6f5d8d0cc2dd6d7683133c",
+          "bounded_chunk_id": "chk_4b2fa7d2fc27c8b7491254e258d13708b5405fb4",
+          "control_chunk_len": 3449,
+          "bounded_chunk_len": 1191,
+          "rank_before": null,
+          "rank_after": null,
+          "similarity_before": null,
+          "similarity_after": null,
+          "doc_rank_before": 6,
+          "doc_rank_after": 6,
+          "movement": "still_unreachable"
+        },
+        {
+          "case_id": "AN-004",
+          "span_index": 0,
+          "category": "exact_lookup",
+          "section_path": [
+            "Explicit cache breakpoints",
+            "Structuring your prompt",
+            "How automatic prefix checking works"
+          ],
+          "control_chunk_id": "chk_384363e66444dd16a3dee38a9b52449914c66c3e",
+          "bounded_chunk_id": "chk_0c41e9151bcd7704683b031001f1d1048edc9030",
+          "control_chunk_len": 3439,
+          "bounded_chunk_len": 1167,
+          "rank_before": 12,
+          "rank_after": 24,
+          "similarity_before": 17.567536,
+          "similarity_after": 0.013889,
+          "doc_rank_before": 1,
+          "doc_rank_after": 2,
+          "movement": "worsened_no_cross"
+        },
+        {
+          "case_id": "AN-005",
+          "span_index": 0,
+          "category": "exact_lookup",
+          "section_path": [
+            "Server-side strategies"
+          ],
+          "control_chunk_id": "chk_684086c646a7ffdd31032a0a7cbf7c49c4fd19d9",
+          "bounded_chunk_id": "chk_cd7255964cf97ca9ea27c8d6ede76e5a8c717905",
+          "control_chunk_len": 325,
+          "bounded_chunk_len": 325,
+          "rank_before": 4,
+          "rank_after": 7,
+          "similarity_before": 15.779501,
+          "similarity_after": 0.015625,
+          "doc_rank_before": 2,
+          "doc_rank_after": 4,
+          "movement": "worsened_no_cross"
+        },
+        {
+          "case_id": "AN-006",
+          "span_index": 0,
+          "category": "exact_lookup",
+          "section_path": [
+            "Upgrade to latest tool version",
+            "What's changed"
+          ],
+          "control_chunk_id": "chk_6431e660f0a8d074124fbc2841d9458dbad0b80f",
+          "bounded_chunk_id": "chk_234e5d5cf621a6bf76096661b87cef5ffaeed243",
+          "control_chunk_len": 733,
+          "bounded_chunk_len": 713,
+          "rank_before": 29,
+          "rank_after": 58,
+          "similarity_before": 13.781421,
+          "similarity_after": 0.011236,
+          "doc_rank_before": 29,
+          "doc_rank_after": 41,
+          "movement": "worsened_no_cross"
+        },
+        {
+          "case_id": "AN-007",
+          "span_index": 0,
+          "category": "exact_lookup",
+          "section_path": [
+            "HTTP errors"
+          ],
+          "control_chunk_id": "chk_c489a281149ad3f3dd30936ed094099a8e17999b",
+          "bounded_chunk_id": "chk_5f3cd042e15e7574ddd8470557d0451682dd130b",
+          "control_chunk_len": 3327,
+          "bounded_chunk_len": 1050,
+          "rank_before": 18,
+          "rank_after": 12,
+          "similarity_before": 14.306773,
+          "similarity_after": 0.015152,
+          "doc_rank_before": 2,
+          "doc_rank_after": 2,
+          "movement": "improved_no_cross"
+        },
+        {
+          "case_id": "AN-008",
+          "span_index": 0,
+          "category": "normal",
+          "section_path": [
+            "Preamble"
+          ],
+          "control_chunk_id": "chk_d8e8c7e599356dd09769ebd0582d3094406277e0",
+          "bounded_chunk_id": "chk_2a5b8f71392b3e0becb46fb1df9aa26f5400420b",
+          "control_chunk_len": 833,
+          "bounded_chunk_len": 833,
+          "rank_before": 12,
+          "rank_after": 24,
+          "similarity_before": 14.842891,
+          "similarity_after": 0.013889,
+          "doc_rank_before": 12,
+          "doc_rank_after": 24,
+          "movement": "worsened_no_cross"
+        },
+        {
+          "case_id": "AN-009",
+          "span_index": 0,
+          "category": "version_conflict",
+          "section_path": [
+            "Preamble"
+          ],
+          "control_chunk_id": "chk_3ca2ff24b047321f3f33112db03f5633835d78cd",
+          "bounded_chunk_id": "chk_7953695bbdc0268925594eae709ae1e4f96f7271",
+          "control_chunk_len": 897,
+          "bounded_chunk_len": 897,
+          "rank_before": 1,
+          "rank_after": 1,
+          "similarity_before": 36.502926,
+          "similarity_after": 0.016393,
+          "doc_rank_before": 1,
+          "doc_rank_after": 1,
+          "movement": "unchanged"
+        },
+        {
+          "case_id": "AN-010",
+          "span_index": 0,
+          "category": "version_conflict",
+          "section_path": [
+            "Model status"
+          ],
+          "control_chunk_id": "chk_90cc3f1a33717988b24dd2f64a474c69e2ae399d",
+          "bounded_chunk_id": "chk_548cdf22161e232d06c84b2ca231974481e58123",
+          "control_chunk_len": 2317,
+          "bounded_chunk_len": 1871,
+          "rank_before": 49,
+          "rank_after": 97,
+          "similarity_before": 12.18914,
+          "similarity_after": 0.009174,
+          "doc_rank_before": 8,
+          "doc_rank_after": 16,
+          "movement": "worsened_no_cross"
+        },
+        {
+          "case_id": "AN-011",
+          "span_index": 0,
+          "category": "ambiguous",
+          "section_path": [
+            "About rate limits"
+          ],
+          "control_chunk_id": "chk_79059eadc2995d0b914552581bb7a62c4f06cb8b",
+          "bounded_chunk_id": "chk_207d0a3ef2f350018edaed73a3d8c278ab0614e0",
+          "control_chunk_len": 1754,
+          "bounded_chunk_len": 1732,
+          "rank_before": 54,
+          "rank_after": 31,
+          "similarity_before": 10.360347,
+          "similarity_after": 0.013158,
+          "doc_rank_before": 1,
+          "doc_rank_after": 2,
+          "movement": "improved_no_cross"
+        },
+        {
+          "case_id": "AN-012",
+          "span_index": 0,
+          "category": "multi_hop",
+          "section_path": [
+            "HTTP errors"
+          ],
+          "control_chunk_id": "chk_c489a281149ad3f3dd30936ed094099a8e17999b",
+          "bounded_chunk_id": "chk_cec04299237930aec8110ed96792e75962519642",
+          "control_chunk_len": 3327,
+          "bounded_chunk_len": 1121,
+          "rank_before": 47,
+          "rank_after": 94,
+          "similarity_before": 18.707785,
+          "similarity_after": 0.009346,
+          "doc_rank_before": 28,
+          "doc_rank_after": 10,
+          "movement": "worsened_no_cross"
+        },
+        {
+          "case_id": "AN-012",
+          "span_index": 1,
+          "category": "multi_hop",
+          "section_path": [
+            "About rate limits"
+          ],
+          "control_chunk_id": "chk_79059eadc2995d0b914552581bb7a62c4f06cb8b",
+          "bounded_chunk_id": "chk_207d0a3ef2f350018edaed73a3d8c278ab0614e0",
+          "control_chunk_len": 1754,
+          "bounded_chunk_len": 1732,
+          "rank_before": 117,
+          "rank_after": null,
+          "similarity_before": 15.046248,
+          "similarity_after": null,
+          "doc_rank_before": 6,
+          "doc_rank_after": 12,
+          "movement": "lost_entirely"
+        },
+        {
+          "case_id": "OA-001",
+          "span_index": 0,
+          "category": "exact_lookup",
+          "section_path": [
+            "Tracing"
+          ],
+          "control_chunk_id": "chk_600fe1685960a129813639141d8e6d0bd21e2f87",
+          "bounded_chunk_id": "chk_4032c00a85b2004bbff320afa99c5f5b6062d9c9",
+          "control_chunk_len": 883,
+          "bounded_chunk_len": 883,
+          "rank_before": 4,
+          "rank_after": 1,
+          "similarity_before": 25.218056,
+          "similarity_after": 0.016393,
+          "doc_rank_before": 4,
+          "doc_rank_after": 1,
+          "movement": "improved_no_cross"
+        },
+        {
+          "case_id": "OA-002",
+          "span_index": 0,
+          "category": "exact_lookup",
+          "section_path": [
+            "Running agents",
+            "Exceptions"
+          ],
+          "control_chunk_id": "chk_a3e66af0cbf3c669402fb7580ef3e132d064be19",
+          "bounded_chunk_id": "chk_ae63189fb92a64acd67472240329c78792636268",
+          "control_chunk_len": 2403,
+          "bounded_chunk_len": 1049,
+          "rank_before": 2,
+          "rank_after": 2,
+          "similarity_before": 24.814782,
+          "similarity_after": 0.016393,
+          "doc_rank_before": 1,
+          "doc_rank_after": 1,
+          "movement": "unchanged"
+        },
+        {
+          "case_id": "OA-003",
+          "span_index": 0,
+          "category": "exact_lookup",
+          "section_path": [
+            "Guardrails",
+            "Tripwires"
+          ],
+          "control_chunk_id": "chk_b17099fe75c44006e954e286fa820bb2685015c4",
+          "bounded_chunk_id": "chk_691b8f44bc7481ea15604b584507e7887a148bb0",
+          "control_chunk_len": 1499,
+          "bounded_chunk_len": 823,
+          "rank_before": 6,
+          "rank_after": 2,
+          "similarity_before": 23.721294,
+          "similarity_after": 0.016393,
+          "doc_rank_before": 1,
+          "doc_rank_after": 1,
+          "movement": "improved_no_cross"
+        },
+        {
+          "case_id": "OA-004",
+          "span_index": 0,
+          "category": "exact_lookup",
+          "section_path": [
+            "Running agents",
+            "Runner lifecycle and configuration",
+            "The agent loop"
+          ],
+          "control_chunk_id": "chk_54f24b235eee08c3f04656ce79c5baf889005a84",
+          "bounded_chunk_id": "chk_7cf490de07242907ab4843b5a56c1888650a6e71",
+          "control_chunk_len": 1251,
+          "bounded_chunk_len": 1092,
+          "rank_before": 5,
+          "rank_after": 9,
+          "similarity_before": 22.055908,
+          "similarity_after": 0.015385,
+          "doc_rank_before": 5,
+          "doc_rank_after": 9,
+          "movement": "worsened_no_cross"
+        },
+        {
+          "case_id": "OA-005",
+          "span_index": 0,
+          "category": "exact_lookup",
+          "section_path": [
+            "Configuration",
+            "API keys and clients"
+          ],
+          "control_chunk_id": "chk_92fa440a7d4555008d2fd5c2ca71f2679d4cc9af",
+          "bounded_chunk_id": "chk_bdab4134c41350f8dd3bace065747be506cc40c8",
+          "control_chunk_len": 444,
+          "bounded_chunk_len": 444,
+          "rank_before": 3,
+          "rank_after": 2,
+          "similarity_before": 30.921725,
+          "similarity_after": 0.016393,
+          "doc_rank_before": 1,
+          "doc_rank_after": 1,
+          "movement": "improved_no_cross"
+        },
+        {
+          "case_id": "OA-006",
+          "span_index": 0,
+          "category": "multi_hop",
+          "section_path": [
+            "Tracing"
+          ],
+          "control_chunk_id": "chk_600fe1685960a129813639141d8e6d0bd21e2f87",
+          "bounded_chunk_id": "chk_4032c00a85b2004bbff320afa99c5f5b6062d9c9",
+          "control_chunk_len": 883,
+          "bounded_chunk_len": 883,
+          "rank_before": 1,
+          "rank_after": 2,
+          "similarity_before": 42.384351,
+          "similarity_after": 0.016393,
+          "doc_rank_before": 1,
+          "doc_rank_after": 2,
+          "movement": "worsened_no_cross"
+        },
+        {
+          "case_id": "OA-006",
+          "span_index": 1,
+          "category": "multi_hop",
+          "section_path": [
+            "Configuration",
+            "Tracing"
+          ],
+          "control_chunk_id": "chk_9425aaf386c8eaf9795d3f9df8cdad806aab8133",
+          "bounded_chunk_id": "chk_09da95ca7595a72a989009d1c0fef9bb06a08fe4",
+          "control_chunk_len": 116,
+          "bounded_chunk_len": 116,
+          "rank_before": 29,
+          "rank_after": 58,
+          "similarity_before": 19.45848,
+          "similarity_after": 0.011236,
+          "doc_rank_before": 4,
+          "doc_rank_after": 7,
+          "movement": "worsened_no_cross"
+        },
+        {
+          "case_id": "OA-007",
+          "span_index": 0,
+          "category": "normal",
+          "section_path": [
+            "Sessions"
+          ],
+          "control_chunk_id": "chk_db82490165bc7adcbfe38dcb7b65c18edd3f15f8",
+          "bounded_chunk_id": "chk_413da63d793240bb0776d34c35086cb51def5f7d",
+          "control_chunk_len": 867,
+          "bounded_chunk_len": 867,
+          "rank_before": 1,
+          "rank_after": 2,
+          "similarity_before": 23.798327,
+          "similarity_after": 0.016393,
+          "doc_rank_before": 1,
+          "doc_rank_after": 2,
+          "movement": "worsened_no_cross"
+        },
+        {
+          "case_id": "OA-008",
+          "span_index": 0,
+          "category": "exact_lookup",
+          "section_path": [
+            "Models",
+            "OpenAI models"
+          ],
+          "control_chunk_id": "chk_155378a014c2c411b1aba2482afed3eabddf6f28",
+          "bounded_chunk_id": "chk_062493d62b7092892b1604b528cbd87c64097548",
+          "control_chunk_len": 695,
+          "bounded_chunk_len": 695,
+          "rank_before": 1,
+          "rank_after": 1,
+          "similarity_before": 30.816682,
+          "similarity_after": 0.016393,
+          "doc_rank_before": 1,
+          "doc_rank_after": 1,
+          "movement": "unchanged"
+        }
+      ]
+    }
+  },
+  "interaction_analysis": {
+    "note": "A main effect would move both rows equally; an interaction moves them differently.",
+    "table": {
+      "BM25": {
+        "control": 0.475,
+        "bounded": 0.5,
+        "delta": 0.025,
+        "fully_recalled": [
+          9,
+          9
+        ],
+        "absent_at_300": [
+          1,
+          1
+        ],
+        "mrr": [
+          0.2795,
+          0.2874
+        ],
+        "net_rescued": 0
+      },
+      "dense": {
+        "control": 0.425,
+        "bounded": 0.4,
+        "delta": -0.025,
+        "fully_recalled": [
+          8,
+          8
+        ],
+        "absent_at_300": [
+          5,
+          5
+        ],
+        "mrr": [
+          0.3599,
+          0.2589
+        ],
+        "net_rescued": 0
+      }
+    },
+    "interaction_delta": -0.05
+  },
+  "evidence_anchors": {
+    "AN-001#0": {
+      "control_chunk_id": "chk_d8e8c7e599356dd09769ebd0582d3094406277e0",
+      "control_chunk_len": 833,
+      "bounded_chunk_id": "chk_2a5b8f71392b3e0becb46fb1df9aa26f5400420b",
+      "bounded_chunk_len": 833
+    },
+    "AN-002#0": {
+      "control_chunk_id": "chk_c489a281149ad3f3dd30936ed094099a8e17999b",
+      "control_chunk_len": 3327,
+      "bounded_chunk_id": "chk_cec04299237930aec8110ed96792e75962519642",
+      "bounded_chunk_len": 1121
+    },
+    "AN-003#0": {
+      "control_chunk_id": "chk_25a87141c0457994cd6f5d8d0cc2dd6d7683133c",
+      "control_chunk_len": 3449,
+      "bounded_chunk_id": "chk_4b2fa7d2fc27c8b7491254e258d13708b5405fb4",
+      "bounded_chunk_len": 1191
+    },
+    "AN-004#0": {
+      "control_chunk_id": "chk_384363e66444dd16a3dee38a9b52449914c66c3e",
+      "control_chunk_len": 3439,
+      "bounded_chunk_id": "chk_0c41e9151bcd7704683b031001f1d1048edc9030",
+      "bounded_chunk_len": 1167
+    },
+    "AN-005#0": {
+      "control_chunk_id": "chk_684086c646a7ffdd31032a0a7cbf7c49c4fd19d9",
+      "control_chunk_len": 325,
+      "bounded_chunk_id": "chk_cd7255964cf97ca9ea27c8d6ede76e5a8c717905",
+      "bounded_chunk_len": 325
+    },
+    "AN-006#0": {
+      "control_chunk_id": "chk_6431e660f0a8d074124fbc2841d9458dbad0b80f",
+      "control_chunk_len": 733,
+      "bounded_chunk_id": "chk_234e5d5cf621a6bf76096661b87cef5ffaeed243",
+      "bounded_chunk_len": 713
+    },
+    "AN-007#0": {
+      "control_chunk_id": "chk_c489a281149ad3f3dd30936ed094099a8e17999b",
+      "control_chunk_len": 3327,
+      "bounded_chunk_id": "chk_5f3cd042e15e7574ddd8470557d0451682dd130b",
+      "bounded_chunk_len": 1050
+    },
+    "AN-008#0": {
+      "control_chunk_id": "chk_d8e8c7e599356dd09769ebd0582d3094406277e0",
+      "control_chunk_len": 833,
+      "bounded_chunk_id": "chk_2a5b8f71392b3e0becb46fb1df9aa26f5400420b",
+      "bounded_chunk_len": 833
+    },
+    "AN-009#0": {
+      "control_chunk_id": "chk_3ca2ff24b047321f3f33112db03f5633835d78cd",
+      "control_chunk_len": 897,
+      "bounded_chunk_id": "chk_7953695bbdc0268925594eae709ae1e4f96f7271",
+      "bounded_chunk_len": 897
+    },
+    "AN-010#0": {
+      "control_chunk_id": "chk_90cc3f1a33717988b24dd2f64a474c69e2ae399d",
+      "control_chunk_len": 2317,
+      "bounded_chunk_id": "chk_548cdf22161e232d06c84b2ca231974481e58123",
+      "bounded_chunk_len": 1871
+    },
+    "AN-011#0": {
+      "control_chunk_id": "chk_79059eadc2995d0b914552581bb7a62c4f06cb8b",
+      "control_chunk_len": 1754,
+      "bounded_chunk_id": "chk_207d0a3ef2f350018edaed73a3d8c278ab0614e0",
+      "bounded_chunk_len": 1732
+    },
+    "AN-012#0": {
+      "control_chunk_id": "chk_c489a281149ad3f3dd30936ed094099a8e17999b",
+      "control_chunk_len": 3327,
+      "bounded_chunk_id": "chk_cec04299237930aec8110ed96792e75962519642",
+      "bounded_chunk_len": 1121
+    },
+    "AN-012#1": {
+      "control_chunk_id": "chk_79059eadc2995d0b914552581bb7a62c4f06cb8b",
+      "control_chunk_len": 1754,
+      "bounded_chunk_id": "chk_207d0a3ef2f350018edaed73a3d8c278ab0614e0",
+      "bounded_chunk_len": 1732
+    },
+    "OA-001#0": {
+      "control_chunk_id": "chk_600fe1685960a129813639141d8e6d0bd21e2f87",
+      "control_chunk_len": 883,
+      "bounded_chunk_id": "chk_4032c00a85b2004bbff320afa99c5f5b6062d9c9",
+      "bounded_chunk_len": 883
+    },
+    "OA-002#0": {
+      "control_chunk_id": "chk_a3e66af0cbf3c669402fb7580ef3e132d064be19",
+      "control_chunk_len": 2403,
+      "bounded_chunk_id": "chk_ae63189fb92a64acd67472240329c78792636268",
+      "bounded_chunk_len": 1049
+    },
+    "OA-003#0": {
+      "control_chunk_id": "chk_b17099fe75c44006e954e286fa820bb2685015c4",
+      "control_chunk_len": 1499,
+      "bounded_chunk_id": "chk_691b8f44bc7481ea15604b584507e7887a148bb0",
+      "bounded_chunk_len": 823
+    },
+    "OA-004#0": {
+      "control_chunk_id": "chk_54f24b235eee08c3f04656ce79c5baf889005a84",
+      "control_chunk_len": 1251,
+      "bounded_chunk_id": "chk_7cf490de07242907ab4843b5a56c1888650a6e71",
+      "bounded_chunk_len": 1092
+    },
+    "OA-005#0": {
+      "control_chunk_id": "chk_92fa440a7d4555008d2fd5c2ca71f2679d4cc9af",
+      "control_chunk_len": 444,
+      "bounded_chunk_id": "chk_bdab4134c41350f8dd3bace065747be506cc40c8",
+      "bounded_chunk_len": 444
+    },
+    "OA-006#0": {
+      "control_chunk_id": "chk_600fe1685960a129813639141d8e6d0bd21e2f87",
+      "control_chunk_len": 883,
+      "bounded_chunk_id": "chk_4032c00a85b2004bbff320afa99c5f5b6062d9c9",
+      "bounded_chunk_len": 883
+    },
+    "OA-006#1": {
+      "control_chunk_id": "chk_9425aaf386c8eaf9795d3f9df8cdad806aab8133",
+      "control_chunk_len": 116,
+      "bounded_chunk_id": "chk_09da95ca7595a72a989009d1c0fef9bb06a08fe4",
+      "bounded_chunk_len": 116
+    },
+    "OA-007#0": {
+      "control_chunk_id": "chk_db82490165bc7adcbfe38dcb7b65c18edd3f15f8",
+      "control_chunk_len": 867,
+      "bounded_chunk_id": "chk_413da63d793240bb0776d34c35086cb51def5f7d",
+      "bounded_chunk_len": 867
+    },
+    "OA-008#0": {
+      "control_chunk_id": "chk_155378a014c2c411b1aba2482afed3eabddf6f28",
+      "control_chunk_len": 695,
+      "bounded_chunk_id": "chk_062493d62b7092892b1604b528cbd87c64097548",
+      "bounded_chunk_len": 695
+    }
+  },
+  "runtime_seconds": 28.3,
+  "errors": [],
+  "config_hash": "9776d27b56f06efd33f7c71ef77cc47a4e3c583cf882701d70dddbe8a2750502"
+}

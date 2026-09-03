@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.venv/
+venv/
+*.egg-info/
+
+# Secrets
+.env
+
+# Local/copyrighted corpus snapshots and caches
+/data/raw/*
+!/data/raw/.gitkeep
+/data/cache/*
+!/data/cache/.gitkeep
+/data/snapshots/
+
+# Experiment outputs.
+#
+# Published results are redacted at write time: retrieved chunk text is replaced
+# by a sha256 and a length (see rag_v1.evals.retrieval_eval.redact_hit), so a
+# results file carries evidence anchors and scores but no copied provider prose.
+# Those are the reviewable artifact and are committed.
+#
+# Trace files written with --include-text keep the retrieved text verbatim and
+# must never be committed.
+/experiments/**/*traces*.jsonl
+/experiments/**/*-traces.jsonl
+
+# OS/editor
+.DS_Store
+.vscode/
+.idea/
+
+# CORPUS-002 restoration area: a working copy of the frozen corpus.
+# Same policy as /data/raw — recovered corpus bytes are never committed.
+/recovery/
+
+# Locked holdout cases — never commit
+evals/splits/**/holdout.json

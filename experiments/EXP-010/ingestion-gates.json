@@ -1,0 +1,805 @@
+{
+  "experiment_id": "EXP-010",
+  "timestamp": "2026-08-18T20:31:08Z",
+  "git_commit": "6a25a8f1f587d977a372b1a2cfe33612a8e53903",
+  "chunker": {
+    "name": "chunker_v4_encoder_aligned",
+    "version": "4.0",
+    "config_hash": "fab255516cb457c4584ed846c8da459b7efb2975533c6d1b6e0b77327f3e1b1b",
+    "config": {
+      "encoder": "sentence-transformers/all-MiniLM-L6-v2",
+      "encoder_window_tokens": 512,
+      "special_token_overhead": 2,
+      "usable_payload_tokens": 510,
+      "target_payload_tokens": 448,
+      "hard_payload_tokens": 480,
+      "max_carryover_tokens": 96,
+      "limits_measured_in": "encoder WordPiece tokens (not characters or words)",
+      "derived_from": "cs_v1_control",
+      "fitting_chunks": "passed through unchanged",
+      "carryover": "section heading on forced continuations; table header on later row groups"
+    }
+  },
+  "encoder_budget": {
+    "max_position_embeddings": 512,
+    "special_token_overhead_measured": 2,
+    "usable_payload_tokens": 510,
+    "target_payload_tokens": 448,
+    "hard_payload_tokens": 480,
+    "probe": "alpha beta gamma"
+  },
+  "hard_payload_tokens": 480,
+  "distribution": {
+    "control": {
+      "chunk_set": "cs_v1_control",
+      "chunks": 14209,
+      "mean_encoded_tokens": 288.4,
+      "median_encoded_tokens": 146,
+      "p75": 445,
+      "p90": 837,
+      "p95": 881,
+      "p99": 963,
+      "max_encoded_tokens": 6857,
+      "chunks_over_256": 5008,
+      "chunks_over_384": 3872,
+      "chunks_over_448": 3536,
+      "chunks_over_512": 3300,
+      "percent_truncated_at_512": 23.2247,
+      "total_tokens": 4097597,
+      "tokens_visible_to_encoder": 3118154,
+      "corpus_token_coverage": 0.761,
+      "chunks_by_type": {
+        "prose": 9488,
+        "code": 4432,
+        "table": 289
+      },
+      "provider_distribution": {
+        "unknown": 14209
+      },
+      "truncated_chunk_ids": [
+        "chk_001c862052b97961cf6bc37eb68bf20e1fac6937",
+        "chk_003c678c901a2b213601b7a63d5434d467980d0f",
+        "chk_00510b5031ad093dff94413345dd442236b2a7e6",
+        "chk_0059a2932baefaa19b43787a6eb50ac4553c071a",
+        "chk_0085b5a87c172090f075babb09a68693e0089fef",
+        "chk_0086e4e5c1786dc111cd454c78b54c302fb92992",
+        "chk_00891bbe7a95c1f94c8f25a021b79cf226664236",
+        "chk_008fb7cf82af2fdf09c9a8fea4df73f9b069755a",
+        "chk_00baed2bf01450580cc164b25d712ea435b0ec1d",
+        "chk_00bda5c7360884bcc08f08d2dc31d55a49b9a1cc",
+        "chk_00da928a9632ddab63c3a5cb3e738c3b6d000ad9",
+        "chk_00f20f3dde99f9165bdca7246181d7e1784084a6",
+        "chk_013f38e1c0912cfe7550babe86b2e33d3ef43fd2",
+        "chk_01651e663884eaa167881eaea07a29f89fb11534",
+        "chk_0188874676cf9e6e184a5f883a69acd414b67f6c",
+        "chk_019d94e73b7654530f12fb5f3bc93553f5e0169b",
+        "chk_019fdba747ab52e6d63ea45fd22d1c359bcd09aa",
+        "chk_01b22beb5c72ec54f065c95bb85d9e745ea299e6",
+        "chk_01bfc1af126323d6de6cd309c14ad8471625113a",
+        "chk_01c92cc169bb9be0e0689089cb44f4e67592d64c",
+        "chk_01cd7d10cb9839b3f22ce308e3e0b8fa65e46c64",
+        "chk_01d2771e82aa06707bd50501b988086889dfd17d",
+        "chk_01d6c56b15bb9f1ddcededbc2af5353cda152cd4",
+        "chk_01e69e304bb78d690ccc00e359546ab8aba6246d",
+        "chk_01e7f310440c660a8d70ae1a1926bc3b78b57bd8",
+        "chk_0210a9f85fe9fd8aab49715b1eccfebd6bbed48b",
+        "chk_021fb99b3f760f53e658a4f66f7e99f74b8482ad",
+        "chk_02223bd08a00546a8f68323f9e22cdc9631312d2",
+        "chk_022fb24db39b8bff713077aec6040075a95e26db",
+        "chk_023a15f4c2e08ccc028b0af15294a23fa4cc3872",
+        "chk_02485bc28308bd936711e8ffc657fdee3ee0d482",
+        "chk_0253a57823c78f577bf92273f1522d5c1c75f322",
+        "chk_026bac8593748c4d74e65934f36a42d7af7adad1",
+        "chk_0273d5284eb6dfc38ba790f864a6a071bec4f4ca",
+        "chk_02817cc1e33502b4bd5300a0e74c5984f89accf0",
+        "chk_0284d7207232f0a8ace6dbc8c8f910f0a4945f6f",
+        "chk_02919e2c2dfb41f185cd0461a818113c7d62a4bc",
+        "chk_029ce3c632bce4a1b6df4249a58e25b3aa907794",
+        "chk_02c54930726278aaa0e19fae2605bbfd0d2af53f",
+        "chk_02d2ec0139758cd027ca40db87d977205990fb49",
+        "chk_02d63fd6c6e8fccc1f6a7e3ebdd2181ad3d0640d",
+        "chk_02e5189939c3395be23d194e3c7166cc000376c8",
+        "chk_0312e72b9ba9298bc3b55316e32ca2dddbfa574e",
+        "chk_0334f5028a86e2afa239ed735f2c030e258387ea",
+        "chk_033e56eb98371e023684dd044144e247fbc12aba",
+        "chk_035b7dec5f53d77ba424841efdb019de2c55c9ae",
+        "chk_035bf6d6bfca3a7ab3b18f329566a0cb58adc1c4",
+        "chk_0365f463d4f8360b16f7bf051dfda5097410ab54",
+        "chk_036ce6364ac6d76c3fe17b167ead6406addbefcf",
+        "chk_03741e153d1009381502d7a99f99a351cb66c62f"
+      ]
+    },
+    "encoder_aligned": {
+      "chunk_set": "cs_v4_encoder_aligned",
+      "chunks": 18579,
+      "mean_encoded_tokens": 221.1,
+      "median_encoded_tokens": 181,
+      "p75": 415,
+      "p90": 442,
+      "p95": 445,
+      "p99": 449,
+      "max_encoded_tokens": 482,
+      "chunks_over_256": 7772,
+      "chunks_over_384": 5576,
+      "chunks_over_448": 208,
+      "chunks_over_512": 0,
+      "percent_truncated_at_512": 0.0,
+      "total_tokens": 4108266,
+      "tokens_visible_to_encoder": 4108266,
+      "corpus_token_coverage": 1.0,
+      "chunks_by_type": {
+        "prose": 12984,
+        "code": 4947,
+        "table": 648
+      },
+      "provider_distribution": {
+        "unknown": 18579
+      },
+      "truncated_chunk_ids": []
+    }
+  },
+  "evidence_gate": {
+    "control": {
+      "chunk_set": "cs_v1_control",
+      "spans_total": 22,
+      "spans_mapped": 22,
+      "spans_fully_contained": 22,
+      "missing": [],
+      "passed": true,
+      "spans": [
+        {
+          "case_id": "AN-001",
+          "span_index": 0,
+          "section_path": [
+            "Preamble"
+          ],
+          "span": [
+            116,
+            227
+          ],
+          "mapped_chunks": 1,
+          "smallest_chunk_id": "chk_d8e8c7e599356dd09769ebd0582d3094406277e0",
+          "fully_contained": true
+        },
+        {
+          "case_id": "AN-002",
+          "span_index": 0,
+          "section_path": [
+            "HTTP errors"
+          ],
+          "span": [
+            1636,
+            1721
+          ],
+          "mapped_chunks": 1,
+          "smallest_chunk_id": "chk_c489a281149ad3f3dd30936ed094099a8e17999b",
+          "fully_contained": true
+        },
+        {
+          "case_id": "AN-003",
+          "span_index": 0,
+          "section_path": [
+            "Batches",
+            "Create a Message Batch",
+            "Body Parameters"
+          ],
+          "span": [
+            4554,
+            4611
+          ],
+          "mapped_chunks": 1,
+          "smallest_chunk_id": "chk_25a87141c0457994cd6f5d8d0cc2dd6d7683133c",
+          "fully_contained": true
+        },
+        {
+          "case_id": "AN-004",
+          "span_index": 0,
+          "section_path": [
+            "Explicit cache breakpoints",
+            "Structuring your prompt",
+            "How automatic prefix checking works"
+          ],
+          "span": [
+            25537,
+            25690
+          ],
+          "mapped_chunks": 1,
+          "smallest_chunk_id": "chk_384363e66444dd16a3dee38a9b52449914c66c3e",
+          "fully_contained": true
+        },
+        {
+          "case_id": "AN-005",
+          "span_index": 0,
+          "section_path": [
+            "Server-side strategies"
+          ],
+          "span": [
+            4055,
+            4106
+          ],
+          "mapped_chunks": 1,
+          "smallest_chunk_id": "chk_684086c646a7ffdd31032a0a7cbf7c49c4fd19d9",
+          "fully_contained": true
+        },
+        {
+          "case_id": "AN-006",
+          "span_index": 0,
+          "section_path": [
+            "Upgrade to latest tool version",
+            "What's changed"
+          ],
+          "span": [
+            58361,
+            58388
+          ],
+          "mapped_chunks": 1,
+          "smallest_chunk_id": "chk_6431e660f0a8d074124fbc2841d9458dbad0b80f",
+          "fully_contained": true
+        },
+        {
+          "case_id": "AN-007",
+          "span_index": 0,
+          "section_path": [
+            "HTTP errors"
+          ],
+          "span": [
+            2459,
+            2533
+          ],
+          "mapped_chunks": 1,
+          "smallest_chunk_id": "chk_c489a281149ad3f3dd30936ed094099a8e17999b",
+          "fully_contained": true
+        },
+        {
+          "case_id": "AN-008",
+          "span_index": 0,
+          "section_path": [
+            "Preamble"
+          ],
+          "span": [
+            361,
+            496
+          ],
+          "mapped_chunks": 1,
+          "smallest_chunk_id": "chk_d8e8c7e599356dd09769ebd0582d3094406277e0",
+          "fully_contained": true
+        },
+        {
+          "case_id": "AN-009",
+          "span_index": 0,
+          "section_path": [
+            "Preamble"
+          ],
+          "span": [
+            246,
+            318
+          ],
+          "mapped_chunks": 1,
+          "smallest_chunk_id": "chk_3ca2ff24b047321f3f33112db03f5633835d78cd",
+          "fully_contained": true
+        },
+        {
+          "case_id": "AN-010",
+          "span_index": 0,
+          "section_path": [
+            "Model status"
+          ],
+          "span": [
+            5671,
+            5769
+          ],
+          "mapped_chunks": 1,
+          "smallest_chunk_id": "chk_90cc3f1a33717988b24dd2f64a474c69e2ae399d",
+          "fully_contained": true
+        },
+        {
+          "case_id": "AN-011",
+          "span_index": 0,
+          "section_path": [
+            "About rate limits"
+          ],
+          "span": [
+            1672,
+            1849
+          ],
+          "mapped_chunks": 1,
+          "smallest_chunk_id": "chk_79059eadc2995d0b914552581bb7a62c4f06cb8b",
+          "fully_contained": true
+        },
+        {
+          "case_id": "AN-012",
+          "span_index": 0,
+          "section_path": [
+            "HTTP errors"
+          ],
+          "span": [
+            1840,
+            1904
+          ],
+          "mapped_chunks": 1,
+          "smallest_chunk_id": "chk_c489a281149ad3f3dd30936ed094099a8e17999b",
+          "fully_contained": true
+        },
+        {
+          "case_id": "AN-012",
+          "span_index": 1,
+          "section_path": [
+            "About rate limits"
+          ],
+          "span": [
+            1672,
+            1849
+          ],
+          "mapped_chunks": 1,
+          "smallest_chunk_id": "chk_79059eadc2995d0b914552581bb7a62c4f06cb8b",
+          "fully_contained": true
+        },
+        {
+          "case_id": "OA-001",
+          "span_index": 0,
+          "section_path": [
+            "Tracing"
+          ],
+          "span": [
+            512,
+            553
+          ],
+          "mapped_chunks": 1,
+          "smallest_chunk_id": "chk_600fe1685960a129813639141d8e6d0bd21e2f87",
+          "fully_contained": true
+        },
+        {
+          "case_id": "OA-002",
+          "span_index": 0,
+          "section_path": [
+            "Running agents",
+            "Exceptions"
+          ],
+          "span": [
+            33598,
+            33793
+          ],
+          "mapped_chunks": 1,
+          "smallest_chunk_id": "chk_a3e66af0cbf3c669402fb7580ef3e132d064be19",
+          "fully_contained": true
+        },
+        {
+          "case_id": "OA-003",
+          "span_index": 0,
+          "section_path": [
+            "Guardrails",
+            "Tripwires"
+          ],
+          "span": [
+            7225,
+            7381
+          ],
+          "mapped_chunks": 1,
+          "smallest_chunk_id": "chk_b17099fe75c44006e954e286fa820bb2685015c4",
+          "fully_contained": true
+        },
+        {
+          "case_id": "OA-004",
+          "span_index": 0,
+          "section_path": [
+            "Running agents",
+            "Runner lifecycle and configuration",
+            "The agent loop"
+          ],
+          "span": [
+            2052,
+            2101
+          ],
+          "mapped_chunks": 1,
+          "smallest_chunk_id": "chk_54f24b235eee08c3f04656ce79c5baf889005a84",
+          "fully_contained": true
+        },
+        {
+          "case_id": "OA-005",
+          "span_index": 0,
+          "section_path": [
+            "Configuration",
+            "API keys and clients"
+          ],
+          "span": [
+            2227,
+            2308
+          ],
+          "mapped_chunks": 1,
+          "smallest_chunk_id": "chk_92fa440a7d4555008d2fd5c2ca71f2679d4cc9af",
+          "fully_contained": true
+        },
+        {
+          "case_id": "OA-006",
+          "span_index": 0,
+          "section_path": [
+            "Tracing"
+          ],
+          "span": [
+            512,
+            553
+          ],
+          "mapped_chunks": 1,
+          "smallest_chunk_id": "chk_600fe1685960a129813639141d8e6d0bd21e2f87",
+          "fully_contained": true
+        },
+        {
+          "case_id": "OA-006",
+          "span_index": 1,
+          "section_path": [
+            "Configuration",
+            "Tracing"
+          ],
+          "span": [
+            8126,
+            8242
+          ],
+          "mapped_chunks": 1,
+          "smallest_chunk_id": "chk_9425aaf386c8eaf9795d3f9df8cdad806aab8133",
+          "fully_contained": true
+        },
+        {
+          "case_id": "OA-007",
+          "span_index": 0,
+          "section_path": [
+            "Sessions"
+          ],
+          "span": [
+            12,
+            259
+          ],
+          "mapped_chunks": 1,
+          "smallest_chunk_id": "chk_db82490165bc7adcbfe38dcb7b65c18edd3f15f8",
+          "fully_contained": true
+        },
+        {
+          "case_id": "OA-008",
+          "span_index": 0,
+          "section_path": [
+            "Models",
+            "OpenAI models"
+          ],
+          "span": [
+            2098,
+            2233
+          ],
+          "mapped_chunks": 1,
+          "smallest_chunk_id": "chk_155378a014c2c411b1aba2482afed3eabddf6f28",
+          "fully_contained": true
+        }
+      ]
+    },
+    "encoder_aligned": {
+      "chunk_set": "cs_v4_encoder_aligned",
+      "spans_total": 22,
+      "spans_mapped": 22,
+      "spans_fully_contained": 21,
+      "missing": [],
+      "passed": true,
+      "spans": [
+        {
+          "case_id": "AN-001",
+          "span_index": 0,
+          "section_path": [
+            "Preamble"
+          ],
+          "span": [
+            116,
+            227
+          ],
+          "mapped_chunks": 1,
+          "smallest_chunk_id": "chk_c742f659abd3d67986b0d21439841b348d3d36de",
+          "fully_contained": true
+        },
+        {
+          "case_id": "AN-002",
+          "span_index": 0,
+          "section_path": [
+            "HTTP errors"
+          ],
+          "span": [
+            1636,
+            1721
+          ],
+          "mapped_chunks": 1,
+          "smallest_chunk_id": "chk_8fcfe7fe658b9c7ce479e627199611bd8316ae1d",
+          "fully_contained": true
+        },
+        {
+          "case_id": "AN-003",
+          "span_index": 0,
+          "section_path": [
+            "Batches",
+            "Create a Message Batch",
+            "Body Parameters"
+          ],
+          "span": [
+            4554,
+            4611
+          ],
+          "mapped_chunks": 1,
+          "smallest_chunk_id": "chk_ea94eacb8b14bab95fcd358b0eb1d245e24ff734",
+          "fully_contained": true
+        },
+        {
+          "case_id": "AN-004",
+          "span_index": 0,
+          "section_path": [
+            "Explicit cache breakpoints",
+            "Structuring your prompt",
+            "How automatic prefix checking works"
+          ],
+          "span": [
+            25537,
+            25690
+          ],
+          "mapped_chunks": 1,
+          "smallest_chunk_id": "chk_ea66df91609939d227c6b6c9a177444fb026ace3",
+          "fully_contained": true
+        },
+        {
+          "case_id": "AN-005",
+          "span_index": 0,
+          "section_path": [
+            "Server-side strategies"
+          ],
+          "span": [
+            4055,
+            4106
+          ],
+          "mapped_chunks": 1,
+          "smallest_chunk_id": "chk_83fd2a4672f6210ac34e7ee1b531dc86f2ef4965",
+          "fully_contained": true
+        },
+        {
+          "case_id": "AN-006",
+          "span_index": 0,
+          "section_path": [
+            "Upgrade to latest tool version",
+            "What's changed"
+          ],
+          "span": [
+            58361,
+            58388
+          ],
+          "mapped_chunks": 1,
+          "smallest_chunk_id": "chk_f48c331fc3b1f56a1ab7daaf28320d111a616058",
+          "fully_contained": true
+        },
+        {
+          "case_id": "AN-007",
+          "span_index": 0,
+          "section_path": [
+            "HTTP errors"
+          ],
+          "span": [
+            2459,
+            2533
+          ],
+          "mapped_chunks": 1,
+          "smallest_chunk_id": "chk_e3b21083099efdf9c3133b7fe03400ee62c1db29",
+          "fully_contained": true
+        },
+        {
+          "case_id": "AN-008",
+          "span_index": 0,
+          "section_path": [
+            "Preamble"
+          ],
+          "span": [
+            361,
+            496
+          ],
+          "mapped_chunks": 1,
+          "smallest_chunk_id": "chk_c742f659abd3d67986b0d21439841b348d3d36de",
+          "fully_contained": true
+        },
+        {
+          "case_id": "AN-009",
+          "span_index": 0,
+          "section_path": [
+            "Preamble"
+          ],
+          "span": [
+            246,
+            318
+          ],
+          "mapped_chunks": 1,
+          "smallest_chunk_id": "chk_f174c0cbf24a693ded8e28815d6434894214ae7b",
+          "fully_contained": true
+        },
+        {
+          "case_id": "AN-010",
+          "span_index": 0,
+          "section_path": [
+            "Model status"
+          ],
+          "span": [
+            5671,
+            5769
+          ],
+          "mapped_chunks": 1,
+          "smallest_chunk_id": "chk_047694a526e0195733fc0acdb0c18f1ea47b4355",
+          "fully_contained": true
+        },
+        {
+          "case_id": "AN-011",
+          "span_index": 0,
+          "section_path": [
+            "About rate limits"
+          ],
+          "span": [
+            1672,
+            1849
+          ],
+          "mapped_chunks": 1,
+          "smallest_chunk_id": "chk_9a00bc711edd736e67bca6ad3d58fb702d4b594e",
+          "fully_contained": true
+        },
+        {
+          "case_id": "AN-012",
+          "span_index": 0,
+          "section_path": [
+            "HTTP errors"
+          ],
+          "span": [
+            1840,
+            1904
+          ],
+          "mapped_chunks": 2,
+          "smallest_chunk_id": "chk_8fcfe7fe658b9c7ce479e627199611bd8316ae1d",
+          "fully_contained": false
+        },
+        {
+          "case_id": "AN-012",
+          "span_index": 1,
+          "section_path": [
+            "About rate limits"
+          ],
+          "span": [
+            1672,
+            1849
+          ],
+          "mapped_chunks": 1,
+          "smallest_chunk_id": "chk_9a00bc711edd736e67bca6ad3d58fb702d4b594e",
+          "fully_contained": true
+        },
+        {
+          "case_id": "OA-001",
+          "span_index": 0,
+          "section_path": [
+            "Tracing"
+          ],
+          "span": [
+            512,
+            553
+          ],
+          "mapped_chunks": 1,
+          "smallest_chunk_id": "chk_ca98515a72bbbc6f4c912b8fab42f990cce8cf9b",
+          "fully_contained": true
+        },
+        {
+          "case_id": "OA-002",
+          "span_index": 0,
+          "section_path": [
+            "Running agents",
+            "Exceptions"
+          ],
+          "span": [
+            33598,
+            33793
+          ],
+          "mapped_chunks": 1,
+          "smallest_chunk_id": "chk_878d99ef407872e76a552c3ecbd278957d98698e",
+          "fully_contained": true
+        },
+        {
+          "case_id": "OA-003",
+          "span_index": 0,
+          "section_path": [
+            "Guardrails",
+            "Tripwires"
+          ],
+          "span": [
+            7225,
+            7381
+          ],
+          "mapped_chunks": 1,
+          "smallest_chunk_id": "chk_ebb66e10a1ca86163e5b3b39a11c27a3f07721d6",
+          "fully_contained": true
+        },
+        {
+          "case_id": "OA-004",
+          "span_index": 0,
+          "section_path": [
+            "Running agents",
+            "Runner lifecycle and configuration",
+            "The agent loop"
+          ],
+          "span": [
+            2052,
+            2101
+          ],
+          "mapped_chunks": 1,
+          "smallest_chunk_id": "chk_941adea97eaf9a3b3b2a6702af454f50aafcb086",
+          "fully_contained": true
+        },
+        {
+          "case_id": "OA-005",
+          "span_index": 0,
+          "section_path": [
+            "Configuration",
+            "API keys and clients"
+          ],
+          "span": [
+            2227,
+            2308
+          ],
+          "mapped_chunks": 1,
+          "smallest_chunk_id": "chk_3ea70bad4e45c45b250495ce46f50a74fd064ef2",
+          "fully_contained": true
+        },
+        {
+          "case_id": "OA-006",
+          "span_index": 0,
+          "section_path": [
+            "Tracing"
+          ],
+          "span": [
+            512,
+            553
+          ],
+          "mapped_chunks": 1,
+          "smallest_chunk_id": "chk_ca98515a72bbbc6f4c912b8fab42f990cce8cf9b",
+          "fully_contained": true
+        },
+        {
+          "case_id": "OA-006",
+          "span_index": 1,
+          "section_path": [
+            "Configuration",
+            "Tracing"
+          ],
+          "span": [
+            8126,
+            8242
+          ],
+          "mapped_chunks": 1,
+          "smallest_chunk_id": "chk_33e19a63968d9300ce1b9eecd659e80066671f04",
+          "fully_contained": true
+        },
+        {
+          "case_id": "OA-007",
+          "span_index": 0,
+          "section_path": [
+            "Sessions"
+          ],
+          "span": [
+            12,
+            259
+          ],
+          "mapped_chunks": 1,
+          "smallest_chunk_id": "chk_acc0e398726b4ae10afdc4e3792108a6c9adbcc6",
+          "fully_contained": true
+        },
+        {
+          "case_id": "OA-008",
+          "span_index": 0,
+          "section_path": [
+            "Models",
+            "OpenAI models"
+          ],
+          "span": [
+            2098,
+            2233
+          ],
+          "mapped_chunks": 1,
+          "smallest_chunk_id": "chk_41b452a60b1eda8c452adc7f1a2fd0b8fb5b8eee",
+          "fully_contained": true
+        }
+      ]
+    }
+  },
+  "failures": [],
+  "passed": true
+}

@@ -1,0 +1,2085 @@
+{
+  "batch": 6,
+  "prepared_at": "2026-08-24T17:45:58Z",
+  "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a",
+  "source_batch_sha256": "7a061b0beb37770338471ab0cd3517ea7d9c8e4e52c5aaf54e6094df81f145dc",
+  "repairs_file": "evals/review/gold_review_batch_006_repairs.json",
+  "candidates": [
+    {
+      "record": {
+        "candidate_id": "GOLD-B006-01",
+        "provider": "anthropic",
+        "document_title": "Admin",
+        "version_id": "ver_c299b58fe1f5a4d3a081b550334a7df6",
+        "source_url": "https://platform.claude.com/docs/en/api/admin",
+        "captured_at": "2026-08-17 04:46:19+00:00",
+        "reasoning_type": "exact_lookup",
+        "secondary_category": "requirement_constraint",
+        "evidence_shape": "single_span",
+        "requires_all_evidence": false,
+        "question": "What credential is required to create an `admin`-role service account, and what role may a workload create?",
+        "answer": "Creating an `admin`-role service account requires an interactive credential, such as a user OAuth token or Console session. A workload may only create `developer`-role service accounts.",
+        "atomic_claims": [
+          "Creating an `admin`-role service account requires an interactive credential (a user OAuth token or a Console session).",
+          "A workload may only create `developer`-role service accounts."
+        ],
+        "proposed_question": "What credential is required to create an `admin`-role service account, and what role may a workload create?",
+        "proposed_answer": "Creating an `admin`-role service account requires an interactive credential, such as a user OAuth token or Console session. A workload may only create `developer`-role service accounts.",
+        "proposed_atomic_claims": [
+          "Creating an `admin`-role service account requires an interactive credential (a user OAuth token or a Console session).",
+          "A workload may only create `developer`-role service accounts."
+        ],
+        "source_subject": "Creating an `admin`-role service account",
+        "source_relation": "requires",
+        "source_object": "an interactive credential (a user OAuth token or a Console session) — a workload may only create `developer`-role service accounts.",
+        "source_sentence": "Creating an `admin`-role service account requires an interactive credential (a user OAuth token or a Console session) — a workload may only create `developer`-role service accounts.",
+        "source_triple_derivation": "named relation",
+        "question_subject": "Creating an `admin`-role service account",
+        "question_relation": "requires",
+        "question_object": "an interactive credential (a user OAuth token or a Console session) — a workload may only create `developer`-role service accounts",
+        "expected_evidence": [
+          {
+            "evidence_id": "E1",
+            "version_id": "ver_c299b58fe1f5a4d3a081b550334a7df6",
+            "section_path": [
+              "Service Accounts",
+              "Create Service Account"
+            ],
+            "char_start": 441865,
+            "char_end": 442046,
+            "evidence_text": "Creating an `admin`-role service account requires\nan interactive credential (a user OAuth token or a Console session) — a\nworkload may only create `developer`-role service accounts.",
+            "evidence_hash": "481c22beedb734b9c72fffe1c1646f3f9a3bceb7782aa08f4c8c28a70da5a10c",
+            "evidence_char_length": 181,
+            "critical_strings": [
+              "admin",
+              "developer"
+            ]
+          }
+        ],
+        "claim_evidence_map": [
+          {
+            "claim": "Creating an `admin`-role service account requires an interactive credential (a user OAuth token or a Console session).",
+            "evidence_id": "E1",
+            "critical_strings": [
+              "admin",
+              "developer"
+            ]
+          },
+          {
+            "claim": "A workload may only create `developer`-role service accounts.",
+            "evidence_id": "E1",
+            "critical_strings": [
+              "admin",
+              "developer"
+            ]
+          }
+        ],
+        "section_path": [
+          "Service Accounts",
+          "Create Service Account"
+        ],
+        "section_path_trusted_for_scope": false,
+        "critical_strings": [
+          "admin",
+          "developer"
+        ],
+        "evidence_char_length": 181,
+        "context_before": "s: array of string or null`\n\n      Model names this entry's limits apply to, including aliases. `null` when `group_type` is not `\"model_group\"`.\n\n    - `type: \"rate_limit\"`\n\n      Object type. Always `rate_limit` for organization rate-limit entries.\n\n      - `\"rate_limit\"`\n\n  - `next_page: string or null`\n\n    Token to provide in as `page` in the subsequent request to retrieve the next page of data.\n\n# Service Accounts\n\n## Create Service Account\n\n**post** `/v1/organizations/service_accounts`\n\nCreate a service account.\n\nA service account is a named workload identity that federation rules\ntarget. `organization_role` is `developer` (default) or `admin`; a rule\nmay only be created or retargeted to grant `org:admin` scope when the\ntarget's `organization_role` is `admin`. Requires an OAuth bearer (user\nor WIF-minted service account token) or a Console session; Admin API\nkeys are not accepted. ",
+        "context_after": "\n\n### Header Parameters\n\n- `\"anthropic-beta\": optional array of string`\n\n  Optional header to specify the beta version(s) you want to use.\n\n  To use multiple betas, use a comma separated list like `beta1,beta2` or specify the header multiple times for each beta.\n\n### Body Parameters\n\n- `name: string`\n\n  Slug identifier (lowercase, digits, hyphens). Unique within the organization; a duplicate name returns 409.\n\n- `description: optional string or null`\n\n  Optional free-text description.\n\n- `organization_role: optional \"admin\" or \"developer\"`\n\n  Org-level role. Defaults to `developer`.\n\n  - `\"admin\"`\n\n  - `\"developer\"`\n\n### Returns\n\n- `ServiceAccount object { id, archived_at, archived_by_actor_id, 8 more }`\n\n  Named non-human identity within the caller's organization.\n\n  A service account is a pure identity: name + org. Authorization lives on\n  whatever references it (federation rules).\n\n  ",
+        "candidate_type": "supported",
+        "generator_confidence": "medium",
+        "needs_human_interpretation": false,
+        "precheck_holdout_ready": true,
+        "precheck_failures": [],
+        "precheck_flags": [],
+        "internal_semantic_review_status": "READY_FOR_INDEPENDENT_REVIEW",
+        "internal_review_findings": [],
+        "generation_repairs": [],
+        "verification_status": "candidate_unverified",
+        "claude_proposed": true,
+        "chatgpt_verified": null,
+        "retrieval_was_not_run": true,
+        "schema_version": "1.3",
+        "revisions": [
+          {
+            "revision": 1,
+            "field": "question",
+            "from": "What does Creating an `admin`-role service account require?",
+            "to": "What credential is required to create an `admin`-role service account, and what role may a workload create?",
+            "author": "project_owner (decision brief)",
+            "timestamp": "2026-08-24T17:45:45Z",
+            "reason": "owner: the fact is good but the reasoning label is inflated — a requirement stated in one sentence is not a configuration interaction"
+          },
+          {
+            "revision": 2,
+            "field": "answer",
+            "from": "Creating an `admin`-role service account requires an interactive credential (a user OAuth token or a Console session) — a workload may only create `developer`-role service accounts.",
+            "to": "Creating an `admin`-role service account requires an interactive credential, such as a user OAuth token or Console session. A workload may only create `developer`-role service accounts.",
+            "author": "project_owner (decision brief)",
+            "timestamp": "2026-08-24T17:45:45Z",
+            "reason": "owner: the fact is good but the reasoning label is inflated — a requirement stated in one sentence is not a configuration interaction"
+          },
+          {
+            "revision": 3,
+            "field": "atomic_claims",
+            "from": [
+              "Creating an `admin`-role service account requires an interactive credential (a user OAuth token or a Console session) — a workload may only create `developer`-role service accounts."
+            ],
+            "to": [
+              "Creating an `admin`-role service account requires an interactive credential (a user OAuth token or a Console session).",
+              "A workload may only create `developer`-role service accounts."
+            ],
+            "author": "project_owner (decision brief)",
+            "timestamp": "2026-08-24T17:45:45Z",
+            "reason": "owner: the fact is good but the reasoning label is inflated — a requirement stated in one sentence is not a configuration interaction"
+          },
+          {
+            "revision": 4,
+            "field": "reasoning_type",
+            "from": "configuration_interaction",
+            "to": "exact_lookup",
+            "author": "project_owner (decision brief)",
+            "timestamp": "2026-08-24T17:45:45Z",
+            "reason": "owner: the fact is good but the reasoning label is inflated — a requirement stated in one sentence is not a configuration interaction"
+          },
+          {
+            "revision": 5,
+            "field": "secondary_category",
+            "from": "requires",
+            "to": "requirement_constraint",
+            "author": "project_owner (decision brief)",
+            "timestamp": "2026-08-24T17:45:45Z",
+            "reason": "owner: the fact is good but the reasoning label is inflated — a requirement stated in one sentence is not a configuration interaction"
+          }
+        ],
+        "selected_by": "target"
+      },
+      "generated": {
+        "candidate_id": "GOLD-B006-01",
+        "provider": "anthropic",
+        "document_title": "Admin",
+        "version_id": "ver_c299b58fe1f5a4d3a081b550334a7df6",
+        "source_url": "https://platform.claude.com/docs/en/api/admin",
+        "captured_at": "2026-08-17 04:46:19+00:00",
+        "reasoning_type": "configuration_interaction",
+        "secondary_category": "requires",
+        "evidence_shape": "single_span",
+        "requires_all_evidence": false,
+        "question": "What does Creating an `admin`-role service account require?",
+        "answer": "Creating an `admin`-role service account requires an interactive credential (a user OAuth token or a Console session) — a workload may only create `developer`-role service accounts.",
+        "atomic_claims": [
+          "Creating an `admin`-role service account requires an interactive credential (a user OAuth token or a Console session) — a workload may only create `developer`-role service accounts."
+        ],
+        "proposed_question": "What does Creating an `admin`-role service account require?",
+        "proposed_answer": "Creating an `admin`-role service account requires an interactive credential (a user OAuth token or a Console session) — a workload may only create `developer`-role service accounts.",
+        "proposed_atomic_claims": [
+          "Creating an `admin`-role service account requires an interactive credential (a user OAuth token or a Console session) — a workload may only create `developer`-role service accounts."
+        ],
+        "source_subject": "Creating an `admin`-role service account",
+        "source_relation": "requires",
+        "source_object": "an interactive credential (a user OAuth token or a Console session) — a workload may only create `developer`-role service accounts.",
+        "source_sentence": "Creating an `admin`-role service account requires an interactive credential (a user OAuth token or a Console session) — a workload may only create `developer`-role service accounts.",
+        "source_triple_derivation": "named relation",
+        "question_subject": "Creating an `admin`-role service account",
+        "question_relation": "requires",
+        "question_object": "an interactive credential (a user OAuth token or a Console session) — a workload may only create `developer`-role service accounts",
+        "expected_evidence": [
+          {
+            "evidence_id": "E1",
+            "version_id": "ver_c299b58fe1f5a4d3a081b550334a7df6",
+            "section_path": [
+              "Service Accounts",
+              "Create Service Account"
+            ],
+            "char_start": 441865,
+            "char_end": 442046,
+            "evidence_text": "Creating an `admin`-role service account requires\nan interactive credential (a user OAuth token or a Console session) — a\nworkload may only create `developer`-role service accounts.",
+            "evidence_hash": "481c22beedb734b9c72fffe1c1646f3f9a3bceb7782aa08f4c8c28a70da5a10c",
+            "evidence_char_length": 181,
+            "critical_strings": [
+              "admin",
+              "developer"
+            ]
+          }
+        ],
+        "claim_evidence_map": [
+          {
+            "claim": "Creating an `admin`-role service account requires an interactive credential (a user OAuth token or a Console session) — a workload may only create `developer`-role service accounts.",
+            "evidence_id": "E1",
+            "critical_strings": [
+              "admin",
+              "developer"
+            ]
+          }
+        ],
+        "section_path": [
+          "Service Accounts",
+          "Create Service Account"
+        ],
+        "section_path_trusted_for_scope": false,
+        "critical_strings": [
+          "admin",
+          "developer"
+        ],
+        "evidence_char_length": 181,
+        "context_before": "s: array of string or null`\n\n      Model names this entry's limits apply to, including aliases. `null` when `group_type` is not `\"model_group\"`.\n\n    - `type: \"rate_limit\"`\n\n      Object type. Always `rate_limit` for organization rate-limit entries.\n\n      - `\"rate_limit\"`\n\n  - `next_page: string or null`\n\n    Token to provide in as `page` in the subsequent request to retrieve the next page of data.\n\n# Service Accounts\n\n## Create Service Account\n\n**post** `/v1/organizations/service_accounts`\n\nCreate a service account.\n\nA service account is a named workload identity that federation rules\ntarget. `organization_role` is `developer` (default) or `admin`; a rule\nmay only be created or retargeted to grant `org:admin` scope when the\ntarget's `organization_role` is `admin`. Requires an OAuth bearer (user\nor WIF-minted service account token) or a Console session; Admin API\nkeys are not accepted. ",
+        "context_after": "\n\n### Header Parameters\n\n- `\"anthropic-beta\": optional array of string`\n\n  Optional header to specify the beta version(s) you want to use.\n\n  To use multiple betas, use a comma separated list like `beta1,beta2` or specify the header multiple times for each beta.\n\n### Body Parameters\n\n- `name: string`\n\n  Slug identifier (lowercase, digits, hyphens). Unique within the organization; a duplicate name returns 409.\n\n- `description: optional string or null`\n\n  Optional free-text description.\n\n- `organization_role: optional \"admin\" or \"developer\"`\n\n  Org-level role. Defaults to `developer`.\n\n  - `\"admin\"`\n\n  - `\"developer\"`\n\n### Returns\n\n- `ServiceAccount object { id, archived_at, archived_by_actor_id, 8 more }`\n\n  Named non-human identity within the caller's organization.\n\n  A service account is a pure identity: name + org. Authorization lives on\n  whatever references it (federation rules).\n\n  ",
+        "candidate_type": "supported",
+        "generator_confidence": "medium",
+        "needs_human_interpretation": false,
+        "precheck_holdout_ready": true,
+        "precheck_failures": [],
+        "precheck_flags": [],
+        "internal_semantic_review_status": "READY_FOR_INDEPENDENT_REVIEW",
+        "internal_review_findings": [],
+        "generation_repairs": [],
+        "verification_status": "candidate_unverified",
+        "claude_proposed": true,
+        "chatgpt_verified": null,
+        "retrieval_was_not_run": true,
+        "schema_version": "1.3",
+        "revisions": [],
+        "selected_by": "target"
+      },
+      "review": {
+        "status": "NEEDS_REPAIR",
+        "revision_author": "project_owner (decision brief)",
+        "reason": "owner: the fact is good but the reasoning label is inflated — a requirement stated in one sentence is not a configuration interaction",
+        "findings": [
+          "TAXONOMY: relabelled from `configuration_interaction` to `exact_lookup` / `requirement_constraint`. The span states one requirement and one restriction; nothing in it describes two settings bearing on each other.",
+          "QUESTION_SCOPE: the generated question asked only what the action requires. The owner's question also asks what a workload may create, which is the second half of the same sentence and was previously carried by the answer without being asked.",
+          "Two atomic claims, both from the same span. This is a compound fact stated in one place — it is NOT multi-hop and is not labelled as such."
+        ],
+        "reasoning_type": "exact_lookup",
+        "secondary_category": "requirement_constraint",
+        "question": "What credential is required to create an `admin`-role service account, and what role may a workload create?",
+        "answer": "Creating an `admin`-role service account requires an interactive credential, such as a user OAuth token or Console session. A workload may only create `developer`-role service accounts.",
+        "atomic_claims": [
+          "Creating an `admin`-role service account requires an interactive credential (a user OAuth token or a Console session).",
+          "A workload may only create `developer`-role service accounts."
+        ],
+        "evidence_unchanged": true
+      },
+      "was_repaired": true
+    },
+    {
+      "record": {
+        "candidate_id": "GOLD-B006-02",
+        "provider": "anthropic",
+        "document_title": "Migration guide",
+        "version_id": "ver_a7bda3595f2c124605c3228464d4ee52",
+        "source_url": "https://platform.claude.com/docs/en/about-claude/models/migration-guide",
+        "captured_at": "2026-08-17 04:46:19+00:00",
+        "reasoning_type": "error_behavior",
+        "secondary_category": "rejects",
+        "evidence_shape": "single_span",
+        "requires_all_evidence": false,
+        "question": "What happens if `role: \"system\"` is used in `messages` with Claude Opus 4.7?",
+        "answer": "Claude Opus 4.7 rejects it with a 400 error.",
+        "atomic_claims": [
+          "Claude Opus 4.7 rejects `role: \"system\"` in `messages` with a 400 error."
+        ],
+        "proposed_question": "What happens if `role: \"system\"` is used in `messages` with Claude Opus 4.7?",
+        "proposed_answer": "Claude Opus 4.7 rejects it with a 400 error.",
+        "proposed_atomic_claims": [
+          "Claude Opus 4.7 rejects `role: \"system\"` in `messages` with a 400 error."
+        ],
+        "source_subject": "Claude Opus 4.7",
+        "source_relation": "rejects",
+        "source_object": "`role: \"system\"` in `messages` with a 400 error.",
+        "source_sentence": "Claude Opus 4.7 rejects `role: \"system\"` in `messages` with a 400 error.",
+        "source_triple_derivation": "named relation",
+        "question_subject": "Claude Opus 4.7",
+        "question_relation": "rejects",
+        "question_object": "`role: \"system\"` in `messages` with a 400 error",
+        "expected_evidence": [
+          {
+            "evidence_id": "E1",
+            "version_id": "ver_a7bda3595f2c124605c3228464d4ee52",
+            "section_path": [
+              "Opus migration",
+              "What changed"
+            ],
+            "char_start": 55306,
+            "char_end": 55378,
+            "evidence_text": "Claude Opus 4.7 rejects `role: \"system\"` in `messages` with a 400 error.",
+            "evidence_hash": "d5fd68caa4e7d689da55ce58f7b6befd6e94d1b3ba2645ccfd3bf0144ffcb366",
+            "evidence_char_length": 72,
+            "critical_strings": [
+              "Claude Opus 4.7",
+              "role: \"system\"",
+              "messages",
+              "400"
+            ]
+          }
+        ],
+        "claim_evidence_map": [
+          {
+            "claim": "Claude Opus 4.7 rejects `role: \"system\"` in `messages` with a 400 error.",
+            "evidence_id": "E1",
+            "critical_strings": [
+              "Claude Opus 4.7",
+              "role: \"system\"",
+              "messages",
+              "400"
+            ]
+          }
+        ],
+        "section_path": [
+          "Opus migration",
+          "What changed"
+        ],
+        "section_path_trusted_for_scope": false,
+        "critical_strings": [
+          "Claude Opus 4.7",
+          "role: \"system\"",
+          "messages",
+          "400"
+        ],
+        "evidence_char_length": 72,
+        "context_before": "ax` effort, set a large `max_tokens` so the model has room to think and act; start at 64k tokens and tune from there. See [Effort](https://platform.claude.com/docs/en/build-with-claude/effort).\n\n4. **1M context window is the default:** Claude Opus 5 serves the full 1M token [context window](https://platform.claude.com/docs/en/build-with-claude/context-windows) by default with no beta header and no long-context premium. If your client passes a context-window beta header for compatibility with older models, you can remove it on Claude Opus 5.\n\n5. **Mid-conversation system messages:** Claude Opus 5 accepts `role: \"system\"` messages immediately after a user turn in the `messages` array (subject to [placement rules](https://platform.claude.com/docs/en/build-with-claude/mid-conversation-system-messages#limitations)). Use the top-level `system` field for instructions that apply from the start. ",
+        "context_after": " If you maintain code paths that rebuild the full message history to update instructions, you can simplify them and preserve [prompt cache](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) hits on earlier turns.\n\n6. **Refusal stop details:** The `stop_details` object on refusal responses (available since Claude Opus 4.7) is now publicly documented. When the model declines a request, it identifies the category of refusal, in addition to the existing `refusal` stop reason. No beta header is required, and there is no opt-out. See [Handling stop reasons](https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons).\n\n7. **Lower prompt caching minimum:** The minimum cacheable prompt length on Claude Opus 5 is 512 tokens, lower than on Claude Opus 4.7. Prompts that were too short to cache on Claude Opus 4.7 can now create cache entries, with no code changes ",
+        "candidate_type": "supported",
+        "generator_confidence": "medium",
+        "needs_human_interpretation": false,
+        "precheck_holdout_ready": true,
+        "precheck_failures": [],
+        "precheck_flags": [],
+        "internal_semantic_review_status": "READY_FOR_INDEPENDENT_REVIEW",
+        "internal_review_findings": [],
+        "generation_repairs": [],
+        "verification_status": "candidate_unverified",
+        "claude_proposed": true,
+        "chatgpt_verified": null,
+        "retrieval_was_not_run": true,
+        "schema_version": "1.3",
+        "revisions": [
+          {
+            "revision": 1,
+            "field": "question",
+            "from": "What does Claude Opus 4.7 reject?",
+            "to": "What happens if `role: \"system\"` is used in `messages` with Claude Opus 4.7?",
+            "author": "project_owner (decision brief)",
+            "timestamp": "2026-08-24T17:45:45Z",
+            "reason": "owner: the question is broader than the exact fact — the span names one rejected thing, not everything the model rejects"
+          },
+          {
+            "revision": 2,
+            "field": "answer",
+            "from": "Claude Opus 4.7 rejects `role: \"system\"` in `messages` with a 400 error.",
+            "to": "Claude Opus 4.7 rejects it with a 400 error.",
+            "author": "project_owner (decision brief)",
+            "timestamp": "2026-08-24T17:45:45Z",
+            "reason": "owner: the question is broader than the exact fact — the span names one rejected thing, not everything the model rejects"
+          }
+        ],
+        "selected_by": "target"
+      },
+      "generated": {
+        "candidate_id": "GOLD-B006-02",
+        "provider": "anthropic",
+        "document_title": "Migration guide",
+        "version_id": "ver_a7bda3595f2c124605c3228464d4ee52",
+        "source_url": "https://platform.claude.com/docs/en/about-claude/models/migration-guide",
+        "captured_at": "2026-08-17 04:46:19+00:00",
+        "reasoning_type": "error_behavior",
+        "secondary_category": "rejects",
+        "evidence_shape": "single_span",
+        "requires_all_evidence": false,
+        "question": "What does Claude Opus 4.7 reject?",
+        "answer": "Claude Opus 4.7 rejects `role: \"system\"` in `messages` with a 400 error.",
+        "atomic_claims": [
+          "Claude Opus 4.7 rejects `role: \"system\"` in `messages` with a 400 error."
+        ],
+        "proposed_question": "What does Claude Opus 4.7 reject?",
+        "proposed_answer": "Claude Opus 4.7 rejects `role: \"system\"` in `messages` with a 400 error.",
+        "proposed_atomic_claims": [
+          "Claude Opus 4.7 rejects `role: \"system\"` in `messages` with a 400 error."
+        ],
+        "source_subject": "Claude Opus 4.7",
+        "source_relation": "rejects",
+        "source_object": "`role: \"system\"` in `messages` with a 400 error.",
+        "source_sentence": "Claude Opus 4.7 rejects `role: \"system\"` in `messages` with a 400 error.",
+        "source_triple_derivation": "named relation",
+        "question_subject": "Claude Opus 4.7",
+        "question_relation": "rejects",
+        "question_object": "`role: \"system\"` in `messages` with a 400 error",
+        "expected_evidence": [
+          {
+            "evidence_id": "E1",
+            "version_id": "ver_a7bda3595f2c124605c3228464d4ee52",
+            "section_path": [
+              "Opus migration",
+              "What changed"
+            ],
+            "char_start": 55306,
+            "char_end": 55378,
+            "evidence_text": "Claude Opus 4.7 rejects `role: \"system\"` in `messages` with a 400 error.",
+            "evidence_hash": "d5fd68caa4e7d689da55ce58f7b6befd6e94d1b3ba2645ccfd3bf0144ffcb366",
+            "evidence_char_length": 72,
+            "critical_strings": [
+              "messages"
+            ]
+          }
+        ],
+        "claim_evidence_map": [
+          {
+            "claim": "Claude Opus 4.7 rejects `role: \"system\"` in `messages` with a 400 error.",
+            "evidence_id": "E1",
+            "critical_strings": [
+              "messages"
+            ]
+          }
+        ],
+        "section_path": [
+          "Opus migration",
+          "What changed"
+        ],
+        "section_path_trusted_for_scope": false,
+        "critical_strings": [
+          "messages"
+        ],
+        "evidence_char_length": 72,
+        "context_before": "ax` effort, set a large `max_tokens` so the model has room to think and act; start at 64k tokens and tune from there. See [Effort](https://platform.claude.com/docs/en/build-with-claude/effort).\n\n4. **1M context window is the default:** Claude Opus 5 serves the full 1M token [context window](https://platform.claude.com/docs/en/build-with-claude/context-windows) by default with no beta header and no long-context premium. If your client passes a context-window beta header for compatibility with older models, you can remove it on Claude Opus 5.\n\n5. **Mid-conversation system messages:** Claude Opus 5 accepts `role: \"system\"` messages immediately after a user turn in the `messages` array (subject to [placement rules](https://platform.claude.com/docs/en/build-with-claude/mid-conversation-system-messages#limitations)). Use the top-level `system` field for instructions that apply from the start. ",
+        "context_after": " If you maintain code paths that rebuild the full message history to update instructions, you can simplify them and preserve [prompt cache](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) hits on earlier turns.\n\n6. **Refusal stop details:** The `stop_details` object on refusal responses (available since Claude Opus 4.7) is now publicly documented. When the model declines a request, it identifies the category of refusal, in addition to the existing `refusal` stop reason. No beta header is required, and there is no opt-out. See [Handling stop reasons](https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons).\n\n7. **Lower prompt caching minimum:** The minimum cacheable prompt length on Claude Opus 5 is 512 tokens, lower than on Claude Opus 4.7. Prompts that were too short to cache on Claude Opus 4.7 can now create cache entries, with no code changes ",
+        "candidate_type": "supported",
+        "generator_confidence": "medium",
+        "needs_human_interpretation": false,
+        "precheck_holdout_ready": true,
+        "precheck_failures": [],
+        "precheck_flags": [],
+        "internal_semantic_review_status": "READY_FOR_INDEPENDENT_REVIEW",
+        "internal_review_findings": [],
+        "generation_repairs": [],
+        "verification_status": "candidate_unverified",
+        "claude_proposed": true,
+        "chatgpt_verified": null,
+        "retrieval_was_not_run": true,
+        "schema_version": "1.3",
+        "revisions": [],
+        "selected_by": "target"
+      },
+      "review": {
+        "status": "NEEDS_REPAIR",
+        "revision_author": "project_owner (decision brief)",
+        "reason": "owner: the question is broader than the exact fact — the span names one rejected thing, not everything the model rejects",
+        "findings": [
+          "QUESTION_SCOPE: 'What does Claude Opus 4.7 reject?' invites a list. The evidence supports exactly one rejection, so the question is rewritten to ask about that condition and its outcome.",
+          "CRITICAL_STRINGS: extended to the four the owner named. All four are literally present in the anchor; the generated record carried only `messages`, which anchored the weakest part of the claim."
+        ],
+        "question": "What happens if `role: \"system\"` is used in `messages` with Claude Opus 4.7?",
+        "answer": "Claude Opus 4.7 rejects it with a 400 error.",
+        "atomic_claims": [
+          "Claude Opus 4.7 rejects `role: \"system\"` in `messages` with a 400 error."
+        ],
+        "critical_strings": [
+          "Claude Opus 4.7",
+          "role: \"system\"",
+          "messages",
+          "400"
+        ],
+        "evidence_unchanged": true
+      },
+      "was_repaired": true
+    },
+    {
+      "record": {
+        "candidate_id": "GOLD-B006-03",
+        "provider": "anthropic",
+        "document_title": "Code execution tool",
+        "version_id": "ver_f65938c74d40ac1e288f169d3d0435b7",
+        "source_url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool",
+        "captured_at": "2026-08-17 04:46:19+00:00",
+        "reasoning_type": "lifecycle_compatibility_migration",
+        "secondary_category": "compatibility",
+        "evidence_shape": "single_span",
+        "requires_all_evidence": false,
+        "question": "How do the newer code-execution tool versions behave on Claude Haiku 4.5?",
+        "answer": "Claude Haiku 4.5 accepts `code_execution_20260120` and `code_execution_20260521`, but programmatic tool calling and the REPL state persistence that depends on it are unavailable, so the newer versions behave like `code_execution_20250825` there.",
+        "atomic_claims": [
+          "Claude Haiku 4.5 accepts the `code_execution_20260120` and `code_execution_20260521` tool types.",
+          "Programmatic tool calling and the REPL state persistence that depends on it are not available on Claude Haiku 4.5, so the newer versions behave like `code_execution_20250825` there."
+        ],
+        "proposed_question": "How do the newer code-execution tool versions behave on Claude Haiku 4.5?",
+        "proposed_answer": "Claude Haiku 4.5 accepts `code_execution_20260120` and `code_execution_20260521`, but programmatic tool calling and the REPL state persistence that depends on it are unavailable, so the newer versions behave like `code_execution_20250825` there.",
+        "proposed_atomic_claims": [
+          "Claude Haiku 4.5 accepts the `code_execution_20260120` and `code_execution_20260521` tool types.",
+          "Programmatic tool calling and the REPL state persistence that depends on it are not available on Claude Haiku 4.5, so the newer versions behave like `code_execution_20250825` there."
+        ],
+        "source_subject": "Claude Haiku 4.5",
+        "source_relation": "accepts",
+        "source_object": "the `code_execution_20260120` and `code_execution_20260521` tool types, but programmatic tool calling and the REPL state persistence that depends on it aren't available on it, so the newer versions behave like `code_execution_20250825` there",
+        "source_sentence": "Claude Haiku 4.5 accepts the `code_execution_20260120` and `code_execution_20260521` tool types, but programmatic tool calling and the REPL state persistence that depends on it aren't available on it, so the newer versions behave like `code_execution_20250825` there",
+        "source_triple_derivation": "named relation",
+        "question_subject": "Claude Haiku 4.5",
+        "question_relation": "accepts",
+        "question_object": "the `code_execution_20260120` and `code_execution_20260521` tool types, but programmatic tool calling and the REPL state persistence that depends on it aren't available on it, so the newer versions behave like `code_execution_20250825` there",
+        "expected_evidence": [
+          {
+            "evidence_id": "E1",
+            "version_id": "ver_f65938c74d40ac1e288f169d3d0435b7",
+            "section_path": [
+              "Model compatibility"
+            ],
+            "char_start": 3971,
+            "char_end": 4316,
+            "evidence_text": "Claude Haiku 4.5 accepts the `code_execution_20260120` and `code_execution_20260521` tool types, but programmatic tool calling and the REPL state persistence that depends on it aren't available on it, so the newer versions behave like `code_execution_20250825` there.\n* `code_execution_20260521` is the same runtime as `code_execution_20260120`.",
+            "evidence_hash": "8832424c5f41dd8f1c3801845a9f0fcfa7a6fcb08e8a803cc4cdc30b97b2cccb",
+            "evidence_char_length": 345,
+            "critical_strings": [
+              "Claude Haiku 4.5",
+              "code_execution_20260120",
+              "code_execution_20260521",
+              "code_execution_20250825"
+            ]
+          }
+        ],
+        "claim_evidence_map": [
+          {
+            "claim": "Claude Haiku 4.5 accepts the `code_execution_20260120` and `code_execution_20260521` tool types.",
+            "evidence_id": "E1",
+            "critical_strings": [
+              "Claude Haiku 4.5",
+              "code_execution_20260120",
+              "code_execution_20260521",
+              "code_execution_20250825"
+            ]
+          },
+          {
+            "claim": "Programmatic tool calling and the REPL state persistence that depends on it are not available on Claude Haiku 4.5, so the newer versions behave like `code_execution_20250825` there.",
+            "evidence_id": "E1",
+            "critical_strings": [
+              "Claude Haiku 4.5",
+              "code_execution_20260120",
+              "code_execution_20260521",
+              "code_execution_20250825"
+            ]
+          }
+        ],
+        "section_path": [
+          "Model compatibility"
+        ],
+        "section_path_trusted_for_scope": false,
+        "critical_strings": [
+          "Claude Haiku 4.5",
+          "code_execution_20260120",
+          "code_execution_20260521",
+          "code_execution_20250825"
+        ],
+        "evidence_char_length": 345,
+        "context_before": "cution_20260120`, `code_execution_20260521` |\n| Claude Sonnet 4.6 (claude-sonnet-4-6)          | `code_execution_20250825`, `code_execution_20260120`, `code_execution_20260521` |\n| Claude Opus 4.5 (claude-opus-4-5-20251101)     | `code_execution_20250825`, `code_execution_20260120`, `code_execution_20260521` |\n| Claude Sonnet 4.5 (claude-sonnet-4-5-20250929) | `code_execution_20250825`, `code_execution_20260120`, `code_execution_20260521` |\n| Claude Haiku 4.5 (claude-haiku-4-5-20251001)   | `code_execution_20250825`, `code_execution_20260120`, `code_execution_20260521` |\n\nEach tool version builds on the previous one:\n\n* `code_execution_20250825` supports Bash commands and file operations.\n* `code_execution_20260120` adds REPL state persistence and [programmatic tool calling](https://platform.claude.com/docs/en/agents-and-tools/tool-use/programmatic-tool-calling) from within the sandbox. ",
+        "context_after": " The difference is that the tool description tells Claude about the 90-second wall-clock limit on each Python cell in programmatic tool calling, so Claude can budget long-running cells. A cell that exceeds the limit returns a normal code execution result with a non-zero `return_code` and a `detection_timeout` status message in its output. This is separate from the `execution_time_exceeded` [error code](https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool#errors), which the API returns when a whole tool invocation exceeds the maximum execution time.\n\nAll three tool versions are generally available and don't require an `anthropic-beta` header. The legacy code execution beta headers remain valid opt-ins.\n\nThe examples on this page use `code_execution_20250825`, which covers the Bash and file operations they demonstrate and behaves the same way on every model in ",
+        "candidate_type": "supported",
+        "generator_confidence": "medium",
+        "needs_human_interpretation": false,
+        "precheck_holdout_ready": true,
+        "precheck_failures": [],
+        "precheck_flags": [],
+        "internal_semantic_review_status": "READY_FOR_INDEPENDENT_REVIEW",
+        "internal_review_findings": [],
+        "generation_repairs": [],
+        "verification_status": "candidate_unverified",
+        "claude_proposed": true,
+        "chatgpt_verified": null,
+        "retrieval_was_not_run": true,
+        "schema_version": "1.3",
+        "revisions": [
+          {
+            "revision": 1,
+            "field": "question",
+            "from": "What does Claude Haiku 4.5 accept?",
+            "to": "How do the newer code-execution tool versions behave on Claude Haiku 4.5?",
+            "author": "project_owner (decision brief)",
+            "timestamp": "2026-08-24T17:45:45Z",
+            "reason": "owner: `exact_lookup` understates a compound compatibility fact"
+          },
+          {
+            "revision": 2,
+            "field": "answer",
+            "from": "Claude Haiku 4.5 accepts the `code_execution_20260120` and `code_execution_20260521` tool types, but programmatic tool calling and the REPL state persistence that depends on it aren't available on it, so the newer versions behave like `code_execution_20250825` there.",
+            "to": "Claude Haiku 4.5 accepts `code_execution_20260120` and `code_execution_20260521`, but programmatic tool calling and the REPL state persistence that depends on it are unavailable, so the newer versions behave like `code_execution_20250825` there.",
+            "author": "project_owner (decision brief)",
+            "timestamp": "2026-08-24T17:45:45Z",
+            "reason": "owner: `exact_lookup` understates a compound compatibility fact"
+          },
+          {
+            "revision": 3,
+            "field": "atomic_claims",
+            "from": [
+              "Claude Haiku 4.5 accepts the `code_execution_20260120` and `code_execution_20260521` tool types, but programmatic tool calling and the REPL state persistence that depends on it aren't available on it, so the newer versions behave like `code_execution_20250825` there."
+            ],
+            "to": [
+              "Claude Haiku 4.5 accepts the `code_execution_20260120` and `code_execution_20260521` tool types.",
+              "Programmatic tool calling and the REPL state persistence that depends on it are not available on Claude Haiku 4.5, so the newer versions behave like `code_execution_20250825` there."
+            ],
+            "author": "project_owner (decision brief)",
+            "timestamp": "2026-08-24T17:45:45Z",
+            "reason": "owner: `exact_lookup` understates a compound compatibility fact"
+          },
+          {
+            "revision": 4,
+            "field": "reasoning_type",
+            "from": "exact_lookup",
+            "to": "lifecycle_compatibility_migration",
+            "author": "project_owner (decision brief)",
+            "timestamp": "2026-08-24T17:45:45Z",
+            "reason": "owner: `exact_lookup` understates a compound compatibility fact"
+          },
+          {
+            "revision": 5,
+            "field": "secondary_category",
+            "from": "accepts",
+            "to": "compatibility",
+            "author": "project_owner (decision brief)",
+            "timestamp": "2026-08-24T17:45:45Z",
+            "reason": "owner: `exact_lookup` understates a compound compatibility fact"
+          }
+        ],
+        "selected_by": "target"
+      },
+      "generated": {
+        "candidate_id": "GOLD-B006-03",
+        "provider": "anthropic",
+        "document_title": "Code execution tool",
+        "version_id": "ver_f65938c74d40ac1e288f169d3d0435b7",
+        "source_url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool",
+        "captured_at": "2026-08-17 04:46:19+00:00",
+        "reasoning_type": "exact_lookup",
+        "secondary_category": "accepts",
+        "evidence_shape": "single_span",
+        "requires_all_evidence": false,
+        "question": "What does Claude Haiku 4.5 accept?",
+        "answer": "Claude Haiku 4.5 accepts the `code_execution_20260120` and `code_execution_20260521` tool types, but programmatic tool calling and the REPL state persistence that depends on it aren't available on it, so the newer versions behave like `code_execution_20250825` there.",
+        "atomic_claims": [
+          "Claude Haiku 4.5 accepts the `code_execution_20260120` and `code_execution_20260521` tool types, but programmatic tool calling and the REPL state persistence that depends on it aren't available on it, so the newer versions behave like `code_execution_20250825` there."
+        ],
+        "proposed_question": "What does Claude Haiku 4.5 accept?",
+        "proposed_answer": "Claude Haiku 4.5 accepts the `code_execution_20260120` and `code_execution_20260521` tool types, but programmatic tool calling and the REPL state persistence that depends on it aren't available on it, so the newer versions behave like `code_execution_20250825` there.",
+        "proposed_atomic_claims": [
+          "Claude Haiku 4.5 accepts the `code_execution_20260120` and `code_execution_20260521` tool types, but programmatic tool calling and the REPL state persistence that depends on it aren't available on it, so the newer versions behave like `code_execution_20250825` there."
+        ],
+        "source_subject": "Claude Haiku 4.5",
+        "source_relation": "accepts",
+        "source_object": "the `code_execution_20260120` and `code_execution_20260521` tool types, but programmatic tool calling and the REPL state persistence that depends on it aren't available on it, so the newer versions behave like `code_execution_20250825` there",
+        "source_sentence": "Claude Haiku 4.5 accepts the `code_execution_20260120` and `code_execution_20260521` tool types, but programmatic tool calling and the REPL state persistence that depends on it aren't available on it, so the newer versions behave like `code_execution_20250825` there",
+        "source_triple_derivation": "named relation",
+        "question_subject": "Claude Haiku 4.5",
+        "question_relation": "accepts",
+        "question_object": "the `code_execution_20260120` and `code_execution_20260521` tool types, but programmatic tool calling and the REPL state persistence that depends on it aren't available on it, so the newer versions behave like `code_execution_20250825` there",
+        "expected_evidence": [
+          {
+            "evidence_id": "E1",
+            "version_id": "ver_f65938c74d40ac1e288f169d3d0435b7",
+            "section_path": [
+              "Model compatibility"
+            ],
+            "char_start": 3971,
+            "char_end": 4316,
+            "evidence_text": "Claude Haiku 4.5 accepts the `code_execution_20260120` and `code_execution_20260521` tool types, but programmatic tool calling and the REPL state persistence that depends on it aren't available on it, so the newer versions behave like `code_execution_20250825` there.\n* `code_execution_20260521` is the same runtime as `code_execution_20260120`.",
+            "evidence_hash": "8832424c5f41dd8f1c3801845a9f0fcfa7a6fcb08e8a803cc4cdc30b97b2cccb",
+            "evidence_char_length": 345,
+            "critical_strings": [
+              "code_execution_20260120",
+              "code_execution_20260521",
+              "code_execution_20250825"
+            ]
+          }
+        ],
+        "claim_evidence_map": [
+          {
+            "claim": "Claude Haiku 4.5 accepts the `code_execution_20260120` and `code_execution_20260521` tool types, but programmatic tool calling and the REPL state persistence that depends on it aren't available on it, so the newer versions behave like `code_execution_20250825` there.",
+            "evidence_id": "E1",
+            "critical_strings": [
+              "code_execution_20260120",
+              "code_execution_20260521",
+              "code_execution_20250825"
+            ]
+          }
+        ],
+        "section_path": [
+          "Model compatibility"
+        ],
+        "section_path_trusted_for_scope": false,
+        "critical_strings": [
+          "code_execution_20260120",
+          "code_execution_20260521",
+          "code_execution_20250825"
+        ],
+        "evidence_char_length": 345,
+        "context_before": "cution_20260120`, `code_execution_20260521` |\n| Claude Sonnet 4.6 (claude-sonnet-4-6)          | `code_execution_20250825`, `code_execution_20260120`, `code_execution_20260521` |\n| Claude Opus 4.5 (claude-opus-4-5-20251101)     | `code_execution_20250825`, `code_execution_20260120`, `code_execution_20260521` |\n| Claude Sonnet 4.5 (claude-sonnet-4-5-20250929) | `code_execution_20250825`, `code_execution_20260120`, `code_execution_20260521` |\n| Claude Haiku 4.5 (claude-haiku-4-5-20251001)   | `code_execution_20250825`, `code_execution_20260120`, `code_execution_20260521` |\n\nEach tool version builds on the previous one:\n\n* `code_execution_20250825` supports Bash commands and file operations.\n* `code_execution_20260120` adds REPL state persistence and [programmatic tool calling](https://platform.claude.com/docs/en/agents-and-tools/tool-use/programmatic-tool-calling) from within the sandbox. ",
+        "context_after": " The difference is that the tool description tells Claude about the 90-second wall-clock limit on each Python cell in programmatic tool calling, so Claude can budget long-running cells. A cell that exceeds the limit returns a normal code execution result with a non-zero `return_code` and a `detection_timeout` status message in its output. This is separate from the `execution_time_exceeded` [error code](https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool#errors), which the API returns when a whole tool invocation exceeds the maximum execution time.\n\nAll three tool versions are generally available and don't require an `anthropic-beta` header. The legacy code execution beta headers remain valid opt-ins.\n\nThe examples on this page use `code_execution_20250825`, which covers the Bash and file operations they demonstrate and behaves the same way on every model in ",
+        "candidate_type": "supported",
+        "generator_confidence": "medium",
+        "needs_human_interpretation": false,
+        "precheck_holdout_ready": true,
+        "precheck_failures": [],
+        "precheck_flags": [],
+        "internal_semantic_review_status": "READY_FOR_INDEPENDENT_REVIEW",
+        "internal_review_findings": [],
+        "generation_repairs": [],
+        "verification_status": "candidate_unverified",
+        "claude_proposed": true,
+        "chatgpt_verified": null,
+        "retrieval_was_not_run": true,
+        "schema_version": "1.3",
+        "revisions": [],
+        "selected_by": "target"
+      },
+      "review": {
+        "status": "NEEDS_REPAIR",
+        "revision_author": "project_owner (decision brief)",
+        "reason": "owner: `exact_lookup` understates a compound compatibility fact",
+        "findings": [
+          "TAXONOMY: relabelled to `lifecycle_compatibility_migration` / `compatibility`. The span states what is accepted, what is unavailable, and what the newer versions therefore behave like — a compatibility statement, not a lookup.",
+          "QUESTION_SCOPE: 'What does Claude Haiku 4.5 accept?' asks for half of it. The owner's question asks how the newer versions behave there, which is what the sentence is about.",
+          "This is a compound fact stated explicitly in ONE span. It is NOT genuine multi-hop and is not labelled as such."
+        ],
+        "reasoning_type": "lifecycle_compatibility_migration",
+        "secondary_category": "compatibility",
+        "question": "How do the newer code-execution tool versions behave on Claude Haiku 4.5?",
+        "answer": "Claude Haiku 4.5 accepts `code_execution_20260120` and `code_execution_20260521`, but programmatic tool calling and the REPL state persistence that depends on it are unavailable, so the newer versions behave like `code_execution_20250825` there.",
+        "atomic_claims": [
+          "Claude Haiku 4.5 accepts the `code_execution_20260120` and `code_execution_20260521` tool types.",
+          "Programmatic tool calling and the REPL state persistence that depends on it are not available on Claude Haiku 4.5, so the newer versions behave like `code_execution_20250825` there."
+        ],
+        "critical_strings": [
+          "Claude Haiku 4.5",
+          "code_execution_20260120",
+          "code_execution_20260521",
+          "code_execution_20250825"
+        ],
+        "evidence_unchanged": true
+      },
+      "was_repaired": true
+    },
+    {
+      "record": {
+        "candidate_id": "GOLD-B006-04",
+        "provider": "anthropic",
+        "document_title": "Effort",
+        "version_id": "ver_238961530ce62a75c61bdeead5ccb10d",
+        "source_url": "https://platform.claude.com/docs/en/build-with-claude/effort",
+        "captured_at": "2026-08-17 04:46:19+00:00",
+        "reasoning_type": "exact_lookup",
+        "secondary_category": "defaults_to",
+        "evidence_shape": "single_span",
+        "requires_all_evidence": false,
+        "question": "What effort level does Claude Sonnet 5 default to on the Claude API and Claude Code?",
+        "answer": "High effort, on both the Claude API and Claude Code.",
+        "atomic_claims": [
+          "Claude Sonnet 5 defaults to `high` effort on the Claude API and Claude Code."
+        ],
+        "proposed_question": "What effort level does Claude Sonnet 5 default to on the Claude API and Claude Code?",
+        "proposed_answer": "High effort, on both the Claude API and Claude Code.",
+        "proposed_atomic_claims": [
+          "Claude Sonnet 5 defaults to `high` effort on the Claude API and Claude Code."
+        ],
+        "source_subject": "Claude Sonnet 5",
+        "source_relation": "defaults_to",
+        "source_object": "`high` effort on the Claude API and Claude Code.",
+        "source_sentence": "Claude Sonnet 5 defaults to `high` effort on the Claude API and Claude Code.",
+        "source_triple_derivation": "named relation",
+        "question_subject": "Claude Sonnet 5",
+        "question_relation": "defaults_to",
+        "question_object": "`high` effort on the Claude API and Claude Code",
+        "expected_evidence": [
+          {
+            "evidence_id": "E1",
+            "version_id": "ver_238961530ce62a75c61bdeead5ccb10d",
+            "section_path": [
+              "How effort works",
+              "Recommended effort levels for Claude Sonnet 5"
+            ],
+            "char_start": 5123,
+            "char_end": 5199,
+            "evidence_text": "Claude Sonnet 5 defaults to `high` effort on the Claude API and Claude Code.",
+            "evidence_hash": "712a1a0780ade57f504d68707890cf5dea3b05f3f7c32b98cb7f1d704c0ac55b",
+            "evidence_char_length": 76,
+            "critical_strings": [
+              "Claude Sonnet 5",
+              "high",
+              "Claude API",
+              "Claude Code"
+            ]
+          }
+        ],
+        "claim_evidence_map": [
+          {
+            "claim": "Claude Sonnet 5 defaults to `high` effort on the Claude API and Claude Code.",
+            "evidence_id": "E1",
+            "critical_strings": [
+              "Claude Sonnet 5",
+              "high",
+              "Claude API",
+              "Claude Code"
+            ]
+          }
+        ],
+        "section_path": [
+          "How effort works",
+          "Recommended effort levels for Claude Sonnet 5"
+        ],
+        "section_path_trusted_for_scope": false,
+        "critical_strings": [
+          "Claude Sonnet 5",
+          "high",
+          "Claude API",
+          "Claude Code"
+        ],
+        "evidence_char_length": 76,
+        "context_before": "                                                                               | Agentic tasks that require a balance of speed, cost, and performance                       |\n| `low`    | Most efficient. Significant token savings with some capability reduction.                                                                                                                                                                         | Simpler tasks that need the best speed and lowest costs, such as subagents                 |\n\n`xhigh` is a newer level; some models that support `max` don't support `xhigh`.\n\n<Note>\n  Effort is a behavioral signal, not a strict token budget. At lower effort levels, Claude will still think on sufficiently difficult problems, but it will think less than it would at higher effort levels for the same problem.\n</Note>\n\n### Recommended effort levels for Claude Sonnet 5\n\n",
+        "context_after": "\n\n* **High effort (default):** Suitable for complex reasoning, coding, and agentic tasks where quality matters more than speed or cost.\n* **Xhigh effort:** For the hardest coding and agentic tasks. See [Prompting Claude Sonnet 5](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-sonnet-5#calibrating-effort-and-thinking-depth).\n* **Medium effort:** Cost-saving step-down from the default. Comparable to Claude Sonnet 4.6 at high effort.\n* **Low effort:** For high-volume or latency-sensitive workloads. Suitable for chat and non-coding use cases where faster turnaround is prioritized.\n* **Max effort:** For tasks requiring the absolute highest capability with no constraints on token spending.\n\n### Recommended effort levels for Claude Sonnet 4.6\n\nSonnet 4.6 defaults to `high` effort. Explicitly set effort when using Sonnet 4.6 to avoid unexpected latency:",
+        "candidate_type": "supported",
+        "generator_confidence": "medium",
+        "needs_human_interpretation": false,
+        "precheck_holdout_ready": true,
+        "precheck_failures": [],
+        "precheck_flags": [],
+        "internal_semantic_review_status": "READY_FOR_INDEPENDENT_REVIEW",
+        "internal_review_findings": [],
+        "generation_repairs": [],
+        "verification_status": "candidate_unverified",
+        "claude_proposed": true,
+        "chatgpt_verified": null,
+        "retrieval_was_not_run": true,
+        "schema_version": "1.3",
+        "revisions": [
+          {
+            "revision": 1,
+            "field": "question",
+            "from": "What does Claude Sonnet 5 default to?",
+            "to": "What effort level does Claude Sonnet 5 default to on the Claude API and Claude Code?",
+            "author": "project_owner (decision brief)",
+            "timestamp": "2026-08-24T17:45:45Z",
+            "reason": "owner: optional rescoping accepted — the source scopes the default to two surfaces and the question should say so"
+          },
+          {
+            "revision": 2,
+            "field": "answer",
+            "from": "Claude Sonnet 5 defaults to `high` effort on the Claude API and Claude Code.",
+            "to": "High effort, on both the Claude API and Claude Code.",
+            "author": "project_owner (decision brief)",
+            "timestamp": "2026-08-24T17:45:45Z",
+            "reason": "owner: optional rescoping accepted — the source scopes the default to two surfaces and the question should say so"
+          }
+        ],
+        "selected_by": "target"
+      },
+      "generated": {
+        "candidate_id": "GOLD-B006-04",
+        "provider": "anthropic",
+        "document_title": "Effort",
+        "version_id": "ver_238961530ce62a75c61bdeead5ccb10d",
+        "source_url": "https://platform.claude.com/docs/en/build-with-claude/effort",
+        "captured_at": "2026-08-17 04:46:19+00:00",
+        "reasoning_type": "exact_lookup",
+        "secondary_category": "defaults_to",
+        "evidence_shape": "single_span",
+        "requires_all_evidence": false,
+        "question": "What does Claude Sonnet 5 default to?",
+        "answer": "Claude Sonnet 5 defaults to `high` effort on the Claude API and Claude Code.",
+        "atomic_claims": [
+          "Claude Sonnet 5 defaults to `high` effort on the Claude API and Claude Code."
+        ],
+        "proposed_question": "What does Claude Sonnet 5 default to?",
+        "proposed_answer": "Claude Sonnet 5 defaults to `high` effort on the Claude API and Claude Code.",
+        "proposed_atomic_claims": [
+          "Claude Sonnet 5 defaults to `high` effort on the Claude API and Claude Code."
+        ],
+        "source_subject": "Claude Sonnet 5",
+        "source_relation": "defaults_to",
+        "source_object": "`high` effort on the Claude API and Claude Code.",
+        "source_sentence": "Claude Sonnet 5 defaults to `high` effort on the Claude API and Claude Code.",
+        "source_triple_derivation": "named relation",
+        "question_subject": "Claude Sonnet 5",
+        "question_relation": "defaults_to",
+        "question_object": "`high` effort on the Claude API and Claude Code",
+        "expected_evidence": [
+          {
+            "evidence_id": "E1",
+            "version_id": "ver_238961530ce62a75c61bdeead5ccb10d",
+            "section_path": [
+              "How effort works",
+              "Recommended effort levels for Claude Sonnet 5"
+            ],
+            "char_start": 5123,
+            "char_end": 5199,
+            "evidence_text": "Claude Sonnet 5 defaults to `high` effort on the Claude API and Claude Code.",
+            "evidence_hash": "712a1a0780ade57f504d68707890cf5dea3b05f3f7c32b98cb7f1d704c0ac55b",
+            "evidence_char_length": 76,
+            "critical_strings": [
+              "high"
+            ]
+          }
+        ],
+        "claim_evidence_map": [
+          {
+            "claim": "Claude Sonnet 5 defaults to `high` effort on the Claude API and Claude Code.",
+            "evidence_id": "E1",
+            "critical_strings": [
+              "high"
+            ]
+          }
+        ],
+        "section_path": [
+          "How effort works",
+          "Recommended effort levels for Claude Sonnet 5"
+        ],
+        "section_path_trusted_for_scope": false,
+        "critical_strings": [
+          "high"
+        ],
+        "evidence_char_length": 76,
+        "context_before": "                                                                               | Agentic tasks that require a balance of speed, cost, and performance                       |\n| `low`    | Most efficient. Significant token savings with some capability reduction.                                                                                                                                                                         | Simpler tasks that need the best speed and lowest costs, such as subagents                 |\n\n`xhigh` is a newer level; some models that support `max` don't support `xhigh`.\n\n<Note>\n  Effort is a behavioral signal, not a strict token budget. At lower effort levels, Claude will still think on sufficiently difficult problems, but it will think less than it would at higher effort levels for the same problem.\n</Note>\n\n### Recommended effort levels for Claude Sonnet 5\n\n",
+        "context_after": "\n\n* **High effort (default):** Suitable for complex reasoning, coding, and agentic tasks where quality matters more than speed or cost.\n* **Xhigh effort:** For the hardest coding and agentic tasks. See [Prompting Claude Sonnet 5](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-sonnet-5#calibrating-effort-and-thinking-depth).\n* **Medium effort:** Cost-saving step-down from the default. Comparable to Claude Sonnet 4.6 at high effort.\n* **Low effort:** For high-volume or latency-sensitive workloads. Suitable for chat and non-coding use cases where faster turnaround is prioritized.\n* **Max effort:** For tasks requiring the absolute highest capability with no constraints on token spending.\n\n### Recommended effort levels for Claude Sonnet 4.6\n\nSonnet 4.6 defaults to `high` effort. Explicitly set effort when using Sonnet 4.6 to avoid unexpected latency:",
+        "candidate_type": "supported",
+        "generator_confidence": "medium",
+        "needs_human_interpretation": false,
+        "precheck_holdout_ready": true,
+        "precheck_failures": [],
+        "precheck_flags": [],
+        "internal_semantic_review_status": "READY_FOR_INDEPENDENT_REVIEW",
+        "internal_review_findings": [],
+        "generation_repairs": [],
+        "verification_status": "candidate_unverified",
+        "claude_proposed": true,
+        "chatgpt_verified": null,
+        "retrieval_was_not_run": true,
+        "schema_version": "1.3",
+        "revisions": [],
+        "selected_by": "target"
+      },
+      "review": {
+        "status": "NEEDS_REPAIR",
+        "revision_author": "project_owner (decision brief)",
+        "reason": "owner: optional rescoping accepted — the source scopes the default to two surfaces and the question should say so",
+        "findings": [
+          "The owner approved this as currently supported and offered a scoped wording 'if desired for naturalness'. It is applied, because it fixes the same breadth defect the owner REQUIRED fixing on GOLD-B006-05, and leaving the two inconsistent would be arbitrary. The fact is unchanged; only the question names the surfaces the source names.",
+          "CRITICAL_STRINGS: `Claude Sonnet 5` added so the model scope the question now asserts is machine-checkable against the anchor. The generated record anchored only `high`."
+        ],
+        "question": "What effort level does Claude Sonnet 5 default to on the Claude API and Claude Code?",
+        "answer": "High effort, on both the Claude API and Claude Code.",
+        "atomic_claims": [
+          "Claude Sonnet 5 defaults to `high` effort on the Claude API and Claude Code."
+        ],
+        "critical_strings": [
+          "Claude Sonnet 5",
+          "high",
+          "Claude API",
+          "Claude Code"
+        ],
+        "evidence_unchanged": true
+      },
+      "was_repaired": true
+    },
+    {
+      "record": {
+        "candidate_id": "GOLD-B006-05",
+        "provider": "anthropic",
+        "document_title": "Migration guide",
+        "version_id": "ver_a7bda3595f2c124605c3228464d4ee52",
+        "source_url": "https://platform.claude.com/docs/en/about-claude/models/migration-guide",
+        "captured_at": "2026-08-17 04:46:19+00:00",
+        "reasoning_type": "exact_lookup",
+        "secondary_category": "defaults_to",
+        "evidence_shape": "single_span",
+        "requires_all_evidence": false,
+        "question": "What does `thinking.display` default to on `claude-mythos-5` and `claude-fable-5`?",
+        "answer": "`\"omitted\"`, the same default as Claude Mythos Preview.",
+        "atomic_claims": [
+          "`thinking.display` defaults to `\"omitted\"` on `claude-mythos-5` and `claude-fable-5`, the same as on Claude Mythos Preview."
+        ],
+        "proposed_question": "What does `thinking.display` default to on `claude-mythos-5` and `claude-fable-5`?",
+        "proposed_answer": "`\"omitted\"`, the same default as Claude Mythos Preview.",
+        "proposed_atomic_claims": [
+          "`thinking.display` defaults to `\"omitted\"` on `claude-mythos-5` and `claude-fable-5`, the same as on Claude Mythos Preview."
+        ],
+        "source_subject": "`thinking.display`",
+        "source_relation": "defaults_to",
+        "source_object": "`\"omitted\"` on `claude-mythos-5` and `claude-fable-5`, the same as on Claude Mythos Preview; set `display: \"summarized\"` to receive readable summaries.",
+        "source_sentence": "`thinking.display` defaults to `\"omitted\"` on `claude-mythos-5` and `claude-fable-5`, the same as on Claude Mythos Preview; set `display: \"summarized\"` to receive readable summaries.",
+        "source_triple_derivation": "named relation",
+        "question_subject": "`thinking.display`",
+        "question_relation": "defaults_to",
+        "question_object": "`\"omitted\"` on `claude-mythos-5` and `claude-fable-5`, the same as on Claude Mythos Preview; set `display: \"summarized\"` to receive readable summaries",
+        "expected_evidence": [
+          {
+            "evidence_id": "E1",
+            "version_id": "ver_a7bda3595f2c124605c3228464d4ee52",
+            "section_path": [
+              "Or, for the generally available model with the same capabilities:",
+              "Migration checklist"
+            ],
+            "char_start": 15155,
+            "char_end": 15337,
+            "evidence_text": "`thinking.display` defaults to `\"omitted\"` on `claude-mythos-5` and `claude-fable-5`, the same as on Claude Mythos Preview; set `display: \"summarized\"` to receive readable summaries.",
+            "evidence_hash": "7fa16f3bd72441cb82aeca4783f2642ce67e3cfa78da3dca956bb6d2ea672e6c",
+            "evidence_char_length": 182,
+            "critical_strings": [
+              "thinking.display",
+              "omitted",
+              "claude-mythos-5",
+              "claude-fable-5"
+            ]
+          }
+        ],
+        "claim_evidence_map": [
+          {
+            "claim": "`thinking.display` defaults to `\"omitted\"` on `claude-mythos-5` and `claude-fable-5`, the same as on Claude Mythos Preview.",
+            "evidence_id": "E1",
+            "critical_strings": [
+              "thinking.display",
+              "omitted",
+              "claude-mythos-5",
+              "claude-fable-5"
+            ]
+          }
+        ],
+        "section_path": [
+          "Or, for the generally available model with the same capabilities:",
+          "Migration checklist"
+        ],
+        "section_path_trusted_for_scope": false,
+        "critical_strings": [
+          "thinking.display",
+          "omitted",
+          "claude-mythos-5",
+          "claude-fable-5"
+        ],
+        "evidence_char_length": 182,
+        "context_before": "nd `claude-fable-5` compared with `claude-mythos-preview`. Re-baseline cost and latency on your own workloads.\n\n#### Migration checklist\n\n* Update the model name from `claude-mythos-preview` to `claude-mythos-5`, or to `claude-fable-5` for the generally available model.\n* Remove manual extended thinking configuration (`thinking: {type: \"enabled\", budget_tokens: N}`). Adaptive thinking is always on, and no `thinking` field is required.\n* Remove any `thinking: {type: \"disabled\"}` configuration. Disabling thinking returns an error on `claude-mythos-5` and `claude-fable-5`.\n* Remove `budget_tokens`. It has no direct replacement: thinking is adaptive, and the `effort` parameter is a separate output-level control, not a thinking budget.\n* Verify any code that parses the `thinking` field treats it as display text only and passes thinking blocks back unchanged when continuing on the same model. ",
+        "context_after": " See [Thinking output on Claude Fable 5 and Claude Mythos 5](https://platform.claude.com/docs/en/build-with-claude/thinking#thinking-output-on-claude-fable-5-and-claude-mythos-5).\n* If you replay conversation history on another model, strip `thinking` and `redacted_thinking` blocks from prior assistant turns first. Thinking blocks from `claude-mythos-5` and `claude-fable-5` are tied to the model that produced them, and models other than Claude Fable 5 and Claude Mythos 5 silently ignore them. Stripping keeps cross-model requests minimal and uniform.\n* If you migrate to Claude Fable 5, handle `stop_reason: \"refusal\"` and read the `stop_details.category` field. Claude Fable 5 runs safety classifiers that Claude Mythos Preview and Claude Mythos 5 do not have. See [Refusals and fallback](https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback).\n* Re-baseline token counts ",
+        "candidate_type": "supported",
+        "generator_confidence": "medium",
+        "needs_human_interpretation": false,
+        "precheck_holdout_ready": true,
+        "precheck_failures": [],
+        "precheck_flags": [],
+        "internal_semantic_review_status": "READY_FOR_INDEPENDENT_REVIEW",
+        "internal_review_findings": [],
+        "generation_repairs": [],
+        "verification_status": "candidate_unverified",
+        "claude_proposed": true,
+        "chatgpt_verified": null,
+        "retrieval_was_not_run": true,
+        "schema_version": "1.3",
+        "revisions": [
+          {
+            "revision": 1,
+            "field": "question",
+            "from": "What does `thinking.display` default to?",
+            "to": "What does `thinking.display` default to on `claude-mythos-5` and `claude-fable-5`?",
+            "author": "project_owner (decision brief)",
+            "timestamp": "2026-08-24T17:45:45Z",
+            "reason": "owner: the question is too broad because the source explicitly scopes the behaviour to models"
+          },
+          {
+            "revision": 2,
+            "field": "answer",
+            "from": "`thinking.display` defaults to `\"omitted\"` on `claude-mythos-5` and `claude-fable-5`, the same as on Claude Mythos Preview; set `display: \"summarized\"` to receive readable summaries.",
+            "to": "`\"omitted\"`, the same default as Claude Mythos Preview.",
+            "author": "project_owner (decision brief)",
+            "timestamp": "2026-08-24T17:45:45Z",
+            "reason": "owner: the question is too broad because the source explicitly scopes the behaviour to models"
+          },
+          {
+            "revision": 3,
+            "field": "atomic_claims",
+            "from": [
+              "`thinking.display` defaults to `\"omitted\"` on `claude-mythos-5` and `claude-fable-5`, the same as on Claude Mythos Preview; set `display: \"summarized\"` to receive readable summaries."
+            ],
+            "to": [
+              "`thinking.display` defaults to `\"omitted\"` on `claude-mythos-5` and `claude-fable-5`, the same as on Claude Mythos Preview."
+            ],
+            "author": "project_owner (decision brief)",
+            "timestamp": "2026-08-24T17:45:45Z",
+            "reason": "owner: the question is too broad because the source explicitly scopes the behaviour to models"
+          }
+        ],
+        "selected_by": "target"
+      },
+      "generated": {
+        "candidate_id": "GOLD-B006-05",
+        "provider": "anthropic",
+        "document_title": "Migration guide",
+        "version_id": "ver_a7bda3595f2c124605c3228464d4ee52",
+        "source_url": "https://platform.claude.com/docs/en/about-claude/models/migration-guide",
+        "captured_at": "2026-08-17 04:46:19+00:00",
+        "reasoning_type": "exact_lookup",
+        "secondary_category": "defaults_to",
+        "evidence_shape": "single_span",
+        "requires_all_evidence": false,
+        "question": "What does `thinking.display` default to?",
+        "answer": "`thinking.display` defaults to `\"omitted\"` on `claude-mythos-5` and `claude-fable-5`, the same as on Claude Mythos Preview; set `display: \"summarized\"` to receive readable summaries.",
+        "atomic_claims": [
+          "`thinking.display` defaults to `\"omitted\"` on `claude-mythos-5` and `claude-fable-5`, the same as on Claude Mythos Preview; set `display: \"summarized\"` to receive readable summaries."
+        ],
+        "proposed_question": "What does `thinking.display` default to?",
+        "proposed_answer": "`thinking.display` defaults to `\"omitted\"` on `claude-mythos-5` and `claude-fable-5`, the same as on Claude Mythos Preview; set `display: \"summarized\"` to receive readable summaries.",
+        "proposed_atomic_claims": [
+          "`thinking.display` defaults to `\"omitted\"` on `claude-mythos-5` and `claude-fable-5`, the same as on Claude Mythos Preview; set `display: \"summarized\"` to receive readable summaries."
+        ],
+        "source_subject": "`thinking.display`",
+        "source_relation": "defaults_to",
+        "source_object": "`\"omitted\"` on `claude-mythos-5` and `claude-fable-5`, the same as on Claude Mythos Preview; set `display: \"summarized\"` to receive readable summaries.",
+        "source_sentence": "`thinking.display` defaults to `\"omitted\"` on `claude-mythos-5` and `claude-fable-5`, the same as on Claude Mythos Preview; set `display: \"summarized\"` to receive readable summaries.",
+        "source_triple_derivation": "named relation",
+        "question_subject": "`thinking.display`",
+        "question_relation": "defaults_to",
+        "question_object": "`\"omitted\"` on `claude-mythos-5` and `claude-fable-5`, the same as on Claude Mythos Preview; set `display: \"summarized\"` to receive readable summaries",
+        "expected_evidence": [
+          {
+            "evidence_id": "E1",
+            "version_id": "ver_a7bda3595f2c124605c3228464d4ee52",
+            "section_path": [
+              "Or, for the generally available model with the same capabilities:",
+              "Migration checklist"
+            ],
+            "char_start": 15155,
+            "char_end": 15337,
+            "evidence_text": "`thinking.display` defaults to `\"omitted\"` on `claude-mythos-5` and `claude-fable-5`, the same as on Claude Mythos Preview; set `display: \"summarized\"` to receive readable summaries.",
+            "evidence_hash": "7fa16f3bd72441cb82aeca4783f2642ce67e3cfa78da3dca956bb6d2ea672e6c",
+            "evidence_char_length": 182,
+            "critical_strings": [
+              "thinking.display"
+            ]
+          }
+        ],
+        "claim_evidence_map": [
+          {
+            "claim": "`thinking.display` defaults to `\"omitted\"` on `claude-mythos-5` and `claude-fable-5`, the same as on Claude Mythos Preview; set `display: \"summarized\"` to receive readable summaries.",
+            "evidence_id": "E1",
+            "critical_strings": [
+              "thinking.display"
+            ]
+          }
+        ],
+        "section_path": [
+          "Or, for the generally available model with the same capabilities:",
+          "Migration checklist"
+        ],
+        "section_path_trusted_for_scope": false,
+        "critical_strings": [
+          "thinking.display"
+        ],
+        "evidence_char_length": 182,
+        "context_before": "nd `claude-fable-5` compared with `claude-mythos-preview`. Re-baseline cost and latency on your own workloads.\n\n#### Migration checklist\n\n* Update the model name from `claude-mythos-preview` to `claude-mythos-5`, or to `claude-fable-5` for the generally available model.\n* Remove manual extended thinking configuration (`thinking: {type: \"enabled\", budget_tokens: N}`). Adaptive thinking is always on, and no `thinking` field is required.\n* Remove any `thinking: {type: \"disabled\"}` configuration. Disabling thinking returns an error on `claude-mythos-5` and `claude-fable-5`.\n* Remove `budget_tokens`. It has no direct replacement: thinking is adaptive, and the `effort` parameter is a separate output-level control, not a thinking budget.\n* Verify any code that parses the `thinking` field treats it as display text only and passes thinking blocks back unchanged when continuing on the same model. ",
+        "context_after": " See [Thinking output on Claude Fable 5 and Claude Mythos 5](https://platform.claude.com/docs/en/build-with-claude/thinking#thinking-output-on-claude-fable-5-and-claude-mythos-5).\n* If you replay conversation history on another model, strip `thinking` and `redacted_thinking` blocks from prior assistant turns first. Thinking blocks from `claude-mythos-5` and `claude-fable-5` are tied to the model that produced them, and models other than Claude Fable 5 and Claude Mythos 5 silently ignore them. Stripping keeps cross-model requests minimal and uniform.\n* If you migrate to Claude Fable 5, handle `stop_reason: \"refusal\"` and read the `stop_details.category` field. Claude Fable 5 runs safety classifiers that Claude Mythos Preview and Claude Mythos 5 do not have. See [Refusals and fallback](https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback).\n* Re-baseline token counts ",
+        "candidate_type": "supported",
+        "generator_confidence": "medium",
+        "needs_human_interpretation": false,
+        "precheck_holdout_ready": true,
+        "precheck_failures": [],
+        "precheck_flags": [],
+        "internal_semantic_review_status": "READY_FOR_INDEPENDENT_REVIEW",
+        "internal_review_findings": [],
+        "generation_repairs": [],
+        "verification_status": "candidate_unverified",
+        "claude_proposed": true,
+        "chatgpt_verified": null,
+        "retrieval_was_not_run": true,
+        "schema_version": "1.3",
+        "revisions": [],
+        "selected_by": "target"
+      },
+      "review": {
+        "status": "NEEDS_REPAIR",
+        "revision_author": "project_owner (decision brief)",
+        "reason": "owner: the question is too broad because the source explicitly scopes the behaviour to models",
+        "findings": [
+          "QUESTION_SCOPE: `thinking.display` does not have one default. The source gives the default for two named models, so the question names them.",
+          "The owner offered a second atomic claim about `display: \"summarized\"` and said to include it only if the question is meant to test it. It is NOT included: the question asks about the default, and a claim nothing asks about is an unscored assertion sitting in a benchmark record. The sentence stays in the evidence, where it is context.",
+          "CRITICAL_STRINGS: the two model names added, so the scope the question now asserts is anchored."
+        ],
+        "question": "What does `thinking.display` default to on `claude-mythos-5` and `claude-fable-5`?",
+        "answer": "`\"omitted\"`, the same default as Claude Mythos Preview.",
+        "atomic_claims": [
+          "`thinking.display` defaults to `\"omitted\"` on `claude-mythos-5` and `claude-fable-5`, the same as on Claude Mythos Preview."
+        ],
+        "critical_strings": [
+          "thinking.display",
+          "omitted",
+          "claude-mythos-5",
+          "claude-fable-5"
+        ],
+        "evidence_unchanged": true
+      },
+      "was_repaired": true
+    },
+    {
+      "record": {
+        "candidate_id": "GOLD-B006-06",
+        "provider": "openai",
+        "document_title": "OpenAI TypeScript and JavaScript API Library",
+        "version_id": "ver_f30a6447e4df2ab76e4c1475f353109c",
+        "source_url": "https://github.com/openai/openai-node/blob/cc7dbfa9b9dd6fe0ff72141e9c0c3d82b18ba9aa/README.md",
+        "captured_at": "2026-08-17 04:46:19+00:00",
+        "reasoning_type": "configuration_interaction",
+        "secondary_category": "overrides",
+        "evidence_shape": "single_span",
+        "requires_all_evidence": false,
+        "question": "What does `AWS_BEDROCK_BASE_URL` override?",
+        "answer": "This uses the regional `https://bedrock-mantle.<region>.api.aws/openai/v1` endpoint. The region can also come from `AWS_REGION` or `AWS_DEFAULT_REGION`, and `AWS_BEDROCK_BASE_URL` can override the endpoint.",
+        "atomic_claims": [
+          "This uses the regional `https://bedrock-mantle.<region>.api.aws/openai/v1` endpoint. The region can also come from `AWS_REGION` or `AWS_DEFAULT_REGION`, and `AWS_BEDROCK_BASE_URL` can override the endpoint."
+        ],
+        "proposed_question": "What does `AWS_BEDROCK_BASE_URL` override?",
+        "proposed_answer": "This uses the regional `https://bedrock-mantle.<region>.api.aws/openai/v1` endpoint. The region can also come from `AWS_REGION` or `AWS_DEFAULT_REGION`, and `AWS_BEDROCK_BASE_URL` can override the endpoint.",
+        "proposed_atomic_claims": [
+          "This uses the regional `https://bedrock-mantle.<region>.api.aws/openai/v1` endpoint. The region can also come from `AWS_REGION` or `AWS_DEFAULT_REGION`, and `AWS_BEDROCK_BASE_URL` can override the endpoint."
+        ],
+        "source_subject": "`AWS_BEDROCK_BASE_URL`",
+        "source_relation": "overrides",
+        "source_object": "the endpoint.",
+        "source_sentence": "The region can also come from `AWS_REGION` or `AWS_DEFAULT_REGION`, and `AWS_BEDROCK_BASE_URL` can override the endpoint.",
+        "source_triple_derivation": "named relation",
+        "question_subject": "`AWS_BEDROCK_BASE_URL`",
+        "question_relation": "overrides",
+        "question_object": "`AWS_REGION`",
+        "expected_evidence": [
+          {
+            "evidence_id": "E1",
+            "version_id": "ver_f30a6447e4df2ab76e4c1475f353109c",
+            "section_path": [
+              "OpenAI TypeScript and JavaScript API Library",
+              "Amazon Bedrock"
+            ],
+            "char_start": 17117,
+            "char_end": 17323,
+            "evidence_text": "This uses the regional `https://bedrock-mantle.<region>.api.aws/openai/v1` endpoint. The region can also come from `AWS_REGION` or `AWS_DEFAULT_REGION`, and `AWS_BEDROCK_BASE_URL` can override the endpoint.",
+            "evidence_hash": "ebe19ef32b204e03ada1970d7b6266188f378ce00152fd3bc0a2fdd385371dc4",
+            "evidence_char_length": 206,
+            "critical_strings": [
+              "AWS_BEDROCK_BASE_URL",
+              "AWS_REGION",
+              "AWS_DEFAULT_REGION"
+            ]
+          }
+        ],
+        "claim_evidence_map": [
+          {
+            "claim": "This uses the regional `https://bedrock-mantle.<region>.api.aws/openai/v1` endpoint. The region can also come from `AWS_REGION` or `AWS_DEFAULT_REGION`, and `AWS_BEDROCK_BASE_URL` can override the endpoint.",
+            "evidence_id": "E1",
+            "critical_strings": [
+              "AWS_BEDROCK_BASE_URL",
+              "AWS_REGION",
+              "AWS_DEFAULT_REGION"
+            ]
+          }
+        ],
+        "section_path": [
+          "OpenAI TypeScript and JavaScript API Library",
+          "Amazon Bedrock"
+        ],
+        "section_path_trusted_for_scope": false,
+        "critical_strings": [
+          "AWS_BEDROCK_BASE_URL",
+          "AWS_REGION",
+          "AWS_DEFAULT_REGION"
+        ],
+        "evidence_char_length": 206,
+        "context_before": "t.choices[0]!.message?.content);\n```\n\nFor more information on support for the Azure API, see [docs/azure.md](docs/azure.md).\n\n## Amazon Bedrock\n\nTo use this library with [Amazon Bedrock's OpenAI-compatible API](https://docs.aws.amazon.com/bedrock/latest/userguide/models-api-compatibility.html), configure the standard `OpenAI` client with the Bedrock provider:\n\n```ts\nimport OpenAI from 'openai';\nimport { bedrock } from 'openai/providers/bedrock/aws';\n\nconst client = new OpenAI({\n  provider: bedrock({ region: 'us-west-2' }),\n});\n\nconst response = await client.responses.create({\n  model: 'openai.gpt-5.4',\n  input: 'Say hello!',\n});\n\nconsole.log(response.output_text);\n```\n\nUse a model that [supports the Responses API](https://docs.aws.amazon.com/bedrock/latest/userguide/models-api-compatibility.html). A model returned by the Models API may support a different Bedrock inference API instead.\n\n",
+        "context_after": "\n\nThe AWS entrypoint uses the standard AWS credential chain by default. It also accepts a named profile, static credentials, or a custom credential provider. Install its peer dependencies before importing it:\n\n```bash\nnpm install @aws-sdk/credential-provider-node @smithy/hash-node @smithy/signature-v4\n```\n\nThe AWS entrypoint uses normal static imports so bundlers and serverless packagers can trace these dependencies. If one is missing, importing `openai/providers/bedrock/aws` fails immediately with the runtime's normal module-not-found error, for example:\n\n```text\nCannot find module '@aws-sdk/credential-provider-node'\n```\n\nFor Bedrock API key authentication, import `bedrock` from `openai/providers/bedrock` instead. That entrypoint has no AWS dependencies and works in browser-compatible runtimes when `dangerouslyAllowBrowser` is enabled. SigV4 authentication is supported in Node.js and co",
+        "candidate_type": "supported",
+        "generator_confidence": "high",
+        "needs_human_interpretation": false,
+        "precheck_holdout_ready": true,
+        "precheck_failures": [],
+        "precheck_flags": [],
+        "internal_semantic_review_status": "READY_FOR_INDEPENDENT_REVIEW",
+        "internal_review_findings": [],
+        "generation_repairs": [],
+        "verification_status": "candidate_unverified",
+        "claude_proposed": true,
+        "chatgpt_verified": null,
+        "retrieval_was_not_run": true,
+        "schema_version": "1.3",
+        "revisions": [],
+        "selected_by": "target"
+      },
+      "generated": {
+        "candidate_id": "GOLD-B006-06",
+        "provider": "openai",
+        "document_title": "OpenAI TypeScript and JavaScript API Library",
+        "version_id": "ver_f30a6447e4df2ab76e4c1475f353109c",
+        "source_url": "https://github.com/openai/openai-node/blob/cc7dbfa9b9dd6fe0ff72141e9c0c3d82b18ba9aa/README.md",
+        "captured_at": "2026-08-17 04:46:19+00:00",
+        "reasoning_type": "configuration_interaction",
+        "secondary_category": "overrides",
+        "evidence_shape": "single_span",
+        "requires_all_evidence": false,
+        "question": "What does `AWS_BEDROCK_BASE_URL` override?",
+        "answer": "This uses the regional `https://bedrock-mantle.<region>.api.aws/openai/v1` endpoint. The region can also come from `AWS_REGION` or `AWS_DEFAULT_REGION`, and `AWS_BEDROCK_BASE_URL` can override the endpoint.",
+        "atomic_claims": [
+          "This uses the regional `https://bedrock-mantle.<region>.api.aws/openai/v1` endpoint. The region can also come from `AWS_REGION` or `AWS_DEFAULT_REGION`, and `AWS_BEDROCK_BASE_URL` can override the endpoint."
+        ],
+        "proposed_question": "What does `AWS_BEDROCK_BASE_URL` override?",
+        "proposed_answer": "This uses the regional `https://bedrock-mantle.<region>.api.aws/openai/v1` endpoint. The region can also come from `AWS_REGION` or `AWS_DEFAULT_REGION`, and `AWS_BEDROCK_BASE_URL` can override the endpoint.",
+        "proposed_atomic_claims": [
+          "This uses the regional `https://bedrock-mantle.<region>.api.aws/openai/v1` endpoint. The region can also come from `AWS_REGION` or `AWS_DEFAULT_REGION`, and `AWS_BEDROCK_BASE_URL` can override the endpoint."
+        ],
+        "source_subject": "`AWS_BEDROCK_BASE_URL`",
+        "source_relation": "overrides",
+        "source_object": "the endpoint.",
+        "source_sentence": "The region can also come from `AWS_REGION` or `AWS_DEFAULT_REGION`, and `AWS_BEDROCK_BASE_URL` can override the endpoint.",
+        "source_triple_derivation": "named relation",
+        "question_subject": "`AWS_BEDROCK_BASE_URL`",
+        "question_relation": "overrides",
+        "question_object": "`AWS_REGION`",
+        "expected_evidence": [
+          {
+            "evidence_id": "E1",
+            "version_id": "ver_f30a6447e4df2ab76e4c1475f353109c",
+            "section_path": [
+              "OpenAI TypeScript and JavaScript API Library",
+              "Amazon Bedrock"
+            ],
+            "char_start": 17117,
+            "char_end": 17323,
+            "evidence_text": "This uses the regional `https://bedrock-mantle.<region>.api.aws/openai/v1` endpoint. The region can also come from `AWS_REGION` or `AWS_DEFAULT_REGION`, and `AWS_BEDROCK_BASE_URL` can override the endpoint.",
+            "evidence_hash": "ebe19ef32b204e03ada1970d7b6266188f378ce00152fd3bc0a2fdd385371dc4",
+            "evidence_char_length": 206,
+            "critical_strings": [
+              "AWS_BEDROCK_BASE_URL",
+              "AWS_REGION",
+              "AWS_DEFAULT_REGION"
+            ]
+          }
+        ],
+        "claim_evidence_map": [
+          {
+            "claim": "This uses the regional `https://bedrock-mantle.<region>.api.aws/openai/v1` endpoint. The region can also come from `AWS_REGION` or `AWS_DEFAULT_REGION`, and `AWS_BEDROCK_BASE_URL` can override the endpoint.",
+            "evidence_id": "E1",
+            "critical_strings": [
+              "AWS_BEDROCK_BASE_URL",
+              "AWS_REGION",
+              "AWS_DEFAULT_REGION"
+            ]
+          }
+        ],
+        "section_path": [
+          "OpenAI TypeScript and JavaScript API Library",
+          "Amazon Bedrock"
+        ],
+        "section_path_trusted_for_scope": false,
+        "critical_strings": [
+          "AWS_BEDROCK_BASE_URL",
+          "AWS_REGION",
+          "AWS_DEFAULT_REGION"
+        ],
+        "evidence_char_length": 206,
+        "context_before": "t.choices[0]!.message?.content);\n```\n\nFor more information on support for the Azure API, see [docs/azure.md](docs/azure.md).\n\n## Amazon Bedrock\n\nTo use this library with [Amazon Bedrock's OpenAI-compatible API](https://docs.aws.amazon.com/bedrock/latest/userguide/models-api-compatibility.html), configure the standard `OpenAI` client with the Bedrock provider:\n\n```ts\nimport OpenAI from 'openai';\nimport { bedrock } from 'openai/providers/bedrock/aws';\n\nconst client = new OpenAI({\n  provider: bedrock({ region: 'us-west-2' }),\n});\n\nconst response = await client.responses.create({\n  model: 'openai.gpt-5.4',\n  input: 'Say hello!',\n});\n\nconsole.log(response.output_text);\n```\n\nUse a model that [supports the Responses API](https://docs.aws.amazon.com/bedrock/latest/userguide/models-api-compatibility.html). A model returned by the Models API may support a different Bedrock inference API instead.\n\n",
+        "context_after": "\n\nThe AWS entrypoint uses the standard AWS credential chain by default. It also accepts a named profile, static credentials, or a custom credential provider. Install its peer dependencies before importing it:\n\n```bash\nnpm install @aws-sdk/credential-provider-node @smithy/hash-node @smithy/signature-v4\n```\n\nThe AWS entrypoint uses normal static imports so bundlers and serverless packagers can trace these dependencies. If one is missing, importing `openai/providers/bedrock/aws` fails immediately with the runtime's normal module-not-found error, for example:\n\n```text\nCannot find module '@aws-sdk/credential-provider-node'\n```\n\nFor Bedrock API key authentication, import `bedrock` from `openai/providers/bedrock` instead. That entrypoint has no AWS dependencies and works in browser-compatible runtimes when `dangerouslyAllowBrowser` is enabled. SigV4 authentication is supported in Node.js and co",
+        "candidate_type": "supported",
+        "generator_confidence": "high",
+        "needs_human_interpretation": false,
+        "precheck_holdout_ready": true,
+        "precheck_failures": [],
+        "precheck_flags": [],
+        "internal_semantic_review_status": "READY_FOR_INDEPENDENT_REVIEW",
+        "internal_review_findings": [],
+        "generation_repairs": [],
+        "verification_status": "candidate_unverified",
+        "claude_proposed": true,
+        "chatgpt_verified": null,
+        "retrieval_was_not_run": true,
+        "schema_version": "1.3",
+        "revisions": [],
+        "selected_by": "target"
+      },
+      "review": {
+        "status": "REJECT_RECOMMENDED",
+        "reason": "owner: DUPLICATE_FACT / BENCHMARK_REDUNDANCY — batch 005 already approved substantially the same operational fact as GOLD-B005-11",
+        "findings": [
+          "The fact is supported: `AWS_BEDROCK_BASE_URL` can override the region-derived Bedrock endpoint.",
+          "DUPLICATE_FACT: GOLD-B005-11, approved in batch 005, carries the same operational relation from the OpenAI Python library. This candidate obtains it from the TypeScript/JavaScript library. Source corroboration is useful; a second benchmark case for the same relation is not.",
+          "The duplicate-control gate did not catch this. It compares question text, span offsets and span text, and two libraries documenting the same behaviour share none of those. Recorded as a generator defect for batch 007 rather than patched here.",
+          "Preserved as an audit example. NOT replaced with a new candidate — the owner was explicit about that."
+        ],
+        "evidence_unchanged": true
+      },
+      "was_repaired": false
+    },
+    {
+      "record": {
+        "candidate_id": "GOLD-B006-07",
+        "provider": "openai",
+        "document_title": "Realtime agents guide",
+        "version_id": "ver_14a2187cf2216b9d56c213b520a28479",
+        "source_url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/realtime/guide.md",
+        "captured_at": "2026-08-17 04:46:19+00:00",
+        "reasoning_type": "configuration_interaction",
+        "secondary_category": "disables",
+        "evidence_shape": "single_span",
+        "requires_all_evidence": false,
+        "question": "What does Setting `audio.input.turn_detection` to `None` disable?",
+        "answer": "Setting `audio.input.turn_detection` to `None` disables automatic turn detection.",
+        "atomic_claims": [
+          "Setting `audio.input.turn_detection` to `None` disables automatic turn detection."
+        ],
+        "proposed_question": "What does Setting `audio.input.turn_detection` to `None` disable?",
+        "proposed_answer": "Setting `audio.input.turn_detection` to `None` disables automatic turn detection.",
+        "proposed_atomic_claims": [
+          "Setting `audio.input.turn_detection` to `None` disables automatic turn detection."
+        ],
+        "source_subject": "Setting `audio.input.turn_detection` to `None`",
+        "source_relation": "disables",
+        "source_object": "automatic turn detection.",
+        "source_sentence": "Setting `audio.input.turn_detection` to `None` disables automatic turn detection.",
+        "source_triple_derivation": "named relation",
+        "question_subject": "Setting `audio.input.turn_detection` to `None`",
+        "question_relation": "disables",
+        "question_object": "automatic turn detection",
+        "expected_evidence": [
+          {
+            "evidence_id": "E1",
+            "version_id": "ver_14a2187cf2216b9d56c213b520a28479",
+            "section_path": [
+              "Realtime agents guide",
+              "Agent and session configuration",
+              "Input transcription settings"
+            ],
+            "char_start": 7318,
+            "char_end": 7399,
+            "evidence_text": "Setting `audio.input.turn_detection` to `None` disables automatic turn detection.",
+            "evidence_hash": "38635aabfe1d74a3c43fa3a4724d6953e94ae26cd373b55e576f27cf497fc07b",
+            "evidence_char_length": 81,
+            "critical_strings": [
+              "audio.input.turn_detection",
+              "None"
+            ]
+          }
+        ],
+        "claim_evidence_map": [
+          {
+            "claim": "Setting `audio.input.turn_detection` to `None` disables automatic turn detection.",
+            "evidence_id": "E1",
+            "critical_strings": [
+              "audio.input.turn_detection",
+              "None"
+            ]
+          }
+        ],
+        "section_path": [
+          "Realtime agents guide",
+          "Agent and session configuration",
+          "Input transcription settings"
+        ],
+        "section_path_trusted_for_scope": false,
+        "critical_strings": [
+          "audio.input.turn_detection",
+          "None"
+        ],
+        "evidence_char_length": 81,
+        "context_before": "            \"delay\": \"low\",\n                    },\n                    \"turn_detection\": None,\n                }\n            }\n        }\n    },\n)\n```\n\nThe `delay` setting accepts `minimal`, `low`, `medium`, `high`, or `xhigh`. Lower values can produce earlier partial text, while higher values give the transcription model more audio context and can improve recognition accuracy. Benchmark representative audio instead of assuming fixed timing for any level.\n\nUse `gpt-transcribe` in a Realtime session over WebSocket only when transcription should begin after a committed audio turn or the application needs detected-language output. The model automatically uses earlier transcribed turns as context. The `gpt-transcribe` completion event reports detected languages in its `languages` output field. This output field is different from the `gpt-live-transcribe` expected-language input shown above.\n\n",
+        "context_after": " The application must then commit audio turns and control response creation as described in [Manual response control](#manual-response-control). See the OpenAI API [Realtime transcription guide](https://developers.openai.com/api/docs/guides/realtime-transcription) for model behavior, validation rules, and latency guidance.\n\n## Inputs and outputs\n\n### Text and structured user messages\n\nUse [`session.send_message()`][agents.realtime.session.RealtimeSession.send_message] for plain text or structured realtime messages.\n\n```python\nfrom agents.realtime import RealtimeUserInputMessage\n\nawait session.send_message(\"Summarize what we discussed so far.\")\n\nmessage: RealtimeUserInputMessage = {\n    \"type\": \"message\",\n    \"role\": \"user\",\n    \"content\": [\n        {\"type\": \"input_text\", \"text\": \"Describe this image.\"},\n        {\"type\": \"input_image\", \"image_url\": image_data_url, \"detail\": \"high\"},\n    ]",
+        "candidate_type": "supported",
+        "generator_confidence": "medium",
+        "needs_human_interpretation": false,
+        "precheck_holdout_ready": true,
+        "precheck_failures": [],
+        "precheck_flags": [],
+        "internal_semantic_review_status": "READY_FOR_INDEPENDENT_REVIEW",
+        "internal_review_findings": [],
+        "generation_repairs": [],
+        "verification_status": "candidate_unverified",
+        "claude_proposed": true,
+        "chatgpt_verified": null,
+        "retrieval_was_not_run": true,
+        "schema_version": "1.3",
+        "revisions": [],
+        "selected_by": "target"
+      },
+      "generated": {
+        "candidate_id": "GOLD-B006-07",
+        "provider": "openai",
+        "document_title": "Realtime agents guide",
+        "version_id": "ver_14a2187cf2216b9d56c213b520a28479",
+        "source_url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/realtime/guide.md",
+        "captured_at": "2026-08-17 04:46:19+00:00",
+        "reasoning_type": "configuration_interaction",
+        "secondary_category": "disables",
+        "evidence_shape": "single_span",
+        "requires_all_evidence": false,
+        "question": "What does Setting `audio.input.turn_detection` to `None` disable?",
+        "answer": "Setting `audio.input.turn_detection` to `None` disables automatic turn detection.",
+        "atomic_claims": [
+          "Setting `audio.input.turn_detection` to `None` disables automatic turn detection."
+        ],
+        "proposed_question": "What does Setting `audio.input.turn_detection` to `None` disable?",
+        "proposed_answer": "Setting `audio.input.turn_detection` to `None` disables automatic turn detection.",
+        "proposed_atomic_claims": [
+          "Setting `audio.input.turn_detection` to `None` disables automatic turn detection."
+        ],
+        "source_subject": "Setting `audio.input.turn_detection` to `None`",
+        "source_relation": "disables",
+        "source_object": "automatic turn detection.",
+        "source_sentence": "Setting `audio.input.turn_detection` to `None` disables automatic turn detection.",
+        "source_triple_derivation": "named relation",
+        "question_subject": "Setting `audio.input.turn_detection` to `None`",
+        "question_relation": "disables",
+        "question_object": "automatic turn detection",
+        "expected_evidence": [
+          {
+            "evidence_id": "E1",
+            "version_id": "ver_14a2187cf2216b9d56c213b520a28479",
+            "section_path": [
+              "Realtime agents guide",
+              "Agent and session configuration",
+              "Input transcription settings"
+            ],
+            "char_start": 7318,
+            "char_end": 7399,
+            "evidence_text": "Setting `audio.input.turn_detection` to `None` disables automatic turn detection.",
+            "evidence_hash": "38635aabfe1d74a3c43fa3a4724d6953e94ae26cd373b55e576f27cf497fc07b",
+            "evidence_char_length": 81,
+            "critical_strings": [
+              "audio.input.turn_detection",
+              "None"
+            ]
+          }
+        ],
+        "claim_evidence_map": [
+          {
+            "claim": "Setting `audio.input.turn_detection` to `None` disables automatic turn detection.",
+            "evidence_id": "E1",
+            "critical_strings": [
+              "audio.input.turn_detection",
+              "None"
+            ]
+          }
+        ],
+        "section_path": [
+          "Realtime agents guide",
+          "Agent and session configuration",
+          "Input transcription settings"
+        ],
+        "section_path_trusted_for_scope": false,
+        "critical_strings": [
+          "audio.input.turn_detection",
+          "None"
+        ],
+        "evidence_char_length": 81,
+        "context_before": "            \"delay\": \"low\",\n                    },\n                    \"turn_detection\": None,\n                }\n            }\n        }\n    },\n)\n```\n\nThe `delay` setting accepts `minimal`, `low`, `medium`, `high`, or `xhigh`. Lower values can produce earlier partial text, while higher values give the transcription model more audio context and can improve recognition accuracy. Benchmark representative audio instead of assuming fixed timing for any level.\n\nUse `gpt-transcribe` in a Realtime session over WebSocket only when transcription should begin after a committed audio turn or the application needs detected-language output. The model automatically uses earlier transcribed turns as context. The `gpt-transcribe` completion event reports detected languages in its `languages` output field. This output field is different from the `gpt-live-transcribe` expected-language input shown above.\n\n",
+        "context_after": " The application must then commit audio turns and control response creation as described in [Manual response control](#manual-response-control). See the OpenAI API [Realtime transcription guide](https://developers.openai.com/api/docs/guides/realtime-transcription) for model behavior, validation rules, and latency guidance.\n\n## Inputs and outputs\n\n### Text and structured user messages\n\nUse [`session.send_message()`][agents.realtime.session.RealtimeSession.send_message] for plain text or structured realtime messages.\n\n```python\nfrom agents.realtime import RealtimeUserInputMessage\n\nawait session.send_message(\"Summarize what we discussed so far.\")\n\nmessage: RealtimeUserInputMessage = {\n    \"type\": \"message\",\n    \"role\": \"user\",\n    \"content\": [\n        {\"type\": \"input_text\", \"text\": \"Describe this image.\"},\n        {\"type\": \"input_image\", \"image_url\": image_data_url, \"detail\": \"high\"},\n    ]",
+        "candidate_type": "supported",
+        "generator_confidence": "medium",
+        "needs_human_interpretation": false,
+        "precheck_holdout_ready": true,
+        "precheck_failures": [],
+        "precheck_flags": [],
+        "internal_semantic_review_status": "READY_FOR_INDEPENDENT_REVIEW",
+        "internal_review_findings": [],
+        "generation_repairs": [],
+        "verification_status": "candidate_unverified",
+        "claude_proposed": true,
+        "chatgpt_verified": null,
+        "retrieval_was_not_run": true,
+        "schema_version": "1.3",
+        "revisions": [],
+        "selected_by": "target"
+      },
+      "review": {
+        "status": "READY_FOR_OWNER_REVIEW",
+        "findings": [
+          "The anchor is one self-contained sentence: the condition (setting `audio.input.turn_detection` to `None`) and the outcome (automatic turn detection is disabled) are both inside it.",
+          "Relation direction is correct — the setting is the subject of `disables`, and the question asks it that way round."
+        ],
+        "evidence_unchanged": true
+      },
+      "was_repaired": false
+    },
+    {
+      "record": {
+        "candidate_id": "GOLD-B006-08",
+        "provider": "openai",
+        "document_title": "Release process/changelog",
+        "version_id": "ver_de67d790db9792b2f6c5c7418a507764",
+        "source_url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/release.md",
+        "captured_at": "2026-08-17 04:46:19+00:00",
+        "reasoning_type": "lifecycle_compatibility_migration",
+        "secondary_category": "migration",
+        "evidence_shape": "single_span",
+        "requires_all_evidence": false,
+        "question": "What does the OpenAI Python SDK's temporary legacy-client compatibility path require, and how should that path be treated?",
+        "answer": "It requires an explicit `httpx` installation and should be treated as a migration bridge.",
+        "atomic_claims": [
+          "The OpenAI Python SDK's temporary legacy-client compatibility path requires an explicit `httpx` installation.",
+          "That path should be treated as a migration bridge."
+        ],
+        "proposed_question": "What does the OpenAI Python SDK's temporary legacy-client compatibility path require, and how should that path be treated?",
+        "proposed_answer": "It requires an explicit `httpx` installation and should be treated as a migration bridge.",
+        "proposed_atomic_claims": [
+          "The OpenAI Python SDK's temporary legacy-client compatibility path requires an explicit `httpx` installation.",
+          "That path should be treated as a migration bridge."
+        ],
+        "source_subject": "The OpenAI Python SDK's temporary legacy-client compatibility path",
+        "source_relation": "requires",
+        "source_object": "an explicit `httpx` installation and should be treated as a migration bridge",
+        "source_sentence": "The OpenAI Python SDK's temporary legacy-client compatibility path requires an explicit `httpx` installation and should be treated as a migration bridge",
+        "source_triple_derivation": "named relation",
+        "question_subject": "The OpenAI Python SDK's temporary legacy-client compatibility path",
+        "question_relation": "requires",
+        "question_object": "an explicit `httpx` installation and should be treated as a migration bridge",
+        "expected_evidence": [
+          {
+            "evidence_id": "E1",
+            "version_id": "ver_de67d790db9792b2f6c5c7418a507764",
+            "section_path": [
+              "Release process/changelog",
+              "Breaking change changelog",
+              "0.21.0"
+            ],
+            "char_start": 1996,
+            "char_end": 2320,
+            "evidence_text": "The OpenAI Python SDK's temporary legacy-client compatibility path requires an explicit `httpx` installation and should be treated as a migration bridge.\n-   Local MCP HTTP customization continues to follow the installed MCP package: MCP Python SDK v1 supplies and uses legacy `httpx`, while MCP Python SDK v2 uses `httpx2`.",
+            "evidence_hash": "ca119ba8c06e5c6b054c06540e3bda4ced4fe15e0478460fa687fe581aec303d",
+            "evidence_char_length": 324,
+            "critical_strings": [
+              "httpx"
+            ]
+          }
+        ],
+        "claim_evidence_map": [
+          {
+            "claim": "The OpenAI Python SDK's temporary legacy-client compatibility path requires an explicit `httpx` installation.",
+            "evidence_id": "E1",
+            "critical_strings": [
+              "httpx"
+            ]
+          },
+          {
+            "claim": "That path should be treated as a migration bridge.",
+            "evidence_id": "E1",
+            "critical_strings": [
+              "httpx"
+            ]
+          }
+        ],
+        "section_path": [
+          "Release process/changelog",
+          "Breaking change changelog",
+          "0.21.0"
+        ],
+        "section_path_trusted_for_scope": false,
+        "critical_strings": [
+          "httpx"
+        ],
+        "evidence_char_length": 324,
+        "context_before": "3.0.0,<4`. A clean core installation uses HTTPX2 and no longer installs legacy `httpx` as a direct dependency.\n-   The default OpenAI provider, Voice provider, Responses WebSocket support, tracing exporter, and provider retry normalization now use HTTPX2. Their existing Agents SDK public configuration and runtime behavior remain unchanged.\n-   Applications that pass `http_client=` to `AsyncOpenAI` should migrate custom clients, transports, authentication, event hooks, mock transports, timeout values, URLs, requests, responses, and transport exception handling from `httpx` to `httpx2`. Prefer the OpenAI Python SDK's `DefaultAsyncHttpx2Client` when the application needs the OpenAI client's defaults plus custom HTTP options. See [Custom HTTP clients with `openai` v3](config.md#custom-http-clients-with-openai-v3).\n-   The Agents SDK does not convert arbitrary legacy HTTPX objects to HTTPX2. ",
+        "context_after": " Ordinary MCP connections do not need application changes. See [MCP Python SDK v1 and v2](mcp.md#mcp-python-sdk-v1-and-v2).\n-   Public provider-neutral testing utilities now cover Agent model, Sandbox session, Realtime session, and Voice pipeline workflows without provider or process dependencies. See [Testing](testing.md) for recipes and guidance on when to keep the real provider adapter or integration boundary.\n\n### 0.20.0\n\nVersion 0.20.0 includes a potentially breaking MCP dependency migration for applications that customize local MCP HTTP transports. It also updates the SDK default model used when an agent or run does not explicitly select one.\n\nHighlights:\n\n-   The SDK default model is now `gpt-5.6-luna` instead of `gpt-5.4-mini`. The default `reasoning.effort=\"none\"` and `verbosity=\"low\"` settings are unchanged.\n-   Explicit agent models, run-level model overrides, and the `OPENAI_",
+        "candidate_type": "supported",
+        "generator_confidence": "medium",
+        "needs_human_interpretation": false,
+        "precheck_holdout_ready": true,
+        "precheck_failures": [],
+        "precheck_flags": [],
+        "internal_semantic_review_status": "READY_FOR_INDEPENDENT_REVIEW",
+        "internal_review_findings": [],
+        "generation_repairs": [],
+        "verification_status": "candidate_unverified",
+        "claude_proposed": true,
+        "chatgpt_verified": null,
+        "retrieval_was_not_run": true,
+        "schema_version": "1.3",
+        "revisions": [
+          {
+            "revision": 1,
+            "field": "question",
+            "from": "What does the OpenAI Python SDK's temporary legacy-client compatibility path require?",
+            "to": "What does the OpenAI Python SDK's temporary legacy-client compatibility path require, and how should that path be treated?",
+            "author": "project_owner (decision brief)",
+            "timestamp": "2026-08-24T17:45:45Z",
+            "reason": "owner: the fact is good but the primary label should not be configuration_interaction"
+          },
+          {
+            "revision": 2,
+            "field": "answer",
+            "from": "The OpenAI Python SDK's temporary legacy-client compatibility path requires an explicit `httpx` installation and should be treated as a migration bridge.",
+            "to": "It requires an explicit `httpx` installation and should be treated as a migration bridge.",
+            "author": "project_owner (decision brief)",
+            "timestamp": "2026-08-24T17:45:45Z",
+            "reason": "owner: the fact is good but the primary label should not be configuration_interaction"
+          },
+          {
+            "revision": 3,
+            "field": "atomic_claims",
+            "from": [
+              "The OpenAI Python SDK's temporary legacy-client compatibility path requires an explicit `httpx` installation and should be treated as a migration bridge."
+            ],
+            "to": [
+              "The OpenAI Python SDK's temporary legacy-client compatibility path requires an explicit `httpx` installation.",
+              "That path should be treated as a migration bridge."
+            ],
+            "author": "project_owner (decision brief)",
+            "timestamp": "2026-08-24T17:45:45Z",
+            "reason": "owner: the fact is good but the primary label should not be configuration_interaction"
+          },
+          {
+            "revision": 4,
+            "field": "reasoning_type",
+            "from": "configuration_interaction",
+            "to": "lifecycle_compatibility_migration",
+            "author": "project_owner (decision brief)",
+            "timestamp": "2026-08-24T17:45:45Z",
+            "reason": "owner: the fact is good but the primary label should not be configuration_interaction"
+          },
+          {
+            "revision": 5,
+            "field": "secondary_category",
+            "from": "requires",
+            "to": "migration",
+            "author": "project_owner (decision brief)",
+            "timestamp": "2026-08-24T17:45:45Z",
+            "reason": "owner: the fact is good but the primary label should not be configuration_interaction"
+          }
+        ],
+        "selected_by": "target"
+      },
+      "generated": {
+        "candidate_id": "GOLD-B006-08",
+        "provider": "openai",
+        "document_title": "Release process/changelog",
+        "version_id": "ver_de67d790db9792b2f6c5c7418a507764",
+        "source_url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/release.md",
+        "captured_at": "2026-08-17 04:46:19+00:00",
+        "reasoning_type": "configuration_interaction",
+        "secondary_category": "requires",
+        "evidence_shape": "single_span",
+        "requires_all_evidence": false,
+        "question": "What does the OpenAI Python SDK's temporary legacy-client compatibility path require?",
+        "answer": "The OpenAI Python SDK's temporary legacy-client compatibility path requires an explicit `httpx` installation and should be treated as a migration bridge.",
+        "atomic_claims": [
+          "The OpenAI Python SDK's temporary legacy-client compatibility path requires an explicit `httpx` installation and should be treated as a migration bridge."
+        ],
+        "proposed_question": "What does the OpenAI Python SDK's temporary legacy-client compatibility path require?",
+        "proposed_answer": "The OpenAI Python SDK's temporary legacy-client compatibility path requires an explicit `httpx` installation and should be treated as a migration bridge.",
+        "proposed_atomic_claims": [
+          "The OpenAI Python SDK's temporary legacy-client compatibility path requires an explicit `httpx` installation and should be treated as a migration bridge."
+        ],
+        "source_subject": "The OpenAI Python SDK's temporary legacy-client compatibility path",
+        "source_relation": "requires",
+        "source_object": "an explicit `httpx` installation and should be treated as a migration bridge",
+        "source_sentence": "The OpenAI Python SDK's temporary legacy-client compatibility path requires an explicit `httpx` installation and should be treated as a migration bridge",
+        "source_triple_derivation": "named relation",
+        "question_subject": "The OpenAI Python SDK's temporary legacy-client compatibility path",
+        "question_relation": "requires",
+        "question_object": "an explicit `httpx` installation and should be treated as a migration bridge",
+        "expected_evidence": [
+          {
+            "evidence_id": "E1",
+            "version_id": "ver_de67d790db9792b2f6c5c7418a507764",
+            "section_path": [
+              "Release process/changelog",
+              "Breaking change changelog",
+              "0.21.0"
+            ],
+            "char_start": 1996,
+            "char_end": 2320,
+            "evidence_text": "The OpenAI Python SDK's temporary legacy-client compatibility path requires an explicit `httpx` installation and should be treated as a migration bridge.\n-   Local MCP HTTP customization continues to follow the installed MCP package: MCP Python SDK v1 supplies and uses legacy `httpx`, while MCP Python SDK v2 uses `httpx2`.",
+            "evidence_hash": "ca119ba8c06e5c6b054c06540e3bda4ced4fe15e0478460fa687fe581aec303d",
+            "evidence_char_length": 324,
+            "critical_strings": [
+              "httpx",
+              "httpx2"
+            ]
+          }
+        ],
+        "claim_evidence_map": [
+          {
+            "claim": "The OpenAI Python SDK's temporary legacy-client compatibility path requires an explicit `httpx` installation and should be treated as a migration bridge.",
+            "evidence_id": "E1",
+            "critical_strings": [
+              "httpx",
+              "httpx2"
+            ]
+          }
+        ],
+        "section_path": [
+          "Release process/changelog",
+          "Breaking change changelog",
+          "0.21.0"
+        ],
+        "section_path_trusted_for_scope": false,
+        "critical_strings": [
+          "httpx",
+          "httpx2"
+        ],
+        "evidence_char_length": 324,
+        "context_before": "3.0.0,<4`. A clean core installation uses HTTPX2 and no longer installs legacy `httpx` as a direct dependency.\n-   The default OpenAI provider, Voice provider, Responses WebSocket support, tracing exporter, and provider retry normalization now use HTTPX2. Their existing Agents SDK public configuration and runtime behavior remain unchanged.\n-   Applications that pass `http_client=` to `AsyncOpenAI` should migrate custom clients, transports, authentication, event hooks, mock transports, timeout values, URLs, requests, responses, and transport exception handling from `httpx` to `httpx2`. Prefer the OpenAI Python SDK's `DefaultAsyncHttpx2Client` when the application needs the OpenAI client's defaults plus custom HTTP options. See [Custom HTTP clients with `openai` v3](config.md#custom-http-clients-with-openai-v3).\n-   The Agents SDK does not convert arbitrary legacy HTTPX objects to HTTPX2. ",
+        "context_after": " Ordinary MCP connections do not need application changes. See [MCP Python SDK v1 and v2](mcp.md#mcp-python-sdk-v1-and-v2).\n-   Public provider-neutral testing utilities now cover Agent model, Sandbox session, Realtime session, and Voice pipeline workflows without provider or process dependencies. See [Testing](testing.md) for recipes and guidance on when to keep the real provider adapter or integration boundary.\n\n### 0.20.0\n\nVersion 0.20.0 includes a potentially breaking MCP dependency migration for applications that customize local MCP HTTP transports. It also updates the SDK default model used when an agent or run does not explicitly select one.\n\nHighlights:\n\n-   The SDK default model is now `gpt-5.6-luna` instead of `gpt-5.4-mini`. The default `reasoning.effort=\"none\"` and `verbosity=\"low\"` settings are unchanged.\n-   Explicit agent models, run-level model overrides, and the `OPENAI_",
+        "candidate_type": "supported",
+        "generator_confidence": "medium",
+        "needs_human_interpretation": false,
+        "precheck_holdout_ready": true,
+        "precheck_failures": [],
+        "precheck_flags": [],
+        "internal_semantic_review_status": "READY_FOR_INDEPENDENT_REVIEW",
+        "internal_review_findings": [],
+        "generation_repairs": [],
+        "verification_status": "candidate_unverified",
+        "claude_proposed": true,
+        "chatgpt_verified": null,
+        "retrieval_was_not_run": true,
+        "schema_version": "1.3",
+        "revisions": [],
+        "selected_by": "target"
+      },
+      "review": {
+        "status": "NEEDS_REPAIR",
+        "revision_author": "project_owner (decision brief)",
+        "reason": "owner: the fact is good but the primary label should not be configuration_interaction",
+        "findings": [
+          "TAXONOMY: relabelled to `lifecycle_compatibility_migration` / `migration`. The sentence is about a compatibility path being a migration bridge, not about two settings interacting.",
+          "QUESTION_SCOPE: the question now also asks how the path should be treated, which is the half of the sentence the answer already carried.",
+          "The owner said to keep the MCP/`httpx2` sentence 'only if it is needed by the final claims'. It is not: no claim uses it. It is dropped from the CRITICAL STRINGS, which is what makes it scored. The sentence stays inside the anchor, because shrinking an anchor is not a repair this project permits — every anchor revision must be a strict outward growth. If the owner meant the span itself, that is a separate instruction and this note is the place to correct it."
+        ],
+        "reasoning_type": "lifecycle_compatibility_migration",
+        "secondary_category": "migration",
+        "question": "What does the OpenAI Python SDK's temporary legacy-client compatibility path require, and how should that path be treated?",
+        "answer": "It requires an explicit `httpx` installation and should be treated as a migration bridge.",
+        "atomic_claims": [
+          "The OpenAI Python SDK's temporary legacy-client compatibility path requires an explicit `httpx` installation.",
+          "That path should be treated as a migration bridge."
+        ],
+        "critical_strings": [
+          "httpx"
+        ],
+        "evidence_unchanged": true
+      },
+      "was_repaired": true
+    },
+    {
+      "record": {
+        "candidate_id": "GOLD-B006-09",
+        "provider": "openai",
+        "document_title": "Running agents",
+        "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+        "source_url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/running_agents.md",
+        "captured_at": "2026-08-17 04:46:19+00:00",
+        "reasoning_type": "exact_lookup",
+        "secondary_category": "defaults_to",
+        "evidence_shape": "single_span",
+        "requires_all_evidence": false,
+        "question": "What does `RunErrorHandlerResult.include_in_history` default to?",
+        "answer": "`RunErrorHandlerResult.include_in_history` defaults to `True`.",
+        "atomic_claims": [
+          "`RunErrorHandlerResult.include_in_history` defaults to `True`."
+        ],
+        "proposed_question": "What does `RunErrorHandlerResult.include_in_history` default to?",
+        "proposed_answer": "`RunErrorHandlerResult.include_in_history` defaults to `True`.",
+        "proposed_atomic_claims": [
+          "`RunErrorHandlerResult.include_in_history` defaults to `True`."
+        ],
+        "source_subject": "`RunErrorHandlerResult.include_in_history`",
+        "source_relation": "defaults_to",
+        "source_object": "`True`.",
+        "source_sentence": "`RunErrorHandlerResult.include_in_history` defaults to `True`.",
+        "source_triple_derivation": "named relation",
+        "question_subject": "`RunErrorHandlerResult.include_in_history`",
+        "question_relation": "defaults_to",
+        "question_object": "`True`",
+        "expected_evidence": [
+          {
+            "evidence_id": "E1",
+            "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+            "section_path": [
+              "Running agents",
+              "Errors and recovery",
+              "Error handlers"
+            ],
+            "char_start": 29933,
+            "char_end": 29995,
+            "evidence_text": "`RunErrorHandlerResult.include_in_history` defaults to `True`.",
+            "evidence_hash": "35af2508c1e224460838e49c3faa5dcd8894bae3b8d76bc91438cd362d9d33a2",
+            "evidence_char_length": 62,
+            "critical_strings": [
+              "RunErrorHandlerResult.include_in_history",
+              "True"
+            ]
+          }
+        ],
+        "claim_evidence_map": [
+          {
+            "claim": "`RunErrorHandlerResult.include_in_history` defaults to `True`.",
+            "evidence_id": "E1",
+            "critical_strings": [
+              "RunErrorHandlerResult.include_in_history",
+              "True"
+            ]
+          }
+        ],
+        "section_path": [
+          "Running agents",
+          "Errors and recovery",
+          "Error handlers"
+        ],
+        "section_path_trusted_for_scope": false,
+        "critical_strings": [
+          "RunErrorHandlerResult.include_in_history",
+          "True"
+        ],
+        "evidence_char_length": 62,
+        "context_before": "g `None` declines recovery. Without a fallback, non-empty validation failures continue to raise `ModelBehaviorError`, and empty structured responses retain the existing next-turn behavior.\n\n```python\nfrom pydantic import BaseModel\n\nfrom agents import Agent, ModelBehaviorError, RunErrorHandlerInput, Runner\n\n\nclass Recipe(BaseModel):\n    ingredients: list[str]\n    recovered_from_invalid_output: bool = False\n\n\ndef on_invalid_final_output(data: RunErrorHandlerInput[None]) -> Recipe:\n    assert isinstance(data.error, ModelBehaviorError)\n    return Recipe(ingredients=[], recovered_from_invalid_output=True)\n\n\nagent = Agent(\n    name=\"Recipe assistant\",\n    instructions=\"Return a structured recipe.\",\n    output_type=Recipe,\n)\n\nresult = Runner.run_sync(\n    agent,\n    \"Plan tonight's dinner.\",\n    error_handlers={\"invalid_final_output\": on_invalid_final_output},\n)\nprint(result.final_output)\n```\n\n",
+        "context_after": " For a max-turns handler, this appends the synthesized fallback output to conversation history and persists it to the configured session. Set `include_in_history=False` when you want the fallback returned to the caller without adding it to result history or session storage.\n\nUse `\"model_refusal\"` when a model refusal should produce an application-specific fallback instead of ending the run with `ModelRefusalError`.\n\n```python\nfrom pydantic import BaseModel\n\nfrom agents import Agent, ModelRefusalError, RunErrorHandlerInput, Runner\n\n\nclass Recipe(BaseModel):\n    ingredients: list[str]\n    refusal_reason: str | None = None\n\n\ndef on_model_refusal(data: RunErrorHandlerInput[None]) -> Recipe:\n    assert isinstance(data.error, ModelRefusalError)\n    return Recipe(ingredients=[], refusal_reason=data.error.refusal)\n\n\nagent = Agent(\n    name=\"Recipe assistant\",\n    instructions=\"Return a structure",
+        "candidate_type": "supported",
+        "generator_confidence": "medium",
+        "needs_human_interpretation": false,
+        "precheck_holdout_ready": true,
+        "precheck_failures": [],
+        "precheck_flags": [],
+        "internal_semantic_review_status": "READY_FOR_INDEPENDENT_REVIEW",
+        "internal_review_findings": [],
+        "generation_repairs": [],
+        "verification_status": "candidate_unverified",
+        "claude_proposed": true,
+        "chatgpt_verified": null,
+        "retrieval_was_not_run": true,
+        "schema_version": "1.3",
+        "revisions": [],
+        "selected_by": "target"
+      },
+      "generated": {
+        "candidate_id": "GOLD-B006-09",
+        "provider": "openai",
+        "document_title": "Running agents",
+        "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+        "source_url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/running_agents.md",
+        "captured_at": "2026-08-17 04:46:19+00:00",
+        "reasoning_type": "exact_lookup",
+        "secondary_category": "defaults_to",
+        "evidence_shape": "single_span",
+        "requires_all_evidence": false,
+        "question": "What does `RunErrorHandlerResult.include_in_history` default to?",
+        "answer": "`RunErrorHandlerResult.include_in_history` defaults to `True`.",
+        "atomic_claims": [
+          "`RunErrorHandlerResult.include_in_history` defaults to `True`."
+        ],
+        "proposed_question": "What does `RunErrorHandlerResult.include_in_history` default to?",
+        "proposed_answer": "`RunErrorHandlerResult.include_in_history` defaults to `True`.",
+        "proposed_atomic_claims": [
+          "`RunErrorHandlerResult.include_in_history` defaults to `True`."
+        ],
+        "source_subject": "`RunErrorHandlerResult.include_in_history`",
+        "source_relation": "defaults_to",
+        "source_object": "`True`.",
+        "source_sentence": "`RunErrorHandlerResult.include_in_history` defaults to `True`.",
+        "source_triple_derivation": "named relation",
+        "question_subject": "`RunErrorHandlerResult.include_in_history`",
+        "question_relation": "defaults_to",
+        "question_object": "`True`",
+        "expected_evidence": [
+          {
+            "evidence_id": "E1",
+            "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+            "section_path": [
+              "Running agents",
+              "Errors and recovery",
+              "Error handlers"
+            ],
+            "char_start": 29933,
+            "char_end": 29995,
+            "evidence_text": "`RunErrorHandlerResult.include_in_history` defaults to `True`.",
+            "evidence_hash": "35af2508c1e224460838e49c3faa5dcd8894bae3b8d76bc91438cd362d9d33a2",
+            "evidence_char_length": 62,
+            "critical_strings": [
+              "RunErrorHandlerResult.include_in_history",
+              "True"
+            ]
+          }
+        ],
+        "claim_evidence_map": [
+          {
+            "claim": "`RunErrorHandlerResult.include_in_history` defaults to `True`.",
+            "evidence_id": "E1",
+            "critical_strings": [
+              "RunErrorHandlerResult.include_in_history",
+              "True"
+            ]
+          }
+        ],
+        "section_path": [
+          "Running agents",
+          "Errors and recovery",
+          "Error handlers"
+        ],
+        "section_path_trusted_for_scope": false,
+        "critical_strings": [
+          "RunErrorHandlerResult.include_in_history",
+          "True"
+        ],
+        "evidence_char_length": 62,
+        "context_before": "g `None` declines recovery. Without a fallback, non-empty validation failures continue to raise `ModelBehaviorError`, and empty structured responses retain the existing next-turn behavior.\n\n```python\nfrom pydantic import BaseModel\n\nfrom agents import Agent, ModelBehaviorError, RunErrorHandlerInput, Runner\n\n\nclass Recipe(BaseModel):\n    ingredients: list[str]\n    recovered_from_invalid_output: bool = False\n\n\ndef on_invalid_final_output(data: RunErrorHandlerInput[None]) -> Recipe:\n    assert isinstance(data.error, ModelBehaviorError)\n    return Recipe(ingredients=[], recovered_from_invalid_output=True)\n\n\nagent = Agent(\n    name=\"Recipe assistant\",\n    instructions=\"Return a structured recipe.\",\n    output_type=Recipe,\n)\n\nresult = Runner.run_sync(\n    agent,\n    \"Plan tonight's dinner.\",\n    error_handlers={\"invalid_final_output\": on_invalid_final_output},\n)\nprint(result.final_output)\n```\n\n",
+        "context_after": " For a max-turns handler, this appends the synthesized fallback output to conversation history and persists it to the configured session. Set `include_in_history=False` when you want the fallback returned to the caller without adding it to result history or session storage.\n\nUse `\"model_refusal\"` when a model refusal should produce an application-specific fallback instead of ending the run with `ModelRefusalError`.\n\n```python\nfrom pydantic import BaseModel\n\nfrom agents import Agent, ModelRefusalError, RunErrorHandlerInput, Runner\n\n\nclass Recipe(BaseModel):\n    ingredients: list[str]\n    refusal_reason: str | None = None\n\n\ndef on_model_refusal(data: RunErrorHandlerInput[None]) -> Recipe:\n    assert isinstance(data.error, ModelRefusalError)\n    return Recipe(ingredients=[], refusal_reason=data.error.refusal)\n\n\nagent = Agent(\n    name=\"Recipe assistant\",\n    instructions=\"Return a structure",
+        "candidate_type": "supported",
+        "generator_confidence": "medium",
+        "needs_human_interpretation": false,
+        "precheck_holdout_ready": true,
+        "precheck_failures": [],
+        "precheck_flags": [],
+        "internal_semantic_review_status": "READY_FOR_INDEPENDENT_REVIEW",
+        "internal_review_findings": [],
+        "generation_repairs": [],
+        "verification_status": "candidate_unverified",
+        "claude_proposed": true,
+        "chatgpt_verified": null,
+        "retrieval_was_not_run": true,
+        "schema_version": "1.3",
+        "revisions": [],
+        "selected_by": "target"
+      },
+      "review": {
+        "status": "READY_FOR_OWNER_REVIEW",
+        "findings": [
+          "The fully-qualified identifier `RunErrorHandlerResult.include_in_history` scopes the question by itself — there is no other `include_in_history` this could mean.",
+          "The anchor is the whole fact in one sentence."
+        ],
+        "evidence_unchanged": true
+      },
+      "was_repaired": false
+    }
+  ],
+  "internal_review_status_counts": {
+    "NEEDS_REPAIR": 6,
+    "REJECT_RECOMMENDED": 1,
+    "READY_FOR_OWNER_REVIEW": 2
+  },
+  "repaired_candidates": 6,
+  "precheck_holdout_ready": 9,
+  "human_verified": 0,
+  "holdout_eligible": 0,
+  "owner_options": [
+    "APPROVE",
+    "REJECT",
+    "NEEDS_EDIT"
+  ],
+  "generator_defects_found": [
+    {
+      "id": "E",
+      "name": "cross-library duplicate facts are invisible to duplicate control",
+      "from_case": "GOLD-B006-06",
+      "description": "Duplicate control compares normalised question text, span offsets and span text. Two provider libraries documenting the same operational behaviour share none of those, so the same fact can enter the benchmark twice from two SDKs. GOLD-B005-11 and GOLD-B006-06 both state that a base-URL environment variable overrides the region-derived Bedrock endpoint.",
+      "proposed_fix": "Compare candidates on their (subject, relation, object) triple, normalised, in addition to text and offsets. Batch 006 records that triple on every candidate, so the material for the check now exists. Flag rather than auto-drop: two libraries genuinely differing in behaviour is a real case, and only a reviewer can tell the two apart.",
+      "preregistered_for": "batch 007"
+    },
+    {
+      "id": "F",
+      "name": "compound single-span facts are labelled by their first verb",
+      "from_case": "GOLD-B006-01, GOLD-B006-03, GOLD-B006-08",
+      "description": "The predicate lane picks a frame from the first matching verb and takes the reasoning type from that frame. Three of the nine exported candidates were relabelled by the owner: a requirement read as a configuration interaction, a compatibility statement read as an exact lookup, and a migration note read as a configuration interaction. The evidence was right in every case; the taxonomy was not.",
+      "proposed_fix": "Classify from the whole sentence rather than from the matched verb: a span naming a support status, a version or a migration is a lifecycle case whatever its verb, and `configuration_interaction` should require two settings that bear on each other rather than one requirement with two identifiers in it.",
+      "preregistered_for": "batch 007"
+    },
+    {
+      "id": "G",
+      "name": "questions inherit the breadth of their frame, not of their evidence",
+      "from_case": "GOLD-B006-02, GOLD-B006-04, GOLD-B006-05",
+      "description": "'What does X reject?' and 'What does X default to?' ask for a complete list. The evidence gives one item, usually scoped to named models or surfaces. Three candidates needed rescoping, and in two of them the scope qualifier was not even in the critical strings, so nothing checked it.",
+      "proposed_fix": "When the source sentence carries a model, platform or surface qualifier, the question must carry it too and it must appear in the critical strings. Add a generation gate: a question whose evidence is scoped and whose wording is not, does not export.",
+      "preregistered_for": "batch 007"
+    }
+  ],
+  "note": "A QC packet is a request for decisions, not a record of them. The internal review it reports is authoring, not independent verification. Nothing here is verified, approved or eligible.",
+  "retrieval_was_not_run": true,
+  "systems_executed": []
+}

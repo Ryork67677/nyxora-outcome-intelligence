@@ -1,0 +1,15 @@
+{
+  "experiment_id": "EXP-NULL",
+  "retry_for": "EXP-010",
+  "timestamp": "2026-08-18T20:32:30Z",
+  "status": "blocked",
+  "blocked_reason": "No authorized generation credential is available to this project. api.anthropic.com is now reachable but answers 401 Unauthorized without a key, and api.openai.com remains blocked at the egress proxy (no HTTP response). The only related environment variable present is ANTHROPIC_BASE_URL, which carries no key; the session's own harness credentials are not a project credential and were not used. No credential was fabricated, printed or inferred.",
+  "endpoint_probe": {
+    "api.openai.com": "000",
+    "api.anthropic.com": "401"
+  },
+  "generation_env_var_names_present": [
+    "ANTHROPIC_BASE_URL"
+  ],
+  "note": "EXP-NULL remains blocked, as in EXP-007 and EXP-009. EXP-010 was not delayed for it."
+}

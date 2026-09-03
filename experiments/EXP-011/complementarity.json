@@ -1,0 +1,17 @@
+{
+  "note": "Agreement between BM25 and the transformer on the same query view. Higher agreement means less for RRF to exploit.",
+  "by_view": {
+    "raw": {
+      "mean_jaccard_top50": 0.1341,
+      "mean_shared_chunks_top10": 2.5
+    },
+    "normalized": {
+      "mean_jaccard_top50": 0.1544,
+      "mean_shared_chunks_top10": 2.4
+    },
+    "structured": {
+      "mean_jaccard_top50": 0.1866,
+      "mean_shared_chunks_top10": 1.95
+    }
+  }
+}

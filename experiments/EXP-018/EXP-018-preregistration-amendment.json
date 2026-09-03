@@ -1,0 +1,61 @@
+{
+  "document": "EXP-018-preregistration-amendment",
+  "generated_at": "2026-09-01T01:27:02Z",
+  "generated_at_et": "2026-08-31T21:27:02-0400",
+  "status": "AMENDED_BEFORE_ANY_EXP018_SCORES",
+  "supersedes_retrieval_design_in": [
+    "experiments/EXP-018/EXP-018-preregistration.md",
+    "experiments/EXP-018/EXP-018-preregistration.json"
+  ],
+  "original_kept_on_disk": true,
+  "original_generated_at": "2026-09-01T01:23:45Z",
+  "results_existed_at_amendment": false,
+  "local_retrieval": "BM25_ONLY",
+  "within_doc_dense": false,
+  "parents": {
+    "rule": "TOP 10 unique version_ids from SYSTEM-A fused ranking (ChatGPT option B)",
+    "parent_n": 10,
+    "not": [
+      "top 5",
+      "all pool-100 docs"
+    ]
+  },
+  "W": 20,
+  "W_already_written_do_not_retune": true,
+  "idf": "full-corpus never recomputed inside document",
+  "merge": {
+    "candidate_set": "A-pool-100 UNION per-parent local BM25 top-W; never drop A-pool chunk",
+    "anti_doc_c": true,
+    "then": "deterministic RRF (rrf_k=60, rrf_fuse_labelled: system_a + local_bm25:<version_id>) over full union",
+    "then_blend": "frozen D 0.7 minmax CE + 0.3 minmax merge-RRF; tie-break blend desc, merge-RRF rank, chunk_id",
+    "A_channel_for_E": "merge-RRF score/rank",
+    "A_channel_for_rematerialized_D": "original SYSTEM-A fused RRF on pool-100"
+  },
+  "metrics": {
+    "primary": "candidate evidence recall (gold spans in E pool vs D/A pool)",
+    "secondary": [
+      "strict Recall@10",
+      "span recall",
+      "MRR",
+      "latency",
+      "rank of first gold appearance in the pool"
+    ]
+  },
+  "honest_gate": {
+    "recall_at_10_cannot_improve_on_dev": true,
+    "D_already": "20/20 strict and 23/23 spans@10",
+    "success_on_dev": [
+      "additive integrity",
+      "no Recall@10 regression vs D",
+      "candidate evidence recall_E >= recall_D",
+      "report CEILING_ON_DEV if D pool already has all gold spans"
+    ],
+    "do_not_claim_retrieval_win_if_tied_20_20": true,
+    "do_not_open_holdout_or_validation": true,
+    "chatgpt_proceed_only_if_recall_improves": "UNMEETABLE_ON_AUTHORIZED_SPLIT",
+    "freeze_or_val": "ChatGPT decision after development report",
+    "no_system_e_release_freeze": true
+  },
+  "holdout_access_log_bytes_at_amendment": 235,
+  "holdout_access_log_sha256": "45b83a77f6f332174d641956f076dd0c0cae44fe48f4f2892ac7030a4c0143b3"
+}

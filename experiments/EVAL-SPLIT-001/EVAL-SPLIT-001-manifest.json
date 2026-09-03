@@ -1,0 +1,405 @@
+{
+  "split_version": "gold150-v1",
+  "created_at": "2026-08-31T22:30:29Z",
+  "seed": 689336380,
+  "algorithm_version": "eval-split-001/v1",
+  "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a",
+  "gold_version": "GOLD-001 (150 human_verified)",
+  "counts": {
+    "development": 20,
+    "holdout": 90,
+    "validation": 40
+  },
+  "case_ids": {
+    "development": [
+      "GOLD-B001-13",
+      "GOLD-B001-14",
+      "GOLD-B002-05",
+      "GOLD-B002-16",
+      "GOLD-B003-01",
+      "GOLD-B003-05",
+      "GOLD-B003-20",
+      "GOLD-B004-02",
+      "GOLD-B004-13",
+      "GOLD-B005-11",
+      "GOLD-B005-18",
+      "GOLD-B006-08",
+      "HA-11",
+      "HA-13",
+      "HA-22",
+      "HA-24",
+      "HA-51",
+      "HA-52",
+      "HA-57",
+      "HA-60"
+    ],
+    "validation": [
+      "GOLD-B001-01",
+      "GOLD-B001-03",
+      "GOLD-B001-07",
+      "GOLD-B001-10",
+      "GOLD-B002-01",
+      "GOLD-B002-02",
+      "GOLD-B002-07",
+      "GOLD-B002-10",
+      "GOLD-B002-18",
+      "GOLD-B003-02",
+      "GOLD-B003-08",
+      "GOLD-B003-11",
+      "GOLD-B003-15",
+      "GOLD-B003-18",
+      "GOLD-B004-04",
+      "GOLD-B004-10",
+      "GOLD-B004-12",
+      "GOLD-B004-14",
+      "GOLD-B005-09",
+      "GOLD-B005-15",
+      "GOLD-B005-17",
+      "GOLD-B005-19",
+      "GOLD-B006-03",
+      "GOLD-B006-04",
+      "HA-07",
+      "HA-08",
+      "HA-10",
+      "HA-12",
+      "HA-15",
+      "HA-18",
+      "HA-29",
+      "HA-32",
+      "HA-36",
+      "HA-40",
+      "HA-41",
+      "HA-42",
+      "HA-44",
+      "HA-47",
+      "HA-49",
+      "HA-59"
+    ],
+    "holdout": [
+      "GOLD-B001-02",
+      "GOLD-B001-04",
+      "GOLD-B001-05",
+      "GOLD-B001-06",
+      "GOLD-B001-08",
+      "GOLD-B001-09",
+      "GOLD-B001-11",
+      "GOLD-B001-12",
+      "GOLD-B001-17",
+      "GOLD-B001-18",
+      "GOLD-B002-03",
+      "GOLD-B002-04",
+      "GOLD-B002-06",
+      "GOLD-B002-08",
+      "GOLD-B002-09",
+      "GOLD-B002-11",
+      "GOLD-B002-13",
+      "GOLD-B002-14",
+      "GOLD-B002-15",
+      "GOLD-B002-17",
+      "GOLD-B003-03",
+      "GOLD-B003-04",
+      "GOLD-B003-06",
+      "GOLD-B003-07",
+      "GOLD-B003-09",
+      "GOLD-B003-10",
+      "GOLD-B003-12",
+      "GOLD-B003-13",
+      "GOLD-B003-14",
+      "GOLD-B003-16",
+      "GOLD-B003-17",
+      "GOLD-B003-19",
+      "GOLD-B004-01",
+      "GOLD-B004-03",
+      "GOLD-B004-05",
+      "GOLD-B004-06",
+      "GOLD-B004-07",
+      "GOLD-B004-09",
+      "GOLD-B004-11",
+      "GOLD-B004-15",
+      "GOLD-B005-02",
+      "GOLD-B005-03",
+      "GOLD-B005-04",
+      "GOLD-B005-05",
+      "GOLD-B005-07",
+      "GOLD-B005-08",
+      "GOLD-B005-12",
+      "GOLD-B005-14",
+      "GOLD-B005-16",
+      "GOLD-B006-01",
+      "GOLD-B006-02",
+      "GOLD-B006-05",
+      "GOLD-B006-07",
+      "GOLD-B006-09",
+      "HA-01",
+      "HA-02",
+      "HA-03",
+      "HA-04",
+      "HA-05",
+      "HA-06",
+      "HA-09",
+      "HA-14",
+      "HA-16",
+      "HA-17",
+      "HA-19",
+      "HA-20",
+      "HA-21",
+      "HA-23",
+      "HA-25",
+      "HA-26",
+      "HA-27",
+      "HA-28",
+      "HA-30",
+      "HA-31",
+      "HA-33",
+      "HA-34",
+      "HA-35",
+      "HA-37",
+      "HA-38",
+      "HA-39",
+      "HA-43",
+      "HA-45",
+      "HA-46",
+      "HA-48",
+      "HA-50",
+      "HA-53",
+      "HA-54",
+      "HA-55",
+      "HA-56",
+      "HA-58"
+    ]
+  },
+  "distributions": {
+    "development": {
+      "count": 20,
+      "provider": {
+        "openai": 13,
+        "anthropic": 7
+      },
+      "provider_pct": {
+        "openai": 65.0,
+        "anthropic": 35.0
+      },
+      "reasoning_type": {
+        "error_behavior": 2,
+        "unlabeled_legacy": 4,
+        "exact_lookup": 9,
+        "configuration_interaction": 3,
+        "lifecycle_compatibility_migration": 1,
+        "request_response": 1
+      },
+      "secondary_category": {
+        "none": 16,
+        "conditional_behavior": 1,
+        "overrides": 1,
+        "constraint_required_value": 1,
+        "migration": 1
+      },
+      "group": {
+        "HA": 8,
+        "001": 2,
+        "002": 2,
+        "003": 3,
+        "004": 2,
+        "005": 2,
+        "006": 1
+      },
+      "evidence_shape": {
+        "single_span": 17,
+        "multi_span_same_fact": 2,
+        "multi_span": 1
+      },
+      "span_counts": {
+        "1": 17,
+        "2": 3
+      },
+      "multi_span_cases": 3,
+      "unique_source_documents": 15,
+      "top_source_documents": [
+        [
+          "Human-in-the-loop",
+          3
+        ],
+        [
+          "Guardrails",
+          2
+        ],
+        [
+          "Claude on Google Cloud",
+          2
+        ],
+        [
+          "Models",
+          2
+        ],
+        [
+          "Claude API errors",
+          1
+        ]
+      ],
+      "max_cases_from_one_document": 3
+    },
+    "validation": {
+      "count": 40,
+      "provider": {
+        "openai": 26,
+        "anthropic": 14
+      },
+      "provider_pct": {
+        "openai": 65.0,
+        "anthropic": 35.0
+      },
+      "reasoning_type": {
+        "exact_lookup": 16,
+        "request_response": 1,
+        "unlabeled_legacy": 9,
+        "configuration_interaction": 6,
+        "lifecycle": 1,
+        "error_behavior": 5,
+        "lifecycle_compatibility_migration": 2
+      },
+      "secondary_category": {
+        "none": 31,
+        "conditional_behavior": 4,
+        "fail_closed_behavior": 1,
+        "normative_statement": 1,
+        "removal": 1,
+        "compatibility": 1,
+        "defaults_to": 1
+      },
+      "group": {
+        "HA": 16,
+        "001": 4,
+        "002": 5,
+        "003": 5,
+        "004": 4,
+        "005": 4,
+        "006": 2
+      },
+      "evidence_shape": {
+        "multi_span_same_fact": 5,
+        "single_span": 33,
+        "multi_span": 2
+      },
+      "span_counts": {
+        "2": 7,
+        "1": 33
+      },
+      "multi_span_cases": 7,
+      "unique_source_documents": 26,
+      "top_source_documents": [
+        [
+          "Handoffs",
+          5
+        ],
+        [
+          "Realtime transport",
+          4
+        ],
+        [
+          "Configuration",
+          4
+        ],
+        [
+          "Migration guide",
+          3
+        ],
+        [
+          "Human-in-the-loop",
+          2
+        ]
+      ],
+      "max_cases_from_one_document": 5
+    },
+    "holdout": {
+      "count": 90,
+      "provider": {
+        "openai": 57,
+        "anthropic": 33
+      },
+      "provider_pct": {
+        "openai": 63.3,
+        "anthropic": 36.7
+      },
+      "reasoning_type": {
+        "ambiguity_disambiguation": 1,
+        "genuine_multi_hop": 1,
+        "configuration_interaction": 14,
+        "request_response": 3,
+        "exact_lookup": 33,
+        "unlabeled_legacy": 20,
+        "error_behavior": 12,
+        "lifecycle": 1,
+        "lifecycle_compatibility_migration": 5
+      },
+      "secondary_category": {
+        "none": 71,
+        "conditional_behavior": 8,
+        "normative_statement": 1,
+        "constraint_required_value": 1,
+        "deprecation": 1,
+        "compatibility": 1,
+        "requires": 2,
+        "requirement_constraint": 1,
+        "rejects": 1,
+        "defaults_to": 2,
+        "disables": 1
+      },
+      "group": {
+        "004": 8,
+        "HA": 36,
+        "002": 10,
+        "003": 12,
+        "001": 10,
+        "005": 9,
+        "006": 5
+      },
+      "evidence_shape": {
+        "multi_span": 4,
+        "multi_document": 1,
+        "multi_span_same_fact": 9,
+        "single_span": 76
+      },
+      "span_counts": {
+        "2": 14,
+        "1": 76
+      },
+      "multi_span_cases": 14,
+      "unique_source_documents": 44,
+      "top_source_documents": [
+        [
+          "Configuration",
+          10
+        ],
+        [
+          "Human-in-the-loop",
+          7
+        ],
+        [
+          "Models",
+          6
+        ],
+        [
+          "Handoffs",
+          5
+        ],
+        [
+          "Context management",
+          5
+        ]
+      ],
+      "max_cases_from_one_document": 10
+    }
+  },
+  "contamination_audit_sha256": "e3711444cec75a89af8135fce0f9e2210f8a386f9efb473347e11f2c3d10e9c5",
+  "fact_cluster_sha256": "57f01048478d5bf3263d09776cd5d5ba8d27f3bd9bbdba0ccd70131bef1202a6",
+  "split_artifact_sha256": {
+    "development": "e62670f38a0afaad132a196c6015ee3d0bae8679eb565f9075d65371547e7c5d",
+    "validation": "451963bdf379cef146bfb75e73932d7c0e54ce3b2ffdf32cd9d33f7c6a93356b",
+    "holdout": "756a3a9bc74ce3e2dd3a7924c4048984a0ae5e74237bc8053e18b6fec202d914"
+  },
+  "holdout_frozen": true,
+  "generation_policy": {
+    "authoring_model_exposure": "Claude, ChatGPT, Grok and Codex participated in authoring and review of these cases. Retrieval configurations were not tuned on them, but answer generation must not be run inside an authoring conversation.",
+    "required_runtime_rule": "Answer generation must use fresh, stateless model calls. The generation input carries only the experiment-defined system prompt, the query and the retrieved context — nothing from any benchmark-authoring conversation, and no prior turn of one."
+  }
+}

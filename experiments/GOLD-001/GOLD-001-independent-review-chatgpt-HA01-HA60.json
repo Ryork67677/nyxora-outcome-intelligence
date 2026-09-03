@@ -1,0 +1,581 @@
+{
+  "artifact": "Independent semantic review — ChatGPT — HA-01 through HA-60",
+  "recorded_at": "2026-08-31T02:49:11Z",
+  "reviewer": "ChatGPT",
+  "reviewer_role": "independent semantic reviewer; not the project owner",
+  "stored_verbatim": true,
+  "source_file": "9ea242f5-chatgpt_independent_review_HA01_HA60.json",
+  "source_sha256": "8cac35aee30887d7c4f97835be1a09f540c5b4226c58f2fd50be943dd8a4b35d",
+  "binding_status": "UNBOUND",
+  "binding_note": "Stored as received. It is NOT bound to any candidate record, because the packet it reviews — Production_RAG_v1_Full_150_Case_Review.pdf, Part B — is not present in this environment and the review carries no evidence identity (no version_id, char_start, char_end or evidence_hash on any of its 60 records). Binding by the short HA number alone is unsafe: a separate 64-case packet in this project uses the same HA-nn namespace for different cases.",
+  "does_not_apply_to": "the separate Claude-authored 64-case packet (HA-01 … HA-64). See GOLD-001-alternate-HA-packet-disposition.json.",
+  "counts_as_received": {
+    "PASS": 58,
+    "PASS_WITH_NONCRITICAL_ANAPHORA_OVERRIDE": 1,
+    "FIX_REQUIRED_THEN_APPROVE": 1,
+    "total": 60
+  },
+  "counts_recomputed_from_records": {
+    "PASS": 58,
+    "PASS_WITH_NONCRITICAL_ANAPHORA_OVERRIDE": 1,
+    "FIX_REQUIRED_THEN_APPROVE": 1,
+    "total": 60
+  },
+  "counts_agree": true,
+  "ids_are_HA_01_through_HA_60_exactly_once": true,
+  "confers_no_approval": "An independent review is a recommendation. Project-owner approval is a separate act and is not recorded by this artifact.",
+  "review": {
+    "review_basis": "Production_RAG_v1_Full_150_Case_Review.pdf, Part B (HA-01 through HA-60), frozen quoted evidence only",
+    "reviewer": "ChatGPT",
+    "status": "independent semantic review",
+    "counts": {
+      "PASS": 58,
+      "PASS_WITH_NONCRITICAL_ANAPHORA_OVERRIDE": 1,
+      "FIX_REQUIRED_THEN_APPROVE": 1,
+      "total": 60
+    },
+    "admission_recommendation": "Approve HA-01..HA-60 after recording the explicit noncritical-anaphora override for HA-15 and completing/validating the evidence-packaging repair for HA-47. Do not claim the skipped prospective pilot was performed; record it as a protocol deviation. Do not run retrieval until the frozen corpus reproduction/integrity gate is resolved.",
+    "records": [
+      {
+        "case_id": "HA-01",
+        "provider": "openai",
+        "category": "configuration_interaction",
+        "question": "In the OpenAI Agents SDK for Python, when a session implementation exposes default session settings, what does a non-None value in RunConfig.session_settings override?",
+        "answer": "It overrides the corresponding default session setting for that run.",
+        "chatgpt_independent_verdict": "PASS",
+        "review_note": "Independent review: the recorded question and answer are supported by the quoted frozen evidence; the condition/scope/relation needed for the scored claim is present, and no unsupported semantic expansion or material duplicate requiring rejection was found."
+      },
+      {
+        "case_id": "HA-02",
+        "provider": "openai",
+        "category": "lifecycle_compatibility_migration",
+        "question": "Does the OpenAI Agents SDK for Python convert arbitrary legacy httpx objects to HTTPX2?",
+        "answer": "No. The Agents SDK does not convert arbitrary legacy httpx objects to HTTPX2.",
+        "chatgpt_independent_verdict": "PASS",
+        "review_note": "Independent review: the recorded question and answer are supported by the quoted frozen evidence; the condition/scope/relation needed for the scored claim is present, and no unsupported semantic expansion or material duplicate requiring rejection was found."
+      },
+      {
+        "case_id": "HA-03",
+        "provider": "openai",
+        "category": "configuration_interaction",
+        "question": "In the OpenAI Agents SDK for Python, when a harness ID is configured, what stops the SDK adding agent_harness_id to trace metadata?",
+        "answer": "The key already being present in RunConfig.trace_metadata.",
+        "chatgpt_independent_verdict": "PASS",
+        "review_note": "Independent review: the recorded question and answer are supported by the quoted frozen evidence; the condition/scope/relation needed for the scored claim is present, and no unsupported semantic expansion or material duplicate requiring rejection was found."
+      },
+      {
+        "case_id": "HA-04",
+        "provider": "openai",
+        "category": "configuration_interaction",
+        "question": "In the OpenAI Agents SDK for Python, why do output guardrails not support the run_in_parallel parameter?",
+        "answer": "Because output guardrails always run after the agent completes.",
+        "chatgpt_independent_verdict": "PASS",
+        "review_note": "Independent review: the recorded question and answer are supported by the quoted frozen evidence; the condition/scope/relation needed for the scored claim is present, and no unsupported semantic expansion or material duplicate requiring rejection was found."
+      },
+      {
+        "case_id": "HA-05",
+        "provider": "openai",
+        "category": "error_behavior",
+        "question": "In the OpenAI Agents SDK for Python, when a model-call attempt exceeds the ModelSettings.timeout bound, what does the SDK do before raising ModelTimeoutError?",
+        "answer": "It cancels the attempt and waits for that attempt's cleanup to finish.",
+        "chatgpt_independent_verdict": "PASS",
+        "review_note": "Independent review: the recorded question and answer are supported by the quoted frozen evidence; the condition/scope/relation needed for the scored claim is present, and no unsupported semantic expansion or material duplicate requiring rejection was found."
+      },
+      {
+        "case_id": "HA-06",
+        "provider": "openai",
+        "category": "lifecycle_compatibility_migration",
+        "question": "In the OpenAI Agents SDK for Python with MCP Python SDK v2 installed, what does the mcp.Client created with mode=\"auto\" do when an older server does not support server/discover?",
+        "answer": "It falls back to the legacy initialize handshake and uses the protocol version negotiated there.",
+        "chatgpt_independent_verdict": "PASS",
+        "review_note": "Independent review: the recorded question and answer are supported by the quoted frozen evidence; the condition/scope/relation needed for the scored claim is present, and no unsupported semantic expansion or material duplicate requiring rejection was found."
+      },
+      {
+        "case_id": "HA-07",
+        "provider": "openai",
+        "category": "exact_lookup",
+        "question": "In the OpenAI Agents SDK for Python, what is the default for max_size in the transport_config passed to OpenAIRealtimeWebSocketModel, and what does that default mean?",
+        "answer": "The default is None, which leaves incoming WebSocket message size unlimited.",
+        "chatgpt_independent_verdict": "PASS",
+        "review_note": "Independent review: the recorded question and answer are supported by the quoted frozen evidence; the condition/scope/relation needed for the scored claim is present, and no unsupported semantic expansion or material duplicate requiring rejection was found."
+      },
+      {
+        "case_id": "HA-08",
+        "provider": "openai",
+        "category": "error_behavior",
+        "question": "In the OpenAI Agents SDK for Python, what happens if a dataclass configuration type defined by the SDK is given an unknown field?",
+        "answer": "It raises TypeError.",
+        "chatgpt_independent_verdict": "PASS",
+        "review_note": "Independent review: the recorded question and answer are supported by the quoted frozen evidence; the condition/scope/relation needed for the scored claim is present, and no unsupported semantic expansion or material duplicate requiring rejection was found."
+      },
+      {
+        "case_id": "HA-09",
+        "provider": "openai",
+        "category": "configuration_interaction",
+        "question": "In the OpenAI Agents SDK for Python, which environment variable supplies the websocket /responses endpoint once Responses websocket transport is enabled?",
+        "answer": "OPENAI_WEBSOCKET_BASE_URL.",
+        "chatgpt_independent_verdict": "PASS",
+        "review_note": "Independent review: the recorded question and answer are supported by the quoted frozen evidence; the condition/scope/relation needed for the scored claim is present, and no unsupported semantic expansion or material duplicate requiring rejection was found."
+      },
+      {
+        "case_id": "HA-10",
+        "provider": "openai",
+        "category": "configuration_interaction",
+        "question": "In the OpenAI Agents SDK for Python, what do you pass when setting the default key or client so that tracing can use a different OpenAI key?",
+        "answer": "use_for_tracing=False, then configure tracing separately.",
+        "chatgpt_independent_verdict": "PASS",
+        "review_note": "Independent review: the recorded question and answer are supported by the quoted frozen evidence; the condition/scope/relation needed for the scored claim is present, and no unsupported semantic expansion or material duplicate requiring rejection was found."
+      },
+      {
+        "case_id": "HA-11",
+        "provider": "openai",
+        "category": "error_behavior",
+        "question": "In the OpenAI Agents SDK for Python, which exceptions do tool guardrails use for tripwires?",
+        "answer": "ToolInputGuardrailTripwireTriggered and ToolOutputGuardrailTripwireTriggered.",
+        "chatgpt_independent_verdict": "PASS",
+        "review_note": "Independent review: the recorded question and answer are supported by the quoted frozen evidence; the condition/scope/relation needed for the scored claim is present, and no unsupported semantic expansion or material duplicate requiring rejection was found."
+      },
+      {
+        "case_id": "HA-12",
+        "provider": "openai",
+        "category": "error_behavior",
+        "question": "In the OpenAI Agents SDK for Python, for an agent-level tripwire, which attribute of the exception identifies the guardrail that fired?",
+        "answer": "guardrail_result.",
+        "chatgpt_independent_verdict": "PASS",
+        "review_note": "Independent review: the recorded question and answer are supported by the quoted frozen evidence; the condition/scope/relation needed for the scored claim is present, and no unsupported semantic expansion or material duplicate requiring rejection was found."
+      },
+      {
+        "case_id": "HA-13",
+        "provider": "openai",
+        "category": "exact_lookup",
+        "question": "In the OpenAI Agents SDK for Python, what does exception.run_data.input_guardrail_results contain after the runner raises an input tripwire?",
+        "answer": "Every input guardrail result completed before the run stopped, including the one that triggered the tripwire.",
+        "chatgpt_independent_verdict": "PASS",
+        "review_note": "Independent review: the recorded question and answer are supported by the quoted frozen evidence; the condition/scope/relation needed for the scored claim is present, and no unsupported semantic expansion or material duplicate requiring rejection was found."
+      },
+      {
+        "case_id": "HA-14",
+        "provider": "openai",
+        "category": "error_behavior",
+        "question": "In the OpenAI Agents SDK for Python, do runner-managed failures such as MaxTurnsExceeded preserve completed tool guardrail results?",
+        "answer": "Yes. Completed tool guardrail results are preserved in run_data.tool_input_guardrail_results and run_data.tool_output_guardrail_results.",
+        "chatgpt_independent_verdict": "PASS",
+        "review_note": "Independent review: the recorded question and answer are supported by the quoted frozen evidence; the condition/scope/relation needed for the scored claim is present, and no unsupported semantic expansion or material duplicate requiring rejection was found."
+      },
+      {
+        "case_id": "HA-15",
+        "provider": "openai",
+        "category": "request_response",
+        "question": "In the OpenAI Agents SDK for Python, where is the JSON returned for a handoff tool call validated against its input_type schema?",
+        "answer": "Locally in the SDK.",
+        "chatgpt_independent_verdict": "PASS_WITH_NONCRITICAL_ANAPHORA_OVERRIDE",
+        "review_note": "The answer 'Locally in the SDK' is directly entailed by the same exact span. The neighboring phrase 'the model' is not needed by the question, answer, atomic claim, or literal checks. Treat the finding as NONCRITICAL_ANAPHORA and retain it with an explicit owner override."
+      },
+      {
+        "case_id": "HA-16",
+        "provider": "openai",
+        "category": "configuration_interaction",
+        "question": "In the OpenAI Agents SDK for Python, when RunConfig.nest_handoff_history is enabled, what absence of filters is required for that opt-in to apply?",
+        "answer": "Only when neither the handoff's input_filter nor the active run's RunConfig.handoff_input_filter is set.",
+        "chatgpt_independent_verdict": "PASS",
+        "review_note": "Independent review: the recorded question and answer are supported by the quoted frozen evidence; the condition/scope/relation needed for the scored claim is present, and no unsupported semantic expansion or material duplicate requiring rejection was found."
+      },
+      {
+        "case_id": "HA-17",
+        "provider": "openai",
+        "category": "request_response",
+        "question": "In the OpenAI Agents SDK for Python, where does an interruption surface when it comes from a nested Agent.as_tool() run?",
+        "answer": "On the outer run, where it is approved or rejected on the outer RunState.",
+        "chatgpt_independent_verdict": "PASS",
+        "review_note": "Independent review: the recorded question and answer are supported by the quoted frozen evidence; the condition/scope/relation needed for the scored claim is present, and no unsupported semantic expansion or material duplicate requiring rejection was found."
+      },
+      {
+        "case_id": "HA-18",
+        "provider": "openai",
+        "category": "configuration_interaction",
+        "question": "In the OpenAI Agents SDK for Python, what is the scope of a per-call approval?",
+        "answer": "It is scoped to the specific call ID.",
+        "chatgpt_independent_verdict": "PASS",
+        "review_note": "Independent review: the recorded question and answer are supported by the quoted frozen evidence; the condition/scope/relation needed for the scored claim is present, and no unsupported semantic expansion or material duplicate requiring rejection was found."
+      },
+      {
+        "case_id": "HA-19",
+        "provider": "openai",
+        "category": "configuration_interaction",
+        "question": "In the OpenAI Agents SDK for Python, do sticky approval decisions survive serializing and restoring a paused run's state?",
+        "answer": "Yes. They are stored in the run state and survive state.to_string()/RunState.from_string(...) and state.to_json()/RunState.from_json(...).",
+        "chatgpt_independent_verdict": "PASS",
+        "review_note": "Independent review: the recorded question and answer are supported by the quoted frozen evidence; the condition/scope/relation needed for the scored claim is present, and no unsupported semantic expansion or material duplicate requiring rejection was found."
+      },
+      {
+        "case_id": "HA-20",
+        "provider": "openai",
+        "category": "configuration_interaction",
+        "question": "In the OpenAI Agents SDK for Python, does an always-approve decision for a hosted MCP tool carry over to a tool of the same name on a different server?",
+        "answer": "No. It does not approve a tool with the same name on another server.",
+        "chatgpt_independent_verdict": "PASS",
+        "review_note": "Independent review: the recorded question and answer are supported by the quoted frozen evidence; the condition/scope/relation needed for the scored claim is present, and no unsupported semantic expansion or material duplicate requiring rejection was found."
+      },
+      {
+        "case_id": "HA-21",
+        "provider": "openai",
+        "category": "request_response",
+        "question": "In the OpenAI Agents SDK for Python, what happens if you rerun after resolving only some interruptions?",
+        "answer": "The resolved calls can continue, while unresolved ones remain in interruptions and pause the run again.",
+        "chatgpt_independent_verdict": "PASS",
+        "review_note": "Independent review: the recorded question and answer are supported by the quoted frozen evidence; the condition/scope/relation needed for the scored claim is present, and no unsupported semantic expansion or material duplicate requiring rejection was found."
+      },
+      {
+        "case_id": "HA-22",
+        "provider": "openai",
+        "category": "exact_lookup",
+        "question": "In the OpenAI Agents SDK for Python, if you are also using a session, what session should you pass when resuming from RunState?",
+        "answer": "The same session instance, or another session object configured for the same session ID and backing store.",
+        "chatgpt_independent_verdict": "PASS",
+        "review_note": "Independent review: the recorded question and answer are supported by the quoted frozen evidence; the condition/scope/relation needed for the scored claim is present, and no unsupported semantic expansion or material duplicate requiring rejection was found."
+      },
+      {
+        "case_id": "HA-23",
+        "provider": "openai",
+        "category": "request_response",
+        "question": "In the OpenAI Agents SDK for Python, with SDK-default nested handoff history enabled, how do sessions, RunState, and RunResult.to_input_list() avoid appending moved messages twice without removing separate identical messages?",
+        "answer": "They track exact message occurrences moved into the SDK-default history; separate identical messages are still preserved.",
+        "chatgpt_independent_verdict": "PASS",
+        "review_note": "Independent review: the recorded question and answer are supported by the quoted frozen evidence; the condition/scope/relation needed for the scored claim is present, and no unsupported semantic expansion or material duplicate requiring rejection was found."
+      },
+      {
+        "case_id": "HA-24",
+        "provider": "openai",
+        "category": "request_response",
+        "question": "In the OpenAI Agents SDK for Python, under what condition can ToolContext also expose .tool_input?",
+        "answer": "When a nested Agent.as_tool() run supplied structured input.",
+        "chatgpt_independent_verdict": "PASS",
+        "review_note": "Independent review: the recorded question and answer are supported by the quoted frozen evidence; the condition/scope/relation needed for the scored claim is present, and no unsupported semantic expansion or material duplicate requiring rejection was found."
+      },
+      {
+        "case_id": "HA-25",
+        "provider": "openai",
+        "category": "exact_lookup",
+        "question": "In the OpenAI Agents SDK for Python, when is the default OPENAI_API_KEY resolved?",
+        "answer": "When the SDK first creates an OpenAI client (lazy initialization).",
+        "chatgpt_independent_verdict": "PASS",
+        "review_note": "Independent review: the recorded question and answer are supported by the quoted frozen evidence; the condition/scope/relation needed for the scored claim is present, and no unsupported semantic expansion or material duplicate requiring rejection was found."
+      },
+      {
+        "case_id": "HA-26",
+        "provider": "openai",
+        "category": "exact_lookup",
+        "question": "In the OpenAI Agents SDK for Python, what client instance does the SDK create by default?",
+        "answer": "AsyncOpenAI.",
+        "chatgpt_independent_verdict": "PASS",
+        "review_note": "Independent review: the recorded question and answer are supported by the quoted frozen evidence; the condition/scope/relation needed for the scored claim is present, and no unsupported semantic expansion or material duplicate requiring rejection was found."
+      },
+      {
+        "case_id": "HA-27",
+        "provider": "openai",
+        "category": "exact_lookup",
+        "question": "In the OpenAI Agents SDK for Python, what openai version range does SDK version 0.21.0 require?",
+        "answer": "openai>=3.0.0,<4.",
+        "chatgpt_independent_verdict": "PASS",
+        "review_note": "Independent review: the recorded question and answer are supported by the quoted frozen evidence; the condition/scope/relation needed for the scored claim is present, and no unsupported semantic expansion or material duplicate requiring rejection was found."
+      },
+      {
+        "case_id": "HA-28",
+        "provider": "openai",
+        "category": "exact_lookup",
+        "question": "In the OpenAI Agents SDK for Python, which HTTP dependency is used for local MCP transports by MCP Python SDK v1 versus v2?",
+        "answer": "MCP Python SDK v1 uses its own legacy httpx dependency; v2 uses httpx2.",
+        "chatgpt_independent_verdict": "PASS",
+        "review_note": "Independent review: the recorded question and answer are supported by the quoted frozen evidence; the condition/scope/relation needed for the scored claim is present, and no unsupported semantic expansion or material duplicate requiring rejection was found."
+      },
+      {
+        "case_id": "HA-29",
+        "provider": "openai",
+        "category": "exact_lookup",
+        "question": "In the OpenAI Agents SDK for Python, which OpenAI API is used by default?",
+        "answer": "The OpenAI Responses API.",
+        "chatgpt_independent_verdict": "PASS",
+        "review_note": "Independent review: the recorded question and answer are supported by the quoted frozen evidence; the condition/scope/relation needed for the scored claim is present, and no unsupported semantic expansion or material duplicate requiring rejection was found."
+      },
+      {
+        "case_id": "HA-30",
+        "provider": "openai",
+        "category": "exact_lookup",
+        "question": "In the OpenAI Agents SDK for Python, if no SDK default harness ID is set, which environment variable do providers using the SDK's OpenAI backend fall back to?",
+        "answer": "OPENAI_AGENT_HARNESS_ID.",
+        "chatgpt_independent_verdict": "PASS",
+        "review_note": "Independent review: the recorded question and answer are supported by the quoted frozen evidence; the condition/scope/relation needed for the scored claim is present, and no unsupported semantic expansion or material duplicate requiring rejection was found."
+      },
+      {
+        "case_id": "HA-31",
+        "provider": "openai",
+        "category": "exact_lookup",
+        "question": "In the OpenAI Agents SDK for Python, how can tracing remain enabled while potentially sensitive inputs and outputs are excluded from trace payloads?",
+        "answer": "Set RunConfig.trace_include_sensitive_data to False.",
+        "chatgpt_independent_verdict": "PASS",
+        "review_note": "Independent review: the recorded question and answer are supported by the quoted frozen evidence; the condition/scope/relation needed for the scored claim is present, and no unsupported semantic expansion or material duplicate requiring rejection was found."
+      },
+      {
+        "case_id": "HA-32",
+        "provider": "openai",
+        "category": "exact_lookup",
+        "question": "In the OpenAI Agents SDK for Python, does the SDK attach handlers by default to openai.agents and openai.agents.tracing?",
+        "answer": "No. It defines those two Python loggers but does not attach handlers by default.",
+        "chatgpt_independent_verdict": "PASS",
+        "review_note": "Independent review: the recorded question and answer are supported by the quoted frozen evidence; the condition/scope/relation needed for the scored claim is present, and no unsupported semantic expansion or material duplicate requiring rejection was found."
+      },
+      {
+        "case_id": "HA-33",
+        "provider": "openai",
+        "category": "exact_lookup",
+        "question": "In the OpenAI Agents SDK for Python, with tool-data redaction enabled, what diagnostic error is raised for invalid FunctionTool arguments?",
+        "answer": "A generic ModelBehaviorError, without chaining the underlying validation error.",
+        "chatgpt_independent_verdict": "PASS",
+        "review_note": "Independent review: the recorded question and answer are supported by the quoted frozen evidence; the condition/scope/relation needed for the scored claim is present, and no unsupported semantic expansion or material duplicate requiring rejection was found."
+      },
+      {
+        "case_id": "HA-34",
+        "provider": "openai",
+        "category": "exact_lookup",
+        "question": "In the OpenAI Agents SDK for Python, do nested Agent.as_tool() runs receive an isolated copy of app state by default?",
+        "answer": "No. Derived wrappers within a single run share app context, approval state, and usage tracking; nested runs may attach different tool_input but do not get isolated app state by default.",
+        "chatgpt_independent_verdict": "PASS",
+        "review_note": "Independent review: the recorded question and answer are supported by the quoted frozen evidence; the condition/scope/relation needed for the scored claim is present, and no unsupported semantic expansion or material duplicate requiring rejection was found."
+      },
+      {
+        "case_id": "HA-35",
+        "provider": "openai",
+        "category": "exact_lookup",
+        "question": "In the OpenAI Agents SDK for Python, is the local context object sent to the LLM?",
+        "answer": "No. It is purely a local object.",
+        "chatgpt_independent_verdict": "PASS",
+        "review_note": "Independent review: the recorded question and answer are supported by the quoted frozen evidence; the condition/scope/relation needed for the scored claim is present, and no unsupported semantic expansion or material duplicate requiring rejection was found."
+      },
+      {
+        "case_id": "HA-36",
+        "provider": "openai",
+        "category": "exact_lookup",
+        "question": "In the OpenAI Agents SDK for Python, what context-type constraint applies to agents, tool functions, and lifecycle components in a given run?",
+        "answer": "They must all use the same type of context.",
+        "chatgpt_independent_verdict": "PASS",
+        "review_note": "Independent review: the recorded question and answer are supported by the quoted frozen evidence; the condition/scope/relation needed for the scored claim is present, and no unsupported semantic expansion or material duplicate requiring rejection was found."
+      },
+      {
+        "case_id": "HA-37",
+        "provider": "openai",
+        "category": "exact_lookup",
+        "question": "In the OpenAI Agents SDK for Python, what does RunContextWrapper.usage expose?",
+        "answer": "Aggregated request and token usage across the current run.",
+        "chatgpt_independent_verdict": "PASS",
+        "review_note": "Independent review: the recorded question and answer are supported by the quoted frozen evidence; the condition/scope/relation needed for the scored claim is present, and no unsupported semantic expansion or material duplicate requiring rejection was found."
+      },
+      {
+        "case_id": "HA-38",
+        "provider": "openai",
+        "category": "exact_lookup",
+        "question": "In the OpenAI Agents SDK for Python, which ToolContext field contains the raw argument string passed to the tool?",
+        "answer": "tool_arguments.",
+        "chatgpt_independent_verdict": "PASS",
+        "review_note": "Independent review: the recorded question and answer are supported by the quoted frozen evidence; the condition/scope/relation needed for the scored claim is present, and no unsupported semantic expansion or material duplicate requiring rejection was found."
+      },
+      {
+        "case_id": "HA-39",
+        "provider": "openai",
+        "category": "exact_lookup",
+        "question": "In the OpenAI Agents SDK for Python, what does ToolContext.qualified_tool_name contain when a namespace is available?",
+        "answer": "The tool name qualified with the namespace.",
+        "chatgpt_independent_verdict": "PASS",
+        "review_note": "Independent review: the recorded question and answer are supported by the quoted frozen evidence; the condition/scope/relation needed for the scored claim is present, and no unsupported semantic expansion or material duplicate requiring rejection was found."
+      },
+      {
+        "case_id": "HA-40",
+        "provider": "openai",
+        "category": "exact_lookup",
+        "question": "In the OpenAI Agents SDK for Python, what value of transport_config.ping_interval disables client keepalive pings for OpenAIRealtimeWebSocketModel?",
+        "answer": "None.",
+        "chatgpt_independent_verdict": "PASS",
+        "review_note": "Independent review: the recorded question and answer are supported by the quoted frozen evidence; the condition/scope/relation needed for the scored claim is present, and no unsupported semantic expansion or material duplicate requiring rejection was found."
+      },
+      {
+        "case_id": "HA-41",
+        "provider": "openai",
+        "category": "exact_lookup",
+        "question": "In the OpenAI Agents SDK for Python, what does setting transport_config.ping_timeout=None permit for OpenAIRealtimeWebSocketModel?",
+        "answer": "Delayed pongs without a heartbeat timeout.",
+        "chatgpt_independent_verdict": "PASS",
+        "review_note": "Independent review: the recorded question and answer are supported by the quoted frozen evidence; the condition/scope/relation needed for the scored claim is present, and no unsupported semantic expansion or material duplicate requiring rejection was found."
+      },
+      {
+        "case_id": "HA-42",
+        "provider": "openai",
+        "category": "exact_lookup",
+        "question": "In the OpenAI Agents SDK for Python, what wait does transport_config.handshake_timeout bound for OpenAIRealtimeWebSocketModel, and in what units?",
+        "answer": "The initial connection handshake, in seconds.",
+        "chatgpt_independent_verdict": "PASS",
+        "review_note": "Independent review: the recorded question and answer are supported by the quoted frozen evidence; the condition/scope/relation needed for the scored claim is present, and no unsupported semantic expansion or material duplicate requiring rejection was found."
+      },
+      {
+        "case_id": "HA-43",
+        "provider": "openai",
+        "category": "exact_lookup",
+        "question": "In the OpenAI Agents SDK for Python, what is RealtimeModelConfig.playback_tracker used to report?",
+        "answer": "Actual playback progress for interruption handling.",
+        "chatgpt_independent_verdict": "PASS",
+        "review_note": "Independent review: the recorded question and answer are supported by the quoted frozen evidence; the condition/scope/relation needed for the scored claim is present, and no unsupported semantic expansion or material duplicate requiring rejection was found."
+      },
+      {
+        "case_id": "HA-44",
+        "provider": "openai",
+        "category": "exact_lookup",
+        "question": "In the OpenAI Agents SDK for Python, which filter takes precedence when both a handoff's input_filter and RunConfig.handoff_input_filter are defined?",
+        "answer": "The per-handoff input_filter, for that specific handoff.",
+        "chatgpt_independent_verdict": "PASS",
+        "review_note": "Independent review: the recorded question and answer are supported by the quoted frozen evidence; the condition/scope/relation needed for the scored claim is present, and no unsupported semantic expansion or material duplicate requiring rejection was found."
+      },
+      {
+        "case_id": "HA-45",
+        "provider": "openai",
+        "category": "exact_lookup",
+        "question": "In the OpenAI Agents SDK for Python, is the opt-in beta nested handoff history enabled by default?",
+        "answer": "No. It is disabled by default.",
+        "chatgpt_independent_verdict": "PASS",
+        "review_note": "Independent review: the recorded question and answer are supported by the quoted frozen evidence; the condition/scope/relation needed for the scored claim is present, and no unsupported semantic expansion or material duplicate requiring rejection was found."
+      },
+      {
+        "case_id": "HA-46",
+        "provider": "openai",
+        "category": "exact_lookup",
+        "question": "In the OpenAI Agents SDK for Python, which function restores the default generated handoff-history wrappers before a later run?",
+        "answer": "reset_conversation_history_wrappers.",
+        "chatgpt_independent_verdict": "PASS",
+        "review_note": "Independent review: the recorded question and answer are supported by the quoted frozen evidence; the condition/scope/relation needed for the scored claim is present, and no unsupported semantic expansion or material duplicate requiring rejection was found."
+      },
+      {
+        "case_id": "HA-47",
+        "provider": "openai",
+        "category": "exact_lookup",
+        "question": "In the OpenAI Agents SDK for Python, does a handoff's input_type replace the next agent's main input or select a different destination?",
+        "answer": "No. It does neither; handoff() still transfers to the specific wrapped agent.",
+        "chatgpt_independent_verdict": "FIX_REQUIRED_THEN_APPROVE",
+        "review_note": "Combined evidence semantically supports the question, but E2 begins with the unresolved pronoun 'It'. Repair the evidence packaging so the span containing the non-effects explicitly names input_type. Preferred source-confirmed repair: replace/expand the relevant evidence to a contiguous span beginning at character 4308 and ending at 4916 (compute a fresh hash from the frozen source), or another minimal outward expansion that includes the input_type antecedent. Question, answer, and claims need not change."
+      },
+      {
+        "case_id": "HA-48",
+        "provider": "openai",
+        "category": "exact_lookup",
+        "question": "In the OpenAI Agents SDK for Python, for a function tool requiring approval, does passing pre-approval input guardrails eliminate the input check after approval?",
+        "answer": "No. Calls that pass the pre-approval check are checked again after approval, before the tool executes.",
+        "chatgpt_independent_verdict": "PASS",
+        "review_note": "Independent review: the recorded question and answer are supported by the quoted frozen evidence; the condition/scope/relation needed for the scored claim is present, and no unsupported semantic expansion or material duplicate requiring rejection was found."
+      },
+      {
+        "case_id": "HA-49",
+        "provider": "openai",
+        "category": "exact_lookup",
+        "question": "In the OpenAI Agents SDK for Python, do function-tool guardrails apply to the handoff call itself?",
+        "answer": "No. Handoffs use the SDK's handoff pipeline rather than its normal function-tool pipeline.",
+        "chatgpt_independent_verdict": "PASS",
+        "review_note": "Independent review: the recorded question and answer are supported by the quoted frozen evidence; the condition/scope/relation needed for the scored claim is present, and no unsupported semantic expansion or material duplicate requiring rejection was found."
+      },
+      {
+        "case_id": "HA-50",
+        "provider": "openai",
+        "category": "exact_lookup",
+        "question": "In the OpenAI Agents SDK for Python, which identity fields must be non-empty for a hosted MCP always-approve or always-reject decision to persist?",
+        "answer": "Both server_label and the tool name.",
+        "chatgpt_independent_verdict": "PASS",
+        "review_note": "Independent review: the recorded question and answer are supported by the quoted frozen evidence; the condition/scope/relation needed for the scored claim is present, and no unsupported semantic expansion or material duplicate requiring rejection was found."
+      },
+      {
+        "case_id": "HA-51",
+        "provider": "openai",
+        "category": "exact_lookup",
+        "question": "In the OpenAI Agents SDK for Python, does using context_override when loading RunState remove the original context from an already serialized payload?",
+        "answer": "No. It replaces context when loading state but does not remove context from the already serialized payload.",
+        "chatgpt_independent_verdict": "PASS",
+        "review_note": "Independent review: the recorded question and answer are supported by the quoted frozen evidence; the condition/scope/relation needed for the scored claim is present, and no unsupported semantic expansion or material duplicate requiring rejection was found."
+      },
+      {
+        "case_id": "HA-52",
+        "provider": "openai",
+        "category": "exact_lookup",
+        "question": "In the OpenAI Agents SDK for Python, under RunState's strict_context=True, what allows a non-mapping context to be serialized and later deserialized?",
+        "answer": "Provide context_serializer for serialization and context_deserializer for deserialization; otherwise each corresponding operation fails.",
+        "chatgpt_independent_verdict": "PASS",
+        "review_note": "Independent review: the recorded question and answer are supported by the quoted frozen evidence; the condition/scope/relation needed for the scored claim is present, and no unsupported semantic expansion or material duplicate requiring rejection was found."
+      },
+      {
+        "case_id": "HA-53",
+        "provider": "openai",
+        "category": "exact_lookup",
+        "question": "In the OpenAI Agents SDK for Python, does ModelSettings.timeout bound the full agent run, function-tool execution, or retry backoff?",
+        "answer": "No. It bounds each model-call attempt, including transport waits, for streaming and non-streaming calls.",
+        "chatgpt_independent_verdict": "PASS",
+        "review_note": "Independent review: the recorded question and answer are supported by the quoted frozen evidence; the condition/scope/relation needed for the scored claim is present, and no unsupported semantic expansion or material duplicate requiring rejection was found."
+      },
+      {
+        "case_id": "HA-54",
+        "provider": "openai",
+        "category": "exact_lookup",
+        "question": "In the OpenAI Agents SDK for Python, what must be configured for the SDK to retry general model requests?",
+        "answer": "ModelSettings(retry=...) must be set, and the retry policy must choose to retry.",
+        "chatgpt_independent_verdict": "PASS",
+        "review_note": "Independent review: the recorded question and answer are supported by the quoted frozen evidence; the condition/scope/relation needed for the scored claim is present, and no unsupported semantic expansion or material duplicate requiring rejection was found."
+      },
+      {
+        "case_id": "HA-55",
+        "provider": "openai",
+        "category": "exact_lookup",
+        "question": "In the OpenAI Agents SDK for Python, on Responses websocket transport, will the SDK replay a request after any response event has arrived?",
+        "answer": "No. If any response event has already arrived, it does not replay the request.",
+        "chatgpt_independent_verdict": "PASS",
+        "review_note": "Independent review: the recorded question and answer are supported by the quoted frozen evidence; the condition/scope/relation needed for the scored claim is present, and no unsupported semantic expansion or material duplicate requiring rejection was found."
+      },
+      {
+        "case_id": "HA-56",
+        "provider": "openai",
+        "category": "exact_lookup",
+        "question": "In the OpenAI Agents SDK for Python, in ModelRetrySettings, does backoff.max_delay cap explicit policy delays or retry-after hints?",
+        "answer": "No. It caps only the computed default backoff delay.",
+        "chatgpt_independent_verdict": "PASS",
+        "review_note": "Independent review: the recorded question and answer are supported by the quoted frozen evidence; the condition/scope/relation needed for the scored claim is present, and no unsupported semantic expansion or material duplicate requiring rejection was found."
+      },
+      {
+        "case_id": "HA-57",
+        "provider": "openai",
+        "category": "exact_lookup",
+        "question": "In the OpenAI Agents SDK for Python, can approve_unsafe_replay=True authorize streamed retries or local side effects?",
+        "answer": "No. It cannot authorize either.",
+        "chatgpt_independent_verdict": "PASS",
+        "review_note": "Independent review: the recorded question and answer are supported by the quoted frozen evidence; the condition/scope/relation needed for the scored claim is present, and no unsupported semantic expansion or material duplicate requiring rejection was found."
+      },
+      {
+        "case_id": "HA-58",
+        "provider": "openai",
+        "category": "exact_lookup",
+        "question": "In the OpenAI Agents SDK for Python, for follow-up requests using previous_response_id or conversation_id with unknown replay safety, are network_error() or http_status([500]) sufficient by themselves?",
+        "answer": "No. Stateful follow-ups fail closed when replay safety is unknown; those non-provider predicates alone are insufficient.",
+        "chatgpt_independent_verdict": "PASS",
+        "review_note": "Independent review: the recorded question and answer are supported by the quoted frozen evidence; the condition/scope/relation needed for the scored claim is present, and no unsupported semantic expansion or material duplicate requiring rejection was found."
+      },
+      {
+        "case_id": "HA-59",
+        "provider": "openai",
+        "category": "exact_lookup",
+        "question": "In the OpenAI Agents SDK for Python, when an agent overrides only retry.max_retries, can it retain the runner's retry policy?",
+        "answer": "Yes. It can still inherit the runner's policy.",
+        "chatgpt_independent_verdict": "PASS",
+        "review_note": "Independent review: the recorded question and answer are supported by the quoted frozen evidence; the condition/scope/relation needed for the scored claim is present, and no unsupported semantic expansion or material duplicate requiring rejection was found."
+      },
+      {
+        "case_id": "HA-60",
+        "provider": "openai",
+        "category": "exact_lookup",
+        "question": "In the OpenAI Agents SDK for Python, which retry settings survive serialized ModelSettings, and what happens to the policy callback?",
+        "answer": "max_retries and backoff are kept; the runtime-only policy callback is omitted.",
+        "chatgpt_independent_verdict": "PASS",
+        "review_note": "Independent review: the recorded question and answer are supported by the quoted frozen evidence; the condition/scope/relation needed for the scored claim is present, and no unsupported semantic expansion or material duplicate requiring rejection was found."
+      }
+    ]
+  }
+}

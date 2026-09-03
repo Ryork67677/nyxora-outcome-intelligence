@@ -1,0 +1,25 @@
+{
+  "_note": "Reviewer verdicts on the batch-004 near-miss bridge pairs. Written by the authoring model as an internal review; this is not human verification and confers no status on any candidate. Recorded as a file rather than inline so the diagnostic cannot be regenerated with different judgements silently.",
+  "_reviewer": "claude (internal authoring review)",
+  "_classification_vocabulary": ["CORRECT_REJECTION", "POSSIBLE_CHECK_FALSE_NEGATIVE", "UNCERTAIN"],
+  "OpenAIChatCompletionsModel": {
+    "verdict": "CORRECT_REJECTION",
+    "reasoning": "Span 1 says the built-in models propagate `x-request-id` on their transport paths. Span 2 says the Chat Completions API can return audio output that the model does not convert into run items. These are two unrelated facts that happen to name the same class: request-id propagation has no bearing on audio conversion, and no answer follows from holding both. Span 2 contains no conditional at all, so there was nothing for span 1 to establish. The rejection is right, and it would have been right under any of the rules."
+  },
+  "allowed_callers": {
+    "verdict": "CORRECT_REJECTION",
+    "reasoning": "This is the closest of the five and still a correct rejection, though the rule caught it for a shallower reason than the one that matters. The rule saw that the only conditional marker in span 2 (`whose`) governs the error message rather than `allowed_callers`. The substantive problem is narrower: span 2's failure applies to a tool whose input schema contains a circular `$ref`, a qualification the phrase 'for such a tool' carries from text outside the span. Composing it with span 1 would produce 'adding `allowed_callers` makes the tool callable, and doing so fails with 400', which is false in general and true only for that unstated subcase. That is unsupported inference, which is the composition check's own §9 criterion. Span 1 also ends in a colon introducing a code block, so it is weak evidence on its own terms."
+  },
+  "max_tokens": {
+    "verdict": "CORRECT_REJECTION",
+    "reasoning": "The most instructive of the five. Span 1 uses `max_tokens` as a request parameter that `budget_tokens` may exceed during interleaved thinking. Span 2 uses `\"max_tokens\"` as one of the stop_reason values on which the agentic loop exits. The bridge test matched a string that names two different things in the two spans, so there was never an entity to chain through. This is equivocation, not a hop, and it is worth recording that the bridge-entity requirement — the entity must appear in both spans — cannot detect it."
+  },
+  "tool_result": {
+    "verdict": "CORRECT_REJECTION",
+    "reasoning": "Span 1 requires the `content` of a `tool_result` answering a programmatic call to be a string or text blocks. Span 2 says that adding anything after the `tool_result` blocks in a user message ends the assistant turn, and fails with 400 for a server tool Claude called directly. Both are formatting rules about `tool_result` and neither depends on the other: satisfying span 1 tells a reader nothing about span 2's outcome. Two rules in one subject area are still two lookups. Span 2 also ends in a colon, and its condition is about message structure rather than about the entity's configured state."
+  },
+  "view_range": {
+    "verdict": "CORRECT_REJECTION",
+    "reasoning": "Span 1 is a bullet list describing `view_range` in the text editor tool; span 2 describes `view_range` in the memory tool. They are two parallel definitions of a parameter in two different tools, which is the plainest possible case of multi-span-is-not-multi-hop. Span 1 is also a list fragment whose stem sits outside the span, so it would have failed the evidence-scope check even if the pair had been a chain."
+  }
+}

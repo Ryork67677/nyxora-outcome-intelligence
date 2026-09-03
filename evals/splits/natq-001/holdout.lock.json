@@ -1,0 +1,12 @@
+{
+  "holdout_frozen": true,
+  "frozen_at": "2026-09-03T03:34:20Z",
+  "split_version": "natq-001",
+  "holdout_sha256": "6a7cf781c7538106605e8c85607405cd3dee2db37fdbb556aaadc913b3141dd3",
+  "holdout_count": 60,
+  "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a",
+  "rule": "Holdout membership may not change because of system performance. A failure found during engineering goes to the challenge-candidate queue, never into or out of this set. This lock is for NATQ-001 and is separate from gold150-v1.",
+  "erratum_policy": "A holdout case later shown to be objectively invalid is recorded as a benchmark erratum and retained. It is never silently replaced.",
+  "unlock_requires": "an explicit owner decision recorded as an erratum",
+  "separate_from": "gold150-v1"
+}

@@ -1,0 +1,81 @@
+{
+  "overlay": "batch_001_v2",
+  "closed_at": "2026-08-20T18:28:30Z",
+  "closed_by": "project_owner",
+  "replaces_v1_closure": false,
+  "v1_closure_sha256": "d6f92e8d1a7e77eae760d8a866b0353603aeefaec3c2309817e64f19a3a39f97",
+  "totals": {
+    "cases": 16,
+    "human_verified": 16,
+    "holdout_eligible": 16,
+    "pending_scope_repair": 0,
+    "metadata_upgraded": 11,
+    "scope_repaired": 2
+  },
+  "scope_repairs": {
+    "GOLD-B001-13": {
+      "v1_span": [
+        519,
+        725
+      ],
+      "v2_span": [
+        248,
+        725
+      ],
+      "v1_evidence_hash": "39c03eda7465a346b7a8caab9f0aec8de7e19d515c78f3d15b9468a9db06c279",
+      "v2_evidence_hash": "f9057cf3281d924bc692492005f4adb21a4b7a3dc4f0c82264267d867449723b",
+      "characters_added": 271,
+      "reason": "The v1 claim asserted \"On Google Cloud Agent Platform\" while the v1 span did not contain that scope. The expansion also closes an anaphoric opening the claim audit did not test for: the v1 span began \"Instead, it is specified in…\".",
+      "v1_approval": {
+        "reviewer": "project_owner",
+        "reviewed_at": "2026-08-20T03:06:55Z",
+        "decision": "APPROVE"
+      },
+      "v2_approval": {
+        "reviewer": "project_owner",
+        "decision": "APPROVE",
+        "reviewed_at": "2026-08-20T18:28:30Z",
+        "approved_char_start": 248,
+        "approved_char_end": 725,
+        "approved_evidence_hash": "f9057cf3281d924bc692492005f4adb21a4b7a3dc4f0c82264267d867449723b",
+        "approved_option": "A"
+      }
+    },
+    "GOLD-B001-17": {
+      "v1_span": [
+        29836,
+        30171
+      ],
+      "v2_span": [
+        29787,
+        30171
+      ],
+      "v1_evidence_hash": "83e5abb14c4495a64a146a526cb3e89f9b6dad82697170511a2f8fa0fcf1a4f3",
+      "v2_evidence_hash": "8089c9eb85636cf688eafdb61dfdef87aac031b02b90a86563448cc5fcf2cdd5",
+      "characters_added": 49,
+      "reason": "The v1 claim asserted \"Files API\", a scope present only in the document title and section path. The expansion puts it inside the anchor. The span's end is unchanged, so two unrelated error bullets remain — the repair path only grows an anchor outward so the new span provably contains the approved one.",
+      "v1_approval": {
+        "reviewer": "project_owner",
+        "reviewed_at": "2026-08-20T03:06:55Z",
+        "decision": "APPROVE"
+      },
+      "v2_approval": {
+        "reviewer": "project_owner",
+        "decision": "APPROVE",
+        "reviewed_at": "2026-08-20T18:28:30Z",
+        "approved_char_start": 29787,
+        "approved_char_end": 30171,
+        "approved_evidence_hash": "8089c9eb85636cf688eafdb61dfdef87aac031b02b90a86563448cc5fcf2cdd5",
+        "approved_option": "A"
+      }
+    }
+  },
+  "validation": {
+    "cases": 16,
+    "failures": 0,
+    "passed": true
+  },
+  "retrieval_was_not_run": true,
+  "systems_run_against_these_cases": [],
+  "holdout_frozen": false
+}

@@ -1,0 +1,63 @@
+{
+  "experiment_id": "EVAL-VAL-002",
+  "timestamp": "2026-09-01T00:42:09Z",
+  "git_commit": null,
+  "host": {
+    "os": "Linux-6.12.94+-x86_64-with-glibc2.41",
+    "python": "3.11.15",
+    "executable": "/workspace/rag-v1/repo/production-rag-v1/.venv/bin/python"
+  },
+  "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a",
+  "chunk_set": "cs_v1_control",
+  "transformer_model": "emb_e7d4183fd6eb878ae2fdf080efb6861e",
+  "transformer_fingerprint": "bd95feaeacf98559",
+  "system_a_hash": "9afcb5b7c58ebacff0b4c3711dd9618a2e727f4195dd1787a5da81e478ee0b38",
+  "system_d_hash": "d77b54ba3be0197d6bc1363883aefb0b3399117ee8c65800a38f8196d236ca3a",
+  "system_d_hash_matched_freeze": true,
+  "cross_encoder": {
+    "name": "cross-encoder/ms-marco-MiniLM-L6-v2",
+    "revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a",
+    "artifact_sha256": "5d3e70fd0c9ff14b9b5169a51e957b7a9c74897afd0a35ce4bd318150c1d4d4a"
+  },
+  "blend_weights": [
+    0.7,
+    0.3
+  ],
+  "candidate_pool": 100,
+  "bootstrap_seed": 20250818,
+  "bootstrap_samples": 10000,
+  "dependencies": {
+    "numpy": "2.4.6",
+    "onnxruntime": "1.29.0",
+    "pgvector": "0.5.0",
+    "psycopg": "3.3.5",
+    "pydantic": "2.13.5",
+    "pytest": "8.4.2",
+    "ruff": "0.16.5",
+    "scikit-learn": "1.9.0",
+    "tokenizers": "0.23.1"
+  },
+  "embedding": {
+    "chunk_set": "cs_v1_control",
+    "chunks": 14209,
+    "embedding_rows": 14209,
+    "model_id": "emb_e7d4183fd6eb878ae2fdf080efb6861e",
+    "fingerprint_min": "bd95feaeacf98559",
+    "fingerprint_max": "bd95feaeacf98559",
+    "fingerprint_expected": "bd95feaeacf98559",
+    "complete": true
+  },
+  "holdout_access_log_bytes": 0,
+  "holdout_runs": 0,
+  "runtime_seconds": 228.2,
+  "latency_ms": {
+    "A_retrieval_mean": 512.9,
+    "CE_mean": 5098.8,
+    "D_total_mean": 5680.2,
+    "A_retrieval_median": 520.7,
+    "CE_median": 5066.1,
+    "D_total_median": 5566.4
+  },
+  "d_runs": 1,
+  "freeze_untouched": true
+}

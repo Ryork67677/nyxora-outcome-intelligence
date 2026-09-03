@@ -1,0 +1,168 @@
+{
+  "document": "EXP-015-environment",
+  "generated_at": "2026-09-01T00:14:15Z",
+  "incomplete": false,
+  "flags": {
+    "postgres_patch_level_differs_from_recorded_16_13": true,
+    "pgvector_differs_from_recorded_0_6_0": true,
+    "corpus_identity_passed_despite_that": true
+  },
+  "host": {
+    "os": "Linux-6.12.94+-x86_64-with-glibc2.41",
+    "pretty": "Debian GNU/Linux 13 (trixie)",
+    "machine": "x86_64",
+    "note": "Native apt ships PostgreSQL 17 only. Postgres 16 obtained via docker image pgvector/pgvector:pg16 (vfs storage-driver)."
+  },
+  "python": {
+    "executable": "/workspace/rag-v1/repo/production-rag-v1/.venv/bin/python",
+    "version": "3.11.15",
+    "requested": "3.11.15",
+    "match": true
+  },
+  "packages": {
+    "numpy": "2.4.6",
+    "pgvector": "0.5.0",
+    "psycopg": "3.3.5",
+    "pydantic": "2.13.5",
+    "pydantic-settings": "2.15.0",
+    "pytest": "8.4.2",
+    "PyYAML": "6.0.3",
+    "ruff": "0.16.5",
+    "scikit-learn": "1.9.0",
+    "beautifulsoup4": "4.15.0",
+    "onnxruntime": "1.29.0",
+    "tokenizers": "0.23.1"
+  },
+  "recorded_CORPUS002_packages": {
+    "numpy": "2.4.6",
+    "pgvector": "0.5.0",
+    "psycopg": "3.3.4",
+    "pydantic": "2.13.4",
+    "pytest": "8.4.2",
+    "PyYAML": "6.0.3",
+    "ruff": "0.16.3",
+    "scikit-learn": "1.9.0"
+  },
+  "docker": {
+    "client": "Docker version 26.1.5+dfsg1",
+    "compose": "Docker Compose version v2.26.1-4",
+    "image": "pgvector/pgvector:pg16",
+    "container": "production-rag-v1-postgres-1",
+    "health": "healthy"
+  },
+  "postgres": {
+    "version": "PostgreSQL 16.15 (Debian 16.15-1.pgdg12+2) on x86_64-pc-linux-gnu",
+    "recorded": "PostgreSQL 16.13 (Ubuntu 16.13-0ubuntu0.24.04.1)",
+    "database": "corpus002_restore",
+    "pgvector": "0.8.6",
+    "pgvector_recorded": "0.6.0",
+    "note": "Major version 16 matches. Patch 16.15 vs recorded 16.13. pgvector 0.8.6 vs recorded 0.6.0. Identity still reproduced."
+  },
+  "corpus_identity": {
+    "snapshot_id": "snap_689e336380a054d8039dc35b2c09cd0a",
+    "manifest_hash": "452479294cbbbe702b15d2df3f5a268023247dcd630782aaad5e17690cee7b17",
+    "documents": 202,
+    "chunks_cs_v1_control": 14209,
+    "chunks_expected": {
+      "total": 14209,
+      "anthropic": 12028,
+      "openai": 2181
+    },
+    "chunk_embedding_rows": 14209,
+    "CORPUS-002_gates": "all PASS (archive, package 203/203, working copy, 202 docs, providers, identities, manifest, snapshot, gold anchors 174/174, no retrieval)",
+    "passed": true,
+    "chunk_embedding_model_id": "emb_e7d4183fd6eb878ae2fdf080efb6861e",
+    "chunk_embedding_fingerprint": "bd95feaeacf98559"
+  },
+  "cross_encoder_download": {
+    "started_after_preregistration": true,
+    "model": "cross-encoder/ms-marco-MiniLM-L6-v2",
+    "revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a",
+    "artifact": "experiments/EXP-015/models/cross-encoder-ms-marco-MiniLM-L6-v2/233902d25c440f23af6f7d6e94d2946bac0bee0a/onnx/model.onnx",
+    "sha256_verified": "5d3e70fd0c9ff14b9b5169a51e957b7a9c74897afd0a35ce4bd318150c1d4d4a",
+    "graph_loaded": true,
+    "scored_on_gold": true
+  },
+  "scored_retrieval_this_pass": true,
+  "development_qualification_started": true,
+  "development_qualification_blocked_reason": null,
+  "holdout_access_log_bytes": 0,
+  "development_qualification": {
+    "completed": true,
+    "split": "gold150-v1/development",
+    "n": 20,
+    "system_a_strict_recall_at_10": "19/20",
+    "system_c_strict_recall_at_10": "18/20",
+    "rescues": [
+      "GOLD-B005-11"
+    ],
+    "regressions": [
+      "HA-22",
+      "HA-24"
+    ],
+    "net": -1,
+    "gates_passed": false,
+    "decision": "RERANKER_REJECTED_AT_DEV",
+    "system_c_frozen": false,
+    "runtime_seconds": 126.2,
+    "latency_ms": {
+      "A_mean": 500.8,
+      "C_mean": 5780.2,
+      "CE_mean": 5279.4,
+      "A_median": 495.6,
+      "C_median": 5594.0,
+      "CE_median": 5130.8
+    }
+  },
+  "encoder_bundle": {
+    "distribution": "https://chroma-onnx-models.s3.amazonaws.com/all-MiniLM-L6-v2/onnx.tar.gz",
+    "bundle_path": "data/cache/models/exp009/onnx.tar.gz",
+    "bundle_sha256": "913d7300ceae3b2dbc2c50d1de4baacab4be7b9380491c27fab7418616a16ec3",
+    "bundle_sha256_expected": "913d7300ceae3b2dbc2c50d1de4baacab4be7b9380491c27fab7418616a16ec3",
+    "model_onnx_sha256": "4f148ba8ae9c2c7fbee4af2b132db8d06c6a6545b47fc83bbb98c3d22b8393e6",
+    "model_onnx_sha256_expected": "4f148ba8ae9c2c7fbee4af2b132db8d06c6a6545b47fc83bbb98c3d22b8393e6",
+    "tokenizer_json_sha256": "da0e79933b9ed51798a3ae27893d3c5fa4a201126cef75586296df9b4d2c62a0",
+    "tokenizer_json_sha256_expected": "da0e79933b9ed51798a3ae27893d3c5fa4a201126cef75586296df9b4d2c62a0",
+    "encoder_fingerprint": "bd95feaeacf98559",
+    "model_id": "emb_e7d4183fd6eb878ae2fdf080efb6861e",
+    "max_seq_length": 512,
+    "match_frozen_system_a": true
+  },
+  "embedding_build": {
+    "path": "experiments/EXP-015/embedding-build.json",
+    "chunks": 14209,
+    "embeddings_stored": 14209,
+    "embed_seconds": 885.5,
+    "total_seconds": 886.0,
+    "all_zero_embeddings": 0,
+    "truncation_rate": 0.2322,
+    "model_id": "emb_e7d4183fd6eb878ae2fdf080efb6861e",
+    "model_version_fingerprint": "bd95feaeacf98559"
+  },
+  "runtime": {
+    "embedding_seconds": 886.0,
+    "development_qualification_seconds": 126.2,
+    "latency_ms": {
+      "A_mean": 500.8,
+      "C_mean": 5780.2,
+      "CE_mean": 5279.4,
+      "A_median": 495.6,
+      "C_median": 5594.0,
+      "CE_median": 5130.8
+    }
+  },
+  "historical_system_a_identity": {
+    "cases_fully_recalled": 15,
+    "cases_total": 20,
+    "macro_span_recall": 0.775,
+    "spans_found_at_10": 17,
+    "spans_total": 22,
+    "document_recall": 0.925,
+    "mrr": 0.4494,
+    "strict_recall_at_10": "15/20",
+    "passed": true,
+    "split": "evals/development/v1.jsonl"
+  },
+  "holdout_loaded": false,
+  "validation_loaded": false
+}

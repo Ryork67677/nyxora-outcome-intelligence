@@ -1,0 +1,181 @@
+{
+  "experiment_id": "EXP-019A",
+  "title": "PROJECTION-ONLY RETRIEVAL-CHANNEL RESCORE (minmax projection-RRF)",
+  "status": "AUTHORIZED_SINGLE_DEVELOPMENT_RUN",
+  "phase": "preregistration_before_any_new_ranks",
+  "chatgpt_authorization": "EXP-019A AUTHORIZED",
+  "protocol_copy": "experiments/EXP-019A/CHATGP-EXP-019A-protocol.txt",
+  "preregistered_at_utc": "2026-09-01T04:41:48Z",
+  "preregistered_at_et": "2026-09-01T00:41:48-04:00",
+  "scored_before_prereg_hash": false,
+  "tuned_after_seeing_scores": false,
+  "hypothesis": {
+    "statement": "Replacing projection-only a_norm 0.0 with minmax(projection-RRF) over the P projection-only extras for that query improves ranking versus SYSTEM-F / EXP-017.",
+    "one_change_only": true,
+    "no_candidate_membership_change": true,
+    "no_third_rrf_list": true,
+    "no_ce_reminmax": true,
+    "no_weight_sweep": true,
+    "no_query_rewrite": true,
+    "no_extra_variants_after_scores": true
+  },
+  "dataset": {
+    "name": "V2-DEVSET-001",
+    "n": 50,
+    "split": "evals/splits/v2-devset-001/development.json",
+    "gold": "evals/gold/v2-devset-001.jsonl",
+    "freeze": "experiments/RAG-V2/V2-DEVSET-001/V2-DEVSET-001-FREEZE.json",
+    "gold_sha256": "cb687f3cc88b38d4beed7ad4bc829296a30518aaaf45cce0677ec568b1bf77e5",
+    "split_sha256": "6b0c49c9040c215fde6134697c35a1f28458ba7d72ef012c0840feb7f9c3eb17",
+    "freeze_sha256": "97ea6befbb4fd845f53da2aef20ba84cedaaf69c0f09e3ad90833b813fee2ad9",
+    "holdout_loaded": false,
+    "holdout_json_opened": false,
+    "validation_loaded": false,
+    "gold150_v1_development_loaded": false
+  },
+  "baseline": {
+    "name": "SYSTEM-F-PROJECTION",
+    "status": "DEVELOPMENT_CANDIDATE",
+    "config_hash": "83ba5f2e834ecdffbfe4fb554cf84860ad35cf7010e9764e5cdea9e38598f678",
+    "source": "EXACT EXP-017 system",
+    "observed_development_only": {
+      "candidate_gold_span_recall_at_100": "46/50",
+      "strict_recall_at_10": "40/50",
+      "span_recall_at_10": 0.8,
+      "mrr": 0.597,
+      "document_recall": 0.92,
+      "n": 50,
+      "label": "DEVELOPMENT_ONLY",
+      "not_independently_validated": true
+    }
+  },
+  "parent_hashes": {
+    "SYSTEM-A": "9afcb5b7c58ebacff0b4c3711dd9618a2e727f4195dd1787a5da81e478ee0b38",
+    "SYSTEM-D": "d77b54ba3be0197d6bc1363883aefb0b3399117ee8c65800a38f8196d236ca3a",
+    "SYSTEM-E_uncapped": "7f3a1caa0350cc7e0fda0d9f2d7efb23fd08d7f79bc94f140a29f4247774adbe",
+    "SYSTEM-E-L10-WITHIN-DOC": "bae1c05b5c47c179dc5cd7972a14bd23d102a4d513b674667eb469e17cd85e89",
+    "SYSTEM-F-PROJECTION": "83ba5f2e834ecdffbfe4fb554cf84860ad35cf7010e9764e5cdea9e38598f678",
+    "EXP-017_prereg_json_sha256": "053a6bf14df088ca9e2283bc3e8dfb0769848a48c54c51a77fbe045795a80cc6",
+    "projection_set_id": "ps_v2_ovl_win448_s224",
+    "projection_config_hash": "7fd5034c9510a1e08ec76bd22b020703c586dd12e7c02659397df05c5c365a8e"
+  },
+  "one_change": {
+    "E_L10_members": {
+      "keep_existing_E_L10_a_norm_exactly": true,
+      "do_not_renormalize": true,
+      "do_not_combine_EL10_and_projection_scores": true
+    },
+    "projection_only_members": {
+      "source_score": "stored projection-RRF fused score (best covering projection fused, same as EXP-017 C_P_scores)",
+      "retrieval_channel": "minmax_norm over the P projection-only fused scores for that query; degenerate 0.5 if hi==lo (system_e.minmax_norm / MINMAX_DEGENERATE=0.5). Use that as retrieval-channel value instead of 0.0.",
+      "minmax_population": "P projection-only extras in that query only; not mixed with E-L10 a scores",
+      "ambiguity_resolution_preregistered": "minmax over the P projection-only fused scores for that query, degenerate 0.5 if constant; do not retune after scores"
+    },
+    "ce_norm": "keep the stored EXP-017 CE minmax values EXACTLY (do not re-minmax CE because a_norm changed)",
+    "blend": [
+      0.7,
+      0.3
+    ],
+    "blend_formula": "0.7*CE_norm + 0.3*retrieval_norm",
+    "tie_break": "blend DESC, E-L10 merge-RRF rank (projection-only after those with RRF ranks), chunk_id",
+    "no_third_rrf_list": true,
+    "no_candidate_membership_change": true,
+    "no_weight_sweep": true,
+    "no_query_rewrite": true,
+    "no_extra_variants_after_scores": true,
+    "do_not_change_candidate_generation": true,
+    "do_not_change_ce_model": true,
+    "do_not_change_ce_logits": true
+  },
+  "reuse": {
+    "prefer_stored_exp017_pools_el10_a_norm_proj_rrf_ce_logits": true,
+    "exp017_results_per_case_stores": [
+      "C_P chunk_id lists",
+      "span ranks",
+      "pool sizes"
+    ],
+    "exp017_results_per_case_may_not_store": [
+      "CE logits",
+      "a_norm",
+      "projection RRF"
+    ],
+    "if_not_stored": "rematerialize ONCE with the frozen EXP-017 code ONLY to recover those scores, then VERIFY candidate identities match EXP-017-results.json per_case (C_P sets, pool sizes, in_x_pool / x_rank for gold). If membership drifts, STOP. After recovery, apply 019A scoring in memory; do not call CE again for the 019A ranks.",
+    "do_not_change_generation_knobs": true
+  },
+  "metrics": {
+    "PRIMARY": [
+      "strict Recall@10 vs SYSTEM-F / EXP-017 baseline 40/50"
+    ],
+    "SECONDARY": [
+      "cand R@100 (must remain 46/50)",
+      "span R@10",
+      "MRR",
+      "document recall",
+      "rescues vs frozen EXP-017",
+      "regressions vs frozen EXP-017",
+      "rank-1 destructions vs frozen EXP-017",
+      "rank movements",
+      "latency of rescoring"
+    ],
+    "DIAGNOSTIC_ONLY": [
+      "V2D-33",
+      "V2D-36"
+    ],
+    "not_a_named_case_gate": true
+  },
+  "decision_rule": {
+    "RERANK_MECHANISM_SUPPORTED_iff": [
+      "strict R@10 > 40/50",
+      "0 strict R@10 regressions vs frozen EXP-017",
+      "0 rank-1 destructions vs frozen EXP-017",
+      "cand R@100 exactly 46/50"
+    ],
+    "otherwise": "NOT_SUPPORTED",
+    "no_named_case_gate": true,
+    "V2D-33_V2D-36": "DIAGNOSTIC_ONLY",
+    "development_stage_not_independent_validation": true,
+    "RELEASE": "NOT_FROZEN",
+    "VALIDATION": "NOT_RUN",
+    "HOLDOUT": "UNTOUCHED",
+    "do_not_retune_after_scores": true,
+    "n_evals": 1,
+    "no_second_variant": true
+  },
+  "identity_gate": {
+    "candidate_membership_must_equal_exp017": true,
+    "cand_R100_must_stay": "46/50",
+    "if_membership_drifts": "STOP. implementation drift. do not score 019A ranks."
+  },
+  "do_nots": [
+    "do not open gold150-v1/holdout.json",
+    "do not load validation",
+    "do not load gold150-v1 development",
+    "do not modify SYSTEM-D",
+    "do not modify SYSTEM-E-WITHIN-DOC",
+    "do not modify SYSTEM-E-L10-WITHIN-DOC",
+    "do not modify cs_v1_control",
+    "do not modify projection set ps_v2_ovl_win448_s224",
+    "do not change candidate generation",
+    "do not change CE model",
+    "do not change CE logits",
+    "do not change 0.7/0.3 weights",
+    "no weight sweep",
+    "no extra variants after scores",
+    "no query rewrite",
+    "do not freeze a release",
+    "do not re-minmax CE because a_norm changed",
+    "do not renormalize E-L10 a_norm",
+    "do not mix E-L10 and projection scores for E-L10 members",
+    "do not add a third RRF list",
+    "do not retune minmax population after scores",
+    "do not post to ChatGPT from this run"
+  ],
+  "single_eval": true,
+  "n_evals": 1,
+  "holdout_access_log_at_prereg": {
+    "log_bytes": 235,
+    "log_sha256": "45b83a77f6f332174d641956f076dd0c0cae44fe48f4f2892ac7030a4c0143b3"
+  },
+  "SYSTEM-F-PROJECTION_config_hash": "83ba5f2e834ecdffbfe4fb554cf84860ad35cf7010e9764e5cdea9e38598f678",
+  "SYSTEM-F-PROJECTION_file_sha256": "e68d8c7a5782420bfd63cc57882ce96eacd5d919ac6197d271b9e11e399c3ff5"
+}

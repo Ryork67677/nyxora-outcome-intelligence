@@ -1,0 +1,227 @@
+{
+  "generated_at": "2026-08-31T06:25:21Z",
+  "host_reachability": {
+    "environment": "isolated cloud VM (Claude Code remote execution)",
+    "container": "{\n  \"container_name\": \"container_016MgfkurQtQ8p73erCCDRMv--claude_code_remote--705754\"\n}",
+    "host_locations_requested": [
+      {
+        "path": "/mnt/c/Users",
+        "description": "Windows user directories via a WSL mount",
+        "exists": false
+      },
+      {
+        "path": "/mnt/d",
+        "description": "second Windows drive",
+        "exists": false
+      },
+      {
+        "path": "/mnt/wsl",
+        "description": "WSL interop mount",
+        "exists": false
+      },
+      {
+        "path": "/media",
+        "description": "removable media",
+        "exists": true,
+        "empty": true,
+        "note": "present but empty — the stock mount point, not removable media"
+      },
+      {
+        "path": "/var/lib/docker",
+        "description": "Docker volumes",
+        "exists": false
+      },
+      {
+        "path": "/var/run/docker.sock",
+        "description": "Docker daemon",
+        "exists": false
+      }
+    ],
+    "host_locations_present": [
+      "/media"
+    ],
+    "filesystems": [
+      [
+        "tmpfs",
+        "tmpfs",
+        "16461068",
+        "0",
+        "16461068",
+        "0%",
+        "/dev/shm"
+      ],
+      [
+        "/dev/vda",
+        "ext4",
+        "264212084",
+        "7658604",
+        "31189920",
+        "20%",
+        "/"
+      ],
+      [
+        "/dev/vde",
+        "ext4",
+        "235100",
+        "207220",
+        "23160",
+        "90%",
+        "/opt/claude-code"
+      ],
+      [
+        "/dev/vdf",
+        "ext4",
+        "46900",
+        "30076",
+        "15868",
+        "66%",
+        "/opt/env-runner"
+      ],
+      [
+        "tmpfs",
+        "tmpfs",
+        "8230532",
+        "0",
+        "8230532",
+        "0%",
+        "/sys/fs/cgroup"
+      ]
+    ],
+    "verdict": "No Windows host, no WSL mount and no Docker daemon is reachable from this session. The gitignored data/raw captures were never in this container. A host-machine sweep has to be run on the host itself; its results can be brought back here as an artifact, which is how the earlier host evidence in this project arrived."
+  },
+  "accessible_sweep": {
+    "roots_swept": [
+      "/mnt/user-data",
+      "/home/claude",
+      "/home/user",
+      "/root/.claude/uploads",
+      "/tmp",
+      "/var/tmp"
+    ],
+    "archives_found": [],
+    "anchor_hits": {
+      "snap_689e336380a054d8039dc35b2c09cd0a": {
+        "hits_outside_the_repository": 220,
+        "directories": [
+          "/home/user/nyxora-outcome-intelligence/.git",
+          "/home/user/nyxora-outcome-intelligence/production-rag-v1",
+          "/home/user/nyxora-outcome-intelligence/production-rag-v1/docs/failure-reports",
+          "/home/user/nyxora-outcome-intelligence/production-rag-v1/docs/reports",
+          "/home/user/nyxora-outcome-intelligence/production-rag-v1/evals/development",
+          "/home/user/nyxora-outcome-intelligence/production-rag-v1/evals/gold/batch_001_v2",
+          "/home/user/nyxora-outcome-intelligence/production-rag-v1/evals/golden",
+          "/home/user/nyxora-outcome-intelligence/production-rag-v1/evals/review",
+          "/home/user/nyxora-outcome-intelligence/production-rag-v1/experiments/EXP-000",
+          "/home/user/nyxora-outcome-intelligence/production-rag-v1/experiments/EXP-001",
+          "/home/user/nyxora-outcome-intelligence/production-rag-v1/experiments/EXP-002",
+          "/home/user/nyxora-outcome-intelligence/production-rag-v1/experiments/EXP-003"
+        ]
+      },
+      "452479294cbbbe702b15d2df3f5a268023247dcd630782aaad5e17690cee7b17": {
+        "hits_outside_the_repository": 11,
+        "directories": [
+          "/home/user/nyxora-outcome-intelligence/production-rag-v1/experiments/EXP-007",
+          "/home/user/nyxora-outcome-intelligence/production-rag-v1/experiments/GOLD-001",
+          "/home/user/nyxora-outcome-intelligence/production-rag-v1/scripts",
+          "/home/user/nyxora-outcome-intelligence/production-rag-v1/tests",
+          "/home/user/nyxora-outcome-intelligence/production-rag-v1/tests/__pycache__",
+          "/tmp"
+        ]
+      },
+      "v1-openai-anthropic": {
+        "hits_outside_the_repository": 49,
+        "directories": [
+          "/home/user/nyxora-outcome-intelligence/.git",
+          "/home/user/nyxora-outcome-intelligence/production-rag-v1",
+          "/home/user/nyxora-outcome-intelligence/production-rag-v1/experiments/GOLD-001",
+          "/home/user/nyxora-outcome-intelligence/production-rag-v1/scripts",
+          "/home/user/nyxora-outcome-intelligence/production-rag-v1/scripts/__pycache__",
+          "/home/user/nyxora-outcome-intelligence/production-rag-v1/tests",
+          "/home/user/nyxora-outcome-intelligence/production-rag-v1/tests/__pycache__",
+          "/mnt/user-data/working",
+          "/mnt/user-data/working/oa-authoring-packet",
+          "/mnt/user-data/working/oa-hand",
+          "/mnt/user-data/working/oa-hand-v2",
+          "/mnt/user-data/working/oa-hand/__pycache__"
+        ]
+      },
+      "corpus_snapshot_version": {
+        "hits_outside_the_repository": 62,
+        "directories": [
+          "/home/user/nyxora-outcome-intelligence/production-rag-v1/experiments/GOLD-001",
+          "/home/user/nyxora-outcome-intelligence/production-rag-v1/scripts",
+          "/home/user/nyxora-outcome-intelligence/production-rag-v1/scripts/__pycache__",
+          "/home/user/nyxora-outcome-intelligence/production-rag-v1/sql",
+          "/home/user/nyxora-outcome-intelligence/production-rag-v1/src/rag_v1",
+          "/home/user/nyxora-outcome-intelligence/production-rag-v1/src/rag_v1/__pycache__",
+          "/home/user/nyxora-outcome-intelligence/production-rag-v1/tests",
+          "/home/user/nyxora-outcome-intelligence/production-rag-v1/tests/__pycache__",
+          "/tmp",
+          "/tmp/claude-0/-home-user-nyxora-outcome-intelligence/0b478c34-cc8e-5160-8374-ea7b4aaddf1d/scratchpad"
+        ]
+      },
+      "document_version": {
+        "hits_outside_the_repository": 58,
+        "directories": [
+          "/home/user/nyxora-outcome-intelligence/.git",
+          "/home/user/nyxora-outcome-intelligence/production-rag-v1/experiments/EXP-008",
+          "/home/user/nyxora-outcome-intelligence/production-rag-v1/experiments/GOLD-001",
+          "/home/user/nyxora-outcome-intelligence/production-rag-v1/scripts",
+          "/home/user/nyxora-outcome-intelligence/production-rag-v1/scripts/__pycache__",
+          "/home/user/nyxora-outcome-intelligence/production-rag-v1/sql",
+          "/home/user/nyxora-outcome-intelligence/production-rag-v1/src/rag_v1",
+          "/home/user/nyxora-outcome-intelligence/production-rag-v1/tests",
+          "/home/user/nyxora-outcome-intelligence/production-rag-v1/tests/__pycache__",
+          "/tmp",
+          "/tmp/claude-0/-home-user-nyxora-outcome-intelligence/0b478c34-cc8e-5160-8374-ea7b4aaddf1d/scratchpad"
+        ]
+      },
+      "2026-08-17 04:46:19": {
+        "hits_outside_the_repository": 35,
+        "directories": [
+          "/home/user/nyxora-outcome-intelligence/production-rag-v1/evals/gold",
+          "/home/user/nyxora-outcome-intelligence/production-rag-v1/evals/gold/batch_001_v2",
+          "/home/user/nyxora-outcome-intelligence/production-rag-v1/evals/golden",
+          "/home/user/nyxora-outcome-intelligence/production-rag-v1/evals/review",
+          "/home/user/nyxora-outcome-intelligence/production-rag-v1/scripts",
+          "/mnt/user-data/working/oa-hand",
+          "/mnt/user-data/working/oa-hand-v2",
+          "/mnt/user-data/working/pdf-handoff",
+          "/mnt/user-data/working/pdf-handoff/extracted",
+          "/tmp/z2",
+          "/tmp/zt"
+        ]
+      }
+    }
+  },
+  "identity_oracles": {
+    "surviving_version_ids": 166,
+    "surviving_chunk_ids": 803,
+    "artifact_files_carrying_identities": 83,
+    "chunk_id_construction": "stable_id(\"chk\", version_id, section_path, char_start, char_end, content_hash(text))",
+    "why_chunk_id_is_stronger": "it binds the document's version identity to its section structure, its character offsets and the chunk's own text at once, so a match cannot come from a document that merely hashes the same"
+  },
+  "openai_unknown_identity_status": {
+    "expected_hash_unknown_before": 14,
+    "confirmed_by_chunk_id_oracle": 0,
+    "still_unknown": 14,
+    "still_unknown_urls": [
+      "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/models/litellm.md",
+      "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/repl.md",
+      "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/sessions/encrypted_session.md",
+      "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/sessions/sqlalchemy_session.md",
+      "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/visualization.md",
+      "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/voice/tracing.md",
+      "https://github.com/openai/openai-cookbook/blob/aa2c1e8867b83f73cdf8eedf94ebb6db41d69402/articles/chatgpt-agents-sales-meeting-prep.md",
+      "https://github.com/openai/openai-cookbook/blob/aa2c1e8867b83f73cdf8eedf94ebb6db41d69402/articles/gpt-oss/handle-raw-cot.md",
+      "https://github.com/openai/openai-cookbook/blob/aa2c1e8867b83f73cdf8eedf94ebb6db41d69402/articles/related_resources.md",
+      "https://github.com/openai/openai-cookbook/blob/aa2c1e8867b83f73cdf8eedf94ebb6db41d69402/articles/text_comparison_examples.md",
+      "https://github.com/openai/openai-cookbook/blob/aa2c1e8867b83f73cdf8eedf94ebb6db41d69402/articles/what_makes_documentation_good.md",
+      "https://github.com/openai/openai-node/blob/cc7dbfa9b9dd6fe0ff72141e9c0c3d82b18ba9aa/AGENTS.md",
+      "https://github.com/openai/openai-python/blob/10ee3f0da2ac6f93345c1204bd7bb1a2faa79ff2/AGENTS.md",
+      "https://github.com/openai/openai-python/blob/10ee3f0da2ac6f93345c1204bd7bb1a2faa79ff2/PYTHON_VERSION_POLICY.md"
+    ],
+    "documents_confirmed_by_chunk_id_overall": 36,
+    "finding": "the 14 are exactly the OpenAI documents that never appeared in any logged retrieval result — neither their version_id nor any of their chunk ids survives. There is no further mapping to mine; the search is exhausted by evidence, not by effort."
+  }
+}

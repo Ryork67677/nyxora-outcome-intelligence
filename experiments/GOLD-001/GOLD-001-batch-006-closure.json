@@ -1,0 +1,279 @@
+{
+  "batch": 6,
+  "closed_at": "2026-08-25T06:50:29Z",
+  "closed_by": "project_owner",
+  "source_batch_sha256": "0c47fc891053f8c475ad89aa2dd085b2905ffbf0efa9eb1b641135ae4fd08f0e",
+  "generation_batch_sha256": "7a061b0beb37770338471ab0cd3517ea7d9c8e4e52c5aaf54e6094df81f145dc",
+  "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a",
+  "schema_version": "1.3",
+  "git_commit": "6f0588d62aab5b9996c3d610665c46f8d277d5a2",
+  "totals": {
+    "candidates": 9,
+    "human_verified": 8,
+    "human_rejected": 1,
+    "needs_human_review": 0,
+    "outstanding_decisions": 0,
+    "acceptance_rate": 0.8889,
+    "holdout_eligible": 8
+  },
+  "holdout_eligible_ids": [
+    "GOLD-B006-01",
+    "GOLD-B006-02",
+    "GOLD-B006-03",
+    "GOLD-B006-04",
+    "GOLD-B006-05",
+    "GOLD-B006-07",
+    "GOLD-B006-08",
+    "GOLD-B006-09"
+  ],
+  "not_holdout_eligible": [],
+  "status_counts": {
+    "human_verified": 8,
+    "human_rejected": 1
+  },
+  "human_verified_ids": [
+    "GOLD-B006-01",
+    "GOLD-B006-02",
+    "GOLD-B006-03",
+    "GOLD-B006-04",
+    "GOLD-B006-05",
+    "GOLD-B006-07",
+    "GOLD-B006-08",
+    "GOLD-B006-09"
+  ],
+  "rejected": [
+    {
+      "candidate_id": "GOLD-B006-06",
+      "defects": [],
+      "review_findings": [
+        "DUPLICATE_FACT"
+      ],
+      "reason": "REJECT — DUPLICATE_FACT / BENCHMARK_REDUNDANCY. The fact is supported, but GOLD-B005-11 already carries substantially the same operational relation from the OpenAI Python library; this obtains it from the TypeScript/JavaScript library. Useful source corroboration, not enough independent benchmark information. Preserved as an audit example and NOT replaced.",
+      "independent_verdict": null,
+      "internal_review_status": "REJECT_RECOMMENDED",
+      "preserved_as": "negative audit example - the record is kept, not deleted"
+    }
+  ],
+  "repaired": [],
+  "question_authoring_revisions": [
+    {
+      "candidate_id": "GOLD-B006-01",
+      "fields_revised": [
+        "answer",
+        "atomic_claims",
+        "question",
+        "reasoning_type",
+        "secondary_category"
+      ],
+      "revisions": 5,
+      "miner_original_question": "What does Creating an `admin`-role service account require?",
+      "final_question": "What credential is required to create an `admin`-role service account, and what role may a workload create?"
+    },
+    {
+      "candidate_id": "GOLD-B006-02",
+      "fields_revised": [
+        "answer",
+        "question"
+      ],
+      "revisions": 2,
+      "miner_original_question": "What does Claude Opus 4.7 reject?",
+      "final_question": "What happens if `role: \"system\"` is used in `messages` with Claude Opus 4.7?"
+    },
+    {
+      "candidate_id": "GOLD-B006-03",
+      "fields_revised": [
+        "answer",
+        "atomic_claims",
+        "question",
+        "reasoning_type",
+        "secondary_category"
+      ],
+      "revisions": 5,
+      "miner_original_question": "What does Claude Haiku 4.5 accept?",
+      "final_question": "How do the newer code-execution tool versions behave on Claude Haiku 4.5?"
+    },
+    {
+      "candidate_id": "GOLD-B006-04",
+      "fields_revised": [
+        "answer",
+        "question"
+      ],
+      "revisions": 2,
+      "miner_original_question": "What does Claude Sonnet 5 default to?",
+      "final_question": "What effort level does Claude Sonnet 5 default to on the Claude API and Claude Code?"
+    },
+    {
+      "candidate_id": "GOLD-B006-05",
+      "fields_revised": [
+        "answer",
+        "atomic_claims",
+        "question"
+      ],
+      "revisions": 3,
+      "miner_original_question": "What does `thinking.display` default to?",
+      "final_question": "What does `thinking.display` default to on `claude-mythos-5` and `claude-fable-5`?"
+    },
+    {
+      "candidate_id": "GOLD-B006-08",
+      "fields_revised": [
+        "answer",
+        "atomic_claims",
+        "question",
+        "reasoning_type",
+        "secondary_category"
+      ],
+      "revisions": 5,
+      "miner_original_question": "What does the OpenAI Python SDK's temporary legacy-client compatibility path require?",
+      "final_question": "What does the OpenAI Python SDK's temporary legacy-client compatibility path require, and how should that path be treated?"
+    }
+  ],
+  "claim_checkable": {
+    "with_critical_strings": 8,
+    "of_verified": 8,
+    "note": "A case without literal critical strings passes the claim-in-evidence gate vacuously. This count, not the validator's green tick, is what says whether the claims were actually checked."
+  },
+  "by_provider": {
+    "generated": {
+      "anthropic": 5,
+      "openai": 4
+    },
+    "human_verified": {
+      "anthropic": 5,
+      "openai": 3
+    }
+  },
+  "human_overrides": [],
+  "reasoning_and_shape": {
+    "by_reasoning_type": {
+      "exact_lookup": 4,
+      "error_behavior": 1,
+      "lifecycle_compatibility_migration": 2,
+      "configuration_interaction": 2
+    },
+    "by_reasoning_type_verified": {
+      "exact_lookup": 4,
+      "error_behavior": 1,
+      "lifecycle_compatibility_migration": 2,
+      "configuration_interaction": 1
+    },
+    "by_evidence_shape": {
+      "single_span": 9
+    },
+    "by_evidence_shape_verified": {
+      "single_span": 8
+    },
+    "genuine_multi_hop": 0,
+    "note": "Reasoning type and evidence shape are separate dimensions. A case needing two spans is multi_span; multi_hop is a reasoning type, and a case only earns it when the answer is derived from combining spans rather than being the spans' contents."
+  },
+  "errata": [],
+  "multi_hop_rejection": null,
+  "multi_hop_search": {
+    "ran": false,
+    "reason": "§7: batch 004 tested 559 bridge pairs and found 1 chain; batch 005 searched dependency-first and found the same one. The corpus has been measured twice. No search was run here, and no multi-span case was relabelled to raise the count.",
+    "exported_chains": 0
+  },
+  "generation_shortfall": {
+    "target": 28,
+    "exported": 9,
+    "dropped_by_semantic_self_review": 40,
+    "entered_semantic_self_review": 50
+  },
+  "near_miss_diagnostic": null,
+  "corpus_census": {
+    "facts_mined": 1361,
+    "distinct_evidence_texts": 773,
+    "unspent_distinct_texts": 699,
+    "note": "Distinct evidence texts no closed batch has used. The shortfall in this batch is not a shortage of material — it is a shortage of builders that can turn this material into a question without paraphrasing it."
+  },
+  "heading_parser_audit": {
+    "report": "experiments/GOLD-001/GOLD-001-heading-parser-audit.json",
+    "headings_parsed": 5857,
+    "suspicious": 82,
+    "likely_prose": 44,
+    "share": 0.0075,
+    "documents_affected": 15,
+    "documents": 202,
+    "systematic": false,
+    "finding": "44 of 5857 parsed headings (0.75%), in 15 of 202 documents. That is isolated. It does not justify a parser experiment on its own, and the batch-006 rule — never trust section_path for scope — is the cheaper fix.",
+    "nothing_was_rewritten": true
+  },
+  "reasoning_targets": {
+    "error_behavior": [
+      5,
+      6
+    ],
+    "configuration_interaction": [
+      6,
+      7
+    ],
+    "exact_lookup": [
+      5,
+      6
+    ],
+    "lifecycle_compatibility_migration": [
+      4,
+      5
+    ],
+    "ambiguity_disambiguation": [
+      0,
+      3
+    ],
+    "comparison": [
+      0,
+      2
+    ],
+    "genuine_multi_hop": [
+      0,
+      1
+    ]
+  },
+  "precheck_limitation": {
+    "candidates": 9,
+    "precheck_ready": 9,
+    "repaired": 6,
+    "anchor_repairs": 0,
+    "reject_recommended": 1,
+    "means": "structurally capable",
+    "does_not_mean": [
+      "semantic correctness",
+      "human approval",
+      "holdout eligibility"
+    ]
+  },
+  "defect_taxonomy": {
+    "D1": {
+      "name": "anaphoric anchor",
+      "description": "The span opens on, or silently depends on, a referent outside itself — 'If true', 'any of these models'. The claim cannot be checked against the anchor alone."
+    },
+    "D2": {
+      "name": "wrong relation label",
+      "description": "The miner matched a trigger word and labelled the candidate with a relation the sentence does not express. The evidence is usually fine; the label aims the reviewer at the wrong question."
+    },
+    "D3": {
+      "name": "example-code false binding",
+      "description": "An identifier matched inside a fenced code block or JSON literal and was framed as a documented rule. A sample configuration is not a rule."
+    }
+  },
+  "defects_seen": {},
+  "validation": {
+    "validator": "scripts/validate_golden.py",
+    "projection": "evals/gold/batch_006_projection.jsonl",
+    "cases": 8,
+    "failures": 0,
+    "passed": true,
+    "require_human": "validation",
+    "caveat": "All 8 verified cases carry literal critical strings, so the claim-in-evidence check ran on every one of them. The validator's pass covers claim support, not only structure."
+  },
+  "retrieval": {
+    "retrieval_was_not_run": true,
+    "systems_run_against_these_candidates": [],
+    "statement": "No retrieval system was run against any candidate in this batch at any point. SYSTEM-A and SYSTEM-B remain frozen and were not executed. Candidate selection could not be influenced by what either system succeeds or fails on, which is what keeps a future holdout honest."
+  },
+  "not_yet_done": [
+    "No split has been assigned; the projection's split is a placeholder.",
+    "No holdout is frozen.",
+    "Critical claim strings exist for 8 of 8 verified cases, so every one of them is claim-checked.",
+    "OA-002 remains a recorded defect in development/v1 with an unapplied development/v2 correction proposal."
+  ],
+  "closure_sha256": "7ff5596c755a01fc57cf59b04cafdb77bd86a9f97f49cfdb58ff1782e07f68a2"
+}

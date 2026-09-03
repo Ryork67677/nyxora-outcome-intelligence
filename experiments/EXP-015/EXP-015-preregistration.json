@@ -1,0 +1,232 @@
+{
+  "document": "EXP-015-preregistration",
+  "generated_at": "2026-08-31T23:51:03Z",
+  "git_commit": "5082123e8c406ab162349d23003b1173afd697ac",
+  "status": "PREREGISTERED_BEFORE_MODEL_DOWNLOAD_OR_SCORED_RUN",
+  "trained_on_gold": false,
+  "hypothesis": "A pretrained zero-shot relevance cross-encoder, applied only as a reorder of frozen SYSTEM-A candidates, can raise strict Recall@10 versus SYSTEM-A without changing candidate generation.",
+  "control": {
+    "name": "SYSTEM-A-GLOBAL",
+    "config_hash": "9afcb5b7c58ebacff0b4c3711dd9618a2e727f4195dd1787a5da81e478ee0b38",
+    "must_not_change": [
+      "BM25 (Postgres FTS ts_config simple, k1=1.2, b=0.75, full-corpus statistics)",
+      "MiniLM dense encoder (sentence-transformers/all-MiniLM-L6-v2 ONNX via onnxruntime)",
+      "RRF rrf_k=60",
+      "pool_per_retriever=50",
+      "chunking cs_v1_control / max_chunk_chars=3500 min_chunk_chars=200",
+      "query = raw user question, verbatim",
+      "normalization / provider hints",
+      "candidate-generation"
+    ],
+    "stage2": {
+      "query": "raw user question, verbatim",
+      "lexical": {
+        "retriever": "bm25",
+        "k1": 1.2,
+        "b": 0.75,
+        "ts_config": "simple",
+        "statistics": "full corpus \u2014 never recomputed inside routed documents"
+      },
+      "dense": {
+        "retriever": "transformer_cosine",
+        "model_id": "emb_e7d4183fd6eb878ae2fdf080efb6861e",
+        "fingerprint": "bd95feaeacf98559",
+        "max_seq_length": 512,
+        "exact_search": true,
+        "ann_index": false
+      },
+      "fusion": {
+        "method": "rrf",
+        "rrf_k": 60,
+        "pool_per_retriever": 50
+      },
+      "top_k": 10,
+      "reranker": null,
+      "cross_encoder": null,
+      "query_rewriting": false,
+      "enrichment": null,
+      "metadata_filtering": false
+    },
+    "snapshot": "snap_689e336380a054d8039dc35b2c09cd0a",
+    "manifest_hash": "452479294cbbbe702b15d2df3f5a268023247dcd630782aaad5e17690cee7b17",
+    "reranker": null,
+    "cross_encoder": null
+  },
+  "experimental": {
+    "name": "SYSTEM-C",
+    "description": "SYSTEM-A candidates -> pretrained cross-encoder reorder only -> top 10. May not retrieve new passages.",
+    "candidate_pool": 100,
+    "candidate_pool_preregistration": {
+      "value": 100,
+      "source": "handoff-preregistered",
+      "no_prior_EXP-015_pool": true,
+      "only_pool_per_retriever_50_is_preregistered_for_candidate_generation": true,
+      "not_selected_by_validation_sweep": true,
+      "justification_from_already_computed_SYSTEM-A_validation_ceilings": {
+        "measured_strict_recall_at_10": "30/40",
+        "perfect_reranker_pool_10": "30/40",
+        "perfect_reranker_pool_30": "35/40",
+        "perfect_reranker_pool_50": "36/40",
+        "perfect_reranker_pool_100": "37/40",
+        "plus_vs_measured_30_of_40": 7,
+        "plus_vs_pool_30": 2,
+        "plus_vs_pool_50": 1,
+        "unreachable_even_at_300": 3
+      },
+      "frozen_now": true
+    },
+    "top_k": 10,
+    "may_retrieve_new_passages": false
+  },
+  "model_selection_rule": "smallest widely-used MS MARCO MiniLM cross-encoder that is available and reproducible, else BGE reranker base, else stop",
+  "model_selection_rule_applied_without_validation_scores": true,
+  "inventory": {
+    "huggingface.co": "reachable from this box (HTTP 200); unlike EXP-009",
+    "pypi.org": "reachable",
+    "chroma-onnx-models.s3.amazonaws.com": "reachable (MiniLM bi-encoder bundle still present)",
+    "local_weight_cache": "none",
+    "candidates_considered": [
+      {
+        "id": "cross-encoder/ms-marco-MiniLM-L6-v2",
+        "alias_redirect": "cross-encoder/ms-marco-MiniLM-L-6-v2 -> 307 -> L6-v2",
+        "kind": "pretrained MS MARCO MiniLM relevance cross-encoder",
+        "available": true,
+        "revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a",
+        "lastModified": "2026-08-09T15:22:24.000Z",
+        "architecture": "BertForSequenceClassification, 6 layers, hidden 384, 12 heads, intermediate 1536, vocab 30522, ~22.7M params",
+        "tokenizer": "BertTokenizer WordPiece, do_lower_case=true, model_max_length=512",
+        "max_length": 512,
+        "precision_selected": "fp32 onnx/model.onnx (not qint8/quint8 exports)",
+        "onnx_model_onnx": {
+          "path": "onnx/model.onnx",
+          "advertised_sha256_x_linked_etag": "5d3e70fd0c9ff14b9b5169a51e957b7a9c74897afd0a35ce4bd318150c1d4d4a",
+          "advertised_size_bytes": 91011230,
+          "xet_hash": "bfa2b39180c0bcbd8c321582203875e7cb8e3e25fa02e8e4d011ee7b7cffc1a8",
+          "verified_after_download": false
+        },
+        "safetensors": {
+          "path": "model.safetensors",
+          "advertised_sha256_x_linked_etag": "821d1aa69520101d6e0737f78a042ae25b19e5cb9160701909d10434f4aeb0ae",
+          "advertised_size_bytes": 90870598
+        },
+        "config_json_sha256": "380e02c93f431831be65d99a4e7e5f67c133985bf2e77d9d4eba46847190bacc",
+        "activation": "Identity (raw relevance logit; higher = more relevant)"
+      },
+      {
+        "id": "BAAI/bge-reranker-base",
+        "kind": "BGE reranker base (XLM-RoBERTa cross-encoder)",
+        "available": true,
+        "revision": "2cfc18c9415c912f9d8155881c133215df768a70",
+        "max_length": 512,
+        "params": "~278M",
+        "role": "fallback only if MS MARCO MiniLM cannot be obtained reproducibly"
+      }
+    ]
+  },
+  "selected_model": {
+    "rule_outcome": "first clause of the selection rule matched",
+    "name": "cross-encoder/ms-marco-MiniLM-L6-v2",
+    "source": "https://huggingface.co/cross-encoder/ms-marco-MiniLM-L6-v2",
+    "revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a",
+    "alias": "cross-encoder/ms-marco-MiniLM-L-6-v2 (Hugging Face 307 redirect to L6-v2)",
+    "artifact": "onnx/model.onnx",
+    "artifact_sha256_advertised": "5d3e70fd0c9ff14b9b5169a51e957b7a9c74897afd0a35ce4bd318150c1d4d4a",
+    "artifact_sha256_verified": "5d3e70fd0c9ff14b9b5169a51e957b7a9c74897afd0a35ce4bd318150c1d4d4a",
+    "tokenizer": "BertTokenizer WordPiece, do_lower_case=true, vocab_size=30522",
+    "max_length": 512,
+    "precision": "fp32",
+    "runtime": "onnxruntime + HuggingFace tokenizers (not the Python sentence-transformers CrossEncoder class; matches the project's MiniLM ONNX path)",
+    "why_this_model": "It is the smallest widely-used MS MARCO MiniLM relevance cross-encoder, Hub-reachable from this box, pin-able by git revision plus file hash. Not chosen by any validation score.",
+    "not_chosen": "BAAI/bge-reranker-base is recorded as the unused fallback.",
+    "artifact_size_bytes": 91011230,
+    "download_path": "experiments/EXP-015/models/cross-encoder-ms-marco-MiniLM-L6-v2/233902d25c440f23af6f7d6e94d2946bac0bee0a/onnx/model.onnx",
+    "onnx_inputs": [
+      "input_ids",
+      "attention_mask",
+      "token_type_ids"
+    ],
+    "onnx_outputs": [
+      "logits"
+    ],
+    "runtime_versions": {
+      "onnxruntime": "1.29.0",
+      "tokenizers": "0.23.1"
+    }
+  },
+  "pair_formatting": {
+    "schema": "BERT pair: [CLS] query [SEP] passage [SEP]",
+    "inputs": "tokenizer(query, passage, truncation=True, max_length=512, padding='max_length' or batch longest with attention mask)",
+    "truncation": "longest_first at 512 WordPiece tokens over the concatenated pair",
+    "query_prefix": null,
+    "document_prefix": null,
+    "lowercase": true
+  },
+  "scoring": {
+    "output": "single sequence-classification logit (Identity activation)",
+    "direction": "higher score = more relevant",
+    "no_temperature": true,
+    "no_training": true
+  },
+  "tie_break": "stable sort: score descending, then original SYSTEM-A fused rank ascending, then chunk_id ascending",
+  "system_c_freeze_before_validation": {
+    "required_fields": [
+      "model name",
+      "revision",
+      "artifact hash (verified after download)",
+      "pool 100",
+      "pair formatting",
+      "truncation 512",
+      "tie-break",
+      "scoring",
+      "top_k 10",
+      "dependency fingerprint"
+    ],
+    "frozen_before_loading_validation": true,
+    "note": "SYSTEM-C config hash will be written after the ONNX artifact is downloaded and hashed, still before any validation load."
+  },
+  "dev_qualification": {
+    "split": "evals/splits/gold150-v1/development.json",
+    "n": 20,
+    "not_the_exp014r_AN_OA_set": true,
+    "compare": "SYSTEM-A vs SYSTEM-C",
+    "primary": "strict Recall@10 (full-case)",
+    "secondary": [
+      "span recall",
+      "MRR",
+      "rescues",
+      "regressions",
+      "latency"
+    ],
+    "proceed_to_validation_only_if": [
+      "positive net rescues",
+      "no catastrophic regression pattern",
+      "enough pool headroom",
+      "reproducibility checks pass"
+    ]
+  },
+  "validation": {
+    "split": "evals/splits/gold150-v1/validation.json",
+    "n": 40,
+    "one_shot": true,
+    "same_40_cases_as_EVAL-VAL-001": true,
+    "load_only_after_SYSTEM-C_frozen": true,
+    "classification": [
+      "RERANKER_SUPPORTED",
+      "NEUTRAL",
+      "REJECTED"
+    ]
+  },
+  "holdout": {
+    "never_run": true,
+    "never_load_question_text": true,
+    "never_enumerate_ids": true,
+    "holdout_count": 90,
+    "holdout_frozen": true
+  },
+  "not_done_at_preregistration": [
+    "ONNX artifact was downloaded AFTER this document existed on disk; hash now verified.",
+    "No scored retrieval.",
+    "SYSTEM-C not executed.",
+    "chunk_embedding remains empty."
+  ]
+}

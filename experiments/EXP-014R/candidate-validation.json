@@ -1,0 +1,93 @@
+{
+  "path": "evals/golden/candidates.jsonl",
+  "cases": 20,
+  "snapshot": "snap_689e336380a054d8039dc35b2c09cd0a",
+  "by_split": {
+    "holdout": 20
+  },
+  "by_category": {
+    "exact_lookup": 12,
+    "missing_info": 8
+  },
+  "by_provider": {
+    "anthropic": 5,
+    "openai": 7,
+    "cross": 8
+  },
+  "by_verification": {
+    "source_anchored_automatic": 12,
+    "absence_verified_against_snapshot": 8
+  },
+  "failures": [
+    {
+      "case_id": "AN-DEFAULT-001",
+      "check": "human_verified_required",
+      "detail": "holdout cases require human verification before use"
+    },
+    {
+      "case_id": "AN-DEFAULT-002",
+      "check": "human_verified_required",
+      "detail": "holdout cases require human verification before use"
+    },
+    {
+      "case_id": "OA-DEFAULT-001",
+      "check": "human_verified_required",
+      "detail": "holdout cases require human verification before use"
+    },
+    {
+      "case_id": "OA-DEFAULT-002",
+      "check": "human_verified_required",
+      "detail": "holdout cases require human verification before use"
+    },
+    {
+      "case_id": "OA-DEFAULT-003",
+      "check": "human_verified_required",
+      "detail": "holdout cases require human verification before use"
+    },
+    {
+      "case_id": "OA-DEFAULT-004",
+      "check": "human_verified_required",
+      "detail": "holdout cases require human verification before use"
+    },
+    {
+      "case_id": "AN-DEFAULT-003",
+      "check": "duplicate_question",
+      "detail": "near-duplicate of AN-DEFAULT-002"
+    },
+    {
+      "case_id": "AN-DEFAULT-003",
+      "check": "human_verified_required",
+      "detail": "holdout cases require human verification before use"
+    },
+    {
+      "case_id": "OA-DEFAULT-005",
+      "check": "human_verified_required",
+      "detail": "holdout cases require human verification before use"
+    },
+    {
+      "case_id": "OA-DEFAULT-006",
+      "check": "human_verified_required",
+      "detail": "holdout cases require human verification before use"
+    },
+    {
+      "case_id": "AN-DEFAULT-004",
+      "check": "human_verified_required",
+      "detail": "holdout cases require human verification before use"
+    },
+    {
+      "case_id": "OA-DEFAULT-007",
+      "check": "human_verified_required",
+      "detail": "holdout cases require human verification before use"
+    },
+    {
+      "case_id": "AN-DEFAULT-005",
+      "check": "human_verified_required",
+      "detail": "holdout cases require human verification before use"
+    }
+  ],
+  "failure_counts": {
+    "human_verified_required": 12,
+    "duplicate_question": 1
+  },
+  "passed": false
+}

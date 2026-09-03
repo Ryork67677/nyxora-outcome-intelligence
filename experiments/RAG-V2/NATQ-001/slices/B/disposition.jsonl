@@ -1,0 +1,50 @@
+{"candidate_id": "NATQ-C-051", "decision": "REJECT", "reject_reason": "SDK docs show stream=True for SSE, but no evidence addresses Accept text/event-stream vs stream true; extra ILIKE for text/event-stream returned 0.", "version_id": null}
+{"candidate_id": "NATQ-C-052", "decision": "REJECT", "reject_reason": "Precomputed hits are SDK type dumps, not chat-completions vs Responses stream shapes; extra ILIKE (choices+delta, title Streaming) returned 0. Does not answer whether text is still in choices[0].delta.", "version_id": null}
+{"candidate_id": "NATQ-C-053", "decision": "SUPPORT", "reject_reason": null, "version_id": "ver_1261879c16f641270789647ac9c63c96"}
+{"candidate_id": "NATQ-C-054", "decision": "REJECT", "reject_reason": "No evidence for resume/reject of partial JSON when a stream socket drops. Extra ILIKE (incomplete+json) only hit unrelated Responses type lists.", "version_id": null}
+{"candidate_id": "NATQ-C-055", "decision": "REJECT", "reject_reason": "No Chat Completions stream_options.include_usage evidence. Extra hits are Agents SDK ModelSettings(include_usage=True) for third-party adapters, which does not answer whether it is still stream_options.", "version_id": null}
+{"candidate_id": "NATQ-C-056", "decision": "SUPPORT", "reject_reason": null, "version_id": "ver_1261879c16f641270789647ac9c63c96"}
+{"candidate_id": "NATQ-C-057", "decision": "SUPPORT", "reject_reason": null, "version_id": "ver_cec813c3bb15b76dcf16e7a0c2231ef1"}
+{"candidate_id": "NATQ-C-058", "decision": "SUPPORT", "reject_reason": null, "version_id": "ver_e818e78755f8e2a71b458c743ce52db1"}
+{"candidate_id": "NATQ-C-059", "decision": "REJECT", "reject_reason": "No evidence for when a streamed tool-call function name is finalized vs when arguments are still arriving. Extra ILIKE hit only testing docs about ScriptedModel deltas.", "version_id": null}
+{"candidate_id": "NATQ-C-060", "decision": "SUPPORT", "reject_reason": null, "version_id": "ver_12004469f7a5592cd1e6cab936117fce"}
+{"candidate_id": "NATQ-C-061", "decision": "SUPPORT", "reject_reason": null, "version_id": "ver_1261879c16f641270789647ac9c63c96"}
+{"candidate_id": "NATQ-C-062", "decision": "REJECT", "reject_reason": "No evidence that a cancelled mid-tool-call OpenAI stream can be resumed with partial arguments. Extra ILIKE (cancel+partial) returned 0.", "version_id": null}
+{"candidate_id": "NATQ-C-063", "decision": "REJECT", "reject_reason": "Hits only say Agents SDK can set temperature or top_p; they do not say whether combining them warns or silently ignores one. Extra ILIKE with title Create returned 0.", "version_id": null}
+{"candidate_id": "NATQ-C-064", "decision": "REJECT", "reject_reason": "Hits are unrelated cookbook text; extra ILIKE (temperature+reasoning, title Reasoning) returned 0. No evidence that o-series/gpt-5 thinking ignores temperature.", "version_id": null}
+{"candidate_id": "NATQ-C-065", "decision": "SUPPORT", "reject_reason": null, "version_id": "ver_26ab39f5dede18e6cf62900e8b84f38b"}
+{"candidate_id": "NATQ-C-066", "decision": "REJECT", "reject_reason": "No evidence distinguishing max_tokens vs max_output_tokens vs completions max_tokens on Responses. Extra ILIKE max_output_tokens returned 0.", "version_id": null}
+{"candidate_id": "NATQ-C-067", "decision": "REJECT", "reject_reason": "Precomputed hits are sandbox snapshot seeding, not the OpenAI seed sampling parameter. Extra ILIKE seed on Create returned 0.", "version_id": null}
+{"candidate_id": "NATQ-C-068", "decision": "REJECT", "reject_reason": "No corpus mention of logit_bias. Extra ILIKE returned 0.", "version_id": null}
+{"candidate_id": "NATQ-C-069", "decision": "SUPPORT", "reject_reason": null, "version_id": "ver_26ab39f5dede18e6cf62900e8b84f38b"}
+{"candidate_id": "NATQ-C-070", "decision": "REJECT", "reject_reason": "Agents SDK mentions some reasoning.effort values (none, high, max) but not a complete enum answering low/medium/high/what else. Incomplete vs the question as written.", "version_id": null}
+{"candidate_id": "NATQ-C-071", "decision": "SUPPORT", "reject_reason": null, "version_id": "ver_26ab39f5dede18e6cf62900e8b84f38b"}
+{"candidate_id": "NATQ-C-072", "decision": "REJECT", "reject_reason": "Only unrelated cookbook hit for 'predicted'; extra ILIKE predicted_output returned 0. No model-id support matrix for predicted outputs.", "version_id": null}
+{"candidate_id": "NATQ-C-073", "decision": "REJECT", "reject_reason": "frequency_penalty never appears in Anthropic corpus (extra ILIKE n=0). Absence is not quoted confirmation they lack the parameter.", "version_id": null}
+{"candidate_id": "NATQ-C-074", "decision": "REJECT", "reject_reason": "No evidence whether n>1 is allowed with tools. Extra ILIKE returned 0.", "version_id": null}
+{"candidate_id": "NATQ-C-075", "decision": "REJECT", "reject_reason": "No evidence which models still need the word json in the prompt for json_object vs json_schema. Extra ILIKE returned 0.", "version_id": null}
+{"candidate_id": "NATQ-C-076", "decision": "SUPPORT", "reject_reason": null, "version_id": "ver_0865c9612dfe97d8f30dd870dd12e53e"}
+{"candidate_id": "NATQ-C-077", "decision": "REJECT", "reject_reason": "No evidence of a presence_penalty + tools interaction. Extra ILIKE presence_penalty returned 0.", "version_id": null}
+{"candidate_id": "NATQ-C-078", "decision": "REJECT", "reject_reason": "Anthropic stop_sequences is documented as an array, but the question asks Claude and OpenAI. Extra ILIKE for OpenAI stop (title Create chat) returned 0; cannot answer both providers from quoted evidence.", "version_id": null}
+{"candidate_id": "NATQ-C-079", "decision": "REJECT", "reject_reason": "Extra hit mentions retry-after hints in Agents SDK retry settings, not which 429 header to wait on versus x-ratelimit-reset-tokens.", "version_id": null}
+{"candidate_id": "NATQ-C-080", "decision": "SUPPORT", "reject_reason": null, "version_id": "ver_0774ca0093ff4a846753577c9a4a39d5"}
+{"candidate_id": "NATQ-C-081", "decision": "REJECT", "reject_reason": "No evidence for context_length_exceeded as a 400 or its error-code string. Extra ILIKE context_length returned 0.", "version_id": null}
+{"candidate_id": "NATQ-C-082", "decision": "REJECT", "reject_reason": "Hits are sandbox capabilities, not vision image formats or invalid_image_format. Extra ILIKE (image+jpeg, title Vision) returned 0.", "version_id": null}
+{"candidate_id": "NATQ-C-083", "decision": "SUPPORT", "reject_reason": null, "version_id": "ver_0774ca0093ff4a846753577c9a4a39d5"}
+{"candidate_id": "NATQ-C-084", "decision": "REJECT", "reject_reason": "No evidence for org disabled or billing hard-limit errors vs 429. Extra ILIKE insufficient_quota returned 0.", "version_id": null}
+{"candidate_id": "NATQ-C-085", "decision": "REJECT", "reject_reason": "Python SDK maps 429 to RateLimitError only; no InsufficientQuota (or equivalent) class in the error table, so the two cannot be told apart from quoted evidence.", "version_id": null}
+{"candidate_id": "NATQ-C-086", "decision": "REJECT", "reject_reason": "Hits are chat.completions.parse() finish_reason content_filter, not Responses. Extra ILIKE content_filter title Responses returned 0.", "version_id": null}
+{"candidate_id": "NATQ-C-087", "decision": "SUPPORT", "reject_reason": null, "version_id": "ver_18c692f4d28bd01c0a5cac553fcf01a7"}
+{"candidate_id": "NATQ-C-088", "decision": "SUPPORT", "reject_reason": null, "version_id": "ver_0774ca0093ff4a846753577c9a4a39d5"}
+{"candidate_id": "NATQ-C-089", "decision": "REJECT", "reject_reason": "Hits do not state the API behavior for an empty messages array. Extra ILIKE (messages+at least) returned 0.", "version_id": null}
+{"candidate_id": "NATQ-C-090", "decision": "SUPPORT", "reject_reason": null, "version_id": "ver_30f4e54dabb3ed9754d4075a41cc2531"}
+{"candidate_id": "NATQ-C-091", "decision": "REJECT", "reject_reason": "incomplete_details never appears. Extra ILIKE returned 0.", "version_id": null}
+{"candidate_id": "NATQ-C-092", "decision": "SUPPORT", "reject_reason": null, "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40"}
+{"candidate_id": "NATQ-C-093", "decision": "SUPPORT", "reject_reason": null, "version_id": "ver_0774ca0093ff4a846753577c9a4a39d5"}
+{"candidate_id": "NATQ-C-094", "decision": "REJECT", "reject_reason": "unprocessable never appears; extra ILIKE returned 0. Cannot confirm strict extra-field schemas from quoted evidence (genuine_ambiguity, corpus does not present it).", "version_id": null}
+{"candidate_id": "NATQ-C-095", "decision": "REJECT", "reject_reason": "Hits still document Assistants/threads APIs; extra ILIKE Assistants API+Responses returned 0. No evidence where threads go in a Responses migration.", "version_id": null}
+{"candidate_id": "NATQ-C-096", "decision": "REJECT", "reject_reason": "Only Node SDK runFunctions→runTools on chat completions, not mapping functions to tools for Responses. Extra ILIKE title Migrate returned 0.", "version_id": null}
+{"candidate_id": "NATQ-C-097", "decision": "REJECT", "reject_reason": "gpt-4-turbo appears only in unrelated cookbook text; extra ILIKE title Models is the same passage. No 2026 drop-in replacement model id.", "version_id": null}
+{"candidate_id": "NATQ-C-098", "decision": "REJECT", "reject_reason": "Computer-use docs version tool types (computer_20250124 vs later) but never mention Claude 3.5 Sonnet→Sonnet 4 schema change. Stretched vs the question as written.", "version_id": null}
+{"candidate_id": "NATQ-C-099", "decision": "REJECT", "reject_reason": "Current examples use client = OpenAI(), but docs do not discuss a v1→v2 migration or a Client constructor alternative.", "version_id": null}
+{"candidate_id": "NATQ-C-100", "decision": "SUPPORT", "reject_reason": null, "version_id": "ver_ef5f9dacc17f99c298faf449e756ae90"}

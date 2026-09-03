@@ -1,0 +1,186 @@
+{
+  "note": "Every rescue and every regression vs recorded EVAL-VAL-001 SYSTEM-A. exact_match_guard_triggered is False for all: SYSTEM-D is the frozen 0.7/0.3 score blend, not the clamp. identifier_overlap is the EXP-016 matcher diagnostic. Rescue movements are labeled OTHER because EXACT_IDENTIFIER_DEMOTION / VERSION_CONFUSION / SEMANTIC_MISREAD / TRUNCATION describe failure modes. There were 0 regressions to classify.",
+  "rescues": [
+    {
+      "case_id": "GOLD-B001-03",
+      "movement": "RESCUE",
+      "classification": "OTHER",
+      "why": "Rescue via frozen 0.7/0.3 CE+A blend: gold span had identifier overlap and CE scored it high enough to enter top 10. The regression taxonomy has no rescue label; this is not a semantic misread of a pass. overlap_tokens=['claude-fable-5', 'claude-mythos-5', 'thinking']; A→D/CE=[(11, 8, 5.62330436706543)].",
+      "query": "For `claude-fable-5` and `claude-mythos-5`, is a `thinking` configuration required?",
+      "a_full_recorded": false,
+      "d_full": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_ae2d20b7dda7474cf9d3ec86d99fae0a1266d711",
+          "version_id": "ver_a7bda3595f2c124605c3228464d4ee52",
+          "section_path": [
+            "Migrating to Claude Mythos 5 and Claude Fable 5"
+          ],
+          "a_rank_stored": 11,
+          "a_doc_rank_stored": 1,
+          "a_rank_rematerialized": 11,
+          "a_rank": 11,
+          "a_score": 0.023597626752966557,
+          "ce_score": 5.62330436706543,
+          "ce_rank": 10,
+          "d_rank": 8,
+          "d_doc_rank": 1,
+          "blend_score": 0.8374271534718287,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            "claude-fable-5",
+            "claude-mythos-5",
+            "thinking"
+          ],
+          "exact_match_guard_triggered": false,
+          "exact_match_guard_note": "SYSTEM-D is score_blend; the EXP-016 clamp/guard is not applied. identifier_overlap is recorded only as a diagnostic.",
+          "would_have_been_clamp_protected": false,
+          "ce_pair_truncated": true,
+          "a_in_top_10_stored": false,
+          "d_in_top_10": true,
+          "excerpt": "## Migrating to Claude Mythos 5 and Claude Fable 5 [Claude Fable 5](https://platform.claude.com/docs/en/about-claude/models/introducing-claude-fable-5-and-claude-mythos-5) is Anthropic's most capable widely released mod…"
+        }
+      ],
+      "d_rank1": {
+        "chunk_id": "chk_7cd945b2f3e213c9d1a706b122c68db1f805cc38",
+        "version_id": "ver_a7bda3595f2c124605c3228464d4ee52",
+        "a_rank": 1,
+        "ce_score": 6.959932327270508,
+        "blend_score": 1.0,
+        "identifier_overlap": true,
+        "excerpt": "#### Features not available on Claude Mythos 5 and Claude Fable 5 1. **Extended thinking and thinking token budgets:** Manual extended thinking (`thinking: {type: \"enabled\", budget_tokens: N}`) is not supported on `clau…"
+      },
+      "gold_ce_pair_truncated": true,
+      "all_required_spans_in_d_top_10": true
+    },
+    {
+      "case_id": "GOLD-B002-07",
+      "movement": "RESCUE",
+      "classification": "OTHER",
+      "why": "Rescue via frozen 0.7/0.3 CE+A blend: gold span had identifier overlap and CE scored it high enough to enter top 10. The regression taxonomy has no rescue label; this is not a semantic misread of a pass. overlap_tokens=['pause_after_compaction']; A→D/CE=[(24, 7, 3.329503059387207)].",
+      "query": "What does the `pause_after_compaction` parameter control?",
+      "a_full_recorded": false,
+      "d_full": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_dbba4dd3b9158e45d326d715e2e7170b90d7bbf6",
+          "version_id": "ver_c60f7418b69b6610bd20e974b92cdd8c",
+          "section_path": [
+            "Parameters"
+          ],
+          "a_rank_stored": 24,
+          "a_doc_rank_stored": 1,
+          "a_rank_rematerialized": 24,
+          "a_rank": 24,
+          "a_score": 0.013888888888888888,
+          "ce_score": 3.329503059387207,
+          "ce_rank": 7,
+          "d_rank": 7,
+          "d_doc_rank": 1,
+          "blend_score": 0.6453119452412627,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            "pause_after_compaction"
+          ],
+          "exact_match_guard_triggered": false,
+          "exact_match_guard_note": "SYSTEM-D is score_blend; the EXP-016 clamp/guard is not applied. identifier_overlap is recorded only as a diagnostic.",
+          "would_have_been_clamp_protected": false,
+          "ce_pair_truncated": false,
+          "a_in_top_10_stored": false,
+          "d_in_top_10": true,
+          "excerpt": "## Parameters | Parameter | Type | Default | Description | | ------------------------ | ------- | ------------------------------------------- | ---------------------------------------------------------------------------…"
+        }
+      ],
+      "d_rank1": {
+        "chunk_id": "chk_ffaa5cf93fbddb329d3de7971ead7eadd5e14b71",
+        "version_id": "ver_c60f7418b69b6610bd20e974b92cdd8c",
+        "a_rank": 1,
+        "ce_score": 6.682114601135254,
+        "blend_score": 1.0,
+        "identifier_overlap": true,
+        "excerpt": "### Pausing after compaction Use `pause_after_compaction` to pause the API after generating the compaction summary. This allows you to add additional content blocks (such as preserving recent messages or specific instru…"
+      },
+      "gold_ce_pair_truncated": false,
+      "all_required_spans_in_d_top_10": true
+    },
+    {
+      "case_id": "HA-44",
+      "movement": "RESCUE",
+      "classification": "OTHER",
+      "why": "Rescue via frozen 0.7/0.3 CE+A blend: gold span had identifier overlap and CE scored it high enough to enter top 10. The regression taxonomy has no rescue label; this is not a semantic misread of a pass. overlap_tokens=['RunConfig.handoff_input_filter', 'input_filter']; A→D/CE=[(14, 3, 3.452221393585205)].",
+      "query": "In the OpenAI Agents SDK for Python, which filter takes precedence when both a handoff's `input_filter` and `RunConfig.handoff_input_filter` are defined?",
+      "a_full_recorded": false,
+      "d_full": true,
+      "spans": [
+        {
+          "span_index": 0,
+          "chunk_id": "chk_ddacc7aafcf9a596a5302fac95ac286957de4c5c",
+          "version_id": "ver_1c77f33b04ffffa285ea7e61c2a89653",
+          "section_path": [
+            "(1)!",
+            "Input filters"
+          ],
+          "a_rank_stored": 14,
+          "a_doc_rank_stored": 1,
+          "a_rank_rematerialized": 14,
+          "a_rank": 14,
+          "a_score": 0.015625,
+          "ce_score": 3.452221393585205,
+          "ce_rank": 1,
+          "d_rank": 3,
+          "d_doc_rank": 1,
+          "blend_score": 0.7827240566037735,
+          "identifier_overlap": true,
+          "overlap_tokens": [
+            "RunConfig.handoff_input_filter",
+            "input_filter"
+          ],
+          "exact_match_guard_triggered": false,
+          "exact_match_guard_note": "SYSTEM-D is score_blend; the EXP-016 clamp/guard is not applied. identifier_overlap is recorded only as a diagnostic.",
+          "would_have_been_clamp_protected": false,
+          "ce_pair_truncated": true,
+          "a_in_top_10_stored": false,
+          "d_in_top_10": true,
+          "excerpt": "## Input filters When a handoff occurs, it's as though the new agent takes over the conversation, and gets to see the entire previous conversation history. If you want to change this, you can set an [`input_filter`][age…"
+        }
+      ],
+      "d_rank1": {
+        "chunk_id": "chk_b086f409b508fed44ab6b740da9af6d76936b77e",
+        "version_id": "ver_1c77f33b04ffffa285ea7e61c2a89653",
+        "a_rank": 1,
+        "ce_score": 1.5755001306533813,
+        "blend_score": 0.8972590087383059,
+        "identifier_overlap": true,
+        "excerpt": "```python from agents import Agent, handoff from agents.extensions import handoff_filters agent = Agent(name=\"FAQ agent\") handoff_obj = handoff( agent=agent, input_filter=handoff_filters.remove_all_tools, # (1)! ) ```"
+      },
+      "gold_ce_pair_truncated": true,
+      "all_required_spans_in_d_top_10": true
+    }
+  ],
+  "regressions": [],
+  "classification_counts": {
+    "OTHER": 3
+  },
+  "named_dev_only_audit": {
+    "HA-22": {
+      "in_validation": false,
+      "in_development": true,
+      "looked_up_in_holdout": false,
+      "status": "development-only; not in validation; not looked up in holdout"
+    },
+    "HA-24": {
+      "in_validation": false,
+      "in_development": true,
+      "looked_up_in_holdout": false,
+      "status": "development-only; not in validation; not looked up in holdout"
+    },
+    "GOLD-B005-11": {
+      "in_validation": false,
+      "in_development": true,
+      "looked_up_in_holdout": false,
+      "status": "development-only; not in validation; not looked up in holdout"
+    }
+  }
+}

@@ -1,0 +1,312 @@
+{
+  "document": "GOLD-001 batch 007 preregistration",
+  "status": "PREREGISTERED — no batch-007 candidate has been generated",
+  "written_at": "2026-08-25T06:50:29Z",
+  "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a",
+  "starting_state": {
+    "read_from": [
+      "experiments/GOLD-001/GOLD-001-eligibility-status.json",
+      "experiments/GOLD-001/GOLD-001-batch-006-closure.json",
+      "experiments/GOLD-001/b006-review-decisions.json",
+      "evals/review/gold_review_batch_006_final.json"
+    ],
+    "human_verified": 90,
+    "holdout_eligible": 90,
+    "human_rejected": 9,
+    "genuine_multi_hop": 1,
+    "candidates": 99,
+    "holdout_frozen": false,
+    "retrieval_was_not_run": true,
+    "project_target": 150,
+    "still_needed": 60,
+    "batch_006": {
+      "target": 28,
+      "exported": 9,
+      "approved": 8,
+      "rejected": 1,
+      "holdout_eligible": 8,
+      "acceptance_rate": 0.8889,
+      "closure_sha256": "7ff5596c755a01fc57cf59b04cafdb77bd86a9f97f49cfdb58ff1782e07f68a2"
+    },
+    "corpus_census": {
+      "facts_mined": 1361,
+      "distinct_evidence_texts": 773,
+      "unspent_distinct_texts": 699,
+      "note": "Distinct evidence texts no closed batch has used. The shortfall in this batch is not a shortage of material — it is a shortage of builders that can turn this material into a question without paraphrasing it."
+    },
+    "unbuildable_at_generation": null,
+    "defects_from_review": [
+      {
+        "id": "E",
+        "defect": "cross-library duplicate facts are invisible to duplicate control",
+        "seen_in": "GOLD-B006-06",
+        "detail": "Duplicate control compares normalised question text, span offsets and span text. Two provider libraries documenting the same operational behaviour share none of those, so the same fact can enter the benchmark twice from two SDKs. GOLD-B005-11 and GOLD-B006-06 both state that a base-URL environment variable overrides the region-derived Bedrock endpoint.",
+        "proposed_fix": "Compare candidates on their (subject, relation, object) triple, normalised, in addition to text and offsets. Batch 006 records that triple on every candidate, so the material for the check now exists. Flag rather than auto-drop: two libraries genuinely differing in behaviour is a real case, and only a reviewer can tell the two apart.",
+        "preregistered_for": "batch 007"
+      },
+      {
+        "id": "F",
+        "defect": "compound single-span facts are labelled by their first verb",
+        "seen_in": "GOLD-B006-01, GOLD-B006-03, GOLD-B006-08",
+        "detail": "The predicate lane picks a frame from the first matching verb and takes the reasoning type from that frame. Three of the nine exported candidates were relabelled by the owner: a requirement read as a configuration interaction, a compatibility statement read as an exact lookup, and a migration note read as a configuration interaction. The evidence was right in every case; the taxonomy was not.",
+        "proposed_fix": "Classify from the whole sentence rather than from the matched verb: a span naming a support status, a version or a migration is a lifecycle case whatever its verb, and `configuration_interaction` should require two settings that bear on each other rather than one requirement with two identifiers in it.",
+        "preregistered_for": "batch 007"
+      },
+      {
+        "id": "G",
+        "defect": "questions inherit the breadth of their frame, not of their evidence",
+        "seen_in": "GOLD-B006-02, GOLD-B006-04, GOLD-B006-05",
+        "detail": "'What does X reject?' and 'What does X default to?' ask for a complete list. The evidence gives one item, usually scoped to named models or surfaces. Three candidates needed rescoping, and in two of them the scope qualifier was not even in the critical strings, so nothing checked it.",
+        "proposed_fix": "When the source sentence carries a model, platform or surface qualifier, the question must carry it too and it must appear in the critical strings. Add a generation gate: a question whose evidence is scoped and whose wording is not, does not export.",
+        "preregistered_for": "batch 007"
+      }
+    ],
+    "acceptance_rates": {
+      "001": 0.8889,
+      "002": 0.9444,
+      "003": 1.0,
+      "004": 0.9333,
+      "005": 0.7895,
+      "006": 0.8889
+    }
+  },
+  "projection": {
+    "confirmed_now": 90,
+    "project_target": 150,
+    "still_needed": 60,
+    "batch_007_target": "35-40",
+    "if_low_target_at_worst_rate": 117,
+    "if_high_target_at_best_rate": 130,
+    "reaches_target_this_batch": false,
+    "note": "A projection, not a plan. It is recorded so nobody has to compute it during review, and it must not influence any individual approval. If controlled paraphrasing yields only 25 strong cases, batch 007 returns 25."
+  },
+  "strategy_change": {
+    "name": "controlled evidence-grounded question paraphrasing",
+    "what_changes": "how a question is authored",
+    "what_does_not_change": [
+      "the evidence, which stays frozen and exact",
+      "the ground truth, which is still read out of the source",
+      "every existing safety gate",
+      "the requirement for independent verification and owner approval"
+    ],
+    "why": "Batch 006 exported 9 against a target of 28. 699 distinct evidence spans are unspent and None mined facts reached no builder. Deterministic templates cannot express the long multi-clause prose that remains, and refusing any paraphrase is what keeps those facts out of the benchmark.",
+    "the_line": "The authoring model may change WORDING. It may not change MEANING. It authors the QUESTION; it never invents the FACT."
+  },
+  "authoring_order": [
+    "frozen source evidence selected",
+    "literal source fact extracted",
+    "subject / relation / object recorded",
+    "atomic claims anchored",
+    "only then the natural question is paraphrased"
+  ],
+  "forbidden_order": "invent question → search for supporting evidence",
+  "required_fields_on_paraphrased_candidates": [
+    "source_fact_literal",
+    "source_subject",
+    "source_relation",
+    "source_object",
+    "generated_question",
+    "generated_answer",
+    "generated_atomic_claims",
+    "paraphrase_used"
+  ],
+  "entailment_self_check": [
+    {
+      "id": "A",
+      "question": "Does the exact evidence support the complete answer?",
+      "fails_when": "any part of the answer is not derivable from the anchored spans"
+    },
+    {
+      "id": "B",
+      "question": "Does every atomic claim map to literal evidence?",
+      "fails_when": "a claim has no span whose text supports it"
+    },
+    {
+      "id": "C",
+      "question": "Did the question introduce any new condition?",
+      "fails_when": "the question adds an 'if', 'when' or 'unless' the source lacks"
+    },
+    {
+      "id": "D",
+      "question": "Did it broaden model/provider/platform scope?",
+      "fails_when": "the source names a model, provider, platform or surface and the question drops or generalises it"
+    },
+    {
+      "id": "E",
+      "question": "Did it reverse the relation?",
+      "fails_when": "the question's subject is the source's object and vice versa, and the relation is not symmetric"
+    },
+    {
+      "id": "F",
+      "question": "Did it introduce a causal claim absent from the source?",
+      "fails_when": "the answer explains why, and the source only says what"
+    },
+    {
+      "id": "G",
+      "question": "Could the answer be verified using only the exact evidence?",
+      "fails_when": "verifying it needs the surrounding document, a heading, or outside knowledge"
+    }
+  ],
+  "on_any_failure": "DROP",
+  "answer_conservatism": {
+    "rule": "The question may be naturalised more aggressively than the answer. Prefer answers close to the source wording.",
+    "example_source": "A overrides B",
+    "example_good_answer": "A overrides B",
+    "example_bad_answer": "A overrides B because this improves reliability",
+    "why_bad": "The reason is not in the source. An answer that explains is an answer that asserts something the evidence cannot check."
+  },
+  "batch_007_target": {
+    "range": [
+      35,
+      40
+    ],
+    "floor_is_not_a_quota": "Quality remains the gate. If controlled paraphrasing yields only 25 strong cases, return 25. Do not pad."
+  },
+  "calibration_pilot": {
+    "required_before_scaling": true,
+    "size": 10,
+    "selection": "10 evidence spans that failed batch 006 ONLY because no builder could express them — NO_BUILDER / UNBUILDABLE. Not spans that failed a semantic gate: those failed for reasons paraphrasing does not fix.",
+    "run": "the new controlled paraphraser, then every semantic check",
+    "independent_review_required": true,
+    "success_criteria": {
+      "independently_judged_factually_sound": {
+        "minimum": 8,
+        "of": 10
+      },
+      "unsupported_claims": {
+        "maximum": 0
+      },
+      "relation_direction_reversals": {
+        "maximum": 0
+      },
+      "scope_broadening": {
+        "maximum": 0
+      },
+      "wording_cleanup_needed": {
+        "acceptable": true,
+        "note": "cosmetic repair does not count against the criterion"
+      }
+    },
+    "if_it_fails": "Do not scale the paraphrasing lane. Revise the authoring contract first and re-pilot.",
+    "retrieval": "no retrieval is run on the pilot"
+  },
+  "retained_gates": [
+    {
+      "gate": "bare definition scope",
+      "implemented_in": "rag_v1.gold.scoping",
+      "behaviour": "every span, independently"
+    },
+    {
+      "gate": "critical anaphora",
+      "implemented_in": "rag_v1.gold.anaphora",
+      "behaviour": "blocks; noncritical flags"
+    },
+    {
+      "gate": "subject / relation direction",
+      "implemented_in": "rag_v1.gold.relations",
+      "behaviour": "REVERSED and SUBJECT_MISMATCH both drop"
+    },
+    {
+      "gate": "question form matches evidence form",
+      "implemented_in": "rag_v1.gold.questionform",
+      "behaviour": "negative-as-positive and truncated predicates drop"
+    },
+    {
+      "gate": "duplicate detection",
+      "implemented_in": "scripts/export_batch_007.py",
+      "behaviour": "question text, span offsets, span text — and now the relation triple"
+    },
+    {
+      "gate": "critical strings",
+      "implemented_in": "rag_v1.gold.normalisation",
+      "behaviour": "every one must be literally inside its own span"
+    },
+    {
+      "gate": "evidence hashes",
+      "implemented_in": "scripts/export_batch_007.py",
+      "behaviour": "each span hashes to its own text"
+    },
+    {
+      "gate": "scope self-containment",
+      "implemented_in": "rag_v1.gold.scoping",
+      "behaviour": "section_path is never claim scope"
+    },
+    {
+      "gate": "example-code restriction",
+      "implemented_in": "scripts/export_batch_007.py",
+      "behaviour": "a sample configuration is not a rule"
+    },
+    {
+      "gate": "evidence size",
+      "implemented_in": "scripts/export_batch_007.py",
+      "behaviour": "<500 preferred, 1000 soft cap, 1500 hard cap"
+    },
+    {
+      "gate": "provider / model scope",
+      "implemented_in": "scripts/export_batch_007.py",
+      "behaviour": "a scoped source needs a scoped question"
+    },
+    {
+      "gate": "holdout eligibility",
+      "implemented_in": "rag_v1.gold.eligibility",
+      "behaviour": "deterministic, run after owner approval"
+    }
+  ],
+  "workflow_unchanged": [
+    "frozen evidence",
+    "Claude authoring",
+    "Claude internal semantic self-review",
+    "ChatGPT independent verification",
+    "project-owner approval",
+    "holdout eligibility"
+  ],
+  "who_may_set_human_verified": "Only the project owner. No AI may set human_verified, and controlled paraphrasing does not make Claude authoritative about anything.",
+  "generator_defects_to_fix_first": [
+    {
+      "id": "E",
+      "defect": "cross-library duplicate facts are invisible to duplicate control",
+      "seen_in": "GOLD-B006-06",
+      "detail": "Duplicate control compares normalised question text, span offsets and span text. Two provider libraries documenting the same operational behaviour share none of those, so the same fact can enter the benchmark twice from two SDKs. GOLD-B005-11 and GOLD-B006-06 both state that a base-URL environment variable overrides the region-derived Bedrock endpoint.",
+      "proposed_fix": "Compare candidates on their (subject, relation, object) triple, normalised, in addition to text and offsets. Batch 006 records that triple on every candidate, so the material for the check now exists. Flag rather than auto-drop: two libraries genuinely differing in behaviour is a real case, and only a reviewer can tell the two apart.",
+      "preregistered_for": "batch 007"
+    },
+    {
+      "id": "F",
+      "defect": "compound single-span facts are labelled by their first verb",
+      "seen_in": "GOLD-B006-01, GOLD-B006-03, GOLD-B006-08",
+      "detail": "The predicate lane picks a frame from the first matching verb and takes the reasoning type from that frame. Three of the nine exported candidates were relabelled by the owner: a requirement read as a configuration interaction, a compatibility statement read as an exact lookup, and a migration note read as a configuration interaction. The evidence was right in every case; the taxonomy was not.",
+      "proposed_fix": "Classify from the whole sentence rather than from the matched verb: a span naming a support status, a version or a migration is a lifecycle case whatever its verb, and `configuration_interaction` should require two settings that bear on each other rather than one requirement with two identifiers in it.",
+      "preregistered_for": "batch 007"
+    },
+    {
+      "id": "G",
+      "defect": "questions inherit the breadth of their frame, not of their evidence",
+      "seen_in": "GOLD-B006-02, GOLD-B006-04, GOLD-B006-05",
+      "detail": "'What does X reject?' and 'What does X default to?' ask for a complete list. The evidence gives one item, usually scoped to named models or surfaces. Three candidates needed rescoping, and in two of them the scope qualifier was not even in the critical strings, so nothing checked it.",
+      "proposed_fix": "When the source sentence carries a model, platform or surface qualifier, the question must carry it too and it must appear in the critical strings. Add a generation gate: a question whose evidence is scoped and whose wording is not, does not export.",
+      "preregistered_for": "batch 007"
+    }
+  ],
+  "invariants": {
+    "retrieval_was_not_run": true,
+    "systems_executed": [],
+    "holdout_frozen": false,
+    "validation_frozen": false,
+    "closed_batches_immutable": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "corpus_snapshot_unchanged": true
+  },
+  "not_done_in_this_document": [
+    "No batch-007 candidate was generated.",
+    "No pilot was run.",
+    "No paraphraser was implemented.",
+    "No retrieval was run.",
+    "Nothing was frozen."
+  ]
+}

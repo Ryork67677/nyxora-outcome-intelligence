@@ -1,0 +1,178 @@
+{
+  "experiment_id": "EXP-018B",
+  "artifact": "CE-LATENCY-AUDIT",
+  "timestamp_utc": "2026-09-01T04:00:00Z",
+  "timestamp_et": "2026-08-31T23:00:00-04:00",
+  "system": "SYSTEM-E-L10",
+  "goal": "score-preserving CE runtime speedups only; no ranking/model/blend/candidate changes",
+  "current_call_pattern": {
+    "implementation": "experiments/EXP-015/scripts/cross_encoder.py::CrossEncoderReranker",
+    "callers": [
+      "experiments/EXP-015/scripts/run_exp015_development.py",
+      "experiments/EXP-016/scripts/run_exp016_development.py",
+      "experiments/EXP-018/scripts/run_exp018_development.py",
+      "experiments/EXP-018/scripts/run_exp018_v2devset001.py",
+      "experiments/EXP-018B/scripts/run_exp018b.py",
+      "experiments/EVAL-VAL-002/scripts/run_eval_val_002.py",
+      "experiments/EVAL-HOLDOUT-001/scripts/run_eval_holdout_001.py"
+    ],
+    "session_create_per_query": false,
+    "session_create_ms": [
+      345.6,
+      289.7
+    ],
+    "session_lifetime": "once per eval process; reused across all 50 queries",
+    "batch_size": 16,
+    "batch_size_is_1": false,
+    "intra_op_num_threads": 4,
+    "inter_op_num_threads": 1,
+    "cpu_count": 8,
+    "execution_provider": "CPUExecutionProvider",
+    "graph_optimization_level": "ORT_ENABLE_ALL (ORT default; not overridden)",
+    "precision": "fp32",
+    "max_length": 512,
+    "padding": "tokenizer.enable_padding(length=512) every pair",
+    "truncation": "longest_first",
+    "pair_format": "[CLS] query [SEP] passage [SEP]",
+    "score": "raw sequence-classification logit",
+    "tokenization": "encode_batch of (query, passage) pairs from scratch every score_pairs call; query re-tokenized per pair",
+    "tensor_prep": "numpy int64 copies of ids/mask/type_ids per batch; no IO binding; no cached encodings",
+    "E_L10_invocation": "Track 1 scores A-pool (~94.1) then new union extras in a second score_pairs; Track 2 L=10 CE latency is estimated from those two timings. Default constructor CrossEncoderReranker() unchanged on the E-L10 path."
+  },
+  "stored_E_L10_latency_ms": {
+    "source": "experiments/EXP-018B/EXP-018B-results.json L=10 secondary",
+    "CE_ms_per_query": 5903.9,
+    "total_ms_per_query": 6454.8,
+    "A_global_ms": 358.5,
+    "local_BM25_ms": 192.4,
+    "union_mean": 104.1,
+    "D_CE_ms": 5354.9,
+    "D_pool_mean": 94.1,
+    "CE_share_of_E_L10_total": 0.915
+  },
+  "measured_bottlenecks": {
+    "method": "isolated microbench: 4 synthetic queries, 104 cs_v1_control passages (ORDER BY chunk_id, not eval labels). Did not score V2-DEVSET-001. Did not open holdout.",
+    "unpadded_pair_length": {
+      "n_104_mean": 251.0,
+      "n_104_p50": 181,
+      "n_104_p90": 512,
+      "n_104_frac_ge_512": 0.308,
+      "n_400_mean": 236.9,
+      "n_400_p50": 170,
+      "n_400_frac_ge_512": 0.263
+    },
+    "split_baseline_fixed_b16_one_query_ms": {
+      "tokenize": 131.49,
+      "pack_numpy": 14.43,
+      "infer": 7793.86,
+      "note": "infer dominates; tokenize ~2%; numpy pack negligible. split infer was a busy-machine sample; timed means below are the latency estimates."
+    },
+    "timed_ms_per_query_104_pairs": {
+      "baseline_fixed_b16_t4": 5571.35,
+      "fixed_b1_t4": 5091.69,
+      "fixed_b32_t4": 5464.22,
+      "fixed_b16_t8": 3727.9,
+      "batchpad_unsorted_b16_t4": 5600.25,
+      "batchpad_unsorted_b32_t8": 3764.81,
+      "bucket_batchpad_b16_t8": 1729.0,
+      "bucket_batchpad_b8_t8": 2147.19,
+      "two_call_94_plus_10_fixed_t4": 5780.51,
+      "one_call_104_fixed_t4": 5529.08
+    },
+    "why_unsorted_batch_pad_fails": "26-31% of pairs already occupy 512 tokens. P(a random batch of 16 contains a 512-seq) ~ 1. Unsorted pad=batch therefore still runs width 512. Length-bucketing yields batch widths [33, 85, 164, 309, 512, 512, 512] on the 104-pair set.",
+    "session_reuse": "already correct; creating a session per query would add ~300 ms (5%)",
+    "batch_size_1": "not the current path (batch 16). batch 1 is slightly faster at pad-512 t4 (~480 ms) and bit-identical; dominated by other wins"
+  },
+  "SCORE_PRESERVING": {
+    "verified": true,
+    "scope": "synthetic queries + cs_v1_control passages; not V2-DEVSET-001 (CE logits were not stored in EXP-018B artifacts)",
+    "v2_devset_rescored": false,
+    "exact_logit_identity": true,
+    "max_abs_diff": 0.0,
+    "checks": [
+      "self repeat same session",
+      "batch 1 vs 16 pad-fixed",
+      "batch 32 vs 16 pad-fixed",
+      "threads 8 vs 4 pad-fixed",
+      "unsorted batch-pad vs pad-512 (including short pairs pad-width 143 vs 512)",
+      "length-bucketed batch-pad vs pad-512 on 104 pairs",
+      "two-call 94+10 vs one-call 104",
+      "CrossEncoderReranker() vs CrossEncoderReranker(fast=True) on 32 pairs"
+    ],
+    "rank_identical": true
+  },
+  "proposed_changes": [
+    {
+      "rank": 1,
+      "name": "length-bucketed dynamic padding + 8 intra-op threads",
+      "flag": "CrossEncoderReranker(fast=True)  # or threads=8, pad='batch', bucket_by_length=True",
+      "default_E_L10_changed": false,
+      "score_preserving": true,
+      "microbench_ms": 1729.0,
+      "estimated_E_L10_CE_ms": 1832,
+      "estimated_savings_ms": 4072,
+      "estimated_new_total_ms": 2383,
+      "method": "scale microbench 1729/5571.35 against stored CE 5903.9",
+      "why": "attention/linear cost tracks sequence length; unsorted batches are dragged to 512 by long mates; 8 cores were half-idle at intra_op=4"
+    },
+    {
+      "rank": 2,
+      "name": "intra_op_num_threads 4 -> 8 (pad-fixed, otherwise unchanged)",
+      "flag": "CrossEncoderReranker(threads=8)",
+      "default_E_L10_changed": false,
+      "score_preserving": true,
+      "microbench_ms": 3727.9,
+      "estimated_E_L10_CE_ms": 3951,
+      "estimated_savings_ms": 1953,
+      "note": "subset of #1; use if bucket-pad is declined. Bit-identical on this CPU/ORT."
+    },
+    {
+      "rank": 3,
+      "name": "single union score_pairs instead of A-pool then extras",
+      "flag": "call-site only; not a CrossEncoderReranker flag",
+      "default_E_L10_changed": false,
+      "score_preserving": true,
+      "microbench_savings_ms": 251,
+      "estimated_savings_ms": 250,
+      "note": "small alone; required to length-bucket the full L=10 union (104) rather than two groups 94+10"
+    }
+  ],
+  "implemented_behind_flag": {
+    "file": "experiments/EXP-015/scripts/cross_encoder.py",
+    "defaults_unchanged": true,
+    "E_L10_path_still": "CrossEncoderReranker()",
+    "opt_in": "CrossEncoderReranker(fast=True)",
+    "kwargs": [
+      "threads",
+      "pad",
+      "pad_to_multiple_of",
+      "bucket_by_length",
+      "fast"
+    ]
+  },
+  "do_nots": [
+    "no model replacement or distillation",
+    "no int8/fp16/quantized ONNX",
+    "no blend weight change",
+    "no ranking / candidate-set / L / W / parent_n change",
+    "no EXP-017",
+    "no holdout",
+    "do not overwrite SYSTEM-E-WITHIN-DOC.json or D freeze files",
+    "do not enable fast=True on the default E-L10 scoring path without a stored-logit gate on V2-DEVSET-001 if those logits are later persisted"
+  ],
+  "holdout_access_log": {
+    "bytes": 235,
+    "sha256": "45b83a77f6f332174d641956f076dd0c0cae44fe48f4f2892ac7030a4c0143b3",
+    "unchanged": true
+  },
+  "freeze_files_untouched": {
+    "SYSTEM-E-WITHIN-DOC.json_sha256": "e228616beee1bcb13855c2eadee9fc20ec1fae3e54c77b28587114568c64d087",
+    "SYSTEM-D-GUARD.json_sha256": "e9267f5581404e9885598979204c08762cd33f362703e526b20f4d3430c35a82",
+    "SYSTEM-D-RELEASE.json_sha256": "1f097b4b8dd353ecb4812228477338c05769faaede37d52ec6a07f27de729e40"
+  },
+  "microbench_artifacts": [
+    "experiments/EXP-018B/ce-latency-microbench.json",
+    "experiments/EXP-018B/ce-latency-microbench-followup.json",
+    "experiments/EXP-018B/scripts/ce_latency_microbench.py"
+  ]
+}

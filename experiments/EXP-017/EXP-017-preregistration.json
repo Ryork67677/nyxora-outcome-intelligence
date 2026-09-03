@@ -1,0 +1,323 @@
+{
+  "experiment_id": "EXP-017",
+  "title": "SEARCH-PROJECTION / EVIDENCE-PRESERVING RETRIEVAL",
+  "status": "AUTHORIZED_SINGLE_DEVELOPMENT_RUN",
+  "phase": "preregistration_amended_before_build_or_score",
+  "chatgpt_authorization": "EXP-017 APPROVED WITH FINAL PREREGISTRATION AMENDMENT",
+  "chatgpt_approved_et": "2026-08-31T23:58:00-04:00",
+  "preregistered_at_utc": "2026-09-01T04:02:32Z",
+  "preregistered_at_et": "2026-09-01T00:02:32-04:00",
+  "amends": "experiments/EXP-017/EXP-017-preregistration-draft.md",
+  "corpus_audit": "experiments/EXP-017/corpus-structure-audit.json",
+  "draft_not_rewritten": true,
+  "scored_before_prereg_hash": false,
+  "tuned_after_seeing_scores": false,
+  "hypothesis": {
+    "statement": "A separate additive search representation can improve candidate evidence coverage beyond SYSTEM-E-L10 while cs_v1_control remains the citation/evidence representation.",
+    "search_unit_neq_citation_unit": true,
+    "cs_v1_control_immutable": true,
+    "may_add_candidates": true,
+    "must_never_remove_el10_candidate": true,
+    "no_new_neural_model": true,
+    "no_ce_blend_change": true,
+    "no_rerank_optimization": true,
+    "pool_but_not_top10_is_exp019_headroom": true
+  },
+  "dataset": {
+    "name": "V2-DEVSET-001",
+    "n": 50,
+    "split": "evals/splits/v2-devset-001/development.json",
+    "gold": "evals/gold/v2-devset-001.jsonl",
+    "freeze": "experiments/RAG-V2/V2-DEVSET-001/V2-DEVSET-001-FREEZE.json",
+    "gold_sha256": "cb687f3cc88b38d4beed7ad4bc829296a30518aaaf45cce0677ec568b1bf77e5",
+    "split_sha256": "6b0c49c9040c215fde6134697c35a1f28458ba7d72ef012c0840feb7f9c3eb17",
+    "freeze_sha256": "97ea6befbb4fd845f53da2aef20ba84cedaaf69c0f09e3ad90833b813fee2ad9",
+    "holdout_loaded": false,
+    "holdout_json_opened": false,
+    "validation_loaded": false,
+    "gold150_v1_development_loaded": false
+  },
+  "baseline": {
+    "name": "SYSTEM-E-L10-WITHIN-DOC",
+    "status": "DEVELOPMENT_CANDIDATE",
+    "config_hash": "bae1c05b5c47c179dc5cd7972a14bd23d102a4d513b674667eb469e17cd85e89",
+    "observed_development_only": {
+      "candidate_gold_span_recall_at_100": "44/50",
+      "strict_recall_at_10": "40/50",
+      "span_recall_at_10": 0.8,
+      "mrr": 0.5956,
+      "document_recall": 0.92,
+      "mean_union": 104.1,
+      "total_latency_ms": 6454.8,
+      "n": 50,
+      "label": "DEVELOPMENT_ONLY",
+      "not_independently_validated": true
+    }
+  },
+  "hash_labeling": {
+    "note": "Keep config hashes separate from artifact byte SHA256 values. Do not interchange.",
+    "SYSTEM_E_WITHIN_DOC_config_hash": "7f3a1caa0350cc7e0fda0d9f2d7efb23fd08d7f79bc94f140a29f4247774adbe",
+    "SYSTEM_E_WITHIN_DOC_file_sha256": "e228616beee1bcb13855c2eadee9fc20ec1fae3e54c77b28587114568c64d087",
+    "SYSTEM_E_L10_WITHIN_DOC_development_config_hash": "bae1c05b5c47c179dc5cd7972a14bd23d102a4d513b674667eb469e17cd85e89",
+    "SYSTEM_A_config_hash": "9afcb5b7c58ebacff0b4c3711dd9618a2e727f4195dd1787a5da81e478ee0b38",
+    "SYSTEM_D_config_hash": "d77b54ba3be0197d6bc1363883aefb0b3399117ee8c65800a38f8196d236ca3a",
+    "do_not_overwrite_existing_system_artifacts": true
+  },
+  "frozen_identities": {
+    "snapshot": "snap_689e336380a054d8039dc35b2c09cd0a",
+    "chunk_set": "cs_v1_control",
+    "chunks": 14209,
+    "minilm_model_id": "emb_e7d4183fd6eb878ae2fdf080efb6861e",
+    "minilm_fingerprint": "bd95feaeacf98559",
+    "minilm_max_seq": 512,
+    "ce_sha256": "5d3e70fd0c9ff14b9b5169a51e957b7a9c74897afd0a35ce4bd318150c1d4d4a",
+    "ce_name": "cross-encoder/ms-marco-MiniLM-L6-v2",
+    "ce_revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a",
+    "ce_constructor": "CrossEncoderReranker() DEFAULTS (not fast=True)",
+    "blend": [
+      0.7,
+      0.3
+    ],
+    "rrf_k": 60,
+    "pool_per_retriever": 50,
+    "A_pool": 100,
+    "top_k": 10,
+    "W": 20,
+    "L": 10,
+    "parent_n": 10,
+    "track1": "experiments/EXP-018B/scripts/local_bm25_batched.py SCORE_PRESERVING batched local BM25"
+  },
+  "chatgpt_amendments": {
+    "1_primary_decision_rule": {
+      "replaced_wording": "candidate Recall@100 >=45/50",
+      "required_wording": "candidate gold-span recall MUST BE STRICTLY GREATER THAN the frozen SYSTEM-E-L10 baseline of 44/50",
+      "n50_smallest_qualifying": "45/50",
+      "not_an_independent_benchmark_target": true,
+      "development_stage_requirement_that_primary_metric_actually_improve": true,
+      "not_a_named_miss_gate": true
+    },
+    "2_no_third_rrf_list": {
+      "projection_lane": "CANDIDATE-GENERATION only",
+      "do_not_introduce_projection_as_third_merge_rrf_list": true,
+      "el10_a_local_merge_rrf_identities_scores_ranks_unchanged_before_ce": true,
+      "projection_fused_score_used_only_to": [
+        "rank projection hits",
+        "map them to canonical chunk_ids",
+        "deduplicate",
+        "order previously absent canonical candidates",
+        "choose the additive P=20 extras"
+      ],
+      "must_not_alter_el10_retrieval_scores": true
+    },
+    "3_projection_only_a_channel": {
+      "do_not_use_minmax_degenerate_0_5_on_A_for_projection_only": true,
+      "projection_only_a_channel_normalized_score": 0.0,
+      "existing_el10_candidates_retain_normalized_retrieval_channel_values_exactly": true,
+      "do_not_recompute_or_renormalize_el10_retrieval_channel_because_extras_appended": true,
+      "frozen_ce_scores_entire_union_pool": true,
+      "then_apply_frozen_0_7_ce_0_3_retrieval_blend": true,
+      "ce_minmax_may_be_over_the_union": true,
+      "do_not_renormalize_A": true,
+      "gold_in_pool_below_top10_is_exp019_headroom": true
+    },
+    "4_hash_labeling": {
+      "keep_config_hash_distinct_from_file_sha256": true,
+      "do_not_overwrite_existing_system_artifact": true
+    }
+  },
+  "decision_rule": {
+    "MECHANISM_SUPPORTED_iff": [
+      "candidate gold-span recall > 44/50 (strictly greater than frozen SYSTEM-E-L10 baseline; at n=50 smallest observable qualifying result is 45/50)",
+      "zero strict Recall@10 regressions vs SYSTEM-E-L10",
+      "zero rank-1 destructions vs SYSTEM-E-L10"
+    ],
+    "otherwise": "MECHANISM_NOT_SUPPORTED",
+    "development_stage_not_independent_validation": true,
+    "not_a_named_miss_gate": true,
+    "do_not_require_strict_R10_to_improve": true,
+    "do_not_mint_new_system_identity": true,
+    "do_not_retune_window_stride_P_after_scores": true,
+    "RELEASE": "NOT_FROZEN",
+    "VALIDATION": "NOT_RUN",
+    "HOLDOUT": "UNTOUCHED"
+  },
+  "projection_construction": {
+    "projection_set_id": "ps_v2_ovl_win448_s224",
+    "type": "overlapping canonical-coverage windows (other / not a rechunk)",
+    "tokenizer": "sentence-transformers/all-MiniLM-L6-v2",
+    "tokenizer_fingerprint": "bd95feaeacf98559",
+    "add_special_tokens": false,
+    "do_not_trust_tokenizer_json_max_128": true,
+    "truncation_disabled_while_measuring_offsets": true,
+    "window_tokens": 448,
+    "stride_tokens": 224,
+    "overlap_fraction": 0.5,
+    "right_align_last_window": true,
+    "exact_source_substrings": true,
+    "no_heading_prefix": true,
+    "text_rule": "normalized_text[char_start:char_end]",
+    "envelope": "min(char_start):max(char_end) over ordinal-sorted control chunks of the version; do not group by section_path",
+    "covering_chunk_ids": "control chunks of same version_id whose [char_start,char_end) overlaps projection span by >=1 character, ordinal ASC",
+    "projection_id": "stable_id('prj', version_id, char_start, char_end, content_hash(text), length=40)",
+    "drop_duplicate_version_char_span": true,
+    "skip_if_character_identical_to_exactly_one_covering_canonical_chunk_with_equal_source_span": true,
+    "prefix": "prj_"
+  },
+  "projection_retrieval": {
+    "lane": "CANDIDATE-GENERATION only",
+    "bm25": {
+      "k1": 1.2,
+      "b": 0.75,
+      "tsconfig": "simple",
+      "idf": "full projection-set IDF",
+      "tie_break": "round(score numeric 9) DESC, projection_id ASC",
+      "pool": 50
+    },
+    "dense": {
+      "model_id": "emb_e7d4183fd6eb878ae2fdf080efb6861e",
+      "fingerprint": "bd95feaeacf98559",
+      "max_seq": 512,
+      "metric": "exact cosine",
+      "ann": false,
+      "pool": 50,
+      "tie_break": "cosine DESC, projection_id ASC"
+    },
+    "fusion": {
+      "method": "labelled RRF over projection_bm25 + projection_dense only",
+      "k": 60,
+      "pool_per_retriever": 50,
+      "not_a_third_list_in_el10_merge_rrf": true
+    },
+    "query": "raw user question, verbatim",
+    "query_rewrite": false,
+    "P": 20,
+    "P_means": "additive canonical extras after excluding C_E, ordered by best projection fused DESC then chunk_id ASC"
+  },
+  "merge_with_el10": {
+    "reuse": "EXP-018B Track-1 batched local BM25 + L=10 cap",
+    "C_E": "A-100 UNION L=10 extras, two-list merge-RRF, batched IDF; do not change that merge-RRF",
+    "C_new": "unique covering chunk_ids not in C_E",
+    "C_P": "first 20 of C_new",
+    "C": "C_E UNION C_P",
+    "never_drop_C_E": true,
+    "anti_drop_el10": true,
+    "no_third_merge_rrf_list": true,
+    "ce_on_entire_C": true,
+    "a_norm_C_E": "keep E-L10 a_norm exactly as computed on the E-L10 pool",
+    "a_norm_C_P_only": 0.0,
+    "ce_norm": "minmax over C",
+    "blend": [
+      0.7,
+      0.3
+    ],
+    "tie_break": "blend DESC, E-L10 merge-RRF rank (C_P-only after those with RRF ranks), chunk_id ASC",
+    "do_not_recompute_renormalize_el10_A_because_extras_appended": true
+  },
+  "storage": {
+    "new_tables_only": [
+      "search_projection_set",
+      "search_projection",
+      "search_projection_embedding"
+    ],
+    "never_write_cs_v1_control_chunk_rows": true,
+    "projections_not_citeable_as_chunk_id": true
+  },
+  "integrity_fail_closed": {
+    "if_any_fail": "STOP. Write mismatch report. Do not score.",
+    "checks": [
+      {
+        "id": 1,
+        "check": "count(*) chunk cs_v1_control = 14209"
+      },
+      {
+        "id": 2,
+        "check": "chunk_id_agg_sha256 = 394a76b1569f0b46d4151442d5dba0fdf615beb2fc75355df743e0ea0979d93e"
+      },
+      {
+        "id": 3,
+        "check": "span identity sha256 of chunk_id:content_hash:char_start:char_end ordered by chunk_id = 44563cbb5abb4f9a6917b2398dca7b55df60d7359d368b9873b675c78937873b"
+      },
+      {
+        "id": 4,
+        "check": "search_text IS NULL and context_header IS NULL for all 14209 control rows"
+      },
+      {
+        "id": 5,
+        "check": "MiniLM chunk_embedding rows for control = 14209, fingerprint min=max=bd95feaeacf98559"
+      },
+      {
+        "id": 6,
+        "check": "file bytes unchanged: SYSTEM-E-WITHIN-DOC.json e228616beee1bcb13855c2eadee9fc20ec1fae3e54c77b28587114568c64d087; SYSTEM-D-GUARD.json e9267f5581404e9885598979204c08762cd33f362703e526b20f4d3430c35a82; SYSTEM-D-RELEASE.json 1f097b4b8dd353ecb4812228477338c05769faaede37d52ec6a07f27de729e40; holdout-access.log.jsonl 235 bytes 45b83a77f6f332174d641956f076dd0c0cae44fe48f4f2892ac7030a4c0143b3"
+      },
+      {
+        "id": 7,
+        "check": "no search_projection.covering_chunk_ids member that is not a cs_v1_control chunk_id"
+      },
+      {
+        "id": 8,
+        "check": "for every projection: text = document_version.normalized_text[char_start:char_end] and content_hash matches"
+      },
+      {
+        "id": 9,
+        "check": "projection ids use prefix prj_; they never collide with chk_"
+      },
+      {
+        "id": 10,
+        "check": "holdout.json not opened; gold150-v1 development/validation not loaded"
+      }
+    ]
+  },
+  "metrics": {
+    "PRIMARY": [
+      "candidate gold-span recall /50 vs E-L10 44/50"
+    ],
+    "SECONDARY": [
+      "strict Recall@10",
+      "span Recall@10",
+      "MRR",
+      "document recall",
+      "strict rescues vs E-L10",
+      "strict regressions vs E-L10",
+      "rank-1 destructions",
+      "mean projection additions",
+      "mean final candidate pool",
+      "projection lane latency",
+      "CE latency",
+      "total latency"
+    ],
+    "DIAGNOSTICS": [
+      "number of projection hits",
+      "number mapping to multiple canonical chunks",
+      "number of previously absent canonical chunks introduced",
+      "gold candidates entering the pool but remaining below final top-10",
+      "projection cardinality and storage",
+      "integrity hashes"
+    ]
+  },
+  "do_nots": [
+    "do not retune window, stride, P, retrieval parameters, or decision rule after scores",
+    "do not open gold150-v1/holdout.json",
+    "do not load validation",
+    "do not load gold150-v1 development",
+    "do not start EXP-019",
+    "do not freeze a release system",
+    "do not overwrite SYSTEM-E-WITHIN-DOC.json",
+    "do not overwrite SYSTEM-E-L10-WITHIN-DOC.json",
+    "do not overwrite SYSTEM-D-GUARD.json",
+    "do not overwrite SYSTEM-D-RELEASE.json",
+    "do not overwrite cs_v1_control rows",
+    "do not add a third merge-RRF list",
+    "do not use minmax_degenerate=0.5 on projection-only A channel",
+    "do not recompute/renormalize E-L10 A-channel values because extras were appended",
+    "do not interchange config_hash and file SHA256",
+    "no additional window sizes",
+    "no additional strides",
+    "no additional P values",
+    "no query rewrite",
+    "no parameter tuning",
+    "CrossEncoderReranker() defaults only (not fast=True)",
+    "do not post to ChatGPT from this run"
+  ],
+  "single_eval": true,
+  "n_evals": 1
+}

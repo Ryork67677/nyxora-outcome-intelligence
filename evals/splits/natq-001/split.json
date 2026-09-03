@@ -1,0 +1,663 @@
+{
+  "label": "FROZEN",
+  "NOT_FROZEN": false,
+  "frozen": true,
+  "secrecy_boundary": true,
+  "n_validation": 40,
+  "n_holdout": 60,
+  "rule": "FROZEN. Cluster near-duplicate intents so a cluster does not straddle val/holdout. Membership is frozen and must not change because of system performance. validation=40 holdout=60. Separate from gold150-v1.",
+  "seed": null,
+  "cluster_id_rule": "cluster-{NNN} where NNN is the zero-padded minimum candidate number in the cluster",
+  "assignment": "greedy after sort(cluster_id, then member candidate_id): fill validation=40 then holdout=60; a cluster never straddles",
+  "validation_ids": [
+    "NATQ-C-001",
+    "NATQ-C-201",
+    "NATQ-C-002",
+    "NATQ-C-004",
+    "NATQ-C-217",
+    "NATQ-C-005",
+    "NATQ-C-006",
+    "NATQ-C-008",
+    "NATQ-C-009",
+    "NATQ-C-203",
+    "NATQ-C-010",
+    "NATQ-C-134",
+    "NATQ-C-011",
+    "NATQ-C-012",
+    "NATQ-C-013",
+    "NATQ-C-014",
+    "NATQ-C-015",
+    "NATQ-C-016",
+    "NATQ-C-179",
+    "NATQ-C-017",
+    "NATQ-C-023",
+    "NATQ-C-155",
+    "NATQ-C-019",
+    "NATQ-C-071",
+    "NATQ-C-021",
+    "NATQ-C-044",
+    "NATQ-C-147",
+    "NATQ-C-022",
+    "NATQ-C-160",
+    "NATQ-C-161",
+    "NATQ-C-025",
+    "NATQ-C-026",
+    "NATQ-C-199",
+    "NATQ-C-027",
+    "NATQ-C-170",
+    "NATQ-C-029",
+    "NATQ-C-191",
+    "NATQ-C-030",
+    "NATQ-C-032",
+    "NATQ-C-033"
+  ],
+  "holdout_ids": [
+    "NATQ-C-043",
+    "NATQ-C-218",
+    "NATQ-C-047",
+    "NATQ-C-053",
+    "NATQ-C-061",
+    "NATQ-C-163",
+    "NATQ-C-186",
+    "NATQ-C-200",
+    "NATQ-C-056",
+    "NATQ-C-151",
+    "NATQ-C-152",
+    "NATQ-C-057",
+    "NATQ-C-058",
+    "NATQ-C-143",
+    "NATQ-C-060",
+    "NATQ-C-065",
+    "NATQ-C-069",
+    "NATQ-C-080",
+    "NATQ-C-083",
+    "NATQ-C-088",
+    "NATQ-C-087",
+    "NATQ-C-090",
+    "NATQ-C-092",
+    "NATQ-C-100",
+    "NATQ-C-162",
+    "NATQ-C-182",
+    "NATQ-C-187",
+    "NATQ-C-105",
+    "NATQ-C-106",
+    "NATQ-C-112",
+    "NATQ-C-119",
+    "NATQ-C-120",
+    "NATQ-C-121",
+    "NATQ-C-123",
+    "NATQ-C-207",
+    "NATQ-C-212",
+    "NATQ-C-124",
+    "NATQ-C-159",
+    "NATQ-C-188",
+    "NATQ-C-127",
+    "NATQ-C-131",
+    "NATQ-C-132",
+    "NATQ-C-153",
+    "NATQ-C-148",
+    "NATQ-C-150",
+    "NATQ-C-177",
+    "NATQ-C-189",
+    "NATQ-C-154",
+    "NATQ-C-164",
+    "NATQ-C-165",
+    "NATQ-C-166",
+    "NATQ-C-167",
+    "NATQ-C-172",
+    "NATQ-C-176",
+    "NATQ-C-193",
+    "NATQ-C-205",
+    "NATQ-C-209",
+    "NATQ-C-219",
+    "NATQ-C-225",
+    "NATQ-C-227"
+  ],
+  "clusters": [
+    {
+      "cluster_id": "cluster-001",
+      "member_ids": [
+        "NATQ-C-001",
+        "NATQ-C-201"
+      ],
+      "n": 2,
+      "proposed_split": "validation"
+    },
+    {
+      "cluster_id": "cluster-002",
+      "member_ids": [
+        "NATQ-C-002"
+      ],
+      "n": 1,
+      "proposed_split": "validation"
+    },
+    {
+      "cluster_id": "cluster-004",
+      "member_ids": [
+        "NATQ-C-004",
+        "NATQ-C-217"
+      ],
+      "n": 2,
+      "proposed_split": "validation"
+    },
+    {
+      "cluster_id": "cluster-005",
+      "member_ids": [
+        "NATQ-C-005"
+      ],
+      "n": 1,
+      "proposed_split": "validation"
+    },
+    {
+      "cluster_id": "cluster-006",
+      "member_ids": [
+        "NATQ-C-006"
+      ],
+      "n": 1,
+      "proposed_split": "validation"
+    },
+    {
+      "cluster_id": "cluster-008",
+      "member_ids": [
+        "NATQ-C-008"
+      ],
+      "n": 1,
+      "proposed_split": "validation"
+    },
+    {
+      "cluster_id": "cluster-009",
+      "member_ids": [
+        "NATQ-C-009",
+        "NATQ-C-203"
+      ],
+      "n": 2,
+      "proposed_split": "validation"
+    },
+    {
+      "cluster_id": "cluster-010",
+      "member_ids": [
+        "NATQ-C-010",
+        "NATQ-C-134"
+      ],
+      "n": 2,
+      "proposed_split": "validation"
+    },
+    {
+      "cluster_id": "cluster-011",
+      "member_ids": [
+        "NATQ-C-011"
+      ],
+      "n": 1,
+      "proposed_split": "validation"
+    },
+    {
+      "cluster_id": "cluster-012",
+      "member_ids": [
+        "NATQ-C-012"
+      ],
+      "n": 1,
+      "proposed_split": "validation"
+    },
+    {
+      "cluster_id": "cluster-013",
+      "member_ids": [
+        "NATQ-C-013"
+      ],
+      "n": 1,
+      "proposed_split": "validation"
+    },
+    {
+      "cluster_id": "cluster-014",
+      "member_ids": [
+        "NATQ-C-014"
+      ],
+      "n": 1,
+      "proposed_split": "validation"
+    },
+    {
+      "cluster_id": "cluster-015",
+      "member_ids": [
+        "NATQ-C-015"
+      ],
+      "n": 1,
+      "proposed_split": "validation"
+    },
+    {
+      "cluster_id": "cluster-016",
+      "member_ids": [
+        "NATQ-C-016",
+        "NATQ-C-179"
+      ],
+      "n": 2,
+      "proposed_split": "validation"
+    },
+    {
+      "cluster_id": "cluster-017",
+      "member_ids": [
+        "NATQ-C-017",
+        "NATQ-C-023",
+        "NATQ-C-155"
+      ],
+      "n": 3,
+      "proposed_split": "validation"
+    },
+    {
+      "cluster_id": "cluster-019",
+      "member_ids": [
+        "NATQ-C-019",
+        "NATQ-C-071"
+      ],
+      "n": 2,
+      "proposed_split": "validation"
+    },
+    {
+      "cluster_id": "cluster-021",
+      "member_ids": [
+        "NATQ-C-021",
+        "NATQ-C-044",
+        "NATQ-C-147"
+      ],
+      "n": 3,
+      "proposed_split": "validation"
+    },
+    {
+      "cluster_id": "cluster-022",
+      "member_ids": [
+        "NATQ-C-022",
+        "NATQ-C-160",
+        "NATQ-C-161"
+      ],
+      "n": 3,
+      "proposed_split": "validation"
+    },
+    {
+      "cluster_id": "cluster-025",
+      "member_ids": [
+        "NATQ-C-025"
+      ],
+      "n": 1,
+      "proposed_split": "validation"
+    },
+    {
+      "cluster_id": "cluster-026",
+      "member_ids": [
+        "NATQ-C-026",
+        "NATQ-C-199"
+      ],
+      "n": 2,
+      "proposed_split": "validation"
+    },
+    {
+      "cluster_id": "cluster-027",
+      "member_ids": [
+        "NATQ-C-027",
+        "NATQ-C-170"
+      ],
+      "n": 2,
+      "proposed_split": "validation"
+    },
+    {
+      "cluster_id": "cluster-029",
+      "member_ids": [
+        "NATQ-C-029",
+        "NATQ-C-191"
+      ],
+      "n": 2,
+      "proposed_split": "validation"
+    },
+    {
+      "cluster_id": "cluster-030",
+      "member_ids": [
+        "NATQ-C-030"
+      ],
+      "n": 1,
+      "proposed_split": "validation"
+    },
+    {
+      "cluster_id": "cluster-032",
+      "member_ids": [
+        "NATQ-C-032",
+        "NATQ-C-033"
+      ],
+      "n": 2,
+      "proposed_split": "validation"
+    },
+    {
+      "cluster_id": "cluster-043",
+      "member_ids": [
+        "NATQ-C-043",
+        "NATQ-C-218"
+      ],
+      "n": 2,
+      "proposed_split": "holdout"
+    },
+    {
+      "cluster_id": "cluster-047",
+      "member_ids": [
+        "NATQ-C-047"
+      ],
+      "n": 1,
+      "proposed_split": "holdout"
+    },
+    {
+      "cluster_id": "cluster-053",
+      "member_ids": [
+        "NATQ-C-053",
+        "NATQ-C-061",
+        "NATQ-C-163",
+        "NATQ-C-186",
+        "NATQ-C-200"
+      ],
+      "n": 5,
+      "proposed_split": "holdout"
+    },
+    {
+      "cluster_id": "cluster-056",
+      "member_ids": [
+        "NATQ-C-056",
+        "NATQ-C-151",
+        "NATQ-C-152"
+      ],
+      "n": 3,
+      "proposed_split": "holdout"
+    },
+    {
+      "cluster_id": "cluster-057",
+      "member_ids": [
+        "NATQ-C-057"
+      ],
+      "n": 1,
+      "proposed_split": "holdout"
+    },
+    {
+      "cluster_id": "cluster-058",
+      "member_ids": [
+        "NATQ-C-058",
+        "NATQ-C-143"
+      ],
+      "n": 2,
+      "proposed_split": "holdout"
+    },
+    {
+      "cluster_id": "cluster-060",
+      "member_ids": [
+        "NATQ-C-060"
+      ],
+      "n": 1,
+      "proposed_split": "holdout"
+    },
+    {
+      "cluster_id": "cluster-065",
+      "member_ids": [
+        "NATQ-C-065",
+        "NATQ-C-069"
+      ],
+      "n": 2,
+      "proposed_split": "holdout"
+    },
+    {
+      "cluster_id": "cluster-080",
+      "member_ids": [
+        "NATQ-C-080",
+        "NATQ-C-083",
+        "NATQ-C-088"
+      ],
+      "n": 3,
+      "proposed_split": "holdout"
+    },
+    {
+      "cluster_id": "cluster-087",
+      "member_ids": [
+        "NATQ-C-087"
+      ],
+      "n": 1,
+      "proposed_split": "holdout"
+    },
+    {
+      "cluster_id": "cluster-090",
+      "member_ids": [
+        "NATQ-C-090"
+      ],
+      "n": 1,
+      "proposed_split": "holdout"
+    },
+    {
+      "cluster_id": "cluster-092",
+      "member_ids": [
+        "NATQ-C-092"
+      ],
+      "n": 1,
+      "proposed_split": "holdout"
+    },
+    {
+      "cluster_id": "cluster-100",
+      "member_ids": [
+        "NATQ-C-100",
+        "NATQ-C-162",
+        "NATQ-C-182",
+        "NATQ-C-187"
+      ],
+      "n": 4,
+      "proposed_split": "holdout"
+    },
+    {
+      "cluster_id": "cluster-105",
+      "member_ids": [
+        "NATQ-C-105"
+      ],
+      "n": 1,
+      "proposed_split": "holdout"
+    },
+    {
+      "cluster_id": "cluster-106",
+      "member_ids": [
+        "NATQ-C-106"
+      ],
+      "n": 1,
+      "proposed_split": "holdout"
+    },
+    {
+      "cluster_id": "cluster-112",
+      "member_ids": [
+        "NATQ-C-112"
+      ],
+      "n": 1,
+      "proposed_split": "holdout"
+    },
+    {
+      "cluster_id": "cluster-119",
+      "member_ids": [
+        "NATQ-C-119"
+      ],
+      "n": 1,
+      "proposed_split": "holdout"
+    },
+    {
+      "cluster_id": "cluster-120",
+      "member_ids": [
+        "NATQ-C-120"
+      ],
+      "n": 1,
+      "proposed_split": "holdout"
+    },
+    {
+      "cluster_id": "cluster-121",
+      "member_ids": [
+        "NATQ-C-121"
+      ],
+      "n": 1,
+      "proposed_split": "holdout"
+    },
+    {
+      "cluster_id": "cluster-123",
+      "member_ids": [
+        "NATQ-C-123",
+        "NATQ-C-207",
+        "NATQ-C-212"
+      ],
+      "n": 3,
+      "proposed_split": "holdout"
+    },
+    {
+      "cluster_id": "cluster-124",
+      "member_ids": [
+        "NATQ-C-124",
+        "NATQ-C-159",
+        "NATQ-C-188"
+      ],
+      "n": 3,
+      "proposed_split": "holdout"
+    },
+    {
+      "cluster_id": "cluster-127",
+      "member_ids": [
+        "NATQ-C-127"
+      ],
+      "n": 1,
+      "proposed_split": "holdout"
+    },
+    {
+      "cluster_id": "cluster-131",
+      "member_ids": [
+        "NATQ-C-131"
+      ],
+      "n": 1,
+      "proposed_split": "holdout"
+    },
+    {
+      "cluster_id": "cluster-132",
+      "member_ids": [
+        "NATQ-C-132",
+        "NATQ-C-153"
+      ],
+      "n": 2,
+      "proposed_split": "holdout"
+    },
+    {
+      "cluster_id": "cluster-148",
+      "member_ids": [
+        "NATQ-C-148"
+      ],
+      "n": 1,
+      "proposed_split": "holdout"
+    },
+    {
+      "cluster_id": "cluster-150",
+      "member_ids": [
+        "NATQ-C-150",
+        "NATQ-C-177",
+        "NATQ-C-189"
+      ],
+      "n": 3,
+      "proposed_split": "holdout"
+    },
+    {
+      "cluster_id": "cluster-154",
+      "member_ids": [
+        "NATQ-C-154"
+      ],
+      "n": 1,
+      "proposed_split": "holdout"
+    },
+    {
+      "cluster_id": "cluster-164",
+      "member_ids": [
+        "NATQ-C-164"
+      ],
+      "n": 1,
+      "proposed_split": "holdout"
+    },
+    {
+      "cluster_id": "cluster-165",
+      "member_ids": [
+        "NATQ-C-165"
+      ],
+      "n": 1,
+      "proposed_split": "holdout"
+    },
+    {
+      "cluster_id": "cluster-166",
+      "member_ids": [
+        "NATQ-C-166"
+      ],
+      "n": 1,
+      "proposed_split": "holdout"
+    },
+    {
+      "cluster_id": "cluster-167",
+      "member_ids": [
+        "NATQ-C-167"
+      ],
+      "n": 1,
+      "proposed_split": "holdout"
+    },
+    {
+      "cluster_id": "cluster-172",
+      "member_ids": [
+        "NATQ-C-172"
+      ],
+      "n": 1,
+      "proposed_split": "holdout"
+    },
+    {
+      "cluster_id": "cluster-176",
+      "member_ids": [
+        "NATQ-C-176"
+      ],
+      "n": 1,
+      "proposed_split": "holdout"
+    },
+    {
+      "cluster_id": "cluster-193",
+      "member_ids": [
+        "NATQ-C-193"
+      ],
+      "n": 1,
+      "proposed_split": "holdout"
+    },
+    {
+      "cluster_id": "cluster-205",
+      "member_ids": [
+        "NATQ-C-205"
+      ],
+      "n": 1,
+      "proposed_split": "holdout"
+    },
+    {
+      "cluster_id": "cluster-209",
+      "member_ids": [
+        "NATQ-C-209"
+      ],
+      "n": 1,
+      "proposed_split": "holdout"
+    },
+    {
+      "cluster_id": "cluster-219",
+      "member_ids": [
+        "NATQ-C-219"
+      ],
+      "n": 1,
+      "proposed_split": "holdout"
+    },
+    {
+      "cluster_id": "cluster-225",
+      "member_ids": [
+        "NATQ-C-225"
+      ],
+      "n": 1,
+      "proposed_split": "holdout"
+    },
+    {
+      "cluster_id": "cluster-227",
+      "member_ids": [
+        "NATQ-C-227"
+      ],
+      "n": 1,
+      "proposed_split": "holdout"
+    }
+  ],
+  "snapshot": "snap_689e336380a054d8039dc35b2c09cd0a",
+  "n_candidates": 100,
+  "NATQ_001_FROZEN": true,
+  "frozen_at": "2026-09-03T03:34:20Z"
+}

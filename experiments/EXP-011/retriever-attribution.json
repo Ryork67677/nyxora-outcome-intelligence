@@ -1,0 +1,2328 @@
+{
+  "experiment_id": "EXP-011",
+  "grid": {
+    "bm25(raw)": {
+      "view": "raw",
+      "retriever": "bm25",
+      "macro_span_recall": 0.475,
+      "cases_fully_recalled": 9,
+      "spans_found_at_10": 10,
+      "spans_total": 22,
+      "mrr": 0.2795,
+      "median_rank_when_found": 12,
+      "spans_absent_from_top": {
+        "10": 12,
+        "20": 8,
+        "30": 5,
+        "50": 3,
+        "100": 2,
+        "300": 1
+      },
+      "mean_query_ms": 402.0,
+      "cases": {
+        "AN-001": {
+          "spans": [
+            {
+              "rank": 19,
+              "within": {
+                "10": false,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false
+        },
+        "AN-002": {
+          "spans": [
+            {
+              "rank": 27,
+              "within": {
+                "10": false,
+                "20": false,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false
+        },
+        "AN-003": {
+          "spans": [
+            {
+              "rank": null,
+              "within": {
+                "10": false,
+                "20": false,
+                "30": false,
+                "50": false,
+                "100": false,
+                "300": false
+              }
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false
+        },
+        "AN-004": {
+          "spans": [
+            {
+              "rank": 12,
+              "within": {
+                "10": false,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false
+        },
+        "AN-005": {
+          "spans": [
+            {
+              "rank": 4,
+              "within": {
+                "10": true,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true
+        },
+        "AN-006": {
+          "spans": [
+            {
+              "rank": 29,
+              "within": {
+                "10": false,
+                "20": false,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false
+        },
+        "AN-007": {
+          "spans": [
+            {
+              "rank": 18,
+              "within": {
+                "10": false,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false
+        },
+        "AN-008": {
+          "spans": [
+            {
+              "rank": 12,
+              "within": {
+                "10": false,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false
+        },
+        "AN-009": {
+          "spans": [
+            {
+              "rank": 1,
+              "within": {
+                "10": true,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true
+        },
+        "AN-010": {
+          "spans": [
+            {
+              "rank": 49,
+              "within": {
+                "10": false,
+                "20": false,
+                "30": false,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false
+        },
+        "AN-011": {
+          "spans": [
+            {
+              "rank": 54,
+              "within": {
+                "10": false,
+                "20": false,
+                "30": false,
+                "50": false,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false
+        },
+        "AN-012": {
+          "spans": [
+            {
+              "rank": 47,
+              "within": {
+                "10": false,
+                "20": false,
+                "30": false,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            },
+            {
+              "rank": 117,
+              "within": {
+                "10": false,
+                "20": false,
+                "30": false,
+                "50": false,
+                "100": false,
+                "300": true
+              }
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false
+        },
+        "OA-001": {
+          "spans": [
+            {
+              "rank": 4,
+              "within": {
+                "10": true,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true
+        },
+        "OA-002": {
+          "spans": [
+            {
+              "rank": 2,
+              "within": {
+                "10": true,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true
+        },
+        "OA-003": {
+          "spans": [
+            {
+              "rank": 6,
+              "within": {
+                "10": true,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true
+        },
+        "OA-004": {
+          "spans": [
+            {
+              "rank": 5,
+              "within": {
+                "10": true,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true
+        },
+        "OA-005": {
+          "spans": [
+            {
+              "rank": 3,
+              "within": {
+                "10": true,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true
+        },
+        "OA-006": {
+          "spans": [
+            {
+              "rank": 1,
+              "within": {
+                "10": true,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            },
+            {
+              "rank": 29,
+              "within": {
+                "10": false,
+                "20": false,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 0.5,
+          "fully_recalled": false
+        },
+        "OA-007": {
+          "spans": [
+            {
+              "rank": 1,
+              "within": {
+                "10": true,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true
+        },
+        "OA-008": {
+          "spans": [
+            {
+              "rank": 1,
+              "within": {
+                "10": true,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true
+        }
+      }
+    },
+    "transformer(raw)": {
+      "view": "raw",
+      "retriever": "transformer",
+      "macro_span_recall": 0.575,
+      "cases_fully_recalled": 11,
+      "spans_found_at_10": 13,
+      "spans_total": 22,
+      "mrr": 0.339,
+      "median_rank_when_found": 8,
+      "spans_absent_from_top": {
+        "10": 9,
+        "20": 6,
+        "30": 5,
+        "50": 4,
+        "100": 4,
+        "300": 1
+      },
+      "mean_query_ms": 262.1,
+      "cases": {
+        "AN-001": {
+          "spans": [
+            {
+              "rank": null,
+              "within": {
+                "10": false,
+                "20": false,
+                "30": false,
+                "50": false,
+                "100": false,
+                "300": false
+              }
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false
+        },
+        "AN-002": {
+          "spans": [
+            {
+              "rank": 18,
+              "within": {
+                "10": false,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false
+        },
+        "AN-003": {
+          "spans": [
+            {
+              "rank": 299,
+              "within": {
+                "10": false,
+                "20": false,
+                "30": false,
+                "50": false,
+                "100": false,
+                "300": true
+              }
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false
+        },
+        "AN-004": {
+          "spans": [
+            {
+              "rank": 2,
+              "within": {
+                "10": true,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true
+        },
+        "AN-005": {
+          "spans": [
+            {
+              "rank": 8,
+              "within": {
+                "10": true,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true
+        },
+        "AN-006": {
+          "spans": [
+            {
+              "rank": 185,
+              "within": {
+                "10": false,
+                "20": false,
+                "30": false,
+                "50": false,
+                "100": false,
+                "300": true
+              }
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false
+        },
+        "AN-007": {
+          "spans": [
+            {
+              "rank": 16,
+              "within": {
+                "10": false,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false
+        },
+        "AN-008": {
+          "spans": [
+            {
+              "rank": 1,
+              "within": {
+                "10": true,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true
+        },
+        "AN-009": {
+          "spans": [
+            {
+              "rank": 1,
+              "within": {
+                "10": true,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true
+        },
+        "AN-010": {
+          "spans": [
+            {
+              "rank": 49,
+              "within": {
+                "10": false,
+                "20": false,
+                "30": false,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false
+        },
+        "AN-011": {
+          "spans": [
+            {
+              "rank": 8,
+              "within": {
+                "10": true,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true
+        },
+        "AN-012": {
+          "spans": [
+            {
+              "rank": 8,
+              "within": {
+                "10": true,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            },
+            {
+              "rank": 123,
+              "within": {
+                "10": false,
+                "20": false,
+                "30": false,
+                "50": false,
+                "100": false,
+                "300": true
+              }
+            }
+          ],
+          "recall": 0.5,
+          "fully_recalled": false
+        },
+        "OA-001": {
+          "spans": [
+            {
+              "rank": 1,
+              "within": {
+                "10": true,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true
+        },
+        "OA-002": {
+          "spans": [
+            {
+              "rank": 7,
+              "within": {
+                "10": true,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true
+        },
+        "OA-003": {
+          "spans": [
+            {
+              "rank": 2,
+              "within": {
+                "10": true,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true
+        },
+        "OA-004": {
+          "spans": [
+            {
+              "rank": 24,
+              "within": {
+                "10": false,
+                "20": false,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false
+        },
+        "OA-005": {
+          "spans": [
+            {
+              "rank": 3,
+              "within": {
+                "10": true,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true
+        },
+        "OA-006": {
+          "spans": [
+            {
+              "rank": 1,
+              "within": {
+                "10": true,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            },
+            {
+              "rank": 3,
+              "within": {
+                "10": true,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true
+        },
+        "OA-007": {
+          "spans": [
+            {
+              "rank": 1,
+              "within": {
+                "10": true,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true
+        },
+        "OA-008": {
+          "spans": [
+            {
+              "rank": 13,
+              "within": {
+                "10": false,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false
+        }
+      }
+    },
+    "bm25(normalized)": {
+      "view": "normalized",
+      "retriever": "bm25",
+      "macro_span_recall": 0.575,
+      "cases_fully_recalled": 11,
+      "spans_found_at_10": 12,
+      "spans_total": 22,
+      "mrr": 0.3191,
+      "median_rank_when_found": 5,
+      "spans_absent_from_top": {
+        "10": 10,
+        "20": 7,
+        "30": 5,
+        "50": 3,
+        "100": 2,
+        "300": 1
+      },
+      "mean_query_ms": 219.4,
+      "cases": {
+        "AN-001": {
+          "spans": [
+            {
+              "rank": 24,
+              "within": {
+                "10": false,
+                "20": false,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false
+        },
+        "AN-002": {
+          "spans": [
+            {
+              "rank": 35,
+              "within": {
+                "10": false,
+                "20": false,
+                "30": false,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false
+        },
+        "AN-003": {
+          "spans": [
+            {
+              "rank": null,
+              "within": {
+                "10": false,
+                "20": false,
+                "30": false,
+                "50": false,
+                "100": false,
+                "300": false
+              }
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false
+        },
+        "AN-004": {
+          "spans": [
+            {
+              "rank": 14,
+              "within": {
+                "10": false,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false
+        },
+        "AN-005": {
+          "spans": [
+            {
+              "rank": 2,
+              "within": {
+                "10": true,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true
+        },
+        "AN-006": {
+          "spans": [
+            {
+              "rank": 15,
+              "within": {
+                "10": false,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false
+        },
+        "AN-007": {
+          "spans": [
+            {
+              "rank": 16,
+              "within": {
+                "10": false,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false
+        },
+        "AN-008": {
+          "spans": [
+            {
+              "rank": 4,
+              "within": {
+                "10": true,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true
+        },
+        "AN-009": {
+          "spans": [
+            {
+              "rank": 1,
+              "within": {
+                "10": true,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true
+        },
+        "AN-010": {
+          "spans": [
+            {
+              "rank": 3,
+              "within": {
+                "10": true,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true
+        },
+        "AN-011": {
+          "spans": [
+            {
+              "rank": 52,
+              "within": {
+                "10": false,
+                "20": false,
+                "30": false,
+                "50": false,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false
+        },
+        "AN-012": {
+          "spans": [
+            {
+              "rank": 39,
+              "within": {
+                "10": false,
+                "20": false,
+                "30": false,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            },
+            {
+              "rank": 111,
+              "within": {
+                "10": false,
+                "20": false,
+                "30": false,
+                "50": false,
+                "100": false,
+                "300": true
+              }
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false
+        },
+        "OA-001": {
+          "spans": [
+            {
+              "rank": 5,
+              "within": {
+                "10": true,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true
+        },
+        "OA-002": {
+          "spans": [
+            {
+              "rank": 2,
+              "within": {
+                "10": true,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true
+        },
+        "OA-003": {
+          "spans": [
+            {
+              "rank": 5,
+              "within": {
+                "10": true,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true
+        },
+        "OA-004": {
+          "spans": [
+            {
+              "rank": 3,
+              "within": {
+                "10": true,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true
+        },
+        "OA-005": {
+          "spans": [
+            {
+              "rank": 3,
+              "within": {
+                "10": true,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true
+        },
+        "OA-006": {
+          "spans": [
+            {
+              "rank": 1,
+              "within": {
+                "10": true,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            },
+            {
+              "rank": 22,
+              "within": {
+                "10": false,
+                "20": false,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 0.5,
+          "fully_recalled": false
+        },
+        "OA-007": {
+          "spans": [
+            {
+              "rank": 1,
+              "within": {
+                "10": true,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true
+        },
+        "OA-008": {
+          "spans": [
+            {
+              "rank": 1,
+              "within": {
+                "10": true,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true
+        }
+      }
+    },
+    "transformer(normalized)": {
+      "view": "normalized",
+      "retriever": "transformer",
+      "macro_span_recall": 0.625,
+      "cases_fully_recalled": 12,
+      "spans_found_at_10": 14,
+      "spans_total": 22,
+      "mrr": 0.3086,
+      "median_rank_when_found": 7.0,
+      "spans_absent_from_top": {
+        "10": 8,
+        "20": 5,
+        "30": 5,
+        "50": 5,
+        "100": 3,
+        "300": 2
+      },
+      "mean_query_ms": 183.6,
+      "cases": {
+        "AN-001": {
+          "spans": [
+            {
+              "rank": null,
+              "within": {
+                "10": false,
+                "20": false,
+                "30": false,
+                "50": false,
+                "100": false,
+                "300": false
+              }
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false
+        },
+        "AN-002": {
+          "spans": [
+            {
+              "rank": 9,
+              "within": {
+                "10": true,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true
+        },
+        "AN-003": {
+          "spans": [
+            {
+              "rank": null,
+              "within": {
+                "10": false,
+                "20": false,
+                "30": false,
+                "50": false,
+                "100": false,
+                "300": false
+              }
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false
+        },
+        "AN-004": {
+          "spans": [
+            {
+              "rank": 7,
+              "within": {
+                "10": true,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true
+        },
+        "AN-005": {
+          "spans": [
+            {
+              "rank": 7,
+              "within": {
+                "10": true,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true
+        },
+        "AN-006": {
+          "spans": [
+            {
+              "rank": 173,
+              "within": {
+                "10": false,
+                "20": false,
+                "30": false,
+                "50": false,
+                "100": false,
+                "300": true
+              }
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false
+        },
+        "AN-007": {
+          "spans": [
+            {
+              "rank": 9,
+              "within": {
+                "10": true,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true
+        },
+        "AN-008": {
+          "spans": [
+            {
+              "rank": 1,
+              "within": {
+                "10": true,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true
+        },
+        "AN-009": {
+          "spans": [
+            {
+              "rank": 1,
+              "within": {
+                "10": true,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true
+        },
+        "AN-010": {
+          "spans": [
+            {
+              "rank": 71,
+              "within": {
+                "10": false,
+                "20": false,
+                "30": false,
+                "50": false,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false
+        },
+        "AN-011": {
+          "spans": [
+            {
+              "rank": 6,
+              "within": {
+                "10": true,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true
+        },
+        "AN-012": {
+          "spans": [
+            {
+              "rank": 2,
+              "within": {
+                "10": true,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            },
+            {
+              "rank": 65,
+              "within": {
+                "10": false,
+                "20": false,
+                "30": false,
+                "50": false,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 0.5,
+          "fully_recalled": false
+        },
+        "OA-001": {
+          "spans": [
+            {
+              "rank": 2,
+              "within": {
+                "10": true,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true
+        },
+        "OA-002": {
+          "spans": [
+            {
+              "rank": 18,
+              "within": {
+                "10": false,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false
+        },
+        "OA-003": {
+          "spans": [
+            {
+              "rank": 4,
+              "within": {
+                "10": true,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true
+        },
+        "OA-004": {
+          "spans": [
+            {
+              "rank": 11,
+              "within": {
+                "10": false,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false
+        },
+        "OA-005": {
+          "spans": [
+            {
+              "rank": 2,
+              "within": {
+                "10": true,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true
+        },
+        "OA-006": {
+          "spans": [
+            {
+              "rank": 1,
+              "within": {
+                "10": true,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            },
+            {
+              "rank": 10,
+              "within": {
+                "10": true,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true
+        },
+        "OA-007": {
+          "spans": [
+            {
+              "rank": 1,
+              "within": {
+                "10": true,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true
+        },
+        "OA-008": {
+          "spans": [
+            {
+              "rank": 12,
+              "within": {
+                "10": false,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false
+        }
+      }
+    },
+    "bm25(structured)": {
+      "view": "structured",
+      "retriever": "bm25",
+      "macro_span_recall": 0.125,
+      "cases_fully_recalled": 2,
+      "spans_found_at_10": 3,
+      "spans_total": 22,
+      "mrr": 0.09,
+      "median_rank_when_found": 32.5,
+      "spans_absent_from_top": {
+        "10": 19,
+        "20": 17,
+        "30": 15,
+        "50": 11,
+        "100": 9,
+        "300": 6
+      },
+      "mean_query_ms": 176.3,
+      "cases": {
+        "AN-001": {
+          "spans": [
+            {
+              "rank": 129,
+              "within": {
+                "10": false,
+                "20": false,
+                "30": false,
+                "50": false,
+                "100": false,
+                "300": true
+              }
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false
+        },
+        "AN-002": {
+          "spans": [
+            {
+              "rank": 35,
+              "within": {
+                "10": false,
+                "20": false,
+                "30": false,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false
+        },
+        "AN-003": {
+          "spans": [
+            {
+              "rank": null,
+              "within": {
+                "10": false,
+                "20": false,
+                "30": false,
+                "50": false,
+                "100": false,
+                "300": false
+              }
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false
+        },
+        "AN-004": {
+          "spans": [
+            {
+              "rank": null,
+              "within": {
+                "10": false,
+                "20": false,
+                "30": false,
+                "50": false,
+                "100": false,
+                "300": false
+              }
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false
+        },
+        "AN-005": {
+          "spans": [
+            {
+              "rank": null,
+              "within": {
+                "10": false,
+                "20": false,
+                "30": false,
+                "50": false,
+                "100": false,
+                "300": false
+              }
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false
+        },
+        "AN-006": {
+          "spans": [
+            {
+              "rank": null,
+              "within": {
+                "10": false,
+                "20": false,
+                "30": false,
+                "50": false,
+                "100": false,
+                "300": false
+              }
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false
+        },
+        "AN-007": {
+          "spans": [
+            {
+              "rank": 16,
+              "within": {
+                "10": false,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false
+        },
+        "AN-008": {
+          "spans": [
+            {
+              "rank": 207,
+              "within": {
+                "10": false,
+                "20": false,
+                "30": false,
+                "50": false,
+                "100": false,
+                "300": true
+              }
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false
+        },
+        "AN-009": {
+          "spans": [
+            {
+              "rank": 24,
+              "within": {
+                "10": false,
+                "20": false,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false
+        },
+        "AN-010": {
+          "spans": [
+            {
+              "rank": 4,
+              "within": {
+                "10": true,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true
+        },
+        "AN-011": {
+          "spans": [
+            {
+              "rank": 52,
+              "within": {
+                "10": false,
+                "20": false,
+                "30": false,
+                "50": false,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false
+        },
+        "AN-012": {
+          "spans": [
+            {
+              "rank": 26,
+              "within": {
+                "10": false,
+                "20": false,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            },
+            {
+              "rank": null,
+              "within": {
+                "10": false,
+                "20": false,
+                "30": false,
+                "50": false,
+                "100": false,
+                "300": false
+              }
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false
+        },
+        "OA-001": {
+          "spans": [
+            {
+              "rank": 31,
+              "within": {
+                "10": false,
+                "20": false,
+                "30": false,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false
+        },
+        "OA-002": {
+          "spans": [
+            {
+              "rank": 99,
+              "within": {
+                "10": false,
+                "20": false,
+                "30": false,
+                "50": false,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false
+        },
+        "OA-003": {
+          "spans": [
+            {
+              "rank": null,
+              "within": {
+                "10": false,
+                "20": false,
+                "30": false,
+                "50": false,
+                "100": false,
+                "300": false
+              }
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false
+        },
+        "OA-004": {
+          "spans": [
+            {
+              "rank": 34,
+              "within": {
+                "10": false,
+                "20": false,
+                "30": false,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false
+        },
+        "OA-005": {
+          "spans": [
+            {
+              "rank": 40,
+              "within": {
+                "10": false,
+                "20": false,
+                "30": false,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false
+        },
+        "OA-006": {
+          "spans": [
+            {
+              "rank": 1,
+              "within": {
+                "10": true,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            },
+            {
+              "rank": 155,
+              "within": {
+                "10": false,
+                "20": false,
+                "30": false,
+                "50": false,
+                "100": false,
+                "300": true
+              }
+            }
+          ],
+          "recall": 0.5,
+          "fully_recalled": false
+        },
+        "OA-007": {
+          "spans": [
+            {
+              "rank": 3,
+              "within": {
+                "10": true,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true
+        },
+        "OA-008": {
+          "spans": [
+            {
+              "rank": 11,
+              "within": {
+                "10": false,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false
+        }
+      }
+    },
+    "transformer(structured)": {
+      "view": "structured",
+      "retriever": "transformer",
+      "macro_span_recall": 0.3,
+      "cases_fully_recalled": 5,
+      "spans_found_at_10": 7,
+      "spans_total": 22,
+      "mrr": 0.105,
+      "median_rank_when_found": 41.0,
+      "spans_absent_from_top": {
+        "10": 15,
+        "20": 15,
+        "30": 15,
+        "50": 10,
+        "100": 7,
+        "300": 6
+      },
+      "mean_query_ms": 189.8,
+      "cases": {
+        "AN-001": {
+          "spans": [
+            {
+              "rank": null,
+              "within": {
+                "10": false,
+                "20": false,
+                "30": false,
+                "50": false,
+                "100": false,
+                "300": false
+              }
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false
+        },
+        "AN-002": {
+          "spans": [
+            {
+              "rank": 10,
+              "within": {
+                "10": true,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true
+        },
+        "AN-003": {
+          "spans": [
+            {
+              "rank": null,
+              "within": {
+                "10": false,
+                "20": false,
+                "30": false,
+                "50": false,
+                "100": false,
+                "300": false
+              }
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false
+        },
+        "AN-004": {
+          "spans": [
+            {
+              "rank": null,
+              "within": {
+                "10": false,
+                "20": false,
+                "30": false,
+                "50": false,
+                "100": false,
+                "300": false
+              }
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false
+        },
+        "AN-005": {
+          "spans": [
+            {
+              "rank": null,
+              "within": {
+                "10": false,
+                "20": false,
+                "30": false,
+                "50": false,
+                "100": false,
+                "300": false
+              }
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false
+        },
+        "AN-006": {
+          "spans": [
+            {
+              "rank": null,
+              "within": {
+                "10": false,
+                "20": false,
+                "30": false,
+                "50": false,
+                "100": false,
+                "300": false
+              }
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false
+        },
+        "AN-007": {
+          "spans": [
+            {
+              "rank": 8,
+              "within": {
+                "10": true,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true
+        },
+        "AN-008": {
+          "spans": [
+            {
+              "rank": 1,
+              "within": {
+                "10": true,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true
+        },
+        "AN-009": {
+          "spans": [
+            {
+              "rank": 9,
+              "within": {
+                "10": true,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true
+        },
+        "AN-010": {
+          "spans": [
+            {
+              "rank": 42,
+              "within": {
+                "10": false,
+                "20": false,
+                "30": false,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false
+        },
+        "AN-011": {
+          "spans": [
+            {
+              "rank": 3,
+              "within": {
+                "10": true,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 1.0,
+          "fully_recalled": true
+        },
+        "AN-012": {
+          "spans": [
+            {
+              "rank": 3,
+              "within": {
+                "10": true,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            },
+            {
+              "rank": 50,
+              "within": {
+                "10": false,
+                "20": false,
+                "30": false,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 0.5,
+          "fully_recalled": false
+        },
+        "OA-001": {
+          "spans": [
+            {
+              "rank": 61,
+              "within": {
+                "10": false,
+                "20": false,
+                "30": false,
+                "50": false,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false
+        },
+        "OA-002": {
+          "spans": [
+            {
+              "rank": 82,
+              "within": {
+                "10": false,
+                "20": false,
+                "30": false,
+                "50": false,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false
+        },
+        "OA-003": {
+          "spans": [
+            {
+              "rank": null,
+              "within": {
+                "10": false,
+                "20": false,
+                "30": false,
+                "50": false,
+                "100": false,
+                "300": false
+              }
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false
+        },
+        "OA-004": {
+          "spans": [
+            {
+              "rank": 70,
+              "within": {
+                "10": false,
+                "20": false,
+                "30": false,
+                "50": false,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false
+        },
+        "OA-005": {
+          "spans": [
+            {
+              "rank": 43,
+              "within": {
+                "10": false,
+                "20": false,
+                "30": false,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false
+        },
+        "OA-006": {
+          "spans": [
+            {
+              "rank": 7,
+              "within": {
+                "10": true,
+                "20": true,
+                "30": true,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            },
+            {
+              "rank": 181,
+              "within": {
+                "10": false,
+                "20": false,
+                "30": false,
+                "50": false,
+                "100": false,
+                "300": true
+              }
+            }
+          ],
+          "recall": 0.5,
+          "fully_recalled": false
+        },
+        "OA-007": {
+          "spans": [
+            {
+              "rank": 40,
+              "within": {
+                "10": false,
+                "20": false,
+                "30": false,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false
+        },
+        "OA-008": {
+          "spans": [
+            {
+              "rank": 43,
+              "within": {
+                "10": false,
+                "20": false,
+                "30": false,
+                "50": true,
+                "100": true,
+                "300": true
+              }
+            }
+          ],
+          "recall": 0.0,
+          "fully_recalled": false
+        }
+      }
+    }
+  },
+  "attribution": {
+    "note": "Change in macro span recall relative to the same retriever on the raw query.",
+    "bm25": {
+      "raw": 0.0,
+      "normalized": 0.1,
+      "structured": -0.35
+    },
+    "transformer": {
+      "raw": 0.0,
+      "normalized": 0.05,
+      "structured": -0.275
+    },
+    "transformer_damage_vs_bm25": {
+      "raw": 0.0,
+      "normalized": -0.05,
+      "structured": 0.075
+    }
+  },
+  "query_embedding_cache": {
+    "query_embedding_cache_hits": 1,
+    "query_embedding_cache_misses": 59,
+    "query_embedding_cache_hit_rate": 0.0167,
+    "distinct_queries_cached": 59,
+    "model_fingerprint": "bd95feaeacf98559"
+  }
+}

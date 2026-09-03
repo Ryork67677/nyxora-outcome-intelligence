@@ -1,0 +1,47 @@
+{
+  "pool_identity_equivalent": true,
+  "n_cases": 50,
+  "n_mismatches": 0,
+  "mismatches": [],
+  "stored_artifact_inspect": {
+    "per_case_keys": [
+      "C_P",
+      "a_pool_size",
+      "anti_drop_el10",
+      "case_id",
+      "e_full",
+      "e_pool_size",
+      "latency_ms",
+      "n_el10_new_union",
+      "n_mapping_to_multiple_canonical",
+      "n_previously_absent",
+      "n_projection_additions",
+      "n_projection_hits",
+      "parents",
+      "rank1_destruction_vs_EL10",
+      "spans",
+      "x_full",
+      "x_pool_size"
+    ],
+    "span_keys": [
+      "covering_chunk_ids",
+      "e_in_top_10",
+      "e_pool_rank",
+      "e_rank",
+      "entered_via_projection",
+      "in_e_pool",
+      "in_x_pool",
+      "span_index",
+      "x_in_top_10",
+      "x_pool_rank",
+      "x_rank"
+    ],
+    "logits_a_norm_proj_rrf_present_in_per_case": false,
+    "found_forbidden_case_keys": [],
+    "found_forbidden_span_keys": [],
+    "must_rematerialize": true
+  },
+  "recovery_method": "rematerialize_once_frozen_EXP-017_code",
+  "ce_called_for_019a_ranks": false,
+  "ce_called_for_recovery_only": true
+}

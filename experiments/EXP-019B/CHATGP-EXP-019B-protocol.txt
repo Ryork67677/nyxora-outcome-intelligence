@@ -1,0 +1,233 @@
+Yes — I accept **`RERANK_MECHANISM_SUPPORTED`** for EXP-019A. The preregistered primary moved **40/50 → 41/50 strict Recall@10**, candidate membership stayed exactly **46/50**, and there were **0 strict regressions and 0 rank-1 destructions**. 
+
+The result is useful, but it also strengthens Claude's concern about the CE. We gained **one additional top-10 case** from the projection-aware prior, while the expensive CE is still central to the ranking. And I would flag the document-recall movement **0.92 → 0.90**: it didn't violate the preregistered gate, but it means the new scoring is not uniformly better underneath the headline strict score.
+
+## Next experiment: CE necessity ablation
+
+Before PERF-003, before validation, and before any more reranker tuning, we should answer:
+
+> **Does the cross-encoder still earn its ~6–7 seconds now that V2 candidate generation is much stronger?**
+
+This should be a very clean experiment because **no retrieval and no CE inference are needed**. We can reuse the exact current 124.1-candidate pools and already-rematerialized scores.
+
+First, preserve EXP-019A as a new development identity. Something like:
+
+`SYSTEM-G-PROJECTION-PRIOR`
+
+Do not overwrite SYSTEM-F.
+
+Then compare G against **G-NO-CE**, where candidate membership is identical and the only change is removal of the CE contribution.
+
+For the no-CE branch, don't invent another ranking algorithm. Use the retrieval channel EXP-019A already defines:
+
+* existing E-L10 candidates retain their E-L10 `retrieval_norm`;
+* projection-only candidates retain their normalized projection-RRF `retrieval_norm`;
+* final ordering is `retrieval_norm DESC`;
+* preserve the current deterministic tie-break.
+
+Equivalently, you can set CE contribution to the same constant for every candidate and keep the 0.3 retrieval term—the ordering is the same.
+
+### What I want measured
+
+Baseline G:
+
+* strict R@10 **41/50**
+* candidate R@100 **46/50**
+* span R@10 **0.82**
+* MRR **0.6009**
+* document recall **0.90**
+
+No-CE:
+
+* same metrics
+* paired rescues/regressions
+* exact rank movements
+* rank-1 destructions
+* McNemar exact test on strict discordants
+* paired bootstrap delta with a fixed preregistered seed
+* actual latency with CE skipped
+
+The last number could be dramatic. Current non-CE stages are only roughly:
+
+**350 + 195 + 466 ≈ 1,011 ms**
+
+versus ~7.9 seconds with CE in EXP-017. We need to measure rather than assume, but that's the scale of the question.
+
+## Important: don't make a release decision from one or two cases
+
+Claude's warning about `n=50` is right.
+
+So EXP-019B should be an **ablation**, not another “win by one case = promote” experiment.
+
+If CE beats retrieval-only by only **0–1 cases**, that's evidence its value is questionable, but not enough to make a frontier-quality generalization claim.
+
+If CE gives a large, consistent advantage, then PERF-002 becomes clearly worth implementing.
+
+If the result is ambiguous, the deciding experiment should be the **fresh natural-query benchmark**, not more tuning on these same 50 cases.
+
+### Exact takeover prompt for Remote ChatGPT
+
+```text
+EXP-019B — CROSS-ENCODER NECESSITY ABLATION
+
+PREREGISTER BEFORE COMPUTING NO-CE RANKS.
+
+Do not run validation.
+Do not open V1 holdout.
+Do not run new retrieval.
+Do not change candidate generation.
+Do not change projection configuration.
+Do not change E-L10.
+Do not change CE model.
+Do not run a new CE model inference unless required solely for artifact
+recovery/identity verification.
+Do not tune any weights.
+Do not test multiple no-CE ranking variants.
+
+==================================================
+CLOSE EXP-019A
+==================================================
+
+EXP-019A decision:
+RERANK_MECHANISM_SUPPORTED
+
+Observed on frozen V2-DEVSET-001 n=50:
+
+strict Recall@10 = 41/50
+candidate Recall@100 = 46/50
+span Recall@10 = .82
+MRR = .6009
+document recall = .90
+strict rescues vs SYSTEM-F = 1
+strict regressions = 0
+rank-1 destructions = 0
+
+EXP-019A prereg SHA256:
+f14001eff07b63c7916d7e27567d15ccd1e53b52918ae66f0d24ca37abb54cf3
+
+SYSTEM-F-PROJECTION config_hash:
+83ba5f2e834ecdffbfe4fb554cf84860ad35cf7010e9764e5cdea9e38598f678
+
+Create a NEW development identity for the exact EXP-019A scoring system.
+
+Suggested:
+SYSTEM-G-PROJECTION-PRIOR
+
+Do not overwrite SYSTEM-F.
+
+Hash the complete config.
+
+==================================================
+PURPOSE
+==================================================
+
+Determine whether the frozen cross-encoder materially improves final
+ranking on the CURRENT V2 candidate-generation architecture.
+
+This is an ablation, not a promotion experiment.
+
+Candidate membership must remain identical to SYSTEM-G.
+
+==================================================
+NO-CE VARIANT
+==================================================
+
+Use the exact SYSTEM-G candidate pool for every query.
+
+For existing E-L10 candidates:
+retain their exact current retrieval_norm.
+
+For projection-only candidates:
+retain the exact normalized projection-RRF retrieval_norm used by EXP-019A.
+
+Remove CE from ranking.
+
+Rank by:
+
+retrieval_norm DESC
+
+then use the existing deterministic final tie-break.
+
+Do not introduce:
+- another RRF
+- another blend
+- a new normalization
+- query-specific rules
+- named-case handling
+
+Candidate pool identity must be byte/identity-equivalent to SYSTEM-G.
+
+Candidate Recall@100 must remain exactly 46/50.
+If candidate membership or candidate recall changes:
+STOP for implementation drift.
+
+==================================================
+PREREGISTERED METRICS
+==================================================
+
+PRIMARY DIAGNOSTIC:
+paired strict Recall@10 difference:
+SYSTEM-G CE vs SYSTEM-G-NO-CE
+
+Report:
+
+- strict Recall@10
+- candidate Recall@100
+- span Recall@10
+- MRR
+- document recall
+- CE-only rescues
+- NO-CE rescues
+- regressions each direction
+- rank-1 destructions
+- exact gold rank movements
+- candidate-pool identity
+- latency with CE
+- latency with CE skipped
+
+Statistics:
+
+- exact McNemar test on strict discordant cases
+- paired bootstrap of strict Recall@10 delta
+- 10,000 resamples
+- choose and record seed BEFORE computing no-CE ranks
+- report confidence interval
+
+Do not use statistical significance as a tuning gate.
+
+==================================================
+INTERPRETATION
+==================================================
+
+Do NOT automatically promote or delete CE based on a one-case difference.
+
+Classify descriptively:
+
+- CE materially contributes
+- CE contribution appears marginal
+- NO-CE outperforms
+- inconclusive on n=50
+
+Support classification with paired outcomes, effect size, latency difference,
+and uncertainty.
+
+This development split has already been used for architecture research.
+
+A final architecture decision must eventually be confirmed using fresh
+questions.
+
+==================================================
+STANDING
+==================================================
+
+Do not run PERF-003 yet.
+Do not validate.
+Do not open holdout.
+Do not start another reranker variant.
+
+Stop after EXP-019B result and send the report to coordinator ChatGPT.
+```
+
+Then send me the result. **After EXP-019B, my next step will be determined by whether the CE is actually contributing enough to justify its cost.**
+
+And yes—before Remote ChatGPT executes that preregistration, you can paste it into the Grok browser chat and ask Grok to look specifically for methodology leakage, an unfair no-CE comparison, or a hidden normalization problem.

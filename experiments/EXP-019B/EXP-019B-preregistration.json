@@ -1,0 +1,283 @@
+{
+  "experiment_id": "EXP-019B",
+  "title": "CROSS-ENCODER NECESSITY ABLATION (G vs G-NO-CE)",
+  "status": "AUTHORIZED_SINGLE_DEVELOPMENT_ABLATION",
+  "phase": "preregistration_before_any_no_ce_ranks",
+  "chatgpt_authorization": "EXP-019B AUTHORIZED",
+  "protocol_copy": "experiments/EXP-019B/CHATGP-EXP-019B-protocol.txt",
+  "preregistered_at_utc": "2026-09-01T04:59:09Z",
+  "preregistered_at_et": "2026-09-01T00:59:09-04:00",
+  "scored_before_prereg_hash": false,
+  "no_ce_ranks_computed_before_prereg_hash": false,
+  "tuned_after_seeing_scores": false,
+  "ablation_not_promotion": true,
+  "n_no_ce_variants": 1,
+  "do_not_test_multiple_no_ce_variants": true,
+  "hypothesis": {
+    "statement": "On the CURRENT V2 candidate-generation architecture (SYSTEM-G / EXP-019A), does the frozen cross-encoder materially improve final ranking versus ranking the identical candidate pool by G's stored retrieval_norm only?",
+    "this_is_an_ablation": true,
+    "not_a_promotion_experiment": true,
+    "not_a_ce_vs_retrieval_only_system_comparison": true,
+    "g_no_ce_keeps_G_retrieval_norm_exactly": true,
+    "no_new_rrf": true,
+    "no_new_blend": true,
+    "no_new_normalization": true,
+    "no_combined_list_reminmax": true,
+    "no_weight_sweep": true,
+    "no_query_rewrite": true,
+    "no_candidate_membership_change": true,
+    "no_extra_variants_after_scores": true
+  },
+  "dataset": {
+    "name": "V2-DEVSET-001",
+    "n": 50,
+    "split": "evals/splits/v2-devset-001/development.json",
+    "gold": "evals/gold/v2-devset-001.jsonl",
+    "freeze": "experiments/RAG-V2/V2-DEVSET-001/V2-DEVSET-001-FREEZE.json",
+    "gold_sha256": "cb687f3cc88b38d4beed7ad4bc829296a30518aaaf45cce0677ec568b1bf77e5",
+    "split_sha256": "6b0c49c9040c215fde6134697c35a1f28458ba7d72ef012c0840feb7f9c3eb17",
+    "freeze_sha256": "97ea6befbb4fd845f53da2aef20ba84cedaaf69c0f09e3ad90833b813fee2ad9",
+    "holdout_loaded": false,
+    "holdout_json_opened": false,
+    "validation_loaded": false,
+    "gold150_v1_development_loaded": false,
+    "same_n50_already_used_for_architecture_research": true,
+    "ablation_not_promotion_because_same_split": true
+  },
+  "baseline": {
+    "name": "SYSTEM-G-PROJECTION-PRIOR",
+    "status": "DEVELOPMENT",
+    "config_hash": "563a7b790564fa1efb96257e988c4b1ccfab45146825d2a366b2fee0ca5d5790",
+    "file_sha256": "7f4ff6db09f32e55cac820cbc00d87ce2ae91886d444c3bad20ac3e04c7f0f61",
+    "source": "EXACT EXP-019A scoring system",
+    "observed_development_only": {
+      "candidate_gold_span_recall_at_100": "46/50",
+      "strict_recall_at_10": "41/50",
+      "span_recall_at_10": 0.82,
+      "mrr": 0.6009,
+      "document_recall": 0.9,
+      "n": 50,
+      "label": "DEVELOPMENT_ONLY",
+      "not_independently_validated": true
+    }
+  },
+  "parent_hashes": {
+    "SYSTEM-A": "9afcb5b7c58ebacff0b4c3711dd9618a2e727f4195dd1787a5da81e478ee0b38",
+    "SYSTEM-D": "d77b54ba3be0197d6bc1363883aefb0b3399117ee8c65800a38f8196d236ca3a",
+    "SYSTEM-E_uncapped": "7f3a1caa0350cc7e0fda0d9f2d7efb23fd08d7f79bc94f140a29f4247774adbe",
+    "SYSTEM-E-L10-WITHIN-DOC": "bae1c05b5c47c179dc5cd7972a14bd23d102a4d513b674667eb469e17cd85e89",
+    "SYSTEM-F-PROJECTION": "83ba5f2e834ecdffbfe4fb554cf84860ad35cf7010e9764e5cdea9e38598f678",
+    "SYSTEM-F-PROJECTION_file_sha256": "e68d8c7a5782420bfd63cc57882ce96eacd5d919ac6197d271b9e11e399c3ff5",
+    "SYSTEM-G-PROJECTION-PRIOR": "563a7b790564fa1efb96257e988c4b1ccfab45146825d2a366b2fee0ca5d5790",
+    "EXP-017_prereg_json_sha256": "053a6bf14df088ca9e2283bc3e8dfb0769848a48c54c51a77fbe045795a80cc6",
+    "EXP-019A_prereg_json_sha256": "f14001eff07b63c7916d7e27567d15ccd1e53b52918ae66f0d24ca37abb54cf3",
+    "projection_set_id": "ps_v2_ovl_win448_s224",
+    "projection_config_hash": "7fd5034c9510a1e08ec76bd22b020703c586dd12e7c02659397df05c5c365a8e"
+  },
+  "no_ce_variant": {
+    "name": "G-NO-CE",
+    "candidate_pool": "exact SYSTEM-G / EXP-019A recovered union; membership identical",
+    "E_L10_members": {
+      "keep_existing_E_L10_retrieval_norm_exactly": true,
+      "retrieval_norm_source": "E-L10 a_norm, minmaxed on the E-L10 pool (inherited from G / EXP-019A / E-L10)",
+      "do_not_renormalize": true
+    },
+    "projection_only_members": {
+      "keep_EXP019A_projection_RRF_retrieval_norm_exactly": true,
+      "retrieval_norm_source": "minmax(projection-RRF) over the P extras for that query (inherited from EXP-019A)",
+      "do_not_renormalize": true
+    },
+    "two_population_minmax": {
+      "E_L10_retrieval_norm_minmaxed_on": "E-L10 pool",
+      "projection_only_retrieval_norm_minmaxed_on": "P extras",
+      "mixing_those_two_scales_on_one_list": "inherited from G, not a new normalization",
+      "do_not_reminmax_the_combined_list": true,
+      "reminmax_combined_would_be_a_new_normalization_FORBIDDEN": true
+    },
+    "rank_by": "retrieval_norm DESC",
+    "tie_break": {
+      "order": [
+        "retrieval_norm DESC",
+        "a_rank ASC",
+        "chunk_id ASC"
+      ],
+      "a_rank_definition": "E-L10 merge-RRF rank; projection-only a_rank=10**9",
+      "existing_EXP017_EXP019A_tie_break": true,
+      "do_not_invent_a_new_tie_break": true,
+      "consequence": "on exact retrieval_norm ties, E-L10 members rank before projection-only extras because a_rank=10**9 for extras"
+    },
+    "remove_CE_from_ranking": true,
+    "equivalent_constant_CE_note": "setting CE contribution to the same constant for every candidate and keeping the 0.3 retrieval term yields the same order; we rank retrieval_norm DESC directly",
+    "no_new_RRF": true,
+    "no_new_blend": true,
+    "no_new_normalization": true,
+    "no_query_specific_rules": true,
+    "no_named_case_handling": true
+  },
+  "reuse": {
+    "prefer": [
+      "experiments/EXP-019A/EXP-019A-recovered-union.jsonl",
+      "experiments/EXP-019A/EXP-019A-results.json"
+    ],
+    "also_use_stored_exp017_per_query_stage_times_for_latency": true,
+    "do_not_rerun_CE": true,
+    "do_not_rerun_CE_unless_identity_verification_requires_it": true,
+    "do_not_change_generation_knobs": true
+  },
+  "identity_gate": {
+    "candidate_membership_must_equal_SYSTEM_G_EXP019A": true,
+    "cand_R100_must_stay": "46/50",
+    "if_membership_or_cand_recall_drifts": "STOP. implementation drift. do not accept no-CE ranks."
+  },
+  "metrics": {
+    "PRIMARY_DIAGNOSTIC": "paired strict Recall@10 difference: SYSTEM-G (CE) vs SYSTEM-G-NO-CE",
+    "delta_definition": "per-case (1 if G strict R@10 else 0) minus (1 if G-NO-CE strict R@10 else 0); positive means CE helps",
+    "SECONDARY": [
+      "strict Recall@10 both sides",
+      "candidate Recall@100 (must remain 46/50)",
+      "span Recall@10",
+      "MRR",
+      "document recall",
+      "CE-only rescues (G success, NO-CE fail)",
+      "NO-CE rescues (NO-CE success, G fail)",
+      "regressions each direction",
+      "rank-1 destructions",
+      "exact gold rank movements",
+      "candidate-pool identity",
+      "latency with CE",
+      "latency with CE skipped"
+    ],
+    "not_a_named_case_gate": true,
+    "do_not_use_significance_as_a_tuning_gate": true,
+    "do_not_promote_or_delete_CE_from_0_1_case_difference": true
+  },
+  "statistics": {
+    "mcnemar": {
+      "test": "exact McNemar on strict discordant cases",
+      "n01": "G success and G-NO-CE fail (CE-only)",
+      "n10": "G fail and G-NO-CE success (NO-CE-only)",
+      "method": "two-sided exact binomial test of n01 vs n10 under p=0.5",
+      "significance_is_diagnostic_not_a_gate": true
+    },
+    "bootstrap": {
+      "paired_bootstrap_of_strict_Recall_at_10_delta": true,
+      "delta": "mean(G_strict - NOCE_strict) over resampled cases",
+      "n_resamples": 10000,
+      "seed": 20260901,
+      "seed_written_into_hashed_prereg_BEFORE_computing_no_ce_ranks": true,
+      "ci": "percentile 95% (2.5th, 97.5th)",
+      "rng": "numpy.random.Generator(numpy.random.PCG64(20260901))"
+    }
+  },
+  "latency": {
+    "with_CE": "EXP-017 stored per-query total (A + local BM25 + projection + CE) if identity-equivalent; do not rerun CE",
+    "with_CE_skipped": "retrieval stages only: A + local BM25 + projection from stored EXP-017 per-query stage times; NOT the 0.2ms blend/rescoring time; do not rerun CE",
+    "do_not_include_blend_time_in_no_ce_latency": true
+  },
+  "classification_labels": {
+    "labels": [
+      "CE materially contributes",
+      "CE contribution appears marginal",
+      "NO-CE outperforms",
+      "inconclusive on n=50"
+    ],
+    "descriptive_only": true,
+    "not_a_promotion_gate": true,
+    "do_not_automatically_promote_or_delete_CE_based_on_a_one_case_difference": true,
+    "support_with": [
+      "paired outcomes",
+      "effect size",
+      "latency difference",
+      "uncertainty (McNemar p, bootstrap CI)"
+    ],
+    "chatgpt_note": "If CE beats retrieval-only by only 0-1 cases, that is evidence its value is questionable, but not enough to make a frontier-quality generalization claim. A final architecture decision must eventually be confirmed using fresh questions."
+  },
+  "grok_methodology_check": {
+    "recorded_in_prereg_do_not_change_the_protocol": true,
+    "items": [
+      {
+        "id": 1,
+        "finding": "G-NO-CE is a valid ablation of SYSTEM-G (remove CE, keep G's retrieval_norm exactly). It is NOT a valid CE-vs-retrieval-only system comparison.",
+        "action": "record; do not change ranking; do not add a retrieval-only redesign"
+      },
+      {
+        "id": 2,
+        "finding": "Hidden two-population minmax: E-L10 retrieval_norm was minmaxed on the E-L10 pool; projection-only retrieval_norm was minmaxed on the P extras. Mixing those two scales on one list is inherited from G, not a new normalization. Do NOT re-minmax the combined list (that would be a new normalization, forbidden).",
+        "action": "record; keep inherited two-population values; no combined re-minmax"
+      },
+      {
+        "id": 3,
+        "finding": "Tie-break after retrieval_norm: existing EXP-017/019A order, i.e. a_rank (E-L10 merge-RRF rank; projection-only a_rank=10**9) then chunk_id. a_rank=1e9 for extras means E-L10 wins exact retrieval_norm ties. Do not invent a new tie-break.",
+        "action": "record; keep existing tie-break"
+      },
+      {
+        "id": 4,
+        "finding": "No gold-label leakage into no-CE ranks; membership is projection-RRF not CE. Same n=50 already used: ablation not promotion, as ChatGPT said.",
+        "action": "record; do not promote; do not treat as independent confirmation"
+      },
+      {
+        "id": 5,
+        "finding": "Do not add a second no-CE variant. Classify descriptively.",
+        "action": "record; one ablation only"
+      }
+    ]
+  },
+  "decision_rule": {
+    "this_is_an_ablation": true,
+    "no_automatic_promotion": true,
+    "no_automatic_ce_deletion": true,
+    "significance_is_diagnostic_not_a_gate": true,
+    "classify_descriptively_after_scores": true,
+    "development_stage_not_independent_validation": true,
+    "RELEASE": "NOT_FROZEN",
+    "VALIDATION": "NOT_RUN",
+    "HOLDOUT": "UNTOUCHED",
+    "do_not_retune_after_scores": true,
+    "n_evals": 1,
+    "no_second_variant": true,
+    "do_not_run_PERF_003": true,
+    "do_not_validate": true,
+    "do_not_open_holdout": true,
+    "do_not_start_another_reranker_variant": true
+  },
+  "do_nots": [
+    "do not open gold150-v1/holdout.json",
+    "do not load validation",
+    "do not load gold150-v1 development",
+    "do not modify SYSTEM-D",
+    "do not modify SYSTEM-E-WITHIN-DOC",
+    "do not modify SYSTEM-E-L10-WITHIN-DOC",
+    "do not overwrite SYSTEM-F-PROJECTION",
+    "do not modify cs_v1_control",
+    "do not modify projection set ps_v2_ovl_win448_s224",
+    "do not change candidate generation",
+    "do not change projections",
+    "do not change E-L10",
+    "do not change CE model",
+    "do not change weights",
+    "do not test multiple no-CE variants",
+    "do not re-minmax the combined retrieval_norm list",
+    "do not invent a new tie-break",
+    "do not rerun CE unless identity verification requires it",
+    "do not include 0.2ms blend time in no-CE latency",
+    "do not run PERF-003",
+    "do not validate",
+    "do not start another reranker variant",
+    "do not promote or delete CE from a 0-1 case difference",
+    "do not freeze a release",
+    "do not post to ChatGPT from this run"
+  ],
+  "single_eval": true,
+  "n_evals": 1,
+  "bootstrap_seed": 20260901,
+  "bootstrap_n_resamples": 10000,
+  "holdout_access_log_at_prereg": {
+    "log_bytes": 235,
+    "log_sha256": "45b83a77f6f332174d641956f076dd0c0cae44fe48f4f2892ac7030a4c0143b3"
+  },
+  "SYSTEM-F-PROJECTION_config_hash": "83ba5f2e834ecdffbfe4fb554cf84860ad35cf7010e9764e5cdea9e38598f678",
+  "SYSTEM-F-PROJECTION_file_sha256": "e68d8c7a5782420bfd63cc57882ce96eacd5d919ac6197d271b9e11e399c3ff5",
+  "SYSTEM-G-PROJECTION-PRIOR_config_hash": "563a7b790564fa1efb96257e988c4b1ccfab45146825d2a366b2fee0ca5d5790",
+  "SYSTEM-G-PROJECTION-PRIOR_file_sha256": "7f4ff6db09f32e55cac820cbc00d87ce2ae91886d444c3bad20ac3e04c7f0f61",
+  "EXP-019A_prereg_json_sha256": "f14001eff07b63c7916d7e27567d15ccd1e53b52918ae66f0d24ca37abb54cf3"
+}

@@ -1,0 +1,150 @@
+{
+  "document": "EVAL-HOLDOUT-001-manifest",
+  "experiment_id": "EVAL-HOLDOUT-001",
+  "generated_at": "2026-09-01T00:48:30Z",
+  "status": "RELEASE_CANDIDATE_FROZEN_HOLDOUT_NOT_YET_EXECUTED",
+  "release": {
+    "path": "experiments/EVAL-HOLDOUT-001/SYSTEM-D-RELEASE.json",
+    "sha256": "1f097b4b8dd353ecb4812228477338c05769faaede37d52ec6a07f27de729e40",
+    "sha256_path": "experiments/EVAL-HOLDOUT-001/SYSTEM-D-RELEASE.sha256"
+  },
+  "preregistration": "experiments/EVAL-HOLDOUT-001/EVAL-HOLDOUT-001-preregistration.md",
+  "system": "SYSTEM-D-GUARD-BLEND",
+  "variant": "D",
+  "implementation": "SYSTEM-D-GUARD-BLEND",
+  "source_freeze": "experiments/EXP-016/SYSTEM-D-GUARD.json",
+  "config_hash": "d77b54ba3be0197d6bc1363883aefb0b3399117ee8c65800a38f8196d236ca3a",
+  "config_hash_verified": true,
+  "system_a_config_hash": "9afcb5b7c58ebacff0b4c3711dd9618a2e727f4195dd1787a5da81e478ee0b38",
+  "snapshot": "snap_689e336380a054d8039dc35b2c09cd0a",
+  "manifest_hash": "452479294cbbbe702b15d2df3f5a268023247dcd630782aaad5e17690cee7b17",
+  "chunk_set": "cs_v1_control",
+  "embeddings": {
+    "chunk_set": "cs_v1_control",
+    "chunks": 14209,
+    "embedding_rows": 14209,
+    "model_id": "emb_e7d4183fd6eb878ae2fdf080efb6861e",
+    "fingerprint": "bd95feaeacf98559",
+    "complete": true
+  },
+  "encoder": {
+    "model_id": "emb_e7d4183fd6eb878ae2fdf080efb6861e",
+    "fingerprint": "bd95feaeacf98559",
+    "max_seq_length": 512
+  },
+  "cross_encoder": {
+    "name": "cross-encoder/ms-marco-MiniLM-L6-v2",
+    "revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a",
+    "artifact_sha256": "5d3e70fd0c9ff14b9b5169a51e957b7a9c74897afd0a35ce4bd318150c1d4d4a"
+  },
+  "candidate_pool": 100,
+  "blend": {
+    "weights_CE": 0.7,
+    "weights_SYSTEM_A": 0.3,
+    "minmax_scope": "within each query pool",
+    "minmax_degenerate": 0.5,
+    "tie_break": "blended score desc, then SYSTEM-A fused rank asc, then chunk_id asc"
+  },
+  "guard": {
+    "kind": "score_blend",
+    "note": "D is the blend. Clamp was variant C, not D.",
+    "protect_a_rank_max": null,
+    "clamp_floor": null,
+    "blend_weights": [
+      0.7,
+      0.3
+    ],
+    "matcher": "EXP-016-preregistration identifier set intersection"
+  },
+  "split": {
+    "version": "gold150-v1",
+    "cases": 90,
+    "holdout_sha256": "756a3a9bc74ce3e2dd3a7924c4048984a0ae5e74237bc8053e18b6fec202d914",
+    "lock_path": "evals/splits/gold150-v1/holdout.lock.json",
+    "holdout_frozen": true,
+    "lock": {
+      "holdout_frozen": true,
+      "frozen_at": "2026-08-31T22:30:29Z",
+      "split_version": "gold150-v1",
+      "holdout_sha256": "756a3a9bc74ce3e2dd3a7924c4048984a0ae5e74237bc8053e18b6fec202d914",
+      "holdout_count": 90,
+      "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a",
+      "rule": "Holdout membership may not change because of system performance. A failure found during engineering goes to the challenge-candidate queue, never into or out of this set.",
+      "erratum_policy": "A holdout case later shown to be objectively invalid is recorded as a benchmark erratum and retained. It is never silently replaced.",
+      "unlock_requires": "an explicit owner decision recorded as an erratum"
+    }
+  },
+  "eval_val_002": {
+    "D_strict_recall_at_10": "33/40",
+    "A_strict_recall_at_10": "30/40",
+    "regressions": 0,
+    "decision": "RERANKER_SUPPORTED",
+    "bootstrap_ci95_strict_delta": [
+      0.0,
+      0.175
+    ],
+    "mcnemar_p": 0.25,
+    "sources": [
+      "experiments/EVAL-VAL-002/EVAL-VAL-002-report.md",
+      "experiments/EVAL-VAL-002/EVAL-VAL-002-paired-analysis.json",
+      "experiments/EVAL-VAL-002/EVAL-VAL-002-environment.json"
+    ]
+  },
+  "environment": {
+    "source": "experiments/EVAL-VAL-002/EVAL-VAL-002-environment.json",
+    "timestamp": "2026-09-01T00:42:09Z",
+    "git_commit": null,
+    "host": {
+      "os": "Linux-6.12.94+-x86_64-with-glibc2.41",
+      "python": "3.11.15",
+      "executable": "/workspace/rag-v1/repo/production-rag-v1/.venv/bin/python"
+    },
+    "dependencies": {
+      "numpy": "2.4.6",
+      "onnxruntime": "1.29.0",
+      "pgvector": "0.5.0",
+      "psycopg": "3.3.5",
+      "pydantic": "2.13.5",
+      "pytest": "8.4.2",
+      "ruff": "0.16.5",
+      "scikit-learn": "1.9.0",
+      "tokenizers": "0.23.1"
+    },
+    "embedding": {
+      "chunk_set": "cs_v1_control",
+      "chunks": 14209,
+      "embedding_rows": 14209,
+      "model_id": "emb_e7d4183fd6eb878ae2fdf080efb6861e",
+      "fingerprint_min": "bd95feaeacf98559",
+      "fingerprint_max": "bd95feaeacf98559",
+      "fingerprint_expected": "bd95feaeacf98559",
+      "complete": true
+    },
+    "bootstrap_seed": 20250818,
+    "bootstrap_samples": 10000
+  },
+  "protocol": {
+    "one_shot_system_d_only": true,
+    "chatgpt_instruction": "run SYSTEM-D only",
+    "no_tuning": true,
+    "no_debugging_from_holdout_cases": true,
+    "no_retrieval_changes_after_this_freeze": true,
+    "primary": "strict Recall@10",
+    "secondaries": [
+      "span recall",
+      "MRR",
+      "document recall",
+      "latency"
+    ],
+    "system_a_on_holdout": "A was never run on holdout. Holdout is D-only. Do not invent A holdout numbers. No A rerun required unless pairing needs stored A ranks (none exist on holdout).",
+    "do_not_invent_a_holdout_numbers": true,
+    "a_rerun_required": false
+  },
+  "rule": "After this freeze, no retrieval changes before the holdout run",
+  "holdout_runs": 0,
+  "holdout_executed": false,
+  "holdout_loaded": false,
+  "holdout_ids_enumerated": false,
+  "holdout_question_text_loaded": false,
+  "holdout_access_log_bytes_at_freeze": 0
+}

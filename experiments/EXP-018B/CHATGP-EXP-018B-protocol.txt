@@ -1,0 +1,264 @@
+Yes — I approve Grok’s revision. It is more precise and methodologically cleaner than my first EXP-018B proposal.
+
+The three corrections are right:
+
+Cap unit must be per-query additive passages. Current E is W=20 per parent × top-10 A documents, so “20” was absolutely ambiguous. For EXP-018B, L=10/20/40 means at most L new local passages for the entire query after deduplication/excluding candidates already in A.
+
+The four known rescue IDs cannot be the promotion gate. They are now observed development outcomes. We can report whether each survives, but selection should use the aggregate preregistered metric:
+
+candidate Recall@100 ≥44/50
+
+0 strict Recall@10 regressions vs D
+
+choose the smallest L satisfying both.
+
+The 44/50 threshold is itself being chosen after seeing EXP-018's development result of 45/50, which is acceptable for development tuning, but the preregistration should explicitly record that provenance. It must not later be portrayed as an untouched criterion.
+
+Latency needs its own score-preserving track. Shrinking the CE union alone does not attack the biggest waste if local BM25 is repeatedly recomputing full-corpus IDF work. Optimize that first without changing retrieval semantics.
+
+There is one safeguard I'd add: Track 1 must demonstrate exact equivalence against the stored EXP-018 outputs before Track 2 uses it. Don't merely compare Recall@10. For all 50 queries, the optimized implementation should reproduce the current E local candidate identities/order and final E ranks exactly, subject only to already-frozen deterministic tie handling. If it doesn't, it isn't score-preserving and should stop before the cap sweep.
+
+For Track 2, also freeze the cross-parent ordering of additive extras before looking at cap results. After generating the same local extras as current E, deduplicate them and remove anything already in A-pool-100, then create one deterministic per-query ordering. Ideally use the exact full-corpus-equivalent BM25 score descending with the existing deterministic tie-breaks. If current E does not already define a cross-parent tie-break, write one into the preregistration now and don't change it after scores.
+
+Next step: run EXP-018B under this revised protocol
+
+Use this with Grok:
+
+EXP-018B — WITHIN-DOCUMENT EFFICIENCY + SCORE-PRESERVING OPTIMIZATION
+
+APPROVED REVISION.
+
+Do not validate SYSTEM-E.
+Do not freeze SYSTEM-E as a release system.
+Do not modify SYSTEM-D.
+Do not open gold150-v1 holdout.
+Do not start EXP-017.
+Do not change:
+- CE model
+- 0.7/0.3 D blend
+- RRF settings
+- global SYSTEM-A retrieval
+- A pool size
+- current E local BM25 scoring semantics
+
+Dataset:
+Frozen V2-DEVSET-001 n=50.
+
+Frozen identities:
+SYSTEM-D:
+d77b54ba3be0197d6bc1363883aefb0b3399117ee8c65800a38f8196d236ca3a
+
+Existing SYSTEM-E:
+7f3a1caa0350cc7e0fda0d9f2d7efb23fd08d7f79bc94f140a29f4247774adbe
+
+EXP-018 observed development baseline:
+D candidate gold-span Recall@100 = 41/50
+E candidate gold-span Recall@100 = 45/50
+
+D strict Recall@10 = 38/50
+E strict Recall@10 = 40/50
+
+D span Recall@10 = .76
+E span Recall@10 = .80
+
+D MRR = .5650
+E MRR = .5969
+
+D document recall = .90
+E document recall = .92
+
+D mean pool = 94.1
+E mean pool = 176.8
+
+E added mean = 82.7 union members/query
+
+D latency = 5824 ms
+E latency = 16604 ms
+
+Current E local retrieval:
+top-10 unique SYSTEM-A documents
+W=20 local BM25 hits PER PARENT.
+
+Known development pool-rescue IDs:
+V2D-11
+V2D-33
+V2D-34
+V2D-43
+
+These IDs are DIAGNOSTIC ONLY.
+They MUST NOT be a promotion/selection gate.
+
+==================================================
+TRACK 1 — SCORE-PRESERVING LOCAL BM25 OPTIMIZATION
+==================================================
+
+Goal:
+Remove redundant local-BM25 computation without changing SYSTEM-E retrieval behavior.
+
+Reuse/precompute the same query/global BM25 information already available from SYSTEM-A wherever mathematically equivalent, instead of rebuilding full-corpus IDF/CTE work independently for every parent document.
+
+The BM25 score definition MUST remain identical.
+
+Do not approximate.
+Do not alter candidate scoring.
+Do not alter W=20 per parent.
+Do not alter merge/fusion/reranking.
+
+Use stored EXP-018 outputs as the reference where possible rather than rerunning the old implementation unnecessarily.
+
+EQUIVALENCE GATE:
+
+For all 50 development queries verify that optimized Track-1 E reproduces:
+
+- same local candidate identities
+- same local candidate ordering
+- same union membership
+- same final reranked ordering/ranks
+- same strict Recall@10
+- same candidate Recall@100
+- same span Recall@10
+- same MRR
+- same document recall
+
+Any difference caused by the optimization means SCORE_PRESERVING=false.
+
+If SCORE_PRESERVING=false:
+STOP.
+Do not run Track 2.
+Return the mismatch report.
+
+If SCORE_PRESERVING=true:
+record new latency:
+- A/global retrieval
+- local BM25
+- CE
+- total
+and continue to Track 2.
+
+==================================================
+TRACK 2 — ADDITIVE PER-QUERY CAP
+==================================================
+
+IMPORTANT UNIT:
+
+L means ADDITIVE LOCAL PASSAGES PER QUERY.
+
+It does NOT mean per parent.
+
+Current E adds mean 82.7 union members/query.
+Therefore all three variants below are genuine shrink variants.
+
+Test exactly:
+
+L=10
+L=20
+L=40
+
+No additional L values after seeing results.
+
+Generate/rank local passages using the score-preserving Track-1 implementation.
+
+Before applying L:
+
+1. generate the current E local candidates
+2. deduplicate
+3. exclude passages already present in A-pool-100
+4. create one deterministic cross-parent ordering
+5. take the first L additive passages for the entire query
+
+Freeze the cross-parent ordering/tie-break before scoring.
+
+Use the existing full-corpus-equivalent local BM25 score where available.
+Do not invent a learned or query-tuned fusion rule.
+
+For each L report:
+
+PRIMARY
+- candidate gold-span Recall@100
+- numerator/denominator
+
+SECONDARY
+- strict Recall@10
+- span Recall@10
+- MRR
+- document recall
+- rescues vs D
+- regressions vs D
+- rank-1 destructions
+- mean additive candidate count
+- mean final union size
+- A/global latency
+- local BM25 latency
+- CE latency
+- total latency
+
+Also report what happened to:
+V2D-11
+V2D-33
+V2D-34
+V2D-43
+
+but mark them DIAGNOSTIC_ONLY.
+
+Do not use those four IDs in system selection.
+
+==================================================
+PREREGISTERED SELECTION RULE
+==================================================
+
+Select the SMALLEST L satisfying both:
+
+1. candidate gold-span Recall@100 >= 44/50
+2. zero strict Recall@10 regressions versus SYSTEM-D
+
+Do not require preservation of all four known EXP-018 rescue IDs.
+
+Do not require a strict Recall@10 improvement over D.
+
+If multiple caps qualify:
+select the smallest L.
+
+If no cap qualifies:
+select none.
+EXP-018 remains MECHANISM_SUPPORTED but the tested capped variants are not promoted.
+
+Record that the >=44/50 development threshold was preregistered for EXP-018B after observing EXP-018's 45/50 result and is therefore a development-stage criterion, not an independent validation threshold.
+
+Do not retune after scores.
+
+==================================================
+INTERPRETATION
+==================================================
+
+Three of the four EXP-018 pool rescues remained below final top-10 at E ranks approximately 13/34/44.
+
+Treat that only as evidence of future reranking headroom.
+
+Do NOT modify SYSTEM-D.
+Do NOT change blend weights.
+Do NOT start EXP-019 during this experiment.
+
+EXP-019 is a later reranking experiment.
+
+==================================================
+STOP
+==================================================
+
+Stop after:
+- Track-1 equivalence result
+- Track-1 latency result
+- three Track-2 cap results
+- preregistered selection decision
+
+No validation.
+No holdout.
+No EXP-017.
+No EXP-019.
+
+If Track 1 works, this experiment becomes much more informative because we'll separately answer two questions:
+
+Can we make the same E dramatically faster?
+and
+How much of E's added candidate volume do we actually need?
+
+Then when you give me the EXP-018B results, I'll judge them and give you the next experiment immediately.

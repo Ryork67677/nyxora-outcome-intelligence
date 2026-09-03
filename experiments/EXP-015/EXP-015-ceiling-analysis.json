@@ -1,0 +1,240 @@
+{
+  "document": "EXP-015-ceiling-analysis",
+  "generated_at": "2026-08-31T23:50:43Z",
+  "git_commit": "5082123e8c406ab162349d23003b1173afd697ac",
+  "system": "SYSTEM-A-GLOBAL",
+  "definition": "perfect-reranker case-pass iff every gold span rank <= pool. None (span absent from the stored probe) fails every finite pool.",
+  "probe_depth": 300,
+  "note": "Artifacts store ranks, not candidate lists. Actual rerank requires a retrieval rerun to materialize candidates. SYSTEM-A max stored rank on validation is 73. Candidate generation remains frozen at pool_per_retriever=50; a rerank pool of 100 is fused-union depth, not a change to BM25/dense k.",
+  "no_sweep": true,
+  "splits": {
+    "gold150-v1_validation": {
+      "source": "experiments/EVAL-VAL-001/EVAL-VAL-001-per-case.json system_a",
+      "confirmed_identical_to": "experiments/EVAL-VAL-001/EVAL-VAL-001-results.json system_a.cases",
+      "n": 40,
+      "n_cases": 40,
+      "measured_strict_recall_at_10": "30/40",
+      "ceilings": {
+        "10": {
+          "pass": 30,
+          "n": 40,
+          "label": "30/40",
+          "fail_case_ids": [
+            "GOLD-B001-03",
+            "GOLD-B002-02",
+            "GOLD-B002-07",
+            "GOLD-B006-03",
+            "HA-07",
+            "HA-29",
+            "HA-40",
+            "HA-41",
+            "HA-42",
+            "HA-44"
+          ]
+        },
+        "20": {
+          "pass": 32,
+          "n": 40,
+          "label": "32/40",
+          "fail_case_ids": [
+            "GOLD-B002-02",
+            "GOLD-B002-07",
+            "GOLD-B006-03",
+            "HA-07",
+            "HA-29",
+            "HA-40",
+            "HA-41",
+            "HA-42"
+          ]
+        },
+        "30": {
+          "pass": 35,
+          "n": 40,
+          "label": "35/40",
+          "fail_case_ids": [
+            "GOLD-B002-02",
+            "HA-29",
+            "HA-40",
+            "HA-41",
+            "HA-42"
+          ]
+        },
+        "50": {
+          "pass": 36,
+          "n": 40,
+          "label": "36/40",
+          "fail_case_ids": [
+            "GOLD-B002-02",
+            "HA-40",
+            "HA-41",
+            "HA-42"
+          ]
+        },
+        "100": {
+          "pass": 37,
+          "n": 40,
+          "label": "37/40",
+          "fail_case_ids": [
+            "GOLD-B002-02",
+            "HA-40",
+            "HA-41"
+          ]
+        },
+        "300": {
+          "pass": 37,
+          "n": 40,
+          "label": "37/40",
+          "fail_case_ids": [
+            "GOLD-B002-02",
+            "HA-40",
+            "HA-41"
+          ]
+        }
+      },
+      "max_stored_rank": 73,
+      "absent_at_300": [
+        {
+          "case_id": "GOLD-B002-02",
+          "ranks": [
+            null
+          ]
+        },
+        {
+          "case_id": "HA-40",
+          "ranks": [
+            null,
+            14
+          ]
+        },
+        {
+          "case_id": "HA-41",
+          "ranks": [
+            null,
+            null
+          ]
+        }
+      ],
+      "hard_cap": "37/40"
+    },
+    "exp014r_development_v1": {
+      "source": "experiments/EXP-014R/results-development.json system_a.cases",
+      "split_path": "evals/development/v1.jsonl",
+      "note": "Original 20 retrieval-scored golden cases (AN/OA ids). Distinct from gold150-v1 development.json. EVAL-VAL re-ran this split and reproduced 15/20 vs 17/20; no separate per-span dump was written into EVAL-VAL-001 besides historical_reproduction.",
+      "n": 20,
+      "n_cases": 20,
+      "measured_strict_recall_at_10": "15/20",
+      "ceilings": {
+        "10": {
+          "pass": 15,
+          "n": 20,
+          "label": "15/20",
+          "fail_case_ids": [
+            "AN-001",
+            "AN-003",
+            "AN-006",
+            "AN-011",
+            "AN-012"
+          ]
+        },
+        "20": {
+          "pass": 15,
+          "n": 20,
+          "label": "15/20",
+          "fail_case_ids": [
+            "AN-001",
+            "AN-003",
+            "AN-006",
+            "AN-011",
+            "AN-012"
+          ]
+        },
+        "30": {
+          "pass": 16,
+          "n": 20,
+          "label": "16/20",
+          "fail_case_ids": [
+            "AN-001",
+            "AN-003",
+            "AN-006",
+            "AN-012"
+          ]
+        },
+        "50": {
+          "pass": 17,
+          "n": 20,
+          "label": "17/20",
+          "fail_case_ids": [
+            "AN-003",
+            "AN-006",
+            "AN-012"
+          ]
+        },
+        "100": {
+          "pass": 18,
+          "n": 20,
+          "label": "18/20",
+          "fail_case_ids": [
+            "AN-003",
+            "AN-012"
+          ]
+        },
+        "300": {
+          "pass": 18,
+          "n": 20,
+          "label": "18/20",
+          "fail_case_ids": [
+            "AN-003",
+            "AN-012"
+          ]
+        }
+      },
+      "max_stored_rank": 57,
+      "absent_at_300": [
+        {
+          "case_id": "AN-003",
+          "ranks": [
+            null
+          ]
+        },
+        {
+          "case_id": "AN-012",
+          "ranks": [
+            3,
+            null
+          ]
+        }
+      ],
+      "hard_cap": "18/20"
+    }
+  },
+  "handoff_confirmation": {
+    "validation_expected": {
+      "10": "30/40",
+      "20": "32/40",
+      "30": "35/40",
+      "50": "36/40",
+      "100": "37/40",
+      "300": "37/40"
+    },
+    "validation_recomputed": {
+      "10": "30/40",
+      "20": "32/40",
+      "30": "35/40",
+      "50": "36/40",
+      "100": "37/40",
+      "300": "37/40"
+    },
+    "hard_cap_reason": "3 validation cases have a span absent at 300",
+    "max_stored_rank_expected": 73,
+    "max_stored_rank_recomputed": 73,
+    "match": true
+  },
+  "pool_100_justification_from_validation_ceilings": {
+    "not_a_sweep": "Pool 100 is handoff-preregistered. No EXP-015 pool sweep was run. It is not selected because it looked best on validation.",
+    "plus_vs_measured_30_of_40": 7,
+    "plus_vs_pool_30": 2,
+    "plus_vs_pool_50": 1,
+    "unreachable_cases": 3,
+    "detail": "+7 vs measured 30/40, +2 vs pool 30 (35/40), +1 vs pool 50 (36/40), 3 cases unreachable even at 300."
+  }
+}

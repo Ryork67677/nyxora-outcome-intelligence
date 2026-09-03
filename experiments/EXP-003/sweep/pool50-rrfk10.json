@@ -1,0 +1,4593 @@
+{
+  "mode": "rrf",
+  "snapshot_id": "snap_689e336380a054d8039dc35b2c09cd0a",
+  "k": 10,
+  "model_id": "emb_205f51a2d4db0273e121527cb5c6ff83",
+  "lexical_k": 50,
+  "dense_k": 50,
+  "rrf_k": 10,
+  "macro_recall": 0.5,
+  "cases_fully_recalled": 9,
+  "cases_total": 20,
+  "hit_text_redacted": true,
+  "cases": [
+    {
+      "case_id": "AN-001",
+      "category": "exact_lookup",
+      "k": 10,
+      "expected_evidence_count": 1,
+      "evidence_found_count": 0,
+      "recall": 0.0,
+      "found": [],
+      "missed": [
+        {
+          "version_id": "ver_db8326d3bafce3a535c3e3bfc3de7519",
+          "section_path": [
+            "Preamble"
+          ],
+          "char_start": 116,
+          "char_end": 227
+        }
+      ],
+      "hits": [
+        {
+          "chunk_id": "chk_6df0defafc628f8fb21334e814a697322cbe219b",
+          "version_id": "ver_d81ee605bd8bbb880deea432e51462ac",
+          "section_path": [
+            "Trigger a routine"
+          ],
+          "char_start": 4475,
+          "char_end": 4900,
+          "score": 0.14646464646464646,
+          "rank": 1,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.05555555555555555,
+              "dense": 0.09090909090909091
+            }
+          },
+          "text_sha256": "2ff40c9b09b012ff0fe278f50bc975a7569ef6825526562ef2435272481e4523",
+          "text_len": 425
+        },
+        {
+          "chunk_id": "chk_999930d88301a940f1d0e4bc870c1524f51e0dde",
+          "version_id": "ver_fa78e1feb6289d6bcb22305e61bbbfc3",
+          "section_path": [
+            "Server-side fallback",
+            "Naming your own fallback models"
+          ],
+          "char_start": 25333,
+          "char_end": 26540,
+          "score": 0.11559139784946236,
+          "rank": 2,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.03225806451612903,
+              "dense": 0.08333333333333333
+            }
+          },
+          "text_sha256": "02878d7d081297a77dae2a1197dfc42bdceb69086eee23adb4bf610eb7d58b83",
+          "text_len": 1207
+        },
+        {
+          "chunk_id": "chk_ea1e85768c4471105636dcd6e4f76545dbc09799",
+          "version_id": "ver_d140e6b5c8ed9e1ecf8b0e94d3ae27a6",
+          "section_path": [
+            "How the budget countdown works",
+            "Worked example: budget counting across turns"
+          ],
+          "char_start": 9348,
+          "char_end": 9845,
+          "score": 0.10666666666666666,
+          "rank": 3,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.04,
+              "dense": 0.06666666666666667
+            }
+          },
+          "text_sha256": "2ea1365e2a03417a6330e7c04124366f48e83971bb60ce110233cc36a25b4c93",
+          "text_len": 497
+        },
+        {
+          "chunk_id": "chk_d2f250361e9500abc3d1155069677ef9b2f95435",
+          "version_id": "ver_c299b58fe1f5a4d3a081b550334a7df6",
+          "section_path": [
+            "RBAC Groups",
+            "List RBAC Groups"
+          ],
+          "char_start": 19302,
+          "char_end": 19593,
+          "score": 0.10591133004926108,
+          "rank": 4,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.07142857142857142,
+              "dense": 0.034482758620689655
+            }
+          },
+          "text_sha256": "8fbb1dd116a66aa99fc53792d8a2bae5ab29a49348828efde4fd7e65d11cc4a7",
+          "text_len": 291
+        },
+        {
+          "chunk_id": "chk_b1c99a1353b52747b86a7628448296c505245fca",
+          "version_id": "ver_c299b58fe1f5a4d3a081b550334a7df6",
+          "section_path": [
+            "RBAC Roles",
+            "Get RBAC Role"
+          ],
+          "char_start": 39596,
+          "char_end": 39871,
+          "score": 0.10374149659863945,
+          "rank": 5,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.08333333333333333,
+              "dense": 0.02040816326530612
+            }
+          },
+          "text_sha256": "4daa471752d09c0cc593186bd85a21ff0491aac3925897e6cba12e5ce36c28ca",
+          "text_len": 275
+        },
+        {
+          "chunk_id": "chk_6b09fc4b47e3ff541a6c199d755a66170c4906f8",
+          "version_id": "ver_c299b58fe1f5a4d3a081b550334a7df6",
+          "section_path": [
+            "RBAC Roles",
+            "List RBAC Roles"
+          ],
+          "char_start": 37640,
+          "char_end": 37915,
+          "score": 0.09090909090909091,
+          "rank": 6,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.09090909090909091
+            }
+          },
+          "text_sha256": "711ae78b96ee748d58614eb4d44e96ea1b22c1b82e4f4b20dab4a189f0c9b2a6",
+          "text_len": 275
+        },
+        {
+          "chunk_id": "chk_e9fbc6cc20e05a3f7750c2502e4bed51dd9eadaa",
+          "version_id": "ver_c299b58fe1f5a4d3a081b550334a7df6",
+          "section_path": [
+            "RBAC Groups",
+            "Create RBAC Group"
+          ],
+          "char_start": 24033,
+          "char_end": 24386,
+          "score": 0.08823529411764705,
+          "rank": 7,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.058823529411764705,
+              "dense": 0.029411764705882353
+            }
+          },
+          "text_sha256": "661957e777252db84689167caf0b85eff0a7d020f56b0dfdeab347102ef3e4a0",
+          "text_len": 353
+        },
+        {
+          "chunk_id": "chk_8c787cd9054106933ac75eb48fffb4d614b8a3f7",
+          "version_id": "ver_c299b58fe1f5a4d3a081b550334a7df6",
+          "section_path": [
+            "RBAC Groups",
+            "Get RBAC Group"
+          ],
+          "char_start": 21919,
+          "char_end": 22199,
+          "score": 0.07692307692307693,
+          "rank": 8,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.07692307692307693
+            }
+          },
+          "text_sha256": "dac42fbc1fd9567cca1aa09dac3856740df7f8398b9172f17b2c2ef7c46f55ae",
+          "text_len": 280
+        },
+        {
+          "chunk_id": "chk_e25cfa7d3779d911803ad541c5071e1709edc534",
+          "version_id": "ver_7746dc094c7490eb180bfd60c936a345",
+          "section_path": [
+            "Reference"
+          ],
+          "char_start": 25871,
+          "char_end": 29336,
+          "score": 0.07692307692307693,
+          "rank": 9,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "dense": 0.07692307692307693
+            }
+          },
+          "text_sha256": "3145d48e32697e1f1ee59cffb41c13794a64e9584c9fbbc84012acf77a23ba3c",
+          "text_len": 3465
+        },
+        {
+          "chunk_id": "chk_e1e6dcb23ff19abb5531c7e638351593439ac6d9",
+          "version_id": "ver_6bafcf704c4110f57f26afd11a018716",
+          "section_path": [
+            "How to use beta headers"
+          ],
+          "char_start": 788,
+          "char_end": 1150,
+          "score": 0.07378129117259552,
+          "rank": 10,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.043478260869565216,
+              "dense": 0.030303030303030304
+            }
+          },
+          "text_sha256": "d048166460f792640eed3cbec82bfbec8fc27ad9a44b542eb23e1b7015329ea1",
+          "text_len": 362
+        }
+      ]
+    },
+    {
+      "case_id": "AN-002",
+      "category": "exact_lookup",
+      "k": 10,
+      "expected_evidence_count": 1,
+      "evidence_found_count": 0,
+      "recall": 0.0,
+      "found": [],
+      "missed": [
+        {
+          "version_id": "ver_0774ca0093ff4a846753577c9a4a39d5",
+          "section_path": [
+            "HTTP errors"
+          ],
+          "char_start": 1636,
+          "char_end": 1721
+        }
+      ],
+      "hits": [
+        {
+          "chunk_id": "chk_3dc730b00afefa27069177446f046c3826f450bc",
+          "version_id": "ver_0774ca0093ff4a846753577c9a4a39d5",
+          "section_path": [
+            "Preamble"
+          ],
+          "char_start": 0,
+          "char_end": 244,
+          "score": 0.18181818181818182,
+          "rank": 1,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.09090909090909091,
+              "dense": 0.09090909090909091
+            }
+          },
+          "text_sha256": "99a00ecbcba550f128d9c148534d4c7bd48de42f35ed5ea5a142e0da56dab92b",
+          "text_len": 244
+        },
+        {
+          "chunk_id": "chk_4fe67855c1a0ee6c5a03318863eb43b53ea600fe",
+          "version_id": "ver_6c0983aad96f198367a0de369b3bb86c",
+          "section_path": [
+            "Cybersecurity safeguards"
+          ],
+          "char_start": 7032,
+          "char_end": 7462,
+          "score": 0.09191176470588236,
+          "rank": 2,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.0625,
+              "dense": 0.029411764705882353
+            }
+          },
+          "text_sha256": "96e70662cbb0e66b42f380d4ff7cf741ecd10b00483f2665591e2699d032a3d4",
+          "text_len": 430
+        },
+        {
+          "chunk_id": "chk_6da85f6970e185f2b36040b44abb9d7eb262eb4f",
+          "version_id": "ver_4d14aec24504f4b8f6f28938b84587dc",
+          "section_path": [
+            "Stop reason values",
+            "refusal"
+          ],
+          "char_start": 59569,
+          "char_end": 59722,
+          "score": 0.08781362007168458,
+          "rank": 3,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.05555555555555555,
+              "dense": 0.03225806451612903
+            }
+          },
+          "text_sha256": "8dac14d67a26bf577223c750947a84b683d002e9cc85976e813eed2159b754fe",
+          "text_len": 153
+        },
+        {
+          "chunk_id": "chk_61b51e3fcd5f313b841a3c4e3d4bd57544e9b5db",
+          "version_id": "ver_96d1698a3864f79451e8576f87a07004",
+          "section_path": [
+            "Tool commands",
+            "rename",
+            "Error handling"
+          ],
+          "char_start": 32855,
+          "char_end": 33073,
+          "score": 0.08522727272727273,
+          "rank": 4,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.022727272727272728,
+              "dense": 0.0625
+            }
+          },
+          "text_sha256": "e151a097ff3392c083820a35a94becfafe75f97f377fcfd16e211f055deb2eac",
+          "text_len": 218
+        },
+        {
+          "chunk_id": "chk_026bfa33d3b3cb7ec7de8bf483a2841df90e20eb",
+          "version_id": "ver_4d14aec24504f4b8f6f28938b84587dc",
+          "section_path": [
+            "Stop reasons vs. errors",
+            "Errors (failed requests)"
+          ],
+          "char_start": 88475,
+          "char_end": 88621,
+          "score": 0.08488964346349745,
+          "rank": 5,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.03225806451612903,
+              "dense": 0.05263157894736842
+            }
+          },
+          "text_sha256": "7378b34ba49764de30e6a7199be28d5e33ae64894ca87c109e2f7c4d9bddc538",
+          "text_len": 146
+        },
+        {
+          "chunk_id": "chk_5469246bff175d10813fa62e4001657bbe6076a6",
+          "version_id": "ver_f30a6447e4df2ab76e4c1475f353109c",
+          "section_path": [
+            "OpenAI TypeScript and JavaScript API Library",
+            "Handling errors"
+          ],
+          "char_start": 11331,
+          "char_end": 11809,
+          "score": 0.08333333333333333,
+          "rank": 6,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "dense": 0.08333333333333333
+            }
+          },
+          "text_sha256": "40e600b3981c1a15b07de8c133444e00f0d2c575e1eb5bc3269a8380a02cf8c5",
+          "text_len": 478
+        },
+        {
+          "chunk_id": "chk_cd55a0fc3a74b9a619a5593147cf93b2650afee2",
+          "version_id": "ver_462141128848e293fd652c38dcdfcd33",
+          "section_path": [
+            "Where tools run",
+            "User-defined tools (client-executed)"
+          ],
+          "char_start": 1637,
+          "char_end": 2400,
+          "score": 0.08333333333333333,
+          "rank": 7,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.08333333333333333
+            }
+          },
+          "text_sha256": "d89c9fc1e028ac305a036a9fb898ba97ec5fea45e80644ee15d41559db4b8eed",
+          "text_len": 763
+        },
+        {
+          "chunk_id": "chk_964cba61f32599730e797d6db06e4596ccea417b",
+          "version_id": "ver_42a4f3d941b664a285883aaf6ff90373",
+          "section_path": [
+            "Multiple content blocks"
+          ],
+          "char_start": 49770,
+          "char_end": 50274,
+          "score": 0.08155080213903743,
+          "rank": 8,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.058823529411764705,
+              "dense": 0.022727272727272728
+            }
+          },
+          "text_sha256": "040924591ec338a77ca432c4b1f222613f0ae675eb162f16947568a01c1c65ba",
+          "text_len": 504
+        },
+        {
+          "chunk_id": "chk_61fe8a7eb194bf15e9b059f62af3caac2d6a3eae",
+          "version_id": "ver_6bafcf704c4110f57f26afd11a018716",
+          "section_path": [
+            "Next steps"
+          ],
+          "char_start": 7094,
+          "char_end": 7582,
+          "score": 0.07692307692307693,
+          "rank": 9,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.07692307692307693
+            }
+          },
+          "text_sha256": "8fe392634ef707abc87e93510e172d6be8d9da51c3b82a347bd577980617a54f",
+          "text_len": 488
+        },
+        {
+          "chunk_id": "chk_6eb2303d70a60b5dadfb72206087ecc73166f372",
+          "version_id": "ver_9247e3ce4df6f79d9cadc44e1a3bbd0c",
+          "section_path": [
+            "Remove `await` for non-async usage.",
+            "Handling errors"
+          ],
+          "char_start": 18125,
+          "char_end": 18603,
+          "score": 0.07692307692307693,
+          "rank": 10,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "dense": 0.07692307692307693
+            }
+          },
+          "text_sha256": "40e600b3981c1a15b07de8c133444e00f0d2c575e1eb5bc3269a8380a02cf8c5",
+          "text_len": 478
+        }
+      ]
+    },
+    {
+      "case_id": "AN-003",
+      "category": "exact_lookup",
+      "k": 10,
+      "expected_evidence_count": 1,
+      "evidence_found_count": 0,
+      "recall": 0.0,
+      "found": [],
+      "missed": [
+        {
+          "version_id": "ver_ef5f9dacc17f99c298faf449e756ae90",
+          "section_path": [
+            "Batches",
+            "Create a Message Batch",
+            "Body Parameters"
+          ],
+          "char_start": 4554,
+          "char_end": 4611
+        }
+      ],
+      "hits": [
+        {
+          "chunk_id": "chk_2ea1a67abe465ee6a010e6dfe114da337a13e381",
+          "version_id": "ver_18c692f4d28bd01c0a5cac553fcf01a7",
+          "section_path": [
+            "Batches",
+            "Create a Message Batch"
+          ],
+          "char_start": 585493,
+          "char_end": 585929,
+          "score": 0.15,
+          "rank": 1,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.06666666666666667,
+              "dense": 0.08333333333333333
+            }
+          },
+          "text_sha256": "59eb90e14b5d28b9a5b89edc1126064292930238a90d064fa72c7d81df7b1806",
+          "text_len": 436
+        },
+        {
+          "chunk_id": "chk_9f57fea8ff13b8906ba6413bda770d0ba538780e",
+          "version_id": "ver_de7f74230c8f10d30aea5d037a3bd0a5",
+          "section_path": [
+            "Batches",
+            "Create a Message Batch"
+          ],
+          "char_start": 935839,
+          "char_end": 936275,
+          "score": 0.14646464646464646,
+          "rank": 2,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.05555555555555555,
+              "dense": 0.09090909090909091
+            }
+          },
+          "text_sha256": "59eb90e14b5d28b9a5b89edc1126064292930238a90d064fa72c7d81df7b1806",
+          "text_len": 436
+        },
+        {
+          "chunk_id": "chk_44daea2e5fb36b8cfc5d59175ae40e44c4b9544c",
+          "version_id": "ver_ef5f9dacc17f99c298faf449e756ae90",
+          "section_path": [
+            "Batches",
+            "Create a Message Batch"
+          ],
+          "char_start": 97,
+          "char_end": 533,
+          "score": 0.13942307692307693,
+          "rank": 3,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.0625,
+              "dense": 0.07692307692307693
+            }
+          },
+          "text_sha256": "59eb90e14b5d28b9a5b89edc1126064292930238a90d064fa72c7d81df7b1806",
+          "text_len": 436
+        },
+        {
+          "chunk_id": "chk_83b7df7d8a5e8cf5d0d1fba3aa55aa0ad63734e3",
+          "version_id": "ver_a51a411655bc0cd2ac78d3a5820245a3",
+          "section_path": [
+            "Create a Message Batch"
+          ],
+          "char_start": 108,
+          "char_end": 544,
+          "score": 0.13025210084033612,
+          "rank": 4,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.058823529411764705,
+              "dense": 0.07142857142857142
+            }
+          },
+          "text_sha256": "59eb90e14b5d28b9a5b89edc1126064292930238a90d064fa72c7d81df7b1806",
+          "text_len": 436
+        },
+        {
+          "chunk_id": "chk_33ad8ffa40df47da233998051fa763843d701941",
+          "version_id": "ver_cec813c3bb15b76dcf16e7a0c2231ef1",
+          "section_path": [
+            "Message Batches API",
+            "How the Message Batches API works"
+          ],
+          "char_start": 1521,
+          "char_end": 2341,
+          "score": 0.11858974358974358,
+          "rank": 5,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.07692307692307693,
+              "dense": 0.041666666666666664
+            }
+          },
+          "text_sha256": "f1716818445a4e547f43e2f88c36a41fff7f395de8708ed2ab4e6306150370a7",
+          "text_len": 820
+        },
+        {
+          "chunk_id": "chk_7cf253d04b05026138e7841f925d10bbadca71d0",
+          "version_id": "ver_cec813c3bb15b76dcf16e7a0c2231ef1",
+          "section_path": [
+            "Message Batches API",
+            "How to use the Message Batches API",
+            "Best practices for effective batching"
+          ],
+          "char_start": 67538,
+          "char_end": 68001,
+          "score": 0.1159090909090909,
+          "rank": 6,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.09090909090909091,
+              "dense": 0.025
+            }
+          },
+          "text_sha256": "7d1044e499aad8add0be01eb435dc446a15982943b7b130db555ae7c51e6c590",
+          "text_len": 463
+        },
+        {
+          "chunk_id": "chk_9a47be71980d8dc4a33b53a7f111174ed4dc0936",
+          "version_id": "ver_cec813c3bb15b76dcf16e7a0c2231ef1",
+          "section_path": [
+            "Message Batches API"
+          ],
+          "char_start": 997,
+          "char_end": 1519,
+          "score": 0.11513157894736842,
+          "rank": 7,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.05263157894736842,
+              "dense": 0.0625
+            }
+          },
+          "text_sha256": "3255d332d7ef061def471c1c9ec42ee27640a35380c674bddab985ecf9bb8e70",
+          "text_len": 522
+        },
+        {
+          "chunk_id": "chk_5624dbbe40dd7f470d454d2bd5afa8eac1d8cc83",
+          "version_id": "ver_cec813c3bb15b76dcf16e7a0c2231ef1",
+          "section_path": [
+            "Message Batches API",
+            "How to use the Message Batches API",
+            "Prepare and create your batch"
+          ],
+          "char_start": 9833,
+          "char_end": 10453,
+          "score": 0.10846560846560846,
+          "rank": 8,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.07142857142857142,
+              "dense": 0.037037037037037035
+            }
+          },
+          "text_sha256": "5ef51fd3a9648fcc57e9e203fc1bd0df5e4b55fbb94c0537be1475cb2de9ef2c",
+          "text_len": 620
+        },
+        {
+          "chunk_id": "chk_efa9ae1ffd12516ab5b4c555349a68f4e797c9ff",
+          "version_id": "ver_cec813c3bb15b76dcf16e7a0c2231ef1",
+          "section_path": [
+            "Message Batches API",
+            "How to use the Message Batches API"
+          ],
+          "char_start": 9794,
+          "char_end": 9831,
+          "score": 0.08992248062015504,
+          "rank": 9,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.023255813953488372,
+              "dense": 0.06666666666666667
+            }
+          },
+          "text_sha256": "f115d754cd58e5c129ed4bc1f8c5b986de4e95006c79cce0703d27f8377088f4",
+          "text_len": 37
+        },
+        {
+          "chunk_id": "chk_09982b88c01149425aba3800b9402785f04a98c1",
+          "version_id": "ver_b0c87c162e4543f4924b890e8e71d91b",
+          "section_path": [
+            "Retrieve Message Batch results"
+          ],
+          "char_start": 117,
+          "char_end": 627,
+          "score": 0.08448275862068966,
+          "rank": 10,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.05,
+              "dense": 0.034482758620689655
+            }
+          },
+          "text_sha256": "1b0f7cf799c8d2e7ad5642a2e0cd36fde30719b1807d0bc69be6f8b367c705ce",
+          "text_len": 510
+        }
+      ]
+    },
+    {
+      "case_id": "AN-004",
+      "category": "exact_lookup",
+      "k": 10,
+      "expected_evidence_count": 1,
+      "evidence_found_count": 1,
+      "recall": 1.0,
+      "found": [
+        {
+          "version_id": "ver_7947433dfde6b3b8eccd0faa597c3c9a",
+          "section_path": [
+            "Explicit cache breakpoints",
+            "Structuring your prompt",
+            "How automatic prefix checking works"
+          ],
+          "char_start": 25537,
+          "char_end": 25690
+        }
+      ],
+      "missed": [],
+      "hits": [
+        {
+          "chunk_id": "chk_9458cfce3f9532422f70b72469344b6f21ca9929",
+          "version_id": "ver_c60f7418b69b6610bd20e974b92cdd8c",
+          "section_path": [
+            "Working with compaction blocks",
+            "Prompt caching"
+          ],
+          "char_start": 63247,
+          "char_end": 63476,
+          "score": 0.14583333333333331,
+          "rank": 1,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.0625,
+              "dense": 0.08333333333333333
+            }
+          },
+          "text_sha256": "3a845e5f240ca2f7c0c979dd8db8171baea804942f4f54412905ac406abe0b7b",
+          "text_len": 229
+        },
+        {
+          "chunk_id": "chk_b245f8637c040582bf60553245d06f60d7b6a4d7",
+          "version_id": "ver_7947433dfde6b3b8eccd0faa597c3c9a",
+          "section_path": [
+            "Automatic caching",
+            "What stays the same"
+          ],
+          "char_start": 22491,
+          "char_end": 22730,
+          "score": 0.12692307692307692,
+          "rank": 2,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.07692307692307693,
+              "dense": 0.05
+            }
+          },
+          "text_sha256": "05c2db0ccd3eeca983071125fcc7ec7f34fc0144595fdb3f8e8965c96c693c96",
+          "text_len": 239
+        },
+        {
+          "chunk_id": "chk_09898a13eb3aa68560d1f4da36541797ed1d09d6",
+          "version_id": "ver_0e1e2173035af0ad0c98640a78504513",
+          "section_path": [
+            "Mechanics"
+          ],
+          "char_start": 7762,
+          "char_end": 7894,
+          "score": 0.12662337662337664,
+          "rank": 3,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.03571428571428571,
+              "dense": 0.09090909090909091
+            }
+          },
+          "text_sha256": "1e582f3c18db057ee22311438a0da03ef67395d0c2152a863195d4eb084f263a",
+          "text_len": 132
+        },
+        {
+          "chunk_id": "chk_fe13384292d320931e643076f7937a6ea68e9a3e",
+          "version_id": "ver_b42814c2d273210095c8e5844612933e",
+          "section_path": [
+            "Context awareness",
+            "How it works"
+          ],
+          "char_start": 11383,
+          "char_end": 11486,
+          "score": 0.11858974358974358,
+          "rank": 4,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.041666666666666664,
+              "dense": 0.07692307692307693
+            }
+          },
+          "text_sha256": "fef5cfcaa482b1b321dc238b3d1d5d2a172d4188fe825f7bbff1d9f33a4ca898",
+          "text_len": 103
+        },
+        {
+          "chunk_id": "chk_a6d67e662b8b88a22db9175e673faf0d13958af0",
+          "version_id": "ver_b7ea8359f97ca269418988f78e80b870",
+          "section_path": [
+            "Prompt caching"
+          ],
+          "char_start": 30512,
+          "char_end": 30849,
+          "score": 0.11011904761904762,
+          "rank": 5,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.047619047619047616,
+              "dense": 0.0625
+            }
+          },
+          "text_sha256": "5cd163913e44a0434f2fd31de1e3fbba1b8548317a81190e62eb4171d9002a2d",
+          "text_len": 337
+        },
+        {
+          "chunk_id": "chk_36f5a1497661650565b6a5a26c43129c5f73df34",
+          "version_id": "ver_7947433dfde6b3b8eccd0faa597c3c9a",
+          "section_path": [
+            "Automatic caching"
+          ],
+          "char_start": 13529,
+          "char_end": 13849,
+          "score": 0.10263157894736842,
+          "rank": 6,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.05,
+              "dense": 0.05263157894736842
+            }
+          },
+          "text_sha256": "eec004614807669a98525aa1035338dcec6463f50c5dadd126f5fc3d2541794d",
+          "text_len": 320
+        },
+        {
+          "chunk_id": "chk_a0fbd67ab532849536e32aab1eff573db059e44e",
+          "version_id": "ver_7947433dfde6b3b8eccd0faa597c3c9a",
+          "section_path": [
+            "On earlier Opus/Sonnet and all Haiku models, non-tool-result user block causes prior thinking blocks to be stripped; on Opus 4.5+/Sonnet 4.6+ they are kept",
+            "Troubleshooting common issues"
+          ],
+          "char_start": 49227,
+          "char_end": 51220,
+          "score": 0.10057471264367815,
+          "rank": 7,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.08333333333333333,
+              "dense": 0.017241379310344827
+            }
+          },
+          "text_sha256": "5de8145b25a0267bcd7fdb64674f3a68a9efe2855bebda5be09eba070dae8f0a",
+          "text_len": 1993
+        },
+        {
+          "chunk_id": "chk_f2aed61911000ca2b007c7bb074153ea7ba20e3c",
+          "version_id": "ver_7947433dfde6b3b8eccd0faa597c3c9a",
+          "section_path": [
+            "Explicit cache breakpoints",
+            "Structuring your prompt",
+            "How automatic prefix checking works"
+          ],
+          "char_start": 27852,
+          "char_end": 28335,
+          "score": 0.09090909090909091,
+          "rank": 8,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.09090909090909091
+            }
+          },
+          "text_sha256": "c6e38cb0370d7c153e8894ce667f0e620a35ca22d0427b5dc83ddee28f67949a",
+          "text_len": 483
+        },
+        {
+          "chunk_id": "chk_6da79c04ebc6f78a7d37fde43c4635bc7d82f47b",
+          "version_id": "ver_804237921fa9a31a1445a9eb93a55287",
+          "section_path": [
+            "Feature-specific pricing",
+            "Long context pricing"
+          ],
+          "char_start": 23999,
+          "char_end": 24433,
+          "score": 0.08660130718954248,
+          "rank": 9,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.058823529411764705,
+              "dense": 0.027777777777777776
+            }
+          },
+          "text_sha256": "f0beff835a9fc54866430771497260362f900bde77d09c726e8354f1c85a7085",
+          "text_len": 434
+        },
+        {
+          "chunk_id": "chk_384363e66444dd16a3dee38a9b52449914c66c3e",
+          "version_id": "ver_7947433dfde6b3b8eccd0faa597c3c9a",
+          "section_path": [
+            "Explicit cache breakpoints",
+            "Structuring your prompt",
+            "How automatic prefix checking works"
+          ],
+          "char_start": 24411,
+          "char_end": 27850,
+          "score": 0.0787878787878788,
+          "rank": 10,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.045454545454545456,
+              "dense": 0.03333333333333333
+            }
+          },
+          "text_sha256": "7063f337b7572380ec96ca5df45c2badefb11a8514934800529f06e74f860841",
+          "text_len": 3439
+        }
+      ]
+    },
+    {
+      "case_id": "AN-005",
+      "category": "exact_lookup",
+      "k": 10,
+      "expected_evidence_count": 1,
+      "evidence_found_count": 1,
+      "recall": 1.0,
+      "found": [
+        {
+          "version_id": "ver_1c53b961e1f5da8124a1e7e8eb92c941",
+          "section_path": [
+            "Server-side strategies"
+          ],
+          "char_start": 4055,
+          "char_end": 4106
+        }
+      ],
+      "missed": [],
+      "hits": [
+        {
+          "chunk_id": "chk_b9fabebf4c56e99042e0db1ff4ba8a7070e300e4",
+          "version_id": "ver_1c53b961e1f5da8124a1e7e8eb92c941",
+          "section_path": [
+            "Thinking block clearing usage",
+            "Configuration options for thinking block clearing"
+          ],
+          "char_start": 32988,
+          "char_end": 33749,
+          "score": 0.13095238095238093,
+          "rank": 1,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.047619047619047616,
+              "dense": 0.08333333333333333
+            }
+          },
+          "text_sha256": "385309e5437334aa6e11773e04e177e70c4f3c63f528af1f04681f9470b9587c",
+          "text_len": 761
+        },
+        {
+          "chunk_id": "chk_59779279876350678ff609766a844161fa93157f",
+          "version_id": "ver_1c53b961e1f5da8124a1e7e8eb92c941",
+          "section_path": [
+            "Thinking block clearing usage"
+          ],
+          "char_start": 25906,
+          "char_end": 26667,
+          "score": 0.12692307692307692,
+          "rank": 2,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.05,
+              "dense": 0.07692307692307693
+            }
+          },
+          "text_sha256": "d87b7ca95ee958d333be5ea40ea7911f1c407dfb64019ab23e33f0ed79183d5c",
+          "text_len": 761
+        },
+        {
+          "chunk_id": "chk_6a68b278a55fa60ba288bf91bc296c75f29ef4d7",
+          "version_id": "ver_1c53b961e1f5da8124a1e7e8eb92c941",
+          "section_path": [
+            "Token counting"
+          ],
+          "char_start": 58201,
+          "char_end": 59192,
+          "score": 0.11868686868686869,
+          "rank": 3,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.027777777777777776,
+              "dense": 0.09090909090909091
+            }
+          },
+          "text_sha256": "ff258baa5433fc3a5f8dbeb619571c1e387694a3c30cd3954bea4884df7e0cc5",
+          "text_len": 991
+        },
+        {
+          "chunk_id": "chk_5e2260a0ad123beb00370fb0fe53a3ce14320baf",
+          "version_id": "ver_6bafcf704c4110f57f26afd11a018716",
+          "section_path": [
+            "Error handling"
+          ],
+          "char_start": 6551,
+          "char_end": 6878,
+          "score": 0.10833333333333334,
+          "rank": 4,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.041666666666666664,
+              "dense": 0.06666666666666667
+            }
+          },
+          "text_sha256": "2b810499a67c2c4718fc1ee1ecbac381e6c33a86d82be365c4241971df39fa28",
+          "text_len": 327
+        },
+        {
+          "chunk_id": "chk_43b970a41a32561de65e694bfc7c5c80f5bfaf49",
+          "version_id": "ver_aeebd84b52caf334c627e31a5f0add5e",
+          "section_path": [
+            "or for 120B",
+            "Local tool use with gpt-oss in Python or TypeScript"
+          ],
+          "char_start": 4374,
+          "char_end": 4477,
+          "score": 0.09090909090909091,
+          "rank": 5,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.09090909090909091
+            }
+          },
+          "text_sha256": "67d22877401d24f8c979af22accbf6dc1dc0e0b9519f5f6d365cb342bb87ac05",
+          "text_len": 103
+        },
+        {
+          "chunk_id": "chk_48ba5c9fdfa15fd366fde41563394e1759d58650",
+          "version_id": "ver_96d1698a3864f79451e8576f87a07004",
+          "section_path": [
+            "Context editing integration"
+          ],
+          "char_start": 36460,
+          "char_end": 36679,
+          "score": 0.09029649595687331,
+          "rank": 6,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.018867924528301886,
+              "dense": 0.07142857142857142
+            }
+          },
+          "text_sha256": "7ed94b27d5a561acc760bc2ffd97f2a9a47f2e677b2c62930a7dcdad34dd4118",
+          "text_len": 219
+        },
+        {
+          "chunk_id": "chk_61b5c2449b83e6a6fb1484645c910cf86d594784",
+          "version_id": "ver_1c53b961e1f5da8124a1e7e8eb92c941",
+          "section_path": [
+            "Context editing response"
+          ],
+          "char_start": 56799,
+          "char_end": 57009,
+          "score": 0.08333333333333333,
+          "rank": 7,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.08333333333333333
+            }
+          },
+          "text_sha256": "ffe8d34517b2020d7d47390fa49c508565d5df7d962cee609bb8aee9a58fcbff",
+          "text_len": 210
+        },
+        {
+          "chunk_id": "chk_a2b6b7adc7bbf62a493196422bd654ed7dd46255",
+          "version_id": "ver_de7f74230c8f10d30aea5d037a3bd0a5",
+          "section_path": [
+            "Tunnels",
+            "Rotate Tunnel Token"
+          ],
+          "char_start": 3056270,
+          "char_end": 3056836,
+          "score": 0.07692307692307693,
+          "rank": 8,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.07692307692307693
+            }
+          },
+          "text_sha256": "e5656a4faeab622f88eecbda799b45b0eaaca58aa7d46d9a67eb0f77cba74493",
+          "text_len": 566
+        },
+        {
+          "chunk_id": "chk_684086c646a7ffdd31032a0a7cbf7c49c4fd19d9",
+          "version_id": "ver_1c53b961e1f5da8124a1e7e8eb92c941",
+          "section_path": [
+            "Server-side strategies"
+          ],
+          "char_start": 3911,
+          "char_end": 4236,
+          "score": 0.07142857142857142,
+          "rank": 9,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.07142857142857142
+            }
+          },
+          "text_sha256": "330f709341792a8efec59a971e2620ae2bc7260e779eb5c1519916746688e9e3",
+          "text_len": 325
+        },
+        {
+          "chunk_id": "chk_483d9023bd9b4315be060928cecc94a5eb64d074",
+          "version_id": "ver_de7f74230c8f10d30aea5d037a3bd0a5",
+          "section_path": [
+            "Tunnels",
+            "Reveal Tunnel Token"
+          ],
+          "char_start": 3053437,
+          "char_end": 3054023,
+          "score": 0.06666666666666667,
+          "rank": 10,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.06666666666666667
+            }
+          },
+          "text_sha256": "2eba825def16c5bd994f29f54956d9f1be7eb37bc7c6b00812c1173e69e3bd1e",
+          "text_len": 586
+        }
+      ]
+    },
+    {
+      "case_id": "AN-006",
+      "category": "exact_lookup",
+      "k": 10,
+      "expected_evidence_count": 1,
+      "evidence_found_count": 0,
+      "recall": 0.0,
+      "found": [],
+      "missed": [
+        {
+          "version_id": "ver_f65938c74d40ac1e288f169d3d0435b7",
+          "section_path": [
+            "Upgrade to latest tool version",
+            "What's changed"
+          ],
+          "char_start": 58361,
+          "char_end": 58388
+        }
+      ],
+      "hits": [
+        {
+          "chunk_id": "chk_e9452680b72ecb01e08082f223e8e6c4b30544b6",
+          "version_id": "ver_53c7279f0b26dd8d4b011e04d4bac3dc",
+          "section_path": [
+            "Step 2: Create a presentation"
+          ],
+          "char_start": 11259,
+          "char_end": 12832,
+          "score": 0.1534090909090909,
+          "rank": 1,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.09090909090909091,
+              "dense": 0.0625
+            }
+          },
+          "text_sha256": "cb7cc523c3b6f54cf9a72d84b28fde89ed38f8dde9186e0d0c02214a90f5da26",
+          "text_len": 1573
+        },
+        {
+          "chunk_id": "chk_41257ca965cecb8ded33942c3e1f60b013f9b627",
+          "version_id": "ver_d9ba3ab0d872dd86047c7ed6dc783235",
+          "section_path": [
+            "Quick start"
+          ],
+          "char_start": 12142,
+          "char_end": 12377,
+          "score": 0.11805555555555555,
+          "rank": 2,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.0625,
+              "dense": 0.05555555555555555
+            }
+          },
+          "text_sha256": "9d6a78acaff799b15198a79ebb31d647207bf72fd86557c0ea2084a8815b0195",
+          "text_len": 235
+        },
+        {
+          "chunk_id": "chk_de7a0a4b46331e7fa0dbbb3bf64d77f1cd7a1b0b",
+          "version_id": "ver_5a15a8f543d432ef91eb6e2997f51225",
+          "section_path": [
+            "Overview",
+            "Prerequisites"
+          ],
+          "char_start": 3934,
+          "char_end": 4748,
+          "score": 0.10220125786163521,
+          "rank": 3,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.08333333333333333,
+              "dense": 0.018867924528301886
+            }
+          },
+          "text_sha256": "38502f8ed67ff66d567550a84ad74f627a3ade6065fc8cf4f80c3a13f1b47555",
+          "text_len": 814
+        },
+        {
+          "chunk_id": "chk_867f8c3d34caacf3c9cc6cbceced7aabaae00479",
+          "version_id": "ver_f65938c74d40ac1e288f169d3d0435b7",
+          "section_path": [
+            "Tool definition"
+          ],
+          "char_start": 35150,
+          "char_end": 35228,
+          "score": 0.09090909090909091,
+          "rank": 4,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "dense": 0.09090909090909091
+            }
+          },
+          "text_sha256": "1556bca7297fea044087b230005e54bad6ac5e310c7bfeeb0a0d6f40008a3e6c",
+          "text_len": 78
+        },
+        {
+          "chunk_id": "chk_0a95aa29bb053a75baeb6a6e3bca0a1755795c9e",
+          "version_id": "ver_7cd600e1124f25cfedc3f1f6d5c297e5",
+          "section_path": [
+            "Process results programmatically",
+            "Response format",
+            "Code execution completion"
+          ],
+          "char_start": 46658,
+          "char_end": 46742,
+          "score": 0.08333333333333333,
+          "rank": 5,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "dense": 0.08333333333333333
+            }
+          },
+          "text_sha256": "91cf372eab8066583cd81827a17d9ad28dc3aea72b32b4f902d4da119a623f04",
+          "text_len": 84
+        },
+        {
+          "chunk_id": "chk_2a4e9219cd23ea4a8b7b9ffe2a13b7ee01d39f8b",
+          "version_id": "ver_6bb251ec84d35aaf9d0b9f38b97b4e65",
+          "section_path": [
+            "Supported features"
+          ],
+          "char_start": 7093,
+          "char_end": 8023,
+          "score": 0.08166666666666667,
+          "rank": 6,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.04,
+              "dense": 0.041666666666666664
+            }
+          },
+          "text_sha256": "5810e18377c39bf60ff774922a215c11c1dd72f623699f71fecb5d662f94e580",
+          "text_len": 930
+        },
+        {
+          "chunk_id": "chk_5f731bf905406c123e27cc0a2c868c1255fd4e73",
+          "version_id": "ver_7cd600e1124f25cfedc3f1f6d5c297e5",
+          "section_path": [
+            "Process results programmatically",
+            "Response format",
+            "Programmatic tool call"
+          ],
+          "char_start": 46020,
+          "char_end": 46081,
+          "score": 0.07692307692307693,
+          "rank": 7,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "dense": 0.07692307692307693
+            }
+          },
+          "text_sha256": "f921543cfdafe67fd0f68dd5cb85906bffb7d830d72f0531e846198e72793444",
+          "text_len": 61
+        },
+        {
+          "chunk_id": "chk_c21c824bda91614ea826d6fdbe07ba8339672534",
+          "version_id": "ver_901356d3ffce0f0478ba2d33aefdf98a",
+          "section_path": [
+            "How web fetch works",
+            "Dynamic filtering"
+          ],
+          "char_start": 5634,
+          "char_end": 6585,
+          "score": 0.07692307692307693,
+          "rank": 8,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.07692307692307693
+            }
+          },
+          "text_sha256": "d774f014f8597c24a289ceece76a2bd8c86af9078ca1aa629c50897f82297fa0",
+          "text_len": 951
+        },
+        {
+          "chunk_id": "chk_e0766e6b7217167df670a765735fe80f9fec1c27",
+          "version_id": "ver_1d58a563501b073d898977de6bc2a823",
+          "section_path": [
+            "Code"
+          ],
+          "char_start": 4757529,
+          "char_end": 4757535,
+          "score": 0.07142857142857142,
+          "rank": 9,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "dense": 0.07142857142857142
+            }
+          },
+          "text_sha256": "1d63934865e62e46245c3b2d43eda5e2e16abcbcfc489d63e4442d81d03a7d0f",
+          "text_len": 6
+        },
+        {
+          "chunk_id": "chk_f23e803096cd01a45fb97a2c0628234c153b75e5",
+          "version_id": "ver_099b2710b117f534b43be4be2a4c84ab",
+          "section_path": [
+            "PDF Processing",
+            "Where Skills work",
+            "Claude API"
+          ],
+          "char_start": 10041,
+          "char_end": 11454,
+          "score": 0.07142857142857142,
+          "rank": 10,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.07142857142857142
+            }
+          },
+          "text_sha256": "e9764ba53e2bba5c444e91d886d2441b124ef4aac6b21bbeda858f4e19f40c9b",
+          "text_len": 1413
+        }
+      ]
+    },
+    {
+      "case_id": "AN-007",
+      "category": "exact_lookup",
+      "k": 10,
+      "expected_evidence_count": 1,
+      "evidence_found_count": 0,
+      "recall": 0.0,
+      "found": [],
+      "missed": [
+        {
+          "version_id": "ver_0774ca0093ff4a846753577c9a4a39d5",
+          "section_path": [
+            "HTTP errors"
+          ],
+          "char_start": 2459,
+          "char_end": 2533
+        }
+      ],
+      "hits": [
+        {
+          "chunk_id": "chk_3dc730b00afefa27069177446f046c3826f450bc",
+          "version_id": "ver_0774ca0093ff4a846753577c9a4a39d5",
+          "section_path": [
+            "Preamble"
+          ],
+          "char_start": 0,
+          "char_end": 244,
+          "score": 0.17424242424242425,
+          "rank": 1,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.08333333333333333,
+              "dense": 0.09090909090909091
+            }
+          },
+          "text_sha256": "99a00ecbcba550f128d9c148534d4c7bd48de42f35ed5ea5a142e0da56dab92b",
+          "text_len": 244
+        },
+        {
+          "chunk_id": "chk_822e5f96323bd027ad5b9dc3af5d30954f9616fb",
+          "version_id": "ver_d81ee605bd8bbb880deea432e51462ac",
+          "section_path": [
+            "Trigger a routine",
+            "Errors"
+          ],
+          "char_start": 9848,
+          "char_end": 12097,
+          "score": 0.1380952380952381,
+          "rank": 2,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.07142857142857142,
+              "dense": 0.06666666666666667
+            }
+          },
+          "text_sha256": "699ffae2c05f82424bf3f861084dbc893a774667bbb4a97a8ee4939faa99e05d",
+          "text_len": 2249
+        },
+        {
+          "chunk_id": "chk_61b51e3fcd5f313b841a3c4e3d4bd57544e9b5db",
+          "version_id": "ver_96d1698a3864f79451e8576f87a07004",
+          "section_path": [
+            "Tool commands",
+            "rename",
+            "Error handling"
+          ],
+          "char_start": 32855,
+          "char_end": 33073,
+          "score": 0.11274509803921567,
+          "rank": 3,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.029411764705882353,
+              "dense": 0.08333333333333333
+            }
+          },
+          "text_sha256": "e151a097ff3392c083820a35a94becfafe75f97f377fcfd16e211f055deb2eac",
+          "text_len": 218
+        },
+        {
+          "chunk_id": "chk_4fe67855c1a0ee6c5a03318863eb43b53ea600fe",
+          "version_id": "ver_6c0983aad96f198367a0de369b3bb86c",
+          "section_path": [
+            "Cybersecurity safeguards"
+          ],
+          "char_start": 7032,
+          "char_end": 7462,
+          "score": 0.11145510835913312,
+          "rank": 4,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.058823529411764705,
+              "dense": 0.05263157894736842
+            }
+          },
+          "text_sha256": "96e70662cbb0e66b42f380d4ff7cf741ecd10b00483f2665591e2699d032a3d4",
+          "text_len": 430
+        },
+        {
+          "chunk_id": "chk_026bfa33d3b3cb7ec7de8bf483a2841df90e20eb",
+          "version_id": "ver_4d14aec24504f4b8f6f28938b84587dc",
+          "section_path": [
+            "Stop reasons vs. errors",
+            "Errors (failed requests)"
+          ],
+          "char_start": 88475,
+          "char_end": 88621,
+          "score": 0.10096153846153846,
+          "rank": 5,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.038461538461538464,
+              "dense": 0.0625
+            }
+          },
+          "text_sha256": "7378b34ba49764de30e6a7199be28d5e33ae64894ca87c109e2f7c4d9bddc538",
+          "text_len": 146
+        },
+        {
+          "chunk_id": "chk_6da85f6970e185f2b36040b44abb9d7eb262eb4f",
+          "version_id": "ver_4d14aec24504f4b8f6f28938b84587dc",
+          "section_path": [
+            "Stop reason values",
+            "refusal"
+          ],
+          "char_start": 59569,
+          "char_end": 59722,
+          "score": 0.09610983981693363,
+          "rank": 6,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.05263157894736842,
+              "dense": 0.043478260869565216
+            }
+          },
+          "text_sha256": "8dac14d67a26bf577223c750947a84b683d002e9cc85976e813eed2159b754fe",
+          "text_len": 153
+        },
+        {
+          "chunk_id": "chk_5abfa8aee8fe66a8416eddb9e834f7752b3bf235",
+          "version_id": "ver_1261879c16f641270789647ac9c63c96",
+          "section_path": [
+            "Event types",
+            "Error events"
+          ],
+          "char_start": 9920,
+          "char_end": 10202,
+          "score": 0.09090909090909091,
+          "rank": 7,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.09090909090909091
+            }
+          },
+          "text_sha256": "9e92e7d51fbcb00b66d4ae22a6ab910b237ff2e3f209907e0460bd6fdd0798ef",
+          "text_len": 282
+        },
+        {
+          "chunk_id": "chk_964cba61f32599730e797d6db06e4596ccea417b",
+          "version_id": "ver_42a4f3d941b664a285883aaf6ff90373",
+          "section_path": [
+            "Multiple content blocks"
+          ],
+          "char_start": 49770,
+          "char_end": 50274,
+          "score": 0.08888888888888888,
+          "rank": 8,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.05555555555555555,
+              "dense": 0.03333333333333333
+            }
+          },
+          "text_sha256": "040924591ec338a77ca432c4b1f222613f0ae675eb162f16947568a01c1c65ba",
+          "text_len": 504
+        },
+        {
+          "chunk_id": "chk_b0dfa25b3bf1067a9978d8def52abb2ffb4fac4a",
+          "version_id": "ver_c299b58fe1f5a4d3a081b550334a7df6",
+          "section_path": [
+            "External Keys",
+            "Domain Types",
+            "External Key Validate Response"
+          ],
+          "char_start": 144052,
+          "char_end": 144664,
+          "score": 0.08739495798319327,
+          "rank": 9,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.02857142857142857,
+              "dense": 0.058823529411764705
+            }
+          },
+          "text_sha256": "053f8583631c0ad7f13db46f6e38bdbeccbf0827eb8c9977b93580070d377633",
+          "text_len": 612
+        },
+        {
+          "chunk_id": "chk_61fe8a7eb194bf15e9b059f62af3caac2d6a3eae",
+          "version_id": "ver_6bafcf704c4110f57f26afd11a018716",
+          "section_path": [
+            "Next steps"
+          ],
+          "char_start": 7094,
+          "char_end": 7582,
+          "score": 0.08421052631578947,
+          "rank": 10,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.06666666666666667,
+              "dense": 0.017543859649122806
+            }
+          },
+          "text_sha256": "8fe392634ef707abc87e93510e172d6be8d9da51c3b82a347bd577980617a54f",
+          "text_len": 488
+        }
+      ]
+    },
+    {
+      "case_id": "AN-008",
+      "category": "normal",
+      "k": 10,
+      "expected_evidence_count": 1,
+      "evidence_found_count": 0,
+      "recall": 0.0,
+      "found": [],
+      "missed": [
+        {
+          "version_id": "ver_db8326d3bafce3a535c3e3bfc3de7519",
+          "section_path": [
+            "Preamble"
+          ],
+          "char_start": 361,
+          "char_end": 496
+        }
+      ],
+      "hits": [
+        {
+          "chunk_id": "chk_0f912dc09b051ecd7f958f91660bb31efca2f073",
+          "version_id": "ver_1f49b1ad8b70725119b878c73a3cf8e9",
+          "section_path": [
+            "Preamble"
+          ],
+          "char_start": 0,
+          "char_end": 720,
+          "score": 0.11471861471861472,
+          "rank": 1,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.09090909090909091,
+              "dense": 0.023809523809523808
+            }
+          },
+          "text_sha256": "95d433904b48192989371a8d1966d6f730fff5a91762e2f07211836e73882858",
+          "text_len": 720
+        },
+        {
+          "chunk_id": "chk_6ac0a77a8d46c2d2c8527ab0cbcacc90d7847338",
+          "version_id": "ver_1f49b1ad8b70725119b878c73a3cf8e9",
+          "section_path": [
+            "Dateless IDs are pinned snapshots"
+          ],
+          "char_start": 2383,
+          "char_end": 3299,
+          "score": 0.10374149659863945,
+          "rank": 2,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.02040816326530612,
+              "dense": 0.08333333333333333
+            }
+          },
+          "text_sha256": "77b69707f5d717728ec1d2726b427b8d5a3376b1bdadbffa9583f6c1d82c2951",
+          "text_len": 916
+        },
+        {
+          "chunk_id": "chk_b03f161afc2cac716b24b3c9c5297e2f950ebbee",
+          "version_id": "ver_5a15a8f543d432ef91eb6e2997f51225",
+          "section_path": [
+            "Using Skills in Messages",
+            "Container parameter"
+          ],
+          "char_start": 4779,
+          "char_end": 5112,
+          "score": 0.0946843853820598,
+          "rank": 3,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.023255813953488372,
+              "dense": 0.07142857142857142
+            }
+          },
+          "text_sha256": "78bbeffbc3fcc2d03d1d31678f2bc6a535ce24d636ee002986a10a751f5c25ee",
+          "text_len": 333
+        },
+        {
+          "chunk_id": "chk_2f047ca56b853b2c849f0cd4acb6b1e3ad517ef3",
+          "version_id": "ver_de67d790db9792b2f6c5c7418a507764",
+          "section_path": [
+            "This is an absolute host path outside the SDK process base_dir.",
+            "0.3.0"
+          ],
+          "char_start": 20790,
+          "char_end": 20909,
+          "score": 0.09090909090909091,
+          "rank": 4,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "dense": 0.09090909090909091
+            }
+          },
+          "text_sha256": "9281228c80a921c125aa23ea17c42e02656604f5d7137557937b131b28ca9fac",
+          "text_len": 119
+        },
+        {
+          "chunk_id": "chk_dd8414d36f4d4308f38d1366682a5214e4ca21f9",
+          "version_id": "ver_4d14aec24504f4b8f6f28938b84587dc",
+          "section_path": [
+            "Stop reason values",
+            "tool\\_use"
+          ],
+          "char_start": 39699,
+          "char_end": 40435,
+          "score": 0.08333333333333333,
+          "rank": 5,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.08333333333333333
+            }
+          },
+          "text_sha256": "afc8d030ae94b01dc0743fdbe1862aaa32d2a388815153feee5ec45bc57dc82e",
+          "text_len": 736
+        },
+        {
+          "chunk_id": "chk_6b9f765a7ed7a547ea79f8d569315266971a5203",
+          "version_id": "ver_de7f74230c8f10d30aea5d037a3bd0a5",
+          "section_path": [
+            "Messages",
+            "Domain Types",
+            "Beta Skill Params"
+          ],
+          "char_start": 765801,
+          "char_end": 766231,
+          "score": 0.07692307692307693,
+          "rank": 6,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "dense": 0.07692307692307693
+            }
+          },
+          "text_sha256": "6f3de5a8d86bb1f22fdd7fad3c9957d0956b8b32585d2f075a02ceda2711318e",
+          "text_len": 430
+        },
+        {
+          "chunk_id": "chk_aa9ba62b80754229aad8f9352b250a0d64e3f08b",
+          "version_id": "ver_76c80d3d80b12ae7870092b39f1832f1",
+          "section_path": [
+            "How to count message tokens",
+            "Count tokens in messages with tools"
+          ],
+          "char_start": 5929,
+          "char_end": 6777,
+          "score": 0.07692307692307693,
+          "rank": 7,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.07692307692307693
+            }
+          },
+          "text_sha256": "f6d34a10331963ff9d0d0300cffe6b20521fae4c44bdc3b1233f517c092d254d",
+          "text_len": 848
+        },
+        {
+          "chunk_id": "chk_35e1c1bed35f6aa8b2024786a8ceff4bbccd15c4",
+          "version_id": "ver_c3bc78079e1e9859817a52f73ce2c1bd",
+          "section_path": [
+            "Controlling Claude's output",
+            "Forcing tool use"
+          ],
+          "char_start": 22304,
+          "char_end": 23169,
+          "score": 0.07142857142857142,
+          "rank": 8,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.07142857142857142
+            }
+          },
+          "text_sha256": "3a3f38f62ea2404c467c13da19d15167ac740b37efb40b373800ed0ea5c62269",
+          "text_len": 865
+        },
+        {
+          "chunk_id": "chk_9fda2140e32e455dea5ccad63a314fa9f5560cad",
+          "version_id": "ver_7102d3e3621c153ddba38db4eb52ad9f",
+          "section_path": [
+            "Disable parallel tool use",
+            "Exactly one tool call"
+          ],
+          "char_start": 37481,
+          "char_end": 38349,
+          "score": 0.06666666666666667,
+          "rank": 9,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.06666666666666667
+            }
+          },
+          "text_sha256": "db3ba32f9de2c7b08c255e64dba367bb869fe804f11fe20350e8f32f6530bdc2",
+          "text_len": 868
+        },
+        {
+          "chunk_id": "chk_c8d65da0db1e7a9ac5681c089a17bdda42b9bb9d",
+          "version_id": "ver_de7f74230c8f10d30aea5d037a3bd0a5",
+          "section_path": [
+            "Messages",
+            "Domain Types",
+            "Beta Skill"
+          ],
+          "char_start": 765405,
+          "char_end": 765799,
+          "score": 0.06666666666666667,
+          "rank": 10,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "dense": 0.06666666666666667
+            }
+          },
+          "text_sha256": "41a2d18cec69d4c124bdea9d08eb88fb0a711437d25ea61d64ba766f56d59de8",
+          "text_len": 394
+        }
+      ]
+    },
+    {
+      "case_id": "AN-009",
+      "category": "version_conflict",
+      "k": 10,
+      "expected_evidence_count": 1,
+      "evidence_found_count": 1,
+      "recall": 1.0,
+      "found": [
+        {
+          "version_id": "ver_795b67a3865ed717b915a2c9c9e5746c",
+          "section_path": [
+            "Preamble"
+          ],
+          "char_start": 246,
+          "char_end": 318
+        }
+      ],
+      "missed": [],
+      "hits": [
+        {
+          "chunk_id": "chk_3ca2ff24b047321f3f33112db03f5633835d78cd",
+          "version_id": "ver_795b67a3865ed717b915a2c9c9e5746c",
+          "section_path": [
+            "Preamble"
+          ],
+          "char_start": 0,
+          "char_end": 897,
+          "score": 0.18181818181818182,
+          "rank": 1,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.09090909090909091,
+              "dense": 0.09090909090909091
+            }
+          },
+          "text_sha256": "c10036f9f860e816a7e07c853560b6bfa1e6c518030558a090e91d8c0cbaf81c",
+          "text_len": 897
+        },
+        {
+          "chunk_id": "chk_28a3a25b468312fa2770dfaf235378def9e36c75",
+          "version_id": "ver_795b67a3865ed717b915a2c9c9e5746c",
+          "section_path": [
+            "Using service tiers"
+          ],
+          "char_start": 7408,
+          "char_end": 7610,
+          "score": 0.16025641025641024,
+          "rank": 2,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.07692307692307693,
+              "dense": 0.08333333333333333
+            }
+          },
+          "text_sha256": "b178c13cd9e9c65d44f99d22722bce596f0c0dddef5ba8f5e18960f5b8251ed6",
+          "text_len": 202
+        },
+        {
+          "chunk_id": "chk_dec07ad060a32faa677d40db5365f5e4cf4567f3",
+          "version_id": "ver_795b67a3865ed717b915a2c9c9e5746c",
+          "section_path": [
+            "Existing Priority Tier commitments"
+          ],
+          "char_start": 8071,
+          "char_end": 8462,
+          "score": 0.16025641025641024,
+          "rank": 3,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.08333333333333333,
+              "dense": 0.07692307692307693
+            }
+          },
+          "text_sha256": "70b19611f6e408eb9993b459ecacb2e456d5045e46a6d77ee4c3dfedc4e07043",
+          "text_len": 391
+        },
+        {
+          "chunk_id": "chk_a0a8ae4e100d3feae719844c14be8f98af71a79d",
+          "version_id": "ver_795b67a3865ed717b915a2c9c9e5746c",
+          "section_path": [
+            "Using service tiers"
+          ],
+          "char_start": 6833,
+          "char_end": 7218,
+          "score": 0.1380952380952381,
+          "rank": 4,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.07142857142857142,
+              "dense": 0.06666666666666667
+            }
+          },
+          "text_sha256": "51951b6931f8c99a3bd25bb73c05727b7394b0ae06ceda4fc8949231ef75abd9",
+          "text_len": 385
+        },
+        {
+          "chunk_id": "chk_fb49bda79e52393194226a66884fb1c2a964efc3",
+          "version_id": "ver_795b67a3865ed717b915a2c9c9e5746c",
+          "section_path": [
+            "Using service tiers"
+          ],
+          "char_start": 7939,
+          "char_end": 8069,
+          "score": 0.11437908496732026,
+          "rank": 5,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.058823529411764705,
+              "dense": 0.05555555555555555
+            }
+          },
+          "text_sha256": "3d4ccd3b682f55f09cc0917253064338e6419b4c36d7e84cb8a282b47a742e98",
+          "text_len": 130
+        },
+        {
+          "chunk_id": "chk_f511fad2260e966198a7a24bd63328a2e6315536",
+          "version_id": "ver_795b67a3865ed717b915a2c9c9e5746c",
+          "section_path": [
+            "Priority Tier"
+          ],
+          "char_start": 1081,
+          "char_end": 1469,
+          "score": 0.10250000000000001,
+          "rank": 6,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.04,
+              "dense": 0.0625
+            }
+          },
+          "text_sha256": "a456e860b8020864817ea9b9597df18d509b6b499622f983afdd770ae47f7430",
+          "text_len": 388
+        },
+        {
+          "chunk_id": "chk_e0405fb0cc190752a6d5228e47bda75d256aed59",
+          "version_id": "ver_a7bda3595f2c124605c3228464d4ee52",
+          "section_path": [
+            "Or, for the Project Glasswing model with the same capabilities:",
+            "What changed"
+          ],
+          "char_start": 17342,
+          "char_end": 18860,
+          "score": 0.09696969696969697,
+          "rank": 7,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.06666666666666667,
+              "dense": 0.030303030303030304
+            }
+          },
+          "text_sha256": "d3491795054feed5342bc0de31cad287da3952c319bf414230de46b49e2cf174",
+          "text_len": 1518
+        },
+        {
+          "chunk_id": "chk_9b166f11685f518143d6c95cd62174c866558beb",
+          "version_id": "ver_c8b2c7130cb18508fed4f864d4c3d7a3",
+          "section_path": [
+            "Preamble"
+          ],
+          "char_start": 0,
+          "char_end": 1543,
+          "score": 0.09545454545454546,
+          "rank": 8,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.05,
+              "dense": 0.045454545454545456
+            }
+          },
+          "text_sha256": "d294c4a4120550c7e42fdba87cc29977c7470efc2c8fe3cb95f83220aa952eb4",
+          "text_len": 1543
+        },
+        {
+          "chunk_id": "chk_d86957e295d97cd6c9cc769a7f57736b0414d06a",
+          "version_id": "ver_795b67a3865ed717b915a2c9c9e5746c",
+          "section_path": [
+            "How requests get assigned tiers"
+          ],
+          "char_start": 1471,
+          "char_end": 3121,
+          "score": 0.09347826086956522,
+          "rank": 9,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.043478260869565216,
+              "dense": 0.05
+            }
+          },
+          "text_sha256": "1f253ac8025587dbdc6124a1d380bad7793cf304b624da53d0d2039189d61ec8",
+          "text_len": 1650
+        },
+        {
+          "chunk_id": "chk_976c577b4c2f935e25839aff5e6575c1f15beadd",
+          "version_id": "ver_cc7d6ed2a636d74fc7aca7885ba9ce60",
+          "section_path": [
+            "Considerations"
+          ],
+          "char_start": 25751,
+          "char_end": 26676,
+          "score": 0.09107142857142857,
+          "rank": 10,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.0625,
+              "dense": 0.02857142857142857
+            }
+          },
+          "text_sha256": "f05d21d9feeea88da771092b4ca5447df7de2b71689577f9b2d6bbc22e5096dc",
+          "text_len": 925
+        }
+      ]
+    },
+    {
+      "case_id": "AN-010",
+      "category": "version_conflict",
+      "k": 10,
+      "expected_evidence_count": 1,
+      "evidence_found_count": 0,
+      "recall": 0.0,
+      "found": [],
+      "missed": [
+        {
+          "version_id": "ver_b57691291ac216e12d311d60db579b43",
+          "section_path": [
+            "Model status"
+          ],
+          "char_start": 5671,
+          "char_end": 5769
+        }
+      ],
+      "hits": [
+        {
+          "chunk_id": "chk_f426538641512568e897d54b1f900d8dc69bec91",
+          "version_id": "ver_a183af1cb18fd2f8c9d16398cc617af6",
+          "section_path": [
+            "Tools",
+            "functions"
+          ],
+          "char_start": 19457,
+          "char_end": 20149,
+          "score": 0.13438735177865613,
+          "rank": 1,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.043478260869565216,
+              "dense": 0.09090909090909091
+            }
+          },
+          "text_sha256": "95acc476d7ead852c6940569fd33ad441a6cbb500d33a2ae01efb2bce47dbe5b",
+          "text_len": 692
+        },
+        {
+          "chunk_id": "chk_a27b14c05e436d3c195d13632f99aa2a18b96523",
+          "version_id": "ver_1261879c16f641270789647ac9c63c96",
+          "section_path": [
+            "Full HTTP stream response",
+            "Streaming request with tool use"
+          ],
+          "char_start": 19925,
+          "char_end": 20471,
+          "score": 0.12037037037037036,
+          "rank": 2,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.08333333333333333,
+              "dense": 0.037037037037037035
+            }
+          },
+          "text_sha256": "0a4a87a3149a4eebbf24d5048592294ebe50d69141a4672f749404ec7bcdd481",
+          "text_len": 546
+        },
+        {
+          "chunk_id": "chk_c186d1463c0745160fcb04e2ab1c9060154e626c",
+          "version_id": "ver_4d14aec24504f4b8f6f28938b84587dc",
+          "section_path": [
+            "Stop reason values",
+            "tool\\_use"
+          ],
+          "char_start": 40439,
+          "char_end": 40946,
+          "score": 0.11471861471861472,
+          "rank": 3,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.09090909090909091,
+              "dense": 0.023809523809523808
+            }
+          },
+          "text_sha256": "c4dd20f26e8431d408b1e90310fe2513917c6877b8a41726a0abd1ca85210c23",
+          "text_len": 507
+        },
+        {
+          "chunk_id": "chk_57cefee06d699788f407083d16b49b3d3a074259",
+          "version_id": "ver_7102d3e3621c153ddba38db4eb52ad9f",
+          "section_path": [
+            "Disable parallel tool use",
+            "At most one tool call"
+          ],
+          "char_start": 30106,
+          "char_end": 30663,
+          "score": 0.11212121212121212,
+          "rank": 4,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.06666666666666667,
+              "dense": 0.045454545454545456
+            }
+          },
+          "text_sha256": "c443374e1adb7d7669fb2b3ad1f80a4fd469a1035a7351cc6cb6a5264b2d486c",
+          "text_len": 557
+        },
+        {
+          "chunk_id": "chk_aa76f06252647224619e4cc2220fd27894d5dfed",
+          "version_id": "ver_7102d3e3621c153ddba38db4eb52ad9f",
+          "section_path": [
+            "Disable parallel tool use",
+            "Exactly one tool call"
+          ],
+          "char_start": 38353,
+          "char_end": 38909,
+          "score": 0.10989010989010989,
+          "rank": 5,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.07142857142857142,
+              "dense": 0.038461538461538464
+            }
+          },
+          "text_sha256": "4f8bcff35d88492d1e65a310ed407664ddf8bb2aa1b5d9e4addb4a29e8a30f9e",
+          "text_len": 556
+        },
+        {
+          "chunk_id": "chk_91a2f23dc703cfbeaad1d48bd3c3d6348430f473",
+          "version_id": "ver_7102d3e3621c153ddba38db4eb52ad9f",
+          "section_path": [
+            "Disable parallel tool use",
+            "At most one tool call"
+          ],
+          "char_start": 30667,
+          "char_end": 31597,
+          "score": 0.10714285714285714,
+          "rank": 6,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.023809523809523808,
+              "dense": 0.08333333333333333
+            }
+          },
+          "text_sha256": "e057ba95d3c734a5eacd0b9a8e96265ffbc2054ec448c3ed8fcfbcdf0adbfe71",
+          "text_len": 930
+        },
+        {
+          "chunk_id": "chk_62a3dc6f8eb617cdfcf647009446c1087062c85e",
+          "version_id": "ver_7102d3e3621c153ddba38db4eb52ad9f",
+          "section_path": [
+            "Disable parallel tool use",
+            "Exactly one tool call"
+          ],
+          "char_start": 38913,
+          "char_end": 39842,
+          "score": 0.09581881533101044,
+          "rank": 7,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.024390243902439025,
+              "dense": 0.07142857142857142
+            }
+          },
+          "text_sha256": "fc0b4ff454bf34e438685b1b5eff1f5945eb30181f5d9e9e52b6a4e1419a538d",
+          "text_len": 929
+        },
+        {
+          "chunk_id": "chk_941f05ad9ff7e848cbcc0e9cdc90d294dc5b8dc6",
+          "version_id": "ver_7102d3e3621c153ddba38db4eb52ad9f",
+          "section_path": [
+            "Disable parallel tool use",
+            "At most one tool call"
+          ],
+          "char_start": 36487,
+          "char_end": 37233,
+          "score": 0.09401709401709402,
+          "rank": 8,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.038461538461538464,
+              "dense": 0.05555555555555555
+            }
+          },
+          "text_sha256": "89ac68f21257e2b9b4be9769ae8a8d3892724fdd84e48dd0755036a0d1b14ed8",
+          "text_len": 746
+        },
+        {
+          "chunk_id": "chk_9c6fd99a89fde769195ae43c49eb0a8a17d141c0",
+          "version_id": "ver_1261879c16f641270789647ac9c63c96",
+          "section_path": [
+            "Full HTTP stream response",
+            "Streaming request with tool use"
+          ],
+          "char_start": 26712,
+          "char_end": 27420,
+          "score": 0.09347826086956522,
+          "rank": 9,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.05,
+              "dense": 0.043478260869565216
+            }
+          },
+          "text_sha256": "44a7c17b0d2c456f2aab2b52845b150cdac75fe8840f5daf34ed93bd94308143",
+          "text_len": 708
+        },
+        {
+          "chunk_id": "chk_3c1329adf2653dc7fc6345bff5a1b4e9bed3e4ca",
+          "version_id": "ver_76c80d3d80b12ae7870092b39f1832f1",
+          "section_path": [
+            "How to count message tokens",
+            "Count tokens in messages with tools"
+          ],
+          "char_start": 6781,
+          "char_end": 7260,
+          "score": 0.09263157894736843,
+          "rank": 10,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.05263157894736842,
+              "dense": 0.04
+            }
+          },
+          "text_sha256": "a378dfdb018ddb485f04460ff0573586b1c35451cbb90fb8b148cfb09157dbfb",
+          "text_len": 479
+        }
+      ]
+    },
+    {
+      "case_id": "AN-011",
+      "category": "ambiguous",
+      "k": 10,
+      "expected_evidence_count": 1,
+      "evidence_found_count": 0,
+      "recall": 0.0,
+      "found": [],
+      "missed": [
+        {
+          "version_id": "ver_c8b2c7130cb18508fed4f864d4c3d7a3",
+          "section_path": [
+            "About rate limits"
+          ],
+          "char_start": 1672,
+          "char_end": 1849
+        }
+      ],
+      "hits": [
+        {
+          "chunk_id": "chk_7d59d19c83f7a8bc25f7c3e7eee3d6eb8ef5eb64",
+          "version_id": "ver_c8b2c7130cb18508fed4f864d4c3d7a3",
+          "section_path": [
+            "Requesting higher limits"
+          ],
+          "char_start": 21676,
+          "char_end": 22598,
+          "score": 0.18181818181818182,
+          "rank": 1,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.09090909090909091,
+              "dense": 0.09090909090909091
+            }
+          },
+          "text_sha256": "702ba3b5b4090784cf01380dc83a3066b5b4977e768301aa394600801f098b4b",
+          "text_len": 922
+        },
+        {
+          "chunk_id": "chk_e042ed62a9beaf0f6fbd22a46a8abc233b23091c",
+          "version_id": "ver_c8b2c7130cb18508fed4f864d4c3d7a3",
+          "section_path": [
+            "Rate limits",
+            "Monitoring your rate limits in the Console"
+          ],
+          "char_start": 20684,
+          "char_end": 21674,
+          "score": 0.1388888888888889,
+          "rank": 2,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.08333333333333333,
+              "dense": 0.05555555555555555
+            }
+          },
+          "text_sha256": "a26261dd1522fe94c679c1e7fb635ad99a561d676ffa19d44f6df71698ab5872",
+          "text_len": 990
+        },
+        {
+          "chunk_id": "chk_185dd90241acf9dcc9d973b916ea6775b6cdf35f",
+          "version_id": "ver_6cbca1c2343b84b7d5cf99029456cfa2",
+          "section_path": [
+            "Rate limits and availability",
+            "Rate limits"
+          ],
+          "char_start": 17865,
+          "char_end": 18757,
+          "score": 0.11666666666666667,
+          "rank": 3,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.03333333333333333,
+              "dense": 0.08333333333333333
+            }
+          },
+          "text_sha256": "3d707a2ebda859954682159c0111a6bcc5fbbf8c0d586846ee6b37eccec1033c",
+          "text_len": 892
+        },
+        {
+          "chunk_id": "chk_8dcce0570cb887db7fe504d8c6ed648b286b26a4",
+          "version_id": "ver_53da2f78e855c75ec755089c13d44c28",
+          "section_path": [
+            "Batch requests"
+          ],
+          "char_start": 24800,
+          "char_end": 25440,
+          "score": 0.10267857142857142,
+          "rank": 4,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.07142857142857142,
+              "dense": 0.03125
+            }
+          },
+          "text_sha256": "d7a8133c73fb245fbd013143d96e9c6e71a404dcd53bccefe2a1a15cbe52391e",
+          "text_len": 640
+        },
+        {
+          "chunk_id": "chk_7b408ffa786aa84bb5fd69b171f7d41a2c05603f",
+          "version_id": "ver_c8b2c7130cb18508fed4f864d4c3d7a3",
+          "section_path": [
+            "Rate limits",
+            "Cache-aware ITPM"
+          ],
+          "char_start": 5609,
+          "char_end": 6612,
+          "score": 0.09914529914529915,
+          "rank": 5,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.07692307692307693,
+              "dense": 0.022222222222222223
+            }
+          },
+          "text_sha256": "75060c2494678a8a24a79671082f46180f7bd52cad671e76f33d49f400a7985d",
+          "text_len": 1003
+        },
+        {
+          "chunk_id": "chk_c700a8a89f9239fc8433b3cdad23e6c3575f8a17",
+          "version_id": "ver_5ebdc722f9bedb1e2e8cbd3f29ff6805",
+          "section_path": [
+            "Rate limits and quotas"
+          ],
+          "char_start": 58021,
+          "char_end": 59441,
+          "score": 0.09845559845559845,
+          "rank": 6,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.02702702702702703,
+              "dense": 0.07142857142857142
+            }
+          },
+          "text_sha256": "4d48667b3ef8ebe1d6ff8538c5dacebd7e97ddaafd1c26c1a469d1a8903bd248",
+          "text_len": 1420
+        },
+        {
+          "chunk_id": "chk_9b166f11685f518143d6c95cd62174c866558beb",
+          "version_id": "ver_c8b2c7130cb18508fed4f864d4c3d7a3",
+          "section_path": [
+            "Preamble"
+          ],
+          "char_start": 0,
+          "char_end": 1543,
+          "score": 0.09775641025641026,
+          "rank": 7,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.020833333333333332,
+              "dense": 0.07692307692307693
+            }
+          },
+          "text_sha256": "d294c4a4120550c7e42fdba87cc29977c7470efc2c8fe3cb95f83220aa952eb4",
+          "text_len": 1543
+        },
+        {
+          "chunk_id": "chk_5d219e838ef59b963c4396c0a3a818dc0b23883d",
+          "version_id": "ver_5ebdc722f9bedb1e2e8cbd3f29ff6805",
+          "section_path": [
+            "Billing",
+            "Spend limits"
+          ],
+          "char_start": 59958,
+          "char_end": 61093,
+          "score": 0.09108159392789374,
+          "rank": 8,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.03225806451612903,
+              "dense": 0.058823529411764705
+            }
+          },
+          "text_sha256": "9006b6e4e846de1c57a7f36a7598d71f0de291be07d2a375c0d463147c0e070d",
+          "text_len": 1135
+        },
+        {
+          "chunk_id": "chk_8096ce3805e9b5d213d27b87e725e125475cbb6f",
+          "version_id": "ver_c8b2c7130cb18508fed4f864d4c3d7a3",
+          "section_path": [
+            "Rate limits",
+            "Fast mode rate limits"
+          ],
+          "char_start": 19820,
+          "char_end": 20682,
+          "score": 0.08912655971479501,
+          "rank": 9,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.058823529411764705,
+              "dense": 0.030303030303030304
+            }
+          },
+          "text_sha256": "f9a8bf527f8f692b4e6add3a9deefc0c78b5e2a3d31df859c79f02c95fccb7d9",
+          "text_len": 862
+        },
+        {
+          "chunk_id": "chk_3637047ad8c3ad86e828fa96409053976e78b196",
+          "version_id": "ver_8d4259b6f07a26872a702810f0dbaf89",
+          "section_path": [
+            "Handling errors with is\\_error"
+          ],
+          "char_start": 9129,
+          "char_end": 10207,
+          "score": 0.0825,
+          "rank": 10,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.0625,
+              "dense": 0.02
+            }
+          },
+          "text_sha256": "87c499ff98f2347545d48379d268c5719ac1394aaa5655b23cdbd758cb485b7c",
+          "text_len": 1078
+        }
+      ]
+    },
+    {
+      "case_id": "AN-012",
+      "category": "multi_hop",
+      "k": 10,
+      "expected_evidence_count": 2,
+      "evidence_found_count": 1,
+      "recall": 0.5,
+      "found": [
+        {
+          "version_id": "ver_0774ca0093ff4a846753577c9a4a39d5",
+          "section_path": [
+            "HTTP errors"
+          ],
+          "char_start": 1840,
+          "char_end": 1904
+        }
+      ],
+      "missed": [
+        {
+          "version_id": "ver_c8b2c7130cb18508fed4f864d4c3d7a3",
+          "section_path": [
+            "About rate limits"
+          ],
+          "char_start": 1672,
+          "char_end": 1849
+        }
+      ],
+      "hits": [
+        {
+          "chunk_id": "chk_3637047ad8c3ad86e828fa96409053976e78b196",
+          "version_id": "ver_8d4259b6f07a26872a702810f0dbaf89",
+          "section_path": [
+            "Handling errors with is\\_error"
+          ],
+          "char_start": 9129,
+          "char_end": 10207,
+          "score": 0.12316715542521994,
+          "rank": 1,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.03225806451612903,
+              "dense": 0.09090909090909091
+            }
+          },
+          "text_sha256": "87c499ff98f2347545d48379d268c5719ac1394aaa5655b23cdbd758cb485b7c",
+          "text_len": 1078
+        },
+        {
+          "chunk_id": "chk_bb3f04b46b6c14182c858d5db8ecbbcbb1b557ea",
+          "version_id": "ver_53da2f78e855c75ec755089c13d44c28",
+          "section_path": [
+            "Response",
+            "Search results"
+          ],
+          "char_start": 20085,
+          "char_end": 20707,
+          "score": 0.11140583554376658,
+          "rank": 2,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.07692307692307693,
+              "dense": 0.034482758620689655
+            }
+          },
+          "text_sha256": "dfd89499dd181cba653d247091b6d5d76c695bb8938145283fff9a24c420ffee",
+          "text_len": 622
+        },
+        {
+          "chunk_id": "chk_3dc730b00afefa27069177446f046c3826f450bc",
+          "version_id": "ver_0774ca0093ff4a846753577c9a4a39d5",
+          "section_path": [
+            "Preamble"
+          ],
+          "char_start": 0,
+          "char_end": 244,
+          "score": 0.1065891472868217,
+          "rank": 3,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.023255813953488372,
+              "dense": 0.08333333333333333
+            }
+          },
+          "text_sha256": "99a00ecbcba550f128d9c148534d4c7bd48de42f35ed5ea5a142e0da56dab92b",
+          "text_len": 244
+        },
+        {
+          "chunk_id": "chk_73eab651f6a1047c66e345826d5395309ee0e46e",
+          "version_id": "ver_b8b18cda9b875d51a2ce979a1bf4e909",
+          "section_path": [
+            "Response structure",
+            "Error results"
+          ],
+          "char_start": 19529,
+          "char_end": 21315,
+          "score": 0.09642857142857142,
+          "rank": 4,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.07142857142857142,
+              "dense": 0.025
+            }
+          },
+          "text_sha256": "cc74e6b5a4ff98a81865ca4417ebda36ce423ebfc0aed34b2ea253e7470127c8",
+          "text_len": 1786
+        },
+        {
+          "chunk_id": "chk_280f3db353c9104f5b538f9f9c00cb04c9e9ab23",
+          "version_id": "ver_95095158f47d20a4d346b8ddf3110713",
+          "section_path": [
+            "Rescale coordinates when you cannot pre-resize"
+          ],
+          "char_start": 21153,
+          "char_end": 22142,
+          "score": 0.09090909090909091,
+          "rank": 5,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.09090909090909091
+            }
+          },
+          "text_sha256": "a69b9f5917dd90e1a4351cea054937815984f2d43b68729fcd24416f65366cad",
+          "text_len": 989
+        },
+        {
+          "chunk_id": "chk_c489a281149ad3f3dd30936ed094099a8e17999b",
+          "version_id": "ver_0774ca0093ff4a846753577c9a4a39d5",
+          "section_path": [
+            "HTTP errors"
+          ],
+          "char_start": 246,
+          "char_end": 3573,
+          "score": 0.08897243107769423,
+          "rank": 6,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.017543859649122806,
+              "dense": 0.07142857142857142
+            }
+          },
+          "text_sha256": "bec61efde1ff92ba46b4515e111d433da3d889426fc6cca60d308d88bb9d0202",
+          "text_len": 3327
+        },
+        {
+          "chunk_id": "chk_662576865be100bc2eb925e4d51c9f550ce93f6a",
+          "version_id": "ver_462141128848e293fd652c38dcdfcd33",
+          "section_path": [
+            "The server-side loop"
+          ],
+          "char_start": 6296,
+          "char_end": 7607,
+          "score": 0.08333333333333333,
+          "rank": 7,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.08333333333333333
+            }
+          },
+          "text_sha256": "5db6d9aeb0ad6c3ddc96abf6b3379ef1be7f3ba7fe5afffb722dcc8e92cd5c2b",
+          "text_len": 1311
+        },
+        {
+          "chunk_id": "chk_07bf8a2ae8c75a58dde3285af1aededf4ed05610",
+          "version_id": "ver_9b41707e7208a7dc8becc81b25df27b6",
+          "section_path": [
+            "A 400 error says thinking blocks cannot be modified"
+          ],
+          "char_start": 7167,
+          "char_end": 7323,
+          "score": 0.08010012515644556,
+          "rank": 8,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.02127659574468085,
+              "dense": 0.058823529411764705
+            }
+          },
+          "text_sha256": "3c0bb127f7228e5f23e72f7b4ca03385e869f0f07a057e4d04b4d0a5efb8ad77",
+          "text_len": 156
+        },
+        {
+          "chunk_id": "chk_9c1a85ba86944f8423b261d6bd59f678727cf20f",
+          "version_id": "ver_b8b18cda9b875d51a2ce979a1bf4e909",
+          "section_path": [
+            "Model compatibility"
+          ],
+          "char_start": 92785,
+          "char_end": 92898,
+          "score": 0.07692307692307693,
+          "rank": 9,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "dense": 0.07692307692307693
+            }
+          },
+          "text_sha256": "1591ea4b2fc1d87d21cf20cfcad5388e059bdec54fe54ec1da99c644eb6a2a44",
+          "text_len": 113
+        },
+        {
+          "chunk_id": "chk_5436cb8f56dc069978876d483e91bb6f71ae9e0c",
+          "version_id": "ver_0774ca0093ff4a846753577c9a4a39d5",
+          "section_path": [
+            "Common validation errors",
+            "Thinking blocks cannot be modified"
+          ],
+          "char_start": 19798,
+          "char_end": 20188,
+          "score": 0.06979405034324943,
+          "rank": 10,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.02631578947368421,
+              "dense": 0.043478260869565216
+            }
+          },
+          "text_sha256": "4b39ac64ada7503932715be383c1e0f934dcb2f902b6d2ec496ff277fef41046",
+          "text_len": 390
+        }
+      ]
+    },
+    {
+      "case_id": "OA-001",
+      "category": "exact_lookup",
+      "k": 10,
+      "expected_evidence_count": 1,
+      "evidence_found_count": 1,
+      "recall": 1.0,
+      "found": [
+        {
+          "version_id": "ver_6b90217721b841b1329f51ec1caab139",
+          "section_path": [
+            "Tracing"
+          ],
+          "char_start": 512,
+          "char_end": 553
+        }
+      ],
+      "missed": [],
+      "hits": [
+        {
+          "chunk_id": "chk_92fa440a7d4555008d2fd5c2ca71f2679d4cc9af",
+          "version_id": "ver_f15e1a531d680bb98179238f80355058",
+          "section_path": [
+            "Configuration",
+            "API keys and clients"
+          ],
+          "char_start": 1864,
+          "char_end": 2308,
+          "score": 0.16783216783216784,
+          "rank": 1,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.09090909090909091,
+              "dense": 0.07692307692307693
+            }
+          },
+          "text_sha256": "0f993ee7e385e7e6d7c7859eede0491654d1a147cbb656da976f44341568b761",
+          "text_len": 444
+        },
+        {
+          "chunk_id": "chk_2753d95cafe4c30008abb9446b826ed49433fcbd",
+          "version_id": "ver_f15e1a531d680bb98179238f80355058",
+          "section_path": [
+            "Configuration",
+            "OpenAI provider defaults"
+          ],
+          "char_start": 6229,
+          "char_end": 6518,
+          "score": 0.1575757575757576,
+          "rank": 2,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.06666666666666667,
+              "dense": 0.09090909090909091
+            }
+          },
+          "text_sha256": "6c4f540cad53435ddfd130fc273351206616cfaaa7e5de8fcc8af39befc6109b",
+          "text_len": 289
+        },
+        {
+          "chunk_id": "chk_4641f2adc4d01c0dc38577b4d4427167ca8de77e",
+          "version_id": "ver_6b90217721b841b1329f51ec1caab139",
+          "section_path": [
+            "Tracing",
+            "Ecosystem integrations"
+          ],
+          "char_start": 10397,
+          "char_end": 10529,
+          "score": 0.14583333333333331,
+          "rank": 3,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.0625,
+              "dense": 0.08333333333333333
+            }
+          },
+          "text_sha256": "50d230385cbe105c4951db2913f6e82086f7350cb0142b3dc1a0b9229a7994c8",
+          "text_len": 132
+        },
+        {
+          "chunk_id": "chk_515f584bbf5c21756ae24aebf0c3e894184a73f1",
+          "version_id": "ver_f15e1a531d680bb98179238f80355058",
+          "section_path": [
+            "Configuration",
+            "Tracing"
+          ],
+          "char_start": 6520,
+          "char_end": 6858,
+          "score": 0.12454212454212454,
+          "rank": 4,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.07692307692307693,
+              "dense": 0.047619047619047616
+            }
+          },
+          "text_sha256": "fb99351b8ad08df4bd531281964c91275698445fc3c369e1fc797bbdb7ab2839",
+          "text_len": 338
+        },
+        {
+          "chunk_id": "chk_d968677d8b907799740ef81bea9a8c005b2b2e7d",
+          "version_id": "ver_02c06cea4a4bbffd4d01ee202f124a75",
+          "section_path": [
+            "OpenAI Agents SDK"
+          ],
+          "char_start": 0,
+          "char_end": 1001,
+          "score": 0.11428571428571428,
+          "rank": 5,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.047619047619047616,
+              "dense": 0.06666666666666667
+            }
+          },
+          "text_sha256": "9c9dd590f306fa41d96e0139387cc1fc8d64b8252b26a91c57c42aead014b504",
+          "text_len": 1001
+        },
+        {
+          "chunk_id": "chk_3acba94ce61625e55c0363d82594b78d6866a023",
+          "version_id": "ver_f15e1a531d680bb98179238f80355058",
+          "section_path": [
+            "Configuration",
+            "API keys and clients"
+          ],
+          "char_start": 2401,
+          "char_end": 2707,
+          "score": 0.10818713450292397,
+          "rank": 6,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.05555555555555555,
+              "dense": 0.05263157894736842
+            }
+          },
+          "text_sha256": "2c0594a114452604fae85e59dbf2da194f7133ca1a87f64c7e2ddb809fd099b9",
+          "text_len": 306
+        },
+        {
+          "chunk_id": "chk_0b56943a52154dac47db395982a16a1213b728c1",
+          "version_id": "ver_de67d790db9792b2f6c5c7418a507764",
+          "section_path": [
+            "This is an absolute host path outside the SDK process base_dir.",
+            "0.16.0"
+          ],
+          "char_start": 12406,
+          "char_end": 12888,
+          "score": 0.10555555555555556,
+          "rank": 7,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.08333333333333333,
+              "dense": 0.022222222222222223
+            }
+          },
+          "text_sha256": "6ec12675ac13c969de8349959c3385106ef458df187829e8d94d4adc3ea6e848",
+          "text_len": 482
+        },
+        {
+          "chunk_id": "chk_600fe1685960a129813639141d8e6d0bd21e2f87",
+          "version_id": "ver_6b90217721b841b1329f51ec1caab139",
+          "section_path": [
+            "Tracing"
+          ],
+          "char_start": 0,
+          "char_end": 883,
+          "score": 0.10368663594470046,
+          "rank": 8,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.07142857142857142,
+              "dense": 0.03225806451612903
+            }
+          },
+          "text_sha256": "62c80e8d31b7358a6f39eab2aec950d731c95dd608b6f758fde6c65fe229511b",
+          "text_len": 883
+        },
+        {
+          "chunk_id": "chk_a29fbc4bee72c24a0592267be288b83f094e9aba",
+          "version_id": "ver_f30a6447e4df2ab76e4c1475f353109c",
+          "section_path": [
+            "OpenAI TypeScript and JavaScript API Library",
+            "Advanced Usage",
+            "Logging",
+            "Log levels"
+          ],
+          "char_start": 19756,
+          "char_end": 19945,
+          "score": 0.10263157894736842,
+          "rank": 9,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.05263157894736842,
+              "dense": 0.05
+            }
+          },
+          "text_sha256": "6e2f8d9b9b162e6b33cd2e44a8100b1cc47a7bd16ec3ea20a2c8d66599872cf7",
+          "text_len": 189
+        },
+        {
+          "chunk_id": "chk_1f664f82d4c6fb60f0979355c43b2138c760bbae",
+          "version_id": "ver_7c087a260ac830f2b4fa1396300b3fcc",
+          "section_path": [
+            "Quickstart",
+            "Prerequisites"
+          ],
+          "char_start": 464,
+          "char_end": 575,
+          "score": 0.0946843853820598,
+          "rank": 10,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.023255813953488372,
+              "dense": 0.07142857142857142
+            }
+          },
+          "text_sha256": "d87745c0826b02fc80ebf4ea010783afb17f409f8536b65b30990f49f045b4e9",
+          "text_len": 111
+        }
+      ]
+    },
+    {
+      "case_id": "OA-002",
+      "category": "exact_lookup",
+      "k": 10,
+      "expected_evidence_count": 1,
+      "evidence_found_count": 1,
+      "recall": 1.0,
+      "found": [
+        {
+          "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+          "section_path": [
+            "Running agents",
+            "Exceptions"
+          ],
+          "char_start": 33598,
+          "char_end": 33793
+        }
+      ],
+      "missed": [],
+      "hits": [
+        {
+          "chunk_id": "chk_f40474e83f00a695a7dd53ac8807dca7c06973ed",
+          "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+          "section_path": [
+            "Running agents",
+            "Durable execution integrations and human-in-the-loop",
+            "Dapr"
+          ],
+          "char_start": 31381,
+          "char_end": 31786,
+          "score": 0.13636363636363635,
+          "rank": 1,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.045454545454545456,
+              "dense": 0.09090909090909091
+            }
+          },
+          "text_sha256": "c6402152cf711f73e195deafdc6c315bb7eb2071d3f5d806ffa297c28ca584b0",
+          "text_len": 405
+        },
+        {
+          "chunk_id": "chk_a14c154d51c1a7712cf80870af1109fb9be95ee9",
+          "version_id": "ver_ae909bf8b4bbbe1d1a11119447f7ac94",
+          "section_path": [
+            "Models",
+            "OpenAI models",
+            "Hosted multi-agent (experimental)",
+            "Relationship to SDK orchestration"
+          ],
+          "char_start": 18674,
+          "char_end": 19303,
+          "score": 0.11688311688311688,
+          "rank": 2,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.07142857142857142,
+              "dense": 0.045454545454545456
+            }
+          },
+          "text_sha256": "8a785939ec6e03f4928d82b7674d656bb409cb2d10defff133156d5576aee88a",
+          "text_len": 629
+        },
+        {
+          "chunk_id": "chk_4641f2adc4d01c0dc38577b4d4427167ca8de77e",
+          "version_id": "ver_6b90217721b841b1329f51ec1caab139",
+          "section_path": [
+            "Tracing",
+            "Ecosystem integrations"
+          ],
+          "char_start": 10397,
+          "char_end": 10529,
+          "score": 0.10897435897435898,
+          "rank": 3,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.02564102564102564,
+              "dense": 0.08333333333333333
+            }
+          },
+          "text_sha256": "50d230385cbe105c4951db2913f6e82086f7350cb0142b3dc1a0b9229a7994c8",
+          "text_len": 132
+        },
+        {
+          "chunk_id": "chk_a3e66af0cbf3c669402fb7580ef3e132d064be19",
+          "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+          "section_path": [
+            "Running agents",
+            "Exceptions"
+          ],
+          "char_start": 33210,
+          "char_end": 35613,
+          "score": 0.10087719298245613,
+          "rank": 4,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.08333333333333333,
+              "dense": 0.017543859649122806
+            }
+          },
+          "text_sha256": "2cd56168e8b4090368ac4cdbd8f13652b2028df51f25371127bbf13d93bb06d0",
+          "text_len": 2403
+        },
+        {
+          "chunk_id": "chk_1f664f82d4c6fb60f0979355c43b2138c760bbae",
+          "version_id": "ver_7c087a260ac830f2b4fa1396300b3fcc",
+          "section_path": [
+            "Quickstart",
+            "Prerequisites"
+          ],
+          "char_start": 464,
+          "char_end": 575,
+          "score": 0.09845559845559845,
+          "rank": 5,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.02702702702702703,
+              "dense": 0.07142857142857142
+            }
+          },
+          "text_sha256": "d87745c0826b02fc80ebf4ea010783afb17f409f8536b65b30990f49f045b4e9",
+          "text_len": 111
+        },
+        {
+          "chunk_id": "chk_1b6e57d40bd8afb510c9d68b583a7ae56c4d2300",
+          "version_id": "ver_7c087a260ac830f2b4fa1396300b3fcc",
+          "section_path": [
+            "Quickstart",
+            "Installation"
+          ],
+          "char_start": 577,
+          "char_end": 648,
+          "score": 0.0928030303030303,
+          "rank": 6,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.030303030303030304,
+              "dense": 0.0625
+            }
+          },
+          "text_sha256": "9a2362f39cfe7532b4dc4744896f6e93f71367f7a5f80454be23c3c261345c8c",
+          "text_len": 71
+        },
+        {
+          "chunk_id": "chk_c9ec19ea18fa7a53d8652f69d419386f791d0722",
+          "version_id": "ver_f15e1a531d680bb98179238f80355058",
+          "section_path": [
+            "Configuration",
+            "API keys and clients",
+            "Custom HTTP clients with `openai` v3"
+          ],
+          "char_start": 3575,
+          "char_end": 4502,
+          "score": 0.0910569105691057,
+          "rank": 7,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.06666666666666667,
+              "dense": 0.024390243902439025
+            }
+          },
+          "text_sha256": "704a2da2f5590b1d490cb1f391fc7aeda1241393ea2c48c020c981198981a6c2",
+          "text_len": 927
+        },
+        {
+          "chunk_id": "chk_54f24b235eee08c3f04656ce79c5baf889005a84",
+          "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+          "section_path": [
+            "Running agents",
+            "Runner lifecycle and configuration",
+            "The agent loop"
+          ],
+          "char_start": 1019,
+          "char_end": 2270,
+          "score": 0.09090909090909091,
+          "rank": 8,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.09090909090909091
+            }
+          },
+          "text_sha256": "5acefe21c6586aea868d9d106ca3a2ee173169da314f7af8c16f7585aca9d2a3",
+          "text_len": 1251
+        },
+        {
+          "chunk_id": "chk_c24c1a9df2502d944a1be63f49b7fa265f343d11",
+          "version_id": "ver_cbeb36b7cf9a5e241940a011629b6f1b",
+          "section_path": [
+            "Tools"
+          ],
+          "char_start": 0,
+          "char_end": 621,
+          "score": 0.07702182284980744,
+          "rank": 9,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.024390243902439025,
+              "dense": 0.05263157894736842
+            }
+          },
+          "text_sha256": "abbf56a52c2fcf16ae74710956f40cdad03ee1072562a833848340f4ff740891",
+          "text_len": 621
+        },
+        {
+          "chunk_id": "chk_482e30a20183db65acb5c05eac23b53f46db98c5",
+          "version_id": "ver_4c8080ebe566273e171b49c803949f77",
+          "section_path": [
+            "For 120B",
+            "Agents SDK Integration"
+          ],
+          "char_start": 4250,
+          "char_end": 4630,
+          "score": 0.07692307692307693,
+          "rank": 10,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "dense": 0.07692307692307693
+            }
+          },
+          "text_sha256": "4e24e5b0c430ad74ee29886e2c9d70248717bbb45201f923930fa9a0bc96af02",
+          "text_len": 380
+        }
+      ]
+    },
+    {
+      "case_id": "OA-003",
+      "category": "exact_lookup",
+      "k": 10,
+      "expected_evidence_count": 1,
+      "evidence_found_count": 1,
+      "recall": 1.0,
+      "found": [
+        {
+          "version_id": "ver_f22fbd5c504fa28a4e70440337e4a495",
+          "section_path": [
+            "Guardrails",
+            "Tripwires"
+          ],
+          "char_start": 7225,
+          "char_end": 7381
+        }
+      ],
+      "missed": [],
+      "hits": [
+        {
+          "chunk_id": "chk_c8d7af77f22c0a8f5d0beeed37261b3af30fb5ee",
+          "version_id": "ver_14a2187cf2216b9d56c213b520a28479",
+          "section_path": [
+            "Realtime agents guide",
+            "Agent and session configuration",
+            "Input transcription settings"
+          ],
+          "char_start": 5149,
+          "char_end": 5719,
+          "score": 0.12937062937062938,
+          "rank": 1,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.038461538461538464,
+              "dense": 0.09090909090909091
+            }
+          },
+          "text_sha256": "68f66c71c247547151bc141b8e76bcf32fc0a17f8f1209225eec415e1bbba91d",
+          "text_len": 570
+        },
+        {
+          "chunk_id": "chk_18d3ef3e53a42b81e3a6896ca334e4c1b4b1d89f",
+          "version_id": "ver_f22fbd5c504fa28a4e70440337e4a495",
+          "section_path": [
+            "Guardrails",
+            "Output guardrails"
+          ],
+          "char_start": 3247,
+          "char_end": 5498,
+          "score": 0.10876623376623376,
+          "rank": 2,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.09090909090909091,
+              "dense": 0.017857142857142856
+            }
+          },
+          "text_sha256": "f046e0661da008e5ad2616f86fa082e0ac3bef9c689a1453d1afcd628e0d1e7a",
+          "text_len": 2251
+        },
+        {
+          "chunk_id": "chk_b17099fe75c44006e954e286fa820bb2685015c4",
+          "version_id": "ver_f22fbd5c504fa28a4e70440337e4a495",
+          "section_path": [
+            "Guardrails",
+            "Tripwires"
+          ],
+          "char_start": 7117,
+          "char_end": 8616,
+          "score": 0.10096153846153846,
+          "rank": 3,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.0625,
+              "dense": 0.038461538461538464
+            }
+          },
+          "text_sha256": "ece3de82cd50d8a99e7a7e5c6b1f80cc1a539e68a181b77284e607a009ad5198",
+          "text_len": 1499
+        },
+        {
+          "chunk_id": "chk_a14c154d51c1a7712cf80870af1109fb9be95ee9",
+          "version_id": "ver_ae909bf8b4bbbe1d1a11119447f7ac94",
+          "section_path": [
+            "Models",
+            "OpenAI models",
+            "Hosted multi-agent (experimental)",
+            "Relationship to SDK orchestration"
+          ],
+          "char_start": 18674,
+          "char_end": 19303,
+          "score": 0.09761904761904762,
+          "rank": 4,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.047619047619047616,
+              "dense": 0.05
+            }
+          },
+          "text_sha256": "8a785939ec6e03f4928d82b7674d656bb409cb2d10defff133156d5576aee88a",
+          "text_len": 629
+        },
+        {
+          "chunk_id": "chk_1f664f82d4c6fb60f0979355c43b2138c760bbae",
+          "version_id": "ver_7c087a260ac830f2b4fa1396300b3fcc",
+          "section_path": [
+            "Quickstart",
+            "Prerequisites"
+          ],
+          "char_start": 464,
+          "char_end": 575,
+          "score": 0.08809523809523809,
+          "rank": 5,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.016666666666666666,
+              "dense": 0.07142857142857142
+            }
+          },
+          "text_sha256": "d87745c0826b02fc80ebf4ea010783afb17f409f8536b65b30990f49f045b4e9",
+          "text_len": 111
+        },
+        {
+          "chunk_id": "chk_163adc12af33472b0767afd7cd46770433f40828",
+          "version_id": "ver_f22fbd5c504fa28a4e70440337e4a495",
+          "section_path": [
+            "Guardrails",
+            "Input guardrails"
+          ],
+          "char_start": 1475,
+          "char_end": 2522,
+          "score": 0.08333333333333333,
+          "rank": 6,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.08333333333333333
+            }
+          },
+          "text_sha256": "8c2180c0c876e329eb0377f3609e3c4f7e7bf7454f8be0f945107a79177586a9",
+          "text_len": 1047
+        },
+        {
+          "chunk_id": "chk_4641f2adc4d01c0dc38577b4d4427167ca8de77e",
+          "version_id": "ver_6b90217721b841b1329f51ec1caab139",
+          "section_path": [
+            "Tracing",
+            "Ecosystem integrations"
+          ],
+          "char_start": 10397,
+          "char_end": 10529,
+          "score": 0.08333333333333333,
+          "rank": 7,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "dense": 0.08333333333333333
+            }
+          },
+          "text_sha256": "50d230385cbe105c4951db2913f6e82086f7350cb0142b3dc1a0b9229a7994c8",
+          "text_len": 132
+        },
+        {
+          "chunk_id": "chk_1ca65f7dd45f05db6ab59ba7f8dbfc456d0361fd",
+          "version_id": "ver_96d5aba3c4e7771cabd4f3d4f5a3fff1",
+          "section_path": [
+            "Advanced usage",
+            "Debugging tool execution"
+          ],
+          "char_start": 40367,
+          "char_end": 40997,
+          "score": 0.08293460925039872,
+          "rank": 8,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.05263157894736842,
+              "dense": 0.030303030303030304
+            }
+          },
+          "text_sha256": "4ad01183a39afc1b2a3a2019ad897a716743f4ad585ec63720b90cc831c9bd48",
+          "text_len": 630
+        },
+        {
+          "chunk_id": "chk_1b6e57d40bd8afb510c9d68b583a7ae56c4d2300",
+          "version_id": "ver_7c087a260ac830f2b4fa1396300b3fcc",
+          "section_path": [
+            "Quickstart",
+            "Installation"
+          ],
+          "char_start": 577,
+          "char_end": 648,
+          "score": 0.07700534759358288,
+          "rank": 9,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.01818181818181818,
+              "dense": 0.058823529411764705
+            }
+          },
+          "text_sha256": "9a2362f39cfe7532b4dc4744896f6e93f71367f7a5f80454be23c3c261345c8c",
+          "text_len": 71
+        },
+        {
+          "chunk_id": "chk_dffea183f5c8e6a1eb208f5860cbb1ebe963d71c",
+          "version_id": "ver_14a2187cf2216b9d56c213b520a28479",
+          "section_path": [
+            "Realtime agents guide",
+            "Tools, approvals, handoffs, and guardrails",
+            "Guardrails"
+          ],
+          "char_start": 16292,
+          "char_end": 18028,
+          "score": 0.07692307692307693,
+          "rank": 10,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.07692307692307693
+            }
+          },
+          "text_sha256": "30b6c65bb2530a0669e5d0fbe41db2184e35ba1cfaf0546a9907bc8310dcd751",
+          "text_len": 1736
+        }
+      ]
+    },
+    {
+      "case_id": "OA-004",
+      "category": "exact_lookup",
+      "k": 10,
+      "expected_evidence_count": 1,
+      "evidence_found_count": 0,
+      "recall": 0.0,
+      "found": [],
+      "missed": [
+        {
+          "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+          "section_path": [
+            "Running agents",
+            "Runner lifecycle and configuration",
+            "The agent loop"
+          ],
+          "char_start": 2052,
+          "char_end": 2101
+        }
+      ],
+      "hits": [
+        {
+          "chunk_id": "chk_c8d7af77f22c0a8f5d0beeed37261b3af30fb5ee",
+          "version_id": "ver_14a2187cf2216b9d56c213b520a28479",
+          "section_path": [
+            "Realtime agents guide",
+            "Agent and session configuration",
+            "Input transcription settings"
+          ],
+          "char_start": 5149,
+          "char_end": 5719,
+          "score": 0.15384615384615385,
+          "rank": 1,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.07692307692307693,
+              "dense": 0.07692307692307693
+            }
+          },
+          "text_sha256": "68f66c71c247547151bc141b8e76bcf32fc0a17f8f1209225eec415e1bbba91d",
+          "text_len": 570
+        },
+        {
+          "chunk_id": "chk_a6db41b7735ec84267de12130610c1a77e13249d",
+          "version_id": "ver_35cac5e98c151a17f941a6142d74709f",
+          "section_path": [
+            "Agents"
+          ],
+          "char_start": 0,
+          "char_end": 875,
+          "score": 0.1534090909090909,
+          "rank": 2,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.09090909090909091,
+              "dense": 0.0625
+            }
+          },
+          "text_sha256": "2d655c8083d94d729fc2d1369cc793cc0cecda7f4e9decf2b029da3dde645811",
+          "text_len": 875
+        },
+        {
+          "chunk_id": "chk_529e84d069b2c2dbc24380ff8ac4cbf4294b46eb",
+          "version_id": "ver_feedbba6f99f53753d196209fa7b16b5",
+          "section_path": [
+            "Quickstart",
+            "Run your first agent"
+          ],
+          "char_start": 1680,
+          "char_end": 2644,
+          "score": 0.12698412698412698,
+          "rank": 3,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.07142857142857142,
+              "dense": 0.05555555555555555
+            }
+          },
+          "text_sha256": "340f5cc79bb815bfd49379d7f459b2a334cf020493f89b8e9bd48103b11f8ced",
+          "text_len": 964
+        },
+        {
+          "chunk_id": "chk_f40474e83f00a695a7dd53ac8807dca7c06973ed",
+          "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+          "section_path": [
+            "Running agents",
+            "Durable execution integrations and human-in-the-loop",
+            "Dapr"
+          ],
+          "char_start": 31381,
+          "char_end": 31786,
+          "score": 0.11868686868686869,
+          "rank": 4,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.027777777777777776,
+              "dense": 0.09090909090909091
+            }
+          },
+          "text_sha256": "c6402152cf711f73e195deafdc6c315bb7eb2071d3f5d806ffa297c28ca584b0",
+          "text_len": 405
+        },
+        {
+          "chunk_id": "chk_1b6e57d40bd8afb510c9d68b583a7ae56c4d2300",
+          "version_id": "ver_7c087a260ac830f2b4fa1396300b3fcc",
+          "section_path": [
+            "Quickstart",
+            "Installation"
+          ],
+          "char_start": 577,
+          "char_end": 648,
+          "score": 0.11014492753623188,
+          "rank": 5,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.043478260869565216,
+              "dense": 0.06666666666666667
+            }
+          },
+          "text_sha256": "9a2362f39cfe7532b4dc4744896f6e93f71367f7a5f80454be23c3c261345c8c",
+          "text_len": 71
+        },
+        {
+          "chunk_id": "chk_74608b6b6976e760c15fe37ea8fa13ed97c4028c",
+          "version_id": "ver_02c06cea4a4bbffd4d01ee202f124a75",
+          "section_path": [
+            "OpenAI Agents SDK",
+            "Agents SDK or Responses API?"
+          ],
+          "char_start": 2855,
+          "char_end": 3646,
+          "score": 0.10644257703081232,
+          "rank": 6,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.058823529411764705,
+              "dense": 0.047619047619047616
+            }
+          },
+          "text_sha256": "84fa60c12aa4623571088399dec385ea248c02c60e24cf8e6551a52d8e28a17a",
+          "text_len": 791
+        },
+        {
+          "chunk_id": "chk_482e30a20183db65acb5c05eac23b53f46db98c5",
+          "version_id": "ver_4c8080ebe566273e171b49c803949f77",
+          "section_path": [
+            "For 120B",
+            "Agents SDK Integration"
+          ],
+          "char_start": 4250,
+          "char_end": 4630,
+          "score": 0.10119047619047619,
+          "rank": 7,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.017857142857142856,
+              "dense": 0.08333333333333333
+            }
+          },
+          "text_sha256": "4e24e5b0c430ad74ee29886e2c9d70248717bbb45201f923930fa9a0bc96af02",
+          "text_len": 380
+        },
+        {
+          "chunk_id": "chk_bb30e488699ba385dcccdd56be3e82b8b30c643f",
+          "version_id": "ver_6b90217721b841b1329f51ec1caab139",
+          "section_path": [
+            "Tracing",
+            "Default tracing"
+          ],
+          "char_start": 2021,
+          "char_end": 3147,
+          "score": 0.08761904761904762,
+          "rank": 8,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.047619047619047616,
+              "dense": 0.04
+            }
+          },
+          "text_sha256": "9faf38507006dcd90f39140efbfb755a39bc17f05b3eaa57cfcc17e84df8e929",
+          "text_len": 1126
+        },
+        {
+          "chunk_id": "chk_1d9c3b7b43fc296cf6a52edd87c0864f93608b1f",
+          "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+          "section_path": [
+            "Running agents",
+            "Errors and recovery",
+            "Error handlers"
+          ],
+          "char_start": 28087,
+          "char_end": 28675,
+          "score": 0.08514492753623187,
+          "rank": 9,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.041666666666666664,
+              "dense": 0.043478260869565216
+            }
+          },
+          "text_sha256": "8481da6f7df92e855d8f5f3e92ec8e945a4b752701f20ffad1184146ab42aff8",
+          "text_len": 588
+        },
+        {
+          "chunk_id": "chk_0b56943a52154dac47db395982a16a1213b728c1",
+          "version_id": "ver_de67d790db9792b2f6c5c7418a507764",
+          "section_path": [
+            "This is an absolute host path outside the SDK process base_dir.",
+            "0.16.0"
+          ],
+          "char_start": 12406,
+          "char_end": 12888,
+          "score": 0.08333333333333333,
+          "rank": 10,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.08333333333333333
+            }
+          },
+          "text_sha256": "6ec12675ac13c969de8349959c3385106ef458df187829e8d94d4adc3ea6e848",
+          "text_len": 482
+        }
+      ]
+    },
+    {
+      "case_id": "OA-005",
+      "category": "exact_lookup",
+      "k": 10,
+      "expected_evidence_count": 1,
+      "evidence_found_count": 1,
+      "recall": 1.0,
+      "found": [
+        {
+          "version_id": "ver_f15e1a531d680bb98179238f80355058",
+          "section_path": [
+            "Configuration",
+            "API keys and clients"
+          ],
+          "char_start": 2227,
+          "char_end": 2308
+        }
+      ],
+      "missed": [],
+      "hits": [
+        {
+          "chunk_id": "chk_3acba94ce61625e55c0363d82594b78d6866a023",
+          "version_id": "ver_f15e1a531d680bb98179238f80355058",
+          "section_path": [
+            "Configuration",
+            "API keys and clients"
+          ],
+          "char_start": 2401,
+          "char_end": 2707,
+          "score": 0.18181818181818182,
+          "rank": 1,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.09090909090909091,
+              "dense": 0.09090909090909091
+            }
+          },
+          "text_sha256": "2c0594a114452604fae85e59dbf2da194f7133ca1a87f64c7e2ddb809fd099b9",
+          "text_len": 306
+        },
+        {
+          "chunk_id": "chk_515f584bbf5c21756ae24aebf0c3e894184a73f1",
+          "version_id": "ver_f15e1a531d680bb98179238f80355058",
+          "section_path": [
+            "Configuration",
+            "Tracing"
+          ],
+          "char_start": 6520,
+          "char_end": 6858,
+          "score": 0.15476190476190477,
+          "rank": 2,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.08333333333333333,
+              "dense": 0.07142857142857142
+            }
+          },
+          "text_sha256": "fb99351b8ad08df4bd531281964c91275698445fc3c369e1fc797bbdb7ab2839",
+          "text_len": 338
+        },
+        {
+          "chunk_id": "chk_92fa440a7d4555008d2fd5c2ca71f2679d4cc9af",
+          "version_id": "ver_f15e1a531d680bb98179238f80355058",
+          "section_path": [
+            "Configuration",
+            "API keys and clients"
+          ],
+          "char_start": 1864,
+          "char_end": 2308,
+          "score": 0.15384615384615385,
+          "rank": 3,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.07692307692307693,
+              "dense": 0.07692307692307693
+            }
+          },
+          "text_sha256": "0f993ee7e385e7e6d7c7859eede0491654d1a147cbb656da976f44341568b761",
+          "text_len": 444
+        },
+        {
+          "chunk_id": "chk_2753d95cafe4c30008abb9446b826ed49433fcbd",
+          "version_id": "ver_f15e1a531d680bb98179238f80355058",
+          "section_path": [
+            "Configuration",
+            "OpenAI provider defaults"
+          ],
+          "char_start": 6229,
+          "char_end": 6518,
+          "score": 0.11805555555555555,
+          "rank": 4,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.05555555555555555,
+              "dense": 0.0625
+            }
+          },
+          "text_sha256": "6c4f540cad53435ddfd130fc273351206616cfaaa7e5de8fcc8af39befc6109b",
+          "text_len": 289
+        },
+        {
+          "chunk_id": "chk_1f664f82d4c6fb60f0979355c43b2138c760bbae",
+          "version_id": "ver_7c087a260ac830f2b4fa1396300b3fcc",
+          "section_path": [
+            "Quickstart",
+            "Prerequisites"
+          ],
+          "char_start": 464,
+          "char_end": 575,
+          "score": 0.11274509803921567,
+          "rank": 5,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.029411764705882353,
+              "dense": 0.08333333333333333
+            }
+          },
+          "text_sha256": "d87745c0826b02fc80ebf4ea010783afb17f409f8536b65b30990f49f045b4e9",
+          "text_len": 111
+        },
+        {
+          "chunk_id": "chk_4641f2adc4d01c0dc38577b4d4427167ca8de77e",
+          "version_id": "ver_6b90217721b841b1329f51ec1caab139",
+          "section_path": [
+            "Tracing",
+            "Ecosystem integrations"
+          ],
+          "char_start": 10397,
+          "char_end": 10529,
+          "score": 0.09230769230769231,
+          "rank": 6,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.02564102564102564,
+              "dense": 0.06666666666666667
+            }
+          },
+          "text_sha256": "50d230385cbe105c4951db2913f6e82086f7350cb0142b3dc1a0b9229a7994c8",
+          "text_len": 132
+        },
+        {
+          "chunk_id": "chk_c24c1a9df2502d944a1be63f49b7fa265f343d11",
+          "version_id": "ver_cbeb36b7cf9a5e241940a011629b6f1b",
+          "section_path": [
+            "Tools"
+          ],
+          "char_start": 0,
+          "char_end": 621,
+          "score": 0.09109311740890688,
+          "rank": 7,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.05263157894736842,
+              "dense": 0.038461538461538464
+            }
+          },
+          "text_sha256": "abbf56a52c2fcf16ae74710956f40cdad03ee1072562a833848340f4ff740891",
+          "text_len": 621
+        },
+        {
+          "chunk_id": "chk_77bbd6a4ed63fe168b830a638a728a87c53fa936",
+          "version_id": "ver_ae909bf8b4bbbe1d1a11119447f7ac94",
+          "section_path": [
+            "Models"
+          ],
+          "char_start": 0,
+          "char_end": 526,
+          "score": 0.08596491228070174,
+          "rank": 8,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.03333333333333333,
+              "dense": 0.05263157894736842
+            }
+          },
+          "text_sha256": "f98b4052a67bd2f18b6adf1423533e5c70c3639511b2efcf4f55afaf4ad78a2b",
+          "text_len": 526
+        },
+        {
+          "chunk_id": "chk_8708d1351213bdda3c24a67cc887db0a875c26fc",
+          "version_id": "ver_54975a889fa22717d135c4a291d9609a",
+          "section_path": [
+            "Use your API key"
+          ],
+          "char_start": 1428,
+          "char_end": 1488,
+          "score": 0.08412698412698412,
+          "rank": 9,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.02857142857142857,
+              "dense": 0.05555555555555555
+            }
+          },
+          "text_sha256": "94efc51ab15ba0c70fb408960ba398a85003ea47c94ae6d6bf82f185b5ac354a",
+          "text_len": 60
+        },
+        {
+          "chunk_id": "chk_31fcdcad994f58ed748d8a99424f016e830fa529",
+          "version_id": "ver_9247e3ce4df6f79d9cadc44e1a3bbd0c",
+          "section_path": [
+            "gets the API Key from environment variable AZURE_OPENAI_API_KEY"
+          ],
+          "char_start": 30871,
+          "char_end": 32117,
+          "score": 0.08155080213903743,
+          "rank": 10,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.022727272727272728,
+              "dense": 0.058823529411764705
+            }
+          },
+          "text_sha256": "8c7cb47eaf02e1ebcf3fa789a93322339ab1e4ad0c0c420c9fbf527d04f869a8",
+          "text_len": 1246
+        }
+      ]
+    },
+    {
+      "case_id": "OA-006",
+      "category": "multi_hop",
+      "k": 10,
+      "expected_evidence_count": 2,
+      "evidence_found_count": 1,
+      "recall": 0.5,
+      "found": [
+        {
+          "version_id": "ver_6b90217721b841b1329f51ec1caab139",
+          "section_path": [
+            "Tracing"
+          ],
+          "char_start": 512,
+          "char_end": 553
+        }
+      ],
+      "missed": [
+        {
+          "version_id": "ver_f15e1a531d680bb98179238f80355058",
+          "section_path": [
+            "Configuration",
+            "Tracing"
+          ],
+          "char_start": 8126,
+          "char_end": 8242
+        }
+      ],
+      "hits": [
+        {
+          "chunk_id": "chk_600fe1685960a129813639141d8e6d0bd21e2f87",
+          "version_id": "ver_6b90217721b841b1329f51ec1caab139",
+          "section_path": [
+            "Tracing"
+          ],
+          "char_start": 0,
+          "char_end": 883,
+          "score": 0.16233766233766234,
+          "rank": 1,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.09090909090909091,
+              "dense": 0.07142857142857142
+            }
+          },
+          "text_sha256": "62c80e8d31b7358a6f39eab2aec950d731c95dd608b6f758fde6c65fe229511b",
+          "text_len": 883
+        },
+        {
+          "chunk_id": "chk_4641f2adc4d01c0dc38577b4d4427167ca8de77e",
+          "version_id": "ver_6b90217721b841b1329f51ec1caab139",
+          "section_path": [
+            "Tracing",
+            "Ecosystem integrations"
+          ],
+          "char_start": 10397,
+          "char_end": 10529,
+          "score": 0.14646464646464646,
+          "rank": 2,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.05555555555555555,
+              "dense": 0.09090909090909091
+            }
+          },
+          "text_sha256": "50d230385cbe105c4951db2913f6e82086f7350cb0142b3dc1a0b9229a7994c8",
+          "text_len": 132
+        },
+        {
+          "chunk_id": "chk_92fa440a7d4555008d2fd5c2ca71f2679d4cc9af",
+          "version_id": "ver_f15e1a531d680bb98179238f80355058",
+          "section_path": [
+            "Configuration",
+            "API keys and clients"
+          ],
+          "char_start": 1864,
+          "char_end": 2308,
+          "score": 0.13392857142857142,
+          "rank": 3,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.07142857142857142,
+              "dense": 0.0625
+            }
+          },
+          "text_sha256": "0f993ee7e385e7e6d7c7859eede0491654d1a147cbb656da976f44341568b761",
+          "text_len": 444
+        },
+        {
+          "chunk_id": "chk_463d2fd0c07e2c2b486073543730c3279efb51e7",
+          "version_id": "ver_3c592d2e1e9ac3c51e25f017e61bc5d7",
+          "section_path": [
+            "When the skill activates"
+          ],
+          "char_start": 3797,
+          "char_end": 4558,
+          "score": 0.13095238095238093,
+          "rank": 4,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.08333333333333333,
+              "dense": 0.047619047619047616
+            }
+          },
+          "text_sha256": "24b592337f04ce117f1255c42610eab1791f08303c69d6fdbb3ae1616f47b23b",
+          "text_len": 761
+        },
+        {
+          "chunk_id": "chk_8a95d361e2d7a845790528e160b140bac495020f",
+          "version_id": "ver_20c9ab97979d04b79176cb7056119977",
+          "section_path": [
+            "Agent orchestration"
+          ],
+          "char_start": 0,
+          "char_end": 493,
+          "score": 0.12222222222222222,
+          "rank": 5,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.06666666666666667,
+              "dense": 0.05555555555555555
+            }
+          },
+          "text_sha256": "13e8957f52fbee3414ab6624a3ae2a9d9aa2f060d748b667ee38e53d37e4ca6f",
+          "text_len": 493
+        },
+        {
+          "chunk_id": "chk_155378a014c2c411b1aba2482afed3eabddf6f28",
+          "version_id": "ver_ae909bf8b4bbbe1d1a11119447f7ac94",
+          "section_path": [
+            "Models",
+            "OpenAI models"
+          ],
+          "char_start": 1893,
+          "char_end": 2588,
+          "score": 0.11538461538461539,
+          "rank": 6,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.07692307692307693,
+              "dense": 0.038461538461538464
+            }
+          },
+          "text_sha256": "68cc59e14ea75a776984a560ae09db760827a6f12112dbb55f9efbf862c80010",
+          "text_len": 695
+        },
+        {
+          "chunk_id": "chk_d968677d8b907799740ef81bea9a8c005b2b2e7d",
+          "version_id": "ver_02c06cea4a4bbffd4d01ee202f124a75",
+          "section_path": [
+            "OpenAI Agents SDK"
+          ],
+          "char_start": 0,
+          "char_end": 1001,
+          "score": 0.11140583554376658,
+          "rank": 7,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.034482758620689655,
+              "dense": 0.07692307692307693
+            }
+          },
+          "text_sha256": "9c9dd590f306fa41d96e0139387cc1fc8d64b8252b26a91c57c42aead014b504",
+          "text_len": 1001
+        },
+        {
+          "chunk_id": "chk_2753d95cafe4c30008abb9446b826ed49433fcbd",
+          "version_id": "ver_f15e1a531d680bb98179238f80355058",
+          "section_path": [
+            "Configuration",
+            "OpenAI provider defaults"
+          ],
+          "char_start": 6229,
+          "char_end": 6518,
+          "score": 0.10416666666666666,
+          "rank": 8,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.020833333333333332,
+              "dense": 0.08333333333333333
+            }
+          },
+          "text_sha256": "6c4f540cad53435ddfd130fc273351206616cfaaa7e5de8fcc8af39befc6109b",
+          "text_len": 289
+        },
+        {
+          "chunk_id": "chk_74608b6b6976e760c15fe37ea8fa13ed97c4028c",
+          "version_id": "ver_02c06cea4a4bbffd4d01ee202f124a75",
+          "section_path": [
+            "OpenAI Agents SDK",
+            "Agents SDK or Responses API?"
+          ],
+          "char_start": 2855,
+          "char_end": 3646,
+          "score": 0.09586056644880174,
+          "rank": 9,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.058823529411764705,
+              "dense": 0.037037037037037035
+            }
+          },
+          "text_sha256": "84fa60c12aa4623571088399dec385ea248c02c60e24cf8e6551a52d8e28a17a",
+          "text_len": 791
+        },
+        {
+          "chunk_id": "chk_a29fbc4bee72c24a0592267be288b83f094e9aba",
+          "version_id": "ver_f30a6447e4df2ab76e4c1475f353109c",
+          "section_path": [
+            "OpenAI TypeScript and JavaScript API Library",
+            "Advanced Usage",
+            "Logging",
+            "Log levels"
+          ],
+          "char_start": 19756,
+          "char_end": 19945,
+          "score": 0.08290816326530612,
+          "rank": 10,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.0625,
+              "dense": 0.02040816326530612
+            }
+          },
+          "text_sha256": "6e2f8d9b9b162e6b33cd2e44a8100b1cc47a7bd16ec3ea20a2c8d66599872cf7",
+          "text_len": 189
+        }
+      ]
+    },
+    {
+      "case_id": "OA-007",
+      "category": "normal",
+      "k": 10,
+      "expected_evidence_count": 1,
+      "evidence_found_count": 1,
+      "recall": 1.0,
+      "found": [
+        {
+          "version_id": "ver_b275f1db2ff0a82e2654391774f8e398",
+          "section_path": [
+            "Sessions"
+          ],
+          "char_start": 12,
+          "char_end": 259
+        }
+      ],
+      "missed": [],
+      "hits": [
+        {
+          "chunk_id": "chk_db82490165bc7adcbfe38dcb7b65c18edd3f15f8",
+          "version_id": "ver_b275f1db2ff0a82e2654391774f8e398",
+          "section_path": [
+            "Sessions"
+          ],
+          "char_start": 0,
+          "char_end": 867,
+          "score": 0.16233766233766234,
+          "rank": 1,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.09090909090909091,
+              "dense": 0.07142857142857142
+            }
+          },
+          "text_sha256": "1c129df6543cdb80e5d7d3a55212ccc2afda1368661e088809037550588ffb57",
+          "text_len": 867
+        },
+        {
+          "chunk_id": "chk_16f7f9883c4f98eeb329410f51028781413703f7",
+          "version_id": "ver_b275f1db2ff0a82e2654391774f8e398",
+          "section_path": [
+            "Ask a corrected question",
+            "Built-in session implementations"
+          ],
+          "char_start": 7063,
+          "char_end": 7173,
+          "score": 0.12916666666666665,
+          "rank": 2,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.06666666666666667,
+              "dense": 0.0625
+            }
+          },
+          "text_sha256": "4c50ceefa8c37367b8bae2e67f7aef8e5ba20f1b664ca6cd7cedad2131025e32",
+          "text_len": 110
+        },
+        {
+          "chunk_id": "chk_4641f2adc4d01c0dc38577b4d4427167ca8de77e",
+          "version_id": "ver_6b90217721b841b1329f51ec1caab139",
+          "section_path": [
+            "Tracing",
+            "Ecosystem integrations"
+          ],
+          "char_start": 10397,
+          "char_end": 10529,
+          "score": 0.12316715542521994,
+          "rank": 3,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.03225806451612903,
+              "dense": 0.09090909090909091
+            }
+          },
+          "text_sha256": "50d230385cbe105c4951db2913f6e82086f7350cb0142b3dc1a0b9229a7994c8",
+          "text_len": 132
+        },
+        {
+          "chunk_id": "chk_463d2fd0c07e2c2b486073543730c3279efb51e7",
+          "version_id": "ver_3c592d2e1e9ac3c51e25f017e61bc5d7",
+          "section_path": [
+            "When the skill activates"
+          ],
+          "char_start": 3797,
+          "char_end": 4558,
+          "score": 0.12040133779264214,
+          "rank": 4,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.07692307692307693,
+              "dense": 0.043478260869565216
+            }
+          },
+          "text_sha256": "24b592337f04ce117f1255c42610eab1791f08303c69d6fdbb3ae1616f47b23b",
+          "text_len": 761
+        },
+        {
+          "chunk_id": "chk_1f664f82d4c6fb60f0979355c43b2138c760bbae",
+          "version_id": "ver_7c087a260ac830f2b4fa1396300b3fcc",
+          "section_path": [
+            "Quickstart",
+            "Prerequisites"
+          ],
+          "char_start": 464,
+          "char_end": 575,
+          "score": 0.11666666666666667,
+          "rank": 5,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.03333333333333333,
+              "dense": 0.08333333333333333
+            }
+          },
+          "text_sha256": "d87745c0826b02fc80ebf4ea010783afb17f409f8536b65b30990f49f045b4e9",
+          "text_len": 111
+        },
+        {
+          "chunk_id": "chk_c0b83d38ba1157bdaf55dd107e1a8e1cf8d81a12",
+          "version_id": "ver_2c65efe0ba3d6dfd202b049a8b6fcb27",
+          "section_path": [
+            "For 120B",
+            "Agents SDK integration"
+          ],
+          "char_start": 4190,
+          "char_end": 4881,
+          "score": 0.10427807486631016,
+          "rank": 6,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.058823529411764705,
+              "dense": 0.045454545454545456
+            }
+          },
+          "text_sha256": "ee148561683626b116de5f689a3c79bf74d2f83faf84e4f6d46751bbb9ade8aa",
+          "text_len": 691
+        },
+        {
+          "chunk_id": "chk_f40474e83f00a695a7dd53ac8807dca7c06973ed",
+          "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+          "section_path": [
+            "Running agents",
+            "Durable execution integrations and human-in-the-loop",
+            "Dapr"
+          ],
+          "char_start": 31381,
+          "char_end": 31786,
+          "score": 0.10395010395010396,
+          "rank": 7,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.02702702702702703,
+              "dense": 0.07692307692307693
+            }
+          },
+          "text_sha256": "c6402152cf711f73e195deafdc6c315bb7eb2071d3f5d806ffa297c28ca584b0",
+          "text_len": 405
+        },
+        {
+          "chunk_id": "chk_1b6e57d40bd8afb510c9d68b583a7ae56c4d2300",
+          "version_id": "ver_7c087a260ac830f2b4fa1396300b3fcc",
+          "section_path": [
+            "Quickstart",
+            "Installation"
+          ],
+          "char_start": 577,
+          "char_end": 648,
+          "score": 0.09453781512605042,
+          "rank": 8,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.03571428571428571,
+              "dense": 0.058823529411764705
+            }
+          },
+          "text_sha256": "9a2362f39cfe7532b4dc4744896f6e93f71367f7a5f80454be23c3c261345c8c",
+          "text_len": 71
+        },
+        {
+          "chunk_id": "chk_3d1415752a2cd19043984c234de701977a03b26e",
+          "version_id": "ver_7c087a260ac830f2b4fa1396300b3fcc",
+          "section_path": [
+            "Quickstart"
+          ],
+          "char_start": 0,
+          "char_end": 462,
+          "score": 0.0928030303030303,
+          "rank": 9,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.0625,
+              "dense": 0.030303030303030304
+            }
+          },
+          "text_sha256": "237eef2413cf620fb9f967e40347bd5cde0fbb488fbd577f1875584b731e34a9",
+          "text_len": 462
+        },
+        {
+          "chunk_id": "chk_d968677d8b907799740ef81bea9a8c005b2b2e7d",
+          "version_id": "ver_02c06cea4a4bbffd4d01ee202f124a75",
+          "section_path": [
+            "OpenAI Agents SDK"
+          ],
+          "char_start": 0,
+          "char_end": 1001,
+          "score": 0.08966861598440545,
+          "rank": 10,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.037037037037037035,
+              "dense": 0.05263157894736842
+            }
+          },
+          "text_sha256": "9c9dd590f306fa41d96e0139387cc1fc8d64b8252b26a91c57c42aead014b504",
+          "text_len": 1001
+        }
+      ]
+    },
+    {
+      "case_id": "OA-008",
+      "category": "exact_lookup",
+      "k": 10,
+      "expected_evidence_count": 1,
+      "evidence_found_count": 1,
+      "recall": 1.0,
+      "found": [
+        {
+          "version_id": "ver_ae909bf8b4bbbe1d1a11119447f7ac94",
+          "section_path": [
+            "Models",
+            "OpenAI models"
+          ],
+          "char_start": 2098,
+          "char_end": 2233
+        }
+      ],
+      "missed": [],
+      "hits": [
+        {
+          "chunk_id": "chk_155378a014c2c411b1aba2482afed3eabddf6f28",
+          "version_id": "ver_ae909bf8b4bbbe1d1a11119447f7ac94",
+          "section_path": [
+            "Models",
+            "OpenAI models"
+          ],
+          "char_start": 1893,
+          "char_end": 2588,
+          "score": 0.17424242424242425,
+          "rank": 1,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.09090909090909091,
+              "dense": 0.08333333333333333
+            }
+          },
+          "text_sha256": "68cc59e14ea75a776984a560ae09db760827a6f12112dbb55f9efbf862c80010",
+          "text_len": 695
+        },
+        {
+          "chunk_id": "chk_a14c154d51c1a7712cf80870af1109fb9be95ee9",
+          "version_id": "ver_ae909bf8b4bbbe1d1a11119447f7ac94",
+          "section_path": [
+            "Models",
+            "OpenAI models",
+            "Hosted multi-agent (experimental)",
+            "Relationship to SDK orchestration"
+          ],
+          "char_start": 18674,
+          "char_end": 19303,
+          "score": 0.17424242424242425,
+          "rank": 2,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.08333333333333333,
+              "dense": 0.09090909090909091
+            }
+          },
+          "text_sha256": "8a785939ec6e03f4928d82b7674d656bb409cb2d10defff133156d5576aee88a",
+          "text_len": 629
+        },
+        {
+          "chunk_id": "chk_4ebf4dc9396d03f36f5822e4c10ca660139f8631",
+          "version_id": "ver_de67d790db9792b2f6c5c7418a507764",
+          "section_path": [
+            "Release process/changelog",
+            "Breaking change changelog",
+            "0.20.0"
+          ],
+          "char_start": 2738,
+          "char_end": 2989,
+          "score": 0.12692307692307692,
+          "rank": 3,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.07692307692307693,
+              "dense": 0.05
+            }
+          },
+          "text_sha256": "fc49877cf85853d64b88e6ca3cb6bb7c9593c53848482748291b3e5732977ba8",
+          "text_len": 251
+        },
+        {
+          "chunk_id": "chk_42749f1409fd690b9de6c4e82970cbb9b093f71b",
+          "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+          "section_path": [
+            "Running agents",
+            "Errors and recovery",
+            "Error handlers"
+          ],
+          "char_start": 28677,
+          "char_end": 29221,
+          "score": 0.12549019607843137,
+          "rank": 4,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.06666666666666667,
+              "dense": 0.058823529411764705
+            }
+          },
+          "text_sha256": "835d70b433e13ef59251d410f10896ded69635349cc307e8d81b09c5c9ed652f",
+          "text_len": 544
+        },
+        {
+          "chunk_id": "chk_74608b6b6976e760c15fe37ea8fa13ed97c4028c",
+          "version_id": "ver_02c06cea4a4bbffd4d01ee202f124a75",
+          "section_path": [
+            "OpenAI Agents SDK",
+            "Agents SDK or Responses API?"
+          ],
+          "char_start": 2855,
+          "char_end": 3646,
+          "score": 0.1213235294117647,
+          "rank": 5,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.058823529411764705,
+              "dense": 0.0625
+            }
+          },
+          "text_sha256": "84fa60c12aa4623571088399dec385ea248c02c60e24cf8e6551a52d8e28a17a",
+          "text_len": 791
+        },
+        {
+          "chunk_id": "chk_742c7608659f03f5de7bdfc2bfb7d3bf3b946462",
+          "version_id": "ver_1c77f33b04ffffa285ea7e61c2a89653",
+          "section_path": [
+            "Handoffs",
+            "Creating a handoff"
+          ],
+          "char_start": 453,
+          "char_end": 1121,
+          "score": 0.10173160173160173,
+          "rank": 6,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.07142857142857142,
+              "dense": 0.030303030303030304
+            }
+          },
+          "text_sha256": "c77113f64b6fd9a890eb4203ee6fafc8bf5a2e6991663147ed94f31fec92dec6",
+          "text_len": 668
+        },
+        {
+          "chunk_id": "chk_a6db41b7735ec84267de12130610c1a77e13249d",
+          "version_id": "ver_35cac5e98c151a17f941a6142d74709f",
+          "section_path": [
+            "Agents"
+          ],
+          "char_start": 0,
+          "char_end": 875,
+          "score": 0.09109311740890688,
+          "rank": 7,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.038461538461538464,
+              "dense": 0.05263157894736842
+            }
+          },
+          "text_sha256": "2d655c8083d94d729fc2d1369cc793cc0cecda7f4e9decf2b029da3dde645811",
+          "text_len": 875
+        },
+        {
+          "chunk_id": "chk_463d2fd0c07e2c2b486073543730c3279efb51e7",
+          "version_id": "ver_3c592d2e1e9ac3c51e25f017e61bc5d7",
+          "section_path": [
+            "When the skill activates"
+          ],
+          "char_start": 3797,
+          "char_end": 4558,
+          "score": 0.0875,
+          "rank": 8,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.0625,
+              "dense": 0.025
+            }
+          },
+          "text_sha256": "24b592337f04ce117f1255c42610eab1791f08303c69d6fdbb3ae1616f47b23b",
+          "text_len": 761
+        },
+        {
+          "chunk_id": "chk_731099e03080bd8a88675cccccaecd79a456ec67",
+          "version_id": "ver_ae909bf8b4bbbe1d1a11119447f7ac94",
+          "section_path": [
+            "Models",
+            "Advanced OpenAI Responses settings",
+            "Passing `extra_args`"
+          ],
+          "char_start": 30131,
+          "char_end": 30708,
+          "score": 0.08412698412698412,
+          "rank": 9,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.05555555555555555,
+              "dense": 0.02857142857142857
+            }
+          },
+          "text_sha256": "693aadb11361c397c4f0744aee943109f8fe67437e25f832a5ad194f1412274f",
+          "text_len": 577
+        },
+        {
+          "chunk_id": "chk_3d1415752a2cd19043984c234de701977a03b26e",
+          "version_id": "ver_7c087a260ac830f2b4fa1396300b3fcc",
+          "section_path": [
+            "Quickstart"
+          ],
+          "char_start": 0,
+          "char_end": 462,
+          "score": 0.07702702702702703,
+          "rank": 10,
+          "retriever": "rrf",
+          "metadata": {
+            "rrf_contributions": {
+              "lexical": 0.05,
+              "dense": 0.02702702702702703
+            }
+          },
+          "text_sha256": "237eef2413cf620fb9f967e40347bd5cde0fbb488fbd577f1875584b731e34a9",
+          "text_len": 462
+        }
+      ]
+    }
+  ]
+}

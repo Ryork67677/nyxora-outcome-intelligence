@@ -1,0 +1,195 @@
+I reviewed all **100 candidates** across both packets using only the quoted frozen-snapshot evidence and supplied context—no live docs. The construction process itself is sound: 230 questions were authored question-first, 112 survived evidence verification, all **127/127 evidence spans** were rechecked against frozen normalized text, and the 100 were selected without retrieval or SYSTEM-H scoring. 
+
+My review result is:
+
+**84 PASS · 15 FIX_REQUIRED · 1 UNCERTAIN · 0 FAIL**
+
+So **do not freeze NATQ-001 yet**, but this is a strong packet. Every candidate not named below is **PASS**. I found no reason to discard the benchmark design or restart authoring. Most fixes are small answer-scope/evidence-boundary repairs rather than bad questions.  
+
+| ID             | Verdict       | What needs changing                                                                                                                                                                                                                                                                                                                                                                   |
+| -------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **NATQ-C-002** | FIX_REQUIRED  | Core answer is supported: the Runner loop calls the LLM. Remove the extra claim **“Agent holds config”** unless separately evidenced.                                                                                                                                                                                                                                                 |
+| **NATQ-C-005** | FIX_REQUIRED  | `needs_approval=True` is supported, and the context supports an approval interruption. The exact decorator example `@tool(needs_approval=True)` is not anchored. Add exact evidence or remove that syntax.                                                                                                                                                                            |
+| **NATQ-C-014** | FIX_REQUIRED  | Evidence supports “model agents as tools,” but the answer specifically names **`as_tool`** without anchoring it. Add the `.as_tool()` evidence or omit the method name.                                                                                                                                                                                                               |
+| **NATQ-C-016** | FIX_REQUIRED  | Top-level `system` for first-turn instructions and mid-conversation system messages are supported. Remove **“On some newer models”** because that model-scope qualifier is not established by this packet.                                                                                                                                                                            |
+| **NATQ-C-026** | FIX_REQUIRED  | Citations and `citations.enabled=true` are supported. The answer additionally says cited passages return on response text blocks and categorically says “not a tool”; either anchor those details or tighten the answer.                                                                                                                                                              |
+| **NATQ-C-030** | FIX_REQUIRED  | `pause_turn`, `end_turn`, and `tool_use` meanings are supported. **“continue with tool_result(s)”** is not in the supplied evidence. Remove it or add evidence.                                                                                                                                                                                                                       |
+| **NATQ-C-044** | FIX_REQUIRED  | The question asks about **bash and text editor**. The packet only proves the bash side plus client execution. Add frozen evidence for the text-editor tool or reject/replace the case.                                                                                                                                                                                                |
+| **NATQ-C-047** | FIX_REQUIRED  | The packet proves `WebSearchTool` is an OpenAI-managed built-in, but does not prove the specific claim that **`on_invoke_tool` is only for custom `FunctionTool`s**. Add direct evidence because that is the actual question.                                                                                                                                                         |
+| **NATQ-C-120** | FIX_REQUIRED  | `prompt_cache_options` with implicit/explicit modes and GPT-5.6 `"30m"` TTL are supported. The comparison **“not Claude-style cache_control breakpoints”** is not established by the quoted span. Tighten or add evidence.                                                                                                                                                            |
+| **NATQ-C-127** | FIX_REQUIRED  | Context-editing/tool-result clearing is strongly supported. Remove the extra claim that server-side compaction is a **different, primary strategy** unless anchored.                                                                                                                                                                                                                  |
+| **NATQ-C-154** | FIX_REQUIRED  | `web_search_20260209` and `name:"web_search"` are directly supported. Remove the parenthetical about older `web_search_20250305` unless evidence is added.                                                                                                                                                                                                                            |
+| **NATQ-C-160** | FIX_REQUIRED  | The evidence is specifically **`BetaFileDocumentSource`**. Either scope the answer to the beta schema or add evidence showing the same shape for the general Files API path.                                                                                                                                                                                                          |
+| **NATQ-C-163** | FIX_REQUIRED  | `InputJSONDelta`, `partial_json`, and `RawContentBlockDeltaEvent` are anchored, but the answer's crucial exact outer event name **`content_block_delta`** is not in E1. Add a frozen streaming span showing `event: content_block_delta`.                                                                                                                                             |
+| **NATQ-C-193** | FIX_REQUIRED  | The corpus proves the documented names are `anthropic-organization-id` and `anthropic-workspace-id`. It does not prove an exhaustive absence of every unsuffixed variant. Say **“the documented forms here are …-id”** rather than “there is no …”.                                                                                                                                   |
+| **NATQ-C-219** | FIX_REQUIRED  | `set_default_openai_client(custom_client)` and `AsyncOpenAI(base_url=...)` are supported. Remove **“process default, not a per-Runner constructor argument”** unless separately anchored.                                                                                                                                                                                             |
+| **NATQ-C-172** | **UNCERTAIN** | Do not freeze this one yet. Its primary evidence lists only Opus/Sonnet as supported, but its own supplied context immediately begins a note mentioning **Claude Haiku 4.5**. That context is truncated, so the broader question “does Haiku support computer use?” cannot be safely adjudicated from the packet as written. Expand that exact frozen-source passage before deciding. |
+
+A good sign is that several exact-identifier and tricky API cases are very clean—for example the packets correctly distinguish `disable_parallel_tool_use`, `pause_turn`, structured-output migration, stateless encrypted reasoning round-trip, and tool argument streaming. This is much closer to real developer wording than the earlier source-authored evaluation set.  
+
+### Tell Claude this
+
+```text
+NATQ-001 COORDINATOR REVIEW — ROUND 1
+
+Review completed against the two supplied frozen-snapshot packets only.
+No live docs consulted.
+
+RESULT:
+
+PASS = 84
+FIX_REQUIRED = 15
+UNCERTAIN = 1
+FAIL = 0
+
+DO NOT FREEZE NATQ-001 YET.
+DO NOT RUN SYSTEM-H.
+DO NOT RUN RETRIEVAL.
+DO NOT CREATE THE NATQ HOLDOUT LOCK YET.
+
+All candidates not listed below are coordinator PASS and should remain
+byte-for-byte unchanged.
+
+FIX_REQUIRED:
+NATQ-C-002
+NATQ-C-005
+NATQ-C-014
+NATQ-C-016
+NATQ-C-026
+NATQ-C-030
+NATQ-C-044
+NATQ-C-047
+NATQ-C-120
+NATQ-C-127
+NATQ-C-154
+NATQ-C-160
+NATQ-C-163
+NATQ-C-193
+NATQ-C-219
+
+UNCERTAIN:
+NATQ-C-172
+
+==================================================
+REPAIR RULE
+==================================================
+
+Preserve the original cold-context QUESTION byte-for-byte whenever possible.
+
+Repairs should be limited to:
+- tightening an overbroad answer,
+- tightening atomic claims,
+- adding/expanding exact frozen-snapshot evidence,
+- fixing evidence boundaries.
+
+Do NOT rewrite a question toward corpus wording just to make it pass.
+
+If a question cannot be supported without materially changing its meaning:
+REJECT it and replace it with one of the 12 already-supported held-out
+candidates.
+
+Any replacement must receive coordinator review before freeze.
+
+==================================================
+CASE-SPECIFIC REPAIRS
+==================================================
+
+C-002:
+Remove unsupported "Agent holds config" unless separately anchored.
+Keep the supported Runner-calls-LLM answer.
+
+C-005:
+needs_approval=True is supported.
+Add exact evidence for @tool(needs_approval=True), or remove that decorator
+example.
+
+C-014:
+Add exact .as_tool() evidence or remove that method name.
+
+C-016:
+Remove "On some newer models".
+Keep top-level system for first-turn instructions and mid-conversation
+system messages for later instructions.
+
+C-026:
+Anchor response-text-block/tool-category details or tighten answer to only
+what the citations evidence establishes.
+
+C-030:
+Remove "continue with tool_results" unless exact evidence is added.
+
+C-044:
+Question asks about BOTH bash and text editor.
+Add frozen evidence for text editor or reject/replace.
+
+C-047:
+Add direct evidence answering whether hosted WebSearchTool requires
+on_invoke_tool / distinguishing it from custom FunctionTool callbacks.
+If not available, reject/replace rather than infer.
+
+C-120:
+Keep prompt_cache_options implicit/explicit and 30m TTL.
+Do not claim Claude-style cache_control semantics are absent unless directly
+supported.
+
+C-127:
+Remove unsupported compaction-vs-context-editing architectural aside unless
+anchored.
+
+C-154:
+Remove web_search_20250305 parenthetical unless evidence is added.
+
+C-160:
+Scope answer to BetaFileDocumentSource or add evidence for the general
+Files API document-source shape.
+
+C-163:
+Add exact frozen evidence showing outer event:
+event: content_block_delta
+and the nested InputJSONDelta / partial_json relationship.
+
+C-193:
+Avoid exhaustive absence claim.
+Prefer:
+"The documented header names here are anthropic-organization-id and
+anthropic-workspace-id."
+
+C-219:
+Remove "process default, not per-Runner constructor argument" unless directly
+anchored.
+
+C-172:
+UNCERTAIN.
+Expand the exact context immediately following the supported-model list.
+The supplied context begins:
+"On Claude Sonnet 4.5, Claude Haiku 4.5, ..."
+Determine from the frozen source whether Haiku 4.5 supports an older
+computer-use version or whether that note means something else.
+
+Do not infer.
+If Haiku support exists, correct the answer.
+If the present answer is confirmed, provide a self-contained evidence span.
+
+==================================================
+ROUND 2 OUTPUT
+==================================================
+
+Return ONLY:
+
+1. revised packets for the 15 FIX_REQUIRED cases
+2. resolved packet for C-172
+3. any replacements used from the 12 held-out SUPPORT cases
+4. old/new answer and claim text for each changed case
+5. exact evidence spans/hashes
+6. updated PASS/FIX/REJECT counts
+7. updated candidate/review-packet hashes
+8. proposed split changes, if replacements changed cluster membership
+
+Do not freeze the split yet.
+
+STOP for coordinator review.
+```
+
+I would **not replace cases automatically** just because 16 need attention. Most are good natural questions with slightly overextended answers. Repairing those while preserving the original question-first wording is better than throwing them away.
+
+Once Claude returns this small Round-2 packet, I can review only those 16 instead of rereading all 100, and if they pass, **then** we can authorize the 40/60 freeze.

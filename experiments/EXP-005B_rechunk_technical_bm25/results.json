@@ -1,0 +1,3644 @@
+{
+  "mode": "lexical",
+  "snapshot_id": "snap_766fa9940ec8b881f4e111076b13bf82",
+  "k": 10,
+  "model_id": null,
+  "lexical_k": 30,
+  "dense_k": null,
+  "rrf_k": null,
+  "macro_recall": 0.65,
+  "cases_fully_recalled": 12,
+  "cases_total": 20,
+  "hit_text_redacted": true,
+  "cases": [
+    {
+      "case_id": "AN-001",
+      "category": "exact_lookup",
+      "k": 10,
+      "expected_evidence_count": 1,
+      "evidence_found_count": 0,
+      "recall": 0.0,
+      "found": [],
+      "missed": [
+        {
+          "version_id": "ver_db8326d3bafce3a535c3e3bfc3de7519",
+          "section_path": [
+            "Preamble"
+          ],
+          "char_start": 116,
+          "char_end": 227
+        }
+      ],
+      "hits": [
+        {
+          "chunk_id": "chk_1c126d33f7b76a57d2d9410508ebda88e43e7f32",
+          "version_id": "ver_c299b58fe1f5a4d3a081b550334a7df6",
+          "section_path": [
+            "RBAC Roles",
+            "Get RBAC Role"
+          ],
+          "char_start": 39596,
+          "char_end": 39871,
+          "score": 25.185579475664905,
+          "rank": 1,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "4daa471752d09c0cc593186bd85a21ff0491aac3925897e6cba12e5ce36c28ca",
+          "text_len": 275
+        },
+        {
+          "chunk_id": "chk_e964918b01916ab92f055f83648b5b4c80e9ca11",
+          "version_id": "ver_c299b58fe1f5a4d3a081b550334a7df6",
+          "section_path": [
+            "RBAC Roles",
+            "List RBAC Roles"
+          ],
+          "char_start": 37640,
+          "char_end": 37915,
+          "score": 25.18557947566491,
+          "rank": 2,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "711ae78b96ee748d58614eb4d44e96ea1b22c1b82e4f4b20dab4a189f0c9b2a6",
+          "text_len": 275
+        },
+        {
+          "chunk_id": "chk_2b97de023d3099200328f93cc171ee30660e32f4",
+          "version_id": "ver_c299b58fe1f5a4d3a081b550334a7df6",
+          "section_path": [
+            "RBAC Groups",
+            "Get RBAC Group"
+          ],
+          "char_start": 21919,
+          "char_end": 22199,
+          "score": 25.0967950278644,
+          "rank": 3,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "dac42fbc1fd9567cca1aa09dac3856740df7f8398b9172f17b2c2ef7c46f55ae",
+          "text_len": 280
+        },
+        {
+          "chunk_id": "chk_b0279abae986c5c609d2f04a53a582a76f7948d2",
+          "version_id": "ver_c299b58fe1f5a4d3a081b550334a7df6",
+          "section_path": [
+            "RBAC Groups",
+            "List RBAC Groups"
+          ],
+          "char_start": 19302,
+          "char_end": 19593,
+          "score": 24.90365569167961,
+          "rank": 4,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "8fbb1dd116a66aa99fc53792d8a2bae5ab29a49348828efde4fd7e65d11cc4a7",
+          "text_len": 291
+        },
+        {
+          "chunk_id": "chk_3ead90e7ff3d0d6b6a64133ee20d6442295c240b",
+          "version_id": "ver_c299b58fe1f5a4d3a081b550334a7df6",
+          "section_path": [
+            "Members",
+            "List RBAC Group Members"
+          ],
+          "char_start": 31322,
+          "char_end": 31620,
+          "score": 24.782289075341623,
+          "rank": 5,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "439ef60047574d854dcb97b948745f88f808fb10fd42dc5ec02dbdea2747a59c",
+          "text_len": 298
+        },
+        {
+          "chunk_id": "chk_f2b968f625d76b024c7f29e3125a452a1df475ef",
+          "version_id": "ver_c299b58fe1f5a4d3a081b550334a7df6",
+          "section_path": [
+            "Permissions",
+            "List RBAC Role Permissions"
+          ],
+          "char_start": 41602,
+          "char_end": 41915,
+          "score": 24.526159979392638,
+          "rank": 6,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "d1de5fb0ba8d19d8a0894b80e3a17c70a4d07f4909721a4129b70a9e6f653070",
+          "text_len": 313
+        },
+        {
+          "chunk_id": "chk_bd6020c42efafc753992d7bf77a8994aeb529fdd",
+          "version_id": "ver_c299b58fe1f5a4d3a081b550334a7df6",
+          "section_path": [
+            "RBAC Groups",
+            "Create RBAC Group"
+          ],
+          "char_start": 24033,
+          "char_end": 24386,
+          "score": 23.868337956677077,
+          "rank": 7,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "661957e777252db84689167caf0b85eff0a7d020f56b0dfdeab347102ef3e4a0",
+          "text_len": 353
+        },
+        {
+          "chunk_id": "chk_b17d367878be07123dea965840858c9135b16696",
+          "version_id": "ver_c299b58fe1f5a4d3a081b550334a7df6",
+          "section_path": [
+            "RBAC Groups",
+            "Delete RBAC Group"
+          ],
+          "char_start": 28750,
+          "char_end": 29125,
+          "score": 23.52135835816461,
+          "rank": 8,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "d823d092b7e95ba984f30c1db139ee0a236aecfd2d7c586967536801869c00f8",
+          "text_len": 375
+        },
+        {
+          "chunk_id": "chk_fcd9f6bfe2c2726bb9bc30af81beccca3471a717",
+          "version_id": "ver_c299b58fe1f5a4d3a081b550334a7df6",
+          "section_path": [
+            "RBAC Groups",
+            "Update RBAC Group"
+          ],
+          "char_start": 26330,
+          "char_end": 26711,
+          "score": 23.42847149712429,
+          "rank": 9,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "3cb111e87fa6a01d95231ed0da05f57de68ea4b8c6e14800ff71d30e1e146d10",
+          "text_len": 381
+        },
+        {
+          "chunk_id": "chk_505b4b4d88bd9b13d7dc48af3736e21f82ff82ee",
+          "version_id": "ver_c299b58fe1f5a4d3a081b550334a7df6",
+          "section_path": [
+            "Members",
+            "Add RBAC Group Member"
+          ],
+          "char_start": 33407,
+          "char_end": 33814,
+          "score": 23.03429662001299,
+          "rank": 10,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "6ab7186501b6a0dc2d1fa9ef77deb83e4d2faaf8febf4d3fdee07a37469c5d85",
+          "text_len": 407
+        }
+      ]
+    },
+    {
+      "case_id": "AN-002",
+      "category": "exact_lookup",
+      "k": 10,
+      "expected_evidence_count": 1,
+      "evidence_found_count": 0,
+      "recall": 0.0,
+      "found": [],
+      "missed": [
+        {
+          "version_id": "ver_0774ca0093ff4a846753577c9a4a39d5",
+          "section_path": [
+            "HTTP errors"
+          ],
+          "char_start": 1636,
+          "char_end": 1721
+        }
+      ],
+      "hits": [
+        {
+          "chunk_id": "chk_cb335b0f348f4b2c449fbd89df3527751ff084e4",
+          "version_id": "ver_0774ca0093ff4a846753577c9a4a39d5",
+          "section_path": [
+            "Preamble"
+          ],
+          "char_start": 0,
+          "char_end": 244,
+          "score": 20.250616175468174,
+          "rank": 1,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "99a00ecbcba550f128d9c148534d4c7bd48de42f35ed5ea5a142e0da56dab92b",
+          "text_len": 244
+        },
+        {
+          "chunk_id": "chk_016ac80bde8a6877cf3a5fedb073b2934b484df4",
+          "version_id": "ver_0774ca0093ff4a846753577c9a4a39d5",
+          "section_path": [
+            "HTTP errors"
+          ],
+          "char_start": 246,
+          "char_end": 1396,
+          "score": 17.66936538460374,
+          "rank": 2,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "ececf57a6158db0b07b882b45fe23b0b526a323f3386bbf7955afc6cf1280c8c",
+          "text_len": 1150
+        },
+        {
+          "chunk_id": "chk_6aafc072142124788720b27344cb9c4225e879b1",
+          "version_id": "ver_462141128848e293fd652c38dcdfcd33",
+          "section_path": [
+            "Where tools run",
+            "User-defined tools (client-executed)"
+          ],
+          "char_start": 1637,
+          "char_end": 2400,
+          "score": 17.361481785949245,
+          "rank": 3,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "d89c9fc1e028ac305a036a9fb898ba97ec5fea45e80644ee15d41559db4b8eed",
+          "text_len": 763
+        },
+        {
+          "chunk_id": "chk_45772a9aff2af22fbfeea77ede4057e5daa859ca",
+          "version_id": "ver_6bafcf704c4110f57f26afd11a018716",
+          "section_path": [
+            "Next steps"
+          ],
+          "char_start": 7094,
+          "char_end": 7582,
+          "score": 17.21244231146997,
+          "rank": 4,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "8fe392634ef707abc87e93510e172d6be8d9da51c3b82a347bd577980617a54f",
+          "text_len": 488
+        },
+        {
+          "chunk_id": "chk_d187ed876f5cbc6f2f7cff361e1a138f0bb26a27",
+          "version_id": "ver_0774ca0093ff4a846753577c9a4a39d5",
+          "section_path": [
+            "Request size limits"
+          ],
+          "char_start": 4305,
+          "char_end": 4480,
+          "score": 17.13019678914215,
+          "rank": 5,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "dc22c616d8ce6420a294bf7ab0ce9d6e79320a1655d5f665e030e586eb4c0a12",
+          "text_len": 175
+        },
+        {
+          "chunk_id": "chk_9008705180f6368e499bd942e0ff8b47bdae040a",
+          "version_id": "ver_d81ee605bd8bbb880deea432e51462ac",
+          "section_path": [
+            "Trigger a routine"
+          ],
+          "char_start": 4367,
+          "char_end": 4900,
+          "score": 16.88888083426272,
+          "rank": 6,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "ab43a5d6e02555c0e25730ee7290082236c3930c662fb18a5b5cb57c81644b12",
+          "text_len": 533
+        },
+        {
+          "chunk_id": "chk_0b6152846205b900f70bc5318ada1237b3f0604f",
+          "version_id": "ver_b7ea8359f97ca269418988f78e80b870",
+          "section_path": [
+            "Error handling",
+            "HTTP errors (400 status)"
+          ],
+          "char_start": 27747,
+          "char_end": 28075,
+          "score": 16.19381430465426,
+          "rank": 7,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "bff020271d4770e6630e1c3e4a3ceacd97bdccfac3981c004709e3ba8b72fbbe",
+          "text_len": 328
+        },
+        {
+          "chunk_id": "chk_2a37f3f6ff99bad5a149d1e949efc6b51b0e6b8c",
+          "version_id": "ver_6bb251ec84d35aaf9d0b9f38b97b4e65",
+          "section_path": [
+            "Refusals, fallback, and billing on Claude Fable 5",
+            "Refusals"
+          ],
+          "char_start": 2850,
+          "char_end": 3215,
+          "score": 16.031052225769674,
+          "rank": 8,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "fdb91f5b6282c2f83d6ae368b97f6c7a1c875c5d22ce7f9e0c23ec410564cc82",
+          "text_len": 365
+        },
+        {
+          "chunk_id": "chk_de0a8ea4e4c9782c1aacf54950333e2b360fc804",
+          "version_id": "ver_4d14aec24504f4b8f6f28938b84587dc",
+          "section_path": [
+            "Stop reason values",
+            "refusal"
+          ],
+          "char_start": 59569,
+          "char_end": 59722,
+          "score": 15.831993503345458,
+          "rank": 9,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "8dac14d67a26bf577223c750947a84b683d002e9cc85976e813eed2159b754fe",
+          "text_len": 153
+        },
+        {
+          "chunk_id": "chk_21425246c2c5801a8ea08adb9d41c96fefdfbc5c",
+          "version_id": "ver_a7bda3595f2c124605c3228464d4ee52",
+          "section_path": [
+            "From Sonnet 3.7",
+            "Migrating to Claude Opus 5 from Claude Sonnet 5"
+          ],
+          "char_start": 115907,
+          "char_end": 116728,
+          "score": 15.745291650013439,
+          "rank": 10,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "5e4c169e1bd95a88ccd926f8d98dd1d8d937ebfe059e163f1713a27f41b4e5c9",
+          "text_len": 821
+        }
+      ]
+    },
+    {
+      "case_id": "AN-003",
+      "category": "exact_lookup",
+      "k": 10,
+      "expected_evidence_count": 1,
+      "evidence_found_count": 0,
+      "recall": 0.0,
+      "found": [],
+      "missed": [
+        {
+          "version_id": "ver_ef5f9dacc17f99c298faf449e756ae90",
+          "section_path": [
+            "Batches",
+            "Create a Message Batch",
+            "Body Parameters"
+          ],
+          "char_start": 4554,
+          "char_end": 4611
+        }
+      ],
+      "hits": [
+        {
+          "chunk_id": "chk_39d14af965a12c2b86a321bc40e4512ee6427d2f",
+          "version_id": "ver_cec813c3bb15b76dcf16e7a0c2231ef1",
+          "section_path": [
+            "Message Batches API",
+            "How to use the Message Batches API",
+            "Best practices for effective batching"
+          ],
+          "char_start": 67538,
+          "char_end": 68001,
+          "score": 18.937119140615522,
+          "rank": 1,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "7d1044e499aad8add0be01eb435dc446a15982943b7b130db555ae7c51e6c590",
+          "text_len": 463
+        },
+        {
+          "chunk_id": "chk_b5d99df6cf2074a42f9b02f8bc21a3b26f918e60",
+          "version_id": "ver_cec813c3bb15b76dcf16e7a0c2231ef1",
+          "section_path": [
+            "Message Batches API",
+            "How to use the Message Batches API",
+            "Canceling a Message Batch"
+          ],
+          "char_start": 36884,
+          "char_end": 37399,
+          "score": 18.780379618482517,
+          "rank": 2,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "f55ad5afb74298f56d53c51d5ff7e3330896e9b027b7e996d0b97fb0042f9c9a",
+          "text_len": 515
+        },
+        {
+          "chunk_id": "chk_32baf22402c7745980a2a988dc2978291df4736d",
+          "version_id": "ver_c8b2c7130cb18508fed4f864d4c3d7a3",
+          "section_path": [
+            "Rate limits",
+            "Message Batches API"
+          ],
+          "char_start": 17209,
+          "char_end": 17812,
+          "score": 18.68793681432782,
+          "rank": 3,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "f066f0b7ce8a87014acd67c1fd08326498b080bf20a0b5af648cddeddbec213a",
+          "text_len": 603
+        },
+        {
+          "chunk_id": "chk_bb0bb4e60409e2f0be6a0b70ac994cab93311b11",
+          "version_id": "ver_cec813c3bb15b76dcf16e7a0c2231ef1",
+          "section_path": [
+            "Message Batches API",
+            "How to use the Message Batches API",
+            "Prepare and create your batch"
+          ],
+          "char_start": 9833,
+          "char_end": 10453,
+          "score": 18.196837591249153,
+          "rank": 4,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "5ef51fd3a9648fcc57e9e203fc1bd0df5e4b55fbb94c0537be1475cb2de9ef2c",
+          "text_len": 620
+        },
+        {
+          "chunk_id": "chk_526d80e31bf8623da579b8e61e57321992a13660",
+          "version_id": "ver_de7f74230c8f10d30aea5d037a3bd0a5",
+          "section_path": [
+            "Batches",
+            "Create a Message Batch"
+          ],
+          "char_start": 935839,
+          "char_end": 936275,
+          "score": 18.060545563325896,
+          "rank": 5,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "59eb90e14b5d28b9a5b89edc1126064292930238a90d064fa72c7d81df7b1806",
+          "text_len": 436
+        },
+        {
+          "chunk_id": "chk_b0c8c74992dcfb73bd94a1ad90093f534f5adaac",
+          "version_id": "ver_18c692f4d28bd01c0a5cac553fcf01a7",
+          "section_path": [
+            "Batches",
+            "Create a Message Batch"
+          ],
+          "char_start": 585493,
+          "char_end": 585929,
+          "score": 18.060545563325896,
+          "rank": 6,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "59eb90e14b5d28b9a5b89edc1126064292930238a90d064fa72c7d81df7b1806",
+          "text_len": 436
+        },
+        {
+          "chunk_id": "chk_cf37b0cd497ed9aa6202ff03cc8d1700da9751b2",
+          "version_id": "ver_ef5f9dacc17f99c298faf449e756ae90",
+          "section_path": [
+            "Batches",
+            "Create a Message Batch"
+          ],
+          "char_start": 97,
+          "char_end": 533,
+          "score": 18.060545563325896,
+          "rank": 7,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "59eb90e14b5d28b9a5b89edc1126064292930238a90d064fa72c7d81df7b1806",
+          "text_len": 436
+        },
+        {
+          "chunk_id": "chk_eda46a1de016efaf998f2317bfbe8872bc9eae72",
+          "version_id": "ver_a51a411655bc0cd2ac78d3a5820245a3",
+          "section_path": [
+            "Create a Message Batch"
+          ],
+          "char_start": 108,
+          "char_end": 544,
+          "score": 18.060545563325896,
+          "rank": 8,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "59eb90e14b5d28b9a5b89edc1126064292930238a90d064fa72c7d81df7b1806",
+          "text_len": 436
+        },
+        {
+          "chunk_id": "chk_58a766035416d7f04123ae0012642662b8863ade",
+          "version_id": "ver_cec813c3bb15b76dcf16e7a0c2231ef1",
+          "section_path": [
+            "Message Batches API",
+            "How to use the Message Batches API",
+            "Prepare and create your batch"
+          ],
+          "char_start": 11370,
+          "char_end": 11804,
+          "score": 17.72409375663337,
+          "rank": 9,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "64067cdfc069e960b37d7d1a987302591db11fb226af7d30bb288563fb117195",
+          "text_len": 542
+        },
+        {
+          "chunk_id": "chk_90a406c55cd41555be0ccf1da33c5f8cccb03927",
+          "version_id": "ver_cec813c3bb15b76dcf16e7a0c2231ef1",
+          "section_path": [
+            "Message Batches API",
+            "How the Message Batches API works"
+          ],
+          "char_start": 1521,
+          "char_end": 2341,
+          "score": 17.44999993312655,
+          "rank": 10,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "f1716818445a4e547f43e2f88c36a41fff7f395de8708ed2ab4e6306150370a7",
+          "text_len": 820
+        }
+      ]
+    },
+    {
+      "case_id": "AN-004",
+      "category": "exact_lookup",
+      "k": 10,
+      "expected_evidence_count": 1,
+      "evidence_found_count": 1,
+      "recall": 1.0,
+      "found": [
+        {
+          "version_id": "ver_7947433dfde6b3b8eccd0faa597c3c9a",
+          "section_path": [
+            "Explicit cache breakpoints",
+            "Structuring your prompt",
+            "How automatic prefix checking works"
+          ],
+          "char_start": 25537,
+          "char_end": 25690
+        }
+      ],
+      "missed": [],
+      "hits": [
+        {
+          "chunk_id": "chk_ce6894833f922a8bd9aebd075f288449841b7d67",
+          "version_id": "ver_7947433dfde6b3b8eccd0faa597c3c9a",
+          "section_path": [
+            "On earlier Opus/Sonnet and all Haiku models, non-tool-result user block causes prior thinking blocks to be stripped; on Opus 4.5+/Sonnet 4.6+ they are kept",
+            "Troubleshooting common issues"
+          ],
+          "char_start": 49570,
+          "char_end": 50874,
+          "score": 24.7234992361237,
+          "rank": 1,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "243f6cb0621c34195a8482f1fd523d56f58c8e76054d40d1221892a4426712a5",
+          "text_len": 1304
+        },
+        {
+          "chunk_id": "chk_75658be6d6aa8444889f384735e0e5355bcb7f17",
+          "version_id": "ver_7947433dfde6b3b8eccd0faa597c3c9a",
+          "section_path": [
+            "Explicit cache breakpoints",
+            "Structuring your prompt",
+            "How automatic prefix checking works"
+          ],
+          "char_start": 27852,
+          "char_end": 28335,
+          "score": 24.027149239662535,
+          "rank": 2,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "c6e38cb0370d7c153e8894ce667f0e620a35ca22d0427b5dc83ddee28f67949a",
+          "text_len": 483
+        },
+        {
+          "chunk_id": "chk_e8f1179a2d30aa397877480f0de9a0d39abcfd68",
+          "version_id": "ver_7947433dfde6b3b8eccd0faa597c3c9a",
+          "section_path": [
+            "Explicit cache breakpoints",
+            "Structuring your prompt",
+            "How automatic prefix checking works"
+          ],
+          "char_start": 26701,
+          "char_end": 27850,
+          "score": 23.002007566627533,
+          "rank": 3,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "6323c9090224915e1c44d02b3d377442d4c55d9fff12d423dec99ff14951ad14",
+          "text_len": 1149
+        },
+        {
+          "chunk_id": "chk_0d8cdffbc20b839c55ea16258d9053bad3257103",
+          "version_id": "ver_7947433dfde6b3b8eccd0faa597c3c9a",
+          "section_path": [
+            "Automatic caching",
+            "What stays the same"
+          ],
+          "char_start": 22491,
+          "char_end": 22730,
+          "score": 21.805982860488633,
+          "rank": 4,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "05c2db0ccd3eeca983071125fcc7ec7f34fc0144595fdb3f8e8965c96c693c96",
+          "text_len": 239
+        },
+        {
+          "chunk_id": "chk_8906ad7d1f334b5e56a2299fe592d7cddc710ed7",
+          "version_id": "ver_496bbda9a2d1cd28117ba8b4fd16ed93",
+          "section_path": [
+            "Preamble"
+          ],
+          "char_start": 0,
+          "char_end": 509,
+          "score": 19.337037002330355,
+          "rank": 5,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "373a06940f8512670b1c4c70b264010d6af63d3cbe21f31d6d0027bf1c5cc8d7",
+          "text_len": 509
+        },
+        {
+          "chunk_id": "chk_c65669fee5fe708c3098b0865345a51045f7aca3",
+          "version_id": "ver_7947433dfde6b3b8eccd0faa597c3c9a",
+          "section_path": [
+            "Explicit cache breakpoints",
+            "Structuring your prompt",
+            "When to use multiple breakpoints"
+          ],
+          "char_start": 28337,
+          "char_end": 29072,
+          "score": 18.856004445081506,
+          "rank": 6,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "536bcc766c5e20a1012066e2b85147ed551b54f6f3918fd002ef8bcf94599e60",
+          "text_len": 735
+        },
+        {
+          "chunk_id": "chk_46ed896e54202a9d14cd7326cf6b005a78cfa977",
+          "version_id": "ver_c60f7418b69b6610bd20e974b92cdd8c",
+          "section_path": [
+            "Combining with other features",
+            "Token counting"
+          ],
+          "char_start": 72846,
+          "char_end": 73097,
+          "score": 18.33551968869928,
+          "rank": 7,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "dbab7b0b5cece603c5428495ccf2456073d80c26a6b31c9e8b967e0be0886bbd",
+          "text_len": 251
+        },
+        {
+          "chunk_id": "chk_51b5e5eb2bd5493ff8ebba3f5f050af8dee2ddaf",
+          "version_id": "ver_7947433dfde6b3b8eccd0faa597c3c9a",
+          "section_path": [
+            "On earlier Opus/Sonnet and all Haiku models, non-tool-result user block causes prior thinking blocks to be stripped; on Opus 4.5+/Sonnet 4.6+ they are kept",
+            "FAQ"
+          ],
+          "char_start": 143518,
+          "char_end": 144672,
+          "score": 18.13863094027016,
+          "rank": 8,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "7ee53f6d63686e63f1f3311780ea03493853f80f3deb3989c80dbfaf76c7b595",
+          "text_len": 1154
+        },
+        {
+          "chunk_id": "chk_c80ae88a9ed21d81adf87cb4b9e29285b0222814",
+          "version_id": "ver_804237921fa9a31a1445a9eb93a55287",
+          "section_path": [
+            "Feature-specific pricing",
+            "Long context pricing"
+          ],
+          "char_start": 23999,
+          "char_end": 24433,
+          "score": 18.11839630071022,
+          "rank": 9,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "f0beff835a9fc54866430771497260362f900bde77d09c726e8354f1c85a7085",
+          "text_len": 434
+        },
+        {
+          "chunk_id": "chk_ececad7cd3f706ef5e010bffb0ed9d552155caca",
+          "version_id": "ver_7947433dfde6b3b8eccd0faa597c3c9a",
+          "section_path": [
+            "Explicit cache breakpoints",
+            "Structuring your prompt",
+            "How automatic prefix checking works"
+          ],
+          "char_start": 25532,
+          "char_end": 26699,
+          "score": 18.036346404720558,
+          "rank": 10,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "eae0f9d48847fe947cc698a71d28d4b1e5791c3739fca7444b438cad080c3471",
+          "text_len": 1167
+        }
+      ]
+    },
+    {
+      "case_id": "AN-005",
+      "category": "exact_lookup",
+      "k": 10,
+      "expected_evidence_count": 1,
+      "evidence_found_count": 1,
+      "recall": 1.0,
+      "found": [
+        {
+          "version_id": "ver_1c53b961e1f5da8124a1e7e8eb92c941",
+          "section_path": [
+            "Server-side strategies"
+          ],
+          "char_start": 4055,
+          "char_end": 4106
+        }
+      ],
+      "missed": [],
+      "hits": [
+        {
+          "chunk_id": "chk_33f997d03358420ab4f421c1c71d0f8ecdd53015",
+          "version_id": "ver_1c53b961e1f5da8124a1e7e8eb92c941",
+          "section_path": [
+            "Server-side strategies"
+          ],
+          "char_start": 3911,
+          "char_end": 4236,
+          "score": 15.868358556096082,
+          "rank": 1,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "330f709341792a8efec59a971e2620ae2bc7260e779eb5c1519916746688e9e3",
+          "text_len": 325
+        },
+        {
+          "chunk_id": "chk_21692caccd64fed0c3599703e2d24ef6f9c38bdd",
+          "version_id": "ver_de7f74230c8f10d30aea5d037a3bd0a5",
+          "section_path": [
+            "Tunnels",
+            "Rotate Tunnel Token"
+          ],
+          "char_start": 3056270,
+          "char_end": 3056836,
+          "score": 15.592691573760748,
+          "rank": 2,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "e5656a4faeab622f88eecbda799b45b0eaaca58aa7d46d9a67eb0f77cba74493",
+          "text_len": 566
+        },
+        {
+          "chunk_id": "chk_e8583cd20b30f027f08624e4f0e6eeb2e53adb3c",
+          "version_id": "ver_de7f74230c8f10d30aea5d037a3bd0a5",
+          "section_path": [
+            "Tunnels",
+            "Reveal Tunnel Token"
+          ],
+          "char_start": 3053437,
+          "char_end": 3054023,
+          "score": 15.411839158534011,
+          "rank": 3,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "2eba825def16c5bd994f29f54956d9f1be7eb37bc7c6b00812c1173e69e3bd1e",
+          "text_len": 586
+        },
+        {
+          "chunk_id": "chk_1c126d33f7b76a57d2d9410508ebda88e43e7f32",
+          "version_id": "ver_c299b58fe1f5a4d3a081b550334a7df6",
+          "section_path": [
+            "RBAC Roles",
+            "Get RBAC Role"
+          ],
+          "char_start": 39596,
+          "char_end": 39871,
+          "score": 14.656821994525608,
+          "rank": 4,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "4daa471752d09c0cc593186bd85a21ff0491aac3925897e6cba12e5ce36c28ca",
+          "text_len": 275
+        },
+        {
+          "chunk_id": "chk_e964918b01916ab92f055f83648b5b4c80e9ca11",
+          "version_id": "ver_c299b58fe1f5a4d3a081b550334a7df6",
+          "section_path": [
+            "RBAC Roles",
+            "List RBAC Roles"
+          ],
+          "char_start": 37640,
+          "char_end": 37915,
+          "score": 14.656821994525608,
+          "rank": 5,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "711ae78b96ee748d58614eb4d44e96ea1b22c1b82e4f4b20dab4a189f0c9b2a6",
+          "text_len": 275
+        },
+        {
+          "chunk_id": "chk_2b97de023d3099200328f93cc171ee30660e32f4",
+          "version_id": "ver_c299b58fe1f5a4d3a081b550334a7df6",
+          "section_path": [
+            "RBAC Groups",
+            "Get RBAC Group"
+          ],
+          "char_start": 21919,
+          "char_end": 22199,
+          "score": 14.605153624196802,
+          "rank": 6,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "dac42fbc1fd9567cca1aa09dac3856740df7f8398b9172f17b2c2ef7c46f55ae",
+          "text_len": 280
+        },
+        {
+          "chunk_id": "chk_b0279abae986c5c609d2f04a53a582a76f7948d2",
+          "version_id": "ver_c299b58fe1f5a4d3a081b550334a7df6",
+          "section_path": [
+            "RBAC Groups",
+            "List RBAC Groups"
+          ],
+          "char_start": 19302,
+          "char_end": 19593,
+          "score": 14.492755619881017,
+          "rank": 7,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "8fbb1dd116a66aa99fc53792d8a2bae5ab29a49348828efde4fd7e65d11cc4a7",
+          "text_len": 291
+        },
+        {
+          "chunk_id": "chk_3ead90e7ff3d0d6b6a64133ee20d6442295c240b",
+          "version_id": "ver_c299b58fe1f5a4d3a081b550334a7df6",
+          "section_path": [
+            "Members",
+            "List RBAC Group Members"
+          ],
+          "char_start": 31322,
+          "char_end": 31620,
+          "score": 14.422125960815103,
+          "rank": 8,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "439ef60047574d854dcb97b948745f88f808fb10fd42dc5ec02dbdea2747a59c",
+          "text_len": 298
+        },
+        {
+          "chunk_id": "chk_8bf22d96ae59d8430e7514190ff82477804fc604",
+          "version_id": "ver_83f5681ee38e2d11ab15e49c90a16e2e",
+          "section_path": [
+            "Cut spend without losing quality",
+            "Trim input and context tokens"
+          ],
+          "char_start": 15370,
+          "char_end": 15754,
+          "score": 14.37299939661644,
+          "rank": 9,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "e4ed559fe1eb33155e4c1f004870abd2c071db8973549de6559814ecc5182d9c",
+          "text_len": 384
+        },
+        {
+          "chunk_id": "chk_f2b968f625d76b024c7f29e3125a452a1df475ef",
+          "version_id": "ver_c299b58fe1f5a4d3a081b550334a7df6",
+          "section_path": [
+            "Permissions",
+            "List RBAC Role Permissions"
+          ],
+          "char_start": 41602,
+          "char_end": 41915,
+          "score": 14.273070880682031,
+          "rank": 10,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "d1de5fb0ba8d19d8a0894b80e3a17c70a4d07f4909721a4129b70a9e6f653070",
+          "text_len": 313
+        }
+      ]
+    },
+    {
+      "case_id": "AN-006",
+      "category": "exact_lookup",
+      "k": 10,
+      "expected_evidence_count": 1,
+      "evidence_found_count": 0,
+      "recall": 0.0,
+      "found": [],
+      "missed": [
+        {
+          "version_id": "ver_f65938c74d40ac1e288f169d3d0435b7",
+          "section_path": [
+            "Upgrade to latest tool version",
+            "What's changed"
+          ],
+          "char_start": 58361,
+          "char_end": 58388
+        }
+      ],
+      "hits": [
+        {
+          "chunk_id": "chk_f2f069ab553bf3514d3166f5961c65ae93958d76",
+          "version_id": "ver_53c7279f0b26dd8d4b011e04d4bac3dc",
+          "section_path": [
+            "Step 2: Create a presentation"
+          ],
+          "char_start": 11259,
+          "char_end": 11854,
+          "score": 25.583656059777525,
+          "rank": 1,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "b408ec4e7ea0889cf0f7a45e5696606c39fcd198d9a03d0a4da2fe8e1cd300ed",
+          "text_len": 595
+        },
+        {
+          "chunk_id": "chk_f23c9190664246c14b113311743301932b6ce99d",
+          "version_id": "ver_099b2710b117f534b43be4be2a4c84ab",
+          "section_path": [
+            "PDF Processing",
+            "Where Skills work",
+            "Claude API"
+          ],
+          "char_start": 10041,
+          "char_end": 11072,
+          "score": 17.74046729814654,
+          "rank": 2,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "b914d30b1fadf1f9f7c20dc92e0ce07b3deb16d685650e85dccceb711ae429d7",
+          "text_len": 1031
+        },
+        {
+          "chunk_id": "chk_b14610f183ff22df6a6ba125cdaf1fd283160dfd",
+          "version_id": "ver_5a15a8f543d432ef91eb6e2997f51225",
+          "section_path": [
+            "Overview",
+            "Prerequisites"
+          ],
+          "char_start": 3934,
+          "char_end": 4748,
+          "score": 16.024210577990257,
+          "rank": 3,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "38502f8ed67ff66d567550a84ad74f627a3ade6065fc8cf4f80c3a13f1b47555",
+          "text_len": 814
+        },
+        {
+          "chunk_id": "chk_d19ce4bb31a08f3bb6c9f8e73614533f3e0ebf75",
+          "version_id": "ver_53c7279f0b26dd8d4b011e04d4bac3dc",
+          "section_path": [
+            "Step 2: Create a presentation"
+          ],
+          "char_start": 11856,
+          "char_end": 12832,
+          "score": 15.925231946013593,
+          "rank": 4,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "2dc7dac41d411ee9a89317554c1e2dac4fc40507f280cc9d8f9c6173313200b7",
+          "text_len": 976
+        },
+        {
+          "chunk_id": "chk_fcf9f7f5d3d3e2e37e97fad306410e39afb8c5a2",
+          "version_id": "ver_d9ba3ab0d872dd86047c7ed6dc783235",
+          "section_path": [
+            "Quick start"
+          ],
+          "char_start": 12142,
+          "char_end": 12377,
+          "score": 15.873530850089141,
+          "rank": 5,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "9d6a78acaff799b15198a79ebb31d647207bf72fd86557c0ea2084a8815b0195",
+          "text_len": 235
+        },
+        {
+          "chunk_id": "chk_b886978f519904c28063e7bbaab5e41be0a9fcdc",
+          "version_id": "ver_fa78e1feb6289d6bcb22305e61bbbfc3",
+          "section_path": [
+            "Server-side fallback",
+            "Making the request"
+          ],
+          "char_start": 20696,
+          "char_end": 21151,
+          "score": 15.612156393465497,
+          "rank": 6,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "f57bc0fa84ab13cbb9ee497525423b02cc7bbe091beb90fe3c3de498f438e9de",
+          "text_len": 455
+        },
+        {
+          "chunk_id": "chk_1c126d33f7b76a57d2d9410508ebda88e43e7f32",
+          "version_id": "ver_c299b58fe1f5a4d3a081b550334a7df6",
+          "section_path": [
+            "RBAC Roles",
+            "Get RBAC Role"
+          ],
+          "char_start": 39596,
+          "char_end": 39871,
+          "score": 15.465905961813805,
+          "rank": 7,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "4daa471752d09c0cc593186bd85a21ff0491aac3925897e6cba12e5ce36c28ca",
+          "text_len": 275
+        },
+        {
+          "chunk_id": "chk_e964918b01916ab92f055f83648b5b4c80e9ca11",
+          "version_id": "ver_c299b58fe1f5a4d3a081b550334a7df6",
+          "section_path": [
+            "RBAC Roles",
+            "List RBAC Roles"
+          ],
+          "char_start": 37640,
+          "char_end": 37915,
+          "score": 15.465905961813805,
+          "rank": 8,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "711ae78b96ee748d58614eb4d44e96ea1b22c1b82e4f4b20dab4a189f0c9b2a6",
+          "text_len": 275
+        },
+        {
+          "chunk_id": "chk_2b97de023d3099200328f93cc171ee30660e32f4",
+          "version_id": "ver_c299b58fe1f5a4d3a081b550334a7df6",
+          "section_path": [
+            "RBAC Groups",
+            "Get RBAC Group"
+          ],
+          "char_start": 21919,
+          "char_end": 22199,
+          "score": 15.41138540087611,
+          "rank": 9,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "dac42fbc1fd9567cca1aa09dac3856740df7f8398b9172f17b2c2ef7c46f55ae",
+          "text_len": 280
+        },
+        {
+          "chunk_id": "chk_92e0278041d78cbfda5bb197f20dfc4b021bc7f9",
+          "version_id": "ver_901356d3ffce0f0478ba2d33aefdf98a",
+          "section_path": [
+            "How web fetch works",
+            "Dynamic filtering"
+          ],
+          "char_start": 5634,
+          "char_end": 6585,
+          "score": 15.353756564716516,
+          "rank": 10,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "d774f014f8597c24a289ceece76a2bd8c86af9078ca1aa629c50897f82297fa0",
+          "text_len": 951
+        }
+      ]
+    },
+    {
+      "case_id": "AN-007",
+      "category": "exact_lookup",
+      "k": 10,
+      "expected_evidence_count": 1,
+      "evidence_found_count": 0,
+      "recall": 0.0,
+      "found": [],
+      "missed": [
+        {
+          "version_id": "ver_0774ca0093ff4a846753577c9a4a39d5",
+          "section_path": [
+            "HTTP errors"
+          ],
+          "char_start": 2459,
+          "char_end": 2533
+        }
+      ],
+      "hits": [
+        {
+          "chunk_id": "chk_bd558dd06fa5c6dc588f9b4e8b80822df97279ed",
+          "version_id": "ver_1261879c16f641270789647ac9c63c96",
+          "section_path": [
+            "Event types",
+            "Error events"
+          ],
+          "char_start": 9920,
+          "char_end": 10202,
+          "score": 21.994839731460495,
+          "rank": 1,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "9e92e7d51fbcb00b66d4ae22a6ab910b237ff2e3f209907e0460bd6fdd0798ef",
+          "text_len": 282
+        },
+        {
+          "chunk_id": "chk_cb335b0f348f4b2c449fbd89df3527751ff084e4",
+          "version_id": "ver_0774ca0093ff4a846753577c9a4a39d5",
+          "section_path": [
+            "Preamble"
+          ],
+          "char_start": 0,
+          "char_end": 244,
+          "score": 20.250616175468174,
+          "rank": 2,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "99a00ecbcba550f128d9c148534d4c7bd48de42f35ed5ea5a142e0da56dab92b",
+          "text_len": 244
+        },
+        {
+          "chunk_id": "chk_c93d96e2ddcdc56c3d7e82f2fd629a03adfdf4de",
+          "version_id": "ver_d81ee605bd8bbb880deea432e51462ac",
+          "section_path": [
+            "Trigger a routine",
+            "Errors"
+          ],
+          "char_start": 11348,
+          "char_end": 12097,
+          "score": 18.713894195210905,
+          "rank": 3,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "b706a3d2dce5287283f9911ec51a97902dc4f15f139553686f285e63f2f98ecd",
+          "text_len": 1278
+        },
+        {
+          "chunk_id": "chk_cd4314a7e22b0b00aff05caba0d2245701423530",
+          "version_id": "ver_cc7d6ed2a636d74fc7aca7885ba9ce60",
+          "section_path": [
+            "Checking which speed was used"
+          ],
+          "char_start": 9457,
+          "char_end": 10235,
+          "score": 17.68434884518062,
+          "rank": 4,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "ef93bd84626de6596000d69fba60714a460b7bb2c441254eb55547f34bc25aa2",
+          "text_len": 778
+        },
+        {
+          "chunk_id": "chk_45772a9aff2af22fbfeea77ede4057e5daa859ca",
+          "version_id": "ver_6bafcf704c4110f57f26afd11a018716",
+          "section_path": [
+            "Next steps"
+          ],
+          "char_start": 7094,
+          "char_end": 7582,
+          "score": 17.21244231146997,
+          "rank": 5,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "8fe392634ef707abc87e93510e172d6be8d9da51c3b82a347bd577980617a54f",
+          "text_len": 488
+        },
+        {
+          "chunk_id": "chk_0b6152846205b900f70bc5318ada1237b3f0604f",
+          "version_id": "ver_b7ea8359f97ca269418988f78e80b870",
+          "section_path": [
+            "Error handling",
+            "HTTP errors (400 status)"
+          ],
+          "char_start": 27747,
+          "char_end": 28075,
+          "score": 16.19381430465426,
+          "rank": 6,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "bff020271d4770e6630e1c3e4a3ceacd97bdccfac3981c004709e3ba8b72fbbe",
+          "text_len": 328
+        },
+        {
+          "chunk_id": "chk_de0a8ea4e4c9782c1aacf54950333e2b360fc804",
+          "version_id": "ver_4d14aec24504f4b8f6f28938b84587dc",
+          "section_path": [
+            "Stop reason values",
+            "refusal"
+          ],
+          "char_start": 59569,
+          "char_end": 59722,
+          "score": 15.831993503345458,
+          "rank": 7,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "8dac14d67a26bf577223c750947a84b683d002e9cc85976e813eed2159b754fe",
+          "text_len": 153
+        },
+        {
+          "chunk_id": "chk_016ac80bde8a6877cf3a5fedb073b2934b484df4",
+          "version_id": "ver_0774ca0093ff4a846753577c9a4a39d5",
+          "section_path": [
+            "HTTP errors"
+          ],
+          "char_start": 246,
+          "char_end": 1396,
+          "score": 15.823994702800205,
+          "rank": 8,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "ececf57a6158db0b07b882b45fe23b0b526a323f3386bbf7955afc6cf1280c8c",
+          "text_len": 1150
+        },
+        {
+          "chunk_id": "chk_409717e35c5e8f75ebbe8ec72f8ebb4c12338a07",
+          "version_id": "ver_6c0983aad96f198367a0de369b3bb86c",
+          "section_path": [
+            "Cybersecurity safeguards"
+          ],
+          "char_start": 7032,
+          "char_end": 7462,
+          "score": 15.285754797029316,
+          "rank": 9,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "96e70662cbb0e66b42f380d4ff7cf741ecd10b00483f2665591e2699d032a3d4",
+          "text_len": 430
+        },
+        {
+          "chunk_id": "chk_6aafc072142124788720b27344cb9c4225e879b1",
+          "version_id": "ver_462141128848e293fd652c38dcdfcd33",
+          "section_path": [
+            "Where tools run",
+            "User-defined tools (client-executed)"
+          ],
+          "char_start": 1637,
+          "char_end": 2400,
+          "score": 15.140506170386885,
+          "rank": 10,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "d89c9fc1e028ac305a036a9fb898ba97ec5fea45e80644ee15d41559db4b8eed",
+          "text_len": 763
+        }
+      ]
+    },
+    {
+      "case_id": "AN-008",
+      "category": "normal",
+      "k": 10,
+      "expected_evidence_count": 1,
+      "evidence_found_count": 1,
+      "recall": 1.0,
+      "found": [
+        {
+          "version_id": "ver_db8326d3bafce3a535c3e3bfc3de7519",
+          "section_path": [
+            "Preamble"
+          ],
+          "char_start": 361,
+          "char_end": 496
+        }
+      ],
+      "missed": [],
+      "hits": [
+        {
+          "chunk_id": "chk_a8da00d943e29d2a8cb4e2163580bc1c60e86d7e",
+          "version_id": "ver_1f49b1ad8b70725119b878c73a3cf8e9",
+          "section_path": [
+            "Preamble"
+          ],
+          "char_start": 0,
+          "char_end": 720,
+          "score": 17.078072751895345,
+          "rank": 1,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "95d433904b48192989371a8d1966d6f730fff5a91762e2f07211836e73882858",
+          "text_len": 720
+        },
+        {
+          "chunk_id": "chk_efb6389859fc8b9d5beac9a94381175e38d2d356",
+          "version_id": "ver_4d14aec24504f4b8f6f28938b84587dc",
+          "section_path": [
+            "Stop reason values",
+            "tool\\_use"
+          ],
+          "char_start": 39699,
+          "char_end": 40435,
+          "score": 15.333617364018629,
+          "rank": 2,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "9c9ebe67cd5901799c6197d39c438ffb101e95dcba727607413e5229375d5330",
+          "text_len": 787
+        },
+        {
+          "chunk_id": "chk_fc4cf532d16bb7bdc976a3b66bb55ce4c724c3f1",
+          "version_id": "ver_76c80d3d80b12ae7870092b39f1832f1",
+          "section_path": [
+            "How to count message tokens",
+            "Count tokens in messages with tools"
+          ],
+          "char_start": 5929,
+          "char_end": 6777,
+          "score": 15.011596483176767,
+          "rank": 3,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "ada281a7004001ae7cf6b08f930d809218a7e9682501640bb2e20cab63abd154",
+          "text_len": 934
+        },
+        {
+          "chunk_id": "chk_431dadee1646278007c5ca7f562441b020079e13",
+          "version_id": "ver_e207dcf70119ccde7d6f7f9b9ab55676",
+          "section_path": [
+            "Call the API"
+          ],
+          "char_start": 730,
+          "char_end": 1259,
+          "score": 14.491449931897387,
+          "rank": 4,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "723444157256c89955f362a04ddb2a7e2459571081d846b5481ba75b85c19ba5",
+          "text_len": 562
+        },
+        {
+          "chunk_id": "chk_23d2128de350a1a858f4e08301e412c5d3fcb0c5",
+          "version_id": "ver_c3bc78079e1e9859817a52f73ce2c1bd",
+          "section_path": [
+            "Controlling Claude's output",
+            "Forcing tool use"
+          ],
+          "char_start": 22304,
+          "char_end": 23169,
+          "score": 14.259707753488364,
+          "rank": 5,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "7d4d4a9deaefdd2b14a12367b5c5d54122d34f09de10fc3e6b84ecb4fddbf08d",
+          "text_len": 932
+        },
+        {
+          "chunk_id": "chk_987a9e25917d971a6f6e6dc62b2dbecf0220859a",
+          "version_id": "ver_7102d3e3621c153ddba38db4eb52ad9f",
+          "section_path": [
+            "Disable parallel tool use",
+            "Exactly one tool call"
+          ],
+          "char_start": 37481,
+          "char_end": 38349,
+          "score": 14.218501778735838,
+          "rank": 6,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "8ad36dffc0e153c6087a2e4831f73837211f7669314b53e0f2250274b15d4cec",
+          "text_len": 938
+        },
+        {
+          "chunk_id": "chk_928abc0c87457920033daf98ec7a4b65570c2563",
+          "version_id": "ver_7102d3e3621c153ddba38db4eb52ad9f",
+          "section_path": [
+            "Disable parallel tool use",
+            "At most one tool call"
+          ],
+          "char_start": 29233,
+          "char_end": 30102,
+          "score": 14.211657258026516,
+          "rank": 7,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "5dad6d381a7dd1843a6f0b968afe38fe1b88746ed34aa3d8201de5aa3de82759",
+          "text_len": 939
+        },
+        {
+          "chunk_id": "chk_6f15c236b8af47b500b9137329a48cac7964e1eb",
+          "version_id": "ver_cc02f49d66a1471b8507acf33a78917a",
+          "section_path": [
+            "Define your success criteria",
+            "Common success criteria"
+          ],
+          "char_start": 4823,
+          "char_end": 5778,
+          "score": 13.939636539288278,
+          "rank": 8,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "ba428485845ea81f554ed1712ee4e12827ab4f65c17a2b068b091b856bc8e55d",
+          "text_len": 955
+        },
+        {
+          "chunk_id": "chk_c31257465f96798544514fd11f5fe62373bfd7c9",
+          "version_id": "ver_db8326d3bafce3a535c3e3bfc3de7519",
+          "section_path": [
+            "Preamble"
+          ],
+          "char_start": 0,
+          "char_end": 833,
+          "score": 13.889625828927144,
+          "rank": 9,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "a0f100957b514a28e6c47f1cdc93e6b52666395f9e08a25b3fea4ccd61d9bc37",
+          "text_len": 833
+        },
+        {
+          "chunk_id": "chk_50357b3092979fc874be999e687eb1cd9745981b",
+          "version_id": "ver_c3bc78079e1e9859817a52f73ce2c1bd",
+          "section_path": [
+            "Controlling Claude's output",
+            "Forcing tool use"
+          ],
+          "char_start": 32113,
+          "char_end": 33278,
+          "score": 13.885080834759648,
+          "rank": 10,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "7e5e4104e9ea867cd7c85f85ac4bc9e7bcdcc1cd94c38c7166ac84171afe9891",
+          "text_len": 1165
+        }
+      ]
+    },
+    {
+      "case_id": "AN-009",
+      "category": "version_conflict",
+      "k": 10,
+      "expected_evidence_count": 1,
+      "evidence_found_count": 1,
+      "recall": 1.0,
+      "found": [
+        {
+          "version_id": "ver_795b67a3865ed717b915a2c9c9e5746c",
+          "section_path": [
+            "Preamble"
+          ],
+          "char_start": 246,
+          "char_end": 318
+        }
+      ],
+      "missed": [],
+      "hits": [
+        {
+          "chunk_id": "chk_e459a5d605517b7b7c5c652f576860437ec1e2e8",
+          "version_id": "ver_795b67a3865ed717b915a2c9c9e5746c",
+          "section_path": [
+            "Preamble"
+          ],
+          "char_start": 0,
+          "char_end": 897,
+          "score": 33.78256454848087,
+          "rank": 1,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "c10036f9f860e816a7e07c853560b6bfa1e6c518030558a090e91d8c0cbaf81c",
+          "text_len": 897
+        },
+        {
+          "chunk_id": "chk_7fc380f5a9e2e5c597cf67d0ce7062e304ef6fd9",
+          "version_id": "ver_795b67a3865ed717b915a2c9c9e5746c",
+          "section_path": [
+            "Existing Priority Tier commitments"
+          ],
+          "char_start": 8071,
+          "char_end": 8462,
+          "score": 30.008482116375518,
+          "rank": 2,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "70b19611f6e408eb9993b459ecacb2e456d5045e46a6d77ee4c3dfedc4e07043",
+          "text_len": 391
+        },
+        {
+          "chunk_id": "chk_5e91ada98378d5d8e9959bf3e9901bbcd0a508c9",
+          "version_id": "ver_a7bda3595f2c124605c3228464d4ee52",
+          "section_path": [
+            "Opus migration",
+            "Migration checklist"
+          ],
+          "char_start": 45824,
+          "char_end": 46978,
+          "score": 27.164852638968775,
+          "rank": 3,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "da26fbe255e00dcf31c4635d33fbd159efea60ff39978d9b454b0194f3a5c0a4",
+          "text_len": 1154
+        },
+        {
+          "chunk_id": "chk_dffefdb6280c89b8eab31c62fa7e0a726fd90c46",
+          "version_id": "ver_795b67a3865ed717b915a2c9c9e5746c",
+          "section_path": [
+            "Using service tiers"
+          ],
+          "char_start": 6833,
+          "char_end": 7610,
+          "score": 24.34836503339807,
+          "rank": 4,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "34e110ae4462cb88101748777b535f50e899495935961e3d94e3703d17d38f71",
+          "text_len": 777
+        },
+        {
+          "chunk_id": "chk_59920a6e06eae9caf7378bf81e3fce3688c5f391",
+          "version_id": "ver_a7bda3595f2c124605c3228464d4ee52",
+          "section_path": [
+            "Opus migration",
+            "Migration checklist"
+          ],
+          "char_start": 94506,
+          "char_end": 95459,
+          "score": 23.836315830396494,
+          "rank": 5,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "d69a1d8f5daa33754b0206ba01ad7f96b3d85260f22e8e89d40796ef910fa3c5",
+          "text_len": 953
+        },
+        {
+          "chunk_id": "chk_97c93a0a57176f751f668204715a6ecb184a0981",
+          "version_id": "ver_795b67a3865ed717b915a2c9c9e5746c",
+          "section_path": [
+            "How requests get assigned tiers"
+          ],
+          "char_start": 2647,
+          "char_end": 3121,
+          "score": 23.11065706045879,
+          "rank": 6,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "4d6d4574bf9bb801a29033340f5ccd1542776e84732de7db33f6cdc0265ce52c",
+          "text_len": 474
+        },
+        {
+          "chunk_id": "chk_f60a79bbf924457058382a29f2b4ae693011871a",
+          "version_id": "ver_a7bda3595f2c124605c3228464d4ee52",
+          "section_path": [
+            "Opus migration",
+            "Migration checklist"
+          ],
+          "char_start": 61561,
+          "char_end": 62468,
+          "score": 22.225811126374914,
+          "rank": 7,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "1f863e2c687e0ab56fe7108b9edc4bdaf812c050a71be3719bbc08b4cb81492b",
+          "text_len": 907
+        },
+        {
+          "chunk_id": "chk_557b5428527bc3d6654ef797f4b5bda04b187cb8",
+          "version_id": "ver_a7bda3595f2c124605c3228464d4ee52",
+          "section_path": [
+            "Or, for the Project Glasswing model with the same capabilities:",
+            "What changed"
+          ],
+          "char_start": 17342,
+          "char_end": 18500,
+          "score": 21.708402689683947,
+          "rank": 8,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "d0aa1add8102fac8b81af71388f1ef4d87846cc2895b4d1da90e7ef313805ab9",
+          "text_len": 1158
+        },
+        {
+          "chunk_id": "chk_1f3cba3f6b578701a4b7e3b79e363a8a00455dd1",
+          "version_id": "ver_795b67a3865ed717b915a2c9c9e5746c",
+          "section_path": [
+            "Using service tiers"
+          ],
+          "char_start": 7939,
+          "char_end": 8069,
+          "score": 20.8053132000745,
+          "rank": 9,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "3d4ccd3b682f55f09cc0917253064338e6419b4c36d7e84cb8a282b47a742e98",
+          "text_len": 130
+        },
+        {
+          "chunk_id": "chk_6b7e4644b331face5e79baaec1c8b1670d495580",
+          "version_id": "ver_b8b18cda9b875d51a2ce979a1bf4e909",
+          "section_path": [
+            "Usage and billing"
+          ],
+          "char_start": 57654,
+          "char_end": 58386,
+          "score": 20.310925843433626,
+          "rank": 10,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "75bf76d88e0372d1e48394861a10ff2ead1aa12571c515cd0bb857ba32899b2f",
+          "text_len": 732
+        }
+      ]
+    },
+    {
+      "case_id": "AN-010",
+      "category": "version_conflict",
+      "k": 10,
+      "expected_evidence_count": 1,
+      "evidence_found_count": 1,
+      "recall": 1.0,
+      "found": [
+        {
+          "version_id": "ver_b57691291ac216e12d311d60db579b43",
+          "section_path": [
+            "Model status"
+          ],
+          "char_start": 5671,
+          "char_end": 5769
+        }
+      ],
+      "missed": [],
+      "hits": [
+        {
+          "chunk_id": "chk_317ccff823a953617225aecf4d48d01e9863f78a",
+          "version_id": "ver_b57691291ac216e12d311d60db579b43",
+          "section_path": [
+            "Model status"
+          ],
+          "char_start": 5463,
+          "char_end": 5878,
+          "score": 18.516646111025114,
+          "rank": 1,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "eec07e317212962c443af9ddf03143dbbc5a4e38a217a3a918b5a8a448e1db71",
+          "text_len": 638
+        },
+        {
+          "chunk_id": "chk_2642d01e42738173a2a6c6cce2d401913194e682",
+          "version_id": "ver_a7bda3595f2c124605c3228464d4ee52",
+          "section_path": [
+            "From Opus 4.1"
+          ],
+          "char_start": 103203,
+          "char_end": 103296,
+          "score": 15.662447888380978,
+          "rank": 2,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "4f269cfdfd7f71d6ed2a551097cf1819697fd91f0c830e773e58bb1dfe79b7ac",
+          "text_len": 93
+        },
+        {
+          "chunk_id": "chk_0e31a4ea1ac39b39c037c6114033211a6b12c665",
+          "version_id": "ver_4d14aec24504f4b8f6f28938b84587dc",
+          "section_path": [
+            "Stop reason values",
+            "tool\\_use"
+          ],
+          "char_start": 40439,
+          "char_end": 40946,
+          "score": 14.382811376184133,
+          "rank": 3,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "d0c70ec2b1a16e4f4205c8fe375e155eaab6e7ca8e799daf7ce561c63fe384fd",
+          "text_len": 557
+        },
+        {
+          "chunk_id": "chk_1ca6b23afd52590c9cd3793a5ee2dae48fa02aa2",
+          "version_id": "ver_b57691291ac216e12d311d60db579b43",
+          "section_path": [
+            "Deprecation history",
+            "2026-06-05: Claude Opus 4.1 model"
+          ],
+          "char_start": 7046,
+          "char_end": 7270,
+          "score": 14.15639393625574,
+          "rank": 4,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "f252e41431a7be838b2e2948edee41da453771fbeeafe0d35c0e515b596f9508",
+          "text_len": 224
+        },
+        {
+          "chunk_id": "chk_8c932a7f47c294f1f0736ec4fd80987b5e0fa908",
+          "version_id": "ver_7102d3e3621c153ddba38db4eb52ad9f",
+          "section_path": [
+            "Disable parallel tool use",
+            "Exactly one tool call"
+          ],
+          "char_start": 38353,
+          "char_end": 38909,
+          "score": 13.828169245594871,
+          "rank": 5,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "4fc3092dc864209df836c9c4aa775138cf74e1e4bb5099ee2a77ed0744355e89",
+          "text_len": 625
+        },
+        {
+          "chunk_id": "chk_ba3dacc7ea27d2bd538ad302bd8ee87f48bb33fc",
+          "version_id": "ver_1261879c16f641270789647ac9c63c96",
+          "section_path": [
+            "Full HTTP stream response",
+            "Streaming request with tool use"
+          ],
+          "char_start": 19925,
+          "char_end": 20471,
+          "score": 13.828169245594871,
+          "rank": 6,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "1d74b100cc154c515413a5df2b561e9b88ff3ac6d888c688c24fe381f5eb5e37",
+          "text_len": 625
+        },
+        {
+          "chunk_id": "chk_fd3211f87d18e63f7263fdf27e2fc4b0a9ee684a",
+          "version_id": "ver_7102d3e3621c153ddba38db4eb52ad9f",
+          "section_path": [
+            "Disable parallel tool use",
+            "At most one tool call"
+          ],
+          "char_start": 30106,
+          "char_end": 30663,
+          "score": 13.82033172625892,
+          "rank": 7,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "fea44fa9dfc20d68aa532f91ac330ae1243ffe42a8710b8dafb5dc2296040eb3",
+          "text_len": 626
+        },
+        {
+          "chunk_id": "chk_942dfeb93c803120797d31437a1fdce346b293ef",
+          "version_id": "ver_95f8f8e5b914a2d500ddb47e100fed47",
+          "section_path": [
+            "Quick start"
+          ],
+          "char_start": 2809,
+          "char_end": 3443,
+          "score": 13.521448350620316,
+          "rank": 8,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "36e14fb176fd75ea8c30699cc03ec8f7f76744be6da6c88eb53925e416f197f5",
+          "text_len": 665
+        },
+        {
+          "chunk_id": "chk_2a4d9d06feb37baca6ea9d690348b4840eeb125d",
+          "version_id": "ver_76c80d3d80b12ae7870092b39f1832f1",
+          "section_path": [
+            "How to count message tokens",
+            "Count tokens in messages with tools"
+          ],
+          "char_start": 6781,
+          "char_end": 7260,
+          "score": 13.16267715299238,
+          "rank": 9,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "b06d0219e041f07525fdab8b85f3ac445fa789996534c4ae6dc5aeaa2991901f",
+          "text_len": 564
+        },
+        {
+          "chunk_id": "chk_09b96100e3420f569b89e6e2c486f90568531301",
+          "version_id": "ver_c3bc78079e1e9859817a52f73ce2c1bd",
+          "section_path": [
+            "Providing tool use examples",
+            "Basic usage"
+          ],
+          "char_start": 10121,
+          "char_end": 10932,
+          "score": 12.986477751058713,
+          "rank": 10,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "3e4b001accd2ac3af102989e45940a0b6da09c0ea2771c43a7a2cfa3cadf6a0b",
+          "text_len": 872
+        }
+      ]
+    },
+    {
+      "case_id": "AN-011",
+      "category": "ambiguous",
+      "k": 10,
+      "expected_evidence_count": 1,
+      "evidence_found_count": 0,
+      "recall": 0.0,
+      "found": [],
+      "missed": [
+        {
+          "version_id": "ver_c8b2c7130cb18508fed4f864d4c3d7a3",
+          "section_path": [
+            "About rate limits"
+          ],
+          "char_start": 1672,
+          "char_end": 1849
+        }
+      ],
+      "hits": [
+        {
+          "chunk_id": "chk_f2476402a97661d5275d6542476a2c3d80a462d4",
+          "version_id": "ver_c8b2c7130cb18508fed4f864d4c3d7a3",
+          "section_path": [
+            "Requesting higher limits"
+          ],
+          "char_start": 21676,
+          "char_end": 22598,
+          "score": 13.922080237061017,
+          "rank": 1,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "702ba3b5b4090784cf01380dc83a3066b5b4977e768301aa394600801f098b4b",
+          "text_len": 922
+        },
+        {
+          "chunk_id": "chk_1d0838208323e628f73feb7590488dc6d391880d",
+          "version_id": "ver_76c80d3d80b12ae7870092b39f1832f1",
+          "section_path": [
+            "Pricing and rate limits"
+          ],
+          "char_start": 40448,
+          "char_end": 40784,
+          "score": 13.805036957864077,
+          "rank": 2,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "550c8e569189b0a2630d5dc05db522ba7ff91865f5a5612ff53e135ce08eaf2c",
+          "text_len": 336
+        },
+        {
+          "chunk_id": "chk_bc3f383b85ddca29c610863cb812f52721967f6c",
+          "version_id": "ver_c8b2c7130cb18508fed4f864d4c3d7a3",
+          "section_path": [
+            "Response headers"
+          ],
+          "char_start": 23823,
+          "char_end": 24002,
+          "score": 13.684518803301343,
+          "rank": 3,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "8951732bf348731f8d109c4366d595e12d0f2acf55529e2c5ef2b2d33242ccd5",
+          "text_len": 179
+        },
+        {
+          "chunk_id": "chk_aed06d3bc5464b5e043494da17dd2e013f45dd24",
+          "version_id": "ver_cc7d6ed2a636d74fc7aca7885ba9ce60",
+          "section_path": [
+            "Rate limits"
+          ],
+          "char_start": 8239,
+          "char_end": 8565,
+          "score": 13.660479618190216,
+          "rank": 4,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "be93d0adde4b45fcab980eb46b6750d5e3001ea001f6187485b21fa4fbc2ea90",
+          "text_len": 326
+        },
+        {
+          "chunk_id": "chk_e845cead7c46494c7f4ed6f579d7bc4599eee6b5",
+          "version_id": "ver_6cbca1c2343b84b7d5cf99029456cfa2",
+          "section_path": [
+            "Request and response format",
+            "Response headers"
+          ],
+          "char_start": 13525,
+          "char_end": 14157,
+          "score": 13.578062016946832,
+          "rank": 5,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "6698e962c4323f407fdc0175b8227dc85c498d08ec11fba2777f8ef4ff81a8e4",
+          "text_len": 632
+        },
+        {
+          "chunk_id": "chk_8100b969aac128c281454a5578068b5f82e75a5f",
+          "version_id": "ver_53da2f78e855c75ec755089c13d44c28",
+          "section_path": [
+            "Batch requests"
+          ],
+          "char_start": 24800,
+          "char_end": 25440,
+          "score": 13.516980582600688,
+          "rank": 6,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "d7a8133c73fb245fbd013143d96e9c6e71a404dcd53bccefe2a1a15cbe52391e",
+          "text_len": 640
+        },
+        {
+          "chunk_id": "chk_a03a8767d226fc8b7843f36e2a74f8e115140634",
+          "version_id": "ver_c8b2c7130cb18508fed4f864d4c3d7a3",
+          "section_path": [
+            "Rate limits",
+            "Monitoring your rate limits in the Console"
+          ],
+          "char_start": 20684,
+          "char_end": 21674,
+          "score": 13.477276012102365,
+          "rank": 7,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "a26261dd1522fe94c679c1e7fb635ad99a561d676ffa19d44f6df71698ab5872",
+          "text_len": 990
+        },
+        {
+          "chunk_id": "chk_719b708e3af741298f90a631dc6883f946af6eba",
+          "version_id": "ver_c8b2c7130cb18508fed4f864d4c3d7a3",
+          "section_path": [
+            "Rate limits",
+            "Cache-aware ITPM"
+          ],
+          "char_start": 8750,
+          "char_end": 9396,
+          "score": 13.471528939202589,
+          "rank": 8,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "2a4756d7dc59ee578abb4187913fb3d72413e2d394ddf64ace830b39a36d69c2",
+          "text_len": 646
+        },
+        {
+          "chunk_id": "chk_72f87b38b3deee51f50de575ae9a8a73fb5f341f",
+          "version_id": "ver_b2d3b46e8c50b4c4df85227028db3a6e",
+          "section_path": [
+            "Provisioning",
+            "Creating Foundry deployments"
+          ],
+          "char_start": 9765,
+          "char_end": 10270,
+          "score": 13.383721550010044,
+          "rank": 9,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "02491e6c9d05b3ee20817cd236c3fd42236fe16089c0eac3ad87650364408e17",
+          "text_len": 505
+        },
+        {
+          "chunk_id": "chk_32baf22402c7745980a2a988dc2978291df4736d",
+          "version_id": "ver_c8b2c7130cb18508fed4f864d4c3d7a3",
+          "section_path": [
+            "Rate limits",
+            "Message Batches API"
+          ],
+          "char_start": 17209,
+          "char_end": 17812,
+          "score": 13.306370546426152,
+          "rank": 10,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "f066f0b7ce8a87014acd67c1fd08326498b080bf20a0b5af648cddeddbec213a",
+          "text_len": 603
+        }
+      ]
+    },
+    {
+      "case_id": "AN-012",
+      "category": "multi_hop",
+      "k": 10,
+      "expected_evidence_count": 2,
+      "evidence_found_count": 1,
+      "recall": 0.5,
+      "found": [
+        {
+          "version_id": "ver_0774ca0093ff4a846753577c9a4a39d5",
+          "section_path": [
+            "HTTP errors"
+          ],
+          "char_start": 1840,
+          "char_end": 1904
+        }
+      ],
+      "missed": [
+        {
+          "version_id": "ver_c8b2c7130cb18508fed4f864d4c3d7a3",
+          "section_path": [
+            "About rate limits"
+          ],
+          "char_start": 1672,
+          "char_end": 1849
+        }
+      ],
+      "hits": [
+        {
+          "chunk_id": "chk_ae90a047903bdea07042aff1c1c2d4f3af0353bf",
+          "version_id": "ver_b8b18cda9b875d51a2ce979a1bf4e909",
+          "section_path": [
+            "Response structure",
+            "Error results"
+          ],
+          "char_start": 21071,
+          "char_end": 21315,
+          "score": 32.45757329232494,
+          "rank": 1,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "0b4925560a2ebf1abf222062b81f5e1aa0c1ac115e572c3e205ece301802cf97",
+          "text_len": 244
+        },
+        {
+          "chunk_id": "chk_e5008097d8dbc139dd1cbbe1eae602072a0e16d5",
+          "version_id": "ver_462141128848e293fd652c38dcdfcd33",
+          "section_path": [
+            "The server-side loop"
+          ],
+          "char_start": 6296,
+          "char_end": 7127,
+          "score": 27.627517023781323,
+          "rank": 2,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "2db0e5e67a866286b73042e99b70452c93622e4ddcfb9e4662744f1a0a02105e",
+          "text_len": 831
+        },
+        {
+          "chunk_id": "chk_e766dc5d4bfd3f9127a808baedbe448ba681dec5",
+          "version_id": "ver_53da2f78e855c75ec755089c13d44c28",
+          "section_path": [
+            "Response",
+            "Search results"
+          ],
+          "char_start": 20085,
+          "char_end": 20707,
+          "score": 26.454019904834773,
+          "rank": 3,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "dfd89499dd181cba653d247091b6d5d76c695bb8938145283fff9a24c420ffee",
+          "text_len": 622
+        },
+        {
+          "chunk_id": "chk_51016efbc1e97c61c4f5353d3fe1827d334a404b",
+          "version_id": "ver_95095158f47d20a4d346b8ddf3110713",
+          "section_path": [
+            "Rescale coordinates when you cannot pre-resize"
+          ],
+          "char_start": 21153,
+          "char_end": 22142,
+          "score": 26.408140199758197,
+          "rank": 4,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "a69b9f5917dd90e1a4351cea054937815984f2d43b68729fcd24416f65366cad",
+          "text_len": 989
+        },
+        {
+          "chunk_id": "chk_2dc07f4e74cae16dce49db0e1b29a87cb73d969c",
+          "version_id": "ver_4286534d2732b3eef5579a5c227d8704",
+          "section_path": [
+            "Accessing Bedrock",
+            "Subscribe to Anthropic models",
+            "API model IDs"
+          ],
+          "char_start": 5972,
+          "char_end": 6258,
+          "score": 25.35454173615642,
+          "rank": 5,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "48e5d66dec01991d2dceb2ba481393dabd0789fc9d6619d1efc058f9e024753c",
+          "text_len": 286
+        },
+        {
+          "chunk_id": "chk_8dc3cfe9be270810b3913349949cfa81b959248d",
+          "version_id": "ver_0774ca0093ff4a846753577c9a4a39d5",
+          "section_path": [
+            "HTTP errors"
+          ],
+          "char_start": 1398,
+          "char_end": 2519,
+          "score": 24.818551332919313,
+          "rank": 6,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "4a23010d64f82f39e2455b44c369ae7de8d6c6d4a959cb44693b7742669e27ca",
+          "text_len": 1121
+        },
+        {
+          "chunk_id": "chk_e7a80c0c6e7d99f48df964ce256104af7e2dd076",
+          "version_id": "ver_fc127d394b32ba1f136356d746c083e5",
+          "section_path": [
+            "Ring 1: Single tool, single turn"
+          ],
+          "char_start": 857,
+          "char_end": 1567,
+          "score": 24.199476648420603,
+          "rank": 7,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "cd2d22aa4c4eb1f03ee53442c1b5c9c0ac904d61de47cfcf0af8504cc20462f5",
+          "text_len": 710
+        },
+        {
+          "chunk_id": "chk_aed06d3bc5464b5e043494da17dd2e013f45dd24",
+          "version_id": "ver_cc7d6ed2a636d74fc7aca7885ba9ce60",
+          "section_path": [
+            "Rate limits"
+          ],
+          "char_start": 8239,
+          "char_end": 8565,
+          "score": 22.922583428844263,
+          "rank": 8,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "be93d0adde4b45fcab980eb46b6750d5e3001ea001f6187485b21fa4fbc2ea90",
+          "text_len": 326
+        },
+        {
+          "chunk_id": "chk_8971213ebd031ba536074ed11b6703d44f7a1403",
+          "version_id": "ver_462141128848e293fd652c38dcdfcd33",
+          "section_path": [
+            "The server-side loop"
+          ],
+          "char_start": 7129,
+          "char_end": 7607,
+          "score": 22.525353249764166,
+          "rank": 9,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "729584b32fa654306f50ce686d2d676a5cc765fbc88867dd332d8e2c18a5c53e",
+          "text_len": 478
+        },
+        {
+          "chunk_id": "chk_7151f94a1ff5aa035dc0cd2d8a605a193d07dba1",
+          "version_id": "ver_c8b2c7130cb18508fed4f864d4c3d7a3",
+          "section_path": [
+            "Rate limits"
+          ],
+          "char_start": 4948,
+          "char_end": 5607,
+          "score": 22.486614001319307,
+          "rank": 10,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "42e83fe69dea51e50abc4ab4555db040b24d34228ac4318b27e2149a3dbc6d02",
+          "text_len": 659
+        }
+      ]
+    },
+    {
+      "case_id": "OA-001",
+      "category": "exact_lookup",
+      "k": 10,
+      "expected_evidence_count": 1,
+      "evidence_found_count": 1,
+      "recall": 1.0,
+      "found": [
+        {
+          "version_id": "ver_6b90217721b841b1329f51ec1caab139",
+          "section_path": [
+            "Tracing"
+          ],
+          "char_start": 512,
+          "char_end": 553
+        }
+      ],
+      "missed": [],
+      "hits": [
+        {
+          "chunk_id": "chk_c6d4b195d74ef5445e9efce0cf9f35bc947b90ac",
+          "version_id": "ver_6b90217721b841b1329f51ec1caab139",
+          "section_path": [
+            "Tracing",
+            "Ecosystem integrations"
+          ],
+          "char_start": 10397,
+          "char_end": 10529,
+          "score": 24.69442640277575,
+          "rank": 1,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "50d230385cbe105c4951db2913f6e82086f7350cb0142b3dc1a0b9229a7994c8",
+          "text_len": 132
+        },
+        {
+          "chunk_id": "chk_cc6ee5b3aa5180b597c0284dcc3b9e070f5c11d1",
+          "version_id": "ver_f15e1a531d680bb98179238f80355058",
+          "section_path": [
+            "Configuration",
+            "API keys and clients"
+          ],
+          "char_start": 1864,
+          "char_end": 2707,
+          "score": 24.631349695629083,
+          "rank": 2,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "23469b11a9e6eeb4eea1c3a9d5107c45285e43003750c96a3159c09d74811644",
+          "text_len": 843
+        },
+        {
+          "chunk_id": "chk_cb5d69c583e9128e3e1bbb28eeb2f737a83e1a0e",
+          "version_id": "ver_f15e1a531d680bb98179238f80355058",
+          "section_path": [
+            "Configuration",
+            "OpenAI provider defaults"
+          ],
+          "char_start": 6229,
+          "char_end": 6518,
+          "score": 24.20215968451903,
+          "rank": 3,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "6c4f540cad53435ddfd130fc273351206616cfaaa7e5de8fcc8af39befc6109b",
+          "text_len": 289
+        },
+        {
+          "chunk_id": "chk_71606a2895e077e06950f684743754b4ae6e51a2",
+          "version_id": "ver_6b90217721b841b1329f51ec1caab139",
+          "section_path": [
+            "Tracing"
+          ],
+          "char_start": 0,
+          "char_end": 883,
+          "score": 23.138048773281795,
+          "rank": 4,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "62c80e8d31b7358a6f39eab2aec950d731c95dd608b6f758fde6c65fe229511b",
+          "text_len": 883
+        },
+        {
+          "chunk_id": "chk_b22de7bc4765af3a97a58a329ca734ce33c62ff8",
+          "version_id": "ver_f15e1a531d680bb98179238f80355058",
+          "section_path": [
+            "Configuration",
+            "Tracing"
+          ],
+          "char_start": 6520,
+          "char_end": 7280,
+          "score": 22.213713054843307,
+          "rank": 5,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "846fa0b97b6d09b15d17c6de50caf7e6376b3af780867484355005a47e0e12b1",
+          "text_len": 760
+        },
+        {
+          "chunk_id": "chk_d2f98ffd4f7c04b0652f692f5b67fdc7af423888",
+          "version_id": "ver_de67d790db9792b2f6c5c7418a507764",
+          "section_path": [
+            "Release process/changelog",
+            "Breaking change changelog",
+            "0.20.0"
+          ],
+          "char_start": 2991,
+          "char_end": 4001,
+          "score": 21.818162123250946,
+          "rank": 6,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "ddb727a72e21872126355f3cf597b411a1f532acb4007b6fee13bd60d286d16b",
+          "text_len": 1010
+        },
+        {
+          "chunk_id": "chk_688afcc9ad0eb818f1ca2d391bebaa1c14dba03d",
+          "version_id": "ver_b175ceb412d40bc9910f6b5c1ce4ebf1",
+          "section_path": [
+            "Quickstart",
+            "Prerequisites"
+          ],
+          "char_start": 14,
+          "char_end": 430,
+          "score": 21.34478593584313,
+          "rank": 7,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "0e7bbe981c0c64beab72ca6d0948734bb70f9f83925fc909cb5c144e663a92c7",
+          "text_len": 416
+        },
+        {
+          "chunk_id": "chk_85da884d4c1306cd9431f3a7e38285768335a214",
+          "version_id": "ver_feedbba6f99f53753d196209fa7b16b5",
+          "section_path": [
+            "Quickstart",
+            "Create a project and virtual environment",
+            "Install the Agents SDK"
+          ],
+          "char_start": 386,
+          "char_end": 456,
+          "score": 20.975222072779548,
+          "rank": 8,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "b29ba41ef6197ae2a62a3abc773e357cf026db4b48cdb688d7af990628470889",
+          "text_len": 164
+        },
+        {
+          "chunk_id": "chk_5aa14f836d79e86c3cb778bdd534182040d13af5",
+          "version_id": "ver_02c06cea4a4bbffd4d01ee202f124a75",
+          "section_path": [
+            "Infinite loop's dance."
+          ],
+          "char_start": 4039,
+          "char_end": 4126,
+          "score": 20.24812060003523,
+          "rank": 9,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "928fac97dcb85db5fc3034478ea91d8e4b2ca4d55da880a4b7608fa0fa35ab4c",
+          "text_len": 128
+        },
+        {
+          "chunk_id": "chk_12c30beaa6b26d061e2ada1c98dafc77971ace43",
+          "version_id": "ver_9247e3ce4df6f79d9cadc44e1a3bbd0c",
+          "section_path": [
+            "gets the API Key from environment variable AZURE_OPENAI_API_KEY"
+          ],
+          "char_start": 31898,
+          "char_end": 31925,
+          "score": 20.23214392826104,
+          "rank": 10,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "7085e27a5a9444c13c2e159865923a001849a9c67c1619ed7d6bf2481d56fa32",
+          "text_len": 129
+        }
+      ]
+    },
+    {
+      "case_id": "OA-002",
+      "category": "exact_lookup",
+      "k": 10,
+      "expected_evidence_count": 1,
+      "evidence_found_count": 1,
+      "recall": 1.0,
+      "found": [
+        {
+          "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+          "section_path": [
+            "Running agents",
+            "Exceptions"
+          ],
+          "char_start": 33598,
+          "char_end": 33793
+        }
+      ],
+      "missed": [],
+      "hits": [
+        {
+          "chunk_id": "chk_5ce10d2513c0ff454b1aa57462420f0ce18c2c3f",
+          "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+          "section_path": [
+            "Running agents",
+            "Exceptions"
+          ],
+          "char_start": 33210,
+          "char_end": 34380,
+          "score": 27.728013277911213,
+          "rank": 1,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "d4837a5a61e703ac500a12e1e91561551487f32a35ecda4962781ecc739f6398",
+          "text_len": 1170
+        },
+        {
+          "chunk_id": "chk_d9b5d9eb76dbec881a105fe21a9308937135319c",
+          "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+          "section_path": [
+            "Running agents",
+            "Runner lifecycle and configuration",
+            "The agent loop"
+          ],
+          "char_start": 1019,
+          "char_end": 2111,
+          "score": 25.594707880869038,
+          "rank": 2,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "f6270c643eafe3f86867050856dcf0adc2ff2a3f5c75d4bff18144eac9b7c909",
+          "text_len": 1092
+        },
+        {
+          "chunk_id": "chk_4c17f77ccd7a6101505ed2ff8203ad357eb04a63",
+          "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+          "section_path": [
+            "Running agents",
+            "Exceptions"
+          ],
+          "char_start": 34385,
+          "char_end": 35111,
+          "score": 22.997030660366452,
+          "rank": 3,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "8dbaf6ea765d136b7549c9516020f606e740a9abd32897df249ab19f42b49dca",
+          "text_len": 726
+        },
+        {
+          "chunk_id": "chk_1215c7060296b96095c0132bcbbe84037cf4f330",
+          "version_id": "ver_de67d790db9792b2f6c5c7418a507764",
+          "section_path": [
+            "This is an absolute host path outside the SDK process base_dir.",
+            "0.16.0"
+          ],
+          "char_start": 12406,
+          "char_end": 13295,
+          "score": 22.66511609606619,
+          "rank": 4,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "1bd632ed97432b90de52fd45a067604d77445f84b850d77ee5997babbb482a32",
+          "text_len": 889
+        },
+        {
+          "chunk_id": "chk_b79a93701923cd105fa6ded82177eb9cd7f068f2",
+          "version_id": "ver_f15e1a531d680bb98179238f80355058",
+          "section_path": [
+            "You can customize this as needed, but this will output to `stderr` by default",
+            "Sensitive data in logs and diagnostics"
+          ],
+          "char_start": 9995,
+          "char_end": 11047,
+          "score": 21.72950515405427,
+          "rank": 5,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "a0b3c92de04fa407fa4e3928e8394092b9328ffbdc3d9fe0058144591563c34b",
+          "text_len": 1052
+        },
+        {
+          "chunk_id": "chk_63dbf100c0b3df0a5bddaa189de76961a5c22c10",
+          "version_id": "ver_ae909bf8b4bbbe1d1a11119447f7ac94",
+          "section_path": [
+            "Models",
+            "Model-call timeouts"
+          ],
+          "char_start": 31014,
+          "char_end": 32064,
+          "score": 21.318568618623438,
+          "rank": 6,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "2ee09c4debf793da1d0237e49aaef930b5e1a594fea3ef2e74b9758c6d1c8bf7",
+          "text_len": 1050
+        },
+        {
+          "chunk_id": "chk_3f986c0dc3d9436ae5c89fdfb893177300592138",
+          "version_id": "ver_ae909bf8b4bbbe1d1a11119447f7ac94",
+          "section_path": [
+            "Models",
+            "OpenAI models",
+            "Hosted multi-agent (experimental)",
+            "Relationship to SDK orchestration"
+          ],
+          "char_start": 18674,
+          "char_end": 19303,
+          "score": 20.08031824806071,
+          "rank": 7,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "8a785939ec6e03f4928d82b7674d656bb409cb2d10defff133156d5576aee88a",
+          "text_len": 629
+        },
+        {
+          "chunk_id": "chk_c866c06639a462b1bb0e841bd0dd6f2d9f4e69bb",
+          "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+          "section_path": [
+            "Running agents",
+            "Errors and recovery",
+            "Error handlers"
+          ],
+          "char_start": 28677,
+          "char_end": 29221,
+          "score": 19.69011407434259,
+          "rank": 8,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "835d70b433e13ef59251d410f10896ded69635349cc307e8d81b09c5c9ed652f",
+          "text_len": 544
+        },
+        {
+          "chunk_id": "chk_0bb1ebe1d9937fead6da3463a3228cb784bbfcfe",
+          "version_id": "ver_cbeb36b7cf9a5e241940a011629b6f1b",
+          "section_path": [
+            "Annotated form",
+            "Function tool timeouts"
+          ],
+          "char_start": 29152,
+          "char_end": 29608,
+          "score": 19.634872449034116,
+          "rank": 9,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "9f45af9478b3783d14620b73b60bed263a650f17965dca6608e2018b0239c5e8",
+          "text_len": 513
+        },
+        {
+          "chunk_id": "chk_04ccfac732b7bfaa75765543c858ea5ed872e0d6",
+          "version_id": "ver_cbeb36b7cf9a5e241940a011629b6f1b",
+          "section_path": [
+            "Annotated form",
+            "Function tool timeouts"
+          ],
+          "char_start": 28145,
+          "char_end": 29150,
+          "score": 19.067736301301892,
+          "rank": 10,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "6ddf0bc4562a402f2574b3f96e6d594b3d5f2c66cfbe37ee3b218de372a69a73",
+          "text_len": 1005
+        }
+      ]
+    },
+    {
+      "case_id": "OA-003",
+      "category": "exact_lookup",
+      "k": 10,
+      "expected_evidence_count": 1,
+      "evidence_found_count": 1,
+      "recall": 1.0,
+      "found": [
+        {
+          "version_id": "ver_f22fbd5c504fa28a4e70440337e4a495",
+          "section_path": [
+            "Guardrails",
+            "Tripwires"
+          ],
+          "char_start": 7225,
+          "char_end": 7381
+        }
+      ],
+      "missed": [],
+      "hits": [
+        {
+          "chunk_id": "chk_4a2e40bb9ef97f382ea7fa4018c00dfe45906edf",
+          "version_id": "ver_f22fbd5c504fa28a4e70440337e4a495",
+          "section_path": [
+            "Guardrails",
+            "Output guardrails"
+          ],
+          "char_start": 4368,
+          "char_end": 5498,
+          "score": 36.573806256927014,
+          "rank": 1,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "73da143b755ff19c15e93bed9ff6115f748184f6053a76b495b86964fbcf4f00",
+          "text_len": 1130
+        },
+        {
+          "chunk_id": "chk_75aeb4d6b3936af0208e2f587817edee297c1877",
+          "version_id": "ver_f22fbd5c504fa28a4e70440337e4a495",
+          "section_path": [
+            "Guardrails",
+            "Tripwires"
+          ],
+          "char_start": 7942,
+          "char_end": 8616,
+          "score": 29.941712825633427,
+          "rank": 2,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "c4275cd3dbbd464f3bd450d0d0f457bd00c841e9265e25e9604b59785eecf25c",
+          "text_len": 674
+        },
+        {
+          "chunk_id": "chk_72a628cea84eda42556dd74221084632f49fc6a9",
+          "version_id": "ver_14a2187cf2216b9d56c213b520a28479",
+          "section_path": [
+            "Realtime agents guide",
+            "Tools, approvals, handoffs, and guardrails",
+            "Guardrails"
+          ],
+          "char_start": 16292,
+          "char_end": 17286,
+          "score": 29.1581941714567,
+          "rank": 3,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "5fad87aaa84f9ee2568e703a4d3b7ca8c8e29ef0690661848689e4af05e8f82d",
+          "text_len": 994
+        },
+        {
+          "chunk_id": "chk_4319ddd14f2cfec2d215e6b589ace4d4e35ea3ea",
+          "version_id": "ver_f22fbd5c504fa28a4e70440337e4a495",
+          "section_path": [
+            "Guardrails",
+            "Tripwires"
+          ],
+          "char_start": 7117,
+          "char_end": 7940,
+          "score": 26.349345646261295,
+          "rank": 4,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "efb01e88f8efbb206fe79ab448a17d30fe6d1fa1a22545824e70ba3d3dfc324d",
+          "text_len": 823
+        },
+        {
+          "chunk_id": "chk_17878e95fe582a5482383bc0554b7cff587592d8",
+          "version_id": "ver_f22fbd5c504fa28a4e70440337e4a495",
+          "section_path": [
+            "Guardrails",
+            "Input guardrails"
+          ],
+          "char_start": 1475,
+          "char_end": 2522,
+          "score": 25.26141962299711,
+          "rank": 5,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "8c2180c0c876e329eb0377f3609e3c4f7e7bf7454f8be0f945107a79177586a9",
+          "text_len": 1047
+        },
+        {
+          "chunk_id": "chk_5eb663869ba56f25062f06dfdd67d830f0ecfc04",
+          "version_id": "ver_1c53b961e1f5da8124a1e7e8eb92c941",
+          "section_path": [
+            "Client-side compaction (SDK)",
+            "Monitoring compaction"
+          ],
+          "char_start": 102368,
+          "char_end": 102982,
+          "score": 24.474363957724513,
+          "rank": 6,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "56ec458f6bb21cc1d0185df60d9b15ec84bd6cc1ebe182044fafb935868ec4f0",
+          "text_len": 614
+        },
+        {
+          "chunk_id": "chk_18d59f4aa4abc3772264d710ee5c6ef14ac6e037",
+          "version_id": "ver_f22fbd5c504fa28a4e70440337e4a495",
+          "section_path": [
+            "Guardrails",
+            "Output guardrails"
+          ],
+          "char_start": 3247,
+          "char_end": 4366,
+          "score": 24.455688170392964,
+          "rank": 7,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "c3321c568a715cff765dc8fbc305c12d8754096f10035232ced75bdac6da45a1",
+          "text_len": 1119
+        },
+        {
+          "chunk_id": "chk_6c390e7e572e302923896f6118584706c36c651d",
+          "version_id": "ver_14a2187cf2216b9d56c213b520a28479",
+          "section_path": [
+            "Realtime agents guide",
+            "Tools, approvals, handoffs, and guardrails",
+            "Guardrails"
+          ],
+          "char_start": 15551,
+          "char_end": 15881,
+          "score": 23.828710990067677,
+          "rank": 8,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "9afa6a0ebc80df23ad819614a1084798bb425f7de7df9315a3f0ba240ab4eedf",
+          "text_len": 330
+        },
+        {
+          "chunk_id": "chk_3be9dae09890f21cb622ba0f5536353fc676ed72",
+          "version_id": "ver_f22fbd5c504fa28a4e70440337e4a495",
+          "section_path": [
+            "Guardrails",
+            "Tool guardrails"
+          ],
+          "char_start": 5730,
+          "char_end": 7074,
+          "score": 23.184589977669724,
+          "rank": 9,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "c58c4e904d89d10fa43ee060e3d08c0e91a24d10a2372ecb789791e81d7fabaf",
+          "text_len": 1344
+        },
+        {
+          "chunk_id": "chk_b79a93701923cd105fa6ded82177eb9cd7f068f2",
+          "version_id": "ver_f15e1a531d680bb98179238f80355058",
+          "section_path": [
+            "You can customize this as needed, but this will output to `stderr` by default",
+            "Sensitive data in logs and diagnostics"
+          ],
+          "char_start": 9995,
+          "char_end": 11047,
+          "score": 21.729505154054273,
+          "rank": 10,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "a0b3c92de04fa407fa4e3928e8394092b9328ffbdc3d9fe0058144591563c34b",
+          "text_len": 1052
+        }
+      ]
+    },
+    {
+      "case_id": "OA-004",
+      "category": "exact_lookup",
+      "k": 10,
+      "expected_evidence_count": 1,
+      "evidence_found_count": 1,
+      "recall": 1.0,
+      "found": [
+        {
+          "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+          "section_path": [
+            "Running agents",
+            "Runner lifecycle and configuration",
+            "The agent loop"
+          ],
+          "char_start": 2052,
+          "char_end": 2101
+        }
+      ],
+      "missed": [],
+      "hits": [
+        {
+          "chunk_id": "chk_1215c7060296b96095c0132bcbbe84037cf4f330",
+          "version_id": "ver_de67d790db9792b2f6c5c7418a507764",
+          "section_path": [
+            "This is an absolute host path outside the SDK process base_dir.",
+            "0.16.0"
+          ],
+          "char_start": 12406,
+          "char_end": 13295,
+          "score": 28.28304177795835,
+          "rank": 1,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "1bd632ed97432b90de52fd45a067604d77445f84b850d77ee5997babbb482a32",
+          "text_len": 889
+        },
+        {
+          "chunk_id": "chk_a51a242aaa818d2f359d97a535cf421bbe4f3f6f",
+          "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+          "section_path": [
+            "Running agents",
+            "Runner lifecycle and configuration",
+            "Streaming",
+            "Responses WebSocket transport (optional helper)",
+            "Pattern 1: No session helper (works)"
+          ],
+          "char_start": 3151,
+          "char_end": 3995,
+          "score": 21.931882133995174,
+          "rank": 2,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "3bba2dd6173c38a83010753d494158d7d559d203d88e130ca567be9f3fab8522",
+          "text_len": 844
+        },
+        {
+          "chunk_id": "chk_564cbe6e285b08f352684ae3a88645c2a9badf58",
+          "version_id": "ver_f15e1a531d680bb98179238f80355058",
+          "section_path": [
+            "Configuration",
+            "Tracing"
+          ],
+          "char_start": 7636,
+          "char_end": 8814,
+          "score": 21.10738785709824,
+          "rank": 3,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "9deca2d404af0b413512d40a3fd2f1f48c13186019b43faf9f7542ab5b1cea76",
+          "text_len": 1178
+        },
+        {
+          "chunk_id": "chk_d9b5d9eb76dbec881a105fe21a9308937135319c",
+          "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+          "section_path": [
+            "Running agents",
+            "Runner lifecycle and configuration",
+            "The agent loop"
+          ],
+          "char_start": 1019,
+          "char_end": 2111,
+          "score": 20.864502484074013,
+          "rank": 4,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "f6270c643eafe3f86867050856dcf0adc2ff2a3f5c75d4bff18144eac9b7c909",
+          "text_len": 1092
+        },
+        {
+          "chunk_id": "chk_c7180bd08423e7d5ebb2d46206393e30edce9f55",
+          "version_id": "ver_35cac5e98c151a17f941a6142d74709f",
+          "section_path": [
+            "Agents"
+          ],
+          "char_start": 0,
+          "char_end": 875,
+          "score": 20.758622526491695,
+          "rank": 5,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "2d655c8083d94d729fc2d1369cc793cc0cecda7f4e9decf2b029da3dde645811",
+          "text_len": 875
+        },
+        {
+          "chunk_id": "chk_55abad634d5b0253c5e43d4c7b6b4ffe393492ec",
+          "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+          "section_path": [
+            "Running agents",
+            "Runner lifecycle and configuration",
+            "Run config",
+            "Run config details",
+            "`tool_execution`"
+          ],
+          "char_start": 12464,
+          "char_end": 13296,
+          "score": 20.264959487087438,
+          "rank": 6,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "4b4fc68166fc3145145e09697f3f80d5d887218f79f0ed90c71d13fdd471eba0",
+          "text_len": 832
+        },
+        {
+          "chunk_id": "chk_f1c3b7d42c2a34fafa418aa59c5c7e387dbfce44",
+          "version_id": "ver_7c087a260ac830f2b4fa1396300b3fcc",
+          "section_path": [
+            "Quickstart",
+            "Installation"
+          ],
+          "char_start": 577,
+          "char_end": 648,
+          "score": 20.032567823320473,
+          "rank": 7,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "9a2362f39cfe7532b4dc4744896f6e93f71367f7a5f80454be23c3c261345c8c",
+          "text_len": 71
+        },
+        {
+          "chunk_id": "chk_b81760de6a8c5f75a0c2e740a1886e6e5f50e6c8",
+          "version_id": "ver_14a2187cf2216b9d56c213b520a28479",
+          "section_path": [
+            "Realtime agents guide",
+            "Agent and session configuration",
+            "Input transcription settings"
+          ],
+          "char_start": 5149,
+          "char_end": 5719,
+          "score": 20.020743454730713,
+          "rank": 8,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "8a8a6f3e32dca720674ad2c41161e4fcbcc5d77bbbc8b5d1d5c8a47fe1db34b9",
+          "text_len": 674
+        },
+        {
+          "chunk_id": "chk_71606a2895e077e06950f684743754b4ae6e51a2",
+          "version_id": "ver_6b90217721b841b1329f51ec1caab139",
+          "section_path": [
+            "Tracing"
+          ],
+          "char_start": 0,
+          "char_end": 883,
+          "score": 19.229511828987416,
+          "rank": 9,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "62c80e8d31b7358a6f39eab2aec950d731c95dd608b6f758fde6c65fe229511b",
+          "text_len": 883
+        },
+        {
+          "chunk_id": "chk_9b9e11caeda8afffa94dbf2b079aaa00a7a70bb1",
+          "version_id": "ver_5bf7963e25f09bcbd35edc4c30bc247c",
+          "section_path": [
+            "Quickstart",
+            "Installation"
+          ],
+          "char_start": 1044,
+          "char_end": 1172,
+          "score": 19.130880664687723,
+          "rank": 10,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "6042bae63a225c5fb8060fe1f17263a79e11780375ddd9487e397e95e0a61a18",
+          "text_len": 128
+        }
+      ]
+    },
+    {
+      "case_id": "OA-005",
+      "category": "exact_lookup",
+      "k": 10,
+      "expected_evidence_count": 1,
+      "evidence_found_count": 1,
+      "recall": 1.0,
+      "found": [
+        {
+          "version_id": "ver_f15e1a531d680bb98179238f80355058",
+          "section_path": [
+            "Configuration",
+            "API keys and clients"
+          ],
+          "char_start": 2227,
+          "char_end": 2308
+        }
+      ],
+      "missed": [],
+      "hits": [
+        {
+          "chunk_id": "chk_cc6ee5b3aa5180b597c0284dcc3b9e070f5c11d1",
+          "version_id": "ver_f15e1a531d680bb98179238f80355058",
+          "section_path": [
+            "Configuration",
+            "API keys and clients"
+          ],
+          "char_start": 1864,
+          "char_end": 2707,
+          "score": 29.31945946823061,
+          "rank": 1,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "23469b11a9e6eeb4eea1c3a9d5107c45285e43003750c96a3159c09d74811644",
+          "text_len": 843
+        },
+        {
+          "chunk_id": "chk_b22de7bc4765af3a97a58a329ca734ce33c62ff8",
+          "version_id": "ver_f15e1a531d680bb98179238f80355058",
+          "section_path": [
+            "Configuration",
+            "Tracing"
+          ],
+          "char_start": 6520,
+          "char_end": 7280,
+          "score": 27.106796627096273,
+          "rank": 2,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "846fa0b97b6d09b15d17c6de50caf7e6376b3af780867484355005a47e0e12b1",
+          "text_len": 760
+        },
+        {
+          "chunk_id": "chk_0752ae65b077b1a3b0267e17efcacc9ac86bc872",
+          "version_id": "ver_4286534d2732b3eef5579a5c227d8704",
+          "section_path": [
+            "Accessing Bedrock",
+            "Bearer token authentication"
+          ],
+          "char_start": 19447,
+          "char_end": 20443,
+          "score": 26.988913963962542,
+          "rank": 3,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "b306009db0f705e12067a2a4b03f7650e9863251f88b2bbf43e96f7ece567feb",
+          "text_len": 996
+        },
+        {
+          "chunk_id": "chk_0385d36553afaa476d9006cf784a211bcfb802d8",
+          "version_id": "ver_b2d3b46e8c50b4c4df85227028db3a6e",
+          "section_path": [
+            "Authentication",
+            "Microsoft Entra authentication"
+          ],
+          "char_start": 18905,
+          "char_end": 19253,
+          "score": 26.088151107086315,
+          "rank": 4,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "46c818531ab5c2d9cbbe52e0f7307fe44d8eb608f0eb4816e505c9dd808af869",
+          "text_len": 415
+        },
+        {
+          "chunk_id": "chk_5aa14f836d79e86c3cb778bdd534182040d13af5",
+          "version_id": "ver_02c06cea4a4bbffd4d01ee202f124a75",
+          "section_path": [
+            "Infinite loop's dance."
+          ],
+          "char_start": 4039,
+          "char_end": 4126,
+          "score": 25.623517353255757,
+          "rank": 5,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "928fac97dcb85db5fc3034478ea91d8e4b2ca4d55da880a4b7608fa0fa35ab4c",
+          "text_len": 128
+        },
+        {
+          "chunk_id": "chk_12c30beaa6b26d061e2ada1c98dafc77971ace43",
+          "version_id": "ver_9247e3ce4df6f79d9cadc44e1a3bbd0c",
+          "section_path": [
+            "gets the API Key from environment variable AZURE_OPENAI_API_KEY"
+          ],
+          "char_start": 31898,
+          "char_end": 31925,
+          "score": 25.603299253287872,
+          "rank": 6,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "7085e27a5a9444c13c2e159865923a001849a9c67c1619ed7d6bf2481d56fa32",
+          "text_len": 129
+        },
+        {
+          "chunk_id": "chk_8f0b7b8a932641b03933d65d7e12688b63b6f2a1",
+          "version_id": "ver_9247e3ce4df6f79d9cadc44e1a3bbd0c",
+          "section_path": [
+            "gets the API Key from environment variable AZURE_OPENAI_API_KEY",
+            "Amazon Bedrock"
+          ],
+          "char_start": 32466,
+          "char_end": 32505,
+          "score": 25.52274490925835,
+          "rank": 7,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "cd4bbf1661c0d73c59a1cd82f1e7a5080471c8fff0d103edb5d609e9b3e810f6",
+          "text_len": 133
+        },
+        {
+          "chunk_id": "chk_cb5d69c583e9128e3e1bbb28eeb2f737a83e1a0e",
+          "version_id": "ver_f15e1a531d680bb98179238f80355058",
+          "section_path": [
+            "Configuration",
+            "OpenAI provider defaults"
+          ],
+          "char_start": 6229,
+          "char_end": 6518,
+          "score": 25.407004883321544,
+          "rank": 8,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "6c4f540cad53435ddfd130fc273351206616cfaaa7e5de8fcc8af39befc6109b",
+          "text_len": 289
+        },
+        {
+          "chunk_id": "chk_c5580e5aaf0de1a3664511f24dcf52b33db154b2",
+          "version_id": "ver_02c06cea4a4bbffd4d01ee202f124a75",
+          "section_path": [
+            "Infinite loop's dance."
+          ],
+          "char_start": 4014,
+          "char_end": 4163,
+          "score": 25.20553341397556,
+          "rank": 9,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "5171e72d31b40c41df11cb98e78b62b0ac2e3bcafd8015e66f77106e72f87bfb",
+          "text_len": 149
+        },
+        {
+          "chunk_id": "chk_ee418f9ee7c3c7779236b4474cf0637027205f37",
+          "version_id": "ver_7cd600e1124f25cfedc3f1f6d5c297e5",
+          "section_path": [
+            "Process results programmatically"
+          ],
+          "char_start": 44670,
+          "char_end": 45058,
+          "score": 23.601682114015475,
+          "rank": 10,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "74ddfd325b2e999b088b551f7ab6538d3a7903412e16e93c271f4226c7bc5d04",
+          "text_len": 388
+        }
+      ]
+    },
+    {
+      "case_id": "OA-006",
+      "category": "multi_hop",
+      "k": 10,
+      "expected_evidence_count": 2,
+      "evidence_found_count": 1,
+      "recall": 0.5,
+      "found": [
+        {
+          "version_id": "ver_6b90217721b841b1329f51ec1caab139",
+          "section_path": [
+            "Tracing"
+          ],
+          "char_start": 512,
+          "char_end": 553
+        }
+      ],
+      "missed": [
+        {
+          "version_id": "ver_f15e1a531d680bb98179238f80355058",
+          "section_path": [
+            "Configuration",
+            "Tracing"
+          ],
+          "char_start": 8126,
+          "char_end": 8242
+        }
+      ],
+      "hits": [
+        {
+          "chunk_id": "chk_71606a2895e077e06950f684743754b4ae6e51a2",
+          "version_id": "ver_6b90217721b841b1329f51ec1caab139",
+          "section_path": [
+            "Tracing"
+          ],
+          "char_start": 0,
+          "char_end": 883,
+          "score": 38.76136917498605,
+          "rank": 1,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "62c80e8d31b7358a6f39eab2aec950d731c95dd608b6f758fde6c65fe229511b",
+          "text_len": 883
+        },
+        {
+          "chunk_id": "chk_3f4fae3b3c7583cc45474498ee631dc1ff615cec",
+          "version_id": "ver_3c592d2e1e9ac3c51e25f017e61bc5d7",
+          "section_path": [
+            "When the skill activates"
+          ],
+          "char_start": 3797,
+          "char_end": 4558,
+          "score": 30.363312466599346,
+          "rank": 2,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "24b592337f04ce117f1255c42610eab1791f08303c69d6fdbb3ae1616f47b23b",
+          "text_len": 761
+        },
+        {
+          "chunk_id": "chk_08b36c953c7054de6d162b469335c1143a45d6a3",
+          "version_id": "ver_f30a6447e4df2ab76e4c1475f353109c",
+          "section_path": [
+            "OpenAI TypeScript and JavaScript API Library",
+            "Advanced Usage",
+            "Logging",
+            "Log levels"
+          ],
+          "char_start": 19756,
+          "char_end": 20564,
+          "score": 27.711524516112735,
+          "rank": 3,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "3eff5fc442eff7fc69e7800c1608b7083bb776a26a76418005b0616c59f38946",
+          "text_len": 808
+        },
+        {
+          "chunk_id": "chk_6ad392555560bb88fdc2795fe81370fed1559a56",
+          "version_id": "ver_20c9ab97979d04b79176cb7056119977",
+          "section_path": [
+            "Agent orchestration"
+          ],
+          "char_start": 0,
+          "char_end": 493,
+          "score": 27.485204045291145,
+          "rank": 4,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "13e8957f52fbee3414ab6624a3ae2a9d9aa2f060d748b667ee38e53d37e4ca6f",
+          "text_len": 493
+        },
+        {
+          "chunk_id": "chk_710183030cab4ee510ab74b394a8041fe379895f",
+          "version_id": "ver_ae909bf8b4bbbe1d1a11119447f7ac94",
+          "section_path": [
+            "Models",
+            "OpenAI models"
+          ],
+          "char_start": 1893,
+          "char_end": 2588,
+          "score": 27.17674409619676,
+          "rank": 5,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "68cc59e14ea75a776984a560ae09db760827a6f12112dbb55f9efbf862c80010",
+          "text_len": 695
+        },
+        {
+          "chunk_id": "chk_c6d4b195d74ef5445e9efce0cf9f35bc947b90ac",
+          "version_id": "ver_6b90217721b841b1329f51ec1caab139",
+          "section_path": [
+            "Tracing",
+            "Ecosystem integrations"
+          ],
+          "char_start": 10397,
+          "char_end": 10529,
+          "score": 26.08677764382565,
+          "rank": 6,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "50d230385cbe105c4951db2913f6e82086f7350cb0142b3dc1a0b9229a7994c8",
+          "text_len": 132
+        },
+        {
+          "chunk_id": "chk_cc27bc2ffdbce8d9720ca9b480de0216cb95373a",
+          "version_id": "ver_ae909bf8b4bbbe1d1a11119447f7ac94",
+          "section_path": [
+            "Models",
+            "Non-OpenAI models",
+            "Ways to integrate non-OpenAI providers"
+          ],
+          "char_start": 22846,
+          "char_end": 23225,
+          "score": 25.65076457153322,
+          "rank": 7,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "9d2d0a7fd5e59ed9a0e37715089dacca84dcb74886453dabc57ee941e443408d",
+          "text_len": 464
+        },
+        {
+          "chunk_id": "chk_cc6ee5b3aa5180b597c0284dcc3b9e070f5c11d1",
+          "version_id": "ver_f15e1a531d680bb98179238f80355058",
+          "section_path": [
+            "Configuration",
+            "API keys and clients"
+          ],
+          "char_start": 1864,
+          "char_end": 2707,
+          "score": 24.572321483601634,
+          "rank": 8,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "23469b11a9e6eeb4eea1c3a9d5107c45285e43003750c96a3159c09d74811644",
+          "text_len": 843
+        },
+        {
+          "chunk_id": "chk_8b3606688513fce5d9869a9d67e24c285ce8d0e0",
+          "version_id": "ver_02c06cea4a4bbffd4d01ee202f124a75",
+          "section_path": [
+            "OpenAI Agents SDK",
+            "Agents SDK or Responses API?"
+          ],
+          "char_start": 2855,
+          "char_end": 3646,
+          "score": 24.405230668338,
+          "rank": 9,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "84fa60c12aa4623571088399dec385ea248c02c60e24cf8e6551a52d8e28a17a",
+          "text_len": 791
+        },
+        {
+          "chunk_id": "chk_b22de7bc4765af3a97a58a329ca734ce33c62ff8",
+          "version_id": "ver_f15e1a531d680bb98179238f80355058",
+          "section_path": [
+            "Configuration",
+            "Tracing"
+          ],
+          "char_start": 6520,
+          "char_end": 7280,
+          "score": 23.153115054547776,
+          "rank": 10,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "846fa0b97b6d09b15d17c6de50caf7e6376b3af780867484355005a47e0e12b1",
+          "text_len": 760
+        }
+      ]
+    },
+    {
+      "case_id": "OA-007",
+      "category": "normal",
+      "k": 10,
+      "expected_evidence_count": 1,
+      "evidence_found_count": 1,
+      "recall": 1.0,
+      "found": [
+        {
+          "version_id": "ver_b275f1db2ff0a82e2654391774f8e398",
+          "section_path": [
+            "Sessions"
+          ],
+          "char_start": 12,
+          "char_end": 259
+        }
+      ],
+      "missed": [],
+      "hits": [
+        {
+          "chunk_id": "chk_f6060e5d0c76d45c94ce601693cbeac0b1301216",
+          "version_id": "ver_b275f1db2ff0a82e2654391774f8e398",
+          "section_path": [
+            "Sessions"
+          ],
+          "char_start": 0,
+          "char_end": 867,
+          "score": 21.867765672766723,
+          "rank": 1,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "1c129df6543cdb80e5d7d3a55212ccc2afda1368661e088809037550588ffb57",
+          "text_len": 867
+        },
+        {
+          "chunk_id": "chk_2a40397c4443e0dc02f984869ec32c858fd6a4f7",
+          "version_id": "ver_b275f1db2ff0a82e2654391774f8e398",
+          "section_path": [
+            "Ask a corrected question",
+            "Built-in session implementations"
+          ],
+          "char_start": 7063,
+          "char_end": 7173,
+          "score": 19.421913039975173,
+          "rank": 2,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "4c50ceefa8c37367b8bae2e67f7aef8e5ba20f1b664ca6cd7cedad2131025e32",
+          "text_len": 110
+        },
+        {
+          "chunk_id": "chk_3f4fae3b3c7583cc45474498ee631dc1ff615cec",
+          "version_id": "ver_3c592d2e1e9ac3c51e25f017e61bc5d7",
+          "section_path": [
+            "When the skill activates"
+          ],
+          "char_start": 3797,
+          "char_end": 4558,
+          "score": 19.000240437649484,
+          "rank": 3,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "24b592337f04ce117f1255c42610eab1791f08303c69d6fdbb3ae1616f47b23b",
+          "text_len": 761
+        },
+        {
+          "chunk_id": "chk_e9438ecfa3cf26452802d4f8779610b6a28b8ffb",
+          "version_id": "ver_7c087a260ac830f2b4fa1396300b3fcc",
+          "section_path": [
+            "Quickstart"
+          ],
+          "char_start": 0,
+          "char_end": 462,
+          "score": 18.317247950884713,
+          "rank": 4,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "237eef2413cf620fb9f967e40347bd5cde0fbb488fbd577f1875584b731e34a9",
+          "text_len": 462
+        },
+        {
+          "chunk_id": "chk_f6c5d09889737fd41425817002b273796ad1a7d0",
+          "version_id": "ver_ae909bf8b4bbbe1d1a11119447f7ac94",
+          "section_path": [
+            "Models",
+            "Non-OpenAI models"
+          ],
+          "char_start": 20353,
+          "char_end": 20683,
+          "score": 18.174160132133153,
+          "rank": 5,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "a553bf4da3733b5ebc3328fbaaa5cec4fa7dd5e6443dabba06e829c94ebcec2d",
+          "text_len": 330
+        },
+        {
+          "chunk_id": "chk_1f7b6b2efd988fb7de952561f1515b8e73ceb9c9",
+          "version_id": "ver_d2295786320b2815477eb963eb1f5e8a",
+          "section_path": [
+            "Testing"
+          ],
+          "char_start": 0,
+          "char_end": 839,
+          "score": 18.078327866349966,
+          "rank": 6,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "71fede43e4511ac0a76f7c5d0da7edfe61a2f833a98479a813f0d8be05130938",
+          "text_len": 839
+        },
+        {
+          "chunk_id": "chk_3b4f1d0c69dfc943547a73d169ec4b31d8f674d5",
+          "version_id": "ver_2c65efe0ba3d6dfd202b049a8b6fcb27",
+          "section_path": [
+            "For 120B",
+            "Agents SDK integration"
+          ],
+          "char_start": 4190,
+          "char_end": 4881,
+          "score": 17.521361726105606,
+          "rank": 7,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "ee148561683626b116de5f689a3c79bf74d2f83faf84e4f6d46751bbb9ade8aa",
+          "text_len": 691
+        },
+        {
+          "chunk_id": "chk_1f2b8ddb60a33849750f1011095dd4c294e686e7",
+          "version_id": "ver_4b39b541cef10ff8a5266f1249af5fd6",
+          "section_path": [
+            "Techniques to improve reliability",
+            "Extensions",
+            "Verifiers",
+            "Method"
+          ],
+          "char_start": 34334,
+          "char_end": 35269,
+          "score": 16.85913087242848,
+          "rank": 8,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "a13f75ce4b1737304845ba085d49d4da70c257ab8392b1a289576ad46c62fa3c",
+          "text_len": 935
+        },
+        {
+          "chunk_id": "chk_50c6042db23a9a5700891c2d4ffdade914ad3851",
+          "version_id": "ver_b275f1db2ff0a82e2654391774f8e398",
+          "section_path": [
+            "Use your custom session",
+            "Accessing run context from a custom session"
+          ],
+          "char_start": 28571,
+          "char_end": 28893,
+          "score": 16.847679418428008,
+          "rank": 9,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "c2076719c7c1096300bb0fae01a88c50536662e3d4257a1a1636eb1167c95ecd",
+          "text_len": 322
+        },
+        {
+          "chunk_id": "chk_f1c3b7d42c2a34fafa418aa59c5c7e387dbfce44",
+          "version_id": "ver_7c087a260ac830f2b4fa1396300b3fcc",
+          "section_path": [
+            "Quickstart",
+            "Installation"
+          ],
+          "char_start": 577,
+          "char_end": 648,
+          "score": 16.710690638915604,
+          "rank": 10,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "9a2362f39cfe7532b4dc4744896f6e93f71367f7a5f80454be23c3c261345c8c",
+          "text_len": 71
+        }
+      ]
+    },
+    {
+      "case_id": "OA-008",
+      "category": "exact_lookup",
+      "k": 10,
+      "expected_evidence_count": 1,
+      "evidence_found_count": 1,
+      "recall": 1.0,
+      "found": [
+        {
+          "version_id": "ver_ae909bf8b4bbbe1d1a11119447f7ac94",
+          "section_path": [
+            "Models",
+            "OpenAI models"
+          ],
+          "char_start": 2098,
+          "char_end": 2233
+        }
+      ],
+      "missed": [],
+      "hits": [
+        {
+          "chunk_id": "chk_710183030cab4ee510ab74b394a8041fe379895f",
+          "version_id": "ver_ae909bf8b4bbbe1d1a11119447f7ac94",
+          "section_path": [
+            "Models",
+            "OpenAI models"
+          ],
+          "char_start": 1893,
+          "char_end": 2588,
+          "score": 28.56740610454876,
+          "rank": 1,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "68cc59e14ea75a776984a560ae09db760827a6f12112dbb55f9efbf862c80010",
+          "text_len": 695
+        },
+        {
+          "chunk_id": "chk_3f986c0dc3d9436ae5c89fdfb893177300592138",
+          "version_id": "ver_ae909bf8b4bbbe1d1a11119447f7ac94",
+          "section_path": [
+            "Models",
+            "OpenAI models",
+            "Hosted multi-agent (experimental)",
+            "Relationship to SDK orchestration"
+          ],
+          "char_start": 18674,
+          "char_end": 19303,
+          "score": 24.91002422397649,
+          "rank": 2,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "8a785939ec6e03f4928d82b7674d656bb409cb2d10defff133156d5576aee88a",
+          "text_len": 629
+        },
+        {
+          "chunk_id": "chk_8a7c4b54fecf76c9a54ae61db0376f37ad0d0af8",
+          "version_id": "ver_de67d790db9792b2f6c5c7418a507764",
+          "section_path": [
+            "Release process/changelog",
+            "Breaking change changelog",
+            "0.20.0"
+          ],
+          "char_start": 2738,
+          "char_end": 2989,
+          "score": 24.07983384362761,
+          "rank": 3,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "fc49877cf85853d64b88e6ca3cb6bb7c9593c53848482748291b3e5732977ba8",
+          "text_len": 251
+        },
+        {
+          "chunk_id": "chk_4bb3ed6d2770fc9f253362dc15c82fd84b202982",
+          "version_id": "ver_1c77f33b04ffffa285ea7e61c2a89653",
+          "section_path": [
+            "Handoffs",
+            "Creating a handoff"
+          ],
+          "char_start": 453,
+          "char_end": 1121,
+          "score": 22.554303480952896,
+          "rank": 4,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "c77113f64b6fd9a890eb4203ee6fafc8bf5a2e6991663147ed94f31fec92dec6",
+          "text_len": 668
+        },
+        {
+          "chunk_id": "chk_c866c06639a462b1bb0e841bd0dd6f2d9f4e69bb",
+          "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+          "section_path": [
+            "Running agents",
+            "Errors and recovery",
+            "Error handlers"
+          ],
+          "char_start": 28677,
+          "char_end": 29221,
+          "score": 21.99121348986724,
+          "rank": 5,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "835d70b433e13ef59251d410f10896ded69635349cc307e8d81b09c5c9ed652f",
+          "text_len": 544
+        },
+        {
+          "chunk_id": "chk_3f4fae3b3c7583cc45474498ee631dc1ff615cec",
+          "version_id": "ver_3c592d2e1e9ac3c51e25f017e61bc5d7",
+          "section_path": [
+            "When the skill activates"
+          ],
+          "char_start": 3797,
+          "char_end": 4558,
+          "score": 21.69031454274793,
+          "rank": 6,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "24b592337f04ce117f1255c42610eab1791f08303c69d6fdbb3ae1616f47b23b",
+          "text_len": 761
+        },
+        {
+          "chunk_id": "chk_7c72fa0b23386ae26e9ed2a64399008c14bf14f2",
+          "version_id": "ver_3d4b8881962381cbfba18ade50c598e1",
+          "section_path": [
+            "Sandbox clients",
+            "Supported hosted platforms",
+            "Size Modal sandboxes"
+          ],
+          "char_start": 10217,
+          "char_end": 10822,
+          "score": 21.025106005004474,
+          "rank": 7,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "4a3bc2724a7b978645680f4e68d9d8d12e14c70e93c47591df5f5e210570cddd",
+          "text_len": 605
+        },
+        {
+          "chunk_id": "chk_b579ba6e99a54350dd52d19e064d375524ce16b3",
+          "version_id": "ver_ae909bf8b4bbbe1d1a11119447f7ac94",
+          "section_path": [
+            "Models",
+            "Advanced OpenAI Responses settings",
+            "Passing `extra_args`"
+          ],
+          "char_start": 30131,
+          "char_end": 30708,
+          "score": 20.888350295822395,
+          "rank": 8,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "693aadb11361c397c4f0744aee943109f8fe67437e25f832a5ad194f1412274f",
+          "text_len": 577
+        },
+        {
+          "chunk_id": "chk_e9438ecfa3cf26452802d4f8779610b6a28b8ffb",
+          "version_id": "ver_7c087a260ac830f2b4fa1396300b3fcc",
+          "section_path": [
+            "Quickstart"
+          ],
+          "char_start": 0,
+          "char_end": 462,
+          "score": 20.728653008663656,
+          "rank": 9,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "237eef2413cf620fb9f967e40347bd5cde0fbb488fbd577f1875584b731e34a9",
+          "text_len": 462
+        },
+        {
+          "chunk_id": "chk_8b3606688513fce5d9869a9d67e24c285ce8d0e0",
+          "version_id": "ver_02c06cea4a4bbffd4d01ee202f124a75",
+          "section_path": [
+            "OpenAI Agents SDK",
+            "Agents SDK or Responses API?"
+          ],
+          "char_start": 2855,
+          "char_end": 3646,
+          "score": 20.48480834770317,
+          "rank": 10,
+          "retriever": "lexical",
+          "metadata": {},
+          "text_sha256": "84fa60c12aa4623571088399dec385ea248c02c60e24cf8e6551a52d8e28a17a",
+          "text_len": 791
+        }
+      ]
+    }
+  ]
+}

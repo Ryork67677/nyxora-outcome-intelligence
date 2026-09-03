@@ -1,0 +1,173 @@
+{
+  "experiment_id": "EXP-018B",
+  "title": "WITHIN-DOCUMENT EFFICIENCY + SCORE-PRESERVING OPTIMIZATION",
+  "chatgpt_approved_revision_timestamp_et": "2026-08-31T23:22:00-04:00",
+  "preregistered_at_et": "2026-08-31T23:27:17-04:00",
+  "preregistered_at_utc": "2026-09-01T03:27:17Z",
+  "protocol_copy": "experiments/EXP-018B/CHATGP-EXP-018B-protocol.txt",
+  "dataset": {
+    "name": "V2-DEVSET-001",
+    "n": 50,
+    "split": "evals/splits/v2-devset-001/development.json",
+    "gold": "evals/gold/v2-devset-001.jsonl",
+    "freeze": "experiments/RAG-V2/V2-DEVSET-001/V2-DEVSET-001-FREEZE.json",
+    "gold_sha256": "cb687f3cc88b38d4beed7ad4bc829296a30518aaaf45cce0677ec568b1bf77e5",
+    "split_sha256": "6b0c49c9040c215fde6134697c35a1f28458ba7d72ef012c0840feb7f9c3eb17",
+    "freeze_sha256": "97ea6befbb4fd845f53da2aef20ba84cedaaf69c0f09e3ad90833b813fee2ad9",
+    "holdout_loaded": false,
+    "validation_loaded": false
+  },
+  "do_nots": [
+    "no validation",
+    "no holdout",
+    "no D edits",
+    "no CE/blend/RRF/A/W/parent_n/A-pool-size changes",
+    "no EXP-017",
+    "no EXP-019",
+    "no extra L values",
+    "no retune after scores",
+    "do not freeze SYSTEM-E as a release",
+    "do not modify SYSTEM-E-WITHIN-DOC.json / SYSTEM-D-GUARD.json / SYSTEM-D-RELEASE.json / cs_v1_control",
+    "do not use the four rescue IDs as a selection gate"
+  ],
+  "frozen_identities": {
+    "SYSTEM-D": "d77b54ba3be0197d6bc1363883aefb0b3399117ee8c65800a38f8196d236ca3a",
+    "SYSTEM-E": "7f3a1caa0350cc7e0fda0d9f2d7efb23fd08d7f79bc94f140a29f4247774adbe",
+    "SYSTEM-A": "9afcb5b7c58ebacff0b4c3711dd9618a2e727f4195dd1787a5da81e478ee0b38",
+    "snapshot": "snap_689e336380a054d8039dc35b2c09cd0a",
+    "chunk_set": "cs_v1_control",
+    "chunks": 14209,
+    "minilm_onnx_fingerprint": "bd95feaeacf98559",
+    "ce_sha256": "5d3e70fd0c9ff14b9b5169a51e957b7a9c74897afd0a35ce4bd318150c1d4d4a",
+    "W": 20,
+    "parent_n": 10,
+    "parent_source": "TOP 10 unique version_ids first-seen in SYSTEM-A fused ranking (typically 6-9, not always 10)",
+    "A_pool": 100,
+    "rrf_k": 60,
+    "blend": [
+      0.7,
+      0.3
+    ],
+    "anti_doc_c": true
+  },
+  "holdout_access_log_at_prereg": {
+    "log_bytes": 235,
+    "log_sha256": "45b83a77f6f332174d641956f076dd0c0cae44fe48f4f2892ac7030a4c0143b3",
+    "lock_sha256": "fc9ac96082cbf0aa3df82df017e19af9f49eed5506c5c281858b3de405cde294"
+  },
+  "track_1": {
+    "goal": "Remove redundant local-BM25 full-corpus IDF/CTE work without changing SYSTEM-E retrieval behavior.",
+    "method": "ONE lexical_search SQL call with version_ids=all parents (same _LEXICAL_SQL, full-corpus IDF), then top-W=20 per parent with ORDER BY round(score::numeric, 9) DESC, chunk_id ASC. Do not reuse SYSTEM-A global top-50 BM25 (RRF overwrites score; local W=20 includes chunks never in A's 50).",
+    "no_approximation": true,
+    "equivalence_gate": {
+      "reference": [
+        "experiments/EXP-018/EXP-018-v2devset001-results.json",
+        "experiments/EXP-018/EXP-018-v2devset001-pools.jsonl"
+      ],
+      "must_match": [
+        "local candidate identities",
+        "local candidate ordering (per parent)",
+        "union membership",
+        "final reranked ordering/ranks",
+        "strict Recall@10",
+        "candidate Recall@100",
+        "span Recall@10",
+        "MRR",
+        "document recall"
+      ],
+      "if_false": "STOP. Do not run Track 2. Write mismatch report."
+    },
+    "stored_baseline": {
+      "D_cand_R100": "41/50",
+      "E_cand_R100": "45/50",
+      "D_strict_R10": "38/50",
+      "E_strict_R10": "40/50",
+      "D_span_R10": 0.76,
+      "E_span_R10": 0.8,
+      "D_MRR": 0.565,
+      "E_MRR": 0.5969,
+      "D_doc_recall": 0.9,
+      "E_doc_recall": 0.92,
+      "D_pool": 94.1,
+      "E_pool": 176.8,
+      "D_latency_ms": 5823.6,
+      "E_latency_ms": 16604.3,
+      "A_retrieval_ms": 357.5,
+      "local_bm25_ms": 6077.6,
+      "CE_D_ms": 5461.7,
+      "CE_E_ms": 10163.7
+    }
+  },
+  "track_2": {
+    "only_if_track_1_score_preserving": true,
+    "L_means": "ADDITIVE LOCAL PASSAGES PER QUERY after dedupe and excluding A-pool-100. Not per parent.",
+    "L_values": [
+      10,
+      20,
+      40
+    ],
+    "no_extra_L": true,
+    "no_retune_after_scores": true,
+    "steps": [
+      "generate current E local candidates (optimized, equivalent)",
+      "deduplicate by chunk_id",
+      "exclude passages already in A-pool-100",
+      "apply frozen cross-parent ordering",
+      "take first L additive passages for the entire query",
+      "union with A-pool-100, merge RRF, frozen D blend/CE as in E"
+    ],
+    "merge_rrf_local_lists": "filter per-parent local top-W to (in A-pool-100) OR (selected L extras); keep original within-parent BM25 ranks 1..W. Overlap with A does not count toward L.",
+    "cross_parent_ordering_frozen": {
+      "inspected": "system_e.local_bm25_per_parent copies lexical_search SearchHit; score is full-corpus-equivalent BM25; rank overwritten 1..W. No existing cross-parent ordering.",
+      "existing_within_parent_tiebreak": "ORDER BY round(scored.score::numeric, 9) DESC, scored.chunk_id  (_LEXICAL_SQL retrieval.py)",
+      "key": "among extras not in A-pool-100, after dedupe: round(local_BM25_score numeric 9) DESC, then chunk_id ASC",
+      "python": "(-Decimal(str(score)).quantize(Decimal('0.000000001'), rounding=ROUND_HALF_UP), chunk_id)",
+      "will_not_change_after_scores": true
+    }
+  },
+  "selection_rule": {
+    "select": "smallest L in {10,20,40} satisfying both conditions",
+    "conditions": [
+      "candidate gold-span Recall@100 >= 44/50",
+      "zero strict Recall@10 regressions versus SYSTEM-D"
+    ],
+    "do_not_require_all_4_rescue_ids": true,
+    "do_not_require_R10_improvement_vs_D": true,
+    "if_none_qualify": "select none; EXP-018 remains MECHANISM_SUPPORTED; capped variants not promoted",
+    "threshold_provenance": ">=44/50 was preregistered for EXP-018B after observing EXP-018's development result of 45/50. Development-stage criterion, not an independent validation threshold.",
+    "tuned_after_seeing_exp018_dev_45_of_50": true,
+    "independent_validation_threshold": false
+  },
+  "known_rescue_ids_DIAGNOSTIC_ONLY": {
+    "ids": [
+      "V2D-11",
+      "V2D-33",
+      "V2D-34",
+      "V2D-43"
+    ],
+    "not_a_selection_gate": true,
+    "exp018_fates": {
+      "V2D-11": {
+        "in_d_pool": false,
+        "e_rank": 34,
+        "e_pool_rank": 63
+      },
+      "V2D-33": {
+        "in_d_pool": false,
+        "e_rank": 13,
+        "e_pool_rank": 92
+      },
+      "V2D-34": {
+        "in_d_pool": false,
+        "e_rank": 44,
+        "e_pool_rank": 40
+      },
+      "V2D-43": {
+        "in_d_pool": false,
+        "e_rank": 10,
+        "e_pool_rank": 19
+      }
+    },
+    "note": "V2D-48 was already in D pool (11\u21927); not a pool rescue."
+  }
+}

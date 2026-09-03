@@ -1,0 +1,165 @@
+{
+  "experiment_id": "EVAL-NATQ-VAL-001",
+  "title": "SYSTEM-H NATURAL-QUERY VALIDATION (NATQ-001 validation n=40)",
+  "status": "AUTHORIZED_SINGLE_VALIDATION_RUN",
+  "phase": "preregistration_before_any_retrieval",
+  "chatgpt_authorization": "EVAL-NATQ-VAL-001 AUTHORIZED",
+  "protocol_copy": "/workspace/NATQ-001-post/EVAL-NATQ-VAL-001-ASSIGNMENT.md",
+  "preregistered_at_utc": "2026-09-03T03:53:30Z",
+  "preregistered_at_et": "2026-09-02T23:53:30-04:00",
+  "scored_before_prereg_hash": false,
+  "tuned_after_seeing_scores": false,
+  "n_evals": 1,
+  "second_run_forbidden": true,
+  "retune_forbidden": true,
+  "holdout_run_forbidden": true,
+  "release_freeze_forbidden": true,
+  "do_not_modify_SYSTEM_H": true,
+  "do_not_overwrite_SYSTEM_G": true,
+  "do_not_overwrite_SYSTEM_G_CE_D1": true,
+  "hypothesis": {
+    "statement": "Frozen SYSTEM-H-V2-DEV-CANDIDATE (SYSTEM-G candidate generation + EXP-019A projection-aware prior + PERF-003 D1 CE path) meets the engineering qualification gate on NATQ-001 validation n=40, a question-first set SYSTEM-H has never scored.",
+    "this_is_engineering_qualification_not_statistical_significance": true,
+    "no_architecture_change": true,
+    "no_weight_sweep": true,
+    "no_query_rewrite": true,
+    "no_answer_generation_unless_frozen_protocol_requires": true
+  },
+  "system": {
+    "name": "SYSTEM-H-V2-DEV-CANDIDATE",
+    "status_before_run": {
+      "DEVELOPMENT_ARCHITECTURE_FROZEN": true,
+      "RELEASE_FROZEN": false,
+      "VALIDATION_RUN": false,
+      "NEW_HOLDOUT_RUN": false
+    },
+    "config_hash": "7599eb3c3bb4798230a722e6a7c96b046dc36cc0332b584ec55339896b2d717a",
+    "file_sha256": "7cd3a5f3d5fcf9c66561c9e9cbfbc213f49e6efa0fdf0005869b085c3eafe475",
+    "path": "experiments/RAG-V2/SYSTEM-H-V2-DEV-CANDIDATE/SYSTEM-H-V2-DEV-CANDIDATE.json",
+    "pipeline": {
+      "global_retrieval": "SYSTEM-A BM25+dense RRF pool-100",
+      "E_L10": "within-document additive local BM25, L=10 extras after dedupe excluding A-pool-100",
+      "projection_lane": "ps_v2_ovl_win448_s224",
+      "P": 20,
+      "projection_aware_retrieval_prior": "E-L10 a_norm kept exactly; projection-only retrieval_norm = minmax(projection-RRF) over P extras (degenerate 0.5); combined list not re-minmaxed",
+      "cross_encoder": "frozen ONNX MiniLM CrossEncoderReranker(pad='batch', bucket_by_length=True) PERF-003 D1",
+      "blend": "0.7 CE_norm / 0.3 retrieval_norm",
+      "ce_padding": "PERF-003 D1 dynamic batch padding",
+      "batch_size": 16,
+      "threads": 4,
+      "intra_op_num_threads": 4,
+      "inter_op_num_threads": 1,
+      "tie_break": "blend DESC, E-L10 merge-RRF rank (projection-only a_rank=10**9), chunk_id ASC",
+      "query_rewrite": false,
+      "reuse_existing_code": [
+        "experiments/EXP-017/scripts/run_exp017.py",
+        "experiments/EXP-019A/scripts/run_exp019a.py",
+        "experiments/PERF-003/scripts/v2_system_g_ce.py",
+        "experiments/EXP-018B/scripts/local_bm25_batched.py",
+        "experiments/EXP-017/scripts/projection_retrieval.py",
+        "experiments/EXP-018/scripts/system_e.py"
+      ]
+    }
+  },
+  "dataset": {
+    "name": "NATQ-001",
+    "split": "validation",
+    "n": 40,
+    "path": "evals/splits/natq-001/validation.jsonl",
+    "validation_sha256": "a240958eb6b77b293bd70f717ee60476d2d09b510458057fd927d67359331ad6",
+    "gold_sha256_recorded_not_loaded": "332384a4d59b8f21fb882247b8d35c0b69a188ae2d936458132c497d7333453e",
+    "split_manifest_sha256": "332b833765c5c5cfff8ece26bff74bce74476c2ab6907353bf66a095bde6525b",
+    "holdout_sha256_recorded_file_not_opened": "6a7cf781c7538106605e8c85607405cd3dee2db37fdbb556aaadc913b3141dd3",
+    "holdout_lock_sha256": "03e0d5749e61e73e6b9582109a74a4a9672610b7bf794daf25f46999e5ad40b2",
+    "snapshot": "snap_689e336380a054d8039dc35b2c09cd0a",
+    "load_only_validation_jsonl": true,
+    "do_not_load_full_gold_jsonl": true,
+    "do_not_open_natq_holdout_json": true,
+    "do_not_open_v1_holdout_json": true,
+    "do_not_open_gold150_v1_development_or_validation": true
+  },
+  "PRIMARY": {
+    "metric": "strict_full_case_Recall@10",
+    "definition": "A case is a success iff EVERY gold evidence span overlaps at least one chunk in the SYSTEM-H top-10 ranked list (version_id + section_path + character overlap, same as EXP-017/019A score_system.fully_recalled).",
+    "report": "numerator/40 and percentage"
+  },
+  "SECONDARY": [
+    {
+      "metric": "candidate_gold_span_Recall@100",
+      "definition": "A case is a success iff EVERY gold evidence span is present in the SYSTEM-H candidate union (A-pool-100 UNION E-L10 extras UNION P=20 projection extras). Reported as n/40. The @100 name is historical (A pool 100 plus additive extras).",
+      "gate_uses": true
+    },
+    {
+      "metric": "evidence_span_Recall@10",
+      "definition": "Micro: (gold spans overlapping a top-10 chunk) / (total gold spans in the 40-case set). Also report macro mean of per-case span recall and raw found/total. GATE uses micro >= 0.80.",
+      "gate_uses": true
+    },
+    {
+      "metric": "document_Recall@10",
+      "definition": "A case is a success iff EVERY gold version_id appears among version_ids of the top-10 ranked chunks. Reported as n/40. Also report mean per-case doc_recall.",
+      "gate_uses": true
+    },
+    {"metric": "MRR", "definition": "Mean reciprocal rank over gold spans (same as EXP-018 summarise.mrr)."},
+    {"metric": "latency_mean_median", "definition": "Per-case total wall time; also per-stage if available: SYSTEM-A retrieve, E-L10 local BM25, projection RRF+map, CE, blend."},
+    {"metric": "provider_breakdown", "definition": "strict / span / document metrics split by provider openai vs anthropic."},
+    {"metric": "coverage_stress_tag_breakdown", "definition": "strict and span metrics by major coverage_tags / stress_types present on the validation records."},
+    {"metric": "exact_identifier_cases", "definition": "subset where coverage_tags or stress_types contains exact_identifier_lookup."},
+    {"metric": "multi_span_cases", "definition": "subset where len(expected_evidence)>1 or coverage_tags contains multi_span."},
+    {"metric": "natural_paraphrase_cases", "definition": "subset where coverage_tags or stress_types contains realistic_paraphrase."}
+  ],
+  "ENGINEERING_QUALIFICATION_GATE": {
+    "label": "VALIDATION_SUPPORTED",
+    "this_is_not_a_claim_of_statistical_significance": true,
+    "do_not_change_after_seeing_results": true,
+    "VALIDATION_SUPPORTED_iff_ALL": [
+      "strict full-case Recall@10 >= 32/40",
+      "candidate gold-span Recall@100 >= 36/40",
+      "evidence-span Recall@10 >= 0.80",
+      "document Recall@10 >= 38/40",
+      "no benchmark-integrity failure",
+      "NATQ holdout remains untouched"
+    ],
+    "binomial_ci_95_strict_Recall@10": "Clopper-Pearson exact 95% CI; diagnostic only; not a gate"
+  },
+  "failure_analysis": {
+    "retune": false,
+    "second_run": false,
+    "do_not_alter_gold": true,
+    "classes": [
+      "candidate-generation: required evidence absent from candidate pool",
+      "ranking: required evidence in pool but outside top 10",
+      "document-discovery: required document absent from SYSTEM-A pool / parent documents",
+      "evidence-granularity / mapping issue",
+      "benchmark/gold ambiguity (flag only, coordinator review)"
+    ],
+    "primary_priority": [
+      "document-discovery",
+      "candidate-generation",
+      "evidence-granularity",
+      "ranking"
+    ]
+  },
+  "holdout_protection": {
+    "natq_holdout_access_log_before": {
+      "path": "evals/splits/natq-001/holdout-access.log.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "natq_holdout_access_log_after_must_equal_before": true,
+    "v1_holdout_access_log": {
+      "path": "evals/splits/gold150-v1/holdout-access.log.jsonl",
+      "bytes": 235,
+      "sha256": "45b83a77f6f332174d641956f076dd0c0cae44fe48f4f2892ac7030a4c0143b3"
+    },
+    "do_not_open_natq_holdout_even_if_validation_passes": true,
+    "do_not_open_v1_holdout": true
+  },
+  "STOP": {
+    "after": "EVAL-NATQ-VAL-001",
+    "if_VALIDATION_SUPPORTED": "DO NOT run holdout. Wait for coordinator to freeze a V2 release candidate and preregister final holdout.",
+    "if_VALIDATION_NOT_SUPPORTED": "DO NOT run holdout. Return failures and diagnostics.",
+    "no_second_validation_run": true,
+    "no_retune": true,
+    "no_release_freeze": true
+  }
+}

@@ -1,0 +1,267 @@
+This is the result we needed. **The CE earns its place provisionally.**
+
+EXP-019B shows that, inside the current SYSTEM-G architecture, removing the CE drops strict Recall@10 from **41/50 to 33/50**, span recall from **0.82 to 0.66**, and MRR from **0.6009 to 0.4567**. There were **8 CE-only rescues and 0 no-CE-only rescues**; McNemar was `p=0.0078125`, and the paired bootstrap 95% CI for the strict-recall delta was **[+0.06, +0.26]**. 
+
+The two-scale caveat still matters: this does **not** prove CE beats the best possible retrieval-only ranker. But it does answer the actual ablation question convincingly:
+
+> **Remove the CE from SYSTEM-G as currently designed, and retrieval quality drops materially.**
+
+So I would **not remove the CE**, and I would **not spend another experiment on shared-scale retrieval normalization right now**.
+
+## Next step: PERF-003
+
+Now Claude's PERF-002 optimization becomes high value.
+
+We know the CE contributes roughly **+8/50 strict cases** in this architecture, but it is also responsible for most of the latency. So the next move is to make the **same CE produce exactly the same logits/ranks faster**.
+
+Target:
+
+**dynamic length bucketing + `pad="batch"` + existing thread settings**
+
+No `fast=True`.
+No `threads=8` tuning.
+No model change.
+No ranking change.
+
+If the roughly 2× PERF-002 speedup transfers, SYSTEM-G's ~7.9-second retrieval path could potentially move down near **4–4.5 seconds** while retaining the exact same 41/50 ranking quality.
+
+### Give Remote ChatGPT this
+
+```text
+PERF-003 — V2 CROSS-ENCODER DYNAMIC-PADDING IMPLEMENTATION
+
+This is SCORE-PRESERVING PERFORMANCE ENGINEERING ONLY.
+
+Do not run a new retrieval experiment.
+Do not change ranking semantics.
+Do not run validation.
+Do not open V1 holdout.
+
+==================================================
+CURRENT ARCHITECTURAL DECISION
+==================================================
+
+EXP-019B completed.
+
+SYSTEM-G-PROJECTION-PRIOR config_hash:
+563a7b790564fa1efb96257e988c4b1ccfab45146825d2a366b2fee0ca5d5790
+
+EXP-019B prereg SHA256:
+eb542d641b60ba907cca321ca6943682257f7088da2028816d04144365dd2c74
+
+Frozen V2-DEVSET-001 n=50 result:
+
+WITH CE:
+strict Recall@10 = 41/50
+candidate Recall@100 = 46/50
+span Recall@10 = .82
+MRR = .6009
+document recall = .90
+
+G-NO-CE:
+strict Recall@10 = 33/50
+candidate Recall@100 = 46/50
+span Recall@10 = .66
+MRR = .4567
+document recall = .84
+
+CE-only strict rescues = 8
+NO-CE-only strict rescues = 0
+
+McNemar exact p = .0078125
+
+paired bootstrap:
+10000 resamples
+seed 20260901
+mean strict delta = .158904
+95% CI = [.06, .26]
+
+Classification:
+CE MATERIALLY CONTRIBUTES AS AN ABLATION OF SYSTEM-G.
+
+Important caveat:
+This does NOT establish CE superiority over an optimized retrieval-only
+system because SYSTEM-G's retrieval-only channel contains independently
+normalized E-L10 and projection populations.
+
+Do not run a shared-scale retrieval variant now.
+
+==================================================
+PERF-002 AUTHORIZED FINDING
+==================================================
+
+PERF-002 found the current CE runtime is dominated by ONNX inference and
+padding.
+
+~98.9% of CE time = ONNX inference.
+~53.6% of fed tokens = PAD.
+
+Safe candidate optimization:
+
+D1:
+- deterministic length bucketing
+- pad each batch to its own maximum sequence length
+- preserve max sequence length 512
+- preserve tokenizer/truncation semantics
+- leave ORT thread configuration unchanged
+
+PERF-002 observed approximately 2.07x CE speedup and bitwise-identical
+logits on tested hosts.
+
+DO NOT:
+- use fast=True
+- set threads=8 as part of this experiment
+- change batch_size to 1 yet
+- merge additional optimizations
+- change CE weights/model
+- change tokenizer
+- change blend weights
+- change RRF
+- change candidate generation
+
+==================================================
+IMPLEMENTATION SCOPE
+==================================================
+
+Locate the CURRENT authoritative V2 CE call site used by SYSTEM-G.
+
+Do NOT change the CrossEncoderReranker global class defaults because frozen
+V1/validation/holdout callers share those defaults.
+
+Enable D1 ONLY on the new V2 development path.
+
+Required behavior:
+
+1. Generate the exact same query/passage pair tokenization.
+2. Determine actual sequence lengths deterministically.
+3. Bucket/sort pairs by length using a frozen deterministic rule.
+4. Form batches.
+5. Pad each batch only to that batch's longest sequence.
+6. Run the same ONNX model.
+7. Unpermute logits back to original candidate order.
+8. Continue through the exact existing CE normalization/blend/tie-break.
+
+==================================================
+BLOCKING EQUIVALENCE GATE
+==================================================
+
+Run paired old-path vs new-path evaluation on identical real SYSTEM-G
+candidate pools.
+
+Require ALL:
+
+1. same candidate membership
+2. same semantic token IDs before padding
+3. same truncation behavior
+4. bitwise-identical raw CE logits for every candidate pair
+5. same unpermuted candidate/logit association
+6. same CE normalization values
+7. same final blend scores bitwise if achievable
+8. same final ordered rankings
+9. candidate Recall@100 exactly 46/50
+10. strict Recall@10 exactly 41/50
+11. span Recall@10 exactly .82
+12. MRR exactly .6009 under existing computation
+13. document recall exactly .90
+14. deterministic repeat in process
+15. deterministic repeat in fresh process
+
+If ANY metric/rank/logit equivalence fails:
+STOP.
+PERF-003 = FAILED_EQUIVALENCE.
+Do not tune around the failure.
+
+==================================================
+TIMING
+==================================================
+
+Measure old and new paths on the same host/workload:
+
+- tokenization
+- bucketing/prepass
+- numpy/tensor preparation
+- ONNX inference
+- unpermutation/postprocessing
+- CE total
+- complete SYSTEM-G retrieval+ranking total
+
+Report:
+- mean
+- median if available
+- speedup ratio
+
+Do not compare raw milliseconds against a different host as if directly
+equivalent.
+
+==================================================
+PROVENANCE
+==================================================
+
+Record:
+
+- current repo/tree/commit identity
+- CPU model
+- CPU count
+- ORT version
+- execution provider
+- thread settings
+- CE ONNX SHA256
+- tokenizer fingerprint
+- batch size
+- padding mode
+- bucketing rule
+- code diff
+- equivalence results
+
+Create a NEW V2 performance config/artifact.
+
+Do not overwrite SYSTEM-G or any frozen predecessor.
+
+==================================================
+DECISION
+==================================================
+
+PERF-003_SUPPORTED iff:
+
+- complete equivalence gate passes
+AND
+- measured CE latency improves on the same host
+
+This is an engineering-performance decision only.
+
+Do not change any retrieval-quality system label.
+
+==================================================
+STOP
+==================================================
+
+Stop after:
+- equivalence result
+- measured latency result
+- new artifact/hash
+- PERF-003_SUPPORTED or FAILED
+
+No validation.
+No holdout.
+No thread sweep.
+No batch-size sweep.
+No additional performance variant.
+
+Return results to coordinator ChatGPT.
+```
+
+## After PERF-003
+
+Assuming it passes, I would **stop tuning this 50-case development set for a while**.
+
+The next major research step should be the thing Claude identified earlier: build a **fresh natural-query benchmark** where questions are not authored while looking at the source passages. That will give us a cleaner place to decide whether SYSTEM-G's improvements actually survive more realistic queries.
+
+So the sequence now is:
+
+**1. PERF-003 — make SYSTEM-G faster with exact score preservation.**
+**2. Freeze the resulting development architecture, not as a release.**
+**3. Build a fresh natural-query evaluation set.**
+**4. Then test the architecture on new questions before deciding on validation/release.**
+
+That's a very good position to be in: we no longer have a mysterious “maybe the CE is useless” issue. On the current system, it is doing substantial ranking work. 
+

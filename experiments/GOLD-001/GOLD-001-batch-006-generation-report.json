@@ -1,0 +1,575 @@
+{
+  "batch": 6,
+  "schema_version": "1.3",
+  "generated_at": "2026-08-24T06:01:08Z",
+  "git_commit": "6f0588d62aab5b9996c3d610665c46f8d277d5a2",
+  "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a",
+  "starting_state": {
+    "human_verified": 82,
+    "holdout_eligible": 82,
+    "human_rejected": 8,
+    "genuine_multi_hop": 1,
+    "candidates": 90,
+    "by_batch": [
+      {
+        "batch": 1,
+        "human_verified": 16,
+        "holdout_eligible": 16,
+        "human_rejected": 2,
+        "genuine_multi_hop": 0
+      },
+      {
+        "batch": 2,
+        "human_verified": 17,
+        "holdout_eligible": 17,
+        "human_rejected": 1,
+        "genuine_multi_hop": 0
+      },
+      {
+        "batch": 3,
+        "human_verified": 20,
+        "holdout_eligible": 20,
+        "human_rejected": 0,
+        "genuine_multi_hop": 0
+      },
+      {
+        "batch": 4,
+        "human_verified": 14,
+        "holdout_eligible": 14,
+        "human_rejected": 1,
+        "genuine_multi_hop": 1
+      },
+      {
+        "batch": 5,
+        "human_verified": 15,
+        "holdout_eligible": 15,
+        "human_rejected": 4,
+        "genuine_multi_hop": 0
+      }
+    ],
+    "holdout_frozen": false,
+    "read_from": "experiments/GOLD-001/GOLD-001-eligibility-status.json"
+  },
+  "frozen_systems": {
+    "SYSTEM-A-GLOBAL": "9afcb5b7c58ebacff0b4c3711dd9618a2e727f4195dd1787a5da81e478ee0b38",
+    "SYSTEM-B-DOC-C": "304c350940b83733df6043ae3a8abdcbcde33d16950730127aa9f1f39494388b"
+  },
+  "preregistered_fixes_applied": [
+    {
+      "id": "A",
+      "fix": "bare-definition-bullet scope applied to every span",
+      "module": "rag_v1.gold.scoping",
+      "from_case": "GOLD-B005-01"
+    },
+    {
+      "id": "B",
+      "fix": "markdown links stripped from questions and answers",
+      "module": "rag_v1.gold.normalisation.strip_markdown_links",
+      "from_case": "GOLD-B005-15"
+    },
+    {
+      "id": "C",
+      "fix": "heading parser audited; section_path not trusted for scope",
+      "module": "scripts/audit_heading_parser.py",
+      "from_case": "GOLD-B005-11"
+    },
+    {
+      "id": "D",
+      "fix": "source and question triples recorded and compared",
+      "module": "rag_v1.gold.relations",
+      "from_case": "GOLD-B005-10"
+    }
+  ],
+  "candidate_pool_size": 1364,
+  "corpus_census": {
+    "facts_mined": 1361,
+    "distinct_evidence_texts": 773,
+    "unspent_distinct_texts": 699,
+    "note": "Distinct evidence texts no closed batch has used. The shortfall in this batch is not a shortage of material — it is a shortage of builders that can turn this material into a question without paraphrasing it."
+  },
+  "candidates": 9,
+  "target_size": 28,
+  "by_provider": {
+    "anthropic": 5,
+    "openai": 4
+  },
+  "by_reasoning_type": {
+    "configuration_interaction": 4,
+    "error_behavior": 1,
+    "exact_lookup": 4
+  },
+  "by_evidence_shape": {
+    "single_span": 9
+  },
+  "by_confidence": {
+    "medium": 8,
+    "high": 1
+  },
+  "unique_documents": 8,
+  "documents_by_provider": {
+    "anthropic": 4,
+    "openai": 4
+  },
+  "versions_by_provider": {
+    "anthropic": 4,
+    "openai": 4
+  },
+  "genuine_multi_hop": 0,
+  "multi_document": 0,
+  "complete_questions": 9,
+  "complete_answers": 9,
+  "complete_claims": 9,
+  "needs_human_interpretation": 0,
+  "precheck_holdout_ready": 9,
+  "precheck_means": "STRUCTURAL ONLY — not semantic correctness, not independent verification, not human approval, not holdout eligibility",
+  "internal_review": {
+    "counts": {
+      "DROP": 40,
+      "READY_FOR_INDEPENDENT_REVIEW": 10
+    },
+    "gate_counts": {
+      "BARE_DEFINITION_SCOPE": 12,
+      "NO_TRIPLE": 9,
+      "GENERIC_IDENTIFIER": 9,
+      "CATEGORY": 5,
+      "QUESTION_SCOPE": 2,
+      "QUESTION_FORM": 1,
+      "SUBJECT_MISMATCH": 1,
+      "CLAIM_SCOPE": 1
+    },
+    "repaired": [],
+    "dropped": [
+      {
+        "question": "What must `openssl` be?",
+        "reasoning_type": "exact_lookup",
+        "provider": "anthropic",
+        "findings": [
+          "QUESTION_FORM: too short to carry its conditions"
+        ]
+      },
+      {
+        "question": "What does the `is_enabled` option control?",
+        "reasoning_type": "exact_lookup",
+        "provider": "openai",
+        "findings": [
+          "BARE_DEFINITION_SCOPE: E1: bare definition bullet — the span defines `is_enabled` without naming the object, component, event or tool that owns it; the scope is in the heading, which is not evidence"
+        ]
+      },
+      {
+        "question": "What is the `nest_handoff_history` option?",
+        "reasoning_type": "exact_lookup",
+        "provider": "openai",
+        "findings": [
+          "NO_TRIPLE: the candidate cannot state its subject and relation from its own evidence, so the direction check has nothing to compare"
+        ]
+      },
+      {
+        "question": "What does `created_at` require?",
+        "reasoning_type": "configuration_interaction",
+        "provider": "anthropic",
+        "findings": [
+          "CATEGORY: labelled configuration_interaction but the evidence names fewer than two settings, and the question was written for a relation the evidence does not state"
+        ]
+      },
+      {
+        "question": "What happens if recent raw memories exceed `max_raw_memories_for_consolidation` (defaults to 256)?",
+        "reasoning_type": "configuration_interaction",
+        "provider": "openai",
+        "findings": [
+          "NO_TRIPLE: the candidate cannot state its subject and relation from its own evidence, so the direction check has nothing to compare"
+        ]
+      },
+      {
+        "question": "What is the `default_message` option?",
+        "reasoning_type": "exact_lookup",
+        "provider": "openai",
+        "findings": [
+          "BARE_DEFINITION_SCOPE: E1: bare definition bullet — the span defines `default_message` without naming the object, component, event or tool that owns it; the scope is in the heading, which is not evidence"
+        ]
+      },
+      {
+        "question": "What is the `encrypted_index` option?",
+        "reasoning_type": "exact_lookup",
+        "provider": "anthropic",
+        "findings": [
+          "BARE_DEFINITION_SCOPE: E1: bare definition bullet — the span defines `encrypted_index` without naming the object, component, event or tool that owns it; the scope is in the heading, which is not evidence"
+        ]
+      },
+      {
+        "question": "What is the `request_too_large` option?",
+        "reasoning_type": "exact_lookup",
+        "provider": "anthropic",
+        "findings": [
+          "BARE_DEFINITION_SCOPE: E1: bare definition bullet — the span defines `request_too_large` without naming the object, component, event or tool that owns it; the scope is in the heading, which is not evidence"
+        ]
+      },
+      {
+        "question": "What is the `parsed` option?",
+        "reasoning_type": "exact_lookup",
+        "provider": "openai",
+        "findings": [
+          "BARE_DEFINITION_SCOPE: E1: bare definition bullet — the span defines `parsed` without naming the object, component, event or tool that owns it; the scope is in the heading, which is not evidence"
+        ]
+      },
+      {
+        "question": "What is the `arguments` option?",
+        "reasoning_type": "exact_lookup",
+        "provider": "openai",
+        "findings": [
+          "BARE_DEFINITION_SCOPE: E1: bare definition bullet — the span defines `arguments` without naming the object, component, event or tool that owns it; the scope is in the heading, which is not evidence"
+        ]
+      },
+      {
+        "question": "What is the `arguments_delta` option?",
+        "reasoning_type": "exact_lookup",
+        "provider": "openai",
+        "findings": [
+          "BARE_DEFINITION_SCOPE: E1: bare definition bullet — the span defines `arguments_delta` without naming the object, component, event or tool that owns it; the scope is in the heading, which is not evidence"
+        ]
+      },
+      {
+        "question": "What is the `refusal` option?",
+        "reasoning_type": "exact_lookup",
+        "provider": "openai",
+        "findings": [
+          "BARE_DEFINITION_SCOPE: E1: bare definition bullet — the span defines `refusal` without naming the object, component, event or tool that owns it; the scope is in the heading, which is not evidence"
+        ]
+      },
+      {
+        "question": "What is the `refusal` option?",
+        "reasoning_type": "exact_lookup",
+        "provider": "openai",
+        "findings": [
+          "BARE_DEFINITION_SCOPE: E1: bare definition bullet — the span defines `refusal` without naming the object, component, event or tool that owns it; the scope is in the heading, which is not evidence"
+        ]
+      },
+      {
+        "question": "What is the `group_id` option?",
+        "reasoning_type": "exact_lookup",
+        "provider": "openai",
+        "findings": [
+          "BARE_DEFINITION_SCOPE: E1: bare definition bullet — the span defines `group_id` without naming the object, component, event or tool that owns it; the scope is in the heading, which is not evidence"
+        ]
+      },
+      {
+        "question": "What is the `insert_line` option?",
+        "reasoning_type": "exact_lookup",
+        "provider": "anthropic",
+        "findings": [
+          "BARE_DEFINITION_SCOPE: E1: bare definition bullet — the span defines `insert_line` without naming the object, component, event or tool that owns it; the scope is in the heading, which is not evidence"
+        ]
+      },
+      {
+        "question": "What should I move to instead of `httpx`?",
+        "reasoning_type": "lifecycle_compatibility_migration",
+        "provider": "openai",
+        "findings": [
+          "NO_TRIPLE: the candidate cannot state its subject and relation from its own evidence, so the direction check has nothing to compare"
+        ]
+      },
+      {
+        "question": "What is the `tool_use_id` option?",
+        "reasoning_type": "exact_lookup",
+        "provider": "anthropic",
+        "findings": [
+          "BARE_DEFINITION_SCOPE: E1: bare definition bullet — the span defines `tool_use_id` without naming the object, component, event or tool that owns it; the scope is in the heading, which is not evidence"
+        ]
+      },
+      {
+        "question": "What happens when the memory tool is present in your request's `tools`?",
+        "reasoning_type": "configuration_interaction",
+        "provider": "anthropic",
+        "findings": [
+          "SUBJECT_MISMATCH: the question's subject 'tools' is what the source's sentence is, not what does the is"
+        ]
+      },
+      {
+        "question": "What must `name` be?",
+        "reasoning_type": "exact_lookup",
+        "provider": "anthropic",
+        "findings": [
+          "GENERIC_IDENTIFIER: `name` names something that exists in many APIs, and the question does not say which one"
+        ]
+      },
+      {
+        "question": "What must `name` be?",
+        "reasoning_type": "exact_lookup",
+        "provider": "anthropic",
+        "findings": [
+          "GENERIC_IDENTIFIER: `name` names something that exists in many APIs, and the question does not say which one"
+        ]
+      },
+      {
+        "question": "What must `name` be?",
+        "reasoning_type": "exact_lookup",
+        "provider": "anthropic",
+        "findings": [
+          "GENERIC_IDENTIFIER: `name` names something that exists in many APIs, and the question does not say which one"
+        ]
+      },
+      {
+        "question": "What does `RunConfig.session_settings` override?",
+        "reasoning_type": "configuration_interaction",
+        "provider": "openai",
+        "findings": [
+          "QUESTION_SCOPE: the question makes `RunConfig.session_settings` the subject, but the evidence has it after 'in'"
+        ]
+      },
+      {
+        "question": "What happens when extended thinking is enabled without explicit `clear_thinking` configuration?",
+        "reasoning_type": "configuration_interaction",
+        "provider": "anthropic",
+        "findings": [
+          "NO_TRIPLE: the candidate cannot state its subject and relation from its own evidence, so the direction check has nothing to compare"
+        ]
+      },
+      {
+        "question": "What does Grouping by `speed` require?",
+        "reasoning_type": "configuration_interaction",
+        "provider": "anthropic",
+        "findings": [
+          "QUESTION_SCOPE: the question makes `speed` the subject, but the evidence has it after 'by'"
+        ]
+      },
+      {
+        "question": "What does `speed` require?",
+        "reasoning_type": "configuration_interaction",
+        "provider": "anthropic",
+        "findings": [
+          "NO_TRIPLE: the candidate cannot state its subject and relation from its own evidence, so the direction check has nothing to compare"
+        ]
+      },
+      {
+        "question": "What happens when the API receives a `compaction` block?",
+        "reasoning_type": "configuration_interaction",
+        "provider": "anthropic",
+        "findings": [
+          "NO_TRIPLE: the candidate cannot state its subject and relation from its own evidence, so the direction check has nothing to compare"
+        ]
+      },
+      {
+        "question": "What does Because setting `max_retries` to `0` disable?",
+        "reasoning_type": "configuration_interaction",
+        "provider": "anthropic",
+        "findings": [
+          "CLAIM_SCOPE: the answer points outside its evidence with a demonstrative"
+        ]
+      },
+      {
+        "question": "What does Version 0.21.0 require?",
+        "reasoning_type": "configuration_interaction",
+        "provider": "openai",
+        "findings": [
+          "CATEGORY: labelled configuration_interaction but the evidence names fewer than two settings, and the question was written for a relation the evidence does not state"
+        ]
+      },
+      {
+        "question": "What does Setting `audio.input.turn_detection=None` explicitly disable?",
+        "reasoning_type": "configuration_interaction",
+        "provider": "openai",
+        "findings": [
+          "CATEGORY: labelled configuration_interaction but the evidence names fewer than two settings, and the question was written for a relation the evidence does not state"
+        ]
+      },
+      {
+        "question": "What does `audio.input.turn_detection=None` disable?",
+        "reasoning_type": "configuration_interaction",
+        "provider": "openai",
+        "findings": [
+          "NO_TRIPLE: the candidate cannot state its subject and relation from its own evidence, so the direction check has nothing to compare"
+        ]
+      },
+      {
+        "question": "What happens if the precondition fails but the stored state already exactly matches the requested `content` and `path`?",
+        "reasoning_type": "error_behavior",
+        "provider": "anthropic",
+        "findings": [
+          "GENERIC_IDENTIFIER: `content` names something that exists in many APIs, and the question does not say which one"
+        ]
+      },
+      {
+        "question": "What happens if the precondition fails but the stored state already exactly matches the requested `content` and `path`?",
+        "reasoning_type": "error_behavior",
+        "provider": "anthropic",
+        "findings": [
+          "GENERIC_IDENTIFIER: `content` names something that exists in many APIs, and the question does not say which one"
+        ]
+      },
+      {
+        "question": "What happens if the precondition fails but the stored state already exactly matches the requested `content` and `path`?",
+        "reasoning_type": "error_behavior",
+        "provider": "anthropic",
+        "findings": [
+          "GENERIC_IDENTIFIER: `content` names something that exists in many APIs, and the question does not say which one"
+        ]
+      },
+      {
+        "question": "What happens if the precondition fails but the stored state already exactly matches the requested `content` and `path`?",
+        "reasoning_type": "error_behavior",
+        "provider": "anthropic",
+        "findings": [
+          "GENERIC_IDENTIFIER: `content` names something that exists in many APIs, and the question does not say which one"
+        ]
+      },
+      {
+        "question": "What happens if the precondition fails but the stored state already exactly matches the requested `content` and `path`?",
+        "reasoning_type": "error_behavior",
+        "provider": "anthropic",
+        "findings": [
+          "GENERIC_IDENTIFIER: `content` names something that exists in many APIs, and the question does not say which one"
+        ]
+      },
+      {
+        "question": "What happens if the precondition fails but the stored state already exactly matches the requested `content` and `path`?",
+        "reasoning_type": "error_behavior",
+        "provider": "anthropic",
+        "findings": [
+          "GENERIC_IDENTIFIER: `content` names something that exists in many APIs, and the question does not say which one"
+        ]
+      },
+      {
+        "question": "What happens when `ANTHROPIC_API_KEY` is set in your environment?",
+        "reasoning_type": "configuration_interaction",
+        "provider": "anthropic",
+        "findings": [
+          "CATEGORY: labelled configuration_interaction but the evidence names fewer than two settings, and the question was written for a relation the evidence does not state"
+        ]
+      },
+      {
+        "question": "What happens when an application supplies `params[\"auth\"]` or `params[\"httpx_client_factory\"]`?",
+        "reasoning_type": "configuration_interaction",
+        "provider": "openai",
+        "findings": [
+          "NO_TRIPLE: the candidate cannot state its subject and relation from its own evidence, so the direction check has nothing to compare"
+        ]
+      },
+      {
+        "question": "What does `structuredContent` take precedence over?",
+        "reasoning_type": "configuration_interaction",
+        "provider": "openai",
+        "findings": [
+          "NO_TRIPLE: the candidate cannot state its subject and relation from its own evidence, so the direction check has nothing to compare"
+        ]
+      },
+      {
+        "question": "What does When a streaming Chat Completions provider require?",
+        "reasoning_type": "configuration_interaction",
+        "provider": "openai",
+        "findings": [
+          "CATEGORY: labelled configuration_interaction but the evidence names fewer than two settings, and the question was written for a relation the evidence does not state"
+        ]
+      }
+    ],
+    "note": "A generation self-review, not independent verification and not human approval. Every candidate here is candidate_unverified."
+  },
+  "selected_by": {
+    "target": 9
+  },
+  "overflow_cap": {
+    "error_behavior": 3,
+    "configuration_interaction": 3,
+    "exact_lookup": 3,
+    "lifecycle_compatibility_migration": 2
+  },
+  "question_openings": {
+    "what does claude": 3,
+    "what does creating": 1,
+    "what does `thinking.display`": 1,
+    "what does `aws_bedrock_base_url`": 1,
+    "what does setting": 1,
+    "what does the": 1,
+    "what does `runerrorhandlerresult.include_in_history`": 1
+  },
+  "evidence_length": {
+    "spans": 9,
+    "mean": 169.9,
+    "median": 181,
+    "max": 345,
+    "min": 62,
+    "over_soft_cap": 0
+  },
+  "removed": {
+    "excluded_known_failure_case": 1,
+    "unbuildable": 2482,
+    "dropped_by_semantic_review": 40,
+    "duplicate_question": 26,
+    "duplicate_evidence": 36,
+    "blocking_anaphora": 1,
+    "duplicate_evidence_text": 5,
+    "document_concentration": 1,
+    "short_of_target_before_overflow": 19,
+    "not_selected_diversity": 1
+  },
+  "eligible_pool": {
+    "candidates": 10,
+    "by_reasoning_type": {
+      "configuration_interaction": 4,
+      "exact_lookup": 4,
+      "error_behavior": 1,
+      "lifecycle_compatibility_migration": 1
+    },
+    "by_provider": {
+      "openai": 4,
+      "anthropic": 6
+    }
+  },
+  "multi_hop_search": {
+    "ran": false,
+    "reason": "§7: batch 004 tested 559 bridge pairs and found 1 chain; batch 005 searched dependency-first and found the same one. The corpus has been measured twice. No search was run here, and no multi-span case was relabelled to raise the count.",
+    "exported_chains": 0
+  },
+  "targets": {
+    "reasoning_type": {
+      "error_behavior": [
+        5,
+        6
+      ],
+      "configuration_interaction": [
+        6,
+        7
+      ],
+      "exact_lookup": [
+        5,
+        6
+      ],
+      "lifecycle_compatibility_migration": [
+        4,
+        5
+      ],
+      "ambiguity_disambiguation": [
+        0,
+        3
+      ],
+      "comparison": [
+        0,
+        2
+      ],
+      "genuine_multi_hop": [
+        0,
+        1
+      ]
+    },
+    "provider": {
+      "openai": [
+        12,
+        14
+      ],
+      "anthropic": [
+        12,
+        14
+      ]
+    },
+    "size": 28,
+    "minimum_useful": 20,
+    "unique_documents": 20
+  },
+  "source_triple_derivations": {
+    "named relation": 9
+  },
+  "heading_audit": "experiments/GOLD-001/GOLD-001-heading-parser-audit.json",
+  "suspicious_headings_known": 23,
+  "verification_status": "candidate_unverified — nothing in this file is gold",
+  "retrieval_was_not_run": true,
+  "systems_executed": [],
+  "batch_sha256": "7a061b0beb37770338471ab0cd3517ea7d9c8e4e52c5aaf54e6094df81f145dc"
+}

@@ -1,0 +1,1360 @@
+{
+  "batch": 4,
+  "schema_version": "1.2",
+  "generated_at": "2026-08-21T05:18:49Z",
+  "git_commit": "2daaa9e62566c8d4ab799f2c1dc7aa92878d41d0",
+  "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a",
+  "candidate_pool_size": 58,
+  "candidates": 15,
+  "by_provider": {
+    "anthropic": 7,
+    "openai": 8
+  },
+  "by_reasoning_type": {
+    "configuration_interaction": 5,
+    "error_behavior": 3,
+    "exact_lookup": 3,
+    "lifecycle_compatibility_migration": 1,
+    "ambiguity_disambiguation": 2,
+    "genuine_multi_hop": 1
+  },
+  "by_evidence_shape": {
+    "single_span": 12,
+    "multi_span": 2,
+    "multi_document": 1
+  },
+  "by_confidence": {
+    "medium": 12,
+    "high": 3
+  },
+  "unique_documents": 10,
+  "documents_by_provider": {
+    "anthropic": 5,
+    "openai": 5
+  },
+  "versions_by_provider": {
+    "anthropic": 5,
+    "openai": 6
+  },
+  "genuine_multi_hop": 1,
+  "multi_document": 1,
+  "needs_human_interpretation": 3,
+  "precheck_holdout_ready": 15,
+  "evidence_length": {
+    "spans": 18,
+    "mean": 141.4,
+    "median": 144,
+    "max": 330,
+    "over_soft_cap": 0
+  },
+  "removed": {
+    "excluded_known_failure_case": 1,
+    "fake_multi_hop": 558,
+    "duplicate_question": 24,
+    "duplicate_evidence": 25,
+    "blocking_anaphora": 1,
+    "failed_precheck": 4,
+    "reasoning_type_ceiling": 62,
+    "not_selected_diversity": 62
+  },
+  "eligible_pool": {
+    "by_reasoning_type": {
+      "error_behavior": 18,
+      "lifecycle_compatibility_migration": 1,
+      "configuration_interaction": 39,
+      "exact_lookup": 16,
+      "ambiguity_disambiguation": 2,
+      "genuine_multi_hop": 1
+    },
+    "by_provider": {
+      "anthropic": 40,
+      "openai": 37
+    },
+    "candidates": 77
+  },
+  "multi_hop_rejection": {
+    "attempted_pairs": 559,
+    "passed": 1,
+    "rejected": 558,
+    "reasons": {
+      "span_1_alone_answered_the_full_question": 16,
+      "span_2_alone_answered_the_full_question": 16,
+      "the_spans_were_two_unrelated_lookups": 379,
+      "no_bridge_relationship_existed": 147,
+      "the_composed_answer_introduced_unsupported_inference": 0
+    },
+    "unclassified": 0,
+    "by_check": {
+      "span 2 states no condition on the bridge entity": 371,
+      "span 1 enumerates values rather than stating a requirement about the bridge entity": 147,
+      "span 1 alone already answers the whole question": 16,
+      "span 2 alone already answers the whole question": 16,
+      "the spans are two unrelated lookups": 8
+    },
+    "note": "Counted from each check's own reason string, not asserted. A pair is counted once, under the first reason it failed. `unclassified` is a guard: it should be 0, and a non-zero value means a check grew a reason the report does not know how to file."
+  },
+  "verification_status": "candidate_unverified — nothing in this file is gold",
+  "retrieval_was_not_run": true,
+  "systems_executed": [],
+  "records": [
+    {
+      "candidate_id": "GOLD-B004-01",
+      "provider": "anthropic",
+      "document_title": "Stop reasons and fallback",
+      "version_id": "ver_4d14aec24504f4b8f6f28938b84587dc",
+      "source_url": "https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons",
+      "captured_at": "2026-08-17 04:46:19+00:00",
+      "reasoning_type": "configuration_interaction",
+      "secondary_category": "conditional_behavior",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "question": "What happens when using server tools?",
+      "answer": "The API may return `pause_turn` if the server-side sampling loop reaches its iteration limit (default 10).",
+      "atomic_claims": [
+        "When using [server tools](https://platform.claude.com/docs/en/agents-and-tools/tool-use/server-tools), the API may return `pause_turn` if the server-side sampling loop reaches its iteration limit (default 10)."
+      ],
+      "proposed_question": "What happens when using server tools?",
+      "proposed_answer": "The API may return `pause_turn` if the server-side sampling loop reaches its iteration limit (default 10).",
+      "proposed_atomic_claims": [
+        "When using [server tools](https://platform.claude.com/docs/en/agents-and-tools/tool-use/server-tools), the API may return `pause_turn` if the server-side sampling loop reaches its iteration limit (default 10)."
+      ],
+      "expected_evidence": [
+        {
+          "evidence_id": "E1",
+          "version_id": "ver_4d14aec24504f4b8f6f28938b84587dc",
+          "section_path": [
+            "Best practices for handling stop reasons",
+            "Implement retry logic for pause\\_turn"
+          ],
+          "char_start": 80272,
+          "char_end": 80481,
+          "evidence_text": "When using [server tools](https://platform.claude.com/docs/en/agents-and-tools/tool-use/server-tools), the API may return `pause_turn` if the server-side sampling loop reaches its iteration limit (default 10).",
+          "evidence_hash": "b13da047087150f9eefa746b904f26b9fc06d87cbc58b912916dd6eba0a74231",
+          "evidence_char_length": 209,
+          "critical_strings": [
+            "pause_turn"
+          ]
+        }
+      ],
+      "claim_evidence_map": [
+        {
+          "claim": "When using [server tools](https://platform.claude.com/docs/en/agents-and-tools/tool-use/server-tools), the API may return `pause_turn` if the server-side sampling loop reaches its iteration limit (default 10).",
+          "evidence_id": "E1",
+          "critical_strings": [
+            "pause_turn"
+          ]
+        }
+      ],
+      "section_path": [
+        "Best practices for handling stop reasons",
+        "Implement retry logic for pause\\_turn"
+      ],
+      "critical_strings": [
+        "pause_turn"
+      ],
+      "evidence_char_length": 209,
+      "context_before": "= 'text')?->text ?? '';\n\n      if (in_array($response->stopReason, ['max_tokens', 'model_context_window_exceeded'], true)) {\n          $note = $response->stopReason === 'max_tokens'\n              ? '[Response truncated due to max_tokens limit]'\n              : '[Response truncated due to context window limit]';\n          return \"{$text}\\n\\n{$note}\";\n      }\n      return $text;\n  }\n  ```\n\n  ```ruby Ruby\n  def handle_truncated_response(response)\n    text = response.content.find { it.type == :text }&.text\n\n    if [:max_tokens, :model_context_window_exceeded].include?(response.stop_reason)\n      note = if response.stop_reason == :max_tokens\n        \"[Response truncated due to max_tokens limit]\"\n      else\n        \"[Response truncated due to context window limit]\"\n      end\n      return \"#{text}\\n\\n#{note}\"\n    end\n    text\n  end\n  ```\n</CodeGroup>\n\n### Implement retry logic for pause\\_turn\n\n",
+      "context_after": " Handle this by continuing the conversation:\n\n<CodeGroup exclude=\"shell\">\n  ```python Python\n  def handle_server_tool_conversation(client, user_query, tools, max_continuations=5):\n      \"\"\"\n      Handle server tool conversations that may require multiple continuations.\n\n      The server runs a sampling loop when executing server tools. If the loop\n      reaches its iteration limit, the API returns pause_turn. Continue the\n      conversation by sending the response back to let Claude finish.\n      \"\"\"\n      messages = [{\"role\": \"user\", \"content\": user_query}]\n\n      for _ in range(max_continuations):\n          response = client.messages.create(\n              model=\"claude-opus-5\", max_tokens=4096, messages=messages, tools=tools\n          )\n\n          if response.stop_reason != \"pause_turn\":\n              # Claude finished processing - return the final response\n              return respons",
+      "candidate_type": "supported",
+      "generator_confidence": "medium",
+      "needs_human_interpretation": false,
+      "verification_status": "candidate_unverified",
+      "claude_proposed": true,
+      "chatgpt_verified": null,
+      "retrieval_was_not_run": true,
+      "schema_version": "1.2",
+      "precheck_holdout_ready": true,
+      "precheck_failures": [],
+      "revisions": []
+    },
+    {
+      "candidate_id": "GOLD-B004-02",
+      "provider": "anthropic",
+      "document_title": "Web search tool",
+      "version_id": "ver_53da2f78e855c75ec755089c13d44c28",
+      "source_url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool",
+      "captured_at": "2026-08-17 04:46:19+00:00",
+      "reasoning_type": "configuration_interaction",
+      "secondary_category": "conditional_behavior",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "question": "What happens if Claude calls web search and one of your client tools in the same group of parallel tool calls?",
+      "answer": "The API returns `stop_reason: \"tool_use\"` instead and does not run the search yet.",
+      "atomic_claims": [
+        "If Claude calls web search and one of your client tools in the same group of parallel tool calls, the API returns `stop_reason: \"tool_use\"` instead and does not run the search yet."
+      ],
+      "proposed_question": "What happens if Claude calls web search and one of your client tools in the same group of parallel tool calls?",
+      "proposed_answer": "The API returns `stop_reason: \"tool_use\"` instead and does not run the search yet.",
+      "proposed_atomic_claims": [
+        "If Claude calls web search and one of your client tools in the same group of parallel tool calls, the API returns `stop_reason: \"tool_use\"` instead and does not run the search yet."
+      ],
+      "expected_evidence": [
+        {
+          "evidence_id": "E1",
+          "version_id": "ver_53da2f78e855c75ec755089c13d44c28",
+          "section_path": [
+            "Response",
+            "`pause_turn` stop reason"
+          ],
+          "char_start": 22695,
+          "char_end": 22875,
+          "evidence_text": "If Claude calls web search and one of your client tools in the same group of parallel tool calls, the API returns `stop_reason: \"tool_use\"` instead and does not run the search yet.",
+          "evidence_hash": "0f83094654abd858b9e46cff62a781ffc8b0bb12c679beb91ed3498045109e06",
+          "evidence_char_length": 180,
+          "critical_strings": [
+            "stop_reason",
+            "tool_use"
+          ]
+        }
+      ],
+      "claim_evidence_map": [
+        {
+          "claim": "If Claude calls web search and one of your client tools in the same group of parallel tool calls, the API returns `stop_reason: \"tool_use\"` instead and does not run the search yet.",
+          "evidence_id": "E1",
+          "critical_strings": [
+            "stop_reason",
+            "tool_use"
+          ]
+        }
+      ],
+      "section_path": [
+        "Response",
+        "`pause_turn` stop reason"
+      ],
+      "critical_strings": [
+        "stop_reason",
+        "tool_use"
+      ],
+      "evidence_char_length": 180,
+      "context_before": "id\": \"srvtoolu_a93jad\",\n  \"content\": {\n    \"type\": \"web_search_tool_result_error\",\n    \"error_code\": \"max_uses_exceeded\"\n  }\n}\n```\n\nOn an error, `content` is a single error object rather than a list of result blocks. A search that succeeds but matches no results returns an empty `content` list, not an error.\n\nThese are the possible error codes:\n\n* `too_many_requests`: Rate limit exceeded\n* `invalid_tool_input`: Invalid search query parameter\n* `max_uses_exceeded`: Maximum web search tool uses exceeded\n* `query_too_long`: Query exceeds maximum length\n* `request_too_large`: The search request is too large, typically because of a long domain filter list\n* `unavailable`: An internal error occurred\n\n### `pause_turn` stop reason\n\nThe API can pause a long-running search turn and return `stop_reason: \"pause_turn\"`. To continue, send the paused assistant message back unchanged in a new request.\n\n",
+      "context_after": " To continue, return the client tool results, and the API runs the search in the next request. See [Mixing server tools and client tools in one turn](https://platform.claude.com/docs/en/agents-and-tools/tool-use/server-tools#mixing-server-tools-and-client-tools-in-one-turn).\n\nFor the server-side loop and `pause_turn` handling, see [The server-side loop and pause\\_turn](https://platform.claude.com/docs/en/agents-and-tools/tool-use/server-tools#the-server-side-loop-and-pause-turn) in the Server tools guide.\n\n## Prompt caching\n\nFor caching tool definitions across turns, see [Tool use with prompt caching](https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-use-with-prompt-caching).\n\n## Streaming\n\nWith streaming enabled, you'll receive search events as part of the stream. There will be a pause while the search runs:\n\n```sse Output\nevent: message_start\ndata: {\"type\": \"message_st",
+      "candidate_type": "supported",
+      "generator_confidence": "medium",
+      "needs_human_interpretation": false,
+      "verification_status": "candidate_unverified",
+      "claude_proposed": true,
+      "chatgpt_verified": null,
+      "retrieval_was_not_run": true,
+      "schema_version": "1.2",
+      "precheck_holdout_ready": true,
+      "precheck_failures": [],
+      "revisions": []
+    },
+    {
+      "candidate_id": "GOLD-B004-03",
+      "provider": "anthropic",
+      "document_title": "Claude API errors",
+      "version_id": "ver_0774ca0093ff4a846753577c9a4a39d5",
+      "source_url": "https://platform.claude.com/docs/en/api/errors",
+      "captured_at": "2026-08-17 04:46:19+00:00",
+      "reasoning_type": "error_behavior",
+      "secondary_category": "conditional_behavior",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "question": "What happens if the most recent assistant message contains `thinking` or `redacted_thinking` blocks that were edited, reordered, filtered out, or reconstructed before being sent back to the API?",
+      "answer": "The request returns a 400 `invalid_request_error`.",
+      "atomic_claims": [
+        "If the most recent assistant message contains `thinking` or `redacted_thinking` blocks that were edited, reordered, filtered out, or reconstructed before being sent back to the API, the request returns a 400 `invalid_request_error`."
+      ],
+      "proposed_question": "What happens if the most recent assistant message contains `thinking` or `redacted_thinking` blocks that were edited, reordered, filtered out, or reconstructed before being sent back to the API?",
+      "proposed_answer": "The request returns a 400 `invalid_request_error`.",
+      "proposed_atomic_claims": [
+        "If the most recent assistant message contains `thinking` or `redacted_thinking` blocks that were edited, reordered, filtered out, or reconstructed before being sent back to the API, the request returns a 400 `invalid_request_error`."
+      ],
+      "expected_evidence": [
+        {
+          "evidence_id": "E1",
+          "version_id": "ver_0774ca0093ff4a846753577c9a4a39d5",
+          "section_path": [
+            "Common validation errors",
+            "Thinking blocks cannot be modified"
+          ],
+          "char_start": 19838,
+          "char_end": 20070,
+          "evidence_text": "If the most recent assistant message contains `thinking` or `redacted_thinking` blocks that were edited, reordered, filtered out, or reconstructed before being sent back to the API, the request returns a 400 `invalid_request_error`.",
+          "evidence_hash": "1f1dbc851bb4029f1d827d1c11462573659eaa43a6e23acae8e9b1e0a916cdff",
+          "evidence_char_length": 232,
+          "critical_strings": [
+            "thinking",
+            "redacted_thinking",
+            "invalid_request_error"
+          ]
+        }
+      ],
+      "claim_evidence_map": [
+        {
+          "claim": "If the most recent assistant message contains `thinking` or `redacted_thinking` blocks that were edited, reordered, filtered out, or reconstructed before being sent back to the API, the request returns a 400 `invalid_request_error`.",
+          "evidence_id": "E1",
+          "critical_strings": [
+            "thinking",
+            "redacted_thinking",
+            "invalid_request_error"
+          ]
+        }
+      ],
+      "section_path": [
+        "Common validation errors",
+        "Thinking blocks cannot be modified"
+      ],
+      "critical_strings": [
+        "thinking",
+        "redacted_thinking",
+        "invalid_request_error"
+      ],
+      "evidence_char_length": 232,
+      "context_before": "e-final-message-without-handling-events) for more details.\n\n## Common validation errors\n\n### Prefill not supported\n\nClaude 4.6 and later models and [Claude Mythos Preview](https://anthropic.com/glasswing) do not support prefilling assistant messages. Sending a request with a prefilled last assistant message to any of these models returns a 400 `invalid_request_error`:\n\n```json\n{\n  \"type\": \"error\",\n  \"error\": {\n    \"type\": \"invalid_request_error\",\n    \"message\": \"This model does not support assistant message prefill. The conversation must end with a user message.\"\n  }\n}\n```\n\nUse [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs) on models that support it, system prompt instructions, or [`output_config.format`](https://platform.claude.com/docs/en/build-with-claude/structured-outputs#json-outputs) instead.\n\n### Thinking blocks cannot be modified\n\n",
+      "context_after": " The error message starts with the position of the offending block (for example, `messages.1.content.0`) and contains:\n\n```text wrap\n`thinking` or `redacted_thinking` blocks in the latest assistant message cannot be modified. These blocks must remain as they were in the original response.\n```\n\nWith tool use, every `thinking` and `redacted_thinking` block from the assistant turn must be passed back exactly as received, including blocks whose `thinking` field is empty. Pass thinking blocks back unchanged, and if your application filters content blocks by type before resending, include both `thinking` and `redacted_thinking`. See [Troubleshooting thinking](https://platform.claude.com/docs/en/build-with-claude/thinking-troubleshooting#error-thinking-blocks-modified), [Preserving thinking blocks](https://platform.claude.com/docs/en/build-with-claude/thinking#preserving-thinking-blocks), and [",
+      "candidate_type": "supported",
+      "generator_confidence": "medium",
+      "needs_human_interpretation": false,
+      "verification_status": "candidate_unverified",
+      "claude_proposed": true,
+      "chatgpt_verified": null,
+      "retrieval_was_not_run": true,
+      "schema_version": "1.2",
+      "precheck_holdout_ready": true,
+      "precheck_failures": [],
+      "revisions": []
+    },
+    {
+      "candidate_id": "GOLD-B004-04",
+      "provider": "anthropic",
+      "document_title": "Thinking",
+      "version_id": "ver_012b734775e7edb2649d3a9ddfd93070",
+      "source_url": "https://platform.claude.com/docs/en/build-with-claude/thinking",
+      "captured_at": "2026-08-17 04:46:19+00:00",
+      "reasoning_type": "error_behavior",
+      "secondary_category": "conditional_behavior",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "question": "What happens if generation then reaches the context window limit?",
+      "answer": "It stops with `stop_reason: \"model_context_window_exceeded\"` instead of returning an error.",
+      "atomic_claims": [
+        "If generation then reaches the context window limit, it stops with `stop_reason: \"model_context_window_exceeded\"` instead of returning an error."
+      ],
+      "proposed_question": "What happens if generation then reaches the context window limit?",
+      "proposed_answer": "It stops with `stop_reason: \"model_context_window_exceeded\"` instead of returning an error.",
+      "proposed_atomic_claims": [
+        "If generation then reaches the context window limit, it stops with `stop_reason: \"model_context_window_exceeded\"` instead of returning an error."
+      ],
+      "expected_evidence": [
+        {
+          "evidence_id": "E1",
+          "version_id": "ver_012b734775e7edb2649d3a9ddfd93070",
+          "section_path": [
+            "Thinking and the context window"
+          ],
+          "char_start": 48081,
+          "char_end": 48225,
+          "evidence_text": "If generation then reaches the context window limit, it stops with `stop_reason: \"model_context_window_exceeded\"` instead of returning an error.",
+          "evidence_hash": "13f22cd01eeaeaad4e7c51e02e5ea5347541780f320e43c4cb816a141c933afb",
+          "evidence_char_length": 144,
+          "critical_strings": [
+            "stop_reason",
+            "model_context_window_exceeded"
+          ]
+        }
+      ],
+      "claim_evidence_map": [
+        {
+          "claim": "If generation then reaches the context window limit, it stops with `stop_reason: \"model_context_window_exceeded\"` instead of returning an error.",
+          "evidence_id": "E1",
+          "critical_strings": [
+            "stop_reason",
+            "model_context_window_exceeded"
+          ]
+        }
+      ],
+      "section_path": [
+        "Thinking and the context window"
+      ],
+      "critical_strings": [
+        "stop_reason",
+        "model_context_window_exceeded"
+      ],
+      "evidence_char_length": 144,
+      "context_before": "dation](https://platform.claude.com/docs/en/build-with-claude/thinking#thinking-with-tool-use)). [Interleaved thinking](https://platform.claude.com/docs/en/build-with-claude/thinking#interleaved-thinking) amplifies cache invalidation effects, because thinking blocks can occur between multiple tool calls.\n\n<Tip>\n  Thinking-heavy tasks often take longer than the default 5-minute cache lifetime to complete. Consider the [1-hour cache duration](https://platform.claude.com/docs/en/build-with-claude/prompt-caching#1-hour-cache-duration) to maintain cache hits across longer thinking sessions and multistep workflows.\n</Tip>\n\n## Thinking and the context window\n\n`max_tokens`, which includes all thinking Claude generates in the current turn, is enforced as a strict limit. On Claude 4.5 models and newer, if input tokens plus `max_tokens` exceeds the context window size, the API accepts the request. ",
+      "context_after": " On earlier models, the API returns a validation error instead. See [Handling stop reasons](https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons).\n\nHow thinking counts against the window depends on when it was generated:\n\n* **Current-turn thinking** always counts toward `max_tokens`, is billed as output tokens, and occupies context window space for the turn that generated it.\n* **Prior-turn thinking** depends on the [preservation default](https://platform.claude.com/docs/en/build-with-claude/thinking#thinking-block-preservation-by-model). On [models that keep all prior turns](https://platform.claude.com/docs/en/build-with-claude/thinking#thinking-block-preservation-by-model), previous thinking blocks remain in context, count toward the window, and are billed as input tokens like the rest of the conversation history. On models that keep only the last turn, the API s",
+      "candidate_type": "supported",
+      "generator_confidence": "medium",
+      "needs_human_interpretation": false,
+      "verification_status": "candidate_unverified",
+      "claude_proposed": true,
+      "chatgpt_verified": null,
+      "retrieval_was_not_run": true,
+      "schema_version": "1.2",
+      "precheck_holdout_ready": true,
+      "precheck_failures": [],
+      "revisions": []
+    },
+    {
+      "candidate_id": "GOLD-B004-05",
+      "provider": "anthropic",
+      "document_title": "Web search tool",
+      "version_id": "ver_53da2f78e855c75ec755089c13d44c28",
+      "source_url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool",
+      "captured_at": "2026-08-17 04:46:19+00:00",
+      "reasoning_type": "error_behavior",
+      "secondary_category": "conditional_behavior",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "question": "What happens if Claude attempts more searches than allowed?",
+      "answer": "The `web_search_tool_result` is an error with the `max_uses_exceeded` error code.",
+      "atomic_claims": [
+        "If Claude attempts more searches than allowed, the `web_search_tool_result` is an error with the `max_uses_exceeded` error code."
+      ],
+      "proposed_question": "What happens if Claude attempts more searches than allowed?",
+      "proposed_answer": "The `web_search_tool_result` is an error with the `max_uses_exceeded` error code.",
+      "proposed_atomic_claims": [
+        "If Claude attempts more searches than allowed, the `web_search_tool_result` is an error with the `max_uses_exceeded` error code."
+      ],
+      "expected_evidence": [
+        {
+          "evidence_id": "E1",
+          "version_id": "ver_53da2f78e855c75ec755089c13d44c28",
+          "section_path": [
+            "Tool definition",
+            "Max uses"
+          ],
+          "char_start": 15475,
+          "char_end": 15603,
+          "evidence_text": "If Claude attempts more searches than allowed, the `web_search_tool_result` is an error with the `max_uses_exceeded` error code.",
+          "evidence_hash": "9d881c94127cc6d29cf87e6cce6611ee77ac7b4fdbfb19477653a4f5b0a8fa08",
+          "evidence_char_length": 128,
+          "critical_strings": [
+            "web_search_tool_result",
+            "max_uses_exceeded"
+          ]
+        }
+      ],
+      "claim_evidence_map": [
+        {
+          "claim": "If Claude attempts more searches than allowed, the `web_search_tool_result` is an error with the `max_uses_exceeded` error code.",
+          "evidence_id": "E1",
+          "critical_strings": [
+            "web_search_tool_result",
+            "max_uses_exceeded"
+          ]
+        }
+      ],
+      "section_path": [
+        "Tool definition",
+        "Max uses"
+      ],
+      "critical_strings": [
+        "web_search_tool_result",
+        "max_uses_exceeded"
+      ],
+      "evidence_char_length": 128,
+      "context_before": ": \"approximate\",\n    \"city\": \"San Francisco\",\n    \"region\": \"California\",\n    \"country\": \"US\",\n    \"timezone\": \"America/Los_Angeles\"\n  }\n}\n```\n\nAll web search tool versions accept `allowed_callers`, which controls whether Claude calls web search directly or from code execution through [dynamic filtering](https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool#dynamic-filtering). On `web_search_20260209` and later it defaults to `[\"code_execution_20260120\"]` instead of `[\"direct\"]`. See [Server tools](https://platform.claude.com/docs/en/agents-and-tools/tool-use/server-tools#zdr-and-allowed-callers) for how to configure it. `web_search_20260318` and later also accept [`response_inclusion`](https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool#response-inclusion).\n\n### Max uses\n\nThe `max_uses` parameter limits the number of searches performed. ",
+      "context_after": "\n\nSimple factual queries typically use 1–3 searches; comparative or multientity research can use 10 or more. For guidance on choosing a value, see [Server tools](https://platform.claude.com/docs/en/agents-and-tools/tool-use/server-tools).\n\n### Domain filtering\n\nProvide `allowed_domains` or `blocked_domains`, not both. If a request includes both, the API returns a 400 error. Entries are bare domains with an optional path, for example `example.com` or `example.com/blog`, without a scheme.\n\nFor the full domain filtering rules, see [Domain filtering](https://platform.claude.com/docs/en/agents-and-tools/tool-use/server-tools#domain-filtering) in the Server tools guide.\n\n### Localization\n\nThe `user_location` parameter allows you to localize search results based on a user's location. Provide at least one of `city`, `region`, `country`, or `timezone`.\n\n* `type`: The type of location (must be `ap",
+      "candidate_type": "supported",
+      "generator_confidence": "medium",
+      "needs_human_interpretation": false,
+      "verification_status": "candidate_unverified",
+      "claude_proposed": true,
+      "chatgpt_verified": null,
+      "retrieval_was_not_run": true,
+      "schema_version": "1.2",
+      "precheck_holdout_ready": true,
+      "precheck_failures": [],
+      "revisions": []
+    },
+    {
+      "candidate_id": "GOLD-B004-06",
+      "provider": "anthropic",
+      "document_title": "Web search tool",
+      "version_id": "ver_53da2f78e855c75ec755089c13d44c28",
+      "source_url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool",
+      "captured_at": "2026-08-17 04:46:19+00:00",
+      "reasoning_type": "exact_lookup",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "question": "What is the `timezone` option?",
+      "answer": "The [IANA timezone ID](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).",
+      "atomic_claims": [
+        "`timezone`: The [IANA timezone ID](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)."
+      ],
+      "proposed_question": "What is the `timezone` option?",
+      "proposed_answer": "The [IANA timezone ID](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).",
+      "proposed_atomic_claims": [
+        "`timezone`: The [IANA timezone ID](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)."
+      ],
+      "expected_evidence": [
+        {
+          "evidence_id": "E1",
+          "version_id": "ver_53da2f78e855c75ec755089c13d44c28",
+          "section_path": [
+            "Tool definition",
+            "Localization"
+          ],
+          "char_start": 16744,
+          "char_end": 16843,
+          "evidence_text": "* `timezone`: The [IANA timezone ID](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).",
+          "evidence_hash": "0bd723f53fa5e63b4e74a9bd5ffb4a3886ed049776ce3c69528c18e1a7371371",
+          "evidence_char_length": 99,
+          "critical_strings": [
+            "timezone",
+            "The [IANA timezone ID](https://en.wikipedia.org/wiki/List_of"
+          ]
+        }
+      ],
+      "claim_evidence_map": [
+        {
+          "claim": "`timezone`: The [IANA timezone ID](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).",
+          "evidence_id": "E1",
+          "critical_strings": [
+            "timezone",
+            "The [IANA timezone ID](https://en.wikipedia.org/wiki/List_of"
+          ]
+        }
+      ],
+      "section_path": [
+        "Tool definition",
+        "Localization"
+      ],
+      "critical_strings": [
+        "timezone",
+        "The [IANA timezone ID](https://en.wikipedia.org/wiki/List_of"
+      ],
+      "evidence_char_length": 99,
+      "context_before": "## Domain filtering\n\nProvide `allowed_domains` or `blocked_domains`, not both. If a request includes both, the API returns a 400 error. Entries are bare domains with an optional path, for example `example.com` or `example.com/blog`, without a scheme.\n\nFor the full domain filtering rules, see [Domain filtering](https://platform.claude.com/docs/en/agents-and-tools/tool-use/server-tools#domain-filtering) in the Server tools guide.\n\n### Localization\n\nThe `user_location` parameter allows you to localize search results based on a user's location. Provide at least one of `city`, `region`, `country`, or `timezone`.\n\n* `type`: The type of location (must be `approximate`)\n* `city`: The city name\n* `region`: The region or state\n* `country`: The two-letter [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code. The API rejects unsupported country codes with a 400 error.\n",
+      "context_after": "\n\n### Response inclusion\n\n<Note>\n  Requires `web_search_20260318` or later.\n</Note>\n\nThe `response_inclusion` parameter controls how search result blocks appear in the API response when the result was consumed by a completed [code execution](https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool) call in the same turn. Set `\"response_inclusion\": \"excluded\"` to drop those nested `server_tool_use` and result block pairs entirely from the response, reducing output token costs for agentic workflows that don't need to echo raw search content back to the client. The default is `\"full\"`. Results from direct calls, or from code execution calls that paused before completing, are always returned in full so they can be sent back on the next turn.\n\n```json JSON\n{\n  \"tools\": [\n    {\n      \"type\": \"web_search_20260318\",\n      \"name\": \"web_search\",\n      \"response_inclusion\":",
+      "candidate_type": "supported",
+      "generator_confidence": "high",
+      "needs_human_interpretation": false,
+      "verification_status": "candidate_unverified",
+      "claude_proposed": true,
+      "chatgpt_verified": null,
+      "retrieval_was_not_run": true,
+      "schema_version": "1.2",
+      "precheck_holdout_ready": true,
+      "precheck_failures": [],
+      "revisions": []
+    },
+    {
+      "candidate_id": "GOLD-B004-07",
+      "provider": "anthropic",
+      "document_title": "Prompting best practices",
+      "version_id": "ver_0a5b292d4854b92db0a9e025b4949123",
+      "source_url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
+      "captured_at": "2026-08-17 04:46:19+00:00",
+      "reasoning_type": "lifecycle_compatibility_migration",
+      "secondary_category": "conditional_behavior",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "question": "What happens if you need a hard ceiling on thinking costs?",
+      "answer": "Extended thinking with a `budget_tokens` cap is still functional on Opus 4.6 and Sonnet 4.6 but is deprecated.",
+      "atomic_claims": [
+        "If you need a hard ceiling on thinking costs, extended thinking with a `budget_tokens` cap is still functional on Opus 4.6 and Sonnet 4.6 but is deprecated."
+      ],
+      "proposed_question": "What happens if you need a hard ceiling on thinking costs?",
+      "proposed_answer": "Extended thinking with a `budget_tokens` cap is still functional on Opus 4.6 and Sonnet 4.6 but is deprecated.",
+      "proposed_atomic_claims": [
+        "If you need a hard ceiling on thinking costs, extended thinking with a `budget_tokens` cap is still functional on Opus 4.6 and Sonnet 4.6 but is deprecated."
+      ],
+      "expected_evidence": [
+        {
+          "evidence_id": "E1",
+          "version_id": "ver_0a5b292d4854b92db0a9e025b4949123",
+          "section_path": [
+            "Thinking and reasoning",
+            "Overthinking and excessive thoroughness"
+          ],
+          "char_start": 27270,
+          "char_end": 27426,
+          "evidence_text": "If you need a hard ceiling on thinking costs, extended thinking with a `budget_tokens` cap is still functional on Opus 4.6 and Sonnet 4.6 but is deprecated.",
+          "evidence_hash": "6defce92772b6eefb4f7e6e8c08c6c7107cc017e934290819360eb5bfd38c874",
+          "evidence_char_length": 156,
+          "critical_strings": [
+            "budget_tokens"
+          ]
+        }
+      ],
+      "claim_evidence_map": [
+        {
+          "claim": "If you need a hard ceiling on thinking costs, extended thinking with a `budget_tokens` cap is still functional on Opus 4.6 and Sonnet 4.6 but is deprecated.",
+          "evidence_id": "E1",
+          "critical_strings": [
+            "budget_tokens"
+          ]
+        }
+      ],
+      "section_path": [
+        "Thinking and reasoning",
+        "Overthinking and excessive thoroughness"
+      ],
+      "critical_strings": [
+        "budget_tokens"
+      ],
+      "evidence_char_length": 156,
+      "context_before": "ertriggered in previous models are likely to trigger appropriately now. Instructions like \"If in doubt, use \\[tool]\" will cause overtriggering.\n* **Use effort as a fallback.** If Claude continues to be overly aggressive, use a lower setting for `effort`.\n\nIn some cases, Claude Opus 4.6 may think extensively, which can inflate thinking tokens and slow down responses. If this behavior is undesirable, you can add explicit instructions to constrain its reasoning, or you can lower the `effort` setting to reduce overall thinking and token usage.\n\n```text Sample prompt wrap\nWhen you're deciding how to approach a problem, choose an approach and commit to it.\nAvoid revisiting decisions unless you encounter new information that directly\ncontradicts your reasoning. If you're weighing two approaches, pick one and see it\nthrough. You can always course-correct later if the chosen approach fails.\n```\n\n",
+      "context_after": " On Claude 4.7 and later models, setting `budget_tokens` returns a 400 error. Prefer lowering the [effort](https://platform.claude.com/docs/en/build-with-claude/effort) setting or using `max_tokens` as a hard limit with [adaptive thinking](https://platform.claude.com/docs/en/build-with-claude/thinking).\n\n### Leverage thinking & interleaved thinking capabilities\n\nClaude's latest models offer thinking capabilities that can be especially helpful for tasks involving reflection after tool use or complex multistep reasoning. You can guide its initial or interleaved thinking for better results.\n\nClaude 4.6 and later models and Claude Mythos Preview use [adaptive thinking](https://platform.claude.com/docs/en/build-with-claude/thinking) (`thinking: {type: \"adaptive\"}`), where Claude dynamically decides when and how much to think. On Claude Fable 5 and Claude Mythos 5, thinking is always on and ad",
+      "candidate_type": "supported",
+      "generator_confidence": "medium",
+      "needs_human_interpretation": false,
+      "verification_status": "candidate_unverified",
+      "claude_proposed": true,
+      "chatgpt_verified": null,
+      "retrieval_was_not_run": true,
+      "schema_version": "1.2",
+      "precheck_holdout_ready": true,
+      "precheck_failures": [],
+      "revisions": []
+    },
+    {
+      "candidate_id": "GOLD-B004-08",
+      "provider": "openai",
+      "document_title": "Structured Outputs Parsing Helpers",
+      "version_id": "ver_57e26a49b0a3714f3e90376d014d7f52",
+      "source_url": "https://github.com/openai/openai-python/blob/10ee3f0da2ac6f93345c1204bd7bb1a2faa79ff2/helpers.md",
+      "captured_at": "2026-08-17 04:46:19+00:00",
+      "reasoning_type": "ambiguity_disambiguation",
+      "secondary_category": null,
+      "evidence_shape": "multi_span",
+      "requires_all_evidence": true,
+      "question": "In a `ContentDeltaEvent`, what does the `type` field contain, and how does that differ from `ContentDoneEvent`?",
+      "answer": "In `ContentDeltaEvent`, `type` is: `\"content.delta\"`. In `ContentDoneEvent`, `type` is: `\"content.done\"`.",
+      "atomic_claims": [
+        "In `ContentDeltaEvent`, `type` is: `\"content.delta\"`.",
+        "In `ContentDoneEvent`, `type` is: `\"content.done\"`."
+      ],
+      "proposed_question": "In a `ContentDeltaEvent`, what does the `type` field contain, and how does that differ from `ContentDoneEvent`?",
+      "proposed_answer": "In `ContentDeltaEvent`, `type` is: `\"content.delta\"`. In `ContentDoneEvent`, `type` is: `\"content.done\"`.",
+      "proposed_atomic_claims": [
+        "In `ContentDeltaEvent`, `type` is: `\"content.delta\"`.",
+        "In `ContentDoneEvent`, `type` is: `\"content.done\"`."
+      ],
+      "expected_evidence": [
+        {
+          "evidence_id": "E1",
+          "version_id": "ver_57e26a49b0a3714f3e90376d014d7f52",
+          "section_path": [
+            "Streaming Helpers",
+            "Chat Completions API",
+            "Chat Completions Events",
+            "ContentDeltaEvent"
+          ],
+          "char_start": 5814,
+          "char_end": 5841,
+          "evidence_text": "- `type`: `\"content.delta\"`",
+          "evidence_hash": "9d90d13b5ef5041ad8d20a4c0acf1a56b5845947c2b74462a46d2700c7fa393d",
+          "evidence_char_length": 27,
+          "critical_strings": [
+            "type",
+            "`\"content.delta\"`"
+          ]
+        },
+        {
+          "evidence_id": "E2",
+          "version_id": "ver_57e26a49b0a3714f3e90376d014d7f52",
+          "section_path": [
+            "Streaming Helpers",
+            "Chat Completions API",
+            "Chat Completions Events",
+            "ContentDoneEvent"
+          ],
+          "char_start": 6134,
+          "char_end": 6160,
+          "evidence_text": "- `type`: `\"content.done\"`",
+          "evidence_hash": "c4e5d438b90d3496919b5293c18370f6d3ed060409e90fce345e3b8ac4a76b12",
+          "evidence_char_length": 26,
+          "critical_strings": [
+            "type",
+            "`\"content.done\"`"
+          ]
+        }
+      ],
+      "claim_evidence_map": [
+        {
+          "claim": "In `ContentDeltaEvent`, `type` is: `\"content.delta\"`.",
+          "evidence_id": "E1",
+          "critical_strings": [
+            "type",
+            "`\"content.delta\"`"
+          ]
+        },
+        {
+          "claim": "In `ContentDoneEvent`, `type` is: `\"content.done\"`.",
+          "evidence_id": "E2",
+          "critical_strings": [
+            "type",
+            "`\"content.done\"`"
+          ]
+        }
+      ],
+      "section_path": [
+        "Streaming Helpers",
+        "Chat Completions API",
+        "Chat Completions Events",
+        "ContentDeltaEvent"
+      ],
+      "critical_strings": [
+        "type",
+        "`\"content.delta\"`",
+        "type",
+        "`\"content.done\"`"
+      ],
+      "evidence_char_length": 53,
+      "context_before": "ike `.create(stream=True)` is an iterator in the sync client and an async iterator in the async client. The full list of events that are yielded by the iterator are outlined [below](#chat-completions-events).\n\nWhen the context manager exits, the response will be closed, however the `stream` instance is still available outside\nthe context manager.\n\n### Chat Completions Events\n\nThese events allow you to track the progress of the chat completion generation, access partial results, and handle different aspects of the stream separately.\n\nBelow is a list of the different event types you may encounter:\n\n#### ChunkEvent\n\nEmitted for every chunk received from the API.\n\n- `type`: `\"chunk\"`\n- `chunk`: The raw `ChatCompletionChunk` object received from the API\n- `snapshot`: The current accumulated state of the chat completion\n\n#### ContentDeltaEvent\n\nEmitted for every chunk containing new content.\n\n",
+      "context_after": "\n- `content`: The full generated content\n- `parsed`: The fully parsed content (if applicable)\n\n#### RefusalDeltaEvent\n\nEmitted when a chunk contains part of a content refusal.\n\n- `type`: `\"refusal.delta\"`\n- `delta`: The new refusal content string received in this chunk\n- `snapshot`: The accumulated refusal content string so far\n\n#### RefusalDoneEvent\n\nEmitted when the refusal content is complete.\n\n- `type`: `\"refusal.done\"`\n- `refusal`: The full refusal content\n\n#### FunctionToolCallArgumentsDeltaEvent\n\nEmitted when a chunk contains part of a function tool call's arguments.\n\n- `type`: `\"tool_calls.function.arguments.delta\"`\n- `name`: The name of the function being called\n- `index`: The index of the tool call\n- `arguments`: The accumulated raw JSON string of arguments\n- `parsed_arguments`: The partially parsed arguments object\n- `arguments_delta`: The new JSON string fragment received in ",
+      "candidate_type": "supported",
+      "generator_confidence": "medium",
+      "needs_human_interpretation": true,
+      "verification_status": "candidate_unverified",
+      "claude_proposed": true,
+      "chatgpt_verified": null,
+      "retrieval_was_not_run": true,
+      "schema_version": "1.2",
+      "precheck_holdout_ready": true,
+      "precheck_failures": [],
+      "revisions": [],
+      "ambiguous_term": "type",
+      "candidate_interpretations": [
+        {
+          "scope": "ContentDeltaEvent",
+          "meaning": "`\"content.delta\"`"
+        },
+        {
+          "scope": "ContentDoneEvent",
+          "meaning": "`\"content.done\"`"
+        },
+        {
+          "scope": "FunctionToolCallArgumentsDeltaEvent",
+          "meaning": "`\"tool_calls.function.arguments.delta\"`"
+        },
+        {
+          "scope": "FunctionToolCallArgumentsDoneEvent",
+          "meaning": "`\"tool_calls.function.arguments.done\"`"
+        },
+        {
+          "scope": "LogprobsContentDeltaEvent",
+          "meaning": "`\"logprobs.content.delta\"`"
+        },
+        {
+          "scope": "LogprobsContentDoneEvent",
+          "meaning": "`\"logprobs.content.done\"`"
+        },
+        {
+          "scope": "LogprobsRefusalDeltaEvent",
+          "meaning": "`\"logprobs.refusal.delta\"`"
+        },
+        {
+          "scope": "LogprobsRefusalDoneEvent",
+          "meaning": "`\"logprobs.refusal.done\"`"
+        },
+        {
+          "scope": "RefusalDeltaEvent",
+          "meaning": "`\"refusal.delta\"`"
+        },
+        {
+          "scope": "RefusalDoneEvent",
+          "meaning": "`\"refusal.done\"`"
+        }
+      ],
+      "required_scope_to_answer": "Which parent type the `type` field belongs to. The corpus defines it under ContentDeltaEvent, ContentDoneEvent, FunctionToolCallArgumentsDeltaEvent, FunctionToolCallArgumentsDoneEvent, LogprobsContentDeltaEvent, LogprobsContentDoneEvent, LogprobsRefusalDeltaEvent, LogprobsRefusalDoneEvent, RefusalDeltaEvent, RefusalDoneEvent with different meanings, so the answer is undetermined until the scope is named."
+    },
+    {
+      "candidate_id": "GOLD-B004-09",
+      "provider": "openai",
+      "document_title": "Structured Outputs Parsing Helpers",
+      "version_id": "ver_57e26a49b0a3714f3e90376d014d7f52",
+      "source_url": "https://github.com/openai/openai-python/blob/10ee3f0da2ac6f93345c1204bd7bb1a2faa79ff2/helpers.md",
+      "captured_at": "2026-08-17 04:46:19+00:00",
+      "reasoning_type": "ambiguity_disambiguation",
+      "secondary_category": null,
+      "evidence_shape": "multi_span",
+      "requires_all_evidence": true,
+      "question": "In a `FunctionToolCallArgumentsDeltaEvent`, what does the `parsed_arguments` field contain, and how does that differ from `FunctionToolCallArgumentsDoneEvent`?",
+      "answer": "In `FunctionToolCallArgumentsDeltaEvent`, `parsed_arguments` is: The partially parsed arguments object. In `FunctionToolCallArgumentsDoneEvent`, `parsed_arguments` is: The fully parsed arguments object. If you used `openai.pydantic_function_tool()` this will be an instance of the given model.",
+      "atomic_claims": [
+        "In `FunctionToolCallArgumentsDeltaEvent`, `parsed_arguments` is: The partially parsed arguments object.",
+        "In `FunctionToolCallArgumentsDoneEvent`, `parsed_arguments` is: The fully parsed arguments object. If you used `openai.pydantic_function_tool()` this will be an instance of the given model."
+      ],
+      "proposed_question": "In a `FunctionToolCallArgumentsDeltaEvent`, what does the `parsed_arguments` field contain, and how does that differ from `FunctionToolCallArgumentsDoneEvent`?",
+      "proposed_answer": "In `FunctionToolCallArgumentsDeltaEvent`, `parsed_arguments` is: The partially parsed arguments object. In `FunctionToolCallArgumentsDoneEvent`, `parsed_arguments` is: The fully parsed arguments object. If you used `openai.pydantic_function_tool()` this will be an instance of the given model.",
+      "proposed_atomic_claims": [
+        "In `FunctionToolCallArgumentsDeltaEvent`, `parsed_arguments` is: The partially parsed arguments object.",
+        "In `FunctionToolCallArgumentsDoneEvent`, `parsed_arguments` is: The fully parsed arguments object. If you used `openai.pydantic_function_tool()` this will be an instance of the given model."
+      ],
+      "expected_evidence": [
+        {
+          "evidence_id": "E1",
+          "version_id": "ver_57e26a49b0a3714f3e90376d014d7f52",
+          "section_path": [
+            "Streaming Helpers",
+            "Chat Completions API",
+            "Chat Completions Events",
+            "FunctionToolCallArgumentsDeltaEvent"
+          ],
+          "char_start": 6938,
+          "char_end": 6997,
+          "evidence_text": "- `parsed_arguments`: The partially parsed arguments object",
+          "evidence_hash": "a3608232ce720258f2e6af35dce62d3ec8968dd22a187707c40130688f78032b",
+          "evidence_char_length": 59,
+          "critical_strings": [
+            "parsed_arguments",
+            "The partially parsed arguments object"
+          ]
+        },
+        {
+          "evidence_id": "E2",
+          "version_id": "ver_57e26a49b0a3714f3e90376d014d7f52",
+          "section_path": [
+            "Streaming Helpers",
+            "Chat Completions API",
+            "Chat Completions Events",
+            "FunctionToolCallArgumentsDoneEvent"
+          ],
+          "char_start": 7362,
+          "char_end": 7509,
+          "evidence_text": "- `parsed_arguments`: The fully parsed arguments object. If you used `openai.pydantic_function_tool()` this will be an instance of the given model.",
+          "evidence_hash": "24e776c42e7a5e4cecfb38c19c02bf8757d107244a0b584f4701adf6c1231f5f",
+          "evidence_char_length": 147,
+          "critical_strings": [
+            "parsed_arguments",
+            "The fully parsed arguments object. If you used `openai.pydan"
+          ]
+        }
+      ],
+      "claim_evidence_map": [
+        {
+          "claim": "In `FunctionToolCallArgumentsDeltaEvent`, `parsed_arguments` is: The partially parsed arguments object.",
+          "evidence_id": "E1",
+          "critical_strings": [
+            "parsed_arguments",
+            "The partially parsed arguments object"
+          ]
+        },
+        {
+          "claim": "In `FunctionToolCallArgumentsDoneEvent`, `parsed_arguments` is: The fully parsed arguments object. If you used `openai.pydantic_function_tool()` this will be an instance of the given model.",
+          "evidence_id": "E2",
+          "critical_strings": [
+            "parsed_arguments",
+            "The fully parsed arguments object. If you used `openai.pydan"
+          ]
+        }
+      ],
+      "section_path": [
+        "Streaming Helpers",
+        "Chat Completions API",
+        "Chat Completions Events",
+        "FunctionToolCallArgumentsDeltaEvent"
+      ],
+      "critical_strings": [
+        "parsed_arguments",
+        "The partially parsed arguments object",
+        "parsed_arguments",
+        "The fully parsed arguments object. If you used `openai.pydan"
+      ],
+      "evidence_char_length": 206,
+      "context_before": "the content generation is complete. May be fired multiple times if there are multiple choices.\n\n- `type`: `\"content.done\"`\n- `content`: The full generated content\n- `parsed`: The fully parsed content (if applicable)\n\n#### RefusalDeltaEvent\n\nEmitted when a chunk contains part of a content refusal.\n\n- `type`: `\"refusal.delta\"`\n- `delta`: The new refusal content string received in this chunk\n- `snapshot`: The accumulated refusal content string so far\n\n#### RefusalDoneEvent\n\nEmitted when the refusal content is complete.\n\n- `type`: `\"refusal.done\"`\n- `refusal`: The full refusal content\n\n#### FunctionToolCallArgumentsDeltaEvent\n\nEmitted when a chunk contains part of a function tool call's arguments.\n\n- `type`: `\"tool_calls.function.arguments.delta\"`\n- `name`: The name of the function being called\n- `index`: The index of the tool call\n- `arguments`: The accumulated raw JSON string of arguments\n",
+      "context_after": "\n\n#### LogprobsContentDeltaEvent\n\nEmitted when a chunk contains new content [log probabilities](https://cookbook.openai.com/examples/using_logprobs).\n\n- `type`: `\"logprobs.content.delta\"`\n- `content`: A list of the new log probabilities received in this chunk\n- `snapshot`: A list of the accumulated log probabilities so far\n\n#### LogprobsContentDoneEvent\n\nEmitted when all content [log probabilities](https://cookbook.openai.com/examples/using_logprobs) have been received.\n\n- `type`: `\"logprobs.content.done\"`\n- `content`: The full list of token log probabilities for the content\n\n#### LogprobsRefusalDeltaEvent\n\nEmitted when a chunk contains new refusal [log probabilities](https://cookbook.openai.com/examples/using_logprobs).\n\n- `type`: `\"logprobs.refusal.delta\"`\n- `refusal`: A list of the new log probabilities received in this chunk\n- `snapshot`: A list of the accumulated log probabilities s",
+      "candidate_type": "supported",
+      "generator_confidence": "medium",
+      "needs_human_interpretation": true,
+      "verification_status": "candidate_unverified",
+      "claude_proposed": true,
+      "chatgpt_verified": null,
+      "retrieval_was_not_run": true,
+      "schema_version": "1.2",
+      "precheck_holdout_ready": true,
+      "precheck_failures": [],
+      "revisions": [],
+      "ambiguous_term": "parsed_arguments",
+      "candidate_interpretations": [
+        {
+          "scope": "FunctionToolCallArgumentsDeltaEvent",
+          "meaning": "The partially parsed arguments object"
+        },
+        {
+          "scope": "FunctionToolCallArgumentsDoneEvent",
+          "meaning": "The fully parsed arguments object. If you used `openai.pydantic_function_tool()` this will be an instance of the given model."
+        }
+      ],
+      "required_scope_to_answer": "Which parent type the `parsed_arguments` field belongs to. The corpus defines it under FunctionToolCallArgumentsDeltaEvent, FunctionToolCallArgumentsDoneEvent with different meanings, so the answer is undetermined until the scope is named."
+    },
+    {
+      "candidate_id": "GOLD-B004-10",
+      "provider": "openai",
+      "document_title": "Realtime agents guide",
+      "version_id": "ver_14a2187cf2216b9d56c213b520a28479",
+      "source_url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/realtime/guide.md",
+      "captured_at": "2026-08-17 04:46:19+00:00",
+      "reasoning_type": "configuration_interaction",
+      "secondary_category": "conditional_behavior",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "question": "What happens if you pass a different `RealtimeModel`?",
+      "answer": "The same session lifecycle and agent features still apply, while the connection mechanics can change.",
+      "atomic_claims": [
+        "If you pass a different `RealtimeModel`, the same session lifecycle and agent features still apply, while the connection mechanics can change."
+      ],
+      "proposed_question": "What happens if you pass a different `RealtimeModel`?",
+      "proposed_answer": "The same session lifecycle and agent features still apply, while the connection mechanics can change.",
+      "proposed_atomic_claims": [
+        "If you pass a different `RealtimeModel`, the same session lifecycle and agent features still apply, while the connection mechanics can change."
+      ],
+      "expected_evidence": [
+        {
+          "evidence_id": "E1",
+          "version_id": "ver_14a2187cf2216b9d56c213b520a28479",
+          "section_path": [
+            "Realtime agents guide",
+            "Session lifecycle"
+          ],
+          "char_start": 1979,
+          "char_end": 2121,
+          "evidence_text": "If you pass a different `RealtimeModel`, the same session lifecycle and agent features still apply, while the connection mechanics can change.",
+          "evidence_hash": "ad1950090760f8b3b9378e1d9d7cddb5d66e5921d1a9005eda690004597ed6f5",
+          "evidence_char_length": 142,
+          "critical_strings": [
+            "RealtimeModel"
+          ]
+        }
+      ],
+      "claim_evidence_map": [
+        {
+          "claim": "If you pass a different `RealtimeModel`, the same session lifecycle and agent features still apply, while the connection mechanics can change.",
+          "evidence_id": "E1",
+          "critical_strings": [
+            "RealtimeModel"
+          ]
+        }
+      ],
+      "section_path": [
+        "Realtime agents guide",
+        "Session lifecycle"
+      ],
+      "critical_strings": [
+        "RealtimeModel"
+      ],
+      "evidence_char_length": 142,
+      "context_before": " abstraction. The default is OpenAI's server-side WebSocket implementation.\n\n## Session lifecycle\n\nA typical realtime session looks like this:\n\n1. Create one or more `RealtimeAgent`s.\n2. Create a `RealtimeRunner` with the starting agent.\n3. Call `await runner.run()` to get a `RealtimeSession`.\n4. Enter the session with `async with session:` or `await session.enter()`.\n5. Send user input with `send_message()` or `send_audio()`.\n6. Iterate over session events until the conversation ends.\n\nUnlike text-only runs, `runner.run()` does not produce a final result immediately. It returns a live session object that keeps local history, background tool execution, guardrail state, and the active agent configuration in sync with the transport layer.\n\nBy default, `RealtimeRunner` uses `OpenAIRealtimeWebSocketModel`, so the default Python path is a server-side WebSocket connection to the Realtime API. ",
+      "context_after": "\n\nWhen the Realtime API server closes the default WebSocket connection normally, the model transport emits a `disconnected` [`RealtimeModelConnectionStatusEvent`][agents.realtime.model_events.RealtimeModelConnectionStatusEvent] followed by a [`RealtimeModelEndOfStreamEvent`][agents.realtime.model_events.RealtimeModelEndOfStreamEvent]. `RealtimeSession` forwards both inside `raw_model_event`, drains events that are already queued, and then ends asynchronous iteration without raising an exception. A caller-initiated `session.close()` does not synthesize these server-disconnect events. Unexpected WebSocket failures continue through the session's exception path instead of ending iteration as a normal server close.\n\n## Agent and session configuration\n\n`RealtimeAgent` is intentionally narrower than the regular `Agent` type:\n\n-   Model choice is configured at the session level, not per agent.\n-",
+      "candidate_type": "supported",
+      "generator_confidence": "medium",
+      "needs_human_interpretation": false,
+      "verification_status": "candidate_unverified",
+      "claude_proposed": true,
+      "chatgpt_verified": null,
+      "retrieval_was_not_run": true,
+      "schema_version": "1.2",
+      "precheck_holdout_ready": true,
+      "precheck_failures": [],
+      "revisions": []
+    },
+    {
+      "candidate_id": "GOLD-B004-11",
+      "provider": "openai",
+      "document_title": "Streaming",
+      "version_id": "ver_12004469f7a5592cd1e6cab936117fce",
+      "source_url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/streaming.md",
+      "captured_at": "2026-08-17 04:46:19+00:00",
+      "reasoning_type": "configuration_interaction",
+      "secondary_category": "conditional_behavior",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "question": "What happens if a tool requires approval?",
+      "answer": "`result.stream_events()` finishes and pending approvals are exposed in `RunResultStreaming.interruptions`.",
+      "atomic_claims": [
+        "If a tool requires approval, `result.stream_events()` finishes and pending approvals are exposed in [`RunResultStreaming.interruptions`][agents.result.RunResultStreaming.interruptions]."
+      ],
+      "proposed_question": "What happens if a tool requires approval?",
+      "proposed_answer": "`result.stream_events()` finishes and pending approvals are exposed in `RunResultStreaming.interruptions`.",
+      "proposed_atomic_claims": [
+        "If a tool requires approval, `result.stream_events()` finishes and pending approvals are exposed in [`RunResultStreaming.interruptions`][agents.result.RunResultStreaming.interruptions]."
+      ],
+      "expected_evidence": [
+        {
+          "evidence_id": "E1",
+          "version_id": "ver_12004469f7a5592cd1e6cab936117fce",
+          "section_path": [
+            "Streaming",
+            "Streaming and approvals"
+          ],
+          "char_start": 2472,
+          "char_end": 2657,
+          "evidence_text": "If a tool requires approval, `result.stream_events()` finishes and pending approvals are exposed in [`RunResultStreaming.interruptions`][agents.result.RunResultStreaming.interruptions].",
+          "evidence_hash": "fd6ec23ac1830d0625b7509d4ef3572a6ec90090565db15c3d8402acbc147908",
+          "evidence_char_length": 185,
+          "critical_strings": [
+            "stream_events",
+            "RunResultStreaming.interruptions"
+          ]
+        }
+      ],
+      "claim_evidence_map": [
+        {
+          "claim": "If a tool requires approval, `result.stream_events()` finishes and pending approvals are exposed in [`RunResultStreaming.interruptions`][agents.result.RunResultStreaming.interruptions].",
+          "evidence_id": "E1",
+          "critical_strings": [
+            "stream_events",
+            "RunResultStreaming.interruptions"
+          ]
+        }
+      ],
+      "section_path": [
+        "Streaming",
+        "Streaming and approvals"
+      ],
+      "critical_strings": [
+        "stream_events",
+        "RunResultStreaming.interruptions"
+      ],
+      "evidence_char_length": 185,
+      "context_before": "ly event name for this: both shapes still surface as `tool_called`, and the screenshot result comes back as `tool_output` wrapping a `computer_call_output` item.\n\nFor example, this will output the text generated by the LLM token-by-token.\n\n```python\nimport asyncio\nfrom openai.types.responses import ResponseTextDeltaEvent\nfrom agents import Agent, Runner\n\nasync def main():\n    agent = Agent(\n        name=\"Joker\",\n        instructions=\"You are a helpful assistant.\",\n    )\n\n    result = Runner.run_streamed(agent, input=\"Please tell me 5 jokes.\")\n    async for event in result.stream_events():\n        if event.type == \"raw_response_event\" and isinstance(event.data, ResponseTextDeltaEvent):\n            print(event.data.delta, end=\"\", flush=True)\n\n\nif __name__ == \"__main__\":\n    asyncio.run(main())\n```\n\n## Streaming and approvals\n\nStreaming is compatible with runs that pause for tool approval. ",
+      "context_after": " Convert the result to a [`RunState`][agents.run_state.RunState] with `result.to_state()`, approve or reject the interruption, and then resume with `Runner.run_streamed(...)`.\n\n```python\nresult = Runner.run_streamed(agent, \"Delete temporary files if they are no longer needed.\")\nasync for _event in result.stream_events():\n    pass\n\nif result.interruptions:\n    state = result.to_state()\n    for interruption in result.interruptions:\n        state.approve(interruption)\n    result = Runner.run_streamed(agent, state)\n    async for _event in result.stream_events():\n        pass\n```\n\nFor a full pause/resume walkthrough, see the [human-in-the-loop guide](human_in_the_loop.md).\n\n## Cancel streaming after the current turn\n\nIf you need to stop a streaming run in the middle, call [`result.cancel()`][agents.result.RunResultStreaming.cancel]. By default this stops the run immediately. To let the curren",
+      "candidate_type": "supported",
+      "generator_confidence": "medium",
+      "needs_human_interpretation": false,
+      "verification_status": "candidate_unverified",
+      "claude_proposed": true,
+      "chatgpt_verified": null,
+      "retrieval_was_not_run": true,
+      "schema_version": "1.2",
+      "precheck_holdout_ready": true,
+      "precheck_failures": [],
+      "revisions": []
+    },
+    {
+      "candidate_id": "GOLD-B004-12",
+      "provider": "openai",
+      "document_title": "Streaming",
+      "version_id": "ver_12004469f7a5592cd1e6cab936117fce",
+      "source_url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/streaming.md",
+      "captured_at": "2026-08-17 04:46:19+00:00",
+      "reasoning_type": "configuration_interaction",
+      "secondary_category": "conditional_behavior",
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "question": "What happens if you are manually continuing from `result.to_input_list(mode=\"normalized\")`, and `cancel(mode=\"after_turn\")` stops after a tool turn?",
+      "answer": "Rerun `result.last_agent` with that normalized input to continue the unfinished existing user turn instead of appending a fresh user turn right away.",
+      "atomic_claims": [
+        "If you are manually continuing from [`result.to_input_list(mode=\"normalized\")`][agents.result.RunResultBase.to_input_list], and `cancel(mode=\"after_turn\")` stops after a tool turn, rerun `result.last_agent` with that normalized input to continue the unfinished existing user turn instead of appending a fresh user turn right away."
+      ],
+      "proposed_question": "What happens if you are manually continuing from `result.to_input_list(mode=\"normalized\")`, and `cancel(mode=\"after_turn\")` stops after a tool turn?",
+      "proposed_answer": "Rerun `result.last_agent` with that normalized input to continue the unfinished existing user turn instead of appending a fresh user turn right away.",
+      "proposed_atomic_claims": [
+        "If you are manually continuing from [`result.to_input_list(mode=\"normalized\")`][agents.result.RunResultBase.to_input_list], and `cancel(mode=\"after_turn\")` stops after a tool turn, rerun `result.last_agent` with that normalized input to continue the unfinished existing user turn instead of appending a fresh user turn right away."
+      ],
+      "expected_evidence": [
+        {
+          "evidence_id": "E1",
+          "version_id": "ver_12004469f7a5592cd1e6cab936117fce",
+          "section_path": [
+            "Streaming",
+            "Cancel streaming after the current turn"
+          ],
+          "char_start": 3845,
+          "char_end": 4175,
+          "evidence_text": "If you are manually continuing from [`result.to_input_list(mode=\"normalized\")`][agents.result.RunResultBase.to_input_list], and `cancel(mode=\"after_turn\")` stops after a tool turn, rerun `result.last_agent` with that normalized input to continue the unfinished existing user turn instead of appending a fresh user turn right away.",
+          "evidence_hash": "cfb7414fc8aeb9482635a45eede6ce305286f8df5f58cf54cc0818e14e954232",
+          "evidence_char_length": 330,
+          "critical_strings": [
+            "to_input_list",
+            "after_turn",
+            "result.last_agent"
+          ]
+        }
+      ],
+      "claim_evidence_map": [
+        {
+          "claim": "If you are manually continuing from [`result.to_input_list(mode=\"normalized\")`][agents.result.RunResultBase.to_input_list], and `cancel(mode=\"after_turn\")` stops after a tool turn, rerun `result.last_agent` with that normalized input to continue the unfinished existing user turn instead of appending a fresh user turn right away.",
+          "evidence_id": "E1",
+          "critical_strings": [
+            "to_input_list",
+            "after_turn",
+            "result.last_agent"
+          ]
+        }
+      ],
+      "section_path": [
+        "Streaming",
+        "Cancel streaming after the current turn"
+      ],
+      "critical_strings": [
+        "to_input_list",
+        "after_turn",
+        "result.last_agent"
+      ],
+      "evidence_char_length": 330,
+      "context_before": " _event in result.stream_events():\n    pass\n\nif result.interruptions:\n    state = result.to_state()\n    for interruption in result.interruptions:\n        state.approve(interruption)\n    result = Runner.run_streamed(agent, state)\n    async for _event in result.stream_events():\n        pass\n```\n\nFor a full pause/resume walkthrough, see the [human-in-the-loop guide](human_in_the_loop.md).\n\n## Cancel streaming after the current turn\n\nIf you need to stop a streaming run in the middle, call [`result.cancel()`][agents.result.RunResultStreaming.cancel]. By default this stops the run immediately. To let the current turn finish cleanly before stopping, call `result.cancel(mode=\"after_turn\")` instead.\n\nA streamed run is not complete until `result.stream_events()` finishes. The SDK may still be persisting session items, finalizing approval state, or compacting history after the last visible token.\n\n",
+      "context_after": "\n\n-   If new user input arrives before that unfinished run resumes, convert the drained result with `result.to_state()`, call [`state.add_input(...)`][agents.run_state.RunState.add_input], and resume from the state. The runner admits the staged input immediately before the next model call; see [Add input before resuming](results.md#add-input-before-resuming).\n-   If a streamed run stopped for tool approval, do not treat that as a new turn. Finish draining the stream, inspect `result.interruptions`, and resume from `result.to_state()` instead.\n-   Use [`RunConfig.session_input_callback`][agents.run.RunConfig.session_input_callback] to customize how retrieved session history and the new user input are merged before the next model call. If you rewrite new-turn items there, the rewritten version is what gets persisted for that turn.\n\n## Run item events and agent events\n\n[`RunItemStreamEvent`",
+      "candidate_type": "supported",
+      "generator_confidence": "medium",
+      "needs_human_interpretation": false,
+      "verification_status": "candidate_unverified",
+      "claude_proposed": true,
+      "chatgpt_verified": null,
+      "retrieval_was_not_run": true,
+      "schema_version": "1.2",
+      "precheck_holdout_ready": true,
+      "precheck_failures": [],
+      "revisions": []
+    },
+    {
+      "candidate_id": "GOLD-B004-13",
+      "provider": "openai",
+      "document_title": "Handoffs",
+      "version_id": "ver_1c77f33b04ffffa285ea7e61c2a89653",
+      "source_url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/handoffs.md",
+      "captured_at": "2026-08-17 04:46:19+00:00",
+      "reasoning_type": "exact_lookup",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "question": "What is the `input_type` option?",
+      "answer": "The schema for the handoff tool-call arguments. When set, the parsed payload is passed to `on_handoff`.",
+      "atomic_claims": [
+        "`input_type`: The schema for the handoff tool-call arguments. When set, the parsed payload is passed to `on_handoff`."
+      ],
+      "proposed_question": "What is the `input_type` option?",
+      "proposed_answer": "The schema for the handoff tool-call arguments. When set, the parsed payload is passed to `on_handoff`.",
+      "proposed_atomic_claims": [
+        "`input_type`: The schema for the handoff tool-call arguments. When set, the parsed payload is passed to `on_handoff`."
+      ],
+      "expected_evidence": [
+        {
+          "evidence_id": "E1",
+          "version_id": "ver_1c77f33b04ffffa285ea7e61c2a89653",
+          "section_path": [
+            "(1)!",
+            "Customizing handoffs via the `handoff()` function"
+          ],
+          "char_start": 2332,
+          "char_end": 2453,
+          "evidence_text": "-   `input_type`: The schema for the handoff tool-call arguments. When set, the parsed payload is passed to `on_handoff`.",
+          "evidence_hash": "3b8a83ecd785ac37429a82c6060abc61a4f6d4ac14a89586830b25a4ec75f25e",
+          "evidence_char_length": 121,
+          "critical_strings": [
+            "input_type",
+            "The schema for the handoff tool-call arguments. When set, th"
+          ]
+        }
+      ],
+      "claim_evidence_map": [
+        {
+          "claim": "`input_type`: The schema for the handoff tool-call arguments. When set, the parsed payload is passed to `on_handoff`.",
+          "evidence_id": "E1",
+          "critical_strings": [
+            "input_type",
+            "The schema for the handoff tool-call arguments. When set, th"
+          ]
+        }
+      ],
+      "section_path": [
+        "(1)!",
+        "Customizing handoffs via the `handoff()` function"
+      ],
+      "critical_strings": [
+        "input_type",
+        "The schema for the handoff tool-call arguments. When set, th"
+      ],
+      "evidence_char_length": 121,
+      "context_before": "se the agent directly (as in `billing_agent`), or you can use the `handoff()` function.\n\n### Customizing handoffs via the `handoff()` function\n\nThe [`handoff()`][agents.handoffs.handoff] function lets you customize things.\n\n-   `agent`: This is the agent to which things will be handed off.\n-   `tool_name_override`: By default, the `Handoff.default_tool_name()` function is used, which resolves to `transfer_to_<agent_name>`. You can override this.\n-   `tool_description_override`: Override the default tool description from `Handoff.default_tool_description()`\n-   `on_handoff`: A callback function executed when the handoff is invoked. This is useful for things like kicking off some data fetching as soon as you know a handoff is being invoked. This function receives the agent context, and can optionally also receive LLM generated input. The input data is controlled by the `input_type` param.\n",
+      "context_after": "\n-   `input_filter`: This lets you filter the input received by the next agent. See below for more.\n-   `is_enabled`: Whether the handoff is enabled. This can be a boolean or a function that returns a boolean, allowing you to dynamically enable or disable the handoff at runtime.\n-   `nest_handoff_history`: Optional per-handoff override for the RunConfig-level `nest_handoff_history` setting. If `None`, the value defined in the active run configuration is used instead.\n\nThe [`handoff()`][agents.handoffs.handoff] helper always transfers control to the specific `agent` you passed in. If you have multiple possible destinations, register one handoff per destination and let the model choose among them. Use a custom [`Handoff`][agents.handoffs.Handoff] only when your own handoff code must decide which agent to return at invocation time.\n\n```python\nfrom agents import Agent, handoff, RunContextWra",
+      "candidate_type": "supported",
+      "generator_confidence": "high",
+      "needs_human_interpretation": false,
+      "verification_status": "candidate_unverified",
+      "claude_proposed": true,
+      "chatgpt_verified": null,
+      "retrieval_was_not_run": true,
+      "schema_version": "1.2",
+      "precheck_holdout_ready": true,
+      "precheck_failures": [],
+      "revisions": []
+    },
+    {
+      "candidate_id": "GOLD-B004-14",
+      "provider": "openai",
+      "document_title": "Handoffs",
+      "version_id": "ver_1c77f33b04ffffa285ea7e61c2a89653",
+      "source_url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/handoffs.md",
+      "captured_at": "2026-08-17 04:46:19+00:00",
+      "reasoning_type": "exact_lookup",
+      "secondary_category": null,
+      "evidence_shape": "single_span",
+      "requires_all_evidence": false,
+      "question": "What is the `input_filter` option?",
+      "answer": "This lets you filter the input received by the next agent.",
+      "atomic_claims": [
+        "`input_filter`: This lets you filter the input received by the next agent."
+      ],
+      "proposed_question": "What is the `input_filter` option?",
+      "proposed_answer": "This lets you filter the input received by the next agent.",
+      "proposed_atomic_claims": [
+        "`input_filter`: This lets you filter the input received by the next agent."
+      ],
+      "expected_evidence": [
+        {
+          "evidence_id": "E1",
+          "version_id": "ver_1c77f33b04ffffa285ea7e61c2a89653",
+          "section_path": [
+            "(1)!",
+            "Customizing handoffs via the `handoff()` function"
+          ],
+          "char_start": 2454,
+          "char_end": 2552,
+          "evidence_text": "-   `input_filter`: This lets you filter the input received by the next agent. See below for more.",
+          "evidence_hash": "1c50ad6eeed23afe1fd9cb3c931d490f140d744f683d5f95de266846dae0364a",
+          "evidence_char_length": 98,
+          "critical_strings": [
+            "input_filter",
+            "This lets you filter the input received by the next agent"
+          ]
+        }
+      ],
+      "claim_evidence_map": [
+        {
+          "claim": "`input_filter`: This lets you filter the input received by the next agent.",
+          "evidence_id": "E1",
+          "critical_strings": [
+            "input_filter",
+            "This lets you filter the input received by the next agent"
+          ]
+        }
+      ],
+      "section_path": [
+        "(1)!",
+        "Customizing handoffs via the `handoff()` function"
+      ],
+      "critical_strings": [
+        "input_filter",
+        "This lets you filter the input received by the next agent"
+      ],
+      "evidence_char_length": 98,
+      "context_before": "`handoff()` function\n\nThe [`handoff()`][agents.handoffs.handoff] function lets you customize things.\n\n-   `agent`: This is the agent to which things will be handed off.\n-   `tool_name_override`: By default, the `Handoff.default_tool_name()` function is used, which resolves to `transfer_to_<agent_name>`. You can override this.\n-   `tool_description_override`: Override the default tool description from `Handoff.default_tool_description()`\n-   `on_handoff`: A callback function executed when the handoff is invoked. This is useful for things like kicking off some data fetching as soon as you know a handoff is being invoked. This function receives the agent context, and can optionally also receive LLM generated input. The input data is controlled by the `input_type` param.\n-   `input_type`: The schema for the handoff tool-call arguments. When set, the parsed payload is passed to `on_handoff`.\n",
+      "context_after": "\n-   `is_enabled`: Whether the handoff is enabled. This can be a boolean or a function that returns a boolean, allowing you to dynamically enable or disable the handoff at runtime.\n-   `nest_handoff_history`: Optional per-handoff override for the RunConfig-level `nest_handoff_history` setting. If `None`, the value defined in the active run configuration is used instead.\n\nThe [`handoff()`][agents.handoffs.handoff] helper always transfers control to the specific `agent` you passed in. If you have multiple possible destinations, register one handoff per destination and let the model choose among them. Use a custom [`Handoff`][agents.handoffs.Handoff] only when your own handoff code must decide which agent to return at invocation time.\n\n```python\nfrom agents import Agent, handoff, RunContextWrapper\n\ndef on_handoff(ctx: RunContextWrapper[None]):\n    print(\"Handoff called\")\n\nagent = Agent(name",
+      "candidate_type": "supported",
+      "generator_confidence": "high",
+      "needs_human_interpretation": false,
+      "verification_status": "candidate_unverified",
+      "claude_proposed": true,
+      "chatgpt_verified": null,
+      "retrieval_was_not_run": true,
+      "schema_version": "1.2",
+      "precheck_holdout_ready": true,
+      "precheck_failures": [],
+      "revisions": []
+    },
+    {
+      "candidate_id": "GOLD-B004-15",
+      "provider": "openai",
+      "document_title": "Human-in-the-loop",
+      "version_id": "ver_ae3bfcc42c733c5051abda30f0f6db07",
+      "source_url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/human_in_the_loop.md",
+      "captured_at": "2026-08-17 04:46:19+00:00",
+      "reasoning_type": "genuine_multi_hop",
+      "secondary_category": null,
+      "evidence_shape": "multi_document",
+      "requires_all_evidence": true,
+      "question": "If I set `needs_approval` to `True`, what happens?",
+      "answer": "Set `needs_approval` to `True` to always require approval or provide an async function that decides per call. SDK tool approval interruptions are not supported: any function tool whose `needs_approval` setting is not `False` is rejected before the request is sent.",
+      "atomic_claims": [
+        "Set `needs_approval` to `True` to always require approval or provide an async function that decides per call.",
+        "SDK tool approval interruptions are not supported: any function tool whose `needs_approval` setting is not `False` is rejected before the request is sent."
+      ],
+      "proposed_question": "If I set `needs_approval` to `True`, what happens?",
+      "proposed_answer": "Set `needs_approval` to `True` to always require approval or provide an async function that decides per call. SDK tool approval interruptions are not supported: any function tool whose `needs_approval` setting is not `False` is rejected before the request is sent.",
+      "proposed_atomic_claims": [
+        "Set `needs_approval` to `True` to always require approval or provide an async function that decides per call.",
+        "SDK tool approval interruptions are not supported: any function tool whose `needs_approval` setting is not `False` is rejected before the request is sent."
+      ],
+      "expected_evidence": [
+        {
+          "evidence_id": "E1",
+          "version_id": "ver_ae3bfcc42c733c5051abda30f0f6db07",
+          "section_path": [
+            "Human-in-the-loop",
+            "Marking tools that need approval"
+          ],
+          "char_start": 1327,
+          "char_end": 1436,
+          "evidence_text": "Set `needs_approval` to `True` to always require approval or provide an async function that decides per call.",
+          "evidence_hash": "72cb1e104a68797ed1296cfed17b04ba519cd1890449a2e5542f4ed36ad4e836",
+          "evidence_char_length": 109,
+          "critical_strings": [
+            "needs_approval",
+            "True"
+          ]
+        },
+        {
+          "evidence_id": "E2",
+          "version_id": "ver_ae909bf8b4bbbe1d1a11119447f7ac94",
+          "section_path": [
+            "Models",
+            "OpenAI models",
+            "Hosted multi-agent (experimental)",
+            "Local function tools"
+          ],
+          "char_start": 16756,
+          "char_end": 16910,
+          "evidence_text": "SDK tool approval interruptions are not supported: any function tool whose `needs_approval` setting is not `False` is rejected before the request is sent.",
+          "evidence_hash": "2f49ae6be39cdc333394907d21b3cc5a25e24bd034782f78f478b26d95c87085",
+          "evidence_char_length": 154,
+          "critical_strings": [
+            "needs_approval",
+            "False"
+          ]
+        }
+      ],
+      "claim_evidence_map": [
+        {
+          "claim": "Set `needs_approval` to `True` to always require approval or provide an async function that decides per call.",
+          "evidence_id": "E1",
+          "critical_strings": [
+            "needs_approval",
+            "True"
+          ]
+        },
+        {
+          "claim": "SDK tool approval interruptions are not supported: any function tool whose `needs_approval` setting is not `False` is rejected before the request is sent.",
+          "evidence_id": "E2",
+          "critical_strings": [
+            "needs_approval",
+            "False"
+          ]
+        }
+      ],
+      "section_path": [
+        "Human-in-the-loop",
+        "Marking tools that need approval"
+      ],
+      "critical_strings": [
+        "needs_approval",
+        "True",
+        "needs_approval",
+        "False"
+      ],
+      "evidence_char_length": 263,
+      "context_before": "s when the tool belongs to the current agent, to an agent reached through a handoff, or to a nested [`Agent.as_tool()`][agents.agent.Agent.as_tool] execution. In the nested `Agent.as_tool()` case, the interruption still surfaces on the outer run, so you approve or reject it on the outer `RunState` and resume the original top-level run.\n\nWith `Agent.as_tool()`, approvals can happen at two different layers: the agent tool itself can require approval via `Agent.as_tool(..., needs_approval=...)`, and tools inside the nested agent can later raise their own approvals after the nested run starts. Both are handled through the same outer-run interruption flow.\n\nThis page focuses on the manual approval flow via `interruptions`. If your app can decide in code, some tool types also support programmatic approval callbacks so the run can continue without pausing.\n\n## Marking tools that need approval\n\n",
+      "context_after": "",
+      "candidate_type": "supported",
+      "generator_confidence": "medium",
+      "needs_human_interpretation": true,
+      "verification_status": "candidate_unverified",
+      "claude_proposed": true,
+      "chatgpt_verified": null,
+      "retrieval_was_not_run": true,
+      "schema_version": "1.2",
+      "precheck_holdout_ready": true,
+      "precheck_failures": [],
+      "revisions": [],
+      "document_count": 2,
+      "bridge_entity": "needs_approval",
+      "bridge_relationship": "span 1 states a requirement or constraint on the bridge entity; span 2 states the behaviour that follows",
+      "hop_1_claim": "Set `needs_approval` to `True` to always require approval or provide an async function that decides per call.",
+      "hop_2_claim": "SDK tool approval interruptions are not supported: any function tool whose `needs_approval` setting is not `False` is rejected before the request is sent.",
+      "composed_claim": "For `needs_approval`: Set `needs_approval` to `True` to always require approval or provide an async function that decides per call. Consequently, SDK tool approval interruptions are not supported: any function tool whose `needs_approval` setting is not `False` is rejected before the request is sent.",
+      "composed_answer": "For `needs_approval`: Set `needs_approval` to `True` to always require approval or provide an async function that decides per call. Consequently, SDK tool approval interruptions are not supported: any function tool whose `needs_approval` setting is not `False` is rejected before the request is sent.",
+      "why_span_1_alone_is_insufficient": "Span 1 establishes the condition on needs_approval, but does not state needs_approval.",
+      "why_span_2_alone_is_insufficient": "Span 2 states what follows, but does not establish that it applies to needs_approval.",
+      "multi_hop_composition_check": "PASS",
+      "section_count": 2
+    }
+  ],
+  "batch_sha256": "e7c6d58c3c21b9ece940ae9665cba96ada35c887558803bba1797aaa142b93f9"
+}

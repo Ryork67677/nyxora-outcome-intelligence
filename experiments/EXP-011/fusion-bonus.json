@@ -1,0 +1,26 @@
+{
+  "note": "Cases fully recalled by each retriever alone versus the fusion of the two, per query view. The fusion bonus is what RRF adds over its best single component - it measures how much the two retrievers were still disagreeing usefully.",
+  "by_view": {
+    "raw": {
+      "bm25_alone": 9,
+      "transformer_alone": 11,
+      "best_component": 11,
+      "fused": 15,
+      "fusion_bonus_cases": 4
+    },
+    "normalized": {
+      "bm25_alone": 11,
+      "transformer_alone": 12,
+      "best_component": 12,
+      "fused": 13,
+      "fusion_bonus_cases": 1
+    },
+    "structured": {
+      "bm25_alone": 2,
+      "transformer_alone": 5,
+      "best_component": 5,
+      "fused": 5,
+      "fusion_bonus_cases": 0
+    }
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "status": "RERANKER_REJECTED-at-dev",
+  "frozen": false,
+  "validation_loaded": false,
+  "gates": {
+    "positive_net_rescues": {
+      "pass": false,
+      "net": -1,
+      "rescues": [
+        "GOLD-B005-11"
+      ],
+      "regressions": [
+        "HA-22",
+        "HA-24"
+      ],
+      "rule": "net = rescues - regressions > 0 on strict Recall@10"
+    },
+    "no_catastrophic_regression_pattern": {
+      "pass": true,
+      "regressions": [
+        "HA-22",
+        "HA-24"
+      ],
+      "rank1_destroyed": [
+        "HA-24"
+      ],
+      "rule": "fail if regressions >= 3 or more than one A rank-1 case is dropped from C top-10"
+    },
+    "enough_pool_headroom": {
+      "pass": true,
+      "a_strict": 19,
+      "perfect_reranker_pool_100": 20,
+      "headroom_cases": [
+        "GOLD-B005-11"
+      ],
+      "rule": "at least one A-miss@10 with every gold span inside fused pool 100, so ceiling@100 > A@10"
+    },
+    "reproducibility_checks": {
+      "pass": true,
+      "details": {
+        "passed": true,
+        "system_a_hash": "9afcb5b7c58ebacff0b4c3711dd9618a2e727f4195dd1787a5da81e478ee0b38",
+        "system_a_hash_ok": true,
+        "encoder_fingerprint": "bd95feaeacf98559",
+        "encoder_fingerprint_ok": true,
+        "embedding": {
+          "chunk_set": "cs_v1_control",
+          "chunks": 14209,
+          "embedding_rows": 14209,
+          "model_id": "emb_e7d4183fd6eb878ae2fdf080efb6861e",
+          "fingerprint_min": "bd95feaeacf98559",
+          "fingerprint_max": "bd95feaeacf98559",
+          "fingerprint_expected": "bd95feaeacf98559",
+          "complete": true
+        },
+        "cross_encoder_sha256": "5d3e70fd0c9ff14b9b5169a51e957b7a9c74897afd0a35ce4bd318150c1d4d4a",
+        "cross_encoder_sha256_ok": true,
+        "ce_pair_score_stable": true,
+        "historical_identity": {
+          "ran": true,
+          "split": "evals/development/v1.jsonl",
+          "note": "EVAL-VAL-001 recorded development A=15/20 on this historical AN/OA split, not on gold150-v1 development.json. This is the encoder/SYSTEM-A identity check. gold150-v1 development is the EXP-015 split.",
+          "passed": true,
+          "mismatches": [],
+          "observed": {
+            "cases_fully_recalled": 15,
+            "cases_total": 20,
+            "macro_span_recall": 0.775,
+            "spans_found_at_10": 17,
+            "spans_total": 22,
+            "document_recall": 0.925,
+            "mrr": 0.4494,
+            "strict_recall_at_10": "15/20"
+          },
+          "expected": {
+            "cases_fully_recalled": 15,
+            "cases_total": 20,
+            "macro_span_recall": 0.775,
+            "spans_found_at_10": 17,
+            "document_recall": 0.925,
+            "mrr": 0.449
+          }
+        },
+        "holdout_access_log_bytes": 0,
+        "holdout_loaded": false,
+        "validation_loaded": false
+      }
+    },
+    "passed": false,
+    "decision": "RERANKER_REJECTED_AT_DEV",
+    "a_strict": 19,
+    "c_strict": 18,
+    "note": "Gates applied once. No post-score retuning."
+  },
+  "timestamp": "2026-09-01T00:13:45Z"
+}

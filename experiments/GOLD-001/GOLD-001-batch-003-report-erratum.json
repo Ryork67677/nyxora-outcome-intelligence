@@ -1,0 +1,56 @@
+{
+  "document": "GOLD-001-batch-003-generation-report",
+  "erratum_for": "experiments/GOLD-001/GOLD-001-batch-003-generation-report-original.{md,json}",
+  "issued_at": "2026-08-20T19:40:21Z",
+  "status": "The original report is preserved unchanged. This corrects it; it does not replace it.",
+  "candidate_records_affected": false,
+  "candidate_records_note": "Both defects were in report generation. No candidate record was wrong because of them, and the batch's batch_sha256 was not recomputed to hide anything: the records changed later, and only because of the independent review.",
+  "errata": [
+    {
+      "id": "E1",
+      "class": "REPORT_GATE_BUG",
+      "contradiction": [
+        "Composition table: precheck holdout-ready = 20 of 20",
+        "Comparison table: anaphoric spans = 1"
+      ],
+      "authoritative": "19 of 20 are precheck holdout-ready after the fix",
+      "cause": "The precheck checked hashes, spans, claims, critical strings, size, chunk-id leakage and the retrieval flag — but never ran the anaphora detector. The anaphoric-span count came from the comparison table, which did run it, so the two numbers were computed by different code and never compared.",
+      "resolution": "The precheck now runs the anaphora detector over every evidence span of every candidate, with no exemption by evidence kind, and an unresolved anaphora sets precheck_holdout_ready to false. A report that counts an anaphoric span while claiming every candidate is precheck-ready is now refused at write time.",
+      "which_candidate": "Not the one the original metric counted. The original anaphoric span was GOLD-B003-19's `kind` bullet, which the review's own anchor repair resolved. The candidate blocked now is GOLD-B003-04, whose repaired first span contains \"the tool definition\" — a definite noun phrase the detector reads as an unresolved reference. It is reported as blocking rather than waved through; see the QC packet."
+    },
+    {
+      "id": "E2",
+      "class": "REPORT_GATE_BUG",
+      "contradiction": [
+        "Composition table: complete proposals = 16 of 20",
+        "Comparison table: complete question+answer+claims = 20",
+        "Comparison table: needing reviewer authoring = 4"
+      ],
+      "authoritative": "20 of 20 candidates have a populated question, answer and claim list. 4 of 20 are flagged needs_human_interpretation — the composed multi-span cases, whose joint phrasing a reviewer should check.",
+      "cause": "Two different quantities were both labelled \"complete\". The composition table printed total minus needs_human_interpretation; the comparison table counted records with a non-empty answer. Neither number was wrong; the shared label was.",
+      "resolution": "The metric is now named complete_question_answer_claims and computed one way, and needs_human_interpretation is reported as its own row. The consistency gate fails the build if the two tables disagree."
+    }
+  ],
+  "verification": {
+    "gate_tested_against_the_original_numbers": true,
+    "gate_outcome": "refused — the anaphora/precheck contradiction is caught at write time"
+  },
+  "batch_state_after_review": {
+    "candidates": 20,
+    "precheck_holdout_ready": 19,
+    "precheck_blocked": [
+      "GOLD-B003-04"
+    ],
+    "genuine_multi_hop": 0,
+    "by_reasoning_type": {
+      "configuration_interaction": 4,
+      "error_behavior": 4,
+      "exact_lookup": 10,
+      "lifecycle": 2
+    },
+    "by_evidence_shape": {
+      "single_span": 15,
+      "multi_span": 5
+    }
+  }
+}

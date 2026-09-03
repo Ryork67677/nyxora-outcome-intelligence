@@ -1,0 +1,5408 @@
+{
+  "experiment_id": "NATQ-DIAG-001",
+  "mode": "TRACE-ONLY / CORPUS-STRUCTURE",
+  "timestamp_et": "2026-09-03T00:15:58-0400",
+  "scored": false,
+  "SYSTEM_H_rerun": false,
+  "SYSTEM_H_modified": false,
+  "retrieval_rerun": false,
+  "bm25_rerun": false,
+  "dense_rerun": false,
+  "ce_rerun": false,
+  "scores_changed": false,
+  "weights_changed": false,
+  "holdout_json_opened": false,
+  "v1_holdout_json_opened": false,
+  "gold_modified": false,
+  "EXP_020_run": false,
+  "n_validation": 40,
+  "authoritative_validation": {
+    "strict_recall_at_10": "20/40 = 50.0%",
+    "candidate_gold_span_case_recall_at_100": "34/40",
+    "candidate_span_level": "46/53",
+    "evidence_span_recall_at_10": "27/53 = 0.5094",
+    "document_recall_at_10": "35/40",
+    "mrr": 0.2952,
+    "failures": {
+      "ranking": 14,
+      "candidate-generation": 6,
+      "document-discovery": 0,
+      "gold-ambiguity": 0
+    }
+  },
+  "inputs": {
+    "report": "experiments/RAG-V2/EVAL-NATQ-VAL-001/EVAL-NATQ-VAL-001-REPORT.json",
+    "pools": "experiments/RAG-V2/EVAL-NATQ-VAL-001/logs/EVAL-NATQ-VAL-001-pools.jsonl",
+    "validation": "evals/splits/natq-001/validation.jsonl n=40 sha256 a240958eb6b77b293bd70f717ee60476d2d09b510458057fd927d67359331ad6",
+    "gold": "evals/gold/natq-001.jsonl (40 validation ids only)",
+    "postgres": "postgresql://rag:rag@localhost:5432/corpus002_restore snapshot snap_689e336380a054d8039dc35b2c09cd0a read-only"
+  },
+  "unavailable_fields": {
+    "raw_ce_logit": "not serialized in EVAL-NATQ-VAL-001 pools/report",
+    "ce_normalized": "not serialized",
+    "retrieval_prior": "not serialized",
+    "final_blended_score_outside_top10": "only top10 blend_score serialized",
+    "local_bm25_rank_below_W": "not stored; computing would be a new retrieval run",
+    "projection_rank_within_document": "not stored; computing would be a new retrieval run",
+    "full_E_L10_pool_chunk_ids": "only e_pool_size integer serialized, not member ids",
+    "chunk_link_parent_child_sibling": "chunk_link table is empty"
+  },
+  "item_1_candidate_generation_mechanism_table": {
+    "n_missing_spans": 7,
+    "n_cases": 6,
+    "primary_bucket_counts": {
+      "long-document local ranking miss": 5,
+      "same-section neighborhood miss": 2
+    },
+    "all_bucket_counts": {
+      "long-document local ranking miss": 6,
+      "semantic/paraphrase mismatch": 1,
+      "projection coverage gap": 7,
+      "same-section neighborhood miss": 2,
+      "adjacent-section miss": 2,
+      "identifier mismatch": 1
+    },
+    "verification_D": {
+      "all_missing_gold_in_a_pool_docs_true": true,
+      "all_missing_gold_in_parents_true": true,
+      "sentence": "Current candidate-generation failures are within-document passage localization failures, not global document-discovery failures."
+    },
+    "rows": [
+      {
+        "case_id": "NATQ-C-004",
+        "provider": "openai",
+        "span_index": 0,
+        "question": "does agents sdk session memory survive a process restart or is it just in ram",
+        "critical_strings": [
+          "in-memory SQLite",
+          "temporary conversations",
+          "file-based SQLite",
+          "persistent conversations"
+        ],
+        "gold_version_id": "ver_b275f1db2ff0a82e2654391774f8e398",
+        "char_start": 21891,
+        "char_end": 22079,
+        "gold_section_path": [
+          "Wrap with encryption and TTL",
+          "Operational patterns",
+          "Memory persistence"
+        ],
+        "gold_text": "Use in-memory SQLite (`SQLiteSession(\"session_id\")`) for temporary conversations\n-   Use file-based SQLite (`SQLiteSession(\"session_id\", \"path/to/db.sqlite\")`) for persistent conversations",
+        "covering_canonical_chunk_id": "chk_c2389625f0f7ffc5060037b9b449e5f844c5930c",
+        "covering_canonical_chunk_ids": [
+          "chk_c2389625f0f7ffc5060037b9b449e5f844c5930c"
+        ],
+        "covering_chunk": {
+          "chunk_id": "chk_c2389625f0f7ffc5060037b9b449e5f844c5930c",
+          "version_id": "ver_b275f1db2ff0a82e2654391774f8e398",
+          "ordinal": 73,
+          "section_path": [
+            "Wrap with encryption and TTL",
+            "Operational patterns",
+            "Memory persistence"
+          ],
+          "chunk_type": "prose",
+          "char_start": 21863,
+          "char_end": 23408,
+          "text_len": 1545,
+          "text_head": "### Memory persistence\n\n-   Use in-memory SQLite (`SQLiteSession(\"session_id\")`) for temporary conversations\n-   Use file-based SQLite (`SQLiteSession(\"session_id\", \"path/to/db.sqlite\")`) for persistent conversations\n-   Use async SQLite (`AsyncSQLiteSession(\"session_id\", db_path=\"...\")`) when you need an `aiosqlite`-based implementation\n-   Use Redis-backed sessions (`RedisSession.from_url(\"sessi",
+          "provider": "openai",
+          "title": "Sessions",
+          "doc_char_count": 30709
+        },
+        "gold_in_a_pool_docs": true,
+        "gold_in_parents": true,
+        "doc": {
+          "provider": "openai",
+          "title": "Sessions",
+          "url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/sessions/index.md",
+          "authority": "official_sdk_docs",
+          "char_count": 30709
+        },
+        "n_canonical_chunks_in_gold_doc": 88,
+        "nearest_same_doc_stored_candidates": [
+          {
+            "chunk_id": "chk_350e78303311766e20df81bbd2d4543e5c338064",
+            "ordinal": 85,
+            "char_start": 28571,
+            "char_end": 28893,
+            "section_path": [
+              "Use your custom session",
+              "Accessing run context from a custom session"
+            ],
+            "char_distance": 6492,
+            "section_relation": "distant_same_doc",
+            "same_section_path": false,
+            "source": [
+              "top10"
+            ],
+            "text_head": "The Agents SDK enables this integration only when `get_items`, `add_items`, `pop_item`, and `clear_session` all declare `wrapper`. A generic `**kwargs` parameter does not satisfy this signature check. Existing session implementations that omit `wrapper` keep their released call shape and continue to work without changes.",
+            "top10_rank": 7
+          },
+          {
+            "chunk_id": "chk_65359dc795be7e8edff2a18dc9aefbe77ea32555",
+            "ordinal": 43,
+            "char_start": 14497,
+            "char_end": 14585,
+            "section_path": [
+              "Persistent file-based database"
+            ],
+            "char_distance": 7306,
+            "section_relation": "distant_same_doc",
+            "same_section_path": false,
+            "source": [
+              "C_P"
+            ],
+            "text_head": "# Persistent file-based database\nsession = SQLiteSession(\"user_123\", \"conversations.db\")",
+            "top10_rank": null
+          },
+          {
+            "chunk_id": "chk_69ca0091f86390a38cac15de1b2017a46950648c",
+            "ordinal": 40,
+            "char_start": 14158,
+            "char_end": 14284,
+            "section_path": [
+              "Decide when to compact (e.g., on idle, every N turns, or size thresholds)."
+            ],
+            "char_distance": 7607,
+            "section_relation": "distant_same_doc",
+            "same_section_path": false,
+            "source": [
+              "C_P"
+            ],
+            "text_head": "# Decide when to compact (e.g., on idle, every N turns, or size thresholds).\nawait session.run_compaction({\"force\": True})\n```",
+            "top10_rank": null
+          },
+          {
+            "chunk_id": "chk_a7b4d0527fd83c7cb1cbc2eb51fb8ff5c15ddf42",
+            "ordinal": 39,
+            "char_start": 12220,
+            "char_end": 14156,
+            "section_path": [
+              "Continue the conversation",
+              "OpenAI Responses compaction sessions",
+              "auto-compaction can block streaming"
+            ],
+            "char_distance": 7735,
+            "section_relation": "distant_same_doc",
+            "same_section_path": false,
+            "source": [
+              "top10"
+            ],
+            "text_head": "#### auto-compaction can block streaming\n\nCompaction clears and rewrites the session history, so the SDK waits for compaction to finish before considering the run complete. In streaming mode, this means `run.stream_events()` can stay open for a few seconds after the last output token if compaction is heavy.\n\n`OpenAIResponsesCompactionSession.run_compaction()` treats the clear-and-rewrite operation",
+            "top10_rank": 8
+          },
+          {
+            "chunk_id": "chk_86d62f7fe5aef2fc13060a1fe748f4ac2470dd46",
+            "ordinal": 38,
+            "char_start": 10828,
+            "char_end": 12218,
+            "section_path": [
+              "Continue the conversation",
+              "OpenAI Responses compaction sessions",
+              "Typical usage (auto-compaction)"
+            ],
+            "char_distance": 9673,
+            "section_relation": "distant_same_doc",
+            "same_section_path": false,
+            "source": [
+              "top10"
+            ],
+            "text_head": "By default, after each turn, the SDK checks whether the compaction candidate meets the threshold and compacts only if it does.\n\nWhen automatic compaction runs, the SDK waits for it before `Runner.run(...)` returns or the streamed event iterator closes. Usage reported by the compaction request contributes to that run's [`Usage`](../usage.md) totals. By default, a manual `run_compaction()` call made",
+            "top10_rank": 6
+          },
+          {
+            "chunk_id": "chk_a94214c131c4f0b01bcdb5dc86647f2e54545e6e",
+            "ordinal": 25,
+            "char_start": 6911,
+            "char_end": 7061,
+            "section_path": [
+              "Ask a corrected question"
+            ],
+            "char_distance": 14830,
+            "section_relation": "distant_same_doc",
+            "same_section_path": false,
+            "source": [
+              "C_P"
+            ],
+            "text_head": "# Ask a corrected question\nresult = await Runner.run(\n    agent,\n    \"What's 2 + 3?\",\n    session=session\n)\nprint(f\"Agent: {result.final_output}\")\n```",
+            "top10_rank": null
+          },
+          {
+            "chunk_id": "chk_cf66640318a4b05b9f7dd37904977d6c78244b08",
+            "ordinal": 24,
+            "char_start": 6739,
+            "char_end": 6909,
+            "section_path": [
+              "User wants to correct their question"
+            ],
+            "char_distance": 14982,
+            "section_relation": "distant_same_doc",
+            "same_section_path": false,
+            "source": [
+              "C_P"
+            ],
+            "text_head": "# User wants to correct their question\nassistant_item = await session.pop_item()  # Remove agent's response\nuser_item = await session.pop_item()  # Remove user's question",
+            "top10_rank": null
+          },
+          {
+            "chunk_id": "chk_3183962ace13c147d37d7383dc5d16cdcce947f9",
+            "ordinal": 23,
+            "char_start": 6595,
+            "char_end": 6737,
+            "section_path": [
+              "Initial conversation"
+            ],
+            "char_distance": 15154,
+            "section_relation": "distant_same_doc",
+            "same_section_path": false,
+            "source": [
+              "C_P"
+            ],
+            "text_head": "# Initial conversation\nresult = await Runner.run(\n    agent,\n    \"What's 2 + 2?\",\n    session=session\n)\nprint(f\"Agent: {result.final_output}\")",
+            "top10_rank": null
+          }
+        ],
+        "nearest_candidate_char_distance": 6492,
+        "nearest_same_section_path": false,
+        "nearest_section_relation": "distant_same_doc",
+        "parent_child_sibling": "distant_same_doc",
+        "chunk_link_parent_child_sibling": "unavailable_chunk_link_empty",
+        "adjacent_canonical_chunks": [
+          {
+            "chunk_id": "chk_03e6f7408695c48166ec2e13c538c60d61d450a6",
+            "ordinal": 72,
+            "section_path": [
+              "Wrap with encryption and TTL",
+              "Operational patterns",
+              "Session ID naming"
+            ],
+            "char_start": 21664,
+            "char_end": 21861,
+            "text_len": 197,
+            "text_head": "### Session ID naming\n\nUse meaningful session IDs that help you organize conversations:\n\n-   User-based: `\"user_12345\"`\n-   Thread-based: `\"thread_abc123\"`\n-   Context-based: `\"sup",
+            "in_top10": false,
+            "in_C_P": false,
+            "in_stored_union_visible": false,
+            "e_pool_membership": "unavailable_e_pool_not_serialized"
+          },
+          {
+            "chunk_id": "chk_384257e01ff13e30275a0e7e2debd5d66b07c6b5",
+            "ordinal": 74,
+            "section_path": [
+              "Wrap with encryption and TTL",
+              "Operational patterns",
+              "Multiple sessions"
+            ],
+            "char_start": 23410,
+            "char_end": 23523,
+            "text_len": 113,
+            "text_head": "### Multiple sessions\n\n```python\nfrom agents import Agent, Runner, SQLiteSession\n\nagent = Agent(name=\"Assistant\")",
+            "in_top10": false,
+            "in_C_P": false,
+            "in_stored_union_visible": false,
+            "e_pool_membership": "unavailable_e_pool_not_serialized"
+          }
+        ],
+        "adjacent_canonical_chunk_retrieved_in_stored_visible_set": false,
+        "adjacent_in_e_pool": "unavailable_e_pool_not_serialized",
+        "overlapping_projection_windows_n": 2,
+        "overlapping_projection_windows": [
+          {
+            "projection_id": "prj_786e1d45096e20ea28e39b94785badebd16afd18",
+            "ordinal": 24,
+            "char_start": 20929,
+            "char_end": 22395,
+            "covering_chunk_ids": [
+              "chk_3522a5f716ee07d41168d9dabab11b854c828575",
+              "chk_dfcda883b3cf3ec28fe821b7713f4787b6b43bf0",
+              "chk_e97337fc0c73e98bda44484ac743f1fd21bcbbb0",
+              "chk_ff4447a6bca67c502a92b7e597ef3c6c74b37554",
+              "chk_7cfd466bdb151cb37b1a462f009205c5293665d7",
+              "chk_03e6f7408695c48166ec2e13c538c60d61d450a6",
+              "chk_c2389625f0f7ffc5060037b9b449e5f844c5930c"
+            ],
+            "section_paths": [
+              [
+                "[",
+                "\"",
+                "C",
+                "o",
+                "n",
+                "v",
+                "e",
+                "r",
+                "s",
+                "a",
+                "t",
+                "i",
+                "o",
+                "n",
+                " ",
+                "b",
+                "r",
+                "a",
+                "n",
+                "c",
+                "h",
+                "i",
+                "n",
+                "g",
+                "\"",
+                ",",
+                "\"",
+                "E",
+                "n",
+                "c",
+                "r",
+                "y",
+                "p",
+                "t",
+                "e",
+                "d",
+                " ",
+                "s",
+                "e",
+                "s",
+                "s",
+                "i",
+                "o",
+                "n",
+                "s",
+                "\"",
+                "]"
+              ],
+              [
+                "[",
+                "\"",
+                "C",
+                "r",
+                "e",
+                "a",
+                "t",
+                "e",
+                " ",
+                "u",
+                "n",
+                "d",
+                "e",
+                "r",
+                "l",
+                "y",
+                "i",
+                "n",
+                "g",
+                " ",
+                "s",
+                "e",
+                "s",
+                "s",
+                "i",
+                "o",
+                "n",
+                "\"",
+                "]"
+              ],
+              [
+                "[",
+                "\"",
+                "W",
+                "r",
+                "a",
+                "p",
+                " ",
+                "w",
+                "i",
+                "t",
+                "h",
+                " ",
+                "e",
+                "n",
+                "c",
+                "r",
+                "y",
+                "p",
+                "t",
+                "i",
+                "o",
+                "n",
+                " ",
+                "a",
+                "n",
+                "d",
+                " ",
+                "T",
+                "T",
+                "L",
+                "\"",
+                "]"
+              ],
+              [
+                "[",
+                "\"",
+                "W",
+                "r",
+                "a",
+                "p",
+                " ",
+                "w",
+                "i",
+                "t",
+                "h",
+                " ",
+                "e",
+                "n",
+                "c",
+                "r",
+                "y",
+                "p",
+                "t",
+                "i",
+                "o",
+                "n",
+                " ",
+                "a",
+                "n",
+                "d",
+                " ",
+                "T",
+                "T",
+                "L",
+                "\"",
+                ",",
+                "\"",
+                "O",
+                "t",
+                "h",
+                "e",
+                "r",
+                " ",
+                "s",
+                "e",
+                "s",
+                "s",
+                "i",
+                "o",
+                "n",
+                " ",
+                "t",
+                "y",
+                "p",
+                "e",
+                "s",
+                "\"",
+                "]"
+              ],
+              [
+                "[",
+                "\"",
+                "W",
+                "r",
+                "a",
+                "p",
+                " ",
+                "w",
+                "i",
+                "t",
+                "h",
+                " ",
+                "e",
+                "n",
+                "c",
+                "r",
+                "y",
+                "p",
+                "t",
+                "i",
+                "o",
+                "n",
+                " ",
+                "a",
+                "n",
+                "d",
+                " ",
+                "T",
+                "T",
+                "L",
+                "\"",
+                ",",
+                "\"",
+                "O",
+                "p",
+                "e",
+                "r",
+                "a",
+                "t",
+                "i",
+                "o",
+                "n",
+                "a",
+                "l",
+                " ",
+                "p",
+                "a",
+                "t",
+                "t",
+                "e",
+                "r",
+                "n",
+                "s",
+                "\"",
+                "]"
+              ],
+              [
+                "[",
+                "\"",
+                "W",
+                "r",
+                "a",
+                "p",
+                " ",
+                "w",
+                "i",
+                "t",
+                "h",
+                " ",
+                "e",
+                "n",
+                "c",
+                "r",
+                "y",
+                "p",
+                "t",
+                "i",
+                "o",
+                "n",
+                " ",
+                "a",
+                "n",
+                "d",
+                " ",
+                "T",
+                "T",
+                "L",
+                "\"",
+                ",",
+                "\"",
+                "O",
+                "p",
+                "e",
+                "r",
+                "a",
+                "t",
+                "i",
+                "o",
+                "n",
+                "a",
+                "l",
+                " ",
+                "p",
+                "a",
+                "t",
+                "t",
+                "e",
+                "r",
+                "n",
+                "s",
+                "\"",
+                ",",
+                "\"",
+                "S",
+                "e",
+                "s",
+                "s",
+                "i",
+                "o",
+                "n",
+                " ",
+                "I",
+                "D",
+                " ",
+                "n",
+                "a",
+                "m",
+                "i",
+                "n",
+                "g",
+                "\"",
+                "]"
+              ],
+              [
+                "[",
+                "\"",
+                "W",
+                "r",
+                "a",
+                "p",
+                " ",
+                "w",
+                "i",
+                "t",
+                "h",
+                " ",
+                "e",
+                "n",
+                "c",
+                "r",
+                "y",
+                "p",
+                "t",
+                "i",
+                "o",
+                "n",
+                " ",
+                "a",
+                "n",
+                "d",
+                " ",
+                "T",
+                "T",
+                "L",
+                "\"",
+                ",",
+                "\"",
+                "O",
+                "p",
+                "e",
+                "r",
+                "a",
+                "t",
+                "i",
+                "o",
+                "n",
+                "a",
+                "l",
+                " ",
+                "p",
+                "a",
+                "t",
+                "t",
+                "e",
+                "r",
+                "n",
+                "s",
+                "\"",
+                ",",
+                "\"",
+                "M",
+                "e",
+                "m",
+                "o",
+                "r",
+                "y",
+                " ",
+                "p",
+                "e",
+                "r",
+                "s",
+                "i",
+                "s",
+                "t",
+                "e",
+                "n",
+                "c",
+                "e",
+                "\"",
+                "]"
+              ]
+            ]
+          },
+          {
+            "projection_id": "prj_7900d6996874f4e86680ae569ebca7e491254801",
+            "ordinal": 25,
+            "char_start": 21757,
+            "char_end": 23168,
+            "covering_chunk_ids": [
+              "chk_03e6f7408695c48166ec2e13c538c60d61d450a6",
+              "chk_c2389625f0f7ffc5060037b9b449e5f844c5930c"
+            ],
+            "section_paths": [
+              [
+                "[",
+                "\"",
+                "W",
+                "r",
+                "a",
+                "p",
+                " ",
+                "w",
+                "i",
+                "t",
+                "h",
+                " ",
+                "e",
+                "n",
+                "c",
+                "r",
+                "y",
+                "p",
+                "t",
+                "i",
+                "o",
+                "n",
+                " ",
+                "a",
+                "n",
+                "d",
+                " ",
+                "T",
+                "T",
+                "L",
+                "\"",
+                ",",
+                "\"",
+                "O",
+                "p",
+                "e",
+                "r",
+                "a",
+                "t",
+                "i",
+                "o",
+                "n",
+                "a",
+                "l",
+                " ",
+                "p",
+                "a",
+                "t",
+                "t",
+                "e",
+                "r",
+                "n",
+                "s",
+                "\"",
+                ",",
+                "\"",
+                "S",
+                "e",
+                "s",
+                "s",
+                "i",
+                "o",
+                "n",
+                " ",
+                "I",
+                "D",
+                " ",
+                "n",
+                "a",
+                "m",
+                "i",
+                "n",
+                "g",
+                "\"",
+                "]"
+              ],
+              [
+                "[",
+                "\"",
+                "W",
+                "r",
+                "a",
+                "p",
+                " ",
+                "w",
+                "i",
+                "t",
+                "h",
+                " ",
+                "e",
+                "n",
+                "c",
+                "r",
+                "y",
+                "p",
+                "t",
+                "i",
+                "o",
+                "n",
+                " ",
+                "a",
+                "n",
+                "d",
+                " ",
+                "T",
+                "T",
+                "L",
+                "\"",
+                ",",
+                "\"",
+                "O",
+                "p",
+                "e",
+                "r",
+                "a",
+                "t",
+                "i",
+                "o",
+                "n",
+                "a",
+                "l",
+                " ",
+                "p",
+                "a",
+                "t",
+                "t",
+                "e",
+                "r",
+                "n",
+                "s",
+                "\"",
+                ",",
+                "\"",
+                "M",
+                "e",
+                "m",
+                "o",
+                "r",
+                "y",
+                " ",
+                "p",
+                "e",
+                "r",
+                "s",
+                "i",
+                "s",
+                "t",
+                "e",
+                "n",
+                "c",
+                "e",
+                "\"",
+                "]"
+              ]
+            ]
+          }
+        ],
+        "neighboring_projection_windows_n": 0,
+        "projection_window_maps_to_gold_covering_chunk": true,
+        "overlapping_projection_window_touched_gold_in_corpus": true,
+        "retrieved_C_P_overlapping_gold": false,
+        "retrieved_C_P_neighbored_gold": true,
+        "identifiers": [
+          {
+            "identifier": "in-memory SQLite",
+            "in_query": false,
+            "in_gold": true,
+            "in_nearest_stored_same_doc": false
+          },
+          {
+            "identifier": "temporary conversations",
+            "in_query": false,
+            "in_gold": true,
+            "in_nearest_stored_same_doc": false
+          },
+          {
+            "identifier": "file-based SQLite",
+            "in_query": false,
+            "in_gold": true,
+            "in_nearest_stored_same_doc": false
+          },
+          {
+            "identifier": "persistent conversations",
+            "in_query": false,
+            "in_gold": true,
+            "in_nearest_stored_same_doc": false
+          }
+        ],
+        "local_bm25_rank_within_parent": "unavailable_not_stored_computing_would_be_new_retrieval",
+        "projection_rank_within_document": "unavailable_not_stored_computing_would_be_new_retrieval",
+        "C_P_contains_gold_covering_chunk": false,
+        "mechanism_buckets": [
+          "long-document local ranking miss",
+          "semantic/paraphrase mismatch",
+          "projection coverage gap"
+        ],
+        "primary_mechanism": "long-document local ranking miss",
+        "note_stored_candidate_visibility": "Nearest-candidate geometry is computed only over serialized top10 + C_P + in-pool gold covering chunks. The E-L10 body (~90\u2013110 fused_e rows) was not written to pools.jsonl.",
+        "mechanism_rationale": "Gold Sessions doc is 30709 chars / 88 chunks. Nearest stored same-doc candidate is 6492 chars away in a distant section (custom session / compaction). Adjacent ordinals 72 and 74 were not in serialized top10 or C_P. Query paraphrases RAM vs persistence without the gold identifiers (in-memory SQLite / file-based SQLite). Overlapping projection windows exist and map to the covering chunk, but C_P did not add it."
+      },
+      {
+        "case_id": "NATQ-C-005",
+        "provider": "openai",
+        "span_index": 1,
+        "question": "how do I require a human to approve a tool before the agents sdk actually runs it, like delete_user",
+        "critical_strings": [
+          "needs_approval",
+          "True",
+          "require approval",
+          "@tool(needs_approval=True)"
+        ],
+        "gold_version_id": "ver_ae3bfcc42c733c5051abda30f0f6db07",
+        "char_start": 1919,
+        "char_end": 2104,
+        "gold_section_path": [
+          "Human-in-the-loop",
+          "Marking tools that need approval"
+        ],
+        "gold_text": "```python\nfrom agents import Agent\nfrom agents.decorators import tool\n\n\n@tool(needs_approval=True)\nasync def cancel_order(order_id: int) -> str:\n    return f\"Cancelled order {order_id}\"",
+        "covering_canonical_chunk_id": "chk_5451da95f9f8e826733d725bcd4366a236272733",
+        "covering_canonical_chunk_ids": [
+          "chk_5451da95f9f8e826733d725bcd4366a236272733"
+        ],
+        "covering_chunk": {
+          "chunk_id": "chk_5451da95f9f8e826733d725bcd4366a236272733",
+          "version_id": "ver_ae3bfcc42c733c5051abda30f0f6db07",
+          "ordinal": 2,
+          "section_path": [
+            "Human-in-the-loop",
+            "Marking tools that need approval"
+          ],
+          "chunk_type": "code",
+          "char_start": 1919,
+          "char_end": 2503,
+          "text_len": 584,
+          "text_head": "```python\nfrom agents import Agent\nfrom agents.decorators import tool\n\n\n@tool(needs_approval=True)\nasync def cancel_order(order_id: int) -> str:\n    return f\"Cancelled order {order_id}\"\n\n\nasync def requires_review(_ctx, params, _call_id) -> bool:\n    return \"refund\" in params.get(\"subject\", \"\").lower()\n\n\n@tool(needs_approval=requires_review)\nasync def send_email(subject: str, body: str) -> str:\n  ",
+          "provider": "openai",
+          "title": "Human-in-the-loop",
+          "doc_char_count": 15615
+        },
+        "gold_in_a_pool_docs": true,
+        "gold_in_parents": true,
+        "doc": {
+          "provider": "openai",
+          "title": "Human-in-the-loop",
+          "url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/human_in_the_loop.md",
+          "authority": "official_sdk_docs",
+          "char_count": 15615
+        },
+        "n_canonical_chunks_in_gold_doc": 15,
+        "nearest_same_doc_stored_candidates": [
+          {
+            "chunk_id": "chk_15c1a5ddd54293c0cc720b0b08d7da51fc1c1d9d",
+            "ordinal": 1,
+            "char_start": 1290,
+            "char_end": 1917,
+            "section_path": [
+              "Human-in-the-loop",
+              "Marking tools that need approval"
+            ],
+            "char_distance": 2,
+            "section_relation": "same",
+            "same_section_path": true,
+            "source": [
+              "gold_span_0_covering"
+            ],
+            "text_head": "## Marking tools that need approval\n\nSet `needs_approval` to `True` to always require approval or provide an async function that decides per call. The callable receives the run context, parsed tool parameters, and the tool call ID.\n\nCallable approval rules fail closed when the SDK cannot safely inspect the arguments. If the arguments are malformed JSON, are valid JSON but not an object (for exampl",
+            "top10_rank": null
+          },
+          {
+            "chunk_id": "chk_842ec8e93cccd421b4c351a49d9d194910b5d645",
+            "ordinal": 0,
+            "char_start": 0,
+            "char_end": 1288,
+            "section_path": [
+              "Human-in-the-loop"
+            ],
+            "char_distance": 631,
+            "section_relation": "gold_is_child",
+            "same_section_path": false,
+            "source": [
+              "top10"
+            ],
+            "text_head": "# Human-in-the-loop\n\nUse the human-in-the-loop (HITL) flow to pause agent execution until a person approves or rejects sensitive tool calls. Tools declare when they need approval, run results surface pending approvals as interruptions, and `RunState` lets you serialize paused runs and resume them after decisions are made.\n\nThat approval surface is run-wide, not limited to the current top-level age",
+            "top10_rank": 2
+          },
+          {
+            "chunk_id": "chk_91b59aa08660b93d3aa57ac22f7367bb361d3794",
+            "ordinal": 4,
+            "char_start": 3296,
+            "char_end": 5703,
+            "section_path": [
+              "Human-in-the-loop",
+              "How the approval flow works"
+            ],
+            "char_distance": 1192,
+            "section_relation": "sibling",
+            "same_section_path": false,
+            "source": [
+              "top10"
+            ],
+            "text_head": "## How the approval flow works\n\n1. When the model emits a tool call, the runner evaluates its approval rule (`needs_approval`, `require_approval`, or the hosted MCP equivalent).\n2. If an approval decision for that tool call is already stored in the [`RunContextWrapper`][agents.run_context.RunContextWrapper], the runner proceeds without prompting. Per-call approvals are scoped to the specific call ",
+            "top10_rank": 3
+          },
+          {
+            "chunk_id": "chk_f2ccb8da40a26724229da63af53223bd72a03018",
+            "ordinal": 7,
+            "char_start": 7090,
+            "char_end": 7911,
+            "section_path": [
+              "Later, while resolving a specific interruption:",
+              "Automatic approval decisions"
+            ],
+            "char_distance": 4986,
+            "section_relation": "distant_same_doc",
+            "same_section_path": false,
+            "source": [
+              "top10"
+            ],
+            "text_head": "## Automatic approval decisions\n\nManual `interruptions` are the most general pattern, but they are not the only one:\n\n-   Local [`ShellTool`][agents.tool.ShellTool] and [`ApplyPatchTool`][agents.tool.ApplyPatchTool] can use `on_approval` to approve or reject immediately in code.\n-   [`HostedMCPTool`][agents.tool.HostedMCPTool] can use `tool_config={\"require_approval\": \"always\"}` together with `on_",
+            "top10_rank": 8
+          },
+          {
+            "chunk_id": "chk_d6e10a755991e31ad9e3d2770f5142f2cd0f9040",
+            "ordinal": 8,
+            "char_start": 7913,
+            "char_end": 8793,
+            "section_path": [
+              "Later, while resolving a specific interruption:",
+              "Streaming and sessions"
+            ],
+            "char_distance": 5809,
+            "section_relation": "distant_same_doc",
+            "same_section_path": false,
+            "source": [
+              "C_P"
+            ],
+            "text_head": "## Streaming and sessions\n\nThe same interruption flow works in streaming runs. After a streamed run pauses, keep consuming [`RunResultStreaming.stream_events()`][agents.result.RunResultStreaming.stream_events] until the iterator finishes, inspect [`RunResultStreaming.interruptions`][agents.result.RunResultStreaming.interruptions], resolve them, and resume with [`Runner.run_streamed(...)`][agents.r",
+            "top10_rank": null
+          },
+          {
+            "chunk_id": "chk_487159342b770b0ae7150e4645086652713112ea",
+            "ordinal": 10,
+            "char_start": 9000,
+            "char_end": 10800,
+            "section_path": [
+              "Later, while resolving a specific interruption:",
+              "Example: pause, approve, resume"
+            ],
+            "char_distance": 6896,
+            "section_relation": "distant_same_doc",
+            "same_section_path": false,
+            "source": [
+              "C_P"
+            ],
+            "text_head": "```python\nimport asyncio\nimport json\nfrom pathlib import Path\n\nfrom agents import Agent, Runner, RunState\nfrom agents.decorators import tool\n\n\nasync def needs_oakland_approval(_ctx, params, _call_id) -> bool:\n    return \"Oakland\" in params.get(\"city\", \"\")\n\n\n@tool(needs_approval=needs_oakland_approval)\nasync def get_temperature(city: str) -> str:\n    return f\"The temperature in {city} is 20\u00b0 Celsiu",
+            "top10_rank": null
+          },
+          {
+            "chunk_id": "chk_e580a4a4f223911cbfd14bedfd756b9f22550620",
+            "ordinal": 12,
+            "char_start": 11310,
+            "char_end": 13784,
+            "section_path": [
+              "Later, while resolving a specific interruption:",
+              "Repository patterns and examples"
+            ],
+            "char_distance": 9206,
+            "section_relation": "distant_same_doc",
+            "same_section_path": false,
+            "source": [
+              "top10"
+            ],
+            "text_head": "## Repository patterns and examples\n\n- **Streaming approvals**: `examples/agent_patterns/human_in_the_loop_stream.py` shows how to drain `stream_events()` and then approve pending tool calls before resuming with `Runner.run_streamed(agent, state)`.\n- **Custom rejection text**: `examples/agent_patterns/human_in_the_loop_custom_rejection.py` shows how to combine run-level `tool_error_formatter` with",
+            "top10_rank": 5
+          }
+        ],
+        "nearest_candidate_char_distance": 2,
+        "nearest_same_section_path": true,
+        "nearest_section_relation": "same",
+        "parent_child_sibling": "same",
+        "chunk_link_parent_child_sibling": "unavailable_chunk_link_empty",
+        "adjacent_canonical_chunks": [
+          {
+            "chunk_id": "chk_15c1a5ddd54293c0cc720b0b08d7da51fc1c1d9d",
+            "ordinal": 1,
+            "section_path": [
+              "Human-in-the-loop",
+              "Marking tools that need approval"
+            ],
+            "char_start": 1290,
+            "char_end": 1917,
+            "text_len": 627,
+            "text_head": "## Marking tools that need approval\n\nSet `needs_approval` to `True` to always require approval or provide an async function that decides per call. The callable receives the run con",
+            "in_top10": false,
+            "in_C_P": false,
+            "in_stored_union_visible": true,
+            "e_pool_membership": "unavailable_e_pool_not_serialized"
+          },
+          {
+            "chunk_id": "chk_4f297945f3f2cc806c344a21632cf08bd720199b",
+            "ordinal": 3,
+            "section_path": [
+              "Human-in-the-loop",
+              "Marking tools that need approval"
+            ],
+            "char_start": 2505,
+            "char_end": 3294,
+            "text_len": 789,
+            "text_head": "`needs_approval` is available on [`function_tool`][agents.tool.function_tool], [`Agent.as_tool`][agents.agent.Agent.as_tool], [`ShellTool`][agents.tool.ShellTool], and [`ApplyPatch",
+            "in_top10": false,
+            "in_C_P": false,
+            "in_stored_union_visible": false,
+            "e_pool_membership": "unavailable_e_pool_not_serialized"
+          }
+        ],
+        "adjacent_canonical_chunk_retrieved_in_stored_visible_set": true,
+        "adjacent_in_e_pool": "unavailable_e_pool_not_serialized",
+        "overlapping_projection_windows_n": 2,
+        "overlapping_projection_windows": [
+          {
+            "projection_id": "prj_8047a5a2b51235cc77faf94a5c5e239cc4b94fa6",
+            "ordinal": 1,
+            "char_start": 899,
+            "char_end": 2594,
+            "covering_chunk_ids": [
+              "chk_842ec8e93cccd421b4c351a49d9d194910b5d645",
+              "chk_15c1a5ddd54293c0cc720b0b08d7da51fc1c1d9d",
+              "chk_5451da95f9f8e826733d725bcd4366a236272733",
+              "chk_4f297945f3f2cc806c344a21632cf08bd720199b"
+            ],
+            "section_paths": [
+              [
+                "[",
+                "\"",
+                "H",
+                "u",
+                "m",
+                "a",
+                "n",
+                "-",
+                "i",
+                "n",
+                "-",
+                "t",
+                "h",
+                "e",
+                "-",
+                "l",
+                "o",
+                "o",
+                "p",
+                "\"",
+                "]"
+              ],
+              [
+                "[",
+                "\"",
+                "H",
+                "u",
+                "m",
+                "a",
+                "n",
+                "-",
+                "i",
+                "n",
+                "-",
+                "t",
+                "h",
+                "e",
+                "-",
+                "l",
+                "o",
+                "o",
+                "p",
+                "\"",
+                ",",
+                "\"",
+                "M",
+                "a",
+                "r",
+                "k",
+                "i",
+                "n",
+                "g",
+                " ",
+                "t",
+                "o",
+                "o",
+                "l",
+                "s",
+                " ",
+                "t",
+                "h",
+                "a",
+                "t",
+                " ",
+                "n",
+                "e",
+                "e",
+                "d",
+                " ",
+                "a",
+                "p",
+                "p",
+                "r",
+                "o",
+                "v",
+                "a",
+                "l",
+                "\"",
+                "]"
+              ]
+            ]
+          },
+          {
+            "projection_id": "prj_fb0e405a25b82987e3f7dc6ae76dbb58e793dbde",
+            "ordinal": 2,
+            "char_start": 1882,
+            "char_end": 3212,
+            "covering_chunk_ids": [
+              "chk_15c1a5ddd54293c0cc720b0b08d7da51fc1c1d9d",
+              "chk_5451da95f9f8e826733d725bcd4366a236272733",
+              "chk_4f297945f3f2cc806c344a21632cf08bd720199b"
+            ],
+            "section_paths": [
+              [
+                "[",
+                "\"",
+                "H",
+                "u",
+                "m",
+                "a",
+                "n",
+                "-",
+                "i",
+                "n",
+                "-",
+                "t",
+                "h",
+                "e",
+                "-",
+                "l",
+                "o",
+                "o",
+                "p",
+                "\"",
+                ",",
+                "\"",
+                "M",
+                "a",
+                "r",
+                "k",
+                "i",
+                "n",
+                "g",
+                " ",
+                "t",
+                "o",
+                "o",
+                "l",
+                "s",
+                " ",
+                "t",
+                "h",
+                "a",
+                "t",
+                " ",
+                "n",
+                "e",
+                "e",
+                "d",
+                " ",
+                "a",
+                "p",
+                "p",
+                "r",
+                "o",
+                "v",
+                "a",
+                "l",
+                "\"",
+                "]"
+              ]
+            ]
+          }
+        ],
+        "neighboring_projection_windows_n": 0,
+        "projection_window_maps_to_gold_covering_chunk": true,
+        "overlapping_projection_window_touched_gold_in_corpus": true,
+        "retrieved_C_P_overlapping_gold": false,
+        "retrieved_C_P_neighbored_gold": true,
+        "identifiers": [
+          {
+            "identifier": "needs_approval",
+            "in_query": false,
+            "in_gold": true,
+            "in_nearest_stored_same_doc": true
+          },
+          {
+            "identifier": "True",
+            "in_query": false,
+            "in_gold": true,
+            "in_nearest_stored_same_doc": true
+          },
+          {
+            "identifier": "require approval",
+            "in_query": false,
+            "in_gold": false,
+            "in_nearest_stored_same_doc": true
+          },
+          {
+            "identifier": "@tool(needs_approval=True)",
+            "in_query": false,
+            "in_gold": true,
+            "in_nearest_stored_same_doc": false
+          }
+        ],
+        "local_bm25_rank_within_parent": "unavailable_not_stored_computing_would_be_new_retrieval",
+        "projection_rank_within_document": "unavailable_not_stored_computing_would_be_new_retrieval",
+        "C_P_contains_gold_covering_chunk": false,
+        "mechanism_buckets": [
+          "same-section neighborhood miss",
+          "projection coverage gap"
+        ],
+        "primary_mechanism": "same-section neighborhood miss",
+        "note_stored_candidate_visibility": "Nearest-candidate geometry is computed only over serialized top10 + C_P + in-pool gold covering chunks. The E-L10 body (~90\u2013110 fused_e rows) was not written to pools.jsonl.",
+        "mechanism_rationale": "Gold covering chunk ordinal 2 sits 2 characters after gold span 0's covering chunk (ordinal 1, same section_path ['Human-in-the-loop','Marking tools that need approval']), which is in the pool at pool_rank 15 / final rank 11. Parent doc has only 15 canonical chunks. Adjacent previous chunk retrieved; gold neighbor not in union. Projection windows overlap and map to gold covering chunk; C_P did not add it (C_P did neighbor)."
+      },
+      {
+        "case_id": "NATQ-C-014",
+        "provider": "openai",
+        "span_index": 1,
+        "question": "can I nest an agent as a tool, like one agent calling another as a function",
+        "critical_strings": [
+          "agents as tools",
+          "instead of handing off control",
+          "as_tool"
+        ],
+        "gold_version_id": "ver_cbeb36b7cf9a5e241940a011629b6f1b",
+        "char_start": 32058,
+        "char_end": 32393,
+        "gold_section_path": [
+          "Annotated form",
+          "Agents as tools"
+        ],
+        "gold_text": "    tools=[\n        spanish_agent.as_tool(\n            tool_name=\"translate_to_spanish\",\n            tool_description=\"Translate the user's message to Spanish\",\n        ),\n        french_agent.as_tool(\n            tool_name=\"translate_to_french\",\n            tool_description=\"Translate the user's message to French\",\n        ),\n    ],",
+        "covering_canonical_chunk_id": "chk_c130edc4e298c4ff4bd3743552957f61acc4ffb7",
+        "covering_canonical_chunk_ids": [
+          "chk_c130edc4e298c4ff4bd3743552957f61acc4ffb7"
+        ],
+        "covering_chunk": {
+          "chunk_id": "chk_c130edc4e298c4ff4bd3743552957f61acc4ffb7",
+          "version_id": "ver_cbeb36b7cf9a5e241940a011629b6f1b",
+          "ordinal": 36,
+          "section_path": [
+            "Annotated form",
+            "Agents as tools"
+          ],
+          "chunk_type": "code",
+          "char_start": 31524,
+          "char_end": 32599,
+          "text_len": 1075,
+          "text_head": "```python\nimport asyncio\n\nfrom agents import Agent, Runner\n\nspanish_agent = Agent(\n    name=\"Spanish agent\",\n    instructions=\"You translate the user's message to Spanish\",\n)\n\nfrench_agent = Agent(\n    name=\"French agent\",\n    instructions=\"You translate the user's message to French\",\n)\n\norchestrator_agent = Agent(\n    name=\"orchestrator_agent\",\n    instructions=(\n        \"You are a translation ag",
+          "provider": "openai",
+          "title": "Tools",
+          "doc_char_count": 44832
+        },
+        "gold_in_a_pool_docs": true,
+        "gold_in_parents": true,
+        "doc": {
+          "provider": "openai",
+          "title": "Tools",
+          "url": "https://github.com/openai/openai-agents-python/blob/39327d7c5d04c120bf47f1ee9696c078e1f55441/docs/tools.md",
+          "authority": "official_sdk_docs",
+          "char_count": 44832
+        },
+        "n_canonical_chunks_in_gold_doc": 55,
+        "nearest_same_doc_stored_candidates": [
+          {
+            "chunk_id": "chk_71217c3103ee1f35f42aa0c24cb4f7fe81931aec",
+            "ordinal": 37,
+            "char_start": 32601,
+            "char_end": 33392,
+            "section_path": [
+              "Annotated form",
+              "Agents as tools",
+              "Customizing tool-agents"
+            ],
+            "char_distance": 208,
+            "section_relation": "gold_is_parent",
+            "same_section_path": false,
+            "source": [
+              "top10"
+            ],
+            "text_head": "### Customizing tool-agents\n\n`agent.as_tool` is a convenience method for turning an agent into a tool. It supports common runtime options such as `max_turns`, `run_config`, `hooks`, `previous_response_id`, `conversation_id`, `session`, and `needs_approval`. It also supports structured input with `parameters`, `input_builder`, and `include_input_schema`.\n\nThe state options configure the nested agen",
+            "top10_rank": 1
+          },
+          {
+            "chunk_id": "chk_1a2b0bc35a74fef3d79c2dba4316f84b9c123b32",
+            "ordinal": 35,
+            "char_start": 31330,
+            "char_end": 31522,
+            "section_path": [
+              "Annotated form",
+              "Agents as tools"
+            ],
+            "char_distance": 536,
+            "section_relation": "same",
+            "same_section_path": true,
+            "source": [
+              "gold_span_0_covering"
+            ],
+            "text_head": "## Agents as tools\n\nIn some workflows, you may want a central agent to orchestrate a network of specialized agents, instead of handing off control. You can do this by modeling agents as tools.",
+            "top10_rank": null
+          },
+          {
+            "chunk_id": "chk_17200f3b1aab1826ff8b22fd9c9115e749319108",
+            "ordinal": 39,
+            "char_start": 33753,
+            "char_end": 34319,
+            "section_path": [
+              "Annotated form",
+              "Agents as tools",
+              "Structured input for tool-agents"
+            ],
+            "char_distance": 1360,
+            "section_relation": "gold_is_parent",
+            "same_section_path": false,
+            "source": [
+              "top10"
+            ],
+            "text_head": "### Structured input for tool-agents\n\nBy default, `Agent.as_tool()` expects an object with one string field, `input` (`{\"input\": \"...\"}`), but you can expose a structured schema by passing `parameters` (a Pydantic model type or a dataclass type).\n\nAdditional options:\n\n- `include_input_schema=True` includes the full JSON Schema in the generated nested input.\n- `input_builder=...` lets you fully cus",
+            "top10_rank": 9
+          },
+          {
+            "chunk_id": "chk_5188ca3b9f51e27a9b64062d96dff3e903b5e538",
+            "ordinal": 46,
+            "char_start": 36833,
+            "char_end": 37031,
+            "section_path": [
+              "Annotated form",
+              "Agents as tools",
+              "Streaming nested agent runs"
+            ],
+            "char_distance": 4440,
+            "section_relation": "gold_is_parent",
+            "same_section_path": false,
+            "source": [
+              "top10"
+            ],
+            "text_head": "### Streaming nested agent runs\n\nPass an `on_stream` callback to `as_tool` to listen to streaming events emitted by the nested agent while still returning its final output once the stream completes.",
+            "top10_rank": 8
+          },
+          {
+            "chunk_id": "chk_719a19ddd3f0b02d4315d515a9c4d14d08856f6d",
+            "ordinal": 21,
+            "char_start": 24918,
+            "char_end": 25462,
+            "section_path": [
+              "Tools",
+              "Function tools",
+              "Custom function tools"
+            ],
+            "char_distance": 6596,
+            "section_relation": "distant_same_doc",
+            "same_section_path": false,
+            "source": [
+              "top10"
+            ],
+            "text_head": "### Custom function tools\n\nSometimes, you don't want to use a Python function as a tool. You can directly create a [`FunctionTool`][agents.tool.FunctionTool] if you prefer. You'll need to provide:\n\n-   `name`\n-   `description`\n-   `params_json_schema`, which is the JSON schema for the arguments\n-   `on_invoke_tool`, which is an async function that receives a [`ToolContext`][agents.tool_context.Too",
+            "top10_rank": 6
+          },
+          {
+            "chunk_id": "chk_6daa1287cd962bd8cf4c2770df12824e8dceefa4",
+            "ordinal": 2,
+            "char_start": 1507,
+            "char_end": 2818,
+            "section_path": [
+              "Tools",
+              "Hosted tools"
+            ],
+            "char_distance": 29240,
+            "section_relation": "distant_same_doc",
+            "same_section_path": false,
+            "source": [
+              "C_P"
+            ],
+            "text_head": "## Hosted tools\n\nOpenAI offers a few built-in tools when using the [`OpenAIResponsesModel`][agents.models.openai_responses.OpenAIResponsesModel]:\n\n-   The [`WebSearchTool`][agents.tool.WebSearchTool] lets an agent search the web.\n-   The [`FileSearchTool`][agents.tool.FileSearchTool] allows retrieving information from your OpenAI Vector Stores.\n-   The [`CodeInterpreterTool`][agents.tool.CodeInter",
+            "top10_rank": null
+          },
+          {
+            "chunk_id": "chk_7c96f1b5de4e4109fef51e6ef73bea75f45b8605",
+            "ordinal": 1,
+            "char_start": 623,
+            "char_end": 1505,
+            "section_path": [
+              "Tools",
+              "Choosing a tool type"
+            ],
+            "char_distance": 30553,
+            "section_relation": "distant_same_doc",
+            "same_section_path": false,
+            "source": [
+              "top10"
+            ],
+            "text_head": "## Choosing a tool type\n\nUse this page as a catalog, then jump to the section that matches the runtime you control.\n\n| If you want to... | Start here |\n| --- | --- |\n| Use OpenAI-managed tools (web search, file search, code interpreter, hosted MCP, image generation) | [Hosted tools](#hosted-tools) |\n| Defer large tool surfaces until runtime with tool search | [Hosted tool search](#hosted-tool-sear",
+            "top10_rank": 5
+          },
+          {
+            "chunk_id": "chk_c24c1a9df2502d944a1be63f49b7fa265f343d11",
+            "ordinal": 0,
+            "char_start": 0,
+            "char_end": 621,
+            "section_path": [
+              "Tools"
+            ],
+            "char_distance": 31437,
+            "section_relation": "distant_same_doc",
+            "same_section_path": false,
+            "source": [
+              "top10"
+            ],
+            "text_head": "# Tools\n\nTools let agents take actions: things like fetching data, running code, calling external APIs, and even using a computer. The SDK supports five categories:\n\n-   Hosted OpenAI tools: execute for the model on OpenAI servers.\n-   Local/runtime execution tools: `ComputerTool` and `ApplyPatchTool` always run in your environment, while `ShellTool` can run locally or in a hosted container.\n-   `",
+            "top10_rank": 3
+          }
+        ],
+        "nearest_candidate_char_distance": 208,
+        "nearest_same_section_path": false,
+        "nearest_section_relation": "gold_is_parent",
+        "parent_child_sibling": "gold_is_parent",
+        "chunk_link_parent_child_sibling": "unavailable_chunk_link_empty",
+        "adjacent_canonical_chunks": [
+          {
+            "chunk_id": "chk_1a2b0bc35a74fef3d79c2dba4316f84b9c123b32",
+            "ordinal": 35,
+            "section_path": [
+              "Annotated form",
+              "Agents as tools"
+            ],
+            "char_start": 31330,
+            "char_end": 31522,
+            "text_len": 192,
+            "text_head": "## Agents as tools\n\nIn some workflows, you may want a central agent to orchestrate a network of specialized agents, instead of handing off control. You can do this by modeling agen",
+            "in_top10": false,
+            "in_C_P": false,
+            "in_stored_union_visible": true,
+            "e_pool_membership": "unavailable_e_pool_not_serialized"
+          },
+          {
+            "chunk_id": "chk_71217c3103ee1f35f42aa0c24cb4f7fe81931aec",
+            "ordinal": 37,
+            "section_path": [
+              "Annotated form",
+              "Agents as tools",
+              "Customizing tool-agents"
+            ],
+            "char_start": 32601,
+            "char_end": 33392,
+            "text_len": 791,
+            "text_head": "### Customizing tool-agents\n\n`agent.as_tool` is a convenience method for turning an agent into a tool. It supports common runtime options such as `max_turns`, `run_config`, `hooks`",
+            "in_top10": true,
+            "in_C_P": false,
+            "in_stored_union_visible": true,
+            "e_pool_membership": "unavailable_e_pool_not_serialized"
+          }
+        ],
+        "adjacent_canonical_chunk_retrieved_in_stored_visible_set": true,
+        "adjacent_in_e_pool": "unavailable_e_pool_not_serialized",
+        "overlapping_projection_windows_n": 2,
+        "overlapping_projection_windows": [
+          {
+            "projection_id": "prj_2b62d6f3d2eb142052190a19a33f3407f54bd6d5",
+            "ordinal": 38,
+            "char_start": 30917,
+            "char_end": 32681,
+            "covering_chunk_ids": [
+              "chk_73d6c2a4610b6b5399174e343a0408e2d6c3e41e",
+              "chk_63b1397f1bded8769dd12e22e9ff4b4ca458aa50",
+              "chk_1a2b0bc35a74fef3d79c2dba4316f84b9c123b32",
+              "chk_c130edc4e298c4ff4bd3743552957f61acc4ffb7",
+              "chk_71217c3103ee1f35f42aa0c24cb4f7fe81931aec"
+            ],
+            "section_paths": [
+              [
+                "[",
+                "\"",
+                "A",
+                "n",
+                "n",
+                "o",
+                "t",
+                "a",
+                "t",
+                "e",
+                "d",
+                " ",
+                "f",
+                "o",
+                "r",
+                "m",
+                "\"",
+                ",",
+                "\"",
+                "H",
+                "a",
+                "n",
+                "d",
+                "l",
+                "i",
+                "n",
+                "g",
+                " ",
+                "e",
+                "r",
+                "r",
+                "o",
+                "r",
+                "s",
+                " ",
+                "i",
+                "n",
+                " ",
+                "f",
+                "u",
+                "n",
+                "c",
+                "t",
+                "i",
+                "o",
+                "n",
+                " ",
+                "t",
+                "o",
+                "o",
+                "l",
+                "s",
+                "\"",
+                "]"
+              ],
+              [
+                "[",
+                "\"",
+                "A",
+                "n",
+                "n",
+                "o",
+                "t",
+                "a",
+                "t",
+                "e",
+                "d",
+                " ",
+                "f",
+                "o",
+                "r",
+                "m",
+                "\"",
+                ",",
+                "\"",
+                "A",
+                "g",
+                "e",
+                "n",
+                "t",
+                "s",
+                " ",
+                "a",
+                "s",
+                " ",
+                "t",
+                "o",
+                "o",
+                "l",
+                "s",
+                "\"",
+                "]"
+              ],
+              [
+                "[",
+                "\"",
+                "A",
+                "n",
+                "n",
+                "o",
+                "t",
+                "a",
+                "t",
+                "e",
+                "d",
+                " ",
+                "f",
+                "o",
+                "r",
+                "m",
+                "\"",
+                ",",
+                "\"",
+                "A",
+                "g",
+                "e",
+                "n",
+                "t",
+                "s",
+                " ",
+                "a",
+                "s",
+                " ",
+                "t",
+                "o",
+                "o",
+                "l",
+                "s",
+                "\"",
+                ",",
+                "\"",
+                "C",
+                "u",
+                "s",
+                "t",
+                "o",
+                "m",
+                "i",
+                "z",
+                "i",
+                "n",
+                "g",
+                " ",
+                "t",
+                "o",
+                "o",
+                "l",
+                "-",
+                "a",
+                "g",
+                "e",
+                "n",
+                "t",
+                "s",
+                "\"",
+                "]"
+              ]
+            ]
+          },
+          {
+            "projection_id": "prj_19e6cb72937f4b3a2f25869e04b48357bc2f589f",
+            "ordinal": 39,
+            "char_start": 31832,
+            "char_end": 33529,
+            "covering_chunk_ids": [
+              "chk_c130edc4e298c4ff4bd3743552957f61acc4ffb7",
+              "chk_71217c3103ee1f35f42aa0c24cb4f7fe81931aec",
+              "chk_99cc7a5b1d8f9de254888a11556cb9b1d1972652"
+            ],
+            "section_paths": [
+              [
+                "[",
+                "\"",
+                "A",
+                "n",
+                "n",
+                "o",
+                "t",
+                "a",
+                "t",
+                "e",
+                "d",
+                " ",
+                "f",
+                "o",
+                "r",
+                "m",
+                "\"",
+                ",",
+                "\"",
+                "A",
+                "g",
+                "e",
+                "n",
+                "t",
+                "s",
+                " ",
+                "a",
+                "s",
+                " ",
+                "t",
+                "o",
+                "o",
+                "l",
+                "s",
+                "\"",
+                "]"
+              ],
+              [
+                "[",
+                "\"",
+                "A",
+                "n",
+                "n",
+                "o",
+                "t",
+                "a",
+                "t",
+                "e",
+                "d",
+                " ",
+                "f",
+                "o",
+                "r",
+                "m",
+                "\"",
+                ",",
+                "\"",
+                "A",
+                "g",
+                "e",
+                "n",
+                "t",
+                "s",
+                " ",
+                "a",
+                "s",
+                " ",
+                "t",
+                "o",
+                "o",
+                "l",
+                "s",
+                "\"",
+                ",",
+                "\"",
+                "C",
+                "u",
+                "s",
+                "t",
+                "o",
+                "m",
+                "i",
+                "z",
+                "i",
+                "n",
+                "g",
+                " ",
+                "t",
+                "o",
+                "o",
+                "l",
+                "-",
+                "a",
+                "g",
+                "e",
+                "n",
+                "t",
+                "s",
+                "\"",
+                "]"
+              ]
+            ]
+          }
+        ],
+        "neighboring_projection_windows_n": 0,
+        "projection_window_maps_to_gold_covering_chunk": true,
+        "overlapping_projection_window_touched_gold_in_corpus": true,
+        "retrieved_C_P_overlapping_gold": false,
+        "retrieved_C_P_neighbored_gold": true,
+        "identifiers": [
+          {
+            "identifier": "agents as tools",
+            "in_query": false,
+            "in_gold": false,
+            "in_nearest_stored_same_doc": false
+          },
+          {
+            "identifier": "instead of handing off control",
+            "in_query": false,
+            "in_gold": false,
+            "in_nearest_stored_same_doc": false
+          },
+          {
+            "identifier": "as_tool",
+            "in_query": false,
+            "in_gold": true,
+            "in_nearest_stored_same_doc": true
+          }
+        ],
+        "local_bm25_rank_within_parent": "unavailable_not_stored_computing_would_be_new_retrieval",
+        "projection_rank_within_document": "unavailable_not_stored_computing_would_be_new_retrieval",
+        "C_P_contains_gold_covering_chunk": false,
+        "mechanism_buckets": [
+          "same-section neighborhood miss",
+          "adjacent-section miss",
+          "long-document local ranking miss",
+          "projection coverage gap"
+        ],
+        "primary_mechanism": "same-section neighborhood miss",
+        "note_stored_candidate_visibility": "Nearest-candidate geometry is computed only over serialized top10 + C_P + in-pool gold covering chunks. The E-L10 body (~90\u2013110 fused_e rows) was not written to pools.jsonl.",
+        "mechanism_rationale": "Missing covering chunk ordinal 36 (section ['Annotated form','Agents as tools']) sits between retrieved same-section gold span 0 (ordinal 35, in pool) and a child-section top-1 hit (ordinal 37, 'Customizing tool-agents', char distance 208). Tools doc is 44832 chars / 55 chunks. Classic neighborhood hole: same-section previous chunk in pool, next child-section in top10, middle gold chunk absent from union."
+      },
+      {
+        "case_id": "NATQ-C-179",
+        "provider": "anthropic",
+        "span_index": 0,
+        "question": "claude system prompt, string vs array of text blocks, both valid?",
+        "critical_strings": [
+          "optional string or array of TextBlockParam",
+          "system:"
+        ],
+        "gold_version_id": "ver_18c692f4d28bd01c0a5cac553fcf01a7",
+        "char_start": 32218,
+        "char_end": 32789,
+        "gold_section_path": [
+          "Messages",
+          "Create a Message",
+          "Body Parameters"
+        ],
+        "gold_text": "- `system: optional string or array of TextBlockParam`\n\n  System prompt.\n\n  A system prompt is a way of providing context and instructions to Claude, such as specifying a particular goal or role. See our [guide to system prompts](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices#give-claude-a-role).\n\n  - `string`\n\n  - `array of TextBlockParam`\n\n    - `text: string`\n\n    - `type: \"text\"`\n\n    - `cache_control: optional CacheControlEphemeral or null`\n\n      Create a cache control breakpoint at this content block.",
+        "covering_canonical_chunk_id": "chk_ac9cfe6e72739732251c2d7361b53f5a01228cf4",
+        "covering_canonical_chunk_ids": [
+          "chk_ac9cfe6e72739732251c2d7361b53f5a01228cf4"
+        ],
+        "covering_chunk": {
+          "chunk_id": "chk_ac9cfe6e72739732251c2d7361b53f5a01228cf4",
+          "version_id": "ver_18c692f4d28bd01c0a5cac553fcf01a7",
+          "ordinal": 21,
+          "section_path": [
+            "Messages",
+            "Create a Message",
+            "Body Parameters"
+          ],
+          "chunk_type": "prose",
+          "char_start": 31034,
+          "char_end": 34525,
+          "text_len": 3491,
+          "text_head": "- `type: \"json_schema\"`\n\n      - `\"json_schema\"`\n\n- `service_tier: optional \"auto\" or \"standard_only\"`\n\n  Determines whether to use priority capacity (if available) or standard capacity for this request.\n\n  Anthropic offers different levels of service for your API requests. See [service-tiers](https://platform.claude.com/docs/en/api/service-tiers) for details.\n\n  - `\"auto\"`\n\n  - `\"standard_only\"`\n",
+          "provider": "anthropic",
+          "title": "Messages",
+          "doc_char_count": 804747
+        },
+        "gold_in_a_pool_docs": true,
+        "gold_in_parents": true,
+        "doc": {
+          "provider": "anthropic",
+          "title": "Messages",
+          "url": "https://platform.claude.com/docs/en/api/messages",
+          "authority": "official_api_reference",
+          "char_count": 804747
+        },
+        "n_canonical_chunks_in_gold_doc": 493,
+        "nearest_same_doc_stored_candidates": [
+          {
+            "chunk_id": "chk_d2a54a9b97a72bebb5cf9ab312573d2962ace135",
+            "ordinal": 63,
+            "char_start": 97825,
+            "char_end": 98097,
+            "section_path": [
+              "Messages",
+              "Count tokens in a Message",
+              "Body Parameters"
+            ],
+            "char_distance": 65036,
+            "section_relation": "nearby_shared_prefix",
+            "same_section_path": false,
+            "source": [
+              "top10"
+            ],
+            "text_head": "Each input message `content` may be either a single `string` or an array of content blocks, where each block has a specific `type`. Using a `string` for `content` is shorthand for an array of one content block of type `\"text\"`. The following input messages are equivalent:",
+            "top10_rank": 9
+          },
+          {
+            "chunk_id": "chk_e525e85933bb4f4365ce5377e4e6c04b4d631c44",
+            "ordinal": 73,
+            "char_start": 122653,
+            "char_end": 126108,
+            "section_path": [
+              "Messages",
+              "Count tokens in a Message",
+              "Body Parameters"
+            ],
+            "char_distance": 89864,
+            "section_relation": "nearby_shared_prefix",
+            "same_section_path": false,
+            "source": [
+              "C_P"
+            ],
+            "text_head": "- `type: \"mid_conv_system\"`\n\n          - `\"mid_conv_system\"`\n\n        - `cache_control: optional CacheControlEphemeral or null`\n\n          Create a cache control breakpoint at this content block.\n\n  - `role: \"user\" or \"assistant\" or \"system\"`\n\n    - `\"user\"`\n\n    - `\"assistant\"`\n\n    - `\"system\"`\n\n- `model: Model`\n\n  The model that will complete your prompt.\n\n  See [models](https://docs.anthropic.",
+            "top10_rank": null
+          },
+          {
+            "chunk_id": "chk_5a792c6f4f473e69582652d03cbed16d0444709f",
+            "ordinal": 74,
+            "char_start": 126114,
+            "char_end": 129530,
+            "section_path": [
+              "Messages",
+              "Count tokens in a Message",
+              "Body Parameters"
+            ],
+            "char_distance": 93325,
+            "section_relation": "nearby_shared_prefix",
+            "same_section_path": false,
+            "source": [
+              "C_P"
+            ],
+            "text_head": "- `citations: optional array of TextCitationParam or null`\n\n- `thinking: optional ThinkingConfigParam`\n\n  Configuration for enabling Claude's extended thinking.\n\n  When enabled, responses include `thinking` content blocks showing Claude's thinking process before the final answer. Requires a minimum budget of 1,024 tokens and counts towards your `max_tokens` limit.\n\n  See [extended thinking](https:",
+            "top10_rank": null
+          },
+          {
+            "chunk_id": "chk_62533d95b1d147d1f6fa29636f4a6e3dc12de68c",
+            "ordinal": 362,
+            "char_start": 589085,
+            "char_end": 589357,
+            "section_path": [
+              "Batches",
+              "Create a Message Batch",
+              "Body Parameters"
+            ],
+            "char_distance": 556296,
+            "section_relation": "distant_same_doc",
+            "same_section_path": false,
+            "source": [
+              "top10"
+            ],
+            "text_head": "Each input message `content` may be either a single `string` or an array of content blocks, where each block has a specific `type`. Using a `string` for `content` is shorthand for an array of one content block of type `\"text\"`. The following input messages are equivalent:",
+            "top10_rank": 3
+          }
+        ],
+        "nearest_candidate_char_distance": 65036,
+        "nearest_same_section_path": false,
+        "nearest_section_relation": "nearby_shared_prefix",
+        "parent_child_sibling": "nearby_shared_prefix",
+        "chunk_link_parent_child_sibling": "unavailable_chunk_link_empty",
+        "adjacent_canonical_chunks": [
+          {
+            "chunk_id": "chk_9ee0ab6b73324ae5ccfe2be3384783165bb666b4",
+            "ordinal": 20,
+            "section_path": [
+              "Messages",
+              "Create a Message",
+              "Body Parameters"
+            ],
+            "char_start": 27530,
+            "char_end": 31028,
+            "text_len": 3498,
+            "text_head": "- `type: \"mid_conv_system\"`\n\n          - `\"mid_conv_system\"`\n\n        - `cache_control: optional CacheControlEphemeral or null`\n\n          Create a cache control breakpoint at this",
+            "in_top10": false,
+            "in_C_P": false,
+            "in_stored_union_visible": false,
+            "e_pool_membership": "unavailable_e_pool_not_serialized"
+          },
+          {
+            "chunk_id": "chk_1e34f7f696cc25936a44af3775a2423041bc4c0c",
+            "ordinal": 22,
+            "section_path": [
+              "Messages",
+              "Create a Message",
+              "Body Parameters"
+            ],
+            "char_start": 34531,
+            "char_end": 37600,
+            "text_len": 3069,
+            "text_head": "- `type: \"disabled\"`\n\n      - `\"disabled\"`\n\n  - `ThinkingConfigAdaptive object { type, display }`\n\n    - `type: \"adaptive\"`\n\n      - `\"adaptive\"`\n\n    - `display: optional \"summari",
+            "in_top10": false,
+            "in_C_P": false,
+            "in_stored_union_visible": false,
+            "e_pool_membership": "unavailable_e_pool_not_serialized"
+          }
+        ],
+        "adjacent_canonical_chunk_retrieved_in_stored_visible_set": false,
+        "adjacent_in_e_pool": "unavailable_e_pool_not_serialized",
+        "overlapping_projection_windows_n": 2,
+        "overlapping_projection_windows": [
+          {
+            "projection_id": "prj_94797c7eaaab185002f4b960082f586d552f84b6",
+            "ordinal": 35,
+            "char_start": 31175,
+            "char_end": 32979,
+            "covering_chunk_ids": [
+              "chk_ac9cfe6e72739732251c2d7361b53f5a01228cf4"
+            ],
+            "section_paths": [
+              [
+                "[",
+                "\"",
+                "M",
+                "e",
+                "s",
+                "s",
+                "a",
+                "g",
+                "e",
+                "s",
+                "\"",
+                ",",
+                "\"",
+                "C",
+                "r",
+                "e",
+                "a",
+                "t",
+                "e",
+                " ",
+                "a",
+                " ",
+                "M",
+                "e",
+                "s",
+                "s",
+                "a",
+                "g",
+                "e",
+                "\"",
+                ",",
+                "\"",
+                "B",
+                "o",
+                "d",
+                "y",
+                " ",
+                "P",
+                "a",
+                "r",
+                "a",
+                "m",
+                "e",
+                "t",
+                "e",
+                "r",
+                "s",
+                "\"",
+                "]"
+              ]
+            ]
+          },
+          {
+            "projection_id": "prj_d8041e0dacc78ec9ba5f2f5040ba8e44bd642685",
+            "ordinal": 36,
+            "char_start": 32128,
+            "char_end": 33928,
+            "covering_chunk_ids": [
+              "chk_ac9cfe6e72739732251c2d7361b53f5a01228cf4"
+            ],
+            "section_paths": [
+              [
+                "[",
+                "\"",
+                "M",
+                "e",
+                "s",
+                "s",
+                "a",
+                "g",
+                "e",
+                "s",
+                "\"",
+                ",",
+                "\"",
+                "C",
+                "r",
+                "e",
+                "a",
+                "t",
+                "e",
+                " ",
+                "a",
+                " ",
+                "M",
+                "e",
+                "s",
+                "s",
+                "a",
+                "g",
+                "e",
+                "\"",
+                ",",
+                "\"",
+                "B",
+                "o",
+                "d",
+                "y",
+                " ",
+                "P",
+                "a",
+                "r",
+                "a",
+                "m",
+                "e",
+                "t",
+                "e",
+                "r",
+                "s",
+                "\"",
+                "]"
+              ]
+            ]
+          }
+        ],
+        "neighboring_projection_windows_n": 0,
+        "projection_window_maps_to_gold_covering_chunk": true,
+        "overlapping_projection_window_touched_gold_in_corpus": true,
+        "retrieved_C_P_overlapping_gold": false,
+        "retrieved_C_P_neighbored_gold": true,
+        "identifiers": [
+          {
+            "identifier": "optional string or array of TextBlockParam",
+            "in_query": false,
+            "in_gold": true,
+            "in_nearest_stored_same_doc": false
+          },
+          {
+            "identifier": "system:",
+            "in_query": false,
+            "in_gold": true,
+            "in_nearest_stored_same_doc": false
+          }
+        ],
+        "local_bm25_rank_within_parent": "unavailable_not_stored_computing_would_be_new_retrieval",
+        "projection_rank_within_document": "unavailable_not_stored_computing_would_be_new_retrieval",
+        "C_P_contains_gold_covering_chunk": false,
+        "mechanism_buckets": [
+          "long-document local ranking miss",
+          "adjacent-section miss",
+          "projection coverage gap"
+        ],
+        "primary_mechanism": "long-document local ranking miss",
+        "note_stored_candidate_visibility": "Nearest-candidate geometry is computed only over serialized top10 + C_P + in-pool gold covering chunks. The E-L10 body (~90\u2013110 fused_e rows) was not written to pools.jsonl.",
+        "mechanism_rationale": "Messages API doc is 804747 chars / 493 chunks. Gold is the Create-a-Message Body Parameters system-prompt type. Nearest stored same-doc candidate is Count-tokens Body Parameters at char distance 65036 (shared prefix 'Messages' only). Adjacent ordinals 20 and 22 not in serialized top10/C_P. Projection windows overlap and map to covering chunk; C_P did not add it."
+      },
+      {
+        "case_id": "NATQ-C-044",
+        "provider": "anthropic",
+        "span_index": 0,
+        "question": "anthropic bash tool and text editor tool \u2014 are those built-in types or do I implement them",
+        "critical_strings": [
+          "bash_20250124",
+          "Your application runs the command",
+          "tool_use",
+          "text_editor_20250728",
+          "schema-less tool"
+        ],
+        "gold_version_id": "ver_9bf8513721dc2d1ef3e1ec42bf535dc6",
+        "char_start": 8308,
+        "char_end": 8391,
+        "gold_section_path": [
+          "Tool versions"
+        ],
+        "gold_text": "`bash_20250124` is the current version of the tool, and it requires no beta header.",
+        "covering_canonical_chunk_id": "chk_d6c502d2d4b45c2db0abc29c2c98d6171600a157",
+        "covering_canonical_chunk_ids": [
+          "chk_d6c502d2d4b45c2db0abc29c2c98d6171600a157"
+        ],
+        "covering_chunk": {
+          "chunk_id": "chk_d6c502d2d4b45c2db0abc29c2c98d6171600a157",
+          "version_id": "ver_9bf8513721dc2d1ef3e1ec42bf535dc6",
+          "ordinal": 21,
+          "section_path": [
+            "Tool versions"
+          ],
+          "chunk_type": "prose",
+          "char_start": 8290,
+          "char_end": 8977,
+          "text_len": 687,
+          "text_head": "## Tool versions\n\n`bash_20250124` is the current version of the tool, and it requires no beta header. Every model from Claude Sonnet 3.7 ([retired](https://platform.claude.com/docs/en/about-claude/model-deprecations)) onward accepts it, including all current Claude models.\n\nThe original `bash_20241022` version is part of the computer use beta, and the October 2024 Claude Sonnet 3.5 release ([retir",
+          "provider": "anthropic",
+          "title": "Bash tool",
+          "doc_char_count": 71331
+        },
+        "gold_in_a_pool_docs": true,
+        "gold_in_parents": true,
+        "doc": {
+          "provider": "anthropic",
+          "title": "Bash tool",
+          "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/bash-tool",
+          "authority": "official_docs",
+          "char_count": 71331
+        },
+        "n_canonical_chunks_in_gold_doc": 109,
+        "nearest_same_doc_stored_candidates": [
+          {
+            "chunk_id": "chk_3b4ca02406fa467c7361f7566d104ea950e32548",
+            "ordinal": 107,
+            "char_start": 69999,
+            "char_end": 70808,
+            "section_path": [
+              "Combining with other tools"
+            ],
+            "char_distance": 61608,
+            "section_relation": "sibling",
+            "same_section_path": false,
+            "source": [
+              "top10"
+            ],
+            "text_head": "## Combining with other tools\n\nThe bash tool pairs well with the [Text editor tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/text-editor-tool): Claude edits a file with one tool and requests the command that runs it with the other.\n\n<Note>\n  If you're also using the [Code execution tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool), Claude",
+            "top10_rank": 2
+          }
+        ],
+        "nearest_candidate_char_distance": 61608,
+        "nearest_same_section_path": false,
+        "nearest_section_relation": "sibling",
+        "parent_child_sibling": "sibling",
+        "chunk_link_parent_child_sibling": "unavailable_chunk_link_empty",
+        "adjacent_canonical_chunks": [
+          {
+            "chunk_id": "chk_ad6ba665fa1374cb0a23eec803250f9ea2f180ae",
+            "ordinal": 20,
+            "section_path": [
+              "Parameters"
+            ],
+            "char_start": 8276,
+            "char_end": 8288,
+            "text_len": 12,
+            "text_head": "</Accordion>",
+            "in_top10": false,
+            "in_C_P": false,
+            "in_stored_union_visible": false,
+            "e_pool_membership": "unavailable_e_pool_not_serialized"
+          },
+          {
+            "chunk_id": "chk_7b327c3fa3cef37eb8ddc2fddc587fe19c1dda68",
+            "ordinal": 22,
+            "section_path": [
+              "Example: Multistep automation"
+            ],
+            "char_start": 8979,
+            "char_end": 9086,
+            "text_len": 107,
+            "text_head": "## Example: Multistep automation\n\nClaude can chain commands across tool calls to complete a multistep task:",
+            "in_top10": false,
+            "in_C_P": false,
+            "in_stored_union_visible": false,
+            "e_pool_membership": "unavailable_e_pool_not_serialized"
+          }
+        ],
+        "adjacent_canonical_chunk_retrieved_in_stored_visible_set": false,
+        "adjacent_in_e_pool": "unavailable_e_pool_not_serialized",
+        "overlapping_projection_windows_n": 2,
+        "overlapping_projection_windows": [
+          {
+            "projection_id": "prj_82c6f8eabac5b9d6b265c3f6db3008f08d34f5a6",
+            "ordinal": 9,
+            "char_start": 6852,
+            "char_end": 8443,
+            "covering_chunk_ids": [
+              "chk_e97a0e5a38a3255179e40e2fcd03ae6251bc8cf9",
+              "chk_70cc26843ca90c7ce4b140397ad3f9c84cafd18b",
+              "chk_4aec0d498b2dfcc0934751f03a5b298668a55a47",
+              "chk_03bc37fdc9be3fd95a378a15b8f63d97900e2295",
+              "chk_cff8e6772a36b47be39aacabb525ab8923ead73d",
+              "chk_ad6ba665fa1374cb0a23eec803250f9ea2f180ae",
+              "chk_d6c502d2d4b45c2db0abc29c2c98d6171600a157"
+            ],
+            "section_paths": [
+              [
+                "[",
+                "\"",
+                "H",
+                "o",
+                "w",
+                " ",
+                "i",
+                "t",
+                " ",
+                "w",
+                "o",
+                "r",
+                "k",
+                "s",
+                "\"",
+                "]"
+              ],
+              [
+                "[",
+                "\"",
+                "P",
+                "a",
+                "r",
+                "a",
+                "m",
+                "e",
+                "t",
+                "e",
+                "r",
+                "s",
+                "\"",
+                "]"
+              ],
+              [
+                "[",
+                "\"",
+                "T",
+                "o",
+                "o",
+                "l",
+                " ",
+                "v",
+                "e",
+                "r",
+                "s",
+                "i",
+                "o",
+                "n",
+                "s",
+                "\"",
+                "]"
+              ]
+            ]
+          },
+          {
+            "projection_id": "prj_ad7ff796c870ac665634a8ebd139de02d2b08901",
+            "ordinal": 10,
+            "char_start": 7657,
+            "char_end": 9243,
+            "covering_chunk_ids": [
+              "chk_70cc26843ca90c7ce4b140397ad3f9c84cafd18b",
+              "chk_4aec0d498b2dfcc0934751f03a5b298668a55a47",
+              "chk_03bc37fdc9be3fd95a378a15b8f63d97900e2295",
+              "chk_cff8e6772a36b47be39aacabb525ab8923ead73d",
+              "chk_ad6ba665fa1374cb0a23eec803250f9ea2f180ae",
+              "chk_d6c502d2d4b45c2db0abc29c2c98d6171600a157",
+              "chk_7b327c3fa3cef37eb8ddc2fddc587fe19c1dda68",
+              "chk_a95b1018da622dcb32036c8ce841b86a534ef9c7"
+            ],
+            "section_paths": [
+              [
+                "[",
+                "\"",
+                "P",
+                "a",
+                "r",
+                "a",
+                "m",
+                "e",
+                "t",
+                "e",
+                "r",
+                "s",
+                "\"",
+                "]"
+              ],
+              [
+                "[",
+                "\"",
+                "T",
+                "o",
+                "o",
+                "l",
+                " ",
+                "v",
+                "e",
+                "r",
+                "s",
+                "i",
+                "o",
+                "n",
+                "s",
+                "\"",
+                "]"
+              ],
+              [
+                "[",
+                "\"",
+                "E",
+                "x",
+                "a",
+                "m",
+                "p",
+                "l",
+                "e",
+                ":",
+                " ",
+                "M",
+                "u",
+                "l",
+                "t",
+                "i",
+                "s",
+                "t",
+                "e",
+                "p",
+                " ",
+                "a",
+                "u",
+                "t",
+                "o",
+                "m",
+                "a",
+                "t",
+                "i",
+                "o",
+                "n",
+                "\"",
+                "]"
+              ]
+            ]
+          }
+        ],
+        "neighboring_projection_windows_n": 0,
+        "projection_window_maps_to_gold_covering_chunk": true,
+        "overlapping_projection_window_touched_gold_in_corpus": true,
+        "retrieved_C_P_overlapping_gold": false,
+        "retrieved_C_P_neighbored_gold": false,
+        "identifiers": [
+          {
+            "identifier": "bash_20250124",
+            "in_query": false,
+            "in_gold": true,
+            "in_nearest_stored_same_doc": false
+          },
+          {
+            "identifier": "Your application runs the command",
+            "in_query": false,
+            "in_gold": false,
+            "in_nearest_stored_same_doc": false
+          },
+          {
+            "identifier": "tool_use",
+            "in_query": false,
+            "in_gold": false,
+            "in_nearest_stored_same_doc": false
+          },
+          {
+            "identifier": "text_editor_20250728",
+            "in_query": false,
+            "in_gold": false,
+            "in_nearest_stored_same_doc": false
+          },
+          {
+            "identifier": "schema-less tool",
+            "in_query": false,
+            "in_gold": false,
+            "in_nearest_stored_same_doc": false
+          }
+        ],
+        "local_bm25_rank_within_parent": "unavailable_not_stored_computing_would_be_new_retrieval",
+        "projection_rank_within_document": "unavailable_not_stored_computing_would_be_new_retrieval",
+        "C_P_contains_gold_covering_chunk": false,
+        "mechanism_buckets": [
+          "long-document local ranking miss",
+          "projection coverage gap"
+        ],
+        "primary_mechanism": "long-document local ranking miss",
+        "note_stored_candidate_visibility": "Nearest-candidate geometry is computed only over serialized top10 + C_P + in-pool gold covering chunks. The E-L10 body (~90\u2013110 fused_e rows) was not written to pools.jsonl.",
+        "mechanism_rationale": "Bash tool doc is 71331 chars / 109 chunks. Gold 'Tool versions' / bash_20250124 at chars 8308-8391. Only visible stored same-doc candidate is top10 rank 2 'Combining with other tools' 61608 chars away. Adjacent ordinals not retrieved. No C_P overlap or neighbor. Complementary gold span 2 from a different document (text editor) is in top10 at rank 3."
+      },
+      {
+        "case_id": "NATQ-C-044",
+        "provider": "anthropic",
+        "span_index": 1,
+        "question": "anthropic bash tool and text editor tool \u2014 are those built-in types or do I implement them",
+        "critical_strings": [
+          "bash_20250124",
+          "Your application runs the command",
+          "tool_use",
+          "text_editor_20250728",
+          "schema-less tool"
+        ],
+        "gold_version_id": "ver_9bf8513721dc2d1ef3e1ec42bf535dc6",
+        "char_start": 6308,
+        "char_end": 6435,
+        "gold_section_path": [
+          "How it works"
+        ],
+        "gold_text": "1. Claude returns a `tool_use` block containing the `command` to run.\n2. Your application runs the command in its bash session.",
+        "covering_canonical_chunk_id": "chk_e97a0e5a38a3255179e40e2fcd03ae6251bc8cf9",
+        "covering_canonical_chunk_ids": [
+          "chk_e97a0e5a38a3255179e40e2fcd03ae6251bc8cf9"
+        ],
+        "covering_chunk": {
+          "chunk_id": "chk_e97a0e5a38a3255179e40e2fcd03ae6251bc8cf9",
+          "version_id": "ver_9bf8513721dc2d1ef3e1ec42bf535dc6",
+          "ordinal": 15,
+          "section_path": [
+            "How it works"
+          ],
+          "chunk_type": "prose",
+          "char_start": 6220,
+          "char_end": 7223,
+          "text_len": 1003,
+          "text_head": "## How it works\n\nEach tool call is one round trip between Claude and your application:\n\n1. Claude returns a `tool_use` block containing the `command` to run.\n2. Your application runs the command in its bash session.\n3. Your application returns the command's output, stdout and stderr together, to Claude in a `tool_result` block.\n4. Claude either requests another command in the same session or respo",
+          "provider": "anthropic",
+          "title": "Bash tool",
+          "doc_char_count": 71331
+        },
+        "gold_in_a_pool_docs": true,
+        "gold_in_parents": true,
+        "doc": {
+          "provider": "anthropic",
+          "title": "Bash tool",
+          "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/bash-tool",
+          "authority": "official_docs",
+          "char_count": 71331
+        },
+        "n_canonical_chunks_in_gold_doc": 109,
+        "nearest_same_doc_stored_candidates": [
+          {
+            "chunk_id": "chk_3b4ca02406fa467c7361f7566d104ea950e32548",
+            "ordinal": 107,
+            "char_start": 69999,
+            "char_end": 70808,
+            "section_path": [
+              "Combining with other tools"
+            ],
+            "char_distance": 63564,
+            "section_relation": "sibling",
+            "same_section_path": false,
+            "source": [
+              "top10"
+            ],
+            "text_head": "## Combining with other tools\n\nThe bash tool pairs well with the [Text editor tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/text-editor-tool): Claude edits a file with one tool and requests the command that runs it with the other.\n\n<Note>\n  If you're also using the [Code execution tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool), Claude",
+            "top10_rank": 2
+          }
+        ],
+        "nearest_candidate_char_distance": 63564,
+        "nearest_same_section_path": false,
+        "nearest_section_relation": "sibling",
+        "parent_child_sibling": "sibling",
+        "chunk_link_parent_child_sibling": "unavailable_chunk_link_empty",
+        "adjacent_canonical_chunks": [
+          {
+            "chunk_id": "chk_8eca614ba16089f10ca72d20e05976d0fa013c81",
+            "ordinal": 14,
+            "section_path": [
+              "Quick start"
+            ],
+            "char_start": 5986,
+            "char_end": 6218,
+            "text_len": 232,
+            "text_head": "Run `input.command` in your bash session and send the output back as a `tool_result`. See [Implement the bash tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/ba",
+            "in_top10": false,
+            "in_C_P": false,
+            "in_stored_union_visible": false,
+            "e_pool_membership": "unavailable_e_pool_not_serialized"
+          },
+          {
+            "chunk_id": "chk_70cc26843ca90c7ce4b140397ad3f9c84cafd18b",
+            "ordinal": 16,
+            "section_path": [
+              "Parameters"
+            ],
+            "char_start": 7225,
+            "char_end": 8152,
+            "text_len": 927,
+            "text_head": "## Parameters\n\nA bash tool definition has two required fields, `type` and `name`, and the `name` must be `bash`. The tool is schema-less: you don't provide an `input_schema`, becau",
+            "in_top10": false,
+            "in_C_P": false,
+            "in_stored_union_visible": false,
+            "e_pool_membership": "unavailable_e_pool_not_serialized"
+          }
+        ],
+        "adjacent_canonical_chunk_retrieved_in_stored_visible_set": false,
+        "adjacent_in_e_pool": "unavailable_e_pool_not_serialized",
+        "overlapping_projection_windows_n": 2,
+        "overlapping_projection_windows": [
+          {
+            "projection_id": "prj_02a6728a425c32d267b645a6fb9a5ccd035efe7f",
+            "ordinal": 7,
+            "char_start": 5338,
+            "char_end": 6852,
+            "covering_chunk_ids": [
+              "chk_53a555ec6e0664c34e2809d526cc3ab5713b1b48",
+              "chk_07708eb802e250f7ef9a1078406d239a01aa1f3f",
+              "chk_fbbd3ba778dce6aef30801a672844411f12fdf03",
+              "chk_8eca614ba16089f10ca72d20e05976d0fa013c81",
+              "chk_e97a0e5a38a3255179e40e2fcd03ae6251bc8cf9"
+            ],
+            "section_paths": [
+              [
+                "[",
+                "\"",
+                "Q",
+                "u",
+                "i",
+                "c",
+                "k",
+                " ",
+                "s",
+                "t",
+                "a",
+                "r",
+                "t",
+                "\"",
+                "]"
+              ],
+              [
+                "[",
+                "\"",
+                "H",
+                "o",
+                "w",
+                " ",
+                "i",
+                "t",
+                " ",
+                "w",
+                "o",
+                "r",
+                "k",
+                "s",
+                "\"",
+                "]"
+              ]
+            ]
+          },
+          {
+            "projection_id": "prj_676c18cf464f7acfbcaf8ddce088a835580e0769",
+            "ordinal": 8,
+            "char_start": 5991,
+            "char_end": 7657,
+            "covering_chunk_ids": [
+              "chk_8eca614ba16089f10ca72d20e05976d0fa013c81",
+              "chk_e97a0e5a38a3255179e40e2fcd03ae6251bc8cf9",
+              "chk_70cc26843ca90c7ce4b140397ad3f9c84cafd18b"
+            ],
+            "section_paths": [
+              [
+                "[",
+                "\"",
+                "Q",
+                "u",
+                "i",
+                "c",
+                "k",
+                " ",
+                "s",
+                "t",
+                "a",
+                "r",
+                "t",
+                "\"",
+                "]"
+              ],
+              [
+                "[",
+                "\"",
+                "H",
+                "o",
+                "w",
+                " ",
+                "i",
+                "t",
+                " ",
+                "w",
+                "o",
+                "r",
+                "k",
+                "s",
+                "\"",
+                "]"
+              ],
+              [
+                "[",
+                "\"",
+                "P",
+                "a",
+                "r",
+                "a",
+                "m",
+                "e",
+                "t",
+                "e",
+                "r",
+                "s",
+                "\"",
+                "]"
+              ]
+            ]
+          }
+        ],
+        "neighboring_projection_windows_n": 0,
+        "projection_window_maps_to_gold_covering_chunk": true,
+        "overlapping_projection_window_touched_gold_in_corpus": true,
+        "retrieved_C_P_overlapping_gold": false,
+        "retrieved_C_P_neighbored_gold": false,
+        "identifiers": [
+          {
+            "identifier": "bash_20250124",
+            "in_query": false,
+            "in_gold": false,
+            "in_nearest_stored_same_doc": false
+          },
+          {
+            "identifier": "Your application runs the command",
+            "in_query": false,
+            "in_gold": true,
+            "in_nearest_stored_same_doc": false
+          },
+          {
+            "identifier": "tool_use",
+            "in_query": false,
+            "in_gold": true,
+            "in_nearest_stored_same_doc": false
+          },
+          {
+            "identifier": "text_editor_20250728",
+            "in_query": false,
+            "in_gold": false,
+            "in_nearest_stored_same_doc": false
+          },
+          {
+            "identifier": "schema-less tool",
+            "in_query": false,
+            "in_gold": false,
+            "in_nearest_stored_same_doc": false
+          }
+        ],
+        "local_bm25_rank_within_parent": "unavailable_not_stored_computing_would_be_new_retrieval",
+        "projection_rank_within_document": "unavailable_not_stored_computing_would_be_new_retrieval",
+        "C_P_contains_gold_covering_chunk": false,
+        "mechanism_buckets": [
+          "long-document local ranking miss",
+          "projection coverage gap"
+        ],
+        "primary_mechanism": "long-document local ranking miss",
+        "note_stored_candidate_visibility": "Nearest-candidate geometry is computed only over serialized top10 + C_P + in-pool gold covering chunks. The E-L10 body (~90\u2013110 fused_e rows) was not written to pools.jsonl.",
+        "mechanism_rationale": "Same Bash tool parent as span 0. Gold 'How it works' (tool_use / application runs the command) at chars 6308-6435, covering ordinal 15. Nearest stored same-doc still the rank-2 'Combining with other tools' chunk 63564 chars away. Adjacent not retrieved. No C_P overlap/neighbor."
+      },
+      {
+        "case_id": "NATQ-C-026",
+        "provider": "anthropic",
+        "span_index": 1,
+        "question": "claude citations / grounded answers \u2014 is that a tool or a response format",
+        "critical_strings": [
+          "Citations",
+          "source documents",
+          "citations\": { \"enabled\": true }",
+          "text blocks with citations"
+        ],
+        "gold_version_id": "ver_77dd930ea597c30fc512a8f92f8e802d",
+        "char_start": 26711,
+        "char_end": 26743,
+        "gold_section_path": [
+          "Document types",
+          "Plain text documents"
+        ],
+        "gold_text": "\"citations\": { \"enabled\": true }",
+        "covering_canonical_chunk_id": "chk_7bc8c51b2fbe42e9142852e5c8c7085d1743e592",
+        "covering_canonical_chunk_ids": [
+          "chk_7bc8c51b2fbe42e9142852e5c8c7085d1743e592"
+        ],
+        "covering_chunk": {
+          "chunk_id": "chk_7bc8c51b2fbe42e9142852e5c8c7085d1743e592",
+          "version_id": "ver_77dd930ea597c30fc512a8f92f8e802d",
+          "ordinal": 31,
+          "section_path": [
+            "Document types",
+            "Plain text documents"
+          ],
+          "chunk_type": "code",
+          "char_start": 26430,
+          "char_end": 26757,
+          "text_len": 327,
+          "text_head": "```json\n    {\n      \"type\": \"document\",\n      \"source\": {\n        \"type\": \"text\",\n        \"media_type\": \"text/plain\",\n        \"data\": \"Plain text content...\"\n      },\n      \"title\": \"Document Title\",\n      \"context\": \"Context about the document that will not be cited from\",\n      \"citations\": { \"enabled\": true }\n    }\n    ```",
+          "provider": "anthropic",
+          "title": "Citations",
+          "doc_char_count": 76202
+        },
+        "gold_in_a_pool_docs": true,
+        "gold_in_parents": true,
+        "doc": {
+          "provider": "anthropic",
+          "title": "Citations",
+          "url": "https://platform.claude.com/docs/en/build-with-claude/citations",
+          "authority": "official_docs",
+          "char_count": 76202
+        },
+        "n_canonical_chunks_in_gold_doc": 97,
+        "nearest_same_doc_stored_candidates": [
+          {
+            "chunk_id": "chk_94988b7586392f4fa092a98187fe9d35b286415c",
+            "ordinal": 14,
+            "char_start": 13086,
+            "char_end": 13486,
+            "section_path": [
+              "How citations work",
+              "Citation indices"
+            ],
+            "char_distance": 13225,
+            "section_relation": "distant_same_doc",
+            "same_section_path": false,
+            "source": [
+              "C_P"
+            ],
+            "text_head": "### Citation indices\n\n* Document indices are 0-indexed from the list of all document content blocks in the request (spanning across all messages).\n* Character indices are 0-indexed with exclusive end indices.\n* Page numbers are 1-indexed with exclusive end page numbers.\n* Content block indices are 0-indexed with exclusive end indices from the `content` list provided in the custom content document.",
+            "top10_rank": null
+          },
+          {
+            "chunk_id": "chk_b24ba1bb4434ad5f9ff66b036d412d3ca060d5ef",
+            "ordinal": 13,
+            "char_start": 12744,
+            "char_end": 13084,
+            "section_path": [
+              "How citations work",
+              "Citable versus non-citable content"
+            ],
+            "char_distance": 13627,
+            "section_relation": "distant_same_doc",
+            "same_section_path": false,
+            "source": [
+              "C_P"
+            ],
+            "text_head": "### Citable versus non-citable content\n\n* Text found within a document's `source` content can be cited from.\n* `title` and `context` are optional fields that are passed to the model but not used toward cited content.\n* `title` is limited in length, so the `context` field is useful for storing document metadata as text or stringified JSON.",
+            "top10_rank": null
+          },
+          {
+            "chunk_id": "chk_af0a1e6fc20e961775360d11e198808de2e500c4",
+            "ordinal": 11,
+            "char_start": 8852,
+            "char_end": 9656,
+            "section_path": [
+              "Compatibility"
+            ],
+            "char_distance": 17055,
+            "section_relation": "distant_same_doc",
+            "same_section_path": false,
+            "source": [
+              "top10"
+            ],
+            "text_head": "</CodeGroup>\n\n<Tip>\n  **Comparison with prompt-based approaches**\n\n  Compared to prompting Claude to cite sources, the citations feature offers the following advantages:\n\n  * **Cost savings:** If your prompt-based approach asks Claude to output direct quotes, you may see cost savings because `cited_text` does not count toward your output tokens.\n  * **Better citation reliability:** Because the API",
+            "top10_rank": 4
+          },
+          {
+            "chunk_id": "chk_edf7f804183bdd66292652e005858980919eb140",
+            "ordinal": 2,
+            "char_start": 1153,
+            "char_end": 2029,
+            "section_path": [
+              "Compatibility"
+            ],
+            "char_distance": 24682,
+            "section_relation": "distant_same_doc",
+            "same_section_path": false,
+            "source": [
+              "C_P"
+            ],
+            "text_head": "```bash cURL\n  curl https://api.anthropic.com/v1/messages \\\n    -H \"content-type: application/json\" \\\n    -H \"x-api-key: $ANTHROPIC_API_KEY\" \\\n    -H \"anthropic-version: 2023-06-01\" \\\n    -d '{\n      \"model\": \"claude-opus-5\",\n      \"max_tokens\": 1024,\n      \"messages\": [\n        {\n          \"role\": \"user\",\n          \"content\": [\n            {\n              \"type\": \"document\",\n              \"source",
+            "top10_rank": null
+          },
+          {
+            "chunk_id": "chk_340558e6efbdac94917700ba4ed968eb19719b66",
+            "ordinal": 0,
+            "char_start": 0,
+            "char_end": 280,
+            "section_path": [
+              "Preamble"
+            ],
+            "char_distance": 26431,
+            "section_relation": "distant_same_doc",
+            "same_section_path": false,
+            "source": [
+              "top10",
+              "gold_span_0_covering"
+            ],
+            "text_head": "---\ntitle: Citations\nurl: https://platform.claude.com/docs/en/build-with-claude/citations\ndescription: Ground Claude's responses in your source documents. Citations return the exact passages that support each claim, so you can verify answers and surface sources to your users.\n---",
+            "top10_rank": 2
+          },
+          {
+            "chunk_id": "chk_9434d71a225e16643f432b8ddf07dfef0fdb1e11",
+            "ordinal": 91,
+            "char_start": 72205,
+            "char_end": 72310,
+            "section_path": [
+              "Response structure"
+            ],
+            "char_distance": 45462,
+            "section_relation": "distant_same_doc",
+            "same_section_path": false,
+            "source": [
+              "gold_span_2_covering"
+            ],
+            "text_head": "## Response structure\n\nWhen citations are enabled, responses include multiple text blocks with citations:",
+            "top10_rank": null
+          }
+        ],
+        "nearest_candidate_char_distance": 13225,
+        "nearest_same_section_path": false,
+        "nearest_section_relation": "distant_same_doc",
+        "parent_child_sibling": "distant_same_doc",
+        "chunk_link_parent_child_sibling": "unavailable_chunk_link_empty",
+        "adjacent_canonical_chunks": [
+          {
+            "chunk_id": "chk_e15b7d7c349ed915173a66f73170708dc6af5d88",
+            "ordinal": 30,
+            "section_path": [
+              "Document types",
+              "Plain text documents"
+            ],
+            "char_start": 26097,
+            "char_end": 26424,
+            "text_len": 327,
+            "text_head": "### Plain text documents\n\nPlain text documents are automatically chunked into sentences. You can provide them inline or by reference with their `file_id`:\n\n<Tabs>\n  <Tab title=\"Inl",
+            "in_top10": false,
+            "in_C_P": false,
+            "in_stored_union_visible": false,
+            "e_pool_membership": "unavailable_e_pool_not_serialized"
+          },
+          {
+            "chunk_id": "chk_325de5a28993da93c147616e257a3160be5d55c8",
+            "ordinal": 32,
+            "section_path": [
+              "Document types",
+              "Plain text documents"
+            ],
+            "char_start": 26760,
+            "char_end": 27017,
+            "text_len": 257,
+            "text_head": "</Tab>\n\n  <Tab title=\"Files API\">\n    <Note>\n      Files API document sources are in beta. These examples use the beta client path; see [Files API](https://platform.claude.com/docs",
+            "in_top10": false,
+            "in_C_P": false,
+            "in_stored_union_visible": false,
+            "e_pool_membership": "unavailable_e_pool_not_serialized"
+          }
+        ],
+        "adjacent_canonical_chunk_retrieved_in_stored_visible_set": false,
+        "adjacent_in_e_pool": "unavailable_e_pool_not_serialized",
+        "overlapping_projection_windows_n": 2,
+        "overlapping_projection_windows": [
+          {
+            "projection_id": "prj_5e9fbe81211122eb4fdc4fe9d25f633592c8935a",
+            "ordinal": 27,
+            "char_start": 25180,
+            "char_end": 26941,
+            "covering_chunk_ids": [
+              "chk_702d0e3f1d1ba23e503d6979bed5d6ae4ad2621c",
+              "chk_e15b7d7c349ed915173a66f73170708dc6af5d88",
+              "chk_7bc8c51b2fbe42e9142852e5c8c7085d1743e592",
+              "chk_325de5a28993da93c147616e257a3160be5d55c8"
+            ],
+            "section_paths": [
+              [
+                "[",
+                "\"",
+                "D",
+                "o",
+                "c",
+                "u",
+                "m",
+                "e",
+                "n",
+                "t",
+                " ",
+                "t",
+                "y",
+                "p",
+                "e",
+                "s",
+                "\"",
+                ",",
+                "\"",
+                "C",
+                "h",
+                "o",
+                "o",
+                "s",
+                "i",
+                "n",
+                "g",
+                " ",
+                "a",
+                " ",
+                "d",
+                "o",
+                "c",
+                "u",
+                "m",
+                "e",
+                "n",
+                "t",
+                " ",
+                "t",
+                "y",
+                "p",
+                "e",
+                "\"",
+                "]"
+              ],
+              [
+                "[",
+                "\"",
+                "D",
+                "o",
+                "c",
+                "u",
+                "m",
+                "e",
+                "n",
+                "t",
+                " ",
+                "t",
+                "y",
+                "p",
+                "e",
+                "s",
+                "\"",
+                ",",
+                "\"",
+                "P",
+                "l",
+                "a",
+                "i",
+                "n",
+                " ",
+                "t",
+                "e",
+                "x",
+                "t",
+                " ",
+                "d",
+                "o",
+                "c",
+                "u",
+                "m",
+                "e",
+                "n",
+                "t",
+                "s",
+                "\"",
+                "]"
+              ]
+            ]
+          },
+          {
+            "projection_id": "prj_9c8678124c57fff3fd8b9a4a6f25ac009ed38ac6",
+            "ordinal": 28,
+            "char_start": 26088,
+            "char_end": 27658,
+            "covering_chunk_ids": [
+              "chk_702d0e3f1d1ba23e503d6979bed5d6ae4ad2621c",
+              "chk_e15b7d7c349ed915173a66f73170708dc6af5d88",
+              "chk_7bc8c51b2fbe42e9142852e5c8c7085d1743e592",
+              "chk_325de5a28993da93c147616e257a3160be5d55c8",
+              "chk_503fb9448098e7edf8a379846c022807db08bec7"
+            ],
+            "section_paths": [
+              [
+                "[",
+                "\"",
+                "D",
+                "o",
+                "c",
+                "u",
+                "m",
+                "e",
+                "n",
+                "t",
+                " ",
+                "t",
+                "y",
+                "p",
+                "e",
+                "s",
+                "\"",
+                ",",
+                "\"",
+                "C",
+                "h",
+                "o",
+                "o",
+                "s",
+                "i",
+                "n",
+                "g",
+                " ",
+                "a",
+                " ",
+                "d",
+                "o",
+                "c",
+                "u",
+                "m",
+                "e",
+                "n",
+                "t",
+                " ",
+                "t",
+                "y",
+                "p",
+                "e",
+                "\"",
+                "]"
+              ],
+              [
+                "[",
+                "\"",
+                "D",
+                "o",
+                "c",
+                "u",
+                "m",
+                "e",
+                "n",
+                "t",
+                " ",
+                "t",
+                "y",
+                "p",
+                "e",
+                "s",
+                "\"",
+                ",",
+                "\"",
+                "P",
+                "l",
+                "a",
+                "i",
+                "n",
+                " ",
+                "t",
+                "e",
+                "x",
+                "t",
+                " ",
+                "d",
+                "o",
+                "c",
+                "u",
+                "m",
+                "e",
+                "n",
+                "t",
+                "s",
+                "\"",
+                "]"
+              ]
+            ]
+          }
+        ],
+        "neighboring_projection_windows_n": 0,
+        "projection_window_maps_to_gold_covering_chunk": true,
+        "overlapping_projection_window_touched_gold_in_corpus": true,
+        "retrieved_C_P_overlapping_gold": false,
+        "retrieved_C_P_neighbored_gold": true,
+        "identifiers": [
+          {
+            "identifier": "Citations",
+            "in_query": true,
+            "in_gold": true,
+            "in_nearest_stored_same_doc": false
+          },
+          {
+            "identifier": "source documents",
+            "in_query": false,
+            "in_gold": false,
+            "in_nearest_stored_same_doc": false
+          },
+          {
+            "identifier": "citations\": { \"enabled\": true }",
+            "in_query": false,
+            "in_gold": true,
+            "in_nearest_stored_same_doc": false
+          },
+          {
+            "identifier": "text blocks with citations",
+            "in_query": false,
+            "in_gold": false,
+            "in_nearest_stored_same_doc": false
+          }
+        ],
+        "local_bm25_rank_within_parent": "unavailable_not_stored_computing_would_be_new_retrieval",
+        "projection_rank_within_document": "unavailable_not_stored_computing_would_be_new_retrieval",
+        "C_P_contains_gold_covering_chunk": false,
+        "mechanism_buckets": [
+          "long-document local ranking miss",
+          "identifier mismatch",
+          "projection coverage gap"
+        ],
+        "primary_mechanism": "long-document local ranking miss",
+        "note_stored_candidate_visibility": "Nearest-candidate geometry is computed only over serialized top10 + C_P + in-pool gold covering chunks. The E-L10 body (~90\u2013110 fused_e rows) was not written to pools.jsonl.",
+        "mechanism_rationale": "Citations doc is 76202 chars / 97 chunks. Missing span is the 32-char JSON snippet citations enabled:true at chars 26711-26743 (section Document types / Plain text documents). Gold span 0 (Preamble) is in top10 at rank 2; gold span 2 (Response structure) is in pool at rank 77. Nearest stored same-doc is a C_P chunk 13225 chars away (How citations work / Citation indices). Adjacent ordinals not in visible set. Query contains 'citations'; that literal JSON snippet was not localized."
+      }
+    ]
+  },
+  "item_2_ranking_movement": {
+    "note": "pre_final_pool_rank is the serialized union-pool position (fused_e then C_P extras) from EVAL-NATQ-VAL-001. Final rank is exp019a_rank after frozen 0.7/0.3 blend. Raw CE logit, CE-norm, and retrieval prior were not serialized; final blended score is available only when a covering chunk is in the serialized top10.",
+    "rows": [
+      {
+        "case_id": "NATQ-C-001",
+        "provider": "openai",
+        "span_index": 0,
+        "origin": "A pool",
+        "origin_raw": "a_pool",
+        "pre_final_pool_rank": 1,
+        "raw_ce_logit": "unavailable_not_stored",
+        "ce_normalized": "unavailable_not_stored",
+        "retrieval_prior": "unavailable_not_stored",
+        "final_blended_score": 0.9909528100028049,
+        "final_rank": 1,
+        "movement": "unchanged",
+        "top10_boundary": "none",
+        "fully_recalled": true,
+        "is_multi_span_case": false,
+        "is_exact_identifier_case": false,
+        "covering_chunk_ids": [
+          "chk_742c7608659f03f5de7bdfc2bfb7d3bf3b946462"
+        ],
+        "gold_in_e_l10": true
+      },
+      {
+        "case_id": "NATQ-C-201",
+        "provider": "openai",
+        "span_index": 0,
+        "origin": "A pool",
+        "origin_raw": "a_pool",
+        "pre_final_pool_rank": 15,
+        "raw_ce_logit": "unavailable_not_stored",
+        "ce_normalized": "unavailable_not_stored",
+        "retrieval_prior": "unavailable_not_stored",
+        "final_blended_score": 0.8896439614816016,
+        "final_rank": 3,
+        "movement": "improved",
+        "top10_boundary": "outside->top10",
+        "fully_recalled": false,
+        "is_multi_span_case": true,
+        "is_exact_identifier_case": false,
+        "covering_chunk_ids": [
+          "chk_ddacc7aafcf9a596a5302fac95ac286957de4c5c"
+        ],
+        "gold_in_e_l10": true
+      },
+      {
+        "case_id": "NATQ-C-201",
+        "provider": "openai",
+        "span_index": 1,
+        "origin": "local BM25",
+        "origin_raw": "local_bm25",
+        "pre_final_pool_rank": 2,
+        "raw_ce_logit": "unavailable_not_stored",
+        "ce_normalized": "unavailable_not_stored",
+        "retrieval_prior": "unavailable_not_stored",
+        "final_blended_score": "unavailable_not_in_serialized_top10",
+        "final_rank": 14,
+        "movement": "worsened",
+        "top10_boundary": "top10->outside",
+        "fully_recalled": false,
+        "is_multi_span_case": true,
+        "is_exact_identifier_case": false,
+        "covering_chunk_ids": [
+          "chk_3faaebdf7396e50cfc5f27f181fd9b1e9037c519",
+          "chk_a5b0c9d3782c9ba5ebff7695d66a69c7eab8ccc6",
+          "chk_b086f409b508fed44ab6b740da9af6d76936b77e"
+        ],
+        "gold_in_e_l10": true
+      },
+      {
+        "case_id": "NATQ-C-002",
+        "provider": "openai",
+        "span_index": 0,
+        "origin": "projection",
+        "origin_raw": "projection",
+        "pre_final_pool_rank": 109,
+        "raw_ce_logit": "unavailable_not_stored",
+        "ce_normalized": "unavailable_not_stored",
+        "retrieval_prior": "unavailable_not_stored",
+        "final_blended_score": "unavailable_not_in_serialized_top10",
+        "final_rank": 65,
+        "movement": "improved",
+        "top10_boundary": "none",
+        "fully_recalled": false,
+        "is_multi_span_case": false,
+        "is_exact_identifier_case": false,
+        "covering_chunk_ids": [
+          "chk_54f24b235eee08c3f04656ce79c5baf889005a84"
+        ],
+        "gold_in_e_l10": false
+      },
+      {
+        "case_id": "NATQ-C-217",
+        "provider": "openai",
+        "span_index": 0,
+        "origin": "A pool",
+        "origin_raw": "a_pool",
+        "pre_final_pool_rank": 15,
+        "raw_ce_logit": "unavailable_not_stored",
+        "ce_normalized": "unavailable_not_stored",
+        "retrieval_prior": "unavailable_not_stored",
+        "final_blended_score": 0.7994204998189062,
+        "final_rank": 3,
+        "movement": "improved",
+        "top10_boundary": "outside->top10",
+        "fully_recalled": true,
+        "is_multi_span_case": false,
+        "is_exact_identifier_case": true,
+        "covering_chunk_ids": [
+          "chk_85893475ec0a71a033fecdfd894f35a573021921",
+          "chk_9bd55b8cae07a5e560668cbb76d19828326cf7a0"
+        ],
+        "gold_in_e_l10": true
+      },
+      {
+        "case_id": "NATQ-C-005",
+        "provider": "openai",
+        "span_index": 0,
+        "origin": "A pool",
+        "origin_raw": "a_pool",
+        "pre_final_pool_rank": 15,
+        "raw_ce_logit": "unavailable_not_stored",
+        "ce_normalized": "unavailable_not_stored",
+        "retrieval_prior": "unavailable_not_stored",
+        "final_blended_score": "unavailable_not_in_serialized_top10",
+        "final_rank": 11,
+        "movement": "improved",
+        "top10_boundary": "none",
+        "fully_recalled": false,
+        "is_multi_span_case": true,
+        "is_exact_identifier_case": false,
+        "covering_chunk_ids": [
+          "chk_15c1a5ddd54293c0cc720b0b08d7da51fc1c1d9d"
+        ],
+        "gold_in_e_l10": true
+      },
+      {
+        "case_id": "NATQ-C-006",
+        "provider": "openai",
+        "span_index": 0,
+        "origin": "A pool",
+        "origin_raw": "a_pool",
+        "pre_final_pool_rank": 2,
+        "raw_ce_logit": "unavailable_not_stored",
+        "ce_normalized": "unavailable_not_stored",
+        "retrieval_prior": "unavailable_not_stored",
+        "final_blended_score": 1.0,
+        "final_rank": 1,
+        "movement": "improved",
+        "top10_boundary": "none",
+        "fully_recalled": true,
+        "is_multi_span_case": false,
+        "is_exact_identifier_case": true,
+        "covering_chunk_ids": [
+          "chk_600fe1685960a129813639141d8e6d0bd21e2f87"
+        ],
+        "gold_in_e_l10": true
+      },
+      {
+        "case_id": "NATQ-C-008",
+        "provider": "openai",
+        "span_index": 0,
+        "origin": "projection",
+        "origin_raw": "projection",
+        "pre_final_pool_rank": 117,
+        "raw_ce_logit": "unavailable_not_stored",
+        "ce_normalized": "unavailable_not_stored",
+        "retrieval_prior": "unavailable_not_stored",
+        "final_blended_score": "unavailable_not_in_serialized_top10",
+        "final_rank": 13,
+        "movement": "improved",
+        "top10_boundary": "none",
+        "fully_recalled": false,
+        "is_multi_span_case": false,
+        "is_exact_identifier_case": false,
+        "covering_chunk_ids": [
+          "chk_788513bc52369f0daaefcd23ecdcf3c9292d5561"
+        ],
+        "gold_in_e_l10": false
+      },
+      {
+        "case_id": "NATQ-C-009",
+        "provider": "openai",
+        "span_index": 0,
+        "origin": "A pool",
+        "origin_raw": "a_pool",
+        "pre_final_pool_rank": 1,
+        "raw_ce_logit": "unavailable_not_stored",
+        "ce_normalized": "unavailable_not_stored",
+        "retrieval_prior": "unavailable_not_stored",
+        "final_blended_score": 1.0,
+        "final_rank": 1,
+        "movement": "unchanged",
+        "top10_boundary": "none",
+        "fully_recalled": true,
+        "is_multi_span_case": false,
+        "is_exact_identifier_case": false,
+        "covering_chunk_ids": [
+          "chk_e433735e7e13ee7840b0558ded99942cd1767b7b"
+        ],
+        "gold_in_e_l10": true
+      },
+      {
+        "case_id": "NATQ-C-203",
+        "provider": "openai",
+        "span_index": 0,
+        "origin": "A pool",
+        "origin_raw": "a_pool",
+        "pre_final_pool_rank": 15,
+        "raw_ce_logit": "unavailable_not_stored",
+        "ce_normalized": "unavailable_not_stored",
+        "retrieval_prior": "unavailable_not_stored",
+        "final_blended_score": 0.6828662788659051,
+        "final_rank": 2,
+        "movement": "improved",
+        "top10_boundary": "outside->top10",
+        "fully_recalled": true,
+        "is_multi_span_case": false,
+        "is_exact_identifier_case": false,
+        "covering_chunk_ids": [
+          "chk_52975c90561dcdafcf0be9ed5bd1331abed636fe"
+        ],
+        "gold_in_e_l10": true
+      },
+      {
+        "case_id": "NATQ-C-010",
+        "provider": "openai",
+        "span_index": 0,
+        "origin": "A pool",
+        "origin_raw": "a_pool",
+        "pre_final_pool_rank": 4,
+        "raw_ce_logit": "unavailable_not_stored",
+        "ce_normalized": "unavailable_not_stored",
+        "retrieval_prior": "unavailable_not_stored",
+        "final_blended_score": 0.858899702699671,
+        "final_rank": 8,
+        "movement": "worsened",
+        "top10_boundary": "none",
+        "fully_recalled": true,
+        "is_multi_span_case": false,
+        "is_exact_identifier_case": true,
+        "covering_chunk_ids": [
+          "chk_78a83dd95d8d569804136e454539a9cab89d7f11",
+          "chk_b752bffdfa37c3a9dfc0d7b8a04b94774270a991"
+        ],
+        "gold_in_e_l10": true
+      },
+      {
+        "case_id": "NATQ-C-134",
+        "provider": "openai",
+        "span_index": 0,
+        "origin": "A pool",
+        "origin_raw": "a_pool",
+        "pre_final_pool_rank": 4,
+        "raw_ce_logit": "unavailable_not_stored",
+        "ce_normalized": "unavailable_not_stored",
+        "retrieval_prior": "unavailable_not_stored",
+        "final_blended_score": 0.9821904177213894,
+        "final_rank": 2,
+        "movement": "improved",
+        "top10_boundary": "none",
+        "fully_recalled": true,
+        "is_multi_span_case": false,
+        "is_exact_identifier_case": true,
+        "covering_chunk_ids": [
+          "chk_b752bffdfa37c3a9dfc0d7b8a04b94774270a991"
+        ],
+        "gold_in_e_l10": true
+      },
+      {
+        "case_id": "NATQ-C-011",
+        "provider": "openai",
+        "span_index": 0,
+        "origin": "A pool",
+        "origin_raw": "a_pool",
+        "pre_final_pool_rank": 24,
+        "raw_ce_logit": "unavailable_not_stored",
+        "ce_normalized": "unavailable_not_stored",
+        "retrieval_prior": "unavailable_not_stored",
+        "final_blended_score": 0.9212337342834298,
+        "final_rank": 8,
+        "movement": "improved",
+        "top10_boundary": "outside->top10",
+        "fully_recalled": true,
+        "is_multi_span_case": false,
+        "is_exact_identifier_case": false,
+        "covering_chunk_ids": [
+          "chk_b17099fe75c44006e954e286fa820bb2685015c4"
+        ],
+        "gold_in_e_l10": true
+      },
+      {
+        "case_id": "NATQ-C-012",
+        "provider": "openai",
+        "span_index": 0,
+        "origin": "A pool",
+        "origin_raw": "a_pool",
+        "pre_final_pool_rank": 9,
+        "raw_ce_logit": "unavailable_not_stored",
+        "ce_normalized": "unavailable_not_stored",
+        "retrieval_prior": "unavailable_not_stored",
+        "final_blended_score": 0.7134028296276966,
+        "final_rank": 7,
+        "movement": "improved",
+        "top10_boundary": "none",
+        "fully_recalled": true,
+        "is_multi_span_case": true,
+        "is_exact_identifier_case": false,
+        "covering_chunk_ids": [
+          "chk_66f2f81c0dbbdf4614063571dbc1858cda6a621c"
+        ],
+        "gold_in_e_l10": true
+      },
+      {
+        "case_id": "NATQ-C-012",
+        "provider": "openai",
+        "span_index": 1,
+        "origin": "A pool",
+        "origin_raw": "a_pool",
+        "pre_final_pool_rank": 5,
+        "raw_ce_logit": "unavailable_not_stored",
+        "ce_normalized": "unavailable_not_stored",
+        "retrieval_prior": "unavailable_not_stored",
+        "final_blended_score": 0.8611636331655153,
+        "final_rank": 3,
+        "movement": "improved",
+        "top10_boundary": "none",
+        "fully_recalled": true,
+        "is_multi_span_case": true,
+        "is_exact_identifier_case": false,
+        "covering_chunk_ids": [
+          "chk_c3e405a5d766f89e5c02d04e02169c115dd4cb73"
+        ],
+        "gold_in_e_l10": true
+      },
+      {
+        "case_id": "NATQ-C-013",
+        "provider": "openai",
+        "span_index": 0,
+        "origin": "A pool",
+        "origin_raw": "a_pool",
+        "pre_final_pool_rank": 1,
+        "raw_ce_logit": "unavailable_not_stored",
+        "ce_normalized": "unavailable_not_stored",
+        "retrieval_prior": "unavailable_not_stored",
+        "final_blended_score": 1.0,
+        "final_rank": 1,
+        "movement": "unchanged",
+        "top10_boundary": "none",
+        "fully_recalled": true,
+        "is_multi_span_case": false,
+        "is_exact_identifier_case": false,
+        "covering_chunk_ids": [
+          "chk_bdf29df24df2cf742ef0ca29d7e035d7a0bfa579"
+        ],
+        "gold_in_e_l10": true
+      },
+      {
+        "case_id": "NATQ-C-014",
+        "provider": "openai",
+        "span_index": 0,
+        "origin": "A pool",
+        "origin_raw": "a_pool",
+        "pre_final_pool_rank": 36,
+        "raw_ce_logit": "unavailable_not_stored",
+        "ce_normalized": "unavailable_not_stored",
+        "retrieval_prior": "unavailable_not_stored",
+        "final_blended_score": "unavailable_not_in_serialized_top10",
+        "final_rank": 27,
+        "movement": "improved",
+        "top10_boundary": "none",
+        "fully_recalled": false,
+        "is_multi_span_case": true,
+        "is_exact_identifier_case": false,
+        "covering_chunk_ids": [
+          "chk_1a2b0bc35a74fef3d79c2dba4316f84b9c123b32"
+        ],
+        "gold_in_e_l10": true
+      },
+      {
+        "case_id": "NATQ-C-015",
+        "provider": "openai",
+        "span_index": 0,
+        "origin": "A pool",
+        "origin_raw": "a_pool",
+        "pre_final_pool_rank": 11,
+        "raw_ce_logit": "unavailable_not_stored",
+        "ce_normalized": "unavailable_not_stored",
+        "retrieval_prior": "unavailable_not_stored",
+        "final_blended_score": 0.8213824575986379,
+        "final_rank": 6,
+        "movement": "improved",
+        "top10_boundary": "outside->top10",
+        "fully_recalled": true,
+        "is_multi_span_case": false,
+        "is_exact_identifier_case": true,
+        "covering_chunk_ids": [
+          "chk_a3e66af0cbf3c669402fb7580ef3e132d064be19"
+        ],
+        "gold_in_e_l10": true
+      },
+      {
+        "case_id": "NATQ-C-016",
+        "provider": "anthropic",
+        "span_index": 0,
+        "origin": "A pool",
+        "origin_raw": "a_pool",
+        "pre_final_pool_rank": 3,
+        "raw_ce_logit": "unavailable_not_stored",
+        "ce_normalized": "unavailable_not_stored",
+        "retrieval_prior": "unavailable_not_stored",
+        "final_blended_score": 0.9911890560165975,
+        "final_rank": 1,
+        "movement": "improved",
+        "top10_boundary": "none",
+        "fully_recalled": true,
+        "is_multi_span_case": false,
+        "is_exact_identifier_case": true,
+        "covering_chunk_ids": [
+          "chk_d42b310d3a0db8fc614676f06505c9af5900aace"
+        ],
+        "gold_in_e_l10": true
+      },
+      {
+        "case_id": "NATQ-C-017",
+        "provider": "anthropic",
+        "span_index": 0,
+        "origin": "A pool",
+        "origin_raw": "a_pool",
+        "pre_final_pool_rank": 10,
+        "raw_ce_logit": "unavailable_not_stored",
+        "ce_normalized": "unavailable_not_stored",
+        "retrieval_prior": "unavailable_not_stored",
+        "final_blended_score": "unavailable_not_in_serialized_top10",
+        "final_rank": 48,
+        "movement": "worsened",
+        "top10_boundary": "top10->outside",
+        "fully_recalled": false,
+        "is_multi_span_case": true,
+        "is_exact_identifier_case": false,
+        "covering_chunk_ids": [
+          "chk_1656e2bf712c666b348b4d5d6b7c321f7afd64a1"
+        ],
+        "gold_in_e_l10": true
+      },
+      {
+        "case_id": "NATQ-C-017",
+        "provider": "anthropic",
+        "span_index": 1,
+        "origin": "A pool",
+        "origin_raw": "a_pool",
+        "pre_final_pool_rank": 1,
+        "raw_ce_logit": "unavailable_not_stored",
+        "ce_normalized": "unavailable_not_stored",
+        "retrieval_prior": "unavailable_not_stored",
+        "final_blended_score": 0.9400287470340338,
+        "final_rank": 2,
+        "movement": "worsened",
+        "top10_boundary": "none",
+        "fully_recalled": false,
+        "is_multi_span_case": true,
+        "is_exact_identifier_case": false,
+        "covering_chunk_ids": [
+          "chk_16fffc0b86d6844fdc77f53b31a1fd25b0e45e3d"
+        ],
+        "gold_in_e_l10": true
+      },
+      {
+        "case_id": "NATQ-C-023",
+        "provider": "anthropic",
+        "span_index": 0,
+        "origin": "A pool",
+        "origin_raw": "a_pool",
+        "pre_final_pool_rank": 34,
+        "raw_ce_logit": "unavailable_not_stored",
+        "ce_normalized": "unavailable_not_stored",
+        "retrieval_prior": "unavailable_not_stored",
+        "final_blended_score": "unavailable_not_in_serialized_top10",
+        "final_rank": 17,
+        "movement": "improved",
+        "top10_boundary": "none",
+        "fully_recalled": false,
+        "is_multi_span_case": true,
+        "is_exact_identifier_case": false,
+        "covering_chunk_ids": [
+          "chk_bbe63714d454ec9a0c1db09328180a0673ee263a"
+        ],
+        "gold_in_e_l10": true
+      },
+      {
+        "case_id": "NATQ-C-023",
+        "provider": "anthropic",
+        "span_index": 1,
+        "origin": "A pool",
+        "origin_raw": "a_pool",
+        "pre_final_pool_rank": 57,
+        "raw_ce_logit": "unavailable_not_stored",
+        "ce_normalized": "unavailable_not_stored",
+        "retrieval_prior": "unavailable_not_stored",
+        "final_blended_score": "unavailable_not_in_serialized_top10",
+        "final_rank": 43,
+        "movement": "improved",
+        "top10_boundary": "none",
+        "fully_recalled": false,
+        "is_multi_span_case": true,
+        "is_exact_identifier_case": false,
+        "covering_chunk_ids": [
+          "chk_bfdadaac37c2ce37a759aae4b6edc0cf465fa5b4"
+        ],
+        "gold_in_e_l10": true
+      },
+      {
+        "case_id": "NATQ-C-155",
+        "provider": "anthropic",
+        "span_index": 0,
+        "origin": "local BM25",
+        "origin_raw": "local_bm25",
+        "pre_final_pool_rank": 34,
+        "raw_ce_logit": "unavailable_not_stored",
+        "ce_normalized": "unavailable_not_stored",
+        "retrieval_prior": "unavailable_not_stored",
+        "final_blended_score": "unavailable_not_in_serialized_top10",
+        "final_rank": 32,
+        "movement": "improved",
+        "top10_boundary": "none",
+        "fully_recalled": false,
+        "is_multi_span_case": false,
+        "is_exact_identifier_case": false,
+        "covering_chunk_ids": [
+          "chk_e6175c47a09dfd60a942c427149461b7128463b8"
+        ],
+        "gold_in_e_l10": true
+      },
+      {
+        "case_id": "NATQ-C-019",
+        "provider": "anthropic",
+        "span_index": 0,
+        "origin": "A pool",
+        "origin_raw": "a_pool",
+        "pre_final_pool_rank": 1,
+        "raw_ce_logit": "unavailable_not_stored",
+        "ce_normalized": "unavailable_not_stored",
+        "retrieval_prior": "unavailable_not_stored",
+        "final_blended_score": 0.9941106704053426,
+        "final_rank": 1,
+        "movement": "unchanged",
+        "top10_boundary": "none",
+        "fully_recalled": true,
+        "is_multi_span_case": false,
+        "is_exact_identifier_case": false,
+        "covering_chunk_ids": [
+          "chk_5298a7be6404e6286f2160c767d8922c345d92e1"
+        ],
+        "gold_in_e_l10": true
+      },
+      {
+        "case_id": "NATQ-C-071",
+        "provider": "anthropic",
+        "span_index": 0,
+        "origin": "projection",
+        "origin_raw": "projection",
+        "pre_final_pool_rank": 107,
+        "raw_ce_logit": "unavailable_not_stored",
+        "ce_normalized": "unavailable_not_stored",
+        "retrieval_prior": "unavailable_not_stored",
+        "final_blended_score": "unavailable_not_in_serialized_top10",
+        "final_rank": 91,
+        "movement": "improved",
+        "top10_boundary": "none",
+        "fully_recalled": false,
+        "is_multi_span_case": false,
+        "is_exact_identifier_case": false,
+        "covering_chunk_ids": [
+          "chk_256b585d81382004251a50e556079966f2b1dc7f"
+        ],
+        "gold_in_e_l10": false
+      },
+      {
+        "case_id": "NATQ-C-021",
+        "provider": "anthropic",
+        "span_index": 0,
+        "origin": "A pool",
+        "origin_raw": "a_pool",
+        "pre_final_pool_rank": 26,
+        "raw_ce_logit": "unavailable_not_stored",
+        "ce_normalized": "unavailable_not_stored",
+        "retrieval_prior": "unavailable_not_stored",
+        "final_blended_score": "unavailable_not_in_serialized_top10",
+        "final_rank": 13,
+        "movement": "improved",
+        "top10_boundary": "none",
+        "fully_recalled": false,
+        "is_multi_span_case": false,
+        "is_exact_identifier_case": true,
+        "covering_chunk_ids": [
+          "chk_92a89f7bec7f51802269a65ab6fa984d012a56ed"
+        ],
+        "gold_in_e_l10": true
+      },
+      {
+        "case_id": "NATQ-C-044",
+        "provider": "anthropic",
+        "span_index": 2,
+        "origin": "A pool",
+        "origin_raw": "a_pool",
+        "pre_final_pool_rank": 6,
+        "raw_ce_logit": "unavailable_not_stored",
+        "ce_normalized": "unavailable_not_stored",
+        "retrieval_prior": "unavailable_not_stored",
+        "final_blended_score": 0.930099177298537,
+        "final_rank": 3,
+        "movement": "improved",
+        "top10_boundary": "none",
+        "fully_recalled": false,
+        "is_multi_span_case": true,
+        "is_exact_identifier_case": true,
+        "covering_chunk_ids": [
+          "chk_918151af3d3355326c9cca856c367c65cf48d562"
+        ],
+        "gold_in_e_l10": true
+      },
+      {
+        "case_id": "NATQ-C-147",
+        "provider": "anthropic",
+        "span_index": 0,
+        "origin": "A pool",
+        "origin_raw": "a_pool",
+        "pre_final_pool_rank": 3,
+        "raw_ce_logit": "unavailable_not_stored",
+        "ce_normalized": "unavailable_not_stored",
+        "retrieval_prior": "unavailable_not_stored",
+        "final_blended_score": 0.9328936206314598,
+        "final_rank": 4,
+        "movement": "worsened",
+        "top10_boundary": "none",
+        "fully_recalled": true,
+        "is_multi_span_case": false,
+        "is_exact_identifier_case": true,
+        "covering_chunk_ids": [
+          "chk_6500d3e46ee10c7a8ebc10ff634a78d014294c6b"
+        ],
+        "gold_in_e_l10": true
+      },
+      {
+        "case_id": "NATQ-C-022",
+        "provider": "anthropic",
+        "span_index": 0,
+        "origin": "A pool",
+        "origin_raw": "a_pool",
+        "pre_final_pool_rank": 2,
+        "raw_ce_logit": "unavailable_not_stored",
+        "ce_normalized": "unavailable_not_stored",
+        "retrieval_prior": "unavailable_not_stored",
+        "final_blended_score": 0.9940020263424518,
+        "final_rank": 1,
+        "movement": "improved",
+        "top10_boundary": "none",
+        "fully_recalled": true,
+        "is_multi_span_case": false,
+        "is_exact_identifier_case": false,
+        "covering_chunk_ids": [
+          "chk_5bb380a8235bb1e7177e4eb0a73b7a5513781d60"
+        ],
+        "gold_in_e_l10": true
+      },
+      {
+        "case_id": "NATQ-C-160",
+        "provider": "anthropic",
+        "span_index": 0,
+        "origin": "A pool",
+        "origin_raw": "a_pool",
+        "pre_final_pool_rank": 93,
+        "raw_ce_logit": "unavailable_not_stored",
+        "ce_normalized": "unavailable_not_stored",
+        "retrieval_prior": "unavailable_not_stored",
+        "final_blended_score": "unavailable_not_in_serialized_top10",
+        "final_rank": 98,
+        "movement": "worsened",
+        "top10_boundary": "none",
+        "fully_recalled": false,
+        "is_multi_span_case": true,
+        "is_exact_identifier_case": true,
+        "covering_chunk_ids": [
+          "chk_6f6de4d16ff7435a3988285a71305f51bea1d3b8"
+        ],
+        "gold_in_e_l10": true
+      },
+      {
+        "case_id": "NATQ-C-160",
+        "provider": "anthropic",
+        "span_index": 1,
+        "origin": "A pool",
+        "origin_raw": "a_pool",
+        "pre_final_pool_rank": 16,
+        "raw_ce_logit": "unavailable_not_stored",
+        "ce_normalized": "unavailable_not_stored",
+        "retrieval_prior": "unavailable_not_stored",
+        "final_blended_score": "unavailable_not_in_serialized_top10",
+        "final_rank": 23,
+        "movement": "worsened",
+        "top10_boundary": "none",
+        "fully_recalled": false,
+        "is_multi_span_case": true,
+        "is_exact_identifier_case": true,
+        "covering_chunk_ids": [
+          "chk_b3b2425f5e198fe4971a4bbcaccf4aea3716c8dc",
+          "chk_f5a2dc17c926e579dcd6363c7d5ab081e4afd2e9"
+        ],
+        "gold_in_e_l10": true
+      },
+      {
+        "case_id": "NATQ-C-161",
+        "provider": "anthropic",
+        "span_index": 0,
+        "origin": "A pool",
+        "origin_raw": "a_pool",
+        "pre_final_pool_rank": 1,
+        "raw_ce_logit": "unavailable_not_stored",
+        "ce_normalized": "unavailable_not_stored",
+        "retrieval_prior": "unavailable_not_stored",
+        "final_blended_score": 0.9289572487646423,
+        "final_rank": 1,
+        "movement": "unchanged",
+        "top10_boundary": "none",
+        "fully_recalled": true,
+        "is_multi_span_case": false,
+        "is_exact_identifier_case": false,
+        "covering_chunk_ids": [
+          "chk_2fd8a233668e6779265e444fe3278888749f9a7a"
+        ],
+        "gold_in_e_l10": true
+      },
+      {
+        "case_id": "NATQ-C-025",
+        "provider": "anthropic",
+        "span_index": 0,
+        "origin": "A pool",
+        "origin_raw": "a_pool",
+        "pre_final_pool_rank": 45,
+        "raw_ce_logit": "unavailable_not_stored",
+        "ce_normalized": "unavailable_not_stored",
+        "retrieval_prior": "unavailable_not_stored",
+        "final_blended_score": "unavailable_not_in_serialized_top10",
+        "final_rank": 21,
+        "movement": "improved",
+        "top10_boundary": "none",
+        "fully_recalled": false,
+        "is_multi_span_case": false,
+        "is_exact_identifier_case": true,
+        "covering_chunk_ids": [
+          "chk_f5cb35fdc1aac7f1b13a8189fb53ea6ce3f818b7"
+        ],
+        "gold_in_e_l10": true
+      },
+      {
+        "case_id": "NATQ-C-026",
+        "provider": "anthropic",
+        "span_index": 0,
+        "origin": "A pool",
+        "origin_raw": "a_pool",
+        "pre_final_pool_rank": 1,
+        "raw_ce_logit": "unavailable_not_stored",
+        "ce_normalized": "unavailable_not_stored",
+        "retrieval_prior": "unavailable_not_stored",
+        "final_blended_score": 0.9368287560605111,
+        "final_rank": 2,
+        "movement": "worsened",
+        "top10_boundary": "none",
+        "fully_recalled": false,
+        "is_multi_span_case": true,
+        "is_exact_identifier_case": false,
+        "covering_chunk_ids": [
+          "chk_340558e6efbdac94917700ba4ed968eb19719b66"
+        ],
+        "gold_in_e_l10": true
+      },
+      {
+        "case_id": "NATQ-C-026",
+        "provider": "anthropic",
+        "span_index": 2,
+        "origin": "A pool",
+        "origin_raw": "a_pool",
+        "pre_final_pool_rank": 47,
+        "raw_ce_logit": "unavailable_not_stored",
+        "ce_normalized": "unavailable_not_stored",
+        "retrieval_prior": "unavailable_not_stored",
+        "final_blended_score": "unavailable_not_in_serialized_top10",
+        "final_rank": 77,
+        "movement": "worsened",
+        "top10_boundary": "none",
+        "fully_recalled": false,
+        "is_multi_span_case": true,
+        "is_exact_identifier_case": false,
+        "covering_chunk_ids": [
+          "chk_9434d71a225e16643f432b8ddf07dfef0fdb1e11"
+        ],
+        "gold_in_e_l10": true
+      },
+      {
+        "case_id": "NATQ-C-199",
+        "provider": "anthropic",
+        "span_index": 0,
+        "origin": "A pool",
+        "origin_raw": "a_pool",
+        "pre_final_pool_rank": 2,
+        "raw_ce_logit": "unavailable_not_stored",
+        "ce_normalized": "unavailable_not_stored",
+        "retrieval_prior": "unavailable_not_stored",
+        "final_blended_score": 0.877374419826642,
+        "final_rank": 4,
+        "movement": "worsened",
+        "top10_boundary": "none",
+        "fully_recalled": true,
+        "is_multi_span_case": false,
+        "is_exact_identifier_case": true,
+        "covering_chunk_ids": [
+          "chk_ab1b7d20d04efaf1c18b73f427cf42ac3287fb14"
+        ],
+        "gold_in_e_l10": true
+      },
+      {
+        "case_id": "NATQ-C-027",
+        "provider": "anthropic",
+        "span_index": 0,
+        "origin": "A pool",
+        "origin_raw": "a_pool",
+        "pre_final_pool_rank": 10,
+        "raw_ce_logit": "unavailable_not_stored",
+        "ce_normalized": "unavailable_not_stored",
+        "retrieval_prior": "unavailable_not_stored",
+        "final_blended_score": 0.9093590327705758,
+        "final_rank": 4,
+        "movement": "improved",
+        "top10_boundary": "none",
+        "fully_recalled": true,
+        "is_multi_span_case": false,
+        "is_exact_identifier_case": true,
+        "covering_chunk_ids": [
+          "chk_8258f3568458060f3b18bb56b26755f4012001bd",
+          "chk_8e1f4a6ac64827ea57fdd09101f6f5c74848f4c2",
+          "chk_df5297f037f4f025352ffc5fdf3216fd4a796861"
+        ],
+        "gold_in_e_l10": true
+      },
+      {
+        "case_id": "NATQ-C-170",
+        "provider": "anthropic",
+        "span_index": 0,
+        "origin": "A pool",
+        "origin_raw": "a_pool",
+        "pre_final_pool_rank": 2,
+        "raw_ce_logit": "unavailable_not_stored",
+        "ce_normalized": "unavailable_not_stored",
+        "retrieval_prior": "unavailable_not_stored",
+        "final_blended_score": 0.9969926744634365,
+        "final_rank": 2,
+        "movement": "unchanged",
+        "top10_boundary": "none",
+        "fully_recalled": true,
+        "is_multi_span_case": true,
+        "is_exact_identifier_case": false,
+        "covering_chunk_ids": [
+          "chk_2f2c3dcd6a1cbc18d43554fd906473e0834e8ca9"
+        ],
+        "gold_in_e_l10": true
+      },
+      {
+        "case_id": "NATQ-C-029",
+        "provider": "anthropic",
+        "span_index": 0,
+        "origin": "A pool",
+        "origin_raw": "a_pool",
+        "pre_final_pool_rank": 12,
+        "raw_ce_logit": "unavailable_not_stored",
+        "ce_normalized": "unavailable_not_stored",
+        "retrieval_prior": "unavailable_not_stored",
+        "final_blended_score": "unavailable_not_in_serialized_top10",
+        "final_rank": 19,
+        "movement": "worsened",
+        "top10_boundary": "none",
+        "fully_recalled": false,
+        "is_multi_span_case": false,
+        "is_exact_identifier_case": true,
+        "covering_chunk_ids": [
+          "chk_a9db255748849d59216ae378ce4b2d18ff40961d"
+        ],
+        "gold_in_e_l10": true
+      },
+      {
+        "case_id": "NATQ-C-191",
+        "provider": "anthropic",
+        "span_index": 0,
+        "origin": "A pool",
+        "origin_raw": "a_pool",
+        "pre_final_pool_rank": 3,
+        "raw_ce_logit": "unavailable_not_stored",
+        "ce_normalized": "unavailable_not_stored",
+        "retrieval_prior": "unavailable_not_stored",
+        "final_blended_score": 0.8974911448894822,
+        "final_rank": 2,
+        "movement": "improved",
+        "top10_boundary": "none",
+        "fully_recalled": true,
+        "is_multi_span_case": false,
+        "is_exact_identifier_case": false,
+        "covering_chunk_ids": [
+          "chk_6aec6941a815969ad391a31a7ee0ed6f41e0d435"
+        ],
+        "gold_in_e_l10": true
+      },
+      {
+        "case_id": "NATQ-C-030",
+        "provider": "anthropic",
+        "span_index": 0,
+        "origin": "projection",
+        "origin_raw": "projection",
+        "pre_final_pool_rank": 99,
+        "raw_ce_logit": "unavailable_not_stored",
+        "ce_normalized": "unavailable_not_stored",
+        "retrieval_prior": "unavailable_not_stored",
+        "final_blended_score": "unavailable_not_in_serialized_top10",
+        "final_rank": 51,
+        "movement": "improved",
+        "top10_boundary": "none",
+        "fully_recalled": false,
+        "is_multi_span_case": true,
+        "is_exact_identifier_case": false,
+        "covering_chunk_ids": [
+          "chk_0450421ed42b6513c348b27771147e55a53d0ecf"
+        ],
+        "gold_in_e_l10": false
+      },
+      {
+        "case_id": "NATQ-C-030",
+        "provider": "anthropic",
+        "span_index": 1,
+        "origin": "A pool",
+        "origin_raw": "a_pool",
+        "pre_final_pool_rank": 9,
+        "raw_ce_logit": "unavailable_not_stored",
+        "ce_normalized": "unavailable_not_stored",
+        "retrieval_prior": "unavailable_not_stored",
+        "final_blended_score": 0.9056613204186361,
+        "final_rank": 6,
+        "movement": "improved",
+        "top10_boundary": "none",
+        "fully_recalled": false,
+        "is_multi_span_case": true,
+        "is_exact_identifier_case": false,
+        "covering_chunk_ids": [
+          "chk_fa26b9057a1b72b3e2d60de8f02f009442d29d6c"
+        ],
+        "gold_in_e_l10": true
+      },
+      {
+        "case_id": "NATQ-C-032",
+        "provider": "openai",
+        "span_index": 0,
+        "origin": "A pool",
+        "origin_raw": "a_pool",
+        "pre_final_pool_rank": 2,
+        "raw_ce_logit": "unavailable_not_stored",
+        "ce_normalized": "unavailable_not_stored",
+        "retrieval_prior": "unavailable_not_stored",
+        "final_blended_score": 0.9940327998419285,
+        "final_rank": 1,
+        "movement": "improved",
+        "top10_boundary": "none",
+        "fully_recalled": false,
+        "is_multi_span_case": true,
+        "is_exact_identifier_case": true,
+        "covering_chunk_ids": [
+          "chk_6caaeef7358cdf2d31aa27d8f6e7b8082cd1674d"
+        ],
+        "gold_in_e_l10": true
+      },
+      {
+        "case_id": "NATQ-C-032",
+        "provider": "openai",
+        "span_index": 1,
+        "origin": "A pool",
+        "origin_raw": "a_pool",
+        "pre_final_pool_rank": 13,
+        "raw_ce_logit": "unavailable_not_stored",
+        "ce_normalized": "unavailable_not_stored",
+        "retrieval_prior": "unavailable_not_stored",
+        "final_blended_score": "unavailable_not_in_serialized_top10",
+        "final_rank": 15,
+        "movement": "worsened",
+        "top10_boundary": "none",
+        "fully_recalled": false,
+        "is_multi_span_case": true,
+        "is_exact_identifier_case": true,
+        "covering_chunk_ids": [
+          "chk_d2c0474d980168780c5f3c7e955b8c7370467d46"
+        ],
+        "gold_in_e_l10": true
+      },
+      {
+        "case_id": "NATQ-C-033",
+        "provider": "anthropic",
+        "span_index": 0,
+        "origin": "A pool",
+        "origin_raw": "a_pool",
+        "pre_final_pool_rank": 5,
+        "raw_ce_logit": "unavailable_not_stored",
+        "ce_normalized": "unavailable_not_stored",
+        "retrieval_prior": "unavailable_not_stored",
+        "final_blended_score": "unavailable_not_in_serialized_top10",
+        "final_rank": 14,
+        "movement": "worsened",
+        "top10_boundary": "top10->outside",
+        "fully_recalled": false,
+        "is_multi_span_case": false,
+        "is_exact_identifier_case": true,
+        "covering_chunk_ids": [
+          "chk_ff684c037214d4983d76b9540f079c09a5877458"
+        ],
+        "gold_in_e_l10": true
+      }
+    ],
+    "aggregates": {
+      "overall": {
+        "n_spans": 46,
+        "n_comparable": 46,
+        "improved": 27,
+        "worsened": 13,
+        "unchanged": 6,
+        "outside_to_top10": 5,
+        "top10_to_outside": 3,
+        "boundary_none": 38
+      },
+      "strict_PASS": {
+        "n_spans": 21,
+        "n_comparable": 21,
+        "improved": 12,
+        "worsened": 3,
+        "unchanged": 6,
+        "outside_to_top10": 4,
+        "top10_to_outside": 0,
+        "boundary_none": 17
+      },
+      "strict_FAIL": {
+        "n_spans": 25,
+        "n_comparable": 25,
+        "improved": 15,
+        "worsened": 10,
+        "unchanged": 0,
+        "outside_to_top10": 1,
+        "top10_to_outside": 3,
+        "boundary_none": 21
+      },
+      "multi_span": {
+        "n_spans": 20,
+        "n_comparable": 20,
+        "improved": 11,
+        "worsened": 8,
+        "unchanged": 1,
+        "outside_to_top10": 1,
+        "top10_to_outside": 2,
+        "boundary_none": 17
+      },
+      "exact_identifier": {
+        "n_spans": 18,
+        "n_comparable": 18,
+        "improved": 10,
+        "worsened": 8,
+        "unchanged": 0,
+        "outside_to_top10": 2,
+        "top10_to_outside": 1,
+        "boundary_none": 15
+      },
+      "OpenAI": {
+        "n_spans": 20,
+        "n_comparable": 20,
+        "improved": 14,
+        "worsened": 3,
+        "unchanged": 3,
+        "outside_to_top10": 5,
+        "top10_to_outside": 1,
+        "boundary_none": 14
+      },
+      "Anthropic": {
+        "n_spans": 26,
+        "n_comparable": 26,
+        "improved": 13,
+        "worsened": 10,
+        "unchanged": 3,
+        "outside_to_top10": 0,
+        "top10_to_outside": 2,
+        "boundary_none": 24
+      }
+    },
+    "notable_demotions": [
+      {
+        "case_id": "NATQ-C-017",
+        "span_index": 0,
+        "pool_rank": 10,
+        "final_rank": 48
+      },
+      {
+        "case_id": "NATQ-C-033",
+        "span_index": 0,
+        "pool_rank": 5,
+        "final_rank": 14
+      },
+      {
+        "case_id": "NATQ-C-201",
+        "span_index": 1,
+        "pool_rank": 2,
+        "final_rank": 14,
+        "origin": "local BM25"
+      }
+    ],
+    "notable_rescues_outside_to_top10": [
+      {
+        "case_id": "NATQ-C-201",
+        "span_index": 0,
+        "pool_rank": 15,
+        "final_rank": 3
+      },
+      {
+        "case_id": "NATQ-C-217",
+        "span_index": 0,
+        "pool_rank": 15,
+        "final_rank": 3
+      },
+      {
+        "case_id": "NATQ-C-203",
+        "span_index": 0,
+        "pool_rank": 15,
+        "final_rank": 2
+      },
+      {
+        "case_id": "NATQ-C-011",
+        "span_index": 0,
+        "pool_rank": 24,
+        "final_rank": 8
+      },
+      {
+        "case_id": "NATQ-C-015",
+        "span_index": 0,
+        "pool_rank": 11,
+        "final_rank": 6
+      }
+    ],
+    "origins_of_in_pool_gold_spans": {
+      "A pool": 40,
+      "projection": 4,
+      "local BM25": 2
+    }
+  },
+  "item_3_multi_span_coverage_table": [
+    {
+      "case_id": "NATQ-C-201",
+      "provider": "openai",
+      "n_required_spans": 2,
+      "n_in_candidate_pool": 2,
+      "n_in_final_top10": 1,
+      "gold_final_ranks": [
+        3,
+        14
+      ],
+      "all_evidence_one_document": true,
+      "gold_version_ids": [
+        "ver_1c77f33b04ffffa285ea7e61c2a89653",
+        "ver_1c77f33b04ffffa285ea7e61c2a89653"
+      ],
+      "top10_has_redundant_chunks": true,
+      "top10_same_version_duplicates": {
+        "ver_1c77f33b04ffffa285ea7e61c2a89653": 5,
+        "ver_2c60e99cfd929a738910b893fd6f1a40": 3
+      },
+      "top10_same_section_duplicates": {},
+      "near_duplicate_adjacent_or_overlap": true,
+      "n_unique_version_ids_in_top10": 4,
+      "n_unique_section_paths_in_top10": 10,
+      "missing_gold_span_relations": [
+        {
+          "span_index": 1,
+          "relation": "same section as another retrieved gold",
+          "in_pool": true
+        }
+      ],
+      "fully_recalled": false,
+      "requires_all_evidence": true
+    },
+    {
+      "case_id": "NATQ-C-005",
+      "provider": "openai",
+      "n_required_spans": 2,
+      "n_in_candidate_pool": 1,
+      "n_in_final_top10": 0,
+      "gold_final_ranks": [
+        11,
+        null
+      ],
+      "all_evidence_one_document": true,
+      "gold_version_ids": [
+        "ver_ae3bfcc42c733c5051abda30f0f6db07",
+        "ver_ae3bfcc42c733c5051abda30f0f6db07"
+      ],
+      "top10_has_redundant_chunks": true,
+      "top10_same_version_duplicates": {
+        "ver_ae3bfcc42c733c5051abda30f0f6db07": 4,
+        "ver_ae909bf8b4bbbe1d1a11119447f7ac94": 2,
+        "ver_de7f74230c8f10d30aea5d037a3bd0a5": 2
+      },
+      "top10_same_section_duplicates": {
+        "['Models', 'OpenAI models', 'Hosted multi-agent (experimental)', 'Local function tools']": 2
+      },
+      "near_duplicate_adjacent_or_overlap": false,
+      "n_unique_version_ids_in_top10": 5,
+      "n_unique_section_paths_in_top10": 9,
+      "missing_gold_span_relations": [
+        {
+          "span_index": 0,
+          "relation": "no_other_gold_in_top10",
+          "in_pool": true
+        },
+        {
+          "span_index": 1,
+          "relation": "no_other_gold_in_top10",
+          "in_pool": false
+        }
+      ],
+      "fully_recalled": false,
+      "requires_all_evidence": true
+    },
+    {
+      "case_id": "NATQ-C-012",
+      "provider": "openai",
+      "n_required_spans": 2,
+      "n_in_candidate_pool": 2,
+      "n_in_final_top10": 2,
+      "gold_final_ranks": [
+        7,
+        3
+      ],
+      "all_evidence_one_document": true,
+      "gold_version_ids": [
+        "ver_fef74b4dda29e84a533c3e83f753effd",
+        "ver_fef74b4dda29e84a533c3e83f753effd"
+      ],
+      "top10_has_redundant_chunks": true,
+      "top10_same_version_duplicates": {
+        "ver_fef74b4dda29e84a533c3e83f753effd": 5,
+        "ver_35cac5e98c151a17f941a6142d74709f": 3
+      },
+      "top10_same_section_duplicates": {},
+      "near_duplicate_adjacent_or_overlap": true,
+      "n_unique_version_ids_in_top10": 4,
+      "n_unique_section_paths_in_top10": 10,
+      "missing_gold_span_relations": [],
+      "fully_recalled": true,
+      "requires_all_evidence": true
+    },
+    {
+      "case_id": "NATQ-C-014",
+      "provider": "openai",
+      "n_required_spans": 2,
+      "n_in_candidate_pool": 1,
+      "n_in_final_top10": 0,
+      "gold_final_ranks": [
+        27,
+        null
+      ],
+      "all_evidence_one_document": true,
+      "gold_version_ids": [
+        "ver_cbeb36b7cf9a5e241940a011629b6f1b",
+        "ver_cbeb36b7cf9a5e241940a011629b6f1b"
+      ],
+      "top10_has_redundant_chunks": true,
+      "top10_same_version_duplicates": {
+        "ver_cbeb36b7cf9a5e241940a011629b6f1b": 6
+      },
+      "top10_same_section_duplicates": {},
+      "near_duplicate_adjacent_or_overlap": true,
+      "n_unique_version_ids_in_top10": 5,
+      "n_unique_section_paths_in_top10": 10,
+      "missing_gold_span_relations": [
+        {
+          "span_index": 0,
+          "relation": "no_other_gold_in_top10",
+          "in_pool": true
+        },
+        {
+          "span_index": 1,
+          "relation": "no_other_gold_in_top10",
+          "in_pool": false
+        }
+      ],
+      "fully_recalled": false,
+      "requires_all_evidence": true
+    },
+    {
+      "case_id": "NATQ-C-017",
+      "provider": "anthropic",
+      "n_required_spans": 2,
+      "n_in_candidate_pool": 2,
+      "n_in_final_top10": 1,
+      "gold_final_ranks": [
+        48,
+        2
+      ],
+      "all_evidence_one_document": true,
+      "gold_version_ids": [
+        "ver_7947433dfde6b3b8eccd0faa597c3c9a",
+        "ver_7947433dfde6b3b8eccd0faa597c3c9a"
+      ],
+      "top10_has_redundant_chunks": true,
+      "top10_same_version_duplicates": {
+        "ver_7947433dfde6b3b8eccd0faa597c3c9a": 5
+      },
+      "top10_same_section_duplicates": {},
+      "near_duplicate_adjacent_or_overlap": false,
+      "n_unique_version_ids_in_top10": 6,
+      "n_unique_section_paths_in_top10": 10,
+      "missing_gold_span_relations": [
+        {
+          "span_index": 0,
+          "relation": "distant section",
+          "in_pool": true
+        }
+      ],
+      "fully_recalled": false,
+      "requires_all_evidence": true
+    },
+    {
+      "case_id": "NATQ-C-023",
+      "provider": "anthropic",
+      "n_required_spans": 2,
+      "n_in_candidate_pool": 2,
+      "n_in_final_top10": 0,
+      "gold_final_ranks": [
+        17,
+        43
+      ],
+      "all_evidence_one_document": true,
+      "gold_version_ids": [
+        "ver_7947433dfde6b3b8eccd0faa597c3c9a",
+        "ver_7947433dfde6b3b8eccd0faa597c3c9a"
+      ],
+      "top10_has_redundant_chunks": true,
+      "top10_same_version_duplicates": {
+        "ver_7947433dfde6b3b8eccd0faa597c3c9a": 6,
+        "ver_0e1e2173035af0ad0c98640a78504513": 2
+      },
+      "top10_same_section_duplicates": {
+        "['Mechanics', 'Prompt caching']": 2
+      },
+      "near_duplicate_adjacent_or_overlap": true,
+      "n_unique_version_ids_in_top10": 4,
+      "n_unique_section_paths_in_top10": 9,
+      "missing_gold_span_relations": [
+        {
+          "span_index": 0,
+          "relation": "no_other_gold_in_top10",
+          "in_pool": true
+        },
+        {
+          "span_index": 1,
+          "relation": "no_other_gold_in_top10",
+          "in_pool": true
+        }
+      ],
+      "fully_recalled": false,
+      "requires_all_evidence": true
+    },
+    {
+      "case_id": "NATQ-C-044",
+      "provider": "anthropic",
+      "n_required_spans": 3,
+      "n_in_candidate_pool": 1,
+      "n_in_final_top10": 1,
+      "gold_final_ranks": [
+        null,
+        null,
+        3
+      ],
+      "all_evidence_one_document": false,
+      "gold_version_ids": [
+        "ver_9bf8513721dc2d1ef3e1ec42bf535dc6",
+        "ver_9bf8513721dc2d1ef3e1ec42bf535dc6",
+        "ver_72833144cee232446fa450e9e040995a"
+      ],
+      "top10_has_redundant_chunks": true,
+      "top10_same_version_duplicates": {
+        "ver_72833144cee232446fa450e9e040995a": 4,
+        "ver_d9ba3ab0d872dd86047c7ed6dc783235": 2
+      },
+      "top10_same_section_duplicates": {},
+      "near_duplicate_adjacent_or_overlap": true,
+      "n_unique_version_ids_in_top10": 6,
+      "n_unique_section_paths_in_top10": 10,
+      "missing_gold_span_relations": [
+        {
+          "span_index": 0,
+          "relation": "different document",
+          "in_pool": false
+        },
+        {
+          "span_index": 1,
+          "relation": "different document",
+          "in_pool": false
+        }
+      ],
+      "fully_recalled": false,
+      "requires_all_evidence": true
+    },
+    {
+      "case_id": "NATQ-C-160",
+      "provider": "anthropic",
+      "n_required_spans": 2,
+      "n_in_candidate_pool": 2,
+      "n_in_final_top10": 0,
+      "gold_final_ranks": [
+        98,
+        23
+      ],
+      "all_evidence_one_document": false,
+      "gold_version_ids": [
+        "ver_de7f74230c8f10d30aea5d037a3bd0a5",
+        "ver_ab9e2c2bf4c17bf70ce1b94355d01729"
+      ],
+      "top10_has_redundant_chunks": true,
+      "top10_same_version_duplicates": {
+        "ver_31cd12f6d13c8ac47666eb1a55874e5d": 7,
+        "ver_ab9e2c2bf4c17bf70ce1b94355d01729": 2
+      },
+      "top10_same_section_duplicates": {
+        "['Process PDFs with Claude', 'Send your first PDF request', 'Option 3: Files API']": 5
+      },
+      "near_duplicate_adjacent_or_overlap": true,
+      "n_unique_version_ids_in_top10": 3,
+      "n_unique_section_paths_in_top10": 6,
+      "missing_gold_span_relations": [
+        {
+          "span_index": 0,
+          "relation": "different document (no other gold in top10; gold doc may still be in top10 via non-gold chunks)",
+          "in_pool": true
+        },
+        {
+          "span_index": 1,
+          "relation": "no_other_gold_in_top10",
+          "in_pool": true
+        }
+      ],
+      "fully_recalled": false,
+      "requires_all_evidence": true
+    },
+    {
+      "case_id": "NATQ-C-026",
+      "provider": "anthropic",
+      "n_required_spans": 3,
+      "n_in_candidate_pool": 2,
+      "n_in_final_top10": 1,
+      "gold_final_ranks": [
+        2,
+        null,
+        77
+      ],
+      "all_evidence_one_document": true,
+      "gold_version_ids": [
+        "ver_77dd930ea597c30fc512a8f92f8e802d",
+        "ver_77dd930ea597c30fc512a8f92f8e802d",
+        "ver_77dd930ea597c30fc512a8f92f8e802d"
+      ],
+      "top10_has_redundant_chunks": true,
+      "top10_same_version_duplicates": {
+        "ver_b7ea8359f97ca269418988f78e80b870": 2,
+        "ver_77dd930ea597c30fc512a8f92f8e802d": 2,
+        "ver_42a4f3d941b664a285883aaf6ff90373": 3,
+        "ver_0a5b292d4854b92db0a9e025b4949123": 3
+      },
+      "top10_same_section_duplicates": {},
+      "near_duplicate_adjacent_or_overlap": false,
+      "n_unique_version_ids_in_top10": 4,
+      "n_unique_section_paths_in_top10": 10,
+      "missing_gold_span_relations": [
+        {
+          "span_index": 1,
+          "relation": "distant section",
+          "in_pool": false
+        },
+        {
+          "span_index": 2,
+          "relation": "nearby section",
+          "in_pool": true
+        }
+      ],
+      "fully_recalled": false,
+      "requires_all_evidence": true
+    },
+    {
+      "case_id": "NATQ-C-170",
+      "provider": "anthropic",
+      "n_required_spans": 1,
+      "n_in_candidate_pool": 1,
+      "n_in_final_top10": 1,
+      "gold_final_ranks": [
+        2
+      ],
+      "all_evidence_one_document": true,
+      "gold_version_ids": [
+        "ver_18c692f4d28bd01c0a5cac553fcf01a7"
+      ],
+      "top10_has_redundant_chunks": true,
+      "top10_same_version_duplicates": {
+        "ver_de7f74230c8f10d30aea5d037a3bd0a5": 2,
+        "ver_18c692f4d28bd01c0a5cac553fcf01a7": 2,
+        "ver_a7f8366bd625d655609dddb78fca0e6c": 2,
+        "ver_76c80d3d80b12ae7870092b39f1832f1": 3
+      },
+      "top10_same_section_duplicates": {
+        "['Messages', 'Count tokens in a Message']": 2
+      },
+      "near_duplicate_adjacent_or_overlap": false,
+      "n_unique_version_ids_in_top10": 5,
+      "n_unique_section_paths_in_top10": 9,
+      "missing_gold_span_relations": [],
+      "fully_recalled": true,
+      "requires_all_evidence": false
+    },
+    {
+      "case_id": "NATQ-C-030",
+      "provider": "anthropic",
+      "n_required_spans": 2,
+      "n_in_candidate_pool": 2,
+      "n_in_final_top10": 1,
+      "gold_final_ranks": [
+        51,
+        6
+      ],
+      "all_evidence_one_document": false,
+      "gold_version_ids": [
+        "ver_18c692f4d28bd01c0a5cac553fcf01a7",
+        "ver_4d14aec24504f4b8f6f28938b84587dc"
+      ],
+      "top10_has_redundant_chunks": true,
+      "top10_same_version_duplicates": {
+        "ver_8d2a22e3827c98e0b9d4e1ef411e5353": 3
+      },
+      "top10_same_section_duplicates": {
+        "['Mixing server tools and client tools in one turn']": 2
+      },
+      "near_duplicate_adjacent_or_overlap": false,
+      "n_unique_version_ids_in_top10": 8,
+      "n_unique_section_paths_in_top10": 9,
+      "missing_gold_span_relations": [
+        {
+          "span_index": 0,
+          "relation": "different document",
+          "in_pool": true
+        }
+      ],
+      "fully_recalled": false,
+      "requires_all_evidence": true
+    },
+    {
+      "case_id": "NATQ-C-032",
+      "provider": "openai",
+      "n_required_spans": 2,
+      "n_in_candidate_pool": 2,
+      "n_in_final_top10": 1,
+      "gold_final_ranks": [
+        1,
+        15
+      ],
+      "all_evidence_one_document": true,
+      "gold_version_ids": [
+        "ver_ae909bf8b4bbbe1d1a11119447f7ac94",
+        "ver_ae909bf8b4bbbe1d1a11119447f7ac94"
+      ],
+      "top10_has_redundant_chunks": true,
+      "top10_same_version_duplicates": {
+        "ver_ae909bf8b4bbbe1d1a11119447f7ac94": 2,
+        "ver_7102d3e3621c153ddba38db4eb52ad9f": 6
+      },
+      "top10_same_section_duplicates": {
+        "['Maximizing parallel tool use']": 2
+      },
+      "near_duplicate_adjacent_or_overlap": false,
+      "n_unique_version_ids_in_top10": 4,
+      "n_unique_section_paths_in_top10": 9,
+      "missing_gold_span_relations": [
+        {
+          "span_index": 1,
+          "relation": "same section as another retrieved gold",
+          "in_pool": true
+        }
+      ],
+      "fully_recalled": false,
+      "requires_all_evidence": true
+    }
+  ],
+  "item_4_oracle_candidate_pool_ceiling": {
+    "ORACLE_COVERAGE_A": {
+      "definition": "Select any 10 from existing candidate pool with gold knowledge. A case is covered iff every required gold span is already in the stored union pool (n_required<=10).",
+      "n_cases_all_required_evidence_present": 34,
+      "n": 40,
+      "fraction": 0.85,
+      "corresponds_to_candidate_ceiling": "34/40 candidate gold-span case Recall@100",
+      "details": [
+        {
+          "case_id": "NATQ-C-001",
+          "n_required": 1,
+          "n_in_pool": 1,
+          "oracle_a_all_evidence_selectable": true
+        },
+        {
+          "case_id": "NATQ-C-201",
+          "n_required": 2,
+          "n_in_pool": 2,
+          "oracle_a_all_evidence_selectable": true
+        },
+        {
+          "case_id": "NATQ-C-002",
+          "n_required": 1,
+          "n_in_pool": 1,
+          "oracle_a_all_evidence_selectable": true
+        },
+        {
+          "case_id": "NATQ-C-004",
+          "n_required": 1,
+          "n_in_pool": 0,
+          "oracle_a_all_evidence_selectable": false
+        },
+        {
+          "case_id": "NATQ-C-217",
+          "n_required": 1,
+          "n_in_pool": 1,
+          "oracle_a_all_evidence_selectable": true
+        },
+        {
+          "case_id": "NATQ-C-005",
+          "n_required": 2,
+          "n_in_pool": 1,
+          "oracle_a_all_evidence_selectable": false
+        },
+        {
+          "case_id": "NATQ-C-006",
+          "n_required": 1,
+          "n_in_pool": 1,
+          "oracle_a_all_evidence_selectable": true
+        },
+        {
+          "case_id": "NATQ-C-008",
+          "n_required": 1,
+          "n_in_pool": 1,
+          "oracle_a_all_evidence_selectable": true
+        },
+        {
+          "case_id": "NATQ-C-009",
+          "n_required": 1,
+          "n_in_pool": 1,
+          "oracle_a_all_evidence_selectable": true
+        },
+        {
+          "case_id": "NATQ-C-203",
+          "n_required": 1,
+          "n_in_pool": 1,
+          "oracle_a_all_evidence_selectable": true
+        },
+        {
+          "case_id": "NATQ-C-010",
+          "n_required": 1,
+          "n_in_pool": 1,
+          "oracle_a_all_evidence_selectable": true
+        },
+        {
+          "case_id": "NATQ-C-134",
+          "n_required": 1,
+          "n_in_pool": 1,
+          "oracle_a_all_evidence_selectable": true
+        },
+        {
+          "case_id": "NATQ-C-011",
+          "n_required": 1,
+          "n_in_pool": 1,
+          "oracle_a_all_evidence_selectable": true
+        },
+        {
+          "case_id": "NATQ-C-012",
+          "n_required": 2,
+          "n_in_pool": 2,
+          "oracle_a_all_evidence_selectable": true
+        },
+        {
+          "case_id": "NATQ-C-013",
+          "n_required": 1,
+          "n_in_pool": 1,
+          "oracle_a_all_evidence_selectable": true
+        },
+        {
+          "case_id": "NATQ-C-014",
+          "n_required": 2,
+          "n_in_pool": 1,
+          "oracle_a_all_evidence_selectable": false
+        },
+        {
+          "case_id": "NATQ-C-015",
+          "n_required": 1,
+          "n_in_pool": 1,
+          "oracle_a_all_evidence_selectable": true
+        },
+        {
+          "case_id": "NATQ-C-016",
+          "n_required": 1,
+          "n_in_pool": 1,
+          "oracle_a_all_evidence_selectable": true
+        },
+        {
+          "case_id": "NATQ-C-179",
+          "n_required": 1,
+          "n_in_pool": 0,
+          "oracle_a_all_evidence_selectable": false
+        },
+        {
+          "case_id": "NATQ-C-017",
+          "n_required": 2,
+          "n_in_pool": 2,
+          "oracle_a_all_evidence_selectable": true
+        },
+        {
+          "case_id": "NATQ-C-023",
+          "n_required": 2,
+          "n_in_pool": 2,
+          "oracle_a_all_evidence_selectable": true
+        },
+        {
+          "case_id": "NATQ-C-155",
+          "n_required": 1,
+          "n_in_pool": 1,
+          "oracle_a_all_evidence_selectable": true
+        },
+        {
+          "case_id": "NATQ-C-019",
+          "n_required": 1,
+          "n_in_pool": 1,
+          "oracle_a_all_evidence_selectable": true
+        },
+        {
+          "case_id": "NATQ-C-071",
+          "n_required": 1,
+          "n_in_pool": 1,
+          "oracle_a_all_evidence_selectable": true
+        },
+        {
+          "case_id": "NATQ-C-021",
+          "n_required": 1,
+          "n_in_pool": 1,
+          "oracle_a_all_evidence_selectable": true
+        },
+        {
+          "case_id": "NATQ-C-044",
+          "n_required": 3,
+          "n_in_pool": 1,
+          "oracle_a_all_evidence_selectable": false
+        },
+        {
+          "case_id": "NATQ-C-147",
+          "n_required": 1,
+          "n_in_pool": 1,
+          "oracle_a_all_evidence_selectable": true
+        },
+        {
+          "case_id": "NATQ-C-022",
+          "n_required": 1,
+          "n_in_pool": 1,
+          "oracle_a_all_evidence_selectable": true
+        },
+        {
+          "case_id": "NATQ-C-160",
+          "n_required": 2,
+          "n_in_pool": 2,
+          "oracle_a_all_evidence_selectable": true
+        },
+        {
+          "case_id": "NATQ-C-161",
+          "n_required": 1,
+          "n_in_pool": 1,
+          "oracle_a_all_evidence_selectable": true
+        },
+        {
+          "case_id": "NATQ-C-025",
+          "n_required": 1,
+          "n_in_pool": 1,
+          "oracle_a_all_evidence_selectable": true
+        },
+        {
+          "case_id": "NATQ-C-026",
+          "n_required": 3,
+          "n_in_pool": 2,
+          "oracle_a_all_evidence_selectable": false
+        },
+        {
+          "case_id": "NATQ-C-199",
+          "n_required": 1,
+          "n_in_pool": 1,
+          "oracle_a_all_evidence_selectable": true
+        },
+        {
+          "case_id": "NATQ-C-027",
+          "n_required": 1,
+          "n_in_pool": 1,
+          "oracle_a_all_evidence_selectable": true
+        },
+        {
+          "case_id": "NATQ-C-170",
+          "n_required": 1,
+          "n_in_pool": 1,
+          "oracle_a_all_evidence_selectable": true
+        },
+        {
+          "case_id": "NATQ-C-029",
+          "n_required": 1,
+          "n_in_pool": 1,
+          "oracle_a_all_evidence_selectable": true
+        },
+        {
+          "case_id": "NATQ-C-191",
+          "n_required": 1,
+          "n_in_pool": 1,
+          "oracle_a_all_evidence_selectable": true
+        },
+        {
+          "case_id": "NATQ-C-030",
+          "n_required": 2,
+          "n_in_pool": 2,
+          "oracle_a_all_evidence_selectable": true
+        },
+        {
+          "case_id": "NATQ-C-032",
+          "n_required": 2,
+          "n_in_pool": 2,
+          "oracle_a_all_evidence_selectable": true
+        },
+        {
+          "case_id": "NATQ-C-033",
+          "n_required": 1,
+          "n_in_pool": 1,
+          "oracle_a_all_evidence_selectable": true
+        }
+      ],
+      "not_a_deployable_system": true
+    },
+    "ORACLE_COVERAGE_B": {
+      "definition": "Keep existing final scores. A non-gold top10 item is a redundant slot if another top10 item shares its version_id or section_path. Replace redundant slots with gold covering chunks that are already in the candidate pool but outside top10. Diagnostic only.",
+      "n_strict_failures": 20,
+      "n_theoretically_rescued": 14,
+      "rescued": [
+        {
+          "case_id": "NATQ-C-201",
+          "primary_failure": "ranking",
+          "n_missing_in_pool_not_top10": 1,
+          "n_missing_not_in_pool": 0,
+          "n_redundant_nongold_top10_slots": 7,
+          "theoretically_rescued": true
+        },
+        {
+          "case_id": "NATQ-C-002",
+          "primary_failure": "ranking",
+          "n_missing_in_pool_not_top10": 1,
+          "n_missing_not_in_pool": 0,
+          "n_redundant_nongold_top10_slots": 8,
+          "theoretically_rescued": true
+        },
+        {
+          "case_id": "NATQ-C-008",
+          "primary_failure": "ranking",
+          "n_missing_in_pool_not_top10": 1,
+          "n_missing_not_in_pool": 0,
+          "n_redundant_nongold_top10_slots": 7,
+          "theoretically_rescued": true
+        },
+        {
+          "case_id": "NATQ-C-017",
+          "primary_failure": "ranking",
+          "n_missing_in_pool_not_top10": 1,
+          "n_missing_not_in_pool": 0,
+          "n_redundant_nongold_top10_slots": 4,
+          "theoretically_rescued": true
+        },
+        {
+          "case_id": "NATQ-C-023",
+          "primary_failure": "ranking",
+          "n_missing_in_pool_not_top10": 2,
+          "n_missing_not_in_pool": 0,
+          "n_redundant_nongold_top10_slots": 8,
+          "theoretically_rescued": true
+        },
+        {
+          "case_id": "NATQ-C-155",
+          "primary_failure": "ranking",
+          "n_missing_in_pool_not_top10": 1,
+          "n_missing_not_in_pool": 0,
+          "n_redundant_nongold_top10_slots": 7,
+          "theoretically_rescued": true
+        },
+        {
+          "case_id": "NATQ-C-071",
+          "primary_failure": "ranking",
+          "n_missing_in_pool_not_top10": 1,
+          "n_missing_not_in_pool": 0,
+          "n_redundant_nongold_top10_slots": 8,
+          "theoretically_rescued": true
+        },
+        {
+          "case_id": "NATQ-C-021",
+          "primary_failure": "ranking",
+          "n_missing_in_pool_not_top10": 1,
+          "n_missing_not_in_pool": 0,
+          "n_redundant_nongold_top10_slots": 10,
+          "theoretically_rescued": true
+        },
+        {
+          "case_id": "NATQ-C-160",
+          "primary_failure": "ranking",
+          "n_missing_in_pool_not_top10": 2,
+          "n_missing_not_in_pool": 0,
+          "n_redundant_nongold_top10_slots": 9,
+          "theoretically_rescued": true
+        },
+        {
+          "case_id": "NATQ-C-025",
+          "primary_failure": "ranking",
+          "n_missing_in_pool_not_top10": 1,
+          "n_missing_not_in_pool": 0,
+          "n_redundant_nongold_top10_slots": 8,
+          "theoretically_rescued": true
+        },
+        {
+          "case_id": "NATQ-C-029",
+          "primary_failure": "ranking",
+          "n_missing_in_pool_not_top10": 1,
+          "n_missing_not_in_pool": 0,
+          "n_redundant_nongold_top10_slots": 6,
+          "theoretically_rescued": true
+        },
+        {
+          "case_id": "NATQ-C-030",
+          "primary_failure": "ranking",
+          "n_missing_in_pool_not_top10": 1,
+          "n_missing_not_in_pool": 0,
+          "n_redundant_nongold_top10_slots": 3,
+          "theoretically_rescued": true
+        },
+        {
+          "case_id": "NATQ-C-032",
+          "primary_failure": "ranking",
+          "n_missing_in_pool_not_top10": 1,
+          "n_missing_not_in_pool": 0,
+          "n_redundant_nongold_top10_slots": 7,
+          "theoretically_rescued": true
+        },
+        {
+          "case_id": "NATQ-C-033",
+          "primary_failure": "ranking",
+          "n_missing_in_pool_not_top10": 1,
+          "n_missing_not_in_pool": 0,
+          "n_redundant_nongold_top10_slots": 8,
+          "theoretically_rescued": true
+        }
+      ],
+      "not_rescued": [
+        {
+          "case_id": "NATQ-C-004",
+          "primary_failure": "candidate-generation",
+          "n_missing_in_pool_not_top10": 0,
+          "n_missing_not_in_pool": 1,
+          "n_redundant_nongold_top10_slots": 9,
+          "theoretically_rescued": false
+        },
+        {
+          "case_id": "NATQ-C-005",
+          "primary_failure": "candidate-generation",
+          "n_missing_in_pool_not_top10": 1,
+          "n_missing_not_in_pool": 1,
+          "n_redundant_nongold_top10_slots": 8,
+          "theoretically_rescued": false
+        },
+        {
+          "case_id": "NATQ-C-014",
+          "primary_failure": "candidate-generation",
+          "n_missing_in_pool_not_top10": 1,
+          "n_missing_not_in_pool": 1,
+          "n_redundant_nongold_top10_slots": 6,
+          "theoretically_rescued": false
+        },
+        {
+          "case_id": "NATQ-C-179",
+          "primary_failure": "candidate-generation",
+          "n_missing_in_pool_not_top10": 0,
+          "n_missing_not_in_pool": 1,
+          "n_redundant_nongold_top10_slots": 7,
+          "theoretically_rescued": false
+        },
+        {
+          "case_id": "NATQ-C-044",
+          "primary_failure": "candidate-generation",
+          "n_missing_in_pool_not_top10": 0,
+          "n_missing_not_in_pool": 2,
+          "n_redundant_nongold_top10_slots": 5,
+          "theoretically_rescued": false
+        },
+        {
+          "case_id": "NATQ-C-026",
+          "primary_failure": "candidate-generation",
+          "n_missing_in_pool_not_top10": 1,
+          "n_missing_not_in_pool": 1,
+          "n_redundant_nongold_top10_slots": 9,
+          "theoretically_rescued": false
+        }
+      ],
+      "not_a_deployable_system": true
+    },
+    "not_a_deployable_system": true,
+    "interpretation": {
+      "A": "34/40 equals the recorded candidate gold-span case Recall@100. The 6 unrecoverable cases are exactly the candidate-generation failures.",
+      "B": "14/20 strict failures (all 14 ranking-primary cases) have enough redundant same-version or same-section top10 slots to theoretically insert every already-present gold covering chunk. The 6 candidate-generation cases cannot be fully rescued because at least one required gold span is absent from the pool."
+    }
+  },
+  "item_5_dominant_failure_mechanisms_ranked": [
+    {
+      "rank": 1,
+      "mechanism": "independent-passage ranking / missing set-aware complementary selection",
+      "evidence": "14/20 strict failures are ranking. Broad multi-span is 2/12 strict with 9/25 gold spans in top10. Oracle-B theoretically rescues all 14 ranking failures by swapping redundant top10 items for already-present gold. Top10 frequently contains 4\u20137 chunks from one version_id while a complementary gold span sits at ranks 11\u201398."
+    },
+    {
+      "rank": 2,
+      "mechanism": "within-document passage localization (candidate-generation inside already-found parents)",
+      "evidence": "All 7 missing gold spans have gold_in_a_pool_docs=true and gold_in_parents=true. 0 document-discovery failures. Current candidate-generation failures are within-document passage localization failures, not global document-discovery failures."
+    },
+    {
+      "rank": 3,
+      "mechanism": "same-section / ordinal-neighborhood expansion gap",
+      "evidence": "NATQ-C-005 and NATQ-C-014: the immediately adjacent same-section canonical chunk was in the pool (or in top10 as a child section) and the gold covering chunk was not. This is a local hole, not a missing document."
+    },
+    {
+      "rank": 4,
+      "mechanism": "long-document local ranking miss",
+      "evidence": "NATQ-C-004, C-179, C-044 x2, C-026: gold docs of 30k\u2013805k chars; nearest serialized same-doc candidate 6.5k\u201365k chars away; adjacent canonical chunks not in serialized top10/C_P."
+    },
+    {
+      "rank": 5,
+      "mechanism": "CE/blend robustness (secondary, not the thing to retune)",
+      "evidence": "Among 46 in-pool gold spans, final ranking improved 27, worsened 13, unchanged 6; 5 outside->top10 vs 3 top10->outside. Blend helps more than it hurts. Ugly demotions exist (C-017 10\u219248, C-033 5\u219214) but do not justify changing 0.7/0.3."
+    },
+    {
+      "rank": 6,
+      "mechanism": "global document retrieval",
+      "evidence": "Not dominant. 0 document-discovery failures. Document Recall@10 is 35/40. Every candidate-generation miss already has the gold document in SYSTEM-A and in the E-L10 parent set."
+    }
+  ],
+  "item_6_evidence_for_against": {
+    "more_global_retrieval": {
+      "verdict": "against as the next primary intervention",
+      "for": "Document Recall@10 is 35/40, so 5 cases still lack a gold-document chunk in the final top10 (these are ranking, not discovery).",
+      "against": "0 document-discovery failures. All 7 missing candidate spans already have gold_in_a_pool_docs=true and gold_in_parents=true. Enlarging global A/L/P would not address within-doc holes or complementary-set selection, and E forbids testing larger L/P now."
+    },
+    "stronger_within_doc_expansion": {
+      "verdict": "for",
+      "for": "All 6 candidate-generation failures are localization misses inside already-found parents. Two misses (C-005, C-014) are ordinal-adjacent same-section holes. Four more are far-section misses inside long parent docs whose other passages were retrieved. Corpus projection windows overlap every missing gold span and map to its covering chunk, yet C_P did not add that chunk \u2014 neighborhood/expansion, not missing projection coverage in the snapshot.",
+      "against": "Local-BM25 per-parent rank of the missing chunks was not stored; computing it would be a new retrieval run and is marked unavailable. Cannot claim the miss is specifically W=20 vs L=10 extras without that rank."
+    },
+    "better_reranking": {
+      "verdict": "mixed; do not retune the frozen 0.7/0.3 blend",
+      "for": "13 in-pool gold spans were demoted, including three top10\u2192outside events (C-201 local-BM25 2\u219214, C-017 10\u219248, C-033 5\u219214). Anthropic in-pool gold is 13 improved / 10 worsened vs OpenAI 14 / 3.",
+      "against": "Overall CE/blend improves 27 vs worsens 13. PASS cases: 12 improved / 3 worsened / 4 outside\u2192top10 / 0 top10\u2192outside. Independent CE quality is not the main multi-span failure mode."
+    },
+    "set_aware_coverage_aware_top10_selection": {
+      "verdict": "strongly for (diagnostic ceiling, not a deployed system)",
+      "for": "ORACLE-B theoretically rescues 14/14 ranking failures by replacing redundant same-version/same-section top10 items with already-present gold candidates. Multi-span 2/12 strict. Several ranking misses sit at ranks 11\u201319 (C-005/11, C-008/13, C-021/13, C-033/14, C-201/14, C-032/15, C-023/17, C-029/19) while top10 is packed with same-doc duplicates (e.g. C-160 7/10 from one version_id).",
+      "against": "Oracle-B cannot rescue the 6 candidate-generation cases. It is gold-aware and not a deployable ranker. A real selector must approximate coverage without gold labels (section_path / version_id diversity, adjacency), which is the next experiment rather than a claim of 14 extra strict hits."
+    }
+  },
+  "item_7_recommended_next_experiment_DO_NOT_RUN": {
+    "experiment_id": "EXP-020",
+    "status": "DESIGN ONLY \u2014 NOT RUN",
+    "title": "Within-document neighborhood expansion + coverage-aware top-10 selection",
+    "do_not": [
+      "do not rerun or modify SYSTEM-H",
+      "do not change L, P, W, BLEND_CE, BLEND_A",
+      "do not add gold-named-case rules",
+      "do not open NATQ or V1 holdout",
+      "do not run EXP-020 in this diagnosis"
+    ],
+    "design": {
+      "base": "Frozen SYSTEM-H-V2-DEV-CANDIDATE candidate generation and CE/blend identity (config_hash 7599eb3c3bb4798230a722e6a7c96b046dc36cc0332b584ec55339896b2d717a).",
+      "change_1_within_doc_expansion": "After the existing union pool is materialized, add canonical chunks that are ordinal-adjacent and/or same-section_path siblings of already-retrieved chunks whose version_id is in the E-L10 parent set. This is within-document expansion on already-found parents, not a new global retrieval, not a larger L/P/W.",
+      "change_2_coverage_aware_top10": "Replace independent top-10 truncation with a coverage-aware selector over the already-blended ranking: greedily keep the next chunk that adds a new (version_id, section_path) or that is ordinal-adjacent to an already-kept gold-document section, while dropping near-duplicate same-section extras. No MMR weight search; one pre-registered rule.",
+      "explicitly_not": "Not a CE-weight sweep, not a larger A/L/P, not gold-oracle selection at deploy time.",
+      "eval": "NATQ-001 validation n=40 only, same preregistration gates as EVAL-NATQ-VAL-001. One run. STOP. Do not open holdout even if gates pass until ChatGPT authorizes.",
+      "diagnostics_to_log": "expanded neighborhood membership of the 7 currently missing covering chunks; unique version_id/section_path in top10; ranking movement of the 46 in-pool gold spans."
+    },
+    "hypothesis": "Neighborhood expansion should convert some of the 6 candidate-generation misses (especially same-section holes) into ranking cases, and coverage-aware top10 should convert some of the 14 ranking misses into strict hits, bounded above by ORACLE-A=34/40 and ORACLE-B=+14 ranking cases."
+  },
+  "item_8_natq_holdout_access_log": {
+    "natq_holdout_access_log_bytes": 0,
+    "natq_holdout_access_log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "natq_holdout_access_log_still_empty": true,
+    "v1_holdout_access_log_bytes": 235,
+    "v1_holdout_access_log_sha256": "45b83a77f6f332174d641956f076dd0c0cae44fe48f4f2892ac7030a4c0143b3",
+    "v1_holdout_untouched": true,
+    "holdout_json_opened": false,
+    "v1_holdout_json_opened": false
+  },
+  "item_9_v1_holdout": {
+    "log_bytes": 235,
+    "sha256": "45b83a77f6f332174d641956f076dd0c0cae44fe48f4f2892ac7030a4c0143b3",
+    "untouched": true,
+    "holdout_json_opened": false
+  },
+  "STOP": "Do not run EXP-020. SYSTEM-H unchanged. Holdout unopened."
+}

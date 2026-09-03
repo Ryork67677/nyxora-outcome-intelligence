@@ -1,0 +1,99 @@
+{
+  "batch": 1,
+  "source_batch_sha256": "a3fe9242e33fb2dff8be78f4c5f1baffc8037066b09445a936a2e3dc9f11ea73",
+  "reviewer": "project_owner",
+  "reviewed_at": null,
+  "allowed_decisions": [
+    "APPROVE",
+    "REJECT",
+    "NEEDS_EDIT"
+  ],
+  "instructions": "Set decision to APPROVE, REJECT or NEEDS_EDIT for each candidate, then run scripts/import_human_decisions.py. Only APPROVE produces human_verified. Leaving a decision null leaves the candidate out of gold.",
+  "decisions": [
+    {
+      "candidate_id": "GOLD-B001-02",
+      "decision": "APPROVE",
+      "notes": ""
+    },
+    {
+      "candidate_id": "GOLD-B001-05",
+      "decision": "APPROVE",
+      "notes": ""
+    },
+    {
+      "candidate_id": "GOLD-B001-06",
+      "decision": "APPROVE",
+      "notes": ""
+    },
+    {
+      "candidate_id": "GOLD-B001-07",
+      "decision": "APPROVE",
+      "notes": ""
+    },
+    {
+      "candidate_id": "GOLD-B001-08",
+      "decision": "APPROVE",
+      "notes": ""
+    },
+    {
+      "candidate_id": "GOLD-B001-09",
+      "decision": "APPROVE",
+      "notes": ""
+    },
+    {
+      "candidate_id": "GOLD-B001-10",
+      "decision": "APPROVE",
+      "notes": ""
+    },
+    {
+      "candidate_id": "GOLD-B001-11",
+      "decision": "APPROVE",
+      "notes": ""
+    },
+    {
+      "candidate_id": "GOLD-B001-12",
+      "decision": "APPROVE",
+      "notes": ""
+    },
+    {
+      "candidate_id": "GOLD-B001-18",
+      "decision": "APPROVE",
+      "notes": ""
+    },
+    {
+      "candidate_id": "GOLD-B001-03",
+      "decision": "NEEDS_EDIT",
+      "notes": "NEEDS_EDIT — expand the anchor to carry the model scope."
+    },
+    {
+      "candidate_id": "GOLD-B001-04",
+      "decision": "NEEDS_EDIT",
+      "notes": "NEEDS_EDIT — expand the anchor to carry the `tripwire_triggered` condition."
+    },
+    {
+      "candidate_id": "GOLD-B001-13",
+      "decision": "APPROVE",
+      "notes": ""
+    },
+    {
+      "candidate_id": "GOLD-B001-14",
+      "decision": "NEEDS_EDIT",
+      "notes": "NEEDS_EDIT — expand the anchor to name the applicable model scope."
+    },
+    {
+      "candidate_id": "GOLD-B001-16",
+      "decision": "REJECT",
+      "notes": "REJECT — concerns the implementation behaviour of a local example helper function rather than an externally meaningful API or documentation fact. Stronger benchmark material is preferred."
+    },
+    {
+      "candidate_id": "GOLD-B001-17",
+      "decision": "APPROVE",
+      "notes": ""
+    },
+    {
+      "candidate_id": "GOLD-B001-15",
+      "decision": "REJECT",
+      "notes": "REJECT — code/example false binding. `required: [\"location\"]` belongs to the tool input schema in the example request and does not establish a general requirement on `tool_choice`."
+    }
+  ]
+}

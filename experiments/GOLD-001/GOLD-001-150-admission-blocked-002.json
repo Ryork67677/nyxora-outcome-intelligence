@@ -1,0 +1,139 @@
+{
+  "artifact": "GOLD-001 150-case admission — attempt 002 — BLOCKED",
+  "recorded_at": "2026-08-31T02:49:57Z",
+  "disposition": "STOPPED at step 2 (authoritative packet identity could not be verified)",
+  "what_changed": "No owner decision was imported, no closure was written, no eligibility status was regenerated, no split was frozen and no retrieval was run.",
+  "step_2_packet_verification": {
+    "required_document": "Production_RAG_v1_Full_150_Case_Review.pdf",
+    "present_in_environment": false,
+    "searched": [
+      "the session upload directory",
+      "the whole filesystem by name",
+      "every working directory used in this project"
+    ],
+    "uploads_actually_present": [
+      "384b22f7-1productionragv1results.pdf — the 2026-08-17 results PDF, a different document",
+      "9ea242f5-chatgpt_independent_review_HA01_HA60.json — the ChatGPT review, stored"
+    ],
+    "verdict": "Could not confirm any of the six required statements: 90 historical approved, 60 HA drafts, HA-01 … HA-60, Part B is the Codex derivative reviewed by Grok, the 64-case packet is excluded, the 60 are not yet human_verified, no retrieval run. Step 2 says STOP; it also says do not fall back to the 64-case packet, and no such fallback was made."
+  },
+  "step_3_evidence_identity_binding": {
+    "required": [
+      "case_id",
+      "question",
+      "answer",
+      "version_id",
+      "char_start",
+      "char_end",
+      "evidence_hash"
+    ],
+    "available_in_the_supplied_review": [
+      "case_id",
+      "provider",
+      "category",
+      "question",
+      "answer",
+      "chatgpt_independent_verdict",
+      "review_note"
+    ],
+    "missing": [
+      "version_id",
+      "char_start",
+      "char_end",
+      "evidence_hash",
+      "expected_evidence",
+      "atomic_claims",
+      "critical_strings"
+    ],
+    "verdict": "Binding by evidence identity is impossible from the supplied file, and the command forbids binding by short HA number alone. The 60 candidate records themselves — spans, offsets, hashes, claims, critical strings — are not in this environment in any form."
+  },
+  "step_11_eligibility_gate": {
+    "runnable": false,
+    "reason": "rag_v1.gold.eligibility.evaluate requires expected_evidence with text, offsets and hashes, plus proposed_atomic_claims and critical_strings. None of these exist here for the 60. Running it would mean inventing the records it checks."
+  },
+  "review_file_checks_that_did_pass": {
+    "records": 60,
+    "unique_case_ids": 60,
+    "ids_are_HA_01_through_HA_60_exactly_once": true,
+    "verdict_counts_recomputed_match_the_stated_counts": true,
+    "verdicts": {
+      "PASS": 58,
+      "PASS_WITH_NONCRITICAL_ANAPHORA_OVERRIDE": 1,
+      "FIX_REQUIRED_THEN_APPROVE": 1
+    },
+    "HA-15_verdict": "PASS_WITH_NONCRITICAL_ANAPHORA_OVERRIDE",
+    "HA-47_verdict": "FIX_REQUIRED_THEN_APPROVE",
+    "note": "The review file is internally consistent. What is missing is the packet it reviews."
+  },
+  "step_6_ha47_repair_revalidated": {
+    "status": "the values in the command are correct and are re-confirmed here",
+    "version_id": "ver_1c77f33b04ffffa285ea7e61c2a89653",
+    "document": "docs/handoffs.md, reproduced from its pinned commit",
+    "old_E1": {
+      "span": "4308:4378",
+      "length": 70,
+      "sha256": "5e36f5ff857cdcd795d4e8133de6072b5a8e7588be44fc21516e24a5e97f5b34",
+      "matches_the_hash_stated_in_the_command": true
+    },
+    "old_E2": {
+      "span": "4539:4916",
+      "length": 377,
+      "sha256": "f4d4ee514ca2285d8cc67313a02b7cb7382d11cc3cedfd998733884d98321387",
+      "matches_the_hash_stated_in_the_command": true
+    },
+    "repaired": {
+      "span": "4308:4916",
+      "length": 608,
+      "sha256": "e894c94d831ccfd2678f4cd132b72b52e44770d07ebeaab6c51e96e0e312a203",
+      "matches_the_hash_stated_in_the_command": true
+    },
+    "applied_to": null,
+    "applied_to_note": "Not applied. The record it belongs to is not in this environment, and it must never be applied to the 64-case packet's unrelated HA-47."
+  },
+  "step_7_paragraph_break_rule": {
+    "question": "is a paragraph-crossing span blocking for GOLD admission?",
+    "authoritative_rule": "rag_v1.gold.eligibility.HOLDOUT_CONDITIONS",
+    "conditions": [
+      "human_verified",
+      "every_claim_has_a_deterministic_check",
+      "critical_strings_present_in_evidence",
+      "evidence_hash_valid",
+      "no_unresolved_scope_defect",
+      "required_evidence_declared"
+    ],
+    "finding": "No condition in the eligibility predicate reads paragraph structure. The blank-line rule is a builder-side rule authored in this session for the 64-case packet; it is not the GOLD admission contract.",
+    "resolution": "paragraph_break_present = true, eligibility_blocking = false",
+    "no_waiver_invented": "This is what the specification already says, read from the code. Nothing was weakened and no exception was created."
+  },
+  "authoritative_state_unchanged": {
+    "human_verified": 90,
+    "holdout_eligible": 90,
+    "human_rejected": 9,
+    "genuine_multi_hop": 1,
+    "holdout_frozen": false,
+    "retrieval_was_not_run": true,
+    "systems_executed": []
+  },
+  "not_written": {
+    "GOLD-001-150-case-closure.{json,md}": "150 is not established",
+    "GOLD-001-eligibility-status regeneration": "no count changed",
+    "owner decisions for HA-01 … HA-60": "no records to attach them to",
+    "GOLD-001-protocol-deviation-001.{json,md}": "an accepted deviation has to name the packet whose admission it excuses, and cites mitigation figures (1,576/1,576 checks, corrupted negative controls) that belong to a derivative not present here. Writing it now would put unverified numbers into an authoritative record.",
+    "validation/holdout splits": "untouched; holdout_frozen remains false"
+  },
+  "to_unblock": [
+    "Supply Production_RAG_v1_Full_150_Case_Review.pdf, or the 60 candidate records as JSON with expected_evidence (text, char_start, char_end, evidence_hash), version_id, atomic claims and critical strings.",
+    "With those, steps 4 … 13 run end to end: bind by evidence identity, apply the HA-47 repair, record the HA-15 override, import the owner decisions, run the real eligibility predicate, and derive the final count."
+  ],
+  "superseded_by": {
+    "resolved_at": "2026-08-31T03:34:50Z",
+    "resolution": "The packet of record was supplied and verified (sha256 bf6190fc53ee4ada6c948093d30e8fa7feac3dbf3300918ec75886d2a5a8f786, 159 pages), its 60 records were extracted with full evidence identity, and the admission completed.",
+    "artifacts": [
+      "GOLD-001-HA-admission.json",
+      "GOLD-001-150-case-closure.json",
+      "GOLD-001-protocol-deviation-001.json",
+      "evals/review/gold_review_HA01_HA60_final.json"
+    ],
+    "note": "This record stays as the history of attempt 002. Its 'not_written' list describes that attempt, not the project's current state."
+  }
+}
