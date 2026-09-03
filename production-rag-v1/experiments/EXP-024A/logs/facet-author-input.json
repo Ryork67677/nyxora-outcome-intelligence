@@ -1,0 +1,162 @@
+[
+ {
+  "case_id": "NATQ-C-001",
+  "question": "how do i hand off between agents in the openai agents sdk"
+ },
+ {
+  "case_id": "NATQ-C-201",
+  "question": "agents sdk handoff input_filter \u2014 can I strip prior tool calls from the history I pass the next agent"
+ },
+ {
+  "case_id": "NATQ-C-002",
+  "question": "runner vs agent in the python agents sdk \u2014 which one actually calls the model"
+ },
+ {
+  "case_id": "NATQ-C-004",
+  "question": "does agents sdk session memory survive a process restart or is it just in ram"
+ },
+ {
+  "case_id": "NATQ-C-217",
+  "question": "RunResult.to_input_list \u2014 is that the supported way to send a follow-up user message on the same agent"
+ },
+ {
+  "case_id": "NATQ-C-005",
+  "question": "how do I require a human to approve a tool before the agents sdk actually runs it, like delete_user"
+ },
+ {
+  "case_id": "NATQ-C-006",
+  "question": "agents sdk tracing default on or off?"
+ },
+ {
+  "case_id": "NATQ-C-008",
+  "question": "if a tool function raises, does the agent run die or get the traceback as a tool result"
+ },
+ {
+  "case_id": "NATQ-C-009",
+  "question": "can two agents in one workflow use different models, like 4.1 for planning and a mini for extraction"
+ },
+ {
+  "case_id": "NATQ-C-203",
+  "question": "Agent.model is 4.1 and RunConfig.model is mini, which one actually gets called"
+ },
+ {
+  "case_id": "NATQ-C-010",
+  "question": "where do I hang the pydantic model for an agent's final output \u2014 Agent or Runner"
+ },
+ {
+  "case_id": "NATQ-C-134",
+  "question": "agents sdk output_type as a list vs a single object, allowed?"
+ },
+ {
+  "case_id": "NATQ-C-011",
+  "question": "agents sdk guardrails: do input and output guardrails both halt the run"
+ },
+ {
+  "case_id": "NATQ-C-012",
+  "question": "how do I pass extra context into a tool without stuffing it into the LLM prompt"
+ },
+ {
+  "case_id": "NATQ-C-013",
+  "question": "is there a hosted runner for openai agents or is the sdk local-only"
+ },
+ {
+  "case_id": "NATQ-C-014",
+  "question": "can I nest an agent as a tool, like one agent calling another as a function"
+ },
+ {
+  "case_id": "NATQ-C-015",
+  "question": "max turns on Runner.run, what error do I get when it hits the cap"
+ },
+ {
+  "case_id": "NATQ-C-016",
+  "question": "claude messages api, do I still send system as a role in messages or is it the top-level system field"
+ },
+ {
+  "case_id": "NATQ-C-179",
+  "question": "claude system prompt, string vs array of text blocks, both valid?"
+ },
+ {
+  "case_id": "NATQ-C-017",
+  "question": "anthropic prompt caching \u2014 do I mark the system prompt, the tools, or both"
+ },
+ {
+  "case_id": "NATQ-C-023",
+  "question": "does anthropic cache input cheaper on the second request, and is there a 5 min vs 1 hr ttl"
+ },
+ {
+  "case_id": "NATQ-C-155",
+  "question": "prompt cache never hits, is there a min token count before anthropic will actually cache"
+ },
+ {
+  "case_id": "NATQ-C-019",
+  "question": "extended thinking on claude \u2014 do thinking tokens count against max_tokens"
+ },
+ {
+  "case_id": "NATQ-C-071",
+  "question": "anthropic thinking budget_tokens vs max_tokens, can the budget be larger than max"
+ },
+ {
+  "case_id": "NATQ-C-021",
+  "question": "anthropic computer use, which tool type name do I actually send in the tools array"
+ },
+ {
+  "case_id": "NATQ-C-044",
+  "question": "anthropic bash tool and text editor tool \u2014 are those built-in types or do I implement them"
+ },
+ {
+  "case_id": "NATQ-C-147",
+  "question": "anthropic computer use, is display_width_px required"
+ },
+ {
+  "case_id": "NATQ-C-022",
+  "question": "claude pdfs \u2014 is that a document content block or do I still stuff base64 in an image"
+ },
+ {
+  "case_id": "NATQ-C-160",
+  "question": "anthropic files api \u2014 do I reference a file_id in the document block or still inline the pdf"
+ },
+ {
+  "case_id": "NATQ-C-161",
+  "question": "pdf page limit for claude, when does it start rejecting"
+ },
+ {
+  "case_id": "NATQ-C-025",
+  "question": "anthropic-version header still 2023-06-01??"
+ },
+ {
+  "case_id": "NATQ-C-026",
+  "question": "claude citations / grounded answers \u2014 is that a tool or a response format"
+ },
+ {
+  "case_id": "NATQ-C-199",
+  "question": "claude citation objects, is the span in cited_text or document_index plus start_page_number"
+ },
+ {
+  "case_id": "NATQ-C-027",
+  "question": "token counting for anthropic, is it count_tokens or messages/count_tokens"
+ },
+ {
+  "case_id": "NATQ-C-170",
+  "question": "messages.count_tokens, does it include images and the tools array or just the text"
+ },
+ {
+  "case_id": "NATQ-C-029",
+  "question": "anthropic tool_choice \u2014 auto vs any vs tool vs none, what does any actually force"
+ },
+ {
+  "case_id": "NATQ-C-191",
+  "question": "tool_choice none with thinking enabled, allowed or 400"
+ },
+ {
+  "case_id": "NATQ-C-030",
+  "question": "claude stop_reason pause_turn vs end_turn vs tool_use \u2014 when do I send the next request to resume"
+ },
+ {
+  "case_id": "NATQ-C-032",
+  "question": "parallel_tool_calls off how \u2014 openai"
+ },
+ {
+  "case_id": "NATQ-C-033",
+  "question": "claude disable parallel tools \u2014 I keep sending parallel_tool_calls=false like openai, what's the actual param"
+ }
+]

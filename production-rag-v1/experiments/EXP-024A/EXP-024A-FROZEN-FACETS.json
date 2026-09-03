@@ -1,0 +1,481 @@
+{
+ "artifact": "EXP-024A-FROZEN-FACETS",
+ "facet_0_rule": "exact original question, byte-for-byte",
+ "max_facets_per_query": 4,
+ "authoring_provenance": {
+  "method": "isolated cold-context agent",
+  "author_received_only": [
+   "case_id",
+   "question"
+  ],
+  "author_did_not_receive": [
+   "evidence",
+   "gold spans",
+   "answers",
+   "claims",
+   "corpus text",
+   "document titles",
+   "section paths",
+   "retrieval output",
+   "candidate ids",
+   "previous failure identities",
+   "CE scores",
+   "provider documents",
+   "NATQ diagnostic results"
+  ],
+  "tool_uses_by_author": 0,
+  "repair_round": {
+   "cases": [
+    "NATQ-C-044"
+   ],
+   "reason": "singular 'type' absent from question ('types')",
+   "repaired_by": "same cold agent, still tool_uses=0",
+   "repaired_before_any_facet_scoring": true
+  }
+ },
+ "extractive_rule": "every substantive token of an added facet must appear in the original question after lowercase and punctuation normalization; function words exempt",
+ "validation": {
+  "violations_after_repair": 0,
+  "violating_facets": []
+ },
+ "cases": [
+  {
+   "case_id": "NATQ-C-001",
+   "question": "how do i hand off between agents in the openai agents sdk",
+   "facets": [
+    "how do i hand off between agents in the openai agents sdk"
+   ],
+   "n_facets": 1,
+   "facet_0_is_original_question_byte_for_byte": true,
+   "extractive_validation": "PASS"
+  },
+  {
+   "case_id": "NATQ-C-201",
+   "question": "agents sdk handoff input_filter — can I strip prior tool calls from the history I pass the next agent",
+   "facets": [
+    "agents sdk handoff input_filter — can I strip prior tool calls from the history I pass the next agent"
+   ],
+   "n_facets": 1,
+   "facet_0_is_original_question_byte_for_byte": true,
+   "extractive_validation": "PASS"
+  },
+  {
+   "case_id": "NATQ-C-002",
+   "question": "runner vs agent in the python agents sdk — which one actually calls the model",
+   "facets": [
+    "runner vs agent in the python agents sdk — which one actually calls the model",
+    "runner vs agent in the python agents sdk",
+    "which one actually calls the model"
+   ],
+   "n_facets": 3,
+   "facet_0_is_original_question_byte_for_byte": true,
+   "extractive_validation": "PASS"
+  },
+  {
+   "case_id": "NATQ-C-004",
+   "question": "does agents sdk session memory survive a process restart or is it just in ram",
+   "facets": [
+    "does agents sdk session memory survive a process restart or is it just in ram",
+    "does agents sdk session memory survive a process restart",
+    "is agents sdk session memory just in ram"
+   ],
+   "n_facets": 3,
+   "facet_0_is_original_question_byte_for_byte": true,
+   "extractive_validation": "PASS"
+  },
+  {
+   "case_id": "NATQ-C-217",
+   "question": "RunResult.to_input_list — is that the supported way to send a follow-up user message on the same agent",
+   "facets": [
+    "RunResult.to_input_list — is that the supported way to send a follow-up user message on the same agent"
+   ],
+   "n_facets": 1,
+   "facet_0_is_original_question_byte_for_byte": true,
+   "extractive_validation": "PASS"
+  },
+  {
+   "case_id": "NATQ-C-005",
+   "question": "how do I require a human to approve a tool before the agents sdk actually runs it, like delete_user",
+   "facets": [
+    "how do I require a human to approve a tool before the agents sdk actually runs it, like delete_user"
+   ],
+   "n_facets": 1,
+   "facet_0_is_original_question_byte_for_byte": true,
+   "extractive_validation": "PASS"
+  },
+  {
+   "case_id": "NATQ-C-006",
+   "question": "agents sdk tracing default on or off?",
+   "facets": [
+    "agents sdk tracing default on or off?"
+   ],
+   "n_facets": 1,
+   "facet_0_is_original_question_byte_for_byte": true,
+   "extractive_validation": "PASS"
+  },
+  {
+   "case_id": "NATQ-C-008",
+   "question": "if a tool function raises, does the agent run die or get the traceback as a tool result",
+   "facets": [
+    "if a tool function raises, does the agent run die or get the traceback as a tool result",
+    "if a tool function raises, does the agent run die",
+    "if a tool function raises, does the agent get the traceback as a tool result"
+   ],
+   "n_facets": 3,
+   "facet_0_is_original_question_byte_for_byte": true,
+   "extractive_validation": "PASS"
+  },
+  {
+   "case_id": "NATQ-C-009",
+   "question": "can two agents in one workflow use different models, like 4.1 for planning and a mini for extraction",
+   "facets": [
+    "can two agents in one workflow use different models, like 4.1 for planning and a mini for extraction"
+   ],
+   "n_facets": 1,
+   "facet_0_is_original_question_byte_for_byte": true,
+   "extractive_validation": "PASS"
+  },
+  {
+   "case_id": "NATQ-C-203",
+   "question": "Agent.model is 4.1 and RunConfig.model is mini, which one actually gets called",
+   "facets": [
+    "Agent.model is 4.1 and RunConfig.model is mini, which one actually gets called"
+   ],
+   "n_facets": 1,
+   "facet_0_is_original_question_byte_for_byte": true,
+   "extractive_validation": "PASS"
+  },
+  {
+   "case_id": "NATQ-C-010",
+   "question": "where do I hang the pydantic model for an agent's final output — Agent or Runner",
+   "facets": [
+    "where do I hang the pydantic model for an agent's final output — Agent or Runner"
+   ],
+   "n_facets": 1,
+   "facet_0_is_original_question_byte_for_byte": true,
+   "extractive_validation": "PASS"
+  },
+  {
+   "case_id": "NATQ-C-134",
+   "question": "agents sdk output_type as a list vs a single object, allowed?",
+   "facets": [
+    "agents sdk output_type as a list vs a single object, allowed?",
+    "agents sdk output_type as a list, allowed?",
+    "agents sdk output_type as a single object, allowed?"
+   ],
+   "n_facets": 3,
+   "facet_0_is_original_question_byte_for_byte": true,
+   "extractive_validation": "PASS"
+  },
+  {
+   "case_id": "NATQ-C-011",
+   "question": "agents sdk guardrails: do input and output guardrails both halt the run",
+   "facets": [
+    "agents sdk guardrails: do input and output guardrails both halt the run",
+    "agents sdk input guardrails: do they halt the run",
+    "agents sdk output guardrails: do they halt the run"
+   ],
+   "n_facets": 3,
+   "facet_0_is_original_question_byte_for_byte": true,
+   "extractive_validation": "PASS"
+  },
+  {
+   "case_id": "NATQ-C-012",
+   "question": "how do I pass extra context into a tool without stuffing it into the LLM prompt",
+   "facets": [
+    "how do I pass extra context into a tool without stuffing it into the LLM prompt"
+   ],
+   "n_facets": 1,
+   "facet_0_is_original_question_byte_for_byte": true,
+   "extractive_validation": "PASS"
+  },
+  {
+   "case_id": "NATQ-C-013",
+   "question": "is there a hosted runner for openai agents or is the sdk local-only",
+   "facets": [
+    "is there a hosted runner for openai agents or is the sdk local-only",
+    "is there a hosted runner for openai agents",
+    "is the openai agents sdk local-only"
+   ],
+   "n_facets": 3,
+   "facet_0_is_original_question_byte_for_byte": true,
+   "extractive_validation": "PASS"
+  },
+  {
+   "case_id": "NATQ-C-014",
+   "question": "can I nest an agent as a tool, like one agent calling another as a function",
+   "facets": [
+    "can I nest an agent as a tool, like one agent calling another as a function"
+   ],
+   "n_facets": 1,
+   "facet_0_is_original_question_byte_for_byte": true,
+   "extractive_validation": "PASS"
+  },
+  {
+   "case_id": "NATQ-C-015",
+   "question": "max turns on Runner.run, what error do I get when it hits the cap",
+   "facets": [
+    "max turns on Runner.run, what error do I get when it hits the cap",
+    "max turns on Runner.run",
+    "what error do I get when max turns hits the cap"
+   ],
+   "n_facets": 3,
+   "facet_0_is_original_question_byte_for_byte": true,
+   "extractive_validation": "PASS"
+  },
+  {
+   "case_id": "NATQ-C-016",
+   "question": "claude messages api, do I still send system as a role in messages or is it the top-level system field",
+   "facets": [
+    "claude messages api, do I still send system as a role in messages or is it the top-level system field",
+    "claude messages api, do I still send system as a role in messages",
+    "claude messages api, is system the top-level system field"
+   ],
+   "n_facets": 3,
+   "facet_0_is_original_question_byte_for_byte": true,
+   "extractive_validation": "PASS"
+  },
+  {
+   "case_id": "NATQ-C-179",
+   "question": "claude system prompt, string vs array of text blocks, both valid?",
+   "facets": [
+    "claude system prompt, string vs array of text blocks, both valid?"
+   ],
+   "n_facets": 1,
+   "facet_0_is_original_question_byte_for_byte": true,
+   "extractive_validation": "PASS"
+  },
+  {
+   "case_id": "NATQ-C-017",
+   "question": "anthropic prompt caching — do I mark the system prompt, the tools, or both",
+   "facets": [
+    "anthropic prompt caching — do I mark the system prompt, the tools, or both",
+    "anthropic prompt caching — do I mark the system prompt",
+    "anthropic prompt caching — do I mark the tools"
+   ],
+   "n_facets": 3,
+   "facet_0_is_original_question_byte_for_byte": true,
+   "extractive_validation": "PASS"
+  },
+  {
+   "case_id": "NATQ-C-023",
+   "question": "does anthropic cache input cheaper on the second request, and is there a 5 min vs 1 hr ttl",
+   "facets": [
+    "does anthropic cache input cheaper on the second request, and is there a 5 min vs 1 hr ttl",
+    "does anthropic cache input cheaper on the second request",
+    "is there a 5 min vs 1 hr ttl"
+   ],
+   "n_facets": 3,
+   "facet_0_is_original_question_byte_for_byte": true,
+   "extractive_validation": "PASS"
+  },
+  {
+   "case_id": "NATQ-C-155",
+   "question": "prompt cache never hits, is there a min token count before anthropic will actually cache",
+   "facets": [
+    "prompt cache never hits, is there a min token count before anthropic will actually cache"
+   ],
+   "n_facets": 1,
+   "facet_0_is_original_question_byte_for_byte": true,
+   "extractive_validation": "PASS"
+  },
+  {
+   "case_id": "NATQ-C-019",
+   "question": "extended thinking on claude — do thinking tokens count against max_tokens",
+   "facets": [
+    "extended thinking on claude — do thinking tokens count against max_tokens"
+   ],
+   "n_facets": 1,
+   "facet_0_is_original_question_byte_for_byte": true,
+   "extractive_validation": "PASS"
+  },
+  {
+   "case_id": "NATQ-C-071",
+   "question": "anthropic thinking budget_tokens vs max_tokens, can the budget be larger than max",
+   "facets": [
+    "anthropic thinking budget_tokens vs max_tokens, can the budget be larger than max",
+    "anthropic thinking budget_tokens vs max_tokens",
+    "can budget_tokens be larger than max_tokens"
+   ],
+   "n_facets": 3,
+   "facet_0_is_original_question_byte_for_byte": true,
+   "extractive_validation": "PASS"
+  },
+  {
+   "case_id": "NATQ-C-021",
+   "question": "anthropic computer use, which tool type name do I actually send in the tools array",
+   "facets": [
+    "anthropic computer use, which tool type name do I actually send in the tools array"
+   ],
+   "n_facets": 1,
+   "facet_0_is_original_question_byte_for_byte": true,
+   "extractive_validation": "PASS"
+  },
+  {
+   "case_id": "NATQ-C-044",
+   "question": "anthropic bash tool and text editor tool — are those built-in types or do I implement them",
+   "facets": [
+    "anthropic bash tool and text editor tool — are those built-in types or do I implement them",
+    "anthropic bash tool — are those built-in types or do I implement them",
+    "anthropic text editor tool — are those built-in types or do I implement them"
+   ],
+   "n_facets": 3,
+   "facet_0_is_original_question_byte_for_byte": true,
+   "extractive_validation": "PASS"
+  },
+  {
+   "case_id": "NATQ-C-147",
+   "question": "anthropic computer use, is display_width_px required",
+   "facets": [
+    "anthropic computer use, is display_width_px required"
+   ],
+   "n_facets": 1,
+   "facet_0_is_original_question_byte_for_byte": true,
+   "extractive_validation": "PASS"
+  },
+  {
+   "case_id": "NATQ-C-022",
+   "question": "claude pdfs — is that a document content block or do I still stuff base64 in an image",
+   "facets": [
+    "claude pdfs — is that a document content block or do I still stuff base64 in an image",
+    "claude pdfs — is that a document content block",
+    "claude pdfs — do I still stuff base64 in an image"
+   ],
+   "n_facets": 3,
+   "facet_0_is_original_question_byte_for_byte": true,
+   "extractive_validation": "PASS"
+  },
+  {
+   "case_id": "NATQ-C-160",
+   "question": "anthropic files api — do I reference a file_id in the document block or still inline the pdf",
+   "facets": [
+    "anthropic files api — do I reference a file_id in the document block or still inline the pdf",
+    "anthropic files api — do I reference a file_id in the document block",
+    "anthropic files api — do I still inline the pdf"
+   ],
+   "n_facets": 3,
+   "facet_0_is_original_question_byte_for_byte": true,
+   "extractive_validation": "PASS"
+  },
+  {
+   "case_id": "NATQ-C-161",
+   "question": "pdf page limit for claude, when does it start rejecting",
+   "facets": [
+    "pdf page limit for claude, when does it start rejecting"
+   ],
+   "n_facets": 1,
+   "facet_0_is_original_question_byte_for_byte": true,
+   "extractive_validation": "PASS"
+  },
+  {
+   "case_id": "NATQ-C-025",
+   "question": "anthropic-version header still 2023-06-01??",
+   "facets": [
+    "anthropic-version header still 2023-06-01??"
+   ],
+   "n_facets": 1,
+   "facet_0_is_original_question_byte_for_byte": true,
+   "extractive_validation": "PASS"
+  },
+  {
+   "case_id": "NATQ-C-026",
+   "question": "claude citations / grounded answers — is that a tool or a response format",
+   "facets": [
+    "claude citations / grounded answers — is that a tool or a response format"
+   ],
+   "n_facets": 1,
+   "facet_0_is_original_question_byte_for_byte": true,
+   "extractive_validation": "PASS"
+  },
+  {
+   "case_id": "NATQ-C-199",
+   "question": "claude citation objects, is the span in cited_text or document_index plus start_page_number",
+   "facets": [
+    "claude citation objects, is the span in cited_text or document_index plus start_page_number",
+    "claude citation objects, is the span in cited_text",
+    "claude citation objects, is the span in document_index plus start_page_number"
+   ],
+   "n_facets": 3,
+   "facet_0_is_original_question_byte_for_byte": true,
+   "extractive_validation": "PASS"
+  },
+  {
+   "case_id": "NATQ-C-027",
+   "question": "token counting for anthropic, is it count_tokens or messages/count_tokens",
+   "facets": [
+    "token counting for anthropic, is it count_tokens or messages/count_tokens"
+   ],
+   "n_facets": 1,
+   "facet_0_is_original_question_byte_for_byte": true,
+   "extractive_validation": "PASS"
+  },
+  {
+   "case_id": "NATQ-C-170",
+   "question": "messages.count_tokens, does it include images and the tools array or just the text",
+   "facets": [
+    "messages.count_tokens, does it include images and the tools array or just the text",
+    "messages.count_tokens, does it include images",
+    "messages.count_tokens, does it include the tools array"
+   ],
+   "n_facets": 3,
+   "facet_0_is_original_question_byte_for_byte": true,
+   "extractive_validation": "PASS"
+  },
+  {
+   "case_id": "NATQ-C-029",
+   "question": "anthropic tool_choice — auto vs any vs tool vs none, what does any actually force",
+   "facets": [
+    "anthropic tool_choice — auto vs any vs tool vs none, what does any actually force",
+    "anthropic tool_choice — auto vs any vs tool vs none",
+    "what does any actually force"
+   ],
+   "n_facets": 3,
+   "facet_0_is_original_question_byte_for_byte": true,
+   "extractive_validation": "PASS"
+  },
+  {
+   "case_id": "NATQ-C-191",
+   "question": "tool_choice none with thinking enabled, allowed or 400",
+   "facets": [
+    "tool_choice none with thinking enabled, allowed or 400"
+   ],
+   "n_facets": 1,
+   "facet_0_is_original_question_byte_for_byte": true,
+   "extractive_validation": "PASS"
+  },
+  {
+   "case_id": "NATQ-C-030",
+   "question": "claude stop_reason pause_turn vs end_turn vs tool_use — when do I send the next request to resume",
+   "facets": [
+    "claude stop_reason pause_turn vs end_turn vs tool_use — when do I send the next request to resume",
+    "claude stop_reason pause_turn vs end_turn vs tool_use",
+    "when do I send the next request to resume"
+   ],
+   "n_facets": 3,
+   "facet_0_is_original_question_byte_for_byte": true,
+   "extractive_validation": "PASS"
+  },
+  {
+   "case_id": "NATQ-C-032",
+   "question": "parallel_tool_calls off how — openai",
+   "facets": [
+    "parallel_tool_calls off how — openai"
+   ],
+   "n_facets": 1,
+   "facet_0_is_original_question_byte_for_byte": true,
+   "extractive_validation": "PASS"
+  },
+  {
+   "case_id": "NATQ-C-033",
+   "question": "claude disable parallel tools — I keep sending parallel_tool_calls=false like openai, what's the actual param",
+   "facets": [
+    "claude disable parallel tools — I keep sending parallel_tool_calls=false like openai, what's the actual param",
+    "claude disable parallel tools",
+    "what's the actual param"
+   ],
+   "n_facets": 3,
+   "facet_0_is_original_question_byte_for_byte": true,
+   "extractive_validation": "PASS"
+  }
+ ]
+}

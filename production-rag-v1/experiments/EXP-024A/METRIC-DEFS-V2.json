@@ -1,0 +1,106 @@
+{
+ "artifact": "METRIC-DEFS-V2",
+ "scope": "RAG-V2 secondary metric definitions, NATQ-001 validation n=40",
+ "non_scoring": true,
+ "historical_reports_modified": false,
+ "A_MRR": {
+  "canonical_formula": "sum(1/rank for each gold span with a rank, 0 otherwise) / total_gold_spans",
+  "aggregation": "micro-average over gold SPANS (not a per-case macro average)",
+  "authority": "shared harness summarise(), experiments/EXP-018/scripts/run_exp018_development.py:137-138",
+  "code": "round(sum((1 / s[\"rank\"] for s in all_spans if s[\"rank\"]), 0.0) / len(all_spans), 4)",
+  "used_by": [
+   "EXP-018 onward",
+   "EXP-022A-R1"
+  ],
+  "divergence": "EXP-023A computed a per-case macro average (mean over cases of the mean reciprocal rank of that case's spans), giving 0.3271 where the canonical span micro-average gives a different value. EXP-023A's MRR was NON-CANONICAL.",
+  "resolution": "canonical = span micro-average; EXP-023A MRR is superseded by the addendum",
+  "chosen_by": "provenance in shared harness code, not by which number is better"
+ },
+ "B_MULTI_SPAN": {
+  "canonical_rule": "n_gold_spans > 1 OR \"multi_span\" in (coverage_tags + stress_types)",
+  "authority": [
+   "EXP-022A-R1 scripts/run_exp022a_r1.py:189 is_multi_span()",
+   "EXP-020A:665",
+   "EXP-021A:665",
+   "EXP-021B:755 \u2014 identical predicate"
+  ],
+  "cases": 12,
+  "spans": 25,
+  "case_ids": [
+   "NATQ-C-005",
+   "NATQ-C-012",
+   "NATQ-C-014",
+   "NATQ-C-017",
+   "NATQ-C-023",
+   "NATQ-C-026",
+   "NATQ-C-030",
+   "NATQ-C-032",
+   "NATQ-C-044",
+   "NATQ-C-160",
+   "NATQ-C-170",
+   "NATQ-C-201"
+  ],
+  "divergence": "EXP-023A used len(expected_evidence) > 1 alone, giving 11 cases / 24 spans. The canonical union rule gives 12 / 25, matching all prior reporting.",
+  "extra_case_under_canonical_rule": "NATQ-C-170",
+  "note_for_coordinator": "NATQ-C-170 carries the multi_span tag but has exactly one expected_evidence entry, evidence_shape short_contiguous, requires_all_evidence false. The canonical rule still admits it, and prior reporting counted it. Flagged as a frozen benchmark tagging inconsistency for the coordinator; NOT modified here."
+ },
+ "C_EXACT_IDENTIFIER": {
+  "canonical_tag": "exact_identifier_lookup",
+  "canonical_rule": "\"exact_identifier_lookup\" in (coverage_tags + stress_types)",
+  "cases": 17,
+  "case_ids": [
+   "NATQ-C-006",
+   "NATQ-C-010",
+   "NATQ-C-015",
+   "NATQ-C-016",
+   "NATQ-C-021",
+   "NATQ-C-025",
+   "NATQ-C-027",
+   "NATQ-C-029",
+   "NATQ-C-032",
+   "NATQ-C-033",
+   "NATQ-C-044",
+   "NATQ-C-134",
+   "NATQ-C-147",
+   "NATQ-C-160",
+   "NATQ-C-179",
+   "NATQ-C-199",
+   "NATQ-C-217"
+  ],
+  "authority": "EVAL-NATQ-VAL-001-REPORT.md lines 54 and 62 report exact_identifier_lookup n=17 on this validation split; the union of coverage_tags and stress_types reproduces 17 exactly (coverage_tags alone 17, stress_types alone 15)",
+  "divergence": "EXP-023A searched for the tag 'exact_identifier' \u2014 which does not exist in the frozen vocabulary \u2014 and therefore reported n=0. This was a tag-name error, not a definitional disagreement.",
+  "other_counts_seen_and_why_not_canonical": {
+   "45": "NATQ-001-construction-report.md, over all 100 constructed cases, not the validation 40",
+   "18": "NATQ-DIAG-001-REPORT.md prose label 'exact-identifier cases', a different grouping in a trace-only document; EVAL-NATQ-VAL-001 is the preregistered validation report and governs"
+  }
+ },
+ "OTHER_SUBSETS_UNCHANGED": {
+  "long_document_localization": {
+   "cases": 5,
+   "case_ids": [
+    "NATQ-C-005",
+    "NATQ-C-013",
+    "NATQ-C-026",
+    "NATQ-C-044",
+    "NATQ-C-201"
+   ]
+  },
+  "same_document_passage_discrimination": {
+   "cases": 9,
+   "case_ids": [
+    "NATQ-C-002",
+    "NATQ-C-010",
+    "NATQ-C-016",
+    "NATQ-C-022",
+    "NATQ-C-026",
+    "NATQ-C-029",
+    "NATQ-C-179",
+    "NATQ-C-199",
+    "NATQ-C-203"
+   ]
+  },
+  "note": "both are 5 and 9 under either field alone or the union; no divergence existed"
+ },
+ "EXP-023A_SUPPORTED": false,
+ "EXP-023A_verdict_unchanged_because": "gates 1 and 2 failed on strict 21/40 (<23) and span 29/53 (<31), which are primary totals untouched by any secondary-definition correction"
+}

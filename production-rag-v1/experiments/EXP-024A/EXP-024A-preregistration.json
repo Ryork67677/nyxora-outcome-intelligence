@@ -1,0 +1,88 @@
+{
+ "experiment_id": "EXP-024A",
+ "title": "QUESTION-FACET RECOGNIZABILITY DIAGNOSTIC",
+ "written_at_utc": "2026-09-03T07:01:23.989190+00:00",
+ "scored_before_prereg_hash": false,
+ "data_status": "NATQ-001 validation n=40 is DEVELOPMENT / MODEL-SELECTION DATA. Holdout n=60 pristine, not opened.",
+ "phase_0": {
+  "metric_defs_artifact": "EXP-024A/METRIC-DEFS-V2.json",
+  "mrr": "EXP-018 summarise micro-average over all 53 gold spans; 0 for missing",
+  "multi_span": "len(expected_evidence)>1 OR multi_span in coverage_tags+stress_types = 12 cases / 25 spans",
+  "exact_identifier": "exact_identifier_lookup in coverage_tags+stress_types = 17 cases / 21 spans",
+  "independently_agreed_with_coordinator": true,
+  "historical_reports_modified": false,
+  "EXP-023A_SUPPORTED": false
+ },
+ "facets": {
+  "artifact_sha256": "d8ab86ee1018a0c68f830e2002951c8448b6bcd9b29ea18cf58b5d6cc727f8b9",
+  "frozen_before_scoring": true,
+  "facet_0_rule": "exact original question",
+  "max_per_query": 4,
+  "total_facets": 78,
+  "additional_facets_to_score": 38,
+  "extractive_violations": 0,
+  "author_tool_uses": 0
+ },
+ "membership": {
+  "source": "SYSTEM-J stored",
+  "queries": 40,
+  "pairs": 7485,
+  "retrieval_rerun": false
+ },
+ "passage_input": "BARE canonical cs_v1_control chunk.text; SYSTEM-L context NOT used",
+ "facet_0_control": {
+  "rescored": false,
+  "logits_from": "EXP-022A-R1",
+  "artifact_sha256": "abd00619d538a5a497c36cf588b9d4eeed760ca343aaf1925ce466b3619c677c",
+  "must_reproduce": {
+   "strict": "19/40",
+   "span": "26/53"
+  }
+ },
+ "oracle": {
+  "definition": "best_facet_rank = MIN(rank under facet 0, facet 1, ...)",
+  "metrics": [
+   "FACET-ORACLE-STRICT-CASE@10",
+   "FACET-ORACLE-SPAN@10"
+  ],
+  "not_a_deployable_system": true,
+  "uses_gold_only_for_evaluation": true,
+  "must_not_be_labelled": "SYSTEM Recall@10"
+ },
+ "gate_all_required": {
+  "1_oracle_strict_at_least": "24/40",
+  "baseline_strict": "19/40",
+  "2_oracle_span_at_least": "32/53",
+  "baseline_span": "26/53",
+  "3_canonical_multispan_span_improvement_at_least": 4,
+  "multispan_baseline": "8/25",
+  "4_facet0_reproduces_stored_R1_association": true,
+  "5_membership_exactly_unchanged": true,
+  "6_no_integrity_failure": true,
+  "thresholds_frozen_before_results": true
+ },
+ "holdout_protection": {
+  "natq_bytes": 0,
+  "natq_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "v1_bytes": 235,
+  "v1_sha256": "45b83a77f6f332174d641956f076dd0c0cae44fe48f4f2892ac7030a4c0143b3",
+  "holdout_json_opened": false
+ },
+ "on_failure": [
+  "do not tune decomposition",
+  "do not try synonyms or more facets",
+  "conclude the MiniLM CE lacks sufficient recognizability after passage-side and query-side factorization",
+  "coordinator moves to a stronger reranker architecture"
+ ],
+ "forbidden": [
+  "EXP-024B",
+  "final selector",
+  "round-robin top10",
+  "MMR",
+  "CE change",
+  "another reranker",
+  "W/L/P increase",
+  "retrieval rerun",
+  "SYSTEM-L passage context"
+ ]
+}
