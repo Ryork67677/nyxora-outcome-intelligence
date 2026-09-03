@@ -1,0 +1,79 @@
+{
+ "experiment_id": "EXP-023A",
+ "phase": "PHASE_0_CE_INPUT_AUDIT",
+ "scored": false,
+ "reviewed_snapshot": {
+  "branch": "grok/v2-natq-20260903",
+  "commit": "37adc2c",
+  "inspected_via": "detached worktree; snapshot branch not modified"
+ },
+ "question": "Does EXP-022A-R1's CE input already prepend full canonical document title AND section_path? If yes: STOP with EXP-023A_NOT_APPLICABLE_ALREADY_CONTEXTUALIZED.",
+ "EXP-023A_NOT_APPLICABLE_ALREADY_CONTEXTUALIZED": false,
+ "verdict": "PHASE_0_PASSED \u2014 EXP-023A IS APPLICABLE. CE input is bare chunk text.",
+ "evidence_chain": [
+  {
+   "step": 1,
+   "file": "experiments/RAG-V2/EXP-022A-R1/scripts/run_exp022a_r1.py",
+   "line": 780,
+   "code": "texts = [chunks_by_id[cid][\"text\"] for cid in j_ids]",
+   "finding": "the CE passage list is built from one dict key and nothing is concatenated onto it"
+  },
+  {
+   "step": 2,
+   "file": "experiments/RAG-V2/EXP-022A-R1/scripts/run_exp022a_r1.py",
+   "line": 782,
+   "code": "scores = ce.score_pairs(case.question, texts, batch_size=16)",
+   "finding": "passages are passed straight through; no wrapper builds a header"
+  },
+  {
+   "step": 3,
+   "file": "experiments/EXP-017/scripts/run_exp017.py",
+   "lines": "167-186",
+   "code": "SELECT chunk_id, version_id, section_path, char_start, char_end, text FROM chunk",
+   "finding": "load_control_chunks() populates ['text'] from the bare chunk.text column. section_path is fetched and stored alongside but is NOT part of ['text']. search_text and context_header are not selected at all."
+  },
+  {
+   "step": 4,
+   "file": "experiments/EXP-015/scripts/cross_encoder.py",
+   "lines": "91-121",
+   "finding": "CrossEncoderReranker.score_pairs / _score_bucketed / _score_in_order tokenize (query, passage) pairs directly. No title, no section path, no prepending anywhere."
+  },
+  {
+   "step": 5,
+   "file": "experiments/RAG-V2/EXP-022A-R1/scripts/run_exp022a_r1.py",
+   "line": 794,
+   "code": "input_hash(case.case_id, cid, case.question, chunks_by_id[cid][\"text\"])",
+   "finding": "the stored per-pair input hash is itself computed over the bare text, so the persisted logits are provably hashes of un-contextualized input"
+  }
+ ],
+ "conclusion": "Document title is absent from the CE input entirely \u2014 it is never even loaded by load_control_chunks(). section_path is loaded but never concatenated into the scored passage. The EXP-023A intervention is therefore a genuine change, not a no-op.",
+ "scoring_phase_status": "BLOCKED_MISSING_ASSIGNMENT_SPEC",
+ "blocker": {
+  "file": "C:\\Users\\yorkr\\Documents\\Codex\\NATQ-001-review\\CLAUDE-EXP-023A.md",
+  "reachable": false,
+  "searched": "not present anywhere on grok/v2-natq-20260903 @ 37adc2c",
+  "why_it_matters": [
+   "the exact prepend format is unspecified in the relayed summary: line structure, the separator joining section_path elements, and whether labels are literal are all byte-affecting, and different choices produce different logits that cannot be reproduced from the assignment",
+   "the 17 STOP items are enumerated in that file and cannot be returned unseen"
+  ]
+ },
+ "preconditions_verified_ok": {
+  "corpus_reachable": true,
+  "snapshot": "snap_689e336380a054d8039dc35b2c09cd0a -> cs_v1_control, 14209 chunks",
+  "databases_holding_snapshot": [
+   "rag",
+   "corpus002_restore"
+  ],
+  "stored_EXP_022A_R1_logits_present": true,
+  "logits_file": "experiments/RAG-V2/EXP-022A-R1/logs/EXP-022A-R1-raw-ce-logits.jsonl",
+  "logits_bytes": 6746436
+ },
+ "constraints_observed": {
+  "holdout_json_opened": false,
+  "system_H_I_J_K_modified": false,
+  "frozen_windows_checkout_edited": false,
+  "scores_invented": false,
+  "snapshot_branch_modified": false,
+  "ce_rerun": false
+ }
+}
