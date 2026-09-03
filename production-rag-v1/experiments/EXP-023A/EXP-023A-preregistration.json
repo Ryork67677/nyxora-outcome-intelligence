@@ -1,0 +1,164 @@
+{
+ "experiment_id": "EXP-023A",
+ "title": "CONTEXTUALIZED CROSS-ENCODER INPUT",
+ "written_at_utc": "2026-09-03T06:21:58.126152+00:00",
+ "scored_before_prereg_hash": false,
+ "data_status": "NATQ-001 validation n=40 is DEVELOPMENT / MODEL-SELECTION DATA. Not independent validation. NATQ holdout n=60 remains pristine and is not opened.",
+ "phase_0_input_audit": {
+  "result": "CE input is bare canonical chunk text",
+  "EXP-023A_NOT_APPLICABLE_ALREADY_CONTEXTUALIZED": false,
+  "document_title_present": false,
+  "section_path_present": false,
+  "headings_present": false,
+  "provider_present": false,
+  "version_metadata_present": false,
+  "canonical_chunk_text_present": true,
+  "evidence": [
+   "run_exp022a_r1.py:780 texts = [chunks_by_id[cid]['text'] for cid in j_ids]",
+   "run_exp017.py:167-186 load_control_chunks selects bare chunk.text",
+   "cross_encoder.py:91-121 score_pairs tokenizes (query, passage) with no prepend",
+   "run_exp022a_r1.py:794 input_hash computed over the same bare text"
+  ]
+ },
+ "new_identity": "SYSTEM-L-CONTEXTUALIZED-CE",
+ "does_not_overwrite": [
+  "SYSTEM-H",
+  "SYSTEM-I",
+  "SYSTEM-J",
+  "SYSTEM-K"
+ ],
+ "membership": {
+  "source": "EXP-021A/logs/EXP-021A-pools.jsonl system_j_union_ids",
+  "expected_queries": 40,
+  "expected_pairs": 7485,
+  "must_equal_SYSTEM_J_exactly": true,
+  "reruns_forbidden": [
+   "SYSTEM-A",
+   "BM25",
+   "dense",
+   "E-L10",
+   "W20",
+   "projection",
+   "parent discovery"
+  ]
+ },
+ "frozen_ce": {
+  "name": "cross-encoder/ms-marco-MiniLM-L6-v2",
+  "revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a",
+  "onnx_sha256": "5d3e70fd0c9ff14b9b5169a51e957b7a9c74897afd0a35ce4bd318150c1d4d4a",
+  "tokenizer_sha256": "d241a60d5e8f04cc1b2b3e9ef7a4921b27bf526d9f6050ab90f9267a1f9e5c66",
+  "pad": "batch",
+  "bucket_by_length": true,
+  "batch_size": 16,
+  "threads": 4,
+  "fast": false,
+  "max_length": 512,
+  "truncation": "longest_first",
+  "model_altered": false
+ },
+ "the_one_scoring_change": {
+  "baseline_input": "CANONICAL CHUNK TEXT (bare)",
+  "system_l_input_template": "{DOCUMENT_TITLE}\\n{SECTION_PATH}\\n\\n{CANONICAL_CHUNK_TEXT}",
+  "document_title_source": "document_source.title for the candidate chunk's version_id",
+  "document_title_missing_policy": "omit the title line; never invent one",
+  "section_path_serialization": "elements joined with ' > ', no JSON brackets or quotes",
+  "section_path_missing_policy": "omit the section line",
+  "dedup_policy": "NONE. If chunk text begins with text identical to the final heading it is left in place. This experiment tests metadata prepend only.",
+  "forbidden": [
+   "generated text",
+   "query-dependent metadata",
+   "gold metadata",
+   "answer text",
+   "coverage tags",
+   "evidence labels"
+  ]
+ },
+ "ranking": {
+  "keys": [
+   "contextualized raw CE logit DESC",
+   "canonical chunk_id ASC"
+  ],
+  "no_retrieval_score": true,
+  "no_blend": true,
+  "no_mmr": true,
+  "no_coverage_selector": true,
+  "no_section_quota": true,
+  "no_local_bm25": true
+ },
+ "control": {
+  "source": "EXP-022A-R1 persisted raw CE logits",
+  "artifact_sha256": "abd00619d538a5a497c36cf588b9d4eeed760ca343aaf1925ce466b3619c677c",
+  "baseline_rerun_forbidden": true,
+  "expected_rows": 7485,
+  "control_strict": "19/40",
+  "control_span": "26/53"
+ },
+ "primary_metric": "strict full-case Recall@10",
+ "secondary_metrics": [
+  "evidence-span Recall@10",
+  "MRR",
+  "document Recall@10",
+  "multi-span strict",
+  "multi-span span recall",
+  "OpenAI strict/span",
+  "Anthropic strict/span",
+  "long_document_localization subset",
+  "same_document_passage_discrimination subset",
+  "exact_identifier subset",
+  "truncation diagnostics",
+  "latency"
+ ],
+ "mechanism_gate_all_required": {
+  "1_strict_at_least": "23/40",
+  "2_span_at_least": "31/53",
+  "3_multispan_span_improvement_at_least": 3,
+  "3_multispan_baseline": "8/25",
+  "4_strict_regressions_at_most": 2,
+  "5_membership_exactly_unchanged": true,
+  "6_no_integrity_or_provenance_failure": true,
+  "thresholds_are": "mechanism qualification, not a release gate",
+  "alteration_after_results_forbidden": true
+ },
+ "truncation_diagnostics": {
+  "max_length_increase_forbidden": true,
+  "per_pair": [
+   "baseline token length",
+   "contextualized token length",
+   "truncated",
+   "chunk-text tokens lost"
+  ],
+  "aggregate": [
+   "contextualized truncation rate",
+   "fraction where metadata caused new truncation"
+  ]
+ },
+ "four_recovered_spans_diagnostic_only": [
+  "NATQ-C-004 s0",
+  "NATQ-C-005 s1",
+  "NATQ-C-044 s0",
+  "NATQ-C-044 s1"
+ ],
+ "holdout_protection": {
+  "natq_expected_bytes": 0,
+  "natq_expected_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "v1_expected_bytes": 235,
+  "v1_expected_sha256": "45b83a77f6f332174d641956f076dd0c0cae44fe48f4f2892ac7030a4c0143b3",
+  "holdout_json_opened": false
+ },
+ "on_failure": [
+  "do not try alternate heading formats",
+  "do not try different delimiters",
+  "do not increase max_length",
+  "do not tweak CE weights",
+  "conclude simple passage contextualization is insufficient",
+  "return to coordinator"
+ ],
+ "environment": {
+  "database": "postgresql://rag:rag@localhost:5432/corpus002_restore",
+  "verified_identical_to_rag_db_for_cs_v1_control": true,
+  "snapshot": "snap_689e336380a054d8039dc35b2c09cd0a",
+  "chunk_set": "cs_v1_control",
+  "reviewed_branch": "grok/v2-natq-20260903",
+  "reviewed_commit": "37adc2c"
+ }
+}

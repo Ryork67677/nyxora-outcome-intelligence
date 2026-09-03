@@ -1,0 +1,60 @@
+{
+ "name": "SYSTEM-L-CONTEXTUALIZED-CE",
+ "kind": "development mechanism only",
+ "candidate_membership": {
+  "source": "SYSTEM-J-LOCAL-W20-UNION exact stored membership",
+  "system_j_config_hash": "b6d60649dc5cbb379154146143282afd718281b6d4fe0e5ec59bf5c71f43d787",
+  "queries": 40,
+  "pairs": 7485,
+  "retrieval_rerun": false
+ },
+ "cross_encoder": {
+  "name": "cross-encoder/ms-marco-MiniLM-L6-v2",
+  "revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a",
+  "onnx_sha256": "5d3e70fd0c9ff14b9b5169a51e957b7a9c74897afd0a35ce4bd318150c1d4d4a",
+  "tokenizer_sha256": "d241a60d5e8f04cc1b2b3e9ef7a4921b27bf526d9f6050ab90f9267a1f9e5c66",
+  "pad": "batch",
+  "bucket_by_length": true,
+  "batch_size": 16,
+  "threads": 4,
+  "fast": false,
+  "max_length": 512,
+  "truncation": "longest_first"
+ },
+ "scoring_input": {
+  "template": "DOCUMENT_TITLE\\nSECTION_PATH\\n\\nCANONICAL_CHUNK_TEXT",
+  "title_source": "document_source.title for the candidate chunk's version_id",
+  "title_missing": "line omitted, never invented",
+  "section_path_serialization": "' > '-joined, no JSON brackets or quotes",
+  "section_missing": "line omitted",
+  "content_dedup": "none"
+ },
+ "ranking": {
+  "keys": [
+   "contextualized raw CE logit DESC",
+   "chunk_id ASC"
+  ],
+  "retrieval_score": false,
+  "blend": false,
+  "mmr": false,
+  "coverage_selector": false,
+  "section_quota": false,
+  "local_bm25": false
+ },
+ "snapshot": "snap_689e336380a054d8039dc35b2c09cd0a",
+ "chunk_set": "cs_v1_control",
+ "config_hash": "2030ed534e2dac56fa7027eeabca4525d794a037da3f8bc58aba28945dfe6b41",
+ "status": {
+  "DEVELOPMENT_MECHANISM": true,
+  "RELEASE_FROZEN": false,
+  "VALIDATION_RUN": false,
+  "HOLDOUT_RUN": false
+ },
+ "overwrote": [],
+ "preserved": [
+  "SYSTEM-H",
+  "SYSTEM-I",
+  "SYSTEM-J",
+  "SYSTEM-K"
+ ]
+}

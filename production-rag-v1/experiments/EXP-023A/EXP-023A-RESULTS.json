@@ -1,0 +1,208 @@
+{
+ "J": {
+  "strict": 19,
+  "n": 40,
+  "span_hit": 26,
+  "span_tot": 53,
+  "mrr": 0.3271,
+  "doc": 35
+ },
+ "L": {
+  "strict": 21,
+  "n": 40,
+  "span_hit": 29,
+  "span_tot": 53,
+  "mrr": 0.3312,
+  "doc": 34
+ },
+ "paired": {
+  "rescues": [
+   "NATQ-C-201",
+   "NATQ-C-005",
+   "NATQ-C-032"
+  ],
+  "regressions": [
+   "NATQ-C-008"
+  ],
+  "both_pass": 18,
+  "both_fail": 18,
+  "mcnemar": {
+   "n01": 3,
+   "n10": 1,
+   "n_discordant": 4,
+   "p_exact": 0.625,
+   "method": "two_sided_exact_binomial_p05",
+   "note": "n01=G success & NO-CE fail (CE-only); n10=G fail & NO-CE success (NO-CE-only)"
+  }
+ },
+ "multi_span": {
+  "n": 11,
+  "J_strict": 0,
+  "L_strict": 3,
+  "J_span": 7,
+  "L_span": 11,
+  "span_total": 24
+ },
+ "provider_openai": {
+  "n": 18,
+  "J_strict": 11,
+  "L_strict": 13,
+  "J_span": 14,
+  "L_span": 17,
+  "span_total": 23
+ },
+ "provider_anthropic": {
+  "n": 22,
+  "J_strict": 8,
+  "L_strict": 8,
+  "J_span": 12,
+  "L_span": 12,
+  "span_total": 30
+ },
+ "subset_long_document_localization": {
+  "n": 5,
+  "J_strict": 1,
+  "L_strict": 3,
+  "J_span": 4,
+  "L_span": 7,
+  "span_total": 11
+ },
+ "subset_same_document_passage_discrimination": {
+  "n": 9,
+  "J_strict": 4,
+  "L_strict": 4,
+  "J_span": 5,
+  "L_span": 5,
+  "span_total": 11
+ },
+ "subset_exact_identifier": {
+  "n": 0,
+  "J_strict": 0,
+  "L_strict": 0,
+  "J_span": 0,
+  "L_span": 0,
+  "span_total": 0
+ },
+ "rank_movements": {
+  "improved": 20,
+  "worsened": 18,
+  "unchanged": 15,
+  "outside_to_top10": 4,
+  "top10_to_outside": 1
+ },
+ "four_recovered": [
+  {
+   "case": "NATQ-C-004",
+   "span": 0,
+   "baseline_logit": -6.049786567687988,
+   "baseline_rank": 80,
+   "contextualized_logit": -6.867335319519043,
+   "contextualized_rank": 94,
+   "L_top10": false,
+   "document_title": "Sessions",
+   "section_path": "Wrap with encryption and TTL > Operational patterns > Memory persistence"
+  },
+  {
+   "case": "NATQ-C-005",
+   "span": 1,
+   "baseline_logit": -0.35656341910362244,
+   "baseline_rank": 42,
+   "contextualized_logit": 3.274965286254883,
+   "contextualized_rank": 7,
+   "L_top10": true,
+   "document_title": "Human-in-the-loop",
+   "section_path": "Human-in-the-loop > Marking tools that need approval"
+  },
+  {
+   "case": "NATQ-C-044",
+   "span": 0,
+   "baseline_logit": -1.5396829843521118,
+   "baseline_rank": 46,
+   "contextualized_logit": 0.1546332687139511,
+   "contextualized_rank": 34,
+   "L_top10": false,
+   "document_title": "Bash tool",
+   "section_path": "Tool versions"
+  },
+  {
+   "case": "NATQ-C-044",
+   "span": 1,
+   "baseline_logit": -6.526081085205078,
+   "baseline_rank": 111,
+   "contextualized_logit": -3.5371217727661133,
+   "contextualized_rank": 80,
+   "L_top10": false,
+   "document_title": "Bash tool",
+   "section_path": "How it works"
+  }
+ ],
+ "truncation": {
+  "pairs": 7485,
+  "contextualized_truncated": 852,
+  "baseline_truncated": 826,
+  "metadata_caused_new_truncation": 26,
+  "contextualized_truncation_rate": 0.1138,
+  "new_truncation_fraction": 0.0035,
+  "mean_chunk_tokens_lost": 1.4,
+  "max_chunk_tokens_lost": 54
+ },
+ "gate": {
+  "1_strict>=23": false,
+  "2_span>=31": false,
+  "3_multispan_span_+3": true,
+  "4_regressions<=2": true,
+  "5_membership_unchanged": true,
+  "6_no_integrity_failure": true
+ },
+ "EXP-023A_SUPPORTED": false,
+ "system_l": {
+  "config_hash": "2030ed534e2dac56fa7027eeabca4525d794a037da3f8bc58aba28945dfe6b41",
+  "file_sha256": "7adfc160afe063fb9243c2706e853d6b16dda65c782626fe1beb41aebff04f08"
+ },
+ "prereg_sha256": "c00a8110ad07bd74f00b93746f7f796278316c5f42b604fa7c9a12ab0c0724c5",
+ "contextualized_logit_artifact_sha256": "107ae27bb8ddc3c514faa11bdc74a1849ab328e6faae6186e2d1c4cfedfdb9bb",
+ "baseline_artifact_sha256": "abd00619d538a5a497c36cf588b9d4eeed760ca343aaf1925ce466b3619c677c",
+ "latency": {
+  "mean_ms_per_query": 5398.7,
+  "median_ms_per_query": 5069.4,
+  "min_ms": 2685.6,
+  "max_ms": 8016.0,
+  "total_s": 215.9
+ },
+ "holdout_confirmations": {
+  "natq_before": {
+   "bytes": 0,
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "natq_after": {
+   "bytes": 0,
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "v1_before": {
+   "bytes": 235,
+   "sha256": "45b83a77f6f332174d641956f076dd0c0cae44fe48f4f2892ac7030a4c0143b3"
+  },
+  "v1_after": {
+   "bytes": 235,
+   "sha256": "45b83a77f6f332174d641956f076dd0c0cae44fe48f4f2892ac7030a4c0143b3"
+  },
+  "holdout_json_opened": false,
+  "match_expected": true
+ },
+ "definitional_discrepancies": [
+  {
+   "metric": "MRR",
+   "mine": 0.3271,
+   "r1_reported": 0.2873,
+   "cause": "different MRR aggregation; my J strict 19/40 and span 26/53 reproduce R1 exactly, so the pool and ranking agree and only the MRR formula differs",
+   "impact": "none on the gate; MRR is secondary"
+  },
+  {
+   "metric": "multi-span set size",
+   "mine": "11 cases / 24 spans, J baseline 7",
+   "spec_states": "12 cases / 25 spans, J baseline 8/25",
+   "cause": "I defined multi-span as len(expected_evidence) > 1; both counts are internally consistent against 40 cases and 53 spans, so the spec is using a different multi-span criterion",
+   "impact": "gate 3 passes on my definition (+4: 7 -> 11). The overall verdict is unchanged either way because gates 1 and 2 fail."
+  }
+ ]
+}
