@@ -1,0 +1,325 @@
+[
+ {
+  "case": "C07",
+  "question": "i want to cache a big system prompt across calls so i stop paying for it every time",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_7947433dfde6b3b8eccd0faa597c3c9a",
+  "document_title": "Prompt caching",
+  "content_hash": "4af14eac456ba952ff0ee0fb0664b9d51bee244eb9a4fdef9ace0066f84fd6e6",
+  "supported_answer": "Mark the end of the system content with cache_control. Caching references the entire prompt prefix \u2014 tools, then system, then messages, in that order \u2014 up to and including the block carrying cache_control, so a breakpoint after the system content caches everything before it. Subsequent calls reuse that prefix at the cache-hit rate.",
+  "evidence": [
+   {
+    "version_id": "ver_7947433dfde6b3b8eccd0faa597c3c9a",
+    "char_start": 8522,
+    "char_end": 8680,
+    "quote": "Prompt caching references the entire prompt - `tools`, `system`, and `messages` (in that order) up to and including the block designated with `cache_control`."
+   }
+  ],
+  "atomic_claims": [
+   "caching references the whole prefix in the order tools, system, messages",
+   "the prefix cached runs up to and including the block marked with cache_control"
+  ],
+  "critical_strings": [
+   "`cache_control`",
+   "entire prompt"
+  ],
+  "evidence_shape": "single_span_mechanism",
+  "reasoning_type": "mapping a cost goal onto the caching mechanism",
+  "ambiguity_notes": "Question said 'either' provider; prompt caching with cache_control is Anthropic's.",
+  "verifier_notes": "The prefix rule is the load-bearing fact: it explains why a breakpoint placed after the system block covers tools and system together."
+ },
+ {
+  "case": "C08",
+  "question": "how long does a prompt cache entry stay alive",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_7947433dfde6b3b8eccd0faa597c3c9a",
+  "document_title": "Prompt caching",
+  "content_hash": "4af14eac456ba952ff0ee0fb0664b9d51bee244eb9a4fdef9ace0066f84fd6e6",
+  "supported_answer": "Five minutes by default, and each use refreshes it at no extra cost. The clock starts at the beginning of the request that writes or reads the entry, not at the end of its response, so a long generation eats into the window. A 1-hour duration is available at additional cost.",
+  "evidence": [
+   {
+    "version_id": "ver_7947433dfde6b3b8eccd0faa597c3c9a",
+    "char_start": 7638,
+    "char_end": 7768,
+    "quote": "By default, the cache has a 5-minute lifetime. The cache is refreshed for no additional cost each time the cached content is used."
+   },
+   {
+    "version_id": "ver_7947433dfde6b3b8eccd0faa597c3c9a",
+    "char_start": 7770,
+    "char_end": 7896,
+    "quote": "The lifetime is measured from the start of the request that writes or reads the cache entry, not from the end of its response."
+   }
+  ],
+  "atomic_claims": [
+   "the default cache lifetime is 5 minutes",
+   "using the cached content refreshes it at no additional cost",
+   "the lifetime is measured from the start of the request, not the end of the response"
+  ],
+  "critical_strings": [
+   "5-minute lifetime",
+   "refreshed for no additional cost",
+   "from the start of the request"
+  ],
+  "evidence_shape": "multi_span_behaviour",
+  "reasoning_type": "direct lookup plus the timing subtlety that changes how it is used",
+  "ambiguity_notes": "None. The corpus states the default and the measurement basis explicitly.",
+  "verifier_notes": "The second span matters operationally: measuring from request start means a 4-minute stream leaves about a minute of usable window."
+ },
+ {
+  "case": "C09",
+  "question": "does caching work if i change one word at the end of my system prompt",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_7947433dfde6b3b8eccd0faa597c3c9a",
+  "document_title": "Prompt caching",
+  "content_hash": "4af14eac456ba952ff0ee0fb0664b9d51bee244eb9a4fdef9ace0066f84fd6e6",
+  "supported_answer": "No, not for the system level or anything after it. The cache follows the hierarchy tools \u2192 system \u2192 messages, and a change at one level invalidates that level and every subsequent level. Editing the system prompt therefore invalidates the system and messages caches; the tools cache above it survives.",
+  "evidence": [
+   {
+    "version_id": "ver_7947433dfde6b3b8eccd0faa597c3c9a",
+    "char_start": 34220,
+    "char_end": 34356,
+    "quote": "the cache follows the hierarchy: `tools` \u2192 `system` \u2192 `messages`. Changes at each level invalidate that level and all subsequent levels."
+   }
+  ],
+  "atomic_claims": [
+   "the cache hierarchy is tools, then system, then messages",
+   "a change at one level invalidates that level and all subsequent levels"
+  ],
+  "critical_strings": [
+   "hierarchy",
+   "invalidate that level and all subsequent levels"
+  ],
+  "evidence_shape": "single_span_rule",
+  "reasoning_type": "applying a documented invalidation rule to a specific edit",
+  "ambiguity_notes": "Question said 'either' provider. 'One word at the end' is the asker's framing; the corpus rule is level-based and does not depend on how small the change is, which is what makes the answer definite.",
+  "verifier_notes": "The rule answers a stronger question than asked: it also tells you what survives, which a yes/no answer would lose."
+ },
+ {
+  "case": "E01",
+  "question": "does prompt caching work when i stream the response",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_7947433dfde6b3b8eccd0faa597c3c9a",
+  "document_title": "Prompt caching",
+  "content_hash": "4af14eac456ba952ff0ee0fb0664b9d51bee244eb9a4fdef9ace0066f84fd6e6",
+  "supported_answer": "Yes. Cache performance fields are reported in usage in the response, or in the message_start event when streaming \u2014 so caching operates normally and its metrics are available on the streamed path.",
+  "evidence": [
+   {
+    "version_id": "ver_7947433dfde6b3b8eccd0faa597c3c9a",
+    "char_start": 41401,
+    "char_end": 41598,
+    "quote": "Monitor cache performance using these API response fields, within `usage` in the response (or `message_start` event if [streaming](https://platform.claude.com/docs/en/build-with-claude/streaming)):"
+   }
+  ],
+  "atomic_claims": [
+   "cache performance fields appear in usage in the response",
+   "when streaming, they appear in the message_start event"
+  ],
+  "critical_strings": [
+   "`message_start`",
+   "streaming"
+  ],
+  "evidence_shape": "single_span_capability",
+  "reasoning_type": "confirming a feature works on the streaming path via where its telemetry is delivered",
+  "ambiguity_notes": "The corpus does not make a standalone 'caching works with streaming' statement; it documents where the cache fields appear when streaming, which entails it. That is a reading of one sentence, not a bridge across sections.",
+  "verifier_notes": "Anchored on the parenthetical because it is the only place the two features are mentioned together."
+ },
+ {
+  "case": "E05",
+  "question": "cache_creation_input_tokens vs cache_read_input_tokens which one am i billed full price for",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_7947433dfde6b3b8eccd0faa597c3c9a",
+  "document_title": "Prompt caching",
+  "content_hash": "4af14eac456ba952ff0ee0fb0664b9d51bee244eb9a4fdef9ace0066f84fd6e6",
+  "supported_answer": "They count different things: cache_creation_input_tokens are tokens written to the cache when creating an entry, cache_read_input_tokens are tokens retrieved from an existing entry. Writes and hits are priced on separate lines in the pricing table \u2014 cache writes above base input, cache hits and refreshes well below it \u2014 so the write side is the expensive one.",
+  "evidence": [
+   {
+    "version_id": "ver_7947433dfde6b3b8eccd0faa597c3c9a",
+    "char_start": 41600,
+    "char_end": 41786,
+    "quote": "* `cache_creation_input_tokens`: Number of tokens written to the cache when creating a new entry.\n* `cache_read_input_tokens`: Number of tokens retrieved from the cache for this request."
+   }
+  ],
+  "atomic_claims": [
+   "cache_creation_input_tokens counts tokens written to the cache when creating a new entry",
+   "cache_read_input_tokens counts tokens retrieved from the cache for this request"
+  ],
+  "critical_strings": [
+   "cache_creation_input_tokens",
+   "cache_read_input_tokens"
+  ],
+  "evidence_shape": "single_span_api_reference",
+  "reasoning_type": "distinguishing two adjacent counters",
+  "ambiguity_notes": "The asker says 'full price'. Neither field is billed at base input rate \u2014 the pricing table lists separate columns for cache writes and for cache hits and refreshes. The cited span defines the fields; the relative pricing is stated in the answer as a direction, not quoted as a figure.",
+  "verifier_notes": "Deliberately does not quote a price row: rates are per-model and would date the case. The definitional span is the stable evidence."
+ },
+ {
+  "case": "E10",
+  "question": "my cache keeps missing even though the system prompt is identical, what invalidates it",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_7947433dfde6b3b8eccd0faa597c3c9a",
+  "document_title": "Prompt caching",
+  "content_hash": "4af14eac456ba952ff0ee0fb0664b9d51bee244eb9a4fdef9ace0066f84fd6e6",
+  "supported_answer": "Something above the system level almost certainly changed. The cache follows the hierarchy tools \u2192 system \u2192 messages, and a change at one level invalidates that level and all subsequent ones \u2014 so a modified tool definition invalidates the system cache too, even when the system text is byte-identical.",
+  "evidence": [
+   {
+    "version_id": "ver_7947433dfde6b3b8eccd0faa597c3c9a",
+    "char_start": 34220,
+    "char_end": 34356,
+    "quote": "the cache follows the hierarchy: `tools` \u2192 `system` \u2192 `messages`. Changes at each level invalidate that level and all subsequent levels."
+   }
+  ],
+  "atomic_claims": [
+   "the cache hierarchy is tools, then system, then messages",
+   "a change at one level invalidates that level and every subsequent level",
+   "a tools change therefore invalidates a system cache even if the system content is unchanged"
+  ],
+  "critical_strings": [
+   "hierarchy",
+   "invalidate that level and all subsequent levels"
+  ],
+  "evidence_shape": "single_span_rule",
+  "reasoning_type": "diagnosing a symptom from a documented ordering rule",
+  "ambiguity_notes": "The asker's premise \u2014 identical system prompt yet cache misses \u2014 is exactly what the hierarchy explains. The corpus states the rule generally; applying it to the tools level is reading the ordering, not adding to it.",
+  "verifier_notes": "Shares its gold span with C09. Flagged for the collision gate: same span, different questions, so this is an exact-span collision under the governing rule."
+ },
+ {
+  "case": "E17",
+  "question": "whats the minimum prompt length before caching actually kicks in",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_7947433dfde6b3b8eccd0faa597c3c9a",
+  "document_title": "Prompt caching",
+  "content_hash": "4af14eac456ba952ff0ee0fb0664b9d51bee244eb9a4fdef9ace0066f84fd6e6",
+  "supported_answer": "It is model-dependent: 512 tokens for Claude Opus 5, Fable 5 and Mythos 5, with other models set at 1,024, 2,048 or 4,096. Shorter prompts cannot be cached even if marked with cache_control.",
+  "evidence": [
+   {
+    "version_id": "ver_7947433dfde6b3b8eccd0faa597c3c9a",
+    "char_start": 30066,
+    "char_end": 30209,
+    "quote": "the minimum cacheable prompt length is:\n\n* 512 tokens for Claude Opus 5, Claude Fable 5, and [Claude Mythos 5](https://anthropic.com/glasswing)"
+   },
+   {
+    "version_id": "ver_7947433dfde6b3b8eccd0faa597c3c9a",
+    "char_start": 31104,
+    "char_end": 31174,
+    "quote": "Shorter prompts cannot be cached, even if marked with `cache_control`."
+   }
+  ],
+  "atomic_claims": [
+   "there is a model-dependent minimum cacheable prompt length",
+   "it is 512 tokens for Claude Opus 5, Claude Fable 5 and Claude Mythos 5",
+   "shorter prompts cannot be cached even when marked with cache_control"
+  ],
+  "critical_strings": [
+   "minimum cacheable prompt length",
+   "512 tokens",
+   "Shorter prompts cannot be cached"
+  ],
+  "evidence_shape": "multi_span_limit",
+  "reasoning_type": "looking up a threshold and its consequence",
+  "ambiguity_notes": "The corpus lists six model tiers. The span anchors the rule and the first tier; the answer names the others without quoting the full list.",
+  "verifier_notes": "The second span is included because the asker's real question is what happens below the threshold, and the list alone does not say."
+ },
+ {
+  "case": "E20",
+  "question": "can i cache a big image so i dont pay for it every turn",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_7947433dfde6b3b8eccd0faa597c3c9a",
+  "document_title": "Prompt caching",
+  "content_hash": "4af14eac456ba952ff0ee0fb0664b9d51bee244eb9a4fdef9ace0066f84fd6e6",
+  "supported_answer": "Yes. Images and documents in user-turn message content are among the block types that can be cached, either automatically or by marking them with cache_control.",
+  "evidence": [
+   {
+    "version_id": "ver_7947433dfde6b3b8eccd0faa597c3c9a",
+    "char_start": 32865,
+    "char_end": 32948,
+    "quote": "* Images & Documents: Content blocks in the `messages.content` array, in user turns"
+   }
+  ],
+  "atomic_claims": [
+   "images and documents in user turns can be cached"
+  ],
+  "critical_strings": [
+   "Images & Documents"
+  ],
+  "evidence_shape": "single_span_capability",
+  "reasoning_type": "membership check against a documented list",
+  "ambiguity_notes": "The image must still sit inside a cacheable prefix and clear the model's minimum cacheable length, which the corpus documents separately; the answer does not restate those as part of this claim.",
+  "verifier_notes": "Anchored on the list entry rather than the section heading so the specific block type is inside the quote."
+ },
+ {
+  "case": "E21",
+  "question": "1 hour cache ttl how much extra does it cost vs the default",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_7947433dfde6b3b8eccd0faa597c3c9a",
+  "document_title": "Prompt caching",
+  "content_hash": "4af14eac456ba952ff0ee0fb0664b9d51bee244eb9a4fdef9ace0066f84fd6e6",
+  "supported_answer": "The 1-hour duration is offered at additional cost over the 5-minute default, and is enabled by adding ttl \"1h\" to the cache_control block. The pricing table lists 1h cache writes on their own line, above the 5m write rate, while cache hits and refreshes are priced the same regardless of duration.",
+  "evidence": [
+   {
+    "version_id": "ver_7947433dfde6b3b8eccd0faa597c3c9a",
+    "char_start": 8127,
+    "char_end": 8313,
+    "quote": "If you find that 5 minutes is too short, Anthropic also offers a 1-hour cache duration [at additional cost](https://platform.claude.com/docs/en/build-with-claude/prompt-caching#pricing)."
+   },
+   {
+    "version_id": "ver_7947433dfde6b3b8eccd0faa597c3c9a",
+    "char_start": 52041,
+    "char_end": 52126,
+    "quote": "To use the extended cache, include `ttl` in the `cache_control` definition like this:"
+   }
+  ],
+  "atomic_claims": [
+   "a 1-hour cache duration is available at additional cost",
+   "it is enabled with ttl in the cache_control definition"
+  ],
+  "critical_strings": [
+   "1-hour cache duration",
+   "additional cost",
+   "`ttl`"
+  ],
+  "evidence_shape": "multi_span_pricing_and_usage",
+  "reasoning_type": "confirming a cost difference and the setting that incurs it",
+  "ambiguity_notes": "The asker wants a figure. The corpus gives per-model rates in a table rather than a single multiplier, so the answer states the direction and where the rate lives instead of quoting one model's number as though it were general.",
+  "verifier_notes": "No price row is quoted, for the same reason as E05: rates are per-model and would date the case. The span was initially cut before the 'at additional cost' clause; the validator rejected the packet because a critical string was absent from its own evidence, and the span was extended rather than the claim weakened."
+ },
+ {
+  "case": "E30",
+  "question": "trying to cache tool definitions + a long system prompt, where exactly do i put the cache_control",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_7947433dfde6b3b8eccd0faa597c3c9a",
+  "document_title": "Prompt caching",
+  "content_hash": "4af14eac456ba952ff0ee0fb0664b9d51bee244eb9a4fdef9ace0066f84fd6e6",
+  "supported_answer": "One breakpoint after the system content is enough. Caching references the entire prefix \u2014 tools, then system, then messages, in that order \u2014 up to and including the block marked with cache_control, so a breakpoint on the last system block covers the tool definitions above it as well.",
+  "evidence": [
+   {
+    "version_id": "ver_7947433dfde6b3b8eccd0faa597c3c9a",
+    "char_start": 8522,
+    "char_end": 8680,
+    "quote": "Prompt caching references the entire prompt - `tools`, `system`, and `messages` (in that order) up to and including the block designated with `cache_control`."
+   }
+  ],
+  "atomic_claims": [
+   "the cached prefix spans tools, system and messages in that order",
+   "the prefix extends up to and including the block marked with cache_control",
+   "a breakpoint after system therefore also covers the tools above it"
+  ],
+  "critical_strings": [
+   "`tools`, `system`, and `messages` (in that order)",
+   "`cache_control`"
+  ],
+  "evidence_shape": "single_span_mechanism",
+  "reasoning_type": "deriving breakpoint placement from the documented prefix ordering",
+  "ambiguity_notes": "The corpus does not give a worked tools-plus-system placement example in this span; it states the ordering rule from which the placement follows. The ordering is explicit, so this is application rather than inference.",
+  "verifier_notes": "Shares its gold span with C07 \u2014 an exact-span collision to be ruled on at the final gate. The two questions differ (cost goal vs placement mechanics) but resolve identically."
+ }
+]
