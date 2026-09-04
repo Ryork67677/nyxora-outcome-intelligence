@@ -1,0 +1,188 @@
+[
+ {
+  "case": "D05",
+  "question": "what env var does the anthropic python client read the key from",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_54975a889fa22717d135c4a291d9609a",
+  "document_title": "Get your Claude API key",
+  "content_hash": "8acbda78bf95e9189bcfba958d19069c6036130e9b037de5cf15cca9ef31bb5e",
+  "supported_answer": "ANTHROPIC_API_KEY. The client SDKs read it automatically; direct HTTP requests send the key in the x-api-key header instead.",
+  "evidence": [
+   {
+    "version_id": "ver_54975a889fa22717d135c4a291d9609a",
+    "char_start": 1547,
+    "char_end": 1730,
+    "quote": "The [client SDKs](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) read `ANTHROPIC_API_KEY` automatically. Direct HTTP requests send the key in the `x-api-key` header."
+   }
+  ],
+  "atomic_claims": [
+   "the client SDKs read ANTHROPIC_API_KEY automatically",
+   "direct HTTP requests send the key in the x-api-key header"
+  ],
+  "critical_strings": [
+   "`ANTHROPIC_API_KEY`",
+   "`x-api-key`"
+  ],
+  "evidence_shape": "single_span_api_reference",
+  "reasoning_type": "direct environment-variable lookup",
+  "ambiguity_notes": "None. The variable is named explicitly.",
+  "verifier_notes": "The x-api-key clause is included because it pre-empts the common confusion between the env var and the wire header."
+ },
+ {
+  "case": "D08",
+  "question": "I want to set up delegation between a triage agent and two specialist agents",
+  "support_status": "SUPPORTED",
+  "provider": "openai",
+  "version_id": "ver_1c77f33b04ffffa285ea7e61c2a89653",
+  "document_title": "Handoffs",
+  "content_hash": "4c312b68c906a294cd29e002aa0741a9f799e246073e90ef2a96b4c627c05bbd",
+  "supported_answer": "Give the triage agent a handoffs list naming the specialists. Each entry can be the agent directly or wrapped in handoff() when you want to customise it.",
+  "evidence": [
+   {
+    "version_id": "ver_1c77f33b04ffffa285ea7e61c2a89653",
+    "char_start": 1324,
+    "char_end": 1414,
+    "quote": "triage_agent = Agent(name=\"Triage agent\", handoffs=[billing_agent, handoff(refund_agent)])"
+   }
+  ],
+  "atomic_claims": [
+   "a triage agent delegates by listing specialists in its handoffs parameter",
+   "entries may be an agent directly or a handoff() wrapper"
+  ],
+  "critical_strings": [
+   "handoffs=[",
+   "handoff("
+  ],
+  "evidence_shape": "single_span_pattern",
+  "reasoning_type": "locating the documented construction",
+  "ambiguity_notes": "The asker describes exactly the corpus's own example shape \u2014 a triage agent with two specialists \u2014 so the answer is the documented pattern rather than an adaptation.",
+  "verifier_notes": "The span is the constructor line; the surrounding prose explains the two entry forms and is reflected in the claims."
+ },
+ {
+  "case": "D09",
+  "question": "what happens if two agents keep handing off to each other in a loop",
+  "support_status": "SUPPORTED",
+  "provider": "openai",
+  "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+  "document_title": "Running agents",
+  "content_hash": "c4f871c6a0c6eba2537e3721aff1e3d0684cf5e59bc739b50b82f1a6d9fdbab3",
+  "supported_answer": "The run stops at max_turns: exceeding it raises MaxTurnsExceeded. Handoffs re-run the agent loop, so a mutual-handoff cycle consumes turns until that limit trips. max_turns=None removes the limit.",
+  "evidence": [
+   {
+    "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+    "char_start": 1933,
+    "char_end": 2101,
+    "quote": "3. If we exceed the `max_turns` passed, we raise a [`MaxTurnsExceeded`][agents.exceptions.MaxTurnsExceeded] exception. Pass `max_turns=None` to disable this turn limit."
+   }
+  ],
+  "atomic_claims": [
+   "exceeding max_turns raises MaxTurnsExceeded",
+   "max_turns=None disables the turn limit"
+  ],
+  "critical_strings": [
+   "`max_turns`",
+   "MaxTurnsExceeded"
+  ],
+  "evidence_shape": "single_span_behaviour",
+  "reasoning_type": "answering a runaway-loop question with the documented bound",
+  "ambiguity_notes": "The corpus does not describe mutual handoff as a named failure mode. It documents that handoffs re-run the loop and that the loop is bounded by max_turns; the answer states that bound rather than claiming loop detection exists.",
+  "verifier_notes": "EVIDENCE OVERLAP WITH D28: D28 cites this span plus the exception-list span, so the span SETS differ and this is not an exact-span collision. Chunk-level overlap is likely; noted for the advisory."
+ },
+ {
+  "case": "D12",
+  "question": "input guardrail that blocks off topic questions before the model runs",
+  "support_status": "SUPPORTED",
+  "provider": "openai",
+  "version_id": "ver_f22fbd5c504fa28a4e70440337e4a495",
+  "document_title": "Guardrails",
+  "content_hash": "5779ec5e82c23aec4778b591ad25e41732314bebd8cd82c9da164f4b2d01f327",
+  "supported_answer": "Use an input guardrail with blocking execution. Input guardrails run only for the first agent in the chain, and with run_in_parallel=False the guardrail completes before the agent starts, so a triggered tripwire means the agent never executes \u2014 no tokens consumed, no tools run.",
+  "evidence": [
+   {
+    "version_id": "ver_f22fbd5c504fa28a4e70440337e4a495",
+    "char_start": 948,
+    "char_end": 1015,
+    "quote": "-   **Input guardrails** run only for the first agent in the chain."
+   },
+   {
+    "version_id": "ver_f22fbd5c504fa28a4e70440337e4a495",
+    "char_start": 2916,
+    "char_end": 3142,
+    "quote": "- **Blocking execution** (`run_in_parallel=False`): The guardrail runs and completes *before* the agent starts. If the guardrail tripwire is triggered, the agent never executes, preventing token consumption and tool execution."
+   }
+  ],
+  "atomic_claims": [
+   "input guardrails run only for the first agent in the chain",
+   "run_in_parallel=False makes the guardrail complete before the agent starts",
+   "a triggered tripwire under blocking execution means the agent never executes"
+  ],
+  "critical_strings": [
+   "Input guardrails",
+   "run_in_parallel=False",
+   "never executes"
+  ],
+  "evidence_shape": "multi_span_procedure",
+  "reasoning_type": "assembling a requirement from the placement rule and the execution mode",
+  "ambiguity_notes": "The asker's requirement is 'before the model runs', which the default parallel mode does not satisfy. Both spans are cited so the answer cannot imply the default suffices.",
+  "verifier_notes": "EVIDENCE OVERLAP WITH A24: A24 cites the parallel-mode span plus this blocking span; D12 cites the placement span plus the blocking span. Span SETS differ, so not an exact-span collision, but they share the blocking span. Noted for the advisory."
+ },
+ {
+  "case": "D16",
+  "question": "list all my api keys via api?",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_c299b58fe1f5a4d3a081b550334a7df6",
+  "document_title": "Admin",
+  "content_hash": "760aeb7038f51a0b5dccc9d6377a129bf51791d5e357ba3d7c61e2698678909c",
+  "supported_answer": "Yes \u2014 the Admin API exposes GET /v1/organizations/api_keys to list API keys, with cursor pagination via after_id and before_id.",
+  "evidence": [
+   {
+    "version_id": "ver_c299b58fe1f5a4d3a081b550334a7df6",
+    "char_start": 106954,
+    "char_end": 107008,
+    "quote": "## List API Keys\n\n**get** `/v1/organizations/api_keys`"
+   }
+  ],
+  "atomic_claims": [
+   "the Admin API provides a List API Keys endpoint at GET /v1/organizations/api_keys"
+  ],
+  "critical_strings": [
+   "List API Keys",
+   "/v1/organizations/api_keys"
+  ],
+  "evidence_shape": "single_span_capability",
+  "reasoning_type": "endpoint existence lookup",
+  "ambiguity_notes": "Question said 'either' provider; the located endpoint is Anthropic's Admin API. It requires an admin key, which is documented in the adjacent Retrieve endpoint text and stated in D19 rather than claimed here.",
+  "verifier_notes": "Anchored on the heading plus method-and-path line so the endpoint identity is inside the quote."
+ },
+ {
+  "case": "D30",
+  "question": "revoked a leaked key, how long till it stops working",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_c299b58fe1f5a4d3a081b550334a7df6",
+  "document_title": "Admin",
+  "content_hash": "760aeb7038f51a0b5dccc9d6377a129bf51791d5e357ba3d7c61e2698678909c",
+  "supported_answer": "The corpus documents key status as a state \u2014 active, archived, expired or inactive \u2014 but states no propagation delay for revocation.",
+  "evidence": [
+   {
+    "version_id": "ver_c299b58fe1f5a4d3a081b550334a7df6",
+    "char_start": 105827,
+    "char_end": 105890,
+    "quote": "  - `status: \"active\" or \"archived\" or \"expired\" or \"inactive\"`"
+   }
+  ],
+  "atomic_claims": [
+   "an API key carries a status of active, archived, expired or inactive"
+  ],
+  "critical_strings": [
+   "archived",
+   "inactive"
+  ],
+  "evidence_shape": "single_span_partial",
+  "reasoning_type": "reporting the documented state model where the asked-for timing is absent",
+  "ambiguity_notes": "The asker wants a duration. No document states a revocation propagation time. The gold answer is the status model plus an explicit statement that no timing is documented \u2014 the same shape as B15, where the primary fact is stated and the missing sub-detail is reported missing rather than inferred.",
+  "verifier_notes": "Borderline. Admitted because the status enum is a direct, retrievable answer to what revocation does; a reviewer who reads the question as purely about timing could reasonably move it to REJECT, and this note is the flag."
+ }
+]
