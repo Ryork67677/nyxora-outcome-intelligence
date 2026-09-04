@@ -1,0 +1,220 @@
+[
+ {
+  "case": "B27",
+  "question": "can i resume a stream after a network blip or do i have to start the whole request over",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_1261879c16f641270789647ac9c63c96",
+  "document_title": "Streaming messages",
+  "content_hash": "82fabc5d2e31d7a82284e3502872738c512d5ed305bace782d13eb7c3f60bd6d",
+  "supported_answer": "Partially. You can resume streaming from the most recent text block, but tool use and extended thinking blocks cannot be partially recovered \u2014 those have to be redone.",
+  "evidence": [
+   {
+    "version_id": "ver_1261879c16f641270789647ac9c63c96",
+    "char_start": 48692,
+    "char_end": 48879,
+    "quote": "**Handle content types:** Be aware that messages can contain multiple content blocks (`text`, `tool_use`, `thinking`). Tool use and extended thinking blocks cannot be partially recovered."
+   },
+   {
+    "version_id": "ver_1261879c16f641270789647ac9c63c96",
+    "char_start": 48880,
+    "char_end": 48937,
+    "quote": "You can resume streaming from the most recent text block."
+   }
+  ],
+  "atomic_claims": [
+   "streaming can be resumed from the most recent text block",
+   "tool use and extended thinking blocks cannot be partially recovered"
+  ],
+  "critical_strings": [
+   "resume streaming from the most recent text block",
+   "cannot be partially recovered"
+  ],
+  "evidence_shape": "multi_span_qualified_capability",
+  "reasoning_type": "answering a binary with the documented split",
+  "ambiguity_notes": "Question said 'either' provider. The answer is neither a clean yes nor a clean no; both spans are cited so the block-type limitation is part of the gold answer.",
+  "verifier_notes": "Found via the corpus-wide audit: 'resume streaming' occurs in the Error recovery best practices section, which a section-level scan of the event-flow material would miss."
+ },
+ {
+  "case": "C06",
+  "question": "openai moved system to developer role? do i need to change my code",
+  "support_status": "SUPPORTED",
+  "provider": "openai",
+  "version_id": "ver_a183af1cb18fd2f8c9d16398cc617af6",
+  "document_title": "OpenAI harmony response format",
+  "content_hash": "a348e9824793f6d82f241d44e5a6b1e7b23ba3bc410413766db1c0ae47d71cf7",
+  "supported_answer": "Both roles exist and carry different content. The developer message holds what is normally thought of as the system prompt \u2014 instructions and available function tools \u2014 while the system role is used for reasoning effort and meta information such as knowledge cutoff and built-in tools.",
+  "evidence": [
+   {
+    "version_id": "ver_a183af1cb18fd2f8c9d16398cc617af6",
+    "char_start": 1503,
+    "char_end": 1687,
+    "quote": "| `developer` | The developer message is used to provide information about the instructions for the model (what is normally considered the \u201csystem prompt\u201d) and available function tools"
+   }
+  ],
+  "atomic_claims": [
+   "the developer message carries what is normally considered the system prompt",
+   "it also carries available function tools"
+  ],
+  "critical_strings": [
+   "`developer`",
+   "normally considered the \u201csystem prompt\u201d"
+  ],
+  "evidence_shape": "single_span_terminology",
+  "reasoning_type": "resolving a role-renaming question",
+  "ambiguity_notes": "The asker assumes a rename. The corpus documents both roles coexisting with different purposes in the harmony format, so the answer describes the split rather than confirming a migration. Whether existing code must change is not stated and is not claimed.",
+  "verifier_notes": "Found via the corpus-wide audit; 'developer role' returns nothing but 'developer message' is the corpus's wording."
+ },
+ {
+  "case": "D19",
+  "question": "admin key vs regular api key what can each do",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_54975a889fa22717d135c4a291d9609a",
+  "document_title": "Get your Claude API key",
+  "content_hash": "8acbda78bf95e9189bcfba958d19069c6036130e9b037de5cf15cca9ef31bb5e",
+  "supported_answer": "They are separate credentials with separate jobs. Admin API endpoints for managing organization keys require a separate Admin API key, and they never return a key's secret value \u2014 only a partially redacted hint. The Admin API cannot recover a lost key or produce a key usable for calling the Claude API; a regular API key created in the Console is what you call the API with.",
+  "evidence": [
+   {
+    "version_id": "ver_54975a889fa22717d135c4a291d9609a",
+    "char_start": 2434,
+    "char_end": 2616,
+    "quote": "They require a separate [Admin API key](https://platform.claude.com/docs/en/manage-claude/admin-api-keys), and they never return a key's secret value, only a partially redacted hint."
+   },
+   {
+    "version_id": "ver_54975a889fa22717d135c4a291d9609a",
+    "char_start": 2627,
+    "char_end": 2712,
+    "quote": "The Admin API can't recover a lost key or give you a key to call the Claude API with."
+   }
+  ],
+  "atomic_claims": [
+   "Admin API endpoints require a separate Admin API key",
+   "they never return a key's secret value, only a partially redacted hint",
+   "the Admin API cannot recover a lost key or give you a key to call the Claude API with"
+  ],
+  "critical_strings": [
+   "Admin API key",
+   "never return a key's secret value",
+   "can't recover a lost key"
+  ],
+  "evidence_shape": "multi_span_distinction",
+  "reasoning_type": "contrasting two credential types by capability",
+  "ambiguity_notes": "Question said openai; answered from Anthropic, where the admin-versus-regular distinction is documented explicitly. No equivalent OpenAI contrast was located.",
+  "verifier_notes": "The second span is what makes the contrast sharp: the Admin API manages keys but cannot mint a usable inference key."
+ },
+ {
+  "case": "B06",
+  "question": "I need to show tokens as they arrive in a react app, what's the least painful way",
+  "support_status": "REJECT",
+  "rejection_reason": "Premise not documented in the frozen corpus. No document covers building a streaming UI in React or any front-end framework. A corpus-wide search for 'React' returns three documents, and the only occurrence in a streaming context is the word 'Reacting' in prose about reacting to fragments \u2014 not the library. 'react app' and 'useState' return zero documents.",
+  "probes_run": [
+   "React",
+   "react app",
+   "useState",
+   "streaming UI"
+  ],
+  "verifier_notes": "The 'React' substring match is a false positive on 'Reacting'. This is the reason the audit checked hits rather than counting them."
+ },
+ {
+  "case": "B10",
+  "question": "moving from the old chat completions streaming to the responses api, what changes in the event format",
+  "support_status": "REJECT",
+  "rejection_reason": "Premise not documented in the frozen corpus. The raw Chat Completions streaming wire format and its migration to the Responses API event format are not documented. The OpenAI 'Streaming' document covers Agents SDK streaming \u2014 raw response events, run item events, agent events \u2014 not the HTTP event format. 'chat.completions.create stream' returns zero documents.",
+  "probes_run": [
+   "[DONE]",
+   "chat.completions.create stream",
+   "event format"
+  ],
+  "verifier_notes": "Distinct from C30, which asks the choice question the corpus does answer, and from B22, where the [DONE] terminator is documented for the Anthropic API specifically."
+ },
+ {
+  "case": "B17",
+  "question": "sdk timeout setting vs streaming, does the timeout apply to the whole stream or between chunks",
+  "support_status": "REJECT",
+  "rejection_reason": "Premise not documented in the frozen corpus. The SDK timeout is documented as a per-request default of 10 minutes with an APITimeoutError on expiry, but no document states whether that budget applies to a whole stream or resets between chunks. 'between chunks', 'per chunk' and 'stream timeout' all return zero documents corpus-wide.",
+  "probes_run": [
+   "between chunks",
+   "per chunk",
+   "stream timeout",
+   "idle timeout"
+  ],
+  "verifier_notes": "Adjacent to D29, which is admitted because retry-on-timeout entails per-attempt scoping. No comparable sentence exists for the stream case, so the same inference is not available."
+ },
+ {
+  "case": "B20",
+  "question": "streaming tool calls in openai, the index field on the tool call deltas confuses me",
+  "support_status": "REJECT",
+  "rejection_reason": "Premise not documented in the frozen corpus. The index field on OpenAI streaming tool-call deltas is not documented anywhere in the snapshot: 'tool call deltas', 'index field' and 'tool_calls[' all return zero documents. The Anthropic streaming documentation has an index on content blocks, which is a different protocol and would be a false anchor.",
+  "probes_run": [
+   "tool call deltas",
+   "index field",
+   "tool_calls["
+  ],
+  "verifier_notes": "Same root cause as B10 and B22's original error: the OpenAI raw wire format is largely outside this corpus."
+ },
+ {
+  "case": "B26",
+  "question": "400 invalid_request_error but the message doesnt say which field. how do i find it",
+  "support_status": "REJECT",
+  "rejection_reason": "Premise not documented in the frozen corpus. No document describes a procedure for identifying which field caused a 400 invalid_request_error. 'which field caused', 'offending field' and 'field that caused' all return zero documents. The 'Common validation errors' section enumerates specific named errors with their messages, but that is a catalogue of known cases rather than a method for locating an unnamed field.",
+  "probes_run": [
+   "which field",
+   "field name",
+   "validation error message",
+   "offending field"
+  ],
+  "verifier_notes": "The catalogue is the near-miss: it helps when your error is one of the listed ones and not at all when the message is generic, which is the asker's stated situation."
+ },
+ {
+  "case": "C21",
+  "question": "does seed actually give reproducible outputs",
+  "support_status": "REJECT",
+  "rejection_reason": "Premise not documented in the frozen corpus. No document describes a seed parameter or output reproducibility. The two documents containing 'seed' use it for sandbox session seeding and for gpt-oss local serving, neither about deterministic sampling. 'reproducible' and 'seed parameter' return zero documents.",
+  "probes_run": [
+   "seed",
+   "reproducible",
+   "seed parameter",
+   "deterministic outputs"
+  ],
+  "verifier_notes": "'deterministic outputs' does occur, in the Glossary's temperature entry, which is C20's subject and not seed-based reproducibility."
+ },
+ {
+  "case": "D04",
+  "question": "401 from the sdk but the same key works fine in curl, what am I missing",
+  "support_status": "REJECT",
+  "rejection_reason": "Premise not documented in the frozen corpus. No document addresses an SDK returning 401 while the same key succeeds via curl. '401 from the sdk', 'works in curl' and 'key works in curl' all return zero documents. A Foundry-specific troubleshooting entry covers 401 Unauthorized on Microsoft Foundry deployments, which is a different platform and a different cause.",
+  "probes_run": [
+   "401 from the sdk",
+   "works in curl",
+   "key works in curl",
+   "Authentication error"
+  ],
+  "verifier_notes": "The Foundry entry is the near-miss and is deliberately not anchored: it would answer a Foundry configuration question, not the SDK-versus-curl discrepancy asked about."
+ },
+ {
+  "case": "D15",
+  "question": "moving from raw chat completions calls to the agents sdk \u2014 whats the minimal rewrite",
+  "support_status": "REJECT",
+  "rejection_reason": "Premise not documented in the frozen corpus. The OpenAI document titled 'Migration guide' is about upgrading the TypeScript and JavaScript SDK to a new major version \u2014 Web fetch replacing node-fetch, Node 22 LTS, breaking type changes \u2014 not about moving from raw Chat Completions calls to the Agents SDK. 'chat completions to the agents sdk', 'minimal rewrite' and 'migrate to the agents sdk' return zero documents.",
+  "probes_run": [
+   "chat completions to the agents sdk",
+   "minimal rewrite",
+   "migrate to the agents sdk"
+  ],
+  "verifier_notes": "A title-driven guess would anchor this in the wrong migration entirely \u2014 the same shadowing hazard as the duplicate-title bug, arriving through content rather than through the loader."
+ },
+ {
+  "case": "D17",
+  "question": "difference between an org level key and a project scoped key, and does the project header still matter if the key is already scoped",
+  "support_status": "REJECT",
+  "rejection_reason": "Premise not documented in the frozen corpus. No document distinguishes organization-level from project-scoped API keys or describes a project header. 'project scoped', 'project-scoped' and 'organization level key' return zero documents. OPENAI_PROJECT_ID appears once, documented for attributing traces to a project rather than for key scoping.",
+  "probes_run": [
+   "project scoped",
+   "project-scoped",
+   "project key",
+   "organization level key"
+  ],
+  "verifier_notes": "Adjacent to D18, which is admitted because the corpus states what OPENAI_ORG_ID does control. For D17 there is no corresponding positive statement about key scoping."
+ }
+]

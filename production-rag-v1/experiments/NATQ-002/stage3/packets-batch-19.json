@@ -1,0 +1,274 @@
+[
+ {
+  "case": "B19",
+  "question": "content_block_delta with input_json_delta \u2014 how do i assemble tool arguments from that",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_080cad658d87b45b377e08b488fc1ea9",
+  "document_title": "Fine-grained tool streaming",
+  "content_hash": "6e75fe69c9484d07de93224c87a74664373d630e9cf0e35333853a211fe806a0",
+  "supported_answer": "Concatenate the partial_json fragments from every delta whose type is input_json_delta \u2014 the documented filter is exactly select(.delta.type == \"input_json_delta\") | .delta.partial_json. Because fine-grained streaming skips server-side JSON validation, individual fragments are not valid JSON on their own; only the concatenation is.",
+  "evidence": [
+   {
+    "version_id": "ver_080cad658d87b45b377e08b488fc1ea9",
+    "char_start": 4758,
+    "char_end": 4830,
+    "quote": "jq -rj 'select(.delta.type == \"input_json_delta\") | .delta.partial_json'"
+   },
+   {
+    "version_id": "ver_080cad658d87b45b377e08b488fc1ea9",
+    "char_start": 423,
+    "char_end": 563,
+    "quote": "Fine-grained tool streaming delivers a tool's input to your client as Claude generates it, without server-side buffering or JSON validation."
+   }
+  ],
+  "atomic_claims": [
+   "input_json_delta deltas carry a partial_json fragment",
+   "tool input arrives without server-side buffering or JSON validation"
+  ],
+  "critical_strings": [
+   "input_json_delta",
+   "partial_json"
+  ],
+  "evidence_shape": "multi_span_procedure",
+  "reasoning_type": "deriving an assembly procedure from a worked filter plus the validation caveat",
+  "ambiguity_notes": "The corpus shows the extraction as a jq filter rather than prose. The concatenation step is implied by 'partial'; the answer states it and cites the no-validation clause that makes it necessary.",
+  "verifier_notes": "The second span is what stops a reader parsing each fragment as JSON \u2014 the mistake this question is really about."
+ },
+ {
+  "case": "B23",
+  "question": "which http errors are safe to retry automatically and which ones will just burn quota",
+  "support_status": "SUPPORTED",
+  "provider": "openai",
+  "version_id": "ver_9247e3ce4df6f79d9cadc44e1a3bbd0c",
+  "document_title": "OpenAI Python API library",
+  "content_hash": "8802e1f3d945f2893f3b03bc906b8fd21498d7443d84b2d858926afe2f669f0f",
+  "supported_answer": "The documented retryable set is connection errors, 408 Request Timeout, 409 Conflict, 429 Rate Limit and 5xx \u2014 these are retried automatically, twice by default, with short exponential backoff. Anything outside that set is not retried by default.",
+  "evidence": [
+   {
+    "version_id": "ver_9247e3ce4df6f79d9cadc44e1a3bbd0c",
+    "char_start": 19704,
+    "char_end": 19975,
+    "quote": "Certain errors are automatically retried 2 times by default, with a short exponential backoff.\nConnection errors (for example, due to a network connectivity problem), 408 Request Timeout, 409 Conflict,\n429 Rate Limit, and >=500 Internal errors are all retried by default."
+   }
+  ],
+  "atomic_claims": [
+   "connection errors, 408, 409, 429 and >=500 are retried by default",
+   "the default is 2 retries with short exponential backoff"
+  ],
+  "critical_strings": [
+   "408 Request Timeout",
+   "429 Rate Limit",
+   ">=500 Internal errors"
+  ],
+  "evidence_shape": "single_span_enumeration",
+  "reasoning_type": "reading a safe-to-retry set from documented default behaviour",
+  "ambiguity_notes": "Question said 'either' provider. The corpus does not frame the complement as 'burns quota'; it states which errors are retried, and the answer infers only that the rest are not retried by default.",
+  "verifier_notes": "EVIDENCE DUPLICATE OF D06 AND B24 \u2014 all three cite this exact span. A three-way exact-span collision, the largest in the benchmark. Flagged for the final gate."
+ },
+ {
+  "case": "B24",
+  "question": "does the official sdk already retry for me or do i need to wrap calls in my own backoff",
+  "support_status": "SUPPORTED",
+  "provider": "openai",
+  "version_id": "ver_9247e3ce4df6f79d9cadc44e1a3bbd0c",
+  "document_title": "OpenAI Python API library",
+  "content_hash": "8802e1f3d945f2893f3b03bc906b8fd21498d7443d84b2d858926afe2f669f0f",
+  "supported_answer": "It already retries: 2 times by default with short exponential backoff, covering connection errors, 408, 409, 429 and 5xx. You do not need your own backoff for those, and max_retries adjusts or disables it.",
+  "evidence": [
+   {
+    "version_id": "ver_9247e3ce4df6f79d9cadc44e1a3bbd0c",
+    "char_start": 19704,
+    "char_end": 19975,
+    "quote": "Certain errors are automatically retried 2 times by default, with a short exponential backoff.\nConnection errors (for example, due to a network connectivity problem), 408 Request Timeout, 409 Conflict,\n429 Rate Limit, and >=500 Internal errors are all retried by default."
+   }
+  ],
+  "atomic_claims": [
+   "the SDK retries certain errors automatically, 2 times by default",
+   "retries use a short exponential backoff"
+  ],
+  "critical_strings": [
+   "automatically retried 2 times by default",
+   "exponential backoff"
+  ],
+  "evidence_shape": "single_span_capability",
+  "reasoning_type": "answering a build-or-buy question with documented built-in behaviour",
+  "ambiguity_notes": "Question said 'either' provider; answered from the OpenAI Python library.",
+  "verifier_notes": "EVIDENCE DUPLICATE OF D06 AND B23. Three cases, one span, three genuinely different questions: does it retry, how many times, and which errors."
+ },
+ {
+  "case": "B28",
+  "question": "server side voice agent - how do i handle turn detection instead of doing VAD myself",
+  "support_status": "SUPPORTED",
+  "provider": "openai",
+  "version_id": "ver_14a2187cf2216b9d56c213b520a28479",
+  "document_title": "Realtime agents guide",
+  "content_hash": "9fb62924cb5562be5103b5167a8d25f790afb7d2e22034d547587dbaf4df896e",
+  "supported_answer": "Configure turn_detection in the session's audio input settings \u2014 for example type semantic_vad, with interrupt_response controlling whether the model's response is cut off when the user speaks. The session handles detection rather than your client.",
+  "evidence": [
+   {
+    "version_id": "ver_14a2187cf2216b9d56c213b520a28479",
+    "char_start": 3783,
+    "char_end": 3854,
+    "quote": "\"turn_detection\": {\"type\": \"semantic_vad\", \"interrupt_response\": True},"
+   }
+  ],
+  "atomic_claims": [
+   "turn detection is configured through a turn_detection setting on audio input",
+   "semantic_vad is a documented turn_detection type"
+  ],
+  "critical_strings": [
+   "turn_detection",
+   "semantic_vad"
+  ],
+  "evidence_shape": "single_span_configuration",
+  "reasoning_type": "locating the setting that replaces client-side work",
+  "ambiguity_notes": "The corpus does not compare built-in turn detection against rolling your own VAD; it documents the setting. The answer names it and does not claim a comparison.",
+  "verifier_notes": "EVIDENCE OVERLAP WITH B14, which cites this span plus the interruption prose. Span SETS differ, so not an exact-span collision."
+ },
+ {
+  "case": "B30",
+  "question": "batch requests plus rate limits \u2014 do queued batch jobs count against my normal per minute limits",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_cec813c3bb15b76dcf16e7a0c2231ef1",
+  "document_title": "Batch processing",
+  "content_hash": "99b2a1886fed040e4e6cdeed0887e941e15e838e25ff1e82943db9c3b815bea2",
+  "supported_answer": "Batch traffic is limited separately: rate limits apply both to Batches API HTTP requests and to the number of requests inside a batch waiting to be processed, under a dedicated Message Batches API rate-limit section.",
+  "evidence": [
+   {
+    "version_id": "ver_cec813c3bb15b76dcf16e7a0c2231ef1",
+    "char_start": 3104,
+    "char_end": 3224,
+    "quote": "* Rate limits apply to both Batches API HTTP requests and the number of requests within a batch waiting to be processed."
+   }
+  ],
+  "atomic_claims": [
+   "rate limits apply to Batches API HTTP requests",
+   "rate limits also apply to requests within a batch waiting to be processed"
+  ],
+  "critical_strings": [
+   "Rate limits apply to both Batches API HTTP requests"
+  ],
+  "evidence_shape": "single_span_distinction",
+  "reasoning_type": "resolving whether two limit regimes share a budget",
+  "ambiguity_notes": "Question said 'either' provider. The corpus states that batch-specific limits exist; it does not explicitly say queued batch requests are excluded from the standard per-minute limits, and the answer does not claim that exclusion.",
+  "verifier_notes": "EVIDENCE DUPLICATE OF E16 \u2014 identical span. E16 asks why batches 429 while normal calls succeed; B30 asks whether the budgets are shared. Flagged for the final gate."
+ },
+ {
+  "case": "D18",
+  "question": "i set OPENAI_ORG_ID but its still billing the wrong org",
+  "support_status": "SUPPORTED",
+  "provider": "openai",
+  "version_id": "ver_f15e1a531d680bb98179238f80355058",
+  "document_title": "Configuration",
+  "content_hash": "c3625e0efc448e14942f837aff07078a0568b5c6af7e256f5951c698e70e5e25",
+  "supported_answer": "OPENAI_ORG_ID is not a billing control in this SDK. It is documented for attributing TRACES to a specific organization or project when using the default exporter, alongside OPENAI_PROJECT_ID. Setting it will not change which organization is billed.",
+  "evidence": [
+   {
+    "version_id": "ver_f15e1a531d680bb98179238f80355058",
+    "char_start": 7636,
+    "char_end": 7874,
+    "quote": "If you need to attribute traces to a specific organization or project when using the default exporter, set these environment variables before your app starts:\n\n```bash\nexport OPENAI_ORG_ID=\"org_...\"\nexport OPENAI_PROJECT_ID=\"proj_...\"\n```"
+   }
+  ],
+  "atomic_claims": [
+   "OPENAI_ORG_ID and OPENAI_PROJECT_ID attribute traces to an organization or project",
+   "they apply to the default trace exporter"
+  ],
+  "critical_strings": [
+   "OPENAI_ORG_ID",
+   "attribute traces"
+  ],
+  "evidence_shape": "single_span_premise_correction",
+  "reasoning_type": "correcting what a variable actually controls",
+  "ambiguity_notes": "The asker assumes the variable governs billing. The corpus documents it only for trace attribution. The answer states the documented purpose and says it is not a billing control; it does not claim to explain the actual billing behaviour, which is not documented.",
+  "verifier_notes": "A useful benchmark case precisely because the variable name invites the asker's assumption and the corpus contradicts it. The span initially stopped at the prose and excluded the code block naming the variable; the validator rejected it because the critical string was absent from its own evidence, and the span was extended to include the export lines."
+ },
+ {
+  "case": "D21",
+  "question": "async client name in the anthropic python package",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_279d37a3a0cc4e8a9209e01f16f9df88",
+  "document_title": "MCP connector",
+  "content_hash": "f1520621389a46970bd2fac6ce21c27a1b1e1b8a0b99456b591faa397155e2ed",
+  "supported_answer": "AsyncAnthropic. The documented async usage constructs the client as AsyncAnthropic() in place of the synchronous Anthropic().",
+  "evidence": [
+   {
+    "version_id": "ver_279d37a3a0cc4e8a9209e01f16f9df88",
+    "char_start": 27002,
+    "char_end": 27027,
+    "quote": "client = AsyncAnthropic()"
+   }
+  ],
+  "atomic_claims": [
+   "the async client is constructed as AsyncAnthropic()"
+  ],
+  "critical_strings": [
+   "AsyncAnthropic"
+  ],
+  "evidence_shape": "single_span_api_reference",
+  "reasoning_type": "direct symbol lookup",
+  "ambiguity_notes": "None. The class name is used verbatim in a documented example.",
+  "verifier_notes": "The name appears in an async MCP example rather than a dedicated SDK reference; that is the only place in the snapshot it occurs, and the usage is unambiguous."
+ },
+ {
+  "case": "C25",
+  "question": "moving from 3.5 sonnet to a newer claude, what actually breaks in my code",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_a7bda3595f2c124605c3228464d4ee52",
+  "document_title": "Migration guide",
+  "content_hash": "70bfc31a2d442f38ed00224bff89ebbd88e7fbee2b61ab0dc3d0b533644f2b8a",
+  "supported_answer": "The Migration guide is the documented path \u2014 a guide for migrating to the latest Claude models from previous versions, covering Messages API code. It also notes that Claude Managed Agents users need no changes beyond the model name.",
+  "evidence": [
+   {
+    "version_id": "ver_a7bda3595f2c124605c3228464d4ee52",
+    "char_start": 104,
+    "char_end": 194,
+    "quote": "description: Guide for migrating to the latest Claude models from previous Claude versions"
+   }
+  ],
+  "atomic_claims": [
+   "a migration guide exists for moving to the latest Claude models from previous versions"
+  ],
+  "critical_strings": [
+   "migrating to the latest Claude models"
+  ],
+  "evidence_shape": "single_span_pointer",
+  "reasoning_type": "identifying the documented migration resource",
+  "ambiguity_notes": "The asker wants a breakage list. The cited span establishes the guide's scope rather than enumerating breakages; a full list would require quoting large parts of a 155k-character document. The answer is scoped to what the span supports.",
+  "verifier_notes": "Weak-to-moderate. Admitted because the question asks what breaks when migrating and the corpus has a document whose stated purpose is exactly that, but the gold span is a scope statement rather than a breakage answer. Flagged for review."
+ },
+ {
+  "case": "C30",
+  "question": "responses api vs chat completions, do i have to migrate",
+  "support_status": "SUPPORTED",
+  "provider": "openai",
+  "version_id": "ver_ae909bf8b4bbbe1d1a11119447f7ac94",
+  "document_title": "Models",
+  "content_hash": "c778e3b28e6b39f43275c7f477694a14f6b5a81faa8e76ff24b6e59dec61ecdc",
+  "supported_answer": "Not required, but Responses is the recommended path. The Agents SDK supports both: OpenAIResponsesModel, marked Recommended, calling the Responses API, and OpenAIChatCompletionsModel calling Chat Completions.",
+  "evidence": [
+   {
+    "version_id": "ver_ae909bf8b4bbbe1d1a11119447f7ac94",
+    "char_start": 94,
+    "char_end": 310,
+    "quote": "-   **Recommended**: the [`OpenAIResponsesModel`][agents.models.openai_responses.OpenAIResponsesModel], which calls OpenAI APIs using the new [Responses API](https://platform.openai.com/docs/api-reference/responses)."
+   }
+  ],
+  "atomic_claims": [
+   "the Agents SDK supports OpenAI models in two flavors",
+   "OpenAIResponsesModel calls the Responses API and is marked Recommended"
+  ],
+  "critical_strings": [
+   "Recommended",
+   "Responses API"
+  ],
+  "evidence_shape": "single_span_recommendation",
+  "reasoning_type": "answering a must-I-migrate question from a documented recommendation plus continued support",
+  "ambiguity_notes": "The corpus states a recommendation, not a requirement, and continues to document the Chat Completions model \u2014 which is what makes 'not required' the right answer. Scoped to the Agents SDK, which is where the corpus makes the comparison.",
+  "verifier_notes": "B10 and C30 are near-neighbours in intent; B10 asks about event-format changes and is rejected because the raw wire format is undocumented, while C30 asks the choice question the corpus does answer."
+ }
+]

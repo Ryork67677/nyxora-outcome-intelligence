@@ -98,12 +98,31 @@
  {
   "case": "B22",
   "question": "does [DONE] still get sent at the end",
-  "support_status": "REJECT",
-  "rejection_reason": "Premise not documented in the frozen corpus. The literal 'DONE' does not occur in the OpenAI 'Streaming' document, which covers Agents SDK streaming \u2014 raw response events, run item events and agent events \u2014 rather than the raw Chat Completions SSE wire format where a [DONE] sentinel would appear. No document in the snapshot states whether a [DONE] terminator is sent.",
-  "probes_run": [
-   "DONE"
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_db8326d3bafce3a535c3e3bfc3de7519",
+  "document_title": "Versions",
+  "content_hash": "45d247cdbfa26b2872a6ba7331e24d178efde4b2b3d99f3178bc7d05f37784f5",
+  "supported_answer": "Not on the Anthropic API: the data: [DONE] event was removed as unnecessary in API version 2023-06-01, when all streaming events became named events rather than data-only events.",
+  "evidence": [
+   {
+    "version_id": "ver_db8326d3bafce3a535c3e3bfc3de7519",
+    "char_start": 1659,
+    "char_end": 1702,
+    "quote": "* Removed unnecessary `data: [DONE]` event."
+   }
   ],
-  "verifier_notes": "The Anthropic stream terminates with a message_stop event, which is a different protocol and would be a false anchor for a question about the OpenAI [DONE] sentinel."
+  "atomic_claims": [
+   "the data: [DONE] event was removed in API version 2023-06-01",
+   "it is described as unnecessary once events became named events"
+  ],
+  "critical_strings": [
+   "`data: [DONE]` event"
+  ],
+  "evidence_shape": "single_span_deprecation",
+  "reasoning_type": "version-history lookup",
+  "ambiguity_notes": "The author guessed OpenAI. The corpus answers this for Anthropic, in the API version history, and the answer is scoped to the Anthropic API rather than generalised. The OpenAI raw Chat Completions wire format is not documented in the snapshot.",
+  "verifier_notes": "CORRECTED ADJUDICATION. This case was first recorded as REJECT on the ground that no document states whether a [DONE] terminator is sent. That was wrong: I searched only the OpenAI 'Streaming' document, which covers Agents SDK streaming, and did not search the snapshot. A corpus-wide LIKE query run during the final absence sweep found 'data: [DONE]' in the Anthropic Versions document. The rejection is withdrawn and replaced with this SUPPORTED packet. The lesson is recorded in the batch commit: per-document absence is not snapshot absence, and every later rejection in this build was verified with a corpus-wide query instead."
  },
  {
   "case": "B25",

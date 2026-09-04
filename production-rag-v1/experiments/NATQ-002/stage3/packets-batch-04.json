@@ -39,17 +39,34 @@
  {
   "case": "A15",
   "question": "CU model clicking wrong coordinates on retina display",
-  "support_status": "REJECT",
-  "rejection_reason": "Premise not documented in the frozen corpus. 'retina' is absent from the Computer use tool document and from Coordinates and bounding boxes. No document states that a high-DPI or retina display causes a coordinate mismatch. The corpus does discuss downscaling and click precision ('more robust when screenshots require heavy downscaling', 'higher resolution limit means less downscaling is needed') and recommends display resolutions, but it never connects display DPI to wrong click coordinates.",
-  "probes_run": [
-   "retina",
-   "scale down",
-   "image resizing",
-   "XGA",
-   "recommended",
-   "coordinate"
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_d9ba3ab0d872dd86047c7ed6dc783235",
+  "document_title": "Computer use tool",
+  "content_hash": "07a95b7f2092a6edf0f9784d034e080e47412bb1eb120cf0f6bdb1cb64c01149",
+  "supported_answer": "macOS Retina displays capture screenshots at a device pixel ratio of 2, so the image is twice the resolution of the logical screen coordinates. Fix it either by downscaling the screenshot 2x before sending, or by halving the coordinates Claude returns before issuing the click.",
+  "evidence": [
+   {
+    "version_id": "ver_d9ba3ab0d872dd86047c7ed6dc783235",
+    "char_start": 66148,
+    "char_end": 66415,
+    "quote": "**macOS Retina displays** capture screenshots at a device pixel ratio of 2, so the image is twice the resolution of the logical screen coordinates. Either downscale the screenshot by 2x before sending, or halve the coordinates Claude returns before issuing the click."
+   }
   ],
-  "verifier_notes": "This is the closest of the rejections and a reviewer could reasonably overturn it. The chain retina -> high resolution -> heavy downscaling -> imprecise clicks is plausible and each link except the first is documented, but the corpus never makes it, so gold evidence would have to be assembled by inference rather than cited. Flagged for coordinator review alongside the deferred cases."
+  "atomic_claims": [
+   "macOS Retina displays capture screenshots at a device pixel ratio of 2",
+   "the screenshot is twice the resolution of the logical screen coordinates",
+   "the fix is to downscale the screenshot 2x before sending, or halve the returned coordinates"
+  ],
+  "critical_strings": [
+   "Retina displays",
+   "device pixel ratio of 2",
+   "halve the coordinates"
+  ],
+  "evidence_shape": "single_span_cause_and_remedy",
+  "reasoning_type": "direct diagnostic lookup",
+  "ambiguity_notes": "None. The corpus names the exact symptom, its cause and two remedies.",
+  "verifier_notes": "CORRECTED ADJUDICATION \u2014 overturns a REJECT. The original rejection stated that 'retina' is absent from the Computer use tool document. That was a case-sensitivity failure: I searched lowercase 'retina' only, and the corpus writes 'macOS Retina displays'. The coordinator's instruction was to keep A15 rejected unless direct frozen-corpus text explicitly supports the Retina premise. This span is exactly that text, so the coordinator's own overturn condition is met. Found by a corpus-wide case-sensitive audit run after the B22 error exposed the same class of mistake."
  },
  {
   "case": "A18",

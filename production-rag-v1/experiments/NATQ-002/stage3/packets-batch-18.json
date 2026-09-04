@@ -122,12 +122,31 @@
  {
   "case": "E27",
   "question": "is there a content filter i can turn on for user input before it hits the model",
-  "support_status": "REJECT",
-  "rejection_reason": "Premise not documented in the frozen corpus. No toggleable, provider-side input content filter is documented. 'content filter' returns nothing in the Embeddings or Rate limits documents, and the 'Content moderation' guide describes constructing moderation by prompting Claude with your own categories rather than enabling a built-in filter.",
-  "probes_run": [
-   "content filter",
-   "moderation"
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_f60cde0556a8496203064a91f061ddf6",
+  "document_title": "Mitigate jailbreaks and prompt injections",
+  "content_hash": "07336594cc28a417d9f0cc36c86c72d53f2fd8fcb692529f2a8bfd5f90106e5b",
+  "supported_answer": "There is no provider-side toggle, but the documented pattern is a harmlessness screen: run user input through a lightweight model such as Claude Haiku 4.5 to pre-screen it before it reaches your main conversation, using structured outputs to constrain the result to a simple classification.",
+  "evidence": [
+   {
+    "version_id": "ver_f60cde0556a8496203064a91f061ddf6",
+    "char_start": 1398,
+    "char_end": 1538,
+    "quote": "* **Harmlessness screens:** Use a lightweight model like Claude Haiku 4.5 to pre-screen user input before it reaches your main conversation."
+   }
   ],
-  "verifier_notes": "The asker's phrasing \u2014 'turn on' \u2014 is the operative constraint. The corpus offers a build-it-yourself approach, which answers a different question, and admitting it would reward retrieving a how-to guide for a feature-existence question."
+  "atomic_claims": [
+   "a lightweight model can be used to pre-screen user input before it reaches the main conversation",
+   "this is documented as a harmlessness screen mitigation"
+  ],
+  "critical_strings": [
+   "Harmlessness screens",
+   "pre-screen user input"
+  ],
+  "evidence_shape": "single_span_pattern",
+  "reasoning_type": "answering a feature-existence question with the documented pattern",
+  "ambiguity_notes": "The asker says 'turn on', implying a provider feature. No such toggle is documented and the answer says so; what is documented is a screen you implement, scoped precisely to the asker's goal of filtering input before it reaches the model.",
+  "verifier_notes": "CORRECTED ADJUDICATION \u2014 overturns a REJECT. The original rejection was based on searching 'content filter' in the Embeddings and Rate limits documents. A corpus-wide audit found 'pre-screen' in 'Mitigate jailbreaks and prompt injections', whose guidance is scoped to exactly this case \u2014 screening user input before it reaches the conversation. Unlike A11, where generic guidance was never scoped to the asked situation, this guidance names the situation, so admitting it is not bridging a scope gap."
  }
 ]

@@ -1,85 +1,67 @@
 {
  "record_id": "NATQ-002-STAGE3-PROGRESS",
  "updated_utc": "2026-09-04",
- "head_at_checkpoint": "1e33763981e9e4ad2e26045d1541975779808494",
+ "head_at_checkpoint": "8d825199503421fd5c9eaac19ad7fec286ec29ac",
  "authored_total": 150,
- "adjudicated": 50,
- "remaining": 100,
- "supported": 36,
- "rejected": 14,
+ "adjudicated": 150,
+ "remaining": 0,
+ "supported": 122,
+ "rejected": 28,
  "deferred": 0,
  "validator": {
-  "PASS": 36,
+  "PASS": 122,
   "FAIL": 0,
-  "REJECT_recorded": 14
+  "REJECT_recorded": 28
  },
  "cross_provider_cases": [
   "A02"
  ],
- "evidence_collisions_known": [
-  {
-   "cases": [
-    "A09",
-    "A10"
-   ],
-   "span": [
-    [
-     "ver_18c692f4d28bd01c0a5cac553fcf01a7",
-     35392,
-     35574
-    ]
-   ]
-  }
- ],
- "chunk_level_overlaps_advisory": "see stage3/COLLISION-CHUNK-ADVISORY-001.json \u2014 4 groups / 9 cases at 50 adjudicated, vs 1 exact-span group / 2 cases",
  "slices": {
   "A": {
    "total": 30,
-   "done": 30,
-   "supported": 22,
-   "rejected": 8
+   "supported": 23,
+   "rejected": 7
   },
   "B": {
    "total": 30,
-   "done": 19,
-   "supported": 14,
-   "rejected": 5
+   "supported": 21,
+   "rejected": 9
   },
   "C": {
    "total": 30,
-   "done": 1,
-   "supported": 0,
-   "rejected": 1
+   "supported": 25,
+   "rejected": 5
   },
   "D": {
    "total": 30,
-   "done": 0,
-   "supported": 0,
-   "rejected": 0
+   "supported": 27,
+   "rejected": 3
   },
   "E": {
    "total": 30,
-   "done": 0,
-   "supported": 0,
-   "rejected": 0
+   "supported": 26,
+   "rejected": 4
   }
  },
- "slice_rejection_rates": {
-  "A": "8/30",
-  "B": "5/19",
-  "C": "1/1"
- },
- "overall_rejection_rate": "14/50",
- "yield_projection_note": "A closed at 8/30. B is 5/19 with large within-slice swings. C, D, E still effectively untouched. No benchmark-wide rate.",
+ "all_150_complete": true,
+ "final_collision_gate_run": true,
+ "collision_gate": "stage3/COLLISION-GATE-001.json",
+ "corrected_adjudications": [
+  "B22 REJECT->SUPPORTED",
+  "A15 REJECT->SUPPORTED",
+  "E27 REJECT->SUPPORTED"
+ ],
  "constraints": {
   "natq002_scored": false,
   "holdout_opened": false,
   "split_decided": false,
   "question_wording_altered": false,
-  "systems_run": false
+  "systems_run": false,
+  "collisions_resolved": false,
+  "hundred_selected": false,
+  "benchmark_frozen": false,
+  "benchmark_hashed": false
  },
- "final_collision_gate_run": false,
- "all_150_complete": false,
  "batches": {
   "packets-batch-01-partial.json": 4,
   "packets-batch-02.json": 4,
@@ -89,6 +71,17 @@
   "packets-batch-06.json": 9,
   "packets-batch-07.json": 6,
   "packets-batch-08.json": 7,
-  "packets-batch-09.json": 6
+  "packets-batch-09.json": 6,
+  "packets-batch-10.json": 10,
+  "packets-batch-11.json": 12,
+  "packets-batch-12.json": 10,
+  "packets-batch-13.json": 10,
+  "packets-batch-14.json": 8,
+  "packets-batch-15.json": 6,
+  "packets-batch-16.json": 12,
+  "packets-batch-17.json": 4,
+  "packets-batch-18.json": 7,
+  "packets-batch-19.json": 9,
+  "packets-batch-20.json": 12
  }
 }
