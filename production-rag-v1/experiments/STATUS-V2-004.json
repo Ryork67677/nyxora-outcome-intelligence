@@ -1,0 +1,308 @@
+{
+ "generated_utc": "2026-09-04",
+ "head": "03061c6",
+ "benchmark_id": "NATQ-002",
+ "status": "FROZEN",
+ "corpus": {
+  "snapshot": "snap_689e336380a054d8039dc35b2c09cd0a",
+  "chunk_set": "cs_v1_control",
+  "docs": 202,
+  "chunks": 14209,
+  "documents_referenced": 42
+ },
+ "totals": {
+  "authored": 150,
+  "adjudicated": 150,
+  "supported": 122,
+  "rejected": 28,
+  "deferred": 0,
+  "validator_pass": 122,
+  "validator_fail": 0,
+  "eligible": 112,
+  "accepted": 100,
+  "gold_spans": 136,
+  "multi_span": 33
+ },
+ "slices": {
+  "A": {
+   "authored": 30,
+   "supported": 23,
+   "rejected": 7,
+   "accepted": 20
+  },
+  "B": {
+   "authored": 30,
+   "supported": 21,
+   "rejected": 9,
+   "accepted": 19
+  },
+  "C": {
+   "authored": 30,
+   "supported": 25,
+   "rejected": 5,
+   "accepted": 20
+  },
+  "D": {
+   "authored": 30,
+   "supported": 27,
+   "rejected": 3,
+   "accepted": 21
+  },
+  "E": {
+   "authored": 30,
+   "supported": 26,
+   "rejected": 4,
+   "accepted": 20
+  }
+ },
+ "providers": {
+  "anthropic": 74,
+  "cross-provider": 1,
+  "openai": 25
+ },
+ "cross_provider": [
+  "A02"
+ ],
+ "collisions": {
+  "span_groups": 9,
+  "span_cases": 19,
+  "dropped": [
+   "A10",
+   "A26",
+   "B24",
+   "B30",
+   "C07",
+   "C22",
+   "D06",
+   "D26",
+   "E10",
+   "E13"
+  ],
+  "chunk_groups_all": 20,
+  "chunk_cases_all": 50,
+  "chunk_groups_accepted": 13,
+  "chunk_cases_accepted": 27,
+  "residual_span_accepted": 0,
+  "groups": [
+   {
+    "cases": [
+     "A09",
+     "A10"
+    ],
+    "kept": "A09",
+    "reason": "A09's gold answer exercises the whole span: the default value false AND both consequence branches (at most one under auto, exactly one under any/tool). A10 needs only the true-branch."
+   },
+   {
+    "cases": [
+     "A07",
+     "D26"
+    ],
+    "kept": "A07",
+    "reason": "A07's answer is the contrast the two spans state. D26 asks when to choose, which requires selection criteria the spans do not give and the packet had to leave unstated."
+   },
+   {
+    "cases": [
+     "A26",
+     "C20"
+    ],
+    "kept": "C20",
+    "reason": "C20 is answered in full by the span. A26 is compound \u2014 temperature 0 AND forced tool use \u2014 and the span addresses only the temperature half."
+   },
+   {
+    "cases": [
+     "C07",
+     "E30"
+    ],
+    "kept": "E30",
+    "reason": "E30 asks for the breakpoint placement, which is the span's literal content. C07 wraps the same rule in a cost goal the span does not mention."
+   },
+   {
+    "cases": [
+     "C09",
+     "E10"
+    ],
+    "kept": "C09",
+    "reason": "C09 applies the hierarchy rule to the exact edit it describes. E10 requires first inferring which level changed, a step outside the span."
+   },
+   {
+    "cases": [
+     "C22",
+     "C23"
+    ],
+    "kept": "C23",
+    "reason": "C23 matches the span's scope \u2014 Claude models and thinking. C22 was authored as an OpenAI question and needed provider re-scoping to fit the same evidence."
+   },
+   {
+    "cases": [
+     "B23",
+     "B24",
+     "D06"
+    ],
+    "kept": "B23",
+    "reason": "B23's answer enumerates the full retryable set, using the whole span. B24 needs only 'it retries' and D06 only 'twice'."
+   },
+   {
+    "cases": [
+     "B30",
+     "E16"
+    ],
+    "kept": "E16",
+    "reason": "E16 uses both clauses of the span \u2014 HTTP-level and enqueued-request-level limits. B30 asks whether budgets are shared, which the span does not state."
+   },
+   {
+    "cases": [
+     "E02",
+     "E13"
+    ],
+    "kept": "E02",
+    "reason": "E02's answer is the formula the span states outright. E13 additionally infers a threshold from the downscale rule, a step beyond the spans."
+   }
+  ]
+ },
+ "dedup_outcomes": {
+  "supported_before_dedup": 122,
+  "exact_span_rule": {
+   "groups": 9,
+   "cases_involved": 19,
+   "duplicates_removed_if_one_kept_per_group": 10,
+   "unique_remaining": 112,
+   "meets_target_100": true
+  },
+  "chunk_level_rule": {
+   "groups": 20,
+   "cases_involved": 50,
+   "duplicates_removed_if_one_kept_per_group": 30,
+   "unique_remaining": 92,
+   "meets_target_100": false
+  },
+  "why_this_matters": "The two rules give different answers to the top-up question. Under the governing exact-span rule the benchmark clears 100 with margin. Under chunk-level grouping it falls short, because a chunk is the unit a retrieval system is actually scored on. This is the decision the coordinator now has to make, and it was not resolvable before all 150 were adjudicated."
+ },
+ "selection": {
+  "rule": [
+   "Eligible pool = SUPPORTED minus cases dropped by COLLISION-RULINGS-001.",
+   "Quota 20 per slice; a slice with fewer than 20 eligible contributes all of them and the shortfall is reallocated to the slice with the largest remaining surplus.",
+   "Within a slice, greedily take the case whose gold chunk set overlaps least with chunks already accepted; ties by case ID ascending.",
+   "No retrieval or reranking system consulted. Chunk membership read from the frozen chunk table."
+  ],
+  "availability": {
+   "A": 21,
+   "B": 19,
+   "C": 23,
+   "D": 25,
+   "E": 24
+  },
+  "quota": {
+   "A": 20,
+   "B": 19,
+   "C": 20,
+   "D": 21,
+   "E": 20
+  }
+ },
+ "corrections": {
+  "adjudication": [
+   {
+    "case": "B22",
+    "note": "CORRECTED ADJUDICATION. This case was first recorded as REJECT on the ground that no document states whether a [DONE] terminator is sent. That was wrong: I searched only the OpenAI 'Streaming' document, which covers Agents SDK streaming, and did not search the snapshot. A corpus-wide LIKE query run "
+   },
+   {
+    "case": "A15",
+    "note": "CORRECTED ADJUDICATION \u2014 overturns a REJECT. The original rejection stated that 'retina' is absent from the Computer use tool document. That was a case-sensitivity failure: I searched lowercase 'retina' only, and the corpus writes 'macOS Retina displays'. The coordinator's instruction was to keep A1"
+   },
+   {
+    "case": "E27",
+    "note": "CORRECTED ADJUDICATION \u2014 overturns a REJECT. The original rejection was based on searching 'content filter' in the Embeddings and Rate limits documents. A corpus-wide audit found 'pre-screen' in 'Mitigate jailbreaks and prompt injections', whose guidance is scoped to exactly this case \u2014 screening us"
+   }
+  ],
+  "question_text": [
+   "A22",
+   "A29",
+   "B02",
+   "B08",
+   "C15",
+   "D29",
+   "E23",
+   "E30"
+  ]
+ },
+ "rejection_examples": [
+  {
+   "case": "A01",
+   "q": "how do I stop claude from calling the same tool over and over",
+   "reason": "Premise not documented in the frozen corpus."
+  },
+  {
+   "case": "A06",
+   "q": "migrating from functions/function_call to tools/tool_choice, what actu",
+   "reason": "Premise not documented in the frozen corpus."
+  },
+  {
+   "case": "A08",
+   "q": "getting an error that my schema root must be an object",
+   "reason": "Premise not documented in the frozen corpus."
+  },
+  {
+   "case": "A11",
+   "q": "claude keeps saying \"I'll use the tool\" in text before actually callin",
+   "reason": "REJECT_ON_PREMISE / UNSUPPORTED_SCOPE, per coordinator ruling."
+  },
+  {
+   "case": "A17",
+   "q": "pydantic model as the response format, does it work with optional fiel",
+   "reason": "Premise not documented in the frozen corpus."
+  },
+  {
+   "case": "A18",
+   "q": "what's the max number of tools i can define",
+   "reason": "Premise not documented in the frozen corpus."
+  },
+  {
+   "case": "A29",
+   "q": "we call it function calling internally but the docs say tool use, are ",
+   "reason": "Premise not documented in the frozen corpus."
+  },
+  {
+   "case": "B01",
+   "q": "why does my stream just stop halfway through with no error",
+   "reason": "Premise not documented in the frozen corpus."
+  },
+  {
+   "case": "B06",
+   "q": "I need to show tokens as they arrive in a react app, what's the least ",
+   "reason": "Premise not documented in the frozen corpus."
+  },
+  {
+   "case": "B08",
+   "q": "what happens if the client disconnects mid-stream \u2014 do I still get bil",
+   "reason": "Premise not documented in the frozen corpus."
+  }
+ ],
+ "rejection_count": 28,
+ "integrity": {
+  "spans_checked": 136,
+  "failures": 0,
+  "checks": [
+   "every gold span re-read from the frozen corpus reproduces its quote exactly",
+   "every critical string is present in its own evidence",
+   "every provider matches the provider of its source documents",
+   "every accepted question equals its authored text byte-for-byte"
+  ]
+ },
+ "hashes": {
+  "benchmark_file_sha256": "1450b9e1ba892d84d2ecab279cfa229b128a02108a4704b56393382b6c5bf741",
+  "canonical_content_sha256": "d1f2b51f61a05c7652cd420c32bedb6b72b2ad8cfe14a43ab0fe3d49774c9d60"
+ },
+ "gates_open": {
+  "split_decided": false,
+  "holdout_locked": false,
+  "preregistered": false
+ },
+ "constraints": {
+  "natq002_scored_by_any_system": false,
+  "natq001_holdout_opened": false,
+  "exp029a_fabricated": false,
+  "question_wording_changed": false,
+  "cases_deleted": false,
+  "collisions_resolved_using_system_output": false
+ }
+}
