@@ -1,17 +1,17 @@
 {
  "record_id": "NATQ-002-STAGE3-PROGRESS",
  "updated_utc": "2026-09-04",
- "head_at_checkpoint": "1c59e45a507536402e04667c5b4f04e6e18afb6d",
+ "head_at_checkpoint": "1e33763981e9e4ad2e26045d1541975779808494",
  "authored_total": 150,
- "adjudicated": 44,
- "remaining": 106,
- "supported": 31,
- "rejected": 13,
+ "adjudicated": 50,
+ "remaining": 100,
+ "supported": 36,
+ "rejected": 14,
  "deferred": 0,
  "validator": {
-  "PASS": 31,
+  "PASS": 36,
   "FAIL": 0,
-  "REJECT_recorded": 13
+  "REJECT_recorded": 14
  },
  "cross_provider_cases": [
   "A02"
@@ -31,6 +31,7 @@
    ]
   }
  ],
+ "chunk_level_overlaps_advisory": "see stage3/COLLISION-CHUNK-ADVISORY-001.json \u2014 4 groups / 9 cases at 50 adjudicated, vs 1 exact-span group / 2 cases",
  "slices": {
   "A": {
    "total": 30,
@@ -40,9 +41,9 @@
   },
   "B": {
    "total": 30,
-   "done": 13,
-   "supported": 9,
-   "rejected": 4
+   "done": 19,
+   "supported": 14,
+   "rejected": 5
   },
   "C": {
    "total": 30,
@@ -65,11 +66,11 @@
  },
  "slice_rejection_rates": {
   "A": "8/30",
-  "B": "4/13",
+  "B": "5/19",
   "C": "1/1"
  },
- "overall_rejection_rate": "13/44",
- "yield_projection_note": "Slice A closed at 8/30. Slice B is 4/13 after the realtime and stream-failure questions, having been 0/6 on the rate-limit and SSE questions. Within-slice variation is large; no benchmark-wide rate yet.",
+ "overall_rejection_rate": "14/50",
+ "yield_projection_note": "A closed at 8/30. B is 5/19 with large within-slice swings. C, D, E still effectively untouched. No benchmark-wide rate.",
  "constraints": {
   "natq002_scored": false,
   "holdout_opened": false,
@@ -87,6 +88,7 @@
   "packets-batch-05.json": 5,
   "packets-batch-06.json": 9,
   "packets-batch-07.json": 6,
-  "packets-batch-08.json": 7
+  "packets-batch-08.json": 7,
+  "packets-batch-09.json": 6
  }
 }

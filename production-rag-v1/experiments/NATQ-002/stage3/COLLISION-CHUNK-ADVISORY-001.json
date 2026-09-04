@@ -1,0 +1,53 @@
+{
+  "record_id": "NATQ-002-COLLISION-CHUNK-ADVISORY-001",
+  "recorded_utc": "2026-09-04",
+  "status": "ADVISORY — the governing rule is unchanged and no case was altered",
+  "computed_at_adjudicated": 50,
+
+  "the_governing_rule": "Group SUPPORTED cases by canonical gold evidence-span set; any group larger than one is an evidence collision. That rule is the coordinator's and is applied as written.",
+
+  "the_observation": "Exact-span grouping under-detects capability duplication when the retrieval unit is a chunk rather than a span. Two cases can carry different gold spans that fall inside the SAME cs_v1_control chunk. A system retrieving that one chunk is then credited on both cases, which is the outcome the collision rule exists to prevent.",
+
+  "measured_at_50_adjudicated": {
+    "exact_span_collisions": {
+      "groups": 1,
+      "cases_involved": 2,
+      "detail": [{"cases": ["A09", "A10"], "note": "byte-identical span"}]
+    },
+    "chunk_level_overlaps": {
+      "groups": 4,
+      "cases_involved": 9,
+      "detail": [
+        {"cases": ["A09", "A10", "A16"], "chunk": "chk_1e34f7f696cc25936a44af3775a2423041bc4c0c",
+         "note": "three cases, one chunk. A16 has a DIFFERENT span from A09/A10 and is invisible to exact-span grouping."},
+        {"cases": ["A04", "A25"], "chunk": "chk_e931b2d032820d3d6ef9d8da1dbbb55f60761589"},
+        {"cases": ["B02", "B03", "B21"], "chunk": "chk_2d62bb7bb5d082d422d5254ecb6728024f71b9c1",
+         "note": "three cases, one chunk, three distinct spans."},
+        {"cases": ["B05", "B07"], "chunk": "chk_421ab196a59fe3d9f513653050a909405659725e"}
+      ]
+    },
+    "ratio": "4x more chunk-level groups than exact-span groups, and 9 cases involved rather than 2"
+  },
+
+  "why_this_is_not_a_unilateral_rule_change": "Which unit counts as duplication is a benchmark-design decision with real trade-offs, and it is the coordinator's to make. Span-level grouping is defensible: two questions can legitimately probe different facts that a chunker happened to place together, and the chunk boundary is a property of cs_v1_control rather than of the questions. Chunk-level grouping is also defensible: it matches what a retrieval system is actually scored on. Nothing here resolves that, and no case has been deleted, merged, or reweighted.",
+
+  "options_for_the_coordinator": [
+    "Keep exact-span grouping as the sole gate. Chunk overlap is then accepted as within-benchmark redundancy.",
+    "Keep exact-span grouping as the gate but cap how many accepted cases may share one chunk.",
+    "Add chunk-set grouping as a second gate, adjudicated the same way — explicit ruling per group, never resolved by system performance.",
+    "Defer until all 150 are adjudicated, then decide against the full picture. The counts above will change."
+  ],
+
+  "caveats": [
+    "Computed over 50 of 150 adjudicated cases; the final numbers will differ.",
+    "Chunk membership is specific to chunk_set cs_v1_control on snapshot snap_689e336380a054d8039dc35b2c09cd0a. A different chunker would give different groups, which is itself an argument for treating span-level as the stable unit.",
+    "A span overlapping a chunk boundary maps to every chunk it touches; the overlap test used here is interval intersection, not containment."
+  ],
+
+  "constraints_honored": [
+    "No case deleted, merged, or reweighted.",
+    "No collision resolved.",
+    "No retrieval or reranking system consulted — chunk membership comes from the frozen chunk table, not from any system's output.",
+    "The final collision gate remains unrun until all 150 are adjudicated."
+  ]
+}

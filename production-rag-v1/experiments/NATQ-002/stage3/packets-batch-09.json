@@ -1,0 +1,168 @@
+[
+ {
+  "case": "B16",
+  "question": "long request without streaming times out \u2014 is there a max non-streaming duration",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_0774ca0093ff4a846753577c9a4a39d5",
+  "document_title": "Claude API errors",
+  "content_hash": "87c8bda8220ddcffda9f0d8824f2ab04c543dd57706fc3fad9fd1a8864fbfaf1",
+  "supported_answer": "Effectively yes: the SDKs validate that non-streaming Messages API requests are not expected to exceed a 10-minute timeout, and the guidance is to use streaming or the Message Batches API for anything long-running, especially over 10 minutes. Separately, networks may drop idle connections after a variable period, so a long non-streaming request can fail without a response.",
+  "evidence": [
+   {
+    "version_id": "ver_0774ca0093ff4a846753577c9a4a39d5",
+    "char_start": 14049,
+    "char_end": 14227,
+    "quote": "The [SDKs](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) validate that your non-streaming Messages API requests are not expected to exceed a 10-minute timeout."
+   },
+   {
+    "version_id": "ver_0774ca0093ff4a846753577c9a4a39d5",
+    "char_start": 13405,
+    "char_end": 13570,
+    "quote": "Some networks may drop idle connections after a variable period of time, which can cause the request to fail or time out without receiving a response from Anthropic."
+   }
+  ],
+  "atomic_claims": [
+   "the SDKs validate non-streaming Messages API requests against a 10-minute timeout",
+   "networks may drop idle connections, causing a long request to fail or time out with no response"
+  ],
+  "critical_strings": [
+   "10-minute timeout",
+   "drop idle connections"
+  ],
+  "evidence_shape": "multi_span_limit_and_cause",
+  "reasoning_type": "locating a documented ceiling plus the failure mode behind it",
+  "ambiguity_notes": "The 10-minute figure is an SDK-side validation, not stated as a hard server limit. The answer says 'effectively yes' and attributes the check to the SDKs rather than claiming a server-enforced maximum.",
+  "verifier_notes": "Both spans are inside the 'Long requests' section. The second is cited because the asker's symptom is a timeout with no response, which the idle-connection clause explains and the 10-minute clause alone does not."
+ },
+ {
+  "case": "B18",
+  "question": "is there a heartbeat/keepalive on the sse connection or do i need my own",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_1261879c16f641270789647ac9c63c96",
+  "document_title": "Streaming messages",
+  "content_hash": "82fabc5d2e31d7a82284e3502872738c512d5ed305bace782d13eb7c3f60bd6d",
+  "supported_answer": "There is one: event streams may include any number of ping events. They are part of the documented stream, so a client must tolerate them, and no separate application-level heartbeat is described.",
+  "evidence": [
+   {
+    "version_id": "ver_1261879c16f641270789647ac9c63c96",
+    "char_start": 9842,
+    "char_end": 9918,
+    "quote": "### Ping events\n\nEvent streams may also include any number of `ping` events."
+   }
+  ],
+  "atomic_claims": [
+   "event streams may include any number of ping events"
+  ],
+  "critical_strings": [
+   "Ping events",
+   "`ping`"
+  ],
+  "evidence_shape": "single_span_capability",
+  "reasoning_type": "confirming a mechanism exists",
+  "ambiguity_notes": "Question said 'either' provider. The corpus states pings exist but does not state an interval or guarantee delivery, so the answer does not promise a cadence.",
+  "verifier_notes": "Span includes the heading so the subject of 'any number of ping events' is inside the quote rather than carried by context."
+ },
+ {
+  "case": "B21",
+  "question": "how do i get token usage numbers when the response is streamed",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_1261879c16f641270789647ac9c63c96",
+  "document_title": "Streaming messages",
+  "content_hash": "82fabc5d2e31d7a82284e3502872738c512d5ed305bace782d13eb7c3f60bd6d",
+  "supported_answer": "From the usage field on message_delta events. Note the counts there are cumulative, not per-event, so the final message_delta carries the running total rather than a delta to be summed.",
+  "evidence": [
+   {
+    "version_id": "ver_1261879c16f641270789647ac9c63c96",
+    "char_start": 9739,
+    "char_end": 9829,
+    "quote": "The token counts shown in the `usage` field of the `message_delta` event are *cumulative*."
+   }
+  ],
+  "atomic_claims": [
+   "token usage is carried in the usage field of message_delta events",
+   "those token counts are cumulative"
+  ],
+  "critical_strings": [
+   "`usage`",
+   "`message_delta`",
+   "cumulative"
+  ],
+  "evidence_shape": "single_span_caveat",
+  "reasoning_type": "locating a field plus the accumulation semantics that decide how to read it",
+  "ambiguity_notes": "Question said 'either' provider; answered from Anthropic.",
+  "verifier_notes": "The cumulative warning is the whole value of this case: a client that sums usage across message_delta events double-counts. The span is the warning itself rather than a bare field reference."
+ },
+ {
+  "case": "B22",
+  "question": "does [DONE] still get sent at the end",
+  "support_status": "REJECT",
+  "rejection_reason": "Premise not documented in the frozen corpus. The literal 'DONE' does not occur in the OpenAI 'Streaming' document, which covers Agents SDK streaming \u2014 raw response events, run item events and agent events \u2014 rather than the raw Chat Completions SSE wire format where a [DONE] sentinel would appear. No document in the snapshot states whether a [DONE] terminator is sent.",
+  "probes_run": [
+   "DONE"
+  ],
+  "verifier_notes": "The Anthropic stream terminates with a message_stop event, which is a different protocol and would be a false anchor for a question about the OpenAI [DONE] sentinel."
+ },
+ {
+  "case": "B25",
+  "question": "error in the middle of an sse stream \u2014 status was already 200 so how is the error delivered",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_1261879c16f641270789647ac9c63c96",
+  "document_title": "Streaming messages",
+  "content_hash": "82fabc5d2e31d7a82284e3502872738c512d5ed305bace782d13eb7c3f60bd6d",
+  "supported_answer": "As an event inside the stream. The API may send errors in the event stream itself \u2014 for example an overloaded_error, which in a non-streaming context would have been an HTTP 529. The HTTP status is already 200, so the error arrives as a stream event rather than a status code.",
+  "evidence": [
+   {
+    "version_id": "ver_1261879c16f641270789647ac9c63c96",
+    "char_start": 9938,
+    "char_end": 10202,
+    "quote": "The API may occasionally send [errors](https://platform.claude.com/docs/en/api/errors) in the event stream. For example, during periods of high usage, you may receive an `overloaded_error`, which would normally correspond to an HTTP 529 in a non-streaming context:"
+   }
+  ],
+  "atomic_claims": [
+   "errors can be sent inside the event stream",
+   "an in-stream overloaded_error corresponds to HTTP 529 in a non-streaming context"
+  ],
+  "critical_strings": [
+   "errors",
+   "event stream",
+   "529"
+  ],
+  "evidence_shape": "single_span_behaviour",
+  "reasoning_type": "explaining how a failure is surfaced when the status code is already committed",
+  "ambiguity_notes": "Question said 'either' provider; answered from Anthropic where in-stream error delivery is documented explicitly.",
+  "verifier_notes": "The clause mapping the in-stream error back to its non-streaming HTTP status is what makes this answer complete, and it is inside the cited span."
+ },
+ {
+  "case": "B29",
+  "question": "what's the header for the request id, need it for support tickets when things fail",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_0774ca0093ff4a846753577c9a4a39d5",
+  "document_title": "Claude API errors",
+  "content_hash": "87c8bda8220ddcffda9f0d8824f2ab04c543dd57706fc3fad9fd1a8864fbfaf1",
+  "supported_answer": "The request-id response header, present on every API response, carrying a value like req_018EeWyXxfu5pfWkrYcMdjWG. The same identifier also appears as the request_id field in error response bodies, and the corpus directs you to contact support with it.",
+  "evidence": [
+   {
+    "version_id": "ver_0774ca0093ff4a846753577c9a4a39d5",
+    "char_start": 6348,
+    "char_end": 6474,
+    "quote": "Every API response includes a unique `request-id` header. This header contains a value such as `req_018EeWyXxfu5pfWkrYcMdjWG`."
+   }
+  ],
+  "atomic_claims": [
+   "every API response includes a request-id header",
+   "the header value looks like req_018EeWyXxfu5pfWkrYcMdjWG"
+  ],
+  "critical_strings": [
+   "`request-id` header"
+  ],
+  "evidence_shape": "single_span_api_reference",
+  "reasoning_type": "direct header lookup",
+  "ambiguity_notes": "Question said 'either' provider; the named header is Anthropic's.",
+  "verifier_notes": "The header is 'request-id', not 'x-request-id' \u2014 the latter is absent from the document, so a packet naming it would not validate."
+ }
+]
