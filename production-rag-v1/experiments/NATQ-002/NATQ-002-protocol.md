@@ -1,4 +1,4 @@
-# NATQ-001 — authoring protocol and stage-1 result
+# NATQ-002 — authoring protocol and stage-1 result
 
 **Purpose.** A fresh 100-case benchmark whose questions were written *before* any
 evidence was looked at, to remove the source-anchored bias in V2-DEVSET-001 and
@@ -113,7 +113,7 @@ rewrite is exactly how source-anchored bias got into the previous benchmarks, an
 **Stage 4, split and freeze.** After the coordinator's independent review passes
 100 cases: contamination-aware deterministic split into 40 validation / 60
 holdout, with fact clusters and near-duplicate intents kept on the same side;
-hashes frozen before any retrieval; a NATQ-001 holdout lock and access log
+hashes frozen before any retrieval; a NATQ-002 holdout lock and access log
 created, separate from the historical V1 holdout log.
 
 ## Anti-contamination compliance

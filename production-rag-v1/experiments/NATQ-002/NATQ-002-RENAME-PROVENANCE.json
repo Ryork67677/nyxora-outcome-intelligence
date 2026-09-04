@@ -1,0 +1,137 @@
+{
+  "record_id": "NATQ-002-RENAME-PROVENANCE-001",
+  "recorded_utc": "2026-09-04",
+  "authority": "operator decision, relayed from coordinator ChatGPT: BENCHMARK IDENTITY DECISION",
+  "change_class": "PROVENANCE_ONLY",
+  "is_benchmark_content_revision": false,
+
+  "what_changed": "The identity of the under-construction natural-query benchmark. Nothing about its questions, triage, evidence, or adjudications changed.",
+
+  "rename": {
+    "from": "NATQ-001 (under-construction, this repository)",
+    "to": "NATQ-002",
+    "reason": "Name collision. The identifier NATQ-001 already belongs to the coordinator's frozen benchmark. Two distinct objects cannot share it."
+  },
+
+  "the_two_benchmarks_are_distinct_objects": {
+    "NATQ-001": {
+      "status": "FROZEN, owned upstream",
+      "total_accepted_cases": 100,
+      "validation_cases": 40,
+      "validation_status": "EXPOSED — consumed by EVAL-NATQ-VAL-001 and by EXP-023A through EXP-028A; it is now development data and no longer a clean generalization check",
+      "holdout_cases": 60,
+      "holdout_status": "PRISTINE, UNOPENED",
+      "case_id_shape": "NATQ-<slice>-<nnn>, e.g. NATQ-C-044",
+      "not_modified_by_this_record": true
+    },
+    "NATQ-002": {
+      "status": "UNDER CONSTRUCTION, owned here",
+      "authored_questions": 150,
+      "target_accepted_cases": 100,
+      "stage": "3 of 4 — evidence packets and adjudication in progress",
+      "case_id_shape": "<slice-letter><nn>, e.g. A01",
+      "scored_by_any_retrieval_or_reranking_system": false,
+      "purpose": "the fresh post-development natural-query benchmark, to serve as a generalization check before the pristine NATQ-001 holdout is ever opened"
+    },
+    "merged": false,
+    "merge_is_prohibited": true
+  },
+
+  "case_id_collision_analysis": {
+    "collision_found": false,
+    "method": "compared the full 150-ID set of this benchmark against the 40 NATQ-001 validation IDs referenced in EXP-023A and EXP-024A artifacts",
+    "natq_002_id_patterns": ["A#", "B#", "C#", "D#", "E#"],
+    "natq_001_id_pattern": "NATQ-<letter>-<digits>",
+    "conclusion": "The namespaces are disjoint. No ID was renamed, so no migration map was required and none was applied. Case IDs are preserved byte-for-byte.",
+    "residual_ambiguity": "A bare ID such as 'A01' carries no benchmark identity on its own. The qualified form NATQ2-A01 is recorded below as the citation form for any cross-benchmark table. The stored 'case' field itself is deliberately NOT changed — rewriting adjudicated packets to fix a citation convention would be a content revision.",
+    "qualified_citation_form": "NATQ2-<case>, e.g. NATQ2-A01",
+    "mapping_rule": "identity on the case field; prefix only"
+  },
+
+  "byte_preservation": {
+    "verified": true,
+    "claim": "Every file carrying benchmark CONTENT is byte-identical before and after the rename. Only the two identity-bearing files changed.",
+    "unchanged_sha256": {
+      "authoring/raw-slice-A.json": "299351e39373f35b485ddbce81c061a4adf1cd54c2c6ec1f2af8d2d6e26c952b",
+      "authoring/raw-slice-B.json": "6f765a9b7d56a21e4f90d5c0cbf298fe85d06a24ad7e7b434de43014314a6c41",
+      "authoring/raw-slice-C.json": "16a34ac8f065fc076fe8f9826bb05c93e562bb4c4ad1cc02ede6081580518f14",
+      "authoring/raw-slice-D.json": "1618da10d2b3d223fcaac157161ea15d5d7b6bd9c7446b678e98d64eaca0285e",
+      "authoring/raw-slice-E.json": "f1f06a56e19f4b71440a10a1a68d8021790befdbe06a2351581fb3637bb4a562",
+      "authoring/verification-pass1.json": "1391de3bd89b4fdcb2b6e0151c7ddb67df77c50db4d2282c31d6488cecfb01c0",
+      "stage3/identifier-sweep.json": "1971ccfb32f43569c78872aebda6d2ad0132d6f12cda0275e6cb2ccdd55e2ff6",
+      "stage3/packets-batch-01-partial.json": "3a8a2934d5619ba00a958a2d316c638b6ec9ebe2fa24710d81d472fbf5db8c4d"
+    },
+    "changed_files": {
+      "NATQ-002-manifest.json": {
+        "superseded_sha256": "b167854268b334d3c601bcea5a82123b9c80895509544052a2f7dec88f8dd671",
+        "current_sha256": "c86080e086a5bcfd4534e231269a3bd0d7d611d0b93e819dcb0655d0f721e5b3",
+        "edits": [
+          "benchmark_id: NATQ-001 -> NATQ-002",
+          "file_hashes path keys: experiments/NATQ-001/... -> experiments/NATQ-002/...",
+          "protocol filename key renamed",
+          "protocol hash value updated to match the renamed protocol on disk",
+          "not_yet_done entry: 'NATQ-001 holdout lock' -> 'NATQ-002 holdout lock'"
+        ]
+      },
+      "NATQ-002-protocol.md": {
+        "superseded_sha256": "103b81e05b8368bb38477d9d374f22e3032df0b1f2b497eab978f8313e12af73",
+        "current_sha256": "deffee18d9d40da5e041d417b7679d9d317d49eb9215a69c10be2fa4374e4718",
+        "edits": [
+          "title line: NATQ-001 -> NATQ-002",
+          "closing line: 'a NATQ-001 holdout lock' -> 'a NATQ-002 holdout lock'"
+        ]
+      }
+    },
+    "question_text_altered": false,
+    "adjudicated_evidence_altered": false,
+    "triage_altered": false
+  },
+
+  "path_normalization": {
+    "directory": "experiments/NATQ-001 -> experiments/NATQ-002 (git mv, history preserved)",
+    "files": [
+      "NATQ-001-manifest.json -> NATQ-002-manifest.json",
+      "NATQ-001-protocol.md -> NATQ-002-protocol.md"
+    ],
+    "tooling": "scripts/natq_evidence.py docstring now reads 'NATQ-002 Stage 3'. No logic changed; the script reads the frozen corpus and has no benchmark identity in its behavior.",
+    "residual_NATQ-001_strings_inside_this_benchmark": 0
+  },
+
+  "historical_documents_deliberately_left_UNCHANGED": {
+    "experiments/STATUS-V2-001.json": "A dated status snapshot. Its 'NATQ-001' references describe THIS benchmark under its former name, and its recorded hashes b167854268... (manifest) and the natq_evidence.py hash are now superseded. Left as written: it is a circulated historical record, and rewriting it would falsify what was reported at the time.",
+    "experiments/STATUS-V2-001.pdf": "Same. The circulated PDF is not regenerated.",
+    "scripts/build_status_v2_pdf.py": "The generator for that snapshot. Left as-is so the historical PDF remains reproducible.",
+    "rule": "Historical reports are not rewritten. This record is the pointer that disambiguates them."
+  },
+
+  "upstream_artifacts_untouched": {
+    "note": "Every NATQ reference in EXP-023A, EXP-024A and EXP-029A artifacts denotes the FROZEN NATQ-001 and was correctly left alone.",
+    "files": [
+      "experiments/EXP-023A/*",
+      "experiments/EXP-024A/*",
+      "experiments/EXP-029A/*"
+    ]
+  },
+
+  "pre_freeze_checklist": {
+    "benchmark_id_set": true,
+    "path_naming_normalized": true,
+    "case_id_migration_map": "not required — no collision; qualified citation form recorded",
+    "content_byte_preserved": true,
+    "rename_recorded_as_provenance_only": true,
+    "authoring_and_adjudication_complete": false,
+    "accepted_100_frozen": false,
+    "post_normalization_benchmark_hash": "NOT YET — computed only after the accepted 100 are frozen",
+    "split_decided": false,
+    "split_rule": "the validation/reserve split must NOT be chosen by looking at system results; it returns to coordinator ChatGPT after the freeze"
+  },
+
+  "constraints_honored": [
+    "Did not merge NATQ-002 with the frozen NATQ-001.",
+    "Did not alter question wording because of the rename.",
+    "Did not open any holdout.",
+    "Did not run SYSTEM-H/J/M/N/O or any other retrieval or reranking architecture against NATQ-002.",
+    "Did not decide the validation/reserve split.",
+    "Did not overwrite SYSTEM-H through SYSTEM-N."
+  ]
+}

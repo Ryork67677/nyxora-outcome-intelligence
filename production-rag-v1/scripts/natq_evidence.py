@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""NATQ-001 Stage 3: evidence locator and packet validator.
+"""NATQ-002 Stage 3: evidence locator and packet validator.
 
 Deliberately not retrieval. No BM25, no dense vectors, no cross-encoder, no
 ranking that could feed a candidate set — a verifier reading the frozen corpus
