@@ -1,0 +1,161 @@
+[
+ {
+  "case": "B01",
+  "question": "why does my stream just stop halfway through with no error",
+  "support_status": "REJECT",
+  "rejection_reason": "Premise not documented in the frozen corpus. No document describes a stream terminating mid-response without an error. 'Streaming messages' documents the normal event flow, ping events, and error events delivered in-stream (for example overloaded_error), but never a silent truncation. The strings 'stall', 'idle' and 'no error' are absent from the document.",
+  "probes_run": [
+   "ping",
+   "keep the connection",
+   "idle",
+   "stall",
+   "no error"
+  ],
+  "verifier_notes": "'ping' occurs eight times and is the nearest adjacent content \u2014 keepalive events exist \u2014 but keepalives are documented as part of the normal flow, never as a remedy for a silent stop. Anchoring there would answer a question the corpus does not pose."
+ },
+ {
+  "case": "B08",
+  "question": "what happens if the client disconnects mid-stream \u2014 do I still get billed for the rest",
+  "support_status": "REJECT",
+  "rejection_reason": "Premise not documented in the frozen corpus. No document states the billing consequence of a client disconnecting mid-stream. The string 'billing' appears in the Realtime agents guide only as the name of an example agent (billing_agent in a handoff snippet) and in the errors document in an unrelated context, and no document connects disconnection to token billing.",
+  "probes_run": [
+   "disconnect",
+   "billed",
+   "billing"
+  ],
+  "verifier_notes": "A keyword search makes this look supported \u2014 'disconnect' and 'billing' both occur in one document \u2014 but they occur in unrelated passages. This is the clearest case in slice B of lexical presence without semantic support."
+ },
+ {
+  "case": "B11",
+  "question": "how do i know the model stopped because it hit max tokens vs finished normally when streaming",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_1261879c16f641270789647ac9c63c96",
+  "document_title": "Streaming messages",
+  "content_hash": "82fabc5d2e31d7a82284e3502872738c512d5ed305bace782d13eb7c3f60bd6d",
+  "supported_answer": "Read stop_reason from the message_delta event. message_delta carries top-level changes to the final Message object, and its delta contains stop_reason \u2014 end_turn for a normal finish, and the corresponding value when a limit was hit instead.",
+  "evidence": [
+   {
+    "version_id": "ver_1261879c16f641270789647ac9c63c96",
+    "char_start": 9594,
+    "char_end": 9692,
+    "quote": "3. One or more `message_delta` events, indicating top-level changes to the final `Message` object."
+   },
+   {
+    "version_id": "ver_1261879c16f641270789647ac9c63c96",
+    "char_start": 18400,
+    "char_end": 18544,
+    "quote": "event: message_delta\ndata: {\"type\": \"message_delta\", \"delta\": {\"stop_reason\": \"end_turn\", \"stop_sequence\":null}, \"usage\": {\"output_tokens\": 15}}"
+   }
+  ],
+  "atomic_claims": [
+   "message_delta events carry top-level changes to the final Message object",
+   "the message_delta delta contains stop_reason",
+   "a normal completion shows stop_reason end_turn"
+  ],
+  "critical_strings": [
+   "message_delta",
+   "stop_reason"
+  ],
+  "evidence_shape": "multi_span_procedure",
+  "reasoning_type": "locating where a field is delivered within a streamed sequence",
+  "ambiguity_notes": "Question said 'either' provider; answered from Anthropic. The corpus example shows end_turn; it does not show a max_tokens stream example, so the answer names the field to read rather than enumerating every value.",
+  "verifier_notes": "Two spans: the prose says what message_delta is for, the SSE example shows stop_reason actually inside it. The example is load-bearing \u2014 the prose alone does not reveal that stop_reason rides on this event."
+ },
+ {
+  "case": "B12",
+  "question": "realtime api websocket keeps closing after a while, is there a session time limit",
+  "support_status": "REJECT",
+  "rejection_reason": "Premise not documented in the frozen corpus. No document states a session duration limit for the Realtime API. The Realtime agents guide describes what the SDK emits when the server closes a connection normally \u2014 a disconnected RealtimeModelConnectionStatusEvent followed by a RealtimeModelEndOfStreamEvent, ending iteration without raising \u2014 but never says a session expires after a period of time. 'time limit', 'session length' and 'expire' are absent.",
+  "probes_run": [
+   "time limit",
+   "session length",
+   "minutes",
+   "expire",
+   "reconnect",
+   "disconnect"
+  ],
+  "verifier_notes": "The normal-close handling is genuinely adjacent: it tells you what a close looks like, which could be mistaken for explaining why it happens. It does not state a cause, and no duration is documented anywhere."
+ },
+ {
+  "case": "B13",
+  "question": "webrtc vs websocket for realtime voice - which one should a browser client use",
+  "support_status": "REJECT",
+  "rejection_reason": "The frozen corpus explicitly scopes this question out. 'Realtime transport' states that the Python SDK does not include a browser WebRTC transport, that the page covers only server-side WebSockets and SIP attach flows, and that browser WebRTC is a separate platform topic documented in an external guide. The corpus therefore declines to make the browser-client recommendation the question asks for, and the referenced guide is not in the snapshot.",
+  "probes_run": [
+   "WebRTC"
+  ],
+  "verifier_notes": "An unusual rejection: the corpus does not merely omit the answer, it names the question and points outside itself. Admitting a span that says 'this is documented elsewhere' as gold evidence for 'which should I use' would reward retrieving a pointer instead of an answer."
+ },
+ {
+  "case": "B14",
+  "question": "how do i interrupt the model while it's talking in realtime",
+  "support_status": "SUPPORTED",
+  "provider": "openai",
+  "version_id": "ver_14a2187cf2216b9d56c213b520a28479",
+  "document_title": "Realtime agents guide",
+  "content_hash": "9fb62924cb5562be5103b5167a8d25f790afb7d2e22034d547587dbaf4df896e",
+  "supported_answer": "Interruption is part of the realtime session rather than something you bolt on: the long-lived connection lets the model handle interruptions without restarting a fresh request each turn, and it is configured through turn detection \u2014 for example semantic_vad with interrupt_response set to True.",
+  "evidence": [
+   {
+    "version_id": "ver_14a2187cf2216b9d56c213b520a28479",
+    "char_start": 473,
+    "char_end": 705,
+    "quote": "Realtime agents keep a long-lived connection open to the Realtime API so the model can process text and audio incrementally, stream audio output, call tools, and handle interruptions without restarting a fresh request on every turn."
+   },
+   {
+    "version_id": "ver_14a2187cf2216b9d56c213b520a28479",
+    "char_start": 3783,
+    "char_end": 3854,
+    "quote": "\"turn_detection\": {\"type\": \"semantic_vad\", \"interrupt_response\": True},"
+   }
+  ],
+  "atomic_claims": [
+   "realtime sessions handle interruptions without restarting a fresh request per turn",
+   "interruption behaviour is configured through turn_detection, e.g. semantic_vad with interrupt_response True"
+  ],
+  "critical_strings": [
+   "handle interruptions",
+   "interrupt_response"
+  ],
+  "evidence_shape": "multi_span_capability_and_setting",
+  "reasoning_type": "pairing a documented capability with the setting that controls it",
+  "ambiguity_notes": "The question asks 'how do I interrupt'. The corpus documents the session handling interruptions and the setting that enables response interruption; it does not document a caller-initiated interrupt method, and none is claimed.",
+  "verifier_notes": "The prose span alone would leave the reader without a setting to change; the config span alone would not establish that interruption is a supported mode."
+ },
+ {
+  "case": "B15",
+  "question": "what audio format does the realtime socket expect, pcm16 at what sample rate?",
+  "support_status": "SUPPORTED",
+  "provider": "openai",
+  "version_id": "ver_14a2187cf2216b9d56c213b520a28479",
+  "document_title": "Realtime agents guide",
+  "content_hash": "9fb62924cb5562be5103b5167a8d25f790afb7d2e22034d547587dbaf4df896e",
+  "supported_answer": "pcm16, for both input and output audio, set through the session's audio configuration. The corpus does not state a sample rate.",
+  "evidence": [
+   {
+    "version_id": "ver_14a2187cf2216b9d56c213b520a28479",
+    "char_start": 3670,
+    "char_end": 3688,
+    "quote": "\"format\": \"pcm16\","
+   },
+   {
+    "version_id": "ver_14a2187cf2216b9d56c213b520a28479",
+    "char_start": 3890,
+    "char_end": 3936,
+    "quote": "\"output\": {\"format\": \"pcm16\", \"voice\": \"ash\"},"
+   }
+  ],
+  "atomic_claims": [
+   "the realtime audio input format is pcm16",
+   "the realtime audio output format is pcm16"
+  ],
+  "critical_strings": [
+   "pcm16"
+  ],
+  "evidence_shape": "multi_span_configuration",
+  "reasoning_type": "direct configuration lookup with a documented gap",
+  "ambiguity_notes": "The question has two parts. The format is documented for both directions and is cited. The sample rate is NOT documented \u2014 '24kHz' and 'sample rate' are both absent from the document \u2014 so the gold answer states pcm16 and says the rate is not given. The unanswerable half is recorded rather than inferred from general PCM conventions.",
+  "verifier_notes": "Admitted rather than rejected because the primary ask, the audio format, is stated outright and needs no bridging. Contrast A11, where the mechanism required a scoping inference the corpus never made; here nothing is inferred, one sub-detail is simply absent and is reported absent."
+ }
+]
