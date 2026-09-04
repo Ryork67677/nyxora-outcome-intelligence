@@ -1,0 +1,106 @@
+[
+ {
+  "case": "A14",
+  "question": "max token limit hit in the middle of a tool call, what do i get back",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_4d14aec24504f4b8f6f28938b84587dc",
+  "document_title": "Stop reasons and fallback",
+  "content_hash": "26ef37c1864a0cb2972f51e3242abd902944660dda84c7ba51a3bef654488bc1",
+  "supported_answer": "You get stop_reason 'max_tokens' with the truncated turn, and the last content block is an incomplete tool_use. The documented detection is to check both together \u2014 stop_reason == max_tokens and the last content block type == tool_use \u2014 and retry with a higher max_tokens.",
+  "evidence": [
+   {
+    "version_id": "ver_4d14aec24504f4b8f6f28938b84587dc",
+    "char_start": 26286,
+    "char_end": 26385,
+    "quote": "## max\\_tokens\n\nClaude stopped because it reached the `max_tokens` limit specified in your request."
+   },
+   {
+    "version_id": "ver_4d14aec24504f4b8f6f28938b84587dc",
+    "char_start": 30994,
+    "char_end": 31069,
+    "quote": "if [ \"$STOP_REASON\" = \"max_tokens\" ] && [ \"$LAST_TYPE\" = \"tool_use\" ]; then"
+   }
+  ],
+  "atomic_claims": [
+   "stop_reason is max_tokens when the response reaches the max_tokens limit",
+   "a turn truncated mid tool call is detected by stop_reason max_tokens together with a last content block of type tool_use",
+   "the documented remedy is to retry with a higher max_tokens"
+  ],
+  "critical_strings": [
+   "max_tokens",
+   "tool_use"
+  ],
+  "evidence_shape": "multi_span_behaviour_and_detection",
+  "reasoning_type": "combining a stop reason with its documented detection pattern",
+  "ambiguity_notes": "Question says 'either' provider. Answered from Anthropic because the truncated-mid-tool-use case is documented there; no equivalent OpenAI span was found.",
+  "verifier_notes": "The second span is a code line rather than prose. It is the only place the corpus states the two-condition test, so it is the load-bearing evidence; the prose span alone would not distinguish mid-tool-call truncation from ordinary truncation."
+ },
+ {
+  "case": "A15",
+  "question": "CU model clicking wrong coordinates on retina display",
+  "support_status": "REJECT",
+  "rejection_reason": "Premise not documented in the frozen corpus. 'retina' is absent from the Computer use tool document and from Coordinates and bounding boxes. No document states that a high-DPI or retina display causes a coordinate mismatch. The corpus does discuss downscaling and click precision ('more robust when screenshots require heavy downscaling', 'higher resolution limit means less downscaling is needed') and recommends display resolutions, but it never connects display DPI to wrong click coordinates.",
+  "probes_run": [
+   "retina",
+   "scale down",
+   "image resizing",
+   "XGA",
+   "recommended",
+   "coordinate"
+  ],
+  "verifier_notes": "This is the closest of the rejections and a reviewer could reasonably overturn it. The chain retina -> high resolution -> heavy downscaling -> imprecise clicks is plausible and each link except the first is documented, but the corpus never makes it, so gold evidence would have to be assembled by inference rather than cited. Flagged for coordinator review alongside the deferred cases."
+ },
+ {
+  "case": "A18",
+  "question": "what's the max number of tools i can define",
+  "support_status": "REJECT",
+  "rejection_reason": "Premise not documented in the frozen corpus. Neither 'Define tools' nor 'Tool use with Claude' states a maximum tool count; the strings 'many tools', 'number of tools', 'tool limit' and 'maximum number of tools' are absent from both. The corpus discusses tool description quality and schema complexity limits, but no cap on how many tools a request may define.",
+  "probes_run": [
+   "maximum number of tools",
+   "how many tools",
+   "number of tools",
+   "tool limit",
+   "limit"
+  ],
+  "verifier_notes": "'limit' does occur in Define tools, but about what a tool description should say regarding the tool's own caveats and limitations \u2014 a different subject."
+ },
+ {
+  "case": "A19",
+  "question": "bash tool and text editor tool \u2014 do i have to implement them myself",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_82278fa8eccb91259e993c6cab6f1654",
+  "document_title": "Tool use with Claude",
+  "content_hash": "e87553fe1012fd440357fc28a5c4b995f18b59a7a96375967527f85d4da071af",
+  "supported_answer": "Yes. bash and text_editor have Anthropic-defined schemas but are client tools: they run in your application. Claude returns a tool_use block, your code executes the operation and sends back a tool_result. Only server tools such as web_search are executed by Anthropic.",
+  "evidence": [
+   {
+    "version_id": "ver_82278fa8eccb91259e993c6cab6f1654",
+    "char_start": 5012,
+    "char_end": 5159,
+    "quote": "**Client tools** (including user-defined tools and tools with Anthropic-defined schemas, such as `bash` and `text_editor`) run in your application."
+   },
+   {
+    "version_id": "ver_82278fa8eccb91259e993c6cab6f1654",
+    "char_start": 5242,
+    "char_end": 5306,
+    "quote": "Your code executes the operation and sends back a `tool_result`."
+   }
+  ],
+  "atomic_claims": [
+   "bash and text_editor are client tools that run in your application",
+   "an Anthropic-defined schema does not mean Anthropic executes the tool",
+   "your code executes the operation and returns a tool_result"
+  ],
+  "critical_strings": [
+   "`bash` and `text_editor`",
+   "run in your application",
+   "tool_result"
+  ],
+  "evidence_shape": "multi_span_concept",
+  "reasoning_type": "correcting a schema-ownership vs execution-ownership confusion",
+  "ambiguity_notes": "None. The question names both tools and the corpus names both in the client-tool definition.",
+  "verifier_notes": "The distinction the question turns on is that a tool can carry an Anthropic-defined schema and still be client-executed. The chosen span states exactly that, naming both tools."
+ }
+]

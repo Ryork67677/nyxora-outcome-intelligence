@@ -1,0 +1,144 @@
+[
+ {
+  "case": "A01",
+  "question": "how do I stop claude from calling the same tool over and over",
+  "support_status": "REJECT",
+  "rejection_reason": "Premise not documented in the frozen corpus. No document describes preventing or limiting repeated identical tool calls. 'Troubleshooting tool use' enumerates the documented tool-use failure modes \u2014 wrong tool, invented parameters, parallel calls not working, cache invalidation, request-time errors, thinking-block errors, prompt-injection flagging, JSON escaping \u2014 and repetition or looping is not among them. The word 'loop' does occur (25 times in 'Tutorial: Build a tool-using agent', 16 in 'How tool use works') but always denotes the agentic request/response cycle, not a model repeating a call. 'repeatedly' and 'over and over' are absent.",
+  "probes_run": [
+   "same tool repeatedly",
+   "over and over",
+   "repeatedly",
+   "infinite loop",
+   "loop"
+  ],
+  "verifier_notes": "The 'loop' hits are a trap: they are the correct mechanism vocabulary for a different subject. Anchoring there would score a system for retrieving the agent loop when the question is about repetition control."
+ },
+ {
+  "case": "A06",
+  "question": "migrating from functions/function_call to tools/tool_choice, what actually changes in the request body",
+  "support_status": "REJECT",
+  "rejection_reason": "Premise not documented in the frozen corpus. The legacy Chat Completions `functions` / `function_call` parameters and their migration to `tools` / `tool_choice` appear in no document. Both documents titled 'Migration guide' were checked separately \u2014 anthropic (155,362 chars) and openai (20,107 chars) \u2014 and each contains zero occurrences of 'functions', 'function_call' and 'tool_choice'.",
+  "probes_run": [
+   "function_call",
+   "functions",
+   "tool_choice"
+  ],
+  "verifier_notes": "`function_call` does occur elsewhere in the corpus, but only as `function_call_output` in the OpenAI Agents SDK and as a `function_call()` test helper \u2014 different constructs from the deprecated Chat Completions parameter. Two documents share the title 'Migration guide'; they were resolved by (provider, title) so neither shadowed the other."
+ },
+ {
+  "case": "A07",
+  "question": "agents sdk handoff vs just giving it a tool that calls the other agent",
+  "support_status": "SUPPORTED",
+  "provider": "openai",
+  "version_id": "ver_cbeb36b7cf9a5e241940a011629b6f1b",
+  "document_title": "Tools",
+  "content_hash": "f2270f853776e98ada223ab9bd61ac8401af754b2e470d97f530a55fdd49905a",
+  "supported_answer": "They are two documented alternatives in the Agents SDK. A handoff transfers control to the other agent. Modelling an agent as a tool via as_tool() exposes it as a callable tool without a full handoff, so a central agent can orchestrate specialists and keep control instead of handing it off.",
+  "evidence": [
+   {
+    "version_id": "ver_cbeb36b7cf9a5e241940a011629b6f1b",
+    "char_start": 461,
+    "char_end": 540,
+    "quote": "-   Agents as tools: expose an agent as a callable tool without a full handoff."
+   },
+   {
+    "version_id": "ver_cbeb36b7cf9a5e241940a011629b6f1b",
+    "char_start": 31330,
+    "char_end": 31522,
+    "quote": "## Agents as tools\n\nIn some workflows, you may want a central agent to orchestrate a network of specialized agents, instead of handing off control. You can do this by modeling agents as tools."
+   }
+  ],
+  "atomic_claims": [
+   "agents as tools exposes an agent as a callable tool without a full handoff",
+   "modelling agents as tools lets a central agent orchestrate specialists instead of handing off control"
+  ],
+  "critical_strings": [
+   "without a full handoff",
+   "instead of handing off control"
+  ],
+  "evidence_shape": "multi_span_concept_contrast",
+  "reasoning_type": "contrast between two documented mechanisms",
+  "ambiguity_notes": "The question names the Agents SDK, so it is scoped to OpenAI; no cross-provider reading applies.",
+  "verifier_notes": "Both spans are in the openai 'Tools' document \u2014 the catalog line and the section body. The Handoffs document describes handoffs but does not draw the contrast, so it is not cited."
+ },
+ {
+  "case": "A12",
+  "question": "what do i send back after a tool_use block",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_8d4259b6f07a26872a702810f0dbaf89",
+  "document_title": "Handle tool calls",
+  "content_hash": "0005c7dde32777920d34c46b3fa307646cf43e238817af9c559cb0b315c10ae1",
+  "supported_answer": "A new user-role message whose content is a tool_result block. It carries tool_use_id (the id of the tool_use it answers), optional content with the result, and optional is_error. The tool_result block must immediately follow its tool_use block \u2014 no messages may come between the assistant's tool use message and the user's tool result message.",
+  "evidence": [
+   {
+    "version_id": "ver_8d4259b6f07a26872a702810f0dbaf89",
+    "char_start": 2209,
+    "char_end": 2376,
+    "quote": "3. Continue the conversation by sending a new message with the `role` of `user`, and a `content` block containing the `tool_result` type and the following information:"
+   },
+   {
+    "version_id": "ver_8d4259b6f07a26872a702810f0dbaf89",
+    "char_start": 2378,
+    "char_end": 2452,
+    "quote": "   * `tool_use_id`: The `id` of the tool use request this is a result for."
+   },
+   {
+    "version_id": "ver_8d4259b6f07a26872a702810f0dbaf89",
+    "char_start": 3117,
+    "char_end": 3330,
+    "quote": "* Tool result blocks must immediately follow their corresponding tool use blocks in the message history. You cannot include any messages between the assistant's tool use message and the user's tool result message."
+   }
+  ],
+  "atomic_claims": [
+   "the reply is a user-role message containing a tool_result content block",
+   "tool_use_id identifies which tool use the result answers",
+   "tool result blocks must immediately follow their tool use blocks with no messages in between"
+  ],
+  "critical_strings": [
+   "`tool_result`",
+   "`tool_use_id`",
+   "must immediately follow"
+  ],
+  "evidence_shape": "multi_span_procedure",
+  "reasoning_type": "direct procedural lookup",
+  "ambiguity_notes": "No provider named; answered from Anthropic because tool_use/tool_result is Anthropic's block vocabulary.",
+  "verifier_notes": "Three spans: the instruction, the required field, and the ordering constraint. The ordering constraint is included because an answer omitting it would be incomplete in a way that matters at runtime."
+ },
+ {
+  "case": "A13",
+  "question": "tool result error \u2014 how to tell the model the tool failed instead of just returning text",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_8d4259b6f07a26872a702810f0dbaf89",
+  "document_title": "Handle tool calls",
+  "content_hash": "0005c7dde32777920d34c46b3fa307646cf43e238817af9c559cb0b315c10ae1",
+  "supported_answer": "Return the error message in the tool_result content and set \"is_error\": true. Claude then incorporates the failure into its response rather than treating the text as a successful result.",
+  "evidence": [
+   {
+    "version_id": "ver_8d4259b6f07a26872a702810f0dbaf89",
+    "char_start": 8614,
+    "char_end": 8805,
+    "quote": "If the tool itself throws an error during execution (for example, a network error when fetching weather data), you can return the error message in the `content` along with `\"is_error\": true`:"
+   },
+   {
+    "version_id": "ver_8d4259b6f07a26872a702810f0dbaf89",
+    "char_start": 9065,
+    "char_end": 9091,
+    "quote": "          \"is_error\": true"
+   }
+  ],
+  "atomic_claims": [
+   "set is_error true on the tool_result to signal a tool execution error",
+   "the error message goes in the tool_result content alongside is_error"
+  ],
+  "critical_strings": [
+   "`\"is_error\": true`",
+   "is_error"
+  ],
+  "evidence_shape": "multi_span_api_reference",
+  "reasoning_type": "direct parameter lookup",
+  "ambiguity_notes": "None. The question names the exact mechanism the corpus documents.",
+  "verifier_notes": "Second span is the literal JSON line so the flag's placement inside the tool_result block is anchored, not just described."
+ }
+]

@@ -1,0 +1,32 @@
+{
+  "record_id": "NATQ-002-DEFERRED-001",
+  "recorded_utc": "2026-09-04",
+  "why_this_file_exists": "Stage-3 rule 4 forbids forcing a weak or semantically adjacent citation, and a listed stop condition is 'corpus support is unclear after direct source inspection'. Rather than halt 140 remaining cases over one verdict, cases whose support is genuinely unclear after reading the source are recorded here and left unadjudicated. They are NOT counted as SUPPORTED or REJECTED.",
+  "not_adjudicated": true,
+  "counted_in_supported": false,
+  "counted_in_rejected": false,
+
+  "cases": [
+    {
+      "case": "A11",
+      "question": "claude keeps saying \"I'll use the tool\" in text before actually calling it, can I suppress that",
+      "what_the_corpus_does_say": [
+        "'Prompting best practices' has an 'Eliminating preambles' accordion: prefills were used to skip introductory text, and the migration is to instruct directly in the system prompt ('Respond directly without preamble...'), or use XML tags, structured outputs, or tool calling, and strip anything remaining in post-processing.",
+        "'Handle tool calls' shows an example response in which a text block ('I'll check the current weather in San Francisco for you.') precedes the tool_use block, documenting that the behaviour occurs."
+      ],
+      "what_the_corpus_does_not_say": "Nothing connects the two. The preamble guidance is scoped to response preambles generally and arrived via prefill migration; it never addresses text emitted alongside a tool_use block, and 'preamble' is absent from every tool-use document checked (Tool use with Claude, Parallel tool use, Troubleshooting tool use, How tool use works).",
+      "why_deferred": "Admitting it means citing general preamble guidance for a tool-use question the corpus never scopes it to. Rejecting it means calling a question unsupported when a directly applicable instruction does exist. Either verdict is a judgement the coordinator should make, not one to bury in a packet.",
+      "probes_run": ["preamble"]
+    }
+  ],
+
+  "related_but_adjudicated": [
+    {
+      "case": "A15",
+      "verdict_taken": "REJECT",
+      "note": "Adjudicated rather than deferred because the specific premise — a retina display causing wrong coordinates — is absent outright, not merely unscoped. Flagged in its packet as the rejection most open to being overturned: the chain retina -> high resolution -> heavy downscaling -> imprecise clicks has every link documented except the first, but the corpus never assembles it."
+    }
+  ],
+
+  "coordinator_decision_needed": "For A11: admit with the preamble-guidance span, reject on premise, or drop. No system performance may inform this."
+}
