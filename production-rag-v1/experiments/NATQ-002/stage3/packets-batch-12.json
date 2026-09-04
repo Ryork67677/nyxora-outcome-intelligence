@@ -1,0 +1,258 @@
+[
+ {
+  "case": "C05",
+  "question": "claude system prompt \u2014 is it a separate field or just the first message?",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_18c692f4d28bd01c0a5cac553fcf01a7",
+  "document_title": "Messages",
+  "content_hash": "740d6dab47889293f412ae5f2afe85897d0e2227935081d372724a6e773bb3ff",
+  "supported_answer": "A separate top-level field. system is its own request parameter, taking either a string or an array of text blocks \u2014 it is not a message in the messages array.",
+  "evidence": [
+   {
+    "version_id": "ver_18c692f4d28bd01c0a5cac553fcf01a7",
+    "char_start": 32218,
+    "char_end": 32290,
+    "quote": "- `system: optional string or array of TextBlockParam`\n\n  System prompt."
+   }
+  ],
+  "atomic_claims": [
+   "system is a top-level request parameter, not a message",
+   "it accepts either a string or an array of TextBlockParam"
+  ],
+  "critical_strings": [
+   "`system: optional string or array of TextBlockParam`"
+  ],
+  "evidence_shape": "single_span_api_reference",
+  "reasoning_type": "resolving a binary structural question",
+  "ambiguity_notes": "None. The parameter signature answers it directly.",
+  "verifier_notes": "The asker offers two options and the parameter's presence in Body Parameters settles it."
+ },
+ {
+  "case": "C15",
+  "question": "How should I handle a conversation that keeps growing past the model's limit? I'm currently just truncating",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_c60f7418b69b6610bd20e974b92cdd8c",
+  "document_title": "Compaction",
+  "content_hash": "0ed25c803072c6778f2fab5f0540106df733e42991f590d9b5677efc155f7972",
+  "supported_answer": "Compaction is the documented mechanism: server-side context compaction for managing long conversations that approach context window limits. It is a beta feature enabled with the compact-2026-01-12 beta header on supported models.",
+  "evidence": [
+   {
+    "version_id": "ver_c60f7418b69b6610bd20e974b92cdd8c",
+    "char_start": 0,
+    "char_end": 204,
+    "quote": "---\ntitle: Compaction\nurl: https://platform.claude.com/docs/en/build-with-claude/compaction\ndescription: Server-side context compaction for managing long conversations that approach context window limits."
+   }
+  ],
+  "atomic_claims": [
+   "compaction is server-side context compaction for long conversations approaching context window limits",
+   "it is a beta feature gated by the compact-2026-01-12 beta header"
+  ],
+  "critical_strings": [
+   "Compaction",
+   "context compaction"
+  ],
+  "evidence_shape": "single_span_capability",
+  "reasoning_type": "naming the documented mechanism for the asker's problem",
+  "ambiguity_notes": "Question said 'either' provider. The asker mentions truncating; the corpus does not compare compaction against manual truncation, so the answer names the documented alternative without claiming it is better.",
+  "verifier_notes": "Span is the document front-matter, which is where the one-sentence definition lives; the beta header is in the adjacent Compatibility block and is stated in the answer, not claimed as an atomic fact."
+ },
+ {
+  "case": "C24",
+  "question": "thinking budget vs max tokens, which one wins",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_012b734775e7edb2649d3a9ddfd93070",
+  "document_title": "Thinking",
+  "content_hash": "c4bc2186d26e8abe4a7aa72e683ad2f16931f5ff91cfea66de76a4c347ffd0ad",
+  "supported_answer": "max_tokens is the outer envelope. Thinking tokens are billed as output tokens and count toward max_tokens alongside the response text, and current-turn thinking always counts toward it \u2014 so the thinking budget is spent inside max_tokens rather than in addition to it.",
+  "evidence": [
+   {
+    "version_id": "ver_012b734775e7edb2649d3a9ddfd93070",
+    "char_start": 1346,
+    "char_end": 1524,
+    "quote": "the tokens Claude spends reasoning are billed as output tokens, even when the thinking text isn't returned to you, and they count toward `max_tokens` alongside the response text."
+   },
+   {
+    "version_id": "ver_012b734775e7edb2649d3a9ddfd93070",
+    "char_start": 48470,
+    "char_end": 48626,
+    "quote": "* **Current-turn thinking** always counts toward `max_tokens`, is billed as output tokens, and occupies context window space for the turn that generated it."
+   }
+  ],
+  "atomic_claims": [
+   "thinking tokens are billed as output tokens",
+   "thinking tokens count toward max_tokens alongside the response text",
+   "current-turn thinking always counts toward max_tokens"
+  ],
+  "critical_strings": [
+   "count toward `max_tokens`",
+   "billed as output tokens"
+  ],
+  "evidence_shape": "multi_span_relationship",
+  "reasoning_type": "resolving which of two limits bounds the other",
+  "ambiguity_notes": "The phrase 'which one wins' is the asker's. The corpus does not frame it as a contest; it states containment, which is the substantive answer.",
+  "verifier_notes": "The literal strings 'budget_tokens must' and 'must be less' are absent from the document, so no numeric ordering constraint is claimed \u2014 only the containment the corpus states."
+ },
+ {
+  "case": "C26",
+  "question": "how much warning do you get before a model gets retired",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_b57691291ac216e12d311d60db579b43",
+  "document_title": "Model deprecations",
+  "content_hash": "c60574dc4c5322b6e9ff20f96bf9139bdb036e6b0ee532a3635c956e0b4f1f0f",
+  "supported_answer": "At least 60 days' notice before retirement for publicly released models, sent to customers with active deployments on those models.",
+  "evidence": [
+   {
+    "version_id": "ver_b57691291ac216e12d311d60db579b43",
+    "char_start": 2631,
+    "char_end": 2810,
+    "quote": "Anthropic notifies customers with active deployments for models with upcoming retirements, providing at least 60 days' notice before model retirement for publicly released models."
+   }
+  ],
+  "atomic_claims": [
+   "Anthropic gives at least 60 days' notice before retiring a publicly released model",
+   "notification goes to customers with active deployments on affected models"
+  ],
+  "critical_strings": [
+   "60 days"
+  ],
+  "evidence_shape": "single_span_policy",
+  "reasoning_type": "direct policy lookup",
+  "ambiguity_notes": "Question said 'either' provider; the 60-day commitment is Anthropic's and the answer is scoped to it.",
+  "verifier_notes": "The notice is scoped to publicly released models and to customers with active deployments; both qualifiers are inside the span."
+ },
+ {
+  "case": "C27",
+  "question": "is there a list of which model snapshots are dead already",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_b57691291ac216e12d311d60db579b43",
+  "document_title": "Model deprecations",
+  "content_hash": "c60574dc4c5322b6e9ff20f96bf9139bdb036e6b0ee532a3635c956e0b4f1f0f",
+  "supported_answer": "Yes. The Model deprecations page carries a model status table listing current and recently retired models with their state, deprecation date and tentative retirement date, followed by a dated deprecation history.",
+  "evidence": [
+   {
+    "version_id": "ver_b57691291ac216e12d311d60db579b43",
+    "char_start": 4749,
+    "char_end": 4837,
+    "quote": "Current and recently retired models are listed in the following table with their status:"
+   }
+  ],
+  "atomic_claims": [
+   "a table lists current and recently retired models with their status"
+  ],
+  "critical_strings": [
+   "Current and recently retired models"
+  ],
+  "evidence_shape": "single_span_capability",
+  "reasoning_type": "existence lookup",
+  "ambiguity_notes": "Question said 'either' provider. The answer points at the Anthropic table; no equivalent OpenAI list was located, and none is claimed.",
+  "verifier_notes": "Anchored on the sentence that introduces the table rather than the table body, whose row padding would make an unstable quote."
+ },
+ {
+  "case": "C28",
+  "question": "should i pin a dated model name or use the alias like -latest",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_1f49b1ad8b70725119b878c73a3cf8e9",
+  "document_title": "Model IDs and versioning",
+  "content_hash": "e5d0aa4d3c1bfe06b25439633d0147c9e8e48d56843aa5769d7742f5b39b5626",
+  "supported_answer": "For the 4.6 generation and later the question is moot: the dateless ID is the canonical ID and maps to a single fixed snapshot, not a moving pointer. Anthropic does not update an existing model ID's weights \u2014 updates ship under a new ID. Only for earlier models is a dateless name an alias that resolves to the most recent dated snapshot.",
+  "evidence": [
+   {
+    "version_id": "ver_1f49b1ad8b70725119b878c73a3cf8e9",
+    "char_start": 2604,
+    "char_end": 2889,
+    "quote": "For the 4.6 generation and later, the dateless ID is the canonical model ID for that release. It maps to a single, fixed model snapshot. Anthropic does not update the weights or configuration of an existing model ID. When an updated version is available, it ships under a new model ID."
+   },
+   {
+    "version_id": "ver_1f49b1ad8b70725119b878c73a3cf8e9",
+    "char_start": 2979,
+    "char_end": 3197,
+    "quote": "An alias such as `claude-sonnet-4-5` is a convenience pointer that resolves to the most recent dated snapshot for that minor version. A 4.6-generation ID such as `claude-sonnet-4-6` is not an alias. It is the snapshot."
+   }
+  ],
+  "atomic_claims": [
+   "for the 4.6 generation and later the dateless ID maps to a single fixed snapshot",
+   "Anthropic does not update the weights or configuration of an existing model ID",
+   "for earlier models a dateless name is an alias resolving to the most recent dated snapshot"
+  ],
+  "critical_strings": [
+   "canonical model ID",
+   "not an alias",
+   "convenience pointer"
+  ],
+  "evidence_shape": "multi_span_correction",
+  "reasoning_type": "correcting a false dichotomy in the question",
+  "ambiguity_notes": "The asker assumes dateless means evergreen. The corpus names that assumption a common misconception and splits the answer by model generation, which is why both spans are cited.",
+  "verifier_notes": "A single span would let the answer overstate one regime; the two together preserve the generation split the corpus insists on."
+ },
+ {
+  "case": "C29",
+  "question": "whats the anthropic-version header for and can i just leave it off",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_db8326d3bafce3a535c3e3bfc3de7519",
+  "document_title": "Versions",
+  "content_hash": "45d247cdbfa26b2872a6ba7331e24d178efde4b2b3d99f3178bc7d05f37784f5",
+  "supported_answer": "You cannot leave it off: the header must be sent on API requests. It pins the API version so Anthropic preserves existing input and output parameters for that version while still being free to add optional inputs and new output values. The client SDKs set it automatically.",
+  "evidence": [
+   {
+    "version_id": "ver_db8326d3bafce3a535c3e3bfc3de7519",
+    "char_start": 90,
+    "char_end": 354,
+    "quote": "When making API requests, you must send an `anthropic-version` request header. For example, `anthropic-version: 2023-06-01`. If you are using the [client SDKs](https://platform.claude.com/docs/en/cli-sdks-libraries/overview), this is handled for you automatically."
+   }
+  ],
+  "atomic_claims": [
+   "an anthropic-version request header must be sent when making API requests",
+   "the client SDKs set the header automatically"
+  ],
+  "critical_strings": [
+   "`anthropic-version`",
+   "must send"
+  ],
+  "evidence_shape": "single_span_requirement",
+  "reasoning_type": "answering a requirement question and its 'can I skip it' follow-up",
+  "ambiguity_notes": "The asker's two-part question is answered by one span for the requirement; the purpose is stated in the answer from the adjacent preservation list and is not claimed as an atomic fact.",
+  "verifier_notes": "The span is the document description, which carries the imperative wording."
+ },
+ {
+  "case": "C02",
+  "question": "what happens if I set both temperature and top_p at the same time",
+  "support_status": "REJECT",
+  "rejection_reason": "Premise not documented in the frozen corpus. The Messages reference documents temperature and top_p independently, each marked 'Recommended for advanced use cases only', but states no interaction, precedence, or warning for setting both. The strings 'both `temperature` and `top_p`', 'temperature and top_p' and 'not recommended to' are absent from the document.",
+  "probes_run": [
+   "both `temperature` and `top_p`",
+   "temperature and top_p",
+   "not recommended to"
+  ],
+  "verifier_notes": "Both parameters being documented adjacently makes this look answerable. Adjacency is not an interaction statement, and the corpus never says what happens when both are set."
+ },
+ {
+  "case": "C18",
+  "question": "how many stop sequences am i allowed to pass",
+  "support_status": "REJECT",
+  "rejection_reason": "Premise not documented in the frozen corpus. stop_sequences is typed as an optional array of string with no stated cardinality limit, and no document gives a maximum count. The strings 'maximum of', 'how many stop' and 'stop sequences you' are absent from the Messages reference.",
+  "probes_run": [
+   "maximum of",
+   "how many stop",
+   "stop sequences you"
+  ],
+  "verifier_notes": "The parameter's array type invites the inference that some limit exists, but no limit is stated and inventing one would be fabrication."
+ },
+ {
+  "case": "C19",
+  "question": "temperature range for claude vs gpt, i think theyre different",
+  "support_status": "REJECT",
+  "rejection_reason": "The question is explicitly comparative and only one side is documented. The Messages reference states Claude's temperature defaults to 1.0 and ranges from 0.0 to 1.0. No document in the snapshot states an OpenAI temperature range, so the comparison the question asks for cannot be evidenced.",
+  "probes_run": [
+   "Ranges from `0.0` to `1.0`",
+   "temperature"
+  ],
+  "verifier_notes": "Admitting this with the Claude-only span would make gold evidence that answers half the question while the asker's actual claim \u2014 that the ranges differ \u2014 stays unevidenced. Consistent with the A11 ruling: do not bridge a scope gap."
+ }
+]
