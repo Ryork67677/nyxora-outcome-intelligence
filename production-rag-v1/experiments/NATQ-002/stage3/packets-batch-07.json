@@ -1,0 +1,199 @@
+[
+ {
+  "case": "B02",
+  "question": "what's the first thing that comes back when you stream? the chunk with the id in it?",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_1261879c16f641270789647ac9c63c96",
+  "document_title": "Streaming messages",
+  "content_hash": "82fabc5d2e31d7a82284e3502872738c512d5ed305bace782d13eb7c3f60bd6d",
+  "supported_answer": "message_start. It contains a Message object with empty content \u2014 so yes, the identifying Message envelope arrives first, before any content.",
+  "evidence": [
+   {
+    "version_id": "ver_1261879c16f641270789647ac9c63c96",
+    "char_start": 8932,
+    "char_end": 9045,
+    "quote": "Each stream uses the following event flow:\n\n1. `message_start`: contains a `Message` object with empty `content`."
+   }
+  ],
+  "atomic_claims": [
+   "message_start is the first event in the stream",
+   "message_start contains a Message object with empty content"
+  ],
+  "critical_strings": [
+   "`message_start`",
+   "empty `content`"
+  ],
+  "evidence_shape": "single_span_sequence",
+  "reasoning_type": "confirming an ordering assumption",
+  "ambiguity_notes": "The asker's 'chunk with the id in it' is their description of the Message envelope. The corpus names the event and its payload; the answer confirms the ordering without adopting the informal wording.",
+  "verifier_notes": "Span starts at the 'event flow' lead-in so the ordinal position is inside the quote rather than inferred from surrounding text."
+ },
+ {
+  "case": "B03",
+  "question": "claude sse event names list",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_1261879c16f641270789647ac9c63c96",
+  "document_title": "Streaming messages",
+  "content_hash": "82fabc5d2e31d7a82284e3502872738c512d5ed305bace782d13eb7c3f60bd6d",
+  "supported_answer": "Each event carries an SSE event name matching its data type. The flow is message_start, then per content block content_block_start, content_block_delta and content_block_stop, then one or more message_delta, then a final message_stop. Streams may also include ping events and error events.",
+  "evidence": [
+   {
+    "version_id": "ver_1261879c16f641270789647ac9c63c96",
+    "char_start": 8730,
+    "char_end": 8930,
+    "quote": "Each server-sent event includes a named event type and associated JSON data. Each event uses an SSE event name (for example, `event: message_stop`), and includes the matching event `type` in its data."
+   },
+   {
+    "version_id": "ver_1261879c16f641270789647ac9c63c96",
+    "char_start": 8932,
+    "char_end": 9045,
+    "quote": "Each stream uses the following event flow:\n\n1. `message_start`: contains a `Message` object with empty `content`."
+   },
+   {
+    "version_id": "ver_1261879c16f641270789647ac9c63c96",
+    "char_start": 9594,
+    "char_end": 9725,
+    "quote": "3. One or more `message_delta` events, indicating top-level changes to the final `Message` object.\n4. A final `message_stop` event."
+   }
+  ],
+  "atomic_claims": [
+   "each event uses an SSE event name matching the event type in its data",
+   "the flow is message_start, content block start/delta/stop, message_delta, message_stop"
+  ],
+  "critical_strings": [
+   "SSE event name",
+   "`message_stop`",
+   "`message_delta`"
+  ],
+  "evidence_shape": "multi_span_enumeration",
+  "reasoning_type": "enumerating a documented list",
+  "ambiguity_notes": "The question asks for a list. Three spans are cited because the naming convention, the opening event and the closing events sit in different sentences.",
+  "verifier_notes": "ping and error events are mentioned in the answer but sit under their own subheadings; only the core flow is anchored, since that is what 'event names list' asks for."
+ },
+ {
+  "case": "B04",
+  "question": "getting 429 even though im way under my limit, whats going on",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_c8b2c7130cb18508fed4f864d4c3d7a3",
+  "document_title": "Rate limits",
+  "content_hash": "27738d20da88c513b81371950df63b658fd4726c0e9a13bc44a6de320278584a",
+  "supported_answer": "Acceleration limits. Beyond the published per-minute limits, a sharp increase in an organization's usage can produce 429s even while under the stated rate limit. The documented remedy is to ramp traffic gradually and maintain consistent usage.",
+  "evidence": [
+   {
+    "version_id": "ver_c8b2c7130cb18508fed4f864d4c3d7a3",
+    "char_start": 5361,
+    "char_end": 5490,
+    "quote": "You might also encounter 429 errors because of acceleration limits on the API if your organization has a sharp increase in usage."
+   }
+  ],
+  "atomic_claims": [
+   "429 errors can come from acceleration limits, not only from the published rate limits",
+   "acceleration limits trigger on a sharp increase in organization usage"
+  ],
+  "critical_strings": [
+   "acceleration limits",
+   "sharp increase"
+  ],
+  "evidence_shape": "single_span_cause",
+  "reasoning_type": "identifying a documented second cause behind one status code",
+  "ambiguity_notes": "Question said 'either' provider; answered from Anthropic where acceleration limits are documented by name.",
+  "verifier_notes": "This is the case the asker's premise ('way under my limit') is actually about: the corpus documents a 429 path that does not require exceeding the stated limit."
+ },
+ {
+  "case": "B05",
+  "question": "how do I read the remaining requests header so I can back off before I get throttled",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_c8b2c7130cb18508fed4f864d4c3d7a3",
+  "document_title": "Rate limits",
+  "content_hash": "27738d20da88c513b81371950df63b658fd4726c0e9a13bc44a6de320278584a",
+  "supported_answer": "Read the anthropic-ratelimit-requests-remaining response header: it gives the number of requests remaining before being rate limited.",
+  "evidence": [
+   {
+    "version_id": "ver_c8b2c7130cb18508fed4f864d4c3d7a3",
+    "char_start": 24748,
+    "char_end": 24857,
+    "quote": "| `anthropic-ratelimit-requests-remaining`      | The number of requests remaining before being rate limited."
+   }
+  ],
+  "atomic_claims": [
+   "anthropic-ratelimit-requests-remaining reports requests remaining before rate limiting"
+  ],
+  "critical_strings": [
+   "anthropic-ratelimit-requests-remaining"
+  ],
+  "evidence_shape": "single_span_api_reference",
+  "reasoning_type": "direct header lookup",
+  "ambiguity_notes": "Question said 'either' provider; the named header is Anthropic's.",
+  "verifier_notes": "Quote taken from the headers table row including its column separators so the offsets reproduce exactly."
+ },
+ {
+  "case": "B07",
+  "question": "does retry-after come back as seconds or a date",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_c8b2c7130cb18508fed4f864d4c3d7a3",
+  "document_title": "Rate limits",
+  "content_hash": "27738d20da88c513b81371950df63b658fd4726c0e9a13bc44a6de320278584a",
+  "supported_answer": "Seconds. retry-after is the number of seconds to wait until you can retry; earlier retries will fail.",
+  "evidence": [
+   {
+    "version_id": "ver_c8b2c7130cb18508fed4f864d4c3d7a3",
+    "char_start": 24376,
+    "char_end": 24515,
+    "quote": "| `retry-after`                                 | The number of seconds to wait until you can retry the request. Earlier retries will fail."
+   }
+  ],
+  "atomic_claims": [
+   "retry-after is a number of seconds, not a date",
+   "retries earlier than that will fail"
+  ],
+  "critical_strings": [
+   "number of seconds to wait"
+  ],
+  "evidence_shape": "single_span_api_reference",
+  "reasoning_type": "resolving a binary format question",
+  "ambiguity_notes": "Question said 'either' provider; answered from Anthropic's documented header table.",
+  "verifier_notes": "The question offers two options and the corpus states one explicitly, so the answer is decidable without inference."
+ },
+ {
+  "case": "B09",
+  "question": "overloaded_error keeps happening at peak hours. is that a 429 or a 529",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_0774ca0093ff4a846753577c9a4a39d5",
+  "document_title": "Claude API errors",
+  "content_hash": "87c8bda8220ddcffda9f0d8824f2ab04c543dd57706fc3fad9fd1a8864fbfaf1",
+  "supported_answer": "529. overloaded_error is the 529 status: the API is temporarily overloaded, which occurs under high traffic across all users. A 429 is a different situation \u2014 it can appear from acceleration limits when your own organization ramps usage sharply.",
+  "evidence": [
+   {
+    "version_id": "ver_0774ca0093ff4a846753577c9a4a39d5",
+    "char_start": 2457,
+    "char_end": 2519,
+    "quote": "* 529 - `overloaded_error`: The API is temporarily overloaded."
+   },
+   {
+    "version_id": "ver_0774ca0093ff4a846753577c9a4a39d5",
+    "char_start": 2537,
+    "char_end": 2753,
+    "quote": "529 errors can occur when the API experiences high traffic across all users.\n\n    In rare cases, if your organization has a sharp increase in usage, you might see 429 errors because of acceleration limits on the API."
+   }
+  ],
+  "atomic_claims": [
+   "overloaded_error is HTTP 529",
+   "529 occurs under high traffic across all users",
+   "429 from acceleration limits is a distinct case caused by a sharp increase in your own usage"
+  ],
+  "critical_strings": [
+   "529 - `overloaded_error`",
+   "acceleration limits"
+  ],
+  "evidence_shape": "multi_span_disambiguation",
+  "reasoning_type": "resolving a binary question and separating the confusable alternative",
+  "ambiguity_notes": "The question names 'peak hours', which matches the documented 529 condition of high traffic across all users rather than the 429 acceleration case.",
+  "verifier_notes": "Both spans cited because answering '529' alone would leave the 429 the asker suspected unexplained; the second span is what distinguishes them. Triage marked B09 REVIEW \u2014 the corpus resolves it cleanly."
+ }
+]

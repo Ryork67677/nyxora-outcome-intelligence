@@ -1,15 +1,15 @@
 {
  "record_id": "NATQ-002-STAGE3-PROGRESS",
  "updated_utc": "2026-09-04",
- "head_at_checkpoint": "7b6d04a5e95a37d9f0c4e867700c0e0ba257fad8",
+ "head_at_checkpoint": "b90ab47faf865fa377fdda1e655672059721cc4e",
  "authored_total": 150,
- "adjudicated": 31,
- "remaining": 119,
- "supported": 22,
+ "adjudicated": 37,
+ "remaining": 113,
+ "supported": 28,
  "rejected": 9,
  "deferred": 0,
  "validator": {
-  "PASS": 22,
+  "PASS": 28,
   "FAIL": 0,
   "REJECT_recorded": 9
  },
@@ -40,8 +40,8 @@
   },
   "B": {
    "total": 30,
-   "done": 0,
-   "supported": 0,
+   "done": 6,
+   "supported": 6,
    "rejected": 0
   },
   "C": {
@@ -63,10 +63,13 @@
    "rejected": 0
   }
  },
- "slice_A_complete": true,
- "slice_A_rejection_rate": "8/30",
- "overall_rejection_rate": "9/31",
- "yield_projection_note": "Slice A is now closed and its rate is real FOR SLICE A. It is still not a benchmark-wide rate: B, D and E are untouched and C has one case. Each slice came from a different cold-context agent on a different domain prompt.",
+ "slice_rejection_rates": {
+  "A": "8/30",
+  "B": "0/6",
+  "C": "1/1"
+ },
+ "overall_rejection_rate": "9/37",
+ "yield_projection_note": "Slice A closed at 8/30 rejected. Slice B is 0/6 so far. The two slices are behaving very differently, which is why no benchmark-wide rate should be taken yet: A skews to troubleshooting scenarios reference docs do not cover, B to streaming and rate-limit facts they document precisely.",
  "constraints": {
   "natq002_scored": false,
   "holdout_opened": false,
@@ -82,6 +85,7 @@
   "packets-batch-03.json": 5,
   "packets-batch-04.json": 4,
   "packets-batch-05.json": 5,
-  "packets-batch-06.json": 9
+  "packets-batch-06.json": 9,
+  "packets-batch-07.json": 6
  }
 }
