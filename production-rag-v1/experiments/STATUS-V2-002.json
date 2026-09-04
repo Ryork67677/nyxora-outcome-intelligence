@@ -1,0 +1,239 @@
+{
+ "generated_utc": "2026-09-04",
+ "head": "3e9fbfc",
+ "benchmark_id": "NATQ-002",
+ "corpus": {
+  "snapshot": "snap_689e336380a054d8039dc35b2c09cd0a",
+  "chunk_set": "cs_v1_control",
+  "docs": 202,
+  "chunks": 14209,
+  "verified_here": true
+ },
+ "identity": {
+  "natq001": {
+   "total": 100,
+   "validation": 40,
+   "holdout": 60,
+   "validation_status": "EXPOSED to development and model selection",
+   "holdout_status": "PRISTINE, unopened",
+   "id_shape": "NATQ-C-nnn"
+  },
+  "natq002": {
+   "authored": 150,
+   "target": 100,
+   "id_shape": "A01..E30",
+   "scored": false
+  },
+  "collision": false,
+  "migration_map_required": false,
+  "citation_form": "NATQ2-<case>, e.g. NATQ2-A01"
+ },
+ "rename": {
+  "class": "PROVENANCE_ONLY",
+  "content_revision": false,
+  "unchanged": {
+   "authoring/raw-slice-A.json": "299351e39373f35b485ddbce81c061a4adf1cd54c2c6ec1f2af8d2d6e26c952b",
+   "authoring/raw-slice-B.json": "6f765a9b7d56a21e4f90d5c0cbf298fe85d06a24ad7e7b434de43014314a6c41",
+   "authoring/raw-slice-C.json": "16a34ac8f065fc076fe8f9826bb05c93e562bb4c4ad1cc02ede6081580518f14",
+   "authoring/raw-slice-D.json": "1618da10d2b3d223fcaac157161ea15d5d7b6bd9c7446b678e98d64eaca0285e",
+   "authoring/raw-slice-E.json": "f1f06a56e19f4b71440a10a1a68d8021790befdbe06a2351581fb3637bb4a562",
+   "authoring/verification-pass1.json": "1391de3bd89b4fdcb2b6e0151c7ddb67df77c50db4d2282c31d6488cecfb01c0",
+   "stage3/identifier-sweep.json": "1971ccfb32f43569c78872aebda6d2ad0132d6f12cda0275e6cb2ccdd55e2ff6",
+   "stage3/packets-batch-01-partial.json": "3a8a2934d5619ba00a958a2d316c638b6ec9ebe2fa24710d81d472fbf5db8c4d"
+  },
+  "changed": {
+   "NATQ-002-manifest.json": {
+    "old": "b167854268b334d3c601bcea5a82123b9c80895509544052a2f7dec88f8dd671",
+    "new": "c86080e086a5bcfd4534e231269a3bd0d7d611d0b93e819dcb0655d0f721e5b3"
+   },
+   "NATQ-002-protocol.md": {
+    "old": "103b81e05b8368bb38477d9d374f22e3032df0b1f2b497eab978f8313e12af73",
+    "new": "deffee18d9d40da5e041d417b7679d9d317d49eb9215a69c10be2fa4374e4718"
+   }
+  },
+  "question_text_altered": false,
+  "evidence_altered": false,
+  "historical_left_alone": [
+   "experiments/STATUS-V2-001.json",
+   "experiments/STATUS-V2-001.pdf",
+   "scripts/build_status_v2_pdf.py"
+  ]
+ },
+ "stage3": {
+  "done": 8,
+  "raw": 150,
+  "remaining": 142,
+  "supported": 6,
+  "rejected": 2,
+  "cases": [
+   {
+    "case": "A09",
+    "q": "does the model ever call two tools in one response",
+    "status": "SUPPORTED",
+    "shape": "single_span_api_reference",
+    "spans": 1
+   },
+   {
+    "case": "A04",
+    "q": "what happens if my json schema has additionalProperties true with strict mode on",
+    "status": "SUPPORTED",
+    "shape": "single_span_constraint_list",
+    "spans": 1
+   },
+   {
+    "case": "A05",
+    "q": "screenshot resolution for computer use \u2014 does it matter what size my screen is",
+    "status": "SUPPORTED",
+    "shape": "single_span_procedure",
+    "spans": 1
+   },
+   {
+    "case": "C12",
+    "q": "max_tokens deprecated in favor of max_completion_tokens?",
+    "status": "REJECT",
+    "shape": null,
+    "spans": 0
+   },
+   {
+    "case": "A02",
+    "q": "tool_choice required vs any \u2014 whats the difference",
+    "status": "SUPPORTED",
+    "shape": "multi_span_cross_provider",
+    "spans": 2
+   },
+   {
+    "case": "A03",
+    "q": "I want the model to return ONLY valid json no preamble text",
+    "status": "SUPPORTED",
+    "shape": "multi_span_procedure",
+    "spans": 2
+   },
+   {
+    "case": "A08",
+    "q": "getting an error that my schema root must be an object",
+    "status": "REJECT",
+    "shape": "\u2014",
+    "spans": 0
+   },
+   {
+    "case": "A10",
+    "q": "how do i turn off parallel tool calls",
+    "status": "SUPPORTED",
+    "shape": "single_span_api_reference",
+    "spans": 1
+   }
+  ]
+ },
+ "dedup": {
+  "lexical_pairs": 2,
+  "threshold": 0.34,
+  "missed": {
+   "pair": [
+    "A09",
+    "A10"
+   ],
+   "A09": "does the model ever call two tools in one response",
+   "A10": "how do i turn off parallel tool calls",
+   "lexical_similarity": "below threshold \u2014 the two share almost no content vocabulary",
+   "gold_span_A09": "ver_18c692f4d28bd01c0a5cac553fcf01a7 @35392-35574",
+   "gold_span_A10": "ver_18c692f4d28bd01c0a5cac553fcf01a7 @35392-35574",
+   "relationship": "BYTE-IDENTICAL SPAN",
+   "why_it_matters": "Two accepted cases resolving to one span double that span's weight in every aggregate metric, and a system that happens to retrieve it well gets paid twice for one capability."
+  },
+  "rule": {
+   "detect": "after all 150 are adjudicated, group SUPPORTED cases by their gold span set; any group of size > 1 is an evidence collision",
+   "adjudicate": "each collision gets an explicit ruling \u2014 keep one, keep both because the reasoning types genuinely differ, or reject both",
+   "do_not": "do not resolve collisions by looking at how any retrieval system scores the cases",
+   "record": "every ruling is written down with its reason before the accepted 100 are frozen"
+  },
+  "collisions": [
+   {
+    "cases": [
+     "A09",
+     "A10"
+    ],
+    "span": "ver_18c692f4d28bd01c0a5cac553fcf01a7 @35392-35574",
+    "ruling": "DEFERRED to the post-adjudication dedup gate"
+   }
+  ]
+ },
+ "exp029a": {
+  "status": "CANNOT_EXECUTE",
+  "why": [
+   "The measurement artifact does not exist. The operator confirmed in writing: 'EXP-029A raw JSONL does not exist on this machine. There is no EXP-029A-raw-outputs.jsonl anywhere on the Windows box or the coordinator host.' The generation half of EXP-029A has therefore never been run by anyone.",
+   "This container cannot run it either. The EXP-029A specification pins CUDA / RTX 3060 / float16 and microsoft/Phi-4-mini-instruct at revision cfbefacb99257ffa30c83adab238a50856ac3083. This session has no GPU, no torch, no transformers, and huggingface.co is unreachable through the agent proxy (CONNECT tunnel failed, response 403). The same two blockers previously stopped EXP-025A.",
+   "No score may be produced from either side. Inventing, estimating, or back-deriving EXP-029A numbers from the upstream comparators is explicitly out of bounds and would be unfalsifiable."
+  ],
+  "ready": [
+   "All 23 STOP-condition checks from the EXP-029A specification.",
+   "The ten preregistered gate conditions.",
+   "The locked-16 recovery table against the NATQ-DIAG-002 locked span set.",
+   "Preservation check against the EXP-026A all-pointwise oracle recognized-span set.",
+   "The canonical multi-span diagnosis under METRIC-DEFS-V2 (12 cases / 25 spans).",
+   "Micro-MRR over the canonical 53 gold spans."
+  ],
+  "unblock": "A completed EXP-029A generation run on a CUDA host producing EXP-029A-raw-outputs.jsonl, delivered with its SHA256. Until that file exists and its hash is recorded, EXP-029A has no result and no SUPPORTED value.",
+  "scores_emitted": null,
+  "env": {
+   "cuda_available": false,
+   "torch_installed": false,
+   "transformers_installed": false,
+   "huggingface_co_reachable": false,
+   "huggingface_failure_mode": "CONNECT tunnel failed, response 403",
+   "verified_here": true
+  }
+ },
+ "lineage": {
+  "verified_here": false,
+  "byte_verified": false,
+  "artifacts": [
+   "METRIC-DEFS-V2.json",
+   "METRIC-DEFS-V2-RECONCILIATION.md",
+   "EXP-025A-REPORT.md",
+   "EXP-025A-RESULTS.json",
+   "EXP-026A-REPORT.md",
+   "EXP-026A-RESULTS.json",
+   "NATQ-DIAG-002-REPORT.md",
+   "NATQ-DIAG-002-STOP.json",
+   "NATQ-DIAG-002-aggregate.json",
+   "NATQ-DIAG-002-target-population.canonical.json",
+   "NATQ-DIAG-002-per-span.jsonl",
+   "EXP-027A-REPORT.md",
+   "EXP-027A-RESULTS.json",
+   "EXP-028A-REPORT.md",
+   "EXP-028A-RESULTS.json",
+   "EXP-028A-preregistration.json",
+   "SYSTEM-N-DOC-LISTWISE-RECOGNIZER.json"
+  ],
+  "chain": [
+   "EXP-023A SUPPORTED=false (verified in this repository)",
+   "EXP-024A SUPPORTED=false (accepted by the coordinator; oracle analysis stopped mid-run here)",
+   "EXP-025A SUPPORTED=false (relayed)",
+   "EXP-026A SUPPORTED=false (relayed)",
+   "NATQ-DIAG-002 diagnostic, no SUPPORTED value (relayed)",
+   "EXP-027A SUPPORTED=false (relayed)",
+   "EXP-028A SUPPORTED=false (relayed)",
+   "EXP-029A no result \u2014 measurement artifact does not exist"
+  ],
+  "corroborated": [
+   "METRIC-DEFS-V2 canonical definitions match the EXP-024A Phase 0 reconciliation performed independently in this session.",
+   "EXP-026A cites artifacts produced and hashed in this session as its inputs.",
+   "METRIC-DEFS-V2 credits this session's EXP-023A artifacts."
+  ]
+ },
+ "constraints": {
+  "natq002_scored": false,
+  "holdout_opened": false,
+  "split_decided": false,
+  "systems_overwritten": false,
+  "frozen_checkout_edited": false,
+  "scores_invented": false
+ },
+ "file_hashes": {
+  "experiments/NATQ-002/NATQ-002-manifest.json": "c86080e086a5bcfd4534e231269a3bd0d7d611d0b93e819dcb0655d0f721e5b3",
+  "experiments/NATQ-002/NATQ-002-RENAME-PROVENANCE.json": "5c7526f0e90ad96b7cbe658045cf21de5c8e045000d7b71054714decaebabc73",
+  "experiments/NATQ-002/stage3/DEDUP-FINDING-001.json": "5d95ccfa4fcea6d7b3120fb0e7d9fb0c68372aef4bb5075e796e5c7d261806c4",
+  "experiments/NATQ-002/stage3/packets-batch-02.json": "8e325a265342ded6f3eb9a8685054093236ef12f8b2f96911d5876d45fcf6514",
+  "experiments/EXP-029A/EXP-029A-CANNOT-EXECUTE.json": "07f4b422318db508be32f699fb9a048c2e8dcc6746e47db51b6b573c62af4b2a"
+ }
+}
