@@ -1,0 +1,394 @@
+[
+ {
+  "case": "C01",
+  "question": "the setting that makes the model less random",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_18c692f4d28bd01c0a5cac553fcf01a7",
+  "document_title": "Messages",
+  "content_hash": "740d6dab47889293f412ae5f2afe85897d0e2227935081d372724a6e773bb3ff",
+  "supported_answer": "temperature. It controls the amount of randomness injected into the response \u2014 closer to 0.0 for analytical or multiple-choice work, closer to 1.0 for creative generation.",
+  "evidence": [
+   {
+    "version_id": "ver_18c692f4d28bd01c0a5cac553fcf01a7",
+    "char_start": 32891,
+    "char_end": 32939,
+    "quote": "Amount of randomness injected into the response."
+   },
+   {
+    "version_id": "ver_18c692f4d28bd01c0a5cac553fcf01a7",
+    "char_start": 32990,
+    "char_end": 33112,
+    "quote": "Use `temperature` closer to `0.0` for analytical / multiple choice, and closer to `1.0` for creative and generative tasks."
+   }
+  ],
+  "atomic_claims": [
+   "temperature controls the amount of randomness in the response",
+   "values closer to 0.0 suit analytical tasks, closer to 1.0 suit creative ones"
+  ],
+  "critical_strings": [
+   "`temperature`",
+   "randomness"
+  ],
+  "evidence_shape": "multi_span_api_reference",
+  "reasoning_type": "naming a parameter from a description of its effect",
+  "ambiguity_notes": "Question said 'either' provider. Both providers expose temperature; answered from Anthropic where the parameter's effect is described in these words.",
+  "verifier_notes": "The asker describes the effect rather than naming the parameter, so the gold span is the description, not a heading."
+ },
+ {
+  "case": "C03",
+  "question": "my output just stops mid sentence, is that max_tokens or something else",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_4d14aec24504f4b8f6f28938b84587dc",
+  "document_title": "Stop reasons and fallback",
+  "content_hash": "26ef37c1864a0cb2972f51e3242abd902944660dda84c7ba51a3bef654488bc1",
+  "supported_answer": "Most likely max_tokens: that stop reason means the response reached your max_tokens limit. It is not the only possibility \u2014 on Claude 4.5 and newer, running into the context window during generation stops with model_context_window_exceeded instead \u2014 so read stop_reason rather than assuming.",
+  "evidence": [
+   {
+    "version_id": "ver_4d14aec24504f4b8f6f28938b84587dc",
+    "char_start": 1686,
+    "char_end": 1876,
+    "quote": "| [`max_tokens`](https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons#max-tokens)                                       | The response reached your `max_tokens` limit."
+   },
+   {
+    "version_id": "ver_b42814c2d273210095c8e5844612933e",
+    "char_start": 14232,
+    "char_end": 14474,
+    "quote": "On Claude 4.5 models and newer, if input tokens plus `max_tokens` exceeds the context window size, the API accepts the request. If generation then reaches the context window limit, it stops with `stop_reason: \"model_context_window_exceeded\"`."
+   }
+  ],
+  "atomic_claims": [
+   "stop_reason max_tokens means the response reached the max_tokens limit",
+   "on Claude 4.5 and newer, reaching the context window during generation gives stop_reason model_context_window_exceeded"
+  ],
+  "critical_strings": [
+   "`max_tokens`",
+   "model_context_window_exceeded"
+  ],
+  "evidence_shape": "multi_span_disambiguation",
+  "reasoning_type": "answering 'which cause' by enumerating the documented alternatives",
+  "ambiguity_notes": "Question said 'either' provider. The asker offers max_tokens as a hypothesis; the corpus confirms it as one cause and documents a second, so a bare yes would be incomplete.",
+  "verifier_notes": "Cross-document within one provider: the second span comes from Context windows, carried on the span's own version_id."
+ },
+ {
+  "case": "C04",
+  "question": "how do i tell if a response was cut off because of length vs a stop sequence",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_18c692f4d28bd01c0a5cac553fcf01a7",
+  "document_title": "Messages",
+  "content_hash": "740d6dab47889293f412ae5f2afe85897d0e2227935081d372724a6e773bb3ff",
+  "supported_answer": "Read stop_reason. A length cut-off gives max_tokens; hitting a custom stop sequence gives stop_reason \"stop_sequence\", and the response's stop_sequence field then contains the matched string.",
+  "evidence": [
+   {
+    "version_id": "ver_18c692f4d28bd01c0a5cac553fcf01a7",
+    "char_start": 31825,
+    "char_end": 32015,
+    "quote": "If the model encounters one of the custom sequences, the response `stop_reason` value will be `\"stop_sequence\"` and the response `stop_sequence` value will contain the matched stop sequence."
+   },
+   {
+    "version_id": "ver_4d14aec24504f4b8f6f28938b84587dc",
+    "char_start": 1686,
+    "char_end": 1876,
+    "quote": "| [`max_tokens`](https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons#max-tokens)                                       | The response reached your `max_tokens` limit."
+   }
+  ],
+  "atomic_claims": [
+   "a matched custom sequence yields stop_reason stop_sequence",
+   "the response stop_sequence field contains the matched sequence",
+   "reaching the token limit yields stop_reason max_tokens"
+  ],
+  "critical_strings": [
+   "`\"stop_sequence\"`",
+   "`max_tokens`"
+  ],
+  "evidence_shape": "multi_span_disambiguation",
+  "reasoning_type": "distinguishing two stop reasons",
+  "ambiguity_notes": "Question said 'either' provider; answered from Anthropic where both stop reasons are named.",
+  "verifier_notes": "Cross-document within one provider, spans carrying their own version_ids."
+ },
+ {
+  "case": "C10",
+  "question": "getting an error that my input is too long but i counted the tokens and it fits",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_b42814c2d273210095c8e5844612933e",
+  "document_title": "Context windows",
+  "content_hash": "2a925449b15fbcf2d1e82ece6e81aa1a84b653bb91540a2dee339d5888859b4d",
+  "supported_answer": "Two different limits are in play. If the input alone exceeds the context window you get a 400 invalid_request_error (\"prompt is too long\"). But on Claude 4.5 and newer, input plus max_tokens exceeding the window is accepted and only stops mid-generation with model_context_window_exceeded \u2014 so a count that 'fits' on input alone can still fail once max_tokens is added, and on earlier models that combination is a validation error up front.",
+  "evidence": [
+   {
+    "version_id": "ver_b42814c2d273210095c8e5844612933e",
+    "char_start": 14083,
+    "char_end": 14230,
+    "quote": "If the input alone already exceeds the model's context window, the API returns a 400 `invalid_request_error` (\"prompt is too long\") on every model."
+   },
+   {
+    "version_id": "ver_b42814c2d273210095c8e5844612933e",
+    "char_start": 14232,
+    "char_end": 14474,
+    "quote": "On Claude 4.5 models and newer, if input tokens plus `max_tokens` exceeds the context window size, the API accepts the request. If generation then reaches the context window limit, it stops with `stop_reason: \"model_context_window_exceeded\"`."
+   }
+  ],
+  "atomic_claims": [
+   "input alone exceeding the context window returns a 400 invalid_request_error, prompt is too long",
+   "on Claude 4.5 and newer, input plus max_tokens over the window is accepted and stops with model_context_window_exceeded",
+   "on earlier models that combination returns a validation error instead"
+  ],
+  "critical_strings": [
+   "`invalid_request_error`",
+   "model_context_window_exceeded"
+  ],
+  "evidence_shape": "multi_span_cause",
+  "reasoning_type": "explaining a contradiction between the asker's count and the API's verdict",
+  "ambiguity_notes": "Question said 'either' provider. The asker's premise is that their count fits; the corpus explains that max_tokens is counted against the window too, which is the usual reason a passing count still errors.",
+  "verifier_notes": "Both spans from the overflow section. The behaviour is model-generation dependent, and the answer preserves that split rather than stating one rule."
+ },
+ {
+  "case": "C11",
+  "question": "max_tokens vs context window \u2014 are these the same thing",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_b42814c2d273210095c8e5844612933e",
+  "document_title": "Context windows",
+  "content_hash": "2a925449b15fbcf2d1e82ece6e81aa1a84b653bb91540a2dee339d5888859b4d",
+  "supported_answer": "No. The context window bounds input plus output together; max_tokens bounds only the generation. On Claude 4.5 and newer the API accepts input plus max_tokens exceeding the window and stops generation with model_context_window_exceeded if it actually runs into the limit.",
+  "evidence": [
+   {
+    "version_id": "ver_b42814c2d273210095c8e5844612933e",
+    "char_start": 14232,
+    "char_end": 14474,
+    "quote": "On Claude 4.5 models and newer, if input tokens plus `max_tokens` exceeds the context window size, the API accepts the request. If generation then reaches the context window limit, it stops with `stop_reason: \"model_context_window_exceeded\"`."
+   }
+  ],
+  "atomic_claims": [
+   "max_tokens and the context window are distinct limits",
+   "input tokens plus max_tokens are considered against the context window size"
+  ],
+  "critical_strings": [
+   "max_tokens",
+   "context window"
+  ],
+  "evidence_shape": "single_span_distinction",
+  "reasoning_type": "separating two limits the asker conflates",
+  "ambiguity_notes": "Question said 'either' provider. The corpus does not carry a one-line definitional contrast; this span states the relationship between the two limits, which answers the question without bridging sections.",
+  "verifier_notes": "Shares its span with C10's second span \u2014 a partial overlap, not an identical span set, so not an exact-span collision. Noted for the chunk-level advisory."
+ },
+ {
+  "case": "C13",
+  "question": "whats the biggest ctx i can actually use on sonnet right now",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_b42814c2d273210095c8e5844612933e",
+  "document_title": "Context windows",
+  "content_hash": "2a925449b15fbcf2d1e82ece6e81aa1a84b653bb91540a2dee339d5888859b4d",
+  "supported_answer": "1M tokens. Claude Sonnet 5 and Claude Sonnet 4.6 have a 1M-token context window; other Sonnet models including Claude Sonnet 4.5 have 200k. For 1M-window models, 1M is the default and needs no beta header.",
+  "evidence": [
+   {
+    "version_id": "ver_b42814c2d273210095c8e5844612933e",
+    "char_start": 3223,
+    "char_end": 3430,
+    "quote": "Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 5, and Claude Sonnet 4.6 have a 1M-token context window on the Claude API, Amazon Bedrock, Google Cloud, and Microsoft Foundry."
+   },
+   {
+    "version_id": "ver_b42814c2d273210095c8e5844612933e",
+    "char_start": 3834,
+    "char_end": 4069,
+    "quote": "For every model with a 1M-token context window, 1M is the default: you don't need a beta header, and long-context requests are billed at [standard pricing](https://platform.claude.com/docs/en/about-claude/pricing#long-context-pricing)."
+   }
+  ],
+  "atomic_claims": [
+   "Claude Sonnet 5 and Claude Sonnet 4.6 have a 1M-token context window",
+   "1M is the default on those models and requires no beta header"
+  ],
+  "critical_strings": [
+   "1M-token context window",
+   "Sonnet 5"
+  ],
+  "evidence_shape": "multi_span_capability",
+  "reasoning_type": "model-scoped limit lookup",
+  "ambiguity_notes": "'Right now' is the asker's framing; the answer is scoped to the models the frozen snapshot lists rather than claiming a current-at-read-time value.",
+  "verifier_notes": "The second span is included because it pre-empts the natural follow-up and directly contradicts the common assumption that 1M needs a beta header."
+ },
+ {
+  "case": "C14",
+  "question": "is there a header i need to send to enable the 1m token context thing",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_b42814c2d273210095c8e5844612933e",
+  "document_title": "Context windows",
+  "content_hash": "2a925449b15fbcf2d1e82ece6e81aa1a84b653bb91540a2dee339d5888859b4d",
+  "supported_answer": "No. For every model with a 1M-token context window, 1M is the default \u2014 no beta header is needed \u2014 and long-context requests are billed at standard pricing.",
+  "evidence": [
+   {
+    "version_id": "ver_b42814c2d273210095c8e5844612933e",
+    "char_start": 3834,
+    "char_end": 4069,
+    "quote": "For every model with a 1M-token context window, 1M is the default: you don't need a beta header, and long-context requests are billed at [standard pricing](https://platform.claude.com/docs/en/about-claude/pricing#long-context-pricing)."
+   }
+  ],
+  "atomic_claims": [
+   "no beta header is required for a 1M-token context window",
+   "1M is the default on models that have it",
+   "long-context requests are billed at standard pricing"
+  ],
+  "critical_strings": [
+   "don't need a beta header"
+  ],
+  "evidence_shape": "single_span_refutation",
+  "reasoning_type": "refuting the asker's assumption",
+  "ambiguity_notes": "Question said anthropic. The corpus answers the header question directly and negatively.",
+  "verifier_notes": "Shares its gold span with C13's second span but C13 has two spans, so the span SETS differ and this is not an exact-span collision. Flagged for the chunk-level advisory."
+ },
+ {
+  "case": "C16",
+  "question": "count tokens before sending, is there an endpoint for that",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_76c80d3d80b12ae7870092b39f1832f1",
+  "document_title": "Token counting",
+  "content_hash": "39238a4c97fa9362a2051f4d77290cd94f49d376035b824d673d55a7c2b97fbf",
+  "supported_answer": "Yes \u2014 the token counting endpoint. It accepts the same structured inputs as message creation, including system prompts, tools, images and PDFs, and returns the total input tokens. The count is an estimate and may differ slightly from actual usage.",
+  "evidence": [
+   {
+    "version_id": "ver_76c80d3d80b12ae7870092b39f1832f1",
+    "char_start": 1002,
+    "char_end": 1487,
+    "quote": "The [token counting](https://platform.claude.com/docs/en/api/messages-count-tokens) endpoint accepts the same structured list of inputs for creating a message, including support for system prompts, [tools](https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview), [images](https://platform.claude.com/docs/en/build-with-claude/vision), and [PDFs](https://platform.claude.com/docs/en/build-with-claude/pdf-support). The response contains the total number of input tokens."
+   }
+  ],
+  "atomic_claims": [
+   "a token counting endpoint exists",
+   "it accepts the same structured inputs as creating a message, including system prompts, tools, images and PDFs",
+   "the response contains the total number of input tokens"
+  ],
+  "critical_strings": [
+   "token counting",
+   "total number of input tokens"
+  ],
+  "evidence_shape": "single_span_capability",
+  "reasoning_type": "existence-and-shape lookup",
+  "ambiguity_notes": "Question said 'either' provider; answered from Anthropic's documented endpoint.",
+  "verifier_notes": "The estimate caveat is stated in the answer from the adjacent Note but is not part of the atomic claims, since it is outside the cited span."
+ },
+ {
+  "case": "C17",
+  "question": "stop sequences \u2014 is the stop string included in what i get back?",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_18c692f4d28bd01c0a5cac553fcf01a7",
+  "document_title": "Messages",
+  "content_hash": "740d6dab47889293f412ae5f2afe85897d0e2227935081d372724a6e773bb3ff",
+  "supported_answer": "Yes, in its own field. When the model hits a custom sequence, stop_reason is \"stop_sequence\" and the response's stop_sequence value contains the matched sequence.",
+  "evidence": [
+   {
+    "version_id": "ver_18c692f4d28bd01c0a5cac553fcf01a7",
+    "char_start": 31825,
+    "char_end": 32015,
+    "quote": "If the model encounters one of the custom sequences, the response `stop_reason` value will be `\"stop_sequence\"` and the response `stop_sequence` value will contain the matched stop sequence."
+   }
+  ],
+  "atomic_claims": [
+   "a matched stop sequence sets stop_reason to stop_sequence",
+   "the response stop_sequence field contains the matched sequence"
+  ],
+  "critical_strings": [
+   "stop_sequence"
+  ],
+  "evidence_shape": "single_span_api_reference",
+  "reasoning_type": "locating where a value is returned",
+  "ambiguity_notes": "The asker may mean the content text rather than a field. The corpus states only that the matched sequence is returned in the stop_sequence field and says nothing about whether it appears in the generated text, so the answer is scoped to the field and the gap is not filled by inference.",
+  "verifier_notes": "This scoping is the A11 discipline applied in the supported direction: cite what is stated, name what is not."
+ },
+ {
+  "case": "C20",
+  "question": "i set temperature 0 and still get different answers every run, why",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_18c692f4d28bd01c0a5cac553fcf01a7",
+  "document_title": "Messages",
+  "content_hash": "740d6dab47889293f412ae5f2afe85897d0e2227935081d372724a6e773bb3ff",
+  "supported_answer": "Because temperature 0.0 is not a determinism guarantee. The corpus states plainly that even with temperature of 0.0 the results will not be fully deterministic.",
+  "evidence": [
+   {
+    "version_id": "ver_18c692f4d28bd01c0a5cac553fcf01a7",
+    "char_start": 33116,
+    "char_end": 33204,
+    "quote": "Note that even with `temperature` of `0.0`, the results will not be fully deterministic."
+   }
+  ],
+  "atomic_claims": [
+   "temperature 0.0 does not make results fully deterministic"
+  ],
+  "critical_strings": [
+   "not be fully deterministic"
+  ],
+  "evidence_shape": "single_span_refutation",
+  "reasoning_type": "refuting the asker's assumption",
+  "ambiguity_notes": "Question said 'either' provider; answered from Anthropic's parameter documentation.",
+  "verifier_notes": "EVIDENCE DUPLICATE OF A26. Byte-identical span. A26 asks whether forcing a tool makes tool input deterministic at temperature 0; C20 asks why identical settings give different answers. Different questions, one gold span. Flagged for the final collision gate."
+ },
+ {
+  "case": "C22",
+  "question": "reasoning models complain when i send temperature",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_012b734775e7edb2649d3a9ddfd93070",
+  "document_title": "Thinking",
+  "content_hash": "c4bc2186d26e8abe4a7aa72e683ad2f16931f5ff91cfea66de76a4c347ffd0ad",
+  "supported_answer": "On current Claude models any non-default temperature, top_p or top_k returns a 400 error on every request, whether or not thinking is used. On older models the restriction applied only while thinking was on.",
+  "evidence": [
+   {
+    "version_id": "ver_012b734775e7edb2649d3a9ddfd93070",
+    "char_start": 56212,
+    "char_end": 56471,
+    "quote": "On Claude Fable 5, Claude Mythos 5, Claude Mythos Preview, Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, and Claude Sonnet 5, non-default `temperature`, `top_p`, or `top_k` values return a 400 error on every request, regardless of whether thinking is used."
+   }
+  ],
+  "atomic_claims": [
+   "non-default temperature, top_p or top_k return a 400 error on the listed current models",
+   "this applies regardless of whether thinking is used",
+   "on older models the restriction applied only while thinking was on"
+  ],
+  "critical_strings": [
+   "non-default `temperature`",
+   "400 error"
+  ],
+  "evidence_shape": "single_span_constraint",
+  "reasoning_type": "explaining a rejected parameter",
+  "ambiguity_notes": "The author guessed OpenAI, but the question names no provider and the corpus documents this behaviour for Claude. Answered from Anthropic and scoped to Claude models rather than generalised to all reasoning models.",
+  "verifier_notes": "EVIDENCE DUPLICATE OF C23 \u2014 same span, different questions. Flagged for the final collision gate."
+ },
+ {
+  "case": "C23",
+  "question": "can i use temperature together with extended thinking on claude",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_012b734775e7edb2649d3a9ddfd93070",
+  "document_title": "Thinking",
+  "content_hash": "c4bc2186d26e8abe4a7aa72e683ad2f16931f5ff91cfea66de76a4c347ffd0ad",
+  "supported_answer": "Not on current models: non-default temperature, top_p or top_k return a 400 error on every request there, regardless of thinking. On older models temperature and top_k were incompatible with thinking while it was on, and top_p was allowed between 0.95 and 1.",
+  "evidence": [
+   {
+    "version_id": "ver_012b734775e7edb2649d3a9ddfd93070",
+    "char_start": 56212,
+    "char_end": 56471,
+    "quote": "On Claude Fable 5, Claude Mythos 5, Claude Mythos Preview, Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, and Claude Sonnet 5, non-default `temperature`, `top_p`, or `top_k` values return a 400 error on every request, regardless of whether thinking is used."
+   }
+  ],
+  "atomic_claims": [
+   "on the listed current models non-default sampling parameters return a 400 error regardless of thinking",
+   "on older models temperature and top_k were incompatible with thinking while thinking was on"
+  ],
+  "critical_strings": [
+   "non-default `temperature`",
+   "400 error",
+   "regardless of whether thinking is used"
+  ],
+  "evidence_shape": "single_span_constraint",
+  "reasoning_type": "compatibility check between a parameter and a feature",
+  "ambiguity_notes": "The answer preserves the model-generation split rather than stating one blanket rule, because the corpus states two different regimes.",
+  "verifier_notes": "EVIDENCE DUPLICATE OF C22. Both resolve to this span; C22 asks why the error occurs, C23 asks whether the combination is allowed."
+ }
+]
