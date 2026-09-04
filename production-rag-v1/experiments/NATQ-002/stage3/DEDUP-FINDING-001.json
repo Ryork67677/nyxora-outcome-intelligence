@@ -1,0 +1,44 @@
+{
+  "record_id": "NATQ-002-DEDUP-FINDING-001",
+  "recorded_utc": "2026-09-04",
+  "stage": "3 — evidence and adjudication",
+
+  "finding": "Duplicate cases in NATQ-002 must be detected by shared GOLD EVIDENCE, not by question wording. A lexical screen is not sufficient and would have let a duplicate into the accepted 100.",
+
+  "evidence_for_the_finding": {
+    "lexical_screen": {
+      "method": "pairwise Jaccard over content tokens of question + intent, all 150 authored questions",
+      "threshold": 0.34,
+      "pairs_found": 2,
+      "pairs": [
+        ["B10", "C30", 0.389, "chat completions -> responses API migration"],
+        ["D05", "D21", 0.385, "anthropic python client, different attributes"]
+      ]
+    },
+    "the_case_it_missed": {
+      "pair": ["A09", "A10"],
+      "A09": "does the model ever call two tools in one response",
+      "A10": "how do i turn off parallel tool calls",
+      "lexical_similarity": "below threshold — the two share almost no content vocabulary",
+      "gold_span_A09": "ver_18c692f4d28bd01c0a5cac553fcf01a7 @35392-35574",
+      "gold_span_A10": "ver_18c692f4d28bd01c0a5cac553fcf01a7 @35392-35574",
+      "relationship": "BYTE-IDENTICAL SPAN",
+      "why_it_matters": "Two accepted cases resolving to one span double that span's weight in every aggregate metric, and a system that happens to retrieve it well gets paid twice for one capability."
+    }
+  },
+
+  "consequence_for_the_build": "Evidence-collision detection cannot run before adjudication, because the gold span is the thing being compared and it does not exist until a case is adjudicated. Dedup is therefore a gate BETWEEN full adjudication and the selection of the accepted 100 — not a pre-screen.",
+
+  "rule_adopted": {
+    "detect": "after all 150 are adjudicated, group SUPPORTED cases by their gold span set; any group of size > 1 is an evidence collision",
+    "adjudicate": "each collision gets an explicit ruling — keep one, keep both because the reasoning types genuinely differ, or reject both",
+    "do_not": "do not resolve collisions by looking at how any retrieval system scores the cases",
+    "record": "every ruling is written down with its reason before the accepted 100 are frozen"
+  },
+
+  "collisions_found_so_far": [
+    {"cases": ["A09", "A10"], "span": "ver_18c692f4d28bd01c0a5cac553fcf01a7 @35392-35574", "ruling": "DEFERRED to the post-adjudication dedup gate"}
+  ],
+
+  "note": "Both A09 and A10 are individually valid and correctly adjudicated. They are recorded as PASS with the collision flagged. Nothing is deleted at this stage."
+}

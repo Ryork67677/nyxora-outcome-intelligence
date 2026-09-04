@@ -92,9 +92,16 @@ def validate(packets: list[dict], docs) -> list[dict]:
             results.append({"case": p["case"], "verdict": "FIX_REQUIRED",
                             "failures": [f"unknown version_id {vid}"]})
             continue
-        text = docs[vid]["text"]
+        # A span may name its own version_id; a cross-document case needs that.
+        # Anything that omits it is anchored in the packet's document.
+        span_vids = []
         for i, sp in enumerate(p.get("evidence", [])):
-            got = text[sp["char_start"]:sp["char_end"]]
+            svid = sp.get("version_id", vid)
+            if svid not in docs:
+                f.append(f"span {i}: unknown version_id {svid}")
+                continue
+            span_vids.append(svid)
+            got = docs[svid]["text"][sp["char_start"]:sp["char_end"]]
             if got != sp["quote"]:
                 f.append(f"span {i}: offsets do not reproduce the quote "
                          f"(got {len(got)} chars, quote {len(sp['quote'])})")
@@ -106,8 +113,16 @@ def validate(packets: list[dict], docs) -> list[dict]:
                 f.append(f"critical string absent from evidence: {s!r}")
         if not p.get("atomic_claims"):
             f.append("no atomic claims")
-        if p.get("provider") != docs[vid]["provider"]:
-            f.append(f"provider {p.get('provider')} != source {docs[vid]['provider']}")
+        # Provider must describe where the evidence actually lives. A case whose
+        # spans cross providers has to say so rather than claim one of them.
+        provs = sorted({docs[v]["provider"] for v in span_vids})
+        if len(provs) > 1:
+            if p.get("provider") != "cross-provider":
+                f.append(f"evidence spans providers {provs}; provider must be 'cross-provider'")
+            if sorted(p.get("providers", [])) != provs:
+                f.append(f"providers field {p.get('providers')} != evidence providers {provs}")
+        elif provs and p.get("provider") != provs[0]:
+            f.append(f"provider {p.get('provider')} != source {provs[0]}")
         results.append({"case": p["case"], "verdict": "PASS" if not f else "FIX_REQUIRED",
                         "failures": f})
     return results

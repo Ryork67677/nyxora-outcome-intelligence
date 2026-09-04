@@ -1,0 +1,123 @@
+[
+ {
+  "case": "A02",
+  "question": "tool_choice required vs any \u2014 whats the difference",
+  "support_status": "SUPPORTED",
+  "provider": "cross-provider",
+  "providers": [
+   "anthropic",
+   "openai"
+  ],
+  "version_id": "ver_18c692f4d28bd01c0a5cac553fcf01a7",
+  "document_title": "Messages + Agents (cross-document)",
+  "content_hash": "740d6dab47889293f412ae5f2afe85897d0e2227935081d372724a6e773bb3ff",
+  "supported_answer": "They are two different vendors' names for forcing a tool call, not two settings in one API. In the OpenAI Agents SDK, tool_choice='required' makes the LLM use a tool while still letting it pick which one. In the Anthropic Messages API the equivalent is tool_choice type 'any' \u2014 the model will use any available tool. Anthropic has no 'required' value and OpenAI's Agents SDK has no 'any' value.",
+  "evidence": [
+   {
+    "version_id": "ver_35cac5e98c151a17f941a6142d74709f",
+    "char_start": 13201,
+    "char_end": 13298,
+    "quote": "2. `required`, which requires the LLM to use a tool (but it can intelligently decide which tool)."
+   },
+   {
+    "version_id": "ver_18c692f4d28bd01c0a5cac553fcf01a7",
+    "char_start": 35578,
+    "char_end": 35704,
+    "quote": "- `ToolChoiceAny object { type, disable_parallel_tool_use }`\n\n    The model will use any available tools.\n\n    - `type: \"any\"`"
+   }
+  ],
+  "atomic_claims": [
+   "in the OpenAI Agents SDK, tool_choice 'required' forces a tool call but lets the LLM choose which tool",
+   "in the Anthropic Messages API, tool_choice type 'any' makes the model use any available tool"
+  ],
+  "critical_strings": [
+   "`required`",
+   "ToolChoiceAny"
+  ],
+  "evidence_shape": "multi_span_cross_provider",
+  "reasoning_type": "cross-provider terminology reconciliation",
+  "ambiguity_notes": "The question presumes 'required' and 'any' are alternatives within one API. They are not; they belong to different providers. The answer corrects the premise rather than adopting it.",
+  "verifier_notes": "Deliberately cross-document: no single document in the snapshot defines both values. This is the first packet to use span-level version_id."
+ },
+ {
+  "case": "A03",
+  "question": "I want the model to return ONLY valid json no preamble text",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_0865c9612dfe97d8f30dd870dd12e53e",
+  "document_title": "Structured outputs",
+  "content_hash": "1440ba74d6eb67920a9748b13c5e6abb42fda52e0609c6fe848b1c75b20d4f2a",
+  "supported_answer": "Use structured outputs. Set output_config.format with type 'json_schema' and your schema; the response is then valid JSON matching that schema, returned in the response's text content block. The guarantee comes from the parameter, not from instructing the model in the prompt.",
+  "evidence": [
+   {
+    "version_id": "ver_0865c9612dfe97d8f30dd870dd12e53e",
+    "char_start": 13022,
+    "char_end": 13141,
+    "quote": "Include the `output_config.format` parameter in your API request with `type: \"json_schema\"` and your schema definition."
+   },
+   {
+    "version_id": "ver_0865c9612dfe97d8f30dd870dd12e53e",
+    "char_start": 13193,
+    "char_end": 13293,
+    "quote": "Claude's response is valid JSON matching your schema, returned in the response's text content block."
+   }
+  ],
+  "atomic_claims": [
+   "output_config.format with type json_schema is the parameter that requests JSON output",
+   "the response is valid JSON matching the supplied schema, in the text content block"
+  ],
+  "critical_strings": [
+   "output_config.format",
+   "type: \"json_schema\"",
+   "valid JSON matching your schema"
+  ],
+  "evidence_shape": "multi_span_procedure",
+  "reasoning_type": "mapping a colloquial goal onto the documented parameter",
+  "ambiguity_notes": "The phrase 'no preamble text' is the user's framing. The corpus does not describe suppressing a preamble; it states the response IS valid JSON in the text block. The answer says what the corpus says rather than adopting the user's wording.",
+  "verifier_notes": "The literal string 'only valid JSON' is absent from the snapshot; the anchor is the documented mechanism, not the user's phrasing."
+ },
+ {
+  "case": "A08",
+  "question": "getting an error that my schema root must be an object",
+  "support_status": "REJECT",
+  "rejection_reason": "Premise not documented in the frozen corpus. The Structured outputs document enumerates schema constraints in full under 'JSON Schema limitations' (supported features, unsupported features, regex support) and states no constraint on the ROOT type; it lists object among all basic supported types without privileging it. The literal error text 'root must be an object' is absent from every document in the snapshot, as is the substring 'root' anywhere in the Structured outputs document. A case whose premise the corpus never states cannot have gold evidence, and admitting it would make the benchmark reward a system for retrieving a passage that does not answer the question.",
+  "probes_run": [
+   "root must be an object",
+   "additionalProperties",
+   "must be an object",
+   "top-level"
+  ],
+  "verifier_notes": "'must be an object' does occur in the corpus, but only about input MESSAGES ('Each input message must be an object with a role and content'), which is a different subject. Anchoring A08 there would be a false positive."
+ },
+ {
+  "case": "A10",
+  "question": "how do i turn off parallel tool calls",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_18c692f4d28bd01c0a5cac553fcf01a7",
+  "document_title": "Messages",
+  "content_hash": "740d6dab47889293f412ae5f2afe85897d0e2227935081d372724a6e773bb3ff",
+  "supported_answer": "Set disable_parallel_tool_use to true on tool_choice. It defaults to false. Under tool_choice auto that yields at most one tool use; under any or tool it yields exactly one.",
+  "evidence": [
+   {
+    "version_id": "ver_18c692f4d28bd01c0a5cac553fcf01a7",
+    "char_start": 35392,
+    "char_end": 35574,
+    "quote": "- `disable_parallel_tool_use: optional boolean`\n\n      Whether to disable parallel tool use.\n\n      Defaults to `false`. If set to `true`, the model will output at most one tool use."
+   }
+  ],
+  "atomic_claims": [
+   "disable_parallel_tool_use defaults to false",
+   "setting disable_parallel_tool_use to true limits the model to at most one tool use under tool_choice auto"
+  ],
+  "critical_strings": [
+   "disable_parallel_tool_use",
+   "at most one tool use"
+  ],
+  "evidence_shape": "single_span_api_reference",
+  "reasoning_type": "direct parameter lookup",
+  "ambiguity_notes": "No provider named in the question; answered from Anthropic because that is where the parameter is documented.",
+  "verifier_notes": "EVIDENCE DUPLICATE OF A09. This span (35392-35574) is byte-identical to the span adjudicated for A09. The two questions differ in wording and in reasoning type (A09 asks whether parallel calls happen, A10 asks how to stop them) but resolve to the same gold evidence. Flagged for the dedup decision before the accepted 100 are selected; both must not be admitted without a deliberate ruling.",
+  "evidence_duplicate_of": "A09"
+ }
+]
