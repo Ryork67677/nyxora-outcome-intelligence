@@ -1,0 +1,261 @@
+[
+ {
+  "case": "D01",
+  "question": "whats the thing that passes control from one agent to another called",
+  "support_status": "SUPPORTED",
+  "provider": "openai",
+  "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+  "document_title": "Running agents",
+  "content_hash": "c4f871c6a0c6eba2537e3721aff1e3d0684cf5e59bc739b50b82f1a6d9fdbab3",
+  "supported_answer": "A handoff. In the agent loop, when the LLM requests a handoff the runner updates the current agent and input and re-runs the loop.",
+  "evidence": [
+   {
+    "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+    "char_start": 1730,
+    "char_end": 1827,
+    "quote": "    2. If the LLM requests a handoff, we update the current agent and input, and re-run the loop."
+   }
+  ],
+  "atomic_claims": [
+   "a handoff transfers control to another agent",
+   "on a handoff the runner updates the current agent and input and re-runs the loop"
+  ],
+  "critical_strings": [
+   "handoff"
+  ],
+  "evidence_shape": "single_span_terminology",
+  "reasoning_type": "naming a mechanism from its description",
+  "ambiguity_notes": "None. The asker describes the behaviour and the corpus names it.",
+  "verifier_notes": "Anchored in the agent-loop step rather than the Handoffs document title, so the span states what a handoff does as well as naming it."
+ },
+ {
+  "case": "D10",
+  "question": "Runner.run vs Runner.run_sync difference",
+  "support_status": "SUPPORTED",
+  "provider": "openai",
+  "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+  "document_title": "Running agents",
+  "content_hash": "c4f871c6a0c6eba2537e3721aff1e3d0684cf5e59bc739b50b82f1a6d9fdbab3",
+  "supported_answer": "run() is async and returns a RunResult; run_sync() is the synchronous method and just runs .run() under the hood. There is also run_streamed(), async, returning RunResultStreaming.",
+  "evidence": [
+   {
+    "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+    "char_start": 103,
+    "char_end": 333,
+    "quote": "1. [`Runner.run()`][agents.run.Runner.run], which runs async and returns a [`RunResult`][agents.result.RunResult].\n2. [`Runner.run_sync()`][agents.run.Runner.run_sync], which is a sync method and just runs `.run()` under the hood."
+   }
+  ],
+  "atomic_claims": [
+   "Runner.run is async and returns a RunResult",
+   "Runner.run_sync is a sync method that runs .run() under the hood"
+  ],
+  "critical_strings": [
+   "`Runner.run_sync()`",
+   "under the hood"
+  ],
+  "evidence_shape": "single_span_distinction",
+  "reasoning_type": "direct API comparison",
+  "ambiguity_notes": "None. Both methods are described in one list.",
+  "verifier_notes": "'Just runs .run() under the hood' is the substantive part: the difference is calling convention, not behaviour."
+ },
+ {
+  "case": "D11",
+  "question": "how do i keep conversation history between runs, do i have to pass the whole message list back",
+  "support_status": "SUPPORTED",
+  "provider": "openai",
+  "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+  "document_title": "Running agents",
+  "content_hash": "c4f871c6a0c6eba2537e3721aff1e3d0684cf5e59bc739b50b82f1a6d9fdbab3",
+  "supported_answer": "You can manage it manually with RunResultBase.to_input_list(), which returns the inputs for the next turn \u2014 so you pass a list back, but the SDK builds it for you rather than making you assemble it. Sessions provide the automatic alternative.",
+  "evidence": [
+   {
+    "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+    "char_start": 20274,
+    "char_end": 20449,
+    "quote": "You can manually manage conversation history using the [`RunResultBase.to_input_list()`][agents.result.RunResultBase.to_input_list] method to get the inputs for the next turn:"
+   }
+  ],
+  "atomic_claims": [
+   "conversation history can be managed manually with RunResultBase.to_input_list()",
+   "to_input_list() returns the inputs for the next turn"
+  ],
+  "critical_strings": [
+   "to_input_list()"
+  ],
+  "evidence_shape": "single_span_procedure",
+  "reasoning_type": "answering a 'do I have to' question with the provided helper",
+  "ambiguity_notes": "The asker asks whether the whole message list must be passed back. The cited span covers the manual path; the Sessions document covers the automatic one and is named in the answer without being cited as a claim.",
+  "verifier_notes": "Scoped to the manual mechanism because that is what the cited span establishes."
+ },
+ {
+  "case": "D13",
+  "question": "what exception gets raised when a guardrail trips",
+  "support_status": "SUPPORTED",
+  "provider": "openai",
+  "version_id": "ver_f22fbd5c504fa28a4e70440337e4a495",
+  "document_title": "Guardrails",
+  "content_hash": "5779ec5e82c23aec4778b591ad25e41732314bebd8cd82c9da164f4b2d01f327",
+  "supported_answer": "InputGuardrailTripwireTriggered or OutputGuardrailTripwireTriggered, raised immediately by the runner, which halts agent execution. Tool guardrails raise the corresponding ToolInputGuardrailTripwireTriggered and ToolOutputGuardrailTripwireTriggered.",
+  "evidence": [
+   {
+    "version_id": "ver_f22fbd5c504fa28a4e70440337e4a495",
+    "char_start": 7131,
+    "char_end": 7366,
+    "quote": "If an agent input or output fails a guardrail, the guardrail can signal this with a tripwire. The runner immediately raises an `InputGuardrailTripwireTriggered` or `OutputGuardrailTripwireTriggered` exception and halts agent execution."
+   }
+  ],
+  "atomic_claims": [
+   "a tripwire raises InputGuardrailTripwireTriggered or OutputGuardrailTripwireTriggered",
+   "the runner raises it immediately and halts agent execution"
+  ],
+  "critical_strings": [
+   "InputGuardrailTripwireTriggered",
+   "halts agent execution"
+  ],
+  "evidence_shape": "single_span_api_reference",
+  "reasoning_type": "direct exception lookup",
+  "ambiguity_notes": "None. The exception names are stated explicitly.",
+  "verifier_notes": "The tool-guardrail variants are named in the answer from the next sentence of the same paragraph; the atomic claims stay within the cited span."
+ },
+ {
+  "case": "D14",
+  "question": "how to disable tracing, we cant send data to a third party",
+  "support_status": "SUPPORTED",
+  "provider": "openai",
+  "version_id": "ver_6b90217721b841b1329f51ec1caab139",
+  "document_title": "Tracing",
+  "content_hash": "eecdd6b57b3c55ac94ffafad25253511f5a80fca8dc9f9bb6b303bfb21eb5a02",
+  "supported_answer": "Three documented ways: set OPENAI_AGENTS_DISABLE_TRACING=1, call set_tracing_disabled(True) in code, or set RunConfig.tracing_disabled to True for a single run. Tracing is enabled by default.",
+  "evidence": [
+   {
+    "version_id": "ver_6b90217721b841b1329f51ec1caab139",
+    "char_start": 375,
+    "char_end": 544,
+    "quote": "Tracing is enabled by default. You can disable it in three common ways:\n\n    1. You can globally disable tracing by setting the env var `OPENAI_AGENTS_DISABLE_TRACING=1`"
+   }
+  ],
+  "atomic_claims": [
+   "tracing is enabled by default",
+   "it can be globally disabled with the env var OPENAI_AGENTS_DISABLE_TRACING=1"
+  ],
+  "critical_strings": [
+   "OPENAI_AGENTS_DISABLE_TRACING",
+   "enabled by default"
+  ],
+  "evidence_shape": "single_span_procedure",
+  "reasoning_type": "locating an opt-out",
+  "ambiguity_notes": "The asker's constraint is data egress. The corpus lists the disable mechanisms; it separately notes tracing is unavailable under ZDR, which is adjacent context and not part of the claims.",
+  "verifier_notes": "Two OpenAI documents are titled 'Tracing'. This packet cites the 13,135-char Agents SDK document, not the 1k voice-pipeline page a title-only lookup returns."
+ },
+ {
+  "case": "D25",
+  "question": "can a tool call trigger a handoff or are those separate things",
+  "support_status": "SUPPORTED",
+  "provider": "openai",
+  "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+  "document_title": "Running agents",
+  "content_hash": "c4f871c6a0c6eba2537e3721aff1e3d0684cf5e59bc739b50b82f1a6d9fdbab3",
+  "supported_answer": "They are separate paths in the agent loop. A handoff updates the current agent and re-runs the loop; tool calls are run, their results appended, and the loop re-runs with the same agent. The related but distinct option is exposing an agent AS a tool, which is a callable tool rather than a transfer of control.",
+  "evidence": [
+   {
+    "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+    "char_start": 1730,
+    "char_end": 1827,
+    "quote": "    2. If the LLM requests a handoff, we update the current agent and input, and re-run the loop."
+   },
+   {
+    "version_id": "ver_cbeb36b7cf9a5e241940a011629b6f1b",
+    "char_start": 461,
+    "char_end": 540,
+    "quote": "-   Agents as tools: expose an agent as a callable tool without a full handoff."
+   }
+  ],
+  "atomic_claims": [
+   "a handoff updates the current agent and re-runs the loop",
+   "agents-as-tools exposes an agent as a callable tool without a full handoff"
+  ],
+  "critical_strings": [
+   "handoff",
+   "without a full handoff"
+  ],
+  "evidence_shape": "multi_span_cross_document_distinction",
+  "reasoning_type": "separating two mechanisms the asker suspects are one",
+  "ambiguity_notes": "The corpus does not state 'a tool call cannot trigger a handoff' in those words; it documents them as distinct branches of the loop and offers agents-as-tools as the bridge case. The answer describes the distinction the corpus draws rather than asserting an impossibility.",
+  "verifier_notes": "Cross-document within one provider, spans carrying their own version_ids."
+ },
+ {
+  "case": "D26",
+  "question": "using an agent as a tool instead of handing off \u2014 when would i pick one over the other",
+  "support_status": "SUPPORTED",
+  "provider": "openai",
+  "version_id": "ver_cbeb36b7cf9a5e241940a011629b6f1b",
+  "document_title": "Tools",
+  "content_hash": "f2270f853776e98ada223ab9bd61ac8401af754b2e470d97f530a55fdd49905a",
+  "supported_answer": "Pick agents-as-tools when a central agent should orchestrate specialists and keep control; pick a handoff when control should actually transfer. The corpus frames agents-as-tools explicitly as orchestration instead of handing off control.",
+  "evidence": [
+   {
+    "version_id": "ver_cbeb36b7cf9a5e241940a011629b6f1b",
+    "char_start": 31330,
+    "char_end": 31522,
+    "quote": "## Agents as tools\n\nIn some workflows, you may want a central agent to orchestrate a network of specialized agents, instead of handing off control. You can do this by modeling agents as tools."
+   },
+   {
+    "version_id": "ver_cbeb36b7cf9a5e241940a011629b6f1b",
+    "char_start": 461,
+    "char_end": 540,
+    "quote": "-   Agents as tools: expose an agent as a callable tool without a full handoff."
+   }
+  ],
+  "atomic_claims": [
+   "agents-as-tools suits a central agent orchestrating a network of specialized agents",
+   "it is used instead of handing off control",
+   "it exposes an agent as a callable tool without a full handoff"
+  ],
+  "critical_strings": [
+   "instead of handing off control",
+   "without a full handoff"
+  ],
+  "evidence_shape": "multi_span_concept_contrast",
+  "reasoning_type": "selection guidance from a documented contrast",
+  "ambiguity_notes": "The corpus gives the orchestration-vs-transfer contrast but no decision table. The answer states the contrast it makes and does not add criteria.",
+  "verifier_notes": "EVIDENCE OVERLAP WITH A07: A07 cites the same two spans in the opposite order. The span SET is identical, so this is an exact-span collision under the governing rule. A07 asks what the difference is, D26 asks when to choose which. Flagged for the final gate."
+ },
+ {
+  "case": "D28",
+  "question": "max_turns exceeded \u2014 what does that actually count",
+  "support_status": "SUPPORTED",
+  "provider": "openai",
+  "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+  "document_title": "Running agents",
+  "content_hash": "c4f871c6a0c6eba2537e3721aff1e3d0684cf5e59bc739b50b82f1a6d9fdbab3",
+  "supported_answer": "Agent-loop turns, meaning LLM calls \u2014 not tool calls or handoffs individually. Exceeding max_turns raises MaxTurnsExceeded, and max_turns=None disables the limit.",
+  "evidence": [
+   {
+    "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+    "char_start": 1933,
+    "char_end": 2101,
+    "quote": "3. If we exceed the `max_turns` passed, we raise a [`MaxTurnsExceeded`][agents.exceptions.MaxTurnsExceeded] exception. Pass `max_turns=None` to disable this turn limit."
+   },
+   {
+    "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+    "char_start": 33598,
+    "char_end": 33871,
+    "quote": "This exception is raised when the agent's run exceeds the `max_turns` limit passed to the `Runner.run`, `Runner.run_sync`, or `Runner.run_streamed` methods. It indicates that the agent could not complete its task within the specified number of agent-loop turns (LLM calls)."
+   }
+  ],
+  "atomic_claims": [
+   "exceeding max_turns raises MaxTurnsExceeded",
+   "max_turns counts agent-loop turns, which are LLM calls",
+   "max_turns=None disables the turn limit"
+  ],
+  "critical_strings": [
+   "`max_turns`",
+   "MaxTurnsExceeded",
+   "(LLM calls)"
+  ],
+  "evidence_shape": "multi_span_semantics",
+  "reasoning_type": "resolving what a counter counts",
+  "ambiguity_notes": "None. The parenthetical '(LLM calls)' answers the question directly.",
+  "verifier_notes": "The second span is load-bearing: the first says the limit exists, only the second says what a turn is."
+ }
+]
