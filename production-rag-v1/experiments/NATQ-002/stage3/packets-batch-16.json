@@ -1,0 +1,414 @@
+[
+ {
+  "case": "E03",
+  "question": "can i use tools inside a batch request or is that only for the normal endpoint",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_cec813c3bb15b76dcf16e7a0c2231ef1",
+  "document_title": "Batch processing",
+  "content_hash": "99b2a1886fed040e4e6cdeed0887e941e15e838e25ff1e82943db9c3b815bea2",
+  "supported_answer": "Tools work in batches. Almost any Messages API request can be batched, explicitly including tool use and all server tools, and requests are processed independently so types can be mixed within one batch.",
+  "evidence": [
+   {
+    "version_id": "ver_cec813c3bb15b76dcf16e7a0c2231ef1",
+    "char_start": 4183,
+    "char_end": 4486,
+    "quote": "Almost any request you can make to the Messages API can be included in a batch. This includes:\n\n* Vision\n* Tool use, including all [server tools](https://platform.claude.com/docs/en/agents-and-tools/tool-use/server-tools) (web search, web fetch, code execution, MCP connectors, advisor, and tool search)"
+   },
+   {
+    "version_id": "ver_cec813c3bb15b76dcf16e7a0c2231ef1",
+    "char_start": 4574,
+    "char_end": 4698,
+    "quote": "Because each request in the batch is processed independently, you can mix different types of requests within a single batch."
+   }
+  ],
+  "atomic_claims": [
+   "tool use, including all server tools, can be included in a batch",
+   "each request in a batch is processed independently, so request types can be mixed"
+  ],
+  "critical_strings": [
+   "Tool use",
+   "server tools"
+  ],
+  "evidence_shape": "multi_span_capability",
+  "reasoning_type": "membership check against a documented list",
+  "ambiguity_notes": "A small number of Messages API parameters are unsupported in batches and return a validation error; that exclusion list is adjacent and is not contradicted by this answer.",
+  "verifier_notes": "The independence span is included because the asker's implicit worry is whether batching constrains request shape."
+ },
+ {
+  "case": "E04",
+  "question": "what's the max number of requests in one batch job and how long till results expire",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_cec813c3bb15b76dcf16e7a0c2231ef1",
+  "document_title": "Batch processing",
+  "content_hash": "99b2a1886fed040e4e6cdeed0887e941e15e838e25ff1e82943db9c3b815bea2",
+  "supported_answer": "100,000 requests or 256 MB, whichever comes first. Batches expire if processing does not finish within 24 hours, and results stay available for download for 29 days after creation.",
+  "evidence": [
+   {
+    "version_id": "ver_cec813c3bb15b76dcf16e7a0c2231ef1",
+    "char_start": 2366,
+    "char_end": 2476,
+    "quote": "* A Message Batch is limited to either 100,000 Message requests or 256\u00a0MB in size, whichever is reached first."
+   },
+   {
+    "version_id": "ver_cec813c3bb15b76dcf16e7a0c2231ef1",
+    "char_start": 2477,
+    "char_end": 2743,
+    "quote": "* The system processes each batch as fast as possible, with most batches completing within 1 hour. You can access batch results when all messages have completed or after 24 hours, whichever comes first. Batches expire if processing does not complete within 24 hours."
+   },
+   {
+    "version_id": "ver_cec813c3bb15b76dcf16e7a0c2231ef1",
+    "char_start": 2744,
+    "char_end": 2801,
+    "quote": "* Batch results are available for 29 days after creation."
+   }
+  ],
+  "atomic_claims": [
+   "a batch is limited to 100,000 requests or 256 MB, whichever is reached first",
+   "batches expire if processing does not complete within 24 hours",
+   "batch results are available for 29 days after creation"
+  ],
+  "critical_strings": [
+   "100,000 Message requests",
+   "24 hours",
+   "29 days"
+  ],
+  "evidence_shape": "multi_span_limits",
+  "reasoning_type": "answering a two-part limits question",
+  "ambiguity_notes": "The question conflates two expiries \u2014 processing expiry and result retention. The corpus documents both and the answer keeps them distinct.",
+  "verifier_notes": "Three spans because the question has two parts and the second part has two different documented meanings."
+ },
+ {
+  "case": "E12",
+  "question": "batch discount 50% \u2014 does that stack with prompt caching discounts",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_cec813c3bb15b76dcf16e7a0c2231ef1",
+  "document_title": "Batch processing",
+  "content_hash": "99b2a1886fed040e4e6cdeed0887e941e15e838e25ff1e82943db9c3b815bea2",
+  "supported_answer": "The corpus confirms the 50% batch discount \u2014 all Batches API usage is charged at 50% of standard API prices \u2014 and documents prompt caching inside batches as a supported combination in its own section. It does not state how the two discounts compose arithmetically.",
+  "evidence": [
+   {
+    "version_id": "ver_cec813c3bb15b76dcf16e7a0c2231ef1",
+    "char_start": 6814,
+    "char_end": 6918,
+    "quote": "The Batches API offers significant cost savings. All usage is charged at 50% of the standard API prices."
+   }
+  ],
+  "atomic_claims": [
+   "all Batches API usage is charged at 50% of standard API prices"
+  ],
+  "critical_strings": [
+   "50% of the standard API prices"
+  ],
+  "evidence_shape": "single_span_partial",
+  "reasoning_type": "confirming one half of a stacking question and naming the gap",
+  "ambiguity_notes": "The asker asks specifically whether the discounts stack. The corpus states the batch discount and has a 'Using prompt caching with Message Batches' section showing the combination is supported, but never states the combined rate. The answer stops there rather than multiplying the two.",
+  "verifier_notes": "Admitted as a partial with the gap named, the shape used for B15 and D30. Computing 50% x cache-hit rate would be arithmetic the corpus does not perform."
+ },
+ {
+  "case": "E16",
+  "question": "getting 429 on batches but my normal requests are fine, are the limits separate",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_cec813c3bb15b76dcf16e7a0c2231ef1",
+  "document_title": "Batch processing",
+  "content_hash": "99b2a1886fed040e4e6cdeed0887e941e15e838e25ff1e82943db9c3b815bea2",
+  "supported_answer": "Yes, separate. Rate limits apply both to Batches API HTTP requests and to the number of requests inside a batch waiting to be processed \u2014 a distinct limit set from the standard per-minute limits.",
+  "evidence": [
+   {
+    "version_id": "ver_cec813c3bb15b76dcf16e7a0c2231ef1",
+    "char_start": 3104,
+    "char_end": 3224,
+    "quote": "* Rate limits apply to both Batches API HTTP requests and the number of requests within a batch waiting to be processed."
+   }
+  ],
+  "atomic_claims": [
+   "rate limits apply to Batches API HTTP requests",
+   "rate limits also apply to the number of requests within a batch waiting to be processed"
+  ],
+  "critical_strings": [
+   "Rate limits apply to both Batches API HTTP requests"
+  ],
+  "evidence_shape": "single_span_distinction",
+  "reasoning_type": "confirming that two limit regimes are distinct",
+  "ambiguity_notes": "Question said 'either' provider. The corpus names a dedicated Message Batches API rate-limit section, which is what makes 'separate' the right answer.",
+  "verifier_notes": "The two-clause structure of the span is the answer: batch traffic is limited at both the HTTP and the enqueued-request level."
+ },
+ {
+  "case": "E19",
+  "question": "what happens if one request in my batch fails, does the whole job die",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_cec813c3bb15b76dcf16e7a0c2231ef1",
+  "document_title": "Batch processing",
+  "content_hash": "99b2a1886fed040e4e6cdeed0887e941e15e838e25ff1e82943db9c3b815bea2",
+  "supported_answer": "No. Each request in the batch is processed independently, so one failure does not take down the job; results are retrieved per request.",
+  "evidence": [
+   {
+    "version_id": "ver_cec813c3bb15b76dcf16e7a0c2231ef1",
+    "char_start": 4574,
+    "char_end": 4698,
+    "quote": "Because each request in the batch is processed independently, you can mix different types of requests within a single batch."
+   }
+  ],
+  "atomic_claims": [
+   "each request in a batch is processed independently"
+  ],
+  "critical_strings": [
+   "processed independently"
+  ],
+  "evidence_shape": "single_span_behaviour",
+  "reasoning_type": "refuting an all-or-nothing assumption",
+  "ambiguity_notes": "Question said 'either' provider. The corpus states independence in the context of mixing request types; the same sentence is what rules out whole-job failure. Per-request result types are documented separately and are not claimed here.",
+  "verifier_notes": "EVIDENCE OVERLAP WITH E03, which cites this span plus the batchable-list span. Span SETS differ, so not an exact-span collision."
+ },
+ {
+  "case": "E23",
+  "question": "we need to run 200k classification jobs overnight and dont care about latency. batch or just parallel calls",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_cec813c3bb15b76dcf16e7a0c2231ef1",
+  "document_title": "Batch processing",
+  "content_hash": "99b2a1886fed040e4e6cdeed0887e941e15e838e25ff1e82943db9c3b815bea2",
+  "supported_answer": "Batch, but it will not fit in one job: a single batch caps at 100,000 requests or 256 MB. Split 200k across at least two batches. Batches are charged at 50% of standard prices and most complete within an hour, with a 24-hour processing ceiling.",
+  "evidence": [
+   {
+    "version_id": "ver_cec813c3bb15b76dcf16e7a0c2231ef1",
+    "char_start": 2366,
+    "char_end": 2476,
+    "quote": "* A Message Batch is limited to either 100,000 Message requests or 256\u00a0MB in size, whichever is reached first."
+   },
+   {
+    "version_id": "ver_cec813c3bb15b76dcf16e7a0c2231ef1",
+    "char_start": 6814,
+    "char_end": 6918,
+    "quote": "The Batches API offers significant cost savings. All usage is charged at 50% of the standard API prices."
+   },
+   {
+    "version_id": "ver_cec813c3bb15b76dcf16e7a0c2231ef1",
+    "char_start": 2477,
+    "char_end": 2743,
+    "quote": "* The system processes each batch as fast as possible, with most batches completing within 1 hour. You can access batch results when all messages have completed or after 24 hours, whichever comes first. Batches expire if processing does not complete within 24 hours."
+   }
+  ],
+  "atomic_claims": [
+   "a single batch is capped at 100,000 requests or 256 MB",
+   "Batches API usage is charged at 50% of standard API prices",
+   "most batches complete within 1 hour and expire if not complete within 24 hours"
+  ],
+  "critical_strings": [
+   "100,000 Message requests",
+   "50% of the standard API prices",
+   "24 hours"
+  ],
+  "evidence_shape": "multi_span_recommendation",
+  "reasoning_type": "applying documented limits and pricing to a stated workload",
+  "ambiguity_notes": "The asker's 200k exceeds the documented per-batch cap, which the corpus states plainly; the answer says so rather than recommending batching without qualification. The corpus makes no head-to-head batch-vs-parallel comparison, so the recommendation rests on the stated discount and latency tolerance.",
+  "verifier_notes": "The 200k-over-100k observation is the substantive content; a bare 'use batch' would miss the constraint that actually bites."
+ },
+ {
+  "case": "E28",
+  "question": "batch job stuck in in_progress for 20 hours, what do i do",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_cec813c3bb15b76dcf16e7a0c2231ef1",
+  "document_title": "Batch processing",
+  "content_hash": "99b2a1886fed040e4e6cdeed0887e941e15e838e25ff1e82943db9c3b815bea2",
+  "supported_answer": "Wait for the 24-hour boundary. Results become accessible when all messages complete or after 24 hours, whichever comes first, and batches expire if processing has not completed within 24 hours. Processing can be slowed by demand and request volume, which is when more requests expire at that boundary.",
+  "evidence": [
+   {
+    "version_id": "ver_cec813c3bb15b76dcf16e7a0c2231ef1",
+    "char_start": 2477,
+    "char_end": 2743,
+    "quote": "* The system processes each batch as fast as possible, with most batches completing within 1 hour. You can access batch results when all messages have completed or after 24 hours, whichever comes first. Batches expire if processing does not complete within 24 hours."
+   },
+   {
+    "version_id": "ver_cec813c3bb15b76dcf16e7a0c2231ef1",
+    "char_start": 3104,
+    "char_end": 3224,
+    "quote": "* Rate limits apply to both Batches API HTTP requests and the number of requests within a batch waiting to be processed."
+   }
+  ],
+  "atomic_claims": [
+   "results are accessible when all messages complete or after 24 hours, whichever comes first",
+   "batches expire if processing does not complete within 24 hours"
+  ],
+  "critical_strings": [
+   "24 hours",
+   "whichever comes first"
+  ],
+  "evidence_shape": "multi_span_behaviour",
+  "reasoning_type": "answering an operational question with the documented timeline",
+  "ambiguity_notes": "The corpus prescribes no intervention for a slow batch. The answer states the timeline that resolves it and does not invent a remedy such as cancelling or resubmitting.",
+  "verifier_notes": "20 hours is inside the documented window, so 'stuck' is not yet a failure state \u2014 that is the substance of the answer."
+ },
+ {
+  "case": "E29",
+  "question": "how many images can go in a single message and is there a size cap per image",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_4f8c7b2939ec104f110004dfe05a342b",
+  "document_title": "Vision",
+  "content_hash": "3242a01766ed71074007d71652ebd7dc426feb8fa417e0c66f56b7f87da38d26",
+  "supported_answer": "Up to 100 images per API request on 200k-context models and 600 on others (20 per message on claude.ai). Maximum dimensions are 8000x8000 px, and the per-image size cap is 10 MB base64 on the Claude API directly.",
+  "evidence": [
+   {
+    "version_id": "ver_4f8c7b2939ec104f110004dfe05a342b",
+    "char_start": 34244,
+    "char_end": 34480,
+    "quote": "The maximum number of images per message or request is:\n\n* 20 per message on [claude.ai](https://claude.ai/).\n* 100 per request on the API, for models with a 200k-token context window.\n* 600 per request on the API, for all other models."
+   },
+   {
+    "version_id": "ver_4f8c7b2939ec104f110004dfe05a342b",
+    "char_start": 35074,
+    "char_end": 35166,
+    "quote": "The maximum size per image is:\n\n* 10\u00a0MB (base64-encoded) when using the Claude API directly."
+   }
+  ],
+  "atomic_claims": [
+   "the API allows 100 images per request on 200k-context models and 600 on other models",
+   "the per-image size cap is 10 MB base64 on the Claude API"
+  ],
+  "critical_strings": [
+   "600 per request",
+   "10\u00a0MB (base64-encoded)"
+  ],
+  "evidence_shape": "multi_span_limits",
+  "reasoning_type": "two-part limits lookup",
+  "ambiguity_notes": "The count limit is context-window dependent, so a single number would be wrong; the answer preserves the split.",
+  "verifier_notes": "Both parts of the question are answered by different spans in the same Request limits section."
+ },
+ {
+  "case": "E13",
+  "question": "resize images before sending? whats the point where it stops helping",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_4f8c7b2939ec104f110004dfe05a342b",
+  "document_title": "Vision",
+  "content_hash": "3242a01766ed71074007d71652ebd7dc426feb8fa417e0c66f56b7f87da38d26",
+  "supported_answer": "The threshold is the model's maximum native resolution. Images larger than the long-edge or visual-token limit are downscaled before processing, so resizing above that point buys nothing. Below it, cost scales with size: an image costs \u2308width/28\u2309 \u00d7 \u2308height/28\u2309 visual tokens.",
+  "evidence": [
+   {
+    "version_id": "ver_4f8c7b2939ec104f110004dfe05a342b",
+    "char_start": 36522,
+    "char_end": 36693,
+    "quote": "Each model has a maximum native image resolution, expressed as a long-edge limit and a visual-token limit. Images larger than either limit are downscaled before processing"
+   },
+   {
+    "version_id": "ver_4f8c7b2939ec104f110004dfe05a342b",
+    "char_start": 36319,
+    "char_end": 36520,
+    "quote": "Claude views images in patches instead of pixels. Each patch is a 28\u00d728-pixel block of the image, referred to as a visual token. An image, therefore, costs `\u2308width / 28\u2309 \u00d7 \u2308height / 28\u2309` visual tokens."
+   }
+  ],
+  "atomic_claims": [
+   "images larger than the long-edge or visual-token limit are downscaled before processing",
+   "an image costs ceil(width/28) x ceil(height/28) visual tokens"
+  ],
+  "critical_strings": [
+   "downscaled before processing",
+   "visual token"
+  ],
+  "evidence_shape": "multi_span_reasoning",
+  "reasoning_type": "identifying a threshold from a documented automatic behaviour plus a cost formula",
+  "ambiguity_notes": "The corpus does not phrase this as advice about when resizing stops helping; it states the downscale rule and the cost formula, which together determine the point. Both are cited so the reasoning is visible rather than asserted.",
+  "verifier_notes": "The formula span is what makes the answer actionable below the threshold; the downscale span is what makes it moot above."
+ },
+ {
+  "case": "E02",
+  "question": "counting tokens for an image before i send it \u2014 is there a formula or do i have to call the api",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_4f8c7b2939ec104f110004dfe05a342b",
+  "document_title": "Vision",
+  "content_hash": "3242a01766ed71074007d71652ebd7dc426feb8fa417e0c66f56b7f87da38d26",
+  "supported_answer": "There is a formula: an image costs \u2308width/28\u2309 \u00d7 \u2308height/28\u2309 visual tokens, where each visual token is a 28x28-pixel patch. Apply it to the post-downscale dimensions, since images over the model's resolution limit are downscaled first.",
+  "evidence": [
+   {
+    "version_id": "ver_4f8c7b2939ec104f110004dfe05a342b",
+    "char_start": 36319,
+    "char_end": 36520,
+    "quote": "Claude views images in patches instead of pixels. Each patch is a 28\u00d728-pixel block of the image, referred to as a visual token. An image, therefore, costs `\u2308width / 28\u2309 \u00d7 \u2308height / 28\u2309` visual tokens."
+   },
+   {
+    "version_id": "ver_4f8c7b2939ec104f110004dfe05a342b",
+    "char_start": 36522,
+    "char_end": 36693,
+    "quote": "Each model has a maximum native image resolution, expressed as a long-edge limit and a visual-token limit. Images larger than either limit are downscaled before processing"
+   }
+  ],
+  "atomic_claims": [
+   "each visual token is a 28x28-pixel patch",
+   "an image costs ceil(width/28) x ceil(height/28) visual tokens",
+   "oversized images are downscaled before processing"
+  ],
+  "critical_strings": [
+   "visual token",
+   "\u2308width / 28\u2309 \u00d7 \u2308height / 28\u2309"
+  ],
+  "evidence_shape": "multi_span_formula",
+  "reasoning_type": "answering a formula-or-endpoint question with the documented formula",
+  "ambiguity_notes": "Question said 'either' provider. The token counting endpoint is the other documented route and is covered by C16; this answer gives the formula the asker asked for first.",
+  "verifier_notes": "EXACT-SPAN COLLISION WITH E13: identical span set, opposite order. E02 asks for the formula, E13 asks where resizing stops helping. Flagged for the final gate."
+ },
+ {
+  "case": "E06",
+  "question": "im sending a pdf as a document block, do the pages count as image tokens or text tokens",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_31cd12f6d13c8ac47666eb1a55874e5d",
+  "document_title": "PDF support",
+  "content_hash": "3f47b6c643a07f17143ab599c9d653727fcf5a8af49e55722b040c61a5dbdefd",
+  "supported_answer": "Both. The system converts each page into an image and also extracts that page's text, providing them together \u2014 so a PDF page is billed as image tokens and text tokens, not one or the other.",
+  "evidence": [
+   {
+    "version_id": "ver_31cd12f6d13c8ac47666eb1a55874e5d",
+    "char_start": 31667,
+    "char_end": 31814,
+    "quote": "* The system converts each page of the document into an image.\n    * The text from each page is extracted and provided alongside each page's image."
+   }
+  ],
+  "atomic_claims": [
+   "each page of the document is converted into an image",
+   "the text from each page is extracted and provided alongside that page's image"
+  ],
+  "critical_strings": [
+   "converts each page",
+   "text from each page is extracted"
+  ],
+  "evidence_shape": "single_span_mechanism",
+  "reasoning_type": "resolving an either/or question as both",
+  "ambiguity_notes": "The asker offers two options and the corpus's processing description makes both true. The corpus states the mechanism rather than the billing consequence in this span; the answer names the consequence, which follows directly from both representations being sent.",
+  "verifier_notes": "The either/or framing is the trap: a system retrieving only an image-token passage or only a text passage would answer half."
+ },
+ {
+  "case": "E26",
+  "question": "embeddings on anthropic?",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_26f61f56d6ff7124cfa38152f7baef3d",
+  "document_title": "Embeddings",
+  "content_hash": "25a94a14c4a00486d301e7914ad884e632b9ac94cc31cdf0826e4e4865025b85",
+  "supported_answer": "No. Anthropic does not offer its own embedding model; the documentation points to third-party providers and covers Voyage AI in detail.",
+  "evidence": [
+   {
+    "version_id": "ver_26f61f56d6ff7124cfa38152f7baef3d",
+    "char_start": 1093,
+    "char_end": 1142,
+    "quote": "Anthropic does not offer its own embedding model."
+   }
+  ],
+  "atomic_claims": [
+   "Anthropic does not offer its own embedding model"
+  ],
+  "critical_strings": [
+   "does not offer its own embedding model"
+  ],
+  "evidence_shape": "single_span_refutation",
+  "reasoning_type": "direct negative capability check",
+  "ambiguity_notes": "None. The corpus answers the question in one sentence.",
+  "verifier_notes": "A short, unambiguous negative \u2014 useful as a benchmark case precisely because the surrounding document is entirely about embeddings and a naive retrieval could easily surface the Voyage material instead."
+ }
+]
