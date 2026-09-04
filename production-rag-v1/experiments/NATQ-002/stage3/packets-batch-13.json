@@ -1,0 +1,303 @@
+[
+ {
+  "case": "D02",
+  "question": "can I reuse one client across requests or do I need a new one each time",
+  "support_status": "SUPPORTED",
+  "provider": "openai",
+  "version_id": "ver_9247e3ce4df6f79d9cadc44e1a3bbd0c",
+  "document_title": "OpenAI Python API library",
+  "content_hash": "8802e1f3d945f2893f3b03bc906b8fd21498d7443d84b2d858926afe2f669f0f",
+  "supported_answer": "Reuse it. The client owns pooled HTTP connections which the library closes when the client is garbage collected; you can close it explicitly with .close() or use it as a context manager. Nothing suggests constructing one per request.",
+  "evidence": [
+   {
+    "version_id": "ver_9247e3ce4df6f79d9cadc44e1a3bbd0c",
+    "char_start": 30071,
+    "char_end": 30365,
+    "quote": "By default the library closes underlying HTTP connections whenever the client is [garbage collected](https://docs.python.org/3/reference/datamodel.html#object.__del__). You can manually close the client using the `.close()` method if desired, or with a context manager that closes when exiting."
+   }
+  ],
+  "atomic_claims": [
+   "the library closes underlying HTTP connections when the client is garbage collected",
+   "the client can be closed explicitly with .close() or used as a context manager"
+  ],
+  "critical_strings": [
+   "closes underlying HTTP connections",
+   "`.close()`"
+  ],
+  "evidence_shape": "single_span_lifecycle",
+  "reasoning_type": "answering a reuse question from documented resource ownership",
+  "ambiguity_notes": "Question said 'either' provider. The corpus does not state 'reuse the client' as an imperative; it documents connection pooling and explicit close semantics, from which reuse follows. That is reading the lifecycle, not bridging sections.",
+  "verifier_notes": "The strongest available evidence \u2014 the doc has no explicit reuse recommendation, and the answer does not claim one."
+ },
+ {
+  "case": "D03",
+  "question": "per-request timeout without constructing a new client",
+  "support_status": "SUPPORTED",
+  "provider": "openai",
+  "version_id": "ver_9247e3ce4df6f79d9cadc44e1a3bbd0c",
+  "document_title": "OpenAI Python API library",
+  "content_hash": "8802e1f3d945f2893f3b03bc906b8fd21498d7443d84b2d858926afe2f669f0f",
+  "supported_answer": "Use with_options(timeout=...) on the call. The client-level timeout is the default; with_options overrides it for a single request without building a new client.",
+  "evidence": [
+   {
+    "version_id": "ver_9247e3ce4df6f79d9cadc44e1a3bbd0c",
+    "char_start": 20475,
+    "char_end": 20569,
+    "quote": "By default requests time out after 10 minutes. You can configure this with a `timeout` option,"
+   }
+  ],
+  "atomic_claims": [
+   "requests time out after 10 minutes by default",
+   "the timeout is configurable with a timeout option"
+  ],
+  "critical_strings": [
+   "`timeout` option",
+   "10 minutes"
+  ],
+  "evidence_shape": "single_span_api_reference",
+  "reasoning_type": "locating a per-request override",
+  "ambiguity_notes": "Question said 'either' provider. The with_options per-request override appears in the code sample adjacent to the cited prose; the prose span carries the default and the option, and the answer names the override without quoting the sample as a separate claim.",
+  "verifier_notes": "Atomic claims are limited to the prose span. The with_options mechanism is stated in the answer because it is shown in the same section's example."
+ },
+ {
+  "case": "D06",
+  "question": "does the sdk retry on its own and how many times",
+  "support_status": "SUPPORTED",
+  "provider": "openai",
+  "version_id": "ver_9247e3ce4df6f79d9cadc44e1a3bbd0c",
+  "document_title": "OpenAI Python API library",
+  "content_hash": "8802e1f3d945f2893f3b03bc906b8fd21498d7443d84b2d858926afe2f669f0f",
+  "supported_answer": "Yes \u2014 2 times by default with a short exponential backoff. Connection errors, 408 Request Timeout, 409 Conflict, 429 Rate Limit and 5xx are all retried by default.",
+  "evidence": [
+   {
+    "version_id": "ver_9247e3ce4df6f79d9cadc44e1a3bbd0c",
+    "char_start": 19704,
+    "char_end": 19975,
+    "quote": "Certain errors are automatically retried 2 times by default, with a short exponential backoff.\nConnection errors (for example, due to a network connectivity problem), 408 Request Timeout, 409 Conflict,\n429 Rate Limit, and >=500 Internal errors are all retried by default."
+   }
+  ],
+  "atomic_claims": [
+   "certain errors are automatically retried 2 times by default with short exponential backoff",
+   "connection errors, 408, 409, 429 and >=500 are retried by default"
+  ],
+  "critical_strings": [
+   "retried 2 times by default",
+   "429 Rate Limit"
+  ],
+  "evidence_shape": "single_span_behaviour",
+  "reasoning_type": "existence plus count lookup",
+  "ambiguity_notes": "Question said 'either' provider; answered from the OpenAI Python library where the default and the retryable set are stated together.",
+  "verifier_notes": "The retryable status list is included because 'does it retry' is only useful alongside which failures it retries."
+ },
+ {
+  "case": "D07",
+  "question": "how do I turn off retries completely",
+  "support_status": "SUPPORTED",
+  "provider": "openai",
+  "version_id": "ver_9247e3ce4df6f79d9cadc44e1a3bbd0c",
+  "document_title": "OpenAI Python API library",
+  "content_hash": "8802e1f3d945f2893f3b03bc906b8fd21498d7443d84b2d858926afe2f669f0f",
+  "supported_answer": "Set max_retries=0 on the client. The same option configures or disables retries, and it can also be overridden per request with with_options(max_retries=...).",
+  "evidence": [
+   {
+    "version_id": "ver_9247e3ce4df6f79d9cadc44e1a3bbd0c",
+    "char_start": 19977,
+    "char_end": 20053,
+    "quote": "You can use the `max_retries` option to configure or disable retry settings:"
+   }
+  ],
+  "atomic_claims": [
+   "the max_retries option configures or disables retry settings"
+  ],
+  "critical_strings": [
+   "`max_retries`"
+  ],
+  "evidence_shape": "single_span_api_reference",
+  "reasoning_type": "locating the disable switch",
+  "ambiguity_notes": "Question said 'either' provider. The value 0 appears in the adjacent code sample; the cited prose establishes that max_retries is the option that disables retries.",
+  "verifier_notes": "The claim is limited to what the prose states. Naming 0 in the answer reflects the sample in the same section."
+ },
+ {
+  "case": "D20",
+  "question": "pagination \u2014 does the list helper auto fetch the next page when i iterate it",
+  "support_status": "SUPPORTED",
+  "provider": "openai",
+  "version_id": "ver_9247e3ce4df6f79d9cadc44e1a3bbd0c",
+  "document_title": "OpenAI Python API library",
+  "content_hash": "8802e1f3d945f2893f3b03bc906b8fd21498d7443d84b2d858926afe2f669f0f",
+  "supported_answer": "Yes. List methods return auto-paginating iterators, so iterating fetches successive pages without manual requests, in both the sync and async clients.",
+  "evidence": [
+   {
+    "version_id": "ver_9247e3ce4df6f79d9cadc44e1a3bbd0c",
+    "char_start": 11814,
+    "char_end": 11943,
+    "quote": "This library provides auto-paginating iterators with each list response, so you do not have to request successive pages manually:"
+   }
+  ],
+  "atomic_claims": [
+   "list responses provide auto-paginating iterators",
+   "successive pages do not have to be requested manually"
+  ],
+  "critical_strings": [
+   "auto-paginating iterators"
+  ],
+  "evidence_shape": "single_span_capability",
+  "reasoning_type": "confirming automatic behaviour",
+  "ambiguity_notes": "Question said 'either' provider; answered from the OpenAI Python library.",
+  "verifier_notes": "Direct confirmation of the asker's hypothesis; no scoping needed."
+ },
+ {
+  "case": "D22",
+  "question": "how do i see the raw http request the sdk sent, headers and all",
+  "support_status": "SUPPORTED",
+  "provider": "openai",
+  "version_id": "ver_9247e3ce4df6f79d9cadc44e1a3bbd0c",
+  "document_title": "OpenAI Python API library",
+  "content_hash": "8802e1f3d945f2893f3b03bc906b8fd21498d7443d84b2d858926afe2f669f0f",
+  "supported_answer": "Prefix .with_raw_response. to the method call. That returns the raw Response object, exposing headers, and .parse() then yields the object the normal call would have returned.",
+  "evidence": [
+   {
+    "version_id": "ver_9247e3ce4df6f79d9cadc44e1a3bbd0c",
+    "char_start": 22123,
+    "char_end": 22223,
+    "quote": "The \"raw\" Response object can be accessed by prefixing `.with_raw_response.` to any HTTP method call"
+   }
+  ],
+  "atomic_claims": [
+   "prefixing .with_raw_response. to a method call returns the raw Response object"
+  ],
+  "critical_strings": [
+   "`.with_raw_response.`"
+  ],
+  "evidence_shape": "single_span_api_reference",
+  "reasoning_type": "locating the raw-access mechanism",
+  "ambiguity_notes": "The asker says 'request'; the documented mechanism exposes the raw RESPONSE, including its headers. The answer describes what the corpus provides rather than claiming request-side capture, which is not documented.",
+  "verifier_notes": "A scoping distinction worth keeping: request-level introspection is a different feature and the corpus does not offer it here."
+ },
+ {
+  "case": "D23",
+  "question": "getting request id for a failed call so support can look it up",
+  "support_status": "SUPPORTED",
+  "provider": "openai",
+  "version_id": "ver_9247e3ce4df6f79d9cadc44e1a3bbd0c",
+  "document_title": "OpenAI Python API library",
+  "content_hash": "8802e1f3d945f2893f3b03bc906b8fd21498d7443d84b2d858926afe2f669f0f",
+  "supported_answer": "For successful calls read response._request_id, which comes from the x-request-id header. For failed calls you must catch APIStatusError and read exc.request_id.",
+  "evidence": [
+   {
+    "version_id": "ver_9247e3ce4df6f79d9cadc44e1a3bbd0c",
+    "char_start": 18752,
+    "char_end": 18948,
+    "quote": "All object responses in the SDK provide a `_request_id` property which is added from the `x-request-id` response header so that you can quickly log failing requests and report them back to OpenAI."
+   },
+   {
+    "version_id": "ver_9247e3ce4df6f79d9cadc44e1a3bbd0c",
+    "char_start": 19321,
+    "char_end": 19420,
+    "quote": "If you need to access request IDs for failed requests you must catch the `APIStatusError` exception"
+   }
+  ],
+  "atomic_claims": [
+   "object responses expose a _request_id property sourced from the x-request-id response header",
+   "request IDs for failed requests require catching the APIStatusError exception"
+  ],
+  "critical_strings": [
+   "`_request_id`",
+   "`APIStatusError`"
+  ],
+  "evidence_shape": "multi_span_procedure",
+  "reasoning_type": "answering the failure path specifically rather than the general one",
+  "ambiguity_notes": "Question said 'either' provider. The asker's case is a FAILED call, so the second span is the operative one; the first is cited because it defines what the id is.",
+  "verifier_notes": "Citing only the _request_id span would answer the wrong half \u2014 that property is on successful responses."
+ },
+ {
+  "case": "D24",
+  "question": "typed responses \u2014 are the model objects pydantic or just dicts",
+  "support_status": "SUPPORTED",
+  "provider": "openai",
+  "version_id": "ver_9247e3ce4df6f79d9cadc44e1a3bbd0c",
+  "document_title": "OpenAI Python API library",
+  "content_hash": "8802e1f3d945f2893f3b03bc906b8fd21498d7443d84b2d858926afe2f669f0f",
+  "supported_answer": "Pydantic models. Responses are Pydantic models with helpers like model.to_json() and model.to_dict(); it is the nested request parameters that are TypedDicts.",
+  "evidence": [
+   {
+    "version_id": "ver_9247e3ce4df6f79d9cadc44e1a3bbd0c",
+    "char_start": 11220,
+    "char_end": 11386,
+    "quote": "Nested request parameters are [TypedDicts](https://docs.python.org/3/library/typing.html#typing.TypedDict). Responses are [Pydantic models](https://docs.pydantic.dev)"
+   }
+  ],
+  "atomic_claims": [
+   "responses are Pydantic models",
+   "nested request parameters are TypedDicts"
+  ],
+  "critical_strings": [
+   "Pydantic models",
+   "TypedDicts"
+  ],
+  "evidence_shape": "single_span_distinction",
+  "reasoning_type": "resolving a binary question and separating the adjacent case",
+  "ambiguity_notes": "Question said 'either' provider; answered from the OpenAI Python library.",
+  "verifier_notes": "The request/response asymmetry is included because it is the likeliest source of the asker's confusion."
+ },
+ {
+  "case": "D27",
+  "question": "point the openai sdk at a local proxy / self hosted endpoint",
+  "support_status": "SUPPORTED",
+  "provider": "openai",
+  "version_id": "ver_9247e3ce4df6f79d9cadc44e1a3bbd0c",
+  "document_title": "OpenAI Python API library",
+  "content_hash": "8802e1f3d945f2893f3b03bc906b8fd21498d7443d84b2d858926afe2f669f0f",
+  "supported_answer": "Set base_url on the client, or the OPENAI_BASE_URL environment variable. A custom http_client can additionally be supplied for proxies, transports and other HTTP behaviour.",
+  "evidence": [
+   {
+    "version_id": "ver_9247e3ce4df6f79d9cadc44e1a3bbd0c",
+    "char_start": 25749,
+    "char_end": 25849,
+    "quote": "    # Or use the `OPENAI_BASE_URL` env var\n    base_url=\"http://my.test.server.example.com:8083/v1\","
+   }
+  ],
+  "atomic_claims": [
+   "base_url can be set on the client",
+   "the OPENAI_BASE_URL environment variable is the alternative"
+  ],
+  "critical_strings": [
+   "base_url",
+   "OPENAI_BASE_URL"
+  ],
+  "evidence_shape": "single_span_configuration",
+  "reasoning_type": "locating the endpoint override",
+  "ambiguity_notes": "Question said 'either' provider; answered from the OpenAI Python library.",
+  "verifier_notes": "The span is two lines of a code sample including its comment, because that is where both the parameter and the env var appear together; the surrounding prose names neither."
+ },
+ {
+  "case": "D29",
+  "question": "if i set both a client wide timeout and retries, does the timeout apply per attempt or to the whole",
+  "support_status": "SUPPORTED",
+  "provider": "openai",
+  "version_id": "ver_9247e3ce4df6f79d9cadc44e1a3bbd0c",
+  "document_title": "OpenAI Python API library",
+  "content_hash": "8802e1f3d945f2893f3b03bc906b8fd21498d7443d84b2d858926afe2f669f0f",
+  "supported_answer": "Per attempt. A timed-out request throws APITimeoutError and is itself retried twice by default, so the timeout bounds each attempt rather than the whole retry sequence.",
+  "evidence": [
+   {
+    "version_id": "ver_9247e3ce4df6f79d9cadc44e1a3bbd0c",
+    "char_start": 21202,
+    "char_end": 21321,
+    "quote": "On timeout, an `APITimeoutError` is thrown.\n\nNote that requests that time out are [retried twice by default](#retries)."
+   }
+  ],
+  "atomic_claims": [
+   "a timeout raises APITimeoutError",
+   "requests that time out are retried twice by default"
+  ],
+  "critical_strings": [
+   "`APITimeoutError`",
+   "retried twice by default"
+  ],
+  "evidence_shape": "single_span_inference_from_stated_behaviour",
+  "reasoning_type": "resolving a per-attempt vs total question from documented retry-on-timeout behaviour",
+  "ambiguity_notes": "The corpus does not use the words 'per attempt'. It states that a timed-out request is retried, which is only coherent if the timeout bounds an attempt rather than the sequence \u2014 a retry after a total-budget timeout would be impossible. The answer says this plainly rather than quoting a phrase the corpus does not contain.",
+  "verifier_notes": "The weakest packet in this batch and deliberately flagged. It is admitted because the entailment is immediate from one sentence, not assembled across sections; a reviewer preferring strict literalism could reasonably move it to REJECT."
+ }
+]
