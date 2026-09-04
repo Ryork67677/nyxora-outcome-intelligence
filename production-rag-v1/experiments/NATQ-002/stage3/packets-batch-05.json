@@ -1,0 +1,158 @@
+[
+ {
+  "case": "A16",
+  "question": "is there a way to make one specific tool always be the first thing it calls",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_18c692f4d28bd01c0a5cac553fcf01a7",
+  "document_title": "Messages",
+  "content_hash": "740d6dab47889293f412ae5f2afe85897d0e2227935081d372724a6e773bb3ff",
+  "supported_answer": "Set tool_choice to type \"tool\" and name the tool: the model will use the specified tool with tool_choice.name. Pair it with disable_parallel_tool_use true to get exactly one tool use.",
+  "evidence": [
+   {
+    "version_id": "ver_18c692f4d28bd01c0a5cac553fcf01a7",
+    "char_start": 35913,
+    "char_end": 36048,
+    "quote": "- `ToolChoiceTool object { name, type, disable_parallel_tool_use }`\n\n    The model will use the specified tool with `tool_choice.name`."
+   }
+  ],
+  "atomic_claims": [
+   "tool_choice type tool with a name forces the model to use that specific tool",
+   "the tool is named via tool_choice.name"
+  ],
+  "critical_strings": [
+   "ToolChoiceTool",
+   "tool_choice.name"
+  ],
+  "evidence_shape": "single_span_api_reference",
+  "reasoning_type": "direct parameter lookup",
+  "ambiguity_notes": "'Always be the first thing it calls' is the user's framing. The corpus documents forcing a named tool for the turn, not an ordering guarantee across a multi-tool sequence. The answer states the documented mechanism rather than adopting the ordering claim.",
+  "verifier_notes": "Question said 'either' provider. Anchored in Anthropic because that is where a named-tool choice is documented as a typed object; the OpenAI Agents SDK equivalent (a bare tool-name string) is documented separately and was not needed to answer."
+ },
+ {
+  "case": "A21",
+  "question": "streaming + tool calls = arguments come in fragments?",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_080cad658d87b45b377e08b488fc1ea9",
+  "document_title": "Fine-grained tool streaming",
+  "content_hash": "6e75fe69c9484d07de93224c87a74664373d630e9cf0e35333853a211fe806a0",
+  "supported_answer": "Yes, with fine-grained tool streaming. It delivers a tool's input to your client as Claude generates it, without server-side buffering or JSON validation, so you receive partial fragments rather than one complete validated object.",
+  "evidence": [
+   {
+    "version_id": "ver_080cad658d87b45b377e08b488fc1ea9",
+    "char_start": 423,
+    "char_end": 563,
+    "quote": "Fine-grained tool streaming delivers a tool's input to your client as Claude generates it, without server-side buffering or JSON validation."
+   }
+  ],
+  "atomic_claims": [
+   "fine-grained tool streaming delivers tool input as it is generated",
+   "it skips server-side buffering and JSON validation, so fragments are not validated JSON"
+  ],
+  "critical_strings": [
+   "without server-side buffering or JSON validation"
+  ],
+  "evidence_shape": "single_span_concept",
+  "reasoning_type": "direct feature lookup",
+  "ambiguity_notes": "Question said 'either' provider; answered from Anthropic where the feature is named and documented.",
+  "verifier_notes": "The 'without JSON validation' clause is the load-bearing part: it is what makes fragments non-parseable mid-stream, which is what the question is really about."
+ },
+ {
+  "case": "A23",
+  "question": "enum in schema not being respected",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_0865c9612dfe97d8f30dd870dd12e53e",
+  "document_title": "Structured outputs",
+  "content_hash": "1440ba74d6eb67920a9748b13c5e6abb42fda52e0609c6fe848b1c75b20d4f2a",
+  "supported_answer": "Structured outputs do not guarantee the capitalization of string enum and const values. Claude may return a value differing from the schema only in capitalization, typically in the first letter. Schema compliance is otherwise guaranteed in most cases.",
+  "evidence": [
+   {
+    "version_id": "ver_0865c9612dfe97d8f30dd870dd12e53e",
+    "char_start": 102906,
+    "char_end": 103075,
+    "quote": "Structured outputs don't guarantee the capitalization of string `enum` and `const` values: Claude may return a value that differs from your schema only in capitalization"
+   }
+  ],
+  "atomic_claims": [
+   "structured outputs do not guarantee capitalization of enum and const string values",
+   "a returned value may differ from the schema only in capitalization"
+  ],
+  "critical_strings": [
+   "capitalization",
+   "`enum`"
+  ],
+  "evidence_shape": "single_span_caveat",
+  "reasoning_type": "locating a documented exception to a guarantee",
+  "ambiguity_notes": "The question does not say how the enum is 'not respected'. The corpus documents exactly one enum-specific failure \u2014 casing \u2014 so that is what is cited. A different underlying cause would need different evidence.",
+  "verifier_notes": "Sits in the 'Invalid outputs' section alongside refusal and max_tokens causes; only the enum-casing clause is cited because only it is enum-specific."
+ },
+ {
+  "case": "A25",
+  "question": "recursive schema (tree of nodes) supported?",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_0865c9612dfe97d8f30dd870dd12e53e",
+  "document_title": "Structured outputs",
+  "content_hash": "1440ba74d6eb67920a9748b13c5e6abb42fda52e0609c6fe848b1c75b20d4f2a",
+  "supported_answer": "No. Recursive schemas are listed as not supported, and using an unsupported feature returns a 400 error with details.",
+  "evidence": [
+   {
+    "version_id": "ver_0865c9612dfe97d8f30dd870dd12e53e",
+    "char_start": 99566,
+    "char_end": 99587,
+    "quote": "  * Recursive schemas"
+   },
+   {
+    "version_id": "ver_0865c9612dfe97d8f30dd870dd12e53e",
+    "char_start": 99913,
+    "char_end": 99988,
+    "quote": "If you use an unsupported feature, you'll receive a 400 error with details."
+   }
+  ],
+  "atomic_claims": [
+   "recursive schemas are not supported by structured outputs",
+   "using an unsupported schema feature returns a 400 error"
+  ],
+  "critical_strings": [
+   "Recursive schemas",
+   "400 error"
+  ],
+  "evidence_shape": "multi_span_limitation",
+  "reasoning_type": "negative lookup with its documented consequence",
+  "ambiguity_notes": "'Tree of nodes' is the user's example of recursion; the corpus states the general rule, which covers it.",
+  "verifier_notes": "Two spans because the bare list entry answers 'is it supported' but not 'what happens'; the 400 clause completes the answer. Both are inside the 'Not supported' accordion of JSON Schema limitations."
+ },
+ {
+  "case": "A27",
+  "question": "prefilling assistant turn with { to force json \u2014 is that still a thing",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_0a5b292d4854b92db0a9e025b4949123",
+  "document_title": "Prompting best practices",
+  "content_hash": "b0474bd421fa76ea027a60ce4f62a9c8d155ae74b7902229856b79ea0e3100ca",
+  "supported_answer": "No, not on current models. From Claude 4.6 onward, prefilled responses on the last assistant turn are no longer supported and such requests return a 400 error. Earlier models still support prefills, and assistant messages elsewhere in the conversation are unaffected.",
+  "evidence": [
+   {
+    "version_id": "ver_0a5b292d4854b92db0a9e025b4949123",
+    "char_start": 18432,
+    "char_end": 18744,
+    "quote": "Starting with Claude 4.6 models and [Claude Mythos Preview](https://anthropic.com/glasswing), prefilled responses (providing a partial assistant message for Claude to continue from) on the last assistant turn are no longer supported. Requests with prefilled assistant messages to these models return a 400 error."
+   }
+  ],
+  "atomic_claims": [
+   "prefilled responses on the last assistant turn are unsupported from Claude 4.6 onward",
+   "such requests return a 400 error",
+   "earlier models continue to support prefills"
+  ],
+  "critical_strings": [
+   "no longer supported",
+   "400 error"
+  ],
+  "evidence_shape": "single_span_deprecation",
+  "reasoning_type": "version-scoped capability check",
+  "ambiguity_notes": "The '{' prefill trick is the user's specific instance of the general prefill mechanism the corpus deprecates. The answer is version-scoped rather than absolute because the corpus explicitly preserves the behaviour on earlier models.",
+  "verifier_notes": "Answering a flat 'no' would be wrong: the corpus keeps prefills working on pre-4.6 models. The version scoping is part of the gold answer."
+ }
+]

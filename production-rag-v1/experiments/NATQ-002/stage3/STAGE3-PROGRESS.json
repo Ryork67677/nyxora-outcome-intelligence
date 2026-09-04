@@ -1,21 +1,20 @@
 {
  "record_id": "NATQ-002-STAGE3-PROGRESS",
  "updated_utc": "2026-09-04",
- "head_at_checkpoint": "694039aec9e1d9625535b6d7f53d27ebae529cc5",
- "working_tree": "dirty (this checkpoint being written)",
+ "head_at_checkpoint": "ac7f0db9bbcb3a424110fb132b6fcf3d33278f3b",
  "authored_total": 150,
- "adjudicated": 17,
- "remaining": 132,
- "supported": 11,
+ "adjudicated": 22,
+ "remaining": 127,
+ "supported": 16,
  "rejected": 6,
  "deferred_for_coordinator": [
   "A11"
  ],
  "validator": {
-  "PASS": 11,
+  "PASS": 16,
   "FAIL": 0,
   "REJECT_recorded": 6,
-  "note": "every packet re-validated after the cross-provider validator change; no failures"
+  "note": "all packets re-validated after the cross-provider validator change; zero failures"
  },
  "cross_provider_cases": [
   "A02"
@@ -26,11 +25,17 @@
     "A09",
     "A10"
    ],
-   "span": "(('ver_18c692f4d28bd01c0a5cac553fcf01a7', 35392, 35574),)"
+   "span": [
+    [
+     "ver_18c692f4d28bd01c0a5cac553fcf01a7",
+     35392,
+     35574
+    ]
+   ]
   }
  ],
- "rejection_rate_so_far": "6/17",
- "yield_projection_note": "Not a forecast. If the observed rate held over all 150 the accepted pool would fall short of 100, but slice A is over-represented in what has been adjudicated so far and the rate is not yet stable. Report a real rate when slice A closes.",
+ "rejection_rate_so_far": "6/22",
+ "yield_projection_note": "Not a forecast. Slice A is over-represented in what has been adjudicated; a real rate follows when slice A closes.",
  "corpus_premise_problems": [
   "C12",
   "A08",
@@ -50,6 +55,9 @@
   "packets-batch-01-partial.json": 4,
   "packets-batch-02.json": 4,
   "packets-batch-03.json": 5,
-  "packets-batch-04.json": 4
- }
+  "packets-batch-04.json": 4,
+  "packets-batch-05.json": 5
+ },
+ "final_collision_gate_run": false,
+ "all_150_complete": false
 }
