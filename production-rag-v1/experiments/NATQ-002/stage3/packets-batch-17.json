@@ -1,0 +1,116 @@
+[
+ {
+  "case": "E07",
+  "question": "cheapest embedding model for like 40 million chunks",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_26f61f56d6ff7124cfa38152f7baef3d",
+  "document_title": "Embeddings",
+  "content_hash": "25a94a14c4a00486d301e7914ad884e632b9ac94cc31cdf0826e4e4865025b85",
+  "supported_answer": "Among the Voyage 4 models the corpus documents, voyage-4-lite is the one described as optimized for latency and cost; voyage-4-nano is the open-weight option. The corpus gives no per-token prices, so 'cheapest' is answered by the documented positioning rather than by a rate.",
+  "evidence": [
+   {
+    "version_id": "ver_26f61f56d6ff7124cfa38152f7baef3d",
+    "char_start": 2790,
+    "char_end": 2892,
+    "quote": "| `voyage-4-lite`  | 32,000         | 1024 (default), 256, 512, 2048 | Optimized for latency and cost."
+   }
+  ],
+  "atomic_claims": [
+   "voyage-4-lite is described as optimized for latency and cost"
+  ],
+  "critical_strings": [
+   "voyage-4-lite",
+   "Optimized for latency and cost"
+  ],
+  "evidence_shape": "single_span_partial",
+  "reasoning_type": "selecting from a documented table on a stated dimension",
+  "ambiguity_notes": "The asker wants the cheapest option at scale. The Embeddings page has a Pricing section but the corpus text captured here gives no per-model rate, so the answer rests on the model description's own cost framing and says so.",
+  "verifier_notes": "Anthropic does not offer embeddings; this page documents Voyage AI. Provider is anthropic because that is the document's provider, not the model vendor \u2014 worth noting so the packet is not read as an Anthropic model claim."
+ },
+ {
+  "case": "E08",
+  "question": "how do i shrink embedding vectors to save space in pgvector",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_26f61f56d6ff7124cfa38152f7baef3d",
+  "document_title": "Embeddings",
+  "content_hash": "25a94a14c4a00486d301e7914ad884e632b9ac94cc31cdf0826e4e4865025b85",
+  "supported_answer": "The Voyage 4 models support multiple output dimensions \u2014 1024 by default, with 256, 512 and 2048 also available \u2014 so you request a smaller embedding dimension rather than post-processing the vectors.",
+  "evidence": [
+   {
+    "version_id": "ver_26f61f56d6ff7124cfa38152f7baef3d",
+    "char_start": 2266,
+    "char_end": 2336,
+    "quote": "| `voyage-4-large` | 32,000         | 1024 (default), 256, 512, 2048 |"
+   }
+  ],
+  "atomic_claims": [
+   "voyage-4-large supports embedding dimensions of 1024 by default, plus 256, 512 and 2048"
+  ],
+  "critical_strings": [
+   "1024 (default), 256, 512, 2048"
+  ],
+  "evidence_shape": "single_span_capability",
+  "reasoning_type": "answering a storage-reduction goal with a documented output option",
+  "ambiguity_notes": "The asker names pgvector. The corpus says nothing about pgvector or about quantization; it documents selectable output dimensions, which is the documented lever and the only one claimed.",
+  "verifier_notes": "Deliberately does not mention quantization or dimensionality reduction techniques, which the corpus does not cover."
+ },
+ {
+  "case": "E14",
+  "question": "how do i pass an image by url instead of base64",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_4f8c7b2939ec104f110004dfe05a342b",
+  "document_title": "Vision",
+  "content_hash": "3242a01766ed71074007d71652ebd7dc426feb8fa417e0c66f56b7f87da38d26",
+  "supported_answer": "Use an image content block whose source has type \"url\" and a url field, in place of the base64 source form.",
+  "evidence": [
+   {
+    "version_id": "ver_4f8c7b2939ec104f110004dfe05a342b",
+    "char_start": 8650,
+    "char_end": 8664,
+    "quote": "\"type\": \"url\","
+   }
+  ],
+  "atomic_claims": [
+   "an image source may have type url"
+  ],
+  "critical_strings": [
+   "\"type\": \"url\""
+  ],
+  "evidence_shape": "single_span_configuration",
+  "reasoning_type": "locating an alternative input form",
+  "ambiguity_notes": "Question said 'either' provider; answered from Anthropic's Vision document, which has a dedicated URL-based image example.",
+  "verifier_notes": "The span is the source-type line from the worked example. The section heading names the feature but the type literal is what a reader needs, so the literal is anchored."
+ },
+ {
+  "case": "E15",
+  "question": "count_tokens endpoint \u2014 does it include the tools i define in the request",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_76c80d3d80b12ae7870092b39f1832f1",
+  "document_title": "Token counting",
+  "content_hash": "39238a4c97fa9362a2051f4d77290cd94f49d376035b824d673d55a7c2b97fbf",
+  "supported_answer": "Yes \u2014 the endpoint accepts a tools array and there is a documented section for counting tokens in messages with tools. One caveat: server tool token counts apply only to the first sampling call.",
+  "evidence": [
+   {
+    "version_id": "ver_76c80d3d80b12ae7870092b39f1832f1",
+    "char_start": 5765,
+    "char_end": 5905,
+    "quote": "Server tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/server-tools) token counts only apply to the first sampling call."
+   }
+  ],
+  "atomic_claims": [
+   "the token counting endpoint supports counting messages with tools",
+   "server tool token counts only apply to the first sampling call"
+  ],
+  "critical_strings": [
+   "token counts only apply to the first sampling call"
+  ],
+  "evidence_shape": "single_span_caveat",
+  "reasoning_type": "confirming inclusion and surfacing its limit",
+  "ambiguity_notes": "The plain answer is yes. The cited span is the caveat rather than the bare confirmation, because the caveat is the part a caller can get wrong.",
+  "verifier_notes": "C16 already establishes that the endpoint accepts tools among its inputs; this packet anchors the tool-specific qualifier instead, so the two do not collide."
+ }
+]

@@ -1,0 +1,133 @@
+[
+ {
+  "case": "E22",
+  "question": "spend limits per api key possible?",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_c8b2c7130cb18508fed4f864d4c3d7a3",
+  "document_title": "Rate limits",
+  "content_hash": "27738d20da88c513b81371950df63b658fd4726c0e9a13bc44a6de320278584a",
+  "supported_answer": "Spend limits exist, but at organization level rather than per API key. Each tier carries a monthly spend cap, and you can set your own spend limit below that cap in the Console's Billing settings. No per-key spend limit is documented.",
+  "evidence": [
+   {
+    "version_id": "ver_c8b2c7130cb18508fed4f864d4c3d7a3",
+    "char_start": 1189,
+    "char_end": 1276,
+    "quote": "1. **Spend limits** set a maximum monthly cost an organization can incur for API usage."
+   },
+   {
+    "version_id": "ver_c8b2c7130cb18508fed4f864d4c3d7a3",
+    "char_start": 4399,
+    "char_end": 4476,
+    "quote": "You can also set your own spend limit below your tier's cap to control costs:"
+   }
+  ],
+  "atomic_claims": [
+   "spend limits set a maximum monthly cost an organization can incur for API usage",
+   "an organization can set its own spend limit below its tier cap"
+  ],
+  "critical_strings": [
+   "Spend limits",
+   "organization"
+  ],
+  "evidence_shape": "multi_span_scope_correction",
+  "reasoning_type": "correcting the granularity assumed by the question",
+  "ambiguity_notes": "The asker assumes per-key granularity. The corpus documents the feature at organization level and never at key level, so the answer states the documented scope and says the per-key form is not documented rather than denying it outright.",
+  "verifier_notes": "Admitted rather than rejected because the corpus answers 'are spend limits possible' affirmatively and defines their granularity \u2014 the same shape as C28, where the corpus corrects the asker's framing instead of matching it."
+ },
+ {
+  "case": "E24",
+  "question": "usage numbers in a streaming response \u2014 are input tokens in the first event or the last one",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_1261879c16f641270789647ac9c63c96",
+  "document_title": "Streaming messages",
+  "content_hash": "82fabc5d2e31d7a82284e3502872738c512d5ed305bace782d13eb7c3f60bd6d",
+  "supported_answer": "Input tokens arrive in the first event: message_start carries a usage object with input_tokens. Output token counts accumulate on message_delta events and are cumulative, so the final message_delta holds the running total.",
+  "evidence": [
+   {
+    "version_id": "ver_1261879c16f641270789647ac9c63c96",
+    "char_start": 17620,
+    "char_end": 17909,
+    "quote": "event: message_start\ndata: {\"type\": \"message_start\", \"message\": {\"id\": \"msg_1nZdL29xx5MUA1yADyHTEsnR8uuvGzszyY\", \"type\": \"message\", \"role\": \"assistant\", \"content\": [], \"model\": \"claude-opus-5\", \"stop_reason\": null, \"stop_sequence\": null, \"usage\": {\"input_tokens\": 25, \"output_tokens\": 1}}}"
+   },
+   {
+    "version_id": "ver_1261879c16f641270789647ac9c63c96",
+    "char_start": 9739,
+    "char_end": 9829,
+    "quote": "The token counts shown in the `usage` field of the `message_delta` event are *cumulative*."
+   }
+  ],
+  "atomic_claims": [
+   "message_start carries a usage object containing input_tokens",
+   "token counts on message_delta events are cumulative"
+  ],
+  "critical_strings": [
+   "message_start",
+   "input_tokens",
+   "cumulative"
+  ],
+  "evidence_shape": "multi_span_sequence",
+  "reasoning_type": "resolving a first-or-last question across two event types",
+  "ambiguity_notes": "The question offers a binary. The real answer is split \u2014 input at the start, output accumulating to the end \u2014 and both spans are cited so neither half is dropped.",
+  "verifier_notes": "EVIDENCE OVERLAP WITH B21, which cites the cumulative span alone. Span SETS differ, so not an exact-span collision; noted for the chunk-level advisory."
+ },
+ {
+  "case": "E09",
+  "question": "moderation endpoint \u2014 can it take images or is it text only now",
+  "support_status": "REJECT",
+  "rejection_reason": "Premise not documented in the frozen corpus. No moderation endpoint is documented at all: the strings 'moderation endpoint' and 'omni-moderation' return zero documents across the whole snapshot. The Anthropic 'Content moderation' document describes building moderation WITH Claude via prompting, which is a different thing from a provider-hosted moderation endpoint, and says nothing about image inputs to such an endpoint.",
+  "probes_run": [
+   "moderation endpoint",
+   "omni-moderation",
+   "moderation"
+  ],
+  "verifier_notes": "A 115k-character document titled 'Content moderation' exists, which makes this look answerable. It is a guide to using Claude as a moderator, not documentation of a moderation API, and anchoring there would answer a question nobody asked."
+ },
+ {
+  "case": "E11",
+  "question": "is there a way to see cost per request in the response headers",
+  "support_status": "REJECT",
+  "rejection_reason": "Premise not documented in the frozen corpus. No document describes a per-request cost or price response header. The rate-limit headers that are documented report request and token allowances (anthropic-ratelimit-*) and retry timing, not cost. The two occurrences of 'cost' in the Rate limits document refer to monthly spend limits, not to a header.",
+  "probes_run": [
+   "cost",
+   "price",
+   "anthropic-ratelimit"
+  ],
+  "verifier_notes": "Usage token counts are returned in the response BODY, from which cost can be computed against the pricing table, but that is a calculation the corpus does not present as a header and the question asks specifically about headers."
+ },
+ {
+  "case": "E18",
+  "question": "moving from ada-002 to text-embedding-3, do i have to reindex everything",
+  "support_status": "REJECT",
+  "rejection_reason": "Premise not documented in the frozen corpus. 'ada-002' returns zero documents across the snapshot, and 'text-embedding-3' appears in exactly one document, 'Text comparison examples', which does not discuss migration or reindexing. The Anthropic Embeddings document covers Voyage AI models and states that Anthropic offers no embedding model of its own, so no migration guidance for OpenAI embedding models exists here.",
+  "probes_run": [
+   "text-embedding-3",
+   "ada-002"
+  ],
+  "verifier_notes": "The general principle that changing embedding models requires re-embedding is well known but is not stated in this corpus, and a benchmark case cannot rest on outside knowledge."
+ },
+ {
+  "case": "E25",
+  "question": "do i get charged for output tokens if i abort the stream halfway",
+  "support_status": "REJECT",
+  "rejection_reason": "Premise not documented in the frozen corpus. No document states the billing consequence of a client aborting a stream mid-response. The strings 'abort', 'cancel' and 'billed' are all absent from the Streaming messages document, and no other document connects stream termination to output-token billing.",
+  "probes_run": [
+   "abort",
+   "cancel",
+   "billed"
+  ],
+  "verifier_notes": "Adjacent but non-answering material exists: message_delta usage counts are documented as cumulative, which tells you what was generated up to a point but not what is charged when the client disconnects. Same failure shape as B08."
+ },
+ {
+  "case": "E27",
+  "question": "is there a content filter i can turn on for user input before it hits the model",
+  "support_status": "REJECT",
+  "rejection_reason": "Premise not documented in the frozen corpus. No toggleable, provider-side input content filter is documented. 'content filter' returns nothing in the Embeddings or Rate limits documents, and the 'Content moderation' guide describes constructing moderation by prompting Claude with your own categories rather than enabling a built-in filter.",
+  "probes_run": [
+   "content filter",
+   "moderation"
+  ],
+  "verifier_notes": "The asker's phrasing \u2014 'turn on' \u2014 is the operative constraint. The corpus offers a build-it-yourself approach, which answers a different question, and admitting it would reward retrieving a how-to guide for a feature-existence question."
+ }
+]
