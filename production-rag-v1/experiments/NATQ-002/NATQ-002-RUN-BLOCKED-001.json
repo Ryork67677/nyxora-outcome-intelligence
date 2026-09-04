@@ -1,0 +1,73 @@
+{
+  "record_id": "NATQ-002-RUN-BLOCKED-001",
+  "recorded_utc": "2026-09-04",
+  "status": "CANNOT_EXECUTE",
+  "what_was_attempted": "Preparing the first preregistered SYSTEM-H validation run against the 40 NATQ-002 validation cases.",
+  "nothing_was_scored": true,
+  "validation_runs_consumed": 0,
+  "reserve_access_log_entries": 0,
+
+  "finding": "SYSTEM-H-V2-DEV-CANDIDATE cannot be executed on this machine. It is an architecture record, not runnable code, and the components it composes are absent here.",
+
+  "missing_dependencies": [
+    {
+      "dependency": "SYSTEM-H runner",
+      "state": "does not exist on ANY branch",
+      "evidence": "case-insensitive search for 'system_h', 'system-h' and 'run_system' over the full file listings of origin/grok/v2-dev, origin/grok/ce-latency-handoff and origin/main returns 0 matches. No script assembles the three candidate-generation stages, the CE blend and the performance path into a runnable system."
+    },
+    {
+      "dependency": "projection set ps_v2_ovl_win448_s224 (projection_index_hash 7fd5034c9510a1e08ec76bd22b020703c586dd12e7c02659397df05c5c365a8e)",
+      "state": "absent from this database",
+      "evidence": "The schema has no projection table. Present tables: chunk, chunk_embedding, chunk_link, chunk_set, corpus_snapshot, corpus_snapshot_version, document_source, document_version, embedding_model, query_trace, retrieval_cache. No chunk_set or embedding row carries a ps_ identifier.",
+      "note": "EXP-017/scripts/build_projections.py exists on grok/v2-dev and could in principle build one, but the built index would then have to reproduce the pinned projection_index_hash to be the same system."
+    },
+    {
+      "dependency": "SYSTEM-G candidate generation and the EXP-019A retrieval prior",
+      "state": "no implementation here, and EXP-019A's own artifacts are unrecoverable",
+      "evidence": "No EXP-019* or SYSTEM-G directory exists in this tree, and PROVENANCE-GAP-001 records EXP-019A as absent from every ref fetched from origin, present only as values relayed through conversation.",
+      "why_this_is_the_hard_blocker": "The prior's behaviour is described in the SYSTEM-H record in enough detail to re-implement (piecewise channel assignment, P=20 projection-only extras, min-max within that population, degenerate 0.5, E-L10 retrieval_norm preserved, no third RRF). But a re-implementation cannot be verified against EXP-019A because EXP-019A does not exist. Its output would be a new system, not SYSTEM-H."
+    },
+    {
+      "dependency": "SYSTEM-A-GLOBAL stage-1 (config_hash 9afcb5b7c58ebacff0b4c3711dd9618a2e727f4195dd1787a5da81e478ee0b38)",
+      "state": "not present as runnable code in this tree"
+    }
+  ],
+
+  "what_is_present_here": {
+    "corpus": "frozen snapshot intact — 202 documents, 14,209 cs_v1_control chunks",
+    "onnxruntime": "1.29.0",
+    "cross_encoder_onnx": "data/cache/models/exp009/onnx/model.onnx present",
+    "embeddings": "four embedding models populated, including sentence-transformers/all-MiniLM-L6-v2",
+    "absent": ["torch", "transformers", "sentence_transformers"],
+    "building_blocks_on_grok_v2_dev": [
+      "EXP-017/scripts/build_projections.py",
+      "EXP-017/scripts/projection_retrieval.py",
+      "EXP-018/scripts/system_e.py",
+      "EXP-018B/scripts/local_bm25_batched.py",
+      "EXP-015/scripts/cross_encoder.py"
+    ]
+  },
+
+  "why_not_reconstruct": "The preregistration makes a run valid only if the system's score_determining_hash equals 3fade96a9b3597861b0788c15d0e456a52fa92f6907749a2661960e54bf7b2e5 at run time. That hash covers score-determining fields whose implementation would be invented here rather than reproduced. A reconstruction could be made to run and produce numbers, but those numbers would belong to a different system, and reporting them as SYSTEM-H's would be exactly the kind of unfalsifiable claim this program has refused everywhere else.",
+
+  "what_is_unaffected": [
+    "The frozen benchmark is unchanged; both hashes still verify.",
+    "The 40/60 split stands and was independently re-derived from the frozen benchmark plus the recorded salt, reproducing both partition hashes exactly.",
+    "The reserve lock is intact and its access log is still empty.",
+    "The preregistration stands as written and no run has been consumed."
+  ],
+
+  "unblock_options": [
+    "Run the preregistered validation on the machine where SYSTEM-H actually exists, using this preregistration and the pinned split hashes.",
+    "Push a SYSTEM-H runner plus the ps_v2_ovl_win448_s224 projection index to a branch this session can pull, with hashes to verify against.",
+    "Preregister a DIFFERENT, locally runnable system as the system under test — for example a BM25-only baseline over cs_v1_control — which would exercise the split and the harness honestly without claiming to be SYSTEM-H. This requires a new preregistration, not an edit to this one."
+  ],
+
+  "constraints_honored": [
+    "No system was run against NATQ-002.",
+    "No validation run was consumed.",
+    "The reserve partition was not opened.",
+    "No scores were estimated, reconstructed, or relayed.",
+    "SYSTEM-H's record was not modified; VALIDATION_RUN remains false."
+  ]
+}
