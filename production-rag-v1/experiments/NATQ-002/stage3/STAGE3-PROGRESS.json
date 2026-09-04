@@ -1,20 +1,17 @@
 {
  "record_id": "NATQ-002-STAGE3-PROGRESS",
  "updated_utc": "2026-09-04",
- "head_at_checkpoint": "ac7f0db9bbcb3a424110fb132b6fcf3d33278f3b",
+ "head_at_checkpoint": "7b6d04a5e95a37d9f0c4e867700c0e0ba257fad8",
  "authored_total": 150,
- "adjudicated": 22,
- "remaining": 127,
- "supported": 16,
- "rejected": 6,
- "deferred_for_coordinator": [
-  "A11"
- ],
+ "adjudicated": 31,
+ "remaining": 119,
+ "supported": 22,
+ "rejected": 9,
+ "deferred": 0,
  "validator": {
-  "PASS": 16,
+  "PASS": 22,
   "FAIL": 0,
-  "REJECT_recorded": 6,
-  "note": "all packets re-validated after the cross-provider validator change; zero failures"
+  "REJECT_recorded": 9
  },
  "cross_provider_cases": [
   "A02"
@@ -34,16 +31,42 @@
    ]
   }
  ],
- "rejection_rate_so_far": "6/22",
- "yield_projection_note": "Not a forecast. Slice A is over-represented in what has been adjudicated; a real rate follows when slice A closes.",
- "corpus_premise_problems": [
-  "C12",
-  "A08",
-  "A01",
-  "A06",
-  "A15",
-  "A18"
- ],
+ "slices": {
+  "A": {
+   "total": 30,
+   "done": 30,
+   "supported": 22,
+   "rejected": 8
+  },
+  "B": {
+   "total": 30,
+   "done": 0,
+   "supported": 0,
+   "rejected": 0
+  },
+  "C": {
+   "total": 30,
+   "done": 1,
+   "supported": 0,
+   "rejected": 1
+  },
+  "D": {
+   "total": 30,
+   "done": 0,
+   "supported": 0,
+   "rejected": 0
+  },
+  "E": {
+   "total": 30,
+   "done": 0,
+   "supported": 0,
+   "rejected": 0
+  }
+ },
+ "slice_A_complete": true,
+ "slice_A_rejection_rate": "8/30",
+ "overall_rejection_rate": "9/31",
+ "yield_projection_note": "Slice A is now closed and its rate is real FOR SLICE A. It is still not a benchmark-wide rate: B, D and E are untouched and C has one case. Each slice came from a different cold-context agent on a different domain prompt.",
  "constraints": {
   "natq002_scored": false,
   "holdout_opened": false,
@@ -51,13 +74,14 @@
   "question_wording_altered": false,
   "systems_run": false
  },
+ "final_collision_gate_run": false,
+ "all_150_complete": false,
  "batches": {
   "packets-batch-01-partial.json": 4,
   "packets-batch-02.json": 4,
   "packets-batch-03.json": 5,
   "packets-batch-04.json": 4,
-  "packets-batch-05.json": 5
- },
- "final_collision_gate_run": false,
- "all_150_complete": false
+  "packets-batch-05.json": 5,
+  "packets-batch-06.json": 9
+ }
 }

@@ -1,0 +1,230 @@
+[
+ {
+  "case": "A11",
+  "question": "claude keeps saying \"I'll use the tool\" in text before actually calling it, can I suppress that",
+  "support_status": "REJECT",
+  "rejection_reason": "REJECT_ON_PREMISE / UNSUPPORTED_SCOPE, per coordinator ruling. The frozen corpus contains generic guidance about responding without preamble, and separately contains examples where preamble text precedes a tool_use block, but it does not connect the generic no-preamble instruction to suppressing textual preamble specifically before a tool call. That scope gap must not be bridged by inference, and a gold span may not be admitted merely because general advice is plausibly applicable.",
+  "probes_run": [
+   "preamble"
+  ],
+  "adjudicated_by": "coordinator ChatGPT",
+  "prior_state": "DEFERRED (recorded in DEFERRED-FOR-COORDINATOR.json)",
+  "verifier_notes": "Question wording unchanged. This ruling sets the standard applied to A17 and A29 in this same batch: a mechanism documented without its scoping condition is not gold."
+ },
+ {
+  "case": "A17",
+  "question": "pydantic model as the response format, does it work with optional fields",
+  "support_status": "REJECT",
+  "rejection_reason": "Premise not documented in the frozen corpus. 'Optional', 'optional' and 'nullable' are all absent from the OpenAI 'Structured Outputs Parsing Helpers' document, which is where pydantic response_format is documented. No document states whether optional or nullable pydantic fields are supported in a strict structured-output schema.",
+  "probes_run": [
+   "Optional",
+   "optional",
+   "nullable"
+  ],
+  "verifier_notes": "Anthropic's 'Structured outputs' does list `default` and `anyOf` as supported, and a pydantic Optional lowers to anyOf[T, null] \u2014 but that is a two-step inference across providers about a question scoped to pydantic response_format. Under the A11 ruling that is exactly the bridge not to build."
+ },
+ {
+  "case": "A20",
+  "question": "refusal field in the response, when does that show up",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_fa78e1feb6289d6bcb22305e61bbbfc3",
+  "document_title": "Refusals and fallback",
+  "content_hash": "e80c3cd553d9ed8af963d917df06c20ba17f739a62aa51d8471cb9289db155bf",
+  "supported_answer": "When a safety classifier declines the request. On Claude Fable 5 and Claude Opus 5 you then receive a normal response rather than an error, carrying stop_reason \"refusal\".",
+  "evidence": [
+   {
+    "version_id": "ver_fa78e1feb6289d6bcb22305e61bbbfc3",
+    "char_start": 251,
+    "char_end": 433,
+    "quote": "Claude Fable 5 and Claude Opus 5 include safety classifiers that can decline a request. When that happens, you receive a normal response, not an error, with `stop_reason: \"refusal\"`."
+   }
+  ],
+  "atomic_claims": [
+   "safety classifiers on Claude Fable 5 and Claude Opus 5 can decline a request",
+   "a declined request returns a normal response, not an error",
+   "the response carries stop_reason refusal"
+  ],
+  "critical_strings": [
+   "stop_reason: \"refusal\"",
+   "safety classifiers"
+  ],
+  "evidence_shape": "single_span_behaviour",
+  "reasoning_type": "locating the triggering condition for a documented response state",
+  "ambiguity_notes": "The asker says 'refusal field'. Anthropic surfaces refusal as a stop_reason value, not a named field; OpenAI has a message.refusal field but its corpus never states when it is populated. Answered from Anthropic because that is where the triggering condition is documented, and the shape difference is recorded rather than smoothed over.",
+  "verifier_notes": "The OpenAI parsing-helpers document shows message.refusal and refusal streaming events but only as mechanism, never the condition. Citing it would repeat the A11 error."
+ },
+ {
+  "case": "A22",
+  "question": "how do i validate the args the model gives me before running the function, does it guarantee",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_95f8f8e5b914a2d500ddb47e100fed47",
+  "document_title": "Strict tool use",
+  "content_hash": "b19341949dc0359ede329de0343d2289eb9f4f47c17638fe27e4bfa88d400341",
+  "supported_answer": "Set strict: true on the tool definition. That guarantees tool inputs match your JSON Schema by constraining token sampling to schema-valid outputs \u2014 grammar-constrained sampling \u2014 so the guarantee comes from generation, not from post-hoc validation.",
+  "evidence": [
+   {
+    "version_id": "ver_95f8f8e5b914a2d500ddb47e100fed47",
+    "char_start": 218,
+    "char_end": 434,
+    "quote": "Setting `strict: true` on a tool definition guarantees Claude's tool inputs match your JSON Schema by constraining the model's token sampling to schema-valid outputs (a technique called grammar-constrained sampling)."
+   }
+  ],
+  "atomic_claims": [
+   "strict true on a tool definition guarantees tool inputs match the JSON Schema",
+   "the mechanism is grammar-constrained sampling of schema-valid outputs"
+  ],
+  "critical_strings": [
+   "`strict: true`",
+   "grammar-constrained sampling"
+  ],
+  "evidence_shape": "single_span_guarantee",
+  "reasoning_type": "direct feature lookup answering a yes/no guarantee question",
+  "ambiguity_notes": "Question said 'either' provider; answered from Anthropic where the guarantee is stated explicitly. The schema subset that strict mode supports is documented separately and bounds the guarantee.",
+  "verifier_notes": "The question has two parts \u2014 how to validate, and whether it guarantees. The cited span answers both in one sentence."
+ },
+ {
+  "case": "A24",
+  "question": "guardrails in the agents sdk \u2014 can one block the run before the model even sees input",
+  "support_status": "SUPPORTED",
+  "provider": "openai",
+  "version_id": "ver_f22fbd5c504fa28a4e70440337e4a495",
+  "document_title": "Guardrails",
+  "content_hash": "5779ec5e82c23aec4778b591ad25e41732314bebd8cd82c9da164f4b2d01f327",
+  "supported_answer": "Yes, but not by default. Input guardrails default to parallel execution (run_in_parallel=True), where the guardrail runs concurrently with the agent and a tripwire may fire only after tokens were consumed and tools executed. Setting run_in_parallel=False makes the guardrail run and complete before the agent starts, so a triggered tripwire means the agent never executes.",
+  "evidence": [
+   {
+    "version_id": "ver_f22fbd5c504fa28a4e70440337e4a495",
+    "char_start": 2592,
+    "char_end": 2711,
+    "quote": "- **Parallel execution** (default, `run_in_parallel=True`): The guardrail runs concurrently with the agent's execution."
+   },
+   {
+    "version_id": "ver_f22fbd5c504fa28a4e70440337e4a495",
+    "char_start": 2916,
+    "char_end": 3142,
+    "quote": "- **Blocking execution** (`run_in_parallel=False`): The guardrail runs and completes *before* the agent starts. If the guardrail tripwire is triggered, the agent never executes, preventing token consumption and tool execution."
+   }
+  ],
+  "atomic_claims": [
+   "input guardrails default to parallel execution, running concurrently with the agent",
+   "run_in_parallel=False makes the guardrail complete before the agent starts",
+   "under blocking execution a triggered tripwire means the agent never executes"
+  ],
+  "critical_strings": [
+   "run_in_parallel=False",
+   "before* the agent starts",
+   "never executes"
+  ],
+  "evidence_shape": "multi_span_conditional",
+  "reasoning_type": "answering a yes/no question whose answer depends on a non-default setting",
+  "ambiguity_notes": "A bare 'yes' would be wrong: the default mode does not block. Both spans are cited so the default and the override are both in the gold answer.",
+  "verifier_notes": "This is why A24 was held back from batch 05 rather than guessed \u2014 the tripwire text alone reads as blocking, and only the Execution modes section shows the default is not."
+ },
+ {
+  "case": "A26",
+  "question": "if i set temperature 0 and also force a tool does the tool input become deterministic",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_18c692f4d28bd01c0a5cac553fcf01a7",
+  "document_title": "Messages",
+  "content_hash": "740d6dab47889293f412ae5f2afe85897d0e2227935081d372724a6e773bb3ff",
+  "supported_answer": "No. The corpus states plainly that even with temperature of 0.0 the results will not be fully deterministic. Forcing a tool constrains which tool is called, not the determinism of sampling.",
+  "evidence": [
+   {
+    "version_id": "ver_18c692f4d28bd01c0a5cac553fcf01a7",
+    "char_start": 33116,
+    "char_end": 33204,
+    "quote": "Note that even with `temperature` of `0.0`, the results will not be fully deterministic."
+   }
+  ],
+  "atomic_claims": [
+   "temperature 0.0 does not make results fully deterministic"
+  ],
+  "critical_strings": [
+   "not be fully deterministic"
+  ],
+  "evidence_shape": "single_span_caveat",
+  "reasoning_type": "direct refutation of the asker's assumption",
+  "ambiguity_notes": "The question compounds temperature 0 with forced tool use. The corpus addresses the temperature half directly and that half settles the question; it makes no separate determinism claim about forced tool inputs, and none is inferred here.",
+  "verifier_notes": "The cited sentence sits inside the temperature parameter description in the Messages reference."
+ },
+ {
+  "case": "A28",
+  "question": "computer use in docker, do i need a real browser and X server",
+  "support_status": "SUPPORTED",
+  "provider": "anthropic",
+  "version_id": "ver_d9ba3ab0d872dd86047c7ed6dc783235",
+  "document_title": "Computer use tool",
+  "content_hash": "07a95b7f2092a6edf0f9784d034e080e47412bb1eb120cf0f6bdb1cb64c01149",
+  "supported_answer": "You need a virtual X11 display server, not a real one: the documented environment uses Xvfb to render the desktop Claude sees through screenshots and controls with mouse and keyboard actions.",
+  "evidence": [
+   {
+    "version_id": "ver_d9ba3ab0d872dd86047c7ed6dc783235",
+    "char_start": 14216,
+    "char_end": 14393,
+    "quote": "1. **Virtual display:** A virtual X11 display server (using Xvfb) that renders the desktop interface Claude will see through screenshots and control with mouse/keyboard actions."
+   }
+  ],
+  "atomic_claims": [
+   "computer use requires a sandboxed computing environment",
+   "the display is a virtual X11 display server using Xvfb",
+   "Claude sees that display through screenshots and controls it with mouse and keyboard actions"
+  ],
+  "critical_strings": [
+   "Virtual display",
+   "Xvfb"
+  ],
+  "evidence_shape": "single_span_requirement",
+  "reasoning_type": "correcting 'real' to 'virtual' from the documented environment",
+  "ambiguity_notes": "The question asks about a browser as well. The cited span covers the display server; the corpus describes the desktop environment components rather than mandating a specific browser, so the answer does not claim a browser requirement.",
+  "verifier_notes": "The literal string 'X server' is absent; 'X11 display server' is the corpus wording, and the span carries it."
+ },
+ {
+  "case": "A29",
+  "question": "we call it function calling internally but the docs say tool use, are they literally the same thing",
+  "support_status": "REJECT",
+  "rejection_reason": "Premise not documented in the frozen corpus. No document states that 'function calling' and 'tool use' are the same thing, or defines one in terms of the other. The phrase 'function calling' occurs only incidentally \u2014 as a section heading in gpt-oss local-runtime guides, as prose in a documentation style guide, and once in 'Claude API skill' where a link for 'function calling' points at the tool-use overview. That link implies synonymy but never asserts it, and the Glossary contains no entry for the term.",
+  "probes_run": [
+   "function calling"
+  ],
+  "verifier_notes": "Under the A11 ruling this is the same failure shape: the corpus behaves as though the terms are equivalent without ever saying so. Admitting the 'Claude API skill' line would make a hyperlink target into a definitional claim."
+ },
+ {
+  "case": "A30",
+  "question": "how do i log every tool call an agent makes for debugging without wrapping each function",
+  "support_status": "SUPPORTED",
+  "provider": "openai",
+  "version_id": "ver_6b90217721b841b1329f51ec1caab139",
+  "document_title": "Tracing",
+  "content_hash": "eecdd6b57b3c55ac94ffafad25253511f5a80fca8dc9f9bb6b303bfb21eb5a02",
+  "supported_answer": "Use the SDK's built-in tracing, which is on by default. It records a comprehensive event log for an agent run including tool calls, and each function tool call is automatically wrapped in a function_span() \u2014 so no per-function instrumentation is needed.",
+  "evidence": [
+   {
+    "version_id": "ver_6b90217721b841b1329f51ec1caab139",
+    "char_start": 11,
+    "char_end": 203,
+    "quote": "The Agents SDK includes built-in tracing, collecting a comprehensive record of events during an agent run: LLM generations, tool calls, handoffs, guardrails, and even custom events that occur."
+   },
+   {
+    "version_id": "ver_6b90217721b841b1329f51ec1caab139",
+    "char_start": 2392,
+    "char_end": 2453,
+    "quote": "-   Function tool calls are each wrapped in `function_span()`"
+   }
+  ],
+  "atomic_claims": [
+   "the Agents SDK includes built-in tracing that records tool calls among other events",
+   "each function tool call is automatically wrapped in a function_span()"
+  ],
+  "critical_strings": [
+   "built-in tracing",
+   "function_span()"
+  ],
+  "evidence_shape": "multi_span_feature",
+  "reasoning_type": "answering a 'without doing X' question with the automatic mechanism",
+  "ambiguity_notes": "None. The 'without wrapping each function' constraint is answered by the automatic span wrapping.",
+  "verifier_notes": "Two OpenAI documents are titled 'Tracing'. This packet cites ver_6b90217721b841b1329f51ec1caab139 (13,135 chars, the Agents SDK tracing document), NOT the 1k voice-pipeline tracing page that a title-keyed lookup returns."
+ }
+]
