@@ -1,0 +1,310 @@
+{
+ "generated_utc": "2026-09-04",
+ "head": "c5833dc",
+ "benchmark_id": "NATQ-002",
+ "corpus": {
+  "snapshot": "snap_689e336380a054d8039dc35b2c09cd0a",
+  "docs": 202,
+  "chunks": 14209
+ },
+ "totals": {
+  "authored": 150,
+  "target": 100,
+  "adjudicated": 22,
+  "supported": 16,
+  "rejected": 6,
+  "deferred": 1,
+  "remaining": 127,
+  "validator_pass": 16,
+  "validator_fail": 0
+ },
+ "slices": {
+  "A": {
+   "total": 30,
+   "done": 22
+  },
+  "B": {
+   "total": 30,
+   "done": 0
+  },
+  "C": {
+   "total": 30,
+   "done": 1
+  },
+  "D": {
+   "total": 30,
+   "done": 0
+  },
+  "E": {
+   "total": 30,
+   "done": 0
+  }
+ },
+ "supported_cases": [
+  {
+   "case": "A09",
+   "q": "does the model ever call two tools in one response",
+   "doc": "Messages",
+   "prov": "anthropic",
+   "spans": 1,
+   "shape": "single_span_api_reference"
+  },
+  {
+   "case": "A04",
+   "q": "what happens if my json schema has additionalProperties true with strict mode on",
+   "doc": "Structured outputs",
+   "prov": "anthropic",
+   "spans": 1,
+   "shape": "single_span_constraint_list"
+  },
+  {
+   "case": "A05",
+   "q": "screenshot resolution for computer use \u2014 does it matter what size my screen is",
+   "doc": "Coordinates and bounding boxes",
+   "prov": "anthropic",
+   "spans": 1,
+   "shape": "single_span_procedure"
+  },
+  {
+   "case": "A02",
+   "q": "tool_choice required vs any \u2014 whats the difference",
+   "doc": "Messages + Agents (cross-document)",
+   "prov": "cross-provider",
+   "spans": 2,
+   "shape": "multi_span_cross_provider"
+  },
+  {
+   "case": "A03",
+   "q": "I want the model to return ONLY valid json no preamble text",
+   "doc": "Structured outputs",
+   "prov": "anthropic",
+   "spans": 2,
+   "shape": "multi_span_procedure"
+  },
+  {
+   "case": "A10",
+   "q": "how do i turn off parallel tool calls",
+   "doc": "Messages",
+   "prov": "anthropic",
+   "spans": 1,
+   "shape": "single_span_api_reference"
+  },
+  {
+   "case": "A07",
+   "q": "agents sdk handoff vs just giving it a tool that calls the other agent",
+   "doc": "Tools",
+   "prov": "openai",
+   "spans": 2,
+   "shape": "multi_span_concept_contrast"
+  },
+  {
+   "case": "A12",
+   "q": "what do i send back after a tool_use block",
+   "doc": "Handle tool calls",
+   "prov": "anthropic",
+   "spans": 3,
+   "shape": "multi_span_procedure"
+  },
+  {
+   "case": "A13",
+   "q": "tool result error \u2014 how to tell the model the tool failed instead of just returning text",
+   "doc": "Handle tool calls",
+   "prov": "anthropic",
+   "spans": 2,
+   "shape": "multi_span_api_reference"
+  },
+  {
+   "case": "A14",
+   "q": "max token limit hit in the middle of a tool call, what do i get back",
+   "doc": "Stop reasons and fallback",
+   "prov": "anthropic",
+   "spans": 2,
+   "shape": "multi_span_behaviour_and_detection"
+  },
+  {
+   "case": "A19",
+   "q": "bash tool and text editor tool \u2014 do i have to implement them myself",
+   "doc": "Tool use with Claude",
+   "prov": "anthropic",
+   "spans": 2,
+   "shape": "multi_span_concept"
+  },
+  {
+   "case": "A16",
+   "q": "is there a way to make one specific tool always be the first thing it calls",
+   "doc": "Messages",
+   "prov": "anthropic",
+   "spans": 1,
+   "shape": "single_span_api_reference"
+  },
+  {
+   "case": "A21",
+   "q": "streaming + tool calls = arguments come in fragments?",
+   "doc": "Fine-grained tool streaming",
+   "prov": "anthropic",
+   "spans": 1,
+   "shape": "single_span_concept"
+  },
+  {
+   "case": "A23",
+   "q": "enum in schema not being respected",
+   "doc": "Structured outputs",
+   "prov": "anthropic",
+   "spans": 1,
+   "shape": "single_span_caveat"
+  },
+  {
+   "case": "A25",
+   "q": "recursive schema (tree of nodes) supported?",
+   "doc": "Structured outputs",
+   "prov": "anthropic",
+   "spans": 2,
+   "shape": "multi_span_limitation"
+  },
+  {
+   "case": "A27",
+   "q": "prefilling assistant turn with { to force json \u2014 is that still a thing",
+   "doc": "Prompting best practices",
+   "prov": "anthropic",
+   "spans": 1,
+   "shape": "single_span_deprecation"
+  }
+ ],
+ "rejected_cases": [
+  {
+   "case": "C12",
+   "q": "max_tokens deprecated in favor of max_completion_tokens?",
+   "reason": "UNSUPPORTED - the identifier max_completion_tokens does not occur anywhere in the frozen corpus (0 occurrences across all 202 documents, case-sensitive and case-insensitive).",
+   "probes": []
+  },
+  {
+   "case": "A08",
+   "q": "getting an error that my schema root must be an object",
+   "reason": "Premise not documented in the frozen corpus.",
+   "probes": [
+    "root must be an object",
+    "additionalProperties",
+    "must be an object",
+    "top-level"
+   ]
+  },
+  {
+   "case": "A01",
+   "q": "how do I stop claude from calling the same tool over and over",
+   "reason": "Premise not documented in the frozen corpus.",
+   "probes": [
+    "same tool repeatedly",
+    "over and over",
+    "repeatedly",
+    "infinite loop",
+    "loop"
+   ]
+  },
+  {
+   "case": "A06",
+   "q": "migrating from functions/function_call to tools/tool_choice, what actually changes in the request body",
+   "reason": "Premise not documented in the frozen corpus.",
+   "probes": [
+    "function_call",
+    "functions",
+    "tool_choice"
+   ]
+  },
+  {
+   "case": "A15",
+   "q": "CU model clicking wrong coordinates on retina display",
+   "reason": "Premise not documented in the frozen corpus.",
+   "probes": [
+    "retina",
+    "scale down",
+    "image resizing",
+    "XGA",
+    "recommended",
+    "coordinate"
+   ]
+  },
+  {
+   "case": "A18",
+   "q": "what's the max number of tools i can define",
+   "reason": "Premise not documented in the frozen corpus.",
+   "probes": [
+    "maximum number of tools",
+    "how many tools",
+    "number of tools",
+    "tool limit",
+    "limit"
+   ]
+  }
+ ],
+ "deferred": [
+  {
+   "case": "A11",
+   "question": "claude keeps saying \"I'll use the tool\" in text before actually calling it, can I suppress that",
+   "what_the_corpus_does_say": [
+    "'Prompting best practices' has an 'Eliminating preambles' accordion: prefills were used to skip introductory text, and the migration is to instruct directly in the system prompt ('Respond directly without preamble...'), or use XML tags, structured outputs, or tool calling, and strip anything remaining in post-processing.",
+    "'Handle tool calls' shows an example response in which a text block ('I'll check the current weather in San Francisco for you.') precedes the tool_use block, documenting that the behaviour occurs."
+   ],
+   "what_the_corpus_does_not_say": "Nothing connects the two. The preamble guidance is scoped to response preambles generally and arrived via prefill migration; it never addresses text emitted alongside a tool_use block, and 'preamble' is absent from every tool-use document checked (Tool use with Claude, Parallel tool use, Troubleshooting tool use, How tool use works).",
+   "why_deferred": "Admitting it means citing general preamble guidance for a tool-use question the corpus never scopes it to. Rejecting it means calling a question unsupported when a directly applicable instruction does exist. Either verdict is a judgement the coordinator should make, not one to bury in a packet.",
+   "probes_run": [
+    "preamble"
+   ]
+  }
+ ],
+ "collisions": [
+  {
+   "cases": [
+    "A09",
+    "A10"
+   ],
+   "span": [
+    [
+     "ver_18c692f4d28bd01c0a5cac553fcf01a7",
+     35392,
+     35574
+    ]
+   ]
+  }
+ ],
+ "dedup_rule": {
+  "detect": "after all 150 are adjudicated, group SUPPORTED cases by their gold span set; any group of size > 1 is an evidence collision",
+  "adjudicate": "each collision gets an explicit ruling \u2014 keep one, keep both because the reasoning types genuinely differ, or reject both",
+  "do_not": "do not resolve collisions by looking at how any retrieval system scores the cases",
+  "record": "every ruling is written down with its reason before the accepted 100 are frozen"
+ },
+ "cross_provider": [
+  "A02"
+ ],
+ "yield": {
+  "rate": "6/22",
+  "pct": 27.3,
+  "naive_projection": 109,
+  "stable": false,
+  "caveat": "Not a forecast. Slice A is over-represented in what has been adjudicated; a real rate follows when slice A closes."
+ },
+ "gates": {
+  "all_150_complete": false,
+  "final_collision_gate_run": false,
+  "hundred_frozen": false,
+  "benchmark_hashed": false,
+  "split_decided": false
+ },
+ "constraints": {
+  "natq002_scored": false,
+  "holdout_opened": false,
+  "split_decided": false,
+  "question_wording_altered": false,
+  "systems_run": false
+ },
+ "file_hashes": {
+  "experiments/NATQ-002/stage3/DEDUP-FINDING-001.json": "5d95ccfa4fcea6d7b3120fb0e7d9fb0c68372aef4bb5075e796e5c7d261806c4",
+  "experiments/NATQ-002/stage3/DEFERRED-FOR-COORDINATOR.json": "e1c5053498764290227b2939fd120017b2f5226a06a24536e57fa0d50e54141b",
+  "experiments/NATQ-002/stage3/STAGE3-PROGRESS.json": "2751f1ba49ce0230c735cffca3c913328157e1697498b2b618b3e415d6ba7800",
+  "experiments/NATQ-002/stage3/identifier-sweep.json": "1971ccfb32f43569c78872aebda6d2ad0132d6f12cda0275e6cb2ccdd55e2ff6",
+  "experiments/NATQ-002/stage3/packets-batch-01-partial.json": "3a8a2934d5619ba00a958a2d316c638b6ec9ebe2fa24710d81d472fbf5db8c4d",
+  "experiments/NATQ-002/stage3/packets-batch-02.json": "8e325a265342ded6f3eb9a8685054093236ef12f8b2f96911d5876d45fcf6514",
+  "experiments/NATQ-002/stage3/packets-batch-03.json": "48e9149e444a412ac898121c7ed531dfa24dc077e66f7887f9e857bcd1730ea0",
+  "experiments/NATQ-002/stage3/packets-batch-04.json": "09fc53046d9ac2adb86f37063b427cdd8e8e5c6fed293f1f54b13b205ac80c39",
+  "experiments/NATQ-002/stage3/packets-batch-05.json": "f020b8dd4f810eba22a5001856be671f40efb237b9ba40a1de947e5fbc8983cf"
+ }
+}
