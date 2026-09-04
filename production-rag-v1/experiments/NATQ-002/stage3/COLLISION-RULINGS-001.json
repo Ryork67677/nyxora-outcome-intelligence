@@ -1,0 +1,136 @@
+{
+  "record_id": "NATQ-002-COLLISION-RULINGS-001",
+  "recorded_utc": "2026-09-04",
+  "authority": "owner instruction to proceed through rulings, selection and freeze",
+  "rule_applied": "For each exact-span collision group, keep the case whose gold answer requires the largest portion of the shared span; break ties by the earlier case ID. Deterministic, and computed without consulting any retrieval or reranking system.",
+  "what_dropped_means": "Dropped cases are NOT deleted. Their packets remain in the stage-3 record with full evidence and this ruling attached. They are excluded from the accepted pool only.",
+  "groups": [
+    {
+      "cases": [
+        "A09",
+        "A10"
+      ],
+      "kept": "A09",
+      "dropped": [
+        "A10"
+      ],
+      "reason": "A09's gold answer exercises the whole span: the default value false AND both consequence branches (at most one under auto, exactly one under any/tool). A10 needs only the true-branch."
+    },
+    {
+      "cases": [
+        "A07",
+        "D26"
+      ],
+      "kept": "A07",
+      "dropped": [
+        "D26"
+      ],
+      "reason": "A07's answer is the contrast the two spans state. D26 asks when to choose, which requires selection criteria the spans do not give and the packet had to leave unstated."
+    },
+    {
+      "cases": [
+        "A26",
+        "C20"
+      ],
+      "kept": "C20",
+      "dropped": [
+        "A26"
+      ],
+      "reason": "C20 is answered in full by the span. A26 is compound \u2014 temperature 0 AND forced tool use \u2014 and the span addresses only the temperature half."
+    },
+    {
+      "cases": [
+        "C07",
+        "E30"
+      ],
+      "kept": "E30",
+      "dropped": [
+        "C07"
+      ],
+      "reason": "E30 asks for the breakpoint placement, which is the span's literal content. C07 wraps the same rule in a cost goal the span does not mention."
+    },
+    {
+      "cases": [
+        "C09",
+        "E10"
+      ],
+      "kept": "C09",
+      "dropped": [
+        "E10"
+      ],
+      "reason": "C09 applies the hierarchy rule to the exact edit it describes. E10 requires first inferring which level changed, a step outside the span."
+    },
+    {
+      "cases": [
+        "C22",
+        "C23"
+      ],
+      "kept": "C23",
+      "dropped": [
+        "C22"
+      ],
+      "reason": "C23 matches the span's scope \u2014 Claude models and thinking. C22 was authored as an OpenAI question and needed provider re-scoping to fit the same evidence."
+    },
+    {
+      "cases": [
+        "B23",
+        "B24",
+        "D06"
+      ],
+      "kept": "B23",
+      "dropped": [
+        "B24",
+        "D06"
+      ],
+      "reason": "B23's answer enumerates the full retryable set, using the whole span. B24 needs only 'it retries' and D06 only 'twice'."
+    },
+    {
+      "cases": [
+        "B30",
+        "E16"
+      ],
+      "kept": "E16",
+      "dropped": [
+        "B30"
+      ],
+      "reason": "E16 uses both clauses of the span \u2014 HTTP-level and enqueued-request-level limits. B30 asks whether budgets are shared, which the span does not state."
+    },
+    {
+      "cases": [
+        "E02",
+        "E13"
+      ],
+      "kept": "E02",
+      "dropped": [
+        "E13"
+      ],
+      "reason": "E02's answer is the formula the span states outright. E13 additionally infers a threshold from the downscale rule, a step beyond the spans."
+    }
+  ],
+  "kept": [
+    "A09",
+    "A07",
+    "C20",
+    "E30",
+    "C09",
+    "C23",
+    "B23",
+    "E16",
+    "E02"
+  ],
+  "dropped": [
+    "A10",
+    "A26",
+    "B24",
+    "B30",
+    "C07",
+    "C22",
+    "D06",
+    "D26",
+    "E10",
+    "E13"
+  ],
+  "dropped_count": 10,
+  "supported_before": 122,
+  "eligible_after": 112
+}

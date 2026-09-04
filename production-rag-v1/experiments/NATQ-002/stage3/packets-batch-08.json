@@ -15,7 +15,7 @@
  },
  {
   "case": "B08",
-  "question": "what happens if the client disconnects mid-stream \u2014 do I still get billed for the rest",
+  "question": "what happens if the client disconnects mid-stream \u2014 do I still get billed for the whole thing",
   "support_status": "REJECT",
   "rejection_reason": "Premise not documented in the frozen corpus. No document states the billing consequence of a client disconnecting mid-stream. The string 'billing' appears in the Realtime agents guide only as the name of an example agent (billing_agent in a handoff snippet) and in the errors document in an unrelated context, and no document connects disconnection to token billing.",
   "probes_run": [
@@ -23,7 +23,7 @@
    "billed",
    "billing"
   ],
-  "verifier_notes": "A keyword search makes this look supported \u2014 'disconnect' and 'billing' both occur in one document \u2014 but they occur in unrelated passages. This is the clearest case in slice B of lexical presence without semantic support."
+  "verifier_notes": "A keyword search makes this look supported \u2014 'disconnect' and 'billing' both occur in one document \u2014 but they occur in unrelated passages. This is the clearest case in slice B of lexical presence without semantic support. QUESTION TEXT REPAIRED: the packet had carried a question string truncated by a console listing rather than the authored text. Restored byte-for-byte from authoring/verification-pass1.json. The adjudication, evidence spans and claims are unchanged; only the stored question string was corrected. Caught by the freeze-time assertion that every accepted case's question must equal its authored text exactly."
  },
  {
   "case": "B11",

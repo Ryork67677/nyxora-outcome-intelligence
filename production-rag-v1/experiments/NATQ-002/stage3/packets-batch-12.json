@@ -30,7 +30,7 @@
  },
  {
   "case": "C15",
-  "question": "How should I handle a conversation that keeps growing past the model's limit? I'm currently just truncating",
+  "question": "How should I handle a conversation that keeps growing past the model's limit? I'm currently just dropping the oldest messages and it feels wrong.",
   "support_status": "SUPPORTED",
   "provider": "anthropic",
   "version_id": "ver_c60f7418b69b6610bd20e974b92cdd8c",
@@ -56,7 +56,7 @@
   "evidence_shape": "single_span_capability",
   "reasoning_type": "naming the documented mechanism for the asker's problem",
   "ambiguity_notes": "Question said 'either' provider. The asker mentions truncating; the corpus does not compare compaction against manual truncation, so the answer names the documented alternative without claiming it is better.",
-  "verifier_notes": "Span is the document front-matter, which is where the one-sentence definition lives; the beta header is in the adjacent Compatibility block and is stated in the answer, not claimed as an atomic fact."
+  "verifier_notes": "Span is the document front-matter, which is where the one-sentence definition lives; the beta header is in the adjacent Compatibility block and is stated in the answer, not claimed as an atomic fact. QUESTION TEXT REPAIRED: the packet had carried a question string truncated by a console listing rather than the authored text. Restored byte-for-byte from authoring/verification-pass1.json. The adjudication, evidence spans and claims are unchanged; only the stored question string was corrected. Caught by the freeze-time assertion that every accepted case's question must equal its authored text exactly."
  },
  {
   "case": "C24",

@@ -166,7 +166,7 @@
  },
  {
   "case": "E23",
-  "question": "we need to run 200k classification jobs overnight and dont care about latency. batch or just parallel calls",
+  "question": "we need to run 200k classification jobs overnight and dont care about latency. batch or just parallel normal calls with retries?",
   "support_status": "SUPPORTED",
   "provider": "anthropic",
   "version_id": "ver_cec813c3bb15b76dcf16e7a0c2231ef1",
@@ -206,7 +206,7 @@
   "evidence_shape": "multi_span_recommendation",
   "reasoning_type": "applying documented limits and pricing to a stated workload",
   "ambiguity_notes": "The asker's 200k exceeds the documented per-batch cap, which the corpus states plainly; the answer says so rather than recommending batching without qualification. The corpus makes no head-to-head batch-vs-parallel comparison, so the recommendation rests on the stated discount and latency tolerance.",
-  "verifier_notes": "The 200k-over-100k observation is the substantive content; a bare 'use batch' would miss the constraint that actually bites."
+  "verifier_notes": "The 200k-over-100k observation is the substantive content; a bare 'use batch' would miss the constraint that actually bites. QUESTION TEXT REPAIRED: the packet had carried a question string truncated by a console listing rather than the authored text. Restored byte-for-byte from authoring/verification-pass1.json. The adjudication, evidence spans and claims are unchanged; only the stored question string was corrected. Caught by the freeze-time assertion that every accepted case's question must equal its authored text exactly."
  },
  {
   "case": "E28",

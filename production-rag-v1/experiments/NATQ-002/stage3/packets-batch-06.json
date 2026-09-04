@@ -56,7 +56,7 @@
  },
  {
   "case": "A22",
-  "question": "how do i validate the args the model gives me before running the function, does it guarantee",
+  "question": "how do i validate the args the model gives me before running the function, does it guarantee they match my schema",
   "support_status": "SUPPORTED",
   "provider": "anthropic",
   "version_id": "ver_95f8f8e5b914a2d500ddb47e100fed47",
@@ -82,7 +82,7 @@
   "evidence_shape": "single_span_guarantee",
   "reasoning_type": "direct feature lookup answering a yes/no guarantee question",
   "ambiguity_notes": "Question said 'either' provider; answered from Anthropic where the guarantee is stated explicitly. The schema subset that strict mode supports is documented separately and bounds the guarantee.",
-  "verifier_notes": "The question has two parts \u2014 how to validate, and whether it guarantees. The cited span answers both in one sentence."
+  "verifier_notes": "The question has two parts \u2014 how to validate, and whether it guarantees. The cited span answers both in one sentence. QUESTION TEXT REPAIRED: the packet had carried a question string truncated by a console listing rather than the authored text. Restored byte-for-byte from authoring/verification-pass1.json. The adjudication, evidence spans and claims are unchanged; only the stored question string was corrected. Caught by the freeze-time assertion that every accepted case's question must equal its authored text exactly."
  },
  {
   "case": "A24",
@@ -183,13 +183,13 @@
  },
  {
   "case": "A29",
-  "question": "we call it function calling internally but the docs say tool use, are they literally the same thing",
+  "question": "we call it function calling internally but the docs say tool use, are they literally the same feature",
   "support_status": "REJECT",
   "rejection_reason": "Premise not documented in the frozen corpus. No document states that 'function calling' and 'tool use' are the same thing, or defines one in terms of the other. The phrase 'function calling' occurs only incidentally \u2014 as a section heading in gpt-oss local-runtime guides, as prose in a documentation style guide, and once in 'Claude API skill' where a link for 'function calling' points at the tool-use overview. That link implies synonymy but never asserts it, and the Glossary contains no entry for the term.",
   "probes_run": [
    "function calling"
   ],
-  "verifier_notes": "Under the A11 ruling this is the same failure shape: the corpus behaves as though the terms are equivalent without ever saying so. Admitting the 'Claude API skill' line would make a hyperlink target into a definitional claim."
+  "verifier_notes": "Under the A11 ruling this is the same failure shape: the corpus behaves as though the terms are equivalent without ever saying so. Admitting the 'Claude API skill' line would make a hyperlink target into a definitional claim. QUESTION TEXT REPAIRED: the packet had carried a question string truncated by a console listing rather than the authored text. Restored byte-for-byte from authoring/verification-pass1.json. The adjudication, evidence spans and claims are unchanged; only the stored question string was corrected. Caught by the freeze-time assertion that every accepted case's question must equal its authored text exactly."
  },
  {
   "case": "A30",

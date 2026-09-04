@@ -272,7 +272,7 @@
  },
  {
   "case": "D29",
-  "question": "if i set both a client wide timeout and retries, does the timeout apply per attempt or to the whole",
+  "question": "if i set both a client wide timeout and retries, does the timeout apply per attempt or to the whole thing",
   "support_status": "SUPPORTED",
   "provider": "openai",
   "version_id": "ver_9247e3ce4df6f79d9cadc44e1a3bbd0c",
@@ -298,6 +298,6 @@
   "evidence_shape": "single_span_inference_from_stated_behaviour",
   "reasoning_type": "resolving a per-attempt vs total question from documented retry-on-timeout behaviour",
   "ambiguity_notes": "The corpus does not use the words 'per attempt'. It states that a timed-out request is retried, which is only coherent if the timeout bounds an attempt rather than the sequence \u2014 a retry after a total-budget timeout would be impossible. The answer says this plainly rather than quoting a phrase the corpus does not contain.",
-  "verifier_notes": "The weakest packet in this batch and deliberately flagged. It is admitted because the entailment is immediate from one sentence, not assembled across sections; a reviewer preferring strict literalism could reasonably move it to REJECT."
+  "verifier_notes": "The weakest packet in this batch and deliberately flagged. It is admitted because the entailment is immediate from one sentence, not assembled across sections; a reviewer preferring strict literalism could reasonably move it to REJECT. QUESTION TEXT REPAIRED: the packet had carried a question string truncated by a console listing rather than the authored text. Restored byte-for-byte from authoring/verification-pass1.json. The adjudication, evidence spans and claims are unchanged; only the stored question string was corrected. Caught by the freeze-time assertion that every accepted case's question must equal its authored text exactly."
  }
 ]

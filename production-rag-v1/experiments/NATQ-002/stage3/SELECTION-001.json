@@ -1,0 +1,233 @@
+{
+  "record_id": "NATQ-002-SELECTION-001",
+  "recorded_utc": "2026-09-04",
+  "rule_fixed_before_selection": true,
+  "rule": [
+    "Eligible pool = SUPPORTED minus cases dropped by COLLISION-RULINGS-001.",
+    "Quota 20 per slice; a slice with fewer than 20 eligible contributes all of them and the shortfall is reallocated to the slice with the largest remaining surplus.",
+    "Within a slice, greedily take the case whose gold chunk set overlaps least with chunks already accepted; ties by case ID ascending.",
+    "No retrieval or reranking system consulted. Chunk membership read from the frozen chunk table."
+  ],
+  "availability": {
+    "A": 21,
+    "B": 19,
+    "C": 23,
+    "D": 25,
+    "E": 24
+  },
+  "quota": {
+    "A": 20,
+    "B": 19,
+    "C": 20,
+    "D": 21,
+    "E": 20
+  },
+  "accepted": [
+    "A02",
+    "A03",
+    "A04",
+    "A05",
+    "A07",
+    "A09",
+    "A12",
+    "A13",
+    "A14",
+    "A15",
+    "A16",
+    "A19",
+    "A20",
+    "A21",
+    "A22",
+    "A23",
+    "A24",
+    "A27",
+    "A28",
+    "A30",
+    "B02",
+    "B03",
+    "B04",
+    "B05",
+    "B07",
+    "B09",
+    "B11",
+    "B14",
+    "B15",
+    "B16",
+    "B18",
+    "B19",
+    "B21",
+    "B22",
+    "B23",
+    "B25",
+    "B27",
+    "B28",
+    "B29",
+    "C01",
+    "C03",
+    "C05",
+    "C06",
+    "C08",
+    "C09",
+    "C10",
+    "C11",
+    "C13",
+    "C14",
+    "C15",
+    "C16",
+    "C23",
+    "C24",
+    "C25",
+    "C26",
+    "C27",
+    "C28",
+    "C29",
+    "C30",
+    "D01",
+    "D02",
+    "D03",
+    "D05",
+    "D07",
+    "D08",
+    "D09",
+    "D10",
+    "D11",
+    "D13",
+    "D16",
+    "D18",
+    "D19",
+    "D20",
+    "D21",
+    "D22",
+    "D23",
+    "D24",
+    "D27",
+    "D29",
+    "D30",
+    "E01",
+    "E02",
+    "E03",
+    "E04",
+    "E05",
+    "E06",
+    "E07",
+    "E08",
+    "E12",
+    "E14",
+    "E15",
+    "E16",
+    "E17",
+    "E19",
+    "E20",
+    "E21",
+    "E22",
+    "E26",
+    "E27",
+    "E29"
+  ],
+  "accepted_count": 100,
+  "eligible_not_accepted": [
+    "A25",
+    "C04",
+    "C17",
+    "C20",
+    "D12",
+    "D14",
+    "D25",
+    "D28",
+    "E23",
+    "E24",
+    "E28",
+    "E30"
+  ],
+  "residual_exact_span_collisions": [],
+  "residual_chunk_overlaps": {
+    "groups": 13,
+    "cases": [
+      "A09",
+      "A16",
+      "B02",
+      "B03",
+      "B05",
+      "B07",
+      "B15",
+      "B21",
+      "B23",
+      "B28",
+      "C01",
+      "C05",
+      "C10",
+      "C11",
+      "C13",
+      "C14",
+      "D01",
+      "D07",
+      "D09",
+      "E01",
+      "E03",
+      "E04",
+      "E05",
+      "E07",
+      "E08",
+      "E16",
+      "E19"
+    ],
+    "detail": [
+      [
+        "A09",
+        "A16"
+      ],
+      [
+        "B02",
+        "B03",
+        "B21"
+      ],
+      [
+        "B05",
+        "B07"
+      ],
+      [
+        "B15",
+        "B28"
+      ],
+      [
+        "B23",
+        "D07"
+      ],
+      [
+        "C01",
+        "C05"
+      ],
+      [
+        "C10",
+        "C11"
+      ],
+      [
+        "C13",
+        "C14"
+      ],
+      [
+        "D01",
+        "D09"
+      ],
+      [
+        "E01",
+        "E05"
+      ],
+      [
+        "E03",
+        "E19"
+      ],
+      [
+        "E04",
+        "E16"
+      ],
+      [
+        "E07",
+        "E08"
+      ]
+    ],
+    "note": "Down from 20 groups / 50 cases across all 122 supported to 13 groups / 27 cases in the accepted 100. Not eliminated \u2014 chunk overlap is not the governing rule and no case was excluded for it alone."
+  },
+  "benchmark_file_sha256": "1450b9e1ba892d84d2ecab279cfa229b128a02108a4704b56393382b6c5bf741",
+  "canonical_content_sha256": "d1f2b51f61a05c7652cd420c32bedb6b72b2ad8cfe14a43ab0fe3d49774c9d60"
+}

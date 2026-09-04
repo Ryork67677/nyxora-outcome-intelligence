@@ -293,7 +293,7 @@
  },
  {
   "case": "E30",
-  "question": "trying to cache tool definitions + a long system prompt, where exactly do i put the cache_control",
+  "question": "trying to cache tool definitions + a long system prompt, where exactly do i put the cache_control marker",
   "support_status": "SUPPORTED",
   "provider": "anthropic",
   "version_id": "ver_7947433dfde6b3b8eccd0faa597c3c9a",
@@ -320,6 +320,6 @@
   "evidence_shape": "single_span_mechanism",
   "reasoning_type": "deriving breakpoint placement from the documented prefix ordering",
   "ambiguity_notes": "The corpus does not give a worked tools-plus-system placement example in this span; it states the ordering rule from which the placement follows. The ordering is explicit, so this is application rather than inference.",
-  "verifier_notes": "Shares its gold span with C07 \u2014 an exact-span collision to be ruled on at the final gate. The two questions differ (cost goal vs placement mechanics) but resolve identically."
+  "verifier_notes": "Shares its gold span with C07 \u2014 an exact-span collision to be ruled on at the final gate. The two questions differ (cost goal vs placement mechanics) but resolve identically. QUESTION TEXT REPAIRED: the packet had carried a question string truncated by a console listing rather than the authored text. Restored byte-for-byte from authoring/verification-pass1.json. The adjudication, evidence spans and claims are unchanged; only the stored question string was corrected. Caught by the freeze-time assertion that every accepted case's question must equal its authored text exactly."
  }
 ]

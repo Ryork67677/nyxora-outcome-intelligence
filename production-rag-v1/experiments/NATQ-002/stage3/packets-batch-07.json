@@ -1,7 +1,7 @@
 [
  {
   "case": "B02",
-  "question": "what's the first thing that comes back when you stream? the chunk with the id in it?",
+  "question": "what's the first thing that comes back when you stream? the chunk with the id in it",
   "support_status": "SUPPORTED",
   "provider": "anthropic",
   "version_id": "ver_1261879c16f641270789647ac9c63c96",
@@ -27,7 +27,7 @@
   "evidence_shape": "single_span_sequence",
   "reasoning_type": "confirming an ordering assumption",
   "ambiguity_notes": "The asker's 'chunk with the id in it' is their description of the Message envelope. The corpus names the event and its payload; the answer confirms the ordering without adopting the informal wording.",
-  "verifier_notes": "Span starts at the 'event flow' lead-in so the ordinal position is inside the quote rather than inferred from surrounding text."
+  "verifier_notes": "Span starts at the 'event flow' lead-in so the ordinal position is inside the quote rather than inferred from surrounding text. QUESTION TEXT REPAIRED: the packet had carried a question string truncated by a console listing rather than the authored text. Restored byte-for-byte from authoring/verification-pass1.json. The adjudication, evidence spans and claims are unchanged; only the stored question string was corrected. Caught by the freeze-time assertion that every accepted case's question must equal its authored text exactly."
  },
  {
   "case": "B03",

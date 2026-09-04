@@ -1,6 +1,6 @@
 {
  "benchmark_id": "NATQ-002",
- "stage": "1_of_4_AUTHORED_AND_TRIAGED",
+ "stage": "3_of_4_ADJUDICATED_AND_FROZEN",
  "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a",
  "chunk_set": "cs_v1_control",
  "raw_authored": 150,
@@ -29,12 +29,9 @@
  },
  "author_flagged_ambiguous": 5,
  "not_yet_done": [
-  "evidence packets with exact source offsets",
-  "atomic claims",
-  "critical strings",
-  "coordinator review",
-  "40/60 cluster-safe split",
-  "NATQ-002 holdout lock and access log"
+  "validation/reserve split",
+  "NATQ-002 holdout lock and access log",
+  "coordinator preregistration"
  ],
  "confirmations": {
   "retrieval_run_against_natq": false,
@@ -48,7 +45,10 @@
    "exists": true,
    "bytes": 0,
    "entries": 0
-  }
+  },
+  "any_system_scored_natq002": false,
+  "split_decided": false,
+  "natq001_holdout_opened": false
  },
  "file_hashes": {
   "experiments/NATQ-002/authoring/raw-slice-A.json": "299351e39373f35b485ddbce81c061a4adf1cd54c2c6ec1f2af8d2d6e26c952b",
@@ -57,6 +57,73 @@
   "experiments/NATQ-002/authoring/raw-slice-D.json": "1618da10d2b3d223fcaac157161ea15d5d7b6bd9c7446b678e98d64eaca0285e",
   "experiments/NATQ-002/authoring/raw-slice-E.json": "f1f06a56e19f4b71440a10a1a68d8021790befdbe06a2351581fb3637bb4a562",
   "experiments/NATQ-002/authoring/verification-pass1.json": "1391de3bd89b4fdcb2b6e0151c7ddb67df77c50db4d2282c31d6488cecfb01c0",
-  "experiments/NATQ-002/NATQ-002-protocol.md": "deffee18d9d40da5e041d417b7679d9d317d49eb9215a69c10be2fa4374e4718"
+  "experiments/NATQ-002/NATQ-002-protocol.md": "deffee18d9d40da5e041d417b7679d9d317d49eb9215a69c10be2fa4374e4718",
+  "experiments/NATQ-002/stage3/COLLISION-CHUNK-ADVISORY-001.json": "14d4b0a1a93e64f6c6fb383a5962447a23e6900e2a4b6302b25a846477fe3a89",
+  "experiments/NATQ-002/stage3/COLLISION-GATE-001.json": "13bb95ebe98c7bd0e06b6f047ba6112a34599f7689aff5122ae3065fa66e231a",
+  "experiments/NATQ-002/stage3/COLLISION-RULINGS-001.json": "579d6d7f0ea954f53b882de2bee63548c7a5aaa11a22467fcc45ddda01e76d94",
+  "experiments/NATQ-002/stage3/DEDUP-FINDING-001.json": "5d95ccfa4fcea6d7b3120fb0e7d9fb0c68372aef4bb5075e796e5c7d261806c4",
+  "experiments/NATQ-002/stage3/DEFERRED-FOR-COORDINATOR.json": "7f5f0b98da423e7a481cbd72fb53060c405627b43543c8bf82f263ec3ef42fc5",
+  "experiments/NATQ-002/stage3/SELECTION-001.json": "b850753ac305cefc1f047df06250b28b9fe793db4e19a02fbfe759c3f3a75d59",
+  "experiments/NATQ-002/stage3/STAGE3-PROGRESS.json": "ee1fc53edce03852e50254c15e9f1a2714e6b5b74b79d522c58a2e11e8334b6a",
+  "experiments/NATQ-002/stage3/identifier-sweep.json": "1971ccfb32f43569c78872aebda6d2ad0132d6f12cda0275e6cb2ccdd55e2ff6",
+  "experiments/NATQ-002/stage3/packets-batch-01-partial.json": "3a8a2934d5619ba00a958a2d316c638b6ec9ebe2fa24710d81d472fbf5db8c4d",
+  "experiments/NATQ-002/stage3/packets-batch-02.json": "8e325a265342ded6f3eb9a8685054093236ef12f8b2f96911d5876d45fcf6514",
+  "experiments/NATQ-002/stage3/packets-batch-03.json": "48e9149e444a412ac898121c7ed531dfa24dc077e66f7887f9e857bcd1730ea0",
+  "experiments/NATQ-002/stage3/packets-batch-04.json": "aea3ba6f26bc261ad30275fb7a4d98565c2ec2c6d0d0c376468e23634538c21d",
+  "experiments/NATQ-002/stage3/packets-batch-05.json": "f020b8dd4f810eba22a5001856be671f40efb237b9ba40a1de947e5fbc8983cf",
+  "experiments/NATQ-002/stage3/packets-batch-06.json": "74a61edd352a061187b82b93b3462ed8a254699fabc19c7fe7cde9ac86b0c456",
+  "experiments/NATQ-002/stage3/packets-batch-07.json": "d957b6d4a9b256a1af152a06f804ada112334f1bb7cab9fe0379d0e801b8d398",
+  "experiments/NATQ-002/stage3/packets-batch-08.json": "1d22e58bc2bb63536d1bfdc47a92ac760a4606ecafdf0c1fc603d9b0a87efd14",
+  "experiments/NATQ-002/stage3/packets-batch-09.json": "eeb06a1b602a394a5ae1dfeb6e897d810ca0499c3477fe297a867def49f45f8b",
+  "experiments/NATQ-002/stage3/packets-batch-10.json": "98c4e9966cda8c0f50bb342f59b3d422da0a2fada108796099a2663b82dbad75",
+  "experiments/NATQ-002/stage3/packets-batch-11.json": "c7e435c99422b2d7866d58c30b495a536d47b777652d704910f655720013840f",
+  "experiments/NATQ-002/stage3/packets-batch-12.json": "d49724639e8c2434633990bdbeed35727c06e97465c26cc5c10e7b37d0f32488",
+  "experiments/NATQ-002/stage3/packets-batch-13.json": "b80b68c4eac2eec9a3337e24e791ca2eed13bb420adcf40b78f97693fd38b182",
+  "experiments/NATQ-002/stage3/packets-batch-14.json": "b8b49dff5a1b5526c8a85058d2b35deed94bc91af8377a8ab4576fd4e8dde68e",
+  "experiments/NATQ-002/stage3/packets-batch-15.json": "86fd038f4565a044b00c3db7695c09097130b7cbfeaf6539fc857b8485795c54",
+  "experiments/NATQ-002/stage3/packets-batch-16.json": "a142ae5c9bfa949dac7e7148fbdc864a18e664dfd6b360f899be4ba179acbc22",
+  "experiments/NATQ-002/stage3/packets-batch-17.json": "66ecc2111a355868f4eb16d0f7741edd328cec5921a800bbdf955e4605862297",
+  "experiments/NATQ-002/stage3/packets-batch-18.json": "c998bba2fc197addbe4d8cf809ce16b60c8a981025b70d4b0a6c3bca2a51aeb7",
+  "experiments/NATQ-002/stage3/packets-batch-19.json": "30d8f789146d0eacc425ada25dbd7ec3c199322aa23a121c7a028826cc22db36",
+  "experiments/NATQ-002/stage3/packets-batch-20.json": "a46a4e01917ee3e65f87d391a1aafdd9535c125fa4ae3f676882410242dc88e7",
+  "experiments/NATQ-002/NATQ-002-ACCEPTED-100.json": "1450b9e1ba892d84d2ecab279cfa229b128a02108a4704b56393382b6c5bf741"
+ },
+ "accepted_cases": 100,
+ "total_gold_spans": 136,
+ "adjudication": {
+  "adjudicated": 150,
+  "supported": 122,
+  "rejected_on_premise": 28,
+  "deferred": 0,
+  "validator_pass": 122,
+  "validator_fail": 0,
+  "corrected_adjudications": [
+   "B22",
+   "A15",
+   "E27"
+  ],
+  "question_text_repairs": [
+   "A22",
+   "A29",
+   "B02",
+   "B08",
+   "C15",
+   "D29",
+   "E23",
+   "E30"
+  ]
+ },
+ "collision_gate": {
+  "exact_span_groups": 9,
+  "cases_involved": 19,
+  "dropped": 10,
+  "eligible": 112,
+  "chunk_level_groups_before_selection": 20,
+  "chunk_level_groups_in_accepted_100": 13,
+  "residual_exact_span_collisions_in_accepted_100": 0
+ },
+ "hashes": {
+  "benchmark_file_sha256": "1450b9e1ba892d84d2ecab279cfa229b128a02108a4704b56393382b6c5bf741",
+  "canonical_content_sha256": "d1f2b51f61a05c7652cd420c32bedb6b72b2ad8cfe14a43ab0fe3d49774c9d60"
  }
 }
