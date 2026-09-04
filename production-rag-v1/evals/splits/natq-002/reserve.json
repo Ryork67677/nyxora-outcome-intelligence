@@ -1,0 +1,1923 @@
+{
+ "split_version": "natq-002-v1",
+ "partition": "reserve",
+ "benchmark_id": "NATQ-002",
+ "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a",
+ "count": 60,
+ "slice_distribution": {
+  "A": 12,
+  "B": 11,
+  "C": 12,
+  "D": 13,
+  "E": 12
+ },
+ "gold_spans": 79,
+ "cases": [
+  {
+   "case_id": "A02",
+   "citation_id": "NATQ2-A02",
+   "slice": "A",
+   "question": "tool_choice required vs any \u2014 whats the difference",
+   "provider": "cross-provider",
+   "document_title": "Messages + Agents (cross-document)",
+   "version_id": "ver_18c692f4d28bd01c0a5cac553fcf01a7",
+   "content_hash": "740d6dab47889293f412ae5f2afe85897d0e2227935081d372724a6e773bb3ff",
+   "evidence": [
+    {
+     "version_id": "ver_35cac5e98c151a17f941a6142d74709f",
+     "char_start": 13201,
+     "char_end": 13298,
+     "quote": "2. `required`, which requires the LLM to use a tool (but it can intelligently decide which tool)."
+    },
+    {
+     "version_id": "ver_18c692f4d28bd01c0a5cac553fcf01a7",
+     "char_start": 35578,
+     "char_end": 35704,
+     "quote": "- `ToolChoiceAny object { type, disable_parallel_tool_use }`\n\n    The model will use any available tools.\n\n    - `type: \"any\"`"
+    }
+   ],
+   "supported_answer": "They are two different vendors' names for forcing a tool call, not two settings in one API. In the OpenAI Agents SDK, tool_choice='required' makes the LLM use a tool while still letting it pick which one. In the Anthropic Messages API the equivalent is tool_choice type 'any' \u2014 the model will use any available tool. Anthropic has no 'required' value and OpenAI's Agents SDK has no 'any' value.",
+   "atomic_claims": [
+    "in the OpenAI Agents SDK, tool_choice 'required' forces a tool call but lets the LLM choose which tool",
+    "in the Anthropic Messages API, tool_choice type 'any' makes the model use any available tool"
+   ],
+   "critical_strings": [
+    "`required`",
+    "ToolChoiceAny"
+   ],
+   "evidence_shape": "multi_span_cross_provider",
+   "reasoning_type": "cross-provider terminology reconciliation",
+   "ambiguity_notes": "The question presumes 'required' and 'any' are alternatives within one API. They are not; they belong to different providers. The answer corrects the premise rather than adopting it."
+  },
+  {
+   "case_id": "A03",
+   "citation_id": "NATQ2-A03",
+   "slice": "A",
+   "question": "I want the model to return ONLY valid json no preamble text",
+   "provider": "anthropic",
+   "document_title": "Structured outputs",
+   "version_id": "ver_0865c9612dfe97d8f30dd870dd12e53e",
+   "content_hash": "1440ba74d6eb67920a9748b13c5e6abb42fda52e0609c6fe848b1c75b20d4f2a",
+   "evidence": [
+    {
+     "version_id": "ver_0865c9612dfe97d8f30dd870dd12e53e",
+     "char_start": 13022,
+     "char_end": 13141,
+     "quote": "Include the `output_config.format` parameter in your API request with `type: \"json_schema\"` and your schema definition."
+    },
+    {
+     "version_id": "ver_0865c9612dfe97d8f30dd870dd12e53e",
+     "char_start": 13193,
+     "char_end": 13293,
+     "quote": "Claude's response is valid JSON matching your schema, returned in the response's text content block."
+    }
+   ],
+   "supported_answer": "Use structured outputs. Set output_config.format with type 'json_schema' and your schema; the response is then valid JSON matching that schema, returned in the response's text content block. The guarantee comes from the parameter, not from instructing the model in the prompt.",
+   "atomic_claims": [
+    "output_config.format with type json_schema is the parameter that requests JSON output",
+    "the response is valid JSON matching the supplied schema, in the text content block"
+   ],
+   "critical_strings": [
+    "output_config.format",
+    "type: \"json_schema\"",
+    "valid JSON matching your schema"
+   ],
+   "evidence_shape": "multi_span_procedure",
+   "reasoning_type": "mapping a colloquial goal onto the documented parameter",
+   "ambiguity_notes": "The phrase 'no preamble text' is the user's framing. The corpus does not describe suppressing a preamble; it states the response IS valid JSON in the text block. The answer says what the corpus says rather than adopting the user's wording."
+  },
+  {
+   "case_id": "A04",
+   "citation_id": "NATQ2-A04",
+   "slice": "A",
+   "question": "what happens if my json schema has additionalProperties true with strict mode on",
+   "provider": "anthropic",
+   "document_title": "Structured outputs",
+   "version_id": "ver_0865c9612dfe97d8f30dd870dd12e53e",
+   "content_hash": "1440ba74d6eb67920a9748b13c5e6abb42fda52e0609c6fe848b1c75b20d4f2a",
+   "evidence": [
+    {
+     "version_id": "ver_0865c9612dfe97d8f30dd870dd12e53e",
+     "char_start": 98576,
+     "char_end": 99351,
+     "quote": "### JSON Schema limitations\n\nStructured outputs support standard JSON Schema with some limitations. Both JSON outputs and strict tool use share these limitations.\n\n<Accordion title=\"Supported features\">\n  * All basic types: object, array, string, integer, number, boolean, null\n  * `enum` (strings, numbers, bools, or nulls only - no complex types; see [Invalid outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs#invalid-outputs) for a capitalization caveat)\n  * `const`\n  * `anyOf` and `allOf` (with limitations - `allOf` with `$ref` not supported)\n  * `$ref`, `$def`, and `definitions` (external `$ref` not supported)\n  * `default` property for all supported types\n  * `required` and `additionalProperties` (must be set to `false` for objects"
+    }
+   ],
+   "supported_answer": "additionalProperties must be set to false for objects. The corpus states the constraint as a requirement of supported JSON Schema for both JSON outputs and strict tool use, so a schema setting it true is outside what structured outputs supports.",
+   "atomic_claims": [
+    "structured outputs support standard JSON Schema with limitations",
+    "the limitations apply to both JSON outputs and strict tool use",
+    "additionalProperties must be set to false for objects"
+   ],
+   "critical_strings": [
+    "additionalProperties",
+    "must be set to `false` for objects"
+   ],
+   "evidence_shape": "single_span_constraint_list",
+   "reasoning_type": "constraint lookup",
+   "ambiguity_notes": "The author guessed OpenAI; the frozen corpus answers it for Anthropic. Provider is recorded from the evidence, not from the author's guess."
+  },
+  {
+   "case_id": "A05",
+   "citation_id": "NATQ2-A05",
+   "slice": "A",
+   "question": "screenshot resolution for computer use \u2014 does it matter what size my screen is",
+   "provider": "anthropic",
+   "document_title": "Coordinates and bounding boxes",
+   "version_id": "ver_95095158f47d20a4d346b8ddf3110713",
+   "content_hash": "353199d346065edad97ed0e2f99fc92f5bc00d0dfb0f8272104e1638a44b3c9c",
+   "evidence": [
+    {
+     "version_id": "ver_95095158f47d20a4d346b8ddf3110713",
+     "char_start": 28714,
+     "char_end": 29441,
+     "quote": "Padding is applied only to the bottom and right edges, so the origin doesn't shift and a per-axis linear rescale is sufficient. Clamp returned coordinates to the resized dimensions before rescaling, so a point slightly outside the image can't map outside your original.\n\nThe relative coordinates multiply against whatever surface you act on: the original image, a full-resolution scan, or a screen. When you act on a screen and screenshot pixels differ from logical coordinates (HiDPI displays), also divide by the display scale factor. The [Computer use tool's scaling guidance](https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool#handle-coordinate-scaling-for-higher-resolutions) covers that patte"
+    }
+   ],
+   "supported_answer": "Yes. Returned coordinates are relative and must be rescaled to whatever surface you act on; padding is applied only to the bottom and right edges so the origin does not shift and a per-axis linear rescale suffices. On HiDPI displays, where screenshot pixels differ from logical coordinates, you must additionally divide by the display scale factor.",
+   "atomic_claims": [
+    "padding is applied only to the bottom and right edges so the origin does not shift",
+    "a per-axis linear rescale is sufficient",
+    "coordinates should be clamped to the resized dimensions before rescaling",
+    "on HiDPI displays you must also divide by the display scale factor"
+   ],
+   "critical_strings": [
+    "per-axis linear rescale",
+    "display scale factor"
+   ],
+   "evidence_shape": "single_span_procedure",
+   "reasoning_type": "procedural lookup with a device-dependent caveat",
+   "ambiguity_notes": "None material; the question is provider-identifiable from 'computer use'."
+  },
+  {
+   "case_id": "A09",
+   "citation_id": "NATQ2-A09",
+   "slice": "A",
+   "question": "does the model ever call two tools in one response",
+   "provider": "anthropic",
+   "document_title": "Messages",
+   "version_id": "ver_18c692f4d28bd01c0a5cac553fcf01a7",
+   "content_hash": "740d6dab47889293f412ae5f2afe85897d0e2227935081d372724a6e773bb3ff",
+   "evidence": [
+    {
+     "version_id": "ver_18c692f4d28bd01c0a5cac553fcf01a7",
+     "char_start": 35392,
+     "char_end": 35574,
+     "quote": "- `disable_parallel_tool_use: optional boolean`\n\n      Whether to disable parallel tool use.\n\n      Defaults to `false`. If set to `true`, the model will output at most one tool use."
+    }
+   ],
+   "supported_answer": "Yes. Parallel tool use is the default: disable_parallel_tool_use defaults to false, and setting it to true is what restricts the model to a single tool use. Under tool_choice auto that cap is 'at most one tool use'; under any/tool it is 'exactly one'.",
+   "atomic_claims": [
+    "disable_parallel_tool_use defaults to false",
+    "setting disable_parallel_tool_use to true makes the model output at most one tool use under tool_choice auto"
+   ],
+   "critical_strings": [
+    "disable_parallel_tool_use",
+    "at most one tool use"
+   ],
+   "evidence_shape": "single_span_api_reference",
+   "reasoning_type": "default-value inference from a parameter description",
+   "ambiguity_notes": "The question does not name a provider. Answered from Anthropic because the asked-about behaviour is documented there; an OpenAI-scoped reading would need separate evidence."
+  },
+  {
+   "case_id": "A13",
+   "citation_id": "NATQ2-A13",
+   "slice": "A",
+   "question": "tool result error \u2014 how to tell the model the tool failed instead of just returning text",
+   "provider": "anthropic",
+   "document_title": "Handle tool calls",
+   "version_id": "ver_8d4259b6f07a26872a702810f0dbaf89",
+   "content_hash": "0005c7dde32777920d34c46b3fa307646cf43e238817af9c559cb0b315c10ae1",
+   "evidence": [
+    {
+     "version_id": "ver_8d4259b6f07a26872a702810f0dbaf89",
+     "char_start": 8614,
+     "char_end": 8805,
+     "quote": "If the tool itself throws an error during execution (for example, a network error when fetching weather data), you can return the error message in the `content` along with `\"is_error\": true`:"
+    },
+    {
+     "version_id": "ver_8d4259b6f07a26872a702810f0dbaf89",
+     "char_start": 9065,
+     "char_end": 9091,
+     "quote": "          \"is_error\": true"
+    }
+   ],
+   "supported_answer": "Return the error message in the tool_result content and set \"is_error\": true. Claude then incorporates the failure into its response rather than treating the text as a successful result.",
+   "atomic_claims": [
+    "set is_error true on the tool_result to signal a tool execution error",
+    "the error message goes in the tool_result content alongside is_error"
+   ],
+   "critical_strings": [
+    "`\"is_error\": true`",
+    "is_error"
+   ],
+   "evidence_shape": "multi_span_api_reference",
+   "reasoning_type": "direct parameter lookup",
+   "ambiguity_notes": "None. The question names the exact mechanism the corpus documents."
+  },
+  {
+   "case_id": "A14",
+   "citation_id": "NATQ2-A14",
+   "slice": "A",
+   "question": "max token limit hit in the middle of a tool call, what do i get back",
+   "provider": "anthropic",
+   "document_title": "Stop reasons and fallback",
+   "version_id": "ver_4d14aec24504f4b8f6f28938b84587dc",
+   "content_hash": "26ef37c1864a0cb2972f51e3242abd902944660dda84c7ba51a3bef654488bc1",
+   "evidence": [
+    {
+     "version_id": "ver_4d14aec24504f4b8f6f28938b84587dc",
+     "char_start": 26286,
+     "char_end": 26385,
+     "quote": "## max\\_tokens\n\nClaude stopped because it reached the `max_tokens` limit specified in your request."
+    },
+    {
+     "version_id": "ver_4d14aec24504f4b8f6f28938b84587dc",
+     "char_start": 30994,
+     "char_end": 31069,
+     "quote": "if [ \"$STOP_REASON\" = \"max_tokens\" ] && [ \"$LAST_TYPE\" = \"tool_use\" ]; then"
+    }
+   ],
+   "supported_answer": "You get stop_reason 'max_tokens' with the truncated turn, and the last content block is an incomplete tool_use. The documented detection is to check both together \u2014 stop_reason == max_tokens and the last content block type == tool_use \u2014 and retry with a higher max_tokens.",
+   "atomic_claims": [
+    "stop_reason is max_tokens when the response reaches the max_tokens limit",
+    "a turn truncated mid tool call is detected by stop_reason max_tokens together with a last content block of type tool_use",
+    "the documented remedy is to retry with a higher max_tokens"
+   ],
+   "critical_strings": [
+    "max_tokens",
+    "tool_use"
+   ],
+   "evidence_shape": "multi_span_behaviour_and_detection",
+   "reasoning_type": "combining a stop reason with its documented detection pattern",
+   "ambiguity_notes": "Question says 'either' provider. Answered from Anthropic because the truncated-mid-tool-use case is documented there; no equivalent OpenAI span was found."
+  },
+  {
+   "case_id": "A15",
+   "citation_id": "NATQ2-A15",
+   "slice": "A",
+   "question": "CU model clicking wrong coordinates on retina display",
+   "provider": "anthropic",
+   "document_title": "Computer use tool",
+   "version_id": "ver_d9ba3ab0d872dd86047c7ed6dc783235",
+   "content_hash": "07a95b7f2092a6edf0f9784d034e080e47412bb1eb120cf0f6bdb1cb64c01149",
+   "evidence": [
+    {
+     "version_id": "ver_d9ba3ab0d872dd86047c7ed6dc783235",
+     "char_start": 66148,
+     "char_end": 66415,
+     "quote": "**macOS Retina displays** capture screenshots at a device pixel ratio of 2, so the image is twice the resolution of the logical screen coordinates. Either downscale the screenshot by 2x before sending, or halve the coordinates Claude returns before issuing the click."
+    }
+   ],
+   "supported_answer": "macOS Retina displays capture screenshots at a device pixel ratio of 2, so the image is twice the resolution of the logical screen coordinates. Fix it either by downscaling the screenshot 2x before sending, or by halving the coordinates Claude returns before issuing the click.",
+   "atomic_claims": [
+    "macOS Retina displays capture screenshots at a device pixel ratio of 2",
+    "the screenshot is twice the resolution of the logical screen coordinates",
+    "the fix is to downscale the screenshot 2x before sending, or halve the returned coordinates"
+   ],
+   "critical_strings": [
+    "Retina displays",
+    "device pixel ratio of 2",
+    "halve the coordinates"
+   ],
+   "evidence_shape": "single_span_cause_and_remedy",
+   "reasoning_type": "direct diagnostic lookup",
+   "ambiguity_notes": "None. The corpus names the exact symptom, its cause and two remedies."
+  },
+  {
+   "case_id": "A16",
+   "citation_id": "NATQ2-A16",
+   "slice": "A",
+   "question": "is there a way to make one specific tool always be the first thing it calls",
+   "provider": "anthropic",
+   "document_title": "Messages",
+   "version_id": "ver_18c692f4d28bd01c0a5cac553fcf01a7",
+   "content_hash": "740d6dab47889293f412ae5f2afe85897d0e2227935081d372724a6e773bb3ff",
+   "evidence": [
+    {
+     "version_id": "ver_18c692f4d28bd01c0a5cac553fcf01a7",
+     "char_start": 35913,
+     "char_end": 36048,
+     "quote": "- `ToolChoiceTool object { name, type, disable_parallel_tool_use }`\n\n    The model will use the specified tool with `tool_choice.name`."
+    }
+   ],
+   "supported_answer": "Set tool_choice to type \"tool\" and name the tool: the model will use the specified tool with tool_choice.name. Pair it with disable_parallel_tool_use true to get exactly one tool use.",
+   "atomic_claims": [
+    "tool_choice type tool with a name forces the model to use that specific tool",
+    "the tool is named via tool_choice.name"
+   ],
+   "critical_strings": [
+    "ToolChoiceTool",
+    "tool_choice.name"
+   ],
+   "evidence_shape": "single_span_api_reference",
+   "reasoning_type": "direct parameter lookup",
+   "ambiguity_notes": "'Always be the first thing it calls' is the user's framing. The corpus documents forcing a named tool for the turn, not an ordering guarantee across a multi-tool sequence. The answer states the documented mechanism rather than adopting the ordering claim."
+  },
+  {
+   "case_id": "A19",
+   "citation_id": "NATQ2-A19",
+   "slice": "A",
+   "question": "bash tool and text editor tool \u2014 do i have to implement them myself",
+   "provider": "anthropic",
+   "document_title": "Tool use with Claude",
+   "version_id": "ver_82278fa8eccb91259e993c6cab6f1654",
+   "content_hash": "e87553fe1012fd440357fc28a5c4b995f18b59a7a96375967527f85d4da071af",
+   "evidence": [
+    {
+     "version_id": "ver_82278fa8eccb91259e993c6cab6f1654",
+     "char_start": 5012,
+     "char_end": 5159,
+     "quote": "**Client tools** (including user-defined tools and tools with Anthropic-defined schemas, such as `bash` and `text_editor`) run in your application."
+    },
+    {
+     "version_id": "ver_82278fa8eccb91259e993c6cab6f1654",
+     "char_start": 5242,
+     "char_end": 5306,
+     "quote": "Your code executes the operation and sends back a `tool_result`."
+    }
+   ],
+   "supported_answer": "Yes. bash and text_editor have Anthropic-defined schemas but are client tools: they run in your application. Claude returns a tool_use block, your code executes the operation and sends back a tool_result. Only server tools such as web_search are executed by Anthropic.",
+   "atomic_claims": [
+    "bash and text_editor are client tools that run in your application",
+    "an Anthropic-defined schema does not mean Anthropic executes the tool",
+    "your code executes the operation and returns a tool_result"
+   ],
+   "critical_strings": [
+    "`bash` and `text_editor`",
+    "run in your application",
+    "tool_result"
+   ],
+   "evidence_shape": "multi_span_concept",
+   "reasoning_type": "correcting a schema-ownership vs execution-ownership confusion",
+   "ambiguity_notes": "None. The question names both tools and the corpus names both in the client-tool definition."
+  },
+  {
+   "case_id": "A20",
+   "citation_id": "NATQ2-A20",
+   "slice": "A",
+   "question": "refusal field in the response, when does that show up",
+   "provider": "anthropic",
+   "document_title": "Refusals and fallback",
+   "version_id": "ver_fa78e1feb6289d6bcb22305e61bbbfc3",
+   "content_hash": "e80c3cd553d9ed8af963d917df06c20ba17f739a62aa51d8471cb9289db155bf",
+   "evidence": [
+    {
+     "version_id": "ver_fa78e1feb6289d6bcb22305e61bbbfc3",
+     "char_start": 251,
+     "char_end": 433,
+     "quote": "Claude Fable 5 and Claude Opus 5 include safety classifiers that can decline a request. When that happens, you receive a normal response, not an error, with `stop_reason: \"refusal\"`."
+    }
+   ],
+   "supported_answer": "When a safety classifier declines the request. On Claude Fable 5 and Claude Opus 5 you then receive a normal response rather than an error, carrying stop_reason \"refusal\".",
+   "atomic_claims": [
+    "safety classifiers on Claude Fable 5 and Claude Opus 5 can decline a request",
+    "a declined request returns a normal response, not an error",
+    "the response carries stop_reason refusal"
+   ],
+   "critical_strings": [
+    "stop_reason: \"refusal\"",
+    "safety classifiers"
+   ],
+   "evidence_shape": "single_span_behaviour",
+   "reasoning_type": "locating the triggering condition for a documented response state",
+   "ambiguity_notes": "The asker says 'refusal field'. Anthropic surfaces refusal as a stop_reason value, not a named field; OpenAI has a message.refusal field but its corpus never states when it is populated. Answered from Anthropic because that is where the triggering condition is documented, and the shape difference is recorded rather than smoothed over."
+  },
+  {
+   "case_id": "A27",
+   "citation_id": "NATQ2-A27",
+   "slice": "A",
+   "question": "prefilling assistant turn with { to force json \u2014 is that still a thing",
+   "provider": "anthropic",
+   "document_title": "Prompting best practices",
+   "version_id": "ver_0a5b292d4854b92db0a9e025b4949123",
+   "content_hash": "b0474bd421fa76ea027a60ce4f62a9c8d155ae74b7902229856b79ea0e3100ca",
+   "evidence": [
+    {
+     "version_id": "ver_0a5b292d4854b92db0a9e025b4949123",
+     "char_start": 18432,
+     "char_end": 18744,
+     "quote": "Starting with Claude 4.6 models and [Claude Mythos Preview](https://anthropic.com/glasswing), prefilled responses (providing a partial assistant message for Claude to continue from) on the last assistant turn are no longer supported. Requests with prefilled assistant messages to these models return a 400 error."
+    }
+   ],
+   "supported_answer": "No, not on current models. From Claude 4.6 onward, prefilled responses on the last assistant turn are no longer supported and such requests return a 400 error. Earlier models still support prefills, and assistant messages elsewhere in the conversation are unaffected.",
+   "atomic_claims": [
+    "prefilled responses on the last assistant turn are unsupported from Claude 4.6 onward",
+    "such requests return a 400 error",
+    "earlier models continue to support prefills"
+   ],
+   "critical_strings": [
+    "no longer supported",
+    "400 error"
+   ],
+   "evidence_shape": "single_span_deprecation",
+   "reasoning_type": "version-scoped capability check",
+   "ambiguity_notes": "The '{' prefill trick is the user's specific instance of the general prefill mechanism the corpus deprecates. The answer is version-scoped rather than absolute because the corpus explicitly preserves the behaviour on earlier models."
+  },
+  {
+   "case_id": "B02",
+   "citation_id": "NATQ2-B02",
+   "slice": "B",
+   "question": "what's the first thing that comes back when you stream? the chunk with the id in it",
+   "provider": "anthropic",
+   "document_title": "Streaming messages",
+   "version_id": "ver_1261879c16f641270789647ac9c63c96",
+   "content_hash": "82fabc5d2e31d7a82284e3502872738c512d5ed305bace782d13eb7c3f60bd6d",
+   "evidence": [
+    {
+     "version_id": "ver_1261879c16f641270789647ac9c63c96",
+     "char_start": 8932,
+     "char_end": 9045,
+     "quote": "Each stream uses the following event flow:\n\n1. `message_start`: contains a `Message` object with empty `content`."
+    }
+   ],
+   "supported_answer": "message_start. It contains a Message object with empty content \u2014 so yes, the identifying Message envelope arrives first, before any content.",
+   "atomic_claims": [
+    "message_start is the first event in the stream",
+    "message_start contains a Message object with empty content"
+   ],
+   "critical_strings": [
+    "`message_start`",
+    "empty `content`"
+   ],
+   "evidence_shape": "single_span_sequence",
+   "reasoning_type": "confirming an ordering assumption",
+   "ambiguity_notes": "The asker's 'chunk with the id in it' is their description of the Message envelope. The corpus names the event and its payload; the answer confirms the ordering without adopting the informal wording."
+  },
+  {
+   "case_id": "B03",
+   "citation_id": "NATQ2-B03",
+   "slice": "B",
+   "question": "claude sse event names list",
+   "provider": "anthropic",
+   "document_title": "Streaming messages",
+   "version_id": "ver_1261879c16f641270789647ac9c63c96",
+   "content_hash": "82fabc5d2e31d7a82284e3502872738c512d5ed305bace782d13eb7c3f60bd6d",
+   "evidence": [
+    {
+     "version_id": "ver_1261879c16f641270789647ac9c63c96",
+     "char_start": 8730,
+     "char_end": 8930,
+     "quote": "Each server-sent event includes a named event type and associated JSON data. Each event uses an SSE event name (for example, `event: message_stop`), and includes the matching event `type` in its data."
+    },
+    {
+     "version_id": "ver_1261879c16f641270789647ac9c63c96",
+     "char_start": 8932,
+     "char_end": 9045,
+     "quote": "Each stream uses the following event flow:\n\n1. `message_start`: contains a `Message` object with empty `content`."
+    },
+    {
+     "version_id": "ver_1261879c16f641270789647ac9c63c96",
+     "char_start": 9594,
+     "char_end": 9725,
+     "quote": "3. One or more `message_delta` events, indicating top-level changes to the final `Message` object.\n4. A final `message_stop` event."
+    }
+   ],
+   "supported_answer": "Each event carries an SSE event name matching its data type. The flow is message_start, then per content block content_block_start, content_block_delta and content_block_stop, then one or more message_delta, then a final message_stop. Streams may also include ping events and error events.",
+   "atomic_claims": [
+    "each event uses an SSE event name matching the event type in its data",
+    "the flow is message_start, content block start/delta/stop, message_delta, message_stop"
+   ],
+   "critical_strings": [
+    "SSE event name",
+    "`message_stop`",
+    "`message_delta`"
+   ],
+   "evidence_shape": "multi_span_enumeration",
+   "reasoning_type": "enumerating a documented list",
+   "ambiguity_notes": "The question asks for a list. Three spans are cited because the naming convention, the opening event and the closing events sit in different sentences."
+  },
+  {
+   "case_id": "B04",
+   "citation_id": "NATQ2-B04",
+   "slice": "B",
+   "question": "getting 429 even though im way under my limit, whats going on",
+   "provider": "anthropic",
+   "document_title": "Rate limits",
+   "version_id": "ver_c8b2c7130cb18508fed4f864d4c3d7a3",
+   "content_hash": "27738d20da88c513b81371950df63b658fd4726c0e9a13bc44a6de320278584a",
+   "evidence": [
+    {
+     "version_id": "ver_c8b2c7130cb18508fed4f864d4c3d7a3",
+     "char_start": 5361,
+     "char_end": 5490,
+     "quote": "You might also encounter 429 errors because of acceleration limits on the API if your organization has a sharp increase in usage."
+    }
+   ],
+   "supported_answer": "Acceleration limits. Beyond the published per-minute limits, a sharp increase in an organization's usage can produce 429s even while under the stated rate limit. The documented remedy is to ramp traffic gradually and maintain consistent usage.",
+   "atomic_claims": [
+    "429 errors can come from acceleration limits, not only from the published rate limits",
+    "acceleration limits trigger on a sharp increase in organization usage"
+   ],
+   "critical_strings": [
+    "acceleration limits",
+    "sharp increase"
+   ],
+   "evidence_shape": "single_span_cause",
+   "reasoning_type": "identifying a documented second cause behind one status code",
+   "ambiguity_notes": "Question said 'either' provider; answered from Anthropic where acceleration limits are documented by name."
+  },
+  {
+   "case_id": "B05",
+   "citation_id": "NATQ2-B05",
+   "slice": "B",
+   "question": "how do I read the remaining requests header so I can back off before I get throttled",
+   "provider": "anthropic",
+   "document_title": "Rate limits",
+   "version_id": "ver_c8b2c7130cb18508fed4f864d4c3d7a3",
+   "content_hash": "27738d20da88c513b81371950df63b658fd4726c0e9a13bc44a6de320278584a",
+   "evidence": [
+    {
+     "version_id": "ver_c8b2c7130cb18508fed4f864d4c3d7a3",
+     "char_start": 24748,
+     "char_end": 24857,
+     "quote": "| `anthropic-ratelimit-requests-remaining`      | The number of requests remaining before being rate limited."
+    }
+   ],
+   "supported_answer": "Read the anthropic-ratelimit-requests-remaining response header: it gives the number of requests remaining before being rate limited.",
+   "atomic_claims": [
+    "anthropic-ratelimit-requests-remaining reports requests remaining before rate limiting"
+   ],
+   "critical_strings": [
+    "anthropic-ratelimit-requests-remaining"
+   ],
+   "evidence_shape": "single_span_api_reference",
+   "reasoning_type": "direct header lookup",
+   "ambiguity_notes": "Question said 'either' provider; the named header is Anthropic's."
+  },
+  {
+   "case_id": "B07",
+   "citation_id": "NATQ2-B07",
+   "slice": "B",
+   "question": "does retry-after come back as seconds or a date",
+   "provider": "anthropic",
+   "document_title": "Rate limits",
+   "version_id": "ver_c8b2c7130cb18508fed4f864d4c3d7a3",
+   "content_hash": "27738d20da88c513b81371950df63b658fd4726c0e9a13bc44a6de320278584a",
+   "evidence": [
+    {
+     "version_id": "ver_c8b2c7130cb18508fed4f864d4c3d7a3",
+     "char_start": 24376,
+     "char_end": 24515,
+     "quote": "| `retry-after`                                 | The number of seconds to wait until you can retry the request. Earlier retries will fail."
+    }
+   ],
+   "supported_answer": "Seconds. retry-after is the number of seconds to wait until you can retry; earlier retries will fail.",
+   "atomic_claims": [
+    "retry-after is a number of seconds, not a date",
+    "retries earlier than that will fail"
+   ],
+   "critical_strings": [
+    "number of seconds to wait"
+   ],
+   "evidence_shape": "single_span_api_reference",
+   "reasoning_type": "resolving a binary format question",
+   "ambiguity_notes": "Question said 'either' provider; answered from Anthropic's documented header table."
+  },
+  {
+   "case_id": "B11",
+   "citation_id": "NATQ2-B11",
+   "slice": "B",
+   "question": "how do i know the model stopped because it hit max tokens vs finished normally when streaming",
+   "provider": "anthropic",
+   "document_title": "Streaming messages",
+   "version_id": "ver_1261879c16f641270789647ac9c63c96",
+   "content_hash": "82fabc5d2e31d7a82284e3502872738c512d5ed305bace782d13eb7c3f60bd6d",
+   "evidence": [
+    {
+     "version_id": "ver_1261879c16f641270789647ac9c63c96",
+     "char_start": 9594,
+     "char_end": 9692,
+     "quote": "3. One or more `message_delta` events, indicating top-level changes to the final `Message` object."
+    },
+    {
+     "version_id": "ver_1261879c16f641270789647ac9c63c96",
+     "char_start": 18400,
+     "char_end": 18544,
+     "quote": "event: message_delta\ndata: {\"type\": \"message_delta\", \"delta\": {\"stop_reason\": \"end_turn\", \"stop_sequence\":null}, \"usage\": {\"output_tokens\": 15}}"
+    }
+   ],
+   "supported_answer": "Read stop_reason from the message_delta event. message_delta carries top-level changes to the final Message object, and its delta contains stop_reason \u2014 end_turn for a normal finish, and the corresponding value when a limit was hit instead.",
+   "atomic_claims": [
+    "message_delta events carry top-level changes to the final Message object",
+    "the message_delta delta contains stop_reason",
+    "a normal completion shows stop_reason end_turn"
+   ],
+   "critical_strings": [
+    "message_delta",
+    "stop_reason"
+   ],
+   "evidence_shape": "multi_span_procedure",
+   "reasoning_type": "locating where a field is delivered within a streamed sequence",
+   "ambiguity_notes": "Question said 'either' provider; answered from Anthropic. The corpus example shows end_turn; it does not show a max_tokens stream example, so the answer names the field to read rather than enumerating every value."
+  },
+  {
+   "case_id": "B16",
+   "citation_id": "NATQ2-B16",
+   "slice": "B",
+   "question": "long request without streaming times out \u2014 is there a max non-streaming duration",
+   "provider": "anthropic",
+   "document_title": "Claude API errors",
+   "version_id": "ver_0774ca0093ff4a846753577c9a4a39d5",
+   "content_hash": "87c8bda8220ddcffda9f0d8824f2ab04c543dd57706fc3fad9fd1a8864fbfaf1",
+   "evidence": [
+    {
+     "version_id": "ver_0774ca0093ff4a846753577c9a4a39d5",
+     "char_start": 14049,
+     "char_end": 14227,
+     "quote": "The [SDKs](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) validate that your non-streaming Messages API requests are not expected to exceed a 10-minute timeout."
+    },
+    {
+     "version_id": "ver_0774ca0093ff4a846753577c9a4a39d5",
+     "char_start": 13405,
+     "char_end": 13570,
+     "quote": "Some networks may drop idle connections after a variable period of time, which can cause the request to fail or time out without receiving a response from Anthropic."
+    }
+   ],
+   "supported_answer": "Effectively yes: the SDKs validate that non-streaming Messages API requests are not expected to exceed a 10-minute timeout, and the guidance is to use streaming or the Message Batches API for anything long-running, especially over 10 minutes. Separately, networks may drop idle connections after a variable period, so a long non-streaming request can fail without a response.",
+   "atomic_claims": [
+    "the SDKs validate non-streaming Messages API requests against a 10-minute timeout",
+    "networks may drop idle connections, causing a long request to fail or time out with no response"
+   ],
+   "critical_strings": [
+    "10-minute timeout",
+    "drop idle connections"
+   ],
+   "evidence_shape": "multi_span_limit_and_cause",
+   "reasoning_type": "locating a documented ceiling plus the failure mode behind it",
+   "ambiguity_notes": "The 10-minute figure is an SDK-side validation, not stated as a hard server limit. The answer says 'effectively yes' and attributes the check to the SDKs rather than claiming a server-enforced maximum."
+  },
+  {
+   "case_id": "B21",
+   "citation_id": "NATQ2-B21",
+   "slice": "B",
+   "question": "how do i get token usage numbers when the response is streamed",
+   "provider": "anthropic",
+   "document_title": "Streaming messages",
+   "version_id": "ver_1261879c16f641270789647ac9c63c96",
+   "content_hash": "82fabc5d2e31d7a82284e3502872738c512d5ed305bace782d13eb7c3f60bd6d",
+   "evidence": [
+    {
+     "version_id": "ver_1261879c16f641270789647ac9c63c96",
+     "char_start": 9739,
+     "char_end": 9829,
+     "quote": "The token counts shown in the `usage` field of the `message_delta` event are *cumulative*."
+    }
+   ],
+   "supported_answer": "From the usage field on message_delta events. Note the counts there are cumulative, not per-event, so the final message_delta carries the running total rather than a delta to be summed.",
+   "atomic_claims": [
+    "token usage is carried in the usage field of message_delta events",
+    "those token counts are cumulative"
+   ],
+   "critical_strings": [
+    "`usage`",
+    "`message_delta`",
+    "cumulative"
+   ],
+   "evidence_shape": "single_span_caveat",
+   "reasoning_type": "locating a field plus the accumulation semantics that decide how to read it",
+   "ambiguity_notes": "Question said 'either' provider; answered from Anthropic."
+  },
+  {
+   "case_id": "B23",
+   "citation_id": "NATQ2-B23",
+   "slice": "B",
+   "question": "which http errors are safe to retry automatically and which ones will just burn quota",
+   "provider": "openai",
+   "document_title": "OpenAI Python API library",
+   "version_id": "ver_9247e3ce4df6f79d9cadc44e1a3bbd0c",
+   "content_hash": "8802e1f3d945f2893f3b03bc906b8fd21498d7443d84b2d858926afe2f669f0f",
+   "evidence": [
+    {
+     "version_id": "ver_9247e3ce4df6f79d9cadc44e1a3bbd0c",
+     "char_start": 19704,
+     "char_end": 19975,
+     "quote": "Certain errors are automatically retried 2 times by default, with a short exponential backoff.\nConnection errors (for example, due to a network connectivity problem), 408 Request Timeout, 409 Conflict,\n429 Rate Limit, and >=500 Internal errors are all retried by default."
+    }
+   ],
+   "supported_answer": "The documented retryable set is connection errors, 408 Request Timeout, 409 Conflict, 429 Rate Limit and 5xx \u2014 these are retried automatically, twice by default, with short exponential backoff. Anything outside that set is not retried by default.",
+   "atomic_claims": [
+    "connection errors, 408, 409, 429 and >=500 are retried by default",
+    "the default is 2 retries with short exponential backoff"
+   ],
+   "critical_strings": [
+    "408 Request Timeout",
+    "429 Rate Limit",
+    ">=500 Internal errors"
+   ],
+   "evidence_shape": "single_span_enumeration",
+   "reasoning_type": "reading a safe-to-retry set from documented default behaviour",
+   "ambiguity_notes": "Question said 'either' provider. The corpus does not frame the complement as 'burns quota'; it states which errors are retried, and the answer infers only that the rest are not retried by default."
+  },
+  {
+   "case_id": "B27",
+   "citation_id": "NATQ2-B27",
+   "slice": "B",
+   "question": "can i resume a stream after a network blip or do i have to start the whole request over",
+   "provider": "anthropic",
+   "document_title": "Streaming messages",
+   "version_id": "ver_1261879c16f641270789647ac9c63c96",
+   "content_hash": "82fabc5d2e31d7a82284e3502872738c512d5ed305bace782d13eb7c3f60bd6d",
+   "evidence": [
+    {
+     "version_id": "ver_1261879c16f641270789647ac9c63c96",
+     "char_start": 48692,
+     "char_end": 48879,
+     "quote": "**Handle content types:** Be aware that messages can contain multiple content blocks (`text`, `tool_use`, `thinking`). Tool use and extended thinking blocks cannot be partially recovered."
+    },
+    {
+     "version_id": "ver_1261879c16f641270789647ac9c63c96",
+     "char_start": 48880,
+     "char_end": 48937,
+     "quote": "You can resume streaming from the most recent text block."
+    }
+   ],
+   "supported_answer": "Partially. You can resume streaming from the most recent text block, but tool use and extended thinking blocks cannot be partially recovered \u2014 those have to be redone.",
+   "atomic_claims": [
+    "streaming can be resumed from the most recent text block",
+    "tool use and extended thinking blocks cannot be partially recovered"
+   ],
+   "critical_strings": [
+    "resume streaming from the most recent text block",
+    "cannot be partially recovered"
+   ],
+   "evidence_shape": "multi_span_qualified_capability",
+   "reasoning_type": "answering a binary with the documented split",
+   "ambiguity_notes": "Question said 'either' provider. The answer is neither a clean yes nor a clean no; both spans are cited so the block-type limitation is part of the gold answer."
+  },
+  {
+   "case_id": "B29",
+   "citation_id": "NATQ2-B29",
+   "slice": "B",
+   "question": "what's the header for the request id, need it for support tickets when things fail",
+   "provider": "anthropic",
+   "document_title": "Claude API errors",
+   "version_id": "ver_0774ca0093ff4a846753577c9a4a39d5",
+   "content_hash": "87c8bda8220ddcffda9f0d8824f2ab04c543dd57706fc3fad9fd1a8864fbfaf1",
+   "evidence": [
+    {
+     "version_id": "ver_0774ca0093ff4a846753577c9a4a39d5",
+     "char_start": 6348,
+     "char_end": 6474,
+     "quote": "Every API response includes a unique `request-id` header. This header contains a value such as `req_018EeWyXxfu5pfWkrYcMdjWG`."
+    }
+   ],
+   "supported_answer": "The request-id response header, present on every API response, carrying a value like req_018EeWyXxfu5pfWkrYcMdjWG. The same identifier also appears as the request_id field in error response bodies, and the corpus directs you to contact support with it.",
+   "atomic_claims": [
+    "every API response includes a request-id header",
+    "the header value looks like req_018EeWyXxfu5pfWkrYcMdjWG"
+   ],
+   "critical_strings": [
+    "`request-id` header"
+   ],
+   "evidence_shape": "single_span_api_reference",
+   "reasoning_type": "direct header lookup",
+   "ambiguity_notes": "Question said 'either' provider; the named header is Anthropic's."
+  },
+  {
+   "case_id": "C06",
+   "citation_id": "NATQ2-C06",
+   "slice": "C",
+   "question": "openai moved system to developer role? do i need to change my code",
+   "provider": "openai",
+   "document_title": "OpenAI harmony response format",
+   "version_id": "ver_a183af1cb18fd2f8c9d16398cc617af6",
+   "content_hash": "a348e9824793f6d82f241d44e5a6b1e7b23ba3bc410413766db1c0ae47d71cf7",
+   "evidence": [
+    {
+     "version_id": "ver_a183af1cb18fd2f8c9d16398cc617af6",
+     "char_start": 1503,
+     "char_end": 1687,
+     "quote": "| `developer` | The developer message is used to provide information about the instructions for the model (what is normally considered the \u201csystem prompt\u201d) and available function tools"
+    }
+   ],
+   "supported_answer": "Both roles exist and carry different content. The developer message holds what is normally thought of as the system prompt \u2014 instructions and available function tools \u2014 while the system role is used for reasoning effort and meta information such as knowledge cutoff and built-in tools.",
+   "atomic_claims": [
+    "the developer message carries what is normally considered the system prompt",
+    "it also carries available function tools"
+   ],
+   "critical_strings": [
+    "`developer`",
+    "normally considered the \u201csystem prompt\u201d"
+   ],
+   "evidence_shape": "single_span_terminology",
+   "reasoning_type": "resolving a role-renaming question",
+   "ambiguity_notes": "The asker assumes a rename. The corpus documents both roles coexisting with different purposes in the harmony format, so the answer describes the split rather than confirming a migration. Whether existing code must change is not stated and is not claimed."
+  },
+  {
+   "case_id": "C08",
+   "citation_id": "NATQ2-C08",
+   "slice": "C",
+   "question": "how long does a prompt cache entry stay alive",
+   "provider": "anthropic",
+   "document_title": "Prompt caching",
+   "version_id": "ver_7947433dfde6b3b8eccd0faa597c3c9a",
+   "content_hash": "4af14eac456ba952ff0ee0fb0664b9d51bee244eb9a4fdef9ace0066f84fd6e6",
+   "evidence": [
+    {
+     "version_id": "ver_7947433dfde6b3b8eccd0faa597c3c9a",
+     "char_start": 7638,
+     "char_end": 7768,
+     "quote": "By default, the cache has a 5-minute lifetime. The cache is refreshed for no additional cost each time the cached content is used."
+    },
+    {
+     "version_id": "ver_7947433dfde6b3b8eccd0faa597c3c9a",
+     "char_start": 7770,
+     "char_end": 7896,
+     "quote": "The lifetime is measured from the start of the request that writes or reads the cache entry, not from the end of its response."
+    }
+   ],
+   "supported_answer": "Five minutes by default, and each use refreshes it at no extra cost. The clock starts at the beginning of the request that writes or reads the entry, not at the end of its response, so a long generation eats into the window. A 1-hour duration is available at additional cost.",
+   "atomic_claims": [
+    "the default cache lifetime is 5 minutes",
+    "using the cached content refreshes it at no additional cost",
+    "the lifetime is measured from the start of the request, not the end of the response"
+   ],
+   "critical_strings": [
+    "5-minute lifetime",
+    "refreshed for no additional cost",
+    "from the start of the request"
+   ],
+   "evidence_shape": "multi_span_behaviour",
+   "reasoning_type": "direct lookup plus the timing subtlety that changes how it is used",
+   "ambiguity_notes": "None. The corpus states the default and the measurement basis explicitly."
+  },
+  {
+   "case_id": "C13",
+   "citation_id": "NATQ2-C13",
+   "slice": "C",
+   "question": "whats the biggest ctx i can actually use on sonnet right now",
+   "provider": "anthropic",
+   "document_title": "Context windows",
+   "version_id": "ver_b42814c2d273210095c8e5844612933e",
+   "content_hash": "2a925449b15fbcf2d1e82ece6e81aa1a84b653bb91540a2dee339d5888859b4d",
+   "evidence": [
+    {
+     "version_id": "ver_b42814c2d273210095c8e5844612933e",
+     "char_start": 3223,
+     "char_end": 3430,
+     "quote": "Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 5, and Claude Sonnet 4.6 have a 1M-token context window on the Claude API, Amazon Bedrock, Google Cloud, and Microsoft Foundry."
+    },
+    {
+     "version_id": "ver_b42814c2d273210095c8e5844612933e",
+     "char_start": 3834,
+     "char_end": 4069,
+     "quote": "For every model with a 1M-token context window, 1M is the default: you don't need a beta header, and long-context requests are billed at [standard pricing](https://platform.claude.com/docs/en/about-claude/pricing#long-context-pricing)."
+    }
+   ],
+   "supported_answer": "1M tokens. Claude Sonnet 5 and Claude Sonnet 4.6 have a 1M-token context window; other Sonnet models including Claude Sonnet 4.5 have 200k. For 1M-window models, 1M is the default and needs no beta header.",
+   "atomic_claims": [
+    "Claude Sonnet 5 and Claude Sonnet 4.6 have a 1M-token context window",
+    "1M is the default on those models and requires no beta header"
+   ],
+   "critical_strings": [
+    "1M-token context window",
+    "Sonnet 5"
+   ],
+   "evidence_shape": "multi_span_capability",
+   "reasoning_type": "model-scoped limit lookup",
+   "ambiguity_notes": "'Right now' is the asker's framing; the answer is scoped to the models the frozen snapshot lists rather than claiming a current-at-read-time value."
+  },
+  {
+   "case_id": "C14",
+   "citation_id": "NATQ2-C14",
+   "slice": "C",
+   "question": "is there a header i need to send to enable the 1m token context thing",
+   "provider": "anthropic",
+   "document_title": "Context windows",
+   "version_id": "ver_b42814c2d273210095c8e5844612933e",
+   "content_hash": "2a925449b15fbcf2d1e82ece6e81aa1a84b653bb91540a2dee339d5888859b4d",
+   "evidence": [
+    {
+     "version_id": "ver_b42814c2d273210095c8e5844612933e",
+     "char_start": 3834,
+     "char_end": 4069,
+     "quote": "For every model with a 1M-token context window, 1M is the default: you don't need a beta header, and long-context requests are billed at [standard pricing](https://platform.claude.com/docs/en/about-claude/pricing#long-context-pricing)."
+    }
+   ],
+   "supported_answer": "No. For every model with a 1M-token context window, 1M is the default \u2014 no beta header is needed \u2014 and long-context requests are billed at standard pricing.",
+   "atomic_claims": [
+    "no beta header is required for a 1M-token context window",
+    "1M is the default on models that have it",
+    "long-context requests are billed at standard pricing"
+   ],
+   "critical_strings": [
+    "don't need a beta header"
+   ],
+   "evidence_shape": "single_span_refutation",
+   "reasoning_type": "refuting the asker's assumption",
+   "ambiguity_notes": "Question said anthropic. The corpus answers the header question directly and negatively."
+  },
+  {
+   "case_id": "C15",
+   "citation_id": "NATQ2-C15",
+   "slice": "C",
+   "question": "How should I handle a conversation that keeps growing past the model's limit? I'm currently just dropping the oldest messages and it feels wrong.",
+   "provider": "anthropic",
+   "document_title": "Compaction",
+   "version_id": "ver_c60f7418b69b6610bd20e974b92cdd8c",
+   "content_hash": "0ed25c803072c6778f2fab5f0540106df733e42991f590d9b5677efc155f7972",
+   "evidence": [
+    {
+     "version_id": "ver_c60f7418b69b6610bd20e974b92cdd8c",
+     "char_start": 0,
+     "char_end": 204,
+     "quote": "---\ntitle: Compaction\nurl: https://platform.claude.com/docs/en/build-with-claude/compaction\ndescription: Server-side context compaction for managing long conversations that approach context window limits."
+    }
+   ],
+   "supported_answer": "Compaction is the documented mechanism: server-side context compaction for managing long conversations that approach context window limits. It is a beta feature enabled with the compact-2026-01-12 beta header on supported models.",
+   "atomic_claims": [
+    "compaction is server-side context compaction for long conversations approaching context window limits",
+    "it is a beta feature gated by the compact-2026-01-12 beta header"
+   ],
+   "critical_strings": [
+    "Compaction",
+    "context compaction"
+   ],
+   "evidence_shape": "single_span_capability",
+   "reasoning_type": "naming the documented mechanism for the asker's problem",
+   "ambiguity_notes": "Question said 'either' provider. The asker mentions truncating; the corpus does not compare compaction against manual truncation, so the answer names the documented alternative without claiming it is better."
+  },
+  {
+   "case_id": "C23",
+   "citation_id": "NATQ2-C23",
+   "slice": "C",
+   "question": "can i use temperature together with extended thinking on claude",
+   "provider": "anthropic",
+   "document_title": "Thinking",
+   "version_id": "ver_012b734775e7edb2649d3a9ddfd93070",
+   "content_hash": "c4bc2186d26e8abe4a7aa72e683ad2f16931f5ff91cfea66de76a4c347ffd0ad",
+   "evidence": [
+    {
+     "version_id": "ver_012b734775e7edb2649d3a9ddfd93070",
+     "char_start": 56212,
+     "char_end": 56471,
+     "quote": "On Claude Fable 5, Claude Mythos 5, Claude Mythos Preview, Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, and Claude Sonnet 5, non-default `temperature`, `top_p`, or `top_k` values return a 400 error on every request, regardless of whether thinking is used."
+    }
+   ],
+   "supported_answer": "Not on current models: non-default temperature, top_p or top_k return a 400 error on every request there, regardless of thinking. On older models temperature and top_k were incompatible with thinking while it was on, and top_p was allowed between 0.95 and 1.",
+   "atomic_claims": [
+    "on the listed current models non-default sampling parameters return a 400 error regardless of thinking",
+    "on older models temperature and top_k were incompatible with thinking while thinking was on"
+   ],
+   "critical_strings": [
+    "non-default `temperature`",
+    "400 error",
+    "regardless of whether thinking is used"
+   ],
+   "evidence_shape": "single_span_constraint",
+   "reasoning_type": "compatibility check between a parameter and a feature",
+   "ambiguity_notes": "The answer preserves the model-generation split rather than stating one blanket rule, because the corpus states two different regimes."
+  },
+  {
+   "case_id": "C24",
+   "citation_id": "NATQ2-C24",
+   "slice": "C",
+   "question": "thinking budget vs max tokens, which one wins",
+   "provider": "anthropic",
+   "document_title": "Thinking",
+   "version_id": "ver_012b734775e7edb2649d3a9ddfd93070",
+   "content_hash": "c4bc2186d26e8abe4a7aa72e683ad2f16931f5ff91cfea66de76a4c347ffd0ad",
+   "evidence": [
+    {
+     "version_id": "ver_012b734775e7edb2649d3a9ddfd93070",
+     "char_start": 1346,
+     "char_end": 1524,
+     "quote": "the tokens Claude spends reasoning are billed as output tokens, even when the thinking text isn't returned to you, and they count toward `max_tokens` alongside the response text."
+    },
+    {
+     "version_id": "ver_012b734775e7edb2649d3a9ddfd93070",
+     "char_start": 48470,
+     "char_end": 48626,
+     "quote": "* **Current-turn thinking** always counts toward `max_tokens`, is billed as output tokens, and occupies context window space for the turn that generated it."
+    }
+   ],
+   "supported_answer": "max_tokens is the outer envelope. Thinking tokens are billed as output tokens and count toward max_tokens alongside the response text, and current-turn thinking always counts toward it \u2014 so the thinking budget is spent inside max_tokens rather than in addition to it.",
+   "atomic_claims": [
+    "thinking tokens are billed as output tokens",
+    "thinking tokens count toward max_tokens alongside the response text",
+    "current-turn thinking always counts toward max_tokens"
+   ],
+   "critical_strings": [
+    "count toward `max_tokens`",
+    "billed as output tokens"
+   ],
+   "evidence_shape": "multi_span_relationship",
+   "reasoning_type": "resolving which of two limits bounds the other",
+   "ambiguity_notes": "The phrase 'which one wins' is the asker's. The corpus does not frame it as a contest; it states containment, which is the substantive answer."
+  },
+  {
+   "case_id": "C25",
+   "citation_id": "NATQ2-C25",
+   "slice": "C",
+   "question": "moving from 3.5 sonnet to a newer claude, what actually breaks in my code",
+   "provider": "anthropic",
+   "document_title": "Migration guide",
+   "version_id": "ver_a7bda3595f2c124605c3228464d4ee52",
+   "content_hash": "70bfc31a2d442f38ed00224bff89ebbd88e7fbee2b61ab0dc3d0b533644f2b8a",
+   "evidence": [
+    {
+     "version_id": "ver_a7bda3595f2c124605c3228464d4ee52",
+     "char_start": 104,
+     "char_end": 194,
+     "quote": "description: Guide for migrating to the latest Claude models from previous Claude versions"
+    }
+   ],
+   "supported_answer": "The Migration guide is the documented path \u2014 a guide for migrating to the latest Claude models from previous versions, covering Messages API code. It also notes that Claude Managed Agents users need no changes beyond the model name.",
+   "atomic_claims": [
+    "a migration guide exists for moving to the latest Claude models from previous versions"
+   ],
+   "critical_strings": [
+    "migrating to the latest Claude models"
+   ],
+   "evidence_shape": "single_span_pointer",
+   "reasoning_type": "identifying the documented migration resource",
+   "ambiguity_notes": "The asker wants a breakage list. The cited span establishes the guide's scope rather than enumerating breakages; a full list would require quoting large parts of a 155k-character document. The answer is scoped to what the span supports."
+  },
+  {
+   "case_id": "C26",
+   "citation_id": "NATQ2-C26",
+   "slice": "C",
+   "question": "how much warning do you get before a model gets retired",
+   "provider": "anthropic",
+   "document_title": "Model deprecations",
+   "version_id": "ver_b57691291ac216e12d311d60db579b43",
+   "content_hash": "c60574dc4c5322b6e9ff20f96bf9139bdb036e6b0ee532a3635c956e0b4f1f0f",
+   "evidence": [
+    {
+     "version_id": "ver_b57691291ac216e12d311d60db579b43",
+     "char_start": 2631,
+     "char_end": 2810,
+     "quote": "Anthropic notifies customers with active deployments for models with upcoming retirements, providing at least 60 days' notice before model retirement for publicly released models."
+    }
+   ],
+   "supported_answer": "At least 60 days' notice before retirement for publicly released models, sent to customers with active deployments on those models.",
+   "atomic_claims": [
+    "Anthropic gives at least 60 days' notice before retiring a publicly released model",
+    "notification goes to customers with active deployments on affected models"
+   ],
+   "critical_strings": [
+    "60 days"
+   ],
+   "evidence_shape": "single_span_policy",
+   "reasoning_type": "direct policy lookup",
+   "ambiguity_notes": "Question said 'either' provider; the 60-day commitment is Anthropic's and the answer is scoped to it."
+  },
+  {
+   "case_id": "C27",
+   "citation_id": "NATQ2-C27",
+   "slice": "C",
+   "question": "is there a list of which model snapshots are dead already",
+   "provider": "anthropic",
+   "document_title": "Model deprecations",
+   "version_id": "ver_b57691291ac216e12d311d60db579b43",
+   "content_hash": "c60574dc4c5322b6e9ff20f96bf9139bdb036e6b0ee532a3635c956e0b4f1f0f",
+   "evidence": [
+    {
+     "version_id": "ver_b57691291ac216e12d311d60db579b43",
+     "char_start": 4749,
+     "char_end": 4837,
+     "quote": "Current and recently retired models are listed in the following table with their status:"
+    }
+   ],
+   "supported_answer": "Yes. The Model deprecations page carries a model status table listing current and recently retired models with their state, deprecation date and tentative retirement date, followed by a dated deprecation history.",
+   "atomic_claims": [
+    "a table lists current and recently retired models with their status"
+   ],
+   "critical_strings": [
+    "Current and recently retired models"
+   ],
+   "evidence_shape": "single_span_capability",
+   "reasoning_type": "existence lookup",
+   "ambiguity_notes": "Question said 'either' provider. The answer points at the Anthropic table; no equivalent OpenAI list was located, and none is claimed."
+  },
+  {
+   "case_id": "C28",
+   "citation_id": "NATQ2-C28",
+   "slice": "C",
+   "question": "should i pin a dated model name or use the alias like -latest",
+   "provider": "anthropic",
+   "document_title": "Model IDs and versioning",
+   "version_id": "ver_1f49b1ad8b70725119b878c73a3cf8e9",
+   "content_hash": "e5d0aa4d3c1bfe06b25439633d0147c9e8e48d56843aa5769d7742f5b39b5626",
+   "evidence": [
+    {
+     "version_id": "ver_1f49b1ad8b70725119b878c73a3cf8e9",
+     "char_start": 2604,
+     "char_end": 2889,
+     "quote": "For the 4.6 generation and later, the dateless ID is the canonical model ID for that release. It maps to a single, fixed model snapshot. Anthropic does not update the weights or configuration of an existing model ID. When an updated version is available, it ships under a new model ID."
+    },
+    {
+     "version_id": "ver_1f49b1ad8b70725119b878c73a3cf8e9",
+     "char_start": 2979,
+     "char_end": 3197,
+     "quote": "An alias such as `claude-sonnet-4-5` is a convenience pointer that resolves to the most recent dated snapshot for that minor version. A 4.6-generation ID such as `claude-sonnet-4-6` is not an alias. It is the snapshot."
+    }
+   ],
+   "supported_answer": "For the 4.6 generation and later the question is moot: the dateless ID is the canonical ID and maps to a single fixed snapshot, not a moving pointer. Anthropic does not update an existing model ID's weights \u2014 updates ship under a new ID. Only for earlier models is a dateless name an alias that resolves to the most recent dated snapshot.",
+   "atomic_claims": [
+    "for the 4.6 generation and later the dateless ID maps to a single fixed snapshot",
+    "Anthropic does not update the weights or configuration of an existing model ID",
+    "for earlier models a dateless name is an alias resolving to the most recent dated snapshot"
+   ],
+   "critical_strings": [
+    "canonical model ID",
+    "not an alias",
+    "convenience pointer"
+   ],
+   "evidence_shape": "multi_span_correction",
+   "reasoning_type": "correcting a false dichotomy in the question",
+   "ambiguity_notes": "The asker assumes dateless means evergreen. The corpus names that assumption a common misconception and splits the answer by model generation, which is why both spans are cited."
+  },
+  {
+   "case_id": "C30",
+   "citation_id": "NATQ2-C30",
+   "slice": "C",
+   "question": "responses api vs chat completions, do i have to migrate",
+   "provider": "openai",
+   "document_title": "Models",
+   "version_id": "ver_ae909bf8b4bbbe1d1a11119447f7ac94",
+   "content_hash": "c778e3b28e6b39f43275c7f477694a14f6b5a81faa8e76ff24b6e59dec61ecdc",
+   "evidence": [
+    {
+     "version_id": "ver_ae909bf8b4bbbe1d1a11119447f7ac94",
+     "char_start": 94,
+     "char_end": 310,
+     "quote": "-   **Recommended**: the [`OpenAIResponsesModel`][agents.models.openai_responses.OpenAIResponsesModel], which calls OpenAI APIs using the new [Responses API](https://platform.openai.com/docs/api-reference/responses)."
+    }
+   ],
+   "supported_answer": "Not required, but Responses is the recommended path. The Agents SDK supports both: OpenAIResponsesModel, marked Recommended, calling the Responses API, and OpenAIChatCompletionsModel calling Chat Completions.",
+   "atomic_claims": [
+    "the Agents SDK supports OpenAI models in two flavors",
+    "OpenAIResponsesModel calls the Responses API and is marked Recommended"
+   ],
+   "critical_strings": [
+    "Recommended",
+    "Responses API"
+   ],
+   "evidence_shape": "single_span_recommendation",
+   "reasoning_type": "answering a must-I-migrate question from a documented recommendation plus continued support",
+   "ambiguity_notes": "The corpus states a recommendation, not a requirement, and continues to document the Chat Completions model \u2014 which is what makes 'not required' the right answer. Scoped to the Agents SDK, which is where the corpus makes the comparison."
+  },
+  {
+   "case_id": "D01",
+   "citation_id": "NATQ2-D01",
+   "slice": "D",
+   "question": "whats the thing that passes control from one agent to another called",
+   "provider": "openai",
+   "document_title": "Running agents",
+   "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+   "content_hash": "c4f871c6a0c6eba2537e3721aff1e3d0684cf5e59bc739b50b82f1a6d9fdbab3",
+   "evidence": [
+    {
+     "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+     "char_start": 1730,
+     "char_end": 1827,
+     "quote": "    2. If the LLM requests a handoff, we update the current agent and input, and re-run the loop."
+    }
+   ],
+   "supported_answer": "A handoff. In the agent loop, when the LLM requests a handoff the runner updates the current agent and input and re-runs the loop.",
+   "atomic_claims": [
+    "a handoff transfers control to another agent",
+    "on a handoff the runner updates the current agent and input and re-runs the loop"
+   ],
+   "critical_strings": [
+    "handoff"
+   ],
+   "evidence_shape": "single_span_terminology",
+   "reasoning_type": "naming a mechanism from its description",
+   "ambiguity_notes": "None. The asker describes the behaviour and the corpus names it."
+  },
+  {
+   "case_id": "D02",
+   "citation_id": "NATQ2-D02",
+   "slice": "D",
+   "question": "can I reuse one client across requests or do I need a new one each time",
+   "provider": "openai",
+   "document_title": "OpenAI Python API library",
+   "version_id": "ver_9247e3ce4df6f79d9cadc44e1a3bbd0c",
+   "content_hash": "8802e1f3d945f2893f3b03bc906b8fd21498d7443d84b2d858926afe2f669f0f",
+   "evidence": [
+    {
+     "version_id": "ver_9247e3ce4df6f79d9cadc44e1a3bbd0c",
+     "char_start": 30071,
+     "char_end": 30365,
+     "quote": "By default the library closes underlying HTTP connections whenever the client is [garbage collected](https://docs.python.org/3/reference/datamodel.html#object.__del__). You can manually close the client using the `.close()` method if desired, or with a context manager that closes when exiting."
+    }
+   ],
+   "supported_answer": "Reuse it. The client owns pooled HTTP connections which the library closes when the client is garbage collected; you can close it explicitly with .close() or use it as a context manager. Nothing suggests constructing one per request.",
+   "atomic_claims": [
+    "the library closes underlying HTTP connections when the client is garbage collected",
+    "the client can be closed explicitly with .close() or used as a context manager"
+   ],
+   "critical_strings": [
+    "closes underlying HTTP connections",
+    "`.close()`"
+   ],
+   "evidence_shape": "single_span_lifecycle",
+   "reasoning_type": "answering a reuse question from documented resource ownership",
+   "ambiguity_notes": "Question said 'either' provider. The corpus does not state 'reuse the client' as an imperative; it documents connection pooling and explicit close semantics, from which reuse follows. That is reading the lifecycle, not bridging sections."
+  },
+  {
+   "case_id": "D05",
+   "citation_id": "NATQ2-D05",
+   "slice": "D",
+   "question": "what env var does the anthropic python client read the key from",
+   "provider": "anthropic",
+   "document_title": "Get your Claude API key",
+   "version_id": "ver_54975a889fa22717d135c4a291d9609a",
+   "content_hash": "8acbda78bf95e9189bcfba958d19069c6036130e9b037de5cf15cca9ef31bb5e",
+   "evidence": [
+    {
+     "version_id": "ver_54975a889fa22717d135c4a291d9609a",
+     "char_start": 1547,
+     "char_end": 1730,
+     "quote": "The [client SDKs](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) read `ANTHROPIC_API_KEY` automatically. Direct HTTP requests send the key in the `x-api-key` header."
+    }
+   ],
+   "supported_answer": "ANTHROPIC_API_KEY. The client SDKs read it automatically; direct HTTP requests send the key in the x-api-key header instead.",
+   "atomic_claims": [
+    "the client SDKs read ANTHROPIC_API_KEY automatically",
+    "direct HTTP requests send the key in the x-api-key header"
+   ],
+   "critical_strings": [
+    "`ANTHROPIC_API_KEY`",
+    "`x-api-key`"
+   ],
+   "evidence_shape": "single_span_api_reference",
+   "reasoning_type": "direct environment-variable lookup",
+   "ambiguity_notes": "None. The variable is named explicitly."
+  },
+  {
+   "case_id": "D07",
+   "citation_id": "NATQ2-D07",
+   "slice": "D",
+   "question": "how do I turn off retries completely",
+   "provider": "openai",
+   "document_title": "OpenAI Python API library",
+   "version_id": "ver_9247e3ce4df6f79d9cadc44e1a3bbd0c",
+   "content_hash": "8802e1f3d945f2893f3b03bc906b8fd21498d7443d84b2d858926afe2f669f0f",
+   "evidence": [
+    {
+     "version_id": "ver_9247e3ce4df6f79d9cadc44e1a3bbd0c",
+     "char_start": 19977,
+     "char_end": 20053,
+     "quote": "You can use the `max_retries` option to configure or disable retry settings:"
+    }
+   ],
+   "supported_answer": "Set max_retries=0 on the client. The same option configures or disables retries, and it can also be overridden per request with with_options(max_retries=...).",
+   "atomic_claims": [
+    "the max_retries option configures or disables retry settings"
+   ],
+   "critical_strings": [
+    "`max_retries`"
+   ],
+   "evidence_shape": "single_span_api_reference",
+   "reasoning_type": "locating the disable switch",
+   "ambiguity_notes": "Question said 'either' provider. The value 0 appears in the adjacent code sample; the cited prose establishes that max_retries is the option that disables retries."
+  },
+  {
+   "case_id": "D09",
+   "citation_id": "NATQ2-D09",
+   "slice": "D",
+   "question": "what happens if two agents keep handing off to each other in a loop",
+   "provider": "openai",
+   "document_title": "Running agents",
+   "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+   "content_hash": "c4f871c6a0c6eba2537e3721aff1e3d0684cf5e59bc739b50b82f1a6d9fdbab3",
+   "evidence": [
+    {
+     "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+     "char_start": 1933,
+     "char_end": 2101,
+     "quote": "3. If we exceed the `max_turns` passed, we raise a [`MaxTurnsExceeded`][agents.exceptions.MaxTurnsExceeded] exception. Pass `max_turns=None` to disable this turn limit."
+    }
+   ],
+   "supported_answer": "The run stops at max_turns: exceeding it raises MaxTurnsExceeded. Handoffs re-run the agent loop, so a mutual-handoff cycle consumes turns until that limit trips. max_turns=None removes the limit.",
+   "atomic_claims": [
+    "exceeding max_turns raises MaxTurnsExceeded",
+    "max_turns=None disables the turn limit"
+   ],
+   "critical_strings": [
+    "`max_turns`",
+    "MaxTurnsExceeded"
+   ],
+   "evidence_shape": "single_span_behaviour",
+   "reasoning_type": "answering a runaway-loop question with the documented bound",
+   "ambiguity_notes": "The corpus does not describe mutual handoff as a named failure mode. It documents that handoffs re-run the loop and that the loop is bounded by max_turns; the answer states that bound rather than claiming loop detection exists."
+  },
+  {
+   "case_id": "D10",
+   "citation_id": "NATQ2-D10",
+   "slice": "D",
+   "question": "Runner.run vs Runner.run_sync difference",
+   "provider": "openai",
+   "document_title": "Running agents",
+   "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+   "content_hash": "c4f871c6a0c6eba2537e3721aff1e3d0684cf5e59bc739b50b82f1a6d9fdbab3",
+   "evidence": [
+    {
+     "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+     "char_start": 103,
+     "char_end": 333,
+     "quote": "1. [`Runner.run()`][agents.run.Runner.run], which runs async and returns a [`RunResult`][agents.result.RunResult].\n2. [`Runner.run_sync()`][agents.run.Runner.run_sync], which is a sync method and just runs `.run()` under the hood."
+    }
+   ],
+   "supported_answer": "run() is async and returns a RunResult; run_sync() is the synchronous method and just runs .run() under the hood. There is also run_streamed(), async, returning RunResultStreaming.",
+   "atomic_claims": [
+    "Runner.run is async and returns a RunResult",
+    "Runner.run_sync is a sync method that runs .run() under the hood"
+   ],
+   "critical_strings": [
+    "`Runner.run_sync()`",
+    "under the hood"
+   ],
+   "evidence_shape": "single_span_distinction",
+   "reasoning_type": "direct API comparison",
+   "ambiguity_notes": "None. Both methods are described in one list."
+  },
+  {
+   "case_id": "D11",
+   "citation_id": "NATQ2-D11",
+   "slice": "D",
+   "question": "how do i keep conversation history between runs, do i have to pass the whole message list back",
+   "provider": "openai",
+   "document_title": "Running agents",
+   "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+   "content_hash": "c4f871c6a0c6eba2537e3721aff1e3d0684cf5e59bc739b50b82f1a6d9fdbab3",
+   "evidence": [
+    {
+     "version_id": "ver_2c60e99cfd929a738910b893fd6f1a40",
+     "char_start": 20274,
+     "char_end": 20449,
+     "quote": "You can manually manage conversation history using the [`RunResultBase.to_input_list()`][agents.result.RunResultBase.to_input_list] method to get the inputs for the next turn:"
+    }
+   ],
+   "supported_answer": "You can manage it manually with RunResultBase.to_input_list(), which returns the inputs for the next turn \u2014 so you pass a list back, but the SDK builds it for you rather than making you assemble it. Sessions provide the automatic alternative.",
+   "atomic_claims": [
+    "conversation history can be managed manually with RunResultBase.to_input_list()",
+    "to_input_list() returns the inputs for the next turn"
+   ],
+   "critical_strings": [
+    "to_input_list()"
+   ],
+   "evidence_shape": "single_span_procedure",
+   "reasoning_type": "answering a 'do I have to' question with the provided helper",
+   "ambiguity_notes": "The asker asks whether the whole message list must be passed back. The cited span covers the manual path; the Sessions document covers the automatic one and is named in the answer without being cited as a claim."
+  },
+  {
+   "case_id": "D13",
+   "citation_id": "NATQ2-D13",
+   "slice": "D",
+   "question": "what exception gets raised when a guardrail trips",
+   "provider": "openai",
+   "document_title": "Guardrails",
+   "version_id": "ver_f22fbd5c504fa28a4e70440337e4a495",
+   "content_hash": "5779ec5e82c23aec4778b591ad25e41732314bebd8cd82c9da164f4b2d01f327",
+   "evidence": [
+    {
+     "version_id": "ver_f22fbd5c504fa28a4e70440337e4a495",
+     "char_start": 7131,
+     "char_end": 7366,
+     "quote": "If an agent input or output fails a guardrail, the guardrail can signal this with a tripwire. The runner immediately raises an `InputGuardrailTripwireTriggered` or `OutputGuardrailTripwireTriggered` exception and halts agent execution."
+    }
+   ],
+   "supported_answer": "InputGuardrailTripwireTriggered or OutputGuardrailTripwireTriggered, raised immediately by the runner, which halts agent execution. Tool guardrails raise the corresponding ToolInputGuardrailTripwireTriggered and ToolOutputGuardrailTripwireTriggered.",
+   "atomic_claims": [
+    "a tripwire raises InputGuardrailTripwireTriggered or OutputGuardrailTripwireTriggered",
+    "the runner raises it immediately and halts agent execution"
+   ],
+   "critical_strings": [
+    "InputGuardrailTripwireTriggered",
+    "halts agent execution"
+   ],
+   "evidence_shape": "single_span_api_reference",
+   "reasoning_type": "direct exception lookup",
+   "ambiguity_notes": "None. The exception names are stated explicitly."
+  },
+  {
+   "case_id": "D18",
+   "citation_id": "NATQ2-D18",
+   "slice": "D",
+   "question": "i set OPENAI_ORG_ID but its still billing the wrong org",
+   "provider": "openai",
+   "document_title": "Configuration",
+   "version_id": "ver_f15e1a531d680bb98179238f80355058",
+   "content_hash": "c3625e0efc448e14942f837aff07078a0568b5c6af7e256f5951c698e70e5e25",
+   "evidence": [
+    {
+     "version_id": "ver_f15e1a531d680bb98179238f80355058",
+     "char_start": 7636,
+     "char_end": 7874,
+     "quote": "If you need to attribute traces to a specific organization or project when using the default exporter, set these environment variables before your app starts:\n\n```bash\nexport OPENAI_ORG_ID=\"org_...\"\nexport OPENAI_PROJECT_ID=\"proj_...\"\n```"
+    }
+   ],
+   "supported_answer": "OPENAI_ORG_ID is not a billing control in this SDK. It is documented for attributing TRACES to a specific organization or project when using the default exporter, alongside OPENAI_PROJECT_ID. Setting it will not change which organization is billed.",
+   "atomic_claims": [
+    "OPENAI_ORG_ID and OPENAI_PROJECT_ID attribute traces to an organization or project",
+    "they apply to the default trace exporter"
+   ],
+   "critical_strings": [
+    "OPENAI_ORG_ID",
+    "attribute traces"
+   ],
+   "evidence_shape": "single_span_premise_correction",
+   "reasoning_type": "correcting what a variable actually controls",
+   "ambiguity_notes": "The asker assumes the variable governs billing. The corpus documents it only for trace attribution. The answer states the documented purpose and says it is not a billing control; it does not claim to explain the actual billing behaviour, which is not documented."
+  },
+  {
+   "case_id": "D20",
+   "citation_id": "NATQ2-D20",
+   "slice": "D",
+   "question": "pagination \u2014 does the list helper auto fetch the next page when i iterate it",
+   "provider": "openai",
+   "document_title": "OpenAI Python API library",
+   "version_id": "ver_9247e3ce4df6f79d9cadc44e1a3bbd0c",
+   "content_hash": "8802e1f3d945f2893f3b03bc906b8fd21498d7443d84b2d858926afe2f669f0f",
+   "evidence": [
+    {
+     "version_id": "ver_9247e3ce4df6f79d9cadc44e1a3bbd0c",
+     "char_start": 11814,
+     "char_end": 11943,
+     "quote": "This library provides auto-paginating iterators with each list response, so you do not have to request successive pages manually:"
+    }
+   ],
+   "supported_answer": "Yes. List methods return auto-paginating iterators, so iterating fetches successive pages without manual requests, in both the sync and async clients.",
+   "atomic_claims": [
+    "list responses provide auto-paginating iterators",
+    "successive pages do not have to be requested manually"
+   ],
+   "critical_strings": [
+    "auto-paginating iterators"
+   ],
+   "evidence_shape": "single_span_capability",
+   "reasoning_type": "confirming automatic behaviour",
+   "ambiguity_notes": "Question said 'either' provider; answered from the OpenAI Python library."
+  },
+  {
+   "case_id": "D21",
+   "citation_id": "NATQ2-D21",
+   "slice": "D",
+   "question": "async client name in the anthropic python package",
+   "provider": "anthropic",
+   "document_title": "MCP connector",
+   "version_id": "ver_279d37a3a0cc4e8a9209e01f16f9df88",
+   "content_hash": "f1520621389a46970bd2fac6ce21c27a1b1e1b8a0b99456b591faa397155e2ed",
+   "evidence": [
+    {
+     "version_id": "ver_279d37a3a0cc4e8a9209e01f16f9df88",
+     "char_start": 27002,
+     "char_end": 27027,
+     "quote": "client = AsyncAnthropic()"
+    }
+   ],
+   "supported_answer": "AsyncAnthropic. The documented async usage constructs the client as AsyncAnthropic() in place of the synchronous Anthropic().",
+   "atomic_claims": [
+    "the async client is constructed as AsyncAnthropic()"
+   ],
+   "critical_strings": [
+    "AsyncAnthropic"
+   ],
+   "evidence_shape": "single_span_api_reference",
+   "reasoning_type": "direct symbol lookup",
+   "ambiguity_notes": "None. The class name is used verbatim in a documented example."
+  },
+  {
+   "case_id": "D22",
+   "citation_id": "NATQ2-D22",
+   "slice": "D",
+   "question": "how do i see the raw http request the sdk sent, headers and all",
+   "provider": "openai",
+   "document_title": "OpenAI Python API library",
+   "version_id": "ver_9247e3ce4df6f79d9cadc44e1a3bbd0c",
+   "content_hash": "8802e1f3d945f2893f3b03bc906b8fd21498d7443d84b2d858926afe2f669f0f",
+   "evidence": [
+    {
+     "version_id": "ver_9247e3ce4df6f79d9cadc44e1a3bbd0c",
+     "char_start": 22123,
+     "char_end": 22223,
+     "quote": "The \"raw\" Response object can be accessed by prefixing `.with_raw_response.` to any HTTP method call"
+    }
+   ],
+   "supported_answer": "Prefix .with_raw_response. to the method call. That returns the raw Response object, exposing headers, and .parse() then yields the object the normal call would have returned.",
+   "atomic_claims": [
+    "prefixing .with_raw_response. to a method call returns the raw Response object"
+   ],
+   "critical_strings": [
+    "`.with_raw_response.`"
+   ],
+   "evidence_shape": "single_span_api_reference",
+   "reasoning_type": "locating the raw-access mechanism",
+   "ambiguity_notes": "The asker says 'request'; the documented mechanism exposes the raw RESPONSE, including its headers. The answer describes what the corpus provides rather than claiming request-side capture, which is not documented."
+  },
+  {
+   "case_id": "D30",
+   "citation_id": "NATQ2-D30",
+   "slice": "D",
+   "question": "revoked a leaked key, how long till it stops working",
+   "provider": "anthropic",
+   "document_title": "Admin",
+   "version_id": "ver_c299b58fe1f5a4d3a081b550334a7df6",
+   "content_hash": "760aeb7038f51a0b5dccc9d6377a129bf51791d5e357ba3d7c61e2698678909c",
+   "evidence": [
+    {
+     "version_id": "ver_c299b58fe1f5a4d3a081b550334a7df6",
+     "char_start": 105827,
+     "char_end": 105890,
+     "quote": "  - `status: \"active\" or \"archived\" or \"expired\" or \"inactive\"`"
+    }
+   ],
+   "supported_answer": "The corpus documents key status as a state \u2014 active, archived, expired or inactive \u2014 but states no propagation delay for revocation.",
+   "atomic_claims": [
+    "an API key carries a status of active, archived, expired or inactive"
+   ],
+   "critical_strings": [
+    "archived",
+    "inactive"
+   ],
+   "evidence_shape": "single_span_partial",
+   "reasoning_type": "reporting the documented state model where the asked-for timing is absent",
+   "ambiguity_notes": "The asker wants a duration. No document states a revocation propagation time. The gold answer is the status model plus an explicit statement that no timing is documented \u2014 the same shape as B15, where the primary fact is stated and the missing sub-detail is reported missing rather than inferred."
+  },
+  {
+   "case_id": "E02",
+   "citation_id": "NATQ2-E02",
+   "slice": "E",
+   "question": "counting tokens for an image before i send it \u2014 is there a formula or do i have to call the api",
+   "provider": "anthropic",
+   "document_title": "Vision",
+   "version_id": "ver_4f8c7b2939ec104f110004dfe05a342b",
+   "content_hash": "3242a01766ed71074007d71652ebd7dc426feb8fa417e0c66f56b7f87da38d26",
+   "evidence": [
+    {
+     "version_id": "ver_4f8c7b2939ec104f110004dfe05a342b",
+     "char_start": 36319,
+     "char_end": 36520,
+     "quote": "Claude views images in patches instead of pixels. Each patch is a 28\u00d728-pixel block of the image, referred to as a visual token. An image, therefore, costs `\u2308width / 28\u2309 \u00d7 \u2308height / 28\u2309` visual tokens."
+    },
+    {
+     "version_id": "ver_4f8c7b2939ec104f110004dfe05a342b",
+     "char_start": 36522,
+     "char_end": 36693,
+     "quote": "Each model has a maximum native image resolution, expressed as a long-edge limit and a visual-token limit. Images larger than either limit are downscaled before processing"
+    }
+   ],
+   "supported_answer": "There is a formula: an image costs \u2308width/28\u2309 \u00d7 \u2308height/28\u2309 visual tokens, where each visual token is a 28x28-pixel patch. Apply it to the post-downscale dimensions, since images over the model's resolution limit are downscaled first.",
+   "atomic_claims": [
+    "each visual token is a 28x28-pixel patch",
+    "an image costs ceil(width/28) x ceil(height/28) visual tokens",
+    "oversized images are downscaled before processing"
+   ],
+   "critical_strings": [
+    "visual token",
+    "\u2308width / 28\u2309 \u00d7 \u2308height / 28\u2309"
+   ],
+   "evidence_shape": "multi_span_formula",
+   "reasoning_type": "answering a formula-or-endpoint question with the documented formula",
+   "ambiguity_notes": "Question said 'either' provider. The token counting endpoint is the other documented route and is covered by C16; this answer gives the formula the asker asked for first."
+  },
+  {
+   "case_id": "E03",
+   "citation_id": "NATQ2-E03",
+   "slice": "E",
+   "question": "can i use tools inside a batch request or is that only for the normal endpoint",
+   "provider": "anthropic",
+   "document_title": "Batch processing",
+   "version_id": "ver_cec813c3bb15b76dcf16e7a0c2231ef1",
+   "content_hash": "99b2a1886fed040e4e6cdeed0887e941e15e838e25ff1e82943db9c3b815bea2",
+   "evidence": [
+    {
+     "version_id": "ver_cec813c3bb15b76dcf16e7a0c2231ef1",
+     "char_start": 4183,
+     "char_end": 4486,
+     "quote": "Almost any request you can make to the Messages API can be included in a batch. This includes:\n\n* Vision\n* Tool use, including all [server tools](https://platform.claude.com/docs/en/agents-and-tools/tool-use/server-tools) (web search, web fetch, code execution, MCP connectors, advisor, and tool search)"
+    },
+    {
+     "version_id": "ver_cec813c3bb15b76dcf16e7a0c2231ef1",
+     "char_start": 4574,
+     "char_end": 4698,
+     "quote": "Because each request in the batch is processed independently, you can mix different types of requests within a single batch."
+    }
+   ],
+   "supported_answer": "Tools work in batches. Almost any Messages API request can be batched, explicitly including tool use and all server tools, and requests are processed independently so types can be mixed within one batch.",
+   "atomic_claims": [
+    "tool use, including all server tools, can be included in a batch",
+    "each request in a batch is processed independently, so request types can be mixed"
+   ],
+   "critical_strings": [
+    "Tool use",
+    "server tools"
+   ],
+   "evidence_shape": "multi_span_capability",
+   "reasoning_type": "membership check against a documented list",
+   "ambiguity_notes": "A small number of Messages API parameters are unsupported in batches and return a validation error; that exclusion list is adjacent and is not contradicted by this answer."
+  },
+  {
+   "case_id": "E04",
+   "citation_id": "NATQ2-E04",
+   "slice": "E",
+   "question": "what's the max number of requests in one batch job and how long till results expire",
+   "provider": "anthropic",
+   "document_title": "Batch processing",
+   "version_id": "ver_cec813c3bb15b76dcf16e7a0c2231ef1",
+   "content_hash": "99b2a1886fed040e4e6cdeed0887e941e15e838e25ff1e82943db9c3b815bea2",
+   "evidence": [
+    {
+     "version_id": "ver_cec813c3bb15b76dcf16e7a0c2231ef1",
+     "char_start": 2366,
+     "char_end": 2476,
+     "quote": "* A Message Batch is limited to either 100,000 Message requests or 256\u00a0MB in size, whichever is reached first."
+    },
+    {
+     "version_id": "ver_cec813c3bb15b76dcf16e7a0c2231ef1",
+     "char_start": 2477,
+     "char_end": 2743,
+     "quote": "* The system processes each batch as fast as possible, with most batches completing within 1 hour. You can access batch results when all messages have completed or after 24 hours, whichever comes first. Batches expire if processing does not complete within 24 hours."
+    },
+    {
+     "version_id": "ver_cec813c3bb15b76dcf16e7a0c2231ef1",
+     "char_start": 2744,
+     "char_end": 2801,
+     "quote": "* Batch results are available for 29 days after creation."
+    }
+   ],
+   "supported_answer": "100,000 requests or 256 MB, whichever comes first. Batches expire if processing does not finish within 24 hours, and results stay available for download for 29 days after creation.",
+   "atomic_claims": [
+    "a batch is limited to 100,000 requests or 256 MB, whichever is reached first",
+    "batches expire if processing does not complete within 24 hours",
+    "batch results are available for 29 days after creation"
+   ],
+   "critical_strings": [
+    "100,000 Message requests",
+    "24 hours",
+    "29 days"
+   ],
+   "evidence_shape": "multi_span_limits",
+   "reasoning_type": "answering a two-part limits question",
+   "ambiguity_notes": "The question conflates two expiries \u2014 processing expiry and result retention. The corpus documents both and the answer keeps them distinct."
+  },
+  {
+   "case_id": "E07",
+   "citation_id": "NATQ2-E07",
+   "slice": "E",
+   "question": "cheapest embedding model for like 40 million chunks",
+   "provider": "anthropic",
+   "document_title": "Embeddings",
+   "version_id": "ver_26f61f56d6ff7124cfa38152f7baef3d",
+   "content_hash": "25a94a14c4a00486d301e7914ad884e632b9ac94cc31cdf0826e4e4865025b85",
+   "evidence": [
+    {
+     "version_id": "ver_26f61f56d6ff7124cfa38152f7baef3d",
+     "char_start": 2790,
+     "char_end": 2892,
+     "quote": "| `voyage-4-lite`  | 32,000         | 1024 (default), 256, 512, 2048 | Optimized for latency and cost."
+    }
+   ],
+   "supported_answer": "Among the Voyage 4 models the corpus documents, voyage-4-lite is the one described as optimized for latency and cost; voyage-4-nano is the open-weight option. The corpus gives no per-token prices, so 'cheapest' is answered by the documented positioning rather than by a rate.",
+   "atomic_claims": [
+    "voyage-4-lite is described as optimized for latency and cost"
+   ],
+   "critical_strings": [
+    "voyage-4-lite",
+    "Optimized for latency and cost"
+   ],
+   "evidence_shape": "single_span_partial",
+   "reasoning_type": "selecting from a documented table on a stated dimension",
+   "ambiguity_notes": "The asker wants the cheapest option at scale. The Embeddings page has a Pricing section but the corpus text captured here gives no per-model rate, so the answer rests on the model description's own cost framing and says so."
+  },
+  {
+   "case_id": "E08",
+   "citation_id": "NATQ2-E08",
+   "slice": "E",
+   "question": "how do i shrink embedding vectors to save space in pgvector",
+   "provider": "anthropic",
+   "document_title": "Embeddings",
+   "version_id": "ver_26f61f56d6ff7124cfa38152f7baef3d",
+   "content_hash": "25a94a14c4a00486d301e7914ad884e632b9ac94cc31cdf0826e4e4865025b85",
+   "evidence": [
+    {
+     "version_id": "ver_26f61f56d6ff7124cfa38152f7baef3d",
+     "char_start": 2266,
+     "char_end": 2336,
+     "quote": "| `voyage-4-large` | 32,000         | 1024 (default), 256, 512, 2048 |"
+    }
+   ],
+   "supported_answer": "The Voyage 4 models support multiple output dimensions \u2014 1024 by default, with 256, 512 and 2048 also available \u2014 so you request a smaller embedding dimension rather than post-processing the vectors.",
+   "atomic_claims": [
+    "voyage-4-large supports embedding dimensions of 1024 by default, plus 256, 512 and 2048"
+   ],
+   "critical_strings": [
+    "1024 (default), 256, 512, 2048"
+   ],
+   "evidence_shape": "single_span_capability",
+   "reasoning_type": "answering a storage-reduction goal with a documented output option",
+   "ambiguity_notes": "The asker names pgvector. The corpus says nothing about pgvector or about quantization; it documents selectable output dimensions, which is the documented lever and the only one claimed."
+  },
+  {
+   "case_id": "E12",
+   "citation_id": "NATQ2-E12",
+   "slice": "E",
+   "question": "batch discount 50% \u2014 does that stack with prompt caching discounts",
+   "provider": "anthropic",
+   "document_title": "Batch processing",
+   "version_id": "ver_cec813c3bb15b76dcf16e7a0c2231ef1",
+   "content_hash": "99b2a1886fed040e4e6cdeed0887e941e15e838e25ff1e82943db9c3b815bea2",
+   "evidence": [
+    {
+     "version_id": "ver_cec813c3bb15b76dcf16e7a0c2231ef1",
+     "char_start": 6814,
+     "char_end": 6918,
+     "quote": "The Batches API offers significant cost savings. All usage is charged at 50% of the standard API prices."
+    }
+   ],
+   "supported_answer": "The corpus confirms the 50% batch discount \u2014 all Batches API usage is charged at 50% of standard API prices \u2014 and documents prompt caching inside batches as a supported combination in its own section. It does not state how the two discounts compose arithmetically.",
+   "atomic_claims": [
+    "all Batches API usage is charged at 50% of standard API prices"
+   ],
+   "critical_strings": [
+    "50% of the standard API prices"
+   ],
+   "evidence_shape": "single_span_partial",
+   "reasoning_type": "confirming one half of a stacking question and naming the gap",
+   "ambiguity_notes": "The asker asks specifically whether the discounts stack. The corpus states the batch discount and has a 'Using prompt caching with Message Batches' section showing the combination is supported, but never states the combined rate. The answer stops there rather than multiplying the two."
+  },
+  {
+   "case_id": "E14",
+   "citation_id": "NATQ2-E14",
+   "slice": "E",
+   "question": "how do i pass an image by url instead of base64",
+   "provider": "anthropic",
+   "document_title": "Vision",
+   "version_id": "ver_4f8c7b2939ec104f110004dfe05a342b",
+   "content_hash": "3242a01766ed71074007d71652ebd7dc426feb8fa417e0c66f56b7f87da38d26",
+   "evidence": [
+    {
+     "version_id": "ver_4f8c7b2939ec104f110004dfe05a342b",
+     "char_start": 8650,
+     "char_end": 8664,
+     "quote": "\"type\": \"url\","
+    }
+   ],
+   "supported_answer": "Use an image content block whose source has type \"url\" and a url field, in place of the base64 source form.",
+   "atomic_claims": [
+    "an image source may have type url"
+   ],
+   "critical_strings": [
+    "\"type\": \"url\""
+   ],
+   "evidence_shape": "single_span_configuration",
+   "reasoning_type": "locating an alternative input form",
+   "ambiguity_notes": "Question said 'either' provider; answered from Anthropic's Vision document, which has a dedicated URL-based image example."
+  },
+  {
+   "case_id": "E16",
+   "citation_id": "NATQ2-E16",
+   "slice": "E",
+   "question": "getting 429 on batches but my normal requests are fine, are the limits separate",
+   "provider": "anthropic",
+   "document_title": "Batch processing",
+   "version_id": "ver_cec813c3bb15b76dcf16e7a0c2231ef1",
+   "content_hash": "99b2a1886fed040e4e6cdeed0887e941e15e838e25ff1e82943db9c3b815bea2",
+   "evidence": [
+    {
+     "version_id": "ver_cec813c3bb15b76dcf16e7a0c2231ef1",
+     "char_start": 3104,
+     "char_end": 3224,
+     "quote": "* Rate limits apply to both Batches API HTTP requests and the number of requests within a batch waiting to be processed."
+    }
+   ],
+   "supported_answer": "Yes, separate. Rate limits apply both to Batches API HTTP requests and to the number of requests inside a batch waiting to be processed \u2014 a distinct limit set from the standard per-minute limits.",
+   "atomic_claims": [
+    "rate limits apply to Batches API HTTP requests",
+    "rate limits also apply to the number of requests within a batch waiting to be processed"
+   ],
+   "critical_strings": [
+    "Rate limits apply to both Batches API HTTP requests"
+   ],
+   "evidence_shape": "single_span_distinction",
+   "reasoning_type": "confirming that two limit regimes are distinct",
+   "ambiguity_notes": "Question said 'either' provider. The corpus names a dedicated Message Batches API rate-limit section, which is what makes 'separate' the right answer."
+  },
+  {
+   "case_id": "E19",
+   "citation_id": "NATQ2-E19",
+   "slice": "E",
+   "question": "what happens if one request in my batch fails, does the whole job die",
+   "provider": "anthropic",
+   "document_title": "Batch processing",
+   "version_id": "ver_cec813c3bb15b76dcf16e7a0c2231ef1",
+   "content_hash": "99b2a1886fed040e4e6cdeed0887e941e15e838e25ff1e82943db9c3b815bea2",
+   "evidence": [
+    {
+     "version_id": "ver_cec813c3bb15b76dcf16e7a0c2231ef1",
+     "char_start": 4574,
+     "char_end": 4698,
+     "quote": "Because each request in the batch is processed independently, you can mix different types of requests within a single batch."
+    }
+   ],
+   "supported_answer": "No. Each request in the batch is processed independently, so one failure does not take down the job; results are retrieved per request.",
+   "atomic_claims": [
+    "each request in a batch is processed independently"
+   ],
+   "critical_strings": [
+    "processed independently"
+   ],
+   "evidence_shape": "single_span_behaviour",
+   "reasoning_type": "refuting an all-or-nothing assumption",
+   "ambiguity_notes": "Question said 'either' provider. The corpus states independence in the context of mixing request types; the same sentence is what rules out whole-job failure. Per-request result types are documented separately and are not claimed here."
+  },
+  {
+   "case_id": "E20",
+   "citation_id": "NATQ2-E20",
+   "slice": "E",
+   "question": "can i cache a big image so i dont pay for it every turn",
+   "provider": "anthropic",
+   "document_title": "Prompt caching",
+   "version_id": "ver_7947433dfde6b3b8eccd0faa597c3c9a",
+   "content_hash": "4af14eac456ba952ff0ee0fb0664b9d51bee244eb9a4fdef9ace0066f84fd6e6",
+   "evidence": [
+    {
+     "version_id": "ver_7947433dfde6b3b8eccd0faa597c3c9a",
+     "char_start": 32865,
+     "char_end": 32948,
+     "quote": "* Images & Documents: Content blocks in the `messages.content` array, in user turns"
+    }
+   ],
+   "supported_answer": "Yes. Images and documents in user-turn message content are among the block types that can be cached, either automatically or by marking them with cache_control.",
+   "atomic_claims": [
+    "images and documents in user turns can be cached"
+   ],
+   "critical_strings": [
+    "Images & Documents"
+   ],
+   "evidence_shape": "single_span_capability",
+   "reasoning_type": "membership check against a documented list",
+   "ambiguity_notes": "The image must still sit inside a cacheable prefix and clear the model's minimum cacheable length, which the corpus documents separately; the answer does not restate those as part of this claim."
+  },
+  {
+   "case_id": "E21",
+   "citation_id": "NATQ2-E21",
+   "slice": "E",
+   "question": "1 hour cache ttl how much extra does it cost vs the default",
+   "provider": "anthropic",
+   "document_title": "Prompt caching",
+   "version_id": "ver_7947433dfde6b3b8eccd0faa597c3c9a",
+   "content_hash": "4af14eac456ba952ff0ee0fb0664b9d51bee244eb9a4fdef9ace0066f84fd6e6",
+   "evidence": [
+    {
+     "version_id": "ver_7947433dfde6b3b8eccd0faa597c3c9a",
+     "char_start": 8127,
+     "char_end": 8313,
+     "quote": "If you find that 5 minutes is too short, Anthropic also offers a 1-hour cache duration [at additional cost](https://platform.claude.com/docs/en/build-with-claude/prompt-caching#pricing)."
+    },
+    {
+     "version_id": "ver_7947433dfde6b3b8eccd0faa597c3c9a",
+     "char_start": 52041,
+     "char_end": 52126,
+     "quote": "To use the extended cache, include `ttl` in the `cache_control` definition like this:"
+    }
+   ],
+   "supported_answer": "The 1-hour duration is offered at additional cost over the 5-minute default, and is enabled by adding ttl \"1h\" to the cache_control block. The pricing table lists 1h cache writes on their own line, above the 5m write rate, while cache hits and refreshes are priced the same regardless of duration.",
+   "atomic_claims": [
+    "a 1-hour cache duration is available at additional cost",
+    "it is enabled with ttl in the cache_control definition"
+   ],
+   "critical_strings": [
+    "1-hour cache duration",
+    "additional cost",
+    "`ttl`"
+   ],
+   "evidence_shape": "multi_span_pricing_and_usage",
+   "reasoning_type": "confirming a cost difference and the setting that incurs it",
+   "ambiguity_notes": "The asker wants a figure. The corpus gives per-model rates in a table rather than a single multiplier, so the answer states the direction and where the rate lives instead of quoting one model's number as though it were general."
+  },
+  {
+   "case_id": "E26",
+   "citation_id": "NATQ2-E26",
+   "slice": "E",
+   "question": "embeddings on anthropic?",
+   "provider": "anthropic",
+   "document_title": "Embeddings",
+   "version_id": "ver_26f61f56d6ff7124cfa38152f7baef3d",
+   "content_hash": "25a94a14c4a00486d301e7914ad884e632b9ac94cc31cdf0826e4e4865025b85",
+   "evidence": [
+    {
+     "version_id": "ver_26f61f56d6ff7124cfa38152f7baef3d",
+     "char_start": 1093,
+     "char_end": 1142,
+     "quote": "Anthropic does not offer its own embedding model."
+    }
+   ],
+   "supported_answer": "No. Anthropic does not offer its own embedding model; the documentation points to third-party providers and covers Voyage AI in detail.",
+   "atomic_claims": [
+    "Anthropic does not offer its own embedding model"
+   ],
+   "critical_strings": [
+    "does not offer its own embedding model"
+   ],
+   "evidence_shape": "single_span_refutation",
+   "reasoning_type": "direct negative capability check",
+   "ambiguity_notes": "None. The corpus answers the question in one sentence."
+  }
+ ]
+}

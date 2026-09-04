@@ -1,0 +1,17 @@
+{
+ "reserve_frozen": true,
+ "frozen_at": "2026-09-04T00:00:00Z",
+ "split_version": "natq-002-v1",
+ "benchmark_id": "NATQ-002",
+ "reserve_sha256": "14aaa80224b5ad4bea021ccc63ffc96d463e54c9ee71f27b552aaecc06c46e32",
+ "reserve_count": 60,
+ "validation_sha256": "6b7f3c90e2bfa58f244de6b2aff65e56ca3f50e2ed0886e83696aba8f5b47961",
+ "validation_count": 40,
+ "corpus_snapshot": "snap_689e336380a054d8039dc35b2c09cd0a",
+ "benchmark_canonical_content_sha256": "d1f2b51f61a05c7652cd420c32bedb6b72b2ad8cfe14a43ab0fe3d49774c9d60",
+ "rule": "Reserve membership may not change because of system performance. A failure found during engineering goes to the challenge-candidate queue, never into or out of this set.",
+ "erratum_policy": "A reserve case later shown to be objectively invalid is recorded as a benchmark erratum and retained. It is never silently replaced.",
+ "access_policy": "Opening reserve.json requires an explicit owner decision and one appended entry in reserve-access.log.jsonl written BEFORE the read. No tuning decision may be informed by reserve content.",
+ "unlock_requires": "an explicit owner decision recorded as an erratum",
+ "reads_so_far": 0
+}

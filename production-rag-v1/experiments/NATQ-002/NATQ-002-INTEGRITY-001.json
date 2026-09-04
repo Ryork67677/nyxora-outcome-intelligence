@@ -1,0 +1,91 @@
+{
+ "gates": [
+  {
+   "gate": "benchmark file hash unchanged",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "gate": "benchmark canonical hash unchanged",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "gate": "partition sizes 40/60",
+   "pass": true,
+   "detail": "40/60"
+  },
+  {
+   "gate": "partitions disjoint",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "gate": "partitions cover exactly the 100",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "gate": "gold spans conserved",
+   "pass": true,
+   "detail": "57+79=136"
+  },
+  {
+   "gate": "no cluster split across the boundary",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "gate": "split cases byte-identical to frozen cases",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "gate": "zero exact-span collisions in the benchmark",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "gate": "all 136 gold spans reproduce against the frozen corpus",
+   "pass": true,
+   "detail": "0 failures"
+  },
+  {
+   "gate": "reserve lock records the reserve hash",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "gate": "reserve access log empty",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "gate": "preregistration written before scoring",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "gate": "no NATQ-002 results/score artifact exists anywhere",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "gate": "SYSTEM-H still marks VALIDATION_RUN false",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "gate": "SYSTEM-H still marks NEW_HOLDOUT_RUN false",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "gate": "NATQ-001 holdout untouched by this session",
+   "pass": true,
+   "detail": "no local natq-001 split dir exists"
+  }
+ ],
+ "all_passed": true,
+ "natq_002_scored_by_any_system": false
+}
