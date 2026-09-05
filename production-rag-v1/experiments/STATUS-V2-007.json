@@ -1,0 +1,166 @@
+{
+ "generated_utc": "2026-09-04",
+ "head": "f492f07",
+ "closure": {
+  "state": "SUPERSEDED_BEFORE_RUN_IDENTITY_AND_PRIOR_ANCHOR_CORRECTION",
+  "old_sha": "0e18154ea46d8d03da41e28ec54de88c5c4632c625084a71f8c1f867ed37b0f2",
+  "modified": false,
+  "reasons": [
+   "It pins the wrong SYSTEM-H identity. It requires score_determining_hash 3fade96a9b3597861b0788c15d0e456a52fa92f6907749a2661960e54bf7b2e5, a value minted locally over a local SYSTEM-H record. The autho",
+   "It asserts that no prior SYSTEM-H benchmark result existed. That premise is false. EVAL-NATQ-VAL-001 scored the authoritative SYSTEM-H on NATQ-001 validation, n=40."
+  ]
+ },
+ "identity": {
+  "authoritative": "7599eb3c3bb4798230a722e6a7c96b046dc36cc0332b584ec55339896b2d717a",
+  "local_rejected": [
+   "026a302b56c18e50f3af1d6b7baba8d744da2c8b951eba9ac1e137d5cec9c491",
+   "3fade96a9b3597861b0788c15d0e456a52fa92f6907749a2661960e54bf7b2e5"
+  ]
+ },
+ "ce": {
+  "verified": true,
+  "sha": "5d3e70fd0c9ff14b9b5169a51e957b7a9c74897afd0a35ce4bd318150c1d4d4a",
+  "revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a",
+  "local_decoy": "4f148ba8ae9c2c7fbee4af2b132db8d06c6a6545b47fc83bbb98c3d22b8393e6"
+ },
+ "projection": {
+  "projection_set_id": "ps_v2_ovl_win448_s224",
+  "config_hash": "7fd5034c9510a1e08ec76bd22b020703c586dd12e7c02659397df05c5c365a8e",
+  "projection_count": 18057,
+  "embedding_count": 18057,
+  "fingerprint": "bd95feaeacf98559",
+  "origin": "deterministic rematerialization",
+  "original_rows_recovered": false,
+  "identity_exact": true,
+  "note": "Original rows were not found in any database, backup or cache. Rebuilt with the recovered EXP-017 builder and the recovered src tree against the same frozen corpus and the same hash-verified MiniLM bundle. Config hash, count and fingerprint all match the recovered build record exactly.",
+  "bundle_sha": "913d7300ceae3b2dbc2c50d1de4baacab4be7b9380491c27fab7418616a16ec3",
+  "diff": {
+   "fields": 34,
+   "identical": 31,
+   "differing": 3,
+   "differing_detail": [
+    [
+     "embed_seconds",
+     831.6,
+     1079.5
+    ],
+    [
+     "total_seconds",
+     848.0,
+     1103.8
+    ],
+    [
+     "window_seconds",
+     10.8,
+     16.2
+    ]
+   ],
+   "identity_fields": [
+    [
+     "n_versions",
+     202
+    ],
+    [
+     "n_windows_considered",
+     18060
+    ],
+    [
+     "n_projections",
+     18057
+    ],
+    [
+     "n_skipped_exact_single_canonical",
+     3
+    ],
+    [
+     "n_covering_multi",
+     12687
+    ],
+    [
+     "max_windows_in_one_doc",
+     5158
+    ],
+    [
+     "embeddings_stored",
+     18057
+    ],
+    [
+     "tokens_seen",
+     8125103
+    ],
+    [
+     "token_coverage",
+     1.0
+    ]
+   ]
+  }
+ },
+ "gate": {
+  "passed": 33,
+  "total": 33,
+  "all": true
+ },
+ "prior": {
+  "statement": "SYSTEM-H has been evaluated before. This is disclosed rather than implied absent.",
+  "experiment": "EVAL-NATQ-VAL-001",
+  "benchmark": "NATQ-001 validation",
+  "n": 40,
+  "gold_spans": 53,
+  "system_h_config_hash_verified": "7599eb3c3bb4798230a722e6a7c96b046dc36cc0332b584ec55339896b2d717a",
+  "results": {
+   "strict_recall_at_10": "20/40",
+   "evidence_span_recall_at_10": "27/53 = 0.5094",
+   "document_recall_at_10": "35/40",
+   "candidate_gold_span_recall_at_100": "34/40"
+  },
+  "definition_caveat": "NOT asserted to be definition-identical to NATQ-002 case_hit@10. No metric-definition audit has been performed. Treated as prior evidence and a historical anchor, not as a directly comparable number.",
+  "implication_stated_plainly": "The approved PASS floor of 0.80 sits well above this historical ~0.50 case-level result on a comparable natural-query set. On that evidence SYSTEM-H may well fail the floor. The floor is retained unchanged by coordinator ruling; this note exists so that outcome cannot later be presented as a surprise."
+ },
+ "thresholds": {
+  "inherited_unchanged_from": "NATQ-002-THRESHOLD-DECISION-001 (APPROVED_PRE_RUN)",
+  "threshold_decision_sha256": "b0a9f504e682174e4de83d030d377d91c1b69b93612579fe7f9a0cf27a868efb",
+  "PASS_floor_case_hit_at_10": 0.8,
+  "FAIL_floor_case_hit_at_10": 0.65,
+  "changed": false,
+  "chosen_before_any_SYSTEM_H_NATQ002_score_existed": true,
+  "not_empirically_derived_from_NATQ_002": true,
+  "historical_NATQ_001_result_was_known_when_this_replacement_was_written": true,
+  "these_are_not_statistical_priors": "They are engineering qualification floors. They are not estimates of expected performance and must not be described as statistical priors."
+ },
+ "bm25": {
+  "case_hit_at_10": 0.375,
+  "micro_MRR": 0.1425,
+  "case_full_coverage_at_10": 0.325,
+  "span_recall_at_10": 0.3333,
+  "case_hit_at_1": 0.1
+ },
+ "state": {
+  "runs_consumed": 0,
+  "h_natq002_scored": false,
+  "reserve_bytes": 0,
+  "reserve_count": 60,
+  "supported": null
+ },
+ "hashes": {
+  "old_prereg": "0e18154ea46d8d03da41e28ec54de88c5c4632c625084a71f8c1f867ed37b0f2",
+  "closure": "71209af5be71f920beaa9da5857db57bcf85cedf7aacf4a3ac68cf263e75da71",
+  "runtime_manifest": "1e045a6eeff2a51bf9f520f1e5bffbcb734939d72dc0b848340fea4cded4c96a",
+  "replacement_prereg": "c0742b27c7494bf9bbee087694428de534a67c904108300ca7fc5f5801bea9e9",
+  "runner": "31eb6af38bdae87800e77c2c5c6a211b7cbb032ebccfd432bc3d633f3c873c94",
+  "rematerialization_evidence": "e8c4080a4735cad473cb617ff33aa505d2a2df204da2df99c3faa3c8a2b64159",
+  "bm25_case_results": "061e475b5ed7df140919fd5ad60fb96d6ef31b0a64d39aac561fac31ee4a7054",
+  "reserve_access_log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+ },
+ "constraints": {
+  "system_h_run": false,
+  "system_h_reconstructed": false,
+  "bm25_rerun": false,
+  "bm25_tuned": false,
+  "reserve_opened": false,
+  "thresholds_changed": false,
+  "old_prereg_modified": false,
+  "local_hash_force_matched": false,
+  "split_altered": false
+ },
+ "ready_for_first_run": true
+}
