@@ -1,0 +1,290 @@
+{
+ "generated_utc": "2026-09-04",
+ "head": "a9534f0",
+ "system_h": {
+  "status": "CANNOT_EXECUTE_MISSING_SCORE_DETERMINING_ARTIFACTS",
+  "supported": null,
+  "runs_consumed": 0,
+  "scored": false,
+  "reserve_accessed": false,
+  "hash_required": "3fade96a9b3597861b0788c15d0e456a52fa92f6907749a2661960e54bf7b2e5",
+  "hash_reproduced": false,
+  "not_a_failed_result": "This is an execution and provenance blocker, not a measured negative result. SYSTEM-H is NOT marked failed and SYSTEM_H_SUPPORTED is null, not false."
+ },
+ "unblock": {
+  "requirements": [
+   {
+    "n": 1,
+    "item": "Executable SYSTEM-H runner",
+    "cls": [
+     "MISSING_LOCAL",
+     "NEEDS_TRANSFER"
+    ]
+   },
+   {
+    "n": 2,
+    "item": "Exact SYSTEM-H configuration record",
+    "cls": [
+     "AVAILABLE_LOCAL"
+    ]
+   },
+   {
+    "n": 3,
+    "item": "SYSTEM-A-GLOBAL implementation and artifacts (stage 1, A_pool=100)",
+    "cls": [
+     "MISSING_LOCAL",
+     "NEEDS_TRANSFER"
+    ]
+   },
+   {
+    "n": 4,
+    "item": "SYSTEM-G / EXP-019A score-determining implementation and artifacts",
+    "cls": [
+     "PROVENANCE_GAP",
+     "MISSING_LOCAL",
+     "NEEDS_TRANSFER"
+    ]
+   },
+   {
+    "n": 5,
+    "item": "Projection index ps_v2_ovl_win448_s224",
+    "cls": [
+     "MISSING_LOCAL",
+     "NEEDS_TRANSFER"
+    ]
+   },
+   {
+    "n": 6,
+    "item": "Cross-encoder model and tokenizer artifacts",
+    "cls": [
+     "MISSING_LOCAL",
+     "NEEDS_TRANSFER"
+    ]
+   },
+   {
+    "n": 7,
+    "item": "All candidate-generation implementation hashes",
+    "cls": [
+     "MISSING_LOCAL",
+     "NEEDS_TRANSFER"
+    ]
+   },
+   {
+    "n": 8,
+    "item": "Performance-path implementation (PERF-003 D1)",
+    "cls": [
+     "MISSING_LOCAL",
+     "NEEDS_TRANSFER"
+    ]
+   },
+   {
+    "n": 9,
+    "item": "Everything needed to recompute score_determining_hash",
+    "cls": [
+     "PROVENANCE_GAP"
+    ]
+   }
+  ],
+  "summary": {
+   "AVAILABLE_LOCAL": 1,
+   "MISSING_LOCAL": 6,
+   "PROVENANCE_GAP": 3,
+   "NEEDS_TRANSFER": 6,
+   "NEEDS_CUDA_HOST": 0,
+   "note": "Counts overlap: one item may carry several classifications. No item requires a CUDA host \u2014 SYSTEM-H is CPU-executable in principle; it is provenance, not hardware, that blocks it."
+  },
+  "paths": {
+   "PATH_A": "Run the frozen preregistration on a machine that already possesses the original executable SYSTEM-H and all score-determining artifacts, verifying hashes before scoring.",
+   "PATH_B": "Transfer the original runner, projection index and score-determining implementation here, verify each against its recorded hash, reproduce score_determining_hash, then score.",
+   "NO_PATH_C": "Reconstruction is not a path. A rebuild from the written description must take a new identity such as SYSTEM-P-H-RECONSTRUCTED and may not inherit SYSTEM-H's identity, config hash, frozen claims or preregistration."
+  },
+  "hardest": {
+   "n": 4,
+   "item": "SYSTEM-G / EXP-019A score-determining implementation and artifacts",
+   "classification": [
+    "PROVENANCE_GAP",
+    "MISSING_LOCAL",
+    "NEEDS_TRANSFER"
+   ],
+   "evidence": "No EXP-019* or SYSTEM-G directory exists here, and PROVENANCE-GAP-001 records EXP-019A as absent from every fetched ref, present only as relayed values.",
+   "why_hardest": "The retrieval prior is score-determining. Its behaviour is described well enough to re-implement, but a re-implementation cannot be verified against EXP-019A because EXP-019A does not exist. This is the single item that makes a legitimate SYSTEM-H run impossible today.",
+   "relayed_prereg_sha256": "f14001eff07b63c7916d7e27567d15ccd1e53b52918ae66f0d24ca37abb54cf3",
+   "relayed_only": true
+  }
+ },
+ "threshold": {
+  "decision": "APPROVED_PRE_RUN",
+  "changed": false,
+  "runs_before": 0,
+  "floors": {
+   "case_hit_at_10_pass_floor": 0.8,
+   "case_hit_at_10_fail_floor": 0.65,
+   "scope": "unchanged",
+   "metric_definition": "unchanged",
+   "population_definition": "unchanged"
+  },
+  "rationale": "These values are preregistered engineering acceptance floors, not empirically estimated performance priors. Their purpose is to prevent a system from qualifying on paired improvement while remaining below an engineeringly useful absolute performance level. Statistical/comparative evidence is provided separately by the preregistered paired test against the co-run BM25 baseline.",
+  "prereg_sha": "0e18154ea46d8d03da41e28ec54de88c5c4632c625084a71f8c1f867ed37b0f2",
+  "prereg_unmodified": true
+ },
+ "bm25": {
+  "system_id": "SYSTEM-BM25-NATQ-CONTROL",
+  "partition": "validation",
+  "metrics": {
+   "evaluation_depth": 10,
+   "cases": 40,
+   "gold_spans": 57,
+   "micro_MRR": 0.1425,
+   "case_hit_at_10": 0.375,
+   "case_full_coverage_at_10": 0.325,
+   "span_recall_at_10": 0.3333,
+   "case_hit_at_1": 0.1,
+   "latency_p50_ms": 394.016,
+   "latency_p95_ms": 633.985,
+   "per_slice": {
+    "A": {
+     "cases": 8,
+     "gold_spans": 13,
+     "case_hit_at_10": 0.375,
+     "case_full_coverage_at_10": 0.25,
+     "span_recall_at_10": 0.2308,
+     "case_hit_at_1": 0.0,
+     "micro_MRR": 0.0571
+    },
+    "B": {
+     "cases": 8,
+     "gold_spans": 12,
+     "case_hit_at_10": 0.5,
+     "case_full_coverage_at_10": 0.375,
+     "span_recall_at_10": 0.5,
+     "case_hit_at_1": 0.25,
+     "micro_MRR": 0.3194
+    },
+    "C": {
+     "cases": 8,
+     "gold_spans": 11,
+     "case_hit_at_10": 0.25,
+     "case_full_coverage_at_10": 0.25,
+     "span_recall_at_10": 0.2727,
+     "case_hit_at_1": 0.0,
+     "micro_MRR": 0.0556
+    },
+    "D": {
+     "cases": 8,
+     "gold_spans": 10,
+     "case_hit_at_10": 0.375,
+     "case_full_coverage_at_10": 0.375,
+     "span_recall_at_10": 0.3,
+     "case_hit_at_1": 0.25,
+     "micro_MRR": 0.2111
+    },
+    "E": {
+     "cases": 8,
+     "gold_spans": 11,
+     "case_hit_at_10": 0.375,
+     "case_full_coverage_at_10": 0.375,
+     "span_recall_at_10": 0.3636,
+     "case_hit_at_1": 0.0,
+     "micro_MRR": 0.075
+    }
+   },
+   "per_provider": {
+    "anthropic": {
+     "cases": 28,
+     "gold_spans": 39,
+     "case_hit_at_10": 0.3214,
+     "case_full_coverage_at_10": 0.3214,
+     "span_recall_at_10": 0.3077,
+     "case_hit_at_1": 0.0357,
+     "micro_MRR": 0.0918
+    },
+    "openai": {
+     "cases": 12,
+     "gold_spans": 18,
+     "case_hit_at_10": 0.5,
+     "case_full_coverage_at_10": 0.3333,
+     "span_recall_at_10": 0.3889,
+     "case_hit_at_1": 0.25,
+     "micro_MRR": 0.2525
+    }
+   }
+  },
+  "decision": null,
+  "decision_note": "Control measurement. No pass/fail threshold applies to BM25.",
+  "params": {
+   "k1": 1.2,
+   "b": 0.75,
+   "top_k": 10,
+   "randomness": "none anywhere in this system or this evaluation; no seed is required and none is used"
+  },
+  "excluded": [
+   "dense retrieval",
+   "projection retrieval",
+   "local W20 expansion",
+   "reranking",
+   "cross-encoder",
+   "SYSTEM-H blend",
+   "generated query expansion",
+   "facets",
+   "document conditioning",
+   "identifier matching",
+   "RRF fusion of any kind"
+  ],
+  "cases": 40,
+  "spans": 57,
+  "ranked_rows": 400
+ },
+ "gates": {
+  "passed": 17,
+  "total": 17,
+  "all_passed": true,
+  "list": [
+   "NATQ-002-ACCEPTED-100.json unchanged after the run",
+   "validation.json unchanged after the run",
+   "reserve.json unchanged after the run",
+   "reserve.lock.json unchanged after the run",
+   "NATQ-002-SPLIT-001.json unchanged after the run",
+   "NATQ-002-PREREGISTRATION-001.json unchanged after the run",
+   "reserve access log still empty",
+   "SYSTEM-H record unmodified",
+   "SYSTEM-H runs consumed = 0",
+   "SYSTEM-H SUPPORTED is null (not false)",
+   "SYSTEM-H score_determining_hash NOT reproduced",
+   "BM25 scored validation only",
+   "BM25 consumed 0 SYSTEM-H runs",
+   "BM25 has no pass/fail decision",
+   "BM25 case vector covers exactly the 40 validation cases",
+   "ranked output contains only validation case ids",
+   "artifact hashes recorded in the run record match on disk"
+  ]
+ },
+ "hashes": {
+  "benchmark_file": "1450b9e1ba892d84d2ecab279cfa229b128a02108a4704b56393382b6c5bf741",
+  "benchmark_canonical": "d1f2b51f61a05c7652cd420c32bedb6b72b2ad8cfe14a43ab0fe3d49774c9d60",
+  "validation": "6b7f3c90e2bfa58f244de6b2aff65e56ca3f50e2ed0886e83696aba8f5b47961",
+  "reserve": "14aaa80224b5ad4bea021ccc63ffc96d463e54c9ee71f27b552aaecc06c46e32",
+  "reserve_lock": "f60eca02d4223770d09146f250685f23a644fc35980e30178d54f0a1b0274215",
+  "reserve_access_log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "systemh_prereg": "0e18154ea46d8d03da41e28ec54de88c5c4632c625084a71f8c1f867ed37b0f2",
+  "threshold_decision": "b0a9f504e682174e4de83d030d377d91c1b69b93612579fe7f9a0cf27a868efb",
+  "bm25_prereg": "bb3c2b29866d40262c427aeaac4db0374e39caf2642570268160f2610dc4e5bc",
+  "bm25_source": "b290848a8753d4a0e2dfafa4c752d2f0f6eae71d8288be5c959524493ca43d45",
+  "bm25_runner": "9f5485c88887c27c137c0dcc647baac411219fa783e6e335aa0d6eef5be30e15",
+  "bm25_case_results": "061e475b5ed7df140919fd5ad60fb96d6ef31b0a64d39aac561fac31ee4a7054",
+  "bm25_ranked_output": "1eb9ffe15e3974f195da6a3145da8f8952a203658e9ed11ec1d2ad678a61ba6a",
+  "unblock_requirements": "582e11ec849217b142c8b002868088c7162ee10f9af950c925151936cf3a3cdc"
+ },
+ "reserve_access_log_bytes": 0,
+ "constraints": {
+  "system_h_reconstructed": false,
+  "system_h_modified": false,
+  "system_h_run": false,
+  "system_h_marked_failed": false,
+  "system_h_score_fabricated": false,
+  "reserve_opened": false,
+  "split_altered": false,
+  "bm25_tuned": false,
+  "bm25_given_fake_threshold": false,
+  "metric_definitions_invented": false
+ }
+}
