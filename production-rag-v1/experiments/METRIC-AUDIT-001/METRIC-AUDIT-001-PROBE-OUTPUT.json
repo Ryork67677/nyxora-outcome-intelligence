@@ -1,0 +1,125 @@
+{
+ "record_id": "METRIC-AUDIT-001-PROBE",
+ "purpose": "Exhibit the divergence between NATQ-001 strict_recall@10 and NATQ-002 case_hit@10 on synthetic fixtures.",
+ "uses_real_benchmark_data": false,
+ "uses_database": false,
+ "protected_partitions_opened": [],
+ "evaluation_depth": 10,
+ "cases": [
+  {
+   "case": "SYN-1 multi-span, one span found",
+   "why": "Aggregation differs: ANY-span passes, ALL-spans fails.",
+   "n_spans": 2,
+   "natq001_span_ranks": [
+    3,
+    null
+   ],
+   "natq002_span_ranks": [
+    3,
+    null
+   ],
+   "natq001_strict_case_pass": false,
+   "natq002_case_hit_pass": true,
+   "natq002_case_full_coverage_pass": false
+  },
+  {
+   "case": "SYN-2 single span, chunk filed under a different section_path",
+   "why": "Match predicate differs: NATQ-001 requires section_path equality, NATQ-002 does not.",
+   "n_spans": 1,
+   "natq001_span_ranks": [
+    null
+   ],
+   "natq002_span_ranks": [
+    2
+   ],
+   "natq001_strict_case_pass": false,
+   "natq002_case_hit_pass": true,
+   "natq002_case_full_coverage_pass": true
+  },
+  {
+   "case": "SYN-3 single span, exact section_path, overlapping chunk",
+   "why": "Control: the two definitions agree when the case is single-span and the paths match.",
+   "n_spans": 1,
+   "natq001_span_ranks": [
+    1
+   ],
+   "natq002_span_ranks": [
+    1
+   ],
+   "natq001_strict_case_pass": true,
+   "natq002_case_hit_pass": true,
+   "natq002_case_full_coverage_pass": true
+  },
+  {
+   "case": "SYN-4 covering chunk returned below the evaluation depth",
+   "why": "Control: depth 10 is enforced identically by both.",
+   "n_spans": 1,
+   "natq001_span_ranks": [
+    null
+   ],
+   "natq002_span_ranks": [
+    null
+   ],
+   "natq001_strict_case_pass": false,
+   "natq002_case_hit_pass": false,
+   "natq002_case_full_coverage_pass": false
+  },
+  {
+   "case": "SYN-5 two duplicate covering chunks at ranks 3 and 7",
+   "why": "Control: duplicates collapse to the best rank in both; no double counting.",
+   "n_spans": 1,
+   "natq001_span_ranks": [
+    3
+   ],
+   "natq002_span_ranks": [
+    3
+   ],
+   "natq001_strict_case_pass": true,
+   "natq002_case_hit_pass": true,
+   "natq002_case_full_coverage_pass": true
+  },
+  {
+   "case": "SYN-6 cross-document case, only the first document's span found",
+   "why": "Multi-document aggregation: each span resolves in its own version_id under both.",
+   "n_spans": 2,
+   "natq001_span_ranks": [
+    4,
+    null
+   ],
+   "natq002_span_ranks": [
+    4,
+    null
+   ],
+   "natq001_strict_case_pass": false,
+   "natq002_case_hit_pass": true,
+   "natq002_case_full_coverage_pass": false
+  },
+  {
+   "case": "SYN-7 one-character overlap at the span boundary",
+   "why": "Both predicates are half-open interval intersection, so a single shared character hits.",
+   "n_spans": 1,
+   "natq001_span_ranks": [
+    5
+   ],
+   "natq002_span_ranks": [
+    5
+   ],
+   "natq001_strict_case_pass": true,
+   "natq002_case_hit_pass": true,
+   "natq002_case_full_coverage_pass": true
+  }
+ ],
+ "cases_where_strict_and_case_hit_disagree": [
+  "SYN-1 multi-span, one span found",
+  "SYN-2 single span, chunk filed under a different section_path",
+  "SYN-6 cross-document case, only the first document's span found"
+ ],
+ "cases_where_strict_and_full_coverage_disagree": [
+  "SYN-2 single span, chunk filed under a different section_path"
+ ],
+ "conclusion": {
+  "aggregation": "strict_recall@10 is an ALL-spans metric; case_hit@10 is an ANY-span metric. SYN-1 and SYN-6 separate them.",
+  "match_predicate": "strict_recall@10 additionally requires section_path equality. SYN-2 separates them.",
+  "nearest_natq002_analogue_of_strict": "case_full_coverage@10 matches the aggregation but still not the predicate; SYN-2 remains a disagreement."
+ }
+}

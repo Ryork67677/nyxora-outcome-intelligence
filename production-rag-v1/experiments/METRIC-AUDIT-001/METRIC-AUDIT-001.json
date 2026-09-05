@@ -1,0 +1,120 @@
+{
+ "record_id": "METRIC-AUDIT-001",
+ "recorded_utc": "2026-09-05",
+ "title": "Metric-definition audit: NATQ-001 strict_recall@10 vs NATQ-002 case_hit@10 vs the frozen NATQ-002 BM25 comparator",
+ "authorizes": "Inspection and this audit record only. No evaluation, no scoring, no retrieval, no inference was performed.",
+ "verdict": "NOT_EQUIVALENT",
+ "verdict_summary": "NATQ-001 strict_recall@10 and NATQ-002 case_hit@10 differ on two independent axes: aggregation (ALL gold spans vs ANY gold span) and the span-match predicate (section_path equality required vs not required). Neither difference is a naming artefact; both are readable in the scoring code. The historical 20/40 is therefore prior evidence about a different measurement on a different dataset, not a NATQ-002 baseline.",
+ "sources_of_truth": {
+  "NATQ_001_strict_recall_at_10": {
+   "runner": "origin/grok/v2-natq-20260903:experiments/RAG-V2/EVAL-NATQ-VAL-001/scripts/run_eval_natq_val_001.py",
+   "runner_sha256": "31eb6af38bdae87800e77c2c5c6a211b7cbb032ebccfd432bc3d633f3c873c94",
+   "metric_assembly": "run_eval_natq_val_001.py \u2014 PRIMARY.strict_recall_at_10 = f\"{strict_n}/{n}\", strict_n = summarise(...)['cases_fully_recalled']",
+   "case_predicate": "origin/grok/v2-natq-20260903:experiments/EXP-017/scripts/run_exp017.py::score_system \u2014 fully_recalled = bool(spans) and found == len(spans), where found counts spans with rank is not None and rank <= TOP_K",
+   "span_rank": "origin/grok/v2-natq-20260903:experiments/EXP-018/scripts/run_exp018_development.py::first_span_rank \u2014 min(rank) over rows satisfying dict_overlaps",
+   "match_predicate": "origin/grok/v2-natq-20260903:experiments/EXP-018/scripts/run_exp018_development.py::dict_overlaps and experiments/EXP-018/scripts/system_e.py::overlaps",
+   "match_predicate_text": "version_id equality AND list(section_path) equality AND char_start < ref.char_end AND char_end > ref.char_start",
+   "depth": "TOP_K = 10, experiments/EXP-018/scripts/system_e.py line 28",
+   "gold_schema_requires_section_path": true,
+   "gold_schema_source": "origin/grok/v2-natq-20260903:src/rag_v1/types.py::EvidenceRef (version_id, section_path, char_start, char_end) and run_eval_natq_val_001.py::load_validation, which reads e['section_path'] unconditionally"
+  },
+  "NATQ_002_case_hit_at_10": {
+   "protocol": "experiments/NATQ-002/EVAL-NATQ2-H-001-PREREGISTRATION.json \u2014 metrics.span_hit and metrics.secondary[0]",
+   "protocol_sha256": "c0742b27c7494bf9bbee087694428de534a67c904108300ca7fc5f5801bea9e9",
+   "span_hit_text": "a gold span is HIT at depth k if any chunk returned in the top k overlaps the span's [char_start, char_end) interval in the span's own version_id",
+   "case_hit_text": "fraction of cases with at least one gold span hit in the top 10",
+   "section_path_consulted": false,
+   "gold_schema_carries_section_path": false,
+   "gold_schema_evidence": "evals/splits/natq-002/validation.json \u2014 every evidence object has exactly the keys char_end, char_start, quote, version_id"
+  },
+  "frozen_NATQ_002_BM25_comparator_0_375": {
+   "runner": "experiments/EVAL-NATQ-BM25-BASELINE-001/scripts/run_bm25_baseline.py",
+   "runner_sha256": "9f5485c88887c27c137c0dcc647baac411219fa783e6e335aa0d6eef5be30e15",
+   "implementation": "inner next(...) over hits: h.version_id == e['version_id'] and h.char_start < e['char_end'] and h.char_end > e['char_start']; hit_at_10 = bool(hit_ranks); case_hit_at_10 = sum(hit_at_10)/n_cases",
+   "results_file": "experiments/EVAL-NATQ-BM25-BASELINE-001/EVAL-NATQ-BM25-BASELINE-001-RESULTS.json",
+   "reported_case_hit_at_10": 0.375,
+   "matches_NATQ_002_protocol": true,
+   "note": "The code and the EVAL-NATQ2-H-001 protocol text agree line for line: same document-identity + character-overlap predicate, same ANY-span aggregation, same depth 10, same per-case denominator."
+  }
+ },
+ "questions_answered": {
+  "all_spans_or_any_span": {
+   "NATQ_001_strict_recall_at_10": "ALL. A case counts only when every gold span is hit within depth 10 (score_system.fully_recalled).",
+   "NATQ_002_case_hit_at_10": "ANY. A case counts when at least one gold span is hit within depth 10.",
+   "NATQ_002_nearest_ALL_metric": "case_full_coverage@10 is NATQ-002's ALL-spans metric and is the correct aggregation analogue of strict_recall@10 \u2014 but see the predicate row; it is still not the same function.",
+   "materiality": "16 of the 40 validation cases carry more than one gold span (15 with two, 1 with three), so the ANY/ALL choice is live on 40% of the partition."
+  },
+  "what_counts_as_a_matching_passage": {
+   "NATQ_001": "Character-range overlap between the returned chunk and the gold span, restricted to the same version_id AND the same section_path. Not chunk identity: no gold chunk id is compared. covering_chunk_ids() is computed for diagnostics and also filters on section_path.",
+   "NATQ_002": "Character-range overlap within the same version_id. section_path is not compared and is not present in the gold data.",
+   "consequence": "A chunk whose text covers the gold span but which the chunker filed under a different section_path is a MISS under NATQ-001 and a HIT under NATQ-002. The historical runner named this class explicitly: it computes overlap_ignoring_section() to classify such misses as 'evidence-granularity' failures.",
+   "neither_uses": "Document identity alone is not a hit under either definition; NATQ-001 reports document_recall@10 as a separate diagnostic and NATQ-002 has no document-level metric."
+  },
+  "multi_span_and_multi_document": {
+   "NATQ_001": "Each gold span is resolved independently against the ranked list; the case aggregates by AND. Cross-document cases work because each EvidenceRef carries its own version_id.",
+   "NATQ_002": "Each gold span is resolved independently in that span's own version_id; the case aggregates by OR for case_hit@10 and by AND for case_full_coverage@10.",
+   "NATQ_002_validation_composition": "40 cases, 57 gold spans, 1 cross-document case.",
+   "assessment": "The per-span resolution rule is the same in both. Only the case-level aggregation and the predicate differ."
+  },
+  "duplicates_ties_and_denominators": {
+   "duplicate_covering_chunks": "Collapsed to the best rank in both. NATQ-001 takes min(rank) over all overlapping rows (first_span_rank); NATQ-002 takes the first match in a rank-ordered list (next(...)). Equivalent \u2014 no double counting in either.",
+   "ties": "NATQ-002 BM25 ordering is deterministic: src/rag_v1/retrieval.py orders by round(score::numeric, 9) DESC, chunk_id ASC, then numbers rank = i+1, so the returned list is rank-ordered and next(...) is min-rank. A tie can only change which chunk occupies the depth-10 boundary; it cannot change whether a span already hit above the boundary is counted.",
+   "denominators": {
+    "NATQ_001_strict_recall_at_10": "number of cases in the partition (40)",
+    "NATQ_002_case_hit_at_10": "number of cases in the partition (40)",
+    "NATQ_002_span_recall_at_10_and_micro_MRR": "number of gold spans in the partition (57 validation, 79 reserve)",
+    "note": "The case-level denominators have the same shape. That similarity is what makes the two numbers look comparable, and it is the only thing about them that is."
+   },
+   "unhit_spans_in_micro_MRR": "contribute 0, not a dropped term (EVAL-NATQ2-H-001 metrics.primary)"
+  }
+ },
+ "synthetic_demonstration": {
+  "script": "experiments/METRIC-AUDIT-001/scripts/metric_equivalence_probe.py",
+  "output": "experiments/METRIC-AUDIT-001/METRIC-AUDIT-001-PROBE-OUTPUT.json",
+  "uses_real_benchmark_data": false,
+  "uses_database": false,
+  "separating_cases": {
+   "SYN-1": "multi-span, one span found \u2014 strict FAIL, case_hit PASS (aggregation)",
+   "SYN-6": "cross-document, one document's span found \u2014 strict FAIL, case_hit PASS (aggregation)",
+   "SYN-2": "covering chunk filed under a different section_path \u2014 strict FAIL, case_hit PASS, and full_coverage PASS (predicate; survives even after the aggregation is matched)"
+  },
+  "agreeing_controls": [
+   "SYN-3 single span exact match",
+   "SYN-4 covering chunk below depth 10",
+   "SYN-5 duplicate covering chunks",
+   "SYN-7 one-character boundary overlap"
+  ]
+ },
+ "comparability_findings": [
+  "Definition-level: NOT_EQUIVALENT. strict_recall@10 is strictly stricter than case_hit@10 on both axes, so on identical retrieval strict_recall@10 <= case_hit@10 always. The historical 20/40 = 0.50 is therefore a LOWER bound on what case_hit@10 would have been on that dataset, not an estimate of it.",
+  "Schema-level: the NATQ-001 predicate is not computable on NATQ-002 as it stands, because NATQ-002 gold evidence carries no section_path. Making the definitions equivalent would require adding a field to frozen gold evidence, which is prohibited and would in any case void the freeze.",
+  "Dataset-level: even if the definitions were made identical, NATQ-001 and NATQ-002 are different question sets over the same corpus snapshot with no shared cases. A comparison across them is unpaired and carries no paired statistical interpretation.",
+  "The preregistered decision rule does not depend on this. EVAL-NATQ2-H-001 tests SYSTEM-H against the co-run BM25 comparator on the same 40 NATQ-002 cases; the NATQ-001 prior enters only as disclosed context."
+ ],
+ "h_and_bm25_use_the_same_definition": {
+  "answer": true,
+  "basis": "EVAL-NATQ2-H-001-PREREGISTRATION.json metrics.span_hit is the same predicate the frozen BM25 runner implements, at the same depth, with the same aggregation and denominators. Both score the same 40-case validation partition of NATQ-002.",
+  "residual_requirement": "The SYSTEM-H runner, when written, must implement metrics.span_hit exactly as the BM25 runner does \u2014 document identity plus character overlap, no section_path term. A SYSTEM-H runner that reused the NATQ-001 overlaps()/dict_overlaps() helpers would silently score a stricter metric and would not be comparable to the frozen 0.375.",
+  "recommended_control": "The SYSTEM-H runner should recompute the BM25 comparator's case_hit@10 from the frozen ranked output and refuse to proceed unless it reproduces 0.375, proving both systems went through one scorer."
+ },
+ "constraints_observed": {
+  "system_h_scored": false,
+  "retrieval_run": false,
+  "reranking_run": false,
+  "inference_run": false,
+  "bm25_rerun_or_tuned": false,
+  "benchmark_scores_recomputed": false,
+  "natq_002_reserve_opened": false,
+  "natq_001_holdout_opened": false,
+  "v1_holdout_opened": false,
+  "protected_questions_used_in_examples": false,
+  "systems_corpus_projections_splits_gold_thresholds_or_frozen_results_changed": false,
+  "authoritative_system_h_config_hash_preserved": "7599eb3c3bb4798230a722e6a7c96b046dc36cc0332b584ec55339896b2d717a",
+  "rejected_local_hashes_not_reintroduced": [
+   "026a302b",
+   "3fade96a"
+  ],
+  "reserve_access_log_sha256_unchanged": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "reserve_access_log_size_bytes": 0
+ }
+}
