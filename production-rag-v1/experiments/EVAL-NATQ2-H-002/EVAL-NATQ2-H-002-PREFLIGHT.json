@@ -1,0 +1,209 @@
+{
+ "record_id": "EVAL-NATQ2-H-002-PREFLIGHT",
+ "gate": {
+  "checks": [
+   {
+    "check": "preregistration is the replacement",
+    "got": "EVAL-NATQ2-H-002",
+    "want": "EVAL-NATQ2-H-002",
+    "pass": true
+   },
+   {
+    "check": "runtime manifest sha",
+    "got": "1e045a6eeff2a51bf9f520f1e5bffbcb734939d72dc0b848340fea4cded4c96a",
+    "want": "1e045a6eeff2a51bf9f520f1e5bffbcb734939d72dc0b848340fea4cded4c96a",
+    "pass": true
+   },
+   {
+    "check": "manifest config hash",
+    "got": "7599eb3c3bb4798230a722e6a7c96b046dc36cc0332b584ec55339896b2d717a",
+    "want": "7599eb3c3bb4798230a722e6a7c96b046dc36cc0332b584ec55339896b2d717a",
+    "pass": true
+   },
+   {
+    "check": "prereg config hash",
+    "got": "7599eb3c3bb4798230a722e6a7c96b046dc36cc0332b584ec55339896b2d717a",
+    "want": "7599eb3c3bb4798230a722e6a7c96b046dc36cc0332b584ec55339896b2d717a",
+    "pass": true
+   },
+   {
+    "check": "benchmark file sha",
+    "got": "1450b9e1ba892d84d2ecab279cfa229b128a02108a4704b56393382b6c5bf741",
+    "want": "1450b9e1ba892d84d2ecab279cfa229b128a02108a4704b56393382b6c5bf741",
+    "pass": true
+   },
+   {
+    "check": "validation sha",
+    "got": "6b7f3c90e2bfa58f244de6b2aff65e56ca3f50e2ed0886e83696aba8f5b47961",
+    "want": "6b7f3c90e2bfa58f244de6b2aff65e56ca3f50e2ed0886e83696aba8f5b47961",
+    "pass": true
+   },
+   {
+    "check": "reserve sha",
+    "got": "14aaa80224b5ad4bea021ccc63ffc96d463e54c9ee71f27b552aaecc06c46e32",
+    "want": "14aaa80224b5ad4bea021ccc63ffc96d463e54c9ee71f27b552aaecc06c46e32",
+    "pass": true
+   },
+   {
+    "check": "reserve lock sha",
+    "got": "f60eca02d4223770d09146f250685f23a644fc35980e30178d54f0a1b0274215",
+    "want": "f60eca02d4223770d09146f250685f23a644fc35980e30178d54f0a1b0274215",
+    "pass": true
+   },
+   {
+    "check": "reserve access log sha",
+    "got": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "want": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "pass": true
+   },
+   {
+    "check": "reserve access log bytes",
+    "got": "0",
+    "want": "0",
+    "pass": true
+   },
+   {
+    "check": "bm25 results sha",
+    "got": "e2e7d70dcf42fa31edfc8690ddb26f15fd5dc67ed5a612c662480db0456b831b",
+    "want": "e2e7d70dcf42fa31edfc8690ddb26f15fd5dc67ed5a612c662480db0456b831b",
+    "pass": true
+   },
+   {
+    "check": "bm25 case results sha",
+    "got": "061e475b5ed7df140919fd5ad60fb96d6ef31b0a64d39aac561fac31ee4a7054",
+    "want": "061e475b5ed7df140919fd5ad60fb96d6ef31b0a64d39aac561fac31ee4a7054",
+    "pass": true
+   },
+   {
+    "check": "bm25 ranked output sha",
+    "got": "1eb9ffe15e3974f195da6a3145da8f8952a203658e9ed11ec1d2ad678a61ba6a",
+    "want": "1eb9ffe15e3974f195da6a3145da8f8952a203658e9ed11ec1d2ad678a61ba6a",
+    "pass": true
+   },
+   {
+    "check": "scorer verified against bm25",
+    "got": "True",
+    "want": "True",
+    "pass": true
+   },
+   {
+    "check": "code runner",
+    "got": "31eb6af38bdae87800e77c2c5c6a211b7cbb032ebccfd432bc3d633f3c873c94",
+    "want": "31eb6af38bdae87800e77c2c5c6a211b7cbb032ebccfd432bc3d633f3c873c94",
+    "pass": true
+   },
+   {
+    "check": "code exp019a_prior",
+    "got": "ca5d2fa71fef5db2888b9c82f63c572994c64c0baaf638f08f216199e2d830b7",
+    "want": "ca5d2fa71fef5db2888b9c82f63c572994c64c0baaf638f08f216199e2d830b7",
+    "pass": true
+   },
+   {
+    "check": "code projection_builder",
+    "got": "d37fd57112991925d55c6d4c757e21eb23a8f81227c5578ed3d8b4608c4de240",
+    "want": "d37fd57112991925d55c6d4c757e21eb23a8f81227c5578ed3d8b4608c4de240",
+    "pass": true
+   },
+   {
+    "check": "code projection_retrieval",
+    "got": "798dcb9c57019adefc555a36a56ec81e42a47ae6863dc0ad0277ff283d2dd32b",
+    "want": "798dcb9c57019adefc555a36a56ec81e42a47ae6863dc0ad0277ff283d2dd32b",
+    "pass": true
+   },
+   {
+    "check": "code system_e_candidate_gen",
+    "got": "b7486afd06979ddf1cfd1a5c9fb2f7ed46f70197d64a9b0f7ea378351d385a0a",
+    "want": "b7486afd06979ddf1cfd1a5c9fb2f7ed46f70197d64a9b0f7ea378351d385a0a",
+    "pass": true
+   },
+   {
+    "check": "code local_bm25_w20",
+    "got": "97e412ae3d041247be063d6a2962d2e844a878ad8961f0684eabf79a56086190",
+    "want": "97e412ae3d041247be063d6a2962d2e844a878ad8961f0684eabf79a56086190",
+    "pass": true
+   },
+   {
+    "check": "code cross_encoder",
+    "got": "ad987d12747c28e75257d8d9a0a526d216052937cffe2268921f5278b51fac45",
+    "want": "ad987d12747c28e75257d8d9a0a526d216052937cffe2268921f5278b51fac45",
+    "pass": true
+   },
+   {
+    "check": "code perf003_d1_path",
+    "got": "eaa55835b7ab0157a67268d8716940a6f30fd0734b6e5ff41252fddfb6afb28e",
+    "want": "eaa55835b7ab0157a67268d8716940a6f30fd0734b6e5ff41252fddfb6afb28e",
+    "pass": true
+   },
+   {
+    "check": "code rag_v1_systems",
+    "got": "76c48448f8cefed0b3f532cec4390d9a5eae78aae8b932d3fb80aedbbf9c3073",
+    "want": "76c48448f8cefed0b3f532cec4390d9a5eae78aae8b932d3fb80aedbbf9c3073",
+    "pass": true
+   },
+   {
+    "check": "code rag_v1_retrieval",
+    "got": "f5438eb140bf388735077db6fed5d2d008cb5f5cf73d378055179c6ae2fbb734",
+    "want": "f5438eb140bf388735077db6fed5d2d008cb5f5cf73d378055179c6ae2fbb734",
+    "pass": true
+   },
+   {
+    "check": "code rag_v1_ids",
+    "got": "28a16ade20566926a379cf454d932f1d4882f5452611f1c183b6ff98649562e1",
+    "want": "28a16ade20566926a379cf454d932f1d4882f5452611f1c183b6ff98649562e1",
+    "pass": true
+   },
+   {
+    "check": "code rag_v1_embedders_transformer",
+    "got": "d0f5d9b212f872ed83a408143b5cbdf20557bcd63d81888f95d9fe35015524b0",
+    "want": "d0f5d9b212f872ed83a408143b5cbdf20557bcd63d81888f95d9fe35015524b0",
+    "pass": true
+   },
+   {
+    "check": "config system_h_upstream",
+    "got": "7cd3a5f3d5fcf9c66561c9e9cbfbc213f49e6efa0fdf0005869b085c3eafe475",
+    "want": "7cd3a5f3d5fcf9c66561c9e9cbfbc213f49e6efa0fdf0005869b085c3eafe475",
+    "pass": true
+   },
+   {
+    "check": "config system_g_projection_prior",
+    "got": "7f4ff6db09f32e55cac820cbc00d87ce2ae91886d444c3bad20ac3e04c7f0f61",
+    "want": "7f4ff6db09f32e55cac820cbc00d87ce2ae91886d444c3bad20ac3e04c7f0f61",
+    "pass": true
+   },
+   {
+    "check": "config exp019a_preregistration",
+    "got": "f14001eff07b63c7916d7e27567d15ccd1e53b52918ae66f0d24ca37abb54cf3",
+    "want": "f14001eff07b63c7916d7e27567d15ccd1e53b52918ae66f0d24ca37abb54cf3",
+    "pass": true
+   },
+   {
+    "check": "config exp019a_results",
+    "got": "adb4377427be987c4ece29332c486efe57d89e2293dc3b28f69e01b93db420cf",
+    "want": "adb4377427be987c4ece29332c486efe57d89e2293dc3b28f69e01b93db420cf",
+    "pass": true
+   },
+   {
+    "check": "config system_g_ce_d1",
+    "got": "cf0c985c5f7738e7fc5422039fd6940621d8dcd8f91de41abe3784ac53a6a7ec",
+    "want": "cf0c985c5f7738e7fc5422039fd6940621d8dcd8f91de41abe3784ac53a6a7ec",
+    "pass": true
+   },
+   {
+    "check": "config perf003_preregistration",
+    "got": "dc01713eafc56347a9eba0711d0947f13fccbc8ba784dfa034e22280ec23c880",
+    "want": "dc01713eafc56347a9eba0711d0947f13fccbc8ba784dfa034e22280ec23c880",
+    "pass": true
+   },
+   {
+    "check": "config exp017_projection_build",
+    "got": "9e10058a0417b3eea1bde42eaa12fe43b6eeb0ddeb9d049bc26359e207daf1a7",
+    "want": "9e10058a0417b3eea1bde42eaa12fe43b6eeb0ddeb9d049bc26359e207daf1a7",
+    "pass": true
+   }
+  ],
+  "passed": 33,
+  "total": 33
+ },
+ "runs_consumed": 0,
+ "scores_produced": false
+}

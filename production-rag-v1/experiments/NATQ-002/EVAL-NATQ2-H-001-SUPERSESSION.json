@@ -1,0 +1,52 @@
+{
+ "record_id": "EVAL-NATQ2-H-001-SUPERSESSION",
+ "recorded_utc": "2026-09-05",
+ "state": "SUPERSEDED_BEFORE_RUN_DECISION_RULE_REPAIR",
+ "superseded": {
+  "path": "experiments/NATQ-002/EVAL-NATQ2-H-001-PREREGISTRATION.json",
+  "sha256": "c0742b27c7494bf9bbee087694428de534a67c904108300ca7fc5f5801bea9e9",
+  "modified_by_this_record": false,
+  "runs_consumed_under_it": 0,
+  "scores_produced_under_it": null
+ },
+ "replacement": {
+  "path": "experiments/NATQ-002/EVAL-NATQ2-H-002-PREREGISTRATION.json",
+  "sha256": "e17617d5c4cb1481e989484eb77c9bd7f79e95302ae3cf4afc571eb7930fff25"
+ },
+ "authority": "coordinator decision, 2026-09-05",
+ "reason": "The FAIL clause tested only for a 95% interval including zero, so a decisive regression \u2014 interval excluding zero, negative mean delta \u2014 fell through to INCONCLUSIVE whenever case_hit@10 was at or above 0.65. METRIC-AUDIT-001 flagged this as a proposal; the coordinator approved it.",
+ "the_only_substantive_change": {
+  "field": "decision_rule.FAIL",
+  "before": "the 95% interval includes 0, OR case_hit@10 < 0.65",
+  "after": "the 95% interval includes 0, OR the 95% interval excludes 0 with a negative mean delta, OR case_hit@10 < 0.65"
+ },
+ "non_substantive_changes_also_present": [
+  "record_id, title, date and the replaces block",
+  "disclosed_prior_evidence.definition_caveat updated to state METRIC-AUDIT-001's completed NOT_EQUIVALENT verdict; the previous wording is preserved verbatim in the same object",
+  "shared_scorer_requirement added, recording the coordinator's directive that one scorer serve both systems and reproduce the frozen comparator before SYSTEM-H is scored",
+  "run_authorisation added, recording that this run is authorised and capped at one",
+  "one invalidation condition appended for a scorer that fails to reproduce the comparator"
+ ],
+ "unchanged": [
+  "PASS rule",
+  "0.80 PASS floor and 0.65 FAIL floor",
+  "threshold provenance",
+  "paired bootstrap procedure, 10,000 resamples over cases, seed 20260904",
+  "primary and secondary metric definitions",
+  "evaluation depth 10",
+  "benchmark, split, and all pinned hashes",
+  "system identity and runtime manifest",
+  "projection identity",
+  "reserve prohibition and run budget"
+ ],
+ "verification": {
+  "exhaustive_and_mutually_exclusive": true,
+  "states_enumerated": 36,
+  "significant_regressions_all_FAIL": true,
+  "verdicts_changed": 5,
+  "checker": "experiments/NATQ-002/scripts/decision_rule_boundary_check.py",
+  "evidence": "experiments/NATQ-002/EVAL-NATQ2-H-002-BOUNDARY-CHECK.json",
+  "evidence_sha256": "6418a018bda260ed453bd869234bc1c99b107bc39512842398d5bf7d5322defd"
+ },
+ "note": "Recorded as a separate artifact rather than an edit, so EVAL-NATQ2-H-001 keeps its own hash and its 'written before any scoring' claim stays independently checkable. Every earlier preregistration in the chain is likewise left byte-identical."
+}

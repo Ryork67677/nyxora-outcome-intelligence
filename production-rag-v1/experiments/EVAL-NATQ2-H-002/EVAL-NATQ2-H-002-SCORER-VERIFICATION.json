@@ -1,0 +1,141 @@
+{
+ "record_id": "EVAL-NATQ2-H-002-SCORER-VERIFICATION",
+ "purpose": "Offline recomputation of the frozen BM25 comparator through the shared NATQ-002 scorer.",
+ "bm25_retrieval_rerun": false,
+ "database_queried": false,
+ "input": "experiments/EVAL-NATQ-BM25-BASELINE-001/logs/bm25-ranked-output.jsonl (stored)",
+ "input_rows": 400,
+ "cases_scored": 40,
+ "evaluation_depth": 10,
+ "scorer": "experiments/EVAL-NATQ2-H-002/scripts/natq2_scorer.py",
+ "scorer_sha256": "96447990b75f94e2f1e3daad1407eb1cdac53f7e4967ceb4ecdc4c0f8119b060",
+ "pinned_inputs": {
+  "experiments/EVAL-NATQ-BM25-BASELINE-001/logs/bm25-ranked-output.jsonl": "1eb9ffe15e3974f195da6a3145da8f8952a203658e9ed11ec1d2ad678a61ba6a",
+  "experiments/EVAL-NATQ-BM25-BASELINE-001/EVAL-NATQ-BM25-BASELINE-001-RESULTS.json": "e2e7d70dcf42fa31edfc8690ddb26f15fd5dc67ed5a612c662480db0456b831b",
+  "experiments/EVAL-NATQ-BM25-BASELINE-001/EVAL-NATQ-BM25-BASELINE-001-CASE-RESULTS.json": "061e475b5ed7df140919fd5ad60fb96d6ef31b0a64d39aac561fac31ee4a7054",
+  "evals/splits/natq-002/validation.json": "6b7f3c90e2bfa58f244de6b2aff65e56ca3f50e2ed0886e83696aba8f5b47961"
+ },
+ "recomputed_metrics": {
+  "cases": 40,
+  "gold_spans": 57,
+  "micro_MRR": 0.1425,
+  "case_hit_at_10": 0.375,
+  "case_full_coverage_at_10": 0.325,
+  "span_recall_at_10": 0.3333,
+  "case_hit_at_1": 0.1
+ },
+ "recomputed_per_slice": {
+  "A": {
+   "cases": 8,
+   "gold_spans": 13,
+   "micro_MRR": 0.0571,
+   "case_hit_at_10": 0.375,
+   "case_full_coverage_at_10": 0.25,
+   "span_recall_at_10": 0.2308,
+   "case_hit_at_1": 0.0
+  },
+  "B": {
+   "cases": 8,
+   "gold_spans": 12,
+   "micro_MRR": 0.3194,
+   "case_hit_at_10": 0.5,
+   "case_full_coverage_at_10": 0.375,
+   "span_recall_at_10": 0.5,
+   "case_hit_at_1": 0.25
+  },
+  "C": {
+   "cases": 8,
+   "gold_spans": 11,
+   "micro_MRR": 0.0556,
+   "case_hit_at_10": 0.25,
+   "case_full_coverage_at_10": 0.25,
+   "span_recall_at_10": 0.2727,
+   "case_hit_at_1": 0.0
+  },
+  "D": {
+   "cases": 8,
+   "gold_spans": 10,
+   "micro_MRR": 0.2111,
+   "case_hit_at_10": 0.375,
+   "case_full_coverage_at_10": 0.375,
+   "span_recall_at_10": 0.3,
+   "case_hit_at_1": 0.25
+  },
+  "E": {
+   "cases": 8,
+   "gold_spans": 11,
+   "micro_MRR": 0.075,
+   "case_hit_at_10": 0.375,
+   "case_full_coverage_at_10": 0.375,
+   "span_recall_at_10": 0.3636,
+   "case_hit_at_1": 0.0
+  }
+ },
+ "checks_against_preregistered_values": [
+  {
+   "metric": "case_hit_at_10",
+   "recomputed": 0.375,
+   "expected": 0.375,
+   "match": true
+  },
+  {
+   "metric": "micro_MRR",
+   "recomputed": 0.1425,
+   "expected": 0.1425,
+   "match": true
+  },
+  {
+   "metric": "case_full_coverage_at_10",
+   "recomputed": 0.325,
+   "expected": 0.325,
+   "match": true
+  },
+  {
+   "metric": "span_recall_at_10",
+   "recomputed": 0.3333,
+   "expected": 0.3333,
+   "match": true
+  },
+  {
+   "metric": "case_hit_at_1",
+   "recomputed": 0.1,
+   "expected": 0.1,
+   "match": true
+  }
+ ],
+ "checks_against_stored_results_file": [
+  {
+   "metric": "case_hit_at_10",
+   "recomputed": 0.375,
+   "stored": 0.375,
+   "match": true
+  },
+  {
+   "metric": "micro_MRR",
+   "recomputed": 0.1425,
+   "stored": 0.1425,
+   "match": true
+  },
+  {
+   "metric": "case_full_coverage_at_10",
+   "recomputed": 0.325,
+   "stored": 0.325,
+   "match": true
+  },
+  {
+   "metric": "span_recall_at_10",
+   "recomputed": 0.3333,
+   "stored": 0.3333,
+   "match": true
+  },
+  {
+   "metric": "case_hit_at_1",
+   "recomputed": 0.1,
+   "stored": 0.1,
+   "match": true
+  }
+ ],
+ "per_case_pass_fail_vector_mismatches": [],
+ "per_case_span_rank_mismatches": [],
+ "verified": true
+}

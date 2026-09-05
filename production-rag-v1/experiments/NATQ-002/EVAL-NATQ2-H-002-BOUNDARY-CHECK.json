@@ -1,0 +1,371 @@
+{
+ "record_id": "EVAL-NATQ2-H-002-BOUNDARY-CHECK",
+ "purpose": "Exhaustiveness and mutual-exclusivity proof for the replacement decision rule.",
+ "uses_real_data": false,
+ "uses_database": false,
+ "systems_run": 0,
+ "floors": {
+  "PASS": 0.8,
+  "FAIL": 0.65
+ },
+ "states_enumerated": 36,
+ "mutually_exclusive": true,
+ "overlap_states": [],
+ "exhaustive": true,
+ "unclassified_states": [],
+ "regression_states_checked": 5,
+ "every_significant_regression_now_fails": true,
+ "states_whose_verdict_the_repair_changes": [
+  {
+   "ci": "excludes zero",
+   "delta": -0.06,
+   "case_hit_at_10": 0.65,
+   "old": "INCONCLUSIVE",
+   "new": "FAIL"
+  },
+  {
+   "ci": "excludes zero",
+   "delta": -0.06,
+   "case_hit_at_10": 0.675,
+   "old": "INCONCLUSIVE",
+   "new": "FAIL"
+  },
+  {
+   "ci": "excludes zero",
+   "delta": -0.06,
+   "case_hit_at_10": 0.775,
+   "old": "INCONCLUSIVE",
+   "new": "FAIL"
+  },
+  {
+   "ci": "excludes zero",
+   "delta": -0.06,
+   "case_hit_at_10": 0.8,
+   "old": "INCONCLUSIVE",
+   "new": "FAIL"
+  },
+  {
+   "ci": "excludes zero",
+   "delta": -0.06,
+   "case_hit_at_10": 0.825,
+   "old": "INCONCLUSIVE",
+   "new": "FAIL"
+  }
+ ],
+ "residual_inconclusive_states": [
+  {
+   "ci": "excludes zero",
+   "delta_sign": "positive",
+   "case_hit_band": "0.65 <= case_hit < 0.80"
+  },
+  {
+   "ci": "excludes zero",
+   "delta_sign": "zero",
+   "case_hit_band": "0.65 <= case_hit < 0.80"
+  },
+  {
+   "ci": "excludes zero",
+   "delta_sign": "zero",
+   "case_hit_band": "case_hit >= 0.80"
+  }
+ ],
+ "residual_note": "Two families remain INCONCLUSIVE by design: a significant improvement whose case_hit@10 lands in the 0.65-0.80 band, which is the band's whole purpose; and the degenerate combination of an interval excluding zero with a mean delta of exactly zero, which a percentile bootstrap cannot produce because the interval brackets the resampled mean. The latter is enumerated for completeness, not because it is reachable.",
+ "boundary_semantics": {
+  "PASS at exactly 0.80": "PASS",
+  "just below at 0.775": "INCONCLUSIVE",
+  "FAIL at exactly 0.65": "INCONCLUSIVE",
+  "just below at 0.625": "FAIL",
+  "significant regression at 0.70": "FAIL",
+  "non-significant at 0.90": "FAIL"
+ },
+ "rows": [
+  {
+   "ci": "includes zero",
+   "delta_sign": "positive",
+   "delta": 0.06,
+   "case_hit_at_10": 0.625,
+   "case_hit_note": "0.625 = 25/40, just below the FAIL floor",
+   "verdict": "FAIL"
+  },
+  {
+   "ci": "includes zero",
+   "delta_sign": "positive",
+   "delta": 0.06,
+   "case_hit_at_10": 0.65,
+   "case_hit_note": "0.650 = 26/40, exactly the FAIL floor",
+   "verdict": "FAIL"
+  },
+  {
+   "ci": "includes zero",
+   "delta_sign": "positive",
+   "delta": 0.06,
+   "case_hit_at_10": 0.675,
+   "case_hit_note": "0.675 = 27/40, inside the inconclusive band",
+   "verdict": "FAIL"
+  },
+  {
+   "ci": "includes zero",
+   "delta_sign": "positive",
+   "delta": 0.06,
+   "case_hit_at_10": 0.775,
+   "case_hit_note": "0.775 = 31/40, just below the PASS floor",
+   "verdict": "FAIL"
+  },
+  {
+   "ci": "includes zero",
+   "delta_sign": "positive",
+   "delta": 0.06,
+   "case_hit_at_10": 0.8,
+   "case_hit_note": "0.800 = 32/40, exactly the PASS floor",
+   "verdict": "FAIL"
+  },
+  {
+   "ci": "includes zero",
+   "delta_sign": "positive",
+   "delta": 0.06,
+   "case_hit_at_10": 0.825,
+   "case_hit_note": "0.825 = 33/40, above the PASS floor",
+   "verdict": "FAIL"
+  },
+  {
+   "ci": "includes zero",
+   "delta_sign": "zero",
+   "delta": 0.0,
+   "case_hit_at_10": 0.625,
+   "case_hit_note": "0.625 = 25/40, just below the FAIL floor",
+   "verdict": "FAIL"
+  },
+  {
+   "ci": "includes zero",
+   "delta_sign": "zero",
+   "delta": 0.0,
+   "case_hit_at_10": 0.65,
+   "case_hit_note": "0.650 = 26/40, exactly the FAIL floor",
+   "verdict": "FAIL"
+  },
+  {
+   "ci": "includes zero",
+   "delta_sign": "zero",
+   "delta": 0.0,
+   "case_hit_at_10": 0.675,
+   "case_hit_note": "0.675 = 27/40, inside the inconclusive band",
+   "verdict": "FAIL"
+  },
+  {
+   "ci": "includes zero",
+   "delta_sign": "zero",
+   "delta": 0.0,
+   "case_hit_at_10": 0.775,
+   "case_hit_note": "0.775 = 31/40, just below the PASS floor",
+   "verdict": "FAIL"
+  },
+  {
+   "ci": "includes zero",
+   "delta_sign": "zero",
+   "delta": 0.0,
+   "case_hit_at_10": 0.8,
+   "case_hit_note": "0.800 = 32/40, exactly the PASS floor",
+   "verdict": "FAIL"
+  },
+  {
+   "ci": "includes zero",
+   "delta_sign": "zero",
+   "delta": 0.0,
+   "case_hit_at_10": 0.825,
+   "case_hit_note": "0.825 = 33/40, above the PASS floor",
+   "verdict": "FAIL"
+  },
+  {
+   "ci": "includes zero",
+   "delta_sign": "negative",
+   "delta": -0.06,
+   "case_hit_at_10": 0.625,
+   "case_hit_note": "0.625 = 25/40, just below the FAIL floor",
+   "verdict": "FAIL"
+  },
+  {
+   "ci": "includes zero",
+   "delta_sign": "negative",
+   "delta": -0.06,
+   "case_hit_at_10": 0.65,
+   "case_hit_note": "0.650 = 26/40, exactly the FAIL floor",
+   "verdict": "FAIL"
+  },
+  {
+   "ci": "includes zero",
+   "delta_sign": "negative",
+   "delta": -0.06,
+   "case_hit_at_10": 0.675,
+   "case_hit_note": "0.675 = 27/40, inside the inconclusive band",
+   "verdict": "FAIL"
+  },
+  {
+   "ci": "includes zero",
+   "delta_sign": "negative",
+   "delta": -0.06,
+   "case_hit_at_10": 0.775,
+   "case_hit_note": "0.775 = 31/40, just below the PASS floor",
+   "verdict": "FAIL"
+  },
+  {
+   "ci": "includes zero",
+   "delta_sign": "negative",
+   "delta": -0.06,
+   "case_hit_at_10": 0.8,
+   "case_hit_note": "0.800 = 32/40, exactly the PASS floor",
+   "verdict": "FAIL"
+  },
+  {
+   "ci": "includes zero",
+   "delta_sign": "negative",
+   "delta": -0.06,
+   "case_hit_at_10": 0.825,
+   "case_hit_note": "0.825 = 33/40, above the PASS floor",
+   "verdict": "FAIL"
+  },
+  {
+   "ci": "excludes zero",
+   "delta_sign": "positive",
+   "delta": 0.06,
+   "case_hit_at_10": 0.625,
+   "case_hit_note": "0.625 = 25/40, just below the FAIL floor",
+   "verdict": "FAIL"
+  },
+  {
+   "ci": "excludes zero",
+   "delta_sign": "positive",
+   "delta": 0.06,
+   "case_hit_at_10": 0.65,
+   "case_hit_note": "0.650 = 26/40, exactly the FAIL floor",
+   "verdict": "INCONCLUSIVE"
+  },
+  {
+   "ci": "excludes zero",
+   "delta_sign": "positive",
+   "delta": 0.06,
+   "case_hit_at_10": 0.675,
+   "case_hit_note": "0.675 = 27/40, inside the inconclusive band",
+   "verdict": "INCONCLUSIVE"
+  },
+  {
+   "ci": "excludes zero",
+   "delta_sign": "positive",
+   "delta": 0.06,
+   "case_hit_at_10": 0.775,
+   "case_hit_note": "0.775 = 31/40, just below the PASS floor",
+   "verdict": "INCONCLUSIVE"
+  },
+  {
+   "ci": "excludes zero",
+   "delta_sign": "positive",
+   "delta": 0.06,
+   "case_hit_at_10": 0.8,
+   "case_hit_note": "0.800 = 32/40, exactly the PASS floor",
+   "verdict": "PASS"
+  },
+  {
+   "ci": "excludes zero",
+   "delta_sign": "positive",
+   "delta": 0.06,
+   "case_hit_at_10": 0.825,
+   "case_hit_note": "0.825 = 33/40, above the PASS floor",
+   "verdict": "PASS"
+  },
+  {
+   "ci": "excludes zero",
+   "delta_sign": "zero",
+   "delta": 0.0,
+   "case_hit_at_10": 0.625,
+   "case_hit_note": "0.625 = 25/40, just below the FAIL floor",
+   "verdict": "FAIL"
+  },
+  {
+   "ci": "excludes zero",
+   "delta_sign": "zero",
+   "delta": 0.0,
+   "case_hit_at_10": 0.65,
+   "case_hit_note": "0.650 = 26/40, exactly the FAIL floor",
+   "verdict": "INCONCLUSIVE"
+  },
+  {
+   "ci": "excludes zero",
+   "delta_sign": "zero",
+   "delta": 0.0,
+   "case_hit_at_10": 0.675,
+   "case_hit_note": "0.675 = 27/40, inside the inconclusive band",
+   "verdict": "INCONCLUSIVE"
+  },
+  {
+   "ci": "excludes zero",
+   "delta_sign": "zero",
+   "delta": 0.0,
+   "case_hit_at_10": 0.775,
+   "case_hit_note": "0.775 = 31/40, just below the PASS floor",
+   "verdict": "INCONCLUSIVE"
+  },
+  {
+   "ci": "excludes zero",
+   "delta_sign": "zero",
+   "delta": 0.0,
+   "case_hit_at_10": 0.8,
+   "case_hit_note": "0.800 = 32/40, exactly the PASS floor",
+   "verdict": "INCONCLUSIVE"
+  },
+  {
+   "ci": "excludes zero",
+   "delta_sign": "zero",
+   "delta": 0.0,
+   "case_hit_at_10": 0.825,
+   "case_hit_note": "0.825 = 33/40, above the PASS floor",
+   "verdict": "INCONCLUSIVE"
+  },
+  {
+   "ci": "excludes zero",
+   "delta_sign": "negative",
+   "delta": -0.06,
+   "case_hit_at_10": 0.625,
+   "case_hit_note": "0.625 = 25/40, just below the FAIL floor",
+   "verdict": "FAIL"
+  },
+  {
+   "ci": "excludes zero",
+   "delta_sign": "negative",
+   "delta": -0.06,
+   "case_hit_at_10": 0.65,
+   "case_hit_note": "0.650 = 26/40, exactly the FAIL floor",
+   "verdict": "FAIL"
+  },
+  {
+   "ci": "excludes zero",
+   "delta_sign": "negative",
+   "delta": -0.06,
+   "case_hit_at_10": 0.675,
+   "case_hit_note": "0.675 = 27/40, inside the inconclusive band",
+   "verdict": "FAIL"
+  },
+  {
+   "ci": "excludes zero",
+   "delta_sign": "negative",
+   "delta": -0.06,
+   "case_hit_at_10": 0.775,
+   "case_hit_note": "0.775 = 31/40, just below the PASS floor",
+   "verdict": "FAIL"
+  },
+  {
+   "ci": "excludes zero",
+   "delta_sign": "negative",
+   "delta": -0.06,
+   "case_hit_at_10": 0.8,
+   "case_hit_note": "0.800 = 32/40, exactly the PASS floor",
+   "verdict": "FAIL"
+  },
+  {
+   "ci": "excludes zero",
+   "delta_sign": "negative",
+   "delta": -0.06,
+   "case_hit_at_10": 0.825,
+   "case_hit_note": "0.825 = 33/40, above the PASS floor",
+   "verdict": "FAIL"
+  }
+ ]
+}
