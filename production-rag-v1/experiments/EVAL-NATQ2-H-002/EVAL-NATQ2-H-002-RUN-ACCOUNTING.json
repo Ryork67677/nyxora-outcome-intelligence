@@ -1,0 +1,92 @@
+{
+ "record_id": "EVAL-NATQ2-H-002-RUN-ACCOUNTING",
+ "recorded_utc": "2026-09-05",
+ "run": {
+  "authorised_by": "coordinator decision, 2026-09-05",
+  "preregistration": "experiments/NATQ-002/EVAL-NATQ2-H-002-PREREGISTRATION.json",
+  "preregistration_sha256": "e17617d5c4cb1481e989484eb77c9bd7f79e95302ae3cf4afc571eb7930fff25",
+  "preregistration_committed_before_scoring": true,
+  "preregistration_commit": "ac25a6c",
+  "started_utc": "2026-09-05T18:12:28.899008+00:00",
+  "finished_utc": "2026-09-05T18:16:43.302819+00:00",
+  "executed_fully": true,
+  "exit_status": "completed",
+  "cases_attempted": 40,
+  "cases_scored": 40,
+  "validation_runs_consumed": 1,
+  "validation_runs_remaining": 2,
+  "retries": 0,
+  "second_scored_run": false
+ },
+ "identity": {
+  "authoritative_config_hash": "7599eb3c3bb4798230a722e6a7c96b046dc36cc0332b584ec55339896b2d717a",
+  "gate": "33/33",
+  "system_redesigned": false,
+  "wrapper_only": "The wrapper imports the recovered SYSTEM-H pipeline verbatim and changes exactly two things: the input partition and the scorer."
+ },
+ "scorer": {
+  "shared_with_comparator": true,
+  "path": "experiments/EVAL-NATQ2-H-002/scripts/natq2_scorer.py",
+  "sha256": "96447990b75f94e2f1e3daad1407eb1cdac53f7e4967ceb4ecdc4c0f8119b060",
+  "verified_against_frozen_bm25": true,
+  "verification_record": "experiments/EVAL-NATQ2-H-002/EVAL-NATQ2-H-002-SCORER-VERIFICATION.json",
+  "verification_sha256": "891670194a88b96571c961ecd36707179aea42426409f6796288b5069e7cbe5d",
+  "natq001_section_path_matching_used": false
+ },
+ "comparator": {
+  "retrieval_rerun": false,
+  "tuned": false,
+  "recomputed_offline_from_stored_ranked_output": true
+ },
+ "protected_state": {
+  "reserve_opened": false,
+  "natq_001_holdout_opened": false,
+  "v1_holdout_opened": false,
+  "reserve_access_log_sha256_before": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "reserve_access_log_sha256_after": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "reserve_access_log_bytes_after": 0,
+  "reserve_lock_sha256_after": "f60eca02d4223770d09146f250685f23a644fc35980e30178d54f0a1b0274215",
+  "v1_holdout_access_log_sha256_after": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "unchanged": true
+ },
+ "unchanged_after_run": {
+  "evals/splits/natq-002/validation.json": "6b7f3c90e2bfa58f244de6b2aff65e56ca3f50e2ed0886e83696aba8f5b47961",
+  "evals/splits/natq-002/reserve.json": "14aaa80224b5ad4bea021ccc63ffc96d463e54c9ee71f27b552aaecc06c46e32",
+  "experiments/NATQ-002/NATQ-002-ACCEPTED-100.json": "1450b9e1ba892d84d2ecab279cfa229b128a02108a4704b56393382b6c5bf741",
+  "experiments/NATQ-002/EVAL-NATQ2-H-001-PREREGISTRATION.json": "c0742b27c7494bf9bbee087694428de534a67c904108300ca7fc5f5801bea9e9",
+  "experiments/EVAL-NATQ-BM25-BASELINE-001/EVAL-NATQ-BM25-BASELINE-001-RESULTS.json": "e2e7d70dcf42fa31edfc8690ddb26f15fd5dc67ed5a612c662480db0456b831b",
+  "experiments/EVAL-NATQ-BM25-BASELINE-001/logs/bm25-ranked-output.jsonl": "1eb9ffe15e3974f195da6a3145da8f8952a203658e9ed11ec1d2ad678a61ba6a",
+  "experiments/SYSTEM-H/SYSTEM-H-RUNTIME-MANIFEST.json": "1e045a6eeff2a51bf9f520f1e5bffbcb734939d72dc0b848340fea4cded4c96a"
+ },
+ "traces_persisted": {
+  "ranked_output": {
+   "path": "experiments/EVAL-NATQ2-H-002/logs/h-ranked-output.jsonl",
+   "sha256": "545eae62ff555bdd5f70ab9f24136546ff5a239c82392e179db0b896ed5bb63a",
+   "rows": 400
+  },
+  "pools": {
+   "path": "experiments/EVAL-NATQ2-H-002/logs/h-pools.jsonl",
+   "sha256": "5cfb7f4abb2d193b235a7f2f36d359aeeeb453564d73207cc7404729a0babf84",
+   "rows": 40
+  },
+  "ce_scores": {
+   "path": "experiments/EVAL-NATQ2-H-002/logs/h-ce-scores.jsonl",
+   "sha256": "a7be8e34b825d918a3a5fc2392fe083faae3679cbec01fb3406c439c693088ab",
+   "rows": 40
+  }
+ },
+ "outputs": {
+  "EVAL-NATQ2-H-002-CASE-RESULTS.json": "cc289dcbe10807330df8527d3f1313ce08a3c5e41e196e89a9239408ad0371ff",
+  "EVAL-NATQ2-H-002-PREFLIGHT.json": "7b4b08ccb41d8f1b2868a8b595ccd1563536b7d899fe7cc28f9967061fd0352e",
+  "EVAL-NATQ2-H-002-RESULTS.json": "ce01aeee9bebd811b9a3ae1a2f58983ca607e3bb8f18096b232a0a2ddafff9ce",
+  "EVAL-NATQ2-H-002-SCORER-VERIFICATION.json": "891670194a88b96571c961ecd36707179aea42426409f6796288b5069e7cbe5d"
+ },
+ "decision": "FAIL",
+ "decision_would_have_been_identical_under_the_superseded_rule": true,
+ "decision_rule_note": "case_hit@10 = 0.575 is below the 0.65 FAIL floor, a disjunct present in BOTH the superseded and the replacement rule. The repaired regression clause did not affect this outcome and is not what produced the FAIL.",
+ "prohibited_claims": [
+  "No gain over NATQ-001's historical 50% is claimed; METRIC-AUDIT-001 returned NOT_EQUIVALENT and the two benchmarks share no cases.",
+  "case_hit@10 measures retrieval evidence coverage, not answer accuracy.",
+  "No release promotion follows from this run."
+ ]
+}

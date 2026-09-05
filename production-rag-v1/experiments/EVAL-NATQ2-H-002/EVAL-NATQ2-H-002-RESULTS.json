@@ -1,0 +1,169 @@
+{
+ "record_id": "EVAL-NATQ2-H-002-RESULTS",
+ "system_id": "SYSTEM-H-V2-DEV-CANDIDATE",
+ "authoritative_config_hash": "7599eb3c3bb4798230a722e6a7c96b046dc36cc0332b584ec55339896b2d717a",
+ "preregistration": "experiments/NATQ-002/EVAL-NATQ2-H-002-PREREGISTRATION.json",
+ "preregistration_sha256": "e17617d5c4cb1481e989484eb77c9bd7f79e95302ae3cf4afc571eb7930fff25",
+ "partition_scored": "validation",
+ "cases": 40,
+ "reserve_opened": false,
+ "validation_runs_consumed": 1,
+ "retries": 0,
+ "started_utc": "2026-09-05T18:12:28.899008+00:00",
+ "finished_utc": "2026-09-05T18:16:43.302819+00:00",
+ "evaluation_depth": 10,
+ "scorer": "experiments/EVAL-NATQ2-H-002/scripts/natq2_scorer.py",
+ "scorer_sha256": "96447990b75f94e2f1e3daad1407eb1cdac53f7e4967ceb4ecdc4c0f8119b060",
+ "scorer_shared_with_comparator": true,
+ "identity_gate": {
+  "passed": 33,
+  "total": 33
+ },
+ "metrics": {
+  "cases": 40,
+  "gold_spans": 57,
+  "micro_MRR": 0.2899,
+  "case_hit_at_10": 0.575,
+  "case_full_coverage_at_10": 0.55,
+  "span_recall_at_10": 0.5614,
+  "case_hit_at_1": 0.2,
+  "latency_p50_ms": 5493.326,
+  "latency_p95_ms": 8371.576
+ },
+ "per_slice": {
+  "A": {
+   "cases": 8,
+   "gold_spans": 13,
+   "micro_MRR": 0.2097,
+   "case_hit_at_10": 0.75,
+   "case_full_coverage_at_10": 0.625,
+   "span_recall_at_10": 0.5385,
+   "case_hit_at_1": 0.125
+  },
+  "B": {
+   "cases": 8,
+   "gold_spans": 12,
+   "micro_MRR": 0.2292,
+   "case_hit_at_10": 0.375,
+   "case_full_coverage_at_10": 0.375,
+   "span_recall_at_10": 0.4167,
+   "case_hit_at_1": 0.125
+  },
+  "C": {
+   "cases": 8,
+   "gold_spans": 11,
+   "micro_MRR": 0.3788,
+   "case_hit_at_10": 0.5,
+   "case_full_coverage_at_10": 0.5,
+   "span_recall_at_10": 0.4545,
+   "case_hit_at_1": 0.375
+  },
+  "D": {
+   "cases": 8,
+   "gold_spans": 10,
+   "micro_MRR": 0.3976,
+   "case_hit_at_10": 0.625,
+   "case_full_coverage_at_10": 0.625,
+   "span_recall_at_10": 0.7,
+   "case_hit_at_1": 0.25
+  },
+  "E": {
+   "cases": 8,
+   "gold_spans": 11,
+   "micro_MRR": 0.2639,
+   "case_hit_at_10": 0.625,
+   "case_full_coverage_at_10": 0.625,
+   "span_recall_at_10": 0.7273,
+   "case_hit_at_1": 0.125
+  }
+ },
+ "comparator": {
+  "system_id": "SYSTEM-BM25-NATQ-CONTROL",
+  "rerun": false,
+  "metrics": {
+   "cases": 40,
+   "gold_spans": 57,
+   "micro_MRR": 0.1425,
+   "case_hit_at_10": 0.375,
+   "case_full_coverage_at_10": 0.325,
+   "span_recall_at_10": 0.3333,
+   "case_hit_at_1": 0.1,
+   "latency_p50_ms": 394.016,
+   "latency_p95_ms": 633.985
+  }
+ },
+ "paired_test": {
+  "observed_delta": 0.147341,
+  "bootstrap_mean_delta": 0.147718,
+  "ci95_low": 0.04379,
+  "ci95_high": 0.253785,
+  "interval_excludes_zero": true,
+  "resamples": 10000,
+  "seed": 20260904,
+  "unit": "case"
+ },
+ "decision": "FAIL",
+ "decision_detail": {
+  "PASS_clause": false,
+  "FAIL_clause": true,
+  "interval_excludes_zero": true,
+  "mean_delta_sign": "positive",
+  "case_hit_at_10": 0.575,
+  "PASS_floor": 0.8,
+  "FAIL_floor": 0.65
+ },
+ "stage_latency_mean_ms": {
+  "a_pool": 1300.72,
+  "local_bm25": 589.52,
+  "ce": 3581.53,
+  "projection": 885.58,
+  "blend": 0.78
+ },
+ "per_case_micro_mrr": {
+  "A07": 0.071429,
+  "A12": 0.0,
+  "A21": 0.5,
+  "A22": 0.333333,
+  "A23": 0.25,
+  "A24": 0.25,
+  "A28": 1.0,
+  "A30": 0.0,
+  "B09": 0.0,
+  "B14": 0.25,
+  "B15": 1.0,
+  "B18": 0.0,
+  "B19": 0.0,
+  "B22": 0.0,
+  "B25": 0.25,
+  "B28": 0.0,
+  "C01": 0.0,
+  "C03": 0.0,
+  "C05": 0.0,
+  "C09": 0.0,
+  "C10": 1.0,
+  "C11": 0.166667,
+  "C16": 1.0,
+  "C29": 1.0,
+  "D03": 0.0,
+  "D08": 0.0,
+  "D16": 1.0,
+  "D19": 0.5,
+  "D23": 0.416667,
+  "D24": 1.0,
+  "D27": 0.0,
+  "D29": 0.142857,
+  "E01": 0.0,
+  "E05": 0.125,
+  "E06": 0.0,
+  "E15": 0.166667,
+  "E17": 0.2,
+  "E22": 0.105556,
+  "E27": 0.0,
+  "E29": 1.0
+ },
+ "artifacts": {
+  "ranked_output": "experiments/EVAL-NATQ2-H-002/logs/h-ranked-output.jsonl",
+  "pools": "experiments/EVAL-NATQ2-H-002/logs/h-pools.jsonl",
+  "ce_scores": "experiments/EVAL-NATQ2-H-002/logs/h-ce-scores.jsonl"
+ }
+}

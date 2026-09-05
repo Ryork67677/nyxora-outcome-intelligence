@@ -1,0 +1,625 @@
+{
+ "record_id": "EVAL-NATQ2-H-002-CASE-RESULTS",
+ "system_id": "SYSTEM-H-V2-DEV-CANDIDATE",
+ "case_level_pass_fail_vector": {
+  "A07": true,
+  "A12": false,
+  "A21": true,
+  "A22": true,
+  "A23": true,
+  "A24": true,
+  "A28": true,
+  "A30": false,
+  "B09": false,
+  "B14": true,
+  "B15": true,
+  "B18": false,
+  "B19": false,
+  "B22": false,
+  "B25": true,
+  "B28": false,
+  "C01": false,
+  "C03": false,
+  "C05": false,
+  "C09": false,
+  "C10": true,
+  "C11": true,
+  "C16": true,
+  "C29": true,
+  "D03": false,
+  "D08": false,
+  "D16": true,
+  "D19": true,
+  "D23": true,
+  "D24": true,
+  "D27": false,
+  "D29": true,
+  "E01": false,
+  "E05": true,
+  "E06": false,
+  "E15": true,
+  "E17": true,
+  "E22": true,
+  "E27": false,
+  "E29": true
+ },
+ "cases": [
+  {
+   "case_id": "A07",
+   "slice": "A",
+   "provider": "openai",
+   "n_gold_spans": 2,
+   "span_ranks": [
+    7,
+    null
+   ],
+   "hit_at_10": true,
+   "full_coverage_at_10": false,
+   "hit_at_1": false,
+   "best_rank": 7,
+   "latency_ms": 37622.046
+  },
+  {
+   "case_id": "A12",
+   "slice": "A",
+   "provider": "anthropic",
+   "n_gold_spans": 3,
+   "span_ranks": [
+    null,
+    null,
+    null
+   ],
+   "hit_at_10": false,
+   "full_coverage_at_10": false,
+   "hit_at_1": false,
+   "best_rank": null,
+   "latency_ms": 7980.862
+  },
+  {
+   "case_id": "A21",
+   "slice": "A",
+   "provider": "anthropic",
+   "n_gold_spans": 1,
+   "span_ranks": [
+    2
+   ],
+   "hit_at_10": true,
+   "full_coverage_at_10": true,
+   "hit_at_1": false,
+   "best_rank": 2,
+   "latency_ms": 4086.247
+  },
+  {
+   "case_id": "A22",
+   "slice": "A",
+   "provider": "anthropic",
+   "n_gold_spans": 1,
+   "span_ranks": [
+    3
+   ],
+   "hit_at_10": true,
+   "full_coverage_at_10": true,
+   "hit_at_1": false,
+   "best_rank": 3,
+   "latency_ms": 7032.297
+  },
+  {
+   "case_id": "A23",
+   "slice": "A",
+   "provider": "anthropic",
+   "n_gold_spans": 1,
+   "span_ranks": [
+    4
+   ],
+   "hit_at_10": true,
+   "full_coverage_at_10": true,
+   "hit_at_1": false,
+   "best_rank": 4,
+   "latency_ms": 5018.949
+  },
+  {
+   "case_id": "A24",
+   "slice": "A",
+   "provider": "openai",
+   "n_gold_spans": 2,
+   "span_ranks": [
+    4,
+    4
+   ],
+   "hit_at_10": true,
+   "full_coverage_at_10": true,
+   "hit_at_1": false,
+   "best_rank": 4,
+   "latency_ms": 8371.576
+  },
+  {
+   "case_id": "A28",
+   "slice": "A",
+   "provider": "anthropic",
+   "n_gold_spans": 1,
+   "span_ranks": [
+    1
+   ],
+   "hit_at_10": true,
+   "full_coverage_at_10": true,
+   "hit_at_1": true,
+   "best_rank": 1,
+   "latency_ms": 4750.351
+  },
+  {
+   "case_id": "A30",
+   "slice": "A",
+   "provider": "openai",
+   "n_gold_spans": 2,
+   "span_ranks": [
+    null,
+    null
+   ],
+   "hit_at_10": false,
+   "full_coverage_at_10": false,
+   "hit_at_1": false,
+   "best_rank": null,
+   "latency_ms": 5493.326
+  },
+  {
+   "case_id": "B09",
+   "slice": "B",
+   "provider": "anthropic",
+   "n_gold_spans": 2,
+   "span_ranks": [
+    null,
+    null
+   ],
+   "hit_at_10": false,
+   "full_coverage_at_10": false,
+   "hit_at_1": false,
+   "best_rank": null,
+   "latency_ms": 6424.851
+  },
+  {
+   "case_id": "B14",
+   "slice": "B",
+   "provider": "openai",
+   "n_gold_spans": 2,
+   "span_ranks": [
+    6,
+    3
+   ],
+   "hit_at_10": true,
+   "full_coverage_at_10": true,
+   "hit_at_1": false,
+   "best_rank": 3,
+   "latency_ms": 3763.425
+  },
+  {
+   "case_id": "B15",
+   "slice": "B",
+   "provider": "openai",
+   "n_gold_spans": 2,
+   "span_ranks": [
+    1,
+    1
+   ],
+   "hit_at_10": true,
+   "full_coverage_at_10": true,
+   "hit_at_1": true,
+   "best_rank": 1,
+   "latency_ms": 6521.068
+  },
+  {
+   "case_id": "B18",
+   "slice": "B",
+   "provider": "anthropic",
+   "n_gold_spans": 1,
+   "span_ranks": [
+    null
+   ],
+   "hit_at_10": false,
+   "full_coverage_at_10": false,
+   "hit_at_1": false,
+   "best_rank": null,
+   "latency_ms": 5131.663
+  },
+  {
+   "case_id": "B19",
+   "slice": "B",
+   "provider": "anthropic",
+   "n_gold_spans": 2,
+   "span_ranks": [
+    null,
+    null
+   ],
+   "hit_at_10": false,
+   "full_coverage_at_10": false,
+   "hit_at_1": false,
+   "best_rank": null,
+   "latency_ms": 5773.147
+  },
+  {
+   "case_id": "B22",
+   "slice": "B",
+   "provider": "anthropic",
+   "n_gold_spans": 1,
+   "span_ranks": [
+    null
+   ],
+   "hit_at_10": false,
+   "full_coverage_at_10": false,
+   "hit_at_1": false,
+   "best_rank": null,
+   "latency_ms": 5129.738
+  },
+  {
+   "case_id": "B25",
+   "slice": "B",
+   "provider": "anthropic",
+   "n_gold_spans": 1,
+   "span_ranks": [
+    4
+   ],
+   "hit_at_10": true,
+   "full_coverage_at_10": true,
+   "hit_at_1": false,
+   "best_rank": 4,
+   "latency_ms": 6984.289
+  },
+  {
+   "case_id": "B28",
+   "slice": "B",
+   "provider": "openai",
+   "n_gold_spans": 1,
+   "span_ranks": [
+    null
+   ],
+   "hit_at_10": false,
+   "full_coverage_at_10": false,
+   "hit_at_1": false,
+   "best_rank": null,
+   "latency_ms": 4100.073
+  },
+  {
+   "case_id": "C01",
+   "slice": "C",
+   "provider": "anthropic",
+   "n_gold_spans": 2,
+   "span_ranks": [
+    null,
+    null
+   ],
+   "hit_at_10": false,
+   "full_coverage_at_10": false,
+   "hit_at_1": false,
+   "best_rank": null,
+   "latency_ms": 4980.914
+  },
+  {
+   "case_id": "C03",
+   "slice": "C",
+   "provider": "anthropic",
+   "n_gold_spans": 2,
+   "span_ranks": [
+    null,
+    null
+   ],
+   "hit_at_10": false,
+   "full_coverage_at_10": false,
+   "hit_at_1": false,
+   "best_rank": null,
+   "latency_ms": 5152.471
+  },
+  {
+   "case_id": "C05",
+   "slice": "C",
+   "provider": "anthropic",
+   "n_gold_spans": 1,
+   "span_ranks": [
+    null
+   ],
+   "hit_at_10": false,
+   "full_coverage_at_10": false,
+   "hit_at_1": false,
+   "best_rank": null,
+   "latency_ms": 5708.025
+  },
+  {
+   "case_id": "C09",
+   "slice": "C",
+   "provider": "anthropic",
+   "n_gold_spans": 1,
+   "span_ranks": [
+    null
+   ],
+   "hit_at_10": false,
+   "full_coverage_at_10": false,
+   "hit_at_1": false,
+   "best_rank": null,
+   "latency_ms": 5886.567
+  },
+  {
+   "case_id": "C10",
+   "slice": "C",
+   "provider": "anthropic",
+   "n_gold_spans": 2,
+   "span_ranks": [
+    1,
+    1
+   ],
+   "hit_at_10": true,
+   "full_coverage_at_10": true,
+   "hit_at_1": true,
+   "best_rank": 1,
+   "latency_ms": 5682.463
+  },
+  {
+   "case_id": "C11",
+   "slice": "C",
+   "provider": "anthropic",
+   "n_gold_spans": 1,
+   "span_ranks": [
+    6
+   ],
+   "hit_at_10": true,
+   "full_coverage_at_10": true,
+   "hit_at_1": false,
+   "best_rank": 6,
+   "latency_ms": 4691.471
+  },
+  {
+   "case_id": "C16",
+   "slice": "C",
+   "provider": "anthropic",
+   "n_gold_spans": 1,
+   "span_ranks": [
+    1
+   ],
+   "hit_at_10": true,
+   "full_coverage_at_10": true,
+   "hit_at_1": true,
+   "best_rank": 1,
+   "latency_ms": 5970.606
+  },
+  {
+   "case_id": "C29",
+   "slice": "C",
+   "provider": "anthropic",
+   "n_gold_spans": 1,
+   "span_ranks": [
+    1
+   ],
+   "hit_at_10": true,
+   "full_coverage_at_10": true,
+   "hit_at_1": true,
+   "best_rank": 1,
+   "latency_ms": 4701.496
+  },
+  {
+   "case_id": "D03",
+   "slice": "D",
+   "provider": "openai",
+   "n_gold_spans": 1,
+   "span_ranks": [
+    null
+   ],
+   "hit_at_10": false,
+   "full_coverage_at_10": false,
+   "hit_at_1": false,
+   "best_rank": null,
+   "latency_ms": 3781.871
+  },
+  {
+   "case_id": "D08",
+   "slice": "D",
+   "provider": "openai",
+   "n_gold_spans": 1,
+   "span_ranks": [
+    null
+   ],
+   "hit_at_10": false,
+   "full_coverage_at_10": false,
+   "hit_at_1": false,
+   "best_rank": null,
+   "latency_ms": 8879.582
+  },
+  {
+   "case_id": "D16",
+   "slice": "D",
+   "provider": "anthropic",
+   "n_gold_spans": 1,
+   "span_ranks": [
+    1
+   ],
+   "hit_at_10": true,
+   "full_coverage_at_10": true,
+   "hit_at_1": true,
+   "best_rank": 1,
+   "latency_ms": 4120.444
+  },
+  {
+   "case_id": "D19",
+   "slice": "D",
+   "provider": "anthropic",
+   "n_gold_spans": 2,
+   "span_ranks": [
+    2,
+    2
+   ],
+   "hit_at_10": true,
+   "full_coverage_at_10": true,
+   "hit_at_1": false,
+   "best_rank": 2,
+   "latency_ms": 4420.49
+  },
+  {
+   "case_id": "D23",
+   "slice": "D",
+   "provider": "openai",
+   "n_gold_spans": 2,
+   "span_ranks": [
+    2,
+    3
+   ],
+   "hit_at_10": true,
+   "full_coverage_at_10": true,
+   "hit_at_1": false,
+   "best_rank": 2,
+   "latency_ms": 5182.116
+  },
+  {
+   "case_id": "D24",
+   "slice": "D",
+   "provider": "openai",
+   "n_gold_spans": 1,
+   "span_ranks": [
+    1
+   ],
+   "hit_at_10": true,
+   "full_coverage_at_10": true,
+   "hit_at_1": true,
+   "best_rank": 1,
+   "latency_ms": 4500.752
+  },
+  {
+   "case_id": "D27",
+   "slice": "D",
+   "provider": "openai",
+   "n_gold_spans": 1,
+   "span_ranks": [
+    null
+   ],
+   "hit_at_10": false,
+   "full_coverage_at_10": false,
+   "hit_at_1": false,
+   "best_rank": null,
+   "latency_ms": 3877.421
+  },
+  {
+   "case_id": "D29",
+   "slice": "D",
+   "provider": "openai",
+   "n_gold_spans": 1,
+   "span_ranks": [
+    7
+   ],
+   "hit_at_10": true,
+   "full_coverage_at_10": true,
+   "hit_at_1": false,
+   "best_rank": 7,
+   "latency_ms": 6384.398
+  },
+  {
+   "case_id": "E01",
+   "slice": "E",
+   "provider": "anthropic",
+   "n_gold_spans": 1,
+   "span_ranks": [
+    null
+   ],
+   "hit_at_10": false,
+   "full_coverage_at_10": false,
+   "hit_at_1": false,
+   "best_rank": null,
+   "latency_ms": 5227.291
+  },
+  {
+   "case_id": "E05",
+   "slice": "E",
+   "provider": "anthropic",
+   "n_gold_spans": 1,
+   "span_ranks": [
+    8
+   ],
+   "hit_at_10": true,
+   "full_coverage_at_10": true,
+   "hit_at_1": false,
+   "best_rank": 8,
+   "latency_ms": 6866.059
+  },
+  {
+   "case_id": "E06",
+   "slice": "E",
+   "provider": "anthropic",
+   "n_gold_spans": 1,
+   "span_ranks": [
+    null
+   ],
+   "hit_at_10": false,
+   "full_coverage_at_10": false,
+   "hit_at_1": false,
+   "best_rank": null,
+   "latency_ms": 4601.325
+  },
+  {
+   "case_id": "E15",
+   "slice": "E",
+   "provider": "anthropic",
+   "n_gold_spans": 1,
+   "span_ranks": [
+    6
+   ],
+   "hit_at_10": true,
+   "full_coverage_at_10": true,
+   "hit_at_1": false,
+   "best_rank": 6,
+   "latency_ms": 6012.11
+  },
+  {
+   "case_id": "E17",
+   "slice": "E",
+   "provider": "anthropic",
+   "n_gold_spans": 2,
+   "span_ranks": [
+    5,
+    5
+   ],
+   "hit_at_10": true,
+   "full_coverage_at_10": true,
+   "hit_at_1": false,
+   "best_rank": 5,
+   "latency_ms": 5622.591
+  },
+  {
+   "case_id": "E22",
+   "slice": "E",
+   "provider": "anthropic",
+   "n_gold_spans": 2,
+   "span_ranks": [
+    10,
+    9
+   ],
+   "hit_at_10": true,
+   "full_coverage_at_10": true,
+   "hit_at_1": false,
+   "best_rank": 9,
+   "latency_ms": 5349.158
+  },
+  {
+   "case_id": "E27",
+   "slice": "E",
+   "provider": "anthropic",
+   "n_gold_spans": 1,
+   "span_ranks": [
+    null
+   ],
+   "hit_at_10": false,
+   "full_coverage_at_10": false,
+   "hit_at_1": false,
+   "best_rank": null,
+   "latency_ms": 6487.349
+  },
+  {
+   "case_id": "E29",
+   "slice": "E",
+   "provider": "anthropic",
+   "n_gold_spans": 2,
+   "span_ranks": [
+    1,
+    1
+   ],
+   "hit_at_10": true,
+   "full_coverage_at_10": true,
+   "hit_at_1": true,
+   "best_rank": 1,
+   "latency_ms": 6101.236
+  }
+ ]
+}

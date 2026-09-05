@@ -1,0 +1,230 @@
+{
+ "record_id": "STATUS-V2-009",
+ "title": "SYSTEM-H on NATQ-002 validation \u2014 the single preregistered run",
+ "generated_utc": "2026-09-05 18:18Z",
+ "head": "ac25a6c",
+ "prior_status_head": "195b073",
+ "decision": "FAIL",
+ "decision_detail": {
+  "PASS_clause": false,
+  "FAIL_clause": true,
+  "interval_excludes_zero": true,
+  "mean_delta_sign": "positive",
+  "case_hit_at_10": 0.575,
+  "PASS_floor": 0.8,
+  "FAIL_floor": 0.65
+ },
+ "same_under_old_rule": true,
+ "decision_rule_note": "case_hit@10 = 0.575 is below the 0.65 FAIL floor, a disjunct present in BOTH the superseded and the replacement rule. The repaired regression clause did not affect this outcome and is not what produced the FAIL.",
+ "metrics_table": [
+  [
+   "micro-MRR (primary)",
+   0.2899,
+   0.1425
+  ],
+  [
+   "case_hit@10 \u2014 ANY gold span",
+   0.575,
+   0.375
+  ],
+  [
+   "case_full_coverage@10 \u2014 EVERY gold span",
+   0.55,
+   0.325
+  ],
+  [
+   "span_recall@10",
+   0.5614,
+   0.3333
+  ],
+  [
+   "case_hit@1",
+   0.2,
+   0.1
+  ],
+  [
+   "latency p50 (ms)",
+   5493.326,
+   394.016
+  ],
+  [
+   "latency p95 (ms)",
+   8371.576,
+   633.985
+  ]
+ ],
+ "paired": {
+  "observed_delta": 0.147341,
+  "bootstrap_mean_delta": 0.147718,
+  "ci95_low": 0.04379,
+  "ci95_high": 0.253785,
+  "interval_excludes_zero": true,
+  "resamples": 10000,
+  "seed": 20260904,
+  "unit": "case"
+ },
+ "per_slice": [
+  [
+   "A",
+   8,
+   13,
+   0.75,
+   0.375,
+   0.625,
+   0.5385,
+   0.2097
+  ],
+  [
+   "B",
+   8,
+   12,
+   0.375,
+   0.5,
+   0.375,
+   0.4167,
+   0.2292
+  ],
+  [
+   "C",
+   8,
+   11,
+   0.5,
+   0.25,
+   0.5,
+   0.4545,
+   0.3788
+  ],
+  [
+   "D",
+   8,
+   10,
+   0.625,
+   0.375,
+   0.625,
+   0.7,
+   0.3976
+  ],
+  [
+   "E",
+   8,
+   11,
+   0.625,
+   0.375,
+   0.625,
+   0.7273,
+   0.2639
+  ]
+ ],
+ "paired_cases": {
+  "h_only": [
+   "A23",
+   "A24",
+   "A28",
+   "B25",
+   "C11",
+   "C29",
+   "D19",
+   "D23",
+   "D29",
+   "E17",
+   "E22"
+  ],
+  "bm25_only": [
+   "B09",
+   "B28",
+   "D27"
+  ],
+  "both_hit": 12,
+  "both_miss": 14
+ },
+ "scorer": {
+  "verified": true,
+  "checks": [
+   [
+    "case_hit_at_10",
+    0.375,
+    0.375
+   ],
+   [
+    "micro_MRR",
+    0.1425,
+    0.1425
+   ],
+   [
+    "case_full_coverage_at_10",
+    0.325,
+    0.325
+   ],
+   [
+    "span_recall_at_10",
+    0.3333,
+    0.3333
+   ],
+   [
+    "case_hit_at_1",
+    0.1,
+    0.1
+   ]
+  ],
+  "vector_mismatches": 0,
+  "rank_mismatches": 0,
+  "bm25_rerun": false,
+  "db_queried": false,
+  "input_rows": 400
+ },
+ "rule": {
+  "states": 36,
+  "exclusive": true,
+  "exhaustive": true,
+  "regressions_fail": true,
+  "changed": 5
+ },
+ "stage_latency": {
+  "a_pool": 1300.72,
+  "local_bm25": 589.52,
+  "ce": 3581.53,
+  "projection": 885.58,
+  "blend": 0.78
+ },
+ "run": {
+  "gate": "33/33",
+  "consumed": 1,
+  "remaining": 2,
+  "retries": 0,
+  "cases": 40,
+  "spans": 57,
+  "reserve_bytes": 0,
+  "reserve_opened": false,
+  "logs": {
+   "ranked_output": 400,
+   "pools": 40,
+   "ce_scores": 40
+  }
+ },
+ "constraints": {
+  "reserve_opened": false,
+  "natq_001_holdout_opened": false,
+  "v1_holdout_opened": false,
+  "bm25_retrieval_rerun": false,
+  "tuned": false,
+  "system_redesigned": false,
+  "natq001_section_path_matching_used": false,
+  "release_promoted": false,
+  "second_scored_run": false
+ },
+ "prohibited_claims": [
+  "No gain over NATQ-001's historical 50% is claimed; METRIC-AUDIT-001 returned NOT_EQUIVALENT and the two benchmarks share no cases.",
+  "case_hit@10 measures retrieval evidence coverage, not answer accuracy.",
+  "No release promotion follows from this run."
+ ],
+ "hashes": {
+  "EVAL-NATQ2-H-002-PREREGISTRATION.json": "e17617d5c4cb1481e989484eb77c9bd7f79e95302ae3cf4afc571eb7930fff25",
+  "EVAL-NATQ2-H-001-SUPERSESSION.json": "fb589e81e1d62ad9b0a9f9c70136598c0b82a2e791cd595dd1a292206e2bb621",
+  "EVAL-NATQ2-H-002-RESULTS.json": "ce01aeee9bebd811b9a3ae1a2f58983ca607e3bb8f18096b232a0a2ddafff9ce",
+  "EVAL-NATQ2-H-002-CASE-RESULTS.json": "cc289dcbe10807330df8527d3f1313ce08a3c5e41e196e89a9239408ad0371ff",
+  "EVAL-NATQ2-H-002-RUN-ACCOUNTING.json": "4c22098985f437b4ca8b7b13d9483f4bb4616817697f9ce569fe6ead7396f6d2",
+  "natq2_scorer.py": "96447990b75f94e2f1e3daad1407eb1cdac53f7e4967ceb4ecdc4c0f8119b060",
+  "h-ranked-output.jsonl": "545eae62ff555bdd5f70ab9f24136546ff5a239c82392e179db0b896ed5bb63a"
+ },
+ "config_hash": "7599eb3c3bb4798230a722e6a7c96b046dc36cc0332b584ec55339896b2d717a"
+}
