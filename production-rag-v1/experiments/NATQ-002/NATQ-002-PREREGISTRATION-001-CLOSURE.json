@@ -1,0 +1,38 @@
+{
+  "record_id": "NATQ-002-PREREGISTRATION-001-CLOSURE",
+  "recorded_utc": "2026-09-04",
+  "authority": "coordinator ruling \u2014 SYSTEM-H RECOVERY COMPLETION + NATQ-002 PREREGISTRATION REPAIR",
+  "applies_to": "experiments/NATQ-002/NATQ-002-PREREGISTRATION-001.json",
+  "superseded_preregistration_sha256": "0e18154ea46d8d03da41e28ec54de88c5c4632c625084a71f8c1f867ed37b0f2",
+  "lifecycle_state": "SUPERSEDED_BEFORE_RUN_IDENTITY_AND_PRIOR_ANCHOR_CORRECTION",
+  "old_prereg_modified": false,
+  "why_superseded": [
+    {
+      "reason": 1,
+      "detail": "It pins the wrong SYSTEM-H identity. It requires score_determining_hash 3fade96a9b3597861b0788c15d0e456a52fa92f6907749a2661960e54bf7b2e5, a value minted locally over a local SYSTEM-H record. The authoritative frozen SYSTEM-H config hash is 7599eb3c3bb4798230a722e6a7c96b046dc36cc0332b584ec55339896b2d717a. The local hash is not an upstream SYSTEM-H identity and must not be reproduced, force-matched, or attached to the authoritative system."
+    },
+    {
+      "reason": 2,
+      "detail": "It asserts that no prior SYSTEM-H benchmark result existed. That premise is false. EVAL-NATQ-VAL-001 scored the authoritative SYSTEM-H on NATQ-001 validation, n=40."
+    }
+  ],
+  "recovered_historical_anchor": {
+    "experiment": "EVAL-NATQ-VAL-001",
+    "benchmark": "NATQ-001 validation",
+    "n": 40,
+    "strict_recall_at_10": "20/40",
+    "evidence_span_recall_at_10": "27/53 = 0.5094",
+    "document_recall_at_10": "35/40",
+    "candidate_gold_span_recall_at_100": "34/40",
+    "status": "prior evidence / historical anchor",
+    "definition_caveat": "These are NOT asserted to be definition-identical to NATQ-002 case_hit@10. No metric-definition audit has been performed, so they are treated as prior evidence, not as a directly comparable number."
+  },
+  "state_at_closure": {
+    "system_h_runs_consumed": 0,
+    "system_h_natq002_scores_emitted": false,
+    "reserve_accessed": false,
+    "old_prereg_modified": false
+  },
+  "retained_as": "historical evidence of what was planned before the identity and prior-anchor corrections",
+  "note": "Recorded as a separate closure artifact rather than an edit, so the superseded preregistration keeps its own hash and its 'written before any scoring' claim remains independently checkable."
+}

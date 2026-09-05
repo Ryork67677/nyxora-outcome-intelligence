@@ -1,0 +1,284 @@
+{
+  "record_id": "SYSTEM-H-RUNTIME-MANIFEST",
+  "recorded_utc": "2026-09-04",
+  "purpose": "Runtime identity gate for a future SYSTEM-H NATQ-002 validation run.",
+  "all_score_determining_components_verified": true,
+  "authoritative_system_h_config_hash": "7599eb3c3bb4798230a722e6a7c96b046dc36cc0332b584ec55339896b2d717a",
+  "recovered_from_ref": "origin/grok/v2-natq-20260903",
+  "code": {
+    "runner": {
+      "path": "experiments/RAG-V2/EVAL-NATQ-VAL-001/scripts/run_eval_natq_val_001.py",
+      "sha256": "31eb6af38bdae87800e77c2c5c6a211b7cbb032ebccfd432bc3d633f3c873c94",
+      "git_blob_sha256": "31eb6af38bdae87800e77c2c5c6a211b7cbb032ebccfd432bc3d633f3c873c94",
+      "worktree_matches_ref": true
+    },
+    "exp019a_prior": {
+      "path": "experiments/EXP-019A/scripts/run_exp019a.py",
+      "sha256": "ca5d2fa71fef5db2888b9c82f63c572994c64c0baaf638f08f216199e2d830b7",
+      "git_blob_sha256": "ca5d2fa71fef5db2888b9c82f63c572994c64c0baaf638f08f216199e2d830b7",
+      "worktree_matches_ref": true
+    },
+    "projection_builder": {
+      "path": "experiments/EXP-017/scripts/build_projections.py",
+      "sha256": "d37fd57112991925d55c6d4c757e21eb23a8f81227c5578ed3d8b4608c4de240",
+      "git_blob_sha256": "d37fd57112991925d55c6d4c757e21eb23a8f81227c5578ed3d8b4608c4de240",
+      "worktree_matches_ref": true
+    },
+    "projection_retrieval": {
+      "path": "experiments/EXP-017/scripts/projection_retrieval.py",
+      "sha256": "798dcb9c57019adefc555a36a56ec81e42a47ae6863dc0ad0277ff283d2dd32b",
+      "git_blob_sha256": "798dcb9c57019adefc555a36a56ec81e42a47ae6863dc0ad0277ff283d2dd32b",
+      "worktree_matches_ref": true
+    },
+    "system_e_candidate_gen": {
+      "path": "experiments/EXP-018/scripts/system_e.py",
+      "sha256": "b7486afd06979ddf1cfd1a5c9fb2f7ed46f70197d64a9b0f7ea378351d385a0a",
+      "git_blob_sha256": "b7486afd06979ddf1cfd1a5c9fb2f7ed46f70197d64a9b0f7ea378351d385a0a",
+      "worktree_matches_ref": true
+    },
+    "local_bm25_w20": {
+      "path": "experiments/EXP-018B/scripts/local_bm25_batched.py",
+      "sha256": "97e412ae3d041247be063d6a2962d2e844a878ad8961f0684eabf79a56086190",
+      "git_blob_sha256": "97e412ae3d041247be063d6a2962d2e844a878ad8961f0684eabf79a56086190",
+      "worktree_matches_ref": true
+    },
+    "cross_encoder": {
+      "path": "experiments/EXP-015/scripts/cross_encoder.py",
+      "sha256": "ad987d12747c28e75257d8d9a0a526d216052937cffe2268921f5278b51fac45",
+      "git_blob_sha256": "ad987d12747c28e75257d8d9a0a526d216052937cffe2268921f5278b51fac45",
+      "worktree_matches_ref": true
+    },
+    "perf003_d1_path": {
+      "path": "experiments/PERF-003/scripts/v2_system_g_ce.py",
+      "sha256": "eaa55835b7ab0157a67268d8716940a6f30fd0734b6e5ff41252fddfb6afb28e",
+      "git_blob_sha256": "eaa55835b7ab0157a67268d8716940a6f30fd0734b6e5ff41252fddfb6afb28e",
+      "worktree_matches_ref": true
+    },
+    "rag_v1_systems": {
+      "path": "src/rag_v1/systems.py",
+      "sha256": "76c48448f8cefed0b3f532cec4390d9a5eae78aae8b932d3fb80aedbbf9c3073",
+      "git_blob_sha256": "76c48448f8cefed0b3f532cec4390d9a5eae78aae8b932d3fb80aedbbf9c3073",
+      "worktree_matches_ref": true
+    },
+    "rag_v1_retrieval": {
+      "path": "src/rag_v1/retrieval.py",
+      "sha256": "f5438eb140bf388735077db6fed5d2d008cb5f5cf73d378055179c6ae2fbb734",
+      "git_blob_sha256": "f5438eb140bf388735077db6fed5d2d008cb5f5cf73d378055179c6ae2fbb734",
+      "worktree_matches_ref": true
+    },
+    "rag_v1_ids": {
+      "path": "src/rag_v1/ids.py",
+      "sha256": "28a16ade20566926a379cf454d932f1d4882f5452611f1c183b6ff98649562e1",
+      "git_blob_sha256": "28a16ade20566926a379cf454d932f1d4882f5452611f1c183b6ff98649562e1",
+      "worktree_matches_ref": true
+    },
+    "rag_v1_embedders_transformer": {
+      "path": "src/rag_v1/embedders_transformer.py",
+      "sha256": "d0f5d9b212f872ed83a408143b5cbdf20557bcd63d81888f95d9fe35015524b0",
+      "git_blob_sha256": "d0f5d9b212f872ed83a408143b5cbdf20557bcd63d81888f95d9fe35015524b0",
+      "worktree_matches_ref": true
+    }
+  },
+  "configs": {
+    "system_h_upstream": {
+      "path": "experiments/RAG-V2/SYSTEM-H-V2-DEV-CANDIDATE/SYSTEM-H-V2-DEV-CANDIDATE.json",
+      "sha256": "7cd3a5f3d5fcf9c66561c9e9cbfbc213f49e6efa0fdf0005869b085c3eafe475"
+    },
+    "system_g_projection_prior": {
+      "path": "experiments/EXP-019A/SYSTEM-G-PROJECTION-PRIOR.json",
+      "sha256": "7f4ff6db09f32e55cac820cbc00d87ce2ae91886d444c3bad20ac3e04c7f0f61"
+    },
+    "exp019a_preregistration": {
+      "path": "experiments/EXP-019A/EXP-019A-preregistration.json",
+      "sha256": "f14001eff07b63c7916d7e27567d15ccd1e53b52918ae66f0d24ca37abb54cf3"
+    },
+    "exp019a_results": {
+      "path": "experiments/EXP-019A/EXP-019A-results.json",
+      "sha256": "adb4377427be987c4ece29332c486efe57d89e2293dc3b28f69e01b93db420cf"
+    },
+    "system_g_ce_d1": {
+      "path": "experiments/PERF-003/SYSTEM-G-CE-D1.json",
+      "sha256": "cf0c985c5f7738e7fc5422039fd6940621d8dcd8f91de41abe3784ac53a6a7ec"
+    },
+    "perf003_preregistration": {
+      "path": "experiments/PERF-003/PERF-003-preregistration.json",
+      "sha256": "dc01713eafc56347a9eba0711d0947f13fccbc8ba784dfa034e22280ec23c880"
+    },
+    "exp017_projection_build": {
+      "path": "experiments/EXP-017/EXP-017-projection-build.json",
+      "sha256": "9e10058a0417b3eea1bde42eaa12fe43b6eeb0ddeb9d049bc26359e207daf1a7"
+    }
+  },
+  "cross_encoder": {
+    "name": "cross-encoder/ms-marco-MiniLM-L6-v2",
+    "revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a",
+    "model_onnx_sha256": "5d3e70fd0c9ff14b9b5169a51e957b7a9c74897afd0a35ce4bd318150c1d4d4a",
+    "matches_frozen_value": true,
+    "artifact_files": {
+      "config.json": "380e02c93f431831be65d99a4e7e5f67c133985bf2e77d9d4eba46847190bacc",
+      "model.onnx": "5d3e70fd0c9ff14b9b5169a51e957b7a9c74897afd0a35ce4bd318150c1d4d4a",
+      "special_tokens_map.json": "3c3507f36dff57bce437223db3b3081d1e2b52ec3e56ee55438193ecb2c94dd6",
+      "tokenizer.json": "d241a60d5e8f04cc1b2b3e9ef7a4921b27bf526d9f6050ab90f9267a1f9e5c66",
+      "tokenizer_config.json": "a5c2e5a7b1a29a0702cd28c08a399b5ecc110c263009d17f7e3b415f25905fd8",
+      "vocab.txt": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3"
+    }
+  },
+  "embedding_model": {
+    "model_id": "emb_e7d4183fd6eb878ae2fdf080efb6861e",
+    "model_name": "sentence-transformers/all-MiniLM-L6-v2",
+    "fingerprint": "bd95feaeacf98559",
+    "bundle_sha256": "913d7300ceae3b2dbc2c50d1de4baacab4be7b9380491c27fab7418616a16ec3",
+    "bundle_matches_pinned_value": true
+  },
+  "projection": {
+    "projection_set_id": "ps_v2_ovl_win448_s224",
+    "config_hash": "7fd5034c9510a1e08ec76bd22b020703c586dd12e7c02659397df05c5c365a8e",
+    "projection_count": 18057,
+    "embedding_count": 18057,
+    "fingerprint": "bd95feaeacf98559",
+    "origin": "deterministic rematerialization",
+    "original_rows_recovered": false,
+    "identity_exact": true,
+    "note": "Original rows were not found in any database, backup or cache. Rebuilt with the recovered EXP-017 builder and the recovered src tree against the same frozen corpus and the same hash-verified MiniLM bundle. Config hash, count and fingerprint all match the recovered build record exactly."
+  },
+  "corpus": {
+    "snapshot_id": "snap_689e336380a054d8039dc35b2c09cd0a",
+    "documents": 202,
+    "chunk_set_id": "cs_v1_control",
+    "chunks": 14209
+  },
+  "gate_results": [
+    {
+      "check": "code runner present and matches origin/grok/v2-natq-20260903",
+      "pass": true
+    },
+    {
+      "check": "code exp019a_prior present and matches origin/grok/v2-natq-20260903",
+      "pass": true
+    },
+    {
+      "check": "code projection_builder present and matches origin/grok/v2-natq-20260903",
+      "pass": true
+    },
+    {
+      "check": "code projection_retrieval present and matches origin/grok/v2-natq-20260903",
+      "pass": true
+    },
+    {
+      "check": "code system_e_candidate_gen present and matches origin/grok/v2-natq-20260903",
+      "pass": true
+    },
+    {
+      "check": "code local_bm25_w20 present and matches origin/grok/v2-natq-20260903",
+      "pass": true
+    },
+    {
+      "check": "code cross_encoder present and matches origin/grok/v2-natq-20260903",
+      "pass": true
+    },
+    {
+      "check": "code perf003_d1_path present and matches origin/grok/v2-natq-20260903",
+      "pass": true
+    },
+    {
+      "check": "code rag_v1_systems present and matches origin/grok/v2-natq-20260903",
+      "pass": true
+    },
+    {
+      "check": "code rag_v1_retrieval present and matches origin/grok/v2-natq-20260903",
+      "pass": true
+    },
+    {
+      "check": "code rag_v1_ids present and matches origin/grok/v2-natq-20260903",
+      "pass": true
+    },
+    {
+      "check": "code rag_v1_embedders_transformer present and matches origin/grok/v2-natq-20260903",
+      "pass": true
+    },
+    {
+      "check": "config system_h_upstream recovered",
+      "pass": true
+    },
+    {
+      "check": "config system_g_projection_prior recovered",
+      "pass": true
+    },
+    {
+      "check": "config exp019a_preregistration recovered",
+      "pass": true
+    },
+    {
+      "check": "config exp019a_results recovered",
+      "pass": true
+    },
+    {
+      "check": "config system_g_ce_d1 recovered",
+      "pass": true
+    },
+    {
+      "check": "config perf003_preregistration recovered",
+      "pass": true
+    },
+    {
+      "check": "config exp017_projection_build recovered",
+      "pass": true
+    },
+    {
+      "check": "SYSTEM-G-CE-D1.json matches recorded file sha",
+      "pass": true
+    },
+    {
+      "check": "upstream SYSTEM-H record carries the authoritative config hash",
+      "pass": true
+    },
+    {
+      "check": "upstream SYSTEM-H parent SYSTEM-G config hash matches",
+      "pass": true
+    },
+    {
+      "check": "upstream SYSTEM-H parent CE-D1 config hash matches",
+      "pass": true
+    },
+    {
+      "check": "runner pins the authoritative SYSTEM-H config hash",
+      "pass": true
+    },
+    {
+      "check": "CE artifact present and SHA256 matches the frozen value",
+      "pass": true
+    },
+    {
+      "check": "CE tokenizer present",
+      "pass": true
+    },
+    {
+      "check": "MiniLM bundle SHA256 matches the value pinned in the recovered encoder",
+      "pass": true
+    },
+    {
+      "check": "projection set config hash matches the recovered build record",
+      "pass": true
+    },
+    {
+      "check": "projection count is exactly 18057",
+      "pass": true
+    },
+    {
+      "check": "projection embeddings complete (18057)",
+      "pass": true
+    },
+    {
+      "check": "projection fingerprint is exactly bd95feaeacf98559",
+      "pass": true
+    },
+    {
+      "check": "corpus snapshot intact (202 documents)",
+      "pass": true
+    },
+    {
+      "check": "cs_v1_control intact (14209 chunks)",
+      "pass": true
+    }
+  ]
+}

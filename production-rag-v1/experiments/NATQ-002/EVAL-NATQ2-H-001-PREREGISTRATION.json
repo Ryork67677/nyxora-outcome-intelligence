@@ -1,0 +1,217 @@
+{
+  "record_id": "EVAL-NATQ2-H-001",
+  "recorded_utc": "2026-09-04",
+  "title": "SYSTEM-H NATQ-002 validation (n=40) \u2014 replacement preregistration",
+  "replaces": {
+    "superseded": "experiments/NATQ-002/NATQ-002-PREREGISTRATION-001.json",
+    "superseded_sha256": "0e18154ea46d8d03da41e28ec54de88c5c4632c625084a71f8c1f867ed37b0f2",
+    "closure": "experiments/NATQ-002/NATQ-002-PREREGISTRATION-001-CLOSURE.json",
+    "closure_sha256": "71209af5be71f920beaa9da5857db57bcf85cedf7aacf4a3ac68cf263e75da71",
+    "is_a_replacement_not_an_edit": true
+  },
+  "written_before_any_SYSTEM_H_NATQ002_scoring": true,
+  "system_under_test": {
+    "name": "SYSTEM-H-V2-DEV-CANDIDATE",
+    "authoritative_config_hash": "7599eb3c3bb4798230a722e6a7c96b046dc36cc0332b584ec55339896b2d717a",
+    "identity_rule": "The run is valid only if the runner's pinned H_CONFIG_HASH equals the value above. The locally minted hashes 026a302b\u2026 and 3fade96a\u2026 are NOT SYSTEM-H identities, must not be reproduced or force-matched, and must never be attached to the authoritative frozen system.",
+    "runtime_manifest": "experiments/SYSTEM-H/SYSTEM-H-RUNTIME-MANIFEST.json",
+    "runtime_manifest_sha256": "1e045a6eeff2a51bf9f520f1e5bffbcb734939d72dc0b848340fea4cded4c96a",
+    "runner": "experiments/RAG-V2/EVAL-NATQ-VAL-001/scripts/run_eval_natq_val_001.py (recovered)",
+    "runner_sha256": "31eb6af38bdae87800e77c2c5c6a211b7cbb032ebccfd432bc3d633f3c873c94",
+    "recovered_from_ref": "origin/grok/v2-natq-20260903",
+    "all_score_determining_components_verified": true,
+    "gate": "33/33 runtime identity checks passed"
+  },
+  "projection": {
+    "projection_set_id": "ps_v2_ovl_win448_s224",
+    "config_hash": "7fd5034c9510a1e08ec76bd22b020703c586dd12e7c02659397df05c5c365a8e",
+    "count": 18057,
+    "fingerprint": "bd95feaeacf98559",
+    "original_rows_recovered": false,
+    "origin": "deterministic rematerialization",
+    "identity_exact": true,
+    "evidence": "experiments/SYSTEM-H/PROJECTION-REMATERIALIZATION-001.json",
+    "evidence_sha256": "e8c4080a4735cad473cb617ff33aa505d2a2df204da2df99c3faa3c8a2b64159",
+    "proof": "The rebuilt EXP-017 build record was diffed field by field against the recovered original: 31 of 34 fields identical, the only 3 differences being wall-clock timings. Every identity-determining field matches \u2014 projection_set_id, config hash, model id and fingerprint, n_versions 202, n_windows_considered 18060, n_projections 18057, n_skipped 3, n_covering_multi 12687, max_windows_in_one_doc 5158 and its version_id, embeddings 18057, fingerprint min=max, zero all-zero embeddings, tokens_seen 8125103, token_coverage 1.0."
+  },
+  "benchmark_and_split": {
+    "benchmark_file_sha256": "1450b9e1ba892d84d2ecab279cfa229b128a02108a4704b56393382b6c5bf741",
+    "benchmark_canonical_content_sha256": "d1f2b51f61a05c7652cd420c32bedb6b72b2ad8cfe14a43ab0fe3d49774c9d60",
+    "validation_sha256": "6b7f3c90e2bfa58f244de6b2aff65e56ca3f50e2ed0886e83696aba8f5b47961",
+    "validation_cases": 40,
+    "validation_gold_spans": 57,
+    "reserve_sha256": "14aaa80224b5ad4bea021ccc63ffc96d463e54c9ee71f27b552aaecc06c46e32",
+    "reserve_cases": 60,
+    "reserve_lock_sha256": "f60eca02d4223770d09146f250685f23a644fc35980e30178d54f0a1b0274215",
+    "reserve_access_log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "reserve_access_log_bytes": 0,
+    "scored_partition": "validation ONLY",
+    "reserve_is_not_opened": true,
+    "corpus_snapshot_id": "snap_689e336380a054d8039dc35b2c09cd0a",
+    "chunk_set_id": "cs_v1_control"
+  },
+  "bm25_comparator": {
+    "system_id": "SYSTEM-BM25-NATQ-CONTROL",
+    "status": "IMMUTABLE \u2014 already scored, not to be rerun or tuned",
+    "results_sha256": "e2e7d70dcf42fa31edfc8690ddb26f15fd5dc67ed5a612c662480db0456b831b",
+    "case_results_sha256": "061e475b5ed7df140919fd5ad60fb96d6ef31b0a64d39aac561fac31ee4a7054",
+    "ranked_output_sha256": "1eb9ffe15e3974f195da6a3145da8f8952a203658e9ed11ec1d2ad678a61ba6a",
+    "preregistration_sha256": "bb3c2b29866d40262c427aeaac4db0374e39caf2642570268160f2610dc4e5bc",
+    "metrics": {
+      "case_hit_at_10": 0.375,
+      "micro_MRR": 0.1425,
+      "case_full_coverage_at_10": 0.325,
+      "span_recall_at_10": 0.3333,
+      "case_hit_at_1": 0.1
+    },
+    "role": "frozen per-case pass/fail vector is the paired comparator input"
+  },
+  "metrics": {
+    "definitions_inherit": "METRIC-DEFS-V2 (EXP-024A), adapted to NATQ-002's own populations",
+    "retrieval_unit": "cs_v1_control chunk",
+    "span_hit": "a gold span is HIT at depth k if any chunk returned in the top k overlaps the span's [char_start, char_end) interval in the span's own version_id",
+    "primary": {
+      "name": "micro-MRR",
+      "definition": "mean over ALL gold spans in the partition of 1/rank of the first returned chunk that hits that span; 0 if unhit within the evaluation depth",
+      "population_validation": 57,
+      "population_reserve": 79
+    },
+    "secondary": [
+      {
+        "name": "case_hit@10",
+        "definition": "fraction of cases with at least one gold span hit in the top 10"
+      },
+      {
+        "name": "case_full_coverage@10",
+        "definition": "fraction of cases with EVERY gold span hit in the top 10"
+      },
+      {
+        "name": "span_recall@10",
+        "definition": "fraction of gold spans hit in the top 10"
+      },
+      {
+        "name": "case_hit@1",
+        "definition": "fraction of cases with at least one gold span hit at rank 1"
+      },
+      {
+        "name": "per_slice_breakdown",
+        "definition": "all of the above reported per authoring slice A-E, 8 cases each in validation"
+      },
+      {
+        "name": "latency_p50_p95_ms",
+        "definition": "end-to-end per-query wall time, reported but never used in the pass/fail decision"
+      }
+    ],
+    "evaluation_depth": 10,
+    "depth_is_fixed": "Depth 10 is fixed now. Reporting a different depth after seeing results, or choosing the depth that looks best, invalidates the run."
+  },
+  "multi_span_treatment": {
+    "validation_multi_span_cases": 16,
+    "validation_span_histogram": {
+      "1": 24,
+      "2": 15,
+      "3": 1
+    },
+    "reserve_multi_span_cases": 17,
+    "reserve_span_histogram": {
+      "1": 43,
+      "2": 15,
+      "3": 2
+    },
+    "rule": "Every gold span is an independent unit in micro-MRR and span_recall, so a 3-span case contributes three terms and weighs three times a 1-span case in the primary metric. Case-level metrics weigh every case equally regardless of span count. Both families are reported; neither substitutes for the other.",
+    "full_coverage_rule": "case_full_coverage@10 requires ALL of a case's gold spans hit. Partial coverage counts as a miss for that metric and as a partial hit for span_recall.",
+    "no_reweighting": "Multi-span cases are NOT downweighted to equalise case influence. Doing so after seeing results would be a metric change."
+  },
+  "cross_provider_treatment": {
+    "count_in_benchmark": 1,
+    "case": "A02",
+    "partition": "reserve",
+    "note": "The single cross-provider case landed in RESERVE by the split's hash ordering, not by choice. It therefore does not affect the validation run at all, and this clause binds only a future reserve run.",
+    "rule": "A02 is scored as an ordinary multi-span case. Its two gold spans live in different documents under different providers and each is hit or missed independently on its own version_id. No provider weighting is applied and no provider-specific metric is defined.",
+    "reporting": "Because n=1, A02's outcome is reported as a named diagnostic and is never presented as a cross-provider rate."
+  },
+  "decision_rule": {
+    "primary_test": "paired comparison of micro-MRR, SYSTEM-H minus BM25 baseline, over the 57 validation gold spans",
+    "statistic": "paired bootstrap over CASES (not spans), 10,000 resamples, seed 20260904, reporting the mean delta and a 95% percentile interval",
+    "why_resample_cases": "Spans within a case are not independent; resampling cases keeps the unit of independence honest.",
+    "PASS": "micro-MRR delta > 0 with a 95% interval excluding 0, AND case_hit@10 >= 0.80",
+    "FAIL": "the 95% interval includes 0, OR case_hit@10 < 0.65",
+    "INCONCLUSIVE": "anything else \u2014 in particular an interval excluding 0 with case_hit@10 between 0.65 and 0.80",
+    "threshold_provenance": {
+      "delta_test": "Well grounded. It is a paired comparison against a baseline run on the same cases at the same time; no prior on NATQ-002 is needed.",
+      "case_hit_floors": "WEAKLY GROUNDED AND FLAGGED. 0.80 and 0.65 are judgement calls, not derived from any NATQ-002 measurement, because none exists. They are set now so they cannot be set later. The coordinator should either approve them or replace them BEFORE the first run; changing them afterwards voids the preregistration."
+    },
+    "thresholds_provenance": {
+      "inherited_unchanged_from": "NATQ-002-THRESHOLD-DECISION-001 (APPROVED_PRE_RUN)",
+      "threshold_decision_sha256": "b0a9f504e682174e4de83d030d377d91c1b69b93612579fe7f9a0cf27a868efb",
+      "PASS_floor_case_hit_at_10": 0.8,
+      "FAIL_floor_case_hit_at_10": 0.65,
+      "changed": false,
+      "chosen_before_any_SYSTEM_H_NATQ002_score_existed": true,
+      "not_empirically_derived_from_NATQ_002": true,
+      "historical_NATQ_001_result_was_known_when_this_replacement_was_written": true,
+      "these_are_not_statistical_priors": "They are engineering qualification floors. They are not estimates of expected performance and must not be described as statistical priors."
+    }
+  },
+  "disclosed_prior_evidence": {
+    "statement": "SYSTEM-H has been evaluated before. This is disclosed rather than implied absent.",
+    "experiment": "EVAL-NATQ-VAL-001",
+    "benchmark": "NATQ-001 validation",
+    "n": 40,
+    "gold_spans": 53,
+    "system_h_config_hash_verified": "7599eb3c3bb4798230a722e6a7c96b046dc36cc0332b584ec55339896b2d717a",
+    "results": {
+      "strict_recall_at_10": "20/40",
+      "evidence_span_recall_at_10": "27/53 = 0.5094",
+      "document_recall_at_10": "35/40",
+      "candidate_gold_span_recall_at_100": "34/40"
+    },
+    "definition_caveat": "NOT asserted to be definition-identical to NATQ-002 case_hit@10. No metric-definition audit has been performed. Treated as prior evidence and a historical anchor, not as a directly comparable number.",
+    "implication_stated_plainly": "The approved PASS floor of 0.80 sits well above this historical ~0.50 case-level result on a comparable natural-query set. On that evidence SYSTEM-H may well fail the floor. The floor is retained unchanged by coordinator ruling; this note exists so that outcome cannot later be presented as a surprise."
+  },
+  "explicit_statements": {
+    "NATQ_002_validation_has_never_been_scored_by_SYSTEM_H": true,
+    "SYSTEM_H_NATQ002_validation_runs_consumed": 0,
+    "BM25_has_already_been_scored_on_validation": true,
+    "NATQ_002_reserve_remains_pristine": true,
+    "SYSTEM_H_has_been_evaluated_before_on_a_different_benchmark": true,
+    "do_not_read_this_as_SYSTEM_H_never_evaluated": "SYSTEM-H itself HAS been evaluated \u2014 on NATQ-001 validation. What has never been scored is NATQ-002."
+  },
+  "permitted_runs": {
+    "validation_runs_allowed": 3,
+    "rule": "Each scored validation run is logged with the system's score_determining_hash, a UTC timestamp and the resulting metrics. A configuration change produces a new hash and consumes one of the three runs. Exhausting three runs without a PASS ends the validation phase; it does not license a fourth.",
+    "reserve_runs_allowed": 1,
+    "reserve_run_precondition": "a PASS on validation, plus an explicit owner decision, plus an access-log entry written before the read"
+  },
+  "reserve_prohibition": {
+    "during_tuning": "evals/splits/natq-002/reserve.json may not be opened, read, summarised, sampled, or used to inform any configuration, prompt, threshold or architecture decision while tuning is in progress.",
+    "lock": "evals/splits/natq-002/reserve.lock.json",
+    "access_log": "evals/splits/natq-002/reserve-access.log.jsonl",
+    "log_before_read": "The access-log entry is appended BEFORE the file is opened, so an unlogged read is detectable as a hash change with no preceding entry.",
+    "entries_so_far": 0
+  },
+  "allowed_after_validation_before_reserve": [
+    "Change SYSTEM-H configuration, which mints a new score_determining_hash and consumes a validation run.",
+    "Re-run validation up to the three-run cap.",
+    "Analyse validation failures case by case, including reading validation gold evidence.",
+    "Declare the validation phase finished and stop.",
+    "Propose a new experiment against a different benchmark or partition."
+  ],
+  "prohibited_after_validation_before_reserve": [
+    "Opening or sampling the reserve partition for any reason short of the documented unlock.",
+    "Changing NATQ-002 membership, question text, or gold spans.",
+    "Changing any metric definition, the evaluation depth, or the decision thresholds.",
+    "Moving a case between validation and reserve.",
+    "Re-running the split with a different salt or method.",
+    "Reporting a metric not listed above as though it were preregistered."
+  ],
+  "invalidation_conditions": [
+    "the benchmark canonical_content_sha256 differs from d1f2b51f\u2026 at run time",
+    "any split file hash differs from the values pinned above",
+    "the runtime manifest hash differs from the value pinned above",
+    "the runner's pinned H_CONFIG_HASH differs from 7599eb3c\u2026",
+    "the projection set config hash, count 18057 or fingerprint bd95feaeacf98559 differ at run time",
+    "the reserve access log is non-empty before a PASS and an owner decision"
+  ],
+  "ready_for_first_run_pending": "coordinator approval"
+}
