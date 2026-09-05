@@ -1,0 +1,464 @@
+{
+ "record_id": "STATUS-V2-011",
+ "title": "NATQ2-DIAG-002 \u2014 pre-CE trace reconstruction",
+ "generated_utc": "2026-09-05 19:31Z",
+ "head": "88d98b4",
+ "prior_status_head": "88d98b4",
+ "replay": {
+  "implementations": 19,
+  "ref": "origin/grok/v2-natq-20260903",
+  "top10_mismatches": 0,
+  "vector_mismatches": 0,
+  "rank_mismatches": 0,
+  "metric_mismatches": {},
+  "exact": true,
+  "ce_inference": false,
+  "ce_bijective": true
+ },
+ "dist": {
+  "ranked_out_12": {
+   ">20": 9,
+   "<=5": 2,
+   "<=10": 1
+  },
+  "all_in_pool_44": {
+   "<=5": 5,
+   ">20": 11,
+   "<=3": 17,
+   "<=10": 9,
+   "<=20": 2
+  },
+  "final_top10_32": {
+   "<=5": 3,
+   "<=3": 17,
+   "<=10": 8,
+   ">20": 2,
+   "<=20": 2
+  }
+ },
+ "rtfo": {
+  "spans": "3/57",
+  "spans_n": 3,
+  "cases": "3/40",
+  "cases_n": 3,
+  "ids": [
+   "B28",
+   "D27",
+   "E06"
+  ],
+  "detail": [
+   {
+    "case_id": "B28",
+    "span_index": 0,
+    "pre_ce_retrieval_rank": 4,
+    "ce_rank": 17,
+    "ce_score": -4.517999,
+    "final_blend_rank": 11
+   },
+   {
+    "case_id": "D27",
+    "span_index": 0,
+    "pre_ce_retrieval_rank": 4,
+    "ce_rank": 32,
+    "ce_score": -3.377518,
+    "final_blend_rank": 11
+   },
+   {
+    "case_id": "E06",
+    "span_index": 0,
+    "pre_ce_retrieval_rank": 10,
+    "ce_rank": 30,
+    "ce_score": -2.796168,
+    "final_blend_rank": 14
+   }
+  ]
+ },
+ "ranked_out": [
+  [
+   "A07",
+   1,
+   "a_pool",
+   32,
+   null,
+   56,
+   -2.116,
+   63,
+   68
+  ],
+  [
+   "A30",
+   0,
+   "a_pool",
+   40,
+   null,
+   56,
+   -2.268,
+   18,
+   31
+  ],
+  [
+   "B09",
+   0,
+   "a_pool",
+   11,
+   null,
+   26,
+   -6.37,
+   20,
+   20
+  ],
+  [
+   "B09",
+   1,
+   "a_pool",
+   11,
+   null,
+   26,
+   -6.37,
+   20,
+   20
+  ],
+  [
+   "B22",
+   0,
+   "a_pool",
+   47,
+   null,
+   68,
+   -7.578,
+   50,
+   65
+  ],
+  [
+   "B28",
+   0,
+   "a_pool",
+   4,
+   1,
+   4,
+   -4.518,
+   17,
+   11
+  ],
+  [
+   "C03",
+   0,
+   "a_pool",
+   38,
+   null,
+   59,
+   -2.389,
+   31,
+   44
+  ],
+  [
+   "C09",
+   0,
+   "a_pool",
+   11,
+   null,
+   25,
+   0.096,
+   19,
+   20
+  ],
+  [
+   "D03",
+   0,
+   "a_pool",
+   80,
+   7,
+   22,
+   -4.226,
+   17,
+   19
+  ],
+  [
+   "D08",
+   0,
+   "a_pool",
+   14,
+   null,
+   46,
+   -3.351,
+   7,
+   15
+  ],
+  [
+   "D27",
+   0,
+   "a_pool",
+   4,
+   1,
+   4,
+   -3.378,
+   32,
+   11
+  ],
+  [
+   "E06",
+   0,
+   "a_pool",
+   7,
+   9,
+   10,
+   -2.796,
+   30,
+   14
+  ]
+ ],
+ "paired": {
+  "retrieval_hit/H_hit": 21,
+  "retrieval_miss/H_miss": 14,
+  "retrieval_hit/H_miss": 3,
+  "retrieval_miss/H_hit": 2
+ },
+ "paired_ids": {
+  "retrieval_hit/H_hit": [
+   "A07",
+   "A21",
+   "A22",
+   "A23",
+   "A24",
+   "A28",
+   "B14",
+   "B15",
+   "B25",
+   "C10",
+   "C16",
+   "C29",
+   "D16",
+   "D19",
+   "D23",
+   "D24",
+   "E05",
+   "E15",
+   "E17",
+   "E22",
+   "E29"
+  ],
+  "retrieval_miss/H_miss": [
+   "A12",
+   "A30",
+   "B09",
+   "B18",
+   "B19",
+   "B22",
+   "C01",
+   "C03",
+   "C05",
+   "C09",
+   "D03",
+   "D08",
+   "E01",
+   "E27"
+  ],
+  "retrieval_hit/H_miss": [
+   "B28",
+   "D27",
+   "E06"
+  ],
+  "retrieval_miss/H_hit": [
+   "C11",
+   "D29"
+  ]
+ },
+ "retrieval_only_rate": "24/40",
+ "regressions": {
+  "B09": "RETRIEVAL_AND_CE_BOTH_WEAK",
+  "B28": "RETRIEVAL_ALREADY_CORRECT_CE_DESTROYED",
+  "D27": "RETRIEVAL_ALREADY_CORRECT_CE_DESTROYED"
+ },
+ "channels": {
+  "in_pool_44": {
+   "BOTH_A_AND_LOCAL": 35,
+   "SYSTEM_A_ONLY": 9
+  },
+  "final_top10_32": {
+   "BOTH_A_AND_LOCAL": 31,
+   "SYSTEM_A_ONLY": 1
+  },
+  "ranked_out_12": {
+   "SYSTEM_A_ONLY": 8,
+   "BOTH_A_AND_LOCAL": 4
+  }
+ },
+ "stage": {
+  "system_a": 91.3,
+  "parents": 6.85,
+  "local_candidates": 124.15,
+  "local_additive_available": 99.2,
+  "local_additive_selected": 10.0,
+  "fused_e": 101.3,
+  "projection_extras": 20.0,
+  "union": 121.3,
+  "total_candidates_recorded": 4852
+ },
+ "projection": {
+  "total_projection_candidates": 800,
+  "gold_spans_covered_by_projection": 0,
+  "projection_candidates_entering_final_top10": 12,
+  "queries_with_at_least_one_projection_top10": 8,
+  "mean_projection_top10_slots_per_query": 0.3,
+  "next_candidate_covers_gold_count": 0,
+  "no_removal_was_simulated": true,
+  "no_claim_that_removal_improves_metrics": true
+ },
+ "localization": {
+  "spans": 13,
+  "gold_doc_in_system_a": 12,
+  "gold_doc_in_local_parents": 6,
+  "gold_doc_absent_from_pool_entirely": 1,
+  "projection_window_covered_gold": 0
+ },
+ "loc_rows": [
+  [
+   "A12",
+   0,
+   true,
+   true,
+   6,
+   13
+  ],
+  [
+   "A12",
+   1,
+   true,
+   true,
+   6,
+   13
+  ],
+  [
+   "A12",
+   2,
+   true,
+   true,
+   6,
+   13
+  ],
+  [
+   "A30",
+   1,
+   true,
+   false,
+   1,
+   31
+  ],
+  [
+   "B18",
+   0,
+   true,
+   false,
+   4,
+   40
+  ],
+  [
+   "B19",
+   0,
+   true,
+   true,
+   7,
+   2
+  ],
+  [
+   "B19",
+   1,
+   true,
+   true,
+   7,
+   2
+  ],
+  [
+   "C01",
+   0,
+   true,
+   false,
+   2,
+   57
+  ],
+  [
+   "C01",
+   1,
+   true,
+   false,
+   2,
+   57
+  ],
+  [
+   "C03",
+   1,
+   false,
+   false,
+   0,
+   null
+  ],
+  [
+   "C05",
+   0,
+   true,
+   false,
+   1,
+   101
+  ],
+  [
+   "E01",
+   0,
+   true,
+   true,
+   38,
+   1
+  ],
+  [
+   "E27",
+   0,
+   true,
+   false,
+   3,
+   45
+  ]
+ ],
+ "ceiling": {
+  "any_span_candidate_ceiling": "33/40",
+  "every_span_candidate_ceiling": "31/40",
+  "candidate_span_ceiling": "44/57",
+  "matches_NATQ2_DIAG_001": true
+ },
+ "recommendation": {
+  "letter": "B",
+  "name": "NEW RERANKER MODEL",
+  "why": "The evidence is in the pool (44/57) but the frozen retrieval ordering offers no useful protection: only 3 of the 12 ranked-out spans were in the pre-CE top 10 and 9 were beyond rank 20.",
+  "why_not_A": "A guard on the existing retrieval ordering rescues at most the 3 RETRIEVAL_TOP10_TO_FINAL_OUT cases, taking case_hit@10 to 26/40 = 0.65 \u2014 exactly the FAIL floor.",
+  "why_not_C": "Ranking still has room: 23/40 against a 33/40 ceiling is 10 cases and the floor needs 9.",
+  "why_not_D": "One mechanism dominates \u2014 the reranker misorders evidence it already holds."
+ },
+ "margin_caveat": "The any-span ceiling is 33/40 = 0.825 against a 32/40 = 0.80 floor: one case of oracle margin. A ranking fix alone is not sufficient evidence for reserve.",
+ "state": {
+  "validation_runs_consumed": 1,
+  "unused_validation_runs": 2,
+  "systems_evaluated": 0,
+  "reserve_bytes": 0,
+  "reserve_frozen": true,
+  "reserve_count": 60,
+  "candidate_rows": 4852
+ },
+ "constraints": {
+  "ce_inference_performed": false,
+  "system_h_validation_rerun": false,
+  "validation_runs_consumed_by_this_task": 0,
+  "reserve_opened": false,
+  "parameter_search": false,
+  "projection_removed": false,
+  "blend_weight_changed": false,
+  "candidate_pool_altered": false,
+  "successor_implemented": false,
+  "decision_reopened": false
+ },
+ "hashes": {
+  "NATQ2-DIAG-002-REPLAY-IDENTITY.json": "a55843cd9b67801c6ba58141328bcf520e28ea9560da76d43d25ef1359a40d46",
+  "NATQ2-DIAG-002-CANDIDATES.jsonl": "1961a5d6b319ea69c39979d911722d6cf483b21eaa5ca637f40641d31a245c1c",
+  "NATQ2-DIAG-002-GOLD-SPANS.json": "1f2a16fc99ba21f2edc596ca1addcb4bd69346ce02e662f1eaacf5e854bee834",
+  "NATQ2-DIAG-002-AGGREGATE.json": "2c47cb67b8232219fd568e971ab438334fe70fc472c051289dcbeccd875ac4bb",
+  "NATQ2-DIAG-002-REPORT.md": "e0448ccb73a293abf101dfdda987b48ae2f6477d81b60a5954043ed5c623b2ec"
+ },
+ "config_hash": "7599eb3c3bb4798230a722e6a7c96b046dc36cc0332b584ec55339896b2d717a"
+}

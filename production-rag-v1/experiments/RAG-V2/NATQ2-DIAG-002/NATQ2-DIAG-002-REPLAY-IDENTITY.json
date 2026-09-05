@@ -1,0 +1,575 @@
+{
+ "sources": {
+  "experiments/EVAL-NATQ2-H-002/EVAL-NATQ2-H-002-RESULTS.json": "ce01aeee9bebd811b9a3ae1a2f58983ca607e3bb8f18096b232a0a2ddafff9ce",
+  "experiments/EVAL-NATQ2-H-002/EVAL-NATQ2-H-002-CASE-RESULTS.json": "cc289dcbe10807330df8527d3f1313ce08a3c5e41e196e89a9239408ad0371ff",
+  "experiments/EVAL-NATQ2-H-002/logs/h-ranked-output.jsonl": "545eae62ff555bdd5f70ab9f24136546ff5a239c82392e179db0b896ed5bb63a",
+  "experiments/EVAL-NATQ2-H-002/logs/h-ce-scores.jsonl": "a7be8e34b825d918a3a5fc2392fe083faae3679cbec01fb3406c439c693088ab",
+  "experiments/EVAL-NATQ2-H-002/logs/h-pools.jsonl": "5cfb7f4abb2d193b235a7f2f36d359aeeeb453564d73207cc7404729a0babf84",
+  "experiments/EVAL-NATQ2-H-002/scripts/natq2_scorer.py": "96447990b75f94e2f1e3daad1407eb1cdac53f7e4967ceb4ecdc4c0f8119b060",
+  "evals/splits/natq-002/validation.json": "6b7f3c90e2bfa58f244de6b2aff65e56ca3f50e2ed0886e83696aba8f5b47961"
+ },
+ "implementations": {
+  "code.runner": {
+   "path": "experiments/RAG-V2/EVAL-NATQ-VAL-001/scripts/run_eval_natq_val_001.py",
+   "sha256": "31eb6af38bdae87800e77c2c5c6a211b7cbb032ebccfd432bc3d633f3c873c94"
+  },
+  "code.exp019a_prior": {
+   "path": "experiments/EXP-019A/scripts/run_exp019a.py",
+   "sha256": "ca5d2fa71fef5db2888b9c82f63c572994c64c0baaf638f08f216199e2d830b7"
+  },
+  "code.projection_builder": {
+   "path": "experiments/EXP-017/scripts/build_projections.py",
+   "sha256": "d37fd57112991925d55c6d4c757e21eb23a8f81227c5578ed3d8b4608c4de240"
+  },
+  "code.projection_retrieval": {
+   "path": "experiments/EXP-017/scripts/projection_retrieval.py",
+   "sha256": "798dcb9c57019adefc555a36a56ec81e42a47ae6863dc0ad0277ff283d2dd32b"
+  },
+  "code.system_e_candidate_gen": {
+   "path": "experiments/EXP-018/scripts/system_e.py",
+   "sha256": "b7486afd06979ddf1cfd1a5c9fb2f7ed46f70197d64a9b0f7ea378351d385a0a"
+  },
+  "code.local_bm25_w20": {
+   "path": "experiments/EXP-018B/scripts/local_bm25_batched.py",
+   "sha256": "97e412ae3d041247be063d6a2962d2e844a878ad8961f0684eabf79a56086190"
+  },
+  "code.cross_encoder": {
+   "path": "experiments/EXP-015/scripts/cross_encoder.py",
+   "sha256": "ad987d12747c28e75257d8d9a0a526d216052937cffe2268921f5278b51fac45"
+  },
+  "code.perf003_d1_path": {
+   "path": "experiments/PERF-003/scripts/v2_system_g_ce.py",
+   "sha256": "eaa55835b7ab0157a67268d8716940a6f30fd0734b6e5ff41252fddfb6afb28e"
+  },
+  "code.rag_v1_systems": {
+   "path": "src/rag_v1/systems.py",
+   "sha256": "76c48448f8cefed0b3f532cec4390d9a5eae78aae8b932d3fb80aedbbf9c3073"
+  },
+  "code.rag_v1_retrieval": {
+   "path": "src/rag_v1/retrieval.py",
+   "sha256": "f5438eb140bf388735077db6fed5d2d008cb5f5cf73d378055179c6ae2fbb734"
+  },
+  "code.rag_v1_ids": {
+   "path": "src/rag_v1/ids.py",
+   "sha256": "28a16ade20566926a379cf454d932f1d4882f5452611f1c183b6ff98649562e1"
+  },
+  "code.rag_v1_embedders_transformer": {
+   "path": "src/rag_v1/embedders_transformer.py",
+   "sha256": "d0f5d9b212f872ed83a408143b5cbdf20557bcd63d81888f95d9fe35015524b0"
+  },
+  "configs.system_h_upstream": {
+   "path": "experiments/RAG-V2/SYSTEM-H-V2-DEV-CANDIDATE/SYSTEM-H-V2-DEV-CANDIDATE.json",
+   "sha256": "7cd3a5f3d5fcf9c66561c9e9cbfbc213f49e6efa0fdf0005869b085c3eafe475"
+  },
+  "configs.system_g_projection_prior": {
+   "path": "experiments/EXP-019A/SYSTEM-G-PROJECTION-PRIOR.json",
+   "sha256": "7f4ff6db09f32e55cac820cbc00d87ce2ae91886d444c3bad20ac3e04c7f0f61"
+  },
+  "configs.exp019a_preregistration": {
+   "path": "experiments/EXP-019A/EXP-019A-preregistration.json",
+   "sha256": "f14001eff07b63c7916d7e27567d15ccd1e53b52918ae66f0d24ca37abb54cf3"
+  },
+  "configs.exp019a_results": {
+   "path": "experiments/EXP-019A/EXP-019A-results.json",
+   "sha256": "adb4377427be987c4ece29332c486efe57d89e2293dc3b28f69e01b93db420cf"
+  },
+  "configs.system_g_ce_d1": {
+   "path": "experiments/PERF-003/SYSTEM-G-CE-D1.json",
+   "sha256": "cf0c985c5f7738e7fc5422039fd6940621d8dcd8f91de41abe3784ac53a6a7ec"
+  },
+  "configs.perf003_preregistration": {
+   "path": "experiments/PERF-003/PERF-003-preregistration.json",
+   "sha256": "dc01713eafc56347a9eba0711d0947f13fccbc8ba784dfa034e22280ec23c880"
+  },
+  "configs.exp017_projection_build": {
+   "path": "experiments/EXP-017/EXP-017-projection-build.json",
+   "sha256": "9e10058a0417b3eea1bde42eaa12fe43b6eeb0ddeb9d049bc26359e207daf1a7"
+  }
+ },
+ "implementation_count": 19,
+ "recovered_from_ref": "origin/grok/v2-natq-20260903",
+ "reserve_access_log_bytes": 0,
+ "reserve_lock": {
+  "reserve_frozen": true,
+  "reserve_count": 60
+ },
+ "record_id": "NATQ2-DIAG-002-REPLAY-IDENTITY",
+ "is_a_system_h_validation_run": false,
+ "is_a_retry": false,
+ "system_h_validation_runs_consumed": 1,
+ "unused_validation_runs": 2,
+ "ce_inference_performed": false,
+ "ce_scores_source": "persisted EVAL-NATQ2-H-002 traces, joined by (case_id, chunk_id)",
+ "ce_join_is_bijective_on_every_case": true,
+ "ce_precision_note": "The per-case CE map was persisted at 6dp; the 400 top-10 rows carry full precision and were used where available.",
+ "ce_full_precision_values_used": 400,
+ "max_ce_roundtrip_deviation_on_top10": 0.0,
+ "reproduction": {
+  "final_top10_row_mismatches": 0,
+  "mismatch_detail": [],
+  "case_hit_vector_mismatches": [],
+  "per_case_span_rank_mismatches": [],
+  "aggregate_metric_mismatches": {},
+  "replayed_metrics": {
+   "cases": 40,
+   "gold_spans": 57,
+   "micro_MRR": 0.2899,
+   "case_hit_at_10": 0.575,
+   "case_full_coverage_at_10": 0.55,
+   "span_recall_at_10": 0.5614,
+   "case_hit_at_1": 0.2
+  },
+  "stored_metrics": {
+   "cases": 40,
+   "gold_spans": 57,
+   "micro_MRR": 0.2899,
+   "case_hit_at_10": 0.575,
+   "case_full_coverage_at_10": 0.55,
+   "span_recall_at_10": 0.5614,
+   "case_hit_at_1": 0.2
+  },
+  "EXACT": true
+ },
+ "stage_counts": [
+  {
+   "case_id": "A07",
+   "system_a": 81,
+   "parents": 7,
+   "local_candidates": 115,
+   "local_additive_available": 82,
+   "local_additive_selected": 10,
+   "fused_e": 91,
+   "projection_extras": 20,
+   "union": 111
+  },
+  {
+   "case_id": "A12",
+   "system_a": 91,
+   "parents": 8,
+   "local_candidates": 158,
+   "local_additive_available": 130,
+   "local_additive_selected": 10,
+   "fused_e": 101,
+   "projection_extras": 20,
+   "union": 121
+  },
+  {
+   "case_id": "A21",
+   "system_a": 90,
+   "parents": 6,
+   "local_candidates": 120,
+   "local_additive_available": 96,
+   "local_additive_selected": 10,
+   "fused_e": 100,
+   "projection_extras": 20,
+   "union": 120
+  },
+  {
+   "case_id": "A22",
+   "system_a": 95,
+   "parents": 8,
+   "local_candidates": 156,
+   "local_additive_available": 136,
+   "local_additive_selected": 10,
+   "fused_e": 105,
+   "projection_extras": 20,
+   "union": 125
+  },
+  {
+   "case_id": "A23",
+   "system_a": 94,
+   "parents": 6,
+   "local_candidates": 107,
+   "local_additive_available": 78,
+   "local_additive_selected": 10,
+   "fused_e": 104,
+   "projection_extras": 20,
+   "union": 124
+  },
+  {
+   "case_id": "A24",
+   "system_a": 86,
+   "parents": 5,
+   "local_candidates": 92,
+   "local_additive_available": 65,
+   "local_additive_selected": 10,
+   "fused_e": 96,
+   "projection_extras": 20,
+   "union": 116
+  },
+  {
+   "case_id": "A28",
+   "system_a": 96,
+   "parents": 8,
+   "local_candidates": 112,
+   "local_additive_available": 82,
+   "local_additive_selected": 10,
+   "fused_e": 106,
+   "projection_extras": 20,
+   "union": 126
+  },
+  {
+   "case_id": "A30",
+   "system_a": 92,
+   "parents": 6,
+   "local_candidates": 120,
+   "local_additive_available": 102,
+   "local_additive_selected": 10,
+   "fused_e": 102,
+   "projection_extras": 20,
+   "union": 122
+  },
+  {
+   "case_id": "B09",
+   "system_a": 91,
+   "parents": 7,
+   "local_candidates": 120,
+   "local_additive_available": 102,
+   "local_additive_selected": 10,
+   "fused_e": 101,
+   "projection_extras": 20,
+   "union": 121
+  },
+  {
+   "case_id": "B14",
+   "system_a": 97,
+   "parents": 6,
+   "local_candidates": 106,
+   "local_additive_available": 85,
+   "local_additive_selected": 10,
+   "fused_e": 107,
+   "projection_extras": 20,
+   "union": 127
+  },
+  {
+   "case_id": "B15",
+   "system_a": 85,
+   "parents": 4,
+   "local_candidates": 77,
+   "local_additive_available": 48,
+   "local_additive_selected": 10,
+   "fused_e": 95,
+   "projection_extras": 20,
+   "union": 115
+  },
+  {
+   "case_id": "B18",
+   "system_a": 95,
+   "parents": 8,
+   "local_candidates": 148,
+   "local_additive_available": 119,
+   "local_additive_selected": 10,
+   "fused_e": 105,
+   "projection_extras": 20,
+   "union": 125
+  },
+  {
+   "case_id": "B19",
+   "system_a": 93,
+   "parents": 6,
+   "local_candidates": 120,
+   "local_additive_available": 99,
+   "local_additive_selected": 10,
+   "fused_e": 103,
+   "projection_extras": 20,
+   "union": 123
+  },
+  {
+   "case_id": "B22",
+   "system_a": 98,
+   "parents": 10,
+   "local_candidates": 200,
+   "local_additive_available": 174,
+   "local_additive_selected": 10,
+   "fused_e": 108,
+   "projection_extras": 20,
+   "union": 128
+  },
+  {
+   "case_id": "B25",
+   "system_a": 92,
+   "parents": 7,
+   "local_candidates": 140,
+   "local_additive_available": 115,
+   "local_additive_selected": 10,
+   "fused_e": 102,
+   "projection_extras": 20,
+   "union": 122
+  },
+  {
+   "case_id": "B28",
+   "system_a": 84,
+   "parents": 6,
+   "local_candidates": 81,
+   "local_additive_available": 55,
+   "local_additive_selected": 10,
+   "fused_e": 94,
+   "projection_extras": 20,
+   "union": 114
+  },
+  {
+   "case_id": "C01",
+   "system_a": 97,
+   "parents": 9,
+   "local_candidates": 170,
+   "local_additive_available": 147,
+   "local_additive_selected": 10,
+   "fused_e": 107,
+   "projection_extras": 20,
+   "union": 127
+  },
+  {
+   "case_id": "C03",
+   "system_a": 98,
+   "parents": 8,
+   "local_candidates": 146,
+   "local_additive_available": 122,
+   "local_additive_selected": 10,
+   "fused_e": 108,
+   "projection_extras": 20,
+   "union": 128
+  },
+  {
+   "case_id": "C05",
+   "system_a": 93,
+   "parents": 9,
+   "local_candidates": 180,
+   "local_additive_available": 153,
+   "local_additive_selected": 10,
+   "fused_e": 103,
+   "projection_extras": 20,
+   "union": 123
+  },
+  {
+   "case_id": "C09",
+   "system_a": 90,
+   "parents": 6,
+   "local_candidates": 117,
+   "local_additive_available": 99,
+   "local_additive_selected": 10,
+   "fused_e": 100,
+   "projection_extras": 20,
+   "union": 120
+  },
+  {
+   "case_id": "C10",
+   "system_a": 98,
+   "parents": 7,
+   "local_candidates": 131,
+   "local_additive_available": 122,
+   "local_additive_selected": 10,
+   "fused_e": 108,
+   "projection_extras": 20,
+   "union": 128
+  },
+  {
+   "case_id": "C11",
+   "system_a": 86,
+   "parents": 6,
+   "local_candidates": 107,
+   "local_additive_available": 74,
+   "local_additive_selected": 10,
+   "fused_e": 96,
+   "projection_extras": 20,
+   "union": 116
+  },
+  {
+   "case_id": "C16",
+   "system_a": 95,
+   "parents": 8,
+   "local_candidates": 160,
+   "local_additive_available": 134,
+   "local_additive_selected": 10,
+   "fused_e": 105,
+   "projection_extras": 20,
+   "union": 125
+  },
+  {
+   "case_id": "C29",
+   "system_a": 100,
+   "parents": 7,
+   "local_candidates": 107,
+   "local_additive_available": 88,
+   "local_additive_selected": 10,
+   "fused_e": 110,
+   "projection_extras": 20,
+   "union": 130
+  },
+  {
+   "case_id": "D03",
+   "system_a": 85,
+   "parents": 6,
+   "local_candidates": 99,
+   "local_additive_available": 77,
+   "local_additive_selected": 10,
+   "fused_e": 95,
+   "projection_extras": 20,
+   "union": 115
+  },
+  {
+   "case_id": "D08",
+   "system_a": 86,
+   "parents": 8,
+   "local_candidates": 111,
+   "local_additive_available": 77,
+   "local_additive_selected": 10,
+   "fused_e": 96,
+   "projection_extras": 20,
+   "union": 116
+  },
+  {
+   "case_id": "D16",
+   "system_a": 95,
+   "parents": 6,
+   "local_candidates": 106,
+   "local_additive_available": 82,
+   "local_additive_selected": 10,
+   "fused_e": 105,
+   "projection_extras": 20,
+   "union": 125
+  },
+  {
+   "case_id": "D19",
+   "system_a": 99,
+   "parents": 7,
+   "local_candidates": 90,
+   "local_additive_available": 75,
+   "local_additive_selected": 10,
+   "fused_e": 109,
+   "projection_extras": 20,
+   "union": 129
+  },
+  {
+   "case_id": "D23",
+   "system_a": 98,
+   "parents": 10,
+   "local_candidates": 176,
+   "local_additive_available": 158,
+   "local_additive_selected": 10,
+   "fused_e": 108,
+   "projection_extras": 20,
+   "union": 128
+  },
+  {
+   "case_id": "D24",
+   "system_a": 90,
+   "parents": 5,
+   "local_candidates": 100,
+   "local_additive_available": 70,
+   "local_additive_selected": 10,
+   "fused_e": 100,
+   "projection_extras": 20,
+   "union": 120
+  },
+  {
+   "case_id": "D27",
+   "system_a": 86,
+   "parents": 8,
+   "local_candidates": 148,
+   "local_additive_available": 117,
+   "local_additive_selected": 10,
+   "fused_e": 96,
+   "projection_extras": 20,
+   "union": 116
+  },
+  {
+   "case_id": "D29",
+   "system_a": 89,
+   "parents": 6,
+   "local_candidates": 118,
+   "local_additive_available": 96,
+   "local_additive_selected": 10,
+   "fused_e": 99,
+   "projection_extras": 20,
+   "union": 119
+  },
+  {
+   "case_id": "E01",
+   "system_a": 91,
+   "parents": 9,
+   "local_candidates": 163,
+   "local_additive_available": 139,
+   "local_additive_selected": 10,
+   "fused_e": 101,
+   "projection_extras": 20,
+   "union": 121
+  },
+  {
+   "case_id": "E05",
+   "system_a": 87,
+   "parents": 5,
+   "local_candidates": 88,
+   "local_additive_available": 62,
+   "local_additive_selected": 10,
+   "fused_e": 97,
+   "projection_extras": 20,
+   "union": 117
+  },
+  {
+   "case_id": "E06",
+   "system_a": 91,
+   "parents": 5,
+   "local_candidates": 100,
+   "local_additive_available": 69,
+   "local_additive_selected": 10,
+   "fused_e": 101,
+   "projection_extras": 20,
+   "union": 121
+  },
+  {
+   "case_id": "E15",
+   "system_a": 94,
+   "parents": 7,
+   "local_candidates": 140,
+   "local_additive_available": 117,
+   "local_additive_selected": 10,
+   "fused_e": 104,
+   "projection_extras": 20,
+   "union": 124
+  },
+  {
+   "case_id": "E17",
+   "system_a": 88,
+   "parents": 8,
+   "local_candidates": 136,
+   "local_additive_available": 109,
+   "local_additive_selected": 10,
+   "fused_e": 98,
+   "projection_extras": 20,
+   "union": 118
+  },
+  {
+   "case_id": "E22",
+   "system_a": 88,
+   "parents": 5,
+   "local_candidates": 94,
+   "local_additive_available": 55,
+   "local_additive_selected": 10,
+   "fused_e": 98,
+   "projection_extras": 20,
+   "union": 118
+  },
+  {
+   "case_id": "E27",
+   "system_a": 77,
+   "parents": 6,
+   "local_candidates": 107,
+   "local_additive_available": 77,
+   "local_additive_selected": 10,
+   "fused_e": 87,
+   "projection_extras": 20,
+   "union": 107
+  },
+  {
+   "case_id": "E29",
+   "system_a": 91,
+   "parents": 5,
+   "local_candidates": 100,
+   "local_additive_available": 81,
+   "local_additive_selected": 10,
+   "fused_e": 101,
+   "projection_extras": 20,
+   "union": 121
+  }
+ ]
+}

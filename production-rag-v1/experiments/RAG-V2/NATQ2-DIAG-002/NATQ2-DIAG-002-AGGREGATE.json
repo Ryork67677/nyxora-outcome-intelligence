@@ -1,0 +1,506 @@
+{
+ "record_id": "NATQ2-DIAG-002-AGGREGATE",
+ "diagnostic_only": true,
+ "is_a_system_result": false,
+ "systems_evaluated": 0,
+ "ce_inference_performed": false,
+ "system_h_validation_runs_consumed": 1,
+ "unused_validation_runs": 2,
+ "replay_exact": true,
+ "replay_identity_sha256": "a55843cd9b67801c6ba58141328bcf520e28ea9560da76d43d25ef1359a40d46",
+ "stage_membership": {
+  "note": "means over the 40 validation queries, from the replay",
+  "system_a": 91.3,
+  "parents": 6.85,
+  "local_candidates": 124.15,
+  "local_additive_available": 99.2,
+  "local_additive_selected": 10.0,
+  "fused_e": 101.3,
+  "projection_extras": 20.0,
+  "union": 121.3,
+  "total_candidates_recorded": 4852
+ },
+ "gold_span_funnel": {
+  "gold_spans": 57,
+  "covering_candidate_in_pool": 44,
+  "reached_final_top10": 32,
+  "in_pool_ranked_out": 12,
+  "no_covering_candidate": 13
+ },
+ "pre_ce_rank_distribution": {
+  "ranked_out_12": {
+   ">20": 9,
+   "<=5": 2,
+   "<=10": 1
+  },
+  "all_in_pool_44": {
+   "<=5": 5,
+   ">20": 11,
+   "<=3": 17,
+   "<=10": 9,
+   "<=20": 2
+  },
+  "final_top10_32": {
+   "<=5": 3,
+   "<=3": 17,
+   "<=10": 8,
+   ">20": 2,
+   "<=20": 2
+  }
+ },
+ "RETRIEVAL_TOP10_TO_FINAL_OUT": {
+  "definition": "gold spans already inside the top 10 of the frozen pre-CE retrieval ordering that the CE/blend stage pushed outside the final top 10",
+  "spans": "3/57",
+  "spans_n": 3,
+  "cases": "3/40",
+  "cases_n": 3,
+  "case_ids": [
+   "B28",
+   "D27",
+   "E06"
+  ],
+  "detail": [
+   {
+    "case_id": "B28",
+    "span_index": 0,
+    "pre_ce_retrieval_rank": 4,
+    "ce_rank": 17,
+    "ce_score": -4.517999,
+    "final_blend_rank": 11
+   },
+   {
+    "case_id": "D27",
+    "span_index": 0,
+    "pre_ce_retrieval_rank": 4,
+    "ce_rank": 32,
+    "ce_score": -3.377518,
+    "final_blend_rank": 11
+   },
+   {
+    "case_id": "E06",
+    "span_index": 0,
+    "pre_ce_retrieval_rank": 10,
+    "ce_rank": 30,
+    "ce_score": -2.796168,
+    "final_blend_rank": 14
+   }
+  ],
+  "is_not_a_system_result": true
+ },
+ "retrieval_only_vs_H": {
+  "note": "RETRIEVAL_ONLY_TOP10_HIT is an internal mechanism diagnostic. It is NOT a qualified system and must never be reported as one.",
+  "populations": {
+   "retrieval_hit/H_hit": 21,
+   "retrieval_miss/H_miss": 14,
+   "retrieval_hit/H_miss": 3,
+   "retrieval_miss/H_hit": 2
+  },
+  "case_ids": {
+   "retrieval_hit/H_hit": [
+    "A07",
+    "A21",
+    "A22",
+    "A23",
+    "A24",
+    "A28",
+    "B14",
+    "B15",
+    "B25",
+    "C10",
+    "C16",
+    "C29",
+    "D16",
+    "D19",
+    "D23",
+    "D24",
+    "E05",
+    "E15",
+    "E17",
+    "E22",
+    "E29"
+   ],
+   "retrieval_miss/H_miss": [
+    "A12",
+    "A30",
+    "B09",
+    "B18",
+    "B19",
+    "B22",
+    "C01",
+    "C03",
+    "C05",
+    "C09",
+    "D03",
+    "D08",
+    "E01",
+    "E27"
+   ],
+   "retrieval_hit/H_miss": [
+    "B28",
+    "D27",
+    "E06"
+   ],
+   "retrieval_miss/H_hit": [
+    "C11",
+    "D29"
+   ]
+  },
+  "retrieval_only_case_hit_at_10_diagnostic": "24/40"
+ },
+ "bm25_regressions": {
+  "B09": {
+   "classification": "RETRIEVAL_AND_CE_BOTH_WEAK",
+   "bm25_case_hit_at_10": true,
+   "spans": [
+    {
+     "span_index": 0,
+     "bm25_gold_rank": 4,
+     "system_h_global_candidate_rank": 11,
+     "local_bm25_rank": null,
+     "projection_rank": null,
+     "pre_ce_retrieval_rank": 26,
+     "ce_score": -6.369956,
+     "ce_rank": 20,
+     "final_blend_rank": 20
+    },
+    {
+     "span_index": 1,
+     "bm25_gold_rank": 4,
+     "system_h_global_candidate_rank": 11,
+     "local_bm25_rank": null,
+     "projection_rank": null,
+     "pre_ce_retrieval_rank": 26,
+     "ce_score": -6.369956,
+     "ce_rank": 20,
+     "final_blend_rank": 20
+    }
+   ]
+  },
+  "B28": {
+   "classification": "RETRIEVAL_ALREADY_CORRECT_CE_DESTROYED",
+   "bm25_case_hit_at_10": true,
+   "spans": [
+    {
+     "span_index": 0,
+     "bm25_gold_rank": 1,
+     "system_h_global_candidate_rank": 4,
+     "local_bm25_rank": 1,
+     "projection_rank": null,
+     "pre_ce_retrieval_rank": 4,
+     "ce_score": -4.517999,
+     "ce_rank": 17,
+     "final_blend_rank": 11
+    }
+   ]
+  },
+  "D27": {
+   "classification": "RETRIEVAL_ALREADY_CORRECT_CE_DESTROYED",
+   "bm25_case_hit_at_10": true,
+   "spans": [
+    {
+     "span_index": 0,
+     "bm25_gold_rank": 9,
+     "system_h_global_candidate_rank": 4,
+     "local_bm25_rank": 1,
+     "projection_rank": null,
+     "pre_ce_retrieval_rank": 4,
+     "ce_score": -3.377518,
+     "ce_rank": 32,
+     "final_blend_rank": 11
+    }
+   ]
+  }
+ },
+ "projection": {
+  "total_projection_candidates": 800,
+  "gold_spans_covered_by_projection": 0,
+  "projection_candidates_entering_final_top10": 12,
+  "queries_with_at_least_one_projection_top10": 8,
+  "mean_projection_top10_slots_per_query": 0.3,
+  "displaced_slots": [
+   {
+    "case_id": "A12",
+    "projection_slot_final_rank": 8,
+    "projection_chunk_id": "chk_fa26b9057a1b72b3e2d60de8f02f009442d29d6c",
+    "next_non_projection_chunk_id": "chk_233d9688bf08da0b72ff2f70a66f89198870370a",
+    "next_final_rank": 11,
+    "next_origin": "a_pool",
+    "next_covers_a_gold_span": false
+   },
+   {
+    "case_id": "A23",
+    "projection_slot_final_rank": 10,
+    "projection_chunk_id": "chk_9e96981703516a589796e3a994e9c52697b56b32",
+    "next_non_projection_chunk_id": "chk_e935199e48ab36850318220d885a58ac4b101dea",
+    "next_final_rank": 11,
+    "next_origin": "a_pool",
+    "next_covers_a_gold_span": false
+   },
+   {
+    "case_id": "B14",
+    "projection_slot_final_rank": 1,
+    "projection_chunk_id": "chk_9a356a9b715b065e1beca62a293ea4a9bade956c",
+    "next_non_projection_chunk_id": "chk_d71637bc95dc1a35ee605dee149fb3c5b0db6f0e",
+    "next_final_rank": 11,
+    "next_origin": "a_pool",
+    "next_covers_a_gold_span": false
+   },
+   {
+    "case_id": "B14",
+    "projection_slot_final_rank": 7,
+    "projection_chunk_id": "chk_c8c18e3868bcb2410c9ec1f5660ef9293f8435a0",
+    "next_non_projection_chunk_id": "chk_b8a87ea8506612217e1ddfa12d397b675c63e22b",
+    "next_final_rank": 12,
+    "next_origin": "a_pool",
+    "next_covers_a_gold_span": false
+   },
+   {
+    "case_id": "B14",
+    "projection_slot_final_rank": 10,
+    "projection_chunk_id": "chk_c1971ee2b52960cb8ce3091484719427f7654737",
+    "next_non_projection_chunk_id": "chk_00ca65496adf4212e0ea8645e22427725c4a4d4e",
+    "next_final_rank": 13,
+    "next_origin": "a_pool",
+    "next_covers_a_gold_span": false
+   },
+   {
+    "case_id": "C01",
+    "projection_slot_final_rank": 8,
+    "projection_chunk_id": "chk_af0ea9506aa8607daff153fd648b478c875e580a",
+    "next_non_projection_chunk_id": "chk_19a3cfeb8dbc43d5a0a87581dc78fa74a0f64e93",
+    "next_final_rank": 11,
+    "next_origin": "a_pool",
+    "next_covers_a_gold_span": false
+   },
+   {
+    "case_id": "C03",
+    "projection_slot_final_rank": 8,
+    "projection_chunk_id": "chk_91cb8f01a9cdd8cef865f94afd3de68717f28386",
+    "next_non_projection_chunk_id": "chk_b296fc9287834b7748dfeeadb82dda1d508c9131",
+    "next_final_rank": 11,
+    "next_origin": "a_pool",
+    "next_covers_a_gold_span": false
+   },
+   {
+    "case_id": "C03",
+    "projection_slot_final_rank": 10,
+    "projection_chunk_id": "chk_f1bb63704dedcd7808470cbc185774d7becca642",
+    "next_non_projection_chunk_id": "chk_efeae000c0234b27c91c709921dfa0e7309dc60a",
+    "next_final_rank": 12,
+    "next_origin": "local_bm25",
+    "next_covers_a_gold_span": false
+   },
+   {
+    "case_id": "C10",
+    "projection_slot_final_rank": 8,
+    "projection_chunk_id": "chk_35fbb6f91e5c299a89ad03f742245b34950fffc5",
+    "next_non_projection_chunk_id": "chk_b1137fc598a330485d32f801c907bd8282e22669",
+    "next_final_rank": 11,
+    "next_origin": "a_pool",
+    "next_covers_a_gold_span": false
+   },
+   {
+    "case_id": "C10",
+    "projection_slot_final_rank": 10,
+    "projection_chunk_id": "chk_4a0478b1abfd4cc0543cfac40ba9e84504eba7cb",
+    "next_non_projection_chunk_id": "chk_efcf5c1d5069eb8984b8557a3f54e5800486434b",
+    "next_final_rank": 12,
+    "next_origin": "local_bm25",
+    "next_covers_a_gold_span": false
+   },
+   {
+    "case_id": "C16",
+    "projection_slot_final_rank": 2,
+    "projection_chunk_id": "chk_a8ff0bd47a76a1e2caa3922f18f36c6146df4d4c",
+    "next_non_projection_chunk_id": "chk_99cafb680130e5c1110b94721443d9a70b07e3d0",
+    "next_final_rank": 11,
+    "next_origin": "a_pool",
+    "next_covers_a_gold_span": false
+   },
+   {
+    "case_id": "D19",
+    "projection_slot_final_rank": 8,
+    "projection_chunk_id": "chk_97ed419d3f33e9e980eea2a1d3f6604c0f8d00a5",
+    "next_non_projection_chunk_id": "chk_b5acd0eca4cf1da2878a59536e51a1fa233822f2",
+    "next_final_rank": 11,
+    "next_origin": "a_pool",
+    "next_covers_a_gold_span": false
+   }
+  ],
+  "next_candidate_covers_gold_count": 0,
+  "no_removal_was_simulated": true,
+  "no_claim_that_removal_improves_metrics": true
+ },
+ "channel_contribution": {
+  "in_pool_44": {
+   "BOTH_A_AND_LOCAL": 35,
+   "SYSTEM_A_ONLY": 9
+  },
+  "final_top10_32": {
+   "BOTH_A_AND_LOCAL": 31,
+   "SYSTEM_A_ONLY": 1
+  },
+  "ranked_out_12": {
+   "SYSTEM_A_ONLY": 8,
+   "BOTH_A_AND_LOCAL": 4
+  }
+ },
+ "localization_failures": {
+  "spans": 13,
+  "gold_doc_in_system_a": 12,
+  "gold_doc_in_local_parents": 6,
+  "gold_doc_absent_from_pool_entirely": 1,
+  "projection_window_covered_gold": 0,
+  "detail": [
+   {
+    "case_id": "A12",
+    "span_index": 0,
+    "gold_doc_in_pool": true,
+    "gold_doc_in_system_a": true,
+    "gold_doc_in_local_parents": true,
+    "same_document_candidates_in_pool": 6,
+    "nearest_same_document_final_rank": 13,
+    "nearest_same_document_pre_ce_rank": 10,
+    "projection_window_covered_gold": false
+   },
+   {
+    "case_id": "A12",
+    "span_index": 1,
+    "gold_doc_in_pool": true,
+    "gold_doc_in_system_a": true,
+    "gold_doc_in_local_parents": true,
+    "same_document_candidates_in_pool": 6,
+    "nearest_same_document_final_rank": 13,
+    "nearest_same_document_pre_ce_rank": 10,
+    "projection_window_covered_gold": false
+   },
+   {
+    "case_id": "A12",
+    "span_index": 2,
+    "gold_doc_in_pool": true,
+    "gold_doc_in_system_a": true,
+    "gold_doc_in_local_parents": true,
+    "same_document_candidates_in_pool": 6,
+    "nearest_same_document_final_rank": 13,
+    "nearest_same_document_pre_ce_rank": 10,
+    "projection_window_covered_gold": false
+   },
+   {
+    "case_id": "A30",
+    "span_index": 1,
+    "gold_doc_in_pool": true,
+    "gold_doc_in_system_a": true,
+    "gold_doc_in_local_parents": false,
+    "same_document_candidates_in_pool": 1,
+    "nearest_same_document_final_rank": 31,
+    "nearest_same_document_pre_ce_rank": 56,
+    "projection_window_covered_gold": false
+   },
+   {
+    "case_id": "B18",
+    "span_index": 0,
+    "gold_doc_in_pool": true,
+    "gold_doc_in_system_a": true,
+    "gold_doc_in_local_parents": false,
+    "same_document_candidates_in_pool": 4,
+    "nearest_same_document_final_rank": 40,
+    "nearest_same_document_pre_ce_rank": 48,
+    "projection_window_covered_gold": false
+   },
+   {
+    "case_id": "B19",
+    "span_index": 0,
+    "gold_doc_in_pool": true,
+    "gold_doc_in_system_a": true,
+    "gold_doc_in_local_parents": true,
+    "same_document_candidates_in_pool": 7,
+    "nearest_same_document_final_rank": 2,
+    "nearest_same_document_pre_ce_rank": 2,
+    "projection_window_covered_gold": false
+   },
+   {
+    "case_id": "B19",
+    "span_index": 1,
+    "gold_doc_in_pool": true,
+    "gold_doc_in_system_a": true,
+    "gold_doc_in_local_parents": true,
+    "same_document_candidates_in_pool": 7,
+    "nearest_same_document_final_rank": 2,
+    "nearest_same_document_pre_ce_rank": 2,
+    "projection_window_covered_gold": false
+   },
+   {
+    "case_id": "C01",
+    "span_index": 0,
+    "gold_doc_in_pool": true,
+    "gold_doc_in_system_a": true,
+    "gold_doc_in_local_parents": false,
+    "same_document_candidates_in_pool": 2,
+    "nearest_same_document_final_rank": 57,
+    "nearest_same_document_pre_ce_rank": 66,
+    "projection_window_covered_gold": false
+   },
+   {
+    "case_id": "C01",
+    "span_index": 1,
+    "gold_doc_in_pool": true,
+    "gold_doc_in_system_a": true,
+    "gold_doc_in_local_parents": false,
+    "same_document_candidates_in_pool": 2,
+    "nearest_same_document_final_rank": 57,
+    "nearest_same_document_pre_ce_rank": 66,
+    "projection_window_covered_gold": false
+   },
+   {
+    "case_id": "C03",
+    "span_index": 1,
+    "gold_doc_in_pool": false,
+    "gold_doc_in_system_a": false,
+    "gold_doc_in_local_parents": false,
+    "same_document_candidates_in_pool": 0,
+    "nearest_same_document_final_rank": null,
+    "nearest_same_document_pre_ce_rank": null,
+    "projection_window_covered_gold": false
+   },
+   {
+    "case_id": "C05",
+    "span_index": 0,
+    "gold_doc_in_pool": true,
+    "gold_doc_in_system_a": true,
+    "gold_doc_in_local_parents": false,
+    "same_document_candidates_in_pool": 1,
+    "nearest_same_document_final_rank": 101,
+    "nearest_same_document_pre_ce_rank": 91,
+    "projection_window_covered_gold": false
+   },
+   {
+    "case_id": "E01",
+    "span_index": 0,
+    "gold_doc_in_pool": true,
+    "gold_doc_in_system_a": true,
+    "gold_doc_in_local_parents": true,
+    "same_document_candidates_in_pool": 38,
+    "nearest_same_document_final_rank": 1,
+    "nearest_same_document_pre_ce_rank": 5,
+    "projection_window_covered_gold": false
+   },
+   {
+    "case_id": "E27",
+    "span_index": 0,
+    "gold_doc_in_pool": true,
+    "gold_doc_in_system_a": true,
+    "gold_doc_in_local_parents": false,
+    "same_document_candidates_in_pool": 3,
+    "nearest_same_document_final_rank": 45,
+    "nearest_same_document_pre_ce_rank": 44,
+    "projection_window_covered_gold": false
+   }
+  ]
+ },
+ "candidate_ceiling_confirmation": {
+  "any_span_candidate_ceiling": "33/40",
+  "every_span_candidate_ceiling": "31/40",
+  "candidate_span_ceiling": "44/57",
+  "matches_NATQ2_DIAG_001": true
+ }
+}
