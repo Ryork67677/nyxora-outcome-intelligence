@@ -1,0 +1,76 @@
+{
+ "record_id": "NATQ2-DIAG-001-POPULATIONS",
+ "derived_from": {
+  "experiments/EVAL-NATQ2-H-002/EVAL-NATQ2-H-002-CASE-RESULTS.json": "cc289dcbe10807330df8527d3f1313ce08a3c5e41e196e89a9239408ad0371ff",
+  "experiments/EVAL-NATQ-BM25-BASELINE-001/EVAL-NATQ-BM25-BASELINE-001-CASE-RESULTS.json": "061e475b5ed7df140919fd5ad60fb96d6ef31b0a64d39aac561fac31ee4a7054"
+ },
+ "systems_run": 0,
+ "retrieval_performed": false,
+ "ce_inference_performed": false,
+ "partition_is_exact": true,
+ "total": 40,
+ "counts": {
+  "H_RESCUES": 11,
+  "H_REGRESSIONS": 3,
+  "BOTH_HIT": 12,
+  "BOTH_MISS": 14
+ },
+ "matches_coordinator_expected_counts": true,
+ "matches_coordinator_named_ids": true,
+ "populations": {
+  "H_RESCUES": [
+   "A23",
+   "A24",
+   "A28",
+   "B25",
+   "C11",
+   "C29",
+   "D19",
+   "D23",
+   "D29",
+   "E17",
+   "E22"
+  ],
+  "H_REGRESSIONS": [
+   "B09",
+   "B28",
+   "D27"
+  ],
+  "BOTH_HIT": [
+   "A07",
+   "A21",
+   "A22",
+   "B14",
+   "B15",
+   "C10",
+   "C16",
+   "D16",
+   "D24",
+   "E05",
+   "E15",
+   "E29"
+  ],
+  "BOTH_MISS": [
+   "A12",
+   "A30",
+   "B18",
+   "B19",
+   "B22",
+   "C01",
+   "C03",
+   "C05",
+   "C09",
+   "D03",
+   "D08",
+   "E01",
+   "E06",
+   "E27"
+  ]
+ },
+ "definitions": {
+  "H_RESCUES": "SYSTEM-H hit@10 true, BM25 hit@10 false",
+  "H_REGRESSIONS": "SYSTEM-H hit@10 false, BM25 hit@10 true",
+  "BOTH_HIT": "both hit@10 true",
+  "BOTH_MISS": "both hit@10 false"
+ }
+}

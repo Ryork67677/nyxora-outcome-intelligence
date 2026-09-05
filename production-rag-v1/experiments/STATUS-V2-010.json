@@ -1,0 +1,389 @@
+{
+ "record_id": "STATUS-V2-010",
+ "title": "NATQ2-DIAG-001 \u2014 SYSTEM-H validation failure analysis",
+ "generated_utc": "2026-09-05 18:54Z",
+ "head": "1d4a10a",
+ "prior_status_head": "1d4a10a",
+ "funnel": [
+  [
+   "Gold spans in the validation partition",
+   57,
+   "\u2014"
+  ],
+  [
+   "Gold document present in the union pool",
+   56,
+   "56/57"
+  ],
+  [
+   "Covering candidate in the final pre-rerank pool",
+   44,
+   "44/57"
+  ],
+  [
+   "Reached the final top 10",
+   32,
+   "32/57"
+  ],
+  [
+   "In the pool but ranked out",
+   12,
+   "12/44"
+  ]
+ ],
+ "ceiling": {
+  "definition_used_for_CANDIDATE_CASE_CEILING": "every required gold span has at least one covering candidate in the final pre-rerank pool (the coordinator's definition; a full-coverage oracle)",
+  "candidate_case_ceiling": "31/40",
+  "candidate_case_ceiling_rate": 0.775,
+  "candidate_span_ceiling": "44/57",
+  "candidate_span_ceiling_rate": 0.7719,
+  "any_span_candidate_ceiling": "33/40",
+  "any_span_candidate_ceiling_rate": 0.825,
+  "why_any_span_is_also_reported": "case_hit@10 is the metric that failed and it is an ANY-span metric, so the any-span ceiling is what bounds the qualification decision.",
+  "is_not_system_performance": true
+ },
+ "headroom": {
+  "achieved_case_hit_at_10": 0.575,
+  "any_span_candidate_ceiling_rate": 0.825,
+  "PASS_floor": 0.8,
+  "FAIL_floor": 0.65,
+  "ceiling_clears_PASS_floor": true,
+  "cases_between_achieved_and_ceiling": 10,
+  "cases_needed_to_reach_FAIL_floor": 3,
+  "cases_needed_to_reach_PASS_floor": 9
+ },
+ "counterfactual": {
+  "achieved_case_hit_at_10": "23/40 = 0.575",
+  "if_every_in_pool_span_were_ranked_into_top10": "33/40 = 0.825",
+  "PASS_floor": 0.8,
+  "would_clear_PASS_floor": true,
+  "caveat": "This is an oracle bound on the stored pool, not a prediction. It says the evidence needed to clear the floor was already retrieved and then ranked away; it does not say any particular change would achieve it."
+ },
+ "flip_cases": [
+  "A30",
+  "B09",
+  "B22",
+  "B28",
+  "C03",
+  "C09",
+  "D03",
+  "D08",
+  "D27",
+  "E06"
+ ],
+ "ce": {
+  "median_CE_score_hit_spans": 1.2847,
+  "median_CE_score_ranked_out_spans": -3.3642,
+  "ranked_out_spans_with_negative_CE": "11/12",
+  "hit_spans_with_negative_CE": "9/32",
+  "median_CE_score_rank_in_pool_hit": 3.0,
+  "median_CE_score_rank_in_pool_ranked_out": 20.0
+ },
+ "ce_blend_exception": {
+  "case": "D08",
+  "span_index": 0,
+  "CE_score_rank_in_pool": 7,
+  "reached_top10": false,
+  "reading": "A span the CE placed 7th in its pool still finished outside the top 10, so the EXP-017/EXP-019A blend demoted it. That is 1 of 12; the other 11 were already far down the CE ordering."
+ },
+ "projection": {
+  "projection_candidates_supplied": 800,
+  "per_case": 20,
+  "gold_spans_covered_by_a_projection_candidate": 0,
+  "gold_spans_covered_via_fused_e": 44,
+  "projection_chunks_that_reached_top10": 12,
+  "top10_slot_origins": {
+   "a_pool": 379,
+   "projection": 12,
+   "local_bm25": 9
+  },
+  "mean_projection_stage_latency_ms": 885.58
+ },
+ "projection_caveat": "It establishes that 800 projection candidates covered zero gold spans, and that 12 of the 400 top-10 slots went to projection chunks that covered no gold span. It does NOT establish that removing the stage would raise case_hit@10 \u2014 that requires a counterfactual ranking this analysis is not authorised to produce.",
+ "taxonomy": {
+  "B_LOCALIZATION_FAILURE": 7,
+  "C_RERANKING_FAILURE": 8,
+  "D_MULTI_SPAN_PARTIAL_FAILURE": 1,
+  "F_MIXED": 2
+ },
+ "taxonomy_rows": [
+  [
+   "A07",
+   "BOTH_HIT",
+   2,
+   1,
+   "D_MULTI_SPAN_PARTIAL_FAILURE",
+   "C_RERANKING_FAILURE"
+  ],
+  [
+   "A12",
+   "BOTH_MISS",
+   3,
+   3,
+   "B_LOCALIZATION_FAILURE",
+   "\u2014"
+  ],
+  [
+   "A30",
+   "BOTH_MISS",
+   2,
+   2,
+   "F_MIXED",
+   "B_LOCALIZATION_FAILURE, C_RERANKING_FAILURE"
+  ],
+  [
+   "B09",
+   "H_REGRESSIONS",
+   2,
+   2,
+   "C_RERANKING_FAILURE",
+   "\u2014"
+  ],
+  [
+   "B18",
+   "BOTH_MISS",
+   1,
+   1,
+   "B_LOCALIZATION_FAILURE",
+   "\u2014"
+  ],
+  [
+   "B19",
+   "BOTH_MISS",
+   2,
+   2,
+   "B_LOCALIZATION_FAILURE",
+   "\u2014"
+  ],
+  [
+   "B22",
+   "BOTH_MISS",
+   1,
+   1,
+   "C_RERANKING_FAILURE",
+   "\u2014"
+  ],
+  [
+   "B28",
+   "H_REGRESSIONS",
+   1,
+   1,
+   "C_RERANKING_FAILURE",
+   "\u2014"
+  ],
+  [
+   "C01",
+   "BOTH_MISS",
+   2,
+   2,
+   "B_LOCALIZATION_FAILURE",
+   "\u2014"
+  ],
+  [
+   "C03",
+   "BOTH_MISS",
+   2,
+   2,
+   "F_MIXED",
+   "C_RERANKING_FAILURE, E_DOCUMENT_DISCOVERY_FAILURE"
+  ],
+  [
+   "C05",
+   "BOTH_MISS",
+   1,
+   1,
+   "B_LOCALIZATION_FAILURE",
+   "\u2014"
+  ],
+  [
+   "C09",
+   "BOTH_MISS",
+   1,
+   1,
+   "C_RERANKING_FAILURE",
+   "\u2014"
+  ],
+  [
+   "D03",
+   "BOTH_MISS",
+   1,
+   1,
+   "C_RERANKING_FAILURE",
+   "\u2014"
+  ],
+  [
+   "D08",
+   "BOTH_MISS",
+   1,
+   1,
+   "C_RERANKING_FAILURE",
+   "\u2014"
+  ],
+  [
+   "D27",
+   "H_REGRESSIONS",
+   1,
+   1,
+   "C_RERANKING_FAILURE",
+   "\u2014"
+  ],
+  [
+   "E01",
+   "BOTH_MISS",
+   1,
+   1,
+   "B_LOCALIZATION_FAILURE",
+   "\u2014"
+  ],
+  [
+   "E06",
+   "BOTH_MISS",
+   1,
+   1,
+   "C_RERANKING_FAILURE",
+   "\u2014"
+  ],
+  [
+   "E27",
+   "BOTH_MISS",
+   1,
+   1,
+   "B_LOCALIZATION_FAILURE",
+   "\u2014"
+  ]
+ ],
+ "ranked_out": [
+  [
+   "A07",
+   1,
+   63,
+   -2.116
+  ],
+  [
+   "A30",
+   0,
+   18,
+   -2.268
+  ],
+  [
+   "B09",
+   0,
+   20,
+   -6.37
+  ],
+  [
+   "B09",
+   1,
+   20,
+   -6.37
+  ],
+  [
+   "B22",
+   0,
+   50,
+   -7.578
+  ],
+  [
+   "B28",
+   0,
+   17,
+   -4.518
+  ],
+  [
+   "C03",
+   0,
+   31,
+   -2.389
+  ],
+  [
+   "C09",
+   0,
+   19,
+   0.096
+  ],
+  [
+   "D03",
+   0,
+   17,
+   -4.226
+  ],
+  [
+   "D08",
+   0,
+   7,
+   -3.351
+  ],
+  [
+   "D27",
+   0,
+   32,
+   -3.378
+  ],
+  [
+   "E06",
+   0,
+   30,
+   -2.796
+  ]
+ ],
+ "unavailable": [
+  "system_a_global_pool",
+  "local_bm25_additive",
+  "pre_ce_rrf_rank"
+ ],
+ "stage_availability": {
+  "system_a_global_pool": "UNAVAILABLE \u2014 membership not persisted separately from local BM25",
+  "local_bm25_additive": "UNAVAILABLE \u2014 membership not persisted separately from SYSTEM-A",
+  "fused_e_systemA_plus_localbm25": "AVAILABLE (merged, not attributable within)",
+  "projection_candidates": "AVAILABLE (trailing projection_extras keys, count-identity verified)",
+  "final_pre_ce_union_pool": "AVAILABLE",
+  "post_ce_ordering": "AVAILABLE as a CE-score ordering derived from stored scores",
+  "pre_ce_rrf_rank": "UNAVAILABLE \u2014 only pool sizes were persisted",
+  "final_blend_rank": "AVAILABLE for top 10 only; beyond that only 'rank > 10' is known",
+  "final_top10": "AVAILABLE with origin labels"
+ },
+ "populations": {
+  "H_RESCUES": 11,
+  "H_REGRESSIONS": 3,
+  "BOTH_HIT": 12,
+  "BOTH_MISS": 14
+ },
+ "population_reading": {
+  "H_RESCUES": "11 cases SYSTEM-H hits that BM25 misses \u2014 the reranker is doing real work.",
+  "H_REGRESSIONS": "3 cases BM25 hits that SYSTEM-H misses (B09, B28, D27). All three are C_RERANKING_FAILURE: the covering candidate was in SYSTEM-H's pool and was ranked out. BM25 found the same evidence and kept it in its top 10.",
+  "BOTH_MISS": "14 cases. 7 are B_LOCALIZATION_FAILURE, 5 are C_RERANKING_FAILURE, 2 are F_MIXED. So even inside the hardest population, a third are ranking losses rather than retrieval losses."
+ },
+ "answer": "SYSTEM-H outperformed BM25 because its reranking stage genuinely recovers evidence BM25 cannot surface: 11 rescued cases and a significant paired micro-MRR gain. It nonetheless missed the absolute floor because the same reranking stage discards evidence it already holds. 44 of 57 gold spans were retrieved into the final candidate pool and 12 of them were ranked out, taking 10 cases from hit to miss. Had those 10 held, case_hit@10 would have been 0.825 and above the PASS floor. The failure is therefore located in ranking, and within ranking primarily in the cross-encoder, which scored 11 of those 12 spans negative with a median score of -3.36 against +1.29 for spans that survived. Candidate generation is a secondary constraint that caps the system at 0.825 with only one case of margin.",
+ "truncation": {
+  "task_message_truncated": true,
+  "truncated_at": "RERANKER MOVEMENT \u2014 the bullet list ends mid-item at 'pre-CE rank / CE'",
+  "handling": "Every fully specified section was completed. The reranker-movement section was answered as far as the stored traces allow, and its central requirement \u2014 pre-CE rank \u2014 is unavailable because RRF rank was never persisted. Any further sections after RERANKER MOVEMENT were not received and are not addressed."
+ },
+ "state": {
+  "runs_consumed_by_this_task": 0,
+  "validation_closed": true,
+  "retry_authorized": false,
+  "reserve_bytes": 0,
+  "systems_run": 0
+ },
+ "constraints": {
+  "system_h_rerun": false,
+  "validation_runs_consumed_by_this_task": 0,
+  "reserve_opened": false,
+  "natq_001_holdout_opened": false,
+  "v1_holdout_opened": false,
+  "new_retrieval": false,
+  "new_reranking": false,
+  "new_ce_inference": false,
+  "parameters_changed": false,
+  "decision_reopened": false,
+  "missing_traces_recreated": false
+ },
+ "hashes": {
+  "NATQ2-DIAG-001-POPULATIONS.json": "fcc8ddb9a3a5d912232b55be2902df09a46eeb9eb394a1900f1ce16d2f85ff4e",
+  "NATQ2-DIAG-001-SPAN-TRACE.json": "1f949aac5cfb23c00f5410bd7704c33d5b66015f253240fe94d77078fdcddd36",
+  "NATQ2-DIAG-001-CEILING-TAXONOMY.json": "3ce530321564163610f4607f3fc35f1a31d813dbc563af1c10cd968438c34026",
+  "NATQ2-DIAG-001-ANALYSIS.json": "30e3acda280c509e8aa4aeae53687b36c12c158d2b285e170c63d85c40031aa1"
+ },
+ "config_hash": "7599eb3c3bb4798230a722e6a7c96b046dc36cc0332b584ec55339896b2d717a"
+}

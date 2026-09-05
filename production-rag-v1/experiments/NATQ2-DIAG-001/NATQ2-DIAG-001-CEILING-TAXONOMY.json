@@ -1,0 +1,570 @@
+{
+ "record_id": "NATQ2-DIAG-001-CEILING-TAXONOMY",
+ "trace_only": true,
+ "systems_run": 0,
+ "retrieval_performed": false,
+ "reranking_performed": false,
+ "ce_inference_performed": false,
+ "source_span_trace_sha256": "1f949aac5cfb23c00f5410bd7704c33d5b66015f253240fe94d77078fdcddd36",
+ "source_populations_sha256": "fcc8ddb9a3a5d912232b55be2902df09a46eeb9eb394a1900f1ce16d2f85ff4e",
+ "candidate_ceiling": {
+  "definition_used_for_CANDIDATE_CASE_CEILING": "every required gold span has at least one covering candidate in the final pre-rerank pool (the coordinator's definition; a full-coverage oracle)",
+  "candidate_case_ceiling": "31/40",
+  "candidate_case_ceiling_rate": 0.775,
+  "candidate_span_ceiling": "44/57",
+  "candidate_span_ceiling_rate": 0.7719,
+  "any_span_candidate_ceiling": "33/40",
+  "any_span_candidate_ceiling_rate": 0.825,
+  "why_any_span_is_also_reported": "case_hit@10 is the metric that failed and it is an ANY-span metric, so the any-span ceiling is what bounds the qualification decision.",
+  "is_not_system_performance": true
+ },
+ "headroom_against_the_floors": {
+  "achieved_case_hit_at_10": 0.575,
+  "any_span_candidate_ceiling_rate": 0.825,
+  "PASS_floor": 0.8,
+  "FAIL_floor": 0.65,
+  "ceiling_clears_PASS_floor": true,
+  "cases_between_achieved_and_ceiling": 10,
+  "cases_needed_to_reach_FAIL_floor": 3,
+  "cases_needed_to_reach_PASS_floor": 9
+ },
+ "stage_recall": {
+  "note": "Reported only at resolutions the stored traces support.",
+  "gold_document_present_in_union_pool_cases": "40/40",
+  "gold_document_present_in_union_pool_spans": "56/57",
+  "covering_candidate_in_union_pool_spans": "44/57",
+  "covering_candidate_via_fused_e_spans": "44/57",
+  "covering_candidate_via_projection_spans": "0/57",
+  "spans_contributed_by_projection_alone": "0/57",
+  "case_candidate_recall_at_SYSTEM_A_depth": "UNAVAILABLE \u2014 SYSTEM-A membership not persisted separately",
+  "span_candidate_recall_at_SYSTEM_A_depth": "UNAVAILABLE \u2014 SYSTEM-A membership not persisted separately",
+  "candidate_recall_after_local_bm25": "UNAVAILABLE \u2014 local BM25 membership not persisted separately",
+  "candidate_recall_after_projection": "44/57 (equals the full union pool; projection is the last additive stage)"
+ },
+ "reranker_movement": {
+  "note": "Pre-CE RRF rank was not persisted, so per-span movement cannot be computed. What the traces support is stated instead; nothing is inferred.",
+  "pre_ce_rank_available": false,
+  "final_blend_rank_available_beyond_top10": false,
+  "spans_with_covering_candidate_in_pool": 44,
+  "of_those_reached_top10": 32,
+  "of_those_ranked_out_of_top10": 12,
+  "ranked_out_rate": 0.2727,
+  "ranked_out_spans": [
+   {
+    "case_id": "A07",
+    "span_index": 1,
+    "covering_candidates_in_pool": 1,
+    "best_ce_score_rank_in_pool": 63,
+    "best_ce_score": -2.115594
+   },
+   {
+    "case_id": "A30",
+    "span_index": 0,
+    "covering_candidates_in_pool": 1,
+    "best_ce_score_rank_in_pool": 18,
+    "best_ce_score": -2.268445
+   },
+   {
+    "case_id": "B09",
+    "span_index": 0,
+    "covering_candidates_in_pool": 1,
+    "best_ce_score_rank_in_pool": 20,
+    "best_ce_score": -6.369956
+   },
+   {
+    "case_id": "B09",
+    "span_index": 1,
+    "covering_candidates_in_pool": 1,
+    "best_ce_score_rank_in_pool": 20,
+    "best_ce_score": -6.369956
+   },
+   {
+    "case_id": "B22",
+    "span_index": 0,
+    "covering_candidates_in_pool": 1,
+    "best_ce_score_rank_in_pool": 50,
+    "best_ce_score": -7.577972
+   },
+   {
+    "case_id": "B28",
+    "span_index": 0,
+    "covering_candidates_in_pool": 1,
+    "best_ce_score_rank_in_pool": 17,
+    "best_ce_score": -4.517999
+   },
+   {
+    "case_id": "C03",
+    "span_index": 0,
+    "covering_candidates_in_pool": 1,
+    "best_ce_score_rank_in_pool": 31,
+    "best_ce_score": -2.388589
+   },
+   {
+    "case_id": "C09",
+    "span_index": 0,
+    "covering_candidates_in_pool": 1,
+    "best_ce_score_rank_in_pool": 19,
+    "best_ce_score": 0.095659
+   },
+   {
+    "case_id": "D03",
+    "span_index": 0,
+    "covering_candidates_in_pool": 1,
+    "best_ce_score_rank_in_pool": 17,
+    "best_ce_score": -4.225849
+   },
+   {
+    "case_id": "D08",
+    "span_index": 0,
+    "covering_candidates_in_pool": 1,
+    "best_ce_score_rank_in_pool": 7,
+    "best_ce_score": -3.350875
+   },
+   {
+    "case_id": "D27",
+    "span_index": 0,
+    "covering_candidates_in_pool": 1,
+    "best_ce_score_rank_in_pool": 32,
+    "best_ce_score": -3.377518
+   },
+   {
+    "case_id": "E06",
+    "span_index": 0,
+    "covering_candidates_in_pool": 1,
+    "best_ce_score_rank_in_pool": 30,
+    "best_ce_score": -2.796168
+   }
+  ],
+  "ce_score_rank_is_derived": "Ordering of stored CE scores, not a persisted rank. The final order is a blend, so this is diagnostic only."
+ },
+ "taxonomy": {
+  "cases_with_at_least_one_failing_span": 18,
+  "primary_mechanism_counts": {
+   "B_LOCALIZATION_FAILURE": 7,
+   "C_RERANKING_FAILURE": 8,
+   "D_MULTI_SPAN_PARTIAL_FAILURE": 1,
+   "F_MIXED": 2
+  },
+  "A_vs_E_separable": false,
+  "A_vs_E_note": "GLOBAL_CANDIDATE_FAILURE and DOCUMENT_DISCOVERY_FAILURE are not separable from these traces; SYSTEM-A membership was not persisted apart from local BM25. Cases whose gold document never appears in the union pool are reported as E.",
+  "cases": [
+   {
+    "case_id": "A07",
+    "population": "BOTH_HIT",
+    "n_spans": 2,
+    "n_failed_spans": 1,
+    "case_hit_at_10": true,
+    "case_full_coverage_at_10": false,
+    "primary_mechanism": "D_MULTI_SPAN_PARTIAL_FAILURE",
+    "secondary_mechanisms": [
+     "C_RERANKING_FAILURE"
+    ],
+    "affects": "case_full_coverage@10 only",
+    "failing_spans": [
+     {
+      "span_index": 1,
+      "gold_doc_in_pool": true,
+      "covering_candidates_in_pool": 1,
+      "best_ce_score_rank_in_pool": 63,
+      "final_blend_rank": "UNAVAILABLE_BEYOND_TOP10"
+     }
+    ]
+   },
+   {
+    "case_id": "A12",
+    "population": "BOTH_MISS",
+    "n_spans": 3,
+    "n_failed_spans": 3,
+    "case_hit_at_10": false,
+    "case_full_coverage_at_10": false,
+    "primary_mechanism": "B_LOCALIZATION_FAILURE",
+    "secondary_mechanisms": [],
+    "affects": "single mechanism across all failing spans",
+    "failing_spans": [
+     {
+      "span_index": 0,
+      "gold_doc_in_pool": true,
+      "covering_candidates_in_pool": 0,
+      "best_ce_score_rank_in_pool": null,
+      "final_blend_rank": "UNAVAILABLE_BEYOND_TOP10"
+     },
+     {
+      "span_index": 1,
+      "gold_doc_in_pool": true,
+      "covering_candidates_in_pool": 0,
+      "best_ce_score_rank_in_pool": null,
+      "final_blend_rank": "UNAVAILABLE_BEYOND_TOP10"
+     },
+     {
+      "span_index": 2,
+      "gold_doc_in_pool": true,
+      "covering_candidates_in_pool": 0,
+      "best_ce_score_rank_in_pool": null,
+      "final_blend_rank": "UNAVAILABLE_BEYOND_TOP10"
+     }
+    ]
+   },
+   {
+    "case_id": "A30",
+    "population": "BOTH_MISS",
+    "n_spans": 2,
+    "n_failed_spans": 2,
+    "case_hit_at_10": false,
+    "case_full_coverage_at_10": false,
+    "primary_mechanism": "F_MIXED",
+    "secondary_mechanisms": [
+     "B_LOCALIZATION_FAILURE",
+     "C_RERANKING_FAILURE"
+    ],
+    "affects": "multiple independent stages contribute",
+    "failing_spans": [
+     {
+      "span_index": 0,
+      "gold_doc_in_pool": true,
+      "covering_candidates_in_pool": 1,
+      "best_ce_score_rank_in_pool": 18,
+      "final_blend_rank": "UNAVAILABLE_BEYOND_TOP10"
+     },
+     {
+      "span_index": 1,
+      "gold_doc_in_pool": true,
+      "covering_candidates_in_pool": 0,
+      "best_ce_score_rank_in_pool": null,
+      "final_blend_rank": "UNAVAILABLE_BEYOND_TOP10"
+     }
+    ]
+   },
+   {
+    "case_id": "B09",
+    "population": "H_REGRESSIONS",
+    "n_spans": 2,
+    "n_failed_spans": 2,
+    "case_hit_at_10": false,
+    "case_full_coverage_at_10": false,
+    "primary_mechanism": "C_RERANKING_FAILURE",
+    "secondary_mechanisms": [],
+    "affects": "single mechanism across all failing spans",
+    "failing_spans": [
+     {
+      "span_index": 0,
+      "gold_doc_in_pool": true,
+      "covering_candidates_in_pool": 1,
+      "best_ce_score_rank_in_pool": 20,
+      "final_blend_rank": "UNAVAILABLE_BEYOND_TOP10"
+     },
+     {
+      "span_index": 1,
+      "gold_doc_in_pool": true,
+      "covering_candidates_in_pool": 1,
+      "best_ce_score_rank_in_pool": 20,
+      "final_blend_rank": "UNAVAILABLE_BEYOND_TOP10"
+     }
+    ]
+   },
+   {
+    "case_id": "B18",
+    "population": "BOTH_MISS",
+    "n_spans": 1,
+    "n_failed_spans": 1,
+    "case_hit_at_10": false,
+    "case_full_coverage_at_10": false,
+    "primary_mechanism": "B_LOCALIZATION_FAILURE",
+    "secondary_mechanisms": [],
+    "affects": "single mechanism across all failing spans",
+    "failing_spans": [
+     {
+      "span_index": 0,
+      "gold_doc_in_pool": true,
+      "covering_candidates_in_pool": 0,
+      "best_ce_score_rank_in_pool": null,
+      "final_blend_rank": "UNAVAILABLE_BEYOND_TOP10"
+     }
+    ]
+   },
+   {
+    "case_id": "B19",
+    "population": "BOTH_MISS",
+    "n_spans": 2,
+    "n_failed_spans": 2,
+    "case_hit_at_10": false,
+    "case_full_coverage_at_10": false,
+    "primary_mechanism": "B_LOCALIZATION_FAILURE",
+    "secondary_mechanisms": [],
+    "affects": "single mechanism across all failing spans",
+    "failing_spans": [
+     {
+      "span_index": 0,
+      "gold_doc_in_pool": true,
+      "covering_candidates_in_pool": 0,
+      "best_ce_score_rank_in_pool": null,
+      "final_blend_rank": "UNAVAILABLE_BEYOND_TOP10"
+     },
+     {
+      "span_index": 1,
+      "gold_doc_in_pool": true,
+      "covering_candidates_in_pool": 0,
+      "best_ce_score_rank_in_pool": null,
+      "final_blend_rank": "UNAVAILABLE_BEYOND_TOP10"
+     }
+    ]
+   },
+   {
+    "case_id": "B22",
+    "population": "BOTH_MISS",
+    "n_spans": 1,
+    "n_failed_spans": 1,
+    "case_hit_at_10": false,
+    "case_full_coverage_at_10": false,
+    "primary_mechanism": "C_RERANKING_FAILURE",
+    "secondary_mechanisms": [],
+    "affects": "single mechanism across all failing spans",
+    "failing_spans": [
+     {
+      "span_index": 0,
+      "gold_doc_in_pool": true,
+      "covering_candidates_in_pool": 1,
+      "best_ce_score_rank_in_pool": 50,
+      "final_blend_rank": "UNAVAILABLE_BEYOND_TOP10"
+     }
+    ]
+   },
+   {
+    "case_id": "B28",
+    "population": "H_REGRESSIONS",
+    "n_spans": 1,
+    "n_failed_spans": 1,
+    "case_hit_at_10": false,
+    "case_full_coverage_at_10": false,
+    "primary_mechanism": "C_RERANKING_FAILURE",
+    "secondary_mechanisms": [],
+    "affects": "single mechanism across all failing spans",
+    "failing_spans": [
+     {
+      "span_index": 0,
+      "gold_doc_in_pool": true,
+      "covering_candidates_in_pool": 1,
+      "best_ce_score_rank_in_pool": 17,
+      "final_blend_rank": "UNAVAILABLE_BEYOND_TOP10"
+     }
+    ]
+   },
+   {
+    "case_id": "C01",
+    "population": "BOTH_MISS",
+    "n_spans": 2,
+    "n_failed_spans": 2,
+    "case_hit_at_10": false,
+    "case_full_coverage_at_10": false,
+    "primary_mechanism": "B_LOCALIZATION_FAILURE",
+    "secondary_mechanisms": [],
+    "affects": "single mechanism across all failing spans",
+    "failing_spans": [
+     {
+      "span_index": 0,
+      "gold_doc_in_pool": true,
+      "covering_candidates_in_pool": 0,
+      "best_ce_score_rank_in_pool": null,
+      "final_blend_rank": "UNAVAILABLE_BEYOND_TOP10"
+     },
+     {
+      "span_index": 1,
+      "gold_doc_in_pool": true,
+      "covering_candidates_in_pool": 0,
+      "best_ce_score_rank_in_pool": null,
+      "final_blend_rank": "UNAVAILABLE_BEYOND_TOP10"
+     }
+    ]
+   },
+   {
+    "case_id": "C03",
+    "population": "BOTH_MISS",
+    "n_spans": 2,
+    "n_failed_spans": 2,
+    "case_hit_at_10": false,
+    "case_full_coverage_at_10": false,
+    "primary_mechanism": "F_MIXED",
+    "secondary_mechanisms": [
+     "C_RERANKING_FAILURE",
+     "E_DOCUMENT_DISCOVERY_FAILURE"
+    ],
+    "affects": "multiple independent stages contribute",
+    "failing_spans": [
+     {
+      "span_index": 0,
+      "gold_doc_in_pool": true,
+      "covering_candidates_in_pool": 1,
+      "best_ce_score_rank_in_pool": 31,
+      "final_blend_rank": "UNAVAILABLE_BEYOND_TOP10"
+     },
+     {
+      "span_index": 1,
+      "gold_doc_in_pool": false,
+      "covering_candidates_in_pool": 0,
+      "best_ce_score_rank_in_pool": null,
+      "final_blend_rank": "UNAVAILABLE_BEYOND_TOP10"
+     }
+    ]
+   },
+   {
+    "case_id": "C05",
+    "population": "BOTH_MISS",
+    "n_spans": 1,
+    "n_failed_spans": 1,
+    "case_hit_at_10": false,
+    "case_full_coverage_at_10": false,
+    "primary_mechanism": "B_LOCALIZATION_FAILURE",
+    "secondary_mechanisms": [],
+    "affects": "single mechanism across all failing spans",
+    "failing_spans": [
+     {
+      "span_index": 0,
+      "gold_doc_in_pool": true,
+      "covering_candidates_in_pool": 0,
+      "best_ce_score_rank_in_pool": null,
+      "final_blend_rank": "UNAVAILABLE_BEYOND_TOP10"
+     }
+    ]
+   },
+   {
+    "case_id": "C09",
+    "population": "BOTH_MISS",
+    "n_spans": 1,
+    "n_failed_spans": 1,
+    "case_hit_at_10": false,
+    "case_full_coverage_at_10": false,
+    "primary_mechanism": "C_RERANKING_FAILURE",
+    "secondary_mechanisms": [],
+    "affects": "single mechanism across all failing spans",
+    "failing_spans": [
+     {
+      "span_index": 0,
+      "gold_doc_in_pool": true,
+      "covering_candidates_in_pool": 1,
+      "best_ce_score_rank_in_pool": 19,
+      "final_blend_rank": "UNAVAILABLE_BEYOND_TOP10"
+     }
+    ]
+   },
+   {
+    "case_id": "D03",
+    "population": "BOTH_MISS",
+    "n_spans": 1,
+    "n_failed_spans": 1,
+    "case_hit_at_10": false,
+    "case_full_coverage_at_10": false,
+    "primary_mechanism": "C_RERANKING_FAILURE",
+    "secondary_mechanisms": [],
+    "affects": "single mechanism across all failing spans",
+    "failing_spans": [
+     {
+      "span_index": 0,
+      "gold_doc_in_pool": true,
+      "covering_candidates_in_pool": 1,
+      "best_ce_score_rank_in_pool": 17,
+      "final_blend_rank": "UNAVAILABLE_BEYOND_TOP10"
+     }
+    ]
+   },
+   {
+    "case_id": "D08",
+    "population": "BOTH_MISS",
+    "n_spans": 1,
+    "n_failed_spans": 1,
+    "case_hit_at_10": false,
+    "case_full_coverage_at_10": false,
+    "primary_mechanism": "C_RERANKING_FAILURE",
+    "secondary_mechanisms": [],
+    "affects": "single mechanism across all failing spans",
+    "failing_spans": [
+     {
+      "span_index": 0,
+      "gold_doc_in_pool": true,
+      "covering_candidates_in_pool": 1,
+      "best_ce_score_rank_in_pool": 7,
+      "final_blend_rank": "UNAVAILABLE_BEYOND_TOP10"
+     }
+    ]
+   },
+   {
+    "case_id": "D27",
+    "population": "H_REGRESSIONS",
+    "n_spans": 1,
+    "n_failed_spans": 1,
+    "case_hit_at_10": false,
+    "case_full_coverage_at_10": false,
+    "primary_mechanism": "C_RERANKING_FAILURE",
+    "secondary_mechanisms": [],
+    "affects": "single mechanism across all failing spans",
+    "failing_spans": [
+     {
+      "span_index": 0,
+      "gold_doc_in_pool": true,
+      "covering_candidates_in_pool": 1,
+      "best_ce_score_rank_in_pool": 32,
+      "final_blend_rank": "UNAVAILABLE_BEYOND_TOP10"
+     }
+    ]
+   },
+   {
+    "case_id": "E01",
+    "population": "BOTH_MISS",
+    "n_spans": 1,
+    "n_failed_spans": 1,
+    "case_hit_at_10": false,
+    "case_full_coverage_at_10": false,
+    "primary_mechanism": "B_LOCALIZATION_FAILURE",
+    "secondary_mechanisms": [],
+    "affects": "single mechanism across all failing spans",
+    "failing_spans": [
+     {
+      "span_index": 0,
+      "gold_doc_in_pool": true,
+      "covering_candidates_in_pool": 0,
+      "best_ce_score_rank_in_pool": null,
+      "final_blend_rank": "UNAVAILABLE_BEYOND_TOP10"
+     }
+    ]
+   },
+   {
+    "case_id": "E06",
+    "population": "BOTH_MISS",
+    "n_spans": 1,
+    "n_failed_spans": 1,
+    "case_hit_at_10": false,
+    "case_full_coverage_at_10": false,
+    "primary_mechanism": "C_RERANKING_FAILURE",
+    "secondary_mechanisms": [],
+    "affects": "single mechanism across all failing spans",
+    "failing_spans": [
+     {
+      "span_index": 0,
+      "gold_doc_in_pool": true,
+      "covering_candidates_in_pool": 1,
+      "best_ce_score_rank_in_pool": 30,
+      "final_blend_rank": "UNAVAILABLE_BEYOND_TOP10"
+     }
+    ]
+   },
+   {
+    "case_id": "E27",
+    "population": "BOTH_MISS",
+    "n_spans": 1,
+    "n_failed_spans": 1,
+    "case_hit_at_10": false,
+    "case_full_coverage_at_10": false,
+    "primary_mechanism": "B_LOCALIZATION_FAILURE",
+    "secondary_mechanisms": [],
+    "affects": "single mechanism across all failing spans",
+    "failing_spans": [
+     {
+      "span_index": 0,
+      "gold_doc_in_pool": true,
+      "covering_candidates_in_pool": 0,
+      "best_ce_score_rank_in_pool": null,
+      "final_blend_rank": "UNAVAILABLE_BEYOND_TOP10"
+     }
+    ]
+   }
+  ]
+ }
+}
