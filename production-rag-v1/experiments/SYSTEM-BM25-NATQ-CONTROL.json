@@ -1,0 +1,42 @@
+{
+  "system_id": "SYSTEM-BM25-NATQ-CONTROL",
+  "recorded_utc": "2026-09-04",
+  "purpose": "A pure BM25 control over cs_v1_control. It exists to exercise the frozen split and the evaluation harness and to establish the preregistered local comparator for a future SYSTEM-H paired run.",
+  "is_not": [
+    "SYSTEM-H",
+    "a substitute for SYSTEM-H",
+    "a reconstruction of SYSTEM-H",
+    "eligible to inherit any SYSTEM-H claim, hash or preregistration"
+  ],
+  "implementation": {
+    "module": "rag_v1.retrieval",
+    "entrypoint": "lexical_search",
+    "source_file": "src/rag_v1/retrieval.py",
+    "source_sha256": "b290848a8753d4a0e2dfafa4c752d2f0f6eae71d8288be5c959524493ca43d45",
+    "scoring": "Postgres tsvector match with BM25 length normalisation; IDF ln(1+(N-df+0.5)/(df+0.5))",
+    "k1": 1.2,
+    "b": 0.75,
+    "term_extraction": "rag_v1.retrieval.query_terms \u2014 phraseto_tsquery over 'simple', OR-ed terms",
+    "tie_break": "round(score,9) DESC, then chunk_id ASC \u2014 deterministic and re-runnable",
+    "randomness": "none \u2014 no seed is required anywhere in this system"
+  },
+  "corpus": {
+    "snapshot_id": "snap_689e336380a054d8039dc35b2c09cd0a",
+    "chunk_set_id": "cs_v1_control",
+    "documents": 202,
+    "chunks": 14209
+  },
+  "explicitly_excluded": [
+    "dense retrieval",
+    "projection retrieval",
+    "local W20 expansion",
+    "reranking",
+    "cross-encoder",
+    "SYSTEM-H blend",
+    "generated query expansion",
+    "facets",
+    "document conditioning",
+    "identifier matching",
+    "RRF fusion of any kind"
+  ]
+}

@@ -1,0 +1,137 @@
+{
+ "experiment_id": "EVAL-NATQ-BM25-BASELINE-001",
+ "system_id": "SYSTEM-BM25-NATQ-CONTROL",
+ "is_not_system_h": true,
+ "system_h_runs_consumed": 0,
+ "partition_scored": "validation",
+ "reserve_opened": false,
+ "preregistration_sha256": "bb3c2b29866d40262c427aeaac4db0374e39caf2642570268160f2610dc4e5bc",
+ "inputs": {
+  "benchmark": "NATQ-002",
+  "benchmark_file": "experiments/NATQ-002/NATQ-002-ACCEPTED-100.json",
+  "benchmark_file_sha256": "1450b9e1ba892d84d2ecab279cfa229b128a02108a4704b56393382b6c5bf741",
+  "benchmark_canonical_content_sha256": "d1f2b51f61a05c7652cd420c32bedb6b72b2ad8cfe14a43ab0fe3d49774c9d60",
+  "scored_partition": "validation ONLY",
+  "validation_file": "evals/splits/natq-002/validation.json",
+  "validation_sha256": "6b7f3c90e2bfa58f244de6b2aff65e56ca3f50e2ed0886e83696aba8f5b47961",
+  "validation_cases": 40,
+  "validation_gold_spans": 57,
+  "reserve_file": "evals/splits/natq-002/reserve.json",
+  "reserve_sha256": "14aaa80224b5ad4bea021ccc63ffc96d463e54c9ee71f27b552aaecc06c46e32",
+  "reserve_is_not_opened": true,
+  "corpus_snapshot_id": "snap_689e336380a054d8039dc35b2c09cd0a",
+  "chunk_set_id": "cs_v1_control",
+  "corpus_documents": 202,
+  "corpus_chunks": 14209
+ },
+ "system": {
+  "system_id": "SYSTEM-BM25-NATQ-CONTROL",
+  "record": "experiments/SYSTEM-BM25-NATQ-CONTROL.json",
+  "record_sha256": "d58e3351c8a0c4c3bc06e073f46aa74c7691e65db29615ae476c186a8436943f",
+  "implementation_module": "rag_v1.retrieval",
+  "entrypoint": "lexical_search",
+  "source_file": "src/rag_v1/retrieval.py",
+  "source_sha256": "b290848a8753d4a0e2dfafa4c752d2f0f6eae71d8288be5c959524493ca43d45",
+  "ranking_parameters": {
+   "k1": 1.2,
+   "b": 0.75,
+   "idf": "ln(1 + (N - df + 0.5) / (df + 0.5))",
+   "length_norm": "length(coalesce(search_text, text)) / avg_len over the whole snapshot",
+   "term_matching": "binary tsvector presence per chunk, terms OR-ed",
+   "tie_break": "round(score, 9) DESC, then chunk_id ASC"
+  },
+  "top_k": 10,
+  "top_k_rationale": "Depth 10 is the evaluation depth already fixed in NATQ-002-PREREGISTRATION-001; the comparator must be measured at the same depth it will be compared at.",
+  "randomness": "none anywhere in this system or this evaluation; no seed is required and none is used"
+ },
+ "metrics": {
+  "evaluation_depth": 10,
+  "cases": 40,
+  "gold_spans": 57,
+  "micro_MRR": 0.1425,
+  "case_hit_at_10": 0.375,
+  "case_full_coverage_at_10": 0.325,
+  "span_recall_at_10": 0.3333,
+  "case_hit_at_1": 0.1,
+  "latency_p50_ms": 394.016,
+  "latency_p95_ms": 633.985,
+  "per_slice": {
+   "A": {
+    "cases": 8,
+    "gold_spans": 13,
+    "case_hit_at_10": 0.375,
+    "case_full_coverage_at_10": 0.25,
+    "span_recall_at_10": 0.2308,
+    "case_hit_at_1": 0.0,
+    "micro_MRR": 0.0571
+   },
+   "B": {
+    "cases": 8,
+    "gold_spans": 12,
+    "case_hit_at_10": 0.5,
+    "case_full_coverage_at_10": 0.375,
+    "span_recall_at_10": 0.5,
+    "case_hit_at_1": 0.25,
+    "micro_MRR": 0.3194
+   },
+   "C": {
+    "cases": 8,
+    "gold_spans": 11,
+    "case_hit_at_10": 0.25,
+    "case_full_coverage_at_10": 0.25,
+    "span_recall_at_10": 0.2727,
+    "case_hit_at_1": 0.0,
+    "micro_MRR": 0.0556
+   },
+   "D": {
+    "cases": 8,
+    "gold_spans": 10,
+    "case_hit_at_10": 0.375,
+    "case_full_coverage_at_10": 0.375,
+    "span_recall_at_10": 0.3,
+    "case_hit_at_1": 0.25,
+    "micro_MRR": 0.2111
+   },
+   "E": {
+    "cases": 8,
+    "gold_spans": 11,
+    "case_hit_at_10": 0.375,
+    "case_full_coverage_at_10": 0.375,
+    "span_recall_at_10": 0.3636,
+    "case_hit_at_1": 0.0,
+    "micro_MRR": 0.075
+   }
+  },
+  "per_provider": {
+   "anthropic": {
+    "cases": 28,
+    "gold_spans": 39,
+    "case_hit_at_10": 0.3214,
+    "case_full_coverage_at_10": 0.3214,
+    "span_recall_at_10": 0.3077,
+    "case_hit_at_1": 0.0357,
+    "micro_MRR": 0.0918
+   },
+   "openai": {
+    "cases": 12,
+    "gold_spans": 18,
+    "case_hit_at_10": 0.5,
+    "case_full_coverage_at_10": 0.3333,
+    "span_recall_at_10": 0.3889,
+    "case_hit_at_1": 0.25,
+    "micro_MRR": 0.2525
+   }
+  }
+ },
+ "artifacts": {
+  "ranked_output": "experiments/EVAL-NATQ-BM25-BASELINE-001/logs/bm25-ranked-output.jsonl",
+  "ranked_output_sha256": "1eb9ffe15e3974f195da6a3145da8f8952a203658e9ed11ec1d2ad678a61ba6a",
+  "ranked_output_rows": 400,
+  "case_results": "experiments/EVAL-NATQ-BM25-BASELINE-001/EVAL-NATQ-BM25-BASELINE-001-CASE-RESULTS.json",
+  "case_results_sha256": "061e475b5ed7df140919fd5ad60fb96d6ef31b0a64d39aac561fac31ee4a7054",
+  "runner": "experiments/EVAL-NATQ-BM25-BASELINE-001/scripts/run_bm25_baseline.py",
+  "runner_sha256": "9f5485c88887c27c137c0dcc647baac411219fa783e6e335aa0d6eef5be30e15"
+ },
+ "decision": null,
+ "decision_note": "Control measurement. No pass/fail threshold applies to BM25."
+}

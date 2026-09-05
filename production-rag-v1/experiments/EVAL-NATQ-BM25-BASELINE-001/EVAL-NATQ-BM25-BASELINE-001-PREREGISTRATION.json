@@ -1,0 +1,137 @@
+{
+  "record_id": "EVAL-NATQ-BM25-BASELINE-001-PREREGISTRATION",
+  "recorded_utc": "2026-09-04",
+  "written_before_any_scoring": true,
+  "experiment_id": "EVAL-NATQ-BM25-BASELINE-001",
+  "purpose": [
+    "exercise the frozen NATQ-002 validation split",
+    "exercise the evaluation harness end to end",
+    "establish the preregistered local BM25 comparator for a future SYSTEM-H paired run",
+    "prove scoring, metrics, artifact persistence and split handling work before SYSTEM-H is executed elsewhere"
+  ],
+  "this_is_not": [
+    "a SYSTEM-H result",
+    "a substitute for SYSTEM-H",
+    "a release decision"
+  ],
+  "system_under_test": {
+    "system_id": "SYSTEM-BM25-NATQ-CONTROL",
+    "record": "experiments/SYSTEM-BM25-NATQ-CONTROL.json",
+    "record_sha256": "d58e3351c8a0c4c3bc06e073f46aa74c7691e65db29615ae476c186a8436943f",
+    "implementation_module": "rag_v1.retrieval",
+    "entrypoint": "lexical_search",
+    "source_file": "src/rag_v1/retrieval.py",
+    "source_sha256": "b290848a8753d4a0e2dfafa4c752d2f0f6eae71d8288be5c959524493ca43d45",
+    "ranking_parameters": {
+      "k1": 1.2,
+      "b": 0.75,
+      "idf": "ln(1 + (N - df + 0.5) / (df + 0.5))",
+      "length_norm": "length(coalesce(search_text, text)) / avg_len over the whole snapshot",
+      "term_matching": "binary tsvector presence per chunk, terms OR-ed",
+      "tie_break": "round(score, 9) DESC, then chunk_id ASC"
+    },
+    "top_k": 10,
+    "top_k_rationale": "Depth 10 is the evaluation depth already fixed in NATQ-002-PREREGISTRATION-001; the comparator must be measured at the same depth it will be compared at.",
+    "randomness": "none anywhere in this system or this evaluation; no seed is required and none is used"
+  },
+  "data": {
+    "benchmark": "NATQ-002",
+    "benchmark_file": "experiments/NATQ-002/NATQ-002-ACCEPTED-100.json",
+    "benchmark_file_sha256": "1450b9e1ba892d84d2ecab279cfa229b128a02108a4704b56393382b6c5bf741",
+    "benchmark_canonical_content_sha256": "d1f2b51f61a05c7652cd420c32bedb6b72b2ad8cfe14a43ab0fe3d49774c9d60",
+    "scored_partition": "validation ONLY",
+    "validation_file": "evals/splits/natq-002/validation.json",
+    "validation_sha256": "6b7f3c90e2bfa58f244de6b2aff65e56ca3f50e2ed0886e83696aba8f5b47961",
+    "validation_cases": 40,
+    "validation_gold_spans": 57,
+    "reserve_file": "evals/splits/natq-002/reserve.json",
+    "reserve_sha256": "14aaa80224b5ad4bea021ccc63ffc96d463e54c9ee71f27b552aaecc06c46e32",
+    "reserve_is_not_opened": true,
+    "corpus_snapshot_id": "snap_689e336380a054d8039dc35b2c09cd0a",
+    "chunk_set_id": "cs_v1_control",
+    "corpus_documents": 202,
+    "corpus_chunks": 14209
+  },
+  "metrics": {
+    "inherit_definitions_from": "experiments/NATQ-002/NATQ-002-PREREGISTRATION-001.json",
+    "definitions_preregistration_sha256": "0e18154ea46d8d03da41e28ec54de88c5c4632c625084a71f8c1f867ed37b0f2",
+    "no_new_definitions": "Every metric below is one already frozen for this benchmark. No metric is invented here.",
+    "evaluation_depth": 10,
+    "retrieval_unit": "cs_v1_control chunk",
+    "span_hit": "a gold span is HIT at depth k if any chunk returned in the top k overlaps [char_start, char_end) in that span's own version_id",
+    "reported": [
+      {
+        "name": "micro_MRR",
+        "definition": "mean over all 57 validation gold spans of 1/rank of the first returned chunk hitting that span; 0 if unhit within depth 10",
+        "role": "primary comparator metric for the future paired test"
+      },
+      {
+        "name": "case_hit@10",
+        "definition": "fraction of the 40 cases with at least one gold span hit in the top 10"
+      },
+      {
+        "name": "case_full_coverage@10",
+        "definition": "fraction of cases with EVERY gold span hit in the top 10"
+      },
+      {
+        "name": "span_recall@10",
+        "definition": "fraction of the 57 gold spans hit in the top 10"
+      },
+      {
+        "name": "case_hit@1",
+        "definition": "fraction of cases with at least one gold span hit at rank 1"
+      },
+      {
+        "name": "per_slice_breakdown",
+        "definition": "the above reported per authoring slice A-E, 8 cases each"
+      },
+      {
+        "name": "latency_p50_p95_ms",
+        "definition": "per-query wall time; reported, never part of any decision"
+      },
+      {
+        "name": "case_level_pass_fail_vector",
+        "definition": "per-case boolean hit@10 in fixed case-id order, persisted for the future paired bootstrap"
+      }
+    ],
+    "not_defined_for_this_benchmark": {
+      "document_hit": "NATQ-002 defines no document-level hit metric. None is invented here; gold evidence is span-level and the retrieval unit is the chunk."
+    }
+  },
+  "decision_rule": {
+    "none": true,
+    "statement": "This is a baseline/control measurement. It has NO pass/fail threshold and NO SUPPORTED value. The case_hit@10 floors approved in NATQ-002-THRESHOLD-DECISION-001 apply to SYSTEM-H and are NOT applied to BM25. Inventing a release threshold for a control merely to produce a PASS/FAIL would be a fabricated decision.",
+    "what_this_run_establishes": "the immutable comparator input for a future SYSTEM-H paired bootstrap over cases"
+  },
+  "outputs": {
+    "ranked_output": "experiments/EVAL-NATQ-BM25-BASELINE-001/logs/bm25-ranked-output.jsonl",
+    "case_results": "experiments/EVAL-NATQ-BM25-BASELINE-001/EVAL-NATQ-BM25-BASELINE-001-CASE-RESULTS.json",
+    "run_record": "experiments/EVAL-NATQ-BM25-BASELINE-001/EVAL-NATQ-BM25-BASELINE-001-RESULTS.json",
+    "runner": "experiments/EVAL-NATQ-BM25-BASELINE-001/scripts/run_bm25_baseline.py",
+    "persisted_per_query": [
+      "case_id",
+      "question",
+      "rank",
+      "chunk_id",
+      "version_id",
+      "char_start",
+      "char_end",
+      "score",
+      "section_path"
+    ],
+    "every_artifact_hashed": true
+  },
+  "prohibitions": [
+    "The reserve partition is not opened, read, sampled or summarised.",
+    "SYSTEM-H's validation-run counter is not incremented; this run is recorded independently.",
+    "No SYSTEM-H score is produced, estimated or implied.",
+    "BM25 is not tuned; k1 and b are the library defaults and are not swept.",
+    "The split is not altered and no case moves between partitions.",
+    "No metric definition is added, removed or reinterpreted."
+  ],
+  "invalidation_conditions": [
+    "any pinned hash above fails to reproduce at run time",
+    "the reserve access log is non-empty",
+    "the runner reads any file under evals/splits/natq-002 other than validation.json"
+  ]
+}

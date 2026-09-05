@@ -1,0 +1,21 @@
+{
+  "record_id": "NATQ-002-THRESHOLD-DECISION-001",
+  "recorded_utc": "2026-09-04",
+  "authority": "coordinator decision \u2014 COORDINATOR THRESHOLD DECISION",
+  "applies_to_preregistration": "experiments/NATQ-002/NATQ-002-PREREGISTRATION-001.json",
+  "preregistration_sha256": "0e18154ea46d8d03da41e28ec54de88c5c4632c625084a71f8c1f867ed37b0f2",
+  "preregistration_unmodified_by_this_decision": true,
+  "preregistration_unconsumed": true,
+  "threshold_decision": "APPROVED_PRE_RUN",
+  "thresholds_changed": false,
+  "validation_runs_consumed_before_decision": 0,
+  "approved_exactly_as_written": {
+    "case_hit_at_10_pass_floor": 0.8,
+    "case_hit_at_10_fail_floor": 0.65,
+    "scope": "unchanged",
+    "metric_definition": "unchanged",
+    "population_definition": "unchanged"
+  },
+  "rationale": "These values are preregistered engineering acceptance floors, not empirically estimated performance priors. Their purpose is to prevent a system from qualifying on paired improvement while remaining below an engineeringly useful absolute performance level. Statistical/comparative evidence is provided separately by the preregistered paired test against the co-run BM25 baseline.",
+  "note": "Recorded as a separate artifact rather than an edit to the preregistration, so the preregistration's own hash and its 'written before any scoring' claim remain intact and independently checkable."
+}

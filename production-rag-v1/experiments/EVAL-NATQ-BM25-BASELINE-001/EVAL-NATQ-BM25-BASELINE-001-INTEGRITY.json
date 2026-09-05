@@ -1,0 +1,77 @@
+{
+ "record_id": "EVAL-NATQ-BM25-BASELINE-001-INTEGRITY",
+ "recorded_utc": "2026-09-04",
+ "gates": [
+  {
+   "gate": "NATQ-002-ACCEPTED-100.json unchanged after the run",
+   "pass": true
+  },
+  {
+   "gate": "validation.json unchanged after the run",
+   "pass": true
+  },
+  {
+   "gate": "reserve.json unchanged after the run",
+   "pass": true
+  },
+  {
+   "gate": "reserve.lock.json unchanged after the run",
+   "pass": true
+  },
+  {
+   "gate": "NATQ-002-SPLIT-001.json unchanged after the run",
+   "pass": true
+  },
+  {
+   "gate": "NATQ-002-PREREGISTRATION-001.json unchanged after the run",
+   "pass": true
+  },
+  {
+   "gate": "reserve access log still empty",
+   "pass": true
+  },
+  {
+   "gate": "SYSTEM-H record unmodified",
+   "pass": true
+  },
+  {
+   "gate": "SYSTEM-H runs consumed = 0",
+   "pass": true
+  },
+  {
+   "gate": "SYSTEM-H SUPPORTED is null (not false)",
+   "pass": true
+  },
+  {
+   "gate": "SYSTEM-H score_determining_hash NOT reproduced",
+   "pass": true
+  },
+  {
+   "gate": "BM25 scored validation only",
+   "pass": true
+  },
+  {
+   "gate": "BM25 consumed 0 SYSTEM-H runs",
+   "pass": true
+  },
+  {
+   "gate": "BM25 has no pass/fail decision",
+   "pass": true
+  },
+  {
+   "gate": "BM25 case vector covers exactly the 40 validation cases",
+   "pass": true
+  },
+  {
+   "gate": "ranked output contains only validation case ids",
+   "pass": true
+  },
+  {
+   "gate": "artifact hashes recorded in the run record match on disk",
+   "pass": true
+  }
+ ],
+ "all_passed": true,
+ "natq_002_reserve_untouched": true,
+ "system_h_score_fabricated": false
+}
