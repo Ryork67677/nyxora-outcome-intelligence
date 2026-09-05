@@ -1,0 +1,174 @@
+{
+ "generated_utc": "2026-09-04",
+ "head": "38e016e",
+ "outcome": "RECOVERED",
+ "found_on_ref": "origin/grok/v2-natq-20260903",
+ "why_missed": "PROVENANCE-GAP-001 recorded four refs checked \u2014 the claude branch, grok/v2-dev, grok/ce-latency-handoff and main. It did NOT check origin/grok/v2-natq-20260903, where the entire lineage lives. My later 'no SYSTEM-H runner on any branch' claim repeated the same omission, covering three refs rather than all five. Both statements were wrong because the search space was wrong, not because the artifacts were absent.",
+ "recovery_standard": "All artifacts exist as git blobs with verifiable SHA256, independent of any conversational summary. Two independent copies agree: the git object store and a detached worktree at 37adc2c.",
+ "artifact_counts": {
+  "EXP-019A": 8,
+  "EXP-019B": 4,
+  "PERF-003": 7,
+  "EXP-017_projection": 3,
+  "SYSTEM-H_upstream_record": 1,
+  "EVAL-NATQ-VAL-001": 3
+ },
+ "artifacts_total": 26,
+ "key_artifacts": [
+  {
+   "name": "EXP-019A-preregistration.json",
+   "sha": "f14001eff07b63c7916d7e27567d15ccd1e53b52918ae66f0d24ca37abb54cf3",
+   "bytes": 7565
+  },
+  {
+   "name": "EXP-019A-results.json",
+   "sha": "adb4377427be987c4ece29332c486efe57d89e2293dc3b28f69e01b93db420cf",
+   "bytes": 159886
+  },
+  {
+   "name": "EXP-019A-report.md",
+   "sha": "b7442d0ebccfc76e89373e74bc0e068f77f4b044b49550bf1b13bb1607bf016e",
+   "bytes": 3006
+  },
+  {
+   "name": "EXP-019A-pool-identity.json",
+   "sha": "6cc9ca0687237ce6e4b4d8231689a26c0bad1552c2efdf67dfb75e0c7bd86827",
+   "bytes": 1113
+  },
+  {
+   "name": "PERF-003-preregistration.json",
+   "sha": "dc01713eafc56347a9eba0711d0947f13fccbc8ba784dfa034e22280ec23c880",
+   "bytes": 8743
+  },
+  {
+   "name": "PERF-003-results.json",
+   "sha": "3d0d07474d3fe94b62011143970eac910fcc53fa702e3cabdd0e6f934bcd408d",
+   "bytes": 46384
+  },
+  {
+   "name": "EXP-017-projection-build.json",
+   "sha": "9e10058a0417b3eea1bde42eaa12fe43b6eeb0ddeb9d049bc26359e207daf1a7",
+   "bytes": 1336
+  }
+ ],
+ "identity": {
+  "EXP-019A_preregistration_sha256": "f14001eff07b63c7916d7e27567d15ccd1e53b52918ae66f0d24ca37abb54cf3",
+  "matches_value_relayed_in_PROVENANCE_GAP_001": true,
+  "matches_its_own_sidecar_file": true,
+  "SYSTEM_G_config_hash": "563a7b790564fa1efb96257e988c4b1ccfab45146825d2a366b2fee0ca5d5790",
+  "SYSTEM_G_matches_coordinator_value": true,
+  "SYSTEM_G_location": "experiments/EXP-019A/SYSTEM-G-PROJECTION-PRIOR.json",
+  "PERF_003_CE_D1_config_hash": "6d108568f3131bad87d8617f5c2fb88ea14428e397d59ff54ff8e11cc4647b7d",
+  "PERF_003_matches_coordinator_value": true,
+  "PERF_003_preregistration_sha256": "dc01713eafc56347a9eba0711d0947f13fccbc8ba784dfa034e22280ec23c880",
+  "PERF_003_prereg_matches_value_cited_inside_upstream_SYSTEM_H_record": true,
+  "projection_config_hash": "7fd5034c9510a1e08ec76bd22b020703c586dd12e7c02659397df05c5c365a8e",
+  "projection_matches_SYSTEM_H_record": true
+ },
+ "discrepancy": {
+  "severity": "blocks the NATQ-002 preregistration as written",
+  "authoritative_SYSTEM_H_config_hash": "7599eb3c3bb4798230a722e6a7c96b046dc36cc0332b584ec55339896b2d717a",
+  "authoritative_sources": [
+   "upstream SYSTEM-H-V2-DEV-CANDIDATE.json on origin/grok/v2-natq-20260903",
+   "EVAL-NATQ-VAL-001 preregistration and REPORT, where it was recomputed and verified OK"
+  ],
+  "local_record_config_hash": "026a302b56c18e50f3af1d6b7baba8d744da2c8b951eba9ac1e137d5cec9c491",
+  "local_record_score_determining_hash": "3fade96a9b3597861b0788c15d0e456a52fa92f6907749a2661960e54bf7b2e5",
+  "hash_3fade96a_found_on_any_grok_ref": false,
+  "finding": "3fade96a appears ONLY on my own branch. It is a hash minted over my own SYSTEM-H record during the earlier freeze; it is not the upstream identity and never was. The NATQ-002 preregistration therefore pins an identity that does not correspond to the authoritative frozen SYSTEM-H.",
+  "consequence": "Recovering the artifacts does NOT by itself unblock the NATQ-002 run. Even with every original in hand, executing against the current preregistration would verify against the wrong hash. A coordinator decision is required first."
+ },
+ "second": {
+  "claim_in_my_natq002_preregistration": "SYSTEM-H has never been scored on any benchmark",
+  "status": "FALSE",
+  "evidence": "EVAL-NATQ-VAL-001 scored SYSTEM-H on the frozen NATQ-001 validation set, n=40, 53 gold spans, with SYSTEM_H_config_hash 7599eb3c recomputed and verified OK, holdout not opened.",
+  "recorded_results": {
+   "PRIMARY_strict_recall_at_10": "20/40",
+   "SECONDARY_evidence_span_recall_at_10": 0.5094,
+   "SECONDARY_evidence_span_found": "27/53",
+   "SECONDARY_document_recall_at_10": "35/40",
+   "SECONDARY_candidate_gold_span_recall_at_100": "34/40",
+   "SECONDARY_macro_span_recall": 0.5667
+  },
+  "why_this_matters": "My preregistration justified its paired design on the grounds that no prior anchor existed. A prior anchor DOES exist. The paired design remains sound, but its stated rationale was wrong \u2014 and more importantly the approved case_hit@10 PASS floor of 0.80 sits far above SYSTEM-H's known 0.50 case-level result on a comparable natural-query validation set. On that evidence SYSTEM-H would likely FAIL the approved floor. The coordinator should see this BEFORE authorising a run, not after.",
+  "metric_caveat": "EVAL-NATQ-VAL-001's strict_recall_at_10 and my case_hit@10 are similar but not proven identical in definition. The comparison is indicative, not exact."
+ },
+ "recoverable": {
+  "SYSTEM_G_candidate_generation": "YES",
+  "EXP_019A_retrieval_prior": "YES",
+  "PERF_003_D1_path": "YES",
+  "CE_model_identity": "recorded (artifact_sha256 5d3e70fd\u2026) but weights are NOT in git and remain unverified locally",
+  "projection_index_ps_v2_ovl_win448_s224": "BUILD RECORD ONLY \u2014 config hash, 18,057 projections, 27 MB, fingerprint bd95feaeacf98559 recorded; the index ROWS are database state and this host has no projection table. Rebuildable via run_exp017.py, but a rebuild is reproduction, not recovery.",
+  "SYSTEM_H_runner": "EVAL-NATQ-VAL-001/scripts/run_eval_natq_val_001.py is the harness that actually executed SYSTEM-H \u2014 present all along on the ref I failed to search."
+ },
+ "still_missing": [
+  {
+   "item": "projection index rows for ps_v2_ovl_win448_s224",
+   "state": "NOT_RECOVERED \u2014 database state, not in any git object"
+  },
+  {
+   "item": "cross-encoder weights at revision 233902d25c440f23af6f7d6e94d2946bac0bee0a",
+   "state": "NOT_RECOVERED \u2014 not in git; huggingface.co unreachable; local model.onnx unverified against artifact_sha256 5d3e70fd\u2026"
+  }
+ ],
+ "scope": {
+  "refs_searched": [
+   "refs/heads/claude/rag-v1-build-experiments-5yngul",
+   "refs/heads/main",
+   "refs/remotes/origin/claude/rag-v1-build-experiments-5yngul",
+   "refs/remotes/origin/grok/ce-latency-handoff",
+   "refs/remotes/origin/grok/v2-dev",
+   "refs/remotes/origin/grok/v2-natq-20260903",
+   "refs/remotes/origin/main"
+  ],
+  "tags": 0,
+  "stashes": 0,
+  "worktrees": 2,
+  "reflog_entries": 313,
+  "unreachable_objects": 6,
+  "unreachable_relevant": 0,
+  "unreachable_detail": "5 trees and 1 commit (8bdef61b, a GOLD-001 PDF commit); zero matches",
+  "filesystem_roots": [
+   "/home/user",
+   "/root",
+   "/tmp",
+   "/workspace",
+   "/opt",
+   "/mnt",
+   "/media"
+  ],
+  "archives_listed_not_extracted": [
+   "859dcbd3-productionragv1.zip (0 matches)",
+   "corpus-recovery-snap689e3363-20260831T2118Z.tar.gz (0 matches)"
+  ],
+  "windows_paths": "absent \u2014 /mnt/c, OneDrive, Downloads, Documents, Desktop do not exist on this Linux container",
+  "database": "read-only schema inspection; tables chunk, chunk_embedding, chunk_link, chunk_set, corpus_snapshot, corpus_snapshot_version, document_source, document_version, embedding_model, query_trace, retrieval_cache. No projection table. Nothing inserted, updated or deleted."
+ },
+ "recommendation": "STOP for coordinator approval, as instructed. The artifacts are recovered, but the identity discrepancy and the pre-existing EVAL-NATQ-VAL-001 result each require a coordinator ruling before any SYSTEM-H run against NATQ-002.",
+ "lifecycle": {
+  "recommended": "HOLD at CANNOT_EXECUTE pending coordinator ruling",
+  "rejected": "UNEVALUABLE_PROVENANCE_LOSS",
+  "why_rejected": "the provenance is not lost \u2014 it was recovered"
+ },
+ "state": {
+  "system_h_runs_consumed": 0,
+  "system_h_supported": null,
+  "score_determining_hash_reproduced": false,
+  "reserve_log_bytes": 0,
+  "reserve_log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+ },
+ "constraints": {
+  "system_h_reconstructed": false,
+  "system_h_modified": false,
+  "validation_run_consumed": false,
+  "validation_scored": false,
+  "reserve_opened": false,
+  "bm25_altered": false,
+  "repository_state_mutated": false,
+  "artifacts_restored_or_checked_out": false
+ },
+ "hashes": {
+  "recovery_record": "71ed0e58b5407155c63c06e9f77db3d3341fd655d8f8fd91a3b65b2c059692ea",
+  "recovery_report_md": "43487de885bedee897a281289a35bce1f83205564a15d0e0dbbe6921c6c209eb"
+ }
+}
